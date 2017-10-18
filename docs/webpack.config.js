@@ -1,12 +1,15 @@
 const path = require('path');
 const babelWebpackPreset = require('../build/babel-webpack-preset');
+const HtmlWebpackPlugin = require(`html-webpack-plugin`);
 
 module.exports = {
   devtool: 'source-map',
 
   entry: {
-    guide: './docs/src/index.js'
+    guide: './index.js'
   },
+
+  context: path.resolve(__dirname, 'src'),
 
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -48,5 +51,14 @@ module.exports = {
       test: /\.(woff|woff2|ttf|eot|svg|ico)(\?|$)/,
       loader: 'file-loader',
     }]
-  }
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: `index.html`,
+      inject: `body`,
+      cache: true,
+      showErrors: true
+    })
+  ]
 };
