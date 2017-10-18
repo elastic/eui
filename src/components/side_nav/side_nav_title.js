@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import {
   KuiTitle,
-} from '../../components';
+} from '..';
 
 export const KuiSideNavTitle = ({ children, className, ...rest }) => {
   const classes = classNames('kuiSideNavTitle', className);

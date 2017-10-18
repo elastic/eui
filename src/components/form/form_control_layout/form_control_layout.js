@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '../../../components';
+import { KuiIcon } from '../..';
 
 const iconSideToClassNameMap = {
   left: '',

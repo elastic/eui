@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import {
   KuiDescriptionListTitle,
   KuiDescriptionListDescription,
-} from '../../components';
+} from '..';
 
 const typesToClassNameMap = {
   row: 'kuiDescriptionList--row',

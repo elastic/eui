@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon, KuiPopoverTitle } from '../../components';
+import { KuiIcon, KuiPopoverTitle } from '..';
 
 const transitionDirectionAndTypeToClassNameMap = {
   next: {

@@ -18,7 +18,7 @@ import {
   KuiPageContent,
   KuiPageContentBody,
   KuiPageSideBar,
-} from '../../../components';
+} from '../../../src/components';
 
 export class AppView extends Component {
   constructor(props) {

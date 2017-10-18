@@ -9,7 +9,7 @@ import { cascadingMenuKeyCodes } from '../../services';
 
 import { KuiOutsideClickDetector } from '../outside_click_detector';
 
-import { KuiPanel, SIZES } from '../../components/panel/panel';
+import { KuiPanel, SIZES } from '../panel/panel';
 
 const anchorPositionToClassNameMap = {
   'upCenter': 'kuiPopover--anchorUpCenter',

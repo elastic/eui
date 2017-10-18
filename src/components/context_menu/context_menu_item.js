@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '../../components';
+import { KuiIcon } from '..';
 
 export const KuiContextMenuItem = ({
   children,

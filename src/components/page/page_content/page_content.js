@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiPanel, SIZES } from '../../../components/panel/panel';
+import { KuiPanel, SIZES } from '../../panel/panel';
 
 const verticalPositionToClassNameMap = {
   center: 'kuiPageContent--verticalCenter',

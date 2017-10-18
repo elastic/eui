@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import {
   ICON_TYPES,
   KuiIcon,
-} from '../../components/icon';
+} from '../icon';
 
 export const KuiTableHeaderButton = ({
   children,

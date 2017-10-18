@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   KuiIcon,
-} from '../../components';
+} from '..';
 
 import {
   LEFT_ALIGNMENT,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { KuiCallOut } from '../../../components';
+import { KuiCallOut } from '..';
 
 export const KuiForm = ({
   children,

@@ -5,7 +5,7 @@ import {
   KuiButtonIcon,
   KuiFlexGroup,
   KuiFlexItem,
-} from '../../../components';
+} from '../..';
 
 export const KuiHeaderAlert = ({
   action,

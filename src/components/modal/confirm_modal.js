@@ -11,7 +11,7 @@ import {
   KuiButton,
   KuiButtonEmpty,
   KuiText,
-} from '../../components/';
+} from '..';
 
 export const CONFIRM_BUTTON = 'confirm';
 export const CANCEL_BUTTON = 'cancel';

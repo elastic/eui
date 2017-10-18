@@ -40,9 +40,7 @@ registerTheme('dark', [
 // Set up app
 
 const store = configureStore();
-const browserHistory = useRouterHistory(createHashHistory)({
-  queryKey: false,
-});
+const browserHistory = useRouterHistory(createHashHistory)();
 const history = syncHistoryWithStore(browserHistory, store);
 
 const childRoutes = [].concat(Routes.getAppRoutes());

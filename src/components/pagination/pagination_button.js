@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   KuiButtonEmpty,
-} from '../../components';
+} from '..';
 
 export const KuiPaginationButton = ({
   children,

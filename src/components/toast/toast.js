@@ -9,7 +9,7 @@ import {
 
 import {
   KuiText,
-} from '../../components';
+} from '..';
 
 const typeToClassNameMap = {
   info: 'kuiToast--info',

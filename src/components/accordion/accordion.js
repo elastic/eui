@@ -9,7 +9,7 @@ import {
   KuiIcon,
   KuiFlexGroup,
   KuiFlexItem,
-} from '../../components';
+} from '..';
 
 export class KuiAccordion extends Component {
   static propTypes = {
