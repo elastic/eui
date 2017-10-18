@@ -1,6 +1,5 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
@@ -89,7 +88,7 @@ KuiButton.propTypes = {
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
-  fill: React.PropTypes.bool,
+  fill: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),
   size: PropTypes.oneOf(SIZES),
   isDisabled: PropTypes.bool,

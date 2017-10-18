@@ -1,6 +1,5 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const KuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {

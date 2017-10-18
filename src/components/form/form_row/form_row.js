@@ -1,8 +1,8 @@
 import React, {
   cloneElement,
   Component,
-  PropTypes,
 } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { KuiFormHelpText } from '../form_help_text';

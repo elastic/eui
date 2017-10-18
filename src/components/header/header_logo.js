@@ -1,11 +1,10 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
   KuiIcon,
-} from '../../../components';
+} from '../icon';
 
 export const KuiHeaderLogo = ({ href, className, ...rest }) => {
   const classes = classNames('kuiHeaderLogo', className);

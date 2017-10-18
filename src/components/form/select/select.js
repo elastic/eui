@@ -1,6 +1,5 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
@@ -53,7 +52,7 @@ export const KuiSelect = ({
 KuiSelect.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
-  options: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
 };

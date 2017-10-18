@@ -1,8 +1,8 @@
 import {
   Children,
   cloneElement,
-  PropTypes,
 } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const KuiSideNavItem = ({ children, indent, isSelected }) => {
