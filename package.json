@@ -10,6 +10,7 @@
     "deploy": "now"
   },
   "now": {
+    "name": "elastic-eui",
     "alias": "eui"
   },
   "dependencies": {
