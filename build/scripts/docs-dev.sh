@@ -1,3 +1,3 @@
 #!/bin/bash
 
-webpack-dev-server --config=docs/webpack.config.js
+webpack-dev-server --inline --hot --config=docs/webpack.config.js

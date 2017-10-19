@@ -66,8 +66,6 @@ module.exports = {
     contentBase: 'docs/build',
     host: 'localhost',
     port: 8020,
-    disableHostCheck: true,
-    inline: true,
-    hot: true
+    disableHostCheck: true
   }
 };
