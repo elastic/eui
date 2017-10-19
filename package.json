@@ -5,10 +5,12 @@
   "version": "0.0.1",
   "main": "components.js",
   "scripts": {
-    "compileCss": "grunt compileCss",
-    "build": "grunt compileCss build",
-    "start": "grunt start",
+    "build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/build-docs.sh",
+    "start": "sh ./build/scripts/start-docs.sh",
     "deploy": "now"
+  },
+  "now": {
+    "alias": "eui"
   },
   "dependencies": {
     "classnames": "2.2.5",
@@ -44,6 +46,7 @@
     "jest": "21.2.1",
     "lodash": "4.17.4",
     "node-sass": "4.5.3",
+    "npm-run": "4.1.2",
     "postcss": "6.0.13",
     "postcss-loader": "2.0.8",
     "raw-loader": "0.5.1",

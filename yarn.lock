@@ -1477,7 +1477,7 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.x, commander@^2.11.0, commander@~2.11.0:
+commander@2.11.x, commander@^2.11.0, commander@^2.9.0, commander@~2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -4661,11 +4661,36 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
+npm-path@^2.0.2, npm-path@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/npm-path/-/npm-path-2.0.3.tgz#15cff4e1c89a38da77f56f6055b24f975dfb2bbe"
+  dependencies:
+    which "^1.2.10"
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
   dependencies:
     path-key "^2.0.0"
+
+npm-run@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/npm-run/-/npm-run-4.1.2.tgz#1030e1ec56908c89fcc3fa366d03a2c2ba98eb99"
+  dependencies:
+    cross-spawn "^5.1.0"
+    minimist "^1.2.0"
+    npm-path "^2.0.3"
+    npm-which "^3.0.1"
+    serializerr "^1.0.3"
+    sync-exec "^0.6.2"
+
+npm-which@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/npm-which/-/npm-which-3.0.1.tgz#9225f26ec3a285c209cae67c3b11a6b4ab7140aa"
+  dependencies:
+    commander "^2.9.0"
+    npm-path "^2.0.2"
+    which "^1.2.10"
 
 "npmlog@0 || 1 || 2 || 3 || 4", npmlog@^4.0.0, npmlog@^4.0.2:
   version "4.1.2"
@@ -5416,6 +5441,10 @@ prop-types@15.6.0, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+protochain@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/protochain/-/protochain-1.0.5.tgz#991c407e99de264aadf8f81504b5e7faf7bfa260"
+
 proxy-addr@~2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.2.tgz#6571504f47bb988ec8180253f85dd7e14952bdec"
@@ -6035,6 +6064,12 @@ send@0.16.1:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
+serializerr@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/serializerr/-/serializerr-1.0.3.tgz#12d4c5aa1c3ffb8f6d1dc5f395aa9455569c3f91"
+  dependencies:
+    protochain "^1.0.5"
+
 serve-index@^1.7.2:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/serve-index/-/serve-index-1.9.1.tgz#d3768d69b1e7d82e5ce050fff5b453bea12a9239"
@@ -6515,6 +6550,10 @@ symbol-observable@^1.0.3:
 symbol-tree@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
+
+sync-exec@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/sync-exec/-/sync-exec-0.6.2.tgz#717d22cc53f0ce1def5594362f3a89a2ebb91105"
 
 tabbable@1.1.0, tabbable@^1.0.3:
   version "1.1.0"
@@ -7084,7 +7123,7 @@ which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
 
-which@1, which@^1.2.12, which@^1.2.9, which@~1.2.1:
+which@1, which@^1.2.10, which@^1.2.12, which@^1.2.9, which@~1.2.1:
   version "1.2.14"
   resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
   dependencies:
