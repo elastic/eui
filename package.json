@@ -48,7 +48,7 @@
     "lodash": "4.17.4",
     "node-sass": "4.5.3",
     "npm-run": "4.1.2",
-    "postcss": "6.0.13",
+    "postcss-cli": "^4.1.1",
     "postcss-loader": "2.0.8",
     "raw-loader": "0.5.1",
     "react-dom": "16.0.0",

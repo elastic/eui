@@ -1,5 +1,5 @@
 const path = require('path');
-const babelWebpackPreset = require('../build/babel-webpack-preset');
+const babelWebpackPreset = require('./babel-webpack-preset');
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
 
 module.exports = {

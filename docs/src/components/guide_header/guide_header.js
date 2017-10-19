@@ -31,7 +31,7 @@ export class GuideHeader extends Component {
               to="/"
               onClick={this.props.onShowChrome}
             >
-              <KuiIcon type="logoKibana" size="medium" />
+              <KuiIcon type="logoElasticStack" size="medium" />
             </Link>
           </KuiFlexItem>
           <KuiFlexItem grow={false}>
