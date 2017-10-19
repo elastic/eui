@@ -49,7 +49,7 @@ import '!!svg-sprite-loader!./assets/logo_logstash.svg';
 import '!!svg-sprite-loader!./assets/logo_slack.svg';
 import '!!svg-sprite-loader!./assets/logo_webhook.svg';
 import '!!svg-sprite-loader!./assets/logo_xpack.svg';
-import '!!svg-sprite-loader!./assets/logo.svg';
+import '!!svg-sprite-loader!./assets/logo_kibana.svg';
 import '!!svg-sprite-loader!./assets/map_marker.svg';
 import '!!svg-sprite-loader!./assets/node.svg';
 import '!!svg-sprite-loader!./assets/pencil.svg';
@@ -109,7 +109,7 @@ const typeToIconMap = {
   logoCloud: 'logo_cloud',
   logoElasticStack: 'logo_elastic_stack',
   logoGmail: 'logo_gmail',
-  logoKibana: 'logo',
+  logoKibana: 'logo_kibana',
   logoLogstash: 'logo_logstash',
   logoSlack: 'logo_slack',
   logoWebhook: 'logo_webhook',
