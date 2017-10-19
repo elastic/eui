@@ -19,127 +19,127 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-require('!!svg-sprite-loader!./assets/app_apm.svg');
+require('./assets/app_apm.svg');
 
-require('!!svg-sprite-loader!./assets/app_dashboard.svg');
+require('./assets/app_dashboard.svg');
 
-require('!!svg-sprite-loader!./assets/app_devtools.svg');
+require('./assets/app_devtools.svg');
 
-require('!!svg-sprite-loader!./assets/app_discover.svg');
+require('./assets/app_discover.svg');
 
-require('!!svg-sprite-loader!./assets/app_graph.svg');
+require('./assets/app_graph.svg');
 
-require('!!svg-sprite-loader!./assets/app_logging.svg');
+require('./assets/app_logging.svg');
 
-require('!!svg-sprite-loader!./assets/app_ml.svg');
+require('./assets/app_ml.svg');
 
-require('!!svg-sprite-loader!./assets/app_monitoring.svg');
+require('./assets/app_monitoring.svg');
 
-require('!!svg-sprite-loader!./assets/app_timelion.svg');
+require('./assets/app_timelion.svg');
 
-require('!!svg-sprite-loader!./assets/app_visualize.svg');
+require('./assets/app_visualize.svg');
 
-require('!!svg-sprite-loader!./assets/apps.svg');
+require('./assets/apps.svg');
 
-require('!!svg-sprite-loader!./assets/arrow_down.svg');
+require('./assets/arrow_down.svg');
 
-require('!!svg-sprite-loader!./assets/arrow_left.svg');
+require('./assets/arrow_left.svg');
 
-require('!!svg-sprite-loader!./assets/arrow_right.svg');
+require('./assets/arrow_right.svg');
 
-require('!!svg-sprite-loader!./assets/arrow_up.svg');
+require('./assets/arrow_up.svg');
 
-require('!!svg-sprite-loader!./assets/bolt.svg');
+require('./assets/bolt.svg');
 
-require('!!svg-sprite-loader!./assets/boxes_horizontal.svg');
+require('./assets/boxes_horizontal.svg');
 
-require('!!svg-sprite-loader!./assets/boxes_vertical.svg');
+require('./assets/boxes_vertical.svg');
 
-require('!!svg-sprite-loader!./assets/brush.svg');
+require('./assets/brush.svg');
 
-require('!!svg-sprite-loader!./assets/bullseye.svg');
+require('./assets/bullseye.svg');
 
-require('!!svg-sprite-loader!./assets/check.svg');
+require('./assets/check.svg');
 
-require('!!svg-sprite-loader!./assets/clock.svg');
+require('./assets/clock.svg');
 
-require('!!svg-sprite-loader!./assets/console.svg');
+require('./assets/console.svg');
 
-require('!!svg-sprite-loader!./assets/controls_horizontal.svg');
+require('./assets/controls_horizontal.svg');
 
-require('!!svg-sprite-loader!./assets/controls_vertical.svg');
+require('./assets/controls_vertical.svg');
 
-require('!!svg-sprite-loader!./assets/cross.svg');
+require('./assets/cross.svg');
 
-require('!!svg-sprite-loader!./assets/document.svg');
+require('./assets/document.svg');
 
-require('!!svg-sprite-loader!./assets/dot.svg');
+require('./assets/dot.svg');
 
-require('!!svg-sprite-loader!./assets/empty.svg');
+require('./assets/empty.svg');
 
-require('!!svg-sprite-loader!./assets/face_happy.svg');
+require('./assets/face_happy.svg');
 
-require('!!svg-sprite-loader!./assets/face_sad.svg');
+require('./assets/face_sad.svg');
 
-require('!!svg-sprite-loader!./assets/full_screen.svg');
+require('./assets/full_screen.svg');
 
-require('!!svg-sprite-loader!./assets/gear.svg');
+require('./assets/gear.svg');
 
-require('!!svg-sprite-loader!./assets/grid.svg');
+require('./assets/grid.svg');
 
-require('!!svg-sprite-loader!./assets/help.svg');
+require('./assets/help.svg');
 
-require('!!svg-sprite-loader!./assets/link.svg');
+require('./assets/link.svg');
 
-require('!!svg-sprite-loader!./assets/list_add.svg');
+require('./assets/list_add.svg');
 
-require('!!svg-sprite-loader!./assets/list.svg');
+require('./assets/list.svg');
 
-require('!!svg-sprite-loader!./assets/lock.svg');
+require('./assets/lock.svg');
 
-require('!!svg-sprite-loader!./assets/logo_beats.svg');
+require('./assets/logo_beats.svg');
 
-require('!!svg-sprite-loader!./assets/logo_cloud.svg');
+require('./assets/logo_cloud.svg');
 
-require('!!svg-sprite-loader!./assets/logo_elastic_stack.svg');
+require('./assets/logo_elastic_stack.svg');
 
-require('!!svg-sprite-loader!./assets/logo_gmail.svg');
+require('./assets/logo_gmail.svg');
 
-require('!!svg-sprite-loader!./assets/logo_logstash.svg');
+require('./assets/logo_logstash.svg');
 
-require('!!svg-sprite-loader!./assets/logo_slack.svg');
+require('./assets/logo_slack.svg');
 
-require('!!svg-sprite-loader!./assets/logo_webhook.svg');
+require('./assets/logo_webhook.svg');
 
-require('!!svg-sprite-loader!./assets/logo_xpack.svg');
+require('./assets/logo_xpack.svg');
 
-require('!!svg-sprite-loader!./assets/logo_kibana.svg');
+require('./assets/logo_kibana.svg');
 
-require('!!svg-sprite-loader!./assets/map_marker.svg');
+require('./assets/map_marker.svg');
 
-require('!!svg-sprite-loader!./assets/node.svg');
+require('./assets/node.svg');
 
-require('!!svg-sprite-loader!./assets/pencil.svg');
+require('./assets/pencil.svg');
 
-require('!!svg-sprite-loader!./assets/plus_in_circle.svg');
+require('./assets/plus_in_circle.svg');
 
-require('!!svg-sprite-loader!./assets/search.svg');
+require('./assets/search.svg');
 
-require('!!svg-sprite-loader!./assets/shard.svg');
+require('./assets/shard.svg');
 
-require('!!svg-sprite-loader!./assets/share.svg');
+require('./assets/share.svg');
 
-require('!!svg-sprite-loader!./assets/sort_down.svg');
+require('./assets/sort_down.svg');
 
-require('!!svg-sprite-loader!./assets/sort_up.svg');
+require('./assets/sort_up.svg');
 
-require('!!svg-sprite-loader!./assets/star_empty.svg');
+require('./assets/star_empty.svg');
 
-require('!!svg-sprite-loader!./assets/tear.svg');
+require('./assets/tear.svg');
 
-require('!!svg-sprite-loader!./assets/trash.svg');
+require('./assets/trash.svg');
 
-require('!!svg-sprite-loader!./assets/user.svg');
+require('./assets/user.svg');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -248,7 +248,7 @@ var KuiIcon = function KuiIcon(_ref) {
     null,
     humanizeCamelCase(type) + ' icon'
   );
-  var svgReference = _react2.default.createElement('use', { href: '#' + typeToIconMap[type] });
+  var svgReference = _react2.default.createElement('use', { xlinkHref: '#' + typeToIconMap[type] });
 
   return _react2.default.createElement(
     'svg',

@@ -1443,7 +1443,8 @@ table {
   transition: box-shadow 250ms ease-in, background 250ms ease-in;
   transition: box-shadow 250ms ease-in, background 250ms ease-in, -webkit-box-shadow 250ms ease-in;
   border-radius: 0;
-  padding-left: 40px; }
+  padding-left: 40px;
+  -webkit-appearance: textfield; }
   .kuiFieldSearch--fullWidth {
     max-width: 100%; }
   .kuiFieldSearch:invalid {

@@ -25,7 +25,6 @@
     "react": "16.0.0",
     "react-router": "3.2.0",
     "serve": "^6.3.1",
-    "svg-sprite-loader": "3.3.1",
     "tabbable": "1.1.0"
   },
   "devDependencies": {
@@ -61,6 +60,7 @@
     "redux-thunk": "2.2.0",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
+    "svg-sprite-loader": "3.3.1",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.2",
     "yeoman-generator": "2.0.1"
