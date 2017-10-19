@@ -6,6 +6,7 @@
   "main": "components.js",
   "scripts": {
     "start": "sh ./build/scripts/docs-dev.sh",
+    "build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/compile-components.sh",
     "deploy": "now --public",
     "now-build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build"
