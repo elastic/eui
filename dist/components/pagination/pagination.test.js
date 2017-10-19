@@ -23,4 +23,3 @@ describe('KuiPagination', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=pagination.test.js.map

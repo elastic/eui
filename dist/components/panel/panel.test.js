@@ -19,4 +19,3 @@ describe('KuiPanel', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=panel.test.js.map

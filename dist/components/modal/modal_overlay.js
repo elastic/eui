@@ -37,4 +37,3 @@ function KuiModalOverlay(_ref) {
 KuiModalOverlay.propTypes = {
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=modal_overlay.js.map

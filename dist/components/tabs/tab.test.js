@@ -51,4 +51,3 @@ describe('KuiTab', function () {
     });
   });
 });
-//# sourceMappingURL=tab.test.js.map

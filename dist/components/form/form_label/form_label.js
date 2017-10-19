@@ -51,4 +51,3 @@ KuiFormLabel.propTypes = {
   isFocused: _propTypes2.default.bool,
   isInvalid: _propTypes2.default.bool
 };
-//# sourceMappingURL=form_label.js.map

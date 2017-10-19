@@ -66,4 +66,3 @@ KuiPageContent.propTypes = {
 KuiPageContent.defaultProps = {
   panelPaddingSize: 'l'
 };
-//# sourceMappingURL=page_content.js.map

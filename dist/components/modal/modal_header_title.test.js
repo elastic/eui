@@ -20,4 +20,3 @@ test('renders KuiModalHeaderTitle', function () {
   );
   expect((0, _enzyme.render)(component)).toMatchSnapshot();
 });
-//# sourceMappingURL=modal_header_title.test.js.map

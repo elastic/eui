@@ -19,4 +19,3 @@ describe('KuiFormErrorText', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form_error_text.test.js.map

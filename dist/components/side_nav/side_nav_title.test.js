@@ -19,4 +19,3 @@ describe('KuiSideNavTitle', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=side_nav_title.test.js.map

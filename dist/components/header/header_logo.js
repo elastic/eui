@@ -48,4 +48,3 @@ exports.KuiHeaderLogo = KuiHeaderLogo;
 KuiHeaderLogo.propTypes = {
   href: _propTypes2.default.string
 };
-//# sourceMappingURL=header_logo.js.map

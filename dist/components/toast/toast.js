@@ -116,4 +116,3 @@ KuiToast.propTypes = {
   type: _propTypes2.default.oneOf(TYPES),
   onClose: _propTypes2.default.func
 };
-//# sourceMappingURL=toast.js.map

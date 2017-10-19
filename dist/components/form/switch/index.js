@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiSwitch', {
     return _switch.KuiSwitch;
   }
 });
-//# sourceMappingURL=index.js.map

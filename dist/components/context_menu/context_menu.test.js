@@ -19,4 +19,3 @@ describe('KuiContextMenu', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=context_menu.test.js.map

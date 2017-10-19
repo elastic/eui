@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/form/checkbox/index.js"],"names":["KuiCheckbox","KuiCheckboxGroup"],"mappings":";;;;;;;;;;;qBAASA,W;;;;;;;;;2BACAC,gB","file":"index.js","sourcesContent":["export { KuiCheckbox } from './checkbox';\nexport { KuiCheckboxGroup } from './checkbox_group';\n"]}

@@ -46,4 +46,3 @@ KuiPopoverTitle.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=popover_title.js.map

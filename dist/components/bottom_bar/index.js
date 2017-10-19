@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiBottomBar', {
     return _bottom_bar.KuiBottomBar;
   }
 });
-//# sourceMappingURL=index.js.map

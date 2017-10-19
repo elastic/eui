@@ -19,4 +19,3 @@ describe('KuiKeyPadMenu', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=key_pad_menu.test.js.map

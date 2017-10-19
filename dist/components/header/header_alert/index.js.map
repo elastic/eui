@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/header/header_alert/index.js"],"names":["KuiHeaderAlert"],"mappings":";;;;;;;;;;;yBACEA,c","file":"index.js","sourcesContent":["export {\n  KuiHeaderAlert,\n} from './header_alert';\n"]}

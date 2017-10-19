@@ -19,4 +19,3 @@ describe('KuiPaginationButton', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=pagination_button.test.js.map

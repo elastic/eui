@@ -44,4 +44,3 @@ KuiFormErrorText.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=form_error_text.js.map

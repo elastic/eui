@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiValidatableControl', {
     return _validatable_control.KuiValidatableControl;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -74,4 +74,3 @@ KuiFlexGrid.defaultProps = {
   gutterSize: 'large',
   columns: 0
 };
-//# sourceMappingURL=flex_grid.js.map

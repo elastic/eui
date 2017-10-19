@@ -90,4 +90,3 @@ KuiCallOut.propTypes = {
 KuiCallOut.defaultProps = {
   type: 'info'
 };
-//# sourceMappingURL=call_out.js.map

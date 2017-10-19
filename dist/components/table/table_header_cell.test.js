@@ -37,4 +37,3 @@ describe('align', function () {
     expect((0, _enzyme.render)(component)).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_header_cell.test.js.map

@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiHeaderSectionItemButton', {
     return _header_section_item_button.KuiHeaderSectionItemButton;
   }
 });
-//# sourceMappingURL=index.js.map

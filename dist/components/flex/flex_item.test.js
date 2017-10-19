@@ -19,4 +19,3 @@ describe('KuiFlexItem', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=flex_item.test.js.map

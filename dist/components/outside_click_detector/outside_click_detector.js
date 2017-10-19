@@ -88,4 +88,3 @@ KuiOutsideClickDetector.propTypes = {
   children: _propTypes2.default.node.isRequired,
   onOutsideClick: _propTypes2.default.func.isRequired
 };
-//# sourceMappingURL=outside_click_detector.js.map

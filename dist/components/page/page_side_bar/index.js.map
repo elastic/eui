@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/page/page_side_bar/index.js"],"names":["KuiPageSideBar"],"mappings":";;;;;;;;;;;0BAASA,c","file":"index.js","sourcesContent":["export { KuiPageSideBar } from './page_side_bar';\n"]}

@@ -18,4 +18,3 @@ Object.defineProperty(exports, 'SIZES', {
     return _panel.SIZES;
   }
 });
-//# sourceMappingURL=index.js.map

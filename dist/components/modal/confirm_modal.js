@@ -135,4 +135,3 @@ KuiConfirmModal.propTypes = {
   className: _propTypes2.default.string,
   defaultFocusedButton: _propTypes2.default.oneOf(CONFIRM_MODAL_BUTTONS)
 };
-//# sourceMappingURL=confirm_modal.js.map

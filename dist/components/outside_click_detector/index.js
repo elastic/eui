@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiOutsideClickDetector', {
     return _outside_click_detector.KuiOutsideClickDetector;
   }
 });
-//# sourceMappingURL=index.js.map

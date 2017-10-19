@@ -63,4 +63,3 @@ KuiTextColor.propTypes = {
 KuiTextColor.defaultProps = {
   color: 'default'
 };
-//# sourceMappingURL=text_color.js.map

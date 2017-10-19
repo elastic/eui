@@ -167,4 +167,3 @@ KuiAccordion.propTypes = {
   buttonContent: _propTypes2.default.node,
   extraAction: _propTypes2.default.node
 };
-//# sourceMappingURL=accordion.js.map

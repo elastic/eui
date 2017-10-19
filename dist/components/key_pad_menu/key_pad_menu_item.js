@@ -92,4 +92,3 @@ exports.KuiKeyPadMenuItemButton = KuiKeyPadMenuItemButton;
 KuiKeyPadMenuItemButton.propTypes = Object.assign({
   onClick: _propTypes2.default.func
 }, commonPropTypes);
-//# sourceMappingURL=key_pad_menu_item.js.map

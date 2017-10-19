@@ -34,4 +34,3 @@ var KuiHeaderBreadcrumbCollapsed = function KuiHeaderBreadcrumbCollapsed(_ref) {
   );
 };
 exports.KuiHeaderBreadcrumbCollapsed = KuiHeaderBreadcrumbCollapsed;
-//# sourceMappingURL=header_breadcrumb_collapsed.js.map

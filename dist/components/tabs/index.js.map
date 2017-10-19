@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/tabs/index.js"],"names":["KuiTab","KuiTabs"],"mappings":";;;;;;;;;;;gBAASA,M;;;;;;;;;iBACAC,O","file":"index.js","sourcesContent":["export { KuiTab } from './tab';\nexport { KuiTabs } from './tabs';\n"]}

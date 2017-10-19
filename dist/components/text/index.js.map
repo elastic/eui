@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/text/index.js"],"names":["KuiText","KuiTextColor"],"mappings":";;;;;;;;;;;iBACEA,O;;;;;;;;;uBAIAC,Y","file":"index.js","sourcesContent":["export {\n  KuiText,\n} from './text';\n\nexport {\n  KuiTextColor,\n} from './text_color';\n"]}

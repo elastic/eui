@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiRange', {
     return _range.KuiRange;
   }
 });
-//# sourceMappingURL=index.js.map

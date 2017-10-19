@@ -93,4 +93,3 @@ KuiContextMenuItem.propTypes = {
   onClick: _propTypes2.default.func,
   hasPanel: _propTypes2.default.bool
 };
-//# sourceMappingURL=context_menu_item.js.map

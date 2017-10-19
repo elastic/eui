@@ -19,4 +19,3 @@ describe('KuiHeaderBreadcrumbs', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=header_breadcrumbs.test.js.map

@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiFieldText', {
     return _field_text.KuiFieldText;
   }
 });
-//# sourceMappingURL=index.js.map

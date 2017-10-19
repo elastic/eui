@@ -113,7 +113,7 @@ require('!!svg-sprite-loader!./assets/logo_webhook.svg');
 
 require('!!svg-sprite-loader!./assets/logo_xpack.svg');
 
-require('!!svg-sprite-loader!./assets/logo.svg');
+require('!!svg-sprite-loader!./assets/logo_kibana.svg');
 
 require('!!svg-sprite-loader!./assets/map_marker.svg');
 
@@ -194,7 +194,7 @@ var typeToIconMap = {
   logoCloud: 'logo_cloud',
   logoElasticStack: 'logo_elastic_stack',
   logoGmail: 'logo_gmail',
-  logoKibana: 'logo',
+  logoKibana: 'logo_kibana',
   logoLogstash: 'logo_logstash',
   logoSlack: 'logo_slack',
   logoWebhook: 'logo_webhook',
@@ -271,4 +271,3 @@ KuiIcon.defaultProps = {
   className: 'kuiIcon--basic',
   size: 'medium'
 };
-//# sourceMappingURL=icon.js.map

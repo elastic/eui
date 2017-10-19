@@ -20,4 +20,3 @@ test('renders KuiModalOverlay', function () {
   );
   expect((0, _enzyme.render)(component)).toMatchSnapshot();
 });
-//# sourceMappingURL=modal_overlay.test.js.map

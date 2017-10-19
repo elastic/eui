@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiLoadingSpinner', {
     return _loading_spinner.KuiLoadingSpinner;
   }
 });
-//# sourceMappingURL=index.js.map

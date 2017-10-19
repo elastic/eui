@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiTextColor', {
     return _text_color.KuiTextColor;
   }
 });
-//# sourceMappingURL=index.js.map

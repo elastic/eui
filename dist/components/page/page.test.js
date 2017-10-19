@@ -19,4 +19,3 @@ describe('KuiPage', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=page.test.js.map

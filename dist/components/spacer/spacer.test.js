@@ -19,4 +19,3 @@ describe('KuiSpacer', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=spacer.test.js.map

@@ -19,4 +19,3 @@ describe('KuiSelect', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=select.test.js.map

@@ -55,4 +55,3 @@ exports.KuiLoadingChart = KuiLoadingChart;
 KuiLoadingChart.propTypes = {
   size: _propTypes2.default.oneOf(SIZES)
 };
-//# sourceMappingURL=loading_chart.js.map

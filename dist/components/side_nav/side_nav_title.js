@@ -44,4 +44,3 @@ var KuiSideNavTitle = function KuiSideNavTitle(_ref) {
 
 exports.KuiSideNavTitle = KuiSideNavTitle;
 KuiSideNavTitle.propTypes = {};
-//# sourceMappingURL=side_nav_title.js.map

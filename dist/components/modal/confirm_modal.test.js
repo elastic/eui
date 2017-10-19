@@ -102,4 +102,3 @@ describe('defaultFocusedButton', function () {
     expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
   });
 });
-//# sourceMappingURL=confirm_modal.test.js.map

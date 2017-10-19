@@ -206,4 +206,3 @@ KuiPopover.defaultProps = {
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm'
 };
-//# sourceMappingURL=popover.js.map

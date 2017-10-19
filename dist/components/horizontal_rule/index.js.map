@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/horizontal_rule/index.js"],"names":["KuiHorizontalRule"],"mappings":";;;;;;;;;;;4BACEA,iB","file":"index.js","sourcesContent":["export {\n  KuiHorizontalRule,\n} from './horizontal_rule';\n"]}

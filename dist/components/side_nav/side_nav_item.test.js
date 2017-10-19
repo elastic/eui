@@ -55,4 +55,3 @@ describe('KuiSideNavItem', function () {
     });
   });
 });
-//# sourceMappingURL=side_nav_item.test.js.map

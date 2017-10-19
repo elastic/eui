@@ -152,4 +152,3 @@ KuiGlobalToastList.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=global_toast_list.js.map

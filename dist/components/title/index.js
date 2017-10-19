@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiTitle', {
     return _title.KuiTitle;
   }
 });
-//# sourceMappingURL=index.js.map

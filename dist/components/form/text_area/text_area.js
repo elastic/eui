@@ -72,4 +72,3 @@ KuiTextArea.defaultProps = {
   rows: 6,
   fullWidth: false
 };
-//# sourceMappingURL=text_area.js.map

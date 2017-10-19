@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiDescriptionListDescription', {
     return _description_list_description.KuiDescriptionListDescription;
   }
 });
-//# sourceMappingURL=index.js.map

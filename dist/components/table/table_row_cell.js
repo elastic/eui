@@ -67,4 +67,3 @@ KuiTableRowCell.propTypes = {
 KuiTableRowCell.defaultProps = {
   align: _services.LEFT_ALIGNMENT
 };
-//# sourceMappingURL=table_row_cell.js.map

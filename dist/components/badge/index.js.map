@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/badge/index.js"],"names":["KuiBadge"],"mappings":";;;;;;;;;;;kBACEA,Q","file":"index.js","sourcesContent":["export {\n  KuiBadge,\n} from './badge';\n"]}

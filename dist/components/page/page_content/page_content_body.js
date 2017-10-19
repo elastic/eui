@@ -35,4 +35,3 @@ var KuiPageContentBody = function KuiPageContentBody(_ref) {
   );
 };
 exports.KuiPageContentBody = KuiPageContentBody;
-//# sourceMappingURL=page_content_body.js.map

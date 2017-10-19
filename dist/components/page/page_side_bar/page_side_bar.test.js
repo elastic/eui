@@ -19,4 +19,3 @@ describe('KuiPageSideBar', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=page_side_bar.test.js.map

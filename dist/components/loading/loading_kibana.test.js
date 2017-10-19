@@ -19,4 +19,3 @@ describe('KuiLoadingKibana', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=loading_kibana.test.js.map

@@ -19,4 +19,3 @@ describe('KuiButtonEmpty', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=button_empty.test.js.map

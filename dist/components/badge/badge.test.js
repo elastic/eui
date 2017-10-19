@@ -19,4 +19,3 @@ describe('KuiBadge', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=badge.test.js.map

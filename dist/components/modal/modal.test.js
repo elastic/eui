@@ -25,4 +25,3 @@ test('renders KuiModal', function () {
 
   expect((0, _enzyme.render)(component)).toMatchSnapshot();
 });
-//# sourceMappingURL=modal.test.js.map

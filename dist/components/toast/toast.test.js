@@ -19,4 +19,3 @@ describe('KuiToast', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=toast.test.js.map

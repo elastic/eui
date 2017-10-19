@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiPagination', {
     return _pagination.KuiPagination;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiAccordion', {
     return _accordion.KuiAccordion;
   }
 });
-//# sourceMappingURL=index.js.map

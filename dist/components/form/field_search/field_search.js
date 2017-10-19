@@ -76,4 +76,3 @@ KuiFieldSearch.defaultProps = {
   value: undefined,
   fullWidth: false
 };
-//# sourceMappingURL=field_search.js.map

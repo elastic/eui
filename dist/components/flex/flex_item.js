@@ -51,4 +51,3 @@ KuiFlexItem.propTypes = {
 KuiFlexItem.defaultProps = {
   grow: true
 };
-//# sourceMappingURL=flex_item.js.map

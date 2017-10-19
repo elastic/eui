@@ -82,4 +82,3 @@ KuiSelect.defaultProps = {
   options: [],
   fullWidth: false
 };
-//# sourceMappingURL=select.js.map

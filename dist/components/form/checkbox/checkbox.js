@@ -87,4 +87,3 @@ KuiCheckbox.propTypes = {
 KuiCheckbox.defaultProps = {
   checked: false
 };
-//# sourceMappingURL=checkbox.js.map

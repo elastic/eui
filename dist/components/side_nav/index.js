@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiSideNavTitle', {
     return _side_nav_title.KuiSideNavTitle;
   }
 });
-//# sourceMappingURL=index.js.map

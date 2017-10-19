@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiFieldPassword', {
     return _field_password.KuiFieldPassword;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -45,4 +45,3 @@ exports.KuiHeaderSectionItemButton = KuiHeaderSectionItemButton;
 KuiHeaderSectionItemButton.propTypes = {
   onClick: _propTypes2.default.func
 };
-//# sourceMappingURL=header_section_item_button.js.map

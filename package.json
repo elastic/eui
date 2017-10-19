@@ -5,10 +5,10 @@
   "version": "0.0.1",
   "main": "dist/components",
   "scripts": {
-    "start": "sh ./build/scripts/docs-dev.sh",
-    "build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/compile-components.sh",
+    "start": "./build/scripts/docs-dev.sh",
+    "build": "./build/scripts/compile-scss.sh && ./build/scripts/compile-components.sh",
     "deploy": "now --public",
-    "now-build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/docs-build.sh",
+    "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build"
   },
   "now": {

@@ -80,4 +80,3 @@ KuiForm.propTypes = {
   isInvalid: _propTypes2.default.bool,
   error: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.string)])
 };
-//# sourceMappingURL=form.js.map

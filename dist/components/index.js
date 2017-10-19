@@ -693,4 +693,3 @@ Object.defineProperty(exports, 'KuiTextColor', {
     return _text.KuiTextColor;
   }
 });
-//# sourceMappingURL=index.js.map

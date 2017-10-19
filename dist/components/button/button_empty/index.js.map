@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/button/button_empty/index.js"],"names":["KuiButtonEmpty"],"mappings":";;;;;;;;;;;yBACEA,c","file":"index.js","sourcesContent":["export {\n  KuiButtonEmpty,\n} from './button_empty';\n"]}

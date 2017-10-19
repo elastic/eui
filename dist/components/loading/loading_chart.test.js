@@ -25,4 +25,3 @@ describe('KuiLoadingChart', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=loading_chart.test.js.map

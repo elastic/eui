@@ -19,4 +19,3 @@ describe('KuiHeaderBreadcrumbCollapsed', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=header_breadcrumb_collapsed.test.js.map

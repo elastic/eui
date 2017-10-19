@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/link/index.js"],"names":["KuiLink"],"mappings":";;;;;;;;;;;iBACEA,O","file":"index.js","sourcesContent":["export {\n  KuiLink,\n} from './link';\n"]}

@@ -77,4 +77,3 @@ KuiButtonIcon.propTypes = {
 KuiButtonIcon.defaultProps = {
   type: 'primary'
 };
-//# sourceMappingURL=button_icon.js.map

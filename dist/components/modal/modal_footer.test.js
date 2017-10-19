@@ -20,4 +20,3 @@ test('renders KuiModalFooter', function () {
   );
   expect((0, _enzyme.render)(component)).toMatchSnapshot();
 });
-//# sourceMappingURL=modal_footer.test.js.map

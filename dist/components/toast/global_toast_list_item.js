@@ -34,4 +34,3 @@ KuiGlobalToastListItem.propTypes = {
   isDismissed: _propTypes2.default.bool,
   children: _propTypes2.default.node
 };
-//# sourceMappingURL=global_toast_list_item.js.map

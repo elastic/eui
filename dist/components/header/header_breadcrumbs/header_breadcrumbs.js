@@ -35,4 +35,3 @@ var KuiHeaderBreadcrumbs = function KuiHeaderBreadcrumbs(_ref) {
   );
 };
 exports.KuiHeaderBreadcrumbs = KuiHeaderBreadcrumbs;
-//# sourceMappingURL=header_breadcrumbs.js.map

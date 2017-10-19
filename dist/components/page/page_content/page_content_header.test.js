@@ -19,4 +19,3 @@ describe('KuiPageContentHeader', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=page_content_header.test.js.map

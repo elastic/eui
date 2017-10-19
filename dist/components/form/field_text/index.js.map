@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/form/field_text/index.js"],"names":["KuiFieldText"],"mappings":";;;;;;;;;;;uBAASA,Y","file":"index.js","sourcesContent":["export { KuiFieldText } from './field_text';\n"]}

@@ -58,4 +58,3 @@ KuiBottomBar.propTypes = {
 KuiBottomBar.defaultProps = {
   paddingSize: 'm'
 };
-//# sourceMappingURL=bottom_bar.js.map

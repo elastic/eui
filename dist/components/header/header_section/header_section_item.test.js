@@ -33,4 +33,3 @@ describe('KuiHeaderSectionItem', function () {
     });
   });
 });
-//# sourceMappingURL=header_section_item.test.js.map

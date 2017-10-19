@@ -48,4 +48,3 @@ KuiTableRow.propTypes = {
   className: _propTypes2.default.string,
   isSelected: _propTypes2.default.bool
 };
-//# sourceMappingURL=table_row.js.map

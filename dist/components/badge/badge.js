@@ -89,4 +89,3 @@ KuiBadge.defaultProps = {
   type: 'default',
   iconSide: 'left'
 };
-//# sourceMappingURL=badge.js.map

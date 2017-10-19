@@ -147,4 +147,3 @@ exports.KuiExpressionItemPopover = KuiExpressionItemPopover = outsideClickNotifi
 
 exports.POPOVER_ALIGN = POPOVER_ALIGN;
 exports.KuiExpressionItemPopover = KuiExpressionItemPopover;
-//# sourceMappingURL=expression_item_popover.js.map

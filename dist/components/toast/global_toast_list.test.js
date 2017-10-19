@@ -19,4 +19,3 @@ describe('KuiGlobalToastList', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=global_toast_list.test.js.map

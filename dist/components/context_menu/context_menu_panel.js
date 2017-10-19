@@ -104,4 +104,3 @@ KuiContextMenuPanel.propTypes = {
   transitionType: _propTypes2.default.oneOf(['in', 'out']),
   transitionDirection: _propTypes2.default.oneOf(['next', 'previous'])
 };
-//# sourceMappingURL=context_menu_panel.js.map

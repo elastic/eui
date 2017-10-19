@@ -19,4 +19,3 @@ describe('KuiSwitch', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=switch.test.js.map

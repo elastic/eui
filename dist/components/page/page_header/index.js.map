@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/page/page_header/index.js"],"names":["KuiPageHeader","KuiPageHeaderSection"],"mappings":";;;;;;;;;;;wBAASA,a;;;;;;;;;gCACAC,oB","file":"index.js","sourcesContent":["export { KuiPageHeader } from './page_header';\nexport { KuiPageHeaderSection } from './page_header_section';\n"]}

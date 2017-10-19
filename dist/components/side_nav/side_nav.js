@@ -86,4 +86,3 @@ KuiSideNav.propTypes = {
   type: _propTypes2.default.oneOf(TYPES),
   mobileTitle: _propTypes2.default.string
 };
-//# sourceMappingURL=side_nav.js.map

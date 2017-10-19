@@ -19,4 +19,3 @@ describe('KuiHeaderAlert', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=header_alert.test.js.map

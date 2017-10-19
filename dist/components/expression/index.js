@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiExpressionItemPopover', {
     return _expression_item_popover.KuiExpressionItemPopover;
   }
 });
-//# sourceMappingURL=index.js.map

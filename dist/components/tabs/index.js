@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiTabs', {
     return _tabs.KuiTabs;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -55,4 +55,3 @@ describe('KuiIcon', function () {
     });
   });
 });
-//# sourceMappingURL=icon.test.js.map

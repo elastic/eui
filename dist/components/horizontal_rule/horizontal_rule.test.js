@@ -19,4 +19,3 @@ describe('KuiHorizontalRule', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=horizontal_rule.test.js.map

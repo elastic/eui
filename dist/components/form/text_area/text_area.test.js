@@ -19,4 +19,3 @@ describe('KuiTextArea', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=text_area.test.js.map

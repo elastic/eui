@@ -19,4 +19,3 @@ describe('KuiProgress', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=progress.test.js.map

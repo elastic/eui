@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiFlexItem', {
     return _flex_item.KuiFlexItem;
   }
 });
-//# sourceMappingURL=index.js.map

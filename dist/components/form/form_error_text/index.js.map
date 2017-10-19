@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/form/form_error_text/index.js"],"names":["KuiFormErrorText"],"mappings":";;;;;;;;;;;4BACEA,gB","file":"index.js","sourcesContent":["export {\n  KuiFormErrorText,\n} from './form_error_text';\n"]}

@@ -19,4 +19,3 @@ describe('KuiTableRowCellCheckbox', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_row_cell_checkbox.test.js.map

@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiButtonIcon', {
     return _button_icon.KuiButtonIcon;
   }
 });
-//# sourceMappingURL=index.js.map

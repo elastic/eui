@@ -19,4 +19,3 @@ describe('KuiFlexGroup', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=flex_group.test.js.map

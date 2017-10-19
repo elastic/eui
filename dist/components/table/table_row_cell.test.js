@@ -45,4 +45,3 @@ describe('wrapText', function () {
     expect((0, _enzyme.render)(component)).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_row_cell.test.js.map

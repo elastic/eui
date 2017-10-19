@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiSelect', {
     return _select.KuiSelect;
   }
 });
-//# sourceMappingURL=index.js.map

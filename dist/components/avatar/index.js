@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiAvatar', {
     return _avatar.KuiAvatar;
   }
 });
-//# sourceMappingURL=index.js.map

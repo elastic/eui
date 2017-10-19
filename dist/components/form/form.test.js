@@ -19,4 +19,3 @@ describe('KuiForm', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form.test.js.map

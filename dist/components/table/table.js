@@ -46,4 +46,3 @@ KuiTable.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=table.js.map

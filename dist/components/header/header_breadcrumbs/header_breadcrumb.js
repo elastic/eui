@@ -54,4 +54,3 @@ KuiHeaderBreadcrumb.propTypes = {
   children: _propTypes2.default.node,
   isActive: _propTypes2.default.bool
 };
-//# sourceMappingURL=header_breadcrumb.js.map

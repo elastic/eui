@@ -146,4 +146,3 @@ KuiPagination.propTypes = {
   onPageClick: _propTypes2.default.func,
   pageLinkProvider: _propTypes2.default.func
 };
-//# sourceMappingURL=pagination.js.map

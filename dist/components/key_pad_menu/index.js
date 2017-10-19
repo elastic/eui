@@ -27,4 +27,3 @@ Object.defineProperty(exports, 'KuiKeyPadMenuItemButton', {
     return _key_pad_menu_item.KuiKeyPadMenuItemButton;
   }
 });
-//# sourceMappingURL=index.js.map

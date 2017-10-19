@@ -19,4 +19,3 @@ describe('KuiTableHeaderCellCheckbox', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_header_cell_checkbox.test.js.map

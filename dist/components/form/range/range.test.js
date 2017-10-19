@@ -19,4 +19,3 @@ describe('KuiRange', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=range.test.js.map

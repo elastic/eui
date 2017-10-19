@@ -63,4 +63,3 @@ KuiExpressionItemButton.propTypes = {
   isActive: _propTypes2.default.bool.isRequired,
   onClick: _propTypes2.default.func.isRequired
 };
-//# sourceMappingURL=expression_item_button.js.map

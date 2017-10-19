@@ -79,4 +79,3 @@ describe('KuiKeyPadMenuItemButton', function () {
     });
   });
 });
-//# sourceMappingURL=key_pad_menu_item.test.js.map

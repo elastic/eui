@@ -18,4 +18,3 @@ Object.defineProperty(exports, 'ICON_TYPES', {
     return _icon.TYPES;
   }
 });
-//# sourceMappingURL=index.js.map

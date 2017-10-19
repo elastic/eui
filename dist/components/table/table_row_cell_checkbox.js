@@ -46,4 +46,3 @@ KuiTableRowCellCheckbox.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=table_row_cell_checkbox.js.map

@@ -323,4 +323,3 @@ KuiContextMenu.defaultProps = {
   idToPreviousPanelIdMap: {},
   isVisible: true
 };
-//# sourceMappingURL=context_menu.js.map

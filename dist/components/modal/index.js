@@ -78,4 +78,3 @@ Object.defineProperty(exports, 'KuiModalHeaderTitle', {
     return _modal_header_title.KuiModalHeaderTitle;
   }
 });
-//# sourceMappingURL=index.js.map

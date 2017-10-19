@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiPageBody', {
     return _page_body.KuiPageBody;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -63,4 +63,3 @@ KuiRange.defaultProps = {
   max: 100,
   fullWidth: false
 };
-//# sourceMappingURL=range.js.map

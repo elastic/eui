@@ -19,4 +19,3 @@ describe('KuiContextMenuPanel', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=context_menu_panel.test.js.map

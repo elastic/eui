@@ -108,4 +108,3 @@ KuiTableHeaderCell.propTypes = {
 KuiTableHeaderCell.defaultProps = {
   align: _services.LEFT_ALIGNMENT
 };
-//# sourceMappingURL=table_header_cell.js.map

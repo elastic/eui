@@ -35,4 +35,3 @@ var KuiKeyPadMenu = function KuiKeyPadMenu(_ref) {
   );
 };
 exports.KuiKeyPadMenu = KuiKeyPadMenu;
-//# sourceMappingURL=key_pad_menu.js.map

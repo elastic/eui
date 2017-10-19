@@ -19,4 +19,3 @@ describe('KuiAccordion', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=accordion.test.js.map

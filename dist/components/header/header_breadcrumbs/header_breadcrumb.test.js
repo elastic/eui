@@ -35,4 +35,3 @@ describe('KuiHeaderBreadcrumb', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=header_breadcrumb.test.js.map

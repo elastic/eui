@@ -93,4 +93,3 @@ KuiDescriptionList.defaultProps = {
   align: 'left',
   compressed: false
 };
-//# sourceMappingURL=description_list.js.map

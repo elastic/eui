@@ -84,4 +84,3 @@ KuiHeaderAlert.propTypes = {
   text: _propTypes2.default.string,
   title: _propTypes2.default.string.isRequired
 };
-//# sourceMappingURL=header_alert.js.map

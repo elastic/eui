@@ -19,4 +19,3 @@ describe('KuiTableHeaderButton', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_header_button.test.js.map

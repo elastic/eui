@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/form/text_area/index.js"],"names":["KuiTextArea"],"mappings":";;;;;;;;;;;sBAASA,W","file":"index.js","sourcesContent":["export { KuiTextArea } from './text_area';\n"]}

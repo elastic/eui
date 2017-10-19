@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiScreenReaderOnly', {
     return _screen_reader.KuiScreenReaderOnly;
   }
 });
-//# sourceMappingURL=index.js.map

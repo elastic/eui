@@ -21,4 +21,3 @@ describe('KuiFlexGrid', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=flex_grid.test.js.map

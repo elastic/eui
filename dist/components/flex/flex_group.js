@@ -85,4 +85,3 @@ KuiFlexGroup.defaultProps = {
   alignItems: 'stretch',
   justifyContent: 'flexStart'
 };
-//# sourceMappingURL=flex_group.js.map

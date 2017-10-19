@@ -65,4 +65,3 @@ test('renders KuiTable', function () {
   );
   expect((0, _enzyme.render)(component)).toMatchSnapshot();
 });
-//# sourceMappingURL=table.test.js.map

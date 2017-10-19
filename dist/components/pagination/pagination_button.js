@@ -66,4 +66,3 @@ KuiPaginationButton.defaultProps = {
     '\u2026'
   )
 };
-//# sourceMappingURL=pagination_button.js.map

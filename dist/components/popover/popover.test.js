@@ -89,4 +89,3 @@ describe('KuiPopover', function () {
     });
   });
 });
-//# sourceMappingURL=popover.test.js.map

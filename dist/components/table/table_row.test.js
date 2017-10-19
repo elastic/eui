@@ -39,4 +39,3 @@ describe('isSelected', function () {
     expect((0, _enzyme.render)(component)).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=table_row.test.js.map

@@ -84,4 +84,3 @@ KuiFieldText.defaultProps = {
   value: undefined,
   fullWidth: false
 };
-//# sourceMappingURL=field_text.js.map

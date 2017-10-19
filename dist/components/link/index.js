@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiLink', {
     return _link.KuiLink;
   }
 });
-//# sourceMappingURL=index.js.map

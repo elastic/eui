@@ -102,4 +102,3 @@ KuiProgress.defaultProps = {
   color: 'secondary',
   position: 'static'
 };
-//# sourceMappingURL=progress.js.map

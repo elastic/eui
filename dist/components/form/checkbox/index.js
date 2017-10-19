@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiCheckboxGroup', {
     return _checkbox_group.KuiCheckboxGroup;
   }
 });
-//# sourceMappingURL=index.js.map

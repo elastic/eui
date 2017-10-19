@@ -71,4 +71,3 @@ KuiPanel.defaultProps = {
   hasShadow: false,
   grow: true
 };
-//# sourceMappingURL=panel.js.map

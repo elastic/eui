@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiPageHeaderSection', {
     return _page_header_section.KuiPageHeaderSection;
   }
 });
-//# sourceMappingURL=index.js.map

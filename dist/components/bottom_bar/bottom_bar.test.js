@@ -19,4 +19,3 @@ describe('KuiBottomBar', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=bottom_bar.test.js.map

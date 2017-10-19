@@ -49,4 +49,3 @@ KuiTitle.propTypes = {
   className: _propTypes2.default.string,
   size: _propTypes2.default.oneOf(TITLE_SIZES)
 };
-//# sourceMappingURL=title.js.map

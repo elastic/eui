@@ -25,4 +25,3 @@ describe('KuiHeaderLogo', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=header_logo.test.js.map

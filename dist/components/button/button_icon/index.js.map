@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/components/button/button_icon/index.js"],"names":["KuiButtonIcon"],"mappings":";;;;;;;;;;;wBACEA,a","file":"index.js","sourcesContent":["export {\n  KuiButtonIcon,\n} from './button_icon';\n"]}

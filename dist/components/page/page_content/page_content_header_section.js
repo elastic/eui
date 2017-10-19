@@ -35,4 +35,3 @@ var KuiPageContentHeaderSection = function KuiPageContentHeaderSection(_ref) {
   );
 };
 exports.KuiPageContentHeaderSection = KuiPageContentHeaderSection;
-//# sourceMappingURL=page_content_header_section.js.map

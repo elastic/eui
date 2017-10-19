@@ -89,4 +89,3 @@ KuiSwitch.propTypes = {
 KuiSwitch.defaultProps = {
   defaultChecked: false
 };
-//# sourceMappingURL=switch.js.map

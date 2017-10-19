@@ -21,4 +21,3 @@ describe('KuiFormControlLayout', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form_control_layout.test.js.map

@@ -82,4 +82,3 @@ KuiAvatar.propTypes = {
 KuiAvatar.defaultProps = {
   size: 'm'
 };
-//# sourceMappingURL=avatar.js.map

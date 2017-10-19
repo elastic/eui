@@ -65,4 +65,3 @@ KuiTableHeaderButton.propTypes = {
   className: _propTypes2.default.string,
   iconType: _propTypes2.default.oneOf(_icon.ICON_TYPES)
 };
-//# sourceMappingURL=table_header_button.js.map

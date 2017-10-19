@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiGlobalToastListItem', {
     return _global_toast_list_item.KuiGlobalToastListItem;
   }
 });
-//# sourceMappingURL=index.js.map

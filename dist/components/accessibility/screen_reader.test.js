@@ -40,4 +40,3 @@ describe('KuiScreenReaderOnly', function () {
     });
   });
 });
-//# sourceMappingURL=screen_reader.test.js.map

@@ -19,4 +19,3 @@ describe('KuiLoadingSpinner', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=loading_spinner.test.js.map

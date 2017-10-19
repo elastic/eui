@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiHeaderAlert', {
     return _header_alert.KuiHeaderAlert;
   }
 });
-//# sourceMappingURL=index.js.map

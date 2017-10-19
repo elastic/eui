@@ -24,4 +24,3 @@ describe('KuiLink', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=link.test.js.map

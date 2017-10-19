@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiButtonEmpty', {
     return _button_empty.KuiButtonEmpty;
   }
 });
-//# sourceMappingURL=index.js.map

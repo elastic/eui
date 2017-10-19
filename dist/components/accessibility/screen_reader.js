@@ -32,4 +32,3 @@ var KuiScreenReaderOnly = exports.KuiScreenReaderOnly = function KuiScreenReader
 KuiScreenReaderOnly.propTypes = {
   children: _propTypes2.default.node
 };
-//# sourceMappingURL=screen_reader.js.map

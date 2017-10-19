@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiCallOut', {
     return _call_out.KuiCallOut;
   }
 });
-//# sourceMappingURL=index.js.map

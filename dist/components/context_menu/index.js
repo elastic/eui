@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiContextMenu', {
     return _context_menu.KuiContextMenu;
   }
 });
-//# sourceMappingURL=index.js.map

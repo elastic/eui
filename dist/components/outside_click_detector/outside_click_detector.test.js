@@ -21,4 +21,3 @@ describe('KuiOutsideClickDetector', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=outside_click_detector.test.js.map

@@ -19,4 +19,3 @@ describe('KuiFormHelpText', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form_help_text.test.js.map

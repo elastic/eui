@@ -38,4 +38,3 @@ KuiSideNavItem.propTypes = {
   isSelected: _propTypes2.default.bool,
   indent: _propTypes2.default.bool
 };
-//# sourceMappingURL=side_nav_item.js.map

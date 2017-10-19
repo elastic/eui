@@ -116,4 +116,3 @@ KuiButtonEmpty.defaultProps = {
   iconSide: 'left',
   type: 'primary'
 };
-//# sourceMappingURL=button_empty.js.map

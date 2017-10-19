@@ -19,4 +19,3 @@ describe('KuiTabs', function () {
     expect((0, _enzyme.render)(component)).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=tabs.test.js.map

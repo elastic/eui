@@ -19,4 +19,3 @@ describe('KuiDescriptionListDescription', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=description_list_description.test.js.map

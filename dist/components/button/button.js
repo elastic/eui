@@ -112,4 +112,3 @@ KuiButton.defaultProps = {
   type: 'primary',
   fill: false
 };
-//# sourceMappingURL=button.js.map

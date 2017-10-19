@@ -58,4 +58,3 @@ KuiCheckboxGroup.defaultProps = {
   options: [],
   idToSelectedMap: {}
 };
-//# sourceMappingURL=checkbox_group.js.map

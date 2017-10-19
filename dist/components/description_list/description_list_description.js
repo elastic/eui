@@ -44,4 +44,3 @@ KuiDescriptionListDescription.propTypes = {
   children: _propTypes2.default.node,
   className: _propTypes2.default.string
 };
-//# sourceMappingURL=description_list_description.js.map

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/title/index.js"],"names":["KuiTitle"],"mappings":";;;;;;;;;;;kBACEA,Q","file":"index.js","sourcesContent":["export {\n  KuiTitle,\n} from './title';\n"]}

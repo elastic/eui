@@ -30,4 +30,3 @@ Object.defineProperty(exports, 'KuiHeaderBreadcrumbs', {
     return _header_breadcrumbs.KuiHeaderBreadcrumbs;
   }
 });
-//# sourceMappingURL=index.js.map

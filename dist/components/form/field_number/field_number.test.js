@@ -19,4 +19,3 @@ describe('KuiFieldNumber', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=field_number.test.js.map

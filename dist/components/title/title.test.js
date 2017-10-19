@@ -27,4 +27,3 @@ describe('KuiTitle', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=title.test.js.map

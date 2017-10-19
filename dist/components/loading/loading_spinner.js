@@ -53,4 +53,3 @@ exports.KuiLoadingSpinner = KuiLoadingSpinner;
 KuiLoadingSpinner.propTypes = {
   size: _propTypes2.default.oneOf(SIZES)
 };
-//# sourceMappingURL=loading_spinner.js.map

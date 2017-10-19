@@ -19,4 +19,3 @@ describe('KuiCode', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=code.test.js.map

@@ -19,4 +19,3 @@ describe('KuiPopoverTitle', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=popover_title.test.js.map

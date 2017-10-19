@@ -21,4 +21,3 @@ describe('KuiCheckbox', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=checkbox.test.js.map

@@ -19,4 +19,3 @@ describe('KuiFieldText', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=field_text.test.js.map

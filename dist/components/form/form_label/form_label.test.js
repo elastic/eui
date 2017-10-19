@@ -19,4 +19,3 @@ describe('KuiFormLabel', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form_label.test.js.map

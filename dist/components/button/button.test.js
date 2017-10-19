@@ -19,4 +19,3 @@ describe('KuiButton', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=button.test.js.map

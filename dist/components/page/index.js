@@ -72,4 +72,3 @@ Object.defineProperty(exports, 'KuiPageSideBar', {
     return _page_side_bar.KuiPageSideBar;
   }
 });
-//# sourceMappingURL=index.js.map

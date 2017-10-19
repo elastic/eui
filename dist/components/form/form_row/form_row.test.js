@@ -23,4 +23,3 @@ describe('KuiFormRow', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=form_row.test.js.map

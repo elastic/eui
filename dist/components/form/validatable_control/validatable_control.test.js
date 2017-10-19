@@ -21,4 +21,3 @@ describe('KuiValidatableControl', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=validatable_control.test.js.map

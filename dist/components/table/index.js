@@ -84,4 +84,3 @@ Object.defineProperty(exports, 'KuiTableRowCellCheckbox', {
     return _table_row_cell_checkbox.KuiTableRowCellCheckbox;
   }
 });
-//# sourceMappingURL=index.js.map

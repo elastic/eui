@@ -19,4 +19,3 @@ describe('KuiCallOut', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=call_out.test.js.map

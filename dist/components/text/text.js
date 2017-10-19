@@ -50,4 +50,3 @@ KuiText.propTypes = {
   className: _propTypes2.default.string,
   size: _propTypes2.default.oneOf(TEXT_SIZES)
 };
-//# sourceMappingURL=text.js.map

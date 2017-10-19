@@ -66,4 +66,3 @@ KuiHorizontalRule.defaultProps = {
   size: 'full',
   margin: 'large'
 };
-//# sourceMappingURL=horizontal_rule.js.map

@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiFormLabel', {
     return _form_label.KuiFormLabel;
   }
 });
-//# sourceMappingURL=index.js.map

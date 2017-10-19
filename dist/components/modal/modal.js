@@ -104,4 +104,3 @@ KuiModal.propTypes = {
   children: _propTypes2.default.node,
   onClose: _propTypes2.default.func.isRequired
 };
-//# sourceMappingURL=modal.js.map

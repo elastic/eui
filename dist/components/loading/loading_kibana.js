@@ -59,4 +59,3 @@ exports.KuiLoadingKibana = KuiLoadingKibana;
 KuiLoadingKibana.propTypes = {
   size: _propTypes2.default.oneOf(SIZES)
 };
-//# sourceMappingURL=loading_kibana.js.map

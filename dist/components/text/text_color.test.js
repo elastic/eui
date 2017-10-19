@@ -19,4 +19,3 @@ describe('KuiTextColor', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=text_color.test.js.map

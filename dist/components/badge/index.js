@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiBadge', {
     return _badge.KuiBadge;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -19,4 +19,3 @@ describe('KuiFieldSearch', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=field_search.test.js.map

@@ -21,4 +21,3 @@ Object.defineProperty(exports, 'KuiPopoverTitle', {
     return _popover_title.KuiPopoverTitle;
   }
 });
-//# sourceMappingURL=index.js.map

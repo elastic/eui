@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiFormErrorText', {
     return _form_error_text.KuiFormErrorText;
   }
 });
-//# sourceMappingURL=index.js.map

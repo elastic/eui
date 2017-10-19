@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/panel/index.js"],"names":["KuiPanel","SIZES"],"mappings":";;;;;;;;;;;kBACEA,Q;;;;;;kBACAC,K","file":"index.js","sourcesContent":["export {\n  KuiPanel,\n  SIZES,\n} from './panel';\n"]}

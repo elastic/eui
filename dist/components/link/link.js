@@ -66,4 +66,3 @@ exports.KuiLink = KuiLink;
 KuiLink.defaultProps = {
   color: 'primary'
 };
-//# sourceMappingURL=link.js.map

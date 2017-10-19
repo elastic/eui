@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiSpacer', {
     return _spacer.KuiSpacer;
   }
 });
-//# sourceMappingURL=index.js.map

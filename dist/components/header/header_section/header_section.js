@@ -55,4 +55,3 @@ KuiHeaderSection.propTypes = {
 KuiHeaderSection.defaultProps = {
   side: 'left'
 };
-//# sourceMappingURL=header_section.js.map

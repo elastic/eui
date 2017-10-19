@@ -41,4 +41,3 @@ KuiModalHeader.propTypes = {
   className: _propTypes2.default.string,
   children: _propTypes2.default.node
 };
-//# sourceMappingURL=modal_header.js.map

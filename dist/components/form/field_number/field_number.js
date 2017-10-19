@@ -85,4 +85,3 @@ KuiFieldNumber.defaultProps = {
   value: undefined,
   fullWidth: false
 };
-//# sourceMappingURL=field_number.js.map

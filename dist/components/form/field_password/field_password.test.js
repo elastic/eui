@@ -19,4 +19,3 @@ describe('KuiFieldPassword', function () {
     expect(component).toMatchSnapshot();
   });
 });
-//# sourceMappingURL=field_password.test.js.map

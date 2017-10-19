@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiHorizontalRule', {
     return _horizontal_rule.KuiHorizontalRule;
   }
 });
-//# sourceMappingURL=index.js.map

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/bottom_bar/index.js"],"names":["KuiBottomBar"],"mappings":";;;;;;;;;;;uBACEA,Y","file":"index.js","sourcesContent":["export {\n  KuiBottomBar,\n} from './bottom_bar';\n"]}

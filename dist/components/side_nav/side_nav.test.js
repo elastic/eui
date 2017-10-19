@@ -33,4 +33,3 @@ describe('KuiSideNav', function () {
     });
   });
 });
-//# sourceMappingURL=side_nav.test.js.map

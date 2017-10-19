@@ -12,4 +12,3 @@ Object.defineProperty(exports, 'KuiProgress', {
     return _progress.KuiProgress;
   }
 });
-//# sourceMappingURL=index.js.map
