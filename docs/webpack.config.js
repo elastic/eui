@@ -55,10 +55,18 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: `index.html`,
-      inject: `body`,
+      template: 'index.html',
+      inject: 'body',
       cache: true,
       showErrors: true
     })
-  ]
+  ],
+
+  devServer: {
+    contentBase: 'docs/build',
+    disableHostCheck: true,
+    inline: true,
+    hot: true,
+    port: 8020
+  }
 };
