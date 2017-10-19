@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/spacer/index.js"],"names":["KuiSpacer"],"mappings":";;;;;;;;;;;mBACEA,S","file":"index.js","sourcesContent":["export {\n  KuiSpacer,\n} from './spacer';\n"]}

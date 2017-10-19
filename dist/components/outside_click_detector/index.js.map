@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/outside_click_detector/index.js"],"names":["KuiOutsideClickDetector"],"mappings":";;;;;;;;;;;mCACEA,uB","file":"index.js","sourcesContent":["export {\n  KuiOutsideClickDetector,\n} from './outside_click_detector';\n"]}

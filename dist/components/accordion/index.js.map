@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/accordion/index.js"],"names":["KuiAccordion"],"mappings":";;;;;;;;;;;sBACEA,Y","file":"index.js","sourcesContent":["export {\n  KuiAccordion,\n} from './accordion';\n"]}

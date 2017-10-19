@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/icon/index.js"],"names":["KuiIcon","TYPES"],"mappings":";;;;;;;;;;;iBACEA,O;;;;;;iBACAC,K","file":"index.js","sourcesContent":["export {\n  KuiIcon,\n  TYPES as ICON_TYPES,\n} from './icon';\n"]}

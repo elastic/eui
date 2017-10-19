@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/pagination/index.js"],"names":["KuiPagination"],"mappings":";;;;;;;;;;;uBACEA,a","file":"index.js","sourcesContent":["export {\n  KuiPagination,\n} from './pagination';\n"]}

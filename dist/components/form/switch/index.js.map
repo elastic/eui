@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/components/form/switch/index.js"],"names":["KuiSwitch"],"mappings":";;;;;;;;;;;mBAASA,S","file":"index.js","sourcesContent":["export { KuiSwitch } from './switch';\n"]}

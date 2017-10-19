@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/components/form/form_label/index.js"],"names":["KuiFormLabel"],"mappings":";;;;;;;;;;;uBACEA,Y","file":"index.js","sourcesContent":["export {\n  KuiFormLabel,\n} from './form_label';\n"]}

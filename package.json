@@ -3,7 +3,7 @@
   "private": true,
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
-  "main": "components.js",
+  "main": "dist/components",
   "scripts": {
     "start": "sh ./build/scripts/docs-dev.sh",
     "build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/compile-components.sh",
