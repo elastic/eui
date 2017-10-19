@@ -5,9 +5,10 @@
   "version": "0.0.1",
   "main": "components.js",
   "scripts": {
-    "build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/build-docs.sh",
-    "start": "sh ./build/scripts/start-docs.sh",
-    "deploy": "now"
+    "start": "sh ./build/scripts/docs-dev.sh",
+    "deploy": "now",
+    "now-build": "sh ./build/scripts/compile-scss.sh && sh ./build/scripts/docs-build.sh",
+    "now-start": "serve docs/build"
   },
   "now": {
     "name": "elastic-eui",
@@ -22,6 +23,7 @@
     "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-router": "3.2.0",
+    "serve": "^6.3.1",
     "tabbable": "1.1.0"
   },
   "devDependencies": {
