@@ -1,5 +1,4 @@
 const path = require('path');
-const babelWebpackPreset = require('./babel-webpack-preset');
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
 
 module.exports = {
@@ -27,10 +26,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: {
-        presets: [babelWebpackPreset],
-      },
+      exclude: /node_modules/
     }, {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
