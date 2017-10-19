@@ -13,7 +13,8 @@ module.exports = function (grunt) {
         uiFrameworkWatch(),
         uiFrameworkServerStart()
       ])
-      .then(done);
+      .then(done)
+      .catch(err => grunt.log.error(err));
 
     function uiFrameworkWatch() {
       const debouncedCompile = debounce(() => {

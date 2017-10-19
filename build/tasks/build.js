@@ -31,6 +31,8 @@ module.exports = function (grunt) {
       });
     });
 
-    uiFrameworkServerBuild.then(done);
+    uiFrameworkServerBuild
+      .then(done)
+      .catch(err => grunt.log.error(err));
   });
 };

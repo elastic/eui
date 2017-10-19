@@ -5,7 +5,10 @@ const postcssConfig = require('../postcss.config');
 module.exports = function (grunt) {
   grunt.registerTask('compileCss', function () {
     const done = this.async();
-    uiFrameworkCompile().then(done);
+
+    uiFrameworkCompile()
+      .then(done)
+      .catch(err => grunt.log.error(err));
 
     function uiFrameworkCompile() {
       const compileTheme = name => {
