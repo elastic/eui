@@ -21,6 +21,7 @@ module.exports = function (grunt) {
           }, function (error, result) {
             if (error) {
               grunt.log.error(error);
+              return;
             }
 
             postcss([postcssConfig])

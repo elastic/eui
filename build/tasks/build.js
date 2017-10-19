@@ -18,11 +18,7 @@ module.exports = function (grunt) {
     const uiFrameworkServerBuild = new Promise((resolve, reject) => {
       grunt.util.spawn(serverCmd, (error, result, code) => {
         if (error || code !== 0) {
-          const message = result.stderr || result.stdout;
-
-          grunt.log.error(message);
-
-          return reject();
+          return reject(error);
         }
 
         grunt.log.writeln(result);

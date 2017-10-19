@@ -27,7 +27,7 @@ module.exports = function (grunt) {
           ],
         }, (error, result) => {
           if (error) {
-            grunt.log.error(result.stdout);
+            grunt.log.error(error);
           } else {
             grunt.log.writeln(result);
           }
@@ -64,11 +64,10 @@ module.exports = function (grunt) {
 
             grunt.log.error(message);
 
-            return reject();
+            return reject(message);
           }
 
           grunt.log.writeln(result);
-
           resolve();
         });
 
