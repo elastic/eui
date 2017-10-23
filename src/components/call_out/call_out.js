@@ -37,6 +37,15 @@ export const KuiCallOut = ({ title, type, iconType, children, className, ...rest
     );
   }
 
+  let optionalChildren;
+  if (children) {
+    optionalChildren = (
+      <KuiText size="s">
+        {children}
+      </KuiText>
+    );
+  }
+
   return (
     <div
       className={classes}
@@ -50,9 +59,7 @@ export const KuiCallOut = ({ title, type, iconType, children, className, ...rest
         </span>
       </div>
 
-      <KuiText size="s">
-        {children}
-      </KuiText>
+      {optionalChildren}
     </div>
   );
 };
