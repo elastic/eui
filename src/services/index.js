@@ -17,3 +17,5 @@ export {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
 } from './alignment';
+
+export * from './classes'
