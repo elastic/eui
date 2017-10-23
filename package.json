@@ -6,7 +6,7 @@
   "main": "dist/eui",
   "scripts": {
     "start": "./build/scripts/docs-dev.sh",
-    "build": "./build/scripts/compile-scss.sh && ./build/scripts/compile-javascript.sh",
+    "build": "./build/scripts/compile-clean.sh && ./build/scripts/compile-scss.sh && ./build/scripts/compile-eui.sh",
     "deploy": "now --public",
     "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build"
