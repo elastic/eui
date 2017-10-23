@@ -3,10 +3,10 @@
   "private": true,
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
-  "main": "dist/components",
+  "main": "dist/eui",
   "scripts": {
     "start": "./build/scripts/docs-dev.sh",
-    "build": "./build/scripts/compile-scss.sh && ./build/scripts/compile-components.sh",
+    "build": "./build/scripts/compile-scss.sh && ./build/scripts/compile-javascript.sh",
     "deploy": "now --public",
     "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build"
