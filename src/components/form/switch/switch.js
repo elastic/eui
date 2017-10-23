@@ -9,6 +9,7 @@ export const KuiSwitch = ({
   id,
   name,
   checked,
+  disabled,
   onChange,
   className,
   ...rest,
@@ -23,6 +24,7 @@ export const KuiSwitch = ({
         id={id}
         type="checkbox"
         checked={checked}
+        disabled={disabled}
         onChange={onChange}
       />
 
