@@ -1,6 +1,5 @@
 {
   "name": "@elastic/eui",
-  "private": true,
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
   "main": "dist/components",
