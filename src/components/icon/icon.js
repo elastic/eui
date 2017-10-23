@@ -43,6 +43,8 @@ import './assets/list.svg';
 import './assets/lock.svg';
 import './assets/logo_beats.svg';
 import './assets/logo_cloud.svg';
+import './assets/logo_elastic.svg';
+import './assets/logo_elastic_search.svg';
 import './assets/logo_elastic_stack.svg';
 import './assets/logo_gmail.svg';
 import './assets/logo_logstash.svg';
@@ -107,6 +109,8 @@ const typeToIconMap = {
   loggingApp: 'app_logging',
   logoBeats: 'logo_beats',
   logoCloud: 'logo_cloud',
+  logoElastic: 'logo_elastic',
+  logoElasticSearch: 'logo_elastic_search',
   logoElasticStack: 'logo_elastic_stack',
   logoGmail: 'logo_gmail',
   logoKibana: 'logo_kibana',

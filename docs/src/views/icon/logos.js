@@ -13,6 +13,8 @@ const iconTypes = [
   'logoSlack',
   'logoGmail',
   'logoWebhook',
+  'logoElastic',
+  'logoElasticSearch',
   'logoElasticStack',
   'logoBeats',
   'logoLogstash',

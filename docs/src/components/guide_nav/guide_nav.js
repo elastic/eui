@@ -85,7 +85,7 @@ export class GuideNav extends Component {
               className="guideLogo"
               onClick={this.props.onShowChrome}
             >
-              <KuiIcon type="logoElasticStack" size="large" />
+              <KuiIcon type="logoElastic" size="large" />
             </Link>
           </KuiFlexItem>
           <KuiFlexItem grow={false}>
