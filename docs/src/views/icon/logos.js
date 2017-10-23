@@ -14,6 +14,7 @@ const iconTypes = [
   'logoGmail',
   'logoWebhook',
   'logoElastic',
+  'logoElasticSearch',
   'logoElasticStack',
   'logoBeats',
   'logoLogstash',
