@@ -2,17 +2,17 @@
 
 Here are our responses to questions we expect to get frequently.
 
-## What is it?
+## What is the Elastic UI Framework?
 
-Components and design directives for developing user interfaces that are on brand with Elastic.
+The Elastic UI Framework (EUI) is a design library in use at Elastic to build **internal products** that need to share our branding and look and feel. It distributes UI React components and static assets for use in building web layouts. Alongside the React components is a SASS/CSS layer that can be used independently on its own.
 
-## Can I use this?
+## Can I use EUI?
 
-The intended consumers of this repository are Elastic products. You could use it when developing plugins for Elastic products such as Kibana, or if you're really curious. Otherwise, we recommend you avoid consuming `eui` entirely.
+The Elastic UI Framework is intended to only be used on Elastic products and is not supported as a discrete, independent design library. We do not recommend using it unless you are working on Elastic products or plugins to those products.
 
-## Why is it open source?
+## Why is EUI open source?
 
-For a number of reasons. This code started deep in the Kibana codebase long before it made it to a standalone repository. In a sense, it was already open source, just not a first-class citizen. Other products in Elastic need to take advantage of these components, but that was hard to accomplish if the components continued to be a part of Kibana. Given Kibana is open source, this package needs to be open source. This enables us to publish on `npm` more transparently, use versioning, and maintain [an up-to-date website][docs] showcasing the functionality.
+Many of our products themselves are open source and rely upon this library to function. The Elastic UI Framework began as a folder of code in Kibana and we decided it could be used beyond that codebase. It exists as an independent library so that patterns can be shared across teams and design standards can be scaled across our organization. Since most of our products are open source, we treat this one similarly as far as public publishing and conversation even if its usage tends to focus more inward towards Elastic itself.
 
 ## What about reporting bugs and feature requests?
 
