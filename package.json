@@ -5,7 +5,6 @@
   "main": "lib",
   "module": "src",
   "jsnext:main": "src",
-  "browser": "dist/eui.min.js",
   "scripts": {
     "start": "./build/scripts/docs-dev.sh",
     "build": "./build/scripts/compile-clean.sh && ./build/scripts/compile-scss.sh && ./build/scripts/compile-eui.sh",
