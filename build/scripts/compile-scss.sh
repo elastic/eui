@@ -1,8 +1,15 @@
 #!/bin/bash
 
-mkdir -p dist
+mkdir -p {tmp,dist}
 
-for THEME in src/theme_*.scss; do
-  node-sass "$THEME" > "dist/eui_$(basename "$THEME" .scss).css"
-  postcss --replace --config docs/postcss.config.js dist/eui_$(basename "$THEME" .scss).css
+for THEME in src/theme_*.scss
+do
+  node-sass \
+    "$THEME" \
+    "tmp/eui_$(basename "$THEME" .scss).css" &
+
+  postcss \
+    --config docs/postcss.config.js \
+    --output "dist/eui_$(basename "$THEME" .scss).css" \
+    "tmp/eui_$(basename "$THEME" .scss).css" &
 done
