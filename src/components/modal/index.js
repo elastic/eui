@@ -1,7 +1,7 @@
 export {
   EuiConfirmModal,
-  CONFIRM_BUTTON as KUI_MODAL_CONFIRM_BUTTON,
-  CANCEL_BUTTON as KUI_MODAL_CANCEL_BUTTON,
+  CONFIRM_BUTTON as EUI_MODAL_CONFIRM_BUTTON,
+  CANCEL_BUTTON as EUI_MODAL_CANCEL_BUTTON,
 } from './confirm_modal';
 export { EuiModal } from './modal';
 export { EuiModalFooter } from './modal_footer';

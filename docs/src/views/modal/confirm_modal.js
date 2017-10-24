@@ -6,7 +6,7 @@ import {
   EuiButton,
   EuiConfirmModal,
   EuiModalOverlay,
-  KUI_MODAL_CONFIRM_BUTTON,
+  EUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
 export class ConfirmModalExample extends Component {
@@ -41,7 +41,7 @@ export class ConfirmModalExample extends Component {
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton={KUI_MODAL_CONFIRM_BUTTON}
+            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
           >
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>

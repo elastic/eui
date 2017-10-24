@@ -108,8 +108,8 @@ export {
 } from './link';
 
 export {
-  KUI_MODAL_CANCEL_BUTTON,
-  KUI_MODAL_CONFIRM_BUTTON,
+  EUI_MODAL_CANCEL_BUTTON,
+  EUI_MODAL_CONFIRM_BUTTON,
   EuiConfirmModal,
   EuiModal,
   EuiModalBody,

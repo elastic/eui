@@ -147,21 +147,21 @@ export const HomeView = () => (
       </p>
 
       <h2>Goals</h2>
-      <p>KUI has the following primary goals..</p>
+      <p>EUI has the following primary goals..</p>
       <ol>
-        <li><EuiCode>KUI is accessible to everyone</EuiCode>. Use high contrast,
+        <li><EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast,
           color-blind safe palettes and proper aria labels.
         </li>
-        <li><EuiCode>KUI is themable</EuiCode>. Theming should involve changing
+        <li><EuiCode>EUI is themable</EuiCode>. Theming should involve changing
           less than a dozen lines of code. This means strict variable usage.
         </li>
-        <li><EuiCode>KUI is responsive</EuiCode>. Currently we target
+        <li><EuiCode>EUI is responsive</EuiCode>. Currently we target
           mobile, laptop, desktop and wide desktop breakpoints.
         </li>
-        <li><EuiCode>KUI is playful</EuiCode>. Consistent use of animation can
+        <li><EuiCode>EUI is playful</EuiCode>. Consistent use of animation can
           bring life to our design.
         </li>
-        <li><EuiCode>KUI is documented and has tests</EuiCode>. Make sure
+        <li><EuiCode>EUI is documented and has tests</EuiCode>. Make sure
           the code is friendly to the novice and expert alike.
         </li>
       </ol>
@@ -181,7 +181,7 @@ export const HomeView = () => (
           <p>
             Theming is achieved by overwriting these twelve colors with
             a different set. This is why it is very important <EuiCode>never to use hex colors</EuiCode> in
-            KUI outside of the global variable files.
+            EUI outside of the global variable files.
           </p>
           <h3>Accessibility</h3>
           <p>
@@ -218,7 +218,7 @@ export const HomeView = () => (
     <EuiText>
       <h2>Spacing and sizing</h2>
       <p>
-        <EuiCode>KUI</EuiCode> is a minimalist design and as such needs to be very precise
+        <EuiCode>EUI</EuiCode> is a minimalist design and as such needs to be very precise
         with the spacing and padding between and around items. <EuiCode>16px</EuiCode> is our
         magic number. It is our default font-size and our default spacing size.
         Larger numbers can be used, but must always be
