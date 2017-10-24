@@ -1,4 +1,4 @@
-🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][license-faq] for details. 🚨
+🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][faq] for details. 🚨
 
 # Elastic UI Framework
 
@@ -17,8 +17,8 @@ npm install @elastic/eui
 
 # License
 
-[Apache Licensed.][license] Read the [FAQ][license-faq] for details.
+[Apache Licensed.][license] Read the [FAQ][faq] for details.
 
 [license]: LICENSE.md
-[license-faq]: LICENSE-FAQ.md
+[faq]: FAQ.md
 [docs]: https://eui.now.sh
