@@ -16,7 +16,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
         logo kibana icon
       </title>
       <use
-        href="#logo"
+        href="#logo_kibana"
       />
     </svg>
   </div>
