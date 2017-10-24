@@ -24,8 +24,8 @@ export default () => (
     <br />
     <br />
 
-    <p>l: 24px</p>
-    <EuiSpacer size="l" />
+    <p>l: 24px (this is the default)</p>
+    <EuiSpacer />
 
     <br />
     <br />

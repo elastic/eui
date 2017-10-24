@@ -35,4 +35,9 @@ export const EuiSpacer = ({
 EuiSpacer.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  size: PropTypes.oneOf(SIZES),
+};
+
+EuiSpacer.defaultProps = {
+  size: 'l',
 };

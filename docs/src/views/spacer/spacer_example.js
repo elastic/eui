@@ -49,6 +49,8 @@ export default props => (
         <p>
           The <EuiCode>Spacer</EuiCode> component is a fancy break tag. Use
           it to add vertical space between items. Please do not stack them.
+          If passed without a <EuiCode>size</EuiCode> prop, it will default
+          to the large size, which matches the margins of <EuiCode>EuiFlex</EuiCode> elements.
         </p>
       }
       demo={
