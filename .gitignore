@@ -2,6 +2,7 @@ node_modules/
 dist/
 docs/dist/
 lib/
+reports/
 .DS_Store
 package-lock.json
 npm-debug.log
