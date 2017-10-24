@@ -12,24 +12,24 @@ const ALIGNMENT = [
   RIGHT_ALIGNMENT,
 ];
 
-export const KuiTableRowCell = ({
+export const EuiTableRowCell = ({
   align,
   children,
   className,
   wrapText,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableRowCell', className);
+  const classes = classNames('euiTableRowCell', className);
 
-  const contentClasses = classNames('kuiTableCellContent', className, {
-    'kuiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'kuiTableCellContent--wrapText': wrapText,
+  const contentClasses = classNames('euiTableCellContent', className, {
+    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
+    'euiTableCellContent--wrapText': wrapText,
   });
 
   return (
     <td className={classes} {...rest} >
       <div className={contentClasses}>
-        <span className="kuiTableCellContent__text">
+        <span className="euiTableCellContent__text">
           {children}
         </span>
       </div>
@@ -37,13 +37,13 @@ export const KuiTableRowCell = ({
   );
 };
 
-KuiTableRowCell.propTypes = {
+EuiTableRowCell.propTypes = {
   align: PropTypes.oneOf(ALIGNMENT),
   wrapText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-KuiTableRowCell.defaultProps = {
+EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
 };

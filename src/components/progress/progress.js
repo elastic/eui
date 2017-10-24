@@ -3,33 +3,33 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  xs: 'kuiProgress--xs',
-  s: 'kuiProgress--s',
-  m: 'kuiProgress--m',
-  l: 'kuiProgress--l',
+  xs: 'euiProgress--xs',
+  s: 'euiProgress--s',
+  m: 'euiProgress--m',
+  l: 'euiProgress--l',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const colorToClassNameMap = {
-  primary: 'kuiProgress--primary',
-  secondary: 'kuiProgress--secondary',
-  danger: 'kuiProgress--danger',
-  subdued: 'kuiProgress--subdued',
-  accent: 'kuiProgress--accent',
+  primary: 'euiProgress--primary',
+  secondary: 'euiProgress--secondary',
+  danger: 'euiProgress--danger',
+  subdued: 'euiProgress--subdued',
+  accent: 'euiProgress--accent',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const positionsToClassNameMap = {
-  fixed: 'kuiProgress--fixed',
-  absolute: 'kuiProgress--absolute',
+  fixed: 'euiProgress--fixed',
+  absolute: 'euiProgress--absolute',
   static: '',
 };
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
-export const KuiProgress = ({
+export const EuiProgress = ({
   className,
   color,
   value,
@@ -39,9 +39,9 @@ export const KuiProgress = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiProgress',
+    'euiProgress',
     {
-      'kuiProgress--indeterminate': max === null,
+      'euiProgress--indeterminate': max === null,
     },
     sizeToClassNameMap[size],
     colorToClassNameMap[color],
@@ -75,7 +75,7 @@ export const KuiProgress = ({
   );
 };
 
-KuiProgress.propTypes = {
+EuiProgress.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
@@ -85,7 +85,7 @@ KuiProgress.propTypes = {
   indeterminate: PropTypes.bool,
 };
 
-KuiProgress.defaultProps = {
+EuiProgress.defaultProps = {
   max: null,
   size: 'm',
   color: 'secondary',

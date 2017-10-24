@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiAccordion } from './accordion';
+import { EuiAccordion } from './accordion';
 
-describe('KuiAccordion', () => {
+describe('EuiAccordion', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiAccordion {...requiredProps} />
+      <EuiAccordion {...requiredProps} />
     );
 
     expect(component)

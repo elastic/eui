@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiPageHeader } from './page_header';
+import { EuiPageHeader } from './page_header';
 
-describe('KuiPageHeader', () => {
+describe('EuiPageHeader', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiPageHeader {...requiredProps} />
+      <EuiPageHeader {...requiredProps} />
     );
 
     expect(component)

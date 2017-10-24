@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import ManyPages from './many_pages';
@@ -76,7 +76,7 @@ export default props => (
       text={
         <p>
           Below are some common layout examples for pagination. In both cases we use
-          <KuiCode>FlexGroup</KuiCode> to set up the layout.
+          <EuiCode>FlexGroup</EuiCode> to set up the layout.
         </p>
       }
       demo={

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from '../form_control_layout';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiFieldPassword = ({
+export const EuiFieldPassword = ({
   className,
   id,
   name,
@@ -21,19 +21,19 @@ export const KuiFieldPassword = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiFieldPassword',
+    'euiFieldPassword',
     {
-      'kuiFieldPassword--fullWidth': fullWidth,
+      'euiFieldPassword--fullWidth': fullWidth,
     },
     className
   );
 
   return (
-    <KuiFormControlLayout
+    <EuiFormControlLayout
       icon="lock"
       fullWidth={fullWidth}
     >
-      <KuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="password"
           id={id}
@@ -43,12 +43,12 @@ export const KuiFieldPassword = ({
           value={value}
           {...rest}
         />
-      </KuiValidatableControl>
-    </KuiFormControlLayout>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };
 
-KuiFieldPassword.propTypes = {
+EuiFieldPassword.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
@@ -57,7 +57,7 @@ KuiFieldPassword.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiFieldPassword.defaultProps = {
+EuiFieldPassword.defaultProps = {
   value: undefined,
   fullWidth: false,
 };

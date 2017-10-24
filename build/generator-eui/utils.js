@@ -5,7 +5,7 @@ function makeComponentName(str, usePrefix = true) {
     return upperCaseFirstLetter(word);
   }).join('');
 
-  return `${usePrefix ? 'Kui' : ''}${componentName}`;
+  return `${usePrefix ? 'Eui' : ''}${componentName}`;
 }
 
 function lowerCaseFirstLetter(str) {

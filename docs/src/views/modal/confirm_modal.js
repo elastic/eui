@@ -3,10 +3,10 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiConfirmModal,
-  KuiModalOverlay,
-  KUI_MODAL_CONFIRM_BUTTON,
+  EuiButton,
+  EuiConfirmModal,
+  EuiModalOverlay,
+  EUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
 export class ConfirmModalExample extends Component {
@@ -34,27 +34,27 @@ export class ConfirmModalExample extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <KuiModalOverlay>
-          <KuiConfirmModal
+        <EuiModalOverlay>
+          <EuiConfirmModal
             title="Do this thing"
             onCancel={this.closeModal}
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton={KUI_MODAL_CONFIRM_BUTTON}
+            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
           >
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
-          </KuiConfirmModal>
-        </KuiModalOverlay>
+          </EuiConfirmModal>
+        </EuiModalOverlay>
       );
     }
 
     return (
       <div>
-        <KuiButton onClick={this.showModal}>
+        <EuiButton onClick={this.showModal}>
           Show ConfirmModal
-        </KuiButton>
+        </EuiButton>
 
         {modal}
       </div>

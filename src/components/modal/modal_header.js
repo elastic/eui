@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-export function KuiModalHeader({ className, children, ...rest }) {
-  const classes = classnames('kuiModalHeader', className);
+export function EuiModalHeader({ className, children, ...rest }) {
+  const classes = classnames('euiModalHeader', className);
   return (
     <div className={classes} {...rest}>
       { children }
@@ -11,7 +11,7 @@ export function KuiModalHeader({ className, children, ...rest }) {
   );
 }
 
-KuiModalHeader.propTypes = {
+EuiModalHeader.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };

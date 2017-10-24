@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSideNavItem is rendered 1`] = `
+exports[`EuiSideNavItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="testClass1 testClass2 kuiSideNavItem"
+  class="testClass1 testClass2 euiSideNavItem"
   data-test-subj="test subject string"
 />
 `;
 
-exports[`KuiSideNavItem isSelected defaults to false 1`] = `
+exports[`EuiSideNavItem isSelected defaults to false 1`] = `
 <button
-  class="kuiSideNavItem"
+  class="euiSideNavItem"
 />
 `;
 
-exports[`KuiSideNavItem isSelected is rendered when specified as true 1`] = `
+exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
 <button
-  class="kuiSideNavItem kuiSideNavItem-isSelected"
+  class="euiSideNavItem euiSideNavItem-isSelected"
 />
 `;
 
-exports[`KuiSideNavItem preserves child's classes 1`] = `
+exports[`EuiSideNavItem preserves child's classes 1`] = `
 <button
-  class="test kuiSideNavItem"
+  class="test euiSideNavItem"
 />
 `;

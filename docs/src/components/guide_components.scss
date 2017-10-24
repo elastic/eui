@@ -31,17 +31,17 @@
 .guideLogo {
   width: 40px;
   height: 40px;
-  background: $kuiColorEmptyShade;
+  background: $euiColorEmptyShade;
   border-radius: 40px;
   margin: auto;
-  border: $kuiBorderThin;
+  border: $euiBorderThin;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  transition: all $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:hover {
-    border-color: $kuiColorMediumShade;
+    border-color: $euiColorMediumShade;
   }
 }
 
@@ -49,7 +49,7 @@
 
 .hljs {
   display: block;
-  padding: $kuiSizeL;
+  padding: $euiSizeL;
   font-size: 12px;
   line-height: 1.5;
   font-family: 'Roboto Mono', monospace;

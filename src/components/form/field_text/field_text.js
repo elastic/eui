@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from '../form_control_layout';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiFieldText = ({
+export const EuiFieldText = ({
   id,
   name,
   placeholder,
@@ -22,17 +22,17 @@ export const KuiFieldText = ({
   fullWidth,
   ...rest,
 }) => {
-  const classes = classNames('kuiFieldText', className, {
-    'kuiFieldText--withIcon': icon,
-    'kuiFieldText--fullWidth': fullWidth,
+  const classes = classNames('euiFieldText', className, {
+    'euiFieldText--withIcon': icon,
+    'euiFieldText--fullWidth': fullWidth,
   });
 
   return (
-    <KuiFormControlLayout
+    <EuiFormControlLayout
       icon={icon}
       fullWidth={fullWidth}
     >
-      <KuiValidatableControl
+      <EuiValidatableControl
         isInvalid={isInvalid}
       >
         <input
@@ -45,12 +45,12 @@ export const KuiFieldText = ({
           ref={inputRef}
           {...rest}
         />
-      </KuiValidatableControl>
-    </KuiFormControlLayout>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };
 
-KuiFieldText.propTypes = {
+EuiFieldText.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
@@ -61,7 +61,7 @@ KuiFieldText.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiFieldText.defaultProps = {
+EuiFieldText.defaultProps = {
   value: undefined,
   fullWidth: false,
 };

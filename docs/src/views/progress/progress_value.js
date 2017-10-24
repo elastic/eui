@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiProgress,
-  KuiText,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiProgress,
+  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -54,23 +54,23 @@ export default class extends Component {
   render() {
 
     return (
-      <KuiFlexGroup alignItems="center">
-        <KuiFlexItem grow={false}>
-          <KuiButton size="small" onClick={this.toggleProgress}>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="small" onClick={this.toggleProgress}>
             Toggle progress
-          </KuiButton>
-        </KuiFlexItem>
-        <KuiFlexItem grow={false}>
-          <KuiText>
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiText>
             <p>
               {this.state.value}
             </p>
-          </KuiText>
-        </KuiFlexItem>
-        <KuiFlexItem>
-          <KuiProgress value={this.state.value} max={100} size="xs" />
-        </KuiFlexItem>
-      </KuiFlexGroup>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiProgress value={this.state.value} max={100} size="xs" />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }

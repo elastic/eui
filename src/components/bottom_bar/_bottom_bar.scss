@@ -1,27 +1,27 @@
-.kuiBottomBar {
-  background: tintOrShade($kuiColorFullShade, 25%, 90%);
-  color: $kuiColorEmptyShade;
+.euiBottomBar {
+  background: tintOrShade($euiColorFullShade, 25%, 90%);
+  color: $euiColorEmptyShade;
   position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
-  animation: kuiBottomBarAppear $kuiAnimSpeedSlow $kuiAnimSlightResistance;
-  z-index: $kuiZNavigation;
+  animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
+  z-index: $euiZNavigation;
 
-  &.kuiBottomBar--paddingSmall {
-    padding: $kuiSizeS;
+  &.euiBottomBar--paddingSmall {
+    padding: $euiSizeS;
   }
 
-  &.kuiBottomBar--paddingMedium {
-    padding: $kuiSize;
+  &.euiBottomBar--paddingMedium {
+    padding: $euiSize;
   }
 
-  &.kuiBottomBar--paddingLarge {
-    padding: $kuiSizeL;
+  &.euiBottomBar--paddingLarge {
+    padding: $euiSizeL;
   }
 }
 
-@keyframes kuiBottomBarAppear {
+@keyframes euiBottomBarAppear {
   0% {
     transform: translateY(100%);
     opacity: 0;

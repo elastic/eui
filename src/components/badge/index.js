@@ -1,3 +1,3 @@
 export {
-  KuiBadge,
+  EuiBadge,
 } from './badge';

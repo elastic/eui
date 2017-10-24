@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiIcon,
+  EuiIcon,
 } from '..';
 
 import {
@@ -16,7 +16,7 @@ const ALIGNMENT = [
   RIGHT_ALIGNMENT,
 ];
 
-export const KuiTableHeaderCell = ({
+export const EuiTableHeaderCell = ({
   children,
   align,
   onSort,
@@ -26,23 +26,23 @@ export const KuiTableHeaderCell = ({
   ariaLabel,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableHeaderCell', className);
+  const classes = classNames('euiTableHeaderCell', className);
 
-  const contentClasses = classNames('kuiTableCellContent', className, {
-    'kuiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
+  const contentClasses = classNames('euiTableCellContent', className, {
+    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
   });
 
   if (onSort) {
     const sortIcon = (
-      <KuiIcon
-        className="kuiTableSortIcon"
+      <EuiIcon
+        className="euiTableSortIcon"
         type={isSortAscending ? 'sortUp' : 'sortDown'}
         size="medium"
       />
     );
 
-    const buttonClasses = classNames('kuiTableHeaderButton', {
-      'kuiTableHeaderButton-isSorted': isSorted,
+    const buttonClasses = classNames('euiTableHeaderButton', {
+      'euiTableHeaderButton-isSorted': isSorted,
     });
 
     const columnTitle = ariaLabel ? ariaLabel : children;
@@ -80,7 +80,7 @@ export const KuiTableHeaderCell = ({
   );
 };
 
-KuiTableHeaderCell.propTypes = {
+EuiTableHeaderCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   align: PropTypes.oneOf(ALIGNMENT),
@@ -89,6 +89,6 @@ KuiTableHeaderCell.propTypes = {
   isSortAscending: PropTypes.bool,
 };
 
-KuiTableHeaderCell.defaultProps = {
+EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
 };

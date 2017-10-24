@@ -5,15 +5,15 @@ import {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiSideNavItem = ({ children, indent, isSelected }) => {
+export const EuiSideNavItem = ({ children, indent, isSelected }) => {
   const child = Children.only(children);
 
   const classes = classNames(
     child.props.className,
-    'kuiSideNavItem',
+    'euiSideNavItem',
     {
-      'kuiSideNavItem-isSelected': isSelected,
-      'kuiSideNavItem--indent': indent,
+      'euiSideNavItem-isSelected': isSelected,
+      'euiSideNavItem--indent': indent,
     }
   );
 
@@ -22,7 +22,7 @@ export const KuiSideNavItem = ({ children, indent, isSelected }) => {
   }));
 };
 
-KuiSideNavItem.propTypes = {
+EuiSideNavItem.propTypes = {
   isSelected: PropTypes.bool,
   indent: PropTypes.bool,
 };

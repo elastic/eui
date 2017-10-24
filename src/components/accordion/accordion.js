@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiKeyboardAccessible,
-  KuiIcon,
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiKeyboardAccessible,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '..';
 
-export class KuiAccordion extends Component {
+export class EuiAccordion extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -53,34 +53,34 @@ export class KuiAccordion extends Component {
     } = this.props;
 
     const classes = classNames(
-      'kuiAccordion',
+      'euiAccordion',
       {
-        'kuiAccordion-isOpen': this.state.isOpen,
+        'euiAccordion-isOpen': this.state.isOpen,
       },
       className
     );
 
     const buttonClasses = classNames(
-      'kuiAccordion__button',
+      'euiAccordion__button',
       buttonClassName,
     );
 
     const buttonContentClasses = classNames(
-      'kuiAccordion__buttonContent',
+      'euiAccordion__buttonContent',
       buttonContentClassName,
     );
 
     const icon = (
-      <KuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="medium" />
+      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="medium" />
     );
 
     let optionalAction = null;
 
     if (extraAction) {
       optionalAction = (
-        <KuiFlexItem grow={false}>
+        <EuiFlexItem grow={false}>
           {extraAction}
-        </KuiFlexItem>
+        </EuiFlexItem>
       );
     }
 
@@ -89,25 +89,25 @@ export class KuiAccordion extends Component {
         className={classes}
         {...rest}
       >
-        <KuiFlexGroup gutterSize="none" alignItems="center">
-          <KuiFlexItem>
-            <KuiKeyboardAccessible>
+        <EuiFlexGroup gutterSize="none" alignItems="center">
+          <EuiFlexItem>
+            <EuiKeyboardAccessible>
               <div onClick={this.onToggleOpen} className={buttonClasses}>
-                <KuiFlexGroup gutterSize="small" alignItems="center">
-                  <KuiFlexItem grow={false}>
+                <EuiFlexGroup gutterSize="small" alignItems="center">
+                  <EuiFlexItem grow={false}>
                     {icon}
-                  </KuiFlexItem>
-                  <KuiFlexItem className={buttonContentClasses}>
+                  </EuiFlexItem>
+                  <EuiFlexItem className={buttonContentClasses}>
                     {buttonContent}
-                  </KuiFlexItem>
-                </KuiFlexGroup>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
               </div>
-            </KuiKeyboardAccessible>
-          </KuiFlexItem>
+            </EuiKeyboardAccessible>
+          </EuiFlexItem>
           {optionalAction}
-        </KuiFlexGroup>
+        </EuiFlexGroup>
 
-        <div className="kuiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
+        <div className="euiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
           <div ref={node => { this.childContent = node; }}>
             {children}
           </div>
@@ -117,7 +117,7 @@ export class KuiAccordion extends Component {
   }
 }
 
-KuiAccordion.propTypes = {
+EuiAccordion.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   buttonContentClassName: PropTypes.string,

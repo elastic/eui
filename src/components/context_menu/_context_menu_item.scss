@@ -1,26 +1,26 @@
-.kuiContextMenuItem {
-  padding: $kuiSizeM;
+.euiContextMenuItem {
+  padding: $euiSizeM;
   width: 100%;
   text-align: left;
-  color: $kuiTextColor;
+  color: $euiTextColor;
 
   &:hover, &:focus {
     text-decoration: underline;
   }
 
   &:focus {
-    background-color: $kuiFocusBackgroundColor;
+    background-color: $euiFocusBackgroundColor;
   }
 }
 
-  .kuiContextMenuItem__inner {
+  .euiContextMenuItem__inner {
     display: flex;
   }
 
-  .kuiContextMenuItem__text {
+  .euiContextMenuItem__text {
     flex-grow: 1;
   }
 
-  .kuiContextMenuItem__arrow {
+  .euiContextMenuItem__arrow {
     align-self: flex-end;
   }

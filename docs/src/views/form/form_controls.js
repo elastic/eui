@@ -3,15 +3,15 @@ import React, {
 } from 'react';
 
 import {
-  KuiCheckboxGroup,
-  KuiFieldNumber,
-  KuiFieldPassword,
-  KuiFieldSearch,
-  KuiFieldText,
-  KuiRange,
-  KuiSelect,
-  KuiSwitch,
-  KuiTextArea,
+  EuiCheckboxGroup,
+  EuiFieldNumber,
+  EuiFieldPassword,
+  EuiFieldSearch,
+  EuiFieldText,
+  EuiRange,
+  EuiSelect,
+  EuiSwitch,
+  EuiTextArea,
 } from '../../../../src/components';
 
 // Don't use this, make proper ids instead. This is just for the example.
@@ -62,12 +62,12 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <KuiFieldText placeholder="Placeholder text" />
+        <EuiFieldText placeholder="Placeholder text" />
 
         <br />
         <br />
 
-        <KuiFieldText
+        <EuiFieldText
           defaultValue="Text field with customizable icon"
           icon="user"
         />
@@ -75,12 +75,12 @@ export default class extends Component {
         <br />
         <br />
 
-        <KuiFieldNumber defaultValue="23" />
+        <EuiFieldNumber defaultValue="23" />
 
         <br />
         <br />
 
-        <KuiFieldNumber
+        <EuiFieldNumber
           defaultValue="23"
           icon="user"
         />
@@ -88,22 +88,22 @@ export default class extends Component {
         <br />
         <br />
 
-        <KuiFieldPassword defaultValue="password" />
+        <EuiFieldPassword defaultValue="password" />
 
         <br />
         <br />
 
-        <KuiFieldSearch defaultValue="Search field" />
+        <EuiFieldSearch defaultValue="Search field" />
 
         <br />
         <br />
 
-        <KuiTextArea />
+        <EuiTextArea />
 
         <br />
         <br />
 
-        <KuiSelect
+        <EuiSelect
           options={[
             { value: 'option_one', text: 'Option one' },
             { value: 'option_two', text: 'Option two' },
@@ -114,12 +114,12 @@ export default class extends Component {
         <br />
         <br />
 
-        <KuiRange />
+        <EuiRange />
 
         <br />
         <br />
 
-        <KuiSwitch
+        <EuiSwitch
           label="Switch control"
           checked={this.state.isSwitchChecked}
           onChange={this.onSwitchChange}
@@ -128,7 +128,7 @@ export default class extends Component {
         <br />
         <br />
 
-        <KuiCheckboxGroup
+        <EuiCheckboxGroup
           options={this.state.checkboxes}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onCheckboxChange}

@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiPaginationButton } from './pagination_button';
+import { EuiPaginationButton } from './pagination_button';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
 
-export const KuiPagination = ({
+export const EuiPagination = ({
   className,
   pageCount,
   activePage,
   onPageClick,
   ...rest,
 }) => {
-  const classes = classNames('kuiPagination', className);
+  const classes = classNames('euiPagination', className);
 
   const pages = [];
   const firstPageInRange = Math.max(0, Math.min(activePage - NUMBER_SURROUNDING_PAGES, pageCount - MAX_VISIBLE_PAGES));
@@ -22,14 +22,14 @@ export const KuiPagination = ({
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
     pages.push(
-      <KuiPaginationButton
+      <EuiPaginationButton
         isActive={i === activePage}
         key={index}
         onClick={onPageClick.bind(null, i)}
         hideOnMobile
       >
         {i + 1}
-      </KuiPaginationButton>
+      </EuiPaginationButton>
     );
   }
 
@@ -37,12 +37,12 @@ export const KuiPagination = ({
 
   if (activePage !== 0) {
     previousButton = (
-      <KuiPaginationButton
+      <EuiPaginationButton
         onClick={onPageClick.bind(null, activePage - 1)}
         iconType="arrowLeft"
       >
         Previous
-      </KuiPaginationButton>
+      </EuiPaginationButton>
     );
   }
 
@@ -50,18 +50,18 @@ export const KuiPagination = ({
 
   if (firstPageInRange > 0) {
     firstPageButtons.push(
-      <KuiPaginationButton
+      <EuiPaginationButton
         key="0"
         onClick={onPageClick.bind(null, 0)}
         hideOnMobile
       >
         1
-      </KuiPaginationButton>
+      </EuiPaginationButton>
     );
 
     if (firstPageInRange > 1) {
       firstPageButtons.push(
-        <KuiPaginationButton
+        <EuiPaginationButton
           key="beginningEllipsis"
           isPlaceholder
           hideOnMobile
@@ -75,7 +75,7 @@ export const KuiPagination = ({
   if (lastPageInRange < pageCount) {
     if (lastPageInRange < pageCount - 1) {
       lastPageButtons.push(
-        <KuiPaginationButton
+        <EuiPaginationButton
           key="endingEllipsis"
           isPlaceholder
           hideOnMobile
@@ -84,13 +84,13 @@ export const KuiPagination = ({
     }
 
     lastPageButtons.push(
-      <KuiPaginationButton
+      <EuiPaginationButton
         key={pageCount - 1}
         onClick={onPageClick.bind(null, pageCount - 1)}
         hideOnMobile
       >
         {pageCount}
-      </KuiPaginationButton>
+      </EuiPaginationButton>
     );
   }
 
@@ -98,13 +98,13 @@ export const KuiPagination = ({
 
   if (activePage !== pageCount - 1) {
     nextButton = (
-      <KuiPaginationButton
+      <EuiPaginationButton
         onClick={onPageClick.bind(null, activePage + 1)}
         iconType="arrowRight"
         iconSide="right"
       >
         Next
-      </KuiPaginationButton>
+      </EuiPaginationButton>
     );
   }
 
@@ -122,7 +122,7 @@ export const KuiPagination = ({
   );
 };
 
-KuiPagination.propTypes = {
+EuiPagination.propTypes = {
   className: PropTypes.string,
   pagesCount: PropTypes.number,
   activePage: PropTypes.number,

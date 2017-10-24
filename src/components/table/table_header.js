@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const KuiTableHeader = ({ children, className, ...rest }) => {
+export const EuiTableHeader = ({ children, className, ...rest }) => {
   return (
     <thead className={className} {...rest}>
       <tr>{ children }</tr>
@@ -9,7 +9,7 @@ export const KuiTableHeader = ({ children, className, ...rest }) => {
   );
 };
 
-KuiTableHeader.propTypes = {
+EuiTableHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

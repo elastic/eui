@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiTextColor } from './text_color';
+import { EuiTextColor } from './text_color';
 
-describe('KuiTextColor', () => {
+describe('EuiTextColor', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiTextColor {...requiredProps} />
+      <EuiTextColor {...requiredProps} />
     );
 
     expect(component)

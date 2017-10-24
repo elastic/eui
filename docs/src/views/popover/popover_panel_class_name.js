@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 
 import {
-  KuiPopover,
-  KuiButton,
+  EuiPopover,
+  EuiButton,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -30,11 +30,11 @@ export default class extends Component {
 
   render() {
     return (
-      <KuiPopover
+      <EuiPopover
         button={(
-          <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+          <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
             Turn padding off and apply a custom class
-          </KuiButton>
+          </EuiButton>
         )}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
@@ -42,7 +42,7 @@ export default class extends Component {
         panelPaddingSize="none"
       >
         This should have no padding, and if you inspect, also a custom class.
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 }

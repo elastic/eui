@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiFormLabel = ({ children, isFocused, isInvalid, className, ...rest }) => {
-  const classes = classNames('kuiFormLabel', className, {
-    'kuiFormLabel-isFocused': isFocused,
-    'kuiFormLabel-isInvalid': isInvalid,
+export const EuiFormLabel = ({ children, isFocused, isInvalid, className, ...rest }) => {
+  const classes = classNames('euiFormLabel', className, {
+    'euiFormLabel-isFocused': isFocused,
+    'euiFormLabel-isInvalid': isInvalid,
   });
 
   return (
@@ -18,7 +18,7 @@ export const KuiFormLabel = ({ children, isFocused, isInvalid, className, ...res
   );
 };
 
-KuiFormLabel.propTypes = {
+EuiFormLabel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isFocused: PropTypes.bool,

@@ -5,13 +5,13 @@
 }
 
 .guideSection__space {
-  height: $kuiSizeL;
+  height: $euiSizeL;
 }
 
 .guide__hasNoChrome {
   .guideSection__text {
-    margin-top: $kuiSizeXL;
-    padding: 0 $kuiSizeL;
+    margin-top: $euiSizeXL;
+    padding: 0 $euiSizeL;
   }
   .guideSection__space {
     height: 0;

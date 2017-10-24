@@ -1,15 +1,15 @@
 // Animations
 
-$kuiAnimSlightBounce: cubic-bezier(0.34,1.61,0.7,1);
-$kuiAnimSlightResistance: cubic-bezier(0.694, 0.0482, 0.335, 1);
+$euiAnimSlightBounce: cubic-bezier(0.34,1.61,0.7,1);
+$euiAnimSlightResistance: cubic-bezier(0.694, 0.0482, 0.335, 1);
 
-$kuiAnimSpeedExtraFast: 90ms;
-$kuiAnimSpeedFast: 150ms;
-$kuiAnimSpeedNormal: 250ms;
-$kuiAnimSpeedSlow: 350ms;
-$kuiAnimSpeedExtraSlow: 500ms;
+$euiAnimSpeedExtraFast: 90ms;
+$euiAnimSpeedFast: 150ms;
+$euiAnimSpeedNormal: 250ms;
+$euiAnimSpeedSlow: 350ms;
+$euiAnimSpeedExtraSlow: 500ms;
 
-@keyframes kuiAnimFadeIn {
+@keyframes euiAnimFadeIn {
   0% {
     opacity: 0;
   }
@@ -18,7 +18,7 @@ $kuiAnimSpeedExtraSlow: 500ms;
   }
 }
 
-@keyframes kuiGrow {
+@keyframes euiGrow {
   0% {
     opacity: 0;
   }

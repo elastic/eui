@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiDescriptionList,
-  KuiFlexItem,
-  KuiFlexGroup,
-  KuiDescriptionListTitle,
-  KuiDescriptionListDescription,
+  EuiDescriptionList,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
 const favoriteVideoGames = [
@@ -23,25 +23,25 @@ const favoriteVideoGames = [
   },
 ];
 export default () => (
-  <KuiFlexGroup>
-    <KuiFlexItem>
-      <KuiDescriptionList listItems={favoriteVideoGames} />
-    </KuiFlexItem>
-    <KuiFlexItem>
-      <KuiDescriptionList>
-        <KuiDescriptionListTitle>
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiDescriptionList listItems={favoriteVideoGames} />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiDescriptionList>
+        <EuiDescriptionListTitle>
           Dota 2
-        </KuiDescriptionListTitle>
-        <KuiDescriptionListDescription>
+        </EuiDescriptionListTitle>
+        <EuiDescriptionListDescription>
           A videogame that I have spent way too much time on over the years.
-        </KuiDescriptionListDescription>
-        <KuiDescriptionListTitle>
+        </EuiDescriptionListDescription>
+        <EuiDescriptionListTitle>
           Kings Quest VI
-        </KuiDescriptionListTitle>
-        <KuiDescriptionListDescription>
+        </EuiDescriptionListTitle>
+        <EuiDescriptionListDescription>
           The game that forced me to learn DOS.
-        </KuiDescriptionListDescription>
-      </KuiDescriptionList>
-    </KuiFlexItem>
-  </KuiFlexGroup>
+        </EuiDescriptionListDescription>
+      </EuiDescriptionList>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

@@ -44,7 +44,7 @@ Next, you'll enter a series of prompts.
 #### "What's the name of this component?"
 
 Yeoman will ask you what to name the file. It expects you to provide the name
-in snake case. Yeoman will automatically add file extensions and a "kui" prefix so you should leave those out.
+in snake case. Yeoman will automatically add file extensions and a "eui" prefix so you should leave those out.
 
 #### "Where do you want to create this component's files?"
 
@@ -58,7 +58,7 @@ that directory will be created inside of the location you specify (see next prom
 #### "Does it need its own directory?""
 
 This defaults to `YES`. This will automatically generate a directory with the
-same name as the file, but without a "kui" prefix.
+same name as the file, but without a "eui" prefix.
 
 #### Done!
 

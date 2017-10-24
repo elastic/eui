@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Progress from './progress';
@@ -42,11 +42,11 @@ export default props => (
       }]}
       text={
         <p>
-          The <KuiCode>Progress</KuiCode> component by default will display
+          The <EuiCode>Progress</EuiCode> component by default will display
           in an indeterminate loading state (rendered as a signle div) until you define
-          a <KuiCode>max</KuiCode> and <KuiCode>value</KuiCode> prop.
-          The <KuiCode>size</KuiCode> prop refers to its verical height. It will
-          always strech <KuiCode>100%</KuiCode> to its container.
+          a <EuiCode>max</EuiCode> and <EuiCode>value</EuiCode> prop.
+          The <EuiCode>size</EuiCode> prop refers to its verical height. It will
+          always strech <EuiCode>100%</EuiCode> to its container.
         </p>
       }
       demo={<Progress />}
@@ -63,9 +63,9 @@ export default props => (
       }]}
       text={
         <p>
-          Once the <KuiCode>max</KuiCode> and <KuiCode>value</KuiCode> props
+          Once the <EuiCode>max</EuiCode> and <EuiCode>value</EuiCode> props
           are set, it will act as a determinate progress bar. This is rendered
-          using an HTML5 <KuiCode>progress</KuiCode> tag.
+          using an HTML5 <EuiCode>progress</EuiCode> tag.
         </p>
      }
       demo={
@@ -84,12 +84,12 @@ export default props => (
       }]}
       text={
         <p>
-          Using the <KuiCode>position</KuiCode> prop we can align our bar
-          to be <KuiCode>fixed</KuiCode> or <KuiCode>absolute</KuiCode>. In both
+          Using the <EuiCode>position</EuiCode> prop we can align our bar
+          to be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
           options, the background color of the base bar is dropped (since the
           context of width is already known from your wrapping element). For the
           absolute option, make sure that your wrapping element
-          has <KuiCode>position: relative</KuiCode> applied.
+          has <EuiCode>position: relative</EuiCode> applied.
         </p>
      }
       demo={
@@ -108,7 +108,7 @@ export default props => (
       }]}
       text={
         <p>
-          Both <KuiCode>size</KuiCode> and <KuiCode>color</KuiCode> can
+          Both <EuiCode>size</EuiCode> and <EuiCode>color</EuiCode> can
           be provided as props. These values will work on both determinate and
           indeterminate progress bars.
         </p>

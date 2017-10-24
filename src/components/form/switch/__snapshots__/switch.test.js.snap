@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSwitch is rendered 1`] = `
+exports[`EuiSwitch is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiSwitch testClass1 testClass2"
+  class="euiSwitch testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <input
-    class="kuiSwitch__input"
+    class="euiSwitch__input"
     type="checkbox"
   />
   <span
-    class="kuiSwitch__body"
+    class="euiSwitch__body"
   >
     <span
-      class="kuiSwitch__thumb"
+      class="euiSwitch__thumb"
     />
     <span
-      class="kuiSwitch__track"
+      class="euiSwitch__track"
     >
       <svg
-        class="kuiIcon kuiSwitch__icon kuiIcon--medium"
+        class="euiIcon euiSwitch__icon euiIcon--medium"
       >
         <title>
           cross icon
@@ -30,7 +30,7 @@ exports[`KuiSwitch is rendered 1`] = `
         />
       </svg>
       <svg
-        class="kuiIcon kuiSwitch__icon kuiSwitch__icon--checked kuiIcon--medium"
+        class="euiIcon euiSwitch__icon euiSwitch__icon--checked euiIcon--medium"
       >
         <title>
           check icon
@@ -42,7 +42,7 @@ exports[`KuiSwitch is rendered 1`] = `
     </span>
   </span>
   <label
-    class="kuiSwitch__label"
+    class="euiSwitch__label"
   />
 </div>
 `;

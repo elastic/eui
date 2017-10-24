@@ -4,9 +4,9 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '..';
+import { EuiIcon } from '..';
 
-export const KuiContextMenuItem = ({
+export const EuiContextMenuItem = ({
   children,
   className,
   hasPanel,
@@ -19,10 +19,10 @@ export const KuiContextMenuItem = ({
     switch (typeof icon) {
       case 'string':
         iconInstance = (
-          <KuiIcon
+          <EuiIcon
             type={icon}
             size="medium"
-            className="kuiContextMenu__icon"
+            className="euiContextMenu__icon"
           />
         );
         break;
@@ -30,7 +30,7 @@ export const KuiContextMenuItem = ({
       default:
         // Assume it's already an instance of an icon.
         iconInstance = cloneElement(icon, {
-          className: 'kuiContextMenu__icon'
+          className: 'euiContextMenu__icon'
         });
     }
   }
@@ -39,24 +39,24 @@ export const KuiContextMenuItem = ({
 
   if (hasPanel) {
     arrow = (
-      <KuiIcon
+      <EuiIcon
         type="arrowRight"
         size="medium"
-        className="kuiContextMenu__arrow"
+        className="euiContextMenu__arrow"
       />
     );
   }
 
-  const classes = classNames('kuiContextMenuItem', className);
+  const classes = classNames('euiContextMenuItem', className);
 
   return (
     <button
       className={classes}
       {...rest}
     >
-      <span className="kuiContextMenu__itemLayout">
+      <span className="euiContextMenu__itemLayout">
         {iconInstance}
-        <span className="kuiContextMenuItem__text">
+        <span className="euiContextMenuItem__text">
           {children}
         </span>
         {arrow}
@@ -65,7 +65,7 @@ export const KuiContextMenuItem = ({
   );
 };
 
-KuiContextMenuItem.propTypes = {
+EuiContextMenuItem.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

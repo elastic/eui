@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sideToClassNameMap = {
-  left: 'kuiHeaderSection--left',
-  right: 'kuiHeaderSection--right',
+  left: 'euiHeaderSection--left',
+  right: 'euiHeaderSection--right',
 };
 
 const SIDES = Object.keys(sideToClassNameMap);
 
-export const KuiHeaderSection = ({ side, children, className, ...rest }) => {
-  const classes = classNames('kuiHeaderSection', sideToClassNameMap[side], className);
+export const EuiHeaderSection = ({ side, children, className, ...rest }) => {
+  const classes = classNames('euiHeaderSection', sideToClassNameMap[side], className);
 
   return (
     <div
@@ -22,10 +22,10 @@ export const KuiHeaderSection = ({ side, children, className, ...rest }) => {
   );
 };
 
-KuiHeaderSection.propTypes = {
+EuiHeaderSection.propTypes = {
   side: PropTypes.oneOf(SIDES),
 };
 
-KuiHeaderSection.defaultProps = {
+EuiHeaderSection.defaultProps = {
   side: 'left',
 };

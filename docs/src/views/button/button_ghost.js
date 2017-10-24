@@ -1,23 +1,23 @@
 import React from 'react';
 
 import {
-  KuiButton,
-  KuiButtonEmpty,
-  KuiButtonIcon,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
 } from '../../../../src/components';
 
 export default () => (
   <div className="guideDemo__ghostBackground">
-    <KuiButton
+    <EuiButton
       type="ghost"
       onClick={() => window.alert('Button clicked')}
     >
       Primary
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       fill
       type="ghost"
       size="small"
@@ -25,21 +25,21 @@ export default () => (
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       size="small"
       type="ghost"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonIcon
+    <EuiButtonIcon
       size="small"
       type="ghost"
       iconType="user"

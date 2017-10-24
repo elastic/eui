@@ -1,1 +1,1 @@
-export { KuiCallOut } from './call_out';
+export { EuiCallOut } from './call_out';

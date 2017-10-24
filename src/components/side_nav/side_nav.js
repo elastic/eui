@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { KuiIcon } from '..';
+import { EuiIcon } from '..';
 
 const typeToClassNameMap = {
-  inPanel: 'kuiSideNav--inPanel',
+  inPanel: 'euiSideNav--inPanel',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiSideNav = ({
+export const EuiSideNav = ({
   children,
   type,
   toggleOpenOnMobile,
@@ -19,11 +19,11 @@ export const KuiSideNav = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiSideNav',
+    'euiSideNav',
     className,
     typeToClassNameMap[type],
     {
-      'kuiSideNav-isOpenMobile': isOpenOnMobile,
+      'euiSideNav-isOpenMobile': isOpenOnMobile,
     },
   );
 
@@ -34,16 +34,16 @@ export const KuiSideNav = ({
     >
       {/* Hidden from view, except in mobile */}
       <button
-        className="kuiSideNav__mobileToggle kuiLink"
+        className="euiSideNav__mobileToggle euiLink"
         onClick={toggleOpenOnMobile}
       >
-        <span className="kuiSideNav__mobileWrap">
-          <span className="kuiSideNav__mobileTitle">
+        <span className="euiSideNav__mobileWrap">
+          <span className="euiSideNav__mobileTitle">
             {mobileTitle}
           </span>
 
-          <KuiIcon
-            className="kuiSideNav__mobileIcon"
+          <EuiIcon
+            className="euiSideNav__mobileIcon"
             type="apps"
             size="medium"
             aria-hidden="true"
@@ -52,14 +52,14 @@ export const KuiSideNav = ({
       </button>
 
       {/* Hidden from view in mobile, but toggled from the button above */}
-      <div className="kuiSideNav__content">
+      <div className="euiSideNav__content">
         {children}
       </div>
     </nav>
   );
 };
 
-KuiSideNav.propTypes = {
+EuiSideNav.propTypes = {
   toggleOpenOnMobile: PropTypes.func,
   isOpenOnMobile: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),

@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiHeaderSection } from './header_section';
+import { EuiHeaderSection } from './header_section';
 
-describe('KuiHeaderSection', () => {
+describe('EuiHeaderSection', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiHeaderSection {...requiredProps} />
+      <EuiHeaderSection {...requiredProps} />
     );
 
     expect(component)
@@ -17,7 +17,7 @@ describe('KuiHeaderSection', () => {
   describe('side', () => {
     test('defaults to left', () => {
       const component = render(
-        <KuiHeaderSection />
+        <EuiHeaderSection />
       );
 
       expect(component)
@@ -26,7 +26,7 @@ describe('KuiHeaderSection', () => {
 
     test('renders right', () => {
       const component = render(
-        <KuiHeaderSection side="right" />
+        <EuiHeaderSection side="right" />
       );
 
       expect(component)

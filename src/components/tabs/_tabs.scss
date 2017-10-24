@@ -1,31 +1,31 @@
-.kuiTabs {
+.euiTabs {
   display: flex;
-  border-bottom: $kuiBorderThin;
+  border-bottom: $euiBorderThin;
 }
 
-.kuiTab {
-  @include kuiFontSize;
+.euiTab {
+  @include euiFontSize;
 
   position: relative;
   cursor: pointer;
-  padding: $kuiSizeM $kuiSize;
-  color: $kuiColorDarkShade;
+  padding: $euiSizeM $euiSize;
+  color: $euiColorDarkShade;
   background-color: transparent;
-  transition: all $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
 
-  &:hover:not(.kuiTab-isSelected) {
-    color: $kuiTextColor;
+  &:hover:not(.euiTab-isSelected) {
+    color: $euiTextColor;
     text-decoration: underline;
   }
 
   &:focus {
-    background-color: $kuiFocusBackgroundColor;
+    background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
   }
 
-  &.kuiTab-isSelected {
+  &.euiTab-isSelected {
     cursor: default;
-    color: $kuiColorSecondary;
+    color: $euiColorSecondary;
 
     &:after {
       position: absolute;
@@ -33,21 +33,21 @@
       left: 0;
       content: ' ';
       width: 100%;
-      height: $kuiBorderWidthThick;
-      background-color: $kuiColorSecondary;
-      animation: kuiTab $kuiAnimSpeedFast $kuiAnimSlightResistance;
+      height: $euiBorderWidthThick;
+      background-color: $euiColorSecondary;
+      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
     }
   }
 }
 
-  .kuiTab__content {
+  .euiTab__content {
     display: block;
-    transition: transform $kuiAnimSpeedFast $kuiAnimSlightBounce;
+    transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
     transform: translateY(0);
   }
 
 
-@keyframes kuiTab {
+@keyframes euiTab {
   0% {
     transform: scaleX(0);
   }

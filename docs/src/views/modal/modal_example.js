@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import { ModalExample } from './modal';
@@ -33,7 +33,7 @@ export default props => (
       }]}
       text={
         <p>
-          Use a <KuiCode>KuiModal</KuiCode> to temporarily escape the current UX and create a
+          Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX and create a
           another UX within it.
         </p>
       }
@@ -53,7 +53,7 @@ export default props => (
       }]}
       text={
         <p>
-          Use the <KuiCode>KuiConfirmModal</KuiCode> to ask the user to confirm a decision,
+          Use the <EuiCode>EuiConfirmModal</EuiCode> to ask the user to confirm a decision,
           typically one which is destructive and potentially regrettable.
         </p>
       }

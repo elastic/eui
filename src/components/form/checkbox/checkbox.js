@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const typeToClassNameMap = {
-  inList: 'kuiCheckbox--inList',
+  inList: 'euiCheckbox--inList',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiCheckbox = ({
+export const EuiCheckbox = ({
   className,
   id,
   checked,
@@ -18,7 +18,7 @@ export const KuiCheckbox = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiCheckbox',
+    'euiCheckbox',
     typeToClassNameMap[type],
     className
   );
@@ -28,7 +28,7 @@ export const KuiCheckbox = ({
   if (label) {
     optionalLabel = (
       <label
-        className="kuiCheckbox__label"
+        className="euiCheckbox__label"
         htmlFor={id}
       >
         {label}
@@ -42,15 +42,15 @@ export const KuiCheckbox = ({
       {...rest}
     >
       <input
-        className="kuiCheckbox__input"
+        className="euiCheckbox__input"
         type="checkbox"
         id={id}
         checked={checked}
         onChange={onChange}
       />
 
-      <div className="kuiCheckbox__square">
-        <div className="kuiCheckbox__check" />
+      <div className="euiCheckbox__square">
+        <div className="euiCheckbox__check" />
       </div>
 
       {optionalLabel}
@@ -58,7 +58,7 @@ export const KuiCheckbox = ({
   );
 };
 
-KuiCheckbox.propTypes = {
+EuiCheckbox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   checked: PropTypes.bool.isRequired,
@@ -67,6 +67,6 @@ KuiCheckbox.propTypes = {
   type: PropTypes.oneOf(TYPES),
 };
 
-KuiCheckbox.defaultProps = {
+EuiCheckbox.defaultProps = {
   checked: false,
 };

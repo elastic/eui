@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon, KuiPopoverTitle } from '..';
+import { EuiIcon, EuiPopoverTitle } from '..';
 
 const transitionDirectionAndTypeToClassNameMap = {
   next: {
-    in: 'kuiContextMenuPanel-txInLeft',
-    out: 'kuiContextMenuPanel-txOutLeft',
+    in: 'euiContextMenuPanel-txInLeft',
+    out: 'euiContextMenuPanel-txOutLeft',
   },
   previous: {
-    in: 'kuiContextMenuPanel-txInRight',
-    out: 'kuiContextMenuPanel-txOutRight',
+    in: 'euiContextMenuPanel-txInRight',
+    out: 'euiContextMenuPanel-txOutRight',
   },
 };
 
-export const KuiContextMenuPanel = ({
+export const EuiContextMenuPanel = ({
   children,
   className,
   onClose,
@@ -31,14 +31,14 @@ export const KuiContextMenuPanel = ({
     if (Boolean(onClose)) {
       panelTitle = (
         <button
-          className="kuiContextMenuPanelTitle"
+          className="euiContextMenuPanelTitle"
           onClick={onClose}
         >
-          <span className="kuiContextMenu__itemLayout">
-            <KuiIcon
+          <span className="euiContextMenu__itemLayout">
+            <EuiIcon
               type="arrowLeft"
               size="medium"
-              className="kuiContextMenu__icon"
+              className="euiContextMenu__icon"
             />
 
             {title}
@@ -47,17 +47,17 @@ export const KuiContextMenuPanel = ({
       );
     } else {
       panelTitle = (
-        <KuiPopoverTitle>
-          <span className="kuiContextMenu__itemLayout">
+        <EuiPopoverTitle>
+          <span className="euiContextMenu__itemLayout">
             {title}
           </span>
-        </KuiPopoverTitle>
+        </EuiPopoverTitle>
       );
     }
   }
 
   const hasTransition = transitionDirection && transitionType;
-  const classes = classNames('kuiContextMenuPanel', className, (
+  const classes = classNames('euiContextMenuPanel', className, (
     hasTransition ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType] : ''
   ));
 
@@ -73,7 +73,7 @@ export const KuiContextMenuPanel = ({
   );
 };
 
-KuiContextMenuPanel.propTypes = {
+EuiContextMenuPanel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   title: PropTypes.string,

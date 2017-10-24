@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Text from './text';
@@ -37,7 +37,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>KuiText</KuiCode> is a generic catchall wrapper that will apply
+          <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will apply
           our standard typography styling and spacing to naked HTML. Because of
           its forced style it <strong>only accepts raw HTML</strong> and can
           not / should not be used to wrap React components (which would break
@@ -75,7 +75,7 @@ export default props => (
       text={
         <p>
           Any text element can be colored as needed. Wraps the element in a span
-          with the <KuiCode>!important</KuiCode> applied to the color.
+          with the <EuiCode>!important</EuiCode> applied to the color.
         </p>
       }
       demo={

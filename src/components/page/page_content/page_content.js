@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiPanel, SIZES } from '../../panel/panel';
+import { EuiPanel, SIZES } from '../../panel/panel';
 
 const verticalPositionToClassNameMap = {
-  center: 'kuiPageContent--verticalCenter',
+  center: 'euiPageContent--verticalCenter',
 };
 
 const horizontalPositionToClassNameMap = {
-  center: 'kuiPageContent--horizontalCenter',
+  center: 'euiPageContent--horizontalCenter',
 };
 
 export const VERTICAL_POSITIONS = Object.keys(verticalPositionToClassNameMap);
 export const HORIZONTAL_POSITIONS = Object.keys(horizontalPositionToClassNameMap);
 
-export const KuiPageContent = ({
+export const EuiPageContent = ({
   verticalPosition,
   horizontalPosition,
   panelPaddingSize,
@@ -24,29 +24,29 @@ export const KuiPageContent = ({
   ...rest }) => {
 
   const classes = classNames(
-    'kuiPageContent',
+    'euiPageContent',
     className,
     verticalPositionToClassNameMap[verticalPosition],
     horizontalPositionToClassNameMap[horizontalPosition]
   );
 
   return (
-    <KuiPanel
+    <EuiPanel
       className={classes}
       paddingSize={panelPaddingSize}
       {...rest}
     >
       {children}
-    </KuiPanel>
+    </EuiPanel>
   );
 };
 
-KuiPageContent.propTypes = {
+EuiPageContent.propTypes = {
   panelPaddingSize: PropTypes.oneOf(SIZES),
   verticalPosition: PropTypes.oneOf(VERTICAL_POSITIONS),
   horizontalPosition: PropTypes.oneOf(HORIZONTAL_POSITIONS),
 };
 
-KuiPageContent.defaultProps = {
+EuiPageContent.defaultProps = {
   panelPaddingSize: 'l',
 };

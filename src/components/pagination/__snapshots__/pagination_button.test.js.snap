@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPaginationButton is rendered 1`] = `
+exports[`EuiPaginationButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="kuiButtonEmpty kuiButtonEmpty--primary kuiButtonEmpty--small kuiPaginationButton testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiPaginationButton testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
-    class="kuiButtonEmpty__content"
+    class="euiButtonEmpty__content"
   >
     <span>
       <span>

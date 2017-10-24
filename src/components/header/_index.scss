@@ -1,10 +1,10 @@
 // Themable colors
-$kuiHeaderBackgroundColor: $kuiColorEmptyShade;
-$kuiHeaderBreadcrumbColor: $kuiColorDarkestShade;
-$kuiHeaderNotificationBackgroundColor: $kuiColorAccent;
+$euiHeaderBackgroundColor: $euiColorEmptyShade;
+$euiHeaderBreadcrumbColor: $euiColorDarkestShade;
+$euiHeaderNotificationBackgroundColor: $euiColorAccent;
 
 // Layout vars
-$kuiHeaderChildSize: $kuiSizeXXL + $kuiSizeL;
+$euiHeaderChildSize: $euiSizeXXL + $euiSizeL;
 
 // Components
 @import 'header';

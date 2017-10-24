@@ -1,21 +1,21 @@
 import React from 'react';
 
 import {
-  KuiHorizontalRule,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default () => (
   <div>
     <p>Small</p>
-    <KuiHorizontalRule margin="small" />
+    <EuiHorizontalRule margin="small" />
     <p>Medium</p>
-    <KuiHorizontalRule margin="medium" />
+    <EuiHorizontalRule margin="medium" />
     <p>Large</p>
-    <KuiHorizontalRule margin="large" />
+    <EuiHorizontalRule margin="large" />
     <p>XLarge</p>
-    <KuiHorizontalRule margin="XLarge" />
+    <EuiHorizontalRule margin="XLarge" />
     <p>XXLarge</p>
-    <KuiHorizontalRule margin="XXLarge" />
+    <EuiHorizontalRule margin="XXLarge" />
   </div>
 );
 

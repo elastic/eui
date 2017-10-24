@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiTextArea = ({
+export const EuiTextArea = ({
   children,
   rows,
   name,
@@ -18,15 +18,15 @@ export const KuiTextArea = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiTextArea',
+    'euiTextArea',
     {
-      'kuiTextArea--fullWidth': fullWidth,
+      'euiTextArea--fullWidth': fullWidth,
     },
     className
   );
 
   return (
-    <KuiValidatableControl isInvalid={isInvalid}>
+    <EuiValidatableControl isInvalid={isInvalid}>
       <textarea
         className={classes}
         {...rest}
@@ -37,11 +37,11 @@ export const KuiTextArea = ({
       >
         {children}
       </textarea>
-    </KuiValidatableControl>
+    </EuiValidatableControl>
   );
 };
 
-KuiTextArea.propTypes = {
+EuiTextArea.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
@@ -50,7 +50,7 @@ KuiTextArea.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiTextArea.defaultProps = {
+EuiTextArea.defaultProps = {
   rows: 6,
   fullWidth: false,
 };

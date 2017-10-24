@@ -1,36 +1,36 @@
-.kuiLoadingSpinner {
+.euiLoadingSpinner {
   display: inline-block;
-  width: $kuiSizeXL;
-  height: $kuiSizeXL;
+  width: $euiSizeXL;
+  height: $euiSizeXL;
   border-radius: 50%;
-  border: solid $kuiSizeXS / 2 $kuiColorLightShade;
-  border-top-color: $kuiColorPrimary;
-  animation: kuiLoadingSpinner .6s infinite linear;
+  border: solid $euiSizeXS / 2 $euiColorLightShade;
+  border-top-color: $euiColorPrimary;
+  animation: euiLoadingSpinner .6s infinite linear;
 }
 
-.kuiLoadingSpinner--small {
-  width: $kuiSizeS;
-  height: $kuiSizeS;
+.euiLoadingSpinner--small {
+  width: $euiSizeS;
+  height: $euiSizeS;
   border-width: 1px;
 }
 
-.kuiLoadingSpinner--medium {
-  width: $kuiSize;
-  height: $kuiSize;
+.euiLoadingSpinner--medium {
+  width: $euiSize;
+  height: $euiSize;
   border-width: 1px;
 }
 
-.kuiLoadingSpinner--large {
-  width: $kuiSizeL;
-  height: $kuiSizeL;
+.euiLoadingSpinner--large {
+  width: $euiSizeL;
+  height: $euiSizeL;
 }
 
-.kuiLoadingSpinner--xLarge {
-  width: $kuiSizeXL;
-  height: $kuiSizeXL;
+.euiLoadingSpinner--xLarge {
+  width: $euiSizeXL;
+  height: $euiSizeXL;
 }
 
-@keyframes kuiLoadingSpinner {
+@keyframes euiLoadingSpinner {
   from {
     transform: rotate(0deg);
   }

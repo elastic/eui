@@ -1,17 +1,17 @@
 @import '../link/mixins';
 
-.kuiHeaderLogo {
-  @include kuiLink;
+.euiHeaderLogo {
+  @include euiLink;
 
   position: relative;
-  height: $kuiHeaderChildSize;
-  padding: $kuiSize $kuiSizeL;
+  height: $euiHeaderChildSize;
+  padding: $euiSize $euiSizeL;
   display: inline-block;
   vertical-align: middle;
 }
 
-  .kuiHeaderLogo__icon {
-    height: $kuiSizeXL;
-    width: $kuiSizeL;
+  .euiHeaderLogo__icon {
+    height: $euiSizeXL;
+    width: $euiSizeL;
     opacity: 1;
   }

@@ -1,4 +1,4 @@
-.kuiFieldText {
-  @include kuiFormControlStyle;
-  @include kuiFormControlWithIcon($isIconOptional: true);
+.euiFieldText {
+  @include euiFormControlStyle;
+  @include euiFormControlWithIcon($isIconOptional: true);
 }

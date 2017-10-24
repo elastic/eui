@@ -1,11 +1,11 @@
 export {
-  KuiHeaderSection,
+  EuiHeaderSection,
 } from './header_section';
 
 export {
-  KuiHeaderSectionItem,
+  EuiHeaderSectionItem,
 } from './header_section_item';
 
 export {
-  KuiHeaderSectionItemButton,
+  EuiHeaderSectionItemButton,
 } from './header_section_item_button';

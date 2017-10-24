@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiCode } from './code';
+import { EuiCode } from './code';
 
-describe('KuiCode', () => {
+describe('EuiCode', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiCode {...requiredProps} />
+      <EuiCode {...requiredProps} />
     );
 
     expect(component)

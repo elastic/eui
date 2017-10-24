@@ -27,7 +27,7 @@ import {
 
 import { keyCodes } from '../../services';
 
-export class KuiKeyboardAccessible extends Component {
+export class EuiKeyboardAccessible extends Component {
   onKeyDown = e => {
     // Prevent a scroll from occurring if the user has hit space.
     if (e.keyCode === keyCodes.SPACE) {
@@ -96,6 +96,6 @@ const keyboardInaccessibleElement = (props, propName, componentName) => {
   }
 };
 
-KuiKeyboardAccessible.propTypes = {
+EuiKeyboardAccessible.propTypes = {
   children: keyboardInaccessibleElement,
 };

@@ -2,40 +2,40 @@
 
 @import '../../link/mixins';
 
-.kuiHeaderBreadcrumbs {
+.euiHeaderBreadcrumbs {
   display: flex;
 }
 
-.kuiHeaderBreadcrumb {
+.euiHeaderBreadcrumb {
   display: inline-block;
-  height: $kuiHeaderChildSize;
-  line-height: $kuiHeaderChildSize;
-  padding: 0 $kuiSize;
+  height: $euiHeaderChildSize;
+  line-height: $euiHeaderChildSize;
+  padding: 0 $euiSize;
   position: relative;
-  color: $kuiHeaderBreadcrumbColor;
+  color: $euiHeaderBreadcrumbColor;
 
   // Slanted separator. Shows on all but last item.
   &:not(:last-child):after {
     position: absolute;
-    top: $kuiSizeL;
+    top: $euiSizeL;
     right: -3px; // Half the transformed width.
     content: "";
     width: 1px;
-    height: $kuiSize;
+    height: $euiSize;
     transform: rotate(15deg);
-    background: $kuiColorLightShade;
+    background: $euiColorLightShade;
   }
 
-  &:not(.kuiHeaderBreadcrumb--collapsed) {
-    @include kuiLink;
+  &:not(.euiHeaderBreadcrumb--collapsed) {
+    @include euiLink;
   }
 
-  &.kuiHeaderBreadcrumb-isActive {
-    color: $kuiColorMediumShade;
+  &.euiHeaderBreadcrumb-isActive {
+    color: $euiColorMediumShade;
   }
 }
 
-  .kuiHeaderBreadcrumb__text {
+  .euiHeaderBreadcrumb__text {
     white-space: nowrap;
     max-width: 150px;
     display: block;
@@ -43,13 +43,13 @@
     overflow: hidden;
   }
 
-.kuiHeaderBreadcrumb--collapsed {
-  color: $kuiColorLightShade;
+.euiHeaderBreadcrumb--collapsed {
+  color: $euiColorLightShade;
 }
 
 // Laptop
 @include screenMedium {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
 
     // Only show last 4 breadcrumbs
@@ -61,7 +61,7 @@
 
 // Tablets
 @include screenSmall {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
 
     // Only show last 2 breadcrumbs
@@ -73,7 +73,7 @@
 
 // Mobile
 @include screenXSmall {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
   }
 }

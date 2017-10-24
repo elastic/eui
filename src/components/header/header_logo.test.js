@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiHeaderLogo } from './header_logo';
+import { EuiHeaderLogo } from './header_logo';
 
-describe('KuiHeaderLogo', () => {
+describe('EuiHeaderLogo', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiHeaderLogo {...requiredProps} />
+      <EuiHeaderLogo {...requiredProps} />
     );
 
     expect(component)
@@ -16,7 +16,7 @@ describe('KuiHeaderLogo', () => {
 
   test('renders href', () => {
     const component = render(
-      <KuiHeaderLogo href="#" />
+      <EuiHeaderLogo href="#" />
     );
 
     expect(component)

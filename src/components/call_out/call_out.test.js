@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiCallOut } from './call_out';
+import { EuiCallOut } from './call_out';
 
-describe('KuiCallOut', () => {
+describe('EuiCallOut', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiCallOut {...requiredProps} />
+      <EuiCallOut {...requiredProps} />
     );
 
     expect(component)

@@ -1,41 +1,41 @@
-.kuiButtonEmpty {
-  @include kuiButton;
+.euiButtonEmpty {
+  @include euiButton;
 
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
 
-  .kuiButtonEmpty__content {
-    @include kuiButtonContent;
+  .euiButtonEmpty__content {
+    @include euiButtonContent;
 
-    padding: 0 $kuiSizeS;
+    padding: 0 $euiSizeS;
   }
 
-  &.kuiButtonEmpty--small {
-    height: $kuiButtonHeightSmall;
+  &.euiButtonEmpty--small {
+    height: $euiButtonHeightSmall;
   }
 
-  &.kuiButtonEmpty--iconRight {
-    .kuiButtonEmpty__content {
-      @include kuiButtonContent($isReverse: true);
+  &.euiButtonEmpty--iconRight {
+    .euiButtonEmpty__content {
+      @include euiButtonContent($isReverse: true);
     }
   }
 
   &:disabled {
-    color: $kuiButtonColorDisabled;
+    color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .kuiButtonEmpty__content {
+    .euiButtonEmpty__content {
       pointer-events: auto;
       cursor: not-allowed;
     }
 
-    .kuiButtonEmpty__icon {
-      fill: $kuiButtonColorDisabled;
+    .euiButtonEmpty__icon {
+      fill: $euiButtonColorDisabled;
     }
 
     &:hover, &:focus {
-      background-color: $kuiColorEmptyShade;
+      background-color: $euiColorEmptyShade;
       text-decoration: none;
     }
   }
@@ -43,25 +43,25 @@
 
 // Modifier naming and colors.
 $buttonTypes: (
-  primary: $kuiColorPrimary,
-  danger: $kuiColorDanger,
-  disabled: tintOrShade($kuiTextColor, 70%, 80%),
-  ghost: $kuiColorGhost,
-  text: $kuiTextColor,
+  primary: $euiColorPrimary,
+  danger: $euiColorDanger,
+  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  ghost: $euiColorGhost,
+  text: $euiTextColor,
 );
 
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
-  .kuiButtonEmpty--#{$name} {
+  .euiButtonEmpty--#{$name} {
     color: $color;
 
-    .kuiButtonEmpty__icon {
+    .euiButtonEmpty__icon {
       fill: $color;
     }
 
     &:focus {
       @if ($name == 'text') {
-        background-color: transparentize($kuiColorPrimary, .9);
+        background-color: transparentize($euiColorPrimary, .9);
       } @else {
         background-color: transparentize($color, .9);
       }
@@ -81,15 +81,15 @@ $buttonTypes: (
   }
 }
 
-.kuiButtonEmpty--flushLeft {
-  .kuiButtonEmpty__content {
+.euiButtonEmpty--flushLeft {
+  .euiButtonEmpty__content {
     border-left: none;
     padding-left: 0;
   }
 }
 
-.kuiButtonEmpty--flushRight {
-  .kuiButtonEmpty__content {
+.euiButtonEmpty--flushRight {
+  .euiButtonEmpty__content {
     border-right: none;
     padding-right: 0;
   }

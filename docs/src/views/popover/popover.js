@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 
 import {
-  KuiPopover,
-  KuiButton,
+  EuiPopover,
+  EuiButton,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -30,23 +30,23 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton
+      <EuiButton
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
       >
         Show popover
-      </KuiButton>
+      </EuiButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
       >
         <div style={{ width: '300px' }}>Popover content that&rsquo;s wider than the default width</div>
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 }

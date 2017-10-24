@@ -1,28 +1,28 @@
-.kuiPanel {
-  @include kuiBottomShadowSmall;
+.euiPanel {
+  @include euiBottomShadowSmall;
 
-  background-color: $kuiColorEmptyShade;
-  border: $kuiBorderThin;
-  border-radius: $kuiBorderRadius;
+  background-color: $euiColorEmptyShade;
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
   flex-grow: 1;
 
-  &.kuiPanel--paddingSmall {
-    padding: $kuiSizeS;
+  &.euiPanel--paddingSmall {
+    padding: $euiSizeS;
   }
 
-  &.kuiPanel--paddingMedium {
-    padding: $kuiSize;
+  &.euiPanel--paddingMedium {
+    padding: $euiSize;
   }
 
-  &.kuiPanel--paddingLarge {
-    padding: $kuiSizeL;
+  &.euiPanel--paddingLarge {
+    padding: $euiSizeL;
   }
 
-  &.kuiPanel--shadow {
-    @include kuiBottomShadow;
+  &.euiPanel--shadow {
+    @include euiBottomShadow;
   }
 
-  &.kuiPanel--flexGrowZero {
+  &.euiPanel--flexGrowZero {
     flex-grow: 0;
   }
 }

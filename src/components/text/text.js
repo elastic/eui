@@ -3,15 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const textSizeToClassNameMap = {
-  s: 'kuiText--small',
+  s: 'euiText--small',
 };
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const KuiText = ({ size, children, className, ...rest }) => {
+export const EuiText = ({ size, children, className, ...rest }) => {
 
   const classes = classNames(
-    'kuiText',
+    'euiText',
     textSizeToClassNameMap[size],
     className
   );
@@ -23,7 +23,7 @@ export const KuiText = ({ size, children, className, ...rest }) => {
   );
 };
 
-KuiText.propTypes = {
+EuiText.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(TEXT_SIZES),

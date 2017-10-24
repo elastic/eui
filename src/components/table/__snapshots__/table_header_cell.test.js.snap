@@ -2,32 +2,32 @@
 
 exports[`align defaults to left 1`] = `
 <th
-  class="kuiTableHeaderCell"
+  class="euiTableHeaderCell"
 >
   <div
-    class="kuiTableCellContent"
+    class="euiTableCellContent"
   />
 </th>
 `;
 
 exports[`align renders right when specified 1`] = `
 <th
-  class="kuiTableHeaderCell"
+  class="euiTableHeaderCell"
 >
   <div
-    class="kuiTableCellContent kuiTableCellContent--alignRight"
+    class="euiTableCellContent euiTableCellContent--alignRight"
   />
 </th>
 `;
 
-exports[`renders KuiTableHeaderCell 1`] = `
+exports[`renders EuiTableHeaderCell 1`] = `
 <th
   aria-label="aria-label"
-  class="kuiTableHeaderCell testClass1 testClass2"
+  class="euiTableHeaderCell testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
-    class="kuiTableCellContent testClass1 testClass2"
+    class="euiTableCellContent testClass1 testClass2"
   >
     children
   </div>

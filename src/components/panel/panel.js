@@ -4,14 +4,14 @@ import classNames from 'classnames';
 
 const paddingSizeToClassNameMap = {
   'none': null,
-  's': 'kuiPanel--paddingSmall',
-  'm': 'kuiPanel--paddingMedium',
-  'l': 'kuiPanel--paddingLarge',
+  's': 'euiPanel--paddingSmall',
+  'm': 'euiPanel--paddingMedium',
+  'l': 'euiPanel--paddingLarge',
 };
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const KuiPanel = ({
+export const EuiPanel = ({
   children,
   className,
   paddingSize,
@@ -22,11 +22,11 @@ export const KuiPanel = ({
 }) => {
 
   const classes = classNames(
-    'kuiPanel',
+    'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     {
-      'kuiPanel--shadow': hasShadow,
-      'kuiPanel--flexGrowZero': !grow,
+      'euiPanel--shadow': hasShadow,
+      'euiPanel--flexGrowZero': !grow,
     },
     className
   );
@@ -43,7 +43,7 @@ export const KuiPanel = ({
 
 };
 
-KuiPanel.propTypes = {
+EuiPanel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   hasShadow: PropTypes.bool,
@@ -52,7 +52,7 @@ KuiPanel.propTypes = {
   panelRef: PropTypes.func,
 };
 
-KuiPanel.defaultProps = {
+EuiPanel.defaultProps = {
   paddingSize: 'm',
   hasShadow: false,
   grow: true,

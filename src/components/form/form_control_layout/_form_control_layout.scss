@@ -1,22 +1,22 @@
-.kuiFormControlLayout {
-  @include kuiFormControlSize;
+.euiFormControlLayout {
+  @include euiFormControlSize;
 
   display: inline-block;
   position: relative;
 
-  &.kuiFormControlLayout--fullWidth {
+  &.euiFormControlLayout--fullWidth {
     width: 100%;
     max-width: 100%;
   }
 
-  .kuiFormControlLayout__icon {
+  .euiFormControlLayout__icon {
     position: absolute;
-    top: $kuiSizeM;
-    left: $kuiSizeM;
+    top: $euiSizeM;
+    left: $euiSizeM;
   }
 
-  .kuiFormControlLayout__icon--right {
+  .euiFormControlLayout__icon--right {
     left: auto;
-    right: $kuiSizeM;
+    right: $euiSizeM;
   }
 }

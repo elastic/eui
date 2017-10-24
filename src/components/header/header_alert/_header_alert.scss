@@ -1,49 +1,49 @@
-.kuiHeaderAlert {
+.euiHeaderAlert {
   text-align: left;
   min-width: 300px;
   position: relative;
-  margin: 0 (-$kuiSize);
-  padding: $kuiSize;
-  border-top: $kuiBorderThin;
+  margin: 0 (-$euiSize);
+  padding: $euiSize;
+  border-top: $euiBorderThin;
 
-  .kuiHeaderAlert__dismiss {
+  .euiHeaderAlert__dismiss {
     opacity: 0;
     position: absolute;
-    right: $kuiSize;
-    top: $kuiSize;
-    transition: opacity $kuiAnimSpeedNormal ease-in;
+    right: $euiSize;
+    top: $euiSize;
+    transition: opacity $euiAnimSpeedNormal ease-in;
     cursor: pointer;
     height: auto;
     width: auto;
   }
 
-  &:hover .kuiHeaderAlert__dismiss,
-  .kuiHeaderAlert__dismiss:focus {
+  &:hover .euiHeaderAlert__dismiss,
+  .euiHeaderAlert__dismiss:focus {
     opacity: 1;
   }
 
-  .kuiHeaderAlert__title {
-    font-weight: $kuiFontWeightMedium;
-    @include kuiFontSizeM;
-    padding-right: $kuiSizeL; // Accounts for the dismiss button.
+  .euiHeaderAlert__title {
+    font-weight: $euiFontWeightMedium;
+    @include euiFontSizeM;
+    padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 
-  .kuiHeaderAlert__text {
-    @include kuiFontSizeXS;
-    margin-bottom: $kuiSizeS;
+  .euiHeaderAlert__text {
+    @include euiFontSizeXS;
+    margin-bottom: $euiSizeS;
   }
 
-  .kuiHeaderAlert__action {
-    @include kuiFontSizeXS;
-    color: $kuiLinkColor;
+  .euiHeaderAlert__action {
+    @include euiFontSizeXS;
+    color: $euiLinkColor;
 
     &:focus {
-      outline: solid $kuiFontSizeXS / 2 $kuiFocusBackgroundColor;
+      outline: solid $euiFontSizeXS / 2 $euiFocusBackgroundColor;
     }
   }
 
-  .kuiHeaderAlert__date {
-    @include kuiFontSizeXS;
-    color: $kuiColorDarkShade;
+  .euiHeaderAlert__date {
+    @include euiFontSizeXS;
+    color: $euiColorDarkShade;
   }
 }

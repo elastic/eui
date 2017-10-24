@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiSideNavTitle } from './side_nav_title';
+import { EuiSideNavTitle } from './side_nav_title';
 
-describe('KuiSideNavTitle', () => {
+describe('EuiSideNavTitle', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiSideNavTitle {...requiredProps} />
+      <EuiSideNavTitle {...requiredProps} />
     );
 
     expect(component)

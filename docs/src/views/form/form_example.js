@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import FormControls from './form_controls';
@@ -58,7 +58,7 @@ export default props => (
       text={
         <p>
           These are the base inputs without their labels. If you need labels
-          then use the <KuiCode>FormRow</KuiCode> wrapper as explained
+          then use the <EuiCode>FormRow</EuiCode> wrapper as explained
           in the next example.
         </p>
       }
@@ -78,7 +78,7 @@ export default props => (
       }]}
       text={
         <p>
-          Use the <KuiCode>FormRow</KuiCode> component to easily associate form components with
+          Use the <EuiCode>FormRow</EuiCode> component to easily associate form components with
           labels, help text, and error text.
         </p>
       }
@@ -98,7 +98,7 @@ export default props => (
       }]}
       text={
         <p>
-          Forms can be placed within <KuiCode>KuiPopover</KuiCode> and
+          Forms can be placed within <EuiCode>EuiPopover</EuiCode> and
           should scale accordingly.
         </p>
       }
@@ -118,9 +118,9 @@ export default props => (
       }]}
       text={
         <p>
-          Validation is achieved by applying <KuiCode>isInvalid</KuiCode>
-          and optionally <KuiCode>error</KuiCode> props
-          onto the <KuiCode>KuiForm</KuiCode> or <KuiCode>KuiFormRow</KuiCode>
+          Validation is achieved by applying <EuiCode>isInvalid</EuiCode>
+          and optionally <EuiCode>error</EuiCode> props
+          onto the <EuiCode>EuiForm</EuiCode> or <EuiCode>EuiFormRow</EuiCode>
           components. Errors are optional and are passed as an array in case you
           need to list many errors.
         </p>
@@ -141,8 +141,8 @@ export default props => (
       }]}
       text={
         <p>
-          Form elements will automatically flex to a max-width of <KuiCode>400px</KuiCode>.
-          You can optionally pass the <KuiCode>fullWidth</KuiCode> prop to both individual field
+          Form elements will automatically flex to a max-width of <EuiCode>400px</EuiCode>.
+          You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to both individual field
           and row components to expand to their container. This should be done rarely and usually
           you will only need it for isolated controls like search bars and sliders.
         </p>
@@ -163,8 +163,8 @@ export default props => (
       }]}
       text={
         <p>
-          Inline forms can be made with <KuiCode>FlexGroup</KuiCode>. Apply
-          <KuiCode>grow=false</KuiCode> on any of the items you want to collapse
+          Inline forms can be made with <EuiCode>FlexGroup</EuiCode>. Apply
+          <EuiCode>grow=false</EuiCode> on any of the items you want to collapse
           (like this button). Note that the button FormRow component also requires
           an additional prop because it&rsquo;s missing a label.
         </p>

@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPage is rendered 1`] = `
+exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiPage testClass1 testClass2"
+  class="euiPage testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

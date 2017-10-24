@@ -1,1 +1,1 @@
-export { KuiFieldNumber } from './field_number';
+export { EuiFieldNumber } from './field_number';

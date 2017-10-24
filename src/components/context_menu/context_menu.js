@@ -7,10 +7,10 @@ import tabbable from 'tabbable';
 
 import { cascadingMenuKeyCodes } from '../../services';
 
-import { KuiContextMenuPanel } from './context_menu_panel';
-import { KuiContextMenuItem } from './context_menu_item';
+import { EuiContextMenuPanel } from './context_menu_panel';
+import { EuiContextMenuItem } from './context_menu_item';
 
-export class KuiContextMenu extends Component {
+export class EuiContextMenu extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -189,14 +189,14 @@ export class KuiContextMenu extends Component {
         onClick = item.onClick;
       } else if (item.panel) {
         onClick = () => {
-          // This component is commonly wrapped in a KuiOutsideClickDetector, which means we'll
+          // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
           // need to wait for that logic to complete before re-rendering the DOM via showPanel.
           window.requestAnimationFrame(this.showPanel.bind(this, item.panel.id, 'next'));
         };
       }
 
       return (
-        <KuiContextMenuItem
+        <EuiContextMenuItem
           key={item.name}
           icon={item.icon}
           onClick={onClick}
@@ -204,11 +204,11 @@ export class KuiContextMenu extends Component {
           data-menu-item
         >
           {item.name}
-        </KuiContextMenuItem>
+        </EuiContextMenuItem>
       );
     });
 
-    // As above, we need to wait for KuiOutsideClickDetector to complete its logic before
+    // As above, we need to wait for EuiOutsideClickDetector to complete its logic before
     // re-rendering via showPanel.
     let onClose;
     if (this.hasPreviousPanel(panelId)) {
@@ -216,7 +216,7 @@ export class KuiContextMenu extends Component {
     }
 
     return (
-      <KuiContextMenuPanel
+      <EuiContextMenuPanel
         panelRef={node => {
           if (transitionType === 'in') {
             this.currentPanel = node;
@@ -228,7 +228,7 @@ export class KuiContextMenu extends Component {
         transitionDirection={this.state.transitionDirection}
       >
         {panel.content || renderItems(panel.items)}
-      </KuiContextMenuPanel>
+      </EuiContextMenuPanel>
     );
   }
 
@@ -250,7 +250,7 @@ export class KuiContextMenu extends Component {
       outGoingPanel = this.renderPanel(this.state.outGoingPanelId, 'out');
     }
 
-    const classes = classNames('kuiContextMenu', className);
+    const classes = classNames('euiContextMenu', className);
 
     return (
       <div

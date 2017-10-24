@@ -1,1 +1,1 @@
-export { KuiFieldPassword } from './field_password';
+export { EuiFieldPassword } from './field_password';

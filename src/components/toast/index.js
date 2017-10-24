@@ -1,11 +1,11 @@
 export {
-  KuiToast,
+  EuiToast,
 } from './toast';
 
 export {
-  KuiGlobalToastList,
+  EuiGlobalToastList,
 } from './global_toast_list';
 
 export {
-  KuiGlobalToastListItem,
+  EuiGlobalToastListItem,
 } from './global_toast_list_item';

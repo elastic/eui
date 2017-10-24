@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Info from './info';
@@ -41,8 +41,8 @@ export default props => (
       }]}
       text={
         <p>
-          Use <KuiCode>KuiCallOut</KuiCode> to communicate general information to the user.
-          Note that the <KuiCode>Icon</KuiCode> prop is optional.
+          Use <EuiCode>EuiCallOut</EuiCode> to communicate general information to the user.
+          Note that the <EuiCode>Icon</EuiCode> prop is optional.
         </p>
       }
       demo={

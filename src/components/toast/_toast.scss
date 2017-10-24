@@ -1,14 +1,14 @@
-.kuiToast {
-  @include kuiBottomShadow;
+.euiToast {
+  @include euiBottomShadow;
 
   position: relative;
-  padding: $kuiSize;
-  background-color: $kuiColorEmptyShade;
-  border: $kuiBorderThin;
+  padding: $euiSize;
+  background-color: $euiColorEmptyShade;
+  border: $euiBorderThin;
   width: 100%;
 
-  &:hover .kuiToast__closeButton,
-  &:focus .kuiToast__closeButton, {
+  &:hover .euiToast__closeButton,
+  &:focus .euiToast__closeButton, {
     opacity: 1;
   }
 }
@@ -16,46 +16,46 @@
   /**
    * 1. Fit button to icon.
    */
-  .kuiToast__closeButton {
+  .euiToast__closeButton {
     position: absolute;
-    top: $kuiSize;
-    right: $kuiSize;
+    top: $euiSize;
+    right: $euiSize;
     line-height: 0; /* 1 */
     appearance: none;
     opacity: 0;
-    transition: opacity $kuiAnimSpeedFast $kuiAnimSlightResistance;
+    transition: opacity $euiAnimSpeedFast $euiAnimSlightResistance;
 
     svg {
-      fill: tintOrShade($kuiTitleColor, 50%, 70%);
+      fill: tintOrShade($euiTitleColor, 50%, 70%);
     }
 
     &:hover {
       svg {
-        fill: $kuiTitleColor;
+        fill: $euiTitleColor;
       }
     }
 
     &:focus {
-      background-color: $kuiFocusBackgroundColor;
+      background-color: $euiFocusBackgroundColor;
       opacity: 1;
 
       svg {
-        fill: $kuiColorPrimary;
+        fill: $euiColorPrimary;
       }
     }
   }
 
 // Modifier naming and colors.
 $toastTypes: (
-  info: $kuiColorPrimary,
-  success: $kuiColorSecondary,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
+  info: $euiColorPrimary,
+  success: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
 );
 
 // Create button modifiders based upon the map.
 @each $name, $color in $toastTypes {
-  .kuiToast--#{$name} {
+  .euiToast--#{$name} {
     border-top: 2px solid $color;
   }
 }
@@ -65,32 +65,32 @@ $toastTypes: (
  * 2. Apply margin to all but last item in the flex.
  * 3. Account for close button.
  */
-.kuiToastHeader {
-  @include kuiFontSizeM;
-  padding-right: $kuiSizeL; /* 3 */
+.euiToastHeader {
+  @include euiFontSizeM;
+  padding-right: $euiSizeL; /* 3 */
 
   display: flex;
   align-items: baseline; /* 1 */
 
   > * + * {
-    margin-left: $kuiSizeS; /* 2 */
+    margin-left: $euiSizeS; /* 2 */
   }
 }
 
   /**
    * 1. Vertically center icon with first line of title.
    */
-  .kuiToastHeader__icon {
+  .euiToastHeader__icon {
     flex: 0 0 auto;
-    fill: $kuiTitleColor;
+    fill: $euiTitleColor;
     transform: translateY(2px); /* 1 */
   }
 
-  .kuiToastHeader__title {
-    color: $kuiTitleColor;
-    font-weight: $kuiFontWeightLight;
+  .euiToastHeader__title {
+    color: $euiTitleColor;
+    font-weight: $euiFontWeightLight;
   }
 
-.kuiToastHeader--withBody {
-  margin-bottom: $kuiSizeM;
+.euiToastHeader--withBody {
+  margin-bottom: $euiSizeM;
 }

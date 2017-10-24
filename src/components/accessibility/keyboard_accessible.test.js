@@ -5,11 +5,11 @@ import {
 } from 'enzyme';
 import sinon from 'sinon';
 
-import { KuiKeyboardAccessible } from './keyboard_accessible';
+import { EuiKeyboardAccessible } from './keyboard_accessible';
 
 import { keyCodes } from '../../services';
 
-describe('KuiKeyboardAccessible', () => {
+describe('EuiKeyboardAccessible', () => {
   describe('throws an error', () => {
     let consoleStub;
 
@@ -23,7 +23,7 @@ describe('KuiKeyboardAccessible', () => {
 
     test(`when there's no child`, () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible />
+        <EuiKeyboardAccessible />
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -34,9 +34,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test('when the child is a button', () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <button onClick={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -47,9 +47,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test('when the child is a link with an href', () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <a href="#" onClick={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -60,9 +60,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test(`when the child doesn't have an onClick prop`, () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -73,9 +73,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test(`when the child's onClick prop isn't a function`, () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick="notAFunction" />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -86,9 +86,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test(`when the child has an onKeyDown prop`, () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick={() => {}} onKeyDown={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -99,9 +99,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test(`when the child has an onKeyUp prop`, () => {
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick={() => {}} onKeyUp={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.calledOnce).toBe(true);
@@ -115,9 +115,9 @@ describe('KuiKeyboardAccessible', () => {
     test('when the element is a link without an href', () => {
       const consoleStub = sinon.stub(console, 'error');
       const component = ( // eslint-disable-line no-unused-vars
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <a onClick={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect(consoleStub.called).toBe(false);
@@ -128,9 +128,9 @@ describe('KuiKeyboardAccessible', () => {
   describe('adds accessibility attributes', () => {
     test('tabindex and role', () => {
       const $button = render(
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick={() => {}} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect($button)
@@ -141,9 +141,9 @@ describe('KuiKeyboardAccessible', () => {
   describe(`doesn't override pre-existing accessibility attributes`, () => {
     test('tabindex', () => {
       const $button = render(
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick={() => {}} tabIndex="1" />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect($button)
@@ -152,9 +152,9 @@ describe('KuiKeyboardAccessible', () => {
 
     test('role', () => {
       const $button = render(
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div onClick={() => {}} role="submit" />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       expect($button)
@@ -167,9 +167,9 @@ describe('KuiKeyboardAccessible', () => {
       const onClickHandler = sinon.stub();
 
       const $button = shallow(
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div data-div onClick={onClickHandler} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       $button.find('[data-div]').simulate('keyup', {
@@ -183,9 +183,9 @@ describe('KuiKeyboardAccessible', () => {
       const onClickHandler = sinon.stub();
 
       const $button = shallow(
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <div data-div onClick={onClickHandler} />
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       );
 
       $button.find('[data-div]').simulate('keyup', {

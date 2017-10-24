@@ -4,21 +4,21 @@ import classNames from 'classnames';
 
 const paddingSizeToClassNameMap = {
   'none': null,
-  's': 'kuiBottomBar--paddingSmall',
-  'm': 'kuiBottomBar--paddingMedium',
-  'l': 'kuiBottomBar--paddingLarge',
+  's': 'euiBottomBar--paddingSmall',
+  'm': 'euiBottomBar--paddingMedium',
+  'l': 'euiBottomBar--paddingLarge',
 };
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const KuiBottomBar = ({
+export const EuiBottomBar = ({
   children,
   className,
   paddingSize,
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiBottomBar',
+    'euiBottomBar',
     paddingSizeToClassNameMap[paddingSize],
     className
   );
@@ -33,11 +33,11 @@ export const KuiBottomBar = ({
   );
 };
 
-KuiBottomBar.propTypes = {
+EuiBottomBar.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-KuiBottomBar.defaultProps = {
+EuiBottomBar.defaultProps = {
   paddingSize: 'm',
 };

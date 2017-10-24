@@ -1,11 +1,11 @@
 export {
-  KuiDescriptionList,
+  EuiDescriptionList,
 } from './description_list';
 
 export {
-  KuiDescriptionListTitle,
+  EuiDescriptionListTitle,
 } from './description_list_title';
 
 export {
-  KuiDescriptionListDescription,
+  EuiDescriptionListDescription,
 } from './description_list_description';

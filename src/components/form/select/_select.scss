@@ -1,10 +1,10 @@
 /**
  * 1. Leave room for caret.
  */
-.kuiSelect {
-  @include kuiFormControlStyle;
+.euiSelect {
+  @include euiFormControlStyle;
 
-  padding-right: $kuiSizeXXL; /* 1 */
+  padding-right: $euiSizeXXL; /* 1 */
   appearance: none;
 
   &::-ms-expand {

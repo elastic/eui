@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from '../form_control_layout';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiFieldSearch = ({
+export const EuiFieldSearch = ({
   className,
   id,
   name,
@@ -21,19 +21,19 @@ export const KuiFieldSearch = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiFieldSearch',
+    'euiFieldSearch',
     {
-      'kuiFieldSearch--fullWidth': fullWidth,
+      'euiFieldSearch--fullWidth': fullWidth,
     },
     className
   );
 
   return (
-    <KuiFormControlLayout
+    <EuiFormControlLayout
       icon="search"
       fullWidth={fullWidth}
     >
-      <KuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="search"
           id={id}
@@ -43,12 +43,12 @@ export const KuiFieldSearch = ({
           value={value}
           {...rest}
         />
-      </KuiValidatableControl>
-    </KuiFormControlLayout>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };
 
-KuiFieldSearch.propTypes = {
+EuiFieldSearch.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
@@ -57,7 +57,7 @@ KuiFieldSearch.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiFieldSearch.defaultProps = {
+EuiFieldSearch.defaultProps = {
   value: undefined,
   fullWidth: false,
 };

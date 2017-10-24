@@ -6,7 +6,7 @@ import { requiredProps } from '../../test/required_props';
 import { keyCodes } from '../../services';
 
 import {
-  CANCEL_BUTTON, CONFIRM_BUTTON, KuiConfirmModal,
+  CANCEL_BUTTON, CONFIRM_BUTTON, EuiConfirmModal,
 } from './confirm_modal';
 
 let onConfirm;
@@ -17,9 +17,9 @@ beforeEach(() => {
   onCancel = sinon.spy();
 });
 
-test('renders KuiConfirmModal', () => {
+test('renders EuiConfirmModal', () => {
   const component = render(
-    <KuiConfirmModal
+    <EuiConfirmModal
       title="A confirmation modal"
       onCancel={() => {}}
       onConfirm={onConfirm}
@@ -28,13 +28,13 @@ test('renders KuiConfirmModal', () => {
       {...requiredProps}
     >
       This is a confirmation modal example
-    </KuiConfirmModal>
+    </EuiConfirmModal>
   );
   expect(component).toMatchSnapshot();
 });
 
 test('onConfirm', () => {
-  const component = mount(<KuiConfirmModal
+  const component = mount(<EuiConfirmModal
     onCancel={onCancel}
     onConfirm={onConfirm}
   />);
@@ -45,7 +45,7 @@ test('onConfirm', () => {
 
 describe('onCancel', () => {
   test('triggerd by click', () => {
-    const component = mount(<KuiConfirmModal
+    const component = mount(<EuiConfirmModal
       onCancel={onCancel}
       onConfirm={onConfirm}
     />);
@@ -55,7 +55,7 @@ describe('onCancel', () => {
   });
 
   test('triggered by esc key', () => {
-    const component = mount(<KuiConfirmModal
+    const component = mount(<EuiConfirmModal
       onCancel={onCancel}
       onConfirm={onConfirm}
       data-test-subj="modal"
@@ -68,7 +68,7 @@ describe('onCancel', () => {
 
 describe('defaultFocusedButton', () => {
   test('is cancel', () => {
-    const component = mount(<KuiConfirmModal
+    const component = mount(<EuiConfirmModal
       onCancel={onCancel}
       defaultFocusedButton={CANCEL_BUTTON}
     />);
@@ -77,7 +77,7 @@ describe('defaultFocusedButton', () => {
   });
 
   test('is confirm', () => {
-    const component = mount(<KuiConfirmModal
+    const component = mount(<EuiConfirmModal
       onCancel={onCancel}
       defaultFocusedButton={CONFIRM_BUTTON}
     />);
@@ -86,7 +86,7 @@ describe('defaultFocusedButton', () => {
   });
 
   test('when not given gives focus to the modal', () => {
-    const component = mount(<KuiConfirmModal
+    const component = mount(<EuiConfirmModal
       onCancel={onCancel}
     />);
     expect(document.activeElement).toEqual(component.getDOMNode().firstChild);

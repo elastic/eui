@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -49,8 +49,8 @@ export default props => (
       }]}
       text={
         <p>
-          Button <KuiCode>type</KuiCode> defines the color of the button.
-          <KuiCode>fill</KuiCode> can be optionally added to add more focus to an action.
+          Button <EuiCode>type</EuiCode> defines the color of the button.
+          <EuiCode>fill</EuiCode> can be optionally added to add more focus to an action.
         </p>
       }
       demo={
@@ -71,7 +71,7 @@ export default props => (
         <p>
           The passed icon needs to come from our list of svg icons. Can be flipped {
             // eslint-disable-next-line react/no-unescaped-entities
-          } to the other side by passing <KuiCode>iconSide="right"</KuiCode>.
+          } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
         </p>
       }
       demo={
@@ -90,7 +90,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>KuiButtonEmpty</KuiCode> is used when you want to make
+          <EuiCode>EuiButtonEmpty</EuiCode> is used when you want to make
           a button look like a regular link, but still want to align it to
           the rest of the buttons.
         </p>
@@ -111,7 +111,7 @@ export default props => (
       }]}
       text={
         <p>
-          When aligning <KuiCode>KuiButtonEmpty</KuiCode> components to the left or the right,
+          When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left or the right,
           you should make sure they&rsquo;re flush with the edge of their container, so that they&rsquo;re
           horizontally-aligned with the other content in the container.
         </p>
@@ -151,11 +151,11 @@ export default props => (
       }]}
       text={
         <p>
-          You can also pass <KuiCode>type=&apos;ghost&apos;</KuiCode> to any of the button
+          You can also pass <EuiCode>type=&apos;ghost&apos;</EuiCode> to any of the button
           styles on this page. These should be used extremely rarely, and are
           only for placing buttons on top of dark or image-based backgrounds.
           A good example of their use is in
-          the <KuiCode>KuiBottomBar</KuiCode> component
+          the <EuiCode>EuiBottomBar</EuiCode> component
         </p>
       }
       demo={

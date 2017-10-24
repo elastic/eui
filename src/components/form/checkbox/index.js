@@ -1,2 +1,2 @@
-export { KuiCheckbox } from './checkbox';
-export { KuiCheckboxGroup } from './checkbox_group';
+export { EuiCheckbox } from './checkbox';
+export { EuiCheckboxGroup } from './checkbox_group';

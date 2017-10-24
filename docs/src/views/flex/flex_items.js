@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiFlexGroup>
-    <KuiFlexItem>One</KuiFlexItem>
-    <KuiFlexItem>Two</KuiFlexItem>
-    <KuiFlexItem>Three</KuiFlexItem>
-    <KuiFlexItem>Four</KuiFlexItem>
-    <KuiFlexItem>Five</KuiFlexItem>
-  </KuiFlexGroup>
+  <EuiFlexGroup>
+    <EuiFlexItem>One</EuiFlexItem>
+    <EuiFlexItem>Two</EuiFlexItem>
+    <EuiFlexItem>Three</EuiFlexItem>
+    <EuiFlexItem>Four</EuiFlexItem>
+    <EuiFlexItem>Five</EuiFlexItem>
+  </EuiFlexGroup>
 );

@@ -1,11 +1,11 @@
 export {
-  KuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumb,
 } from './header_breadcrumb';
 
 export {
-  KuiHeaderBreadcrumbCollapsed,
+  EuiHeaderBreadcrumbCollapsed,
 } from './header_breadcrumb_collapsed';
 
 export {
-  KuiHeaderBreadcrumbs,
+  EuiHeaderBreadcrumbs,
 } from './header_breadcrumbs';

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiFormRow,
-  KuiButton,
-  KuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormRow,
+  EuiButton,
+  EuiFieldText,
 } from '../../../../src/components/';
 
 function makeId() {
@@ -15,21 +15,21 @@ function makeId() {
 const idPrefix = makeId();
 
 export default () => (
-  <KuiFlexGroup style={{ maxWidth: 600 }}>
-    <KuiFlexItem>
-      <KuiFormRow label="First name"  id={idPrefix} helpText="I am helpful help text!">
-        <KuiFieldText />
-      </KuiFormRow>
-    </KuiFlexItem>
-    <KuiFlexItem>
-      <KuiFormRow label="Last name" id={idPrefix}>
-        <KuiFieldText />
-      </KuiFormRow>
-    </KuiFlexItem>
-    <KuiFlexItem grow={false}>
-      <KuiFormRow hasEmptyLabelSpace>
-        <KuiButton>Save</KuiButton>
-      </KuiFormRow>
-    </KuiFlexItem>
-  </KuiFlexGroup>
+  <EuiFlexGroup style={{ maxWidth: 600 }}>
+    <EuiFlexItem>
+      <EuiFormRow label="First name"  id={idPrefix} helpText="I am helpful help text!">
+        <EuiFieldText />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow label="Last name" id={idPrefix}>
+        <EuiFieldText />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiFormRow hasEmptyLabelSpace>
+        <EuiButton>Save</EuiButton>
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

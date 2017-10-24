@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {
-  KuiDescriptionList,
-  KuiSpacer,
+  EuiDescriptionList,
+  EuiSpacer,
 } from '../../../../src/components';
 
 const favoriteVideoGames = [
@@ -21,24 +21,24 @@ const favoriteVideoGames = [
 ];
 export default () => (
   <div style={{ maxWidth: '400px' }}>
-    <KuiDescriptionList
+    <EuiDescriptionList
       listItems={favoriteVideoGames}
       align="center"
       compressed
     />
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
-    <KuiDescriptionList
+    <EuiDescriptionList
       listItems={favoriteVideoGames}
       type="column"
       align="center"
       compressed
     />
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
-    <KuiDescriptionList
+    <EuiDescriptionList
       listItems={favoriteVideoGames}
       type="inline"
       align="center"

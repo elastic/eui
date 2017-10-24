@@ -1,1 +1,1 @@
-export { KuiSelect } from './select';
+export { EuiSelect } from './select';

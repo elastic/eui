@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders KuiConfirmModal 1`] = `
+exports[`renders EuiConfirmModal 1`] = `
 <div>
   <div
     aria-label="aria-label"
-    class="kuiModal kuiModal--confirmation testClass1 testClass2"
+    class="euiModal euiModal--confirmation testClass1 testClass2"
     data-test-subj="test subject string"
     tabindex="0"
   >
     <div
-      class="kuiModalHeader"
+      class="euiModalHeader"
     >
       <div
-        class="kuiModalHeader__title"
+        class="euiModalHeader__title"
         data-test-subj="confirmModalTitleText"
       >
         A confirmation modal
       </div>
     </div>
     <div
-      class="kuiModalBody"
+      class="euiModalBody"
     >
       <div
-        class="kuiText"
+        class="euiText"
         data-test-subj="confirmModalBodyText"
       >
         <p>
@@ -31,14 +31,14 @@ exports[`renders KuiConfirmModal 1`] = `
       </div>
     </div>
     <div
-      class="kuiModalFooter"
+      class="euiModalFooter"
     >
       <button
-        class="kuiButtonEmpty kuiButtonEmpty--primary kuiButtonEmpty--small"
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
         data-test-subj="confirmModalCancelButton"
       >
         <span
-          class="kuiButtonEmpty__content"
+          class="euiButtonEmpty__content"
         >
           <span>
             Cancel Button Text
@@ -46,11 +46,11 @@ exports[`renders KuiConfirmModal 1`] = `
         </span>
       </button>
       <button
-        class="kuiButton kuiButton--primary kuiButton--small kuiButton--fill"
+        class="euiButton euiButton--primary euiButton--small euiButton--fill"
         data-test-subj="confirmModalConfirmButton"
       >
         <span
-          class="kuiButton__content"
+          class="euiButton__content"
         >
           <span>
             Confirm Button Text

@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiTableRowCellCheckbox = ({
+export const EuiTableRowCellCheckbox = ({
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableRowCellCheckbox', className);
+  const classes = classNames('euiTableRowCellCheckbox', className);
 
   return (
     <td className={classes} {...rest} >
-      <div className="kuiTableCellContent">
+      <div className="euiTableCellContent">
         {children}
       </div>
     </td>
   );
 };
 
-KuiTableRowCellCheckbox.propTypes = {
+EuiTableRowCellCheckbox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

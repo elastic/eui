@@ -1,4 +1,4 @@
-.kuiLoadingKibana {
+.euiLoadingKibana {
   position: relative;
   display: inline-block;
 
@@ -16,75 +16,75 @@
   }
 
   &:before {
-    box-shadow: 0 0 8px $kuiColorFullShade;
-    animation: 1s kuiLoadingKibanaPulsateAndFade $kuiAnimSlightResistance infinite;
+    box-shadow: 0 0 8px $euiColorFullShade;
+    animation: 1s euiLoadingKibanaPulsateAndFade $euiAnimSlightResistance infinite;
   }
 
   &:after {
-    background-color: $kuiColorFullShade;
-    animation: 1s kuiLoadingKibanaPulsate $kuiAnimSlightResistance infinite;
+    background-color: $euiColorFullShade;
+    animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
   }
 }
 
 /**
  * 1. Requires pixel math for animation.
  */
-.kuiLoadingKibana--medium {
+.euiLoadingKibana--medium {
   &:before,
   &:after {
-    height: $kuiSizeXS - 1; /* 1 */
-    bottom: -$kuiSizeXS;
+    height: $euiSizeXS - 1; /* 1 */
+    bottom: -$euiSizeXS;
   }
-  .kuiLoadingKibana__icon {
+  .euiLoadingKibana__icon {
     z-index: 999;
-    animation: 1s kuiLoadingKibanaBounceMedium $kuiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
   }
 }
 
 /**
  * 1. Requires pixel math for animation.
  */
-.kuiLoadingKibana--large {
+.euiLoadingKibana--large {
   &:before,
   &:after {
-    height: $kuiSizeS - 2; /* 1 */
-    bottom: -$kuiSizeS;
+    height: $euiSizeS - 2; /* 1 */
+    bottom: -$euiSizeS;
   }
-  .kuiLoadingKibana__icon {
-    animation: 1s kuiLoadingKibanaBounceLarge $kuiAnimSlightResistance infinite;
+  .euiLoadingKibana__icon {
+    animation: 1s euiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
   }
 }
 
-.kuiLoadingKibana--xLarge {
+.euiLoadingKibana--xLarge {
   &:before,
   &:after {
-    height: $kuiSizeS;
-    bottom: -$kuiSizeM;
+    height: $euiSizeS;
+    bottom: -$euiSizeM;
   }
-  .kuiLoadingKibana__icon {
-    animation: 1s kuiLoadingKibanaBounceXLarge $kuiAnimSlightResistance infinite;
+  .euiLoadingKibana__icon {
+    animation: 1s euiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
   }
 }
 
-@keyframes kuiLoadingKibanaBounceMedium {
+@keyframes euiLoadingKibanaBounceMedium {
   50% {
-    transform: translateY(-$kuiSizeS);
+    transform: translateY(-$euiSizeS);
   }
 }
 
-@keyframes kuiLoadingKibanaBounceLarge {
+@keyframes euiLoadingKibanaBounceLarge {
   50% {
-    transform: translateY(-$kuiSizeM);
+    transform: translateY(-$euiSizeM);
   }
 }
 
-@keyframes kuiLoadingKibanaBounceXLarge {
+@keyframes euiLoadingKibanaBounceXLarge {
   50% {
-    transform: translateY(-$kuiSize);
+    transform: translateY(-$euiSize);
   }
 }
 
-@keyframes kuiLoadingKibanaPulsateAndFade {
+@keyframes euiLoadingKibanaPulsateAndFade {
   0% {
     opacity: 0;
   }
@@ -99,7 +99,7 @@
   }
 }
 
-@keyframes kuiLoadingKibanaPulsate {
+@keyframes euiLoadingKibanaPulsate {
   0% {
     opacity: 0.15;
   }

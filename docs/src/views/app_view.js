@@ -13,11 +13,11 @@ import {
 } from '../components';
 
 import {
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageSideBar,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageSideBar,
 } from '../../../src/components';
 
 export class AppView extends Component {
@@ -65,9 +65,9 @@ export class AppView extends Component {
 
     if (this.state.isChromeVisible) {
       return (
-        <KuiPage>
-          <KuiPageBody>
-            <KuiPageSideBar>
+        <EuiPage>
+          <EuiPageBody>
+            <EuiPageSideBar>
               <GuideNav
                 isChromeVisible={this.state.isChromeVisible}
                 isNavOpen={this.state.isNavOpen}
@@ -80,14 +80,14 @@ export class AppView extends Component {
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
               />
-            </KuiPageSideBar>
-            <KuiPageContent>
-              <KuiPageContentBody>
+            </EuiPageSideBar>
+            <EuiPageContent>
+              <EuiPageContentBody>
                 {this.props.children}
-              </KuiPageContentBody>
-            </KuiPageContent>
-          </KuiPageBody>
-        </KuiPage>
+              </EuiPageContentBody>
+            </EuiPageContent>
+          </EuiPageBody>
+        </EuiPage>
       );
     } else {
       return (

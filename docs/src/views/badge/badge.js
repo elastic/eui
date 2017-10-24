@@ -1,44 +1,44 @@
 import React from 'react';
 
 import {
-  KuiBadge,
+  EuiBadge,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiBadge type="default">
+    <EuiBadge type="default">
       Default
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="primary">
+    <EuiBadge type="primary">
       Primary
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="secondary">
+    <EuiBadge type="secondary">
       Secondary
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="accent">
+    <EuiBadge type="accent">
       Accent
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="warning">
+    <EuiBadge type="warning">
       Warning
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="danger">
+    <EuiBadge type="danger">
       Danger
-    </KuiBadge>
+    </EuiBadge>
   </div>
 
 );

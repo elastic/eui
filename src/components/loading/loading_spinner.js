@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  small: 'kuiLoadingSpinner--small',
-  medium: 'kuiLoadingSpinner--medium',
-  large: 'kuiLoadingSpinner--large',
-  xLarge: 'kuiLoadingSpinner--xLarge',
+  small: 'euiLoadingSpinner--small',
+  medium: 'euiLoadingSpinner--medium',
+  large: 'euiLoadingSpinner--large',
+  xLarge: 'euiLoadingSpinner--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiLoadingSpinner = ({ children, size, className, ...rest }) => {
+export const EuiLoadingSpinner = ({ children, size, className, ...rest }) => {
   const classes = classNames(
-    'kuiLoadingSpinner',
+    'euiLoadingSpinner',
     sizeToClassNameMap[size],
     className
   );
@@ -28,6 +28,6 @@ export const KuiLoadingSpinner = ({ children, size, className, ...rest }) => {
   );
 };
 
-KuiLoadingSpinner.propTypes = {
+EuiLoadingSpinner.propTypes = {
   size: PropTypes.oneOf(SIZES),
 };

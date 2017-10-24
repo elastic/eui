@@ -1,27 +1,27 @@
-.kuiAccordionForm__children {
-  padding: $kuiSizeL;
+.euiAccordionForm__children {
+  padding: $euiSizeL;
 }
 
-.kuiAccordionForm__extraAction {
+.euiAccordionForm__extraAction {
   opacity: 0;
-  transition: opacity $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+  transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:focus {
     opacity: 1;
   }
 }
 
-.kuiAccordionForm__title {
+.euiAccordionForm__title {
   display: inline-block;
 }
 
-.kuiAccordionForm__button {
-  padding: $kuiSize;
+.euiAccordionForm__button {
+  padding: $euiSize;
 
   &:hover {
     text-decoration: none;
 
-    .kuiAccordionForm__title {
+    .euiAccordionForm__title {
       text-decoration: underline;
     }
   }
@@ -30,23 +30,23 @@
     text-decoration: none;
     background-color: transparent;
 
-    .kuiAccordionForm__title {
+    .euiAccordionForm__title {
       text-decoration: underline;
-      background-color: $kuiFocusBackgroundColor;
-      outline: solid $kuiSizeXS / 2 $kuiFocusBackgroundColor;
+      background-color: $euiFocusBackgroundColor;
+      outline: solid $euiSizeXS / 2 $euiFocusBackgroundColor;
     }
   }
 }
-.kuiAccordionForm {
-  border-top: $kuiBorderThin;
-  border-bottom: $kuiBorderThin;
+.euiAccordionForm {
+  border-top: $euiBorderThin;
+  border-bottom: $euiBorderThin;
 
-  & + .kuiAccordionForm {
+  & + .euiAccordionForm {
     border-top: none;
   }
 
   &:hover {
-    .kuiAccordionForm__extraAction {
+    .euiAccordionForm__extraAction {
       opacity: 1;
       visibility: visible;
     }

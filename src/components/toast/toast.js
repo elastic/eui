@@ -4,34 +4,34 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
 import {
-  KuiText,
+  EuiText,
 } from '..';
 
 const typeToClassNameMap = {
-  info: 'kuiToast--info',
-  success: 'kuiToast--success',
-  warning: 'kuiToast--warning',
-  danger: 'kuiToast--danger',
+  info: 'euiToast--info',
+  success: 'euiToast--success',
+  warning: 'euiToast--warning',
+  danger: 'euiToast--danger',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
-  const classes = classNames('kuiToast', typeToClassNameMap[type], className);
-  const headerClasses = classNames('kuiToastHeader', {
-    'kuiToastHeader--withBody': children,
+export const EuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
+  const classes = classNames('euiToast', typeToClassNameMap[type], className);
+  const headerClasses = classNames('euiToastHeader', {
+    'euiToastHeader--withBody': children,
   });
 
   let headerIcon;
 
   if (iconType) {
     headerIcon = (
-      <KuiIcon
-        className="kuiToastHeader__icon"
+      <EuiIcon
+        className="euiToastHeader__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -44,11 +44,11 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
   if (onClose) {
     closeButton = (
       <button
-        className="kuiToast__closeButton"
+        className="euiToast__closeButton"
         aria-label="Dismiss toast"
         onClick={onClose}
       >
-        <KuiIcon
+        <EuiIcon
           type="cross"
           size="medium"
           aria-hidden="true"
@@ -61,9 +61,9 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
 
   if (children) {
     optionalBody = (
-      <KuiText size="s">
+      <EuiText size="s">
         {children}
-      </KuiText>
+      </EuiText>
     );
   }
 
@@ -75,7 +75,7 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
       <div className={headerClasses}>
         {headerIcon}
 
-        <span className="kuiToastHeader__title">
+        <span className="euiToastHeader__title">
           {title}
         </span>
       </div>
@@ -86,7 +86,7 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
   );
 };
 
-KuiToast.propTypes = {
+EuiToast.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
   type: PropTypes.oneOf(TYPES),

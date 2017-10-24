@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {
-  KuiProgress,
+  EuiProgress,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiProgress size="xs" />
+  <EuiProgress size="xs" />
 );

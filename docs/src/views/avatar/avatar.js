@@ -1,22 +1,22 @@
 import React from 'react';
 
 import {
-  KuiAvatar,
-  KuiHorizontalRule,
+  EuiAvatar,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiAvatar size="s" name="Rafael"/>
-    <KuiAvatar size="m" name="Donatello" />
-    <KuiAvatar size="l" name="Leornardo" />
-    <KuiAvatar size="xl" name="Michaelangelo" />
+    <EuiAvatar size="s" name="Rafael"/>
+    <EuiAvatar size="m" name="Donatello" />
+    <EuiAvatar size="l" name="Leornardo" />
+    <EuiAvatar size="xl" name="Michaelangelo" />
 
-    <KuiHorizontalRule margin="large" />
+    <EuiHorizontalRule margin="large" />
 
-    <KuiAvatar size="s" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <KuiAvatar size="m" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <KuiAvatar size="l"  name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <KuiAvatar size="xl" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="s" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="m" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="l"  name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="xl" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
   </div>
 );

@@ -5,15 +5,15 @@ import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors
 
 const sizeToClassNameMap = {
   'none': null,
-  's': 'kuiAvatar--s',
-  'm': 'kuiAvatar--m',
-  'l': 'kuiAvatar--l',
-  'xl': 'kuiAvatar--xl',
+  's': 'euiAvatar--s',
+  'm': 'euiAvatar--m',
+  'l': 'euiAvatar--l',
+  'xl': 'euiAvatar--xl',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiAvatar = ({
+export const EuiAvatar = ({
   imageUrl,
   name,
   className,
@@ -21,7 +21,7 @@ export const KuiAvatar = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiAvatar',
+    'euiAvatar',
     sizeToClassNameMap[size],
     className
   );
@@ -52,13 +52,13 @@ export const KuiAvatar = ({
   );
 };
 
-KuiAvatar.propTypes = {
+EuiAvatar.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   imageUrl: PropTypes.string,
   name: PropTypes.string.isRequired,
 };
 
-KuiAvatar.defaultProps = {
+EuiAvatar.defaultProps = {
   size: 'm',
 };

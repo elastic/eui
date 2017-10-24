@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSelect is rendered 1`] = `
+exports[`EuiSelect is rendered 1`] = `
 <div
-  class="kuiFormControlLayout"
+  class="euiFormControlLayout"
 >
   <select
     aria-label="aria-label"
-    class="kuiSelect testClass1 testClass2"
+    class="euiSelect testClass1 testClass2"
     data-test-subj="test subject string"
   />
   <svg
-    class="kuiIcon kuiFormControlLayout__icon kuiFormControlLayout__icon--right kuiIcon--medium"
+    class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium"
   >
     <title>
       arrow down icon

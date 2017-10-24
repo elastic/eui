@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
+import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
 
-describe('KuiTableHeaderCellCheckbox', () => {
+describe('EuiTableHeaderCellCheckbox', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiTableHeaderCellCheckbox {...requiredProps} />
+      <EuiTableHeaderCellCheckbox {...requiredProps} />
     );
 
     expect(component)

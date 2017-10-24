@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { KuiCheckbox } from './checkbox';
+import { EuiCheckbox } from './checkbox';
 
-export const KuiCheckboxGroup = ({
+export const EuiCheckboxGroup = ({
   options,
   idToSelectedMap,
   onChange,
@@ -13,8 +13,8 @@ export const KuiCheckboxGroup = ({
   <div className={className} {...rest}>
     {options.map((option, index) => {
       return (
-        <KuiCheckbox
-          className="kuiCheckboxGroup__item"
+        <EuiCheckbox
+          className="euiCheckboxGroup__item"
           key={index}
           id={option.id}
           checked={idToSelectedMap[option.id]}
@@ -26,7 +26,7 @@ export const KuiCheckboxGroup = ({
   </div>
 );
 
-KuiCheckboxGroup.propTypes = {
+EuiCheckboxGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -37,7 +37,7 @@ KuiCheckboxGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-KuiCheckboxGroup.defaultProps = {
+EuiCheckboxGroup.defaultProps = {
   options: [],
   idToSelectedMap: {},
 };

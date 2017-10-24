@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { KuiGlobalToastListItem } from './global_toast_list_item';
+import { EuiGlobalToastListItem } from './global_toast_list_item';
 
-describe('KuiGlobalToastListItem', () => {
+describe('EuiGlobalToastListItem', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiGlobalToastListItem>
+      <EuiGlobalToastListItem>
         <div>Hi</div>
-      </KuiGlobalToastListItem>
+      </EuiGlobalToastListItem>
     );
 
     expect(component)

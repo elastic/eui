@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {
+export const EuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {
   const classes = classNames(
-    'kuiRange',
+    'euiRange',
     {
-      'kuiRange--fullWidth': fullWidth,
+      'euiRange--fullWidth': fullWidth,
     },
     className
   );
@@ -25,7 +25,7 @@ export const KuiRange = ({ className, id, name, min, max, fullWidth, value, ...r
   );
 };
 
-KuiRange.propTypes = {
+EuiRange.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   min: PropTypes.number.isRequired,
@@ -34,7 +34,7 @@ KuiRange.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiRange.defaultProps = {
+EuiRange.defaultProps = {
   min: 1,
   max: 100,
   fullWidth: false,

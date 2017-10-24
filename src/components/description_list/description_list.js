@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiDescriptionListTitle,
-  KuiDescriptionListDescription,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '..';
 
 const typesToClassNameMap = {
-  row: 'kuiDescriptionList--row',
-  column: 'kuiDescriptionList--column',
-  inline: 'kuiDescriptionList--inline',
+  row: 'euiDescriptionList--row',
+  column: 'euiDescriptionList--column',
+  inline: 'euiDescriptionList--inline',
 };
 
 export const TYPES = Object.keys(typesToClassNameMap);
 
 const alignmentsToClassNameMap = {
-  center: 'kuiDescriptionList--center',
+  center: 'euiDescriptionList--center',
   left: '',
 };
 
 export const ALIGNMENTS = Object.keys(alignmentsToClassNameMap);
 
-export const KuiDescriptionList = ({
+export const EuiDescriptionList = ({
   children,
   className,
   listItems,
@@ -32,11 +32,11 @@ export const KuiDescriptionList = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiDescriptionList',
+    'euiDescriptionList',
     typesToClassNameMap[type],
     alignmentsToClassNameMap[align],
     {
-      'kuiDescriptionList--compressed': compressed,
+      'euiDescriptionList--compressed': compressed,
     },
     className
   );
@@ -46,8 +46,8 @@ export const KuiDescriptionList = ({
     childrenOrListItems = (
       listItems.map((item) => {
         return [
-          <KuiDescriptionListTitle>{item.title}</KuiDescriptionListTitle>,
-          <KuiDescriptionListDescription>{item.description}</KuiDescriptionListDescription>
+          <EuiDescriptionListTitle>{item.title}</EuiDescriptionListTitle>,
+          <EuiDescriptionListDescription>{item.description}</EuiDescriptionListDescription>
         ];
       })
     );
@@ -65,7 +65,7 @@ export const KuiDescriptionList = ({
   );
 };
 
-KuiDescriptionList.propTypes = {
+EuiDescriptionList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
@@ -73,7 +73,7 @@ KuiDescriptionList.propTypes = {
   align: PropTypes.oneOf(ALIGNMENTS),
 };
 
-KuiDescriptionList.defaultProps = {
+EuiDescriptionList.defaultProps = {
   type: 'row',
   align: 'left',
   compressed: false,

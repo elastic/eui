@@ -1,3 +1,3 @@
 export {
-  KuiHorizontalRule,
+  EuiHorizontalRule,
 } from './horizontal_rule';

@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiPopover,
-  KuiPopoverTitle,
-  KuiButton,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiText
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -58,13 +58,13 @@ export default class extends Component {
 
   render() {
     return (
-      <KuiFlexGroup>
-        <KuiFlexItem grow={false}>
-          <KuiPopover
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
             button={(
-              <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
                 downCenter with title
-              </KuiButton>
+              </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen1}
             closePopover={this.closePopover1.bind(this)}
@@ -72,22 +72,22 @@ export default class extends Component {
             withTitle
             panelPaddingSize="none"
           >
-            <KuiPopoverTitle>Hello, I&rsquo;m a popover title</KuiPopoverTitle>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px', padding: 16 }}>
-              <KuiText>
+              <EuiText>
                 <p>
                   Popover content
                 </p>
-              </KuiText>
+              </EuiText>
             </div>
-          </KuiPopover>
-        </KuiFlexItem>
-        <KuiFlexItem grow={false}>
-          <KuiPopover
+          </EuiPopover>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
             button={(
-              <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
                 upCenter with title
-              </KuiButton>
+              </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen2}
             closePopover={this.closePopover2.bind(this)}
@@ -95,22 +95,22 @@ export default class extends Component {
             withTitle
             panelPaddingSize="none"
           >
-            <KuiPopoverTitle>Hello, I&rsquo;m a popover title</KuiPopoverTitle>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px', padding: 16 }}>
-              <KuiText>
+              <EuiText>
                 <p>
                   Popover content
                 </p>
-              </KuiText>
+              </EuiText>
             </div>
-          </KuiPopover>
-        </KuiFlexItem>
-        <KuiFlexItem grow={false}>
-          <KuiPopover
+          </EuiPopover>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
             button={(
-              <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
                 rightUp with title
-              </KuiButton>
+              </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen3}
             closePopover={this.closePopover3.bind(this)}
@@ -118,17 +118,17 @@ export default class extends Component {
             withTitle
             panelPaddingSize="none"
           >
-            <KuiPopoverTitle>Hello, I&rsquo;m a popover title</KuiPopoverTitle>
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px', padding: 16 }}>
-              <KuiText>
+              <EuiText>
                 <p>
                   Popover content
                 </p>
-              </KuiText>
+              </EuiText>
             </div>
-          </KuiPopover>
-        </KuiFlexItem>
-      </KuiFlexGroup>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }

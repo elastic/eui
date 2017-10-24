@@ -5,16 +5,16 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const titleSizeToClassNameMap = {
-  small: 'kuiTitle--small',
-  large: 'kuiTitle--large',
+  small: 'euiTitle--small',
+  large: 'euiTitle--large',
 };
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 
-export const KuiTitle = ({ size, children, className, ...rest }) => {
+export const EuiTitle = ({ size, children, className, ...rest }) => {
 
   const classes = classNames(
-    'kuiTitle',
+    'euiTitle',
     titleSizeToClassNameMap[size],
     className
   );
@@ -27,7 +27,7 @@ export const KuiTitle = ({ size, children, className, ...rest }) => {
   return cloneElement(children, props);
 };
 
-KuiTitle.propTypes = {
+EuiTitle.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOf(TITLE_SIZES),

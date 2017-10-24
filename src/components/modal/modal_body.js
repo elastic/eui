@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-export function KuiModalBody({ className, children, ...rest }) {
-  const classes = classnames('kuiModalBody', className);
+export function EuiModalBody({ className, children, ...rest }) {
+  const classes = classnames('euiModalBody', className);
   return (
     <div className={classes} {...rest}>
       { children }
@@ -11,7 +11,7 @@ export function KuiModalBody({ className, children, ...rest }) {
   );
 }
 
-KuiModalBody.propTypes = {
+EuiModalBody.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };

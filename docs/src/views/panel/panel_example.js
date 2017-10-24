@@ -11,7 +11,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Panel from './panel';
@@ -31,7 +31,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>Panel</KuiCode> is a simple wrapper component to add
+          <EuiCode>Panel</EuiCode> is a simple wrapper component to add
           depth to a contained layout. It it commonly used as a base for
           other larger components like <Link to="/page">Page</Link> and <Link to="/popover">Popover</Link>.
         </p>

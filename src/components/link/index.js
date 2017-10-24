@@ -1,3 +1,3 @@
 export {
-  KuiLink,
+  EuiLink,
 } from './link';

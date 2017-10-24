@@ -1,10 +1,10 @@
-@mixin kuiLink {
+@mixin euiLink {
   &:hover {
     text-decoration: underline;
   }
 
   &:focus {
     text-decoration: underline;
-    background: $kuiFocusBackgroundColor;
+    background: $euiFocusBackgroundColor;
   }
 }

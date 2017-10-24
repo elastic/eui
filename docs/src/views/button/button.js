@@ -1,204 +1,204 @@
 import React from 'react';
 
 import {
-  KuiButton,
+  EuiButton,
 } from '../../../../src/components/';
 
 export default () => (
   <div>
-    <KuiButton
+    <EuiButton
       onClick={() => window.alert('Button clicked')}
     >
       Primary
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       fill
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       type="secondary"
       onClick={() => window.alert('Button clicked')}
     >
       Secondary
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="secondary"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="secondary"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="secondary"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       type="warning"
       onClick={() => window.alert('Button clicked')}
     >
       Warning
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="warning"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="warning"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="warning"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       type="danger"
       onClick={() => window.alert('Button clicked')}
     >
       Danger
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="danger"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       type="danger"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       isDisabled
       onClick={() => window.alert('Button clicked')}
     >
       Disabled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       isDisabled
       fill
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       isDisabled
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       isDisabled
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
   </div>
 );

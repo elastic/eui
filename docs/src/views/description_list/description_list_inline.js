@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  KuiDescriptionList,
+  EuiDescriptionList,
 } from '../../../../src/components';
 
 const favoriteVideoGames = [
@@ -19,7 +19,7 @@ const favoriteVideoGames = [
   },
 ];
 export default () => (
-  <KuiDescriptionList
+  <EuiDescriptionList
     type="inline"
     listItems={favoriteVideoGames}
     style={{ maxWidth: '400px' }}

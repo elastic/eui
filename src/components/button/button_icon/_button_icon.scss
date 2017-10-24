@@ -1,27 +1,27 @@
-.kuiButtonIcon {
-  @include kuiButton;
+.euiButtonIcon {
+  @include euiButton;
 
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
-  height: $kuiSizeXL;
-  width: $kuiSizeXL;
+  height: $euiSizeXL;
+  width: $euiSizeXL;
 
   // Account for border.
-  .kuiButtonIcon__icon {
+  .euiButtonIcon__icon {
     transform: translateY(-2px);
   }
 
   &:disabled {
-    color: $kuiButtonColorDisabled;
+    color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .kuiButtonIcon__icon {
-      fill: $kuiButtonColorDisabled;
+    .euiButtonIcon__icon {
+      fill: $euiButtonColorDisabled;
     }
 
     &:hover, &:focus {
-      background-color: $kuiColorEmptyShade;
+      background-color: $euiColorEmptyShade;
       text-decoration: none;
     }
   }
@@ -29,18 +29,18 @@
 
 // Modifier naming and colors.
 $buttonTypes: (
-  primary: $kuiColorPrimary,
-  danger: $kuiColorDanger,
-  disabled: tintOrShade($kuiTextColor, 70%, 80%),
-  ghost: $kuiColorGhost,
+  primary: $euiColorPrimary,
+  danger: $euiColorDanger,
+  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  ghost: $euiColorGhost,
 );
 
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
-  .kuiButtonIcon--#{$name} {
+  .euiButtonIcon--#{$name} {
     color: $color;
 
-    .kuiButtonIcon__icon {
+    .euiButtonIcon__icon {
       fill: $color;
     }
 

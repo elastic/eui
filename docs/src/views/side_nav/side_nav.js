@@ -3,9 +3,9 @@ import React, {
 } from 'react';
 
 import {
-  KuiSideNav,
-  KuiSideNavItem,
-  KuiSideNavTitle,
+  EuiSideNav,
+  EuiSideNavItem,
+  EuiSideNavTitle,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -25,107 +25,107 @@ export default class extends Component {
 
   render() {
     return (
-      <KuiSideNav
+      <EuiSideNav
         mobileTitle="Navigate within $APP_NAME"
         toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
       >
         {/* Elasticsearch section */}
 
-        <KuiSideNavTitle>
+        <EuiSideNavTitle>
           Elasticsearch
-        </KuiSideNavTitle>
+        </EuiSideNavTitle>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button onClick={() => window.alert('Button clicked')}>
             Data sources
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <a href="http://www.elastic.co">
             Users
           </a>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Roles
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Watches
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Extremely long title will become truncated when the browser is narrow enough
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
         {/* Kibana section */}
 
-        <KuiSideNavTitle>
+        <EuiSideNavTitle>
           Kibana
-        </KuiSideNavTitle>
+        </EuiSideNavTitle>
 
-        <KuiSideNavItem isSelected>
+        <EuiSideNavItem isSelected>
           <button>
             Advanced settings
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem indent>
+        <EuiSideNavItem indent>
           <button>
             General
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem indent isSelected>
+        <EuiSideNavItem indent isSelected>
           <button>
             Timelion
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem indent>
+        <EuiSideNavItem indent>
           <button>
             Visualizations
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Index Patterns
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Saved Objects
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Reporting
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
         {/* Logstash section */}
 
-        <KuiSideNavTitle>
+        <EuiSideNavTitle>
           Logstash
-        </KuiSideNavTitle>
+        </EuiSideNavTitle>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Pipeline Viewer
           </button>
-        </KuiSideNavItem>
-      </KuiSideNav>
+        </EuiSideNavItem>
+      </EuiSideNav>
     );
   }
 }

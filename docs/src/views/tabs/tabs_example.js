@@ -8,7 +8,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Tabs from './tabs';
@@ -28,7 +28,7 @@ export default props => (
       }]}
       text={
         <p>
-          The <KuiCode>KuiTabs</KuiCode> component should have <KuiCode>KuiTab</KuiCode>
+          The <EuiCode>EuiTabs</EuiCode> component should have <EuiCode>EuiTab</EuiCode>
           components as children.
         </p>
       }

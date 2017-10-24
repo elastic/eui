@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiSideNav,
-  KuiSideNavItem,
-  KuiSideNavTitle,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiText,
+  EuiSideNav,
+  EuiSideNavItem,
+  EuiSideNavTitle,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -28,61 +28,61 @@ export default class extends Component {
 
   render() {
     const sideNav = (
-      <KuiSideNav
+      <EuiSideNav
         mobileTitle="Navigate my favorite comic books"
         toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         type="inPanel"
       >
-        <KuiSideNavTitle>
+        <EuiSideNavTitle>
           My favorite comic books
-        </KuiSideNavTitle>
+        </EuiSideNavTitle>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Watchmen
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Batman: The Dark Knight Returns
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem isSelected>
+        <EuiSideNavItem isSelected>
           <button>
             Elektra: Assassin
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             V for Vendetta
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             Superman: Red Son
           </button>
-        </KuiSideNavItem>
+        </EuiSideNavItem>
 
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button>
             New Mutants
           </button>
-        </KuiSideNavItem>
-      </KuiSideNav>
+        </EuiSideNavItem>
+      </EuiSideNav>
     );
 
     return (
-      <KuiFlexGroup>
-        <KuiFlexItem grow={false} style={{ width: 200 }}>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false} style={{ width: 200 }}>
           {sideNav}
-        </KuiFlexItem>
-        <KuiFlexItem>
-          <KuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText>
             <h2>Elektra: Assassin</h2>
             <p>
               Elektra: Assassin is an eight-issue limited series published by Epic Comics,
@@ -105,9 +105,9 @@ export default class extends Component {
               satirizes ultra-violence, politics, comic book clichés like ninjas and
               cyborgs, and the portrayal of women.
             </p>
-          </KuiText>
-        </KuiFlexItem>
-      </KuiFlexGroup>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }

@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPagination is rendered 1`] = `
+exports[`EuiPagination is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiPagination testClass1 testClass2"
+  class="euiPagination testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <button
-    class="kuiButtonEmpty kuiButtonEmpty--primary kuiButtonEmpty--small kuiPaginationButton"
+    class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiPaginationButton"
   >
     <span
-      class="kuiButtonEmpty__content"
+      class="euiButtonEmpty__content"
     >
       <svg
         aria-hidden="true"
-        class="kuiIcon kuiButtonEmpty__icon kuiIcon--medium"
+        class="euiIcon euiButtonEmpty__icon euiIcon--medium"
       >
         <title>
           arrow left icon
@@ -29,14 +29,14 @@ exports[`KuiPagination is rendered 1`] = `
     </span>
   </button>
   <button
-    class="kuiButtonEmpty kuiButtonEmpty--primary kuiButtonEmpty--small kuiButtonEmpty--iconRight kuiPaginationButton"
+    class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--iconRight euiPaginationButton"
   >
     <span
-      class="kuiButtonEmpty__content"
+      class="euiButtonEmpty__content"
     >
       <svg
         aria-hidden="true"
-        class="kuiIcon kuiButtonEmpty__icon kuiIcon--medium"
+        class="euiIcon euiButtonEmpty__icon euiIcon--medium"
       >
         <title>
           arrow right icon

@@ -2,30 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '../..';
+import { EuiIcon } from '../..';
 
 const iconSideToClassNameMap = {
   left: '',
-  right: 'kuiFormControlLayout__icon--right',
+  right: 'euiFormControlLayout__icon--right',
 };
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const KuiFormControlLayout = ({ children, icon, fullWidth, iconSide, className }) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, className }) => {
 
   const classes = classNames(
-    'kuiFormControlLayout',
+    'euiFormControlLayout',
     {
-      'kuiFormControlLayout--fullWidth': fullWidth,
+      'euiFormControlLayout--fullWidth': fullWidth,
     },
     className
   );
 
   if (icon) {
-    const iconClasses = classNames('kuiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
+    const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
 
     const optionalIcon = (
-      <KuiIcon
+      <EuiIcon
         className={iconClasses}
         type={icon}
         size="medium"
@@ -43,12 +43,12 @@ export const KuiFormControlLayout = ({ children, icon, fullWidth, iconSide, clas
   return children;
 };
 
-KuiFormControlLayout.propTypes = {
+EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.string,
   iconSide: PropTypes.oneOf(ICON_SIDES),
 };
 
-KuiFormControlLayout.defaultProps = {
+EuiFormControlLayout.defaultProps = {
   iconSide: 'left',
 };

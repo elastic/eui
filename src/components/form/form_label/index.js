@@ -1,3 +1,3 @@
 export {
-  KuiFormLabel,
+  EuiFormLabel,
 } from './form_label';

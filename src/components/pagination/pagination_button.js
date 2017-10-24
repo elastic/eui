@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiButtonEmpty,
+  EuiButtonEmpty,
 } from '..';
 
-export const KuiPaginationButton = ({
+export const EuiPaginationButton = ({
   children,
   className,
   isActive,
@@ -14,25 +14,25 @@ export const KuiPaginationButton = ({
   hideOnMobile,
   ...rest,
 }) => {
-  const classes = classNames('kuiPaginationButton', className, {
-    'kuiPaginationButton-isActive': isActive,
-    'kuiPaginationButton-isPlaceholder': isPlaceholder,
-    'kuiPaginationButton--hideOnMobile': hideOnMobile,
+  const classes = classNames('euiPaginationButton', className, {
+    'euiPaginationButton-isActive': isActive,
+    'euiPaginationButton-isPlaceholder': isPlaceholder,
+    'euiPaginationButton--hideOnMobile': hideOnMobile,
   });
 
   return (
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       className={classes}
       size="small"
       type="text"
       {...rest}
     >
       {children}
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
   );
 };
 
-KuiPaginationButton.propTypes = {
+EuiPaginationButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isActive: PropTypes.bool,
@@ -40,6 +40,6 @@ KuiPaginationButton.propTypes = {
   hideOnMobile: PropTypes.bool,
 };
 
-KuiPaginationButton.defaultProps = {
+EuiPaginationButton.defaultProps = {
   children: <span>&hellip;</span>,
 };

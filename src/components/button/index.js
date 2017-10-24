@@ -1,9 +1,9 @@
-export { KuiButton } from './button';
+export { EuiButton } from './button';
 
 export {
-  KuiButtonEmpty,
+  EuiButtonEmpty,
 } from './button_empty';
 
 export {
-  KuiButtonIcon,
+  EuiButtonIcon,
 } from './button_icon';

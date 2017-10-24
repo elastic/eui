@@ -1,3 +1,3 @@
-export { KuiLoadingKibana } from './loading_kibana';
-export { KuiLoadingChart } from './loading_chart';
-export { KuiLoadingSpinner } from './loading_spinner';
+export { EuiLoadingKibana } from './loading_kibana';
+export { EuiLoadingChart } from './loading_chart';
+export { EuiLoadingSpinner } from './loading_spinner';

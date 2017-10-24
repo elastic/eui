@@ -1,20 +1,20 @@
 import React from 'react';
 
 import {
-  KuiAccordion,
-  KuiText,
-  KuiTextColor,
-  KuiForm,
-  KuiFormRow,
-  KuiFieldText,
-  KuiFieldPassword,
-  KuiIcon,
-  KuiTextArea,
-  KuiSpacer,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiTitle,
-  KuiButtonIcon,
+  EuiAccordion,
+  EuiText,
+  EuiTextColor,
+  EuiForm,
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiIcon,
+  EuiTextArea,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiTitle,
+  EuiButtonIcon,
 } from '../../../../src/components';
 
 function makeId() {
@@ -22,77 +22,77 @@ function makeId() {
 }
 
 const repeatableForm = (
-  <KuiForm>
-    <KuiFlexGroup>
-      <KuiFlexItem>
-        <KuiFormRow label="Username"  id={makeId()}>
-          <KuiFieldText icon="user" placeholder="John" />
-        </KuiFormRow>
-      </KuiFlexItem>
-      <KuiFlexItem>
-        <KuiFormRow label="Password" id={makeId()} helpText="Must include one number and one symbol">
-          <KuiFieldPassword icon="lock" />
-        </KuiFormRow>
-      </KuiFlexItem>
-    </KuiFlexGroup>
-    <KuiSpacer size="m" />
-    <KuiFormRow label="Body" id={makeId()}>
-      <KuiTextArea placeholder="I am a textarea, put some content in me!" />
-    </KuiFormRow>
-  </KuiForm>
+  <EuiForm>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiFormRow label="Username"  id={makeId()}>
+          <EuiFieldText icon="user" placeholder="John" />
+        </EuiFormRow>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiFormRow label="Password" id={makeId()} helpText="Must include one number and one symbol">
+          <EuiFieldPassword icon="lock" />
+        </EuiFormRow>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiFormRow label="Body" id={makeId()}>
+      <EuiTextArea placeholder="I am a textarea, put some content in me!" />
+    </EuiFormRow>
+  </EuiForm>
 );
 
 const buttonContent = (
   <div>
-    <KuiFlexGroup gutterSize="small">
-      <KuiFlexItem grow={false}>
-        <KuiIcon type="logoWebhook" size="medium" />
-      </KuiFlexItem>
-      <KuiFlexItem>
-        <KuiTitle size="small" className="kuiAccordionForm__title">
+    <EuiFlexGroup gutterSize="small">
+      <EuiFlexItem grow={false}>
+        <EuiIcon type="logoWebhook" size="medium" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle size="small" className="euiAccordionForm__title">
           <h6>Webhook</h6>
-        </KuiTitle>
-      </KuiFlexItem>
-    </KuiFlexGroup>
-    <KuiText size="s">
+        </EuiTitle>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiText size="s">
       <p>
-        <KuiTextColor color="subdued">
+        <EuiTextColor color="subdued">
           Will send a POST request to www.example.com/some/path/
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
-    </KuiText>
+    </EuiText>
   </div>
 );
 
 const extraAction = (
-  <KuiButtonIcon iconType="cross" type="danger" className="kuiAccordionForm__extraAction" />
+  <EuiButtonIcon iconType="cross" type="danger" className="euiAccordionForm__extraAction" />
 );
 
 export default () => (
   <div>
-    <KuiTitle size="small">
+    <EuiTitle size="small">
       <h3>I am a complicated, highly styled, repeatable form!</h3>
-    </KuiTitle>
-    <KuiSpacer size="l" />
-    <KuiAccordion
-      className="kuiAccordionForm"
-      buttonClassName="kuiAccordionForm__button"
+    </EuiTitle>
+    <EuiSpacer size="l" />
+    <EuiAccordion
+      className="euiAccordionForm"
+      buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
     >
-      <div className="kuiAccordionForm__children">
+      <div className="euiAccordionForm__children">
         {repeatableForm}
       </div>
-    </KuiAccordion>
-    <KuiAccordion
-      className="kuiAccordionForm"
-      buttonClassName="kuiAccordionForm__button"
+    </EuiAccordion>
+    <EuiAccordion
+      className="euiAccordionForm"
+      buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
     >
-      <div className="kuiAccordionForm__children">
+      <div className="euiAccordionForm__children">
         {repeatableForm}
       </div>
-    </KuiAccordion>
+    </EuiAccordion>
   </div>
 );

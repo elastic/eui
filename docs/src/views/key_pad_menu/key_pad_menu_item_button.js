@@ -1,15 +1,15 @@
 import React from 'react';
 
 import {
-  KuiIcon,
-  KuiKeyPadMenuItemButton,
+  EuiIcon,
+  EuiKeyPadMenuItemButton,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiKeyPadMenuItemButton
+  <EuiKeyPadMenuItemButton
     label="Dashboard"
     onClick={() => window.alert('Clicked')}
   >
-    <KuiIcon type="dashboardApp" size="large" />
-  </KuiKeyPadMenuItemButton>
+    <EuiIcon type="dashboardApp" size="large" />
+  </EuiKeyPadMenuItemButton>
 );

@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import ContextMenu from './context_menu';
@@ -33,8 +33,8 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>KuiContextMenu</KuiCode> is a nested menu system useful
-          for navigating complicated trees. It lives within a <KuiCode>KuiPopover</KuiCode>
+          <EuiCode>EuiContextMenu</EuiCode> is a nested menu system useful
+          for navigating complicated trees. It lives within a <EuiCode>EuiPopover</EuiCode>
           which itself can be wrapped around any component (like a button in this example).
         </p>
       }

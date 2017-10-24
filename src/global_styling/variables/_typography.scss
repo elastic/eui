@@ -1,102 +1,102 @@
 // Some mixins that help us deal with browser scaling of text more consistantly.
-// Essentially, fonts across kui should scale agains the root html element, not
+// Essentially, fonts across eui should scale agains the root html element, not
 // against parent inheritance.
 
 
 // Typography mixins
 
 @function convertToRem($size) {
-  @return #{$size / $kuiFontSize}rem;
+  @return #{$size / $euiFontSize}rem;
 }
 
 // Spit out rem and px
 
-@mixin fontSize($size: $kuiFontSize) {
+@mixin fontSize($size: $euiFontSize) {
   font-size: $size;
   font-size: convertToRem($size);
 }
 
 // Families
 
-$kuiFontFamily: "Roboto", Helvetica, Arial, sans-serif;
-$kuiCodeFontFamily: "Roboto Mono", monospace;
+$euiFontFamily: "Roboto", Helvetica, Arial, sans-serif;
+$euiCodeFontFamily: "Roboto Mono", monospace;
 
 // Font sizes
 
-$kuiFontSize:       $kuiSize;
+$euiFontSize:       $euiSize;
 
-$kuiFontSizeXS:     12px;
-$kuiFontSizeS:      14px;
-$kuiFontSizeM:      $kuiFontSize;
-$kuiFontSizeL:      24px;
-$kuiFontSizeXL:     32px;
-$kuiFontSizeXXL:    48px;
+$euiFontSizeXS:     12px;
+$euiFontSizeS:      14px;
+$euiFontSizeM:      $euiFontSize;
+$euiFontSizeL:      24px;
+$euiFontSizeXL:     32px;
+$euiFontSizeXXL:    48px;
 
 // Line height
 
-$kuiLineHeight:     1.5;
+$euiLineHeight:     1.5;
 
 
 // Font weights
 
-$kuiFontWeightLight:    300;
-$kuiFontWeightRegular:  400;
-$kuiFontWeightMedium:   500;
+$euiFontWeightLight:    300;
+$euiFontWeightRegular:  400;
+$euiFontWeightMedium:   500;
 
 // Our base fonts
 
-@mixin kuiFont {
-  font-family: $kuiFontFamily;
-  font-weight: $kuiFontWeightRegular;
+@mixin euiFont {
+  font-family: $euiFontFamily;
+  font-weight: $euiFontWeightRegular;
 }
 
-@mixin kuiCodeFont {
-  font-family: $kuiCodeFontFamily;
+@mixin euiCodeFont {
+  font-family: $euiCodeFontFamily;
 }
 
-@mixin kuiTitle {
-  color: $kuiTitleColor;
-  font-weight: $kuiFontWeightLight;
+@mixin euiTitle {
+  color: $euiTitleColor;
+  font-weight: $euiFontWeightLight;
 }
 
-@mixin kuiText {
-  color: $kuiTextColor;
-  font-weight: $kuiFontWeightRegular;
+@mixin euiText {
+  color: $euiTextColor;
+  font-weight: $euiFontWeightRegular;
 }
 
 // Font sizing extends, using rem mixin
 
-@mixin kuiFontSize {
-  @include fontSize($kuiFontSize);
-  line-height: $kuiLineHeight;
+@mixin euiFontSize {
+  @include fontSize($euiFontSize);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXS {
-  @include fontSize($kuiFontSizeXS);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeXS {
+  @include fontSize($euiFontSizeXS);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeS {
-  @include fontSize($kuiFontSizeS);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeS {
+  @include fontSize($euiFontSizeS);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeM {
-  @include fontSize($kuiFontSizeM);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeM {
+  @include fontSize($euiFontSizeM);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeL {
-  @include fontSize($kuiFontSizeL);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeL {
+  @include fontSize($euiFontSizeL);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXL {
-  @include fontSize($kuiFontSizeXL);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeXL {
+  @include fontSize($euiFontSizeXL);
+  line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXXL {
-  @include fontSize($kuiFontSizeXXL);
-  line-height: $kuiLineHeight;
+@mixin euiFontSizeXXL {
+  @include fontSize($euiFontSizeXXL);
+  line-height: $euiLineHeight;
 }

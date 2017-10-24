@@ -3,44 +3,44 @@ import React, {
 } from 'react';
 
 import {
-  KuiAvatar,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiHeader,
-  KuiHeaderAlert,
-  KuiHeaderBreadcrumb,
-  KuiHeaderBreadcrumbs,
-  KuiHeaderLogo,
-  KuiHeaderSection,
-  KuiHeaderSectionItem,
-  KuiHeaderSectionItemButton,
-  KuiIcon,
-  KuiKeyPadMenu,
-  KuiKeyPadMenuItem,
-  KuiLink,
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiPageHeader,
-  KuiPageHeaderSection,
-  KuiPageSideBar,
-  KuiPopover,
-  KuiSideNav,
-  KuiSideNavItem,
-  KuiSideNavTitle,
-  KuiSpacer,
-  KuiTitle,
-  KuiCallOut,
-  KuiForm,
-  KuiFormRow,
-  KuiFieldText,
-  KuiBottomBar,
-  KuiButtonEmpty,
-  KuiText,
-  KuiTextColor,
+  EuiAvatar,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+  EuiHeaderAlert,
+  EuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderLogo,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiLink,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiPopover,
+  EuiSideNav,
+  EuiSideNavItem,
+  EuiSideNavTitle,
+  EuiSpacer,
+  EuiTitle,
+  EuiCallOut,
+  EuiForm,
+  EuiFormRow,
+  EuiFieldText,
+  EuiBottomBar,
+  EuiButtonEmpty,
+  EuiText,
+  EuiTextColor,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -95,399 +95,399 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <KuiHeaderLogo href="#" />
+      <EuiHeaderLogo href="#" />
     );
   }
 
   renderBreadcrumbs() {
     return (
-      <KuiHeaderBreadcrumbs>
-        <KuiHeaderBreadcrumb href="#">
+      <EuiHeaderBreadcrumbs>
+        <EuiHeaderBreadcrumb href="#">
           Management
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumb href="#" isActive>
+        <EuiHeaderBreadcrumb href="#" isActive>
           Advanced settings
-        </KuiHeaderBreadcrumb>
-      </KuiHeaderBreadcrumbs>
+        </EuiHeaderBreadcrumb>
+      </EuiHeaderBreadcrumbs>
     );
   }
 
   renderSearch() {
     return (
-      <KuiHeaderSectionItemButton>
-        <KuiIcon type="search" size="medium" />
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton>
+        <EuiIcon type="search" size="medium" />
+      </EuiHeaderSectionItemButton>
     );
   }
 
   renderUserMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
-        <KuiIcon type="user" size="medium" />
-        <span className="kuiHeader__notification">3</span>
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
+        <EuiIcon type="user" size="medium" />
+        <span className="euiHeader__notification">3</span>
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isUserMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeUserMenu.bind(this)}
-        panelClassName="kuiHeaderPopover"
+        panelClassName="euiHeaderPopover"
       >
-        <KuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
-          <KuiFlexItem grow={false}>
-            <KuiAvatar name="John Username" size="xl" />
-          </KuiFlexItem>
-          <KuiFlexItem>
-            <KuiText>
+        <EuiFlexGroup gutterSize="medium" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
+          <EuiFlexItem grow={false}>
+            <EuiAvatar name="John Username" size="xl" />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiText>
               <p>John Username</p>
-            </KuiText>
-            <KuiSpacer size="m" />
-            <KuiFlexGroup>
-              <KuiFlexItem>
-                <KuiFlexGroup justifyContent="spaceBetween">
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Edit profile</KuiLink>
-                  </KuiFlexItem>
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Log out</KuiLink>
-                  </KuiFlexItem>
-                </KuiFlexGroup>
-              </KuiFlexItem>
-            </KuiFlexGroup>
-          </KuiFlexItem>
-        </KuiFlexGroup>
-        <KuiHeaderAlert
+            </EuiText>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent="spaceBetween">
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Edit profile</EuiLink>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Log out</EuiLink>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title that is extremely long and will wrap"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 
   renderAppMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
-        <KuiIcon type="apps" size="medium" />
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
+        <EuiIcon type="apps" size="medium" />
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isAppMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeAppMenu.bind(this)}
-        panelClassName="kuiHeaderPopover"
+        panelClassName="euiHeaderPopover"
       >
-        <KuiKeyPadMenu>
-          <KuiKeyPadMenuItem
+        <EuiKeyPadMenu>
+          <EuiKeyPadMenuItem
             label="Discover"
             href="#"
           >
-            <KuiIcon type="discoverApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="discoverApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dashboard"
             href="#"
           >
-            <KuiIcon type="dashboardApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="dashboardApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dev Tools"
             href="#"
           >
-            <KuiIcon type="devToolsApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="devToolsApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Machine Learning"
             href="#"
           >
-            <KuiIcon type="machineLearningApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="machineLearningApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Graph"
             href="#"
           >
-            <KuiIcon type="graphApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="graphApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Visualize"
             href="#"
           >
-            <KuiIcon type="visualizeApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="visualizeApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Timelion"
             href="#"
           >
-            <KuiIcon type="timelionApp" size="large" />
-          </KuiKeyPadMenuItem>
-        </KuiKeyPadMenu>
-      </KuiPopover>
+            <EuiIcon type="timelionApp" size="large" />
+          </EuiKeyPadMenuItem>
+        </EuiKeyPadMenu>
+      </EuiPopover>
     );
   }
 
   renderHeader() {
     return (
-      <KuiHeader>
-        <KuiHeaderSection>
-          <KuiHeaderSectionItem border="right">
+      <EuiHeader>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem border="right">
             {this.renderLogo()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
           {this.renderBreadcrumbs()}
-        </KuiHeaderSection>
+        </EuiHeaderSection>
 
-        <KuiHeaderSection side="right">
-          <KuiHeaderSectionItem>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
             {this.renderSearch()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderUserMenu()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderAppMenu()}
-          </KuiHeaderSectionItem>
-        </KuiHeaderSection>
-      </KuiHeader>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
     );
   }
 
   renderForm() {
     return (
-      <KuiForm>
-        <KuiFormRow
+      <EuiForm>
+        <EuiFormRow
           id="blargh1"
           label="query:queryString:options"
           helpText={
             <div>
               <span>Options for the lucene query string parser. </span>
-              <KuiLink href="">
+              <EuiLink href="">
                 Reset
-              </KuiLink>
+              </EuiLink>
             </div>
           }
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="analyze_wildcard: true" />
-        </KuiFormRow>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="analyze_wildcard: true" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id="blargh2"
           label="sort:options"
           helpText="Options for the Elasticsearch sort parameter"
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="unmapped_type: boolean" />
-        </KuiFormRow>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="unmapped_type: boolean" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id="blargh3"
           label="dateFormat"
           helpText="When displaying a pretty formatted date, use this format"
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="MMMM Do YYYY, HH:mm:ss.SSS" />
-        </KuiFormRow>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="MMMM Do YYYY, HH:mm:ss.SSS" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id="blargh3"
           label="dateFormat:tz"
           helpText="Which timezone should be used. 'Browser' will use the timezone detected by your browser."
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="Browser" />
-        </KuiFormRow>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="Browser" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id="blargh3"
           label="dateFormat:dow"
           helpText="What day should weeks start on?"
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="Sunday" />
-        </KuiFormRow>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="Sunday" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id="blargh3"
           label="defaultIndex (Default: null) "
           helpText="The index to access if no index is set"
         >
-          <KuiFieldText onChange={this.handleFormChange.bind(this)} value="null" />
-        </KuiFormRow>
-      </KuiForm>
+          <EuiFieldText onChange={this.handleFormChange.bind(this)} value="null" />
+        </EuiFormRow>
+      </EuiForm>
     );
   }
   renderSideNav() {
     return (
-      <KuiPageSideBar>
-        <KuiSideNav
+      <EuiPageSideBar>
+        <EuiSideNav
           mobileTitle="Navigate within Management"
           toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         >
           {/* Elasticsearch section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Elasticsearch
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button onClick={() => window.alert('Button clicked')}>
               Data sources
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <a href="http://www.elastic.co">
               Users
             </a>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Roles
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Watches
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Extremely long title will become truncated when the browser is narrow enough
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
           {/* Kibana section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Kibana
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem isSelected>
+          <EuiSideNavItem isSelected>
             <button>
               Advanced settings
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem indent isSelected>
+          <EuiSideNavItem indent isSelected>
             <button>
               General
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem indent>
+          <EuiSideNavItem indent>
             <button>
               Notifications
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem indent>
+          <EuiSideNavItem indent>
             <button>
               Timelion
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem indent>
+          <EuiSideNavItem indent>
             <button>
               Visualizations
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Index Patterns
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Saved Objects
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Reporting
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
           {/* Logstash section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Logstash
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Pipeline Viewer
             </button>
-          </KuiSideNavItem>
-        </KuiSideNav>
-      </KuiPageSideBar>
+          </EuiSideNavItem>
+        </EuiSideNav>
+      </EuiPageSideBar>
     );
   }
 
   renderPage() {
 
     return (
-      <KuiPage>
-        <KuiPageHeader>
-          <KuiPageHeaderSection>
-            <KuiTitle size="large">
+      <EuiPage>
+        <EuiPageHeader>
+          <EuiPageHeaderSection>
+            <EuiTitle size="large">
               <h1>Management</h1>
-            </KuiTitle>
-          </KuiPageHeaderSection>
-        </KuiPageHeader>
-        <KuiPageBody>
+            </EuiTitle>
+          </EuiPageHeaderSection>
+        </EuiPageHeader>
+        <EuiPageBody>
           {this.renderSideNav()}
-          <KuiPageContent>
-            <KuiPageContentHeader>
-              <KuiPageContentHeaderSection>
-                <KuiTitle>
+          <EuiPageContent>
+            <EuiPageContentHeader>
+              <EuiPageContentHeaderSection>
+                <EuiTitle>
                   <h2>Advanced settings &raquo; General</h2>
-                </KuiTitle>
-              </KuiPageContentHeaderSection>
-            </KuiPageContentHeader>
-            <KuiPageContentBody>
-              <KuiCallOut
+                </EuiTitle>
+              </EuiPageContentHeaderSection>
+            </EuiPageContentHeader>
+            <EuiPageContentBody>
+              <EuiCallOut
                 title="Proceed with caution!"
                 type="warning"
               >
                 <p>
                   Tweaks you make here can break Kibana if you do not know what you are doing.
                 </p>
-              </KuiCallOut>
-              <KuiSpacer size="l" />
+              </EuiCallOut>
+              <EuiSpacer size="l" />
               {this.renderForm()}
-            </KuiPageContentBody>
-          </KuiPageContent>
-        </KuiPageBody>
-      </KuiPage>
+            </EuiPageContentBody>
+          </EuiPageContent>
+        </EuiPageBody>
+      </EuiPage>
     );
   }
 
@@ -497,29 +497,29 @@ export default class extends Component {
     let bottomBar;
     if (this.state.showBar) {
       bottomBar = (
-        <KuiBottomBar>
-          <KuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-            <KuiFlexItem grow={false}>
-              <KuiText>
+        <EuiBottomBar>
+          <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+            <EuiFlexItem grow={false}>
+              <EuiText>
                 <p>
-                  <KuiTextColor color="ghost">
+                  <EuiTextColor color="ghost">
                     You have unsaved changes in your form.
-                  </KuiTextColor>
+                  </EuiTextColor>
                 </p>
-              </KuiText>
-            </KuiFlexItem>
-            <KuiFlexItem grow={false}>
-              <KuiFlexGroup justifyContent="flexEnd" gutterSize="small">
-                <KuiFlexItem grow={false}>
-                  <KuiButtonEmpty type="ghost" size="small" iconType="check">Save</KuiButtonEmpty>
-                </KuiFlexItem>
-                <KuiFlexItem grow={false}>
-                  <KuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</KuiButtonEmpty>
-                </KuiFlexItem>
-              </KuiFlexGroup>
-            </KuiFlexItem>
-          </KuiFlexGroup>
-        </KuiBottomBar>
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup justifyContent="flexEnd" gutterSize="small">
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty type="ghost" size="small" iconType="check">Save</EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
       );
     }
 

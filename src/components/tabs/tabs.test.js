@@ -3,13 +3,13 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiTabs,
+  EuiTabs,
 } from './tabs';
 
-describe('KuiTabs', () => {
+describe('EuiTabs', () => {
   test('renders', () => {
     const component = (
-      <KuiTabs {...requiredProps} />
+      <EuiTabs {...requiredProps} />
     );
 
     expect(render(component)).toMatchSnapshot();

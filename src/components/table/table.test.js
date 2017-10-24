@@ -2,33 +2,33 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiTable } from './table';
-import { KuiTableRow } from './table_row';
-import { KuiTableRowCell } from './table_row_cell';
-import { KuiTableBody } from './table_body';
-import { KuiTableHeader } from './table_header';
-import { KuiTableHeaderCell } from './table_header_cell';
+import { EuiTable } from './table';
+import { EuiTableRow } from './table_row';
+import { EuiTableRowCell } from './table_row_cell';
+import { EuiTableBody } from './table_body';
+import { EuiTableHeader } from './table_header';
+import { EuiTableHeaderCell } from './table_header_cell';
 
-test('renders KuiTable', () => {
+test('renders EuiTable', () => {
   const component = (
-    <KuiTable {...requiredProps}>
-      <KuiTableHeader>
-        <KuiTableHeaderCell>
+    <EuiTable {...requiredProps}>
+      <EuiTableHeader>
+        <EuiTableHeaderCell>
           Hi Title
-        </KuiTableHeaderCell>
-        <KuiTableHeaderCell>
+        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>
           Bye Title
-        </KuiTableHeaderCell>
-      </KuiTableHeader>
-      <KuiTableBody>
-        <KuiTableRow>
-          <KuiTableRowCell>Hi</KuiTableRowCell>
-        </KuiTableRow>
-        <KuiTableRow>
-          <KuiTableRowCell>Bye</KuiTableRowCell>
-        </KuiTableRow>
-      </KuiTableBody>
-    </KuiTable>
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell>Hi</EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow>
+          <EuiTableRowCell>Bye</EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
   );
   expect(render(component)).toMatchSnapshot();
 });

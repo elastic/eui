@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiHeaderSectionItem border defaults to left 1`] = `
+exports[`EuiHeaderSectionItem border defaults to left 1`] = `
 <div
-  class="kuiHeaderSectionItem"
+  class="euiHeaderSectionItem"
 />
 `;
 
-exports[`KuiHeaderSectionItem border renders right 1`] = `
+exports[`EuiHeaderSectionItem border renders right 1`] = `
 <div
-  class="kuiHeaderSectionItem kuiHeaderSectionItem--borderRight"
+  class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
 />
 `;
 
-exports[`KuiHeaderSectionItem is rendered 1`] = `
+exports[`EuiHeaderSectionItem is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiHeaderSectionItem testClass1 testClass2"
+  class="euiHeaderSectionItem testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

@@ -5,31 +5,31 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
 import {
-  KuiText,
+  EuiText,
 } from '..';
 
 const typeToClassNameMap = {
-  info: 'kuiCallOut--info',
-  success: 'kuiCallOut--success',
-  warning: 'kuiCallOut--warning',
-  danger: 'kuiCallOut--danger',
+  info: 'euiCallOut--info',
+  success: 'euiCallOut--success',
+  warning: 'euiCallOut--warning',
+  danger: 'euiCallOut--danger',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiCallOut = ({ title, type, iconType, children, className, ...rest }) => {
-  const classes = classNames('kuiCallOut', typeToClassNameMap[type], className);
+export const EuiCallOut = ({ title, type, iconType, children, className, ...rest }) => {
+  const classes = classNames('euiCallOut', typeToClassNameMap[type], className);
 
   let headerIcon;
 
   if (iconType) {
     headerIcon = (
-      <KuiIcon
-        className="kuiCallOutHeader__icon"
+      <EuiIcon
+        className="euiCallOutHeader__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -40,9 +40,9 @@ export const KuiCallOut = ({ title, type, iconType, children, className, ...rest
   let optionalChildren;
   if (children) {
     optionalChildren = (
-      <KuiText size="s">
+      <EuiText size="s">
         {children}
-      </KuiText>
+      </EuiText>
     );
   }
 
@@ -51,10 +51,10 @@ export const KuiCallOut = ({ title, type, iconType, children, className, ...rest
       className={classes}
       {...rest}
     >
-      <div className="kuiCallOutHeader">
+      <div className="euiCallOutHeader">
         {headerIcon}
 
-        <span className="kuiCallOutHeader__title">
+        <span className="euiCallOutHeader__title">
           {title}
         </span>
       </div>
@@ -64,12 +64,12 @@ export const KuiCallOut = ({ title, type, iconType, children, className, ...rest
   );
 };
 
-KuiCallOut.propTypes = {
+EuiCallOut.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
   type: PropTypes.oneOf(TYPES),
 };
 
-KuiCallOut.defaultProps = {
+EuiCallOut.defaultProps = {
   type: 'info',
 };

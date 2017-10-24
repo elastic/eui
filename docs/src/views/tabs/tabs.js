@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiTabs,
-  KuiTab,
+  EuiTabs,
+  EuiTab,
 } from '../../../../src/components';
 
-class KuiTabsExample extends React.Component {
+class EuiTabsExample extends React.Component {
   constructor(props) {
     super(props);
 
@@ -36,23 +36,23 @@ class KuiTabsExample extends React.Component {
 
   renderTabs() {
     return this.tabs.map((tab,index) => (
-      <KuiTab
+      <EuiTab
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}
         key={index}
       >
         {tab.name}
-      </KuiTab>
+      </EuiTab>
     ));
   }
 
   render() {
     return (
-      <KuiTabs>
+      <EuiTabs>
         {this.renderTabs()}
-      </KuiTabs>
+      </EuiTabs>
     );
   }
 }
 
-export default KuiTabsExample;
+export default EuiTabsExample;

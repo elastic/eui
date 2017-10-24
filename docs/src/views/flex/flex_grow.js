@@ -1,15 +1,15 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiFlexGroup>
-      <KuiFlexItem grow={false}>This item wont grow</KuiFlexItem>
-      <KuiFlexItem>But this item will.</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>This item wont grow</EuiFlexItem>
+      <EuiFlexItem>But this item will.</EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

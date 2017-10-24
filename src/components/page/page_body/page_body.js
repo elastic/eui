@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const KuiPageBody = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiPageBody', className);
+export const EuiPageBody = ({ children, className, ...rest }) => {
+  const classes = classNames('euiPageBody', className);
 
   return (
     <div

@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export class KuiGlobalToastList extends Component {
+export class EuiGlobalToastList extends Component {
   constructor(props) {
     super(props);
 
@@ -87,7 +87,7 @@ export class KuiGlobalToastList extends Component {
       ...rest,
     } = this.props;
 
-    const classes = classNames('kuiGlobalToastList', className);
+    const classes = classNames('euiGlobalToastList', className);
 
     return (
       <div
@@ -101,7 +101,7 @@ export class KuiGlobalToastList extends Component {
   }
 }
 
-KuiGlobalToastList.propTypes = {
+EuiGlobalToastList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

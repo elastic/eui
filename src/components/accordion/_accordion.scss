@@ -1,4 +1,4 @@
-.kuiAccordion__button {
+.euiAccordion__button {
   text-align: left;
   width: 100%;
 
@@ -8,24 +8,24 @@
   }
 
   &:focus {
-    background-color: $kuiFocusBackgroundColor;
+    background-color: $euiFocusBackgroundColor;
   }
 }
 
-.kuiAccordion__childWrapper {
+.euiAccordion__childWrapper {
   visibility: hidden;
   height: 0;
   opacity: 0;
   overflow-y: hidden;
   transform: translatez(0);
   transition:
-    height $kuiAnimSpeedNormal $kuiAnimSlightResistance,
-    opacity $kuiAnimSpeedNormal $kuiAnimSlightResistance
+    height $euiAnimSpeedNormal $euiAnimSlightResistance,
+    opacity $euiAnimSpeedNormal $euiAnimSlightResistance
   ;
 }
 
-.kuiAccordion.kuiAccordion-isOpen {
-  .kuiAccordion__childWrapper {
+.euiAccordion.euiAccordion-isOpen {
+  .euiAccordion__childWrapper {
     visibility: visible;
     opacity: 1;
   }

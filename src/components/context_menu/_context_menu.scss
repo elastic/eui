@@ -1,22 +1,22 @@
-$kuiContextMenuWidth: $kuiSize * 16;
+$euiContextMenuWidth: $euiSize * 16;
 
-.kuiContextMenu {
-  width: $kuiContextMenuWidth;
+.euiContextMenu {
+  width: $euiContextMenuWidth;
   position: relative;
   overflow: hidden;
-  transition: height $kuiAnimSpeedFast $kuiAnimSlightResistance;
-  border-radius: $kuiBorderRadius;
+  transition: height $euiAnimSpeedFast $euiAnimSlightResistance;
+  border-radius: $euiBorderRadius;
 
-  .kuiContextMenu__content {
-    padding: $kuiSizeS;
+  .euiContextMenu__content {
+    padding: $euiSizeS;
   }
 }
 
-  .kuiContextMenu__icon {
-    margin-right: $kuiSizeS;
+  .euiContextMenu__icon {
+    margin-right: $euiSizeS;
   }
 
-  .kuiContextMenu__itemLayout {
+  .euiContextMenu__itemLayout {
     display: flex;
     align-items: center;
   }

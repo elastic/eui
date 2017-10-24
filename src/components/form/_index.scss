@@ -1,13 +1,13 @@
-$kuiFormMaxWidth: 400px;
-$kuiFormBackgroundColor: tintOrShade($kuiColorLightestShade, 60%, 25%);
+$euiFormMaxWidth: 400px;
+$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 
-@mixin kuiFormControlSize {
-  max-width: $kuiFormMaxWidth;
+@mixin euiFormControlSize {
+  max-width: $euiFormMaxWidth;
   width: 100%;
 }
 
-@mixin kuiFormControlWithIcon($isIconOptional: false) {
-  $iconPadding: $kuiSizeXXL;
+@mixin euiFormControlWithIcon($isIconOptional: false) {
+  $iconPadding: $euiSizeXXL;
 
   @if ($isIconOptional) {
     @at-root {
@@ -23,20 +23,20 @@ $kuiFormBackgroundColor: tintOrShade($kuiColorLightestShade, 60%, 25%);
 /**
  * 1. Override invalid state with focus state.
  */
-@mixin kuiFormControlStyle {
-  @include kuiFormControlSize;
+@mixin euiFormControlStyle {
+  @include euiFormControlSize;
 
   border: none;
-  font-size: $kuiFontSizeS;
-  font-family: $kuiFontFamily;
-  padding: $kuiSizeM;
-  color: $kuiTextColor;
-  background: $kuiFormBackgroundColor;
+  font-size: $euiFontSizeS;
+  font-family: $euiFontFamily;
+  padding: $euiSizeM;
+  color: $euiTextColor;
+  background: $euiFormBackgroundColor;
   box-shadow:
     0 2px 2px -1px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(0,0,0,0.08),
-    inset #{-$kuiFormMaxWidth} 0 0 0 $kuiFormBackgroundColor;
-  transition: box-shadow $kuiAnimSpeedNormal ease-in, background $kuiAnimSpeedNormal ease-in;
+    inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
+  transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
   border-radius: 0;
 
   &--fullWidth {
@@ -45,19 +45,19 @@ $kuiFormBackgroundColor: tintOrShade($kuiColorLightestShade, 60%, 25%);
 
   &:invalid { /* 1 */
     box-shadow:
-      0 $kuiSizeXS $kuiSizeXS (-$kuiSizeXS / 2) rgba(0, 0, 0, 0.1),
+      0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
       0 0 0 1px rgba(0,0,0,0.16),
-      inset 0 0 0 0 $kuiColorEmptyShade,
-      inset 0 (-$kuiSizeXS / 2) 0 0 $kuiColorDanger;
+      inset 0 0 0 0 $euiColorEmptyShade,
+      inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
   }
 
   &:focus { /* 1 */
-    background: $kuiColorEmptyShade;
+    background: $euiColorEmptyShade;
     box-shadow:
       0 4px 4px -2px rgba(0, 0, 0, 0.1),
       0 0 0 1px rgba(0,0,0,0.16),
-      inset 0 0 0 0 $kuiColorEmptyShade,
-      inset 0 -2px 0 0 $kuiColorPrimary;
+      inset 0 0 0 0 $euiColorEmptyShade,
+      inset 0 -2px 0 0 $euiColorPrimary;
   }
 }
 

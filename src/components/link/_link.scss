@@ -1,20 +1,20 @@
-.kuiLink {
-  @include kuiLink;
+.euiLink {
+  @include euiLink;
 }
 
 $textColors: (
-  subdued: $kuiColorDarkShade,
-  primary: $kuiColorPrimary,
-  secondary: $kuiColorSecondary,
-  accent: $kuiColorAccent,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
+  subdued: $euiColorDarkShade,
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
   ghost: #FFF, // Ghost is special and a constant.
 );
 
 // Create color modifiers based on the map
 @each $name, $color in $textColors {
-  .kuiLink.kuiLink--#{$name} {
+  .euiLink.euiLink--#{$name} {
     color: $color;
 
     &:hover {

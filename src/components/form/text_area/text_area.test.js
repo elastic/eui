@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiTextArea } from './text_area';
+import { EuiTextArea } from './text_area';
 
-describe('KuiTextArea', () => {
+describe('EuiTextArea', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiTextArea {...requiredProps} />
+      <EuiTextArea {...requiredProps} />
     );
 
     expect(component)

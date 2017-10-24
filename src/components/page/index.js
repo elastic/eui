@@ -1,23 +1,23 @@
 export {
-  KuiPage,
+  EuiPage,
 } from './page';
 
 export {
-  KuiPageBody,
+  EuiPageBody,
 } from './page_body';
 
 export {
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
 } from './page_content';
 
 export {
-  KuiPageHeader,
-  KuiPageHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
 } from './page_header';
 
 export {
-  KuiPageSideBar,
+  EuiPageSideBar,
 } from './page_side_bar';

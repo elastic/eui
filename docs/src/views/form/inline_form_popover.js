@@ -3,14 +3,14 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiPopover,
-  KuiForm,
-  KuiFormRow,
-  KuiFieldText,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiFieldNumber,
+  EuiButton,
+  EuiPopover,
+  EuiForm,
+  EuiFormRow,
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFieldNumber,
 
 } from '../../../../src/components';
 
@@ -50,40 +50,40 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton
+      <EuiButton
         iconSide="right"
         fill
         iconType="arrowDown"
         onClick={this.onButtonClick}
       >
         Form in a popover
-      </KuiButton>
+      </EuiButton>
     );
 
     const formSample = (
-      <KuiForm>
-        <KuiFlexGroup>
-          <KuiFlexItem grow={false} style={{ width: 100 }}>
-            <KuiFormRow label="Age"  id={idPrefix}>
-              <KuiFieldNumber max={10} placeholder={42} />
-            </KuiFormRow>
-          </KuiFlexItem>
-          <KuiFlexItem>
-            <KuiFormRow label="Full name" id={idPrefix}>
-              <KuiFieldText icon="user" placeholder="John Doe" />
-            </KuiFormRow>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiFormRow hasEmptyLabelSpace>
-              <KuiButton>Save</KuiButton>
-            </KuiFormRow>
-          </KuiFlexItem>
-        </KuiFlexGroup>
-      </KuiForm>
+      <EuiForm>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false} style={{ width: 100 }}>
+            <EuiFormRow label="Age"  id={idPrefix}>
+              <EuiFieldNumber max={10} placeholder={42} />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFormRow label="Full name" id={idPrefix}>
+              <EuiFieldText icon="user" placeholder="John Doe" />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiFormRow hasEmptyLabelSpace>
+              <EuiButton>Save</EuiButton>
+            </EuiFormRow>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiForm>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
@@ -91,7 +91,7 @@ export default class extends Component {
         <div style={{ width: 500, padding: 16 }}>
           {formSample}
         </div>
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 }

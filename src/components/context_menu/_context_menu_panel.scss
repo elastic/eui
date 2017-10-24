@@ -1,44 +1,44 @@
 @import '../popover/mixins';
 
-.kuiContextMenuPanel {
+.euiContextMenuPanel {
   position: absolute;
   width: 100%;
   visibility: visible;
-  background-color: $kuiColorEmptyShade;
+  background-color: $euiColorEmptyShade;
 
-  &.kuiContextMenuPanel-txInLeft {
+  &.euiContextMenuPanel-txInLeft {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxInLeft $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: euiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txOutLeft {
+  &.euiContextMenuPanel-txOutLeft {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxOutLeft $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: euiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txInRight {
+  &.euiContextMenuPanel-txInRight {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxInRight $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: euiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txOutRight {
+  &.euiContextMenuPanel-txOutRight {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxOutRight $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: euiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 }
 
-.kuiContextMenuPanel--next {
-  transform: translateX($kuiContextMenuWidth);
+.euiContextMenuPanel--next {
+  transform: translateX($euiContextMenuWidth);
   visibility: hidden;
 }
 
-.kuiContextMenuPanel--previous {
-  transform: translateX(-$kuiContextMenuWidth);
+.euiContextMenuPanel--previous {
+  transform: translateX(-$euiContextMenuWidth);
   visibility: hidden;
 }
 
-.kuiContextMenuPanelTitle {
-  @include kuiPopoverTitle;
+.euiContextMenuPanelTitle {
+  @include euiPopoverTitle;
 
   width: 100%;
   text-align: left;
@@ -48,38 +48,38 @@
   }
 }
 
-@keyframes kuiContextMenuPanelTxInLeft {
+@keyframes euiContextMenuPanelTxInLeft {
   0% {
-    transform: translateX($kuiContextMenuWidth);
+    transform: translateX($euiContextMenuWidth);
   }
   100% {
     transform: translateX(0);
   }
 }
 
-@keyframes kuiContextMenuPanelTxOutLeft {
+@keyframes euiContextMenuPanelTxOutLeft {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-$kuiContextMenuWidth);
+    transform: translateX(-$euiContextMenuWidth);
   }
 }
 
-@keyframes kuiContextMenuPanelTxInRight {
+@keyframes euiContextMenuPanelTxInRight {
   0% {
-    transform: translateX(-$kuiContextMenuWidth);;
+    transform: translateX(-$euiContextMenuWidth);;
   }
   100% {
     transform: translateX(0);
   }
 }
 
-@keyframes kuiContextMenuPanelTxOutRight {
+@keyframes euiContextMenuPanelTxOutRight {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX($kuiContextMenuWidth);
+    transform: translateX($euiContextMenuWidth);
   }
 }

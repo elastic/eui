@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiKeyPadMenu } from './key_pad_menu';
+import { EuiKeyPadMenu } from './key_pad_menu';
 
-describe('KuiKeyPadMenu', () => {
+describe('EuiKeyPadMenu', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiKeyPadMenu {...requiredProps} />
+      <EuiKeyPadMenu {...requiredProps} />
     );
 
     expect(component)

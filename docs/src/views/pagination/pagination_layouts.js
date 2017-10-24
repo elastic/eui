@@ -3,13 +3,13 @@ import React, {
 } from 'react';
 
 import {
-  KuiButtonEmpty,
-  KuiContextMenu,
-  KuiPopover,
-  KuiPagination,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiHorizontalRule,
+  EuiButtonEmpty,
+  EuiContextMenu,
+  EuiPopover,
+  EuiPagination,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 function convertPanelTreeToMap(panel, map = {}) {
@@ -97,52 +97,52 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButtonEmpty size="small" type="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+      <EuiButtonEmpty size="small" type="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
         Rows per page: 50
-      </KuiButtonEmpty>
+      </EuiButtonEmpty>
     );
 
     return (
       <div>
-        <KuiHorizontalRule />
+        <EuiHorizontalRule />
 
-        <KuiFlexGroup justifyContent="spaceAround">
-          <KuiFlexItem grow={false}>
-            <KuiPagination
+        <EuiFlexGroup justifyContent="spaceAround">
+          <EuiFlexItem grow={false}>
+            <EuiPagination
               pageCount={this.PAGE_COUNT}
               activePage={this.state.activePage}
               onPageClick={this.goToPage}
             />
-          </KuiFlexItem>
-        </KuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiHorizontalRule />
+        <EuiHorizontalRule />
 
-        <KuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+        <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={button}
               isOpen={this.state.isPopoverOpen}
               closePopover={this.closePopover.bind(this)}
               panelPaddingSize="none"
               withTitle
             >
-              <KuiContextMenu
+              <EuiContextMenu
                 initialPanelId={0}
                 isVisible={this.state.isPopoverOpen}
                 idToPanelMap={this.idToPanelMap}
                 idToPreviousPanelIdMap={this.idToPreviousPanelIdMap}
               />
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPagination
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPagination
               pageCount={this.PAGE_COUNT}
               activePage={this.state.activePage}
               onPageClick={this.goToPage}
             />
-          </KuiFlexItem>
-        </KuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </div>
     );
   }

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {
-  KuiIcon,
+  EuiIcon,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiIcon
+    <EuiIcon
       type="search"
       size="large"
       title="Find information"

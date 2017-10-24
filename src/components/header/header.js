@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const KuiHeader = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiHeader', className);
+export const EuiHeader = ({ children, className, ...rest }) => {
+  const classes = classNames('euiHeader', className);
 
   return (
     <div

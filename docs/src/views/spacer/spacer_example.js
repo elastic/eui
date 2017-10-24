@@ -9,10 +9,10 @@ import {
 } from '../../components';
 
 import {
-  KuiCallOut,
-  KuiText,
-  KuiCode,
-  KuiSpacer,
+  EuiCallOut,
+  EuiText,
+  EuiCode,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import Spacer from './spacer';
@@ -21,11 +21,11 @@ const spacerHtml = renderToHtml(Spacer);
 
 export default props => (
   <GuidePage title={props.route.name}>
-    <KuiCallOut
+    <EuiCallOut
       title="Try not to stuff these in loops"
       type="warning"
     >
-      <KuiText size="s">
+      <EuiText size="s">
         <p>
           This component is handy for setting space between two different
           components, be it a block level element or two pieces of isolated text. You
@@ -33,9 +33,9 @@ export default props => (
           it is almost always more preferable to define the spacing on the component
           itself.
         </p>
-      </KuiText>
-    </KuiCallOut>
-    <KuiSpacer size="l" />
+      </EuiText>
+    </EuiCallOut>
+    <EuiSpacer size="l" />
     <GuideSection
       title="Spacer"
       source={[{
@@ -47,7 +47,7 @@ export default props => (
       }]}
       text={
         <p>
-          The <KuiCode>Spacer</KuiCode> component is a fancy break tag. Use
+          The <EuiCode>Spacer</EuiCode> component is a fancy break tag. Use
           it to add vertical space between items. Please do not stack them.
         </p>
       }

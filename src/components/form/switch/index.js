@@ -1,1 +1,1 @@
-export { KuiSwitch } from './switch';
+export { EuiSwitch } from './switch';

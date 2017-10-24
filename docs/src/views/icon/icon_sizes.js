@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiFlexGrid,
-  KuiFlexItem,
-  KuiIcon,
-  KuiPanel,
-  KuiText,
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiIcon,
+  EuiPanel,
+  EuiText,
 } from '../../../../src/components';
 
 const iconSizes = [
@@ -17,25 +17,25 @@ const iconSizes = [
 ];
 
 export default () => (
-  <KuiFlexGrid columns={4}>
+  <EuiFlexGrid columns={4}>
     {
       iconSizes.map(iconSize => (
-        <KuiFlexItem
+        <EuiFlexItem
           className="guideDemo__icon"
           key={iconSize}
           style={{ width: '340px' }}
         >
-          <KuiPanel>
-            <KuiIcon
+          <EuiPanel>
+            <EuiIcon
               type="logoElasticStack"
               size={iconSize}
             />
-            <KuiText size="s">
+            <EuiText size="s">
               <p>{iconSize}</p>
-            </KuiText>
-          </KuiPanel>
-        </KuiFlexItem>
+            </EuiText>
+          </EuiPanel>
+        </EuiFlexItem>
       ))
     }
-  </KuiFlexGrid>
+  </EuiFlexGrid>
 );

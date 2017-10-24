@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const KuiTableBody = ({ children, className, ...rest }) => {
+export const EuiTableBody = ({ children, className, ...rest }) => {
   return (
     <tbody className={className} {...rest}>
       { children }
@@ -9,7 +9,7 @@ export const KuiTableBody = ({ children, className, ...rest }) => {
   );
 };
 
-KuiTableBody.propTypes = {
+EuiTableBody.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

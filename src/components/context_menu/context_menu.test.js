@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiContextMenu } from './context_menu';
+import { EuiContextMenu } from './context_menu';
 
-describe('KuiContextMenu', () => {
+describe('EuiContextMenu', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiContextMenu {...requiredProps} />
+      <EuiContextMenu {...requiredProps} />
     );
 
     expect(component)

@@ -1,50 +1,50 @@
-.kuiModal {
-  @include kuiBottomShadow;
+.euiModal {
+  @include euiBottomShadow;
 
-  background-color: $kuiColorEmptyShade;
-  border: $kuiBorderThin;
-  border-radius: $kuiBorderRadius;
-  z-index: $kuiZModal;
-  padding: $kuiSizeXL;
+  background-color: $euiColorEmptyShade;
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+  z-index: $euiZModal;
+  padding: $euiSizeXL;
   min-width: 50%;
-  animation: kuiModal $kuiAnimSpeedSlow $kuiAnimSlightBounce;
+  animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 }
 
-.kuiModal--confirmation {
+.euiModal--confirmation {
   width: 450px;
   min-width: auto;
 }
 
-.kuiModalHeader {
+.euiModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-  .kuiModalHeader__title {
-    @include kuiFontSizeL;
+  .euiModalHeader__title {
+    @include euiFontSizeL;
   }
 
-.kuiModalHeaderCloseButton {
+.euiModalHeaderCloseButton {
 }
 
-.kuiModalBody {
-  padding: $kuiSizeXL 0;
+.euiModalBody {
+  padding: $euiSizeXL 0;
 }
 
-.kuiModalFooter {
+.euiModalFooter {
   display: flex;
   justify-content: flex-end;
 
   > * + * {
-    margin-left: $kuiSize;
+    margin-left: $euiSize;
   }
 }
 
-@keyframes kuiModal {
+@keyframes euiModal {
   0% {
     opacity: 0;
-    transform: translateY($kuiSizeXL);
+    transform: translateY($euiSizeXL);
   }
   100% {
     opacity: 1;

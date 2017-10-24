@@ -4,16 +4,16 @@ import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiKeyPadMenuItem,
-  KuiKeyPadMenuItemButton,
+  EuiKeyPadMenuItem,
+  EuiKeyPadMenuItemButton,
 } from './key_pad_menu_item';
 
-describe('KuiKeyPadMenuItem', () => {
+describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiKeyPadMenuItem label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItem label="Label" {...requiredProps}>
         Icon
-      </KuiKeyPadMenuItem>
+      </EuiKeyPadMenuItem>
     );
 
     expect(component)
@@ -22,9 +22,9 @@ describe('KuiKeyPadMenuItem', () => {
 
   test('renders href', () => {
     const component = render(
-      <KuiKeyPadMenuItem label="Label" href="#">
+      <EuiKeyPadMenuItem label="Label" href="#">
         Icon
-      </KuiKeyPadMenuItem>
+      </EuiKeyPadMenuItem>
     );
 
     expect(component)
@@ -32,12 +32,12 @@ describe('KuiKeyPadMenuItem', () => {
   });
 });
 
-describe('KuiKeyPadMenuItemButton', () => {
+describe('EuiKeyPadMenuItemButton', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiKeyPadMenuItemButton label="Label" {...requiredProps}>
+      <EuiKeyPadMenuItemButton label="Label" {...requiredProps}>
         Icon
-      </KuiKeyPadMenuItemButton>
+      </EuiKeyPadMenuItemButton>
     );
 
     expect(component)
@@ -49,9 +49,9 @@ describe('KuiKeyPadMenuItemButton', () => {
       const onClickHandler = sinon.stub();
 
       shallow(
-        <KuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
           Icon
-        </KuiKeyPadMenuItemButton>
+        </EuiKeyPadMenuItemButton>
       );
 
       sinon.assert.notCalled(onClickHandler);
@@ -61,9 +61,9 @@ describe('KuiKeyPadMenuItemButton', () => {
       const onClickHandler = sinon.stub();
 
       const $button = shallow(
-        <KuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
           Icon
-        </KuiKeyPadMenuItemButton>
+        </EuiKeyPadMenuItemButton>
       );
 
       $button.simulate('click');

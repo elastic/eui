@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  KuiKeyboardAccessible,
+  EuiKeyboardAccessible,
 } from '../../../../src/components';
 
 // For custom components, we just need to make sure they delegate props to their rendered root
@@ -17,40 +17,40 @@ const CustomComponent = ({
 
 export default () => (
   <div>
-    <KuiKeyboardAccessible>
+    <EuiKeyboardAccessible>
       <div onClick={() => window.alert('Div clicked')}>
         Click this div
       </div>
-    </KuiKeyboardAccessible>
+    </EuiKeyboardAccessible>
 
-    <KuiKeyboardAccessible>
+    <EuiKeyboardAccessible>
       <a
-        className="kuiLink"
+        className="euiLink"
         onClick={() => window.alert('Anchor tag clicked')}
       >
         Click this anchor tag
       </a>
-    </KuiKeyboardAccessible>
+    </EuiKeyboardAccessible>
 
-    <KuiKeyboardAccessible>
+    <EuiKeyboardAccessible>
       <CustomComponent onClick={() => window.alert('Custom component clicked')}>
         Click this custom component
       </CustomComponent>
-    </KuiKeyboardAccessible>
+    </EuiKeyboardAccessible>
 
-    <KuiKeyboardAccessible>
-      <div onClick={() => window.alert('Outer KuiKeyboardAccessible clicked')}>
-        This KuiKeyboardAccessible contains another KuiKeyboardAccessible&nbsp;
+    <EuiKeyboardAccessible>
+      <div onClick={() => window.alert('Outer EuiKeyboardAccessible clicked')}>
+        This EuiKeyboardAccessible contains another EuiKeyboardAccessible&nbsp;
 
-        <KuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
           <a
-            className="kuiLink"
-            onClick={() => window.alert('Inner KuiKeyboardAccessible clicked')}
+            className="euiLink"
+            onClick={() => window.alert('Inner EuiKeyboardAccessible clicked')}
           >
             Clicking this inner one should call both onClick handlers
           </a>
-        </KuiKeyboardAccessible>
+        </EuiKeyboardAccessible>
       </div>
-    </KuiKeyboardAccessible>
+    </EuiKeyboardAccessible>
   </div>
 );

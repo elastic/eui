@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiTab renders 1`] = `
+exports[`EuiTab renders 1`] = `
 <button
   aria-label="aria-label"
-  class="kuiTab testClass1 testClass2"
+  class="euiTab testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
-    class="kuiTab__content"
+    class="euiTab__content"
   >
     children
   </span>
 </button>
 `;
 
-exports[`KuiTab renders isSelected 1`] = `
+exports[`EuiTab renders isSelected 1`] = `
 <button
   aria-label="aria-label"
-  class="kuiTab testClass1 testClass2 kuiTab-isSelected"
+  class="euiTab testClass1 testClass2 euiTab-isSelected"
   data-test-subj="test subject string"
 >
   <span
-    class="kuiTab__content"
+    class="euiTab__content"
   >
     children
   </span>

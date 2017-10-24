@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiHeaderBreadcrumb = ({
+export const EuiHeaderBreadcrumb = ({
   href,
   isActive,
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiHeaderBreadcrumb', className, {
-    'kuiHeaderBreadcrumb-isActive': isActive,
+  const classes = classNames('euiHeaderBreadcrumb', className, {
+    'euiHeaderBreadcrumb-isActive': isActive,
   });
 
   return (
@@ -19,14 +19,14 @@ export const KuiHeaderBreadcrumb = ({
       className={classes}
       {...rest}
     >
-      <div className="kuiHeaderBreadcrumb__text">
+      <div className="euiHeaderBreadcrumb__text">
         {children}
       </div>
     </a>
   );
 };
 
-KuiHeaderBreadcrumb.propTypes = {
+EuiHeaderBreadcrumb.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node,
   isActive: PropTypes.bool,

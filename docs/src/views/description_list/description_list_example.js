@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import DescriptionList from './description_list';
@@ -41,10 +41,10 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>DescriptionList</KuiCode> is a component for listing pairs of
+          <EuiCode>DescriptionList</EuiCode> is a component for listing pairs of
           information together. You can use the component on its own, passing
           in an object for the list, or use
-          the <KuiCode>KuiDescriptionListTitle</KuiCode> and <KuiCode>KuiDescriptionListDescription</KuiCode>
+          the <EuiCode>EuiDescriptionListTitle</EuiCode> and <EuiCode>EuiDescriptionListDescription</EuiCode>
           components separately to build a list manually.
         </p>
       }
@@ -61,7 +61,7 @@ export default props => (
       }]}
       text={
         <p>
-          Using a prop <KuiCode>type</KuiCode> set to <KuiCode>column</KuiCode> description lists
+          Using a prop <EuiCode>type</EuiCode> set to <EuiCode>column</EuiCode> description lists
           can be presented in an inline, column format.
         </p>
       }
@@ -78,7 +78,7 @@ export default props => (
       }]}
       text={
         <p>
-          Using a prop <KuiCode>type</KuiCode> set to <KuiCode>inline</KuiCode> description lists
+          Using a prop <EuiCode>type</EuiCode> set to <EuiCode>inline</EuiCode> description lists
           can be presented in an inline, blob format. This is useful for JSON code blocks. Inline
           description lists are sized smaller then normal lists due to their compact nature.
         </p>
@@ -98,7 +98,7 @@ export default props => (
       }]}
       text={
         <p>
-          Using the <KuiCode>align</KuiCode> and <KuiCode>compressed</KuiCode> props you
+          Using the <EuiCode>align</EuiCode> and <EuiCode>compressed</EuiCode> props you
           can further tailor the look of a description list. This works with column
           and inline types.
         </p>

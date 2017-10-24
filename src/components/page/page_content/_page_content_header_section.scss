@@ -1,18 +1,18 @@
-.kuiPageContentHeaderSection {
+.euiPageContentHeaderSection {
 
   & + & {
-    margin-left: $kuiSizeXL;
+    margin-left: $euiSizeXL;
   }
 }
 
 @include screenXSmall {
 
-  .kuiPageContentHeaderSection {
+  .euiPageContentHeaderSection {
     width: 100%;
 
     & + & {
       margin-left: 0;
-      margin-top: $kuiSize;
+      margin-top: $euiSize;
     }
   }
 }

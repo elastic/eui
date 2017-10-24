@@ -11,9 +11,9 @@ import {
 } from '../../components';
 
 import {
-  KuiCallOut,
-  KuiSpacer,
-  KuiCode,
+  EuiCallOut,
+  EuiSpacer,
+  EuiCode,
 } from '../../../../src/components';
 
 import FlexGroup from './flex_group';
@@ -54,18 +54,18 @@ const flexItemPanelHtml = renderToHtml(FlexItemPanel);
 
 export default props => (
   <GuidePage title={props.route.name}>
-    <KuiCallOut
+    <EuiCallOut
       title="Coloring and padding exist for examples only"
       type="warning"
     >
       <p>
-        Padding and background-color are added to all the <KuiCode>FlexItem</KuiCode> components on this
+        Padding and background-color are added to all the <EuiCode>FlexItem</EuiCode> components on this
         documentation page for illustrative purposes only. You will need to add padding through additional
         components or classes if you need it.
       </p>
-    </KuiCallOut>
+    </EuiCallOut>
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
     <GuideSection
       title="FlexGroup is for a single row layout"
@@ -78,8 +78,8 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>FlexGroup</KuiCode> is useful for setting up layouts for a <strong>single row</strong> of
-          content. By default any <KuiCode>FlexItem</KuiCode> within <KuiCode>FlexGroup</KuiCode> will
+          <EuiCode>FlexGroup</EuiCode> is useful for setting up layouts for a <strong>single row</strong> of
+          content. By default any <EuiCode>FlexItem</EuiCode> within <EuiCode>FlexGroup</EuiCode> will
           stretch and grow to match their siblings.
         </p>
       }
@@ -99,8 +99,8 @@ export default props => (
       }]}
       text={
         <p>
-          Same code as above. Notice that <KuiCode>FlexItem</KuiCode> creates equal width items
-          no matter the number of siblings. <KuiCode>FlexGroup</KuiCode> never wraps.
+          Same code as above. Notice that <EuiCode>FlexItem</EuiCode> creates equal width items
+          no matter the number of siblings. <EuiCode>FlexGroup</EuiCode> never wraps.
         </p>
       }
       demo={
@@ -120,7 +120,7 @@ export default props => (
       text={
         <p>
           The <Link to="/panel">Panel</Link> component will naturally grow to fill the
-          <KuiCode>FlexItem</KuiCode> which contains it.
+          <EuiCode>FlexItem</EuiCode> which contains it.
         </p>
       }
       demo={
@@ -139,7 +139,7 @@ export default props => (
       }]}
       text={
         <p>
-          Sometimes you do not want a <KuiCode>FlexItem</KuiCode> to grow. It
+          Sometimes you do not want a <EuiCode>FlexItem</EuiCode> to grow. It
           can be turned off on each item individually.
         </p>
       }
@@ -159,12 +159,12 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>FlexGroup</KuiCode>s can also
-          use <KuiCode>justifyContent</KuiCode> and <KuiCode>alignItems</KuiCode>props
+          <EuiCode>FlexGroup</EuiCode>s can also
+          use <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode>props
           that accept normal flex-box paramenters. Below are some common scenarios,
           where you need to separate two items, center justify a single one, or
           center an item vertically. Note the usage
-          of <KuiCode>FlexItem</KuiCode>s with <KuiCode>grow=false</KuiCode> so that they do not stretch.
+          of <EuiCode>FlexItem</EuiCode>s with <EuiCode>grow=false</EuiCode> so that they do not stretch.
         </p>
       }
       demo={
@@ -183,7 +183,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>FlexGrid</KuiCode> is a more rigid component that sets multiple, wrapping
+          <EuiCode>FlexGrid</EuiCode> is a more rigid component that sets multiple, wrapping
           rows of same width items.
         </p>
       }
@@ -203,7 +203,7 @@ export default props => (
       }]}
       text={
         <p>
-          You can set a <KuiCode>columns</KuiCode> prop to specify
+          You can set a <EuiCode>columns</EuiCode> prop to specify
           anywhere between 2-4 columns. Any more would likely break on laptop screens.
         </p>
       }
@@ -223,9 +223,9 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>FlexGroup</KuiCode> and <KuiCode>FlexGrid</KuiCode> can nest
+          <EuiCode>FlexGroup</EuiCode> and <EuiCode>FlexGrid</EuiCode> can nest
           within themselves indefinitely. For example, here we turn off the growth on a
-          <KuiCode>FlexGroup</KuiCode>, then nest a grid inside of it.
+          <EuiCode>FlexGroup</EuiCode>, then nest a grid inside of it.
         </p>
       }
       demo={
@@ -244,9 +244,9 @@ export default props => (
       }]}
       text={
         <p>
-          The <KuiCode>gutterSize</KuiCode> prop can be applied to either a
-          <KuiCode>FlexGroup</KuiCode> or a <KuiCode>FlexGrid</KuiCode> to adjust the
-          spacing between <KuiCode>FlexItem</KuiCode>s.
+          The <EuiCode>gutterSize</EuiCode> prop can be applied to either a
+          <EuiCode>FlexGroup</EuiCode> or a <EuiCode>FlexGrid</EuiCode> to adjust the
+          spacing between <EuiCode>FlexItem</EuiCode>s.
         </p>
       }
       demo={

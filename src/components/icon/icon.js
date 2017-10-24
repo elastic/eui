@@ -141,22 +141,22 @@ export const TYPES = Object.keys(typeToIconMap);
 
 const sizeToClassNameMap = {
   original: '',
-  medium: 'kuiIcon--medium',
-  large: 'kuiIcon--large',
-  xLarge: 'kuiIcon--xLarge',
-  xxLarge: 'kuiIcon--xxLarge',
+  medium: 'euiIcon--medium',
+  large: 'euiIcon--large',
+  xLarge: 'euiIcon--xLarge',
+  xxLarge: 'euiIcon--xxLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiIcon = ({
+export const EuiIcon = ({
   type,
   size,
   title,
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiIcon', className, sizeToClassNameMap[size]);
+  const classes = classNames('euiIcon', className, sizeToClassNameMap[size]);
 
   const titleElement =
     title
@@ -175,13 +175,13 @@ export const KuiIcon = ({
   );
 };
 
-KuiIcon.propTypes = {
+EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
   size: PropTypes.oneOf(SIZES),
   title: PropTypes.string,
 };
 
-KuiIcon.defaultProps = {
-  className: 'kuiIcon--basic',
+EuiIcon.defaultProps = {
+  className: 'euiIcon--basic',
   size: 'medium',
 };

@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 const borderToClassNameMap = {
   left: undefined,
-  right: 'kuiHeaderSectionItem--borderRight',
+  right: 'euiHeaderSectionItem--borderRight',
 };
 
 const BORDERS = Object.keys(borderToClassNameMap);
 
-export const KuiHeaderSectionItem = ({ border, children, className, ...rest }) => {
-  const classes = classNames('kuiHeaderSectionItem', borderToClassNameMap[border], className);
+export const EuiHeaderSectionItem = ({ border, children, className, ...rest }) => {
+  const classes = classNames('euiHeaderSectionItem', borderToClassNameMap[border], className);
 
   return (
     <div
@@ -22,10 +22,10 @@ export const KuiHeaderSectionItem = ({ border, children, className, ...rest }) =
   );
 };
 
-KuiHeaderSectionItem.propTypes = {
+EuiHeaderSectionItem.propTypes = {
   border: PropTypes.oneOf(BORDERS),
 };
 
-KuiHeaderSectionItem.defaultProps = {
+EuiHeaderSectionItem.defaultProps = {
   border: 'left',
 };

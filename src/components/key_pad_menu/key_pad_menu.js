@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const KuiKeyPadMenu = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiKeyPadMenu', className);
+export const EuiKeyPadMenu = ({ children, className, ...rest }) => {
+  const classes = classNames('euiKeyPadMenu', className);
 
   return (
     <div

@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  medium: 'kuiLoadingChart--medium',
-  large: 'kuiLoadingChart--large',
-  xLarge: 'kuiLoadingChart--xLarge',
+  medium: 'euiLoadingChart--medium',
+  large: 'euiLoadingChart--large',
+  xLarge: 'euiLoadingChart--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiLoadingChart = ({ size, mono, className, ...rest }) => {
+export const EuiLoadingChart = ({ size, mono, className, ...rest }) => {
   const classes = classNames(
-    'kuiLoadingChart',
-    mono === true ? 'kuiLoadingChart--mono' : '',
+    'euiLoadingChart',
+    mono === true ? 'euiLoadingChart--mono' : '',
     className,
     sizeToClassNameMap[size],
   );
@@ -23,15 +23,15 @@ export const KuiLoadingChart = ({ size, mono, className, ...rest }) => {
       className={classes}
       {...rest}
     >
-      <div className="kuiLoadingChart__bar" />
-      <div className="kuiLoadingChart__bar" />
-      <div className="kuiLoadingChart__bar" />
-      <div className="kuiLoadingChart__bar" />
+      <div className="euiLoadingChart__bar" />
+      <div className="euiLoadingChart__bar" />
+      <div className="euiLoadingChart__bar" />
+      <div className="euiLoadingChart__bar" />
     </div>
   );
 };
 
-KuiLoadingChart.propTypes = {
+EuiLoadingChart.propTypes = {
   size: PropTypes.oneOf(SIZES),
 };
 

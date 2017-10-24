@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiCallOut is rendered 1`] = `
+exports[`EuiCallOut is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiCallOut kuiCallOut--info testClass1 testClass2"
+  class="euiCallOut euiCallOut--info testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
-    class="kuiCallOutHeader"
+    class="euiCallOutHeader"
   >
     <span
-      class="kuiCallOutHeader__title"
+      class="euiCallOutHeader__title"
     />
   </div>
   <div
-    class="kuiText kuiText--small"
+    class="euiText euiText--small"
   />
 </div>
 `;

@@ -11,7 +11,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import SideNav from './side_nav';
@@ -35,7 +35,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>SideNav</KuiCode> is a responsive menu system that usually sits on the left side of a page layout.
+          <EuiCode>SideNav</EuiCode> is a responsive menu system that usually sits on the left side of a page layout.
           It will exapand to the width of its container. This is the menu that is used on the left side of the
           page you are looking at.
         </p>
@@ -56,7 +56,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>SideNav</KuiCode> accepts a <KuiCode>type=&ldquo;inPanel&rdquo;</KuiCode> prop
+          <EuiCode>SideNav</EuiCode> accepts a <EuiCode>type=&ldquo;inPanel&rdquo;</EuiCode> prop
           that gives it more contextual styling when included within a <Link to="/page">Panel</Link> (like
           this documentation page). Note that in mobile mode it drops itself down to the original styling
           and still works responsively.

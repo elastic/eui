@@ -3,31 +3,31 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  full: 'kuiHorizontalRule--full',
-  half: 'kuiHorizontalRule--half',
-  quarter: 'kuiHorizontalRule--quarter',
+  full: 'euiHorizontalRule--full',
+  half: 'euiHorizontalRule--half',
+  quarter: 'euiHorizontalRule--quarter',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const marginToClassNameMap = {
-  small: 'kuiHorizontalRule--marginSmall',
-  medium: 'kuiHorizontalRule--marginMedium',
-  large: 'kuiHorizontalRule--marginLarge',
-  XLarge: 'kuiHorizontalRule--marginXLarge',
-  XXLarge: 'kuiHorizontalRule--marginXXLarge',
+  small: 'euiHorizontalRule--marginSmall',
+  medium: 'euiHorizontalRule--marginMedium',
+  large: 'euiHorizontalRule--marginLarge',
+  XLarge: 'euiHorizontalRule--marginXLarge',
+  XXLarge: 'euiHorizontalRule--marginXXLarge',
 };
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const KuiHorizontalRule = ({
+export const EuiHorizontalRule = ({
   className,
   size,
   margin,
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiHorizontalRule',
+    'euiHorizontalRule',
     sizeToClassNameMap[size],
     marginToClassNameMap[margin],
     className
@@ -41,14 +41,14 @@ export const KuiHorizontalRule = ({
   );
 };
 
-KuiHorizontalRule.propTypes = {
+EuiHorizontalRule.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
   margin: PropTypes.oneOf(MARGINS),
 };
 
-KuiHorizontalRule.defaultProps = {
+EuiHorizontalRule.defaultProps = {
   size: 'full',
   margin: 'large',
 };

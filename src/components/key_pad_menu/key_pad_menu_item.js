@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const renderContent = (children, label) => (
-  <div className="kuiKeyPadMenuItem__inner">
-    <div className="kuiKeyPadMenuItem__icon">
+  <div className="euiKeyPadMenuItem__inner">
+    <div className="euiKeyPadMenuItem__icon">
       {children}
     </div>
 
-    <p className="kuiKeyPadMenuItem__label">
+    <p className="euiKeyPadMenuItem__label">
       {label}
     </p>
   </div>
@@ -19,8 +19,8 @@ const commonPropTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export const KuiKeyPadMenuItem = ({ href, label, children, className, ...rest }) => {
-  const classes = classNames('kuiKeyPadMenuItem', className);
+export const EuiKeyPadMenuItem = ({ href, label, children, className, ...rest }) => {
+  const classes = classNames('euiKeyPadMenuItem', className);
 
   return (
     <a
@@ -33,12 +33,12 @@ export const KuiKeyPadMenuItem = ({ href, label, children, className, ...rest })
   );
 };
 
-KuiKeyPadMenuItem.propTypes = Object.assign({
+EuiKeyPadMenuItem.propTypes = Object.assign({
   href: PropTypes.string,
 }, commonPropTypes);
 
-export const KuiKeyPadMenuItemButton = ({ onClick, label, children, className, ...rest }) => {
-  const classes = classNames('kuiKeyPadMenuItem', className);
+export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, ...rest }) => {
+  const classes = classNames('euiKeyPadMenuItem', className);
 
   return (
     <button
@@ -51,6 +51,6 @@ export const KuiKeyPadMenuItemButton = ({ onClick, label, children, className, .
   );
 };
 
-KuiKeyPadMenuItemButton.propTypes = Object.assign({
+EuiKeyPadMenuItemButton.propTypes = Object.assign({
   onClick: PropTypes.func,
 }, commonPropTypes);

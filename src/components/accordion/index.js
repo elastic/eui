@@ -1,3 +1,3 @@
 export {
-  KuiAccordion,
+  EuiAccordion,
 } from './accordion';

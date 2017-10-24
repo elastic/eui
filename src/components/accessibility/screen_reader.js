@@ -3,8 +3,8 @@ import { cloneElement } from 'react';
 import classNames from 'classnames';
 
 
-export const KuiScreenReaderOnly = ({ children }) => {
-  const classes = classNames('kuiScreenReaderOnly', children.props.className);
+export const EuiScreenReaderOnly = ({ children }) => {
+  const classes = classNames('euiScreenReaderOnly', children.props.className);
 
   const props = Object.assign({}, children.props, {
     className: classes
@@ -13,6 +13,6 @@ export const KuiScreenReaderOnly = ({ children }) => {
   return cloneElement(children, props);
 };
 
-KuiScreenReaderOnly.propTypes = {
+EuiScreenReaderOnly.propTypes = {
   children: PropTypes.node
 };

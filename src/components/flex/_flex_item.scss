@@ -1,7 +1,7 @@
 /**
- * 1. Allow KuiPanels to expand to fill the item.
+ * 1. Allow EuiPanels to expand to fill the item.
  */
-.kuiFlexItem {
+.euiFlexItem {
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
 
@@ -9,7 +9,7 @@
    * 1. We need the extra specificity here to override the FlexGroup > FlexItem styles.
    * 2. FlexItem can be manually set to not grow if needed.
    */
-  &.kuiFlexItem--flexGrowZero { /* 1 */
+  &.euiFlexItem--flexGrowZero { /* 1 */
     flex-grow: 0; /* 2 */
     flex-basis: auto; /* 2 */
   }
@@ -17,10 +17,10 @@
 
 // On mobile we force them to stack and act the same.
 @include screenXSmall {
-  .kuiFlexItem {
+  .euiFlexItem {
     width: 100% !important;
     flex-basis: 100% !important;
     margin-left: 0 !important;
-    margin-bottom: $kuiSize !important;
+    margin-bottom: $euiSize !important;
   }
 }

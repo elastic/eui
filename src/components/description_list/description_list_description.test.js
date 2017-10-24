@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiDescriptionListDescription } from './description_list_description';
+import { EuiDescriptionListDescription } from './description_list_description';
 
-describe('KuiDescriptionListDescription', () => {
+describe('EuiDescriptionListDescription', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiDescriptionListDescription {...requiredProps} />
+      <EuiDescriptionListDescription {...requiredProps} />
     );
 
     expect(component)

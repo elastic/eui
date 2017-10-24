@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSpacer is rendered 1`] = `
+exports[`EuiSpacer is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiSpacer testClass1 testClass2"
+  class="euiSpacer testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

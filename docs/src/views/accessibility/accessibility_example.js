@@ -9,8 +9,8 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
-  KuiLink,
+  EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 
@@ -37,8 +37,8 @@ export default props => (
       text={
         <p>
           You can make interactive elements keyboard-accessible with this component. This is necessary
-          for non-button elements and <KuiCode>a</KuiCode> tags without
-          <KuiCode>href</KuiCode> attributes.
+          for non-button elements and <EuiCode>a</EuiCode> tags without
+          <EuiCode>href</EuiCode> attributes.
         </p>
       }
       demo={
@@ -60,11 +60,11 @@ export default props => (
           <p>
             This class can be useful to add accessibility to older designs that are
             still in use, but it shouldn&rsquo;t be a permanent solution. See {(
-              <KuiLink
+              <EuiLink
                 href="http://webaim.org/techniques/css/invisiblecontent/"
               >
                 http://webaim.org/techniques/css/invisiblecontent/
-              </KuiLink>
+              </EuiLink>
             )} for more information.
           </p>
           <p>

@@ -1,63 +1,63 @@
-.kuiFlexGroup {
+.euiFlexGroup {
   display: flex;
   align-items: stretch;
 
-  .kuiFlexItem {
+  .euiFlexItem {
     flex-grow: 1;
     flex-basis: 0;
   }
 
   // Gutter Sizes
-  &.kuiFlexGroup--gutterSmall > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeS;
+  &.euiFlexGroup--gutterSmall > .euiFlexItem + .euiFlexItem {
+    margin-left: $euiSizeS;
   }
 
-  &.kuiFlexGroup--gutterMedium > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSize;
+  &.euiFlexGroup--gutterMedium > .euiFlexItem + .euiFlexItem {
+    margin-left: $euiSize;
   }
 
-  &.kuiFlexGroup--gutterLarge > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeL;
+  &.euiFlexGroup--gutterLarge > .euiFlexItem + .euiFlexItem {
+    margin-left: $euiSizeL;
   }
 
-  &.kuiFlexGroup--gutterExtraLarge > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeXXL;
+  &.euiFlexGroup--gutterExtraLarge > .euiFlexItem + .euiFlexItem {
+    margin-left: $euiSizeXXL;
   }
 
   // Justify the grid
-  &.kuiFlexGroup--justifyContentSpaceBetween {
+  &.euiFlexGroup--justifyContentSpaceBetween {
     justify-content: space-between;
   }
 
-  &.kuiFlexGroup--justifyContentSpaceAround {
+  &.euiFlexGroup--justifyContentSpaceAround {
     justify-content: space-around;
   }
 
-  &.kuiFlexGroup--justifyContentCenter {
+  &.euiFlexGroup--justifyContentCenter {
     justify-content: center;
   }
 
-  &.kuiFlexGroup--justifyContentFlexEnd {
+  &.euiFlexGroup--justifyContentFlexEnd {
     justify-content: flex-end;
   }
 
   // Align Items
-  &.kuiFlexGroup--alignItemsStart {
+  &.euiFlexGroup--alignItemsStart {
     align-items: flex-start;
   }
 
-  &.kuiFlexGroup--alignItemsCenter {
+  &.euiFlexGroup--alignItemsCenter {
     align-items: center;
   }
 
-  &.kuiFlexGroup--alignItemsEnd {
+  &.euiFlexGroup--alignItemsEnd {
     align-items: flex-end;
   }
 }
 
 
 @include screenXSmall {
-  .kuiFlexGroup {
+  .euiFlexGroup {
     flex-wrap: wrap;
   }
 }

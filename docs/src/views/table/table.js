@@ -3,22 +3,22 @@ import React, {
 } from 'react';
 
 import {
-  KuiCheckbox,
-  KuiIcon,
-  KuiButton,
-  KuiLink,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiFieldSearch,
-  KuiSpacer,
-  KuiTable,
-  KuiTableBody,
-  KuiTableHeader,
-  KuiTableHeaderCell,
-  KuiTableHeaderCellCheckbox,
-  KuiTableRow,
-  KuiTableRowCell,
-  KuiTableRowCellCheckbox,
+  EuiCheckbox,
+  EuiIcon,
+  EuiButton,
+  EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFieldSearch,
+  EuiSpacer,
+  EuiTable,
+  EuiTableBody,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableHeaderCellCheckbox,
+  EuiTableRow,
+  EuiTableRowCell,
+  EuiTableRowCellCheckbox,
 } from '../../../../src/components';
 
 import {
@@ -191,7 +191,7 @@ export class Table extends Component {
       label: 'Type',
       alignment: LEFT_ALIGNMENT,
       width: '60px',
-      cellProvider: cell => <KuiIcon type={cell} size="medium" />,
+      cellProvider: cell => <EuiIcon type={cell} size="medium" />,
     }, {
       id: 'dateCreated',
       label: 'Date created',
@@ -253,22 +253,22 @@ export class Table extends Component {
     return this.columns.map((column, columnIndex) => {
       if (column.isCheckbox) {
         return (
-          <KuiTableHeaderCellCheckbox
+          <EuiTableHeaderCellCheckbox
             key={column.id}
             width={column.width}
           >
-            <KuiCheckbox
+            <EuiCheckbox
               id="selectAllCheckbox"
               checked={this.areAllItemsSelected()}
               onChange={this.toggleAll.bind(this)}
               type="inList"
             />
-          </KuiTableHeaderCellCheckbox>
+          </EuiTableHeaderCellCheckbox>
         );
       }
 
       return (
-        <KuiTableHeaderCell
+        <EuiTableHeaderCell
           key={column.id}
           align={this.columns[columnIndex].alignment}
           width={column.width}
@@ -277,7 +277,7 @@ export class Table extends Component {
           isSortAscending={this.sortableProperties.isAscendingByName(column.id)}
         >
           {column.label}
-        </KuiTableHeaderCell>
+        </EuiTableHeaderCell>
       );
     });
   }
@@ -291,19 +291,19 @@ export class Table extends Component {
 
         if (column.isCheckbox) {
           return (
-            <KuiTableRowCellCheckbox key={column.id}>
-              <KuiCheckbox
+            <EuiTableRowCellCheckbox key={column.id}>
+              <EuiCheckbox
                 id={`${item.id}-checkbox`}
                 checked={this.isItemSelected(item.id)}
                 onChange={this.toggleItem.bind(this, item.id)}
                 type="inList"
               />
-            </KuiTableRowCellCheckbox>
+            </EuiTableRowCellCheckbox>
           );
         } else if (column.cellProvider) {
           child = column.cellProvider(cell);
         } else if (cell.isLink) {
-          child = <KuiLink href="">{cell.value}</KuiLink>;
+          child = <EuiLink href="">{cell.value}</EuiLink>;
         } else if (cell.isWrapped) {
           child = cell.value;
         } else {
@@ -311,23 +311,23 @@ export class Table extends Component {
         }
 
         return (
-          <KuiTableRowCell
+          <EuiTableRowCell
             key={column.id}
             align={column.alignment}
             wrapText={cell && cell.isWrapped}
           >
             {child}
-          </KuiTableRowCell>
+          </EuiTableRowCell>
         );
       });
 
       return (
-        <KuiTableRow
+        <EuiTableRow
           key={item.id}
           isSelected={this.isItemSelected(item.id)}
         >
           {cells}
-        </KuiTableRow>
+        </EuiTableRow>
       );
     });
   }
@@ -337,35 +337,35 @@ export class Table extends Component {
 
     if (this.areAnyRowsSelected() > 0) {
       optionalActionButtons = (
-        <KuiFlexItem grow={false}>
-          <KuiButton type="danger">Delete selected</KuiButton>
-        </KuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton type="danger">Delete selected</EuiButton>
+        </EuiFlexItem>
       );
     }
 
     return (
       <div>
-        <KuiFlexGroup gutterSize="medium">
+        <EuiFlexGroup gutterSize="medium">
           {optionalActionButtons}
-          <KuiFlexItem>
-            <KuiFieldSearch fullWidth placeholder="Search..." />
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiButton type="primary">Add new thing</KuiButton>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+          <EuiFlexItem>
+            <EuiFieldSearch fullWidth placeholder="Search..." />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton type="primary">Add new thing</EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiSpacer size="m" />
+        <EuiSpacer size="m" />
 
-        <KuiTable>
-          <KuiTableHeader>
+        <EuiTable>
+          <EuiTableHeader>
             {this.renderHeaderCells()}
-          </KuiTableHeader>
+          </EuiTableHeader>
 
-          <KuiTableBody>
+          <EuiTableBody>
             {this.renderRows()}
-          </KuiTableBody>
-        </KuiTable>
+          </EuiTableBody>
+        </EuiTable>
       </div>
     );
   }

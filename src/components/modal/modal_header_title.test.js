@@ -3,10 +3,10 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiModalHeaderTitle,
+  EuiModalHeaderTitle,
 } from './modal_header_title';
 
-test('renders KuiModalHeaderTitle', () => {
-  const component = <KuiModalHeaderTitle {...requiredProps}>children</KuiModalHeaderTitle>;
+test('renders EuiModalHeaderTitle', () => {
+  const component = <EuiModalHeaderTitle {...requiredProps}>children</EuiModalHeaderTitle>;
   expect(render(component)).toMatchSnapshot();
 });

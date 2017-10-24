@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiPopover } from './popover';
+import { EuiPopover } from './popover';
 
-describe('KuiPopover', () => {
+describe('EuiPopover', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiPopover
+      <EuiPopover
         button={<button />}
         closePopover={() => {}}
         {...requiredProps}
@@ -20,12 +20,12 @@ describe('KuiPopover', () => {
 
   test('children is rendered', () => {
     const component = render(
-      <KuiPopover
+      <EuiPopover
         button={<button />}
         closePopover={() => {}}
       >
         Children
-      </KuiPopover>
+      </EuiPopover>
     );
 
     expect(component)
@@ -35,7 +35,7 @@ describe('KuiPopover', () => {
   describe('anchorPosition', () => {
     test('defaults to center', () => {
       const component = render(
-        <KuiPopover
+        <EuiPopover
           button={<button />}
           closePopover={() => {}}
         />
@@ -47,7 +47,7 @@ describe('KuiPopover', () => {
 
     test('left is rendered', () => {
       const component = render(
-        <KuiPopover
+        <EuiPopover
           button={<button />}
           closePopover={() => {}}
           anchorPosition="left"
@@ -60,7 +60,7 @@ describe('KuiPopover', () => {
 
     test('right is rendered', () => {
       const component = render(
-        <KuiPopover
+        <EuiPopover
           button={<button />}
           closePopover={() => {}}
           anchorPosition="downRight"
@@ -75,7 +75,7 @@ describe('KuiPopover', () => {
   describe('isOpen', () => {
     test('defaults to false', () => {
       const component = render(
-        <KuiPopover
+        <EuiPopover
           button={<button />}
           closePopover={() => {}}
         />
@@ -87,7 +87,7 @@ describe('KuiPopover', () => {
 
     test('renders true', () => {
       const component = render(
-        <KuiPopover
+        <EuiPopover
           button={<button />}
           closePopover={() => {}}
           isOpen={true}

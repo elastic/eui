@@ -1,40 +1,40 @@
 import React from 'react';
 
 import {
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiPageHeader,
-  KuiPageHeaderSection,
-  KuiTitle,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiPage>
-    <KuiPageHeader>
-      <KuiPageHeaderSection>
-        <KuiTitle size="large">
+  <EuiPage>
+    <EuiPageHeader>
+      <EuiPageHeaderSection>
+        <EuiTitle size="large">
           <h1>Page title</h1>
-        </KuiTitle>
-      </KuiPageHeaderSection>
-    </KuiPageHeader>
-    <KuiPageBody>
-      <KuiPageContent>
-        <KuiPageContentHeader>
-          <KuiPageContentHeaderSection>
-            <KuiTitle>
+        </EuiTitle>
+      </EuiPageHeaderSection>
+    </EuiPageHeader>
+    <EuiPageBody>
+      <EuiPageContent>
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
               <h2>Content title</h2>
-            </KuiTitle>
-          </KuiPageContentHeaderSection>
-        </KuiPageContentHeader>
-        <KuiPageContentBody>
+            </EuiTitle>
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
+        <EuiPageContentBody>
           Content body
-        </KuiPageContentBody>
-      </KuiPageContent>
-    </KuiPageBody>
-  </KuiPage>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
 );
 

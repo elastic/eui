@@ -4,24 +4,24 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
-export const KuiTableHeaderButton = ({
+export const EuiTableHeaderButton = ({
   children,
   className,
   iconType,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableHeaderButton', className);
+  const classes = classNames('euiTableHeaderButton', className);
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
   if (iconType) {
     buttonIcon = (
-      <KuiIcon
-        className="kuiTableHeaderButton__icon"
+      <EuiIcon
+        className="euiTableHeaderButton__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -40,7 +40,7 @@ export const KuiTableHeaderButton = ({
   );
 };
 
-KuiTableHeaderButton.propTypes = {
+EuiTableHeaderButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),

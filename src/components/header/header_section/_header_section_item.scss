@@ -1,34 +1,34 @@
 // Header items are the small icon links that pop up menus.
 
-.kuiHeaderSectionItem {
+.euiHeaderSectionItem {
   position: relative;
 
   &:hover {
-    background: $kuiColorLightestShade;
+    background: $euiColorLightestShade;
   }
 
   &:after {
     position: absolute;
     content: "";
     width: 1px;
-    top: $kuiSize;
+    top: $euiSize;
     bottom: 0;
-    background: $kuiBorderColor;
+    background: $euiBorderColor;
     left: 0;
   }
 }
 
-  .kuiHeaderSectionItem__button {
-    height: $kuiHeaderChildSize;
-    min-width: $kuiHeaderChildSize;
+  .euiHeaderSectionItem__button {
+    height: $euiHeaderChildSize;
+    min-width: $euiHeaderChildSize;
     text-align: center;
 
     &:focus {
-      background: $kuiFocusBackgroundColor;
+      background: $euiFocusBackgroundColor;
     }
   }
 
-.kuiHeaderSectionItem--borderRight {
+.euiHeaderSectionItem--borderRight {
   &:after {
     left: auto;
     right: 0;

@@ -2,19 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 
 const colorsToClassNameMap = {
-  'primary': 'kuiLink--primary',
-  'subdued': 'kuiLink--subdued',
-  'secondary': 'kuiLink--secondary',
-  'accent': 'kuiLink--accent',
-  'danger': 'kuiLink--danger',
-  'warning': 'kuiLink--warning',
-  'ghost': 'kuiLink--ghost',
+  'primary': 'euiLink--primary',
+  'subdued': 'euiLink--subdued',
+  'secondary': 'euiLink--secondary',
+  'accent': 'euiLink--accent',
+  'danger': 'euiLink--danger',
+  'warning': 'euiLink--warning',
+  'ghost': 'euiLink--ghost',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);
 
-export const KuiLink = ({ children, color, className, onClick, ...rest }) => {
-  const classes = classNames('kuiLink', colorsToClassNameMap[color], className);
+export const EuiLink = ({ children, color, className, onClick, ...rest }) => {
+  const classes = classNames('euiLink', colorsToClassNameMap[color], className);
 
   let link;
   if (onClick) {
@@ -43,6 +43,6 @@ export const KuiLink = ({ children, color, className, onClick, ...rest }) => {
   );
 };
 
-KuiLink.defaultProps = {
+EuiLink.defaultProps = {
   color: 'primary',
 };

@@ -1,4 +1,4 @@
-.kuiPageBody {
+.euiPageBody {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -6,7 +6,7 @@
 }
 
 @include screenXSmall {
-  .kuiPageBody {
+  .euiPageBody {
     flex-direction: column;
   }
 }

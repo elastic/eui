@@ -1,18 +1,18 @@
-.kuiDescriptionList {
+.euiDescriptionList {
 
-  .kuiDescriptionList__title {
-    font-weight: $kuiFontWeightMedium;
+  .euiDescriptionList__title {
+    font-weight: $euiFontWeightMedium;
   }
 
-  .kuiDescriptionList__description {
-    color: $kuiColorDarkShade;
+  .euiDescriptionList__description {
+    color: $euiColorDarkShade;
   }
 
-  &.kuiDescriptionList--row {
+  &.euiDescriptionList--row {
 
-    .kuiDescriptionList__title {
-      @include kuiFontSizeM;
-      margin-top: $kuiSize;
+    .euiDescriptionList__title {
+      @include euiFontSizeM;
+      margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
       &:first-of-type {
@@ -20,40 +20,40 @@
       }
     }
 
-    .kuiDescriptionList__description {
-      @include kuiFontSizeS;
+    .euiDescriptionList__description {
+      @include euiFontSizeS;
     }
 
     // Lists can be aligned.
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
       text-align: center;
     }
 
-    &.kuiDescriptionList--right {
+    &.euiDescriptionList--right {
       text-align: right;
     }
 
     // Compressed gets smaller fonts.
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
-        @include kuiFontSizeS;
+      .euiDescriptionList__title {
+        @include euiFontSizeS;
       }
 
-      .kuiDescriptionList__description {
-        @include kuiFontSizeS;
+      .euiDescriptionList__description {
+        @include euiFontSizeS;
       }
     }
   }
 
 
-  &.kuiDescriptionList--column {
+  &.euiDescriptionList--column {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
 
     > * {
-      margin-top: $kuiSize;
+      margin-top: $euiSize;
     }
 
     // First two items don't have margin
@@ -61,49 +61,49 @@
       margin-top: 0;
     }
 
-    .kuiDescriptionList__title {
-      @include kuiFontSizeM;
+    .euiDescriptionList__title {
+      @include euiFontSizeM;
       flex-basis: 50%;
-      padding-right: $kuiSizeS;
+      padding-right: $euiSizeS;
     }
 
-    .kuiDescriptionList__description {
-      @include kuiFontSizeM;
+    .euiDescriptionList__description {
+      @include euiFontSizeM;
       flex-basis: 50%;
-      padding-left: $kuiSizeS;
+      padding-left: $euiSizeS;
     }
 
     // Align the title to smush against the description.
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
 
-      .kuiDescriptionList__title {
+      .euiDescriptionList__title {
         text-align: right;
       }
     }
 
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
-        @include kuiFontSizeS;
+      .euiDescriptionList__title {
+        @include euiFontSizeS;
       }
 
-      .kuiDescriptionList__description {
-        @include kuiFontSizeS;
+      .euiDescriptionList__description {
+        @include euiFontSizeS;
       }
     }
   }
 
-  &.kuiDescriptionList--inline {
+  &.euiDescriptionList--inline {
 
-    .kuiDescriptionList__title {
-      @include kuiFontSizeS;
+    .euiDescriptionList__title {
+      @include euiFontSizeS;
       display: inline;
-      border-radius: $kuiBorderRadius;
-      font-weight: $kuiFontWeightRegular;
-      background: $kuiColorLightestShade;
-      border: $kuiBorderThin;
-      padding:  0 $kuiSizeXS;
-      margin: 0 $kuiSizeXS;
+      border-radius: $euiBorderRadius;
+      font-weight: $euiFontWeightRegular;
+      background: $euiColorLightestShade;
+      border: $euiBorderThin;
+      padding:  0 $euiSizeXS;
+      margin: 0 $euiSizeXS;
 
       // Make sure the first <dt> doesn't get a margine.
       &:first-of-type {
@@ -111,25 +111,25 @@
       }
     }
 
-    .kuiDescriptionList__description {
-      @include kuiFontSizeS;
+    .euiDescriptionList__description {
+      @include euiFontSizeS;
       display: inline;
       word-break: break-all;
     }
 
     // Compressed when inline is even smaller.
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
-        @include kuiFontSizeXS;
+      .euiDescriptionList__title {
+        @include euiFontSizeXS;
       }
 
-      .kuiDescriptionList__description {
-        @include kuiFontSizeXS;
+      .euiDescriptionList__description {
+        @include euiFontSizeXS;
       }
     }
 
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
       text-align: center;
     }
   }

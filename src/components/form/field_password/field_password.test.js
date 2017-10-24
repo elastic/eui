@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiFieldPassword } from './field_password';
+import { EuiFieldPassword } from './field_password';
 
-describe('KuiFieldPassword', () => {
+describe('EuiFieldPassword', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiFieldPassword {...requiredProps} />
+      <EuiFieldPassword {...requiredProps} />
     );
 
     expect(component)

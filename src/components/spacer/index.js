@@ -1,3 +1,3 @@
 export {
-  KuiSpacer,
+  EuiSpacer,
 } from './spacer';

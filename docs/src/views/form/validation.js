@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiForm,
-  KuiSelect,
-  KuiFormRow,
-  KuiTextArea,
-  KuiFieldText,
+  EuiButton,
+  EuiForm,
+  EuiSelect,
+  EuiFormRow,
+  EuiTextArea,
+  EuiFieldText,
 } from '../../../../src/components';
 
 function makeId() {
@@ -32,9 +32,9 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton fill type="danger" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton fill type="danger" onClick={this.onButtonClick.bind(this)}>
         Toggle errors
-      </KuiButton>
+      </EuiButton>
     );
 
     let errors;
@@ -48,50 +48,50 @@ export default class extends Component {
 
     return (
       <div>
-        <KuiForm
+        <EuiForm
           isInvalid={this.state.showErrors}
           error={errors}
         >
-          <KuiFormRow
+          <EuiFormRow
             id={makeId()}
             label="Validation only"
             isInvalid={this.state.showErrors}
           >
-            <KuiFieldText
+            <EuiFieldText
               name="first"
               isInvalid={this.state.showErrors}
             />
-          </KuiFormRow>
+          </EuiFormRow>
 
-          <KuiFormRow
+          <EuiFormRow
             id={makeId()}
             label="Validation with help text and errors"
             helpText="I am some friendly help text."
             isInvalid={this.state.showErrors}
             error={errors}
           >
-            <KuiFieldText
+            <EuiFieldText
               name="text"
               isInvalid={this.state.showErrors}
             />
-          </KuiFormRow>
+          </EuiFormRow>
 
-          <KuiFormRow
+          <EuiFormRow
             id={makeId()}
             label="Text area"
             isInvalid={this.state.showErrors}
           >
-            <KuiTextArea
+            <EuiTextArea
               name="area"
               isInvalid={this.state.showErrors}
             />
-          </KuiFormRow>
+          </EuiFormRow>
 
-          <KuiFormRow
+          <EuiFormRow
             label="Select"
             isInvalid={this.state.showErrors}
           >
-            <KuiSelect
+            <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
                 { value: 'option_two', text: 'Option two' },
@@ -99,10 +99,10 @@ export default class extends Component {
               ]}
               isInvalid={this.state.showErrors}
             />
-          </KuiFormRow>
+          </EuiFormRow>
 
           {button}
-        </KuiForm>
+        </EuiForm>
       </div>
     );
   }

@@ -1,32 +1,32 @@
 import React from 'react';
 
 import {
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiTitle,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiPage>
-    <KuiPageBody>
-      <KuiPageContent verticalPosition="center" horizontalPosition="center">
-        <KuiPageContentHeader>
-          <KuiPageContentHeaderSection>
-            <KuiTitle>
+  <EuiPage>
+    <EuiPageBody>
+      <EuiPageContent verticalPosition="center" horizontalPosition="center">
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
               <h2>Content title</h2>
-            </KuiTitle>
-          </KuiPageContentHeaderSection>
-        </KuiPageContentHeader>
-        <KuiPageContentBody>
+            </EuiTitle>
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
+        <EuiPageContentBody>
           Content body
-        </KuiPageContentBody>
-      </KuiPageContent>
-    </KuiPageBody>
-  </KuiPage>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
 );
 
 

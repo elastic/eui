@@ -3,13 +3,13 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiPopover,
-  KuiForm,
-  KuiRange,
-  KuiFormRow,
-  KuiSwitch,
-  KuiFieldText,
+  EuiButton,
+  EuiPopover,
+  EuiForm,
+  EuiRange,
+  EuiFormRow,
+  EuiSwitch,
+  EuiFieldText,
 } from '../../../../src/components';
 
 function makeId() {
@@ -46,52 +46,52 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton
+      <EuiButton
         iconSide="right"
         fill
         iconType="arrowDown"
         onClick={this.onButtonClick}
       >
         Form in a popover
-      </KuiButton>
+      </EuiButton>
     );
 
     const formSample = (
-      <KuiForm>
-        <KuiFormRow>
-          <KuiSwitch
+      <EuiForm>
+        <EuiFormRow>
+          <EuiSwitch
             id={makeId()}
             name="popswitch"
             label="Isn't this popover form cool?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="A text field"
         >
-          <KuiFieldText name="popfirst" />
-        </KuiFormRow>
+          <EuiFieldText name="popfirst" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Range"
           helpText="Some help text for the range"
         >
-          <KuiRange
+          <EuiRange
             min={0}
             max={100}
             name="poprange"
           />
-        </KuiFormRow>
-      </KuiForm>
+        </EuiFormRow>
+      </EuiForm>
     );
 
     return (
       <div>
-        <KuiPopover
+        <EuiPopover
           button={button}
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover.bind(this)}
@@ -99,7 +99,7 @@ export default class extends Component {
           <div style={{ width: '300px' }}>
             {formSample}
           </div>
-        </KuiPopover>
+        </EuiPopover>
       </div>
     );
   }

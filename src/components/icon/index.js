@@ -1,4 +1,4 @@
 export {
-  KuiIcon,
+  EuiIcon,
   TYPES as ICON_TYPES,
 } from './icon';

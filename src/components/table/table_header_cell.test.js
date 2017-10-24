@@ -3,18 +3,18 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiTableHeaderCell,
+  EuiTableHeaderCell,
 } from './table_header_cell';
 
 import {
   RIGHT_ALIGNMENT,
 } from '../../services';
 
-test('renders KuiTableHeaderCell', () => {
+test('renders EuiTableHeaderCell', () => {
   const component = (
-    <KuiTableHeaderCell {...requiredProps}>
+    <EuiTableHeaderCell {...requiredProps}>
       children
-    </KuiTableHeaderCell>
+    </EuiTableHeaderCell>
   );
 
   expect(render(component)).toMatchSnapshot();
@@ -23,7 +23,7 @@ test('renders KuiTableHeaderCell', () => {
 describe('align', () => {
   test('defaults to left', () => {
     const component = (
-      <KuiTableHeaderCell />
+      <EuiTableHeaderCell />
     );
 
     expect(render(component)).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe('align', () => {
 
   test('renders right when specified', () => {
     const component = (
-      <KuiTableHeaderCell align={RIGHT_ALIGNMENT} />
+      <EuiTableHeaderCell align={RIGHT_ALIGNMENT} />
     );
 
     expect(render(component)).toMatchSnapshot();

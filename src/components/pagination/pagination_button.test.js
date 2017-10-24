@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiPaginationButton } from './pagination_button';
+import { EuiPaginationButton } from './pagination_button';
 
-describe('KuiPaginationButton', () => {
+describe('EuiPaginationButton', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiPaginationButton {...requiredProps} />
+      <EuiPaginationButton {...requiredProps} />
     );
 
     expect(component)

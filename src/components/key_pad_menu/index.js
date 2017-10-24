@@ -1,8 +1,8 @@
 export {
-  KuiKeyPadMenu,
+  EuiKeyPadMenu,
 } from './key_pad_menu';
 
 export {
-  KuiKeyPadMenuItem,
-  KuiKeyPadMenuItemButton,
+  EuiKeyPadMenuItem,
+  EuiKeyPadMenuItemButton,
 } from './key_pad_menu_item';

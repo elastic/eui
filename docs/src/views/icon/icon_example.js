@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Icons from './icons';
@@ -46,20 +46,20 @@ export default props => (
       text={
         <div>
           <p>
-            <KuiCode>KuiIcon</KuiCode> can build out an icon from our SVG
+            <EuiCode>EuiIcon</EuiCode> can build out an icon from our SVG
             icon library. Icons can be resized and recolored (through a
-            CSS <KuiCode>Fill</KuiCode>) decleration.
+            CSS <EuiCode>Fill</EuiCode>) decleration.
           </p>
           <p>
             New icons should be placed in
-            the <KuiCode>/icons/assets/</KuiCode> folder on
-            a <KuiCode>16x16</KuiCode> empty canvas.
+            the <EuiCode>/icons/assets/</EuiCode> folder on
+            a <EuiCode>16x16</EuiCode> empty canvas.
             Icons in the general set should be monochromatic and the code
             itself <strong>should not contain any fill attributes</strong>. Use the SVGO plugin
             for Sketch when exporting to compress / clean your SVG of junk.
           </p>
           <p>
-            Note: <KuiCode>guideDemo__icon</KuiCode> styling is applied on the
+            Note: <EuiCode>guideDemo__icon</EuiCode> styling is applied on the
             below grid for documentation presentation only. Do not copy
             this class into production.
           </p>
@@ -81,7 +81,7 @@ export default props => (
       }]}
       text={
         <p>
-          App logos are usually displayed at <KuiCode>32x32</KuiCode> or above
+          App logos are usually displayed at <EuiCode>32x32</EuiCode> or above
           and can contain multiple colors.
         </p>
       }
@@ -120,8 +120,8 @@ export default props => (
       }]}
       text={
         <p>
-          Use the <KuiCode>size</KuiCode> prop to automatically size your icons.
-          Medium is the default, and will output a <KuiCode>16x16</KuiCode> icons.
+          Use the <EuiCode>size</EuiCode> prop to automatically size your icons.
+          Medium is the default, and will output a <EuiCode>16x16</EuiCode> icons.
         </p>
       }
       demo={
@@ -140,8 +140,8 @@ export default props => (
       }]}
       text={
         <p>
-          By default, this component will use a human-readable version of the <KuiCode>type</KuiCode>
-          to title the SVG. You can specify a <KuiCode>title</KuiCode> prop to override this.
+          By default, this component will use a human-readable version of the <EuiCode>type</EuiCode>
+          to title the SVG. You can specify a <EuiCode>title</EuiCode> prop to override this.
         </p>
       }
       demo={

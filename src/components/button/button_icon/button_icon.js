@@ -4,20 +4,20 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../../icon';
 
 const typeToClassNameMap = {
-  primary: 'kuiButtonIcon--primary',
-  danger: 'kuiButtonIcon--danger',
-  disabled: 'kuiButtonIcon--disabled',
-  ghost: 'kuiButtonIcon--ghost',
+  primary: 'euiButtonIcon--primary',
+  danger: 'euiButtonIcon--danger',
+  disabled: 'euiButtonIcon--disabled',
+  ghost: 'euiButtonIcon--ghost',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
 
-export const KuiButtonIcon = ({
+export const EuiButtonIcon = ({
   className,
   iconType,
   type,
@@ -26,7 +26,7 @@ export const KuiButtonIcon = ({
 }) => {
 
   const classes = classNames(
-    'kuiButtonIcon',
+    'euiButtonIcon',
     typeToClassNameMap[type],
     className,
   );
@@ -36,8 +36,8 @@ export const KuiButtonIcon = ({
 
   if (iconType) {
     buttonIcon = (
-      <KuiIcon
-        className="kuiButtonIcon__icon"
+      <EuiIcon
+        className="euiButtonIcon__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -56,7 +56,7 @@ export const KuiButtonIcon = ({
   );
 };
 
-KuiButtonIcon.propTypes = {
+EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
@@ -64,6 +64,6 @@ KuiButtonIcon.propTypes = {
   isDisabled: PropTypes.bool,
 };
 
-KuiButtonIcon.defaultProps = {
+EuiButtonIcon.defaultProps = {
   type: 'primary',
 };

@@ -4,9 +4,9 @@ import {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiGlobalToastListItem = ({ isDismissed, children }) => {
-  const classes = classNames('kuiGlobalToastListItem', children.props.className, {
-    'kuiGlobalToastListItem-isDismissed': isDismissed,
+export const EuiGlobalToastListItem = ({ isDismissed, children }) => {
+  const classes = classNames('euiGlobalToastListItem', children.props.className, {
+    'euiGlobalToastListItem-isDismissed': isDismissed,
   });
 
   return cloneElement(children, Object.assign({}, children.props, {
@@ -14,7 +14,7 @@ export const KuiGlobalToastListItem = ({ isDismissed, children }) => {
   }));
 };
 
-KuiGlobalToastListItem.propTypes = {
+EuiGlobalToastListItem.propTypes = {
   isDismissed: PropTypes.bool,
   children: PropTypes.node,
 };
