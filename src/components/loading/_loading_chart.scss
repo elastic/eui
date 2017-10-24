@@ -15,21 +15,21 @@
   animation: kuiLoadingChart 1s infinite;
 
   &:nth-child(1) {
-    background-color: $kuiColorPrimary;
+    background-color: $euiColorPrimary;
   }
 
   &:nth-child(2) {
-    background-color: $kuiColorSecondary;
+    background-color: $euiColorSecondary;
     animation-delay: .1s;
   }
 
   &:nth-child(3) {
-    background-color: $kuiColorAccent;
+    background-color: $euiColorAccent;
     animation-delay: .2s;
   }
 
   &:nth-child(4) {
-    background-color: $kuiColorDarkestShade;
+    background-color: $euiColorDarkestShade;
     animation-delay: .3s;
   }
 }
@@ -37,44 +37,44 @@
 .kuiLoadingChart--mono {
   .kuiLoadingChart__bar {
     &:nth-child(1) {
-      background-color: $kuiColorLightShade;
+      background-color: $euiColorLightShade;
     }
     &:nth-child(2) {
-      background-color: darken($kuiColorLightShade, 4%);
+      background-color: darken($euiColorLightShade, 4%);
     }
     &:nth-child(3) {
-      background-color: darken($kuiColorLightShade, 8%);
+      background-color: darken($euiColorLightShade, 8%);
     }
     &:nth-child(4) {
-      background-color: darken($kuiColorLightShade, 12%);
+      background-color: darken($euiColorLightShade, 12%);
     }
   }
 }
 
 .kuiLoadingChart--medium {
-  height: $kuiSize;
+  height: $euiSize;
   > div {
-    width: $kuiSizeXS / 2;
-    margin-left: $kuiSizeXS / 2;
-    margin-bottom: $kuiSizeS;
+    width: $euiSizeXS / 2;
+    margin-left: $euiSizeXS / 2;
+    margin-bottom: $euiSizeS;
   }
 }
 
 .kuiLoadingChart--large {
-  height: $kuiSizeL;
+  height: $euiSizeL;
   > div {
-    width: $kuiSizeXS;
-    margin-left: $kuiSizeXS / 2;
-    margin-bottom: $kuiSizeL / 2;
+    width: $euiSizeXS;
+    margin-left: $euiSizeXS / 2;
+    margin-bottom: $euiSizeL / 2;
   }
 }
 
 .kuiLoadingChart--xLarge {
-  height: $kuiSizeXL;
+  height: $euiSizeXL;
   > div {
-    width: $kuiSizeS;
-    margin-left: $kuiSizeXS;
-    margin-bottom: $kuiSizeXL / 2;
+    width: $euiSizeS;
+    margin-left: $euiSizeXS;
+    margin-bottom: $euiSizeXL / 2;
   }
 }
 

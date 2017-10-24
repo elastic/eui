@@ -4,18 +4,18 @@
   @include kuiBottomShadowSmall;
 
   display: flex;
-  background: $kuiHeaderBackgroundColor;
-  border-bottom: $kuiBorderThin;
+  background: $euiHeaderBackgroundColor;
+  border-bottom: $euiBorderThin;
 }
 
   .kuiHeader__notification {
     display: inline-block;
-    border-radius: $kuiBorderRadius;
-    background: $kuiHeaderNotificationBackgroundColor;
-    color: $kuiColorEmptyShade;
-    font-size: $kuiFontSizeXS;
-    line-height: $kuiSize;
-    height: $kuiSize;
-    min-width: $kuiSize;
+    border-radius: $euiBorderRadius;
+    background: $euiHeaderNotificationBackgroundColor;
+    color: $euiColorEmptyShade;
+    font-size: $euiFontSizeXS;
+    line-height: $euiSize;
+    height: $euiSize;
+    min-width: $euiSize;
     vertical-align: middle;
   }

@@ -9,19 +9,19 @@
 
   // Gutter Sizes
   &.kuiFlexGroup--gutterSmall > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeS;
+    margin-left: $euiSizeS;
   }
 
   &.kuiFlexGroup--gutterMedium > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSize;
+    margin-left: $euiSize;
   }
 
   &.kuiFlexGroup--gutterLarge > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeL;
+    margin-left: $euiSizeL;
   }
 
   &.kuiFlexGroup--gutterExtraLarge > .kuiFlexItem + .kuiFlexItem {
-    margin-left: $kuiSizeXXL;
+    margin-left: $euiSizeXXL;
   }
 
   // Justify the grid

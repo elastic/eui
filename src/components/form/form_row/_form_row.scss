@@ -5,10 +5,10 @@
 .kuiFormRow {
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
-  max-width: $kuiFormMaxWidth;
+  max-width: $euiFormMaxWidth;
 
   + * {
-    margin-top: $kuiSizeL;
+    margin-top: $euiSizeL;
   }
 
   &.kuiFormRow--fullWidth {
@@ -16,7 +16,7 @@
   }
 
   &.kuiFormRow--hasEmptyLabelSpace {
-    padding-top: $kuiFontSizeXS + $kuiSizeS; /* 2 */
+    padding-top: $euiFontSizeXS + $euiSizeS; /* 2 */
   }
 
   .kuiFormRow__text + .kuiFormRow__text {

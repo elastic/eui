@@ -1,10 +1,10 @@
 .kuiAccordionForm__children {
-  padding: $kuiSizeL;
+  padding: $euiSizeL;
 }
 
 .kuiAccordionForm__extraAction {
   opacity: 0;
-  transition: opacity $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+  transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:focus {
     opacity: 1;
@@ -16,7 +16,7 @@
 }
 
 .kuiAccordionForm__button {
-  padding: $kuiSize;
+  padding: $euiSize;
 
   &:hover {
     text-decoration: none;
@@ -32,14 +32,14 @@
 
     .kuiAccordionForm__title {
       text-decoration: underline;
-      background-color: $kuiFocusBackgroundColor;
-      outline: solid $kuiSizeXS / 2 $kuiFocusBackgroundColor;
+      background-color: $euiFocusBackgroundColor;
+      outline: solid $euiSizeXS / 2 $euiFocusBackgroundColor;
     }
   }
 }
 .kuiAccordionForm {
-  border-top: $kuiBorderThin;
-  border-bottom: $kuiBorderThin;
+  border-top: $euiBorderThin;
+  border-bottom: $euiBorderThin;
 
   & + .kuiAccordionForm {
     border-top: none;

@@ -33,13 +33,13 @@ const colors = [
     color: 'kuiColorWarning',
     hex: '#E5830E',
   },
-  // $kuiColorEmptyShade: #FFF
-  // $kuiColorLightestShade: #F5F5F5
-  // $kuiColorLightShade: #D9D9D9
-  // $kuiColorMediumShade: #999
-  // $kuiColorDarkShade: #666
-  // $kuiColorDarkestShade: #3F3F3F
-  // $kuiColorFullShade: #000
+  // $euiColorEmptyShade: #FFF
+  // $euiColorLightestShade: #F5F5F5
+  // $euiColorLightShade: #D9D9D9
+  // $euiColorMediumShade: #999
+  // $euiColorDarkShade: #666
+  // $euiColorDarkestShade: #3F3F3F
+  // $euiColorFullShade: #000
 ];
 
 const grays = [

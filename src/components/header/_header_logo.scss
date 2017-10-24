@@ -4,14 +4,14 @@
   @include kuiLink;
 
   position: relative;
-  height: $kuiHeaderChildSize;
-  padding: $kuiSize $kuiSizeL;
+  height: $euiHeaderChildSize;
+  padding: $euiSize $euiSizeL;
   display: inline-block;
   vertical-align: middle;
 }
 
   .kuiHeaderLogo__icon {
-    height: $kuiSizeXL;
-    width: $kuiSizeL;
+    height: $euiSizeXL;
+    width: $euiSizeL;
     opacity: 1;
   }

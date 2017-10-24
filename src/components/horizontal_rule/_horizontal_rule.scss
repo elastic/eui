@@ -1,7 +1,7 @@
 .kuiHorizontalRule {
   border: none;
   height: 1px;
-  background-color: $kuiBorderColor;
+  background-color: $euiBorderColor;
 
   &.kuiHorizontalRule--full {
     width: 100%;
@@ -21,11 +21,11 @@
 }
 
 $ruleMargins: (
-  marginSmall: $kuiSizeS,
-  marginMedium: $kuiSizeM,
-  marginLarge: $kuiSizeL,
-  marginXLarge: $kuiSizeXL,
-  marginXXLarge: $kuiSizeXXL,
+  marginSmall: $euiSizeS,
+  marginMedium: $euiSizeM,
+  marginLarge: $euiSizeL,
+  marginXLarge: $euiSizeXL,
+  marginXXLarge: $euiSizeXXL,
 );
 
 @each $name, $size in $ruleMargins {

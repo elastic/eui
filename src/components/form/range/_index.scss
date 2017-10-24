@@ -1,32 +1,32 @@
-$kuiRangeTrackColor: $kuiColorLightShade;
-$kuiRangeThumbColor: $kuiColorEmptyShade;
+$euiRangeTrackColor: $euiColorLightShade;
+$euiRangeThumbColor: $euiColorEmptyShade;
 
-$kuiRangeThumbRadius: 50%;
-$kuiRangeThumbHeight: $kuiSize;
-$kuiRangeThumbWidth: $kuiSize;
-$kuiRangeBorderWidth: 2px;
-$kuiRangeBorderColor: $kuiTextColor;
+$euiRangeThumbRadius: 50%;
+$euiRangeThumbHeight: $euiSize;
+$euiRangeThumbWidth: $euiSize;
+$euiRangeBorderWidth: 2px;
+$euiRangeBorderColor: $euiTextColor;
 
-$kuiRangeTrackWidth: 100%;
-$kuiRangeTrackHeight: 2px;
-$kuiRangeTrackBorderWidth: 0;
-$kuiRangeTrackBorderColor: $kuiColorLightShade;
-$kuiRangeTrackRadius: $kuiBorderRadius;
+$euiRangeTrackWidth: 100%;
+$euiRangeTrackHeight: 2px;
+$euiRangeTrackBorderWidth: 0;
+$euiRangeTrackBorderColor: $euiColorLightShade;
+$euiRangeTrackRadius: $euiBorderRadius;
 
 @mixin track {
   cursor: pointer;
-  height: $kuiRangeTrackHeight;
-  transition: all $kuiAnimSpeedNormal ease-in;
-  width: $kuiRangeTrackWidth;
+  height: $euiRangeTrackHeight;
+  transition: all $euiAnimSpeedNormal ease-in;
+  width: $euiRangeTrackWidth;
 }
 
 @mixin thumb {
-  background: $kuiRangeThumbColor;
-  border: $kuiRangeBorderWidth solid $kuiRangeBorderColor;
-  border-radius: $kuiRangeThumbRadius;
+  background: $euiRangeThumbColor;
+  border: $euiRangeBorderWidth solid $euiRangeBorderColor;
+  border-radius: $euiRangeThumbRadius;
   cursor: pointer;
-  height: $kuiRangeThumbHeight;
-  width: $kuiRangeThumbWidth;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbWidth;
 }
 
 @import 'range';

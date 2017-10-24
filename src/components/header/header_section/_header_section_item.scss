@@ -4,27 +4,27 @@
   position: relative;
 
   &:hover {
-    background: $kuiColorLightestShade;
+    background: $euiColorLightestShade;
   }
 
   &:after {
     position: absolute;
     content: "";
     width: 1px;
-    top: $kuiSize;
+    top: $euiSize;
     bottom: 0;
-    background: $kuiBorderColor;
+    background: $euiBorderColor;
     left: 0;
   }
 }
 
   .kuiHeaderSectionItem__button {
-    height: $kuiHeaderChildSize;
-    min-width: $kuiHeaderChildSize;
+    height: $euiHeaderChildSize;
+    min-width: $euiHeaderChildSize;
     text-align: center;
 
     &:focus {
-      background: $kuiFocusBackgroundColor;
+      background: $euiFocusBackgroundColor;
     }
   }
 

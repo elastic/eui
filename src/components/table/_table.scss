@@ -8,23 +8,23 @@
   width: 100%;
   border: none;
   border-collapse: collapse;
-  background-color: $kuiColorEmptyShade;
+  background-color: $euiColorEmptyShade;
 }
 
 .kuiTable--compressed {
   .kuiTableCellContent {
-    padding: $kuiTableCellPaddingCompressed;
+    padding: $euiTableCellPaddingCompressed;
   }
 
   .kuiTableHeaderButton:focus {
-    outline: solid $kuiTableCellPaddingCompressed $kuiFocusBackgroundColor;
+    outline: solid $euiTableCellPaddingCompressed $euiFocusBackgroundColor;
   }
 }
 
 .kuiTableHeaderCell {
   @include kuiTableCell;
 
-  color: $kuiTitleColor;
+  color: $euiTitleColor;
 
   .kuiTableHeaderButton {
     text-align: left;
@@ -43,52 +43,52 @@
 
   &:hover, &:focus {
     text-decoration: underline;
-    color: $kuiColorPrimary;
+    color: $euiColorPrimary;
 
     .kuiTableSortIcon {
       display: block;
-      fill: $kuiColorPrimary;
+      fill: $euiColorPrimary;
     }
   }
 
   &:focus {
-    background: $kuiFocusBackgroundColor;
+    background: $euiFocusBackgroundColor;
   }
 }
 
 .kuiTableSortIcon {
-  margin-left: $kuiSizeXS;
-  fill: tintOrShade($kuiTitleColor, 80%, 70%);
+  margin-left: $euiSizeXS;
+  fill: tintOrShade($euiTitleColor, 80%, 70%);
 
   .kuiTableHeaderButton-isSorted & {
-    fill: $kuiTitleColor;
+    fill: $euiTitleColor;
   }
 }
 
 .kuiTableRow {
-  transition: background-color $kuiAnimSpeedFast $kuiAnimSlightResistance;
+  transition: background-color $euiAnimSpeedFast $euiAnimSlightResistance;
   &:hover {
-    background-color: tintOrShade($kuiColorLightestShade, 50%, 20%);
+    background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
   }
 
   &.kuiTableRow-isSelected {
-    background-color: transparentize($kuiColorPrimary, .95);
+    background-color: transparentize($euiColorPrimary, .95);
   }
 }
 
 .kuiTableRowCell {
   @include kuiTableCell;
 
-  color: $kuiTextColor;
-  border-top: $kuiBorderThin;
-  border-bottom: $kuiBorderThin;
+  color: $euiTextColor;
+  border-top: $euiBorderThin;
+  border-bottom: $euiBorderThin;
 }
 
 .kuiTableRowCellCheckbox {
   @include kuiTableCellCheckbox;
 
-  border-top: $kuiBorderThin;
-  border-bottom: $kuiBorderThin;
+  border-top: $euiBorderThin;
+  border-bottom: $euiBorderThin;
 }
 
 /**
@@ -102,7 +102,7 @@
   white-space: nowrap; /* 2 */
   overflow: hidden; /* 2 */
   text-overflow: ellipsis; /* 2 */
-  padding: $kuiTableCellPadding; /* 2 */
+  padding: $euiTableCellPadding; /* 2 */
 }
 
   .kuiTableCellContent__text {

@@ -11,12 +11,12 @@
 
   .kuiFormControlLayout__icon {
     position: absolute;
-    top: $kuiSizeM;
-    left: $kuiSizeM;
+    top: $euiSizeM;
+    left: $euiSizeM;
   }
 
   .kuiFormControlLayout__icon--right {
     left: auto;
-    right: $kuiSizeM;
+    right: $euiSizeM;
   }
 }

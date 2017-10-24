@@ -2,9 +2,9 @@
   @include kuiBottomShadow;
 
   position: relative;
-  padding: $kuiSize;
-  background-color: $kuiColorEmptyShade;
-  border: $kuiBorderThin;
+  padding: $euiSize;
+  background-color: $euiColorEmptyShade;
+  border: $euiBorderThin;
   width: 100%;
 
   &:hover .kuiToast__closeButton,
@@ -18,39 +18,39 @@
    */
   .kuiToast__closeButton {
     position: absolute;
-    top: $kuiSize;
-    right: $kuiSize;
+    top: $euiSize;
+    right: $euiSize;
     line-height: 0; /* 1 */
     appearance: none;
     opacity: 0;
-    transition: opacity $kuiAnimSpeedFast $kuiAnimSlightResistance;
+    transition: opacity $euiAnimSpeedFast $euiAnimSlightResistance;
 
     svg {
-      fill: tintOrShade($kuiTitleColor, 50%, 70%);
+      fill: tintOrShade($euiTitleColor, 50%, 70%);
     }
 
     &:hover {
       svg {
-        fill: $kuiTitleColor;
+        fill: $euiTitleColor;
       }
     }
 
     &:focus {
-      background-color: $kuiFocusBackgroundColor;
+      background-color: $euiFocusBackgroundColor;
       opacity: 1;
 
       svg {
-        fill: $kuiColorPrimary;
+        fill: $euiColorPrimary;
       }
     }
   }
 
 // Modifier naming and colors.
 $toastTypes: (
-  info: $kuiColorPrimary,
-  success: $kuiColorSecondary,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
+  info: $euiColorPrimary,
+  success: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
 );
 
 // Create button modifiders based upon the map.
@@ -67,13 +67,13 @@ $toastTypes: (
  */
 .kuiToastHeader {
   @include kuiFontSizeM;
-  padding-right: $kuiSizeL; /* 3 */
+  padding-right: $euiSizeL; /* 3 */
 
   display: flex;
   align-items: baseline; /* 1 */
 
   > * + * {
-    margin-left: $kuiSizeS; /* 2 */
+    margin-left: $euiSizeS; /* 2 */
   }
 }
 
@@ -82,15 +82,15 @@ $toastTypes: (
    */
   .kuiToastHeader__icon {
     flex: 0 0 auto;
-    fill: $kuiTitleColor;
+    fill: $euiTitleColor;
     transform: translateY(2px); /* 1 */
   }
 
   .kuiToastHeader__title {
-    color: $kuiTitleColor;
-    font-weight: $kuiFontWeightLight;
+    color: $euiTitleColor;
+    font-weight: $euiFontWeightLight;
   }
 
 .kuiToastHeader--withBody {
-  margin-bottom: $kuiSizeM;
+  margin-bottom: $euiSizeM;
 }

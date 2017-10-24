@@ -4,36 +4,36 @@
   position: absolute;
   width: 100%;
   visibility: visible;
-  background-color: $kuiColorEmptyShade;
+  background-color: $euiColorEmptyShade;
 
   &.kuiContextMenuPanel-txInLeft {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxInLeft $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: kuiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
   &.kuiContextMenuPanel-txOutLeft {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxOutLeft $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: kuiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
   &.kuiContextMenuPanel-txInRight {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxInRight $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: kuiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
   &.kuiContextMenuPanel-txOutRight {
     pointer-events: none;
-    animation: kuiContextMenuPanelTxOutRight $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+    animation: kuiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 }
 
 .kuiContextMenuPanel--next {
-  transform: translateX($kuiContextMenuWidth);
+  transform: translateX($euiContextMenuWidth);
   visibility: hidden;
 }
 
 .kuiContextMenuPanel--previous {
-  transform: translateX(-$kuiContextMenuWidth);
+  transform: translateX(-$euiContextMenuWidth);
   visibility: hidden;
 }
 
@@ -50,7 +50,7 @@
 
 @keyframes kuiContextMenuPanelTxInLeft {
   0% {
-    transform: translateX($kuiContextMenuWidth);
+    transform: translateX($euiContextMenuWidth);
   }
   100% {
     transform: translateX(0);
@@ -62,13 +62,13 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-$kuiContextMenuWidth);
+    transform: translateX(-$euiContextMenuWidth);
   }
 }
 
 @keyframes kuiContextMenuPanelTxInRight {
   0% {
-    transform: translateX(-$kuiContextMenuWidth);;
+    transform: translateX(-$euiContextMenuWidth);;
   }
   100% {
     transform: translateX(0);
@@ -80,6 +80,6 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX($kuiContextMenuWidth);
+    transform: translateX($euiContextMenuWidth);
   }
 }

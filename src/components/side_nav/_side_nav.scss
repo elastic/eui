@@ -6,8 +6,8 @@
   // These mobile children are hidden in everything but mobile view.
   .kuiSideNav__mobileToggle {
     display: none;
-    border-bottom: $kuiBorderThin;
-    padding: $kuiSize $kuiSizeL;
+    border-bottom: $euiBorderThin;
+    padding: $euiSize $euiSizeL;
     width: 100%;
     text-align: left;
 
@@ -21,7 +21,7 @@
   }
 
   .kuiSideNav__mobileIcon {
-    fill: $kuiColorPrimary;
+    fill: $euiColorPrimary;
   }
 
   .kuiSideNav__mobileWrap {
@@ -30,21 +30,21 @@
 
   .kuiSideNav__mobileTitle {
     flex-grow: 1;
-    color: $kuiColorPrimary;
+    color: $euiColorPrimary;
   }
 
   .kuiSideNav__hideButton {
-    width: $kuiSizeL;
-    height: $kuiSizeL;
-    border-radius: $kuiBorderRadius;
-    border: $kuiBorderThin;
-    background: $kuiColorEmptyShade;
+    width: $euiSizeL;
+    height: $euiSizeL;
+    border-radius: $euiBorderRadius;
+    border: $euiBorderThin;
+    background: $euiColorEmptyShade;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    right: -$kuiSizeXXL;
-    top: $kuiSizeXL;
+    right: -$euiSizeXXL;
+    top: $euiSizeXL;
   }
 
 /**
@@ -66,9 +66,9 @@
     .kuiSideNav__content {
       visibility: visible;
       opacity: 1;
-      margin: $kuiSizeL;
+      margin: $euiSizeL;
       max-height: 5000px; /* 1 */
-      transition: all $kuiAnimSpeedNormal $kuiAnimSlightResistance;
+      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
   }
 
@@ -80,14 +80,14 @@
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    margin: 0 $kuiSizeL;
+    margin: 0 $euiSizeL;
   }
 }
 
 @include screenSmallMediumLarge {
   .kuiSideNav--inPanel {
-    border-right: $kuiBorderThin;
-    background: linear-gradient(to left, rgba(0,0,0,.05) 0, $kuiColorEmptyShade $kuiSizeXS / 2, $kuiColorEmptyShade 100%);
+    border-right: $euiBorderThin;
+    background: linear-gradient(to left, rgba(0,0,0,.05) 0, $euiColorEmptyShade $euiSizeXS / 2, $euiColorEmptyShade 100%);
 
     /**
      * 1. We need the extra specificity to override the original nested selector.
@@ -97,9 +97,9 @@
       position: relative;
       width: calc(100% + 1px); /* 2 */
       box-shadow: none;
-      border: $kuiBorderThin;
+      border: $euiBorderThin;
       border-right: none;
-      border-radius: $kuiBorderRadius 0 0 $kuiBorderRadius;
+      border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
     }
   }
 }

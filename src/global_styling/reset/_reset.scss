@@ -49,12 +49,12 @@ footer, header, hgroup, menu, nav, section {
 }
 
 html {
-  font-family: $kuiFontFamily;
-  font-weight: $kuiFontWeightRegular;
-  font-size: $kuiFontSize;
-  color: $kuiTextColor;
+  font-family: $euiFontFamily;
+  font-weight: $euiFontWeightRegular;
+  font-size: $euiFontSize;
+  color: $euiTextColor;
   height: 100%;
-  background-color: $kuiColorLightestShade;
+  background-color: $euiColorLightestShade;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -86,7 +86,7 @@ button {
   padding: 0;
   margin: 0;
   outline: none;
-  font-size: $kuiFontSize;
+  font-size: $euiFontSize;
   color: inherit;
   font-size: inherit;
 

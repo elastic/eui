@@ -3,10 +3,10 @@
   @include kuiFontSizeM;
 
   a {
-    color: $kuiLinkColor;
+    color: $euiLinkColor;
 
     &:hover {
-      color: darken($kuiLinkColor, 10%);
+      color: darken($euiLinkColor, 10%);
       text-decoration: underline;
     }
   }
@@ -20,17 +20,17 @@
   ul,
   ol,
   img {
-    margin-bottom: $kuiSizeL;
+    margin-bottom: $euiSizeL;
   }
 
   ul {
     list-style: disc;
-    margin-left: $kuiSizeL;
+    margin-left: $euiSizeL;
   }
 
   ol {
     list-style: decimal;
-    margin-left: $kuiSizeL;
+    margin-left: $euiSizeL;
   }
 
   * + h1,
@@ -39,12 +39,12 @@
   * + h4,
   * + h5,
   * + h6 {
-    margin-top: $kuiSizeXL
+    margin-top: $euiSizeXL
   }
 
   h1,h2,h3,h4,h5,h6 {
     @include kuiTitle;
-    margin-bottom: $kuiSizeS;
+    margin-bottom: $euiSizeS;
   }
 
   h1 {
@@ -53,11 +53,11 @@
 
   h2 {
     font-size: 150%;
-    line-height: $kuiSizeXL;
+    line-height: $euiSizeXL;
   }
 
   h3 {
-    font-weight: $kuiFontWeightMedium;
+    font-weight: $euiFontWeightMedium;
   }
 
   &.kuiText--small {
@@ -69,7 +69,7 @@
     * + h4,
     * + h5,
     * + h6 {
-      margin-top: $kuiSizeL;
+      margin-top: $euiSizeL;
     }
 
     p,
@@ -82,7 +82,7 @@
     h5,
     h6,
     img {
-      margin-bottom: $kuiFontSizeS;
+      margin-bottom: $euiFontSizeS;
     }
   }
 

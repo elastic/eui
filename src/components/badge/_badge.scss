@@ -1,11 +1,11 @@
 .kuiBadge {
-  font-size: $kuiSizeM;
-  line-height: $kuiSizeL;
+  font-size: $euiSizeM;
+  line-height: $euiSizeL;
   display: inline-block;
   text-decoration: none;
   border: solid 1px transparent;
-  border-radius: $kuiSizeL;
-  padding: 0 $kuiSizeS;
+  border-radius: $euiSizeL;
+  padding: 0 $euiSizeS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
@@ -16,14 +16,14 @@
   }
 
   .kuiBadge__icon {
-    margin-right: $kuiSizeXS;
+    margin-right: $euiSizeXS;
   }
 
   &.kuiBadge--iconRight .kuiBadge__content {
     flex-direction: row-reverse;
 
     .kuiBadge__icon {
-      margin-left: $kuiSizeXS;
+      margin-left: $euiSizeXS;
       margin-right: 0;
     }
   }
@@ -32,12 +32,12 @@
 
 // Modifier naming and colors.
 $badgeTypes: (
-  default: $kuiColorLightShade,
-  primary: $kuiColorPrimary,
-  secondary: $kuiColorSecondary,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
-  accent: $kuiColorAccent
+  default: $euiColorLightShade,
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  accent: $euiColorAccent
 );
 
 @each $name, $color in $badgeTypes {

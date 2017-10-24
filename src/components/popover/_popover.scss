@@ -18,7 +18,7 @@
     .kuiPopover__panel {
       opacity: 1;
       visibility: visible;
-      z-index: $kuiZContentMenu;
+      z-index: $euiZContentMenu;
       pointer-events: auto;
     }
   }
@@ -27,12 +27,12 @@
   // Animation happens on the panel.
   .kuiPopover__panel {
     position: absolute;
-    min-width: $kuiSize * 16; // Can expand further, but this size is good for our menus.
+    min-width: $euiSize * 16; // Can expand further, but this size is good for our menus.
     backface-visibility: hidden;
     transition:
-      opacity $kuiAnimSlightBounce $kuiAnimSpeedSlow,
-      visibility $kuiAnimSlightBounce $kuiAnimSpeedSlow,
-      transform $kuiAnimSlightBounce $kuiAnimSpeedSlow;
+      opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+      visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
+      transform $euiAnimSlightBounce $euiAnimSpeedSlow;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -65,44 +65,44 @@
 .kuiPopover--withTitle.kuiPopover--anchorDownLeft .kuiPopover__panel:after,
 .kuiPopover--withTitle.kuiPopover--anchorDownRight .kuiPopover__panel:after
 {
-  border-bottom-color: $kuiColorLightestShade;
+  border-bottom-color: $euiColorLightestShade;
 }
 
 .kuiPopover--anchorDownCenter.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-50%) translateY($kuiSizeS) translateZ(0);
+  transform: translateX(-50%) translateY($euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorDownLeft.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(0%) translateY($kuiSizeS) translateZ(0);
+  transform: translateX(0%) translateY($euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorDownRight.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-100%) translateY($kuiSizeS) translateZ(0);
+  transform: translateX(-100%) translateY($euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorDownCenter {
   .kuiPopover__panel {
     left: 50%;
     top: 100%;
-    transform: translateX(-50%) translateY($kuiSizeL) translateZ(0);
+    transform: translateX(-50%) translateY($euiSizeL) translateZ(0);
 
     &:before {
-      top: -$kuiSize;
+      top: -$euiSize;
       left: 50%;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiBorderColor;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      top: -$kuiSize + 1;
+      top: -$euiSize + 1;
       right: 0;
       left: 50%;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiColorEmptyShade;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -111,24 +111,24 @@
 .kuiPopover--anchorDownLeft {
   .kuiPopover__panel {
     left: 0;
-    transform: translateX(0%) translateY($kuiSizeL) translateZ(0);
+    transform: translateX(0%) translateY($euiSizeL) translateZ(0);
 
     &:before {
-      top: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiBorderColor;
+      top: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiBorderColor;
       right: auto;
-      left: $kuiSize;
+      left: $euiSize;
     }
 
     &:after {
-      top: -$kuiSize + 1;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiColorEmptyShade;
+      top: -$euiSize + 1;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiColorEmptyShade;
       right: auto;
-      left: $kuiSize;
+      left: $euiSize;
     }
   }
 }
@@ -137,25 +137,25 @@
 .kuiPopover--anchorDownRight {
   .kuiPopover__panel {
     left: 100%;
-    transform: translateX(-100%) translateY($kuiSizeL) translateZ(0);
+    transform: translateX(-100%) translateY($euiSizeL) translateZ(0);
 
     &:before {
-      top: -$kuiSize;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiBorderColor;
-      right: $kuiSize;
+      top: -$euiSize;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiBorderColor;
+      right: $euiSize;
       left: auto;
     }
 
     &:after {
-      top: -$kuiSize + 1;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid $kuiColorEmptyShade;
-      right: $kuiSize;
+      top: -$euiSize + 1;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-bottom: $euiSize solid $euiColorEmptyShade;
+      right: $euiSize;
       left: auto;
     }
   }
@@ -169,40 +169,40 @@
 // Anchor UP
 
 .kuiPopover--anchorUpCenter.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-50%) translateY(-$kuiSizeS) translateZ(0);
+  transform: translateX(-50%) translateY(-$euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorUpLeft.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(0%) translateY(-$kuiSizeS) translateZ(0);
+  transform: translateX(0%) translateY(-$euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorUpRight.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-100%) translateY(-$kuiSizeS) translateZ(0);
+  transform: translateX(-100%) translateY(-$euiSizeS) translateZ(0);
 }
 
 .kuiPopover--anchorUpCenter {
   .kuiPopover__panel {
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-$kuiSizeL) translateZ(0);
+    transform: translateX(-50%) translateY(-$euiSizeL) translateZ(0);
 
     &:before {
-      bottom: -$kuiSize;
+      bottom: -$euiSize;
       left: 50%;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiBorderColor;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      bottom: -$kuiSize + 1;
+      bottom: -$euiSize + 1;
       right: 0;
       left: 50%;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiColorEmptyShade;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -212,24 +212,24 @@
   .kuiPopover__panel {
     bottom: 100%;
     left: 0;
-    transform: translateX(0%) translateY(-$kuiSizeL) translateZ(0);
+    transform: translateX(0%) translateY(-$euiSizeL) translateZ(0);
 
     &:before {
-      bottom: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiBorderColor;
+      bottom: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiBorderColor;
       right: auto;
-      left: $kuiSize;
+      left: $euiSize;
     }
 
     &:after {
-      bottom: -$kuiSize + 1;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiColorEmptyShade;
+      bottom: -$euiSize + 1;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiColorEmptyShade;
       right: auto;
-      left: $kuiSize;
+      left: $euiSize;
     }
   }
 }
@@ -239,25 +239,25 @@
   .kuiPopover__panel {
     bottom: 100%;
     left: 100%;
-    transform: translateX(-100%) translateY(-$kuiSizeL) translateZ(0);
+    transform: translateX(-100%) translateY(-$euiSizeL) translateZ(0);
 
     &:before {
-      bottom: -$kuiSize;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiBorderColor;
-      right: $kuiSize;
+      bottom: -$euiSize;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiBorderColor;
+      right: $euiSize;
       left: auto;
     }
 
     &:after {
-      bottom: -$kuiSize + 1;
-      margin-left: -$kuiSize;
-      border-left: $kuiSize solid transparent;
-      border-right: $kuiSize solid transparent;
-      border-top: $kuiSize solid $kuiColorEmptyShade;
-      right: $kuiSize;
+      bottom: -$euiSize + 1;
+      margin-left: -$euiSize;
+      border-left: $euiSize solid transparent;
+      border-right: $euiSize solid transparent;
+      border-top: $euiSize solid $euiColorEmptyShade;
+      right: $euiSize;
       left: auto;
     }
   }
@@ -273,55 +273,55 @@
 .kuiPopover--withTitle.kuiPopover--anchorLeftUp .kuiPopover__panel:after,
 .kuiPopover--withTitle.kuiPopover--anchorLeftDown .kuiPopover__panel:after
 {
-  border-left-color: $kuiColorLightestShade;
+  border-left-color: $euiColorLightestShade;
 }
 
 .kuiPopover--withTitle.kuiPopover--anchorLeftUp .kuiPopover__panel {
   top: 0;
 
   &:before {
-    top: $kuiSizeXS;
+    top: $euiSizeXS;
   }
 
   &:after {
-    top: $kuiSizeXS;
+    top: $euiSizeXS;
   }
 }
 
 .kuiPopover--anchorLeftCenter.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-$kuiSizeS) translateY(-50%) translateZ(0);
+  transform: translateX(-$euiSizeS) translateY(-50%) translateZ(0);
 }
 
 .kuiPopover--anchorLeftUp.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-$kuiSizeS) translateY(0) translateZ(0);
+  transform: translateX(-$euiSizeS) translateY(0) translateZ(0);
 }
 
 .kuiPopover--anchorLeftDown.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX(-$kuiSizeS) translateY(-100%) translateZ(0);
+  transform: translateX(-$euiSizeS) translateY(-100%) translateZ(0);
 }
 
 .kuiPopover--anchorLeftCenter {
   .kuiPopover__panel {
     top: 50%;
     right: 100%;
-    transform: translateX(-$kuiSizeL) translateY(-50%) translateZ(0);
+    transform: translateX(-$euiSizeL) translateY(-50%) translateZ(0);
 
     &:before {
-      right: -$kuiSize;
+      right: -$euiSize;
       top: 50%;
-      margin-top: -$kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiBorderColor;
+      margin-top: -$euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      right: -$kuiSize + 1;
+      right: -$euiSize + 1;
       top: 50%;
-      margin-top: -$kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiColorEmptyShade;
+      margin-top: -$euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -329,24 +329,24 @@
 // Positions the menu and arrow to the left of the parent.
 .kuiPopover--anchorLeftUp {
   .kuiPopover__panel {
-    top: -$kuiSizeM;
+    top: -$euiSizeM;
     right: 100%;
-    transform: translateX(-$kuiSizeL) translateY(0) translateZ(0);
+    transform: translateX(-$euiSizeL) translateY(0) translateZ(0);
 
     &:before {
-      right: -$kuiSize;
-      top: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiBorderColor;
+      right: -$euiSize;
+      top: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      right: -$kuiSize + 1;
-      top: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiColorEmptyShade;
+      right: -$euiSize + 1;
+      top: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -354,24 +354,24 @@
 // Positions the menu and arrow to the right of the parent.
 .kuiPopover--anchorLeftDown {
   .kuiPopover__panel {
-    top: calc(100% + #{$kuiSizeM});
+    top: calc(100% + #{$euiSizeM});
     right: 100%;
-    transform: translateX(-$kuiSizeL) translateY(-100%) translateZ(0);
+    transform: translateX(-$euiSizeL) translateY(-100%) translateZ(0);
 
     &:before {
-      right: -$kuiSize;
-      bottom: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiBorderColor;
+      right: -$euiSize;
+      bottom: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      right: -$kuiSize + 1;
-      bottom: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-left: $kuiSize solid $kuiColorEmptyShade;
+      right: -$euiSize + 1;
+      bottom: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-left: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -386,55 +386,55 @@
 .kuiPopover--withTitle.kuiPopover--anchorRightUp .kuiPopover__panel:after,
 .kuiPopover--withTitle.kuiPopover--anchorRightDown .kuiPopover__panel:after
 {
-  border-right-color: $kuiColorLightestShade;
+  border-right-color: $euiColorLightestShade;
 }
 
 .kuiPopover--withTitle.kuiPopover--anchorRightUp .kuiPopover__panel {
   top: 0;
 
   &:before {
-    top: $kuiSizeXS;
+    top: $euiSizeXS;
   }
 
   &:after {
-    top: $kuiSizeXS;
+    top: $euiSizeXS;
   }
 }
 
 .kuiPopover--anchorRightCenter.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX($kuiSizeS) translateY(-50%) translateZ(0);
+  transform: translateX($euiSizeS) translateY(-50%) translateZ(0);
 }
 
 .kuiPopover--anchorRightUp.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX($kuiSizeS) translateY(0) translateZ(0);
+  transform: translateX($euiSizeS) translateY(0) translateZ(0);
 }
 
 .kuiPopover--anchorRightDown.kuiPopover-isOpen .kuiPopover__panel {
-  transform: translateX($kuiSizeS) translateY(-100%) translateZ(0);
+  transform: translateX($euiSizeS) translateY(-100%) translateZ(0);
 }
 
 .kuiPopover--anchorRightCenter {
   .kuiPopover__panel {
     top: 50%;
     left: 100%;
-    transform: translateX($kuiSizeL) translateY(-50%) translateZ(0);
+    transform: translateX($euiSizeL) translateY(-50%) translateZ(0);
 
     &:before {
-      left: -$kuiSize;
+      left: -$euiSize;
       top: 50%;
-      margin-top: -$kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiBorderColor;
+      margin-top: -$euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      left: -$kuiSize + 1;
+      left: -$euiSize + 1;
       top: 50%;
-      margin-top: -$kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiColorEmptyShade;
+      margin-top: -$euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -442,24 +442,24 @@
 // Positions the menu and arrow to the left of the parent.
 .kuiPopover--anchorRightUp {
   .kuiPopover__panel {
-    top: -$kuiSizeM;
+    top: -$euiSizeM;
     left: 100%;
-    transform: translateX($kuiSizeL) translateY(0) translateZ(0);
+    transform: translateX($euiSizeL) translateY(0) translateZ(0);
 
     &:before {
-      left: -$kuiSize;
-      top: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiBorderColor;
+      left: -$euiSize;
+      top: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      left: -$kuiSize + 1;
-      top: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiColorEmptyShade;
+      left: -$euiSize + 1;
+      top: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiColorEmptyShade;
     }
   }
 }
@@ -467,24 +467,24 @@
 // Positions the menu and arrow to the right of the parent.
 .kuiPopover--anchorRightDown {
   .kuiPopover__panel {
-    top: calc(100% + #{$kuiSizeM});
+    top: calc(100% + #{$euiSizeM});
     left: 100%;
-    transform: translateX($kuiSizeL) translateY(-100%) translateZ(0);
+    transform: translateX($euiSizeL) translateY(-100%) translateZ(0);
 
     &:before {
-      left: -$kuiSize;
-      bottom: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiBorderColor;
+      left: -$euiSize;
+      bottom: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiBorderColor;
     }
 
     &:after {
-      left: -$kuiSize + 1;
-      bottom: $kuiSize;
-      border-top: $kuiSize solid transparent;
-      border-bottom: $kuiSize solid transparent;
-      border-right: $kuiSize solid $kuiColorEmptyShade;
+      left: -$euiSize + 1;
+      bottom: $euiSize;
+      border-top: $euiSize solid transparent;
+      border-bottom: $euiSize solid transparent;
+      border-right: $euiSize solid $euiColorEmptyShade;
     }
   }
 }

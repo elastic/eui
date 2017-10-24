@@ -4,36 +4,36 @@
   border-radius: 50%;
   display: inline-block;
   background-size: cover;
-  color: $kuiColorGhost;
+  color: $euiColorGhost;
   text-align: center;
   text-shadow: 1px 1px rgba(0,0,0,.2);
   vertical-align: middle;
 }
 
 .kuiAvatar--s {
-  width: $kuiSizeL;
-  height: $kuiSizeL;
-  line-height: $kuiSizeL;
-  font-size: $kuiSizeM;
+  width: $euiSizeL;
+  height: $euiSizeL;
+  line-height: $euiSizeL;
+  font-size: $euiSizeM;
 }
 
 .kuiAvatar--m {
-  width: $kuiSizeXL;
-  height: $kuiSizeXL;
-  line-height: $kuiSizeXL;
-  font-size: $kuiSize;
+  width: $euiSizeXL;
+  height: $euiSizeXL;
+  line-height: $euiSizeXL;
+  font-size: $euiSize;
 }
 
 .kuiAvatar--l {
-  width: $kuiSizeXXL;
-  height: $kuiSizeXXL;
-  line-height: $kuiSizeXXL;
-  font-size: $kuiSizeL;
+  width: $euiSizeXXL;
+  height: $euiSizeXXL;
+  line-height: $euiSizeXXL;
+  font-size: $euiSizeL;
 }
 
 .kuiAvatar--xl {
-  width: $kuiSize * 4;
-  height: $kuiSize * 4;
-  line-height: $kuiSize * 4;
-  font-size: $kuiSizeXL;
+  width: $euiSize * 4;
+  height: $euiSize * 4;
+  line-height: $euiSize * 4;
+  font-size: $euiSizeXL;
 }

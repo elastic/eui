@@ -1,18 +1,18 @@
 .kuiDescriptionList {
 
   .kuiDescriptionList__title {
-    font-weight: $kuiFontWeightMedium;
+    font-weight: $euiFontWeightMedium;
   }
 
   .kuiDescriptionList__description {
-    color: $kuiColorDarkShade;
+    color: $euiColorDarkShade;
   }
 
   &.kuiDescriptionList--row {
 
     .kuiDescriptionList__title {
       @include kuiFontSizeM;
-      margin-top: $kuiSize;
+      margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
       &:first-of-type {
@@ -53,7 +53,7 @@
     flex-wrap: wrap;
 
     > * {
-      margin-top: $kuiSize;
+      margin-top: $euiSize;
     }
 
     // First two items don't have margin
@@ -64,13 +64,13 @@
     .kuiDescriptionList__title {
       @include kuiFontSizeM;
       flex-basis: 50%;
-      padding-right: $kuiSizeS;
+      padding-right: $euiSizeS;
     }
 
     .kuiDescriptionList__description {
       @include kuiFontSizeM;
       flex-basis: 50%;
-      padding-left: $kuiSizeS;
+      padding-left: $euiSizeS;
     }
 
     // Align the title to smush against the description.
@@ -98,12 +98,12 @@
     .kuiDescriptionList__title {
       @include kuiFontSizeS;
       display: inline;
-      border-radius: $kuiBorderRadius;
-      font-weight: $kuiFontWeightRegular;
-      background: $kuiColorLightestShade;
-      border: $kuiBorderThin;
-      padding:  0 $kuiSizeXS;
-      margin: 0 $kuiSizeXS;
+      border-radius: $euiBorderRadius;
+      font-weight: $euiFontWeightRegular;
+      background: $euiColorLightestShade;
+      border: $euiBorderThin;
+      padding:  0 $euiSizeXS;
+      margin: 0 $euiSizeXS;
 
       // Make sure the first <dt> doesn't get a margine.
       &:first-of-type {

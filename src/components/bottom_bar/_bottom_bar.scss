@@ -1,23 +1,23 @@
 .kuiBottomBar {
-  background: tintOrShade($kuiColorFullShade, 25%, 90%);
-  color: $kuiColorEmptyShade;
+  background: tintOrShade($euiColorFullShade, 25%, 90%);
+  color: $euiColorEmptyShade;
   position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
-  animation: kuiBottomBarAppear $kuiAnimSpeedSlow $kuiAnimSlightResistance;
-  z-index: $kuiZNavigation;
+  animation: kuiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
+  z-index: $euiZNavigation;
 
   &.kuiBottomBar--paddingSmall {
-    padding: $kuiSizeS;
+    padding: $euiSizeS;
   }
 
   &.kuiBottomBar--paddingMedium {
-    padding: $kuiSize;
+    padding: $euiSize;
   }
 
   &.kuiBottomBar--paddingLarge {
-    padding: $kuiSizeL;
+    padding: $euiSizeL;
   }
 }
 

@@ -12,7 +12,7 @@
   @include kuiFormControlSize;
   
   appearance: none;
-  margin: $kuiRangeThumbHeight / 2 0;
+  margin: $euiRangeThumbHeight / 2 0;
 
   &.kuiRange--fullWidth {
     max-width: 100%;
@@ -21,40 +21,40 @@
   &:focus {
 
     &::-webkit-slider-thumb {
-      border: $kuiRangeBorderWidth solid $kuiColorPrimary;
+      border: $euiRangeBorderWidth solid $euiColorPrimary;
     }
 
     &::-moz-range-thumb {
-      border: $kuiRangeBorderWidth solid $kuiColorPrimary;
+      border: $euiRangeBorderWidth solid $euiColorPrimary;
     }
 
     &::-ms-thumb {
-      border: $kuiRangeBorderWidth solid $kuiColorPrimary;
+      border: $euiRangeBorderWidth solid $euiColorPrimary;
     }
     &::-webkit-slider-runnable-track {
-      background-color: $kuiColorPrimary;
+      background-color: $euiColorPrimary;
     }
 
   }
 
   &::-webkit-slider-runnable-track {
     @include track;
-    background: $kuiRangeTrackColor;
-    border: $kuiRangeTrackBorderWidth solid $kuiRangeTrackBorderColor;
-    border-radius: $kuiRangeTrackRadius;
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius;
   }
 
   &::-webkit-slider-thumb {
     @include thumb;
     -webkit-appearance: none;
-    margin-top: ((-$kuiRangeTrackBorderWidth * 2 + $kuiRangeTrackHeight) / 2) - ($kuiRangeThumbHeight / 2);
+    margin-top: ((-$euiRangeTrackBorderWidth * 2 + $euiRangeTrackHeight) / 2) - ($euiRangeThumbHeight / 2);
   }
 
   &::-moz-range-track {
     @include track;
-    background: $kuiRangeTrackColor;
-    border: $kuiRangeTrackBorderWidth solid $kuiRangeTrackBorderColor;
-    border-radius: $kuiRangeTrackRadius;
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius;
   }
 
   &::-moz-range-thumb {
@@ -65,20 +65,20 @@
     @include track;
     background: transparent;
     border-color: transparent;
-    border-width: ($kuiRangeThumbHeight / 2) 0;
+    border-width: ($euiRangeThumbHeight / 2) 0;
     color: transparent;
   }
 
   &::-ms-fill-lower {
-    background: $kuiRangeTrackColor;
-    border: $kuiRangeTrackBorderWidth solid $kuiRangeTrackBorderColor;
-    border-radius: $kuiRangeTrackRadius * 2;
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius * 2;
   }
 
   &::-ms-fill-upper {
-    background: $kuiRangeTrackColor;
-    border: $kuiRangeTrackBorderWidth solid $kuiRangeTrackBorderColor;
-    border-radius: $kuiRangeTrackRadius * 2;
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius * 2;
   }
 
   &::-ms-thumb {

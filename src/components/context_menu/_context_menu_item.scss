@@ -1,15 +1,15 @@
 .kuiContextMenuItem {
-  padding: $kuiSizeM;
+  padding: $euiSizeM;
   width: 100%;
   text-align: left;
-  color: $kuiTextColor;
+  color: $euiTextColor;
 
   &:hover, &:focus {
     text-decoration: underline;
   }
 
   &:focus {
-    background-color: $kuiFocusBackgroundColor;
+    background-color: $euiFocusBackgroundColor;
   }
 }
 

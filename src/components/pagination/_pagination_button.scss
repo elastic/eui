@@ -1,26 +1,26 @@
 .kuiPaginationButton {
-  font-size: $kuiFontSizeS;
+  font-size: $euiFontSizeS;
   padding: 0;
-  height: $kuiSizeL;
-  min-width: $kuiSizeXL;
+  height: $euiSizeL;
+  min-width: $euiSizeXL;
   text-align: center;
 }
 
 .kuiPaginationButton-isActive {
   pointer-events: none;
-  background-color: $kuiColorPrimary;
-  color: $kuiColorEmptyShade;
-  border-radius: $kuiBorderRadius;
+  background-color: $euiColorPrimary;
+  color: $euiColorEmptyShade;
+  border-radius: $euiBorderRadius;
 
   &:focus {
-    background-color: $kuiColorPrimary;
-    color: $kuiColorEmptyShade;
+    background-color: $euiColorPrimary;
+    color: $euiColorEmptyShade;
   }
 }
 
 .kuiPaginationButton-isPlaceholder {
   pointer-events: none;
-  color: $kuiColorMediumShade;
+  color: $euiColorMediumShade;
 }
 
 @include screenXSmall {

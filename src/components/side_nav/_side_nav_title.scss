@@ -1,9 +1,9 @@
 .kuiSideNavTitle {
   @include kuiFontSize;
 
-  font-weight: $kuiFontWeightMedium;
-  margin-bottom: $kuiSizeS;
-  margin-top: $kuiSize;
+  font-weight: $euiFontWeightMedium;
+  margin-bottom: $euiSizeS;
+  margin-top: $euiSize;
 
   /**
    * 1. Only want the first title to have margin. Since buttons exist in nav

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: $kuiKeyPadMenuSize * 3;
+  width: $euiKeyPadMenuSize * 3;
 }
 
 /**
@@ -17,17 +17,17 @@
  */
 .kuiKeyPadMenuItem {
   display: block;
-  padding: $kuiSize;
-  height: $kuiKeyPadMenuSize;
-  width: $kuiKeyPadMenuSize;
-  color: $kuiColorDarkShade;
-  border: $kuiBorderThin;
+  padding: $euiSize;
+  height: $euiKeyPadMenuSize;
+  width: $euiKeyPadMenuSize;
+  color: $euiColorDarkShade;
+  border: $euiBorderThin;
   border-color: transparent;
-  border-radius: $kuiBorderRadius;
-  font-family: $kuiFontFamily; /* 1 */
+  border-radius: $euiBorderRadius;
+  font-family: $euiFontFamily; /* 1 */
 
   &:hover, &:focus {
-    border-color: $kuiBorderColor;
+    border-color: $euiBorderColor;
 
     .kuiKeyPadMenuItem__icon {
       transform: translateY(0);
@@ -35,7 +35,7 @@
   }
 
   &:focus {
-    background: $kuiFocusBackgroundColor;
+    background: $euiFocusBackgroundColor;
 
     .kuiKeyPadMenuItem__label {
       text-decoration: underline;
@@ -53,9 +53,9 @@
   }
 
   .kuiKeyPadMenuItem__icon {
-    transition: transform $kuiAnimSlightBounce $kuiAnimSpeedNormal;
-    transform: translateY($kuiSizeXS);
-    margin-bottom: $kuiSizeS;
+    transition: transform $euiAnimSlightBounce $euiAnimSpeedNormal;
+    transform: translateY($euiSizeXS);
+    margin-bottom: $euiSizeS;
   }
 
   .kuiKeyPadMenuItem__label {

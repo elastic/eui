@@ -4,34 +4,34 @@
   display: block;
   width: 100%;
   text-align: left;
-  padding: $kuiSizeXS $kuiSizeS;
-  color: $kuiColorDarkShade;
+  padding: $euiSizeXS $euiSizeS;
+  color: $euiColorDarkShade;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border: $kuiBorderThin;
+  border: $euiBorderThin;
   border-color: transparent;
 
   &.kuiSideNavItem-isSelected {
     @include kuiBottomShadowSmall;
 
-    color: $kuiColorSecondary;
-    border-left: $kuiBorderThick;
-    border-left-color: $kuiColorSecondary;
-    background-color: $kuiColorEmptyShade;
+    color: $euiColorSecondary;
+    border-left: $euiBorderThick;
+    border-left-color: $euiColorSecondary;
+    background-color: $euiColorEmptyShade;
   }
 
   // We allow one level of nesting.
   &.kuiSideNavItem--indent {
-    margin-left: $kuiSize;
-    font-size: $kuiFontSizeS;
-    padding: $kuiSizeXS / 2 $kuiSizeS;
-    border-left: $kuiBorderThin;
-    border-left-color: $kuiBorderColor;
+    margin-left: $euiSize;
+    font-size: $euiFontSizeS;
+    padding: $euiSizeXS / 2 $euiSizeS;
+    border-left: $euiBorderThin;
+    border-left-color: $euiBorderColor;
 
     // When indented and selected, make it not so heavy.
     &.kuiSideNavItem-isSelected {
-      border-left-color: $kuiColorSecondary;
+      border-left-color: $euiColorSecondary;
       background-color: transparent;
       box-shadow: none;
     }
@@ -43,10 +43,10 @@
 
   // Focus state background regardless of index/selected state.
   &:focus {
-    background-color: $kuiFocusBackgroundColor !important;
+    background-color: $euiFocusBackgroundColor !important;
   }
 
   &:focus:not(.kuiSideNavItem-isSelected) {
-    border: solid 1px darken($kuiFocusBackgroundColor, 10%);
+    border: solid 1px darken($euiFocusBackgroundColor, 10%);
   }
 }

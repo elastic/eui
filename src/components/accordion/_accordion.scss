@@ -8,7 +8,7 @@
   }
 
   &:focus {
-    background-color: $kuiFocusBackgroundColor;
+    background-color: $euiFocusBackgroundColor;
   }
 }
 
@@ -19,8 +19,8 @@
   overflow-y: hidden;
   transform: translatez(0);
   transition:
-    height $kuiAnimSpeedNormal $kuiAnimSlightResistance,
-    opacity $kuiAnimSpeedNormal $kuiAnimSlightResistance
+    height $euiAnimSpeedNormal $euiAnimSlightResistance,
+    opacity $euiAnimSpeedNormal $euiAnimSlightResistance
   ;
 }
 

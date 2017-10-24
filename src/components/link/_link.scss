@@ -3,12 +3,12 @@
 }
 
 $textColors: (
-  subdued: $kuiColorDarkShade,
-  primary: $kuiColorPrimary,
-  secondary: $kuiColorSecondary,
-  accent: $kuiColorAccent,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
+  subdued: $euiColorDarkShade,
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
   ghost: #FFF, // Ghost is special and a constant.
 );
 

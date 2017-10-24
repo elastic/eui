@@ -1,10 +1,10 @@
 $spacerSizes: (
-  xs: $kuiSizeXS,
-  s: $kuiSizeS,
-  m: $kuiSize,
-  l: $kuiSizeL,
-  xl: $kuiSizeXL,
-  xxl: $kuiSizeXXL,
+  xs: $euiSizeXS,
+  s: $euiSizeS,
+  m: $euiSize,
+  l: $euiSizeL,
+  xl: $euiSizeXL,
+  xxl: $euiSizeXXL,
 );
 
 @each $name, $size in $spacerSizes {

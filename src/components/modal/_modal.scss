@@ -1,13 +1,13 @@
 .kuiModal {
   @include kuiBottomShadow;
 
-  background-color: $kuiColorEmptyShade;
-  border: $kuiBorderThin;
-  border-radius: $kuiBorderRadius;
-  z-index: $kuiZModal;
-  padding: $kuiSizeXL;
+  background-color: $euiColorEmptyShade;
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+  z-index: $euiZModal;
+  padding: $euiSizeXL;
   min-width: 50%;
-  animation: kuiModal $kuiAnimSpeedSlow $kuiAnimSlightBounce;
+  animation: kuiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 }
 
 .kuiModal--confirmation {
@@ -29,7 +29,7 @@
 }
 
 .kuiModalBody {
-  padding: $kuiSizeXL 0;
+  padding: $euiSizeXL 0;
 }
 
 .kuiModalFooter {
@@ -37,14 +37,14 @@
   justify-content: flex-end;
 
   > * + * {
-    margin-left: $kuiSize;
+    margin-left: $euiSize;
   }
 }
 
 @keyframes kuiModal {
   0% {
     opacity: 0;
-    transform: translateY($kuiSizeXL);
+    transform: translateY($euiSizeXL);
   }
   100% {
     opacity: 1;

@@ -2,9 +2,9 @@
   @include kuiCodeFont;
   display: inline-block;
   white-space: pre;
-  background: $kuiColorLightestShade;
-  color: $kuiColorAccent;
-  border: $kuiBorderThin;
-  font-size: $kuiFontSizeXS;
-  padding:  0 $kuiSizeXS;
+  background: $euiColorLightestShade;
+  color: $euiColorAccent;
+  border: $euiBorderThin;
+  font-size: $euiFontSizeXS;
+  padding:  0 $euiSizeXS;
 }

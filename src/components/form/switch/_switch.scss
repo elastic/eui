@@ -1,12 +1,12 @@
 .kuiSwitch {
   position: relative;
   display: inline-block;
-  height: $kuiSwitchHeight;
+  height: $euiSwitchHeight;
 
   .kuiSwitch__label {
-    padding-left: $kuiSizeS;
-    line-height: $kuiSwitchHeight;
-    font-size: $kuiFontSizeS;
+    padding-left: $euiSizeS;
+    line-height: $euiSwitchHeight;
+    font-size: $euiFontSizeS;
   }
 
   /**
@@ -21,36 +21,36 @@
   }
 
   .kuiSwitch__input:focus + .kuiSwitch__body {
-    background: $kuiColorEmptyShade;
+    background: $euiColorEmptyShade;
 
     .kuiSwitch__thumb {
-      border-color: $kuiColorPrimary;
-      background-color: $kuiColorPrimary;
+      border-color: $euiColorPrimary;
+      background-color: $euiColorPrimary;
     }
   }
 
   .kuiSwitch__body {
     pointer-events: none;
-    width: $kuiSwitchWidth;
-    height: $kuiSwitchHeight;
-    background: $kuiFormBackgroundColor;
-    box-shadow: inset 0 0 0 1px $kuiBorderColor;
+    width: $euiSwitchWidth;
+    height: $euiSwitchHeight;
+    background: $euiFormBackgroundColor;
+    box-shadow: inset 0 0 0 1px $euiBorderColor;
     display: inline-block;
     position: relative;
-    border-radius: $kuiSwitchHeight;
+    border-radius: $euiSwitchHeight;
     vertical-align: middle;
   }
 
   .kuiSwitch__thumb {
     position: absolute;
-    width: $kuiSwitchHeight;
-    height: $kuiSwitchHeight;
+    width: $euiSwitchHeight;
+    height: $euiSwitchHeight;
     display: inline-block;
-    background-color: $kuiColorEmptyShade;
-    left: $kuiSwitchWidth - $kuiSwitchThumbSize;
+    background-color: $euiColorEmptyShade;
+    left: $euiSwitchWidth - $euiSwitchThumbSize;
     border-radius: 50%;
-    border: $kuiBorderThin;
-    transition: border-color $kuiAnimSpeedNormal $kuiAnimSlightBounce, background-color $kuiAnimSpeedNormal $kuiAnimSlightBounce, left $kuiAnimSpeedNormal $kuiAnimSlightBounce, transform $kuiAnimSpeedNormal $kuiAnimSlightBounce;
+    border: $euiBorderThin;
+    transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
   .kuiSwitch__track {
@@ -60,24 +60,24 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
-    border-radius: $kuiSwitchHeight;
+    border-radius: $euiSwitchHeight;
   }
 
   .kuiSwitch__icon {
     position: absolute;
-    right: -($kuiSwitchWidth - ($kuiSwitchThumbSize / 2));
-    top: ($kuiSwitchHeight - $kuiSwitchIconHeight) / 2;
+    right: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
+    top: ($euiSwitchHeight - $euiSwitchIconHeight) / 2;
     bottom: 0;
-    width: $kuiSwitchWidth - ($kuiSwitchThumbSize / 2) + $kuiSizeS;
-    height: $kuiSwitchIconHeight;
-    transition: left $kuiAnimSpeedNormal $kuiAnimSlightBounce, right $kuiAnimSpeedNormal $kuiAnimSlightBounce;
-    fill: $kuiTextColor;
+    width: $euiSwitchWidth - ($euiSwitchThumbSize / 2) + $euiSizeS;
+    height: $euiSwitchIconHeight;
+    transition: left $euiAnimSpeedNormal $euiAnimSlightBounce, right $euiAnimSpeedNormal $euiAnimSlightBounce;
+    fill: $euiTextColor;
   }
 
   .kuiSwitch__icon--checked {
     right: auto;
-    left: -$kuiSizeS;
-    fill: $kuiTextColor;
+    left: -$euiSizeS;
+    fill: $euiTextColor;
   }
 
   /**
@@ -104,11 +104,11 @@
     }
 
     .kuiSwitch__icon {
-      right: -$kuiSizeS;
+      right: -$euiSizeS;
 
       &.kuiSwitch__icon--checked {
         right: auto;
-        left: -($kuiSwitchWidth - ($kuiSwitchThumbSize / 2));
+        left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
       }
     }
   }

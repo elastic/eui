@@ -1,13 +1,13 @@
 
 $textColors: (
-  default: $kuiTextColor,
-  subdued: $kuiColorDarkShade,
-  primary: $kuiColorPrimary,
-  secondary: $kuiColorSecondary,
-  accent: $kuiColorAccent,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
-  ghost: $kuiColorGhost,
+  default: $euiTextColor,
+  subdued: $euiColorDarkShade,
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost,
 );
 
 // Create color modifiers based on the map

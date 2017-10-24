@@ -3,17 +3,17 @@
   @include kuiButton;
   @include kuiSlightShadow;
 
-  border-radius: $kuiBorderRadius;
-  min-width: $kuiSize * 7;
+  border-radius: $euiBorderRadius;
+  min-width: $euiSize * 7;
 
   .kuiButton__content {
     @include kuiButtonContent;
 
-    padding: 0 ($kuiSize - $kuiSizeXS);
+    padding: 0 ($euiSize - $euiSizeXS);
   }
 
   &.kuiButton--small {
-    height: $kuiButtonHeightSmall;
+    height: $euiButtonHeightSmall;
   }
 
   &.kuiButton--iconRight {
@@ -31,12 +31,12 @@
   }
 
   &:hover, &:focus {
-    background-color: transparentize($kuiColorPrimary, .9);
+    background-color: transparentize($euiColorPrimary, .9);
   }
 
   &:disabled {
-    color: $kuiButtonColorDisabled;
-    border-color: $kuiButtonColorDisabled;
+    color: $euiButtonColorDisabled;
+    border-color: $euiButtonColorDisabled;
     pointer-events: none;
 
     .kuiButton__content {
@@ -45,21 +45,21 @@
     }
 
     .kuiButton__icon {
-      fill: $kuiButtonColorDisabled;
+      fill: $euiButtonColorDisabled;
     }
 
     &.kuiButton--fill {
-      background-color: $kuiButtonColorDisabled;
-      border-color: $kuiButtonColorDisabled;
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
 
       &:hover, &:focus {
-        background-color: $kuiButtonColorDisabled;
-        border-color: $kuiButtonColorDisabled;
+        background-color: $euiButtonColorDisabled;
+        border-color: $euiButtonColorDisabled;
       }
     }
 
     &:hover, &:focus {
-      background-color: $kuiColorEmptyShade;
+      background-color: $euiColorEmptyShade;
       text-decoration: none;
     }
   }
@@ -67,11 +67,11 @@
 
 // Modifier naming and colors.
 $buttonTypes: (
-  primary: $kuiColorPrimary,
-  secondary: $kuiColorSecondary,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
-  ghost: $kuiColorGhost, // Ghost is special, and does not care about theming.
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
 );
 
 // Create button modifiders based upon the map.
@@ -90,8 +90,8 @@ $buttonTypes: (
 
       @if ($name == 'ghost') {
         color: #000;
-      } @elseif (lightness($kuiTextColor) > 50) {
-        color: $kuiTextColor;
+      } @elseif (lightness($euiTextColor) > 50) {
+        color: $euiTextColor;
       } @else {
         color: #FFF;
       }
@@ -105,8 +105,8 @@ $buttonTypes: (
       .kuiButton__icon {
         @if ($name == 'ghost') {
           fill: #000;
-        } @elseif (lightness($kuiTextColor) > 50) {
-          fill: $kuiTextColor;
+        } @elseif (lightness($euiTextColor) > 50) {
+          fill: $euiTextColor;
         } @else {
           fill: #FFF;
         }

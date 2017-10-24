@@ -8,11 +8,11 @@
   .kuiButtonEmpty__content {
     @include kuiButtonContent;
 
-    padding: 0 $kuiSizeS;
+    padding: 0 $euiSizeS;
   }
 
   &.kuiButtonEmpty--small {
-    height: $kuiButtonHeightSmall;
+    height: $euiButtonHeightSmall;
   }
 
   &.kuiButtonEmpty--iconRight {
@@ -22,7 +22,7 @@
   }
 
   &:disabled {
-    color: $kuiButtonColorDisabled;
+    color: $euiButtonColorDisabled;
     pointer-events: none;
 
     .kuiButtonEmpty__content {
@@ -31,11 +31,11 @@
     }
 
     .kuiButtonEmpty__icon {
-      fill: $kuiButtonColorDisabled;
+      fill: $euiButtonColorDisabled;
     }
 
     &:hover, &:focus {
-      background-color: $kuiColorEmptyShade;
+      background-color: $euiColorEmptyShade;
       text-decoration: none;
     }
   }
@@ -43,11 +43,11 @@
 
 // Modifier naming and colors.
 $buttonTypes: (
-  primary: $kuiColorPrimary,
-  danger: $kuiColorDanger,
-  disabled: tintOrShade($kuiTextColor, 70%, 80%),
-  ghost: $kuiColorGhost,
-  text: $kuiTextColor,
+  primary: $euiColorPrimary,
+  danger: $euiColorDanger,
+  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  ghost: $euiColorGhost,
+  text: $euiTextColor,
 );
 
 // Create button modifiders based upon the map.
@@ -61,7 +61,7 @@ $buttonTypes: (
 
     &:focus {
       @if ($name == 'text') {
-        background-color: transparentize($kuiColorPrimary, .9);
+        background-color: transparentize($euiColorPrimary, .9);
       } @else {
         background-color: transparentize($color, .9);
       }

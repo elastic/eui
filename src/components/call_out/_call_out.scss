@@ -1,14 +1,14 @@
 .kuiCallOut {
-  padding: $kuiSize;
-  border-left: $kuiSizeXS / 2 solid transparent;
+  padding: $euiSize;
+  border-left: $euiSizeXS / 2 solid transparent;
 }
 
 // Modifier naming and colors.
 $callOutTypes: (
-  info: $kuiColorPrimary,
-  success: $kuiColorSecondary,
-  warning: $kuiColorWarning,
-  danger: $kuiColorDanger,
+  info: $euiColorPrimary,
+  success: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
 );
 
 // Create button modifiders based upon the map.
@@ -40,11 +40,11 @@ $callOutTypes: (
   align-items: baseline; /* 1 */
 
   + * {
-    margin-top: $kuiSizeS; /* 1 */
+    margin-top: $euiSizeS; /* 1 */
   }
 
   > * + * {
-    margin-left: $kuiSizeS; /* 3 */
+    margin-left: $euiSizeS; /* 3 */
   }
 }
 

@@ -1,17 +1,17 @@
-$kuiButtonHeightSmall: $kuiSizeXL;
-$kuiButtonColorDisabled: tintOrShade($kuiTextColor, 70%, 80%);
+$euiButtonHeightSmall: $euiSizeXL;
+$euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
 
 @mixin kuiButton {
 
   display: inline-block;
   appearance: none;
   cursor: pointer;
-  height: $kuiSizeXXL;
+  height: $euiSizeXXL;
   text-decoration: none;
   border: solid 1px transparent;
   text-align: center;
-  font-family: $kuiFontFamily;
-  transition: all $kuiAnimSpeedNormal $kuiAnimSlightBounce;
+  font-family: $euiFontFamily;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -26,7 +26,7 @@ $kuiButtonColorDisabled: tintOrShade($kuiTextColor, 70%, 80%);
   }
 
   &:focus {
-    animation: kuiButtonActive $kuiAnimSpeedNormal $kuiAnimSlightBounce;
+    animation: kuiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
   &:active {
@@ -47,7 +47,7 @@ $kuiButtonColorDisabled: tintOrShade($kuiTextColor, 70%, 80%);
 
     > * + * {
       margin-left: 0; /* 1 */
-      margin-right: $kuiSizeS; /* 1 */
+      margin-right: $euiSizeS; /* 1 */
     }
   } @else {
     display: flex;
@@ -55,7 +55,7 @@ $kuiButtonColorDisabled: tintOrShade($kuiTextColor, 70%, 80%);
     align-items: center;
 
     > * + * {
-      margin-left: $kuiSizeS; /* 1 */
+      margin-left: $euiSizeS; /* 1 */
     }
   }
 }
