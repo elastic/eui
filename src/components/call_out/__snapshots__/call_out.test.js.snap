@@ -13,8 +13,5 @@ exports[`EuiCallOut is rendered 1`] = `
       class="euiCallOutHeader__title"
     />
   </div>
-  <div
-    class="euiText euiText--small"
-  />
 </div>
 `;
