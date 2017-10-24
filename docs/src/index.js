@@ -21,11 +21,11 @@ import {
   registerTheme,
 } from './services';
 
-import themeLight from '!style-loader/useable!css-loader!postcss-loader!sass-loader!./theme_light.scss';
-import uiFrameworkThemeLight from '!style-loader/useable!css-loader!../../dist/eui_theme_light.css';
+import themeLight from './theme_light.scss';
+import uiFrameworkThemeLight from '../../dist/eui_theme_light.css';
 
-import themeDark from '!style-loader/useable!css-loader!postcss-loader!sass-loader!./theme_dark.scss';
-import uiFrameworkThemeDark from '!style-loader/useable!css-loader!../../dist/eui_theme_dark.css';
+import themeDark from './theme_dark.scss';
+import uiFrameworkThemeDark from '../../dist/eui_theme_dark.css';
 
 registerTheme('light', [
   themeLight,

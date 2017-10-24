@@ -16,13 +16,6 @@ module.exports = {
     filename: 'bundle.js'
   },
 
-  // These are necessasry for using Enzyme with Webpack (https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md).
-  externals: {
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
-    'react/addons': true,
-  },
-
   module: {
     loaders: [{
       test: /\.js$/,
@@ -30,19 +23,11 @@ module.exports = {
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      loaders: ['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loaders: ['style-loader', 'css-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.useable\.css$/,
       loaders: ['style-loader/useable', 'css-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.html$/,
-      loader: 'html-loader',
       exclude: /node_modules/
     }, {
       test: /\.svg$/,

@@ -9,17 +9,18 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
-  'logoKibana',
-  'logoSlack',
-  'logoGmail',
-  'logoWebhook',
+  'logoBeats',
+  'logoCloud',
   'logoElastic',
   'logoElasticSearch',
   'logoElasticStack',
-  'logoBeats',
+  'logoGmail',
+  'logoKibana',
   'logoLogstash',
+  'logoSlack',
+  'logoWebhook',
   'logoXpack',
-];
+].sort();
 
 export default () => (
   <KuiFlexGrid columns={4}>

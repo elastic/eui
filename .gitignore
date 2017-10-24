@@ -1,3 +1,5 @@
 node_modules/
 docs/build/
 .DS_Store
+dist
+lib

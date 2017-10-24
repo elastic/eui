@@ -19,7 +19,7 @@ import {
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
-} from '../../../../services';
+} from '../../../../src/services';
 
 export class Compressed extends Component {
   constructor(props) {

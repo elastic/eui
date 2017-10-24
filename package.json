@@ -2,10 +2,13 @@
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
-  "main": "dist/components",
+  "main": "lib/components/index.js",
+  "module": "src/components/index.js",
+  "jsnext:main": "src/components/index.js",
+  "browser": "dist/eui.min.js",
   "scripts": {
-    "start": "./build/scripts/docs-dev.sh",
-    "build": "./build/scripts/compile-scss.sh && ./build/scripts/compile-components.sh",
+    "start": "./build/scripts/compile-scss.sh && ./build/scripts/docs-dev.sh",
+    "build": "./build/scripts/compile-clean.sh && ./build/scripts/compile-scss.sh && ./build/scripts/compile-eui.sh",
     "deploy": "now --public",
     "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build"

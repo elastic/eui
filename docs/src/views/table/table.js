@@ -25,7 +25,7 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   SortableProperties,
-} from '../../../../services';
+} from '../../../../src/services';
 
 export class Table extends Component {
   constructor(props) {
