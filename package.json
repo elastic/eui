@@ -7,7 +7,7 @@
   "jsnext:main": "src/components/index.js",
   "browser": "dist/eui.min.js",
   "scripts": {
-    "start": "./build/scripts/compile-scss.sh && ./build/scripts/docs-dev.sh",
+    "start": "./build/scripts/docs-dev.sh",
     "build": "./build/scripts/compile-clean.sh && ./build/scripts/compile-scss.sh && ./build/scripts/compile-eui.sh",
     "deploy": "now --public",
     "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
@@ -23,6 +23,7 @@
     "focus-trap-react": "3.0.4",
     "html": "1.0.0",
     "keymirror": "0.1.1",
+    "postcss-inline-svg": "^3.0.0",
     "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-router": "3.2.0",
