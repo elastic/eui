@@ -41,6 +41,7 @@ export const EuiButton = ({
   size,
   fill,
   isDisabled,
+  href,
   ...rest,
 }) => {
 
@@ -69,17 +70,20 @@ export const EuiButton = ({
     );
   }
 
+  const ButtonTag = href ? 'a' : 'button'
+
   return (
-    <button
+    <ButtonTag
       disabled={isDisabled}
       className={classes}
+      href={href}
       {...rest}
     >
       <span className="euiButton__content">
         {buttonIcon}
         <span>{children}</span>
       </span>
-    </button>
+    </ButtonTag>
   );
 };
 
