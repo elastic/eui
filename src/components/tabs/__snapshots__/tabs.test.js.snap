@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiTabs renders 1`] = `
+exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
   class="kuiTabs testClass1 testClass2"

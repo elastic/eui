@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiTitle } from './title';
+import { EuiTitle } from './title';
 
-describe('KuiTitle', () => {
+describe('EuiTitle', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiTitle {...requiredProps}>
+      <EuiTitle {...requiredProps}>
         <h1>Title</h1>
-      </KuiTitle>
+      </EuiTitle>
     );
 
     expect(component)

@@ -18,7 +18,7 @@ exports[`isSelected renders true when specified 1`] = `
 </tr>
 `;
 
-exports[`renders KuiTableRow 1`] = `
+exports[`renders EuiTableRow 1`] = `
 <tr
   aria-label="aria-label"
   class="kuiTableRow testClass1 testClass2"

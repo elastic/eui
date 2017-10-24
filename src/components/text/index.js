@@ -1,7 +1,7 @@
 export {
-  KuiText,
+  EuiText,
 } from './text';
 
 export {
-  KuiTextColor,
+  EuiTextColor,
 } from './text_color';

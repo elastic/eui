@@ -8,7 +8,7 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const KuiText = ({ size, children, className, ...rest }) => {
+export const EuiText = ({ size, children, className, ...rest }) => {
 
   const classes = classNames(
     'kuiText',
@@ -23,7 +23,7 @@ export const KuiText = ({ size, children, className, ...rest }) => {
   );
 };
 
-KuiText.propTypes = {
+EuiText.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(TEXT_SIZES),

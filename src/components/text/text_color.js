@@ -15,7 +15,7 @@ const colorsToClassNameMap = {
 
 export const COLORS = Object.keys(colorsToClassNameMap);
 
-export const KuiTextColor = ({
+export const EuiTextColor = ({
   children,
   color,
   className,
@@ -37,12 +37,12 @@ export const KuiTextColor = ({
   );
 };
 
-KuiTextColor.propTypes = {
+EuiTextColor.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.oneOf(COLORS),
 };
 
-KuiTextColor.defaultProps = {
+EuiTextColor.defaultProps = {
   color: 'default',
 };

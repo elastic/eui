@@ -28,7 +28,7 @@ exports[`align renders right when specified 1`] = `
 </td>
 `;
 
-exports[`renders KuiTableRowCell 1`] = `
+exports[`renders EuiTableRowCell 1`] = `
 <td
   aria-label="aria-label"
   class="kuiTableRowCell testClass1 testClass2"

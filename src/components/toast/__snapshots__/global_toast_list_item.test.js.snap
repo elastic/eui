@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiGlobalToastListItem is rendered 1`] = `
+exports[`EuiGlobalToastListItem is rendered 1`] = `
 <div
   class="kuiGlobalToastListItem"
 >

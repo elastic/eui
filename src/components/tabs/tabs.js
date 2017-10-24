@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiTabs = ({
+export const EuiTabs = ({
   children,
   className,
   ...rest
@@ -19,7 +19,7 @@ export const KuiTabs = ({
   );
 };
 
-KuiTabs.propTypes = {
+EuiTabs.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
 };

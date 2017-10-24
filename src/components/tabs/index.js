@@ -1,2 +1,2 @@
-export { KuiTab } from './tab';
-export { KuiTabs } from './tabs';
+export { EuiTab } from './tab';
+export { EuiTabs } from './tabs';

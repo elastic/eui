@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiTitle is rendered 1`] = `
+exports[`EuiTitle is rendered 1`] = `
 <h1
   aria-label="aria-label"
   class="kuiTitle testClass1 testClass2"

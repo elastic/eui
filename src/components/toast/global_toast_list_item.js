@@ -4,7 +4,7 @@ import {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiGlobalToastListItem = ({ isDismissed, children }) => {
+export const EuiGlobalToastListItem = ({ isDismissed, children }) => {
   const classes = classNames('kuiGlobalToastListItem', children.props.className, {
     'kuiGlobalToastListItem-isDismissed': isDismissed,
   });
@@ -14,7 +14,7 @@ export const KuiGlobalToastListItem = ({ isDismissed, children }) => {
   }));
 };
 
-KuiGlobalToastListItem.propTypes = {
+EuiGlobalToastListItem.propTypes = {
   isDismissed: PropTypes.bool,
   children: PropTypes.node,
 };

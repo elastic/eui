@@ -20,7 +20,7 @@ exports[`align renders right when specified 1`] = `
 </th>
 `;
 
-exports[`renders KuiTableHeaderCell 1`] = `
+exports[`renders EuiTableHeaderCell 1`] = `
 <th
   aria-label="aria-label"
   class="kuiTableHeaderCell testClass1 testClass2"

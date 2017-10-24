@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
 import {
-  KuiText,
+  EuiText,
 } from '..';
 
 const typeToClassNameMap = {
@@ -20,7 +20,7 @@ const typeToClassNameMap = {
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
+export const EuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
   const classes = classNames('kuiToast', typeToClassNameMap[type], className);
   const headerClasses = classNames('kuiToastHeader', {
     'kuiToastHeader--withBody': children,
@@ -30,7 +30,7 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
 
   if (iconType) {
     headerIcon = (
-      <KuiIcon
+      <EuiIcon
         className="kuiToastHeader__icon"
         type={iconType}
         size="medium"
@@ -48,7 +48,7 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
         aria-label="Dismiss toast"
         onClick={onClose}
       >
-        <KuiIcon
+        <EuiIcon
           type="cross"
           size="medium"
           aria-hidden="true"
@@ -61,9 +61,9 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
 
   if (children) {
     optionalBody = (
-      <KuiText size="s">
+      <EuiText size="s">
         {children}
-      </KuiText>
+      </EuiText>
     );
   }
 
@@ -86,7 +86,7 @@ export const KuiToast = ({ title, type, iconType, onClose, children, className, 
   );
 };
 
-KuiToast.propTypes = {
+EuiToast.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
   type: PropTypes.oneOf(TYPES),

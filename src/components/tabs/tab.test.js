@@ -4,17 +4,17 @@ import { requiredProps } from '../../test/required_props';
 import sinon from 'sinon';
 
 import {
-  KuiTab,
+  EuiTab,
 } from './tab';
 
-describe('KuiTab', () => {
+describe('EuiTab', () => {
   test('renders', () => {
-    const component = <KuiTab onClick={()=>{}} {...requiredProps}>children</KuiTab>;
+    const component = <EuiTab onClick={()=>{}} {...requiredProps}>children</EuiTab>;
     expect(render(component)).toMatchSnapshot();
   });
 
   test('renders isSelected', () => {
-    const component = <KuiTab onClick={()=>{}} isSelected {...requiredProps}>children</KuiTab>;
+    const component = <EuiTab onClick={()=>{}} isSelected {...requiredProps}>children</EuiTab>;
     expect(render(component)).toMatchSnapshot();
   });
 
@@ -24,7 +24,7 @@ describe('KuiTab', () => {
         const onClickHandler = sinon.stub();
 
         const $button = shallow(
-          <KuiTab onClick={onClickHandler} />
+          <EuiTab onClick={onClickHandler} />
         );
 
         $button.simulate('click');

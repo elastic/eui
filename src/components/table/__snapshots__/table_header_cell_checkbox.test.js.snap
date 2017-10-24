@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiTableHeaderCellCheckbox is rendered 1`] = `
+exports[`EuiTableHeaderCellCheckbox is rendered 1`] = `
 <td
   aria-label="aria-label"
   class="kuiTableHeaderCellCheckbox testClass1 testClass2"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders KuiTable 1`] = `
+exports[`renders EuiTable 1`] = `
 <table
   aria-label="aria-label"
   class="kuiTable testClass1 testClass2"

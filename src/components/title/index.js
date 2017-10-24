@@ -1,3 +1,3 @@
 export {
-  KuiTitle,
+  EuiTitle,
 } from './title';

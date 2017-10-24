@@ -11,7 +11,7 @@ const titleSizeToClassNameMap = {
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 
-export const KuiTitle = ({ size, children, className, ...rest }) => {
+export const EuiTitle = ({ size, children, className, ...rest }) => {
 
   const classes = classNames(
     'kuiTitle',
@@ -27,7 +27,7 @@ export const KuiTitle = ({ size, children, className, ...rest }) => {
   return cloneElement(children, props);
 };
 
-KuiTitle.propTypes = {
+EuiTitle.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOf(TITLE_SIZES),

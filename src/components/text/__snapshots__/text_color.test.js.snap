@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiTextColor is rendered 1`] = `
+exports[`EuiTextColor is rendered 1`] = `
 <span
   aria-label="aria-label"
   class="kuiTextColor kuiTextColor--default testClass1 testClass2"
