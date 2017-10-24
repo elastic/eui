@@ -81,11 +81,13 @@
   }
 
   /**
-   * The thumb is slightly scaled when in use.
+   * The thumb is slightly scaled when in use, unless it's disabled.
    */
   &:hover {
-    .euiSwitch__thumb {
-      transform: scale(1.05);
+    .euiSwitch__input:not(:disabled) ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        transform: scale(1.05);
+      }
     }
   }
 
@@ -93,6 +95,14 @@
     .euiSwitch__thumb {
       transform: scale(.95);
     }
+  }
+  .euiSwitch__input:disabled:hover {
+    cursor: not-allowed;
+  }
+
+  .euiSwitch__input:disabled ~ .euiSwitch__body {
+    background: $euiColorLightestShade;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
   }
 
   /**

@@ -15,6 +15,7 @@ export const EuiCheckbox = ({
   label,
   onChange,
   type,
+  disabled,
   ...rest,
 }) => {
   const classes = classNames(
@@ -47,6 +48,7 @@ export const EuiCheckbox = ({
         id={id}
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
       />
 
       <div className="euiCheckbox__square">
@@ -65,8 +67,10 @@ EuiCheckbox.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(TYPES),
+  disabled: PropTypes.bool,
 };
 
 EuiCheckbox.defaultProps = {
   checked: false,
+  disabled: false,
 };

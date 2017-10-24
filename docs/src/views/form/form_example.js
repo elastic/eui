@@ -44,6 +44,10 @@ import FullWidthForm from './form_full_width';
 const fullWidthFormSource = require('!!raw-loader!./form_full_width');
 const fullWidthFormHtml = renderToHtml(FullWidthForm);
 
+import Disabled from './disabled';
+const disabledSource = require('!!raw-loader!./disabled');
+const disabledHtml = renderToHtml(Disabled);
+
 export default props => (
   <GuidePage title={props.route.name}>
     <GuideSection
@@ -104,6 +108,26 @@ export default props => (
       }
       demo={
         <FormPopover />
+      }
+    />
+
+    <GuideSection
+      title="Disabled form elements"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: disabledSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: disabledHtml,
+      }]}
+      text={
+        <p>
+          All form elements can be passed a generic <EuiCode>disabled</EuiCode> prop.
+          These act the same as their html counterparts.
+        </p>
+      }
+      demo={
+        <Disabled />
       }
     />
 
@@ -192,6 +216,7 @@ export default props => (
         <InlineFormSizing />
       }
     />
+
     <GuideSection
       title="Inline forms can live in popovers, or any container"
       source={[{

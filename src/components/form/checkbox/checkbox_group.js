@@ -8,6 +8,7 @@ export const EuiCheckboxGroup = ({
   idToSelectedMap,
   onChange,
   className,
+  disabled,
   ...rest,
 }) => (
   <div className={className} {...rest}>
@@ -19,6 +20,7 @@ export const EuiCheckboxGroup = ({
           id={option.id}
           checked={idToSelectedMap[option.id]}
           label={option.label}
+          disabled={disabled}
           onChange={onChange.bind(null, option.id)}
         />
       );
