@@ -35,9 +35,10 @@ module.exports = {
     filename: `eui${isProduction ? '.min' : ''}.js`
   },
 
+  // Specify where these libraries should be found
   externals: {
-    'react': true,
-    'prop-types': true
+    'react': 'window.React',
+    'prop-types': 'window.PropTypes'
   },
 
   module: {

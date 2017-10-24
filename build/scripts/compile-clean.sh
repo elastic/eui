@@ -2,5 +2,4 @@
 
 set -e
 
-rm -rf dist
-mkdir -p dist
+rm -rf dist lib

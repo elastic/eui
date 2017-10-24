@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import sortBy from 'lodash/sortBy';
 
 /**
  * @typedef {Object} SortableProperty
@@ -44,8 +44,8 @@ export class SortableProperties {
    */
   sortItems(items) {
     return this.isCurrentSortAscending()
-      ? _.sortBy(items, this.getSortedProperty().getValue)
-      : _.sortBy(items, this.getSortedProperty().getValue).reverse();
+      ? sortBy(items, this.getSortedProperty().getValue)
+      : sortBy(items, this.getSortedProperty().getValue).reverse();
   }
 
   /**

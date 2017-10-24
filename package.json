@@ -3,7 +3,7 @@
   "private": true,
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
-  "main": "dist/eui.js",
+  "main": "lib/components/index.js",
   "module": "src/components/index.js",
   "jsnext:main": "src/components/index.js",
   "browser": "dist/eui.min.js",
