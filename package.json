@@ -2,9 +2,9 @@
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
   "version": "0.0.1",
-  "main": "lib/components/index.js",
-  "module": "src/components/index.js",
-  "jsnext:main": "src/components/index.js",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "jsnext:main": "src/index.js",
   "browser": "dist/eui.min.js",
   "scripts": {
     "start": "./build/scripts/docs-dev.sh",
