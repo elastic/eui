@@ -3,25 +3,25 @@
 exports[`EuiSideNavItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="testClass1 testClass2 kuiSideNavItem"
+  class="testClass1 testClass2 euiSideNavItem"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiSideNavItem isSelected defaults to false 1`] = `
 <button
-  class="kuiSideNavItem"
+  class="euiSideNavItem"
 />
 `;
 
 exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
 <button
-  class="kuiSideNavItem kuiSideNavItem-isSelected"
+  class="euiSideNavItem euiSideNavItem-isSelected"
 />
 `;
 
 exports[`EuiSideNavItem preserves child's classes 1`] = `
 <button
-  class="test kuiSideNavItem"
+  class="test euiSideNavItem"
 />
 `;

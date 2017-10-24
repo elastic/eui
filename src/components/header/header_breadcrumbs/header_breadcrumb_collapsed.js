@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export const EuiHeaderBreadcrumbCollapsed = ({ className, ...rest }) => {
-  const classes = classNames('kuiHeaderBreadcrumb kuiHeaderBreadcrumb--collapsed', className);
+  const classes = classNames('euiHeaderBreadcrumb euiHeaderBreadcrumb--collapsed', className);
 
   return (
     <div

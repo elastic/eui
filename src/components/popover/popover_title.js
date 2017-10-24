@@ -6,7 +6,7 @@ export const EuiPopoverTitle = ({ children, className, ...rest }) => {
 
   const classes = classNames(
     {
-      'kuiPopoverTitle': children,
+      'euiPopoverTitle': children,
     },
     className,
   );

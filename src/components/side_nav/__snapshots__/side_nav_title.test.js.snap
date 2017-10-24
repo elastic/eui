@@ -3,7 +3,7 @@
 exports[`EuiSideNavTitle is rendered 1`] = `
 <p
   aria-label="aria-label"
-  class="kuiTitle kuiTitle--small kuiSideNavTitle testClass1 testClass2"
+  class="euiTitle euiTitle--small euiSideNavTitle testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

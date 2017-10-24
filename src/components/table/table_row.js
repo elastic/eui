@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiTableRow = ({ children, className, isSelected, ...rest }) => {
-  const classes = classNames('kuiTableRow', className, {
-    'kuiTableRow-isSelected': isSelected,
+  const classes = classNames('euiTableRow', className, {
+    'euiTableRow-isSelected': isSelected,
   });
 
   return (

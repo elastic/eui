@@ -2,11 +2,11 @@
 
 exports[`EuiHeaderBreadcrumb href is rendered 1`] = `
 <a
-  class="kuiHeaderBreadcrumb"
+  class="euiHeaderBreadcrumb"
   href="#"
 >
   <div
-    class="kuiHeaderBreadcrumb__text"
+    class="euiHeaderBreadcrumb__text"
   />
 </a>
 `;
@@ -14,11 +14,11 @@ exports[`EuiHeaderBreadcrumb href is rendered 1`] = `
 exports[`EuiHeaderBreadcrumb is rendered 1`] = `
 <a
   aria-label="aria-label"
-  class="kuiHeaderBreadcrumb testClass1 testClass2"
+  class="euiHeaderBreadcrumb testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
-    class="kuiHeaderBreadcrumb__text"
+    class="euiHeaderBreadcrumb__text"
   >
     content
   </div>
@@ -27,10 +27,10 @@ exports[`EuiHeaderBreadcrumb is rendered 1`] = `
 
 exports[`EuiHeaderBreadcrumb isActive is rendered 1`] = `
 <a
-  class="kuiHeaderBreadcrumb kuiHeaderBreadcrumb-isActive"
+  class="euiHeaderBreadcrumb euiHeaderBreadcrumb-isActive"
 >
   <div
-    class="kuiHeaderBreadcrumb__text"
+    class="euiHeaderBreadcrumb__text"
   />
 </a>
 `;

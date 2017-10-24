@@ -26,23 +26,23 @@ export const EuiTableHeaderCell = ({
   ariaLabel,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableHeaderCell', className);
+  const classes = classNames('euiTableHeaderCell', className);
 
-  const contentClasses = classNames('kuiTableCellContent', className, {
-    'kuiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
+  const contentClasses = classNames('euiTableCellContent', className, {
+    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
   });
 
   if (onSort) {
     const sortIcon = (
       <EuiIcon
-        className="kuiTableSortIcon"
+        className="euiTableSortIcon"
         type={isSortAscending ? 'sortUp' : 'sortDown'}
         size="medium"
       />
     );
 
-    const buttonClasses = classNames('kuiTableHeaderButton', {
-      'kuiTableHeaderButton-isSorted': isSorted,
+    const buttonClasses = classNames('euiTableHeaderButton', {
+      'euiTableHeaderButton-isSorted': isSorted,
     });
 
     const columnTitle = ariaLabel ? ariaLabel : children;

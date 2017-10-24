@@ -8,10 +8,10 @@ import {
 } from '../../icon';
 
 const typeToClassNameMap = {
-  primary: 'kuiButtonIcon--primary',
-  danger: 'kuiButtonIcon--danger',
-  disabled: 'kuiButtonIcon--disabled',
-  ghost: 'kuiButtonIcon--ghost',
+  primary: 'euiButtonIcon--primary',
+  danger: 'euiButtonIcon--danger',
+  disabled: 'euiButtonIcon--disabled',
+  ghost: 'euiButtonIcon--ghost',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
@@ -26,7 +26,7 @@ export const EuiButtonIcon = ({
 }) => {
 
   const classes = classNames(
-    'kuiButtonIcon',
+    'euiButtonIcon',
     typeToClassNameMap[type],
     className,
   );
@@ -37,7 +37,7 @@ export const EuiButtonIcon = ({
   if (iconType) {
     buttonIcon = (
       <EuiIcon
-        className="kuiButtonIcon__icon"
+        className="euiButtonIcon__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"

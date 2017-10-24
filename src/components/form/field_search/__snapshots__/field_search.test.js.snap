@@ -2,16 +2,16 @@
 
 exports[`EuiFieldSearch is rendered 1`] = `
 <div
-  class="kuiFormControlLayout"
+  class="euiFormControlLayout"
 >
   <input
     aria-label="aria-label"
-    class="kuiFieldSearch testClass1 testClass2"
+    class="euiFieldSearch testClass1 testClass2"
     data-test-subj="test subject string"
     type="search"
   />
   <svg
-    class="kuiIcon kuiFormControlLayout__icon kuiIcon--medium"
+    class="euiIcon euiFormControlLayout__icon euiIcon--medium"
   >
     <title>
       search icon

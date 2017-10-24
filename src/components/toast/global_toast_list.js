@@ -87,7 +87,7 @@ export class EuiGlobalToastList extends Component {
       ...rest,
     } = this.props;
 
-    const classes = classNames('kuiGlobalToastList', className);
+    const classes = classNames('euiGlobalToastList', className);
 
     return (
       <div

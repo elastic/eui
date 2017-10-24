@@ -3,25 +3,25 @@
 exports[`renders EuiTable 1`] = `
 <table
   aria-label="aria-label"
-  class="kuiTable testClass1 testClass2"
+  class="euiTable testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <thead>
     <tr>
       <th
-        class="kuiTableHeaderCell"
+        class="euiTableHeaderCell"
       >
         <div
-          class="kuiTableCellContent"
+          class="euiTableCellContent"
         >
           Hi Title
         </div>
       </th>
       <th
-        class="kuiTableHeaderCell"
+        class="euiTableHeaderCell"
       >
         <div
-          class="kuiTableCellContent"
+          class="euiTableCellContent"
         >
           Bye Title
         </div>
@@ -30,16 +30,16 @@ exports[`renders EuiTable 1`] = `
   </thead>
   <tbody>
     <tr
-      class="kuiTableRow"
+      class="euiTableRow"
     >
       <td
-        class="kuiTableRowCell"
+        class="euiTableRowCell"
       >
         <div
-          class="kuiTableCellContent"
+          class="euiTableCellContent"
         >
           <span
-            class="kuiTableCellContent__text"
+            class="euiTableCellContent__text"
           >
             Hi
           </span>
@@ -47,16 +47,16 @@ exports[`renders EuiTable 1`] = `
       </td>
     </tr>
     <tr
-      class="kuiTableRow"
+      class="euiTableRow"
     >
       <td
-        class="kuiTableRowCell"
+        class="euiTableRowCell"
       >
         <div
-          class="kuiTableCellContent"
+          class="euiTableCellContent"
         >
           <span
-            class="kuiTableCellContent__text"
+            class="euiTableCellContent__text"
           >
             Bye
           </span>

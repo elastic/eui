@@ -15,22 +15,22 @@ export const EuiHeaderAlert = ({
   title,
   ...rest,
 }) => {
-  const classes = classNames('kuiHeaderAlert', className);
+  const classes = classNames('euiHeaderAlert', className);
 
   return (
     <div
       className={classes}
       {...rest}
     >
-      <EuiButtonIcon iconType="cross" size="small" className="kuiHeaderAlert__dismiss" />
-      <p className="kuiHeaderAlert__title">{title}</p>
-      <p className="kuiHeaderAlert__text">{text}</p>
+      <EuiButtonIcon iconType="cross" size="small" className="euiHeaderAlert__dismiss" />
+      <p className="euiHeaderAlert__title">{title}</p>
+      <p className="euiHeaderAlert__text">{text}</p>
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
-          <div className="kuiHeaderAlert__action kuiLink">{action}</div>
+          <div className="euiHeaderAlert__action euiLink">{action}</div>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <div className="kuiHeaderAlert__date">
+          <div className="euiHeaderAlert__date">
             {date}
           </div>
         </EuiFlexItem>

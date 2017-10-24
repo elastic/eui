@@ -20,9 +20,9 @@ export const EuiSelect = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiSelect',
+    'euiSelect',
     {
-      'kuiSelect--fullWidth': fullWidth,
+      'euiSelect--fullWidth': fullWidth,
     },
     className
   );

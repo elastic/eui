@@ -21,9 +21,9 @@ export const EuiFieldSearch = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiFieldSearch',
+    'euiFieldSearch',
     {
-      'kuiFieldSearch--fullWidth': fullWidth,
+      'euiFieldSearch--fullWidth': fullWidth,
     },
     className
   );

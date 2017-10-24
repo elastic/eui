@@ -22,7 +22,7 @@ export const EuiContextMenuItem = ({
           <EuiIcon
             type={icon}
             size="medium"
-            className="kuiContextMenu__icon"
+            className="euiContextMenu__icon"
           />
         );
         break;
@@ -30,7 +30,7 @@ export const EuiContextMenuItem = ({
       default:
         // Assume it's already an instance of an icon.
         iconInstance = cloneElement(icon, {
-          className: 'kuiContextMenu__icon'
+          className: 'euiContextMenu__icon'
         });
     }
   }
@@ -42,21 +42,21 @@ export const EuiContextMenuItem = ({
       <EuiIcon
         type="arrowRight"
         size="medium"
-        className="kuiContextMenu__arrow"
+        className="euiContextMenu__arrow"
       />
     );
   }
 
-  const classes = classNames('kuiContextMenuItem', className);
+  const classes = classNames('euiContextMenuItem', className);
 
   return (
     <button
       className={classes}
       {...rest}
     >
-      <span className="kuiContextMenu__itemLayout">
+      <span className="euiContextMenu__itemLayout">
         {iconInstance}
-        <span className="kuiContextMenuItem__text">
+        <span className="euiContextMenuItem__text">
           {children}
         </span>
         {arrow}

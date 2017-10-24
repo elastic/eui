@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const colorsToClassNameMap = {
-  'default': 'kuiTextColor--default',
-  'subdued': 'kuiTextColor--subdued',
-  'primary': 'kuiTextColor--primary',
-  'secondary': 'kuiTextColor--secondary',
-  'accent': 'kuiTextColor--accent',
-  'danger': 'kuiTextColor--danger',
-  'warning': 'kuiTextColor--warning',
-  'ghost': 'kuiTextColor--ghost',
+  'default': 'euiTextColor--default',
+  'subdued': 'euiTextColor--subdued',
+  'primary': 'euiTextColor--primary',
+  'secondary': 'euiTextColor--secondary',
+  'accent': 'euiTextColor--accent',
+  'danger': 'euiTextColor--danger',
+  'warning': 'euiTextColor--warning',
+  'ghost': 'euiTextColor--ghost',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);
@@ -22,7 +22,7 @@ export const EuiTextColor = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiTextColor',
+    'euiTextColor',
     colorsToClassNameMap[color],
     className
   );

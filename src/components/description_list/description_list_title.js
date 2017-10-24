@@ -7,7 +7,7 @@ export const EuiDescriptionListTitle = ({
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiDescriptionList__title', className);
+  const classes = classNames('euiDescriptionList__title', className);
 
   return (
     <dt

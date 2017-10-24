@@ -8,15 +8,15 @@ import {
 } from '..';
 
 const typesToClassNameMap = {
-  row: 'kuiDescriptionList--row',
-  column: 'kuiDescriptionList--column',
-  inline: 'kuiDescriptionList--inline',
+  row: 'euiDescriptionList--row',
+  column: 'euiDescriptionList--column',
+  inline: 'euiDescriptionList--inline',
 };
 
 export const TYPES = Object.keys(typesToClassNameMap);
 
 const alignmentsToClassNameMap = {
-  center: 'kuiDescriptionList--center',
+  center: 'euiDescriptionList--center',
   left: '',
 };
 
@@ -32,11 +32,11 @@ export const EuiDescriptionList = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiDescriptionList',
+    'euiDescriptionList',
     typesToClassNameMap[type],
     alignmentsToClassNameMap[align],
     {
-      'kuiDescriptionList--compressed': compressed,
+      'euiDescriptionList--compressed': compressed,
     },
     className
   );

@@ -14,7 +14,7 @@ export const EuiPagination = ({
   onPageClick,
   ...rest,
 }) => {
-  const classes = classNames('kuiPagination', className);
+  const classes = classNames('euiPagination', className);
 
   const pages = [];
   const firstPageInRange = Math.max(0, Math.min(activePage - NUMBER_SURROUNDING_PAGES, pageCount - MAX_VISIBLE_PAGES));

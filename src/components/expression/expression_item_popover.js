@@ -60,9 +60,9 @@ let EuiExpressionItemPopover = ({
   align = 'left',
   ...rest
 }) => {
-  const classes = classNames('kuiExpressionItem__popover', className, {
-    'kuiExpressionItem__popover--isHidden': !isVisible,
-    'kuiExpressionItem__popover--alignRight': align === 'right'
+  const classes = classNames('euiExpressionItem__popover', className, {
+    'euiExpressionItem__popover--isHidden': !isVisible,
+    'euiExpressionItem__popover--alignRight': align === 'right'
   });
   return (
     <div
@@ -70,10 +70,10 @@ let EuiExpressionItemPopover = ({
       className={classes}
       {...rest}
     >
-      <div className="kuiExpressionItem__popoverTitle">
+      <div className="euiExpressionItem__popoverTitle">
         {title}
       </div>
-      <div className="kuiExpressionItem__popoverContent">
+      <div className="euiExpressionItem__popoverContent">
         {children}
       </div>
     </div>

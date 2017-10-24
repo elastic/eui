@@ -13,7 +13,7 @@ export const EuiTableHeaderButton = ({
   iconType,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableHeaderButton', className);
+  const classes = classNames('euiTableHeaderButton', className);
 
   // Add an icon to the button if one exists.
   let buttonIcon;
@@ -21,7 +21,7 @@ export const EuiTableHeaderButton = ({
   if (iconType) {
     buttonIcon = (
       <EuiIcon
-        className="kuiTableHeaderButton__icon"
+        className="euiTableHeaderButton__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"

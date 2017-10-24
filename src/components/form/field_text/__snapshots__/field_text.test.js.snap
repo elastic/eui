@@ -3,7 +3,7 @@
 exports[`EuiFieldText is rendered 1`] = `
 <input
   aria-label="aria-label"
-  class="kuiFieldText testClass1 testClass2"
+  class="euiFieldText testClass1 testClass2"
   data-test-subj="test subject string"
   type="text"
 />

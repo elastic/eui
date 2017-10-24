@@ -8,8 +8,8 @@ export const EuiTable = ({
   compressed,
   ...rest,
 }) => {
-  const classes = classNames('kuiTable', className, {
-    'kuiTable--compressed': compressed,
+  const classes = classNames('euiTable', className, {
+    'euiTable--compressed': compressed,
   });
 
   return <table className={classes} {...rest} >{children}</table>;

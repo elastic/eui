@@ -3,21 +3,21 @@
 exports[`EuiSideNav is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="kuiSideNav testClass1 testClass2"
+  class="euiSideNav testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <button
-    class="kuiSideNav__mobileToggle kuiLink"
+    class="euiSideNav__mobileToggle euiLink"
   >
     <span
-      class="kuiSideNav__mobileWrap"
+      class="euiSideNav__mobileWrap"
     >
       <span
-        class="kuiSideNav__mobileTitle"
+        class="euiSideNav__mobileTitle"
       />
       <svg
         aria-hidden="true"
-        class="kuiIcon kuiSideNav__mobileIcon kuiIcon--medium"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon
@@ -29,27 +29,27 @@ exports[`EuiSideNav is rendered 1`] = `
     </span>
   </button>
   <div
-    class="kuiSideNav__content"
+    class="euiSideNav__content"
   />
 </nav>
 `;
 
 exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
 <nav
-  class="kuiSideNav"
+  class="euiSideNav"
 >
   <button
-    class="kuiSideNav__mobileToggle kuiLink"
+    class="euiSideNav__mobileToggle euiLink"
   >
     <span
-      class="kuiSideNav__mobileWrap"
+      class="euiSideNav__mobileWrap"
     >
       <span
-        class="kuiSideNav__mobileTitle"
+        class="euiSideNav__mobileTitle"
       />
       <svg
         aria-hidden="true"
-        class="kuiIcon kuiSideNav__mobileIcon kuiIcon--medium"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon
@@ -61,27 +61,27 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
     </span>
   </button>
   <div
-    class="kuiSideNav__content"
+    class="euiSideNav__content"
   />
 </nav>
 `;
 
 exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
 <nav
-  class="kuiSideNav kuiSideNav-isOpenMobile"
+  class="euiSideNav euiSideNav-isOpenMobile"
 >
   <button
-    class="kuiSideNav__mobileToggle kuiLink"
+    class="euiSideNav__mobileToggle euiLink"
   >
     <span
-      class="kuiSideNav__mobileWrap"
+      class="euiSideNav__mobileWrap"
     >
       <span
-        class="kuiSideNav__mobileTitle"
+        class="euiSideNav__mobileTitle"
       />
       <svg
         aria-hidden="true"
-        class="kuiIcon kuiSideNav__mobileIcon kuiIcon--medium"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon
@@ -93,7 +93,7 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
     </span>
   </button>
   <div
-    class="kuiSideNav__content"
+    class="euiSideNav__content"
   />
 </nav>
 `;

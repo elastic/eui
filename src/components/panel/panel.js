@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 const paddingSizeToClassNameMap = {
   'none': null,
-  's': 'kuiPanel--paddingSmall',
-  'm': 'kuiPanel--paddingMedium',
-  'l': 'kuiPanel--paddingLarge',
+  's': 'euiPanel--paddingSmall',
+  'm': 'euiPanel--paddingMedium',
+  'l': 'euiPanel--paddingLarge',
 };
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
@@ -22,11 +22,11 @@ export const EuiPanel = ({
 }) => {
 
   const classes = classNames(
-    'kuiPanel',
+    'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     {
-      'kuiPanel--shadow': hasShadow,
-      'kuiPanel--flexGrowZero': !grow,
+      'euiPanel--shadow': hasShadow,
+      'euiPanel--flexGrowZero': !grow,
     },
     className
   );

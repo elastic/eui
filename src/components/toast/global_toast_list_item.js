@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiGlobalToastListItem = ({ isDismissed, children }) => {
-  const classes = classNames('kuiGlobalToastListItem', children.props.className, {
-    'kuiGlobalToastListItem-isDismissed': isDismissed,
+  const classes = classNames('euiGlobalToastListItem', children.props.className, {
+    'euiGlobalToastListItem-isDismissed': isDismissed,
   });
 
   return cloneElement(children, Object.assign({}, children.props, {

@@ -250,7 +250,7 @@ export class EuiContextMenu extends Component {
       outGoingPanel = this.renderPanel(this.state.outGoingPanelId, 'out');
     }
 
-    const classes = classNames('kuiContextMenu', className);
+    const classes = classNames('euiContextMenu', className);
 
     return (
       <div

@@ -25,7 +25,7 @@ export default () => (
 
     <EuiKeyboardAccessible>
       <a
-        className="kuiLink"
+        className="euiLink"
         onClick={() => window.alert('Anchor tag clicked')}
       >
         Click this anchor tag
@@ -44,7 +44,7 @@ export default () => (
 
         <EuiKeyboardAccessible>
           <a
-            className="kuiLink"
+            className="euiLink"
             onClick={() => window.alert('Inner EuiKeyboardAccessible clicked')}
           >
             Clicking this inner one should call both onClick handlers

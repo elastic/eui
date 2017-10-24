@@ -49,7 +49,7 @@ const buttonContent = (
         <EuiIcon type="logoWebhook" size="medium" />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiTitle size="small" className="kuiAccordionForm__title">
+        <EuiTitle size="small" className="euiAccordionForm__title">
           <h6>Webhook</h6>
         </EuiTitle>
       </EuiFlexItem>
@@ -65,7 +65,7 @@ const buttonContent = (
 );
 
 const extraAction = (
-  <EuiButtonIcon iconType="cross" type="danger" className="kuiAccordionForm__extraAction" />
+  <EuiButtonIcon iconType="cross" type="danger" className="euiAccordionForm__extraAction" />
 );
 
 export default () => (
@@ -75,22 +75,22 @@ export default () => (
     </EuiTitle>
     <EuiSpacer size="l" />
     <EuiAccordion
-      className="kuiAccordionForm"
-      buttonClassName="kuiAccordionForm__button"
+      className="euiAccordionForm"
+      buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
     >
-      <div className="kuiAccordionForm__children">
+      <div className="euiAccordionForm__children">
         {repeatableForm}
       </div>
     </EuiAccordion>
     <EuiAccordion
-      className="kuiAccordionForm"
-      buttonClassName="kuiAccordionForm__button"
+      className="euiAccordionForm"
+      buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
     >
-      <div className="kuiAccordionForm__children">
+      <div className="euiAccordionForm__children">
         {repeatableForm}
       </div>
     </EuiAccordion>

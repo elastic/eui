@@ -22,9 +22,9 @@ export const EuiFieldText = ({
   fullWidth,
   ...rest,
 }) => {
-  const classes = classNames('kuiFieldText', className, {
-    'kuiFieldText--withIcon': icon,
-    'kuiFieldText--fullWidth': fullWidth,
+  const classes = classNames('euiFieldText', className, {
+    'euiFieldText--withIcon': icon,
+    'euiFieldText--fullWidth': fullWidth,
   });
 
   return (

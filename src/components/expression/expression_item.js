@@ -7,7 +7,7 @@ export const EuiExpressionItem = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('kuiExpressionItem', className);
+  const classes = classNames('euiExpressionItem', className);
 
   return (
     <div

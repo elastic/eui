@@ -4,7 +4,7 @@ exports[`EuiProgress is rendered 1`] = `
 <div>
   <div
     aria-label="aria-label"
-    class="kuiProgress kuiProgress--indeterminate kuiProgress--m kuiProgress--secondary testClass1 testClass2"
+    class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary testClass1 testClass2"
     data-test-subj="test subject string"
   />
 </div>

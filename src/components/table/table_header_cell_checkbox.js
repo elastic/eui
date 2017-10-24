@@ -7,11 +7,11 @@ export const EuiTableHeaderCellCheckbox = ({
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiTableHeaderCellCheckbox', className);
+  const classes = classNames('euiTableHeaderCellCheckbox', className);
 
   return (
     <td className={classes} {...rest} >
-      <div className="kuiTableCellContent">
+      <div className="euiTableCellContent">
         {children}
       </div>
     </td>

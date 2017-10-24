@@ -7,7 +7,7 @@ export const EuiTabs = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('kuiTabs', className);
+  const classes = classNames('euiTabs', className);
 
   return (
     <div

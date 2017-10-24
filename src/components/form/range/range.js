@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 export const EuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {
   const classes = classNames(
-    'kuiRange',
+    'euiRange',
     {
-      'kuiRange--fullWidth': fullWidth,
+      'euiRange--fullWidth': fullWidth,
     },
     className
   );

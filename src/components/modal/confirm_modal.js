@@ -32,7 +32,7 @@ export function EuiConfirmModal({
   defaultFocusedButton,
   ...rest,
 }) {
-  const classes = classnames('kuiModal--confirmation', className);
+  const classes = classnames('euiModal--confirmation', className);
 
   let modalTitle;
 

@@ -9,25 +9,25 @@ import {
 } from '../icon';
 
 const typeToClassNameMap = {
-  primary: 'kuiButton--primary',
-  secondary: 'kuiButton--secondary',
-  warning: 'kuiButton--warning',
-  danger: 'kuiButton--danger',
-  ghost: 'kuiButton--ghost',
+  primary: 'euiButton--primary',
+  secondary: 'euiButton--secondary',
+  warning: 'euiButton--warning',
+  danger: 'euiButton--danger',
+  ghost: 'euiButton--ghost',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
 const sizeToClassNameMap = {
-  small: 'kuiButton--small',
-  large: 'kuiButton--large',
+  small: 'euiButton--small',
+  large: 'euiButton--large',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const iconSideToClassNameMap = {
   left: '',
-  right: 'kuiButton--iconRight',
+  right: 'euiButton--iconRight',
 };
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
@@ -45,13 +45,13 @@ export const EuiButton = ({
 }) => {
 
   const classes = classNames(
-    'kuiButton',
+    'euiButton',
     typeToClassNameMap[type],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
     className,
     {
-      'kuiButton--fill': fill,
+      'euiButton--fill': fill,
     },
   );
 
@@ -61,7 +61,7 @@ export const EuiButton = ({
   if (iconType) {
     buttonIcon = (
       <EuiIcon
-        className="kuiButton__icon"
+        className="euiButton__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -75,7 +75,7 @@ export const EuiButton = ({
       className={classes}
       {...rest}
     >
-      <span className="kuiButton__content">
+      <span className="euiButton__content">
         {buttonIcon}
         <span>{children}</span>
       </span>

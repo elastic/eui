@@ -14,7 +14,7 @@ export const EuiCheckboxGroup = ({
     {options.map((option, index) => {
       return (
         <EuiCheckbox
-          className="kuiCheckboxGroup__item"
+          className="euiCheckboxGroup__item"
           key={index}
           id={option.id}
           checked={idToSelectedMap[option.id]}

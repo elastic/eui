@@ -6,7 +6,7 @@ import {
 } from '..';
 
 export const EuiSideNavTitle = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiSideNavTitle', className);
+  const classes = classNames('euiSideNavTitle', className);
 
   return (
     <EuiTitle

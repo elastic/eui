@@ -3,7 +3,7 @@
 exports[`EuiForm is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

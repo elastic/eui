@@ -125,7 +125,7 @@ export default class extends Component {
     const button = (
       <EuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
         <EuiIcon type="user" size="medium" />
-        <span className="kuiHeader__notification">3</span>
+        <span className="euiHeader__notification">3</span>
       </EuiHeaderSectionItemButton>
     );
 
@@ -135,9 +135,9 @@ export default class extends Component {
         isOpen={this.state.isUserMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeUserMenu.bind(this)}
-        panelClassName="kuiHeaderPopover"
+        panelClassName="euiHeaderPopover"
       >
-        <EuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
+        <EuiFlexGroup gutterSize="medium" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -194,7 +194,7 @@ export default class extends Component {
         isOpen={this.state.isAppMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeAppMenu.bind(this)}
-        panelClassName="kuiHeaderPopover"
+        panelClassName="euiHeaderPopover"
       >
         <EuiKeyPadMenu>
           <EuiKeyPadMenuItem

@@ -13,23 +13,23 @@ import {
 } from '..';
 
 const typeToClassNameMap = {
-  info: 'kuiCallOut--info',
-  success: 'kuiCallOut--success',
-  warning: 'kuiCallOut--warning',
-  danger: 'kuiCallOut--danger',
+  info: 'euiCallOut--info',
+  success: 'euiCallOut--success',
+  warning: 'euiCallOut--warning',
+  danger: 'euiCallOut--danger',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
 export const EuiCallOut = ({ title, type, iconType, children, className, ...rest }) => {
-  const classes = classNames('kuiCallOut', typeToClassNameMap[type], className);
+  const classes = classNames('euiCallOut', typeToClassNameMap[type], className);
 
   let headerIcon;
 
   if (iconType) {
     headerIcon = (
       <EuiIcon
-        className="kuiCallOutHeader__icon"
+        className="euiCallOutHeader__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -51,10 +51,10 @@ export const EuiCallOut = ({ title, type, iconType, children, className, ...rest
       className={classes}
       {...rest}
     >
-      <div className="kuiCallOutHeader">
+      <div className="euiCallOutHeader">
         {headerIcon}
 
-        <span className="kuiCallOutHeader__title">
+        <span className="euiCallOutHeader__title">
           {title}
         </span>
       </div>

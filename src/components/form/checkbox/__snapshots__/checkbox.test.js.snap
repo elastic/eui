@@ -3,18 +3,18 @@
 exports[`EuiCheckbox is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiCheckbox testClass1 testClass2"
+  class="euiCheckbox testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <input
-    class="kuiCheckbox__input"
+    class="euiCheckbox__input"
     type="checkbox"
   />
   <div
-    class="kuiCheckbox__square"
+    class="euiCheckbox__square"
   >
     <div
-      class="kuiCheckbox__check"
+      class="euiCheckbox__check"
     />
   </div>
 </div>

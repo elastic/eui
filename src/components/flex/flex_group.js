@@ -4,36 +4,36 @@ import classNames from 'classnames';
 
 const gutterSizeToClassNameMap = {
   none: '',
-  small: 'kuiFlexGroup--gutterSmall',
-  medium: 'kuiFlexGroup--gutterMedium',
-  large: 'kuiFlexGroup--gutterLarge',
-  extraLarge: 'kuiFlexGroup--gutterExtraLarge',
+  small: 'euiFlexGroup--gutterSmall',
+  medium: 'euiFlexGroup--gutterMedium',
+  large: 'euiFlexGroup--gutterLarge',
+  extraLarge: 'euiFlexGroup--gutterExtraLarge',
 };
 
 export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
 
 const alignItemsToClassNameMap = {
   stretch: '',
-  flexStart: 'kuiFlexGroup--alignItemsStart',
-  flexEnd: 'kuiFlexGroup--alignItemsEnd',
-  center: 'kuiFlexGroup--alignItemsCenter',
+  flexStart: 'euiFlexGroup--alignItemsStart',
+  flexEnd: 'euiFlexGroup--alignItemsEnd',
+  center: 'euiFlexGroup--alignItemsCenter',
 };
 
 export const ALIGN_ITEMS = Object.keys(alignItemsToClassNameMap);
 
 const justifyContentToClassNameMap = {
   flexStart: '',
-  flexEnd: 'kuiFlexGroup--justifyContentFlexEnd',
-  center: 'kuiFlexGroup--justifyContentCenter',
-  spaceBetween: 'kuiFlexGroup--justifyContentSpaceBetween',
-  spaceAround: 'kuiFlexGroup--justifyContentSpaceAround',
+  flexEnd: 'euiFlexGroup--justifyContentFlexEnd',
+  center: 'euiFlexGroup--justifyContentCenter',
+  spaceBetween: 'euiFlexGroup--justifyContentSpaceBetween',
+  spaceAround: 'euiFlexGroup--justifyContentSpaceAround',
 };
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
 export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, justifyContent, ...rest }) => {
   const classes = classNames(
-    'kuiFlexGroup',
+    'euiFlexGroup',
     gutterSizeToClassNameMap[gutterSize],
     alignItemsToClassNameMap[alignItems],
     justifyContentToClassNameMap[justifyContent],

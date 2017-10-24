@@ -48,10 +48,10 @@ export class EuiFormRow extends Component {
     } = this.props;
 
     const classes = classNames(
-      'kuiFormRow',
+      'euiFormRow',
       {
-        'kuiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
-        'kuiFormRow--fullWidth': fullWidth,
+        'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
+        'euiFormRow--fullWidth': fullWidth,
       },
       className
     );
@@ -60,7 +60,7 @@ export class EuiFormRow extends Component {
 
     if (helpText) {
       optionalHelpText = (
-        <EuiFormHelpText className="kuiFormRow__text">
+        <EuiFormHelpText className="euiFormRow__text">
           {helpText}
         </EuiFormHelpText>
       );
@@ -71,7 +71,7 @@ export class EuiFormRow extends Component {
     if (error) {
       const errorTexts = Array.isArray(error) ? error : [error];
       optionalErrors = errorTexts.map(error => (
-        <EuiFormErrorText key={error} className="kuiFormRow__text">
+        <EuiFormErrorText key={error} className="euiFormRow__text">
           {error}
         </EuiFormErrorText>
       ));

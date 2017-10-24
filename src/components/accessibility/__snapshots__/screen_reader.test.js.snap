@@ -2,7 +2,7 @@
 
 exports[`EuiScreenReaderOnly adds an accessibility class to a child element and combines other classNames (foo, bar) given as props on the child 1`] = `
 <p
-  class="kuiScreenReaderOnly foo bar"
+  class="euiScreenReaderOnly foo bar"
 >
   This paragraph is not visibile to sighted users but will be read by screenreaders.
 </p>
@@ -10,7 +10,7 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element and 
 
 exports[`EuiScreenReaderOnly adds an accessibility class to a child element when used with no props 1`] = `
 <p
-  class="kuiScreenReaderOnly"
+  class="euiScreenReaderOnly"
 >
   This paragraph is not visibile to sighted users but will be read by screenreaders.
 </p>

@@ -18,9 +18,9 @@ export const EuiTextArea = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiTextArea',
+    'euiTextArea',
     {
-      'kuiTextArea--fullWidth': fullWidth,
+      'euiTextArea--fullWidth': fullWidth,
     },
     className
   );

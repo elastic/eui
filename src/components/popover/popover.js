@@ -12,18 +12,18 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPanel, SIZES } from '../panel/panel';
 
 const anchorPositionToClassNameMap = {
-  'upCenter': 'kuiPopover--anchorUpCenter',
-  'upLeft': 'kuiPopover--anchorUpLeft',
-  'upRight': 'kuiPopover--anchorUpRight',
-  'downCenter': 'kuiPopover--anchorDownCenter',
-  'downLeft': 'kuiPopover--anchorDownLeft',
-  'downRight': 'kuiPopover--anchorDownRight',
-  'leftCenter': 'kuiPopover--anchorLeftCenter',
-  'leftUp': 'kuiPopover--anchorLeftUp',
-  'leftDown': 'kuiPopover--anchorLeftDown',
-  'rightCenter': 'kuiPopover--anchorRightCenter',
-  'rightUp': 'kuiPopover--anchorRightUp',
-  'rightDown': 'kuiPopover--anchorRightDown',
+  'upCenter': 'euiPopover--anchorUpCenter',
+  'upLeft': 'euiPopover--anchorUpLeft',
+  'upRight': 'euiPopover--anchorUpRight',
+  'downCenter': 'euiPopover--anchorDownCenter',
+  'downLeft': 'euiPopover--anchorDownLeft',
+  'downRight': 'euiPopover--anchorDownRight',
+  'leftCenter': 'euiPopover--anchorLeftCenter',
+  'leftUp': 'euiPopover--anchorLeftUp',
+  'leftDown': 'euiPopover--anchorLeftDown',
+  'rightCenter': 'euiPopover--anchorRightCenter',
+  'rightUp': 'euiPopover--anchorRightUp',
+  'rightDown': 'euiPopover--anchorRightDown',
 };
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
@@ -95,16 +95,16 @@ export class EuiPopover extends Component {
     } = this.props;
 
     const classes = classNames(
-      'kuiPopover',
+      'euiPopover',
       anchorPositionToClassNameMap[anchorPosition],
       className,
       {
-        'kuiPopover-isOpen': this.state.isOpening,
-        'kuiPopover--withTitle': withTitle,
+        'euiPopover-isOpen': this.state.isOpening,
+        'euiPopover--withTitle': withTitle,
       },
     );
 
-    const panelClasses = classNames('kuiPopover__panel', panelClassName);
+    const panelClasses = classNames('euiPopover__panel', panelClassName);
 
     let panel;
 

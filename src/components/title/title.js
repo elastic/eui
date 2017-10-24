@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const titleSizeToClassNameMap = {
-  small: 'kuiTitle--small',
-  large: 'kuiTitle--large',
+  small: 'euiTitle--small',
+  large: 'euiTitle--large',
 };
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
@@ -14,7 +14,7 @@ export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 export const EuiTitle = ({ size, children, className, ...rest }) => {
 
   const classes = classNames(
-    'kuiTitle',
+    'euiTitle',
     titleSizeToClassNameMap[size],
     className
   );

@@ -5,10 +5,10 @@ import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors
 
 const sizeToClassNameMap = {
   'none': null,
-  's': 'kuiAvatar--s',
-  'm': 'kuiAvatar--m',
-  'l': 'kuiAvatar--l',
-  'xl': 'kuiAvatar--xl',
+  's': 'euiAvatar--s',
+  'm': 'euiAvatar--m',
+  'l': 'euiAvatar--l',
+  'xl': 'euiAvatar--xl',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -21,7 +21,7 @@ export const EuiAvatar = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiAvatar',
+    'euiAvatar',
     sizeToClassNameMap[size],
     className
   );

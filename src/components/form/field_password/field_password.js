@@ -21,9 +21,9 @@ export const EuiFieldPassword = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiFieldPassword',
+    'euiFieldPassword',
     {
-      'kuiFieldPassword--fullWidth': fullWidth,
+      'euiFieldPassword--fullWidth': fullWidth,
     },
     className
   );

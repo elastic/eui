@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  xs: 'kuiSpacer--xs',
-  s: 'kuiSpacer--s',
-  m: 'kuiSpacer--m',
-  l: 'kuiSpacer--l',
-  xl: 'kuiSpacer--xl',
-  xxl: 'kuiSpacer--xxl',
+  xs: 'euiSpacer--xs',
+  s: 'euiSpacer--s',
+  m: 'euiSpacer--m',
+  l: 'euiSpacer--l',
+  xl: 'euiSpacer--xl',
+  xxl: 'euiSpacer--xxl',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -19,7 +19,7 @@ export const EuiSpacer = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiSpacer',
+    'euiSpacer',
     sizeToClassNameMap[size],
     className
   );

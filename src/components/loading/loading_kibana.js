@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import { EuiIcon } from '..';
 
 const sizeToClassNameMap = {
-  medium: 'kuiLoadingKibana--medium',
-  large: 'kuiLoadingKibana--large',
-  xLarge: 'kuiLoadingKibana--xLarge',
+  medium: 'euiLoadingKibana--medium',
+  large: 'euiLoadingKibana--large',
+  xLarge: 'euiLoadingKibana--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
   const classes = classNames(
-    'kuiLoadingKibana',
+    'euiLoadingKibana',
     sizeToClassNameMap[size],
     className,
   );
@@ -23,7 +23,7 @@ export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
       className={classes}
       {...rest}
     >
-      <div className="kuiLoadingKibana__icon">
+      <div className="euiLoadingKibana__icon">
         <EuiIcon type="logoKibana" size={size} />
       </div>
       {children}

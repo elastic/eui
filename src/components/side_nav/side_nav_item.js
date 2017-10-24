@@ -10,10 +10,10 @@ export const EuiSideNavItem = ({ children, indent, isSelected }) => {
 
   const classes = classNames(
     child.props.className,
-    'kuiSideNavItem',
+    'euiSideNavItem',
     {
-      'kuiSideNavItem-isSelected': isSelected,
-      'kuiSideNavItem--indent': indent,
+      'euiSideNavItem-isSelected': isSelected,
+      'euiSideNavItem--indent': indent,
     }
   );
 

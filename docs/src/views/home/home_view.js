@@ -14,23 +14,23 @@ const pkg = require('../../../../package.json');
 
 const colors = [
   {
-    color: 'kuiColorPrimary',
+    color: 'euiColorPrimary',
     hex: '#0079a5',
   },
   {
-    color: 'kuiColorSecondary',
+    color: 'euiColorSecondary',
     hex: '#00A69B',
   },
   {
-    color: 'kuiColorAccent',
+    color: 'euiColorAccent',
     hex: '#DD0A73',
   },
   {
-    color: 'kuiColorDanger',
+    color: 'euiColorDanger',
     hex: '#A30000',
   },
   {
-    color: 'kuiColorWarning',
+    color: 'euiColorWarning',
     hex: '#E5830E',
   },
   // $euiColorEmptyShade: #FFF
@@ -44,37 +44,37 @@ const colors = [
 
 const grays = [
   {
-    color: 'kuiColorEmptyShade',
+    color: 'euiColorEmptyShade',
     hex: '#FFF',
     textColor: '#222'
   },
   {
-    color: 'kuiColorLightestShade',
+    color: 'euiColorLightestShade',
     hex: '#F5F5F5',
     textColor: '#222'
   },
   {
-    color: 'kuiColorLightShade',
+    color: 'euiColorLightShade',
     hex: '#D9D9D9',
     textColor: '#222'
   },
   {
-    color: 'kuiColorMediumShade',
+    color: 'euiColorMediumShade',
     hex: '#999999',
     textColor: '#FFF'
   },
   {
-    color: 'kuiColorDarkShade',
+    color: 'euiColorDarkShade',
     hex: '#666666',
     textColor: '#FFF'
   },
   {
-    color: 'kuiColorDarkestShade',
+    color: 'euiColorDarkestShade',
     hex: '#3F3F3F',
     textColor: '#FFF'
   },
   {
-    color: 'kuiColorFullShade',
+    color: 'euiColorFullShade',
     hex: '#000000',
     textColor: '#FFF'
   },

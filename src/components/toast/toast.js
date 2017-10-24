@@ -12,18 +12,18 @@ import {
 } from '..';
 
 const typeToClassNameMap = {
-  info: 'kuiToast--info',
-  success: 'kuiToast--success',
-  warning: 'kuiToast--warning',
-  danger: 'kuiToast--danger',
+  info: 'euiToast--info',
+  success: 'euiToast--success',
+  warning: 'euiToast--warning',
+  danger: 'euiToast--danger',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
 export const EuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
-  const classes = classNames('kuiToast', typeToClassNameMap[type], className);
-  const headerClasses = classNames('kuiToastHeader', {
-    'kuiToastHeader--withBody': children,
+  const classes = classNames('euiToast', typeToClassNameMap[type], className);
+  const headerClasses = classNames('euiToastHeader', {
+    'euiToastHeader--withBody': children,
   });
 
   let headerIcon;
@@ -31,7 +31,7 @@ export const EuiToast = ({ title, type, iconType, onClose, children, className, 
   if (iconType) {
     headerIcon = (
       <EuiIcon
-        className="kuiToastHeader__icon"
+        className="euiToastHeader__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -44,7 +44,7 @@ export const EuiToast = ({ title, type, iconType, onClose, children, className, 
   if (onClose) {
     closeButton = (
       <button
-        className="kuiToast__closeButton"
+        className="euiToast__closeButton"
         aria-label="Dismiss toast"
         onClick={onClose}
       >
@@ -75,7 +75,7 @@ export const EuiToast = ({ title, type, iconType, onClose, children, className, 
       <div className={headerClasses}>
         {headerIcon}
 
-        <span className="kuiToastHeader__title">
+        <span className="euiToastHeader__title">
           {title}
         </span>
       </div>

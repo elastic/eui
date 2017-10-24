@@ -3,14 +3,14 @@
 exports[`EuiContextMenuItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="kuiContextMenuItem testClass1 testClass2"
+  class="euiContextMenuItem testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
-    class="kuiContextMenu__itemLayout"
+    class="euiContextMenu__itemLayout"
   >
     <span
-      class="kuiContextMenuItem__text"
+      class="euiContextMenuItem__text"
     />
   </span>
 </button>

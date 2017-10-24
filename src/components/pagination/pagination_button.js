@@ -14,10 +14,10 @@ export const EuiPaginationButton = ({
   hideOnMobile,
   ...rest,
 }) => {
-  const classes = classNames('kuiPaginationButton', className, {
-    'kuiPaginationButton-isActive': isActive,
-    'kuiPaginationButton-isPlaceholder': isPlaceholder,
-    'kuiPaginationButton--hideOnMobile': hideOnMobile,
+  const classes = classNames('euiPaginationButton', className, {
+    'euiPaginationButton-isActive': isActive,
+    'euiPaginationButton-isPlaceholder': isPlaceholder,
+    'euiPaginationButton--hideOnMobile': hideOnMobile,
   });
 
   return (

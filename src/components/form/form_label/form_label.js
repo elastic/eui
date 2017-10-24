@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiFormLabel = ({ children, isFocused, isInvalid, className, ...rest }) => {
-  const classes = classNames('kuiFormLabel', className, {
-    'kuiFormLabel-isFocused': isFocused,
-    'kuiFormLabel-isInvalid': isInvalid,
+  const classes = classNames('euiFormLabel', className, {
+    'euiFormLabel-isFocused': isFocused,
+    'euiFormLabel-isInvalid': isInvalid,
   });
 
   return (

@@ -3,7 +3,7 @@
 exports[`EuiPageHeaderSection is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiPageHeaderSection testClass1 testClass2"
+  class="euiPageHeaderSection testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

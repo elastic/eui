@@ -3,7 +3,7 @@
 exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiTabs testClass1 testClass2"
+  class="euiTabs testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

@@ -23,9 +23,9 @@ export const EuiFieldNumber = ({
   fullWidth,
   ...rest,
 }) => {
-  const classes = classNames('kuiFieldNumber', className, {
-    'kuiFieldNumber--withIcon': icon,
-    'kuiFieldNumber--fullWidth': fullWidth,
+  const classes = classNames('euiFieldNumber', className, {
+    'euiFieldNumber--withIcon': icon,
+    'euiFieldNumber--fullWidth': fullWidth,
   });
 
   return (

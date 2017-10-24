@@ -10,8 +10,8 @@ export const EuiExpressionItemButton = ({
   onClick,
   ...rest
 }) => {
-  const classes = classNames('kuiExpressionItem__button', className, {
-    'kuiExpressionItem__button--isActive': isActive
+  const classes = classNames('euiExpressionItem__button', className, {
+    'euiExpressionItem__button--isActive': isActive
   });
 
   return (
@@ -20,8 +20,8 @@ export const EuiExpressionItemButton = ({
       onClick={onClick}
       {...rest}
     >
-      <span className="kuiExpressionItem__buttonDescription">{description}</span>{' '}
-      <span className="kuiExpression_buttonValue">{value}</span>
+      <span className="euiExpressionItem__buttonDescription">{description}</span>{' '}
+      <span className="euiExpression_buttonValue">{value}</span>
     </button>
   );
 };

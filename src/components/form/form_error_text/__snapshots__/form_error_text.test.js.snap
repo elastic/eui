@@ -3,7 +3,7 @@
 exports[`EuiFormErrorText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiFormErrorText testClass1 testClass2"
+  class="euiFormErrorText testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

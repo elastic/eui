@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 
 export const EuiScreenReaderOnly = ({ children }) => {
-  const classes = classNames('kuiScreenReaderOnly', children.props.className);
+  const classes = classNames('euiScreenReaderOnly', children.props.className);
 
   const props = Object.assign({}, children.props, {
     className: classes

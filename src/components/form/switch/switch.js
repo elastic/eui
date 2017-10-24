@@ -14,12 +14,12 @@ export const EuiSwitch = ({
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiSwitch', className);
+  const classes = classNames('euiSwitch', className);
 
   return (
     <div className={classes} {...rest}>
       <input
-        className="kuiSwitch__input"
+        className="euiSwitch__input"
         name={name}
         id={id}
         type="checkbox"
@@ -28,25 +28,25 @@ export const EuiSwitch = ({
         onChange={onChange}
       />
 
-      <span className="kuiSwitch__body">
-        <span className="kuiSwitch__thumb" />
-        <span className="kuiSwitch__track">
+      <span className="euiSwitch__body">
+        <span className="euiSwitch__thumb" />
+        <span className="euiSwitch__track">
           <EuiIcon
             type="cross"
             size="medium"
-            className="kuiSwitch__icon"
+            className="euiSwitch__icon"
           />
 
           <EuiIcon
             type="check"
             size="medium"
-            className="kuiSwitch__icon kuiSwitch__icon--checked"
+            className="euiSwitch__icon euiSwitch__icon--checked"
           />
         </span>
       </span>
 
       <label
-        className="kuiSwitch__label"
+        className="euiSwitch__label"
         htmlFor={id}
       >
         {label}

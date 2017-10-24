@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 const borderToClassNameMap = {
   left: undefined,
-  right: 'kuiHeaderSectionItem--borderRight',
+  right: 'euiHeaderSectionItem--borderRight',
 };
 
 const BORDERS = Object.keys(borderToClassNameMap);
 
 export const EuiHeaderSectionItem = ({ border, children, className, ...rest }) => {
-  const classes = classNames('kuiHeaderSectionItem', borderToClassNameMap[border], className);
+  const classes = classNames('euiHeaderSectionItem', borderToClassNameMap[border], className);
 
   return (
     <div

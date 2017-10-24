@@ -2,20 +2,20 @@
 
 exports[`EuiHeaderSectionItem border defaults to left 1`] = `
 <div
-  class="kuiHeaderSectionItem"
+  class="euiHeaderSectionItem"
 />
 `;
 
 exports[`EuiHeaderSectionItem border renders right 1`] = `
 <div
-  class="kuiHeaderSectionItem kuiHeaderSectionItem--borderRight"
+  class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
 />
 `;
 
 exports[`EuiHeaderSectionItem is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiHeaderSectionItem testClass1 testClass2"
+  class="euiHeaderSectionItem testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

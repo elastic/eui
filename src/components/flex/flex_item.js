@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
   const classes = classNames(
-    'kuiFlexItem',
+    'euiFlexItem',
     {
-      'kuiFlexItem--flexGrowZero': !grow,
+      'euiFlexItem--flexGrowZero': !grow,
     },
     className
   );

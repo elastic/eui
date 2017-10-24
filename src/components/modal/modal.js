@@ -22,7 +22,7 @@ export class EuiModal extends Component {
       ...rest,
     } = this.props;
 
-    const classes = classnames('kuiModal', className);
+    const classes = classnames('euiModal', className);
 
     return (
       <FocusTrap

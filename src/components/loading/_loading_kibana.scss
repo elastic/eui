@@ -17,12 +17,12 @@
 
   &:before {
     box-shadow: 0 0 8px $euiColorFullShade;
-    animation: 1s kuiLoadingKibanaPulsateAndFade $euiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaPulsateAndFade $euiAnimSlightResistance infinite;
   }
 
   &:after {
     background-color: $euiColorFullShade;
-    animation: 1s kuiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
   }
 }
 
@@ -37,7 +37,7 @@
   }
   .euiLoadingKibana__icon {
     z-index: 999;
-    animation: 1s kuiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
   }
 }
 
@@ -51,7 +51,7 @@
     bottom: -$euiSizeS;
   }
   .euiLoadingKibana__icon {
-    animation: 1s kuiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
   }
 }
 
@@ -62,7 +62,7 @@
     bottom: -$euiSizeM;
   }
   .euiLoadingKibana__icon {
-    animation: 1s kuiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
+    animation: 1s euiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
   }
 }
 

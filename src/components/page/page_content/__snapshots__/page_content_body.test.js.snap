@@ -3,7 +3,7 @@
 exports[`EuiPageContentBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="kuiPageContentBody testClass1 testClass2"
+  class="euiPageContentBody testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

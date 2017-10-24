@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { EuiIcon } from '..';
 
 const typeToClassNameMap = {
-  inPanel: 'kuiSideNav--inPanel',
+  inPanel: 'euiSideNav--inPanel',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
@@ -19,11 +19,11 @@ export const EuiSideNav = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiSideNav',
+    'euiSideNav',
     className,
     typeToClassNameMap[type],
     {
-      'kuiSideNav-isOpenMobile': isOpenOnMobile,
+      'euiSideNav-isOpenMobile': isOpenOnMobile,
     },
   );
 
@@ -34,16 +34,16 @@ export const EuiSideNav = ({
     >
       {/* Hidden from view, except in mobile */}
       <button
-        className="kuiSideNav__mobileToggle kuiLink"
+        className="euiSideNav__mobileToggle euiLink"
         onClick={toggleOpenOnMobile}
       >
-        <span className="kuiSideNav__mobileWrap">
-          <span className="kuiSideNav__mobileTitle">
+        <span className="euiSideNav__mobileWrap">
+          <span className="euiSideNav__mobileTitle">
             {mobileTitle}
           </span>
 
           <EuiIcon
-            className="kuiSideNav__mobileIcon"
+            className="euiSideNav__mobileIcon"
             type="apps"
             size="medium"
             aria-hidden="true"
@@ -52,7 +52,7 @@ export const EuiSideNav = ({
       </button>
 
       {/* Hidden from view in mobile, but toggled from the button above */}
-      <div className="kuiSideNav__content">
+      <div className="euiSideNav__content">
         {children}
       </div>
     </nav>

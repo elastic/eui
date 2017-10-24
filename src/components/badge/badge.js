@@ -8,30 +8,30 @@ import {
 } from '../icon';
 
 const typesToClassNameMap = {
-  default: 'kuiBadge--default',
-  primary: 'kuiBadge--primary',
-  secondary: 'kuiBadge--secondary',
-  accent: 'kuiBadge--accent',
-  warning: 'kuiBadge--warning',
-  danger: 'kuiBadge--danger',
+  default: 'euiBadge--default',
+  primary: 'euiBadge--primary',
+  secondary: 'euiBadge--secondary',
+  accent: 'euiBadge--accent',
+  warning: 'euiBadge--warning',
+  danger: 'euiBadge--danger',
 };
 
 export const TYPES = Object.keys(typesToClassNameMap);
 
 const iconSideToClassNameMap = {
   left: '',
-  right: 'kuiBadge--iconRight',
+  right: 'euiBadge--iconRight',
 };
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 export const EuiBadge = ({ children, type, iconType, iconSide, className, ...rest }) => {
-  const classes = classNames('kuiBadge', typesToClassNameMap[type], iconSideToClassNameMap[iconSide], className);
+  const classes = classNames('euiBadge', typesToClassNameMap[type], iconSideToClassNameMap[iconSide], className);
 
   let optionalIcon = null;
   if (iconType) {
     optionalIcon = (
-      <EuiIcon type={iconType} size="medium" className="kuiBadge__icon" />
+      <EuiIcon type={iconType} size="medium" className="euiBadge__icon" />
     );
   }
 
@@ -40,7 +40,7 @@ export const EuiBadge = ({ children, type, iconType, iconSide, className, ...res
       className={classes}
       {...rest}
     >
-      <span className="kuiBadge__content">
+      <span className="euiBadge__content">
         {optionalIcon}
         <span>
           {children}

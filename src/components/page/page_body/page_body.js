@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export const EuiPageBody = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiPageBody', className);
+  const classes = classNames('euiPageBody', className);
 
   return (
     <div

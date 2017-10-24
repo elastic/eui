@@ -53,20 +53,20 @@ export class EuiAccordion extends Component {
     } = this.props;
 
     const classes = classNames(
-      'kuiAccordion',
+      'euiAccordion',
       {
-        'kuiAccordion-isOpen': this.state.isOpen,
+        'euiAccordion-isOpen': this.state.isOpen,
       },
       className
     );
 
     const buttonClasses = classNames(
-      'kuiAccordion__button',
+      'euiAccordion__button',
       buttonClassName,
     );
 
     const buttonContentClasses = classNames(
-      'kuiAccordion__buttonContent',
+      'euiAccordion__buttonContent',
       buttonContentClassName,
     );
 
@@ -107,7 +107,7 @@ export class EuiAccordion extends Component {
           {optionalAction}
         </EuiFlexGroup>
 
-        <div className="kuiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
+        <div className="euiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
           <div ref={node => { this.childContent = node; }}>
             {children}
           </div>

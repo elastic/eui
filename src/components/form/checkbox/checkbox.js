@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const typeToClassNameMap = {
-  inList: 'kuiCheckbox--inList',
+  inList: 'euiCheckbox--inList',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
@@ -18,7 +18,7 @@ export const EuiCheckbox = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'kuiCheckbox',
+    'euiCheckbox',
     typeToClassNameMap[type],
     className
   );
@@ -28,7 +28,7 @@ export const EuiCheckbox = ({
   if (label) {
     optionalLabel = (
       <label
-        className="kuiCheckbox__label"
+        className="euiCheckbox__label"
         htmlFor={id}
       >
         {label}
@@ -42,15 +42,15 @@ export const EuiCheckbox = ({
       {...rest}
     >
       <input
-        className="kuiCheckbox__input"
+        className="euiCheckbox__input"
         type="checkbox"
         id={id}
         checked={checked}
         onChange={onChange}
       />
 
-      <div className="kuiCheckbox__square">
-        <div className="kuiCheckbox__check" />
+      <div className="euiCheckbox__square">
+        <div className="euiCheckbox__check" />
       </div>
 
       {optionalLabel}

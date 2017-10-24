@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 export function EuiModalFooter({ className, children, ...rest }) {
-  const classes = classnames('kuiModalFooter', className);
+  const classes = classnames('euiModalFooter', className);
   return (
     <div className={classes} {...rest}>
       { children }

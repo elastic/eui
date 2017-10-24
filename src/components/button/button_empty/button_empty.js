@@ -8,32 +8,32 @@ import {
 } from '../../icon';
 
 const typeToClassNameMap = {
-  primary: 'kuiButtonEmpty--primary',
-  danger: 'kuiButtonEmpty--danger',
-  disabled: 'kuiButtonEmpty--disabled',
-  text: 'kuiButtonEmpty--text',
-  ghost: 'kuiButtonEmpty--ghost',
+  primary: 'euiButtonEmpty--primary',
+  danger: 'euiButtonEmpty--danger',
+  disabled: 'euiButtonEmpty--disabled',
+  text: 'euiButtonEmpty--text',
+  ghost: 'euiButtonEmpty--ghost',
 };
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
 const sizeToClassNameMap = {
-  small: 'kuiButtonEmpty--small',
-  large: 'kuiButtonEmpty--large',
+  small: 'euiButtonEmpty--small',
+  large: 'euiButtonEmpty--large',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const iconSideToClassNameMap = {
   left: '',
-  right: 'kuiButtonEmpty--iconRight',
+  right: 'euiButtonEmpty--iconRight',
 };
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 const flushTypeToClassNameMap = {
-  'left': 'kuiButtonEmpty--flushLeft',
-  'right': 'kuiButtonEmpty--flushRight',
+  'left': 'euiButtonEmpty--flushLeft',
+  'right': 'euiButtonEmpty--flushRight',
 };
 
 export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
@@ -51,7 +51,7 @@ export const EuiButtonEmpty = ({
 }) => {
 
   const classes = classNames(
-    'kuiButtonEmpty',
+    'euiButtonEmpty',
     typeToClassNameMap[type],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
@@ -65,7 +65,7 @@ export const EuiButtonEmpty = ({
   if (iconType) {
     buttonIcon = (
       <EuiIcon
-        className="kuiButtonEmpty__icon"
+        className="euiButtonEmpty__icon"
         type={iconType}
         size="medium"
         aria-hidden="true"
@@ -79,7 +79,7 @@ export const EuiButtonEmpty = ({
       className={classes}
       {...rest}
     >
-      <span className="kuiButtonEmpty__content">
+      <span className="euiButtonEmpty__content">
         {buttonIcon}
         <span>{children}</span>
       </span>

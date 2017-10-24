@@ -9,8 +9,8 @@ export const EuiHeaderBreadcrumb = ({
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiHeaderBreadcrumb', className, {
-    'kuiHeaderBreadcrumb-isActive': isActive,
+  const classes = classNames('euiHeaderBreadcrumb', className, {
+    'euiHeaderBreadcrumb-isActive': isActive,
   });
 
   return (
@@ -19,7 +19,7 @@ export const EuiHeaderBreadcrumb = ({
       className={classes}
       {...rest}
     >
-      <div className="kuiHeaderBreadcrumb__text">
+      <div className="euiHeaderBreadcrumb__text">
         {children}
       </div>
     </a>

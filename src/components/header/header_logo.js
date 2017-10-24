@@ -7,12 +7,12 @@ import {
 } from '../icon';
 
 export const EuiHeaderLogo = ({ href, className, ...rest }) => {
-  const classes = classNames('kuiHeaderLogo', className);
+  const classes = classNames('euiHeaderLogo', className);
 
   return (
     <a href={href} className={classes} {...rest}>
       <EuiIcon
-        className="kuiHeaderLogo__icon"
+        className="euiHeaderLogo__icon"
         type="logoKibana"
         size="xLarge"
         title="Go to Kibana home page"

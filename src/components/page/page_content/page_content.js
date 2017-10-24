@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import { EuiPanel, SIZES } from '../../panel/panel';
 
 const verticalPositionToClassNameMap = {
-  center: 'kuiPageContent--verticalCenter',
+  center: 'euiPageContent--verticalCenter',
 };
 
 const horizontalPositionToClassNameMap = {
-  center: 'kuiPageContent--horizontalCenter',
+  center: 'euiPageContent--horizontalCenter',
 };
 
 export const VERTICAL_POSITIONS = Object.keys(verticalPositionToClassNameMap);
@@ -24,7 +24,7 @@ export const EuiPageContent = ({
   ...rest }) => {
 
   const classes = classNames(
-    'kuiPageContent',
+    'euiPageContent',
     className,
     verticalPositionToClassNameMap[verticalPosition],
     horizontalPositionToClassNameMap[horizontalPosition]

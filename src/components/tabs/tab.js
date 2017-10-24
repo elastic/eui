@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiTab = ({ isSelected, onClick, children, className, ...rest }) => {
-  const classes = classNames('kuiTab', className, {
-    'kuiTab-isSelected': isSelected
+  const classes = classNames('euiTab', className, {
+    'euiTab-isSelected': isSelected
   });
 
   return (
@@ -13,7 +13,7 @@ export const EuiTab = ({ isSelected, onClick, children, className, ...rest }) =>
       onClick={onClick}
       {...rest}
     >
-      <span className="kuiTab__content">
+      <span className="euiTab__content">
         {children}
       </span>
     </button>

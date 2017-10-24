@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiFormErrorText = ({ children, className, ...rest }) => {
-  const classes = classNames('kuiFormErrorText', className);
+  const classes = classNames('euiFormErrorText', className);
 
   return (
     <div

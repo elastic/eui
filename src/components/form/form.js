@@ -10,7 +10,7 @@ export const EuiForm = ({
   error,
   ...rest,
 }) => {
-  const classes = classNames('kuiForm', className);
+  const classes = classNames('euiForm', className);
 
   let optionalErrors;
 
@@ -19,7 +19,7 @@ export const EuiForm = ({
     optionalErrors = (
       <ul>
         {errorTexts.map(error => (
-          <li className="kuiForm__error" key={error}>
+          <li className="euiForm__error" key={error}>
             {error}
           </li>
         ))}
@@ -32,7 +32,7 @@ export const EuiForm = ({
   if (isInvalid) {
     optionalErrorAlert = (
       <EuiCallOut
-        className="kuiForm__errors"
+        className="euiForm__errors"
         title="Please address the errors in your form."
         type="danger"
       >

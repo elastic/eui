@@ -2,16 +2,16 @@
 
 exports[`isSelected renders true when specified 1`] = `
 <tr
-  class="kuiTableRow kuiTableRow-isSelected"
+  class="euiTableRow euiTableRow-isSelected"
 >
   <td
-    class="kuiTableRowCell"
+    class="euiTableRowCell"
   >
     <div
-      class="kuiTableCellContent"
+      class="euiTableCellContent"
     >
       <span
-        class="kuiTableCellContent__text"
+        class="euiTableCellContent__text"
       />
     </div>
   </td>
@@ -21,17 +21,17 @@ exports[`isSelected renders true when specified 1`] = `
 exports[`renders EuiTableRow 1`] = `
 <tr
   aria-label="aria-label"
-  class="kuiTableRow testClass1 testClass2"
+  class="euiTableRow testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <td
-    class="kuiTableRowCell"
+    class="euiTableRowCell"
   >
     <div
-      class="kuiTableCellContent"
+      class="euiTableCellContent"
     >
       <span
-        class="kuiTableCellContent__text"
+        class="euiTableCellContent__text"
       >
         hi
       </span>

@@ -7,7 +7,7 @@ export const EuiCode = ({
   className,
   ...rest,
 }) => {
-  const classes = classNames('kuiCode', className);
+  const classes = classNames('euiCode', className);
 
   return (
     <code

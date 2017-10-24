@@ -93,7 +93,7 @@ export class GuideNav extends Component {
               <button
                 to="/"
                 onClick={this.props.onToggleTheme}
-                className="kuiLink"
+                className="euiLink"
               >
                 Theme
               </button>
