@@ -1,8 +1,28 @@
 const path = require('path');
+const webpack = require('webpack');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+const plugins = [
+  new SpriteLoaderPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
+];
+
+if (isProduction) {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      }
+    })
+  );
+}
+
 module.exports = {
-  devtool: 'source-map',
+  devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
     guide: './index.js'
@@ -12,14 +32,12 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'eui.js'
+    filename: `eui${isProduction ? '.min' : ''}.js`
   },
 
-  // These are necessasry for using Enzyme with Webpack (https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md).
   externals: {
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
-    'react/addons': true,
+    'react': true,
+    'prop-types': true
   },
 
   module: {
@@ -32,18 +50,6 @@ module.exports = {
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       exclude: /node_modules/
     }, {
-      test: /\.css$/,
-      loaders: ['style-loader', 'css-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.useable\.css$/,
-      loaders: ['style-loader/useable', 'css-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.html$/,
-      loader: 'html-loader',
-      exclude: /node_modules/
-    }, {
       test: /\.svg$/,
       loader: 'svg-sprite-loader'
     }, {
@@ -52,7 +58,5 @@ module.exports = {
     }]
   },
 
-  plugins: [
-    new SpriteLoaderPlugin()
-  ]
+  plugins
 };
