@@ -1,18 +1,18 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiFlexGroup>
-    <KuiFlexItem>Content grid item</KuiFlexItem>
-    <KuiFlexItem>
+  <EuiFlexGroup>
+    <EuiFlexItem>Content grid item</EuiFlexItem>
+    <EuiFlexItem>
       <p>Another content grid item</p>
       <br/>
       <br/>
       <p>Note how both of these are the same width and height despite having different content?</p>
-    </KuiFlexItem>
-  </KuiFlexGroup>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

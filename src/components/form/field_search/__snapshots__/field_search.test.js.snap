@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiFieldSearch is rendered 1`] = `
+exports[`EuiFieldSearch is rendered 1`] = `
 <div
   class="kuiFormControlLayout"
 >

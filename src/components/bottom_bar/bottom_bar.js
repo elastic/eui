@@ -11,7 +11,7 @@ const paddingSizeToClassNameMap = {
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const KuiBottomBar = ({
+export const EuiBottomBar = ({
   children,
   className,
   paddingSize,
@@ -33,11 +33,11 @@ export const KuiBottomBar = ({
   );
 };
 
-KuiBottomBar.propTypes = {
+EuiBottomBar.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-KuiBottomBar.defaultProps = {
+EuiBottomBar.defaultProps = {
   paddingSize: 'm',
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiExpressionItemButton = ({
+export const EuiExpressionItemButton = ({
   className,
   description,
   value,
@@ -26,7 +26,7 @@ export const KuiExpressionItemButton = ({
   );
 };
 
-KuiExpressionItemButton.propTypes = {
+EuiExpressionItemButton.propTypes = {
   className: PropTypes.string,
   description: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

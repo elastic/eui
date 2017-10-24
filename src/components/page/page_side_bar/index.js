@@ -1,1 +1,1 @@
-export { KuiPageSideBar } from './page_side_bar';
+export { EuiPageSideBar } from './page_side_bar';

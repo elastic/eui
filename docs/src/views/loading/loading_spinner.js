@@ -1,24 +1,24 @@
 import React from 'react';
 
 import {
-  KuiLoadingSpinner,
+  EuiLoadingSpinner,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiLoadingSpinner size="small"/>
+    <EuiLoadingSpinner size="small"/>
 
     &nbsp;&nbsp;
 
-    <KuiLoadingSpinner size="medium"/>
+    <EuiLoadingSpinner size="medium"/>
 
     &nbsp;&nbsp;
 
-    <KuiLoadingSpinner size="large"/>
+    <EuiLoadingSpinner size="large"/>
 
     &nbsp;&nbsp;
 
-    <KuiLoadingSpinner size="xLarge"/>
+    <EuiLoadingSpinner size="xLarge"/>
   </div>
 );
 

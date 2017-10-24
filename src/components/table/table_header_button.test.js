@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiTableHeaderButton } from './table_header_button';
+import { EuiTableHeaderButton } from './table_header_button';
 
-describe('KuiTableHeaderButton', () => {
+describe('EuiTableHeaderButton', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiTableHeaderButton {...requiredProps} />
+      <EuiTableHeaderButton {...requiredProps} />
     );
 
     expect(component)

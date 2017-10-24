@@ -1,3 +1,3 @@
 export {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from './validatable_control';

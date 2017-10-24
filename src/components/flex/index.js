@@ -1,11 +1,11 @@
 export {
-  KuiFlexGroup,
+  EuiFlexGroup,
 } from './flex_group';
 
 export {
-  KuiFlexGrid,
+  EuiFlexGrid,
 } from './flex_grid';
 
 export {
-  KuiFlexItem,
+  EuiFlexItem,
 } from './flex_item';

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSwitch is rendered 1`] = `
+exports[`EuiSwitch is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiSwitch testClass1 testClass2"

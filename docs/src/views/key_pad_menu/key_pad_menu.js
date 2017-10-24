@@ -1,39 +1,39 @@
 import React from 'react';
 
 import {
-  KuiIcon,
-  KuiKeyPadMenu,
-  KuiKeyPadMenuItem,
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiKeyPadMenu>
-    <KuiKeyPadMenuItem
+  <EuiKeyPadMenu>
+    <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <KuiIcon type="dashboardApp" size="large" />
-    </KuiKeyPadMenuItem>
+      <EuiIcon type="dashboardApp" size="large" />
+    </EuiKeyPadMenuItem>
 
-    <KuiKeyPadMenuItem
+    <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <KuiIcon type="dashboardApp" size="large" />
-    </KuiKeyPadMenuItem>
+      <EuiIcon type="dashboardApp" size="large" />
+    </EuiKeyPadMenuItem>
 
-    <KuiKeyPadMenuItem
+    <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <KuiIcon type="dashboardApp" size="large" />
-    </KuiKeyPadMenuItem>
+      <EuiIcon type="dashboardApp" size="large" />
+    </EuiKeyPadMenuItem>
 
-    <KuiKeyPadMenuItem
+    <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <KuiIcon type="dashboardApp" size="large" />
-    </KuiKeyPadMenuItem>
-  </KuiKeyPadMenu>
+      <EuiIcon type="dashboardApp" size="large" />
+    </EuiKeyPadMenuItem>
+  </EuiKeyPadMenu>
 );

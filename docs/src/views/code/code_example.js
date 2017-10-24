@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Code from './code';
@@ -29,7 +29,7 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <KuiCode>Code</KuiCode> component.
+          Description needed: how to use the <EuiCode>Code</EuiCode> component.
         </p>
       }
       demo={

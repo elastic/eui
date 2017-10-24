@@ -13,7 +13,7 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiSpacer = ({
+export const EuiSpacer = ({
   className,
   size,
   ...rest,
@@ -32,7 +32,7 @@ export const KuiSpacer = ({
   );
 };
 
-KuiSpacer.propTypes = {
+EuiSpacer.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

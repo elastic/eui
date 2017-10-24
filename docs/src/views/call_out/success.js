@@ -1,18 +1,18 @@
 import React from 'react';
 
 import {
-  KuiCallOut,
-  KuiLink,
+  EuiCallOut,
+  EuiLink,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiCallOut
+  <EuiCallOut
     title="Good news, everyone!"
     type="success"
     iconType="user"
   >
     <p>
-      I have no news. Which is good! And <KuiLink href="#">here&rsquo;s a link</KuiLink>.
+      I have no news. Which is good! And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
     </p>
-  </KuiCallOut>
+  </EuiCallOut>
 );

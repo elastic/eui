@@ -21,7 +21,7 @@ const columnsToClassNameMap = {
 
 export const COLUMNS = Object.keys(columnsToClassNameMap).map(columns => parseInt(columns, 10));
 
-export const KuiFlexGrid = ({ children, className, gutterSize, columns, ...rest }) => {
+export const EuiFlexGrid = ({ children, className, gutterSize, columns, ...rest }) => {
   const classes = classNames(
     'kuiFlexGrid',
     gutterSizeToClassNameMap[gutterSize],
@@ -39,14 +39,14 @@ export const KuiFlexGrid = ({ children, className, gutterSize, columns, ...rest 
   );
 };
 
-KuiFlexGrid.propTypes = {
+EuiFlexGrid.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   columns: PropTypes.oneOf(COLUMNS).isRequired,
 };
 
-KuiFlexGrid.defaultProps = {
+EuiFlexGrid.defaultProps = {
   gutterSize: 'large',
   columns: 0,
 };

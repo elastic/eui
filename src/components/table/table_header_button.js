@@ -4,10 +4,10 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
-export const KuiTableHeaderButton = ({
+export const EuiTableHeaderButton = ({
   children,
   className,
   iconType,
@@ -20,7 +20,7 @@ export const KuiTableHeaderButton = ({
 
   if (iconType) {
     buttonIcon = (
-      <KuiIcon
+      <EuiIcon
         className="kuiTableHeaderButton__icon"
         type={iconType}
         size="medium"
@@ -40,7 +40,7 @@ export const KuiTableHeaderButton = ({
   );
 };
 
-KuiTableHeaderButton.propTypes = {
+EuiTableHeaderButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),

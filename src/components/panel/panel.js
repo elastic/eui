@@ -11,7 +11,7 @@ const paddingSizeToClassNameMap = {
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const KuiPanel = ({
+export const EuiPanel = ({
   children,
   className,
   paddingSize,
@@ -43,7 +43,7 @@ export const KuiPanel = ({
 
 };
 
-KuiPanel.propTypes = {
+EuiPanel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   hasShadow: PropTypes.bool,
@@ -52,7 +52,7 @@ KuiPanel.propTypes = {
   panelRef: PropTypes.func,
 };
 
-KuiPanel.defaultProps = {
+EuiPanel.defaultProps = {
   paddingSize: 'm',
   hasShadow: false,
   grow: true,

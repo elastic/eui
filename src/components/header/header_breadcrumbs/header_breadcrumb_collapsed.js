@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const KuiHeaderBreadcrumbCollapsed = ({ className, ...rest }) => {
+export const EuiHeaderBreadcrumbCollapsed = ({ className, ...rest }) => {
   const classes = classNames('kuiHeaderBreadcrumb kuiHeaderBreadcrumb--collapsed', className);
 
   return (

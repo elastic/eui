@@ -8,7 +8,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import { Table } from './table';
@@ -32,7 +32,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>KuiTable</KuiCode>. This example has sortable headers which respond to mouse
+          <EuiCode>EuiTable</EuiCode>. This example has sortable headers which respond to mouse
           interaction and exhibit the desired behavior, and selectable rows.
         </p>
       }
@@ -51,7 +51,7 @@ export default props => (
         code: compressedSource,
       }]}
       text={
-        <p>Use the <KuiCode>compressed</KuiCode> prop to lower the font size and padding.</p>
+        <p>Use the <EuiCode>compressed</EuiCode> prop to lower the font size and padding.</p>
       }
       demo={
         <Compressed />

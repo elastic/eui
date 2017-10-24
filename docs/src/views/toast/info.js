@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiToast,
+  EuiToast,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiToast
+  <EuiToast
     title="Icons should be rare"
     type="info"
     iconType="user"
@@ -15,5 +15,5 @@ export default () => (
       Icons should be used rarely. They are good for warnings, but when paired with
       long titles they look out of place.
     </p>
-  </KuiToast>
+  </EuiToast>
 );

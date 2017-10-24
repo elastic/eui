@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiHeaderBreadcrumb = ({
+export const EuiHeaderBreadcrumb = ({
   href,
   isActive,
   children,
@@ -26,7 +26,7 @@ export const KuiHeaderBreadcrumb = ({
   );
 };
 
-KuiHeaderBreadcrumb.propTypes = {
+EuiHeaderBreadcrumb.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node,
   isActive: PropTypes.bool,

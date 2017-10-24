@@ -1,3 +1,3 @@
 export {
-  KuiContextMenu,
+  EuiContextMenu,
 } from './context_menu';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { KuiIcon } from '..';
+import { EuiIcon } from '..';
 
 const sizeToClassNameMap = {
   medium: 'kuiLoadingKibana--medium',
@@ -11,7 +11,7 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiLoadingKibana = ({ children, size, className, ...rest }) => {
+export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
   const classes = classNames(
     'kuiLoadingKibana',
     sizeToClassNameMap[size],
@@ -24,13 +24,13 @@ export const KuiLoadingKibana = ({ children, size, className, ...rest }) => {
       {...rest}
     >
       <div className="kuiLoadingKibana__icon">
-        <KuiIcon type="logoKibana" size={size} />
+        <EuiIcon type="logoKibana" size={size} />
       </div>
       {children}
     </div>
   );
 };
 
-KuiLoadingKibana.propTypes = {
+EuiLoadingKibana.propTypes = {
   size: PropTypes.oneOf(SIZES),
 };

@@ -1,3 +1,3 @@
 export {
-  KuiButtonEmpty,
+  EuiButtonEmpty,
 } from './button_empty';

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiHeaderBreadcrumb href is rendered 1`] = `
+exports[`EuiHeaderBreadcrumb href is rendered 1`] = `
 <a
   class="kuiHeaderBreadcrumb"
   href="#"
@@ -11,7 +11,7 @@ exports[`KuiHeaderBreadcrumb href is rendered 1`] = `
 </a>
 `;
 
-exports[`KuiHeaderBreadcrumb is rendered 1`] = `
+exports[`EuiHeaderBreadcrumb is rendered 1`] = `
 <a
   aria-label="aria-label"
   class="kuiHeaderBreadcrumb testClass1 testClass2"
@@ -25,7 +25,7 @@ exports[`KuiHeaderBreadcrumb is rendered 1`] = `
 </a>
 `;
 
-exports[`KuiHeaderBreadcrumb isActive is rendered 1`] = `
+exports[`EuiHeaderBreadcrumb isActive is rendered 1`] = `
 <a
   class="kuiHeaderBreadcrumb kuiHeaderBreadcrumb-isActive"
 >

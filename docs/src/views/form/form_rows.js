@@ -3,17 +3,17 @@ import React, {
 } from 'react';
 
 import {
-  KuiCheckboxGroup,
-  KuiFieldNumber,
-  KuiFieldPassword,
-  KuiFieldSearch,
-  KuiFieldText,
-  KuiForm,
-  KuiFormRow,
-  KuiRange,
-  KuiSelect,
-  KuiSwitch,
-  KuiTextArea,
+  EuiCheckboxGroup,
+  EuiFieldNumber,
+  EuiFieldPassword,
+  EuiFieldSearch,
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiRange,
+  EuiSelect,
+  EuiSwitch,
+  EuiTextArea,
 } from '../../../../src/components';
 
 // Don't use this, make proper ids instead. This is just for the example.
@@ -63,106 +63,106 @@ export default class extends Component {
 
   render() {
     return (
-      <KuiForm>
-        <KuiFormRow
+      <EuiForm>
+        <EuiFormRow
           id={makeId()}
           label="Text field"
           helpText="I am some friendly help text."
         >
-          <KuiFieldText name="first" />
-        </KuiFormRow>
+          <EuiFieldText name="first" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Text field with icon"
         >
-          <KuiFieldText
+          <EuiFieldText
             defaultValue="Text field with customizable icon"
             icon="user"
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Number field"
           helpText="Any number between 1 and 5"
         >
-          <KuiFieldNumber
+          <EuiFieldNumber
             name="number"
             min={1}
             max={5}
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Password"
         >
-          <KuiFieldPassword defaultValue="password" />
-        </KuiFormRow>
+          <EuiFieldPassword defaultValue="password" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Search"
         >
-          <KuiFieldSearch />
-        </KuiFormRow>
+          <EuiFieldSearch />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           label="Text area"
           id={makeId()}
         >
-          <KuiTextArea name="textarea"/>
-        </KuiFormRow>
+          <EuiTextArea name="textarea"/>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           label="Select"
           id={makeId()}
         >
-          <KuiSelect
+          <EuiSelect
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },
               { value: 'option_three', text: 'Option three' },
             ]}
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Range"
         >
-          <KuiRange
+          <EuiRange
             min={0}
             max={100}
             name="range"
             id="range"
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           label="Use a switch instead of a single checkbox"
         >
-          <KuiSwitch
+          <EuiSwitch
             name="switch"
             id={makeId()}
             label="Should we do this?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Checkboxes"
         >
-          <KuiCheckboxGroup
+          <EuiCheckboxGroup
             options={this.state.checkboxes}
             idToSelectedMap={this.state.checkboxIdToSelectedMap}
             onChange={this.onCheckboxChange}
           />
-        </KuiFormRow>
-      </KuiForm>
+        </EuiFormRow>
+      </EuiForm>
     );
   }
 }

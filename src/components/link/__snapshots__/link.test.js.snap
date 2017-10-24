@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiLink is rendered 1`] = `
+exports[`EuiLink is rendered 1`] = `
 <a
   aria-label="aria-label"
   class="kuiLink testClass1 testClass2"

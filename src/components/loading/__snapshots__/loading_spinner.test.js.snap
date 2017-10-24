@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiLoadingSpinner is rendered 1`] = `
+exports[`EuiLoadingSpinner is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiLoadingSpinner testClass1 testClass2"

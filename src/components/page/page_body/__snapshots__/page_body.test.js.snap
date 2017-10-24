@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPageBody is rendered 1`] = `
+exports[`EuiPageBody is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiPageBody testClass1 testClass2"

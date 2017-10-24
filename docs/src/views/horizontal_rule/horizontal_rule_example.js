@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import HorizontalRule from './horizontal_rule';
@@ -33,7 +33,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>HorizontalRule</KuiCode> can carry a size. By default it will be full.
+          <EuiCode>HorizontalRule</EuiCode> can carry a size. By default it will be full.
         </p>
       }
       demo={
@@ -52,7 +52,7 @@ export default props => (
       }]}
       text={
         <p>
-          <KuiCode>HorizontalRule</KuiCode> margins can also be defined. Don&rsquo;t forget that
+          <EuiCode>HorizontalRule</EuiCode> margins can also be defined. Don&rsquo;t forget that
           margins will collapse against items that proceed / follow.
         </p>
       }

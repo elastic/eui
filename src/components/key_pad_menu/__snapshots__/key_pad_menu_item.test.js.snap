@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiKeyPadMenuItem is rendered 1`] = `
+exports[`EuiKeyPadMenuItem is rendered 1`] = `
 <a
   aria-label="aria-label"
   class="kuiKeyPadMenuItem testClass1 testClass2"
@@ -23,7 +23,7 @@ exports[`KuiKeyPadMenuItem is rendered 1`] = `
 </a>
 `;
 
-exports[`KuiKeyPadMenuItem renders href 1`] = `
+exports[`EuiKeyPadMenuItem renders href 1`] = `
 <a
   class="kuiKeyPadMenuItem"
   href="#"
@@ -45,7 +45,7 @@ exports[`KuiKeyPadMenuItem renders href 1`] = `
 </a>
 `;
 
-exports[`KuiKeyPadMenuItemButton is rendered 1`] = `
+exports[`EuiKeyPadMenuItemButton is rendered 1`] = `
 <button
   aria-label="aria-label"
   class="kuiKeyPadMenuItem testClass1 testClass2"

@@ -1,24 +1,24 @@
 import React from 'react';
 
 import {
-  KuiButtonIcon,
+  EuiButtonIcon,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiButtonIcon
+    <EuiButtonIcon
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
     />
 
-    <KuiButtonIcon
+    <EuiButtonIcon
       size="small"
       type="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
     />
 
-    <KuiButtonIcon
+    <EuiButtonIcon
       size="small"
       type="disabled"
       onClick={() => window.alert('Button clicked')}

@@ -1,70 +1,70 @@
 import React from 'react';
 
 import {
-  KuiSpacer,
-  KuiText,
-  KuiTextColor,
-  KuiTitle,
+  EuiSpacer,
+  EuiText,
+  EuiTextColor,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiTitle>
+    <EuiTitle>
       <h2>
-        <KuiTextColor color="default">You </KuiTextColor>
-        <KuiTextColor color="primary">can </KuiTextColor>
-        <KuiTextColor color="secondary">use </KuiTextColor>
-        <KuiTextColor color="accent">it </KuiTextColor>
-        <KuiTextColor color="warning">on </KuiTextColor>
-        <KuiTextColor color="danger">anything!</KuiTextColor>
+        <EuiTextColor color="default">You </EuiTextColor>
+        <EuiTextColor color="primary">can </EuiTextColor>
+        <EuiTextColor color="secondary">use </EuiTextColor>
+        <EuiTextColor color="accent">it </EuiTextColor>
+        <EuiTextColor color="warning">on </EuiTextColor>
+        <EuiTextColor color="danger">anything!</EuiTextColor>
       </h2>
-    </KuiTitle>
+    </EuiTitle>
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
-    <KuiText>
+    <EuiText>
       <p>
-        <KuiTextColor color="default">
+        <EuiTextColor color="default">
           Default text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="subdued">
+        <EuiTextColor color="subdued">
           Subdued text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="primary">
+        <EuiTextColor color="primary">
           Primary text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="secondary">
+        <EuiTextColor color="secondary">
           Secondary text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="accent">
+        <EuiTextColor color="accent">
           Accent text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="warning">
+        <EuiTextColor color="warning">
           Warning text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
-        <KuiTextColor color="danger">
+        <EuiTextColor color="danger">
           Danger text color
-        </KuiTextColor>
+        </EuiTextColor>
       </p>
       <p>
         <span style={{ background: '#222' }}>
-          <KuiTextColor color="ghost">
+          <EuiTextColor color="ghost">
             Ghost text color is always white regardless of theme.
-          </KuiTextColor>
+          </EuiTextColor>
         </span>
       </p>
-    </KuiText>
+    </EuiText>
   </div>
 );

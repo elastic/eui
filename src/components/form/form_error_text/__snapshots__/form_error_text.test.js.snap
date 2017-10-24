@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiFormErrorText is rendered 1`] = `
+exports[`EuiFormErrorText is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiFormErrorText testClass1 testClass2"

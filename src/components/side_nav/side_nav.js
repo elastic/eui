@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { KuiIcon } from '..';
+import { EuiIcon } from '..';
 
 const typeToClassNameMap = {
   inPanel: 'kuiSideNav--inPanel',
@@ -9,7 +9,7 @@ const typeToClassNameMap = {
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiSideNav = ({
+export const EuiSideNav = ({
   children,
   type,
   toggleOpenOnMobile,
@@ -42,7 +42,7 @@ export const KuiSideNav = ({
             {mobileTitle}
           </span>
 
-          <KuiIcon
+          <EuiIcon
             className="kuiSideNav__mobileIcon"
             type="apps"
             size="medium"
@@ -59,7 +59,7 @@ export const KuiSideNav = ({
   );
 };
 
-KuiSideNav.propTypes = {
+EuiSideNav.propTypes = {
   toggleOpenOnMobile: PropTypes.func,
   isOpenOnMobile: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),

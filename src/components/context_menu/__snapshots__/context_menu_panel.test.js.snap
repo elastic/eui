@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiContextMenuPanel is rendered 1`] = `
+exports[`EuiContextMenuPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiContextMenuPanel testClass1 testClass2"

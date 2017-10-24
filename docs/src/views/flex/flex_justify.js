@@ -1,36 +1,36 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiFlexGroup justifyContent="spaceBetween">
-      <KuiFlexItem grow={false}>One here on the left</KuiFlexItem>
-      <KuiFlexItem grow={false}>The other over here on the right.</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup justifyContent="spaceBetween">
+      <EuiFlexItem grow={false}>One here on the left</EuiFlexItem>
+      <EuiFlexItem grow={false}>The other over here on the right.</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/><br/>
 
-    <KuiFlexGroup justifyContent="spaceAround">
-      <KuiFlexItem grow={false}>I&rsquo;m a single centered item!</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup justifyContent="spaceAround">
+      <EuiFlexItem grow={false}>I&rsquo;m a single centered item!</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/><br/>
 
-    <KuiFlexGroup alignItems="center">
-      <KuiFlexItem grow={false}>
-        <KuiText>
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiText>
           <p>I</p>
           <p>am</p>
           <p>really</p>
           <p>tall</p>
-        </KuiText>
-      </KuiFlexItem>
-      <KuiFlexItem>I am vertically centered!</KuiFlexItem>
-    </KuiFlexGroup>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>I am vertically centered!</EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

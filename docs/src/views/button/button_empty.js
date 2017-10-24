@@ -1,120 +1,120 @@
 import React from 'react';
 
 import {
-  KuiButtonEmpty,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       onClick={() => window.alert('Button clicked')}
     >
       Primary
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       Primary
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       size="small"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
       iconSide="right"
     >
       Primary
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       size="small"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
       iconSide="right"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
     >
       Danger
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       Danger
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
       iconSide="right"
     >
       Danger
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
@@ -122,62 +122,62 @@ export default () => (
       iconSide="right"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       onClick={() => window.alert('Button clicked')}
     >
       Text
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       Text
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       size="small"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
       iconSide="right"
     >
       Text
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="text"
       size="small"
       onClick={() => window.alert('Button clicked')}
@@ -185,43 +185,43 @@ export default () => (
       iconSide="right"
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
       isDisabled
     >
       Disabled
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
       isDisabled
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     <br/><br/>
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
       isDisabled
     >
       Disabled
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
@@ -229,11 +229,11 @@ export default () => (
       isDisabled
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowDown"
@@ -241,11 +241,11 @@ export default () => (
       isDisabled
     >
       Disabled
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
 
     &nbsp;&nbsp;
 
-    <KuiButtonEmpty
+    <EuiButtonEmpty
       type="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
@@ -254,6 +254,6 @@ export default () => (
       isDisabled
     >
       small
-    </KuiButtonEmpty>
+    </EuiButtonEmpty>
   </div>
 );

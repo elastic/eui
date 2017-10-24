@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiFormLabel } from './form_label';
+import { EuiFormLabel } from './form_label';
 
-describe('KuiFormLabel', () => {
+describe('EuiFormLabel', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiFormLabel {...requiredProps} />
+      <EuiFormLabel {...requiredProps} />
     );
 
     expect(component)

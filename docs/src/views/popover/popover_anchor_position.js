@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiPopover,
-  KuiButton,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiSpacer,
-  KuiText,
+  EuiPopover,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -173,211 +173,211 @@ export default class extends Component {
     return (
       <div>
 
-        <KuiFlexGroup>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
                   downLeft
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen1}
               closePopover={this.closePopover1.bind(this)}
               anchorPosition="downLeft"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
                   downCenter
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen2}
               closePopover={this.closePopover2.bind(this)}
               anchorPosition="downCenter"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
                   downRight
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen3}
               closePopover={this.closePopover3.bind(this)}
               anchorPosition="downRight"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiSpacer size="l" />
+        <EuiSpacer size="l" />
 
-        <KuiFlexGroup>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
                   upLeft
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen4}
               closePopover={this.closePopover4.bind(this)}
               anchorPosition="upLeft"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick5.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick5.bind(this)}>
                   upCenter
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen5}
               closePopover={this.closePopover5.bind(this)}
               anchorPosition="upCenter"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick6.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick6.bind(this)}>
                   upRight
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen6}
               closePopover={this.closePopover6.bind(this)}
               anchorPosition="upRight"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiSpacer size="l" />
+        <EuiSpacer size="l" />
 
-        <KuiFlexGroup>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick7.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick7.bind(this)}>
                   leftUp
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen7}
               closePopover={this.closePopover7.bind(this)}
               anchorPosition="leftUp"
             >
-              <KuiText>
+              <EuiText>
                 <p>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
-              </KuiText>
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+              </EuiText>
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick8.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick8.bind(this)}>
                   leftCenter
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen8}
               closePopover={this.closePopover8.bind(this)}
               anchorPosition="leftCenter"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick9.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick9.bind(this)}>
                   leftDown
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen9}
               closePopover={this.closePopover9.bind(this)}
               anchorPosition="leftDown"
             >
-              <KuiText>
+              <EuiText>
                 <p>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
-              </KuiText>
-            </KuiPopover>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+              </EuiText>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiSpacer size="l" />
+        <EuiSpacer size="l" />
 
-        <KuiFlexGroup>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick10.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick10.bind(this)}>
                   rightUp
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen10}
               closePopover={this.closePopover10.bind(this)}
               anchorPosition="rightUp"
             >
-              <KuiText>
+              <EuiText>
                 <p>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
-              </KuiText>
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+              </EuiText>
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick11.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick11.bind(this)}>
                   rightCenter
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen11}
               closePopover={this.closePopover11.bind(this)}
               anchorPosition="rightCenter"
             >
               Popover content
-            </KuiPopover>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiPopover
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
               button={(
-                <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick12.bind(this)}>
+                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick12.bind(this)}>
                   rightDown
-                </KuiButton>
+                </EuiButton>
               )}
               isOpen={this.state.isPopoverOpen12}
               closePopover={this.closePopover12.bind(this)}
               anchorPosition="rightDown"
             >
-              <KuiText>
+              <EuiText>
                 <p>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
-              </KuiText>
-            </KuiPopover>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+              </EuiText>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
       </div>
     );

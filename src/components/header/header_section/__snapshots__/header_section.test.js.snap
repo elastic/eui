@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiHeaderSection is rendered 1`] = `
+exports[`EuiHeaderSection is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiHeaderSection kuiHeaderSection--left testClass1 testClass2"
@@ -8,13 +8,13 @@ exports[`KuiHeaderSection is rendered 1`] = `
 />
 `;
 
-exports[`KuiHeaderSection side defaults to left 1`] = `
+exports[`EuiHeaderSection side defaults to left 1`] = `
 <div
   class="kuiHeaderSection kuiHeaderSection--left"
 />
 `;
 
-exports[`KuiHeaderSection side renders right 1`] = `
+exports[`EuiHeaderSection side renders right 1`] = `
 <div
   class="kuiHeaderSection kuiHeaderSection--right"
 />

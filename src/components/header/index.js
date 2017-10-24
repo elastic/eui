@@ -1,23 +1,23 @@
 export {
-  KuiHeader,
+  EuiHeader,
 } from './header';
 
 export {
-  KuiHeaderAlert,
+  EuiHeaderAlert,
 } from './header_alert';
 
 export {
-  KuiHeaderBreadcrumb,
-  KuiHeaderBreadcrumbs,
-  KuiHeaderBreadcrumbCollapsed,
+  EuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderBreadcrumbCollapsed,
 } from './header_breadcrumbs';
 
 export {
-  KuiHeaderLogo,
+  EuiHeaderLogo,
 } from './header_logo';
 
 export {
-  KuiHeaderSection,
-  KuiHeaderSectionItem,
-  KuiHeaderSectionItemButton,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
 } from './header_section';

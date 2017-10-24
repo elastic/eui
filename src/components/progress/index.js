@@ -1,3 +1,3 @@
 export {
-  KuiProgress,
+  EuiProgress,
 } from './progress';

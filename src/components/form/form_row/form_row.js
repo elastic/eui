@@ -5,11 +5,11 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiFormHelpText } from '../form_help_text';
-import { KuiFormErrorText } from '../form_error_text';
-import { KuiFormLabel } from '../form_label';
+import { EuiFormHelpText } from '../form_help_text';
+import { EuiFormErrorText } from '../form_error_text';
+import { EuiFormLabel } from '../form_label';
 
-export class KuiFormRow extends Component {
+export class EuiFormRow extends Component {
   constructor(props) {
     super(props);
 
@@ -60,9 +60,9 @@ export class KuiFormRow extends Component {
 
     if (helpText) {
       optionalHelpText = (
-        <KuiFormHelpText className="kuiFormRow__text">
+        <EuiFormHelpText className="kuiFormRow__text">
           {helpText}
-        </KuiFormHelpText>
+        </EuiFormHelpText>
       );
     }
 
@@ -71,9 +71,9 @@ export class KuiFormRow extends Component {
     if (error) {
       const errorTexts = Array.isArray(error) ? error : [error];
       optionalErrors = errorTexts.map(error => (
-        <KuiFormErrorText key={error} className="kuiFormRow__text">
+        <EuiFormErrorText key={error} className="kuiFormRow__text">
           {error}
-        </KuiFormErrorText>
+        </EuiFormErrorText>
       ));
     }
 
@@ -81,13 +81,13 @@ export class KuiFormRow extends Component {
 
     if (label) {
       optionalLabel = (
-        <KuiFormLabel
+        <EuiFormLabel
           isFocused={this.state.isFocused}
           isInvalid={isInvalid}
           htmlFor={id}
         >
           {label}
-        </KuiFormLabel>
+        </EuiFormLabel>
       );
     }
 
@@ -111,7 +111,7 @@ export class KuiFormRow extends Component {
   }
 }
 
-KuiFormRow.propTypes = {
+EuiFormRow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   label: PropTypes.string,
@@ -123,7 +123,7 @@ KuiFormRow.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiFormRow.defaultProps = {
+EuiFormRow.defaultProps = {
   hasEmptyLabelSpace: false,
   fullWidth: false,
 };

@@ -7,7 +7,7 @@ import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
-export class KuiModal extends Component {
+export class EuiModal extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
       this.props.onClose();
@@ -48,7 +48,7 @@ export class KuiModal extends Component {
   }
 }
 
-KuiModal.propTypes = {
+EuiModal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,

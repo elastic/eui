@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiTable = ({
+export const EuiTable = ({
   children,
   className,
   compressed,
@@ -15,7 +15,7 @@ export const KuiTable = ({
   return <table className={classes} {...rest} >{children}</table>;
 };
 
-KuiTable.propTypes = {
+EuiTable.propTypes = {
   compressed: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {
-  KuiHorizontalRule,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiHorizontalRule size="quarter"/>
-    <KuiHorizontalRule size="half"/>
-    <KuiHorizontalRule />
+    <EuiHorizontalRule size="quarter"/>
+    <EuiHorizontalRule size="half"/>
+    <EuiHorizontalRule />
   </div>
 );

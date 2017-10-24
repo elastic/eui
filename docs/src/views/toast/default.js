@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {
-  KuiToast,
+  EuiToast,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiToast
+    <EuiToast
       title="Example of a good toast"
       onClose={() => window.alert('Dismiss toast')}
     >
@@ -14,6 +14,6 @@ export default () => (
         A good toast message is short and to the point. It should very rarely include multiple
         paragraphs.
       </p>
-    </KuiToast>
+    </EuiToast>
   </div>
 );

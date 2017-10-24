@@ -3,10 +3,10 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiModalFooter,
+  EuiModalFooter,
 } from './modal_footer';
 
-test('renders KuiModalFooter', () => {
-  const component = <KuiModalFooter {...requiredProps}>children</KuiModalFooter>;
+test('renders EuiModalFooter', () => {
+  const component = <EuiModalFooter {...requiredProps}>children</EuiModalFooter>;
   expect(render(component)).toMatchSnapshot();
 });

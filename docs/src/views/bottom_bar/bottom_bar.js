@@ -4,11 +4,11 @@ import React, {
 } from 'react';
 
 import {
-  KuiBottomBar,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiButton,
-  KuiButtonEmpty,
+  EuiBottomBar,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -28,38 +28,38 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton type="primary" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton type="primary" onClick={this.onButtonClick.bind(this)}>
         Toggle appearance of the bottom bar
-      </KuiButton>
+      </EuiButton>
     );
 
     let bottomBar;
     if (this.state.showBar) {
       bottomBar = (
-        <KuiBottomBar>
-          <KuiFlexGroup justifyContent="spaceBetween">
-            <KuiFlexItem grow={false}>
-              <KuiFlexGroup gutterSize="small">
-                <KuiFlexItem>
-                  <KuiButton type="ghost" size="small" iconType="help">Help</KuiButton>
-                </KuiFlexItem>
-                <KuiFlexItem>
-                  <KuiButton type="ghost" size="small" iconType="user">Add user</KuiButton>
-                </KuiFlexItem>
-              </KuiFlexGroup>
-            </KuiFlexItem>
-            <KuiFlexItem grow={false}>
-              <KuiFlexGroup gutterSize="small">
-                <KuiFlexItem>
-                  <KuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</KuiButtonEmpty>
-                </KuiFlexItem>
-                <KuiFlexItem>
-                  <KuiButton type="primary" fill size="small" iconType="check">Save</KuiButton>
-                </KuiFlexItem>
-              </KuiFlexGroup>
-            </KuiFlexItem>
-          </KuiFlexGroup>
-        </KuiBottomBar>
+        <EuiBottomBar>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="small">
+                <EuiFlexItem>
+                  <EuiButton type="ghost" size="small" iconType="help">Help</EuiButton>
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiButton type="ghost" size="small" iconType="user">Add user</EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiFlexGroup gutterSize="small">
+                <EuiFlexItem>
+                  <EuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiButton type="primary" fill size="small" iconType="check">Save</EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
 
       );
     }

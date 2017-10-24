@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {
-  KuiLoadingKibana,
+  EuiLoadingKibana,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiLoadingKibana size="medium"/>
-    <KuiLoadingKibana size="large"/>
-    <KuiLoadingKibana size="xLarge"/>
+    <EuiLoadingKibana size="medium"/>
+    <EuiLoadingKibana size="large"/>
+    <EuiLoadingKibana size="xLarge"/>
   </div>
 );

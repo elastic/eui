@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiToast,
+  EuiToast,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiToast
+  <EuiToast
     title="Sometimes a title is enough!"
     type="warning"
   />

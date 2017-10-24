@@ -3,9 +3,9 @@ import React, {
 } from 'react';
 
 import {
-  KuiButtonEmpty,
-  KuiContextMenu,
-  KuiPopover,
+  EuiButtonEmpty,
+  EuiContextMenu,
+  EuiPopover,
 } from '../../../../src/components';
 
 function convertPanelTreeToMap(panel, map = {}) {
@@ -85,26 +85,26 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButtonEmpty size="small" type="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+      <EuiButtonEmpty size="small" type="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
         Rows per page: 50
-      </KuiButtonEmpty>
+      </EuiButtonEmpty>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
         withTitle
       >
-        <KuiContextMenu
+        <EuiContextMenu
           initialPanelId={0}
           isVisible={this.state.isPopoverOpen}
           idToPanelMap={this.idToPanelMap}
           idToPreviousPanelIdMap={this.idToPreviousPanelIdMap}
         />
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 }

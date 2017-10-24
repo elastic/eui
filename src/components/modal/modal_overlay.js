@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-export function KuiModalOverlay({ className,  ...rest }) {
+export function EuiModalOverlay({ className,  ...rest }) {
   const classes = classnames('kuiModalOverlay', className);
   return (
     <div
@@ -12,6 +12,6 @@ export function KuiModalOverlay({ className,  ...rest }) {
   );
 }
 
-KuiModalOverlay.propTypes = {
+EuiModalOverlay.propTypes = {
   className: PropTypes.string,
 };

@@ -1,57 +1,57 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiFlexGroup gutterSize="none">
-      <KuiFlexItem>None</KuiFlexItem>
-      <KuiFlexItem>None</KuiFlexItem>
-      <KuiFlexItem>None</KuiFlexItem>
-      <KuiFlexItem>None</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup gutterSize="none">
+      <EuiFlexItem>None</EuiFlexItem>
+      <EuiFlexItem>None</EuiFlexItem>
+      <EuiFlexItem>None</EuiFlexItem>
+      <EuiFlexItem>None</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/>
     <br/>
 
-    <KuiFlexGroup gutterSize="small">
-      <KuiFlexItem>Small</KuiFlexItem>
-      <KuiFlexItem>Small</KuiFlexItem>
-      <KuiFlexItem>Small</KuiFlexItem>
-      <KuiFlexItem>Small</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup gutterSize="small">
+      <EuiFlexItem>Small</EuiFlexItem>
+      <EuiFlexItem>Small</EuiFlexItem>
+      <EuiFlexItem>Small</EuiFlexItem>
+      <EuiFlexItem>Small</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/>
     <br/>
 
-    <KuiFlexGroup gutterSize="medium">
-      <KuiFlexItem>Medium</KuiFlexItem>
-      <KuiFlexItem>Medium</KuiFlexItem>
-      <KuiFlexItem>Medium</KuiFlexItem>
-      <KuiFlexItem>Medium</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup gutterSize="medium">
+      <EuiFlexItem>Medium</EuiFlexItem>
+      <EuiFlexItem>Medium</EuiFlexItem>
+      <EuiFlexItem>Medium</EuiFlexItem>
+      <EuiFlexItem>Medium</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/>
     <br/>
 
-    <KuiFlexGroup gutterSize="large">
-      <KuiFlexItem>Large (default)</KuiFlexItem>
-      <KuiFlexItem>Large (default)</KuiFlexItem>
-      <KuiFlexItem>Large (default)</KuiFlexItem>
-      <KuiFlexItem>Large (default)</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup gutterSize="large">
+      <EuiFlexItem>Large (default)</EuiFlexItem>
+      <EuiFlexItem>Large (default)</EuiFlexItem>
+      <EuiFlexItem>Large (default)</EuiFlexItem>
+      <EuiFlexItem>Large (default)</EuiFlexItem>
+    </EuiFlexGroup>
 
     <br/>
     <br/>
 
-    <KuiFlexGroup gutterSize="extraLarge">
-      <KuiFlexItem>Extra Large</KuiFlexItem>
-      <KuiFlexItem>Extra Large</KuiFlexItem>
-      <KuiFlexItem>Extra Large</KuiFlexItem>
-      <KuiFlexItem>Extra Large</KuiFlexItem>
-    </KuiFlexGroup>
+    <EuiFlexGroup gutterSize="extraLarge">
+      <EuiFlexItem>Extra Large</EuiFlexItem>
+      <EuiFlexItem>Extra Large</EuiFlexItem>
+      <EuiFlexItem>Extra Large</EuiFlexItem>
+      <EuiFlexItem>Extra Large</EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

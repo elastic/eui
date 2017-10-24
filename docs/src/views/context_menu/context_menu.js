@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiContextMenu,
-  KuiFormRow,
-  KuiIcon,
-  KuiPopover,
-  KuiSwitch,
+  EuiButton,
+  EuiContextMenu,
+  EuiFormRow,
+  EuiIcon,
+  EuiPopover,
+  EuiSwitch,
 } from '../../../../src/components';
 
 function convertPanelTreeToMap(panel, map = {}) {
@@ -55,7 +55,7 @@ export default class extends Component {
       items: [{
         name: 'Show fullscreen',
         icon: (
-          <KuiIcon
+          <EuiIcon
             type="search"
             size="medium"
           />
@@ -83,25 +83,25 @@ export default class extends Component {
               title: 'Share this dashboard',
               content: (
                 <div style={{ padding: 16 }}>
-                  <KuiFormRow
+                  <EuiFormRow
                     label="Generate a public snapshot?"
                   >
-                    <KuiSwitch
+                    <EuiSwitch
                       name="switch"
                       id="asdf"
                       label="Snapshot data"
                     />
-                  </KuiFormRow>
-                  <KuiFormRow
+                  </EuiFormRow>
+                  <EuiFormRow
                     label="Include the following in the embed"
                   >
-                    <KuiSwitch
+                    <EuiSwitch
                       name="switch"
                       id="asdf2"
                       label="Current time range"
                     />
-                  </KuiFormRow>
-                  <KuiButton fill>Copy iFrame code</KuiButton>
+                  </EuiFormRow>
+                  <EuiButton fill>Copy iFrame code</EuiButton>
                 </div>
               ),
             },
@@ -140,26 +140,26 @@ export default class extends Component {
 
   render() {
     const button = (
-      <KuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
         Click me to load a context menu
-      </KuiButton>
+      </EuiButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
         withTitle
       >
-        <KuiContextMenu
+        <EuiContextMenu
           initialPanelId={0}
           isVisible={this.state.isPopoverOpen}
           idToPanelMap={this.idToPanelMap}
           idToPreviousPanelIdMap={this.idToPreviousPanelIdMap}
         />
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 }

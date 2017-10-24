@@ -5,7 +5,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
-export class KuiOutsideClickDetector extends Component {
+export class EuiOutsideClickDetector extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onOutsideClick: PropTypes.func.isRequired,

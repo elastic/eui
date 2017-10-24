@@ -1,84 +1,84 @@
 import React from 'react';
 
 import {
-  KuiButton,
+  EuiButton,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiButton
+    <EuiButton
       onClick={() => window.alert('Button clicked')}
       iconType="arrowUp"
     >
       Primary
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       fill
       iconType="arrowDown"
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconType="arrowLeft"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconType="arrowRight"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowUp"
     >
       Primary
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       fill
       iconType="arrowDown"
       onClick={() => window.alert('Button clicked')}
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       iconType="arrowLeft"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       iconType="arrowRight"
       size="small"
@@ -86,22 +86,22 @@ export default () => (
       onClick={() => window.alert('Button clicked')}
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
 
     <br/><br/>
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowUp"
       isDisabled
     >
       Disabled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       fill
       iconType="arrowDown"
@@ -109,11 +109,11 @@ export default () => (
       isDisabled
     >
       Filled
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       iconType="arrowLeft"
       size="small"
@@ -121,11 +121,11 @@ export default () => (
       isDisabled
     >
       small
-    </KuiButton>
+    </EuiButton>
 
     &nbsp;&nbsp;
 
-    <KuiButton
+    <EuiButton
       iconSide="right"
       iconType="arrowRight"
       size="small"
@@ -134,6 +134,6 @@ export default () => (
       isDisabled
     >
       small and filled
-    </KuiButton>
+    </EuiButton>
   </div>
 );

@@ -149,7 +149,7 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiIcon = ({
+export const EuiIcon = ({
   type,
   size,
   title,
@@ -175,13 +175,13 @@ export const KuiIcon = ({
   );
 };
 
-KuiIcon.propTypes = {
+EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
   size: PropTypes.oneOf(SIZES),
   title: PropTypes.string,
 };
 
-KuiIcon.defaultProps = {
+EuiIcon.defaultProps = {
   className: 'kuiIcon--basic',
   size: 'medium',
 };

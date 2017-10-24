@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSideNav is rendered 1`] = `
+exports[`EuiSideNav is rendered 1`] = `
 <nav
   aria-label="aria-label"
   class="kuiSideNav testClass1 testClass2"
@@ -34,7 +34,7 @@ exports[`KuiSideNav is rendered 1`] = `
 </nav>
 `;
 
-exports[`KuiSideNav isOpenOnMobile defaults to false 1`] = `
+exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
 <nav
   class="kuiSideNav"
 >
@@ -66,7 +66,7 @@ exports[`KuiSideNav isOpenOnMobile defaults to false 1`] = `
 </nav>
 `;
 
-exports[`KuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
+exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
 <nav
   class="kuiSideNav kuiSideNav-isOpenMobile"
 >

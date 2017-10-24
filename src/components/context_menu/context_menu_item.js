@@ -4,9 +4,9 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '..';
+import { EuiIcon } from '..';
 
-export const KuiContextMenuItem = ({
+export const EuiContextMenuItem = ({
   children,
   className,
   hasPanel,
@@ -19,7 +19,7 @@ export const KuiContextMenuItem = ({
     switch (typeof icon) {
       case 'string':
         iconInstance = (
-          <KuiIcon
+          <EuiIcon
             type={icon}
             size="medium"
             className="kuiContextMenu__icon"
@@ -39,7 +39,7 @@ export const KuiContextMenuItem = ({
 
   if (hasPanel) {
     arrow = (
-      <KuiIcon
+      <EuiIcon
         type="arrowRight"
         size="medium"
         className="kuiContextMenu__arrow"
@@ -65,7 +65,7 @@ export const KuiContextMenuItem = ({
   );
 };
 
-KuiContextMenuItem.propTypes = {
+EuiContextMenuItem.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

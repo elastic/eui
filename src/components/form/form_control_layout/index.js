@@ -1,3 +1,3 @@
 export {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from './form_control_layout';

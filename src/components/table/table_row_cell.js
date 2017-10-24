@@ -12,7 +12,7 @@ const ALIGNMENT = [
   RIGHT_ALIGNMENT,
 ];
 
-export const KuiTableRowCell = ({
+export const EuiTableRowCell = ({
   align,
   children,
   className,
@@ -37,13 +37,13 @@ export const KuiTableRowCell = ({
   );
 };
 
-KuiTableRowCell.propTypes = {
+EuiTableRowCell.propTypes = {
   align: PropTypes.oneOf(ALIGNMENT),
   wrapText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-KuiTableRowCell.defaultProps = {
+EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
 };

@@ -1,4 +1,4 @@
 export {
-  KuiPanel,
+  EuiPanel,
   SIZES,
 } from './panel';

@@ -3,25 +3,25 @@ import React, {
 } from 'react';
 
 import {
-  KuiHeaderAlert,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiAvatar,
-  KuiHeader,
-  KuiHeaderBreadcrumb,
-  KuiHeaderBreadcrumbCollapsed,
-  KuiHeaderBreadcrumbs,
-  KuiHeaderSection,
-  KuiHeaderSectionItem,
-  KuiHeaderSectionItemButton,
-  KuiHeaderLogo,
-  KuiIcon,
-  KuiLink,
-  KuiText,
-  KuiSpacer,
-  KuiKeyPadMenu,
-  KuiKeyPadMenuItem,
-  KuiPopover,
+  EuiHeaderAlert,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiAvatar,
+  EuiHeader,
+  EuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumbCollapsed,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiHeaderLogo,
+  EuiIcon,
+  EuiLink,
+  EuiText,
+  EuiSpacer,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiPopover,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -60,204 +60,204 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <KuiHeaderLogo href="#" />
+      <EuiHeaderLogo href="#" />
     );
   }
 
   renderBreadcrumbs() {
     return (
-      <KuiHeaderBreadcrumbs>
-        <KuiHeaderBreadcrumb href="#">
+      <EuiHeaderBreadcrumbs>
+        <EuiHeaderBreadcrumb href="#">
           Management
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumb href="#">
+        <EuiHeaderBreadcrumb href="#">
           Truncation test is here
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumbCollapsed />
+        <EuiHeaderBreadcrumbCollapsed />
 
-        <KuiHeaderBreadcrumb href="#">
+        <EuiHeaderBreadcrumb href="#">
           Users
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumb href="#" isActive>
+        <EuiHeaderBreadcrumb href="#" isActive>
           Create
-        </KuiHeaderBreadcrumb>
-      </KuiHeaderBreadcrumbs>
+        </EuiHeaderBreadcrumb>
+      </EuiHeaderBreadcrumbs>
     );
   }
 
   renderSearch() {
     return (
-      <KuiHeaderSectionItemButton>
-        <KuiIcon
+      <EuiHeaderSectionItemButton>
+        <EuiIcon
           type="search"
           size="medium"
         />
-      </KuiHeaderSectionItemButton>
+      </EuiHeaderSectionItemButton>
     );
   }
 
   renderUserMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
-        <KuiIcon
+      <EuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
+        <EuiIcon
           type="user"
           size="medium"
         />
         <span className="kuiHeader__notification">
           3
         </span>
-      </KuiHeaderSectionItemButton>
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isUserMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeUserMenu.bind(this)}
         panelClassName="kuiHeaderPopover"
       >
-        <KuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
-          <KuiFlexItem grow={false}>
-            <KuiAvatar name="John Username" size="xl" />
-          </KuiFlexItem>
-          <KuiFlexItem>
-            <KuiText>
+        <EuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
+          <EuiFlexItem grow={false}>
+            <EuiAvatar name="John Username" size="xl" />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiText>
               <p>John Username</p>
-            </KuiText>
-            <KuiSpacer size="m" />
-            <KuiFlexGroup>
-              <KuiFlexItem>
-                <KuiFlexGroup justifyContent="spaceBetween">
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Edit profile</KuiLink>
-                  </KuiFlexItem>
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Log out</KuiLink>
-                  </KuiFlexItem>
-                </KuiFlexGroup>
-              </KuiFlexItem>
-            </KuiFlexGroup>
-          </KuiFlexItem>
-        </KuiFlexGroup>
-        <KuiHeaderAlert
+            </EuiText>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent="spaceBetween">
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Edit profile</EuiLink>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Log out</EuiLink>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title that is extremely long and will wrap"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 
   renderAppMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
-        <KuiIcon type="apps" size="medium" />
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
+        <EuiIcon type="apps" size="medium" />
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isAppMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeAppMenu.bind(this)}
         panelClassName="kuiHeaderPopover"
       >
-        <KuiKeyPadMenu>
-          <KuiKeyPadMenuItem
+        <EuiKeyPadMenu>
+          <EuiKeyPadMenuItem
             label="Discover"
             href="#"
           >
-            <KuiIcon type="discoverApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="discoverApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dashboard"
             href="#"
           >
-            <KuiIcon type="dashboardApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="dashboardApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dev Tools"
             href="#"
           >
-            <KuiIcon type="devToolsApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="devToolsApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Machine Learning"
             href="#"
           >
-            <KuiIcon type="machineLearningApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="machineLearningApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Graph"
             href="#"
           >
-            <KuiIcon type="graphApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="graphApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Visualize"
             href="#"
           >
-            <KuiIcon type="visualizeApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="visualizeApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Timelion"
             href="#"
           >
-            <KuiIcon type="timelionApp" size="large" />
-          </KuiKeyPadMenuItem>
-        </KuiKeyPadMenu>
-      </KuiPopover>
+            <EuiIcon type="timelionApp" size="large" />
+          </EuiKeyPadMenuItem>
+        </EuiKeyPadMenu>
+      </EuiPopover>
     );
   }
 
   render() {
     return (
-      <KuiHeader>
-        <KuiHeaderSection>
-          <KuiHeaderSectionItem border="right">
+      <EuiHeader>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem border="right">
             {this.renderLogo()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
           {this.renderBreadcrumbs()}
-        </KuiHeaderSection>
+        </EuiHeaderSection>
 
-        <KuiHeaderSection side="right">
-          <KuiHeaderSectionItem>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
             {this.renderSearch()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderUserMenu()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderAppMenu()}
-          </KuiHeaderSectionItem>
-        </KuiHeaderSection>
-      </KuiHeader>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
     );
   }
 }

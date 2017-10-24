@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiFormErrorText = ({ children, className, ...rest }) => {
+export const EuiFormErrorText = ({ children, className, ...rest }) => {
   const classes = classNames('kuiFormErrorText', className);
 
   return (
@@ -15,7 +15,7 @@ export const KuiFormErrorText = ({ children, className, ...rest }) => {
   );
 };
 
-KuiFormErrorText.propTypes = {
+EuiFormErrorText.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

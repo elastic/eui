@@ -1,3 +1,3 @@
 export {
-  KuiOutsideClickDetector,
+  EuiOutsideClickDetector,
 } from './outside_click_detector';

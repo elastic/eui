@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {
-  KuiLink,
-  KuiToast,
+  EuiLink,
+  EuiToast,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiToast
+  <EuiToast
     title="Save failed"
     type="danger"
   >
@@ -15,7 +15,7 @@ export default () => (
     </p>
 
     <p>
-      And some other stuff on another line, just for kicks. And <KuiLink href="#">here&rsquo;s a link</KuiLink>.
+      And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
     </p>
-  </KuiToast>
+  </EuiToast>
 );

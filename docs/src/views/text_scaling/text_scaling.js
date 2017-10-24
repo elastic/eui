@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiText,
-  KuiFlexGroup,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiFlexItem,
+  EuiText,
+  EuiFlexGroup,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 const text = [
@@ -68,28 +68,28 @@ const text = [
 ];
 
 export default () => (
-  <KuiFlexGroup>
-    <KuiFlexItem>
-      <KuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
-        <KuiPageContentBody>
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
+        <EuiPageContentBody>
 
-          <KuiText>
+          <EuiText>
             {text}
-          </KuiText>
+          </EuiText>
 
-        </KuiPageContentBody>
-      </KuiPageContent>
-    </KuiFlexItem>
-    <KuiFlexItem>
-      <KuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
-        <KuiPageContentBody>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
+        <EuiPageContentBody>
 
-          <KuiText size="s">
+          <EuiText size="s">
             {text}
-          </KuiText>
+          </EuiText>
 
-        </KuiPageContentBody>
-      </KuiPageContent>
-    </KuiFlexItem>
-  </KuiFlexGroup>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

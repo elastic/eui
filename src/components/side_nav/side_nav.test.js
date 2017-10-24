@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiSideNav } from './side_nav';
+import { EuiSideNav } from './side_nav';
 
-describe('KuiSideNav', () => {
+describe('EuiSideNav', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiSideNav {...requiredProps} />
+      <EuiSideNav {...requiredProps} />
     );
 
     expect(component)
@@ -17,7 +17,7 @@ describe('KuiSideNav', () => {
   describe('isOpenOnMobile', () => {
     test('defaults to false', () => {
       const component = render(
-        <KuiSideNav />
+        <EuiSideNav />
       );
 
       expect(component)
@@ -26,7 +26,7 @@ describe('KuiSideNav', () => {
 
     test('is rendered when specified as true', () => {
       const component = render(
-        <KuiSideNav isOpenOnMobile />
+        <EuiSideNav isOpenOnMobile />
       );
 
       expect(component)

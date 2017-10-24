@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiTableRow = ({ children, className, isSelected, ...rest }) => {
+export const EuiTableRow = ({ children, className, isSelected, ...rest }) => {
   const classes = classNames('kuiTableRow', className, {
     'kuiTableRow-isSelected': isSelected,
   });
@@ -17,7 +17,7 @@ export const KuiTableRow = ({ children, className, isSelected, ...rest }) => {
   );
 };
 
-KuiTableRow.propTypes = {
+EuiTableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isSelected: PropTypes.bool,

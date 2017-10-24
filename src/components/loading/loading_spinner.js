@@ -11,7 +11,7 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiLoadingSpinner = ({ children, size, className, ...rest }) => {
+export const EuiLoadingSpinner = ({ children, size, className, ...rest }) => {
   const classes = classNames(
     'kuiLoadingSpinner',
     sizeToClassNameMap[size],
@@ -28,6 +28,6 @@ export const KuiLoadingSpinner = ({ children, size, className, ...rest }) => {
   );
 };
 
-KuiLoadingSpinner.propTypes = {
+EuiLoadingSpinner.propTypes = {
   size: PropTypes.oneOf(SIZES),
 };

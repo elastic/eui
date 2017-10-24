@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiFlexGrid is rendered 1`] = `
+exports[`EuiFlexGrid is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiFlexGrid kuiFlexGrid--gutterLarge kuiFlexGrid--thirds testClass1 testClass2"

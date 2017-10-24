@@ -1,19 +1,19 @@
 import React from 'react';
 
 import {
-  KuiBadge,
+  EuiBadge,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiBadge iconType="help">
+    <EuiBadge iconType="help">
       Primary
-    </KuiBadge>
+    </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <KuiBadge type="primary" iconType="user" iconSide="right">
+    <EuiBadge type="primary" iconType="user" iconSide="right">
       Secondary
-    </KuiBadge>
+    </EuiBadge>
   </div>
 );

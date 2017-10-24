@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import TextScaling from './text_scaling';
@@ -29,7 +29,7 @@ export default props => (
       }]}
       text={
         <p>
-          This demo shows off <KuiCode>KuiText</KuiCode> scaling in both
+          This demo shows off <EuiCode>EuiText</EuiCode> scaling in both
           the default and small sizes. The goal is that the bottom of
           every text line should hit one of the 8px grid lines. This is
           for development only. Do not copy this code into a production environment.

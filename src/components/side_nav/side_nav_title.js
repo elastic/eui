@@ -2,22 +2,22 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {
-  KuiTitle,
+  EuiTitle,
 } from '..';
 
-export const KuiSideNavTitle = ({ children, className, ...rest }) => {
+export const EuiSideNavTitle = ({ children, className, ...rest }) => {
   const classes = classNames('kuiSideNavTitle', className);
 
   return (
-    <KuiTitle
+    <EuiTitle
       size="small"
       className={classes}
       {...rest}
     >
       <p>{children}</p>
-    </KuiTitle>
+    </EuiTitle>
   );
 };
 
-KuiSideNavTitle.propTypes = {
+EuiSideNavTitle.propTypes = {
 };

@@ -1,1 +1,1 @@
-export { KuiFieldText } from './field_text';
+export { EuiFieldText } from './field_text';

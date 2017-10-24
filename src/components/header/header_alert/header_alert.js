@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  KuiButtonIcon,
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../..';
 
-export const KuiHeaderAlert = ({
+export const EuiHeaderAlert = ({
   action,
   className,
   date,
@@ -22,24 +22,24 @@ export const KuiHeaderAlert = ({
       className={classes}
       {...rest}
     >
-      <KuiButtonIcon iconType="cross" size="small" className="kuiHeaderAlert__dismiss" />
+      <EuiButtonIcon iconType="cross" size="small" className="kuiHeaderAlert__dismiss" />
       <p className="kuiHeaderAlert__title">{title}</p>
       <p className="kuiHeaderAlert__text">{text}</p>
-      <KuiFlexGroup justifyContent="spaceBetween">
-        <KuiFlexItem grow={false}>
+      <EuiFlexGroup justifyContent="spaceBetween">
+        <EuiFlexItem grow={false}>
           <div className="kuiHeaderAlert__action kuiLink">{action}</div>
-        </KuiFlexItem>
-        <KuiFlexItem grow={false}>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
           <div className="kuiHeaderAlert__date">
             {date}
           </div>
-        </KuiFlexItem>
-      </KuiFlexGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </div>
   );
 };
 
-KuiHeaderAlert.propTypes = {
+EuiHeaderAlert.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   date: PropTypes.string.isRequired,

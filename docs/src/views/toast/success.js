@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiToast,
+  EuiToast,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiToast
+  <EuiToast
     title="This is an example of a poor toast title. It's way too long."
     type="success"
     iconType="user"
@@ -19,5 +19,5 @@ export default () => (
     <p>
       You should not even need a second paragraph. Again, we are getting long winded here.
     </p>
-  </KuiToast>
+  </EuiToast>
 );

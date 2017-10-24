@@ -13,7 +13,7 @@ const colorsToClassNameMap = {
 
 export const COLORS = Object.keys(colorsToClassNameMap);
 
-export const KuiLink = ({ children, color, className, onClick, ...rest }) => {
+export const EuiLink = ({ children, color, className, onClick, ...rest }) => {
   const classes = classNames('kuiLink', colorsToClassNameMap[color], className);
 
   let link;
@@ -43,6 +43,6 @@ export const KuiLink = ({ children, color, className, onClick, ...rest }) => {
   );
 };
 
-KuiLink.defaultProps = {
+EuiLink.defaultProps = {
   color: 'primary',
 };

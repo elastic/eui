@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { KuiModal } from './modal';
-import { KuiModalFooter } from './modal_footer';
-import { KuiModalHeader } from './modal_header';
-import { KuiModalHeaderTitle } from './modal_header_title';
-import { KuiModalBody } from './modal_body';
+import { EuiModal } from './modal';
+import { EuiModalFooter } from './modal_footer';
+import { EuiModalHeader } from './modal_header';
+import { EuiModalHeaderTitle } from './modal_header_title';
+import { EuiModalBody } from './modal_body';
 import {
-  KuiButton,
-  KuiButtonEmpty,
-  KuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiText,
 } from '..';
 
 export const CONFIRM_BUTTON = 'confirm';
@@ -21,7 +21,7 @@ const CONFIRM_MODAL_BUTTONS = [
   CANCEL_BUTTON,
 ];
 
-export function KuiConfirmModal({
+export function EuiConfirmModal({
   children,
   title,
   onCancel,
@@ -38,11 +38,11 @@ export function KuiConfirmModal({
 
   if (title) {
     modalTitle = (
-      <KuiModalHeader>
-        <KuiModalHeaderTitle data-test-subj="confirmModalTitleText">
+      <EuiModalHeader>
+        <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">
           {title}
-        </KuiModalHeaderTitle>
-      </KuiModalHeader>
+        </EuiModalHeaderTitle>
+      </EuiModalHeader>
     );
   }
 
@@ -55,30 +55,30 @@ export function KuiConfirmModal({
   }
 
   return (
-    <KuiModal
+    <EuiModal
       className={classes}
       onClose={onCancel}
       {...rest}
     >
       {modalTitle}
 
-      <KuiModalBody>
-        <KuiText data-test-subj="confirmModalBodyText">
+      <EuiModalBody>
+        <EuiText data-test-subj="confirmModalBodyText">
           {message}
-        </KuiText>
-      </KuiModalBody>
+        </EuiText>
+      </EuiModalBody>
 
-      <KuiModalFooter>
-        <KuiButtonEmpty
+      <EuiModalFooter>
+        <EuiButtonEmpty
           autoFocus={defaultFocusedButton === CANCEL_BUTTON}
           data-test-subj="confirmModalCancelButton"
           onClick={onCancel}
           size="small"
         >
           {cancelButtonText}
-        </KuiButtonEmpty>
+        </EuiButtonEmpty>
 
-        <KuiButton
+        <EuiButton
           autoFocus={defaultFocusedButton === CONFIRM_BUTTON}
           data-test-subj="confirmModalConfirmButton"
           onClick={onConfirm}
@@ -86,13 +86,13 @@ export function KuiConfirmModal({
           fill
         >
           {confirmButtonText}
-        </KuiButton>
-      </KuiModalFooter>
-    </KuiModal>
+        </EuiButton>
+      </EuiModalFooter>
+    </EuiModal>
   );
 }
 
-KuiConfirmModal.propTypes = {
+EuiConfirmModal.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
   cancelButtonText: PropTypes.string,

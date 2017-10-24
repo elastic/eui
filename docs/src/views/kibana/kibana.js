@@ -4,42 +4,42 @@ import React, {
 } from 'react';
 
 import {
-  KuiAvatar,
-  KuiButton,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiHeader,
-  KuiHeaderBreadcrumb,
-  KuiHeaderBreadcrumbCollapsed,
-  KuiHeaderBreadcrumbs,
-  KuiHeaderLogo,
-  KuiHeaderSection,
-  KuiHeaderSectionItem,
-  KuiHeaderSectionItemButton,
-  KuiGlobalToastList,
-  KuiGlobalToastListItem,
-  KuiIcon,
-  KuiKeyPadMenu,
-  KuiKeyPadMenuItem,
-  KuiLink,
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiPageHeader,
-  KuiPageHeaderSection,
-  KuiPageSideBar,
-  KuiPopover,
-  KuiSideNav,
-  KuiSideNavItem,
-  KuiSideNavTitle,
-  KuiToast,
-  KuiTitle,
-  KuiText,
-  KuiSpacer,
-  KuiHeaderAlert,
+  EuiAvatar,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+  EuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumbCollapsed,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderLogo,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiGlobalToastList,
+  EuiGlobalToastListItem,
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiLink,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiPopover,
+  EuiSideNav,
+  EuiSideNavItem,
+  EuiSideNavTitle,
+  EuiToast,
+  EuiTitle,
+  EuiText,
+  EuiSpacer,
+  EuiHeaderAlert,
 } from '../../../../src/components';
 
 import {
@@ -150,330 +150,330 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <KuiHeaderLogo href="#" />
+      <EuiHeaderLogo href="#" />
     );
   }
 
   renderBreadcrumbs() {
     return (
-      <KuiHeaderBreadcrumbs>
-        <KuiHeaderBreadcrumb href="#">
+      <EuiHeaderBreadcrumbs>
+        <EuiHeaderBreadcrumb href="#">
           Management
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumb href="#">
+        <EuiHeaderBreadcrumb href="#">
           Truncation test is here
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumbCollapsed />
+        <EuiHeaderBreadcrumbCollapsed />
 
-        <KuiHeaderBreadcrumb href="#">
+        <EuiHeaderBreadcrumb href="#">
           Users
-        </KuiHeaderBreadcrumb>
+        </EuiHeaderBreadcrumb>
 
-        <KuiHeaderBreadcrumb href="#" isActive>
+        <EuiHeaderBreadcrumb href="#" isActive>
           Create
-        </KuiHeaderBreadcrumb>
-      </KuiHeaderBreadcrumbs>
+        </EuiHeaderBreadcrumb>
+      </EuiHeaderBreadcrumbs>
     );
   }
 
   renderSearch() {
     return (
-      <KuiHeaderSectionItemButton>
-        <KuiIcon type="search" size="medium" />
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton>
+        <EuiIcon type="search" size="medium" />
+      </EuiHeaderSectionItemButton>
     );
   }
 
   renderUserMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
-        <KuiIcon type="user" size="medium" />
+      <EuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
+        <EuiIcon type="user" size="medium" />
         <span className="kuiHeader__notification">3</span>
-      </KuiHeaderSectionItemButton>
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isUserMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeUserMenu.bind(this)}
         panelClassName="kuiHeaderPopover"
       >
-        <KuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
-          <KuiFlexItem grow={false}>
-            <KuiAvatar name="John Username" size="xl" />
-          </KuiFlexItem>
-          <KuiFlexItem>
-            <KuiText>
+        <EuiFlexGroup gutterSize="medium" className="kuiHeaderProfile kui--flexRow kui--flexAlignItemsCenter">
+          <EuiFlexItem grow={false}>
+            <EuiAvatar name="John Username" size="xl" />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiText>
               <p>John Username</p>
-            </KuiText>
-            <KuiSpacer size="m" />
-            <KuiFlexGroup>
-              <KuiFlexItem>
-                <KuiFlexGroup justifyContent="spaceBetween">
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Edit profile</KuiLink>
-                  </KuiFlexItem>
-                  <KuiFlexItem grow={false}>
-                    <KuiLink href="">Log out</KuiLink>
-                  </KuiFlexItem>
-                </KuiFlexGroup>
-              </KuiFlexItem>
-            </KuiFlexGroup>
-          </KuiFlexItem>
-        </KuiFlexGroup>
-        <KuiHeaderAlert
+            </EuiText>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent="spaceBetween">
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Edit profile</EuiLink>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiLink href="">Log out</EuiLink>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title that is extremely long and will wrap"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-        <KuiHeaderAlert
+        <EuiHeaderAlert
           title="Here&rsquo;s a notification title"
           text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<KuiLink href="#">Download your thing here</KuiLink>}
+          action={<EuiLink href="#">Download your thing here</EuiLink>}
           date="Nov. 14, 02:14PM."
         />
-      </KuiPopover>
+      </EuiPopover>
     );
   }
 
   renderAppMenu() {
     const button = (
-      <KuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
-        <KuiIcon type="apps" size="medium" />
-      </KuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
+        <EuiIcon type="apps" size="medium" />
+      </EuiHeaderSectionItemButton>
     );
 
     return (
-      <KuiPopover
+      <EuiPopover
         button={button}
         isOpen={this.state.isAppMenuOpen}
         anchorPosition="downRight"
         closePopover={this.closeAppMenu.bind(this)}
         panelClassName="kuiHeaderPopover"
       >
-        <KuiKeyPadMenu>
-          <KuiKeyPadMenuItem
+        <EuiKeyPadMenu>
+          <EuiKeyPadMenuItem
             label="Discover"
             href="#"
           >
-            <KuiIcon type="discoverApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="discoverApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dashboard"
             href="#"
           >
-            <KuiIcon type="dashboardApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="dashboardApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Dev Tools"
             href="#"
           >
-            <KuiIcon type="devToolsApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="devToolsApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Machine Learning"
             href="#"
           >
-            <KuiIcon type="machineLearningApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="machineLearningApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Graph"
             href="#"
           >
-            <KuiIcon type="graphApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="graphApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Visualize"
             href="#"
           >
-            <KuiIcon type="visualizeApp" size="large" />
-          </KuiKeyPadMenuItem>
+            <EuiIcon type="visualizeApp" size="large" />
+          </EuiKeyPadMenuItem>
 
-          <KuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
             label="Timelion"
             href="#"
           >
-            <KuiIcon type="timelionApp" size="large" />
-          </KuiKeyPadMenuItem>
-        </KuiKeyPadMenu>
-      </KuiPopover>
+            <EuiIcon type="timelionApp" size="large" />
+          </EuiKeyPadMenuItem>
+        </EuiKeyPadMenu>
+      </EuiPopover>
     );
   }
 
   renderHeader() {
     return (
-      <KuiHeader>
-        <KuiHeaderSection>
-          <KuiHeaderSectionItem border="right">
+      <EuiHeader>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem border="right">
             {this.renderLogo()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
           {this.renderBreadcrumbs()}
-        </KuiHeaderSection>
+        </EuiHeaderSection>
 
-        <KuiHeaderSection side="right">
-          <KuiHeaderSectionItem>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
             {this.renderSearch()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderUserMenu()}
-          </KuiHeaderSectionItem>
+          </EuiHeaderSectionItem>
 
-          <KuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
             {this.renderAppMenu()}
-          </KuiHeaderSectionItem>
-        </KuiHeaderSection>
-      </KuiHeader>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
     );
   }
 
   renderSideNav() {
     return (
-      <KuiPageSideBar>
-        <KuiSideNav
+      <EuiPageSideBar>
+        <EuiSideNav
           mobileTitle="Navigate within Management"
           toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         >
           {/* Elasticsearch section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Elasticsearch
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button onClick={() => window.alert('Button clicked')}>
               Data sources
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <a href="http://www.elastic.co">
               Users
             </a>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Roles
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem isSelected>
+          <EuiSideNavItem isSelected>
             <button>
               Watches
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Extremely long title will become truncated when the browser is narrow enough
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
           {/* Kibana section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Kibana
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Index Patterns
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Saved Objects
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Reporting
             </button>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
 
           {/* Logstash section */}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Logstash
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
-          <KuiSideNavItem>
+          <EuiSideNavItem>
             <button>
               Pipeline Viewer
             </button>
-          </KuiSideNavItem>
-        </KuiSideNav>
-      </KuiPageSideBar>
+          </EuiSideNavItem>
+        </EuiSideNav>
+      </EuiPageSideBar>
     );
   }
 
   renderPage() {
     return (
-      <KuiPage>
-        <KuiPageHeader>
-          <KuiPageHeaderSection>
-            <KuiTitle size="large">
+      <EuiPage>
+        <EuiPageHeader>
+          <EuiPageHeaderSection>
+            <EuiTitle size="large">
               <h1>Management</h1>
-            </KuiTitle>
-          </KuiPageHeaderSection>
-        </KuiPageHeader>
-        <KuiPageBody>
+            </EuiTitle>
+          </EuiPageHeaderSection>
+        </EuiPageHeader>
+        <EuiPageBody>
           {this.renderSideNav()}
-          <KuiPageContent>
-            <KuiPageContentHeader>
-              <KuiPageContentHeaderSection>
-                <KuiTitle>
+          <EuiPageContent>
+            <EuiPageContentHeader>
+              <EuiPageContentHeaderSection>
+                <EuiTitle>
                   <h2>Watches</h2>
-                </KuiTitle>
-              </KuiPageContentHeaderSection>
-              <KuiPageContentHeaderSection>
-                <KuiFlexGroup gutterSize="medium">
-                  <KuiFlexItem>
-                    <KuiButton
+                </EuiTitle>
+              </EuiPageContentHeaderSection>
+              <EuiPageContentHeaderSection>
+                <EuiFlexGroup gutterSize="medium">
+                  <EuiFlexItem>
+                    <EuiButton
                       onClick={this.onAddToastClick.bind(this)}
                       size="small"
                     >
                       Add toast
-                    </KuiButton>
-                  </KuiFlexItem>
-                  <KuiFlexItem>
-                    <KuiButton
+                    </EuiButton>
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    <EuiButton
                       type="danger"
                       onClick={this.onDeleteAllToasts.bind(this)}
                       size="small"
                     >
                       Clear toasts
-                    </KuiButton>
-                  </KuiFlexItem>
-                </KuiFlexGroup>
-              </KuiPageContentHeaderSection>
-            </KuiPageContentHeader>
-            <KuiPageContentBody>
+                    </EuiButton>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPageContentHeaderSection>
+            </EuiPageContentHeader>
+            <EuiPageContentBody>
               <Table />
-            </KuiPageContentBody>
-          </KuiPageContent>
-        </KuiPageBody>
-      </KuiPage>
+            </EuiPageContentBody>
+          </EuiPageContent>
+        </EuiPageBody>
+      </EuiPage>
     );
   }
 
@@ -482,7 +482,7 @@ export default class extends Component {
     const dismissToast = this.scheduleToastForDismissal.bind(this, toastId, true);
 
     const toasts = [(
-      <KuiToast
+      <EuiToast
         title="Check it out, here's a really long title that will wrap within a narrower browser"
         type="info"
         onClose={dismissToast}
@@ -492,11 +492,11 @@ export default class extends Component {
           when viewed within a browser that&rsquo;s fairly narrow, it will wrap, too.
         </p>
         <p>
-          And some other stuff on another line, just for kicks. And <KuiLink href="#">here&rsquo;s a link</KuiLink>.
+          And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
         </p>
-      </KuiToast>
+      </EuiToast>
     ), (
-      <KuiToast
+      <EuiToast
         title="Download complete!"
         type="success"
         onClose={dismissToast}
@@ -504,9 +504,9 @@ export default class extends Component {
         <p>
           Thanks for your patience!
         </p>
-      </KuiToast>
+      </EuiToast>
     ), (
-      <KuiToast
+      <EuiToast
         title="Logging you out soon, due to inactivity"
         type="warning"
         iconType="user"
@@ -518,9 +518,9 @@ export default class extends Component {
         <p>
           Please move your mouse to show that you&rsquo;re still using Kibana.
         </p>
-      </KuiToast>
+      </EuiToast>
     ), (
-      <KuiToast
+      <EuiToast
         title="Oops, there was an error"
         type="danger"
         iconType="help"
@@ -529,13 +529,13 @@ export default class extends Component {
         <p>
           Sorry. We&rsquo;ll try not to let it happen it again.
         </p>
-      </KuiToast>
+      </EuiToast>
     )];
 
     const toast = (
-      <KuiGlobalToastListItem key={toastId}>
+      <EuiGlobalToastListItem key={toastId}>
         {toasts[Math.floor(Math.random() * toasts.length)]}
-      </KuiGlobalToastListItem>
+      </EuiGlobalToastListItem>
     );
 
     return { toast, toastId };
@@ -543,9 +543,9 @@ export default class extends Component {
 
   renderToasts() {
     return (
-      <KuiGlobalToastList>
+      <EuiGlobalToastList>
         {this.state.toasts}
-      </KuiGlobalToastList>
+      </EuiGlobalToastList>
     );
   }
 

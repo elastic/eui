@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiSideNavTitle is rendered 1`] = `
+exports[`EuiSideNavTitle is rendered 1`] = `
 <p
   aria-label="aria-label"
   class="kuiTitle kuiTitle--small kuiSideNavTitle testClass1 testClass2"

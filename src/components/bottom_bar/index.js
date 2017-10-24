@@ -1,3 +1,3 @@
 export {
-  KuiBottomBar,
+  EuiBottomBar,
 } from './bottom_bar';

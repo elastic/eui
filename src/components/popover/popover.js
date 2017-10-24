@@ -7,9 +7,9 @@ import FocusTrap from 'focus-trap-react';
 
 import { cascadingMenuKeyCodes } from '../../services';
 
-import { KuiOutsideClickDetector } from '../outside_click_detector';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-import { KuiPanel, SIZES } from '../panel/panel';
+import { EuiPanel, SIZES } from '../panel/panel';
 
 const anchorPositionToClassNameMap = {
   'upCenter': 'kuiPopover--anchorUpCenter',
@@ -28,7 +28,7 @@ const anchorPositionToClassNameMap = {
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
-export class KuiPopover extends Component {
+export class EuiPopover extends Component {
   constructor(props) {
     super(props);
 
@@ -116,20 +116,20 @@ export class KuiPopover extends Component {
             fallbackFocus: () => this.panel,
           }}
         >
-          <KuiPanel
+          <EuiPanel
             panelRef={node => { this.panel = node; }}
             className={panelClasses}
             paddingSize={panelPaddingSize}
             hasShadow
           >
             {children}
-          </KuiPanel>
+          </EuiPanel>
         </FocusTrap>
       );
     }
 
     return (
-      <KuiOutsideClickDetector onOutsideClick={closePopover}>
+      <EuiOutsideClickDetector onOutsideClick={closePopover}>
         <div
           className={classes}
           onKeyDown={this.onKeyDown}
@@ -138,12 +138,12 @@ export class KuiPopover extends Component {
           {button}
           {panel}
         </div>
-      </KuiOutsideClickDetector>
+      </EuiOutsideClickDetector>
     );
   }
 }
 
-KuiPopover.propTypes = {
+EuiPopover.propTypes = {
   isOpen: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
@@ -154,7 +154,7 @@ KuiPopover.propTypes = {
   panelPaddingSize: PropTypes.oneOf(SIZES),
 };
 
-KuiPopover.defaultProps = {
+EuiPopover.defaultProps = {
   isOpen: false,
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',

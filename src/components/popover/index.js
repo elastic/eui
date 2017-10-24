@@ -1,2 +1,2 @@
-export { KuiPopover, } from './popover';
-export { KuiPopoverTitle } from './popover_title';
+export { EuiPopover, } from './popover';
+export { EuiPopoverTitle } from './popover_title';

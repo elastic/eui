@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from '../form_control_layout';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiFieldNumber = ({
+export const EuiFieldNumber = ({
   className,
   icon,
   id,
@@ -29,11 +29,11 @@ export const KuiFieldNumber = ({
   });
 
   return (
-    <KuiFormControlLayout
+    <EuiFormControlLayout
       icon={icon}
       fullWidth={fullWidth}
     >
-      <KuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="number"
           id={id}
@@ -45,12 +45,12 @@ export const KuiFieldNumber = ({
           className={classes}
           {...rest}
         />
-      </KuiValidatableControl>
-    </KuiFormControlLayout>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };
 
-KuiFieldNumber.propTypes = {
+EuiFieldNumber.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   min: PropTypes.number,
@@ -62,7 +62,7 @@ KuiFieldNumber.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiFieldNumber.defaultProps = {
+EuiFieldNumber.defaultProps = {
   value: undefined,
   fullWidth: false,
 };

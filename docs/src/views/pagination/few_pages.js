@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 
 import {
-  KuiPagination,
+  EuiPagination,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -25,7 +25,7 @@ export default class extends Component {
 
   render() {
     return (
-      <KuiPagination
+      <EuiPagination
         pageCount={this.PAGE_COUNT}
         activePage={this.state.activePage}
         onPageClick={this.goToPage}

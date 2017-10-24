@@ -3,10 +3,10 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiModalOverlay,
+  EuiModalOverlay,
 } from './modal_overlay';
 
-test('renders KuiModalOverlay', () => {
-  const component = <KuiModalOverlay {...requiredProps}>children</KuiModalOverlay>;
+test('renders EuiModalOverlay', () => {
+  const component = <EuiModalOverlay {...requiredProps}>children</EuiModalOverlay>;
   expect(render(component)).toMatchSnapshot();
 });

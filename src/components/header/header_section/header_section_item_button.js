@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiHeaderSectionItemButton = ({ onClick, children, className, ...rest }) => {
+export const EuiHeaderSectionItemButton = ({ onClick, children, className, ...rest }) => {
   const classes = classNames('kuiHeaderSectionItem__button', className);
 
   return (
@@ -16,6 +16,6 @@ export const KuiHeaderSectionItemButton = ({ onClick, children, className, ...re
   );
 };
 
-KuiHeaderSectionItemButton.propTypes = {
+EuiHeaderSectionItemButton.propTypes = {
   onClick: PropTypes.func,
 };

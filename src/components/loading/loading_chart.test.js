@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiLoadingChart } from './loading_chart';
+import { EuiLoadingChart } from './loading_chart';
 
-describe('KuiLoadingChart', () => {
+describe('EuiLoadingChart', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiLoadingChart {...requiredProps} />
+      <EuiLoadingChart {...requiredProps} />
     );
 
     expect(component)
@@ -16,7 +16,7 @@ describe('KuiLoadingChart', () => {
 
   test('mono is rendered', () => {
     const component = render(
-      <KuiLoadingChart mono />
+      <EuiLoadingChart mono />
     );
 
     expect(component)

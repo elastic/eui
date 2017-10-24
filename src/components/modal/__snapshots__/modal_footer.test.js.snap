@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders KuiModalFooter 1`] = `
+exports[`renders EuiModalFooter 1`] = `
 <div
   aria-label="aria-label"
   class="kuiModalFooter testClass1 testClass2"

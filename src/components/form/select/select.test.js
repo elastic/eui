@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiSelect } from './select';
+import { EuiSelect } from './select';
 
-describe('KuiSelect', () => {
+describe('EuiSelect', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiSelect {...requiredProps} />
+      <EuiSelect {...requiredProps} />
     );
 
     expect(component)

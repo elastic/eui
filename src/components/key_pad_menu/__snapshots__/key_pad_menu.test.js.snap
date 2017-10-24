@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiKeyPadMenu is rendered 1`] = `
+exports[`EuiKeyPadMenu is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiKeyPadMenu testClass1 testClass2"

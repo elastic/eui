@@ -29,7 +29,7 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
-export const KuiProgress = ({
+export const EuiProgress = ({
   className,
   color,
   value,
@@ -75,7 +75,7 @@ export const KuiProgress = ({
   );
 };
 
-KuiProgress.propTypes = {
+EuiProgress.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
@@ -85,7 +85,7 @@ KuiProgress.propTypes = {
   indeterminate: PropTypes.bool,
 };
 
-KuiProgress.defaultProps = {
+EuiProgress.defaultProps = {
   max: null,
   size: 'm',
   color: 'secondary',

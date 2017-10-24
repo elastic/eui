@@ -1,49 +1,49 @@
 import React from 'react';
 
 import {
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiPageHeader,
-  KuiPageHeaderSection,
-  KuiPageSideBar,
-  KuiTitle,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiPage>
-    <KuiPageHeader>
-      <KuiPageHeaderSection>
-        <KuiTitle size="large">
+  <EuiPage>
+    <EuiPageHeader>
+      <EuiPageHeaderSection>
+        <EuiTitle size="large">
           <h1>Page title</h1>
-        </KuiTitle>
-      </KuiPageHeaderSection>
-      <KuiPageHeaderSection>
+        </EuiTitle>
+      </EuiPageHeaderSection>
+      <EuiPageHeaderSection>
         Page abilities
-      </KuiPageHeaderSection>
-    </KuiPageHeader>
-    <KuiPageBody>
-      <KuiPageSideBar>
+      </EuiPageHeaderSection>
+    </EuiPageHeader>
+    <EuiPageBody>
+      <EuiPageSideBar>
         SideBar nav
-      </KuiPageSideBar>
-      <KuiPageContent>
-        <KuiPageContentHeader>
-          <KuiPageContentHeaderSection>
-            <KuiTitle>
+      </EuiPageSideBar>
+      <EuiPageContent>
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
               <h2>Content title</h2>
-            </KuiTitle>
-          </KuiPageContentHeaderSection>
-          <KuiPageContentHeaderSection>
+            </EuiTitle>
+          </EuiPageContentHeaderSection>
+          <EuiPageContentHeaderSection>
             Content abilities
-          </KuiPageContentHeaderSection>
-        </KuiPageContentHeader>
-        <KuiPageContentBody>
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
+        <EuiPageContentBody>
           Content body
-        </KuiPageContentBody>
-      </KuiPageContent>
-    </KuiPageBody>
-  </KuiPage>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
 );

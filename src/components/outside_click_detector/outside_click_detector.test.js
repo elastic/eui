@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { KuiOutsideClickDetector } from './outside_click_detector';
+import { EuiOutsideClickDetector } from './outside_click_detector';
 
-describe('KuiOutsideClickDetector', () => {
+describe('EuiOutsideClickDetector', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiOutsideClickDetector onOutsideClick={() => {}}>
+      <EuiOutsideClickDetector onOutsideClick={() => {}}>
         <div />
-      </KuiOutsideClickDetector>
+      </EuiOutsideClickDetector>
     );
 
     expect(component)

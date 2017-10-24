@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPageContent is rendered 1`] = `
+exports[`EuiPageContent is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiPanel kuiPanel--paddingLarge kuiPageContent testClass1 testClass2"

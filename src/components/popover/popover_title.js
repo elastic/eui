@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiPopoverTitle = ({ children, className, ...rest }) => {
+export const EuiPopoverTitle = ({ children, className, ...rest }) => {
 
   const classes = classNames(
     {
@@ -21,7 +21,7 @@ export const KuiPopoverTitle = ({ children, className, ...rest }) => {
   );
 };
 
-KuiPopoverTitle.propTypes = {
+EuiPopoverTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

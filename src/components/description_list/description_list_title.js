@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiDescriptionListTitle = ({
+export const EuiDescriptionListTitle = ({
   children,
   className,
   ...rest,
@@ -19,7 +19,7 @@ export const KuiDescriptionListTitle = ({
   );
 };
 
-KuiDescriptionListTitle.propTypes = {
+EuiDescriptionListTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

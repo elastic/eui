@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiPageContentBody } from './page_content_body';
+import { EuiPageContentBody } from './page_content_body';
 
-describe('KuiPageContentBody', () => {
+describe('EuiPageContentBody', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiPageContentBody {...requiredProps} />
+      <EuiPageContentBody {...requiredProps} />
     );
 
     expect(component)

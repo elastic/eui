@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { KuiFormControlLayout } from './form_control_layout';
+import { EuiFormControlLayout } from './form_control_layout';
 
-describe('KuiFormControlLayout', () => {
+describe('EuiFormControlLayout', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiFormControlLayout>
+      <EuiFormControlLayout>
         <input />
-      </KuiFormControlLayout>
+      </EuiFormControlLayout>
     );
 
     expect(component)

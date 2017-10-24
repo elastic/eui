@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiSideNavItem } from './side_nav_item';
+import { EuiSideNavItem } from './side_nav_item';
 
-describe('KuiSideNavItem', () => {
+describe('EuiSideNavItem', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiSideNavItem>
+      <EuiSideNavItem>
         <button {...requiredProps} />
-      </KuiSideNavItem>
+      </EuiSideNavItem>
     );
 
     expect(component)
@@ -18,9 +18,9 @@ describe('KuiSideNavItem', () => {
 
   test(`preserves child's classes`, () => {
     const component = render(
-      <KuiSideNavItem>
+      <EuiSideNavItem>
         <button className="test" />
-      </KuiSideNavItem>
+      </EuiSideNavItem>
     );
 
     expect(component)
@@ -30,9 +30,9 @@ describe('KuiSideNavItem', () => {
   describe('isSelected', () => {
     test('defaults to false', () => {
       const component = render(
-        <KuiSideNavItem>
+        <EuiSideNavItem>
           <button />
-        </KuiSideNavItem>
+        </EuiSideNavItem>
       );
 
       expect(component)
@@ -41,9 +41,9 @@ describe('KuiSideNavItem', () => {
 
     test('is rendered when specified as true', () => {
       const component = render(
-        <KuiSideNavItem isSelected>
+        <EuiSideNavItem isSelected>
           <button />
-        </KuiSideNavItem>
+        </EuiSideNavItem>
       );
 
       expect(component)

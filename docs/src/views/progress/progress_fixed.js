@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 
 import {
-  KuiProgress,
-  KuiSpacer,
-  KuiButton,
-  KuiText,
-  KuiPanel,
-  KuiCallOut,
+  EuiProgress,
+  EuiSpacer,
+  EuiButton,
+  EuiText,
+  EuiPanel,
+  EuiCallOut,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -59,7 +59,7 @@ export default class extends Component {
     if (this.state.showProgress) {
       progress = (
         <div>
-          <KuiCallOut
+          <EuiCallOut
             title="Look up!"
             type="warning"
             iconType="sortUp"
@@ -67,8 +67,8 @@ export default class extends Component {
             <p>
               The progress bar is fixed to the top of your browser.
             </p>
-          </KuiCallOut>
-          <KuiProgress value={this.state.value} max={100} size="s" position="fixed"/>
+          </EuiCallOut>
+          <EuiProgress value={this.state.value} max={100} size="s" position="fixed"/>
         </div>
       );
     }
@@ -76,24 +76,24 @@ export default class extends Component {
     return (
       <div>
 
-        <KuiPanel style={{ width: 300, position: 'relative' }}>
-          <KuiProgress size="xs" color="accent" position="absolute" />
-          <KuiText>
+        <EuiPanel style={{ width: 300, position: 'relative' }}>
+          <EuiProgress size="xs" color="accent" position="absolute" />
+          <EuiText>
             <h2>Absolutely!</h2>
             <p>
               The progress bar is absolutely positioned in this panel. You could
               see how this might be useful in our Toast component.
             </p>
-          </KuiText>
-        </KuiPanel>
+          </EuiText>
+        </EuiPanel>
 
-        <KuiSpacer size="l" />
+        <EuiSpacer size="l" />
 
-        <KuiButton size="small" onClick={this.toggleProgress}>
+        <EuiButton size="small" onClick={this.toggleProgress}>
           Toggle a fixed bar
-        </KuiButton>
+        </EuiButton>
 
-        <KuiSpacer size="l" />
+        <EuiSpacer size="l" />
 
         {progress}
       </div>

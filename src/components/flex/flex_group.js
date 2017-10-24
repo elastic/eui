@@ -31,7 +31,7 @@ const justifyContentToClassNameMap = {
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
-export const KuiFlexGroup = ({ children, className, gutterSize, alignItems, justifyContent, ...rest }) => {
+export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, justifyContent, ...rest }) => {
   const classes = classNames(
     'kuiFlexGroup',
     gutterSizeToClassNameMap[gutterSize],
@@ -50,7 +50,7 @@ export const KuiFlexGroup = ({ children, className, gutterSize, alignItems, just
   );
 };
 
-KuiFlexGroup.propTypes = {
+EuiFlexGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
@@ -58,7 +58,7 @@ KuiFlexGroup.propTypes = {
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
 };
 
-KuiFlexGroup.defaultProps = {
+EuiFlexGroup.defaultProps = {
   gutterSize: 'large',
   alignItems: 'stretch',
   justifyContent: 'flexStart',

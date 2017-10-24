@@ -1,39 +1,39 @@
 import React from 'react';
 
 import {
-  KuiPanel,
-  KuiCode,
-  KuiSpacer,
+  EuiPanel,
+  EuiCode,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiPanel paddingSize="none">
-      <KuiCode>sizePadding=&quot;none&quot;</KuiCode>
-    </KuiPanel>
+    <EuiPanel paddingSize="none">
+      <EuiCode>sizePadding=&quot;none&quot;</EuiCode>
+    </EuiPanel>
 
-    <KuiSpacer size="l"/>
+    <EuiSpacer size="l"/>
 
-    <KuiPanel paddingSize="s">
-      <KuiCode>sizePadding=&quot;s&quot;</KuiCode>
-    </KuiPanel>
+    <EuiPanel paddingSize="s">
+      <EuiCode>sizePadding=&quot;s&quot;</EuiCode>
+    </EuiPanel>
 
-    <KuiSpacer size="l"/>
+    <EuiSpacer size="l"/>
 
-    <KuiPanel paddingSize="m">
-      <KuiCode>sizePadding=&quot;m&quot;</KuiCode>
-    </KuiPanel>
+    <EuiPanel paddingSize="m">
+      <EuiCode>sizePadding=&quot;m&quot;</EuiCode>
+    </EuiPanel>
 
-    <KuiSpacer size="l"/>
+    <EuiSpacer size="l"/>
 
-    <KuiPanel paddingSize="l">
-      <KuiCode>sizePadding=&quot;l&quot;</KuiCode>
-    </KuiPanel>
+    <EuiPanel paddingSize="l">
+      <EuiCode>sizePadding=&quot;l&quot;</EuiCode>
+    </EuiPanel>
 
-    <KuiSpacer size="l"/>
+    <EuiSpacer size="l"/>
 
-    <KuiPanel paddingSize="l" hasShadow>
-      <KuiCode>sizePadding=&quot;l&quot;</KuiCode>, <KuiCode>hasShadow</KuiCode>
-    </KuiPanel>
+    <EuiPanel paddingSize="l" hasShadow>
+      <EuiCode>sizePadding=&quot;l&quot;</EuiCode>, <EuiCode>hasShadow</EuiCode>
+    </EuiPanel>
   </div>
 );

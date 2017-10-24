@@ -1,1 +1,1 @@
-export { KuiFieldSearch } from './field_search';
+export { EuiFieldSearch } from './field_search';

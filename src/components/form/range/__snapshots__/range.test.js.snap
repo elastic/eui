@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiRange is rendered 1`] = `
+exports[`EuiRange is rendered 1`] = `
 <input
   aria-label="aria-label"
   class="kuiRange testClass1 testClass2"

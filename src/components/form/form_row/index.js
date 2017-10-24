@@ -1,1 +1,1 @@
-export { KuiFormRow } from './form_row';
+export { EuiFormRow } from './form_row';

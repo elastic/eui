@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { KuiValidatableControl } from './validatable_control';
+import { EuiValidatableControl } from './validatable_control';
 
-describe('KuiValidatableControl', () => {
+describe('EuiValidatableControl', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiValidatableControl>
+      <EuiValidatableControl>
         <input />
-      </KuiValidatableControl>
+      </EuiValidatableControl>
     );
 
     expect(component)

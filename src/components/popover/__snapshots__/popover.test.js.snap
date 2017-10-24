@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPopover anchorPosition defaults to center 1`] = `
+exports[`EuiPopover anchorPosition defaults to center 1`] = `
 <div
   class="kuiPopover"
 >
@@ -8,7 +8,7 @@ exports[`KuiPopover anchorPosition defaults to center 1`] = `
 </div>
 `;
 
-exports[`KuiPopover anchorPosition left is rendered 1`] = `
+exports[`EuiPopover anchorPosition left is rendered 1`] = `
 <div
   class="kuiPopover kuiPopover--anchorLeft"
 >
@@ -16,7 +16,7 @@ exports[`KuiPopover anchorPosition left is rendered 1`] = `
 </div>
 `;
 
-exports[`KuiPopover anchorPosition right is rendered 1`] = `
+exports[`EuiPopover anchorPosition right is rendered 1`] = `
 <div
   class="kuiPopover kuiPopover--anchorRight"
 >
@@ -24,7 +24,7 @@ exports[`KuiPopover anchorPosition right is rendered 1`] = `
 </div>
 `;
 
-exports[`KuiPopover children is rendered 1`] = `
+exports[`EuiPopover children is rendered 1`] = `
 <div
   class="kuiPopover"
 >
@@ -32,7 +32,7 @@ exports[`KuiPopover children is rendered 1`] = `
 </div>
 `;
 
-exports[`KuiPopover is rendered 1`] = `
+exports[`EuiPopover is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiPopover testClass1 testClass2"
@@ -42,7 +42,7 @@ exports[`KuiPopover is rendered 1`] = `
 </div>
 `;
 
-exports[`KuiPopover isOpen defaults to false 1`] = `
+exports[`EuiPopover isOpen defaults to false 1`] = `
 <div
   class="kuiPopover"
 >
@@ -50,7 +50,7 @@ exports[`KuiPopover isOpen defaults to false 1`] = `
 </div>
 `;
 
-exports[`KuiPopover isOpen renders true 1`] = `
+exports[`EuiPopover isOpen renders true 1`] = `
 <div
   class="kuiPopover"
 >

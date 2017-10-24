@@ -1,3 +1,3 @@
 export {
-  KuiPagination,
+  EuiPagination,
 } from './pagination';

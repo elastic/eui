@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../../icon';
 
 const typeToClassNameMap = {
@@ -17,7 +17,7 @@ const typeToClassNameMap = {
 export const TYPES = Object.keys(typeToClassNameMap);
 
 
-export const KuiButtonIcon = ({
+export const EuiButtonIcon = ({
   className,
   iconType,
   type,
@@ -36,7 +36,7 @@ export const KuiButtonIcon = ({
 
   if (iconType) {
     buttonIcon = (
-      <KuiIcon
+      <EuiIcon
         className="kuiButtonIcon__icon"
         type={iconType}
         size="medium"
@@ -56,7 +56,7 @@ export const KuiButtonIcon = ({
   );
 };
 
-KuiButtonIcon.propTypes = {
+EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
@@ -64,6 +64,6 @@ KuiButtonIcon.propTypes = {
   isDisabled: PropTypes.bool,
 };
 
-KuiButtonIcon.defaultProps = {
+EuiButtonIcon.defaultProps = {
   type: 'primary',
 };

@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiHeaderBreadcrumb } from './header_breadcrumb';
+import { EuiHeaderBreadcrumb } from './header_breadcrumb';
 
-describe('KuiHeaderBreadcrumb', () => {
+describe('EuiHeaderBreadcrumb', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiHeaderBreadcrumb {...requiredProps}>
+      <EuiHeaderBreadcrumb {...requiredProps}>
         content
-      </KuiHeaderBreadcrumb>
+      </EuiHeaderBreadcrumb>
     );
 
     expect(component)
@@ -18,7 +18,7 @@ describe('KuiHeaderBreadcrumb', () => {
 
   test('href is rendered', () => {
     const component = render(
-      <KuiHeaderBreadcrumb href="#" />
+      <EuiHeaderBreadcrumb href="#" />
     );
 
     expect(component)
@@ -27,7 +27,7 @@ describe('KuiHeaderBreadcrumb', () => {
 
   test('isActive is rendered', () => {
     const component = render(
-      <KuiHeaderBreadcrumb isActive={true} />
+      <EuiHeaderBreadcrumb isActive={true} />
     );
 
     expect(component)

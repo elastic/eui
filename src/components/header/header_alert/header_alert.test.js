@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiHeaderAlert } from './header_alert';
+import { EuiHeaderAlert } from './header_alert';
 
-describe('KuiHeaderAlert', () => {
+describe('EuiHeaderAlert', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiHeaderAlert {...requiredProps} />
+      <EuiHeaderAlert {...requiredProps} />
     );
 
     expect(component)

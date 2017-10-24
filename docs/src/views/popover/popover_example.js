@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Popover from './popover';
@@ -62,7 +62,7 @@ export default props => (
         <div>
           <p>
             The alignment and arrow on your popover can be set with
-            the <KuiCode>anchorPostion</KuiCode> prop. These positions will not
+            the <EuiCode>anchorPostion</EuiCode> prop. These positions will not
             update based upon screen real estate and will stick to the positions
             you declare. Because of this,
             <strong>be careful when using left or right positioning</strong>.
@@ -70,11 +70,11 @@ export default props => (
           <p><strong>Some tips:</strong></p>
           <ul>
             <li>
-              The first word in the <KuiCode>anchorPosition</KuiCode> denotes
+              The first word in the <EuiCode>anchorPosition</EuiCode> denotes
               where the popover will appear relative to the button.
             </li>
             <li>
-              The second word in the <KuiCode>anchorPosition</KuiCode> denotes
+              The second word in the <EuiCode>anchorPosition</EuiCode> denotes
               where the gravity / pin position will appear relative to the popover.
             </li>
           </ul>
@@ -99,12 +99,12 @@ export default props => (
           <p>
             Popovers often have need for titling. This can be applied through
             a prop or used separately as its own component
-            <KuiCode>KuiPopoverTitle</KuiCode> nested somwhere in the child
+            <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child
             prop.
           </p>
           <p>
             Note that when using popover titles, you will need to
-            set <KuiCode>panelPaddingSize=&quot;none&quot;</KuiCode> and apply
+            set <EuiCode>panelPaddingSize=&quot;none&quot;</EuiCode> and apply
             some sort of padding around your content block itself.
           </p>
         </div>
@@ -125,8 +125,8 @@ export default props => (
       }]}
       text={
         <p>
-          Use the <KuiCode>panelPaddingSize</KuiCode> prop to adjust the padding
-          on the panel within the panel. Use the <KuiCode>panelClassName</KuiCode> prop
+          Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
+          on the panel within the panel. Use the <EuiCode>panelClassName</EuiCode> prop
           to pass a custom class to the panel. inside a popover.
         </p>
       }

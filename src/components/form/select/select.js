@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiFormControlLayout,
+  EuiFormControlLayout,
 } from '../form_control_layout';
 
 import {
-  KuiValidatableControl,
+  EuiValidatableControl,
 } from '../validatable_control';
 
-export const KuiSelect = ({
+export const EuiSelect = ({
   className,
   options,
   id,
@@ -28,12 +28,12 @@ export const KuiSelect = ({
   );
 
   return (
-    <KuiFormControlLayout
+    <EuiFormControlLayout
       icon="arrowDown"
       iconSide="right"
       fullWidth={fullWidth}
     >
-      <KuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid}>
         <select
           id={id}
           name={name}
@@ -44,12 +44,12 @@ export const KuiSelect = ({
             return <option value={option.value} key={index}>{option.text}</option>;
           })}
         </select>
-      </KuiValidatableControl>
-    </KuiFormControlLayout>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };
 
-KuiSelect.propTypes = {
+EuiSelect.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -57,7 +57,7 @@ KuiSelect.propTypes = {
   fullWidth: PropTypes.bool,
 };
 
-KuiSelect.defaultProps = {
+EuiSelect.defaultProps = {
   options: [],
   fullWidth: false,
 };

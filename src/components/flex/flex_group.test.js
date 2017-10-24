@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiFlexGroup } from './flex_group';
+import { EuiFlexGroup } from './flex_group';
 
-describe('KuiFlexGroup', () => {
+describe('EuiFlexGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiFlexGroup {...requiredProps} />
+      <EuiFlexGroup {...requiredProps} />
     );
 
     expect(component)

@@ -1,36 +1,36 @@
 import React from 'react';
 
 import {
-  KuiAccordion,
-  KuiText,
-  KuiCode,
-  KuiSpacer,
+  EuiAccordion,
+  EuiText,
+  EuiCode,
+  EuiSpacer,
 } from '../../../../src/components';
 
 
 export default () => (
   <div>
-    <KuiAccordion
+    <EuiAccordion
       buttonContent="Click me to toggle open / close"
     >
-      <KuiText>
-        <p>Any content inside of <KuiCode>KuiAccordion</KuiCode> will appear here.</p>
-      </KuiText>
-    </KuiAccordion>
+      <EuiText>
+        <p>Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear here.</p>
+      </EuiText>
+    </EuiAccordion>
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
-    <KuiAccordion
+    <EuiAccordion
       buttonContent="You can click me as well"
     >
-      <KuiText>
+      <EuiText>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
-      </KuiText>
-    </KuiAccordion>
+      </EuiText>
+    </EuiAccordion>
   </div>
 );

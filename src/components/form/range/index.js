@@ -1,1 +1,1 @@
-export { KuiRange } from './range';
+export { EuiRange } from './range';

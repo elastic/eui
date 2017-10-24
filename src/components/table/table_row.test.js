@@ -3,18 +3,18 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiTableRow,
+  EuiTableRow,
 } from './table_row';
 
 import {
-  KuiTableRowCell
+  EuiTableRowCell
 } from './table_row_cell';
 
-test('renders KuiTableRow', () => {
+test('renders EuiTableRow', () => {
   const component = (
-    <KuiTableRow {...requiredProps}>
-      <KuiTableRowCell>hi</KuiTableRowCell>
-    </KuiTableRow>
+    <EuiTableRow {...requiredProps}>
+      <EuiTableRowCell>hi</EuiTableRowCell>
+    </EuiTableRow>
   );
 
   expect(render(component)).toMatchSnapshot();
@@ -23,9 +23,9 @@ test('renders KuiTableRow', () => {
 describe('isSelected', () => {
   test('renders true when specified', () => {
     const component = (
-      <KuiTableRow isSelected={true}>
-        <KuiTableRowCell />
-      </KuiTableRow>
+      <EuiTableRow isSelected={true}>
+        <EuiTableRowCell />
+      </EuiTableRow>
     );
 
     expect(render(component)).toMatchSnapshot();

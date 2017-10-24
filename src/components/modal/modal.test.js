@@ -3,17 +3,17 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiModal,
+  EuiModal,
 } from './modal';
 
-test('renders KuiModal', () => {
+test('renders EuiModal', () => {
   const component = (
-    <KuiModal
+    <EuiModal
       onClose={() => {}}
       {...requiredProps}
     >
       children
-    </KuiModal>
+    </EuiModal>
   );
 
   expect(render(component)).toMatchSnapshot();

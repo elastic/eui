@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiCode = ({
+export const EuiCode = ({
   children,
   className,
   ...rest,
@@ -19,7 +19,7 @@ export const KuiCode = ({
   );
 };
 
-KuiCode.propTypes = {
+EuiCode.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

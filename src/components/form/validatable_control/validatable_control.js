@@ -4,7 +4,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
-export class KuiValidatableControl extends Component {
+export class EuiValidatableControl extends Component {
   static propTypes = {
     children: PropTypes.node,
     isInvalid: PropTypes.bool,

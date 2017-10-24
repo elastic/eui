@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { KuiLink } from './link';
+import { EuiLink } from './link';
 
-describe('KuiLink', () => {
+describe('EuiLink', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiLink
+      <EuiLink
         href="#"
         target="_blank"
         {...requiredProps}

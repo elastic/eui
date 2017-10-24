@@ -1,3 +1,3 @@
 export {
-  KuiButtonIcon,
+  EuiButtonIcon,
 } from './button_icon';

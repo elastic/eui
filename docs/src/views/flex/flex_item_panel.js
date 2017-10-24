@@ -1,34 +1,34 @@
 import React from 'react';
 
 import {
-  KuiFlexItem,
-  KuiFlexGroup,
-  KuiPanel,
-  KuiCode,
-  KuiText,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiPanel,
+  EuiCode,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiFlexGroup>
-    <KuiFlexItem>
-      <KuiText>
-        <p><KuiCode>FlexItem</KuiCode></p>
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiText>
+        <p><EuiCode>FlexItem</EuiCode></p>
         <p>A side nav might be in this one.</p>
         <p>And you would want the panel on the right to expand with it.</p>
-      </KuiText>
-    </KuiFlexItem>
+      </EuiText>
+    </EuiFlexItem>
 
-    <KuiFlexItem>
-      <KuiPanel>
-        <KuiCode>KuiPanel</KuiCode>
-      </KuiPanel>
-    </KuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel>
+        <EuiCode>EuiPanel</EuiCode>
+      </EuiPanel>
+    </EuiFlexItem>
 
-    <KuiFlexItem>
-      <KuiPanel grow={false}>
-        Another <KuiCode>KuiPanel</KuiCode>,
-        with <KuiCode>grow=&#123;false&#125;</KuiCode>.
-      </KuiPanel>
-    </KuiFlexItem>
-  </KuiFlexGroup>
+    <EuiFlexItem>
+      <EuiPanel grow={false}>
+        Another <EuiCode>EuiPanel</EuiCode>,
+        with <EuiCode>grow=&#123;false&#125;</EuiCode>.
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

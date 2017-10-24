@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { KuiCallOut } from '..';
+import { EuiCallOut } from '..';
 
-export const KuiForm = ({
+export const EuiForm = ({
   children,
   className,
   isInvalid,
@@ -31,13 +31,13 @@ export const KuiForm = ({
 
   if (isInvalid) {
     optionalErrorAlert = (
-      <KuiCallOut
+      <EuiCallOut
         className="kuiForm__errors"
         title="Please address the errors in your form."
         type="danger"
       >
         {optionalErrors}
-      </KuiCallOut>
+      </EuiCallOut>
     );
   }
 
@@ -52,7 +52,7 @@ export const KuiForm = ({
   );
 };
 
-KuiForm.propTypes = {
+EuiForm.propTypes = {
   isInvalid: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 };

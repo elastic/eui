@@ -1,3 +1,3 @@
 export {
-  KuiCode,
+  EuiCode,
 } from './code';

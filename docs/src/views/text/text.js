@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  KuiText,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiText>
+  <EuiText>
     <h1>This is Heading One</h1>
     <p>
       Far out in the uncharted backwaters of the unfashionable end of
@@ -60,5 +60,5 @@ export default () => (
       So it thought the dog was making a poor life choice by focusing so much on mindfulness.
       What if its car broke down?
     </p>
-  </KuiText>
+  </EuiText>
 );

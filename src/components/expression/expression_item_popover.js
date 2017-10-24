@@ -51,7 +51,7 @@ const outsideClickNotifier = WrappedComponent => class extends React.Component {
   };
 };
 
-let KuiExpressionItemPopover = ({
+let EuiExpressionItemPopover = ({
   className,
   title,
   isVisible,
@@ -80,7 +80,7 @@ let KuiExpressionItemPopover = ({
   );
 };
 
-KuiExpressionItemPopover.propTypes = {
+EuiExpressionItemPopover.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
@@ -90,9 +90,9 @@ KuiExpressionItemPopover.propTypes = {
   rootRef: PropTypes.func.isRequired,
 };
 
-KuiExpressionItemPopover = outsideClickNotifier(KuiExpressionItemPopover);
+EuiExpressionItemPopover = outsideClickNotifier(EuiExpressionItemPopover);
 
 export {
   POPOVER_ALIGN,
-  KuiExpressionItemPopover
+  EuiExpressionItemPopover
 };

@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import hljs from 'highlight.js';
 
 import {
-  KuiText,
-  KuiTitle,
-  KuiSpacer,
-  KuiTabs,
-  KuiTab,
+  EuiText,
+  EuiTitle,
+  EuiSpacer,
+  EuiTabs,
+  EuiTab,
 } from '../../../../src/components';
 
 import Slugify from '../../services/string/slugify';
@@ -68,13 +68,13 @@ export class GuideSection extends Component {
 
   renderTabs() {
     return this.tabs.map((tab,index) => (
-      <KuiTab
+      <EuiTab
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}
         key={index}
       >
         {tab.name}
-      </KuiTab>
+      </EuiTab>
     ));
   }
 
@@ -122,16 +122,16 @@ export class GuideSection extends Component {
     return (
       <div className="guideSection">
         <div className="guideSection__text">
-          <KuiTitle>
+          <EuiTitle>
             <h2>{this.props.title}</h2>
-          </KuiTitle>
-          <KuiSpacer size="m" />
-          <KuiText>{this.props.text}</KuiText>
+          </EuiTitle>
+          <EuiSpacer size="m" />
+          <EuiText>{this.props.text}</EuiText>
         </div>
-        <KuiSpacer size="m" />
-        <KuiTabs>
+        <EuiSpacer size="m" />
+        <EuiTabs>
           {this.renderTabs()}
-        </KuiTabs>
+        </EuiTabs>
         {this.renderDemo()}
         {codeSections}
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const KuiFlexItem = ({ children, className, grow, ...rest }) => {
+export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
   const classes = classNames(
     'kuiFlexItem',
     {
@@ -21,11 +21,11 @@ export const KuiFlexItem = ({ children, className, grow, ...rest }) => {
   );
 };
 
-KuiFlexItem.propTypes = {
+EuiFlexItem.propTypes = {
   children: PropTypes.node,
   grow: PropTypes.bool,
 };
 
-KuiFlexItem.defaultProps = {
+EuiFlexItem.defaultProps = {
   grow: true,
 };

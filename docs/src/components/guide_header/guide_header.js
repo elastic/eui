@@ -8,9 +8,9 @@ import {
 } from 'react-router';
 
 import {
-  KuiIcon,
-  KuiFlexGroup,
-  KuiFlexItem,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export class GuideHeader extends Component {
@@ -25,31 +25,31 @@ export class GuideHeader extends Component {
   render() {
     return (
       <div className="guideHeader">
-        <KuiFlexGroup alignItems="center" gutterSize="small">
-          <KuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="small">
+          <EuiFlexItem grow={false}>
             <Link
               to="/"
               onClick={this.props.onShowChrome}
             >
-              <KuiIcon type="logoKibana" size="medium" />
+              <EuiIcon type="logoKibana" size="medium" />
             </Link>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <button
               onClick={this.props.onToggleTheme}
               className="guideHeader__link"
             >
               Theme
             </button>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <button
               onClick={this.props.onShowChrome}
             >
-              <KuiIcon type="list" size="medium" className="guideHeader__appListIcon" />
+              <EuiIcon type="list" size="medium" className="guideHeader__appListIcon" />
             </button>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiProgress is rendered 1`] = `
+exports[`EuiProgress is rendered 1`] = `
 <div>
   <div
     aria-label="aria-label"

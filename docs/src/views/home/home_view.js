@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {
-  KuiText,
-  KuiCode,
-  KuiFlexGroup,
-  KuiFlexGrid,
-  KuiFlexItem,
-  KuiSpacer,
-  KuiHorizontalRule,
+  EuiText,
+  EuiCode,
+  EuiFlexGroup,
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
@@ -136,7 +136,7 @@ const fontSizes = [
 
 export const HomeView = () => (
   <div className="guideSection__text">
-    <KuiText>
+    <EuiText>
       <h1>Elastic UI Framework</h1>
       <p>Version: <strong>{ pkg.version }</strong></p>
       <p>
@@ -149,29 +149,29 @@ export const HomeView = () => (
       <h2>Goals</h2>
       <p>KUI has the following primary goals..</p>
       <ol>
-        <li><KuiCode>KUI is accessible to everyone</KuiCode>. Use high contrast,
+        <li><EuiCode>KUI is accessible to everyone</EuiCode>. Use high contrast,
           color-blind safe palettes and proper aria labels.
         </li>
-        <li><KuiCode>KUI is themable</KuiCode>. Theming should involve changing
+        <li><EuiCode>KUI is themable</EuiCode>. Theming should involve changing
           less than a dozen lines of code. This means strict variable usage.
         </li>
-        <li><KuiCode>KUI is responsive</KuiCode>. Currently we target
+        <li><EuiCode>KUI is responsive</EuiCode>. Currently we target
           mobile, laptop, desktop and wide desktop breakpoints.
         </li>
-        <li><KuiCode>KUI is playful</KuiCode>. Consistent use of animation can
+        <li><EuiCode>KUI is playful</EuiCode>. Consistent use of animation can
           bring life to our design.
         </li>
-        <li><KuiCode>KUI is documented and has tests</KuiCode>. Make sure
+        <li><EuiCode>KUI is documented and has tests</EuiCode>. Make sure
           the code is friendly to the novice and expert alike.
         </li>
       </ol>
-    </KuiText>
+    </EuiText>
 
-    <KuiHorizontalRule />
+    <EuiHorizontalRule />
 
-    <KuiFlexGroup>
-      <KuiFlexItem>
-        <KuiText>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiText>
           <h2>Colors</h2>
           <p>
             The UI Framework uses a very limited palette. Every color is
@@ -180,7 +180,7 @@ export const HomeView = () => (
           <h3>Theming</h3>
           <p>
             Theming is achieved by overwriting these twelve colors with
-            a different set. This is why it is very important <KuiCode>never to use hex colors</KuiCode> in
+            a different set. This is why it is very important <EuiCode>never to use hex colors</EuiCode> in
             KUI outside of the global variable files.
           </p>
           <h3>Accessibility</h3>
@@ -188,72 +188,72 @@ export const HomeView = () => (
             We aim to be at least AA compliant in our design. That means that only some of the colors
             to the right should be used for text.
           </p>
-        </KuiText>
-      </KuiFlexItem>
-      <KuiFlexItem>
-        <KuiFlexGrid columns={2} gutterSize="small">
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiFlexGrid columns={2} gutterSize="small">
           {colors.map((item, index) => {
             return (
-              <KuiFlexItem className="guideDemo__color" style={{ background: item.hex }} key={index}>
+              <EuiFlexItem className="guideDemo__color" style={{ background: item.hex }} key={index}>
                 <p>${item.color}</p>
                 <p className="guideDemo__colorHex">{item.hex}</p>
-              </KuiFlexItem>
+              </EuiFlexItem>
             );
           })}
 
           {grays.map((item, index) => {
             return (
-              <KuiFlexItem className="guideDemo__color" style={{ background: item.hex, color: item.textColor }} key={index}>
+              <EuiFlexItem className="guideDemo__color" style={{ background: item.hex, color: item.textColor }} key={index}>
                 <p>${item.color}</p>
                 <p className="guideDemo__colorHex">{item.hex}</p>
-              </KuiFlexItem>
+              </EuiFlexItem>
             );
           })}
-        </KuiFlexGrid>
-      </KuiFlexItem>
-    </KuiFlexGroup>
+        </EuiFlexGrid>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <KuiHorizontalRule />
+    <EuiHorizontalRule />
 
-    <KuiText>
+    <EuiText>
       <h2>Spacing and sizing</h2>
       <p>
-        <KuiCode>KUI</KuiCode> is a minimalist design and as such needs to be very precise
-        with the spacing and padding between and around items. <KuiCode>16px</KuiCode> is our
+        <EuiCode>KUI</EuiCode> is a minimalist design and as such needs to be very precise
+        with the spacing and padding between and around items. <EuiCode>16px</EuiCode> is our
         magic number. It is our default font-size and our default spacing size.
         Larger numbers can be used, but must always be
-        a <KuiCode>multiple of 16px</KuiCode> beyond these sizes below.
+        a <EuiCode>multiple of 16px</EuiCode> beyond these sizes below.
       </p>
 
-      <p>Sizing when passed as values to props should always be <KuiCode>xs / s / m / l / xl ...etc</KuiCode></p>
+      <p>Sizing when passed as values to props should always be <EuiCode>xs / s / m / l / xl ...etc</EuiCode></p>
 
-    </KuiText>
+    </EuiText>
 
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
-    <KuiFlexGroup gutterSize="small" className="guideDemo__sizeGrid">
-      <KuiFlexItem>
-        <KuiText><h3>Element sizes / paddings / margins</h3></KuiText>
+    <EuiFlexGroup gutterSize="small" className="guideDemo__sizeGrid">
+      <EuiFlexItem>
+        <EuiText><h3>Element sizes / paddings / margins</h3></EuiText>
         {sizes.map((item, index) => {
           return (
             <div key={index}>
-              <KuiSpacer size="m" />
-              <KuiFlexGroup key={index} alignItems="center">
-                <KuiFlexItem grow={false} style={{ width: 40, textAlign: 'right' }}>
+              <EuiSpacer size="m" />
+              <EuiFlexGroup key={index} alignItems="center">
+                <EuiFlexItem grow={false} style={{ width: 40, textAlign: 'right' }}>
                   <div className="guideDemo__size" style={{ height: item.size, width: item.size }} />
-                </KuiFlexItem>
-                <KuiFlexItem>
+                </EuiFlexItem>
+                <EuiFlexItem>
                   <p className="guideDemo__sizeText">
                     {item.size}px - {item.name}
                   </p>
-                </KuiFlexItem>
-              </KuiFlexGroup>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </div>
           );
         })}
-      </KuiFlexItem>
-      <KuiFlexItem>
-        <KuiText><h3>Font sizes</h3></KuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiText><h3>Font sizes</h3></EuiText>
         {fontSizes.map((item, index) => {
           return (
             <div style={{ fontSize: item.size, marginTop: 24 }} key={index}>
@@ -261,8 +261,8 @@ export const HomeView = () => (
             </div>
           );
         })}
-      </KuiFlexItem>
-    </KuiFlexGroup>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
 
 

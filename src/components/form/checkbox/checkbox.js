@@ -8,7 +8,7 @@ const typeToClassNameMap = {
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const KuiCheckbox = ({
+export const EuiCheckbox = ({
   className,
   id,
   checked,
@@ -58,7 +58,7 @@ export const KuiCheckbox = ({
   );
 };
 
-KuiCheckbox.propTypes = {
+EuiCheckbox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   checked: PropTypes.bool.isRequired,
@@ -67,6 +67,6 @@ KuiCheckbox.propTypes = {
   type: PropTypes.oneOf(TYPES),
 };
 
-KuiCheckbox.defaultProps = {
+EuiCheckbox.defaultProps = {
   checked: false,
 };

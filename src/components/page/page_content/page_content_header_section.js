@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const KuiPageContentHeaderSection = ({ children, className, ...rest }) => {
+export const EuiPageContentHeaderSection = ({ children, className, ...rest }) => {
   const classes = classNames('kuiPageContentHeaderSection', className);
 
   return (

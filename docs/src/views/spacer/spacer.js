@@ -1,41 +1,41 @@
 import React from 'react';
 
 import {
-  KuiSpacer,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
   <div>
     <p>xs: 4px</p>
-    <KuiSpacer size="xs"/>
+    <EuiSpacer size="xs"/>
 
     <br />
     <br />
 
     <p>s: 8px</p>
-    <KuiSpacer size="s" />
+    <EuiSpacer size="s" />
 
     <br />
     <br />
 
     <p>m: 16px</p>
-    <KuiSpacer size="m" />
+    <EuiSpacer size="m" />
 
     <br />
     <br />
 
     <p>l: 24px</p>
-    <KuiSpacer size="l" />
+    <EuiSpacer size="l" />
 
     <br />
     <br />
 
     <p>xl: 32px</p>
-    <KuiSpacer size="xl" />
+    <EuiSpacer size="xl" />
 
     <br />
     <br />
     <p>xxl: 40px</p>
-    <KuiSpacer size="xxl" />
+    <EuiSpacer size="xxl" />
   </div>
 );

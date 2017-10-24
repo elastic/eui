@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
-export const KuiHeaderLogo = ({ href, className, ...rest }) => {
+export const EuiHeaderLogo = ({ href, className, ...rest }) => {
   const classes = classNames('kuiHeaderLogo', className);
 
   return (
     <a href={href} className={classes} {...rest}>
-      <KuiIcon
+      <EuiIcon
         className="kuiHeaderLogo__icon"
         type="logoKibana"
         size="xLarge"
@@ -21,6 +21,6 @@ export const KuiHeaderLogo = ({ href, className, ...rest }) => {
   );
 };
 
-KuiHeaderLogo.propTypes = {
+EuiHeaderLogo.propTypes = {
   href: PropTypes.string,
 };

@@ -6,15 +6,15 @@ import {
 } from 'react-router';
 
 import {
-  KuiSideNav,
-  KuiIcon,
-  KuiSideNavItem,
-  KuiSideNavTitle,
-  KuiFieldSearch,
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiText,
-  KuiSpacer,
+  EuiSideNav,
+  EuiIcon,
+  EuiSideNavItem,
+  EuiSideNavTitle,
+  EuiFieldSearch,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export class GuideNav extends Component {
@@ -47,7 +47,7 @@ export class GuideNav extends Component {
         item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       )).map((item, index) => {
         return (
-          <KuiSideNavItem key={`componentNavItem-${index}`} isSelected={this.props.routes[1].name === item.name}>
+          <EuiSideNavItem key={`componentNavItem-${index}`} isSelected={this.props.routes[1].name === item.name}>
             <Link
               className="guideNavItem__link"
               to={item.path}
@@ -55,7 +55,7 @@ export class GuideNav extends Component {
             >
               {item.name}
             </Link>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
         );
       });
 
@@ -64,7 +64,7 @@ export class GuideNav extends Component {
         item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       )).map((item, index) => {
         return (
-          <KuiSideNavItem key={`sandboxNavItem-${index}`}>
+          <EuiSideNavItem key={`sandboxNavItem-${index}`}>
             <Link
               className="guideNavItem__link"
               to={item.path}
@@ -72,24 +72,24 @@ export class GuideNav extends Component {
             >
               {item.name}
             </Link>
-          </KuiSideNavItem>
+          </EuiSideNavItem>
         );
       });
 
     return (
       <div>
-        <KuiFlexGroup alignItems="center" gutterSize="small">
-          <KuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="small">
+          <EuiFlexItem grow={false}>
             <Link
               to="/"
               className="guideLogo"
               onClick={this.props.onShowChrome}
             >
-              <KuiIcon type="logoElastic" size="large" />
+              <EuiIcon type="logoElastic" size="large" />
             </Link>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
-            <KuiText size="s">
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
               <button
                 to="/"
                 onClick={this.props.onToggleTheme}
@@ -97,45 +97,45 @@ export class GuideNav extends Component {
               >
                 Theme
               </button>
-            </KuiText>
-          </KuiFlexItem>
-          <KuiFlexItem grow={false}>
+            </EuiText>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
             <button
               onClick={this.props.onHideChrome}
             >
-              <KuiIcon type="fullScreen" size="medium" />
+              <EuiIcon type="fullScreen" size="medium" />
             </button>
-          </KuiFlexItem>
-        </KuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-        <KuiSpacer size="m" />
+        <EuiSpacer size="m" />
 
-        <KuiSideNav
+        <EuiSideNav
           mobileTitle="Navigate components"
           toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         >
-          <KuiFieldSearch
+          <EuiFieldSearch
             placeholder="Search..."
             value={this.state.search}
             onChange={this.onSearchChange}
           />
 
-          <KuiSpacer size="m" />
+          <EuiSpacer size="m" />
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Components
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
           {componentNavItems}
 
-          <KuiSideNavTitle>
+          <EuiSideNavTitle>
             Sandboxes
-          </KuiSideNavTitle>
+          </EuiSideNavTitle>
 
           {sandboxNavItems}
 
-        </KuiSideNav>
+        </EuiSideNav>
       </div>
     );
   }

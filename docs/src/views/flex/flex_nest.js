@@ -1,25 +1,25 @@
 import React from 'react';
 
 import {
-  KuiFlexGroup,
-  KuiFlexItem,
-  KuiFlexGrid,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlexGrid,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiFlexGroup>
-      <KuiFlexItem grow={false}>Group One</KuiFlexItem>
-      <KuiFlexItem grow={false}>
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>Group One</EuiFlexItem>
+      <EuiFlexItem grow={false}>
         <div>Group Two</div>
         <br/><br/>
-        <KuiFlexGrid columns={3}>
-          <KuiFlexItem>Nested Grid One</KuiFlexItem>
-          <KuiFlexItem>Nested Grid Two</KuiFlexItem>
-          <KuiFlexItem>Nested Grid Three</KuiFlexItem>
-          <KuiFlexItem>Nested Grid Four</KuiFlexItem>
-        </KuiFlexGrid>
-      </KuiFlexItem>
-    </KuiFlexGroup>
+        <EuiFlexGrid columns={3}>
+          <EuiFlexItem>Nested Grid One</EuiFlexItem>
+          <EuiFlexItem>Nested Grid Two</EuiFlexItem>
+          <EuiFlexItem>Nested Grid Three</EuiFlexItem>
+          <EuiFlexItem>Nested Grid Four</EuiFlexItem>
+        </EuiFlexGrid>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

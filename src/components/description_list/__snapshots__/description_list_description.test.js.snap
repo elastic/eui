@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiDescriptionListDescription is rendered 1`] = `
+exports[`EuiDescriptionListDescription is rendered 1`] = `
 <dd
   aria-label="aria-label"
   class="kuiDescriptionList__description testClass1 testClass2"

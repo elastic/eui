@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiBadge is rendered 1`] = `
+exports[`EuiBadge is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiBadge kuiBadge--default testClass1 testClass2"

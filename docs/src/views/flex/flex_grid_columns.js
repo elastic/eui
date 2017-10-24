@@ -1,20 +1,20 @@
 import React from 'react';
 
 import {
-  KuiFlexGrid,
-  KuiFlexItem,
+  EuiFlexGrid,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <KuiFlexGrid columns={3}>
-      <KuiFlexItem><div>One</div></KuiFlexItem>
-      <KuiFlexItem><div>Two</div></KuiFlexItem>
-      <KuiFlexItem><div>Three</div></KuiFlexItem>
-      <KuiFlexItem><div>Four</div></KuiFlexItem>
-      <KuiFlexItem><div>Five</div></KuiFlexItem>
-      <KuiFlexItem><div>Six</div></KuiFlexItem>
-      <KuiFlexItem><div>Seven</div></KuiFlexItem>
-    </KuiFlexGrid>
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem><div>One</div></EuiFlexItem>
+      <EuiFlexItem><div>Two</div></EuiFlexItem>
+      <EuiFlexItem><div>Three</div></EuiFlexItem>
+      <EuiFlexItem><div>Four</div></EuiFlexItem>
+      <EuiFlexItem><div>Five</div></EuiFlexItem>
+      <EuiFlexItem><div>Six</div></EuiFlexItem>
+      <EuiFlexItem><div>Seven</div></EuiFlexItem>
+    </EuiFlexGrid>
   </div>
 );

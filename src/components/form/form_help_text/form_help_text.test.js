@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiFormHelpText } from './form_help_text';
+import { EuiFormHelpText } from './form_help_text';
 
-describe('KuiFormHelpText', () => {
+describe('EuiFormHelpText', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiFormHelpText {...requiredProps} />
+      <EuiFormHelpText {...requiredProps} />
     );
 
     expect(component)

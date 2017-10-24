@@ -1,2 +1,2 @@
-export { KuiKeyboardAccessible } from './keyboard_accessible';
-export { KuiScreenReaderOnly } from './screen_reader';
+export { EuiKeyboardAccessible } from './keyboard_accessible';
+export { EuiScreenReaderOnly } from './screen_reader';

@@ -3,19 +3,19 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiButtonEmpty,
-  KuiFieldText,
-  KuiForm,
-  KuiFormRow,
-  KuiModal,
-  KuiModalBody,
-  KuiModalFooter,
-  KuiModalHeader,
-  KuiModalHeaderTitle,
-  KuiModalOverlay,
-  KuiRange,
-  KuiSwitch,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalOverlay,
+  EuiRange,
+  EuiSwitch,
 } from '../../../../src/components';
 
 function makeId() {
@@ -51,36 +51,36 @@ export class ModalExample extends Component {
 
   render() {
     const formSample = (
-      <KuiForm>
-        <KuiFormRow>
-          <KuiSwitch
+      <EuiForm>
+        <EuiFormRow>
+          <EuiSwitch
             id={makeId()}
             name="popswitch"
             label="Isn't this modal form cool?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
           />
-        </KuiFormRow>
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="A text field"
         >
-          <KuiFieldText name="popfirst" />
-        </KuiFormRow>
+          <EuiFieldText name="popfirst" />
+        </EuiFormRow>
 
-        <KuiFormRow
+        <EuiFormRow
           id={makeId()}
           label="Range"
           helpText="Some help text for the range"
         >
-          <KuiRange
+          <EuiRange
             min={0}
             max={100}
             name="poprange"
           />
-        </KuiFormRow>
-      </KuiForm>
+        </EuiFormRow>
+      </EuiForm>
     );
 
 
@@ -88,46 +88,46 @@ export class ModalExample extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <KuiModalOverlay>
-          <KuiModal
+        <EuiModalOverlay>
+          <EuiModal
             onClose={this.closeModal}
             style={{ width: '800px' }}
           >
-            <KuiModalHeader>
-              <KuiModalHeaderTitle >
+            <EuiModalHeader>
+              <EuiModalHeaderTitle >
                 Form in a modal
-              </KuiModalHeaderTitle>
-            </KuiModalHeader>
+              </EuiModalHeaderTitle>
+            </EuiModalHeader>
 
-            <KuiModalBody>
+            <EuiModalBody>
               {formSample}
-            </KuiModalBody>
+            </EuiModalBody>
 
-            <KuiModalFooter>
-              <KuiButtonEmpty
+            <EuiModalFooter>
+              <EuiButtonEmpty
                 onClick={this.closeModal}
                 size="small"
               >
                 Cancel
-              </KuiButtonEmpty>
+              </EuiButtonEmpty>
 
-              <KuiButton
+              <EuiButton
                 onClick={this.closeModal}
                 size="small"
                 fill
               >
                 Save
-              </KuiButton>
-            </KuiModalFooter>
-          </KuiModal>
-        </KuiModalOverlay>
+              </EuiButton>
+            </EuiModalFooter>
+          </EuiModal>
+        </EuiModalOverlay>
       );
     }
     return (
       <div>
-        <KuiButton onClick={this.showModal}>
+        <EuiButton onClick={this.showModal}>
           Show Modal
-        </KuiButton>
+        </EuiButton>
 
         {modal}
       </div>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiContextMenuItem is rendered 1`] = `
+exports[`EuiContextMenuItem is rendered 1`] = `
 <button
   aria-label="aria-label"
   class="kuiContextMenuItem testClass1 testClass2"

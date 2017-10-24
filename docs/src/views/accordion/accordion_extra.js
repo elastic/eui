@@ -1,15 +1,15 @@
 import React from 'react';
 
 import {
-  KuiAccordion,
-  KuiButton,
+  EuiAccordion,
+  EuiButton,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiAccordion
+  <EuiAccordion
     buttonContent="Click to open"
-    extraAction={<KuiButton size="small">Extra action!</KuiButton>}
+    extraAction={<EuiButton size="small">Extra action!</EuiButton>}
   >
     <div>Opened content.</div>
-  </KuiAccordion>
+  </EuiAccordion>
 );

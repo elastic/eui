@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiCode is rendered 1`] = `
+exports[`EuiCode is rendered 1`] = `
 <code
   aria-label="aria-label"
   class="kuiCode testClass1 testClass2"

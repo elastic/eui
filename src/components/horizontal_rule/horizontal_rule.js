@@ -20,7 +20,7 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const KuiHorizontalRule = ({
+export const EuiHorizontalRule = ({
   className,
   size,
   margin,
@@ -41,14 +41,14 @@ export const KuiHorizontalRule = ({
   );
 };
 
-KuiHorizontalRule.propTypes = {
+EuiHorizontalRule.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
   margin: PropTypes.oneOf(MARGINS),
 };
 
-KuiHorizontalRule.defaultProps = {
+EuiHorizontalRule.defaultProps = {
   size: 'full',
   margin: 'large',
 };

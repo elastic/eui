@@ -1,66 +1,66 @@
 import React from 'react';
 
 import {
-  KuiLink,
-  KuiText,
+  EuiLink,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
-  <KuiText>
+  <EuiText>
     <p>
       Open the {(
-        <KuiLink
+        <EuiLink
           href="http://www.elastic.co"
           target="_blank"
         >
           Elastic website
-        </KuiLink>
+        </EuiLink>
       )} in a new tab.
     </p>
     <p>
       This link is actually a {(
-        <KuiLink
+        <EuiLink
           onClick={() => window.alert('Button clicked')}
         >
           button
-        </KuiLink>
+        </EuiLink>
       )} with an onClick handler.
 
     </p>
     <p>Links can be colored as well.</p>
     <ul>
       <li>
-        <KuiLink color="subdued" href="#">
+        <EuiLink color="subdued" href="#">
           subdued
-        </KuiLink>
+        </EuiLink>
       </li>
       <li>
-        <KuiLink color="secondary" href="#">
+        <EuiLink color="secondary" href="#">
           secondary
-        </KuiLink>
+        </EuiLink>
       </li>
       <li>
-        <KuiLink color="accent" href="#">
+        <EuiLink color="accent" href="#">
           accent
-        </KuiLink>
+        </EuiLink>
       </li>
       <li>
-        <KuiLink color="danger" href="#">
+        <EuiLink color="danger" href="#">
           danger
-        </KuiLink>
+        </EuiLink>
       </li>
       <li>
-        <KuiLink color="warning" href="#">
+        <EuiLink color="warning" href="#">
           warning
-        </KuiLink>
+        </EuiLink>
       </li>
       <li>
         <span style={{ background: 'black' }}>
-          <KuiLink color="ghost" href="#">
+          <EuiLink color="ghost" href="#">
             ghost
-          </KuiLink>
+          </EuiLink>
         </span>
       </li>
     </ul>
-  </KuiText>
+  </EuiText>
 );

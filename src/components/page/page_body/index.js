@@ -1,1 +1,1 @@
-export { KuiPageBody } from './page_body';
+export { EuiPageBody } from './page_body';

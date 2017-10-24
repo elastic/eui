@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiButton is rendered 1`] = `
+exports[`EuiButton is rendered 1`] = `
 <button
   aria-label="aria-label"
   class="kuiButton kuiButton--primary testClass1 testClass2"

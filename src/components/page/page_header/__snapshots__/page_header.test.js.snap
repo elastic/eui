@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiPageHeader is rendered 1`] = `
+exports[`EuiPageHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="kuiPageHeader testClass1 testClass2"

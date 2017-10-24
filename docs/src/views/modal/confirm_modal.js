@@ -3,9 +3,9 @@ import React, {
 } from 'react';
 
 import {
-  KuiButton,
-  KuiConfirmModal,
-  KuiModalOverlay,
+  EuiButton,
+  EuiConfirmModal,
+  EuiModalOverlay,
   KUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
@@ -34,8 +34,8 @@ export class ConfirmModalExample extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <KuiModalOverlay>
-          <KuiConfirmModal
+        <EuiModalOverlay>
+          <EuiConfirmModal
             title="Do this thing"
             onCancel={this.closeModal}
             onConfirm={this.closeModal}
@@ -45,16 +45,16 @@ export class ConfirmModalExample extends Component {
           >
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
-          </KuiConfirmModal>
-        </KuiModalOverlay>
+          </EuiConfirmModal>
+        </EuiModalOverlay>
       );
     }
 
     return (
       <div>
-        <KuiButton onClick={this.showModal}>
+        <EuiButton onClick={this.showModal}>
           Show ConfirmModal
-        </KuiButton>
+        </EuiButton>
 
         {modal}
       </div>

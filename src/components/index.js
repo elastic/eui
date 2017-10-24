@@ -1,195 +1,195 @@
 export {
-  KuiAccordion,
+  EuiAccordion,
 } from './accordion';
 
 export {
-  KuiAvatar,
+  EuiAvatar,
 } from './avatar';
 
 export {
-  KuiKeyboardAccessible,
-  KuiScreenReaderOnly,
+  EuiKeyboardAccessible,
+  EuiScreenReaderOnly,
 } from './accessibility';
 
 export {
-  KuiBottomBar,
+  EuiBottomBar,
 } from './bottom_bar';
 
 export {
-  KuiButton,
-  KuiButtonEmpty,
-  KuiButtonIcon,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
 } from './button';
 
 export {
-  KuiBadge,
+  EuiBadge,
 } from './badge';
 
 export {
-  KuiCallOut,
+  EuiCallOut,
 } from './call_out';
 
 export {
-  KuiCode,
+  EuiCode,
 } from './code';
 
 export {
-  KuiContextMenu,
+  EuiContextMenu,
 } from './context_menu';
 
 export {
-  KuiDescriptionList,
-  KuiDescriptionListTitle,
-  KuiDescriptionListDescription,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from './description_list';
 
 export {
-  KuiFlexGroup,
-  KuiFlexGrid,
-  KuiFlexItem,
+  EuiFlexGroup,
+  EuiFlexGrid,
+  EuiFlexItem,
 } from './flex';
 
 export {
-  KuiCheckbox,
-  KuiCheckboxGroup,
-  KuiFieldNumber,
-  KuiFieldPassword,
-  KuiFieldSearch,
-  KuiFieldText,
-  KuiForm,
-  KuiFormControlLayout,
-  KuiFormErrorText,
-  KuiFormHelpText,
-  KuiFormLabel,
-  KuiFormRow,
-  KuiRange,
-  KuiSelect,
-  KuiSwitch,
-  KuiTextArea,
-  KuiValidatableControl,
+  EuiCheckbox,
+  EuiCheckboxGroup,
+  EuiFieldNumber,
+  EuiFieldPassword,
+  EuiFieldSearch,
+  EuiFieldText,
+  EuiForm,
+  EuiFormControlLayout,
+  EuiFormErrorText,
+  EuiFormHelpText,
+  EuiFormLabel,
+  EuiFormRow,
+  EuiRange,
+  EuiSelect,
+  EuiSwitch,
+  EuiTextArea,
+  EuiValidatableControl,
 } from './form';
 
 
 export {
-  KuiHeader,
-  KuiHeaderAlert,
-  KuiHeaderBreadcrumb,
-  KuiHeaderBreadcrumbCollapsed,
-  KuiHeaderBreadcrumbs,
-  KuiHeaderLogo,
-  KuiHeaderSection,
-  KuiHeaderSectionItem,
-  KuiHeaderSectionItemButton,
+  EuiHeader,
+  EuiHeaderAlert,
+  EuiHeaderBreadcrumb,
+  EuiHeaderBreadcrumbCollapsed,
+  EuiHeaderBreadcrumbs,
+  EuiHeaderLogo,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
 } from './header';
 
 export {
-  KuiHorizontalRule,
+  EuiHorizontalRule,
 } from './horizontal_rule';
 
 export {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from './icon';
 
 export {
-  KuiLoadingKibana,
-  KuiLoadingChart,
-  KuiLoadingSpinner,
+  EuiLoadingKibana,
+  EuiLoadingChart,
+  EuiLoadingSpinner,
 } from './loading';
 
 export {
-  KuiKeyPadMenu,
-  KuiKeyPadMenuItem,
-  KuiKeyPadMenuItemButton,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  EuiKeyPadMenuItemButton,
 } from './key_pad_menu';
 
 export {
-  KuiLink,
+  EuiLink,
 } from './link';
 
 export {
   KUI_MODAL_CANCEL_BUTTON,
   KUI_MODAL_CONFIRM_BUTTON,
-  KuiConfirmModal,
-  KuiModal,
-  KuiModalBody,
-  KuiModalFooter,
-  KuiModalHeader,
-  KuiModalHeaderTitle,
-  KuiModalOverlay,
+  EuiConfirmModal,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalOverlay,
 } from './modal';
 
 export {
-  KuiOutsideClickDetector,
+  EuiOutsideClickDetector,
 } from './outside_click_detector';
 
 export {
-  KuiPage,
-  KuiPageBody,
-  KuiPageContent,
-  KuiPageContentBody,
-  KuiPageContentHeader,
-  KuiPageContentHeaderSection,
-  KuiPageHeader,
-  KuiPageHeaderSection,
-  KuiPageSideBar,
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
 } from './page';
 
 export {
-  KuiPagination,
+  EuiPagination,
 } from './pagination';
 
 export {
-  KuiPanel,
+  EuiPanel,
 } from './panel';
 
 export {
-  KuiPopover,
-  KuiPopoverTitle,
+  EuiPopover,
+  EuiPopoverTitle,
 } from './popover';
 
 export {
-  KuiProgress,
+  EuiProgress,
 } from './progress';
 
 export {
-  KuiSpacer,
+  EuiSpacer,
 } from './spacer';
 
 export {
-  KuiTable,
-  KuiTableBody,
-  KuiTableHeader,
-  KuiTableHeaderButton,
-  KuiTableHeaderCell,
-  KuiTableHeaderCellCheckbox,
-  KuiTableRow,
-  KuiTableRowCell,
-  KuiTableRowCellCheckbox,
+  EuiTable,
+  EuiTableBody,
+  EuiTableHeader,
+  EuiTableHeaderButton,
+  EuiTableHeaderCell,
+  EuiTableHeaderCellCheckbox,
+  EuiTableRow,
+  EuiTableRowCell,
+  EuiTableRowCellCheckbox,
 } from './table';
 
 export {
-  KuiTab,
-  KuiTabs,
+  EuiTab,
+  EuiTabs,
 } from './tabs';
 
 export {
-  KuiSideNav,
-  KuiSideNavItem,
-  KuiSideNavTitle,
+  EuiSideNav,
+  EuiSideNavItem,
+  EuiSideNavTitle,
 } from './side_nav';
 
 export {
-  KuiGlobalToastList,
-  KuiGlobalToastListItem,
-  KuiToast,
+  EuiGlobalToastList,
+  EuiGlobalToastListItem,
+  EuiToast,
 } from './toast';
 
 export {
-  KuiTitle,
+  EuiTitle,
 } from './title';
 
 export {
-  KuiText,
-  KuiTextColor,
+  EuiText,
+  EuiTextColor,
 } from './text';

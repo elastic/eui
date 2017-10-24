@@ -13,7 +13,7 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const KuiAvatar = ({
+export const EuiAvatar = ({
   imageUrl,
   name,
   className,
@@ -52,13 +52,13 @@ export const KuiAvatar = ({
   );
 };
 
-KuiAvatar.propTypes = {
+EuiAvatar.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   imageUrl: PropTypes.string,
   name: PropTypes.string.isRequired,
 };
 
-KuiAvatar.defaultProps = {
+EuiAvatar.defaultProps = {
   size: 'm',
 };

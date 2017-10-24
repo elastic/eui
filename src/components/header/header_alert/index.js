@@ -1,3 +1,3 @@
 export {
-  KuiHeaderAlert,
+  EuiHeaderAlert,
 } from './header_alert';

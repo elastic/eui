@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Accordion from './accordion';
@@ -38,20 +38,20 @@ export default props => (
       text={
         <div>
           <p>
-            <KuiCode>KuiAccordion</KuiCode> is purposely bare so that you can
+            <EuiCode>EuiAccordion</EuiCode> is purposely bare so that you can
             put whatever styling you need on it (see the accordion form example). The only
             styling we force on you in the caret, which gives the user an understaning
             that the content will open up.
           </p>
           <p>
-            A <KuiCode>buttonContent</KuiCode> prop defines the content of the
+            A <EuiCode>buttonContent</EuiCode> prop defines the content of the
             clickable area. On click it will expose the children and animate
             based on the height of those children.
           </p>
           <p>
             For styling needs. Classes can be individually applied with
-            <KuiCode>className</KuiCode> (for the accordion entire),
-            and <KuiCode>buttonClassName</KuiCode> (for the clickable area).
+            <EuiCode>className</EuiCode> (for the accordion entire),
+            and <EuiCode>buttonClassName</EuiCode> (for the clickable area).
           </p>
         </div>
       }
@@ -68,7 +68,7 @@ export default props => (
       }]}
       text={
         <p>
-          Use the <KuiCode>extraAction</KuiCode> prop to pass an extra action
+          Use the <EuiCode>extraAction</EuiCode> prop to pass an extra action
           displayed on the right of any accordion. Usually this is a delete or
           button, but can be anything. Note that this action is separate from
           the click state that expands the accordion. This is needed to make
@@ -90,8 +90,8 @@ export default props => (
       }]}
       text={
         <p>
-          Putting it all together. Using the <KuiCode>classNames</KuiCode>
-          and <KuiCode>extraAction</KuiCode> as explained above, we can
+          Putting it all together. Using the <EuiCode>classNames</EuiCode>
+          and <EuiCode>extraAction</EuiCode> as explained above, we can
           style the accordion in a way common for form use.
         </p>
      }

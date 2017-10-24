@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   ICON_TYPES,
-  KuiIcon,
+  EuiIcon,
 } from '../icon';
 
 const typesToClassNameMap = {
@@ -25,13 +25,13 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const KuiBadge = ({ children, type, iconType, iconSide, className, ...rest }) => {
+export const EuiBadge = ({ children, type, iconType, iconSide, className, ...rest }) => {
   const classes = classNames('kuiBadge', typesToClassNameMap[type], iconSideToClassNameMap[iconSide], className);
 
   let optionalIcon = null;
   if (iconType) {
     optionalIcon = (
-      <KuiIcon type={iconType} size="medium" className="kuiBadge__icon" />
+      <EuiIcon type={iconType} size="medium" className="kuiBadge__icon" />
     );
   }
 
@@ -50,7 +50,7 @@ export const KuiBadge = ({ children, type, iconType, iconSide, className, ...res
   );
 };
 
-KuiBadge.propTypes = {
+EuiBadge.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
@@ -58,7 +58,7 @@ KuiBadge.propTypes = {
   type: PropTypes.string,
 };
 
-KuiBadge.defaultProps = {
+EuiBadge.defaultProps = {
   type: 'default',
   iconSide: 'left',
 };

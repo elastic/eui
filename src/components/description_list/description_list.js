@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiDescriptionListTitle,
-  KuiDescriptionListDescription,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '..';
 
 const typesToClassNameMap = {
@@ -22,7 +22,7 @@ const alignmentsToClassNameMap = {
 
 export const ALIGNMENTS = Object.keys(alignmentsToClassNameMap);
 
-export const KuiDescriptionList = ({
+export const EuiDescriptionList = ({
   children,
   className,
   listItems,
@@ -46,8 +46,8 @@ export const KuiDescriptionList = ({
     childrenOrListItems = (
       listItems.map((item) => {
         return [
-          <KuiDescriptionListTitle>{item.title}</KuiDescriptionListTitle>,
-          <KuiDescriptionListDescription>{item.description}</KuiDescriptionListDescription>
+          <EuiDescriptionListTitle>{item.title}</EuiDescriptionListTitle>,
+          <EuiDescriptionListDescription>{item.description}</EuiDescriptionListDescription>
         ];
       })
     );
@@ -65,7 +65,7 @@ export const KuiDescriptionList = ({
   );
 };
 
-KuiDescriptionList.propTypes = {
+EuiDescriptionList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
@@ -73,7 +73,7 @@ KuiDescriptionList.propTypes = {
   align: PropTypes.oneOf(ALIGNMENTS),
 };
 
-KuiDescriptionList.defaultProps = {
+EuiDescriptionList.defaultProps = {
   type: 'row',
   align: 'left',
   compressed: false,

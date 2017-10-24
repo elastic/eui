@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KuiIcon is rendered 1`] = `
+exports[`EuiIcon is rendered 1`] = `
 <svg
   aria-label="aria-label"
   class="kuiIcon testClass1 testClass2 kuiIcon--medium"
@@ -15,7 +15,7 @@ exports[`KuiIcon is rendered 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders size large 1`] = `
+exports[`EuiIcon renders size large 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--large"
 >
@@ -28,7 +28,7 @@ exports[`KuiIcon renders size large 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders size medium 1`] = `
+exports[`EuiIcon renders size medium 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -41,7 +41,7 @@ exports[`KuiIcon renders size medium 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders size original 1`] = `
+exports[`EuiIcon renders size original 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic"
 >
@@ -54,7 +54,7 @@ exports[`KuiIcon renders size original 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders size xLarge 1`] = `
+exports[`EuiIcon renders size xLarge 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--xLarge"
 >
@@ -67,7 +67,7 @@ exports[`KuiIcon renders size xLarge 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders size xxLarge 1`] = `
+exports[`EuiIcon renders size xxLarge 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--xxLarge"
 >
@@ -80,7 +80,7 @@ exports[`KuiIcon renders size xxLarge 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type apmApp 1`] = `
+exports[`EuiIcon renders type apmApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -93,7 +93,7 @@ exports[`KuiIcon renders type apmApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type apps 1`] = `
+exports[`EuiIcon renders type apps 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -106,7 +106,7 @@ exports[`KuiIcon renders type apps 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type arrowDown 1`] = `
+exports[`EuiIcon renders type arrowDown 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -119,7 +119,7 @@ exports[`KuiIcon renders type arrowDown 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type arrowLeft 1`] = `
+exports[`EuiIcon renders type arrowLeft 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -132,7 +132,7 @@ exports[`KuiIcon renders type arrowLeft 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type arrowRight 1`] = `
+exports[`EuiIcon renders type arrowRight 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -145,7 +145,7 @@ exports[`KuiIcon renders type arrowRight 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type arrowUp 1`] = `
+exports[`EuiIcon renders type arrowUp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -158,7 +158,7 @@ exports[`KuiIcon renders type arrowUp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type bolt 1`] = `
+exports[`EuiIcon renders type bolt 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -171,7 +171,7 @@ exports[`KuiIcon renders type bolt 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type boxesHorizontal 1`] = `
+exports[`EuiIcon renders type boxesHorizontal 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -184,7 +184,7 @@ exports[`KuiIcon renders type boxesHorizontal 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type boxesVertical 1`] = `
+exports[`EuiIcon renders type boxesVertical 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -197,7 +197,7 @@ exports[`KuiIcon renders type boxesVertical 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type brush 1`] = `
+exports[`EuiIcon renders type brush 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -210,7 +210,7 @@ exports[`KuiIcon renders type brush 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type bullseye 1`] = `
+exports[`EuiIcon renders type bullseye 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -223,7 +223,7 @@ exports[`KuiIcon renders type bullseye 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type check 1`] = `
+exports[`EuiIcon renders type check 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -236,7 +236,7 @@ exports[`KuiIcon renders type check 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type clock 1`] = `
+exports[`EuiIcon renders type clock 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -249,7 +249,7 @@ exports[`KuiIcon renders type clock 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type console 1`] = `
+exports[`EuiIcon renders type console 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -262,7 +262,7 @@ exports[`KuiIcon renders type console 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type controlsHorizontal 1`] = `
+exports[`EuiIcon renders type controlsHorizontal 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -275,7 +275,7 @@ exports[`KuiIcon renders type controlsHorizontal 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type controlsVertical 1`] = `
+exports[`EuiIcon renders type controlsVertical 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -288,7 +288,7 @@ exports[`KuiIcon renders type controlsVertical 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type cross 1`] = `
+exports[`EuiIcon renders type cross 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -301,7 +301,7 @@ exports[`KuiIcon renders type cross 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type dashboardApp 1`] = `
+exports[`EuiIcon renders type dashboardApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -314,7 +314,7 @@ exports[`KuiIcon renders type dashboardApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type devToolsApp 1`] = `
+exports[`EuiIcon renders type devToolsApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -327,7 +327,7 @@ exports[`KuiIcon renders type devToolsApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type discoverApp 1`] = `
+exports[`EuiIcon renders type discoverApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -340,7 +340,7 @@ exports[`KuiIcon renders type discoverApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type document 1`] = `
+exports[`EuiIcon renders type document 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -353,7 +353,7 @@ exports[`KuiIcon renders type document 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type dot 1`] = `
+exports[`EuiIcon renders type dot 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -366,7 +366,7 @@ exports[`KuiIcon renders type dot 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type fullScreen 1`] = `
+exports[`EuiIcon renders type fullScreen 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -379,7 +379,7 @@ exports[`KuiIcon renders type fullScreen 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type gear 1`] = `
+exports[`EuiIcon renders type gear 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -392,7 +392,7 @@ exports[`KuiIcon renders type gear 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type graphApp 1`] = `
+exports[`EuiIcon renders type graphApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -405,7 +405,7 @@ exports[`KuiIcon renders type graphApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type grid 1`] = `
+exports[`EuiIcon renders type grid 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -418,7 +418,7 @@ exports[`KuiIcon renders type grid 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type help 1`] = `
+exports[`EuiIcon renders type help 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -431,7 +431,7 @@ exports[`KuiIcon renders type help 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type link 1`] = `
+exports[`EuiIcon renders type link 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -444,7 +444,7 @@ exports[`KuiIcon renders type link 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type list 1`] = `
+exports[`EuiIcon renders type list 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -457,7 +457,7 @@ exports[`KuiIcon renders type list 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type listAdd 1`] = `
+exports[`EuiIcon renders type listAdd 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -470,7 +470,7 @@ exports[`KuiIcon renders type listAdd 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type lock 1`] = `
+exports[`EuiIcon renders type lock 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -483,7 +483,7 @@ exports[`KuiIcon renders type lock 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type loggingApp 1`] = `
+exports[`EuiIcon renders type loggingApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -496,7 +496,7 @@ exports[`KuiIcon renders type loggingApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoBeats 1`] = `
+exports[`EuiIcon renders type logoBeats 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -509,7 +509,7 @@ exports[`KuiIcon renders type logoBeats 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoCloud 1`] = `
+exports[`EuiIcon renders type logoCloud 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -522,7 +522,7 @@ exports[`KuiIcon renders type logoCloud 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoElasticStack 1`] = `
+exports[`EuiIcon renders type logoElasticStack 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -535,7 +535,7 @@ exports[`KuiIcon renders type logoElasticStack 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoGmail 1`] = `
+exports[`EuiIcon renders type logoGmail 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -548,7 +548,7 @@ exports[`KuiIcon renders type logoGmail 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoKibana 1`] = `
+exports[`EuiIcon renders type logoKibana 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -561,7 +561,7 @@ exports[`KuiIcon renders type logoKibana 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoLogstash 1`] = `
+exports[`EuiIcon renders type logoLogstash 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -574,7 +574,7 @@ exports[`KuiIcon renders type logoLogstash 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoSlack 1`] = `
+exports[`EuiIcon renders type logoSlack 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -587,7 +587,7 @@ exports[`KuiIcon renders type logoSlack 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoWebhook 1`] = `
+exports[`EuiIcon renders type logoWebhook 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -600,7 +600,7 @@ exports[`KuiIcon renders type logoWebhook 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type logoXpack 1`] = `
+exports[`EuiIcon renders type logoXpack 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -613,7 +613,7 @@ exports[`KuiIcon renders type logoXpack 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type machineLearningApp 1`] = `
+exports[`EuiIcon renders type machineLearningApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -626,7 +626,7 @@ exports[`KuiIcon renders type machineLearningApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type mapMarker 1`] = `
+exports[`EuiIcon renders type mapMarker 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -639,7 +639,7 @@ exports[`KuiIcon renders type mapMarker 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type monitoringApp 1`] = `
+exports[`EuiIcon renders type monitoringApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -652,7 +652,7 @@ exports[`KuiIcon renders type monitoringApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type pencil 1`] = `
+exports[`EuiIcon renders type pencil 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -665,7 +665,7 @@ exports[`KuiIcon renders type pencil 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type plusInCircle 1`] = `
+exports[`EuiIcon renders type plusInCircle 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -678,7 +678,7 @@ exports[`KuiIcon renders type plusInCircle 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type search 1`] = `
+exports[`EuiIcon renders type search 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -691,7 +691,7 @@ exports[`KuiIcon renders type search 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type share 1`] = `
+exports[`EuiIcon renders type share 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -704,7 +704,7 @@ exports[`KuiIcon renders type share 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type sortDown 1`] = `
+exports[`EuiIcon renders type sortDown 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -717,7 +717,7 @@ exports[`KuiIcon renders type sortDown 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type sortUp 1`] = `
+exports[`EuiIcon renders type sortUp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -730,7 +730,7 @@ exports[`KuiIcon renders type sortUp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type starEmpty 1`] = `
+exports[`EuiIcon renders type starEmpty 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -743,7 +743,7 @@ exports[`KuiIcon renders type starEmpty 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type tear 1`] = `
+exports[`EuiIcon renders type tear 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -756,7 +756,7 @@ exports[`KuiIcon renders type tear 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type timelionApp 1`] = `
+exports[`EuiIcon renders type timelionApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -769,7 +769,7 @@ exports[`KuiIcon renders type timelionApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type trash 1`] = `
+exports[`EuiIcon renders type trash 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -782,7 +782,7 @@ exports[`KuiIcon renders type trash 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type user 1`] = `
+exports[`EuiIcon renders type user 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -795,7 +795,7 @@ exports[`KuiIcon renders type user 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon renders type visualizeApp 1`] = `
+exports[`EuiIcon renders type visualizeApp 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -808,7 +808,7 @@ exports[`KuiIcon renders type visualizeApp 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon title defaults to a humanized version of the type 1`] = `
+exports[`EuiIcon title defaults to a humanized version of the type 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >
@@ -821,7 +821,7 @@ exports[`KuiIcon title defaults to a humanized version of the type 1`] = `
 </svg>
 `;
 
-exports[`KuiIcon title is rendered 1`] = `
+exports[`EuiIcon title is rendered 1`] = `
 <svg
   class="kuiIcon kuiIcon--basic kuiIcon--medium"
 >

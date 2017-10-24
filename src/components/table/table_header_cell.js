@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  KuiIcon,
+  EuiIcon,
 } from '..';
 
 import {
@@ -16,7 +16,7 @@ const ALIGNMENT = [
   RIGHT_ALIGNMENT,
 ];
 
-export const KuiTableHeaderCell = ({
+export const EuiTableHeaderCell = ({
   children,
   align,
   onSort,
@@ -34,7 +34,7 @@ export const KuiTableHeaderCell = ({
 
   if (onSort) {
     const sortIcon = (
-      <KuiIcon
+      <EuiIcon
         className="kuiTableSortIcon"
         type={isSortAscending ? 'sortUp' : 'sortDown'}
         size="medium"
@@ -80,7 +80,7 @@ export const KuiTableHeaderCell = ({
   );
 };
 
-KuiTableHeaderCell.propTypes = {
+EuiTableHeaderCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   align: PropTypes.oneOf(ALIGNMENT),
@@ -89,6 +89,6 @@ KuiTableHeaderCell.propTypes = {
   isSortAscending: PropTypes.bool,
 };
 
-KuiTableHeaderCell.defaultProps = {
+EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
 };

@@ -3,12 +3,12 @@ import { render, shallow } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../../test/required_props';
 
-import { KuiHeaderSectionItemButton } from './header_section_item_button';
+import { EuiHeaderSectionItemButton } from './header_section_item_button';
 
-describe('KuiHeaderSectionItemButton', () => {
+describe('EuiHeaderSectionItemButton', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiHeaderSectionItemButton {...requiredProps} />
+      <EuiHeaderSectionItemButton {...requiredProps} />
     );
 
     expect(component)
@@ -20,7 +20,7 @@ describe('KuiHeaderSectionItemButton', () => {
       const onClickHandler = sinon.stub();
 
       shallow(
-        <KuiHeaderSectionItemButton onClick={onClickHandler} />
+        <EuiHeaderSectionItemButton onClick={onClickHandler} />
       );
 
       sinon.assert.notCalled(onClickHandler);
@@ -30,7 +30,7 @@ describe('KuiHeaderSectionItemButton', () => {
       const onClickHandler = sinon.stub();
 
       const $button = shallow(
-        <KuiHeaderSectionItemButton onClick={onClickHandler} />
+        <EuiHeaderSectionItemButton onClick={onClickHandler} />
       );
 
       $button.simulate('click');

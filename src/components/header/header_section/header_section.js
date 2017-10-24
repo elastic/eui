@@ -9,7 +9,7 @@ const sideToClassNameMap = {
 
 const SIDES = Object.keys(sideToClassNameMap);
 
-export const KuiHeaderSection = ({ side, children, className, ...rest }) => {
+export const EuiHeaderSection = ({ side, children, className, ...rest }) => {
   const classes = classNames('kuiHeaderSection', sideToClassNameMap[side], className);
 
   return (
@@ -22,10 +22,10 @@ export const KuiHeaderSection = ({ side, children, className, ...rest }) => {
   );
 };
 
-KuiHeaderSection.propTypes = {
+EuiHeaderSection.propTypes = {
   side: PropTypes.oneOf(SIDES),
 };
 
-KuiHeaderSection.defaultProps = {
+EuiHeaderSection.defaultProps = {
   side: 'left',
 };

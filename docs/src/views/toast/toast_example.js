@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Default from './default';
@@ -46,7 +46,7 @@ export default props => (
       text={
         <div>
           <p>
-            <KuiCode>KuiToast</KuiCode> allows for small notes that appear in
+            <EuiCode>EuiToast</EuiCode> allows for small notes that appear in
             the bottom right of the screen. They should be used for emphemeral,
             live actions (think <strong>save complete</strong> or
             <strong>something just finished right now</strong>).
@@ -77,7 +77,7 @@ export default props => (
       }]}
       text={
         <p>
-          Setting <KuiCode>type=&quot;info&quot;</KuiCode>.
+          Setting <EuiCode>type=&quot;info&quot;</EuiCode>.
         </p>
       }
       demo={
@@ -98,7 +98,7 @@ export default props => (
       }]}
       text={
         <p>
-          Setting <KuiCode>type=&quot;success&quot;</KuiCode>.
+          Setting <EuiCode>type=&quot;success&quot;</EuiCode>.
         </p>
       }
       demo={
@@ -119,7 +119,7 @@ export default props => (
       }]}
       text={
         <p>
-          Setting <KuiCode>type=&quot;warning&quot;</KuiCode>.
+          Setting <EuiCode>type=&quot;warning&quot;</EuiCode>.
         </p>
       }
       demo={
@@ -140,7 +140,7 @@ export default props => (
       }]}
       text={
         <p>
-          Setting <KuiCode>type=&quot;danger&quot;</KuiCode>.
+          Setting <EuiCode>type=&quot;danger&quot;</EuiCode>.
         </p>
       }
       demo={

@@ -3,15 +3,15 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import {
-  KuiIcon,
+  EuiIcon,
   SIZES,
   TYPES,
 } from './icon';
 
-describe('KuiIcon', () => {
+describe('EuiIcon', () => {
   test('is rendered', () => {
     const component = render(
-      <KuiIcon type="search" {...requiredProps} />
+      <EuiIcon type="search" {...requiredProps} />
     );
 
     expect(component)
@@ -21,7 +21,7 @@ describe('KuiIcon', () => {
   describe('title', () => {
     test('defaults to a humanized version of the type', () => {
       const component = render(
-        <KuiIcon type="dashboardApp" />
+        <EuiIcon type="dashboardApp" />
       );
 
       expect(component)
@@ -30,7 +30,7 @@ describe('KuiIcon', () => {
 
     test('is rendered', () => {
       const component = render(
-        <KuiIcon type="search" title="a custom title" />
+        <EuiIcon type="search" title="a custom title" />
       );
 
       expect(component)
@@ -42,7 +42,7 @@ describe('KuiIcon', () => {
     SIZES.forEach(size => {
       test(size, () => {
         const component = render(
-          <KuiIcon type="search" size={size} />
+          <EuiIcon type="search" size={size} />
         );
 
         expect(component)
@@ -55,7 +55,7 @@ describe('KuiIcon', () => {
     TYPES.forEach(type => {
       test(type, () => {
         const component = render(
-          <KuiIcon type={type} />
+          <EuiIcon type={type} />
         );
 
         expect(component)

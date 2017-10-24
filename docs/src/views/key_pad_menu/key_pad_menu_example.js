@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import KeyPadMenu from './key_pad_menu';
@@ -54,7 +54,7 @@ export default props => (
       text={
         <p>
           The KeyPadMenuItem component is a link by default, but you can swap it out for a
-          KeyPadMenuItemButton if you want <KuiCode>onClick</KuiCode> behavior.
+          KeyPadMenuItemButton if you want <EuiCode>onClick</EuiCode> behavior.
         </p>
       }
       demo={

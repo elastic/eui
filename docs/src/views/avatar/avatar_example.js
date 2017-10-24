@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import Avatar from './avatar';
@@ -29,8 +29,8 @@ export default props => (
       }]}
       text={
         <p>
-          The <KuiCode>Avatar</KuiCode> component creates a user icon. It will
-          accept <KuiCode>name</KuiCode> (required) and <KuiCode>image</KuiCode> props
+          The <EuiCode>Avatar</EuiCode> component creates a user icon. It will
+          accept <EuiCode>name</EuiCode> (required) and <EuiCode>image</EuiCode> props
           and will configure the display and accessibility as needed. The background colors
           come from the set of colors used for visualiations.
         </p>

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { KuiIcon } from '../../icon';
+import { EuiIcon } from '../../icon';
 
-export const KuiSwitch = ({
+export const EuiSwitch = ({
   label,
   id,
   name,
@@ -31,13 +31,13 @@ export const KuiSwitch = ({
       <span className="kuiSwitch__body">
         <span className="kuiSwitch__thumb" />
         <span className="kuiSwitch__track">
-          <KuiIcon
+          <EuiIcon
             type="cross"
             size="medium"
             className="kuiSwitch__icon"
           />
 
-          <KuiIcon
+          <EuiIcon
             type="check"
             size="medium"
             className="kuiSwitch__icon kuiSwitch__icon--checked"
@@ -55,7 +55,7 @@ export const KuiSwitch = ({
   );
 };
 
-KuiSwitch.propTypes = {
+EuiSwitch.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
@@ -63,6 +63,6 @@ KuiSwitch.propTypes = {
   onChange: PropTypes.func,
 };
 
-KuiSwitch.defaultProps = {
+EuiSwitch.defaultProps = {
   defaultChecked: false,
 };
