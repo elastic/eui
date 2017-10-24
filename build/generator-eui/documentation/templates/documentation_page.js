@@ -9,7 +9,7 @@ import {
 } from '../../components';
 
 import {
-  KuiCode,
+  EuiCode,
 } from '../../../../src/components';
 
 import <%= componentExampleName %> from './<%= fileName %>';
@@ -29,7 +29,7 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <KuiCode><%= componentExampleName %></KuiCode> component.
+          Description needed: how to use the <EuiCode><%= componentExampleName %></EuiCode> component.
         </p>
       }
       demo={<<%= componentExampleName %> />}
