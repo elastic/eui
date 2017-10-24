@@ -16,7 +16,7 @@ compile_lib() {
   babel \
     --quiet \
     --out-dir=lib \
-    --ignore "**/test/*.js,**/webpack.config.js,**/*.test.js" \
+    --ignore "**/webpack.config.js,**/test/*.js,**/*.test.js" \
     src
   tput rc
   echo -e "${color_green}✔ Finished compiling src/ to lib/${color_reset}" >&2
