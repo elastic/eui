@@ -1,4 +1,4 @@
-.kuiFieldNumber {
+.euiFieldNumber {
   @include kuiFormControlStyle;
   @include kuiFormControlWithIcon($isIconOptional: true);
 }

@@ -1,9 +1,9 @@
-.kuiForm__error {
+.euiForm__error {
   @include kuiFontSizeS;
   list-style: disc;
   margin-left: $euiSizeXL;
 }
 
-.kuiForm__errors {
+.euiForm__errors {
   margin-bottom: $euiSize;
 }

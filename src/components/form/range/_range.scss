@@ -8,13 +8,13 @@
 // It has been modified to fit the styling patterns of Kibana and
 // to be more easily maintained / themeable going forward.
 
-.kuiRange {
+.euiRange {
   @include kuiFormControlSize;
   
   appearance: none;
   margin: $euiRangeThumbHeight / 2 0;
 
-  &.kuiRange--fullWidth {
+  &.euiRange--fullWidth {
     max-width: 100%;
   }
 

@@ -1,10 +1,10 @@
-.kuiPageSideBar {
+.euiPageSideBar {
   width: $euiSize * 12;
   margin-right: $euiSizeL;
 }
 
 @include screenXSmall {
-  .kuiPageSideBar {
+  .euiPageSideBar {
     width: 100%;
   }
 }

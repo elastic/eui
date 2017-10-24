@@ -1,4 +1,4 @@
-.kuiCallOut {
+.euiCallOut {
   padding: $euiSize;
   border-left: $euiSizeXS / 2 solid transparent;
 }
@@ -13,17 +13,17 @@ $callOutTypes: (
 
 // Create button modifiders based upon the map.
 @each $name, $color in $callOutTypes {
-  .kuiCallOut--#{$name} {
+  .euiCallOut--#{$name} {
     border-color: $color;
     background-color: tintOrShade($color, 90%, 70%);
 
     $textColor: shadeOrTint($color, 30%, 70%);
 
-    .kuiCallOutHeader__icon {
+    .euiCallOutHeader__icon {
       fill: $textColor;
     }
 
-    .kuiCallOutHeader__title {
+    .euiCallOutHeader__title {
       color: $textColor;
     }
   }
@@ -34,7 +34,7 @@ $callOutTypes: (
  * 2. If content exists under the header, space it appropriately.
  * 3. Apply margin to all but last item in the flex.
  */
-.kuiCallOutHeader {
+.euiCallOutHeader {
   @include kuiFontSizeM;
   display: flex;
   align-items: baseline; /* 1 */
@@ -51,7 +51,7 @@ $callOutTypes: (
   /**
    * 1. Vertically center icon with first line of title.
    */
-  .kuiCallOutHeader__icon {
+  .euiCallOutHeader__icon {
     flex: 0 0 auto;
     transform: translateY(2px); /* 1 */
   }

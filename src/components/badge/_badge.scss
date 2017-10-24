@@ -1,4 +1,4 @@
-.kuiBadge {
+.euiBadge {
   font-size: $euiSizeM;
   line-height: $euiSizeL;
   display: inline-block;
@@ -10,19 +10,19 @@
   white-space: nowrap;
   vertical-align: middle;
 
-  .kuiBadge__content {
+  .euiBadge__content {
     display: flex;
     align-items: center;
   }
 
-  .kuiBadge__icon {
+  .euiBadge__icon {
     margin-right: $euiSizeXS;
   }
 
-  &.kuiBadge--iconRight .kuiBadge__content {
+  &.euiBadge--iconRight .euiBadge__content {
     flex-direction: row-reverse;
 
-    .kuiBadge__icon {
+    .euiBadge__icon {
       margin-left: $euiSizeXS;
       margin-right: 0;
     }
@@ -41,7 +41,7 @@ $badgeTypes: (
 );
 
 @each $name, $color in $badgeTypes {
-  .kuiBadge--#{$name} {
+  .euiBadge--#{$name} {
     border-color: $color;
     background-color: transparentize($color, .9);
   }

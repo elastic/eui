@@ -1,11 +1,11 @@
-.kuiLoadingChart {
+.euiLoadingChart {
   height: 32px;
   z-index: 500;
   overflow: hidden;
   display: inline-block;
 }
 
-.kuiLoadingChart__bar {
+.euiLoadingChart__bar {
   height: 100%;
   width: 8px;
   display: inline-block;
@@ -34,8 +34,8 @@
   }
 }
 
-.kuiLoadingChart--mono {
-  .kuiLoadingChart__bar {
+.euiLoadingChart--mono {
+  .euiLoadingChart__bar {
     &:nth-child(1) {
       background-color: $euiColorLightShade;
     }
@@ -51,7 +51,7 @@
   }
 }
 
-.kuiLoadingChart--medium {
+.euiLoadingChart--medium {
   height: $euiSize;
   > div {
     width: $euiSizeXS / 2;
@@ -60,7 +60,7 @@
   }
 }
 
-.kuiLoadingChart--large {
+.euiLoadingChart--large {
   height: $euiSizeL;
   > div {
     width: $euiSizeXS;
@@ -69,7 +69,7 @@
   }
 }
 
-.kuiLoadingChart--xLarge {
+.euiLoadingChart--xLarge {
   height: $euiSizeXL;
   > div {
     width: $euiSizeS;

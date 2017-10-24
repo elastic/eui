@@ -1,22 +1,22 @@
-.kuiButtonEmpty {
+.euiButtonEmpty {
   @include kuiButton;
 
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
 
-  .kuiButtonEmpty__content {
+  .euiButtonEmpty__content {
     @include kuiButtonContent;
 
     padding: 0 $euiSizeS;
   }
 
-  &.kuiButtonEmpty--small {
+  &.euiButtonEmpty--small {
     height: $euiButtonHeightSmall;
   }
 
-  &.kuiButtonEmpty--iconRight {
-    .kuiButtonEmpty__content {
+  &.euiButtonEmpty--iconRight {
+    .euiButtonEmpty__content {
       @include kuiButtonContent($isReverse: true);
     }
   }
@@ -25,12 +25,12 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .kuiButtonEmpty__content {
+    .euiButtonEmpty__content {
       pointer-events: auto;
       cursor: not-allowed;
     }
 
-    .kuiButtonEmpty__icon {
+    .euiButtonEmpty__icon {
       fill: $euiButtonColorDisabled;
     }
 
@@ -52,10 +52,10 @@ $buttonTypes: (
 
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
-  .kuiButtonEmpty--#{$name} {
+  .euiButtonEmpty--#{$name} {
     color: $color;
 
-    .kuiButtonEmpty__icon {
+    .euiButtonEmpty__icon {
       fill: $color;
     }
 
@@ -81,15 +81,15 @@ $buttonTypes: (
   }
 }
 
-.kuiButtonEmpty--flushLeft {
-  .kuiButtonEmpty__content {
+.euiButtonEmpty--flushLeft {
+  .euiButtonEmpty__content {
     border-left: none;
     padding-left: 0;
   }
 }
 
-.kuiButtonEmpty--flushRight {
-  .kuiButtonEmpty__content {
+.euiButtonEmpty--flushRight {
+  .euiButtonEmpty__content {
     border-right: none;
     padding-right: 0;
   }

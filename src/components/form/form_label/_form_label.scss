@@ -1,18 +1,18 @@
 /**
  * 1. Focused state overrides invalid state.
  */
-.kuiFormLabel {
+.euiFormLabel {
   font-size: $euiFontSizeXS;
   margin-bottom: $euiSizeS;
   cursor: pointer;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   font-weight: $euiFontWeightMedium;
 
-  &.kuiFormLabel-isInvalid {
+  &.euiFormLabel-isInvalid {
     color: $euiColorDanger; /* 1 */
   }
 
-  &.kuiFormLabel-isFocused {
+  &.euiFormLabel-isFocused {
     color: $euiColorPrimary; /* 1 */
   }
 }

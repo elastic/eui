@@ -12,7 +12,7 @@ $textColors: (
 
 // Create color modifiers based on the map
 @each $name, $color in $textColors {
-  .kuiTextColor.kuiTextColor--#{$name} {
+  .euiTextColor.euiTextColor--#{$name} {
     color: $color !important;
   }
 }

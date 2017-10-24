@@ -1,4 +1,4 @@
-.kuiModal {
+.euiModal {
   @include kuiBottomShadow;
 
   background-color: $euiColorEmptyShade;
@@ -10,29 +10,29 @@
   animation: kuiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 }
 
-.kuiModal--confirmation {
+.euiModal--confirmation {
   width: 450px;
   min-width: auto;
 }
 
-.kuiModalHeader {
+.euiModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-  .kuiModalHeader__title {
+  .euiModalHeader__title {
     @include kuiFontSizeL;
   }
 
-.kuiModalHeaderCloseButton {
+.euiModalHeaderCloseButton {
 }
 
-.kuiModalBody {
+.euiModalBody {
   padding: $euiSizeXL 0;
 }
 
-.kuiModalFooter {
+.euiModalFooter {
   display: flex;
   justify-content: flex-end;
 

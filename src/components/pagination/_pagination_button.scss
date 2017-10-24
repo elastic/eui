@@ -1,4 +1,4 @@
-.kuiPaginationButton {
+.euiPaginationButton {
   font-size: $euiFontSizeS;
   padding: 0;
   height: $euiSizeL;
@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.kuiPaginationButton-isActive {
+.euiPaginationButton-isActive {
   pointer-events: none;
   background-color: $euiColorPrimary;
   color: $euiColorEmptyShade;
@@ -18,13 +18,13 @@
   }
 }
 
-.kuiPaginationButton-isPlaceholder {
+.euiPaginationButton-isPlaceholder {
   pointer-events: none;
   color: $euiColorMediumShade;
 }
 
 @include screenXSmall {
-  .kuiPaginationButton--hideOnMobile {
+  .euiPaginationButton--hideOnMobile {
     display: none;
   }
 }

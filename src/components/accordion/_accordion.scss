@@ -1,4 +1,4 @@
-.kuiAccordion__button {
+.euiAccordion__button {
   text-align: left;
   width: 100%;
 
@@ -12,7 +12,7 @@
   }
 }
 
-.kuiAccordion__childWrapper {
+.euiAccordion__childWrapper {
   visibility: hidden;
   height: 0;
   opacity: 0;
@@ -24,8 +24,8 @@
   ;
 }
 
-.kuiAccordion.kuiAccordion-isOpen {
-  .kuiAccordion__childWrapper {
+.euiAccordion.euiAccordion-isOpen {
+  .euiAccordion__childWrapper {
     visibility: visible;
     opacity: 1;
   }

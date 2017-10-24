@@ -1,19 +1,19 @@
-.kuiHorizontalRule {
+.euiHorizontalRule {
   border: none;
   height: 1px;
   background-color: $euiBorderColor;
 
-  &.kuiHorizontalRule--full {
+  &.euiHorizontalRule--full {
     width: 100%;
   }
 
-  &.kuiHorizontalRule--half {
+  &.euiHorizontalRule--half {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
 
-  &.kuiHorizontalRule--quarter {
+  &.euiHorizontalRule--quarter {
     width: 25%;
     margin-left: auto;
     margin-right: auto;
@@ -29,7 +29,7 @@ $ruleMargins: (
 );
 
 @each $name, $size in $ruleMargins {
-  .kuiHorizontalRule--#{$name} {
+  .euiHorizontalRule--#{$name} {
     margin: $size 0;
   }
 }

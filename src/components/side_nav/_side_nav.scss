@@ -1,10 +1,10 @@
-.kuiSideNav {
+.euiSideNav {
   position: relative;
   height: 100%;
 }
 
   // These mobile children are hidden in everything but mobile view.
-  .kuiSideNav__mobileToggle {
+  .euiSideNav__mobileToggle {
     display: none;
     border-bottom: $euiBorderThin;
     padding: $euiSize $euiSizeL;
@@ -20,20 +20,20 @@
     }
   }
 
-  .kuiSideNav__mobileIcon {
+  .euiSideNav__mobileIcon {
     fill: $euiColorPrimary;
   }
 
-  .kuiSideNav__mobileWrap {
+  .euiSideNav__mobileWrap {
     display: flex;
   }
 
-  .kuiSideNav__mobileTitle {
+  .euiSideNav__mobileTitle {
     flex-grow: 1;
     color: $euiColorPrimary;
   }
 
-  .kuiSideNav__hideButton {
+  .euiSideNav__hideButton {
     width: $euiSizeL;
     height: $euiSizeL;
     border-radius: $euiBorderRadius;
@@ -50,8 +50,8 @@
 /**
  * 1. Panels already have padding, so we need to remove it.
  */
-.kuiSideNav--inPanel {
-  .kuiSideNav__mobileToggle {
+.euiSideNav--inPanel {
+  .euiSideNav__mobileToggle {
     padding-left: 0; /* 1 */
     padding-right: 0; /* 1 */
   }
@@ -62,8 +62,8 @@
    * 1. Animation doesn't work against height. Need max-height instead.
    *    We set a value larger than what is needed to fake "auto".
    */
-  .kuiSideNav-isOpenMobile {
-    .kuiSideNav__content {
+  .euiSideNav-isOpenMobile {
+    .euiSideNav__content {
       visibility: visible;
       opacity: 1;
       margin: $euiSizeL;
@@ -72,11 +72,11 @@
     }
   }
 
-  .kuiSideNav__mobileToggle {
+  .euiSideNav__mobileToggle {
     display: block;
   }
 
-  .kuiSideNav__content {
+  .euiSideNav__content {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
@@ -85,7 +85,7 @@
 }
 
 @include screenSmallMediumLarge {
-  .kuiSideNav--inPanel {
+  .euiSideNav--inPanel {
     border-right: $euiBorderThin;
     background: linear-gradient(to left, rgba(0,0,0,.05) 0, $euiColorEmptyShade $euiSizeXS / 2, $euiColorEmptyShade 100%);
 
@@ -93,7 +93,7 @@
      * 1. We need the extra specificity to override the original nested selector.
      * 2. Adjust width to take overlap of border into account.
      */
-    .kuiSideNavItem.kuiSideNavItem-isSelected { /* 1 */
+    .euiSideNavItem.euiSideNavItem-isSelected { /* 1 */
       position: relative;
       width: calc(100% + 1px); /* 2 */
       box-shadow: none;

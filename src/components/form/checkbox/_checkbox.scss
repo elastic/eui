@@ -1,4 +1,4 @@
-.kuiCheckbox {
+.euiCheckbox {
   position: relative;
   height: $euiSizeL;
 
@@ -6,7 +6,7 @@
    * 1. Float above the visual checkbox and match its dimension, so that when users try to click it
    *    they actually click this input.
    */
-  .kuiCheckbox__input {
+  .euiCheckbox__input {
     position: absolute; /* 1 */
     opacity: 0; /* 1 */
     height: $euiSizeL; /* 1 */
@@ -15,8 +15,8 @@
     margin: 0; /* 1 */
     cursor: pointer;
 
-    &:checked ~ .kuiCheckbox__square {
-      .kuiCheckbox__check {
+    &:checked ~ .euiCheckbox__square {
+      .euiCheckbox__check {
         background-color: $euiTextColor;
         // This path is relative to ~/docs/postcss.config.js, which uses
         // the postcss-line-svg plugin.
@@ -24,14 +24,14 @@
       }
     }
 
-    &:focus ~ .kuiCheckbox__square,
-    &:active ~ .kuiCheckbox__square {
+    &:focus ~ .euiCheckbox__square,
+    &:active ~ .euiCheckbox__square {
       background-color: $euiFocusBackgroundColor;
       border-color: $euiColorPrimary;
     }
   }
 
-  .kuiCheckbox__square {
+  .euiCheckbox__square {
     position: absolute;
     height: $euiSizeL;
     width: $euiSizeL;
@@ -41,12 +41,12 @@
     z-index: 0;
   }
 
-    .kuiCheckbox__check {
+    .euiCheckbox__check {
       height: 100%;
       width: 100%;
     }
 
-  .kuiCheckbox__label {
+  .euiCheckbox__label {
     position: absolute;
     padding-left: $euiSizeXL;
     line-height: $euiSizeL;
@@ -57,18 +57,18 @@
     cursor: pointer;
   }
 
-  &.kuiCheckbox--inList {
-    .kuiCheckbox__input {
-      &:checked ~ .kuiCheckbox__square {
+  &.euiCheckbox--inList {
+    .euiCheckbox__input {
+      &:checked ~ .euiCheckbox__square {
         background: $euiColorPrimary;
         border-color: $euiColorPrimary;
 
-        .kuiCheckbox__check {
+        .euiCheckbox__check {
           background-color: $euiColorEmptyShade;
         }
       }
 
-      &:focus:checked ~.kuiCheckbox__square {
+      &:focus:checked ~.euiCheckbox__square {
         background: tintOrShade($euiColorPrimary, 20%, 20%);
       }
     }

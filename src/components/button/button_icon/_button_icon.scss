@@ -1,4 +1,4 @@
-.kuiButtonIcon {
+.euiButtonIcon {
   @include kuiButton;
 
   border-color: transparent;
@@ -8,7 +8,7 @@
   width: $euiSizeXL;
 
   // Account for border.
-  .kuiButtonIcon__icon {
+  .euiButtonIcon__icon {
     transform: translateY(-2px);
   }
 
@@ -16,7 +16,7 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .kuiButtonIcon__icon {
+    .euiButtonIcon__icon {
       fill: $euiButtonColorDisabled;
     }
 
@@ -37,10 +37,10 @@ $buttonTypes: (
 
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
-  .kuiButtonIcon--#{$name} {
+  .euiButtonIcon--#{$name} {
     color: $color;
 
-    .kuiButtonIcon__icon {
+    .euiButtonIcon__icon {
       fill: $color;
     }
 

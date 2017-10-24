@@ -1,6 +1,6 @@
 // Header items are the small icon links that pop up menus.
 
-.kuiHeaderSectionItem {
+.euiHeaderSectionItem {
   position: relative;
 
   &:hover {
@@ -18,7 +18,7 @@
   }
 }
 
-  .kuiHeaderSectionItem__button {
+  .euiHeaderSectionItem__button {
     height: $euiHeaderChildSize;
     min-width: $euiHeaderChildSize;
     text-align: center;
@@ -28,7 +28,7 @@
     }
   }
 
-.kuiHeaderSectionItem--borderRight {
+.euiHeaderSectionItem--borderRight {
   &:after {
     left: auto;
     right: 0;

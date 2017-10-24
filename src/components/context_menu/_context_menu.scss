@@ -1,22 +1,22 @@
 $euiContextMenuWidth: $euiSize * 16;
 
-.kuiContextMenu {
+.euiContextMenu {
   width: $euiContextMenuWidth;
   position: relative;
   overflow: hidden;
   transition: height $euiAnimSpeedFast $euiAnimSlightResistance;
   border-radius: $euiBorderRadius;
 
-  .kuiContextMenu__content {
+  .euiContextMenu__content {
     padding: $euiSizeS;
   }
 }
 
-  .kuiContextMenu__icon {
+  .euiContextMenu__icon {
     margin-right: $euiSizeS;
   }
 
-  .kuiContextMenu__itemLayout {
+  .euiContextMenu__itemLayout {
     display: flex;
     align-items: center;
   }

@@ -8,7 +8,7 @@ $spacerSizes: (
 );
 
 @each $name, $size in $spacerSizes {
-  .kuiSpacer--#{$name} {
+  .euiSpacer--#{$name} {
     height: $size;
   }
 }

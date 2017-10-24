@@ -1,6 +1,6 @@
 @import '../link/mixins';
 
-.kuiHeaderLogo {
+.euiHeaderLogo {
   @include kuiLink;
 
   position: relative;
@@ -10,7 +10,7 @@
   vertical-align: middle;
 }
 
-  .kuiHeaderLogo__icon {
+  .euiHeaderLogo__icon {
     height: $euiSizeXL;
     width: $euiSizeL;
     opacity: 1;

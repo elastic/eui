@@ -1,4 +1,4 @@
-.kuiLoadingKibana {
+.euiLoadingKibana {
   position: relative;
   display: inline-block;
 
@@ -29,13 +29,13 @@
 /**
  * 1. Requires pixel math for animation.
  */
-.kuiLoadingKibana--medium {
+.euiLoadingKibana--medium {
   &:before,
   &:after {
     height: $euiSizeXS - 1; /* 1 */
     bottom: -$euiSizeXS;
   }
-  .kuiLoadingKibana__icon {
+  .euiLoadingKibana__icon {
     z-index: 999;
     animation: 1s kuiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
   }
@@ -44,24 +44,24 @@
 /**
  * 1. Requires pixel math for animation.
  */
-.kuiLoadingKibana--large {
+.euiLoadingKibana--large {
   &:before,
   &:after {
     height: $euiSizeS - 2; /* 1 */
     bottom: -$euiSizeS;
   }
-  .kuiLoadingKibana__icon {
+  .euiLoadingKibana__icon {
     animation: 1s kuiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
   }
 }
 
-.kuiLoadingKibana--xLarge {
+.euiLoadingKibana--xLarge {
   &:before,
   &:after {
     height: $euiSizeS;
     bottom: -$euiSizeM;
   }
-  .kuiLoadingKibana__icon {
+  .euiLoadingKibana__icon {
     animation: 1s kuiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
   }
 }

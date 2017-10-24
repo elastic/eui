@@ -1,4 +1,4 @@
-.kuiIcon {
+.euiIcon {
   display: inline-block;
   vertical-align: middle;
   fill: $euiTextColor;
@@ -9,22 +9,22 @@
   }
 }
 
-.kuiIcon--basic {
+.euiIcon--basic {
   fill: $euiTextColor;
 }
 
-.kuiIcon--medium {
+.euiIcon--medium {
   @include size($euiSize);
 }
 
-.kuiIcon--large {
+.euiIcon--large {
   @include size($euiSizeL);
 }
 
-.kuiIcon--xLarge {
+.euiIcon--xLarge {
   @include size($euiSizeXL);
 }
 
-.kuiIcon--xxLarge {
+.euiIcon--xxLarge {
   @include size($euiSizeXXL);
 }

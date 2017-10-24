@@ -1,9 +1,9 @@
-.kuiPage {
+.euiPage {
   padding: $euiSizeL;
 }
 
 @include screenXSmall {
-  .kuiPage {
+  .euiPage {
     padding: $euiSizeL 0;
   }
 }

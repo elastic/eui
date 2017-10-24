@@ -1,4 +1,4 @@
-.kuiText {
+.euiText {
   @include kuiText;
   @include kuiFontSizeM;
 
@@ -60,7 +60,7 @@
     font-weight: $euiFontWeightMedium;
   }
 
-  &.kuiText--small {
+  &.euiText--small {
     @include kuiFontSizeS;
 
     * + h1,

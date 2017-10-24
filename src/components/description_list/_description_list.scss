@@ -1,16 +1,16 @@
-.kuiDescriptionList {
+.euiDescriptionList {
 
-  .kuiDescriptionList__title {
+  .euiDescriptionList__title {
     font-weight: $euiFontWeightMedium;
   }
 
-  .kuiDescriptionList__description {
+  .euiDescriptionList__description {
     color: $euiColorDarkShade;
   }
 
-  &.kuiDescriptionList--row {
+  &.euiDescriptionList--row {
 
-    .kuiDescriptionList__title {
+    .euiDescriptionList__title {
       @include kuiFontSizeM;
       margin-top: $euiSize;
 
@@ -20,34 +20,34 @@
       }
     }
 
-    .kuiDescriptionList__description {
+    .euiDescriptionList__description {
       @include kuiFontSizeS;
     }
 
     // Lists can be aligned.
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
       text-align: center;
     }
 
-    &.kuiDescriptionList--right {
+    &.euiDescriptionList--right {
       text-align: right;
     }
 
     // Compressed gets smaller fonts.
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
+      .euiDescriptionList__title {
         @include kuiFontSizeS;
       }
 
-      .kuiDescriptionList__description {
+      .euiDescriptionList__description {
         @include kuiFontSizeS;
       }
     }
   }
 
 
-  &.kuiDescriptionList--column {
+  &.euiDescriptionList--column {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -61,41 +61,41 @@
       margin-top: 0;
     }
 
-    .kuiDescriptionList__title {
+    .euiDescriptionList__title {
       @include kuiFontSizeM;
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
 
-    .kuiDescriptionList__description {
+    .euiDescriptionList__description {
       @include kuiFontSizeM;
       flex-basis: 50%;
       padding-left: $euiSizeS;
     }
 
     // Align the title to smush against the description.
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
 
-      .kuiDescriptionList__title {
+      .euiDescriptionList__title {
         text-align: right;
       }
     }
 
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
+      .euiDescriptionList__title {
         @include kuiFontSizeS;
       }
 
-      .kuiDescriptionList__description {
+      .euiDescriptionList__description {
         @include kuiFontSizeS;
       }
     }
   }
 
-  &.kuiDescriptionList--inline {
+  &.euiDescriptionList--inline {
 
-    .kuiDescriptionList__title {
+    .euiDescriptionList__title {
       @include kuiFontSizeS;
       display: inline;
       border-radius: $euiBorderRadius;
@@ -111,25 +111,25 @@
       }
     }
 
-    .kuiDescriptionList__description {
+    .euiDescriptionList__description {
       @include kuiFontSizeS;
       display: inline;
       word-break: break-all;
     }
 
     // Compressed when inline is even smaller.
-    &.kuiDescriptionList--compressed {
+    &.euiDescriptionList--compressed {
 
-      .kuiDescriptionList__title {
+      .euiDescriptionList__title {
         @include kuiFontSizeXS;
       }
 
-      .kuiDescriptionList__description {
+      .euiDescriptionList__description {
         @include kuiFontSizeXS;
       }
     }
 
-    &.kuiDescriptionList--center {
+    &.euiDescriptionList--center {
       text-align: center;
     }
   }

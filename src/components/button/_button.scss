@@ -1,23 +1,23 @@
 // Our base button
-.kuiButton {
+.euiButton {
   @include kuiButton;
   @include kuiSlightShadow;
 
   border-radius: $euiBorderRadius;
   min-width: $euiSize * 7;
 
-  .kuiButton__content {
+  .euiButton__content {
     @include kuiButtonContent;
 
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
-  &.kuiButton--small {
+  &.euiButton--small {
     height: $euiButtonHeightSmall;
   }
 
-  &.kuiButton--iconRight {
-    .kuiButton__content {
+  &.euiButton--iconRight {
+    .euiButton__content {
       @include kuiButtonContent($isReverse: true);
     }
   }
@@ -39,16 +39,16 @@
     border-color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .kuiButton__content {
+    .euiButton__content {
       pointer-events: auto;
       cursor: not-allowed;
     }
 
-    .kuiButton__icon {
+    .euiButton__icon {
       fill: $euiButtonColorDisabled;
     }
 
-    &.kuiButton--fill {
+    &.euiButton--fill {
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
 
@@ -76,15 +76,15 @@ $buttonTypes: (
 
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
-  .kuiButton--#{$name} {
+  .euiButton--#{$name} {
     color: $color;
     border-color: $color;
 
-    .kuiButton__icon {
+    .euiButton__icon {
       fill: $color;
     }
 
-    &.kuiButton--fill {
+    &.euiButton--fill {
       background-color: $color;
       border-color: $color;
 
@@ -102,7 +102,7 @@ $buttonTypes: (
         border-color: darken($color, 5%);
       }
 
-      .kuiButton__icon {
+      .euiButton__icon {
         @if ($name == 'ghost') {
           fill: #000;
         } @elseif (lightness($euiTextColor) > 50) {

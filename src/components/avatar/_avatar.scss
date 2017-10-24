@@ -1,4 +1,4 @@
-.kuiAvatar {
+.euiAvatar {
   @include innerBorder('dark', 50%);
 
   border-radius: 50%;
@@ -10,28 +10,28 @@
   vertical-align: middle;
 }
 
-.kuiAvatar--s {
+.euiAvatar--s {
   width: $euiSizeL;
   height: $euiSizeL;
   line-height: $euiSizeL;
   font-size: $euiSizeM;
 }
 
-.kuiAvatar--m {
+.euiAvatar--m {
   width: $euiSizeXL;
   height: $euiSizeXL;
   line-height: $euiSizeXL;
   font-size: $euiSize;
 }
 
-.kuiAvatar--l {
+.euiAvatar--l {
   width: $euiSizeXXL;
   height: $euiSizeXXL;
   line-height: $euiSizeXXL;
   font-size: $euiSizeL;
 }
 
-.kuiAvatar--xl {
+.euiAvatar--xl {
   width: $euiSize * 4;
   height: $euiSize * 4;
   line-height: $euiSize * 4;

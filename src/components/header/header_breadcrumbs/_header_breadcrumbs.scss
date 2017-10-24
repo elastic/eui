@@ -2,11 +2,11 @@
 
 @import '../../link/mixins';
 
-.kuiHeaderBreadcrumbs {
+.euiHeaderBreadcrumbs {
   display: flex;
 }
 
-.kuiHeaderBreadcrumb {
+.euiHeaderBreadcrumb {
   display: inline-block;
   height: $euiHeaderChildSize;
   line-height: $euiHeaderChildSize;
@@ -26,16 +26,16 @@
     background: $euiColorLightShade;
   }
 
-  &:not(.kuiHeaderBreadcrumb--collapsed) {
+  &:not(.euiHeaderBreadcrumb--collapsed) {
     @include kuiLink;
   }
 
-  &.kuiHeaderBreadcrumb-isActive {
+  &.euiHeaderBreadcrumb-isActive {
     color: $euiColorMediumShade;
   }
 }
 
-  .kuiHeaderBreadcrumb__text {
+  .euiHeaderBreadcrumb__text {
     white-space: nowrap;
     max-width: 150px;
     display: block;
@@ -43,13 +43,13 @@
     overflow: hidden;
   }
 
-.kuiHeaderBreadcrumb--collapsed {
+.euiHeaderBreadcrumb--collapsed {
   color: $euiColorLightShade;
 }
 
 // Laptop
 @include screenMedium {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
 
     // Only show last 4 breadcrumbs
@@ -61,7 +61,7 @@
 
 // Tablets
 @include screenSmall {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
 
     // Only show last 2 breadcrumbs
@@ -73,7 +73,7 @@
 
 // Mobile
 @include screenXSmall {
-  .kuiHeaderBreadcrumb {
+  .euiHeaderBreadcrumb {
     display: none;
   }
 }

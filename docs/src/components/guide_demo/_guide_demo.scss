@@ -4,20 +4,20 @@
   }
 }
 .guideDemo__highlightSpacer {
-  .kuiSpacer {
+  .euiSpacer {
     background: transparentize(#0096CC, .9);
   }
 }
 
 .guideDemo__highlightGrid {
-  .kuiFlexItem {
+  .euiFlexItem {
     background: transparentize(#0096CC, .9);
     padding: 16px;
   }
 }
 
 .guideDemo__highlightGridWrap {
-  .kuiFlexItem div {
+  .euiFlexItem div {
     background: transparentize(#0096CC, .9);
     padding: 16px;
   }

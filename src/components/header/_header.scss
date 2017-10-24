@@ -1,6 +1,6 @@
 // Header. Includes breadcrumbs of nav buttons.
 
-.kuiHeader {
+.euiHeader {
   @include kuiBottomShadowSmall;
 
   display: flex;
@@ -8,7 +8,7 @@
   border-bottom: $euiBorderThin;
 }
 
-  .kuiHeader__notification {
+  .euiHeader__notification {
     display: inline-block;
     border-radius: $euiBorderRadius;
     background: $euiHeaderNotificationBackgroundColor;

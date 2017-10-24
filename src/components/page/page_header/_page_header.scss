@@ -1,4 +1,4 @@
-.kuiPageHeader {
+.euiPageHeader {
   margin-bottom: $euiSizeL;
   display: flex;
   flex-direction: row;
@@ -7,7 +7,7 @@
 }
 
 @include screenXSmall {
-  .kuiPageHeader {
+  .euiPageHeader {
     flex-direction: column;
     padding: 0 $euiSizeL;
     margin-bottom: 0;

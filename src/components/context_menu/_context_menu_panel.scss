@@ -1,43 +1,43 @@
 @import '../popover/mixins';
 
-.kuiContextMenuPanel {
+.euiContextMenuPanel {
   position: absolute;
   width: 100%;
   visibility: visible;
   background-color: $euiColorEmptyShade;
 
-  &.kuiContextMenuPanel-txInLeft {
+  &.euiContextMenuPanel-txInLeft {
     pointer-events: none;
     animation: kuiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txOutLeft {
+  &.euiContextMenuPanel-txOutLeft {
     pointer-events: none;
     animation: kuiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txInRight {
+  &.euiContextMenuPanel-txInRight {
     pointer-events: none;
     animation: kuiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 
-  &.kuiContextMenuPanel-txOutRight {
+  &.euiContextMenuPanel-txOutRight {
     pointer-events: none;
     animation: kuiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
   }
 }
 
-.kuiContextMenuPanel--next {
+.euiContextMenuPanel--next {
   transform: translateX($euiContextMenuWidth);
   visibility: hidden;
 }
 
-.kuiContextMenuPanel--previous {
+.euiContextMenuPanel--previous {
   transform: translateX(-$euiContextMenuWidth);
   visibility: hidden;
 }
 
-.kuiContextMenuPanelTitle {
+.euiContextMenuPanelTitle {
   @include kuiPopoverTitle;
 
   width: 100%;

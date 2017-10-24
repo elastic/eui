@@ -5,7 +5,7 @@
 /**
  * 1. Default to grid of 3
  */
-.kuiKeyPadMenu {
+.euiKeyPadMenu {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@
 /**
  * 1. If this class is applied to a button, we need to override the Chrome default font.
  */
-.kuiKeyPadMenuItem {
+.euiKeyPadMenuItem {
   display: block;
   padding: $euiSize;
   height: $euiKeyPadMenuSize;
@@ -29,7 +29,7 @@
   &:hover, &:focus {
     border-color: $euiBorderColor;
 
-    .kuiKeyPadMenuItem__icon {
+    .euiKeyPadMenuItem__icon {
       transform: translateY(0);
     }
   }
@@ -37,13 +37,13 @@
   &:focus {
     background: $euiFocusBackgroundColor;
 
-    .kuiKeyPadMenuItem__label {
+    .euiKeyPadMenuItem__label {
       text-decoration: underline;
     }
   }
 }
 
-  .kuiKeyPadMenuItem__inner {
+  .euiKeyPadMenuItem__inner {
     width: 100%;
     height: 100%;
     display: flex;
@@ -52,13 +52,13 @@
     justify-content: center;
   }
 
-  .kuiKeyPadMenuItem__icon {
+  .euiKeyPadMenuItem__icon {
     transition: transform $euiAnimSlightBounce $euiAnimSpeedNormal;
     transform: translateY($euiSizeXS);
     margin-bottom: $euiSizeS;
   }
 
-  .kuiKeyPadMenuItem__label {
+  .euiKeyPadMenuItem__label {
     @include kuiFontSizeS;
     text-align: center;
   }

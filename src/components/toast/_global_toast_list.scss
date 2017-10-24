@@ -3,7 +3,7 @@
  * 2. Only show the scroll on hover. Generally, scrolling is bad for toasts.
  * 3. Allow some padding if a scroll shows up.
  */
-.kuiGlobalToastList {
+.euiGlobalToastList {
   @include kuiScrollBar;
 
   display: flex;
@@ -22,7 +22,7 @@
   }
 }
 
-.kuiGlobalToastListItem {
+.euiGlobalToastListItem {
   margin-bottom: $euiSize;
   margin-right: $euiSize;
   animation: $euiAnimSpeedNormal kuiShowToast $euiAnimSlightResistance;
@@ -36,7 +36,7 @@
     margin-top: auto; /* 1 */
   }
 
-  &.kuiGlobalToastListItem-isDismissed {
+  &.euiGlobalToastListItem-isDismissed {
     transition: opacity $euiAnimSpeedNormal;
     opacity: 0;
   }
@@ -58,7 +58,7 @@
   /**
    * 1. Mobile we make these 100%. Matching change happens on the item as well.
    */
-  .kuiGlobalToastList {
+  .euiGlobalToastList {
     left: 0;
     padding-left: $euiSize;
     width: 100%; /* 1 */

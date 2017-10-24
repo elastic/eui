@@ -1,4 +1,4 @@
-.kuiFieldSearch {
+.euiFieldSearch {
   @include kuiFormControlStyle;
   @include kuiFormControlWithIcon($isIconOptional: false);
   // This is a hack, since in Safari the search boxes were ignoring

@@ -1,4 +1,4 @@
-.kuiBottomBar {
+.euiBottomBar {
   background: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorEmptyShade;
   position: fixed;
@@ -8,15 +8,15 @@
   animation: kuiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZNavigation;
 
-  &.kuiBottomBar--paddingSmall {
+  &.euiBottomBar--paddingSmall {
     padding: $euiSizeS;
   }
 
-  &.kuiBottomBar--paddingMedium {
+  &.euiBottomBar--paddingMedium {
     padding: $euiSize;
   }
 
-  &.kuiBottomBar--paddingLarge {
+  &.euiBottomBar--paddingLarge {
     padding: $euiSizeL;
   }
 }

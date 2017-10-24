@@ -1,9 +1,9 @@
-.kuiTabs {
+.euiTabs {
   display: flex;
   border-bottom: $euiBorderThin;
 }
 
-.kuiTab {
+.euiTab {
   @include kuiFontSize;
 
   position: relative;
@@ -13,7 +13,7 @@
   background-color: transparent;
   transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
 
-  &:hover:not(.kuiTab-isSelected) {
+  &:hover:not(.euiTab-isSelected) {
     color: $euiTextColor;
     text-decoration: underline;
   }
@@ -23,7 +23,7 @@
     text-decoration: underline;
   }
 
-  &.kuiTab-isSelected {
+  &.euiTab-isSelected {
     cursor: default;
     color: $euiColorSecondary;
 
@@ -40,7 +40,7 @@
   }
 }
 
-  .kuiTab__content {
+  .euiTab__content {
     display: block;
     transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
     transform: translateY(0);

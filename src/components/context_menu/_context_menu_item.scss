@@ -1,4 +1,4 @@
-.kuiContextMenuItem {
+.euiContextMenuItem {
   padding: $euiSizeM;
   width: 100%;
   text-align: left;
@@ -13,14 +13,14 @@
   }
 }
 
-  .kuiContextMenuItem__inner {
+  .euiContextMenuItem__inner {
     display: flex;
   }
 
-  .kuiContextMenuItem__text {
+  .euiContextMenuItem__text {
     flex-grow: 1;
   }
 
-  .kuiContextMenuItem__arrow {
+  .euiContextMenuItem__arrow {
     align-self: flex-end;
   }

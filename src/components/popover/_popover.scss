@@ -9,13 +9,13 @@
 // is handled through absolute positioning and then animated through the use
 // of transforms.
 
-.kuiPopover {
+.euiPopover {
   display: inline-block;
   position: relative;
 
   // Open state happens on the wrapper and applies to the panel.
-  &.kuiPopover-isOpen {
-    .kuiPopover__panel {
+  &.euiPopover-isOpen {
+    .euiPopover__panel {
       opacity: 1;
       visibility: visible;
       z-index: $euiZContentMenu;
@@ -25,7 +25,7 @@
 }
 
   // Animation happens on the panel.
-  .kuiPopover__panel {
+  .euiPopover__panel {
     position: absolute;
     min-width: $euiSize * 16; // Can expand further, but this size is good for our menus.
     backface-visibility: hidden;
@@ -61,27 +61,27 @@
 // Anchor DOWN
 // Anchor DOWN
 
-.kuiPopover--withTitle.kuiPopover--anchorDownCenter .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorDownLeft .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorDownRight .kuiPopover__panel:after
+.euiPopover--withTitle.euiPopover--anchorDownCenter .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorDownLeft .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorDownRight .euiPopover__panel:after
 {
   border-bottom-color: $euiColorLightestShade;
 }
 
-.kuiPopover--anchorDownCenter.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorDownCenter.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-50%) translateY($euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorDownLeft.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorDownLeft.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(0%) translateY($euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorDownRight.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorDownRight.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-100%) translateY($euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorDownCenter {
-  .kuiPopover__panel {
+.euiPopover--anchorDownCenter {
+  .euiPopover__panel {
     left: 50%;
     top: 100%;
     transform: translateX(-50%) translateY($euiSizeL) translateZ(0);
@@ -108,8 +108,8 @@
 }
 
 // Positions the menu and arrow to the left of the parent.
-.kuiPopover--anchorDownLeft {
-  .kuiPopover__panel {
+.euiPopover--anchorDownLeft {
+  .euiPopover__panel {
     left: 0;
     transform: translateX(0%) translateY($euiSizeL) translateZ(0);
 
@@ -134,8 +134,8 @@
 }
 
 // Positions the menu and arrow to the right of the parent.
-.kuiPopover--anchorDownRight {
-  .kuiPopover__panel {
+.euiPopover--anchorDownRight {
+  .euiPopover__panel {
     left: 100%;
     transform: translateX(-100%) translateY($euiSizeL) translateZ(0);
 
@@ -168,20 +168,20 @@
 // Anchor UP
 // Anchor UP
 
-.kuiPopover--anchorUpCenter.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorUpCenter.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-50%) translateY(-$euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorUpLeft.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorUpLeft.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(0%) translateY(-$euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorUpRight.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorUpRight.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-100%) translateY(-$euiSizeS) translateZ(0);
 }
 
-.kuiPopover--anchorUpCenter {
-  .kuiPopover__panel {
+.euiPopover--anchorUpCenter {
+  .euiPopover__panel {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(-$euiSizeL) translateZ(0);
@@ -208,8 +208,8 @@
 }
 
 // Positions the menu and arrow to the left of the parent.
-.kuiPopover--anchorUpLeft {
-  .kuiPopover__panel {
+.euiPopover--anchorUpLeft {
+  .euiPopover__panel {
     bottom: 100%;
     left: 0;
     transform: translateX(0%) translateY(-$euiSizeL) translateZ(0);
@@ -235,8 +235,8 @@
 }
 
 // Positions the menu and arrow to the right of the parent.
-.kuiPopover--anchorUpRight {
-  .kuiPopover__panel {
+.euiPopover--anchorUpRight {
+  .euiPopover__panel {
     bottom: 100%;
     left: 100%;
     transform: translateX(-100%) translateY(-$euiSizeL) translateZ(0);
@@ -269,14 +269,14 @@
 // Anchor LEFT
 // Anchor LEFT
 
-.kuiPopover--withTitle.kuiPopover--anchorLeftCenter .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorLeftUp .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorLeftDown .kuiPopover__panel:after
+.euiPopover--withTitle.euiPopover--anchorLeftCenter .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorLeftUp .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorLeftDown .euiPopover__panel:after
 {
   border-left-color: $euiColorLightestShade;
 }
 
-.kuiPopover--withTitle.kuiPopover--anchorLeftUp .kuiPopover__panel {
+.euiPopover--withTitle.euiPopover--anchorLeftUp .euiPopover__panel {
   top: 0;
 
   &:before {
@@ -288,20 +288,20 @@
   }
 }
 
-.kuiPopover--anchorLeftCenter.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorLeftCenter.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-$euiSizeS) translateY(-50%) translateZ(0);
 }
 
-.kuiPopover--anchorLeftUp.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorLeftUp.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-$euiSizeS) translateY(0) translateZ(0);
 }
 
-.kuiPopover--anchorLeftDown.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorLeftDown.euiPopover-isOpen .euiPopover__panel {
   transform: translateX(-$euiSizeS) translateY(-100%) translateZ(0);
 }
 
-.kuiPopover--anchorLeftCenter {
-  .kuiPopover__panel {
+.euiPopover--anchorLeftCenter {
+  .euiPopover__panel {
     top: 50%;
     right: 100%;
     transform: translateX(-$euiSizeL) translateY(-50%) translateZ(0);
@@ -327,8 +327,8 @@
 }
 
 // Positions the menu and arrow to the left of the parent.
-.kuiPopover--anchorLeftUp {
-  .kuiPopover__panel {
+.euiPopover--anchorLeftUp {
+  .euiPopover__panel {
     top: -$euiSizeM;
     right: 100%;
     transform: translateX(-$euiSizeL) translateY(0) translateZ(0);
@@ -352,8 +352,8 @@
 }
 
 // Positions the menu and arrow to the right of the parent.
-.kuiPopover--anchorLeftDown {
-  .kuiPopover__panel {
+.euiPopover--anchorLeftDown {
+  .euiPopover__panel {
     top: calc(100% + #{$euiSizeM});
     right: 100%;
     transform: translateX(-$euiSizeL) translateY(-100%) translateZ(0);
@@ -382,14 +382,14 @@
 // Anchor RIGHT
 // Anchor RIGHT
 
-.kuiPopover--withTitle.kuiPopover--anchorRightCenter .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorRightUp .kuiPopover__panel:after,
-.kuiPopover--withTitle.kuiPopover--anchorRightDown .kuiPopover__panel:after
+.euiPopover--withTitle.euiPopover--anchorRightCenter .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorRightUp .euiPopover__panel:after,
+.euiPopover--withTitle.euiPopover--anchorRightDown .euiPopover__panel:after
 {
   border-right-color: $euiColorLightestShade;
 }
 
-.kuiPopover--withTitle.kuiPopover--anchorRightUp .kuiPopover__panel {
+.euiPopover--withTitle.euiPopover--anchorRightUp .euiPopover__panel {
   top: 0;
 
   &:before {
@@ -401,20 +401,20 @@
   }
 }
 
-.kuiPopover--anchorRightCenter.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorRightCenter.euiPopover-isOpen .euiPopover__panel {
   transform: translateX($euiSizeS) translateY(-50%) translateZ(0);
 }
 
-.kuiPopover--anchorRightUp.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorRightUp.euiPopover-isOpen .euiPopover__panel {
   transform: translateX($euiSizeS) translateY(0) translateZ(0);
 }
 
-.kuiPopover--anchorRightDown.kuiPopover-isOpen .kuiPopover__panel {
+.euiPopover--anchorRightDown.euiPopover-isOpen .euiPopover__panel {
   transform: translateX($euiSizeS) translateY(-100%) translateZ(0);
 }
 
-.kuiPopover--anchorRightCenter {
-  .kuiPopover__panel {
+.euiPopover--anchorRightCenter {
+  .euiPopover__panel {
     top: 50%;
     left: 100%;
     transform: translateX($euiSizeL) translateY(-50%) translateZ(0);
@@ -440,8 +440,8 @@
 }
 
 // Positions the menu and arrow to the left of the parent.
-.kuiPopover--anchorRightUp {
-  .kuiPopover__panel {
+.euiPopover--anchorRightUp {
+  .euiPopover__panel {
     top: -$euiSizeM;
     left: 100%;
     transform: translateX($euiSizeL) translateY(0) translateZ(0);
@@ -465,8 +465,8 @@
 }
 
 // Positions the menu and arrow to the right of the parent.
-.kuiPopover--anchorRightDown {
-  .kuiPopover__panel {
+.euiPopover--anchorRightDown {
+  .euiPopover__panel {
     top: calc(100% + #{$euiSizeM});
     left: 100%;
     transform: translateX($euiSizeL) translateY(-100%) translateZ(0);

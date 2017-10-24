@@ -1,4 +1,4 @@
-.kuiLink {
+.euiLink {
   @include kuiLink;
 }
 
@@ -14,7 +14,7 @@ $textColors: (
 
 // Create color modifiers based on the map
 @each $name, $color in $textColors {
-  .kuiLink.kuiLink--#{$name} {
+  .euiLink.euiLink--#{$name} {
     color: $color;
 
     &:hover {

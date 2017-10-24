@@ -1,4 +1,4 @@
-.kuiPanel {
+.euiPanel {
   @include kuiBottomShadowSmall;
 
   background-color: $euiColorEmptyShade;
@@ -6,23 +6,23 @@
   border-radius: $euiBorderRadius;
   flex-grow: 1;
 
-  &.kuiPanel--paddingSmall {
+  &.euiPanel--paddingSmall {
     padding: $euiSizeS;
   }
 
-  &.kuiPanel--paddingMedium {
+  &.euiPanel--paddingMedium {
     padding: $euiSize;
   }
 
-  &.kuiPanel--paddingLarge {
+  &.euiPanel--paddingLarge {
     padding: $euiSizeL;
   }
 
-  &.kuiPanel--shadow {
+  &.euiPanel--shadow {
     @include kuiBottomShadow;
   }
 
-  &.kuiPanel--flexGrowZero {
+  &.euiPanel--flexGrowZero {
     flex-grow: 0;
   }
 }

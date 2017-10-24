@@ -1,4 +1,4 @@
-.kuiLoadingSpinner {
+.euiLoadingSpinner {
   display: inline-block;
   width: $euiSizeXL;
   height: $euiSizeXL;
@@ -8,24 +8,24 @@
   animation: kuiLoadingSpinner .6s infinite linear;
 }
 
-.kuiLoadingSpinner--small {
+.euiLoadingSpinner--small {
   width: $euiSizeS;
   height: $euiSizeS;
   border-width: 1px;
 }
 
-.kuiLoadingSpinner--medium {
+.euiLoadingSpinner--medium {
   width: $euiSize;
   height: $euiSize;
   border-width: 1px;
 }
 
-.kuiLoadingSpinner--large {
+.euiLoadingSpinner--large {
   width: $euiSizeL;
   height: $euiSizeL;
 }
 
-.kuiLoadingSpinner--xLarge {
+.euiLoadingSpinner--xLarge {
   width: $euiSizeXL;
   height: $euiSizeXL;
 }

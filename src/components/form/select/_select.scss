@@ -1,7 +1,7 @@
 /**
  * 1. Leave room for caret.
  */
-.kuiSelect {
+.euiSelect {
   @include kuiFormControlStyle;
 
   padding-right: $euiSizeXXL; /* 1 */

@@ -2,7 +2,7 @@
 // Good resource if you need to work in here. There's some gotchas with
 // dealing with cross-browser progress bars.
 
-.kuiProgress {
+.euiProgress {
     width: 100%;
     appearance: none;
     border: none;
@@ -34,7 +34,7 @@
     );
 
     @each $name, $color in $euiProgressColors {
-        &.kuiProgress--#{$name} {
+        &.euiProgress--#{$name} {
 
             &::-webkit-progress-value {
                 background-color: $color;
@@ -44,7 +44,7 @@
                 background-color: $color;
             }
 
-            &.kuiProgress--indeterminate {
+            &.euiProgress--indeterminate {
                 &:before {
                     background-color: $color;
                 }
@@ -61,13 +61,13 @@
     );
 
     @each $name, $size in $euiProgressSizes {
-        &.kuiProgress--#{$name} {
+        &.euiProgress--#{$name} {
             height: $size;
         }
     }
 
     // Progress bars can be set to fixed or absolute.
-  &.kuiProgress--fixed, &.kuiProgress--absolute {
+  &.euiProgress--fixed, &.euiProgress--absolute {
         top: 0;
         left: 0;
         right: 0;
@@ -78,11 +78,11 @@
         }
     }
 
-  &.kuiProgress--fixed {
+  &.euiProgress--fixed {
         position: fixed;
     }
 
-  &.kuiProgress--absolute {
+  &.euiProgress--absolute {
         position: absolute;
     }
 
@@ -91,7 +91,7 @@
    * we apply this style to a <div> instead of a <progress> element.
    * See https://css-tricks.com/html5-progress-element/ for more info.
    */
-    &.kuiProgress--indeterminate {
+    &.euiProgress--indeterminate {
         &:before {
             position: absolute;
             content: "";

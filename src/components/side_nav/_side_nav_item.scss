@@ -1,4 +1,4 @@
-.kuiSideNavItem {
+.euiSideNavItem {
   @include kuiFontSizeS;
 
   display: block;
@@ -12,7 +12,7 @@
   border: $euiBorderThin;
   border-color: transparent;
 
-  &.kuiSideNavItem-isSelected {
+  &.euiSideNavItem-isSelected {
     @include kuiBottomShadowSmall;
 
     color: $euiColorSecondary;
@@ -22,7 +22,7 @@
   }
 
   // We allow one level of nesting.
-  &.kuiSideNavItem--indent {
+  &.euiSideNavItem--indent {
     margin-left: $euiSize;
     font-size: $euiFontSizeS;
     padding: $euiSizeXS / 2 $euiSizeS;
@@ -30,7 +30,7 @@
     border-left-color: $euiBorderColor;
 
     // When indented and selected, make it not so heavy.
-    &.kuiSideNavItem-isSelected {
+    &.euiSideNavItem-isSelected {
       border-left-color: $euiColorSecondary;
       background-color: transparent;
       box-shadow: none;
@@ -46,7 +46,7 @@
     background-color: $euiFocusBackgroundColor !important;
   }
 
-  &:focus:not(.kuiSideNavItem-isSelected) {
+  &:focus:not(.euiSideNavItem-isSelected) {
     border: solid 1px darken($euiFocusBackgroundColor, 10%);
   }
 }
