@@ -66,25 +66,25 @@
   }
 }
 
-@keyframes kuiLoadingKibanaBounceMedium {
+@keyframes euiLoadingKibanaBounceMedium {
   50% {
     transform: translateY(-$euiSizeS);
   }
 }
 
-@keyframes kuiLoadingKibanaBounceLarge {
+@keyframes euiLoadingKibanaBounceLarge {
   50% {
     transform: translateY(-$euiSizeM);
   }
 }
 
-@keyframes kuiLoadingKibanaBounceXLarge {
+@keyframes euiLoadingKibanaBounceXLarge {
   50% {
     transform: translateY(-$euiSize);
   }
 }
 
-@keyframes kuiLoadingKibanaPulsateAndFade {
+@keyframes euiLoadingKibanaPulsateAndFade {
   0% {
     opacity: 0;
   }
@@ -99,7 +99,7 @@
   }
 }
 
-@keyframes kuiLoadingKibanaPulsate {
+@keyframes euiLoadingKibanaPulsate {
   0% {
     opacity: 0.15;
   }

@@ -12,7 +12,7 @@
   float: left;
   margin-bottom: -16px;
   margin-left: 2px;
-  animation: kuiLoadingChart 1s infinite;
+  animation: euiLoadingChart 1s infinite;
 
   &:nth-child(1) {
     background-color: $euiColorPrimary;
@@ -78,7 +78,7 @@
   }
 }
 
-@keyframes kuiLoadingChart {
+@keyframes euiLoadingChart {
   0% {
     transform: translateY(0);
   }

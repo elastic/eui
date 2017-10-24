@@ -9,7 +9,7 @@ $euiAnimSpeedNormal: 250ms;
 $euiAnimSpeedSlow: 350ms;
 $euiAnimSpeedExtraSlow: 500ms;
 
-@keyframes kuiAnimFadeIn {
+@keyframes euiAnimFadeIn {
   0% {
     opacity: 0;
   }
@@ -18,7 +18,7 @@ $euiAnimSpeedExtraSlow: 500ms;
   }
 }
 
-@keyframes kuiGrow {
+@keyframes euiGrow {
   0% {
     opacity: 0;
   }

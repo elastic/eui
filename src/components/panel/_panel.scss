@@ -1,5 +1,5 @@
 .euiPanel {
-  @include kuiBottomShadowSmall;
+  @include euiBottomShadowSmall;
 
   background-color: $euiColorEmptyShade;
   border: $euiBorderThin;
@@ -19,7 +19,7 @@
   }
 
   &.euiPanel--shadow {
-    @include kuiBottomShadow;
+    @include euiBottomShadow;
   }
 
   &.euiPanel--flexGrowZero {

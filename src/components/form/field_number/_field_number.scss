@@ -1,4 +1,4 @@
 .euiFieldNumber {
-  @include kuiFormControlStyle;
-  @include kuiFormControlWithIcon($isIconOptional: true);
+  @include euiFormControlStyle;
+  @include euiFormControlWithIcon($isIconOptional: true);
 }

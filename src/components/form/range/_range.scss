@@ -9,7 +9,7 @@
 // to be more easily maintained / themeable going forward.
 
 .euiRange {
-  @include kuiFormControlSize;
+  @include euiFormControlSize;
   
   appearance: none;
   margin: $euiRangeThumbHeight / 2 0;

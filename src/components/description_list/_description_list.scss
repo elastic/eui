@@ -11,7 +11,7 @@
   &.euiDescriptionList--row {
 
     .euiDescriptionList__title {
-      @include kuiFontSizeM;
+      @include euiFontSizeM;
       margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
@@ -21,7 +21,7 @@
     }
 
     .euiDescriptionList__description {
-      @include kuiFontSizeS;
+      @include euiFontSizeS;
     }
 
     // Lists can be aligned.
@@ -37,11 +37,11 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include kuiFontSizeS;
+        @include euiFontSizeS;
       }
 
       .euiDescriptionList__description {
-        @include kuiFontSizeS;
+        @include euiFontSizeS;
       }
     }
   }
@@ -62,13 +62,13 @@
     }
 
     .euiDescriptionList__title {
-      @include kuiFontSizeM;
+      @include euiFontSizeM;
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
 
     .euiDescriptionList__description {
-      @include kuiFontSizeM;
+      @include euiFontSizeM;
       flex-basis: 50%;
       padding-left: $euiSizeS;
     }
@@ -84,11 +84,11 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include kuiFontSizeS;
+        @include euiFontSizeS;
       }
 
       .euiDescriptionList__description {
-        @include kuiFontSizeS;
+        @include euiFontSizeS;
       }
     }
   }
@@ -96,7 +96,7 @@
   &.euiDescriptionList--inline {
 
     .euiDescriptionList__title {
-      @include kuiFontSizeS;
+      @include euiFontSizeS;
       display: inline;
       border-radius: $euiBorderRadius;
       font-weight: $euiFontWeightRegular;
@@ -112,7 +112,7 @@
     }
 
     .euiDescriptionList__description {
-      @include kuiFontSizeS;
+      @include euiFontSizeS;
       display: inline;
       word-break: break-all;
     }
@@ -121,11 +121,11 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include kuiFontSizeXS;
+        @include euiFontSizeXS;
       }
 
       .euiDescriptionList__description {
-        @include kuiFontSizeXS;
+        @include euiFontSizeXS;
       }
     }
 

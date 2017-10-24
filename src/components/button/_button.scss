@@ -1,13 +1,13 @@
 // Our base button
 .euiButton {
-  @include kuiButton;
-  @include kuiSlightShadow;
+  @include euiButton;
+  @include euiSlightShadow;
 
   border-radius: $euiBorderRadius;
   min-width: $euiSize * 7;
 
   .euiButton__content {
-    @include kuiButtonContent;
+    @include euiButtonContent;
 
     padding: 0 ($euiSize - $euiSizeXS);
   }
@@ -18,16 +18,16 @@
 
   &.euiButton--iconRight {
     .euiButton__content {
-      @include kuiButtonContent($isReverse: true);
+      @include euiButtonContent($isReverse: true);
     }
   }
 
   &:hover {
-    @include kuiSlightShadowHover;
+    @include euiSlightShadowHover;
   }
 
   &:active {
-    @include kuiSlightShadowActive;
+    @include euiSlightShadowActive;
   }
 
   &:hover, &:focus {

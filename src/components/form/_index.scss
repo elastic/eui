@@ -1,12 +1,12 @@
 $euiFormMaxWidth: 400px;
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 
-@mixin kuiFormControlSize {
+@mixin euiFormControlSize {
   max-width: $euiFormMaxWidth;
   width: 100%;
 }
 
-@mixin kuiFormControlWithIcon($isIconOptional: false) {
+@mixin euiFormControlWithIcon($isIconOptional: false) {
   $iconPadding: $euiSizeXXL;
 
   @if ($isIconOptional) {
@@ -23,8 +23,8 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 /**
  * 1. Override invalid state with focus state.
  */
-@mixin kuiFormControlStyle {
-  @include kuiFormControlSize;
+@mixin euiFormControlStyle {
+  @include euiFormControlSize;
 
   border: none;
   font-size: $euiFontSizeS;

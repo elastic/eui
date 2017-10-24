@@ -100,12 +100,12 @@
             bottom: 0;
             left: 0;
             transform: scaleX(0) translateX(0%);
-      animation: kuiProgress 1s $euiAnimSlightResistance infinite;
+      animation: euiProgress 1s $euiAnimSlightResistance infinite;
         }
     }
 }
 
-@keyframes kuiProgress {
+@keyframes euiProgress {
   0% {
     transform: scaleX(1) translateX(-100%);
   }

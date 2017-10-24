@@ -1,5 +1,5 @@
 .euiSideNavItem {
-  @include kuiFontSizeS;
+  @include euiFontSizeS;
 
   display: block;
   width: 100%;
@@ -13,7 +13,7 @@
   border-color: transparent;
 
   &.euiSideNavItem-isSelected {
-    @include kuiBottomShadowSmall;
+    @include euiBottomShadowSmall;
 
     color: $euiColorSecondary;
     border-left: $euiBorderThick;

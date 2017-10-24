@@ -4,12 +4,12 @@ $euiTableCellPaddingCompressed: $euiSizeS;
 /**
  * 1. Prevent cells from expanding based on content size. This substitutes for table-layout: fixed.
  */
-@mixin kuiTableCell {
+@mixin euiTableCell {
   max-width: 20px; /* 1 */
   vertical-align: middle;
 }
 
-@mixin kuiTableCellCheckbox {
+@mixin euiTableCellCheckbox {
   width: $euiSizeL + $euiTableCellPadding;
   vertical-align: middle;
 

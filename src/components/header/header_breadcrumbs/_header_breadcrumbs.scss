@@ -27,7 +27,7 @@
   }
 
   &:not(.euiHeaderBreadcrumb--collapsed) {
-    @include kuiLink;
+    @include euiLink;
   }
 
   &.euiHeaderBreadcrumb-isActive {

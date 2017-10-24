@@ -1,12 +1,12 @@
 .euiButtonEmpty {
-  @include kuiButton;
+  @include euiButton;
 
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
 
   .euiButtonEmpty__content {
-    @include kuiButtonContent;
+    @include euiButtonContent;
 
     padding: 0 $euiSizeS;
   }
@@ -17,7 +17,7 @@
 
   &.euiButtonEmpty--iconRight {
     .euiButtonEmpty__content {
-      @include kuiButtonContent($isReverse: true);
+      @include euiButtonContent($isReverse: true);
     }
   }
 

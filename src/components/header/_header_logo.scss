@@ -1,7 +1,7 @@
 @import '../link/mixins';
 
 .euiHeaderLogo {
-  @include kuiLink;
+  @include euiLink;
 
   position: relative;
   height: $euiHeaderChildSize;

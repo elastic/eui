@@ -24,17 +24,17 @@
 
   .euiHeaderAlert__title {
     font-weight: $euiFontWeightMedium;
-    @include kuiFontSizeM;
+    @include euiFontSizeM;
     padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 
   .euiHeaderAlert__text {
-    @include kuiFontSizeXS;
+    @include euiFontSizeXS;
     margin-bottom: $euiSizeS;
   }
 
   .euiHeaderAlert__action {
-    @include kuiFontSizeXS;
+    @include euiFontSizeXS;
     color: $euiLinkColor;
 
     &:focus {
@@ -43,7 +43,7 @@
   }
 
   .euiHeaderAlert__date {
-    @include kuiFontSizeXS;
+    @include euiFontSizeXS;
     color: $euiColorDarkShade;
   }
 }

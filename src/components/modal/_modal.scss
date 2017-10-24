@@ -1,5 +1,5 @@
 .euiModal {
-  @include kuiBottomShadow;
+  @include euiBottomShadow;
 
   background-color: $euiColorEmptyShade;
   border: $euiBorderThin;
@@ -7,7 +7,7 @@
   z-index: $euiZModal;
   padding: $euiSizeXL;
   min-width: 50%;
-  animation: kuiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
+  animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 }
 
 .euiModal--confirmation {
@@ -22,7 +22,7 @@
 }
 
   .euiModalHeader__title {
-    @include kuiFontSizeL;
+    @include euiFontSizeL;
   }
 
 .euiModalHeaderCloseButton {
@@ -41,7 +41,7 @@
   }
 }
 
-@keyframes kuiModal {
+@keyframes euiModal {
   0% {
     opacity: 0;
     transform: translateY($euiSizeXL);

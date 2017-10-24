@@ -4,7 +4,7 @@
 }
 
 .euiTab {
-  @include kuiFontSize;
+  @include euiFontSize;
 
   position: relative;
   cursor: pointer;
@@ -35,7 +35,7 @@
       width: 100%;
       height: $euiBorderWidthThick;
       background-color: $euiColorSecondary;
-      animation: kuiTab $euiAnimSpeedFast $euiAnimSlightResistance;
+      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
     }
   }
 }
@@ -47,7 +47,7 @@
   }
 
 
-@keyframes kuiTab {
+@keyframes euiTab {
   0% {
     transform: scaleX(0);
   }

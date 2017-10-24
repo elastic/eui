@@ -5,7 +5,7 @@
   border-radius: 50%;
   border: solid $euiSizeXS / 2 $euiColorLightShade;
   border-top-color: $euiColorPrimary;
-  animation: kuiLoadingSpinner .6s infinite linear;
+  animation: euiLoadingSpinner .6s infinite linear;
 }
 
 .euiLoadingSpinner--small {
@@ -30,7 +30,7 @@
   height: $euiSizeXL;
 }
 
-@keyframes kuiLoadingSpinner {
+@keyframes euiLoadingSpinner {
   from {
     transform: rotate(0deg);
   }

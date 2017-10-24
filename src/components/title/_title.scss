@@ -1,12 +1,12 @@
 .euiTitle {
-  @include kuiTitle;
-  @include kuiFontSizeL;
+  @include euiTitle;
+  @include euiFontSizeL;
 }
 
 .euiTitle--small {
-  @include kuiFontSizeM;
+  @include euiFontSizeM;
 }
 
 .euiTitle--large {
-  @include kuiFontSizeXL;
+  @include euiFontSizeXL;
 }

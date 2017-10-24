@@ -1,7 +1,7 @@
 $euiButtonHeightSmall: $euiSizeXL;
 $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
 
-@mixin kuiButton {
+@mixin euiButton {
 
   display: inline-block;
   appearance: none;
@@ -26,7 +26,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
   }
 
   &:focus {
-    animation: kuiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
+    animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
   &:active {
@@ -38,7 +38,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
  * 1. Apply margin to all but last item in the flex.
  * 2. Margin gets flipped because of the row-reverse.
  */
-@mixin kuiButtonContent($isReverse: false) {
+@mixin euiButtonContent($isReverse: false) {
   height: 100%;
   width: 100%;
 
@@ -60,7 +60,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
   }
 }
 
-@keyframes kuiButtonActive {
+@keyframes euiButtonActive {
   50% {
     transform: translateY(1px);
   }

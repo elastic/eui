@@ -4,7 +4,7 @@
  * 3. Allow some padding if a scroll shows up.
  */
 .euiGlobalToastList {
-  @include kuiScrollBar;
+  @include euiScrollBar;
 
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
   }
 }
 
-@keyframes kuiShowToast {
+@keyframes euiShowToast {
   from {
     transform: translateY($euiSizeL) scale(.9);
     opacity: 0;

@@ -2,7 +2,7 @@
  * 1. Leave room for caret.
  */
 .euiSelect {
-  @include kuiFormControlStyle;
+  @include euiFormControlStyle;
 
   padding-right: $euiSizeXXL; /* 1 */
   appearance: none;

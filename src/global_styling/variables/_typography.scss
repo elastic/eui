@@ -45,58 +45,58 @@ $euiFontWeightMedium:   500;
 
 // Our base fonts
 
-@mixin kuiFont {
+@mixin euiFont {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
 }
 
-@mixin kuiCodeFont {
+@mixin euiCodeFont {
   font-family: $euiCodeFontFamily;
 }
 
-@mixin kuiTitle {
+@mixin euiTitle {
   color: $euiTitleColor;
   font-weight: $euiFontWeightLight;
 }
 
-@mixin kuiText {
+@mixin euiText {
   color: $euiTextColor;
   font-weight: $euiFontWeightRegular;
 }
 
 // Font sizing extends, using rem mixin
 
-@mixin kuiFontSize {
+@mixin euiFontSize {
   @include fontSize($euiFontSize);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXS {
+@mixin euiFontSizeXS {
   @include fontSize($euiFontSizeXS);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeS {
+@mixin euiFontSizeS {
   @include fontSize($euiFontSizeS);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeM {
+@mixin euiFontSizeM {
   @include fontSize($euiFontSizeM);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeL {
+@mixin euiFontSizeL {
   @include fontSize($euiFontSizeL);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXL {
+@mixin euiFontSizeXL {
   @include fontSize($euiFontSizeXL);
   line-height: $euiLineHeight;
 }
 
-@mixin kuiFontSizeXXL {
+@mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
   line-height: $euiLineHeight;
 }

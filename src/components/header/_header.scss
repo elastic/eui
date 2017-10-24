@@ -1,7 +1,7 @@
 // Header. Includes breadcrumbs of nav buttons.
 
 .euiHeader {
-  @include kuiBottomShadowSmall;
+  @include euiBottomShadowSmall;
 
   display: flex;
   background: $euiHeaderBackgroundColor;

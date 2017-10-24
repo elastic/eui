@@ -1,6 +1,6 @@
 .euiText {
-  @include kuiText;
-  @include kuiFontSizeM;
+  @include euiText;
+  @include euiFontSizeM;
 
   a {
     color: $euiLinkColor;
@@ -43,7 +43,7 @@
   }
 
   h1,h2,h3,h4,h5,h6 {
-    @include kuiTitle;
+    @include euiTitle;
     margin-bottom: $euiSizeS;
   }
 
@@ -61,7 +61,7 @@
   }
 
   &.euiText--small {
-    @include kuiFontSizeS;
+    @include euiFontSizeS;
 
     * + h1,
     * + h2,

@@ -3,7 +3,7 @@
  * specifying a column width, e.g. the checkbox column.
  */
 .euiTable {
-  @include kuiFontSizeS;
+  @include euiFontSizeS;
 
   width: 100%;
   border: none;
@@ -22,7 +22,7 @@
 }
 
 .euiTableHeaderCell {
-  @include kuiTableCell;
+  @include euiTableCell;
 
   color: $euiTitleColor;
 
@@ -32,11 +32,11 @@
 }
 
 .euiTableHeaderCellCheckbox {
-  @include kuiTableCellCheckbox;
+  @include euiTableCellCheckbox;
 }
 
 .euiTableHeaderButton {
-  @include kuiFontSizeS;
+  @include euiFontSizeS;
 
   color: inherit;
   width: 100%;
@@ -77,7 +77,7 @@
 }
 
 .euiTableRowCell {
-  @include kuiTableCell;
+  @include euiTableCell;
 
   color: $euiTextColor;
   border-top: $euiBorderThin;
@@ -85,7 +85,7 @@
 }
 
 .euiTableRowCellCheckbox {
-  @include kuiTableCellCheckbox;
+  @include euiTableCellCheckbox;
 
   border-top: $euiBorderThin;
   border-bottom: $euiBorderThin;

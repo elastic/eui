@@ -5,7 +5,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  animation: kuiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
+  animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZNavigation;
 
   &.euiBottomBar--paddingSmall {
@@ -21,7 +21,7 @@
   }
 }
 
-@keyframes kuiBottomBarAppear {
+@keyframes euiBottomBarAppear {
   0% {
     transform: translateY(100%);
     opacity: 0;

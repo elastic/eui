@@ -27,7 +27,7 @@
 /**
  * Set scroll bar appearance on Chrome.
  */
-@mixin kuiScrollBar {
+@mixin euiScrollBar {
   &::-webkit-scrollbar {
     width: 16px;
     height: 16px;
