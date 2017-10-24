@@ -22,19 +22,14 @@ import {
 } from './services';
 
 import themeLight from './theme_light.scss';
-import uiFrameworkThemeLight from '../../dist/eui_theme_light.css';
-
 import themeDark from './theme_dark.scss';
-import uiFrameworkThemeDark from '../../dist/eui_theme_dark.css';
 
 registerTheme('light', [
-  themeLight,
-  uiFrameworkThemeLight,
+  themeLight
 ]);
 
 registerTheme('dark', [
-  themeDark,
-  uiFrameworkThemeDark,
+  themeDark
 ]);
 
 // Set up app

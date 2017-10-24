@@ -18,7 +18,9 @@
     &:checked ~ .kuiCheckbox__square {
       .kuiCheckbox__check {
         background-color: $kuiTextColor;
-        mask: url('../src/components/icon/assets/check.svg') center center no-repeat;
+        // This path is relative to ~/docs/postcss.config.js, which uses
+        // the postcss-line-svg plugin.
+        mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
       }
     }
 
