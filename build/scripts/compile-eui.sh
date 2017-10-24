@@ -12,16 +12,14 @@ compile_lib() {
   # order to overwrite "processing" messages.
 
   tput sc
-  echo -n "  Compiling src/components " >&2
-  babel --quiet --out-dir=lib/components --ignore "**/*.test.js" src/components
+  echo -n "  Compiling src/ to lib/ " >&2
+  babel \
+    --quiet \
+    --out-dir=lib \
+    --ignore "**/webpack.config.js,**/test/*.js,**/*.test.js" \
+    src
   tput rc
-  echo -e "${color_green}✔ Finished compiling lib/components${color_reset}" >&2
-
-  tput sc
-  echo -n "  Compiling src/services " >&2
-  babel --quiet --out-dir=lib/services --ignore "**/*.test.js" src/services
-  tput rc
-  echo -e "${color_green}✔ Finished compiling lib/services${color_reset}" >&2
+  echo -e "${color_green}✔ Finished compiling src/ to lib/${color_reset}" >&2
 
   # Also copy over SVGs. Babel has a --copy-files option but that brings over
   # all kinds of things we don't want into the lib folder.
