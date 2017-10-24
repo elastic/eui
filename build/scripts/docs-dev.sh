@@ -1,3 +1,3 @@
 #!/bin/bash
 
-webpack-dev-server --inline --hot --config=docs/webpack.config.js
+webpack-dev-server --port 8030 --inline --hot --config=docs/webpack.config.js
