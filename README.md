@@ -1,4 +1,4 @@
-🚨 **WARNING** While open-source, the intended consumers of this repository are Elastic products. Read the [FAQ][license-faq] for details. 🚨
+🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][license-faq] for details. 🚨
 
 # Elastic UI Framework
 
@@ -8,6 +8,8 @@
 You should check out our [living style guide][docs], which contains many examples on how components in the EUI framework look and feel, and how to use them in your products.
 
 # Installation
+
+To install the Elastic UI Framework, use the `npm` CLI.
 
 ```
 npm install @elastic/eui
