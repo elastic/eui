@@ -10,12 +10,16 @@
 
 .euiRange {
   @include euiFormControlSize;
-  
+
   appearance: none;
   margin: $euiRangeThumbHeight / 2 0;
 
   &.euiRange--fullWidth {
     max-width: 100%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 
   &:focus {

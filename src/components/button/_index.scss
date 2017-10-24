@@ -17,11 +17,11 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-1px);
   }
 
-  &:hover, &:focus {
+  &:hover:not(:disabled), &:focus {
     text-decoration: underline;
   }
 

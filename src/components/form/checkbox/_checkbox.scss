@@ -25,9 +25,17 @@
     }
 
     &:focus ~ .euiCheckbox__square,
-    &:active ~ .euiCheckbox__square {
+    &:active:not(:disabled) ~ .euiCheckbox__square {
       background-color: $euiFocusBackgroundColor;
       border-color: $euiColorPrimary;
+    }
+
+    &:disabled ~ .euiCheckbox__square {
+      background-color: $euiColorLightestShade;
+
+    }
+    &:disabled ~ .euiCheckbox__label {
+      cursor: not-allowed;
     }
   }
 

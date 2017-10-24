@@ -59,6 +59,12 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
       inset 0 0 0 0 $euiColorEmptyShade,
       inset 0 -2px 0 0 $euiColorPrimary;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $euiColorLightestShade;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+  }
 }
 
 @import 'checkbox/index';
