@@ -29,12 +29,12 @@
  */
 @mixin euiScrollBar {
   &::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
+    width: $euiSize;
+    height: $euiSize;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($euiColorDarkShade, 0.5);
+    background-color: $euiColorLightShade;
     border: 6px solid transparent;
     background-clip: content-box;
   }

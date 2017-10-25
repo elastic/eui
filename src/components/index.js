@@ -52,6 +52,9 @@ export {
 export {
   EuiCheckbox,
   EuiCheckboxGroup,
+  EuiComboBox,
+  EuiComboBoxPill,
+  EuiComboBoxRow,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
