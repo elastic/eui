@@ -12,7 +12,7 @@ export class EuiValidatableControl extends Component {
 
   updateValidity() {
     if (this.control == null || typeof this.control.setCustomValidity !== 'function') {
-      return;
+      return; // jsdom doesn't polyfill this for the server-side
     }
 
     if (this.props.isInvalid) {
