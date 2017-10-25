@@ -83,11 +83,9 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="downLeft"
       >
         <EuiContextMenuPanel
-          title="Options"
           items={items}
         />
       </EuiPopover>
