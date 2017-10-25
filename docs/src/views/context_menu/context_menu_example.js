@@ -16,9 +16,9 @@ import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
 const contextMenuHtml = renderToHtml(ContextMenu);
 
-import ContextMenuSimple from './context_menu_simple';
-const contextMenuSimpleSource = require('!!raw-loader!./context_menu_simple');
-const contextMenuSimpleHtml = renderToHtml(ContextMenuSimple);
+import SinglePanel from './single_panel';
+const singlePanelSource = require('!!raw-loader!./single_panel');
+const singlePanelHtml = renderToHtml(SinglePanel);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -46,10 +46,10 @@ export default props => (
       title="Context menu doesn't need to nest"
       source={[{
         type: GuideSectionTypes.JS,
-        code: contextMenuSimpleSource,
+        code: singlePanelSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: contextMenuSimpleHtml,
+        code: singlePanelHtml,
       }]}
       text={
         <p>
@@ -59,7 +59,7 @@ export default props => (
 
      }
       demo={
-        <ContextMenuSimple />
+        <SinglePanel />
      }
     />
   </GuidePage>

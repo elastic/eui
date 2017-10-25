@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../../test';
 
 import { EuiRadio } from './radio';
 
 describe('EuiRadio', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiRadio {...requiredProps} />
+      <EuiRadio id="id" onChange={() => {}} {...requiredProps} />
     );
 
     expect(component)

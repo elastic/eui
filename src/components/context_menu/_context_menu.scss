@@ -12,6 +12,10 @@ $euiContextMenuWidth: $euiSize * 16;
   }
 }
 
+  .euiContextMenu__panel {
+    position: absolute;
+  }
+
   .euiContextMenu__icon {
     margin-right: $euiSizeS;
   }

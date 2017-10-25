@@ -3,210 +3,208 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import tabbable from 'tabbable';
-
-import { cascadingMenuKeyCodes } from '../../services';
 
 import { EuiContextMenuPanel } from './context_menu_panel';
 import { EuiContextMenuItem } from './context_menu_item';
 
+function mapIdsToPanels(panels) {
+  const map = {};
+
+  panels.forEach(panel => {
+    map[panel.id] = panel;
+  });
+
+  return map;
+}
+
+function mapIdsToPreviousPanels(panels) {
+  const idToPreviousPanelIdMap = {};
+
+  panels.forEach(panel => {
+    if (Array.isArray(panel.items)) {
+      panel.items.forEach(item => {
+        const isCloseable = item.panel !== undefined;
+        if (isCloseable) {
+          idToPreviousPanelIdMap[item.panel] = panel.id;
+        }
+      });
+    }
+  });
+
+  return idToPreviousPanelIdMap;
+}
+
+function mapPanelItemsToPanels(panels) {
+  const idAndItemIndexToPanelIdMap = {};
+
+  panels.forEach(panel => {
+    idAndItemIndexToPanelIdMap[panel.id] = {};
+
+    if (panel.items) {
+      panel.items.forEach((item, index) => {
+        if (item.panel) {
+          idAndItemIndexToPanelIdMap[panel.id][index] = item.panel;
+        }
+      });
+    }
+  });
+
+  return idAndItemIndexToPanelIdMap;
+}
+
 export class EuiContextMenu extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
+    panels: PropTypes.array,
     initialPanelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    isVisible: PropTypes.bool.isRequired,
-    idToPanelMap: PropTypes.object,
-    idToPreviousPanelIdMap: PropTypes.object,
   }
 
   static defaultProps = {
-    idToPanelMap: {},
-    idToPreviousPanelIdMap: {},
-    isVisible: true,
+    panels: [],
   }
 
   constructor(props) {
     super(props);
 
-    this.resetTransitionTimeout = undefined;
-    this.menuItems = [];
+    this.idToPanelMap = {};
+    this.idToPreviousPanelIdMap = {};
+    this.idAndItemIndexToPanelIdMap = {};
 
     this.state = {
-      outGoingPanelId: undefined,
-      currentPanelId: props.initialPanelId,
+      height: undefined,
+      outgoingPanelId: undefined,
+      incomingPanelId: props.initialPanelId,
       transitionDirection: undefined,
-      isTransitioning: false,
-      focusedMenuItemIndex: 0,
+      isOutgoingPanelVisible: false,
+      focusedItemIndex: undefined,
+      isUsingKeyboardToNavigate: false,
     };
   }
 
-  onKeyDown = e => {
-    switch (e.keyCode) {
-      case cascadingMenuKeyCodes.UP:
-        if (this.menuItems.length) {
-          e.preventDefault();
-          this.setState(prevState => {
-            const nextFocusedMenuItemIndex = prevState.focusedMenuItemIndex - 1;
-            return {
-              focusedMenuItemIndex: nextFocusedMenuItemIndex < 0 ? this.menuItems.length - 1 : nextFocusedMenuItemIndex,
-            };
-          });
-        }
-        break;
-
-      case cascadingMenuKeyCodes.DOWN:
-        if (this.menuItems.length) {
-          e.preventDefault();
-          this.setState(prevState => {
-            const nextFocusedMenuItemIndex = prevState.focusedMenuItemIndex + 1;
-            return {
-              focusedMenuItemIndex: nextFocusedMenuItemIndex > this.menuItems.length - 1 ? 0 : nextFocusedMenuItemIndex,
-            };
-          });
-        }
-        break;
-
-      case cascadingMenuKeyCodes.LEFT:
-        e.preventDefault();
-        this.showPreviousPanel();
-        break;
-
-      case cascadingMenuKeyCodes.RIGHT:
-        if (this.menuItems.length) {
-          e.preventDefault();
-          this.menuItems[this.state.focusedMenuItemIndex].click();
-        }
-        break;
-
-      default:
-        break;
-    }
-  };
-
   hasPreviousPanel = panelId => {
-    const previousPanelId = this.props.idToPreviousPanelIdMap[panelId];
-    return typeof previousPanelId === 'number';
+    const previousPanelId = this.idToPreviousPanelIdMap[panelId];
+    return typeof previousPanelId !== 'undefined';
   };
 
   showPanel(panelId, direction) {
-    clearTimeout(this.resetTransitionTimeout);
-
     this.setState({
-      outGoingPanelId: this.state.currentPanelId,
-      currentPanelId: panelId,
+      outgoingPanelId: this.state.incomingPanelId,
+      incomingPanelId: panelId,
       transitionDirection: direction,
-      isTransitioning: true,
+      isOutgoingPanelVisible: true,
     });
-
-    // Queue the transition to reset.
-    this.resetTransitionTimeout = setTimeout(() => {
-      this.setState({
-        transitionDirection: undefined,
-        isTransitioning: false,
-        focusedMenuItemIndex: 0,
-      });
-    }, 250);
   }
+
+  showNextPanel = itemIndex => {
+    const nextPanelId = this.idAndItemIndexToPanelIdMap[this.state.incomingPanelId][itemIndex];
+    if (nextPanelId) {
+      if (this.state.isUsingKeyboardToNavigate) {
+        this.setState({
+          focusedItemIndex: 0,
+        });
+      }
+
+      this.showPanel(nextPanelId, 'next');
+    }
+  };
 
   showPreviousPanel = () => {
     // If there's a previous panel, then we can close the current panel to go back to it.
-    if (this.hasPreviousPanel(this.state.currentPanelId)) {
-      const previousPanelId = this.props.idToPreviousPanelIdMap[this.state.currentPanelId];
+    if (this.hasPreviousPanel(this.state.incomingPanelId)) {
+      const previousPanelId = this.idToPreviousPanelIdMap[this.state.incomingPanelId];
+
+      // Set focus on the item which shows the panel we're leaving.
+      const previousPanel = this.idToPanelMap[previousPanelId];
+      const focusedItemIndex = previousPanel.items.findIndex(
+        item => item.panel === this.state.incomingPanelId
+      );
+
+      if (focusedItemIndex !== -1) {
+        this.setState({
+          focusedItemIndex,
+        });
+      }
+
       this.showPanel(previousPanelId, 'previous');
     }
   };
 
-  updateHeight() {
-    const height = this.currentPanel.clientHeight;
-    this.menu.setAttribute('style', `height: ${height}px`);
+  onIncomingPanelHeightChange = height => {
+    this.setState({
+      height,
+    });
+  };
+
+  onOutGoingPanelTransitionComplete = () => {
+    this.setState({
+      isOutgoingPanelVisible: false,
+    });
+  };
+
+  onUseKeyboardToNavigate = () => {
+    if (!this.state.isUsingKeyboardToNavigate) {
+      this.setState({
+        isUsingKeyboardToNavigate: true,
+      });
+    }
+  };
+
+  updatePanelMaps(panels) {
+    this.idToPanelMap = mapIdsToPanels(panels);
+    this.idToPreviousPanelIdMap = mapIdsToPreviousPanels(panels);
+    this.idAndItemIndexToPanelIdMap = mapPanelItemsToPanels(panels);
   }
 
-  updateFocusedMenuItem() {
-    // When the transition completes focus on a menu item or just the menu itself.
-    if (!this.state.isTransitioning) {
-      this.menuItems = this.currentPanel.querySelectorAll('[data-menu-item]');
-      const focusedMenuItem = this.menuItems[this.state.focusedMenuItemIndex];
-      if (focusedMenuItem) {
-        focusedMenuItem.focus();
-      } else {
-        // Focus first tabbable item.
-        const tabbableItems = tabbable(this.currentPanel);
-        if (tabbableItems.length) {
-          tabbableItems[0].focus();
-        } else {
-          document.activeElement.blur();
-        }
-      }
-    }
+  componentWillMount() {
+    this.updatePanelMaps(this.props.panels);
   }
 
   componentWillReceiveProps(nextProps) {
-    // If the user is opening the context menu, reset the state.
-    if (nextProps.isVisible && !this.props.isVisible) {
-      this.setState({
-        outGoingPanelId: undefined,
-        currentPanelId: nextProps.initialPanelId,
-        transitionDirection: undefined,
-        focusedMenuItemIndex: 0,
-      });
+    if (nextProps.panels !== this.props.panels) {
+      this.updatePanelMaps(nextProps.panels);
     }
   }
 
-  componentDidMount() {
-    this.updateHeight();
-    this.updateFocusedMenuItem();
-  }
+  renderItems(items = []) {
+    return items.map((item, index) => {
+      const {
+        panel,
+        name,
+        icon,
+        onClick,
+        ...rest,
+      } = item;
 
-  componentDidUpdate() {
-    // Make sure we don't steal focus while the ContextMenu is closed.
-    if (!this.props.isVisible) {
-      return;
-    }
+      const onClickHandler = panel
+        ? () => {
+          // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
+          // need to wait for that logic to complete before re-rendering the DOM via showPanel.
+          window.requestAnimationFrame(() => {
+            if (onClick) onClick();
+            this.showNextPanel(index);
+          });
+        } : onClick;
 
-    if (this.state.isTransitioning) {
-      this.updateHeight();
-    }
-
-    this.updateFocusedMenuItem();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.resetTransitionTimeout);
+      return (
+        <EuiContextMenuItem
+          key={name}
+          icon={icon}
+          onClick={onClickHandler}
+          hasPanel={Boolean(panel)}
+          {...rest}
+        >
+          {name}
+        </EuiContextMenuItem>
+      );
+    });
   }
 
   renderPanel(panelId, transitionType) {
-    const panel = this.props.idToPanelMap[panelId];
+    const panel = this.idToPanelMap[panelId];
 
     if (!panel) {
       return;
     }
-
-    const renderItems = items => items.map(item => {
-      let onClick;
-
-      if (item.onClick) {
-        onClick = item.onClick;
-      } else if (item.panel) {
-        onClick = () => {
-          // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
-          // need to wait for that logic to complete before re-rendering the DOM via showPanel.
-          window.requestAnimationFrame(this.showPanel.bind(this, item.panel.id, 'next'));
-        };
-      }
-
-      return (
-        <EuiContextMenuItem
-          key={item.name}
-          icon={item.icon}
-          onClick={onClick}
-          hasPanel={Boolean(item.panel)}
-          data-menu-item
-        >
-          {item.name}
-        </EuiContextMenuItem>
-      );
-    });
 
     // As above, we need to wait for EuiOutsideClickDetector to complete its logic before
     // re-rendering via showPanel.
@@ -217,37 +215,39 @@ export class EuiContextMenu extends Component {
 
     return (
       <EuiContextMenuPanel
-        panelRef={node => {
-          if (transitionType === 'in') {
-            this.currentPanel = node;
-          }
-        }}
+        key={panelId}
+        className="euiContextMenu__panel"
+        onHeightChange={(transitionType === 'in') ? this.onIncomingPanelHeightChange : undefined}
+        onTransitionComplete={(transitionType === 'out') ? this.onOutGoingPanelTransitionComplete : undefined}
         title={panel.title}
         onClose={onClose}
-        transitionType={transitionType}
-        transitionDirection={this.state.transitionDirection}
+        transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
+        transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
+        hasFocus={transitionType === 'in'}
+        items={this.renderItems(panel.items)}
+        initialFocusedItemIndex={this.state.isUsingKeyboardToNavigate ? this.state.focusedItemIndex : undefined}
+        onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
+        showNextPanel={this.showNextPanel}
+        showPreviousPanel={this.showPreviousPanel}
       >
-        {panel.content || renderItems(panel.items)}
+        {panel.content}
       </EuiContextMenuPanel>
     );
   }
 
   render() {
     const {
-      idToPanelMap, // eslint-disable-line no-unused-vars
-      idToPreviousPanelIdMap, // eslint-disable-line no-unused-vars
+      panels, // eslint-disable-line no-unused-vars
       className,
       initialPanelId, // eslint-disable-line no-unused-vars
-      isVisible, // eslint-disable-line no-unused-vars
-      ...rest
+      ...rest,
     } = this.props;
 
-    const currentPanel = this.renderPanel(this.state.currentPanelId, 'in');
-    let outGoingPanel;
+    const incomingPanel = this.renderPanel(this.state.incomingPanelId, 'in');
+    let outgoingPanel;
 
-    // Hide the out-going panel ASAP, so it can't take focus.
-    if (this.state.isTransitioning) {
-      outGoingPanel = this.renderPanel(this.state.outGoingPanelId, 'out');
+    if (this.state.isOutgoingPanelVisible) {
+      outgoingPanel = this.renderPanel(this.state.outgoingPanelId, 'out');
     }
 
     const classes = classNames('euiContextMenu', className);
@@ -256,11 +256,11 @@ export class EuiContextMenu extends Component {
       <div
         ref={node => { this.menu = node; }}
         className={classes}
-        onKeyDown={this.onKeyDown}
+        style={{ height: this.state.height }}
         {...rest}
       >
-        {outGoingPanel}
-        {currentPanel}
+        {outgoingPanel}
+        {incomingPanel}
       </div>
     );
   }
