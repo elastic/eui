@@ -11,12 +11,14 @@ export class EuiValidatableControl extends Component {
   }
 
   updateValidity() {
-    if (typeof this.control.setCustomValidity === 'function') {
-      if (this.props.isInvalid) {
-        this.control.setCustomValidity('Invalid');
-      } else {
-        this.control.setCustomValidity('');
-      }
+    if (this.control == null || typeof this.control.setCustomValidity !== 'function') {
+      return;
+    }
+
+    if (this.props.isInvalid) {
+      this.control.setCustomValidity('Invalid');
+    } else {
+      this.control.setCustomValidity('');
     }
   }
 
