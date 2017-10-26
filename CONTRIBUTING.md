@@ -5,7 +5,7 @@
 Compile the CSS with `npm run compileCss`.
 
 You can view interactive documentation by executing `npm start` and then visiting
-[http://localhost:8020/](http://localhost:8020/). This will also start watching the SCSS files, and will recompile the CSS
+[http://localhost:8020/](http://localhost:8030/). This will also start watching the SCSS files, and will recompile the CSS
 automatically for you when you make changes.
 
 You can run `node scripts/jest --watch` to watch for changes and run the tests as you code.
@@ -28,9 +28,9 @@ You can do this using Yeoman (the easy way), or you can do it manually (the hard
 
 ### Using Yeoman
 
-#### Create a new component
+### Create a new component
 
-From the command line, run `npm run createComponent`.
+From the command line, run `npm run yo-component`.
 
 First, you'll be prompted for what kind of component to create:
 
@@ -66,6 +66,17 @@ Yeoman will generate the files you need in your project's folder system.
 
 For your convenience, it will also output some snippets you can tweak to import
 and re-export the generated JS and SCSS files.
+
+### Document a component
+
+From the command line, run `npm run yo-doc`. A `Page` will create a brand new documentation page
+that expects a new route. A `Page Demo` will create a file you can include within an already
+created document page. Usually you'll create a Page first, then follow it up with more demos.
+
+The script will ask you for a name of the component you'd like to document,
+then create some files in `/docs/src/views/`. If the name you provide isn't the exact name of a component,
+you might need to adjust the import in the generated files. Otherwise simply add the document to the
+`/docs/src/services/routes/routes.js` file to make it available in the navigation / browser.
 
 ### Manually
 
@@ -105,7 +116,7 @@ To see how well the components have been covered by tests, you can run
 component.
 2. Create a `{component name}_example.js` file inside the directory. You'll use this file to define
 the different examples for your component.
-3. Add the route to this file in `docs/src/services/routes/Routes.js`.
+3. Add the route to this file in `docs/src/services/routes/routes.js`.
 4. In the `{component name}_example.js` file you created, define examples which demonstrate the component and describe
 its role from a UI perspective.
 
