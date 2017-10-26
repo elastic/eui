@@ -10,54 +10,52 @@ const plugins = [
 ];
 
 if (isProduction) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      }
-    })
-  );
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+      screw_ie8: true,
+      warnings: false,
+    },
+  }));
 }
 
 module.exports = {
   devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
-    guide: './index.js'
+    guide: './index.js',
   },
 
   context: __dirname,
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: `eui${isProduction ? '.min' : ''}.js`
+    filename: `eui${isProduction ? '.min' : ''}.js`,
   },
 
   // Specify where these libraries should be found
   externals: {
-    'react': 'window.React',
-    'prop-types': 'window.PropTypes'
+    react: 'window.React',
+    'prop-types': 'window.PropTypes',
   },
 
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.svg$/,
-      loader: 'svg-sprite-loader'
+      loader: 'svg-sprite-loader',
     }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
       loader: 'file-loader',
-    }]
+    }],
   },
 
-  plugins
+  plugins,
 };

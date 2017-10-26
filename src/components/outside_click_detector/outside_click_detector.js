@@ -11,7 +11,7 @@ export class EuiOutsideClickDetector extends Component {
     onOutsideClick: PropTypes.func.isRequired,
   }
 
-  onClickOutside = event => {
+  onClickOutside = (event) => {
     if (!this.wrapperRef) {
       return;
     }
@@ -37,7 +37,7 @@ export class EuiOutsideClickDetector extends Component {
 
   render() {
     const props = Object.assign({}, this.props.children.props, {
-      ref: node => {
+      ref: (node) => {
         this.wrapperRef = node;
         if (this.props.children.ref) {
           this.props.children.ref(node);

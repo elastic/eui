@@ -6,9 +6,7 @@ import { EuiFieldText } from './field_text';
 
 describe('EuiFieldText', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFieldText {...requiredProps} />
-    );
+    const component = render(<EuiFieldText {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

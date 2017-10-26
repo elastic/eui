@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export const EuiDescriptionListDescription = ({
   children,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiDescriptionList__description', className);
 

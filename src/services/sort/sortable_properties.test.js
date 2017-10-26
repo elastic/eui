@@ -36,7 +36,7 @@ describe('SortProperties', () => {
       name: 'chickadee',
       color: 'black and white',
       size: 3,
-    }
+    },
   ];
 
   describe('initialSortProperty', () => {

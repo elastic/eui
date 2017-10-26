@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const paddingSizeToClassNameMap = {
-  'none': null,
-  's': 'euiPanel--paddingSmall',
-  'm': 'euiPanel--paddingMedium',
-  'l': 'euiPanel--paddingLarge',
+  none: null,
+  s: 'euiPanel--paddingSmall',
+  m: 'euiPanel--paddingMedium',
+  l: 'euiPanel--paddingLarge',
 };
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);
@@ -18,9 +18,8 @@ export const EuiPanel = ({
   hasShadow,
   grow,
   panelRef,
-  ...rest,
+  ...rest
 }) => {
-
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
@@ -28,7 +27,7 @@ export const EuiPanel = ({
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,
     },
-    className
+    className,
   );
 
   return (
@@ -40,7 +39,6 @@ export const EuiPanel = ({
       {children}
     </div>
   );
-
 };
 
 EuiPanel.propTypes = {

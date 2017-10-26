@@ -9,7 +9,9 @@ const borderToClassNameMap = {
 
 const BORDERS = Object.keys(borderToClassNameMap);
 
-export const EuiHeaderSectionItem = ({ border, children, className, ...rest }) => {
+export const EuiHeaderSectionItem = ({
+  border, children, className, ...rest
+}) => {
   const classes = classNames('euiHeaderSectionItem', borderToClassNameMap[border], className);
 
   return (

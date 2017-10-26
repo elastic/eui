@@ -10,7 +10,9 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiLoadingChart = ({ size, mono, className, ...rest }) => {
+export const EuiLoadingChart = ({
+  size, mono, className, ...rest
+}) => {
   const classes = classNames(
     'euiLoadingChart',
     mono === true ? 'euiLoadingChart--mono' : '',

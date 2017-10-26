@@ -24,13 +24,13 @@ export const EuiHorizontalRule = ({
   className,
   size,
   margin,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiHorizontalRule',
     sizeToClassNameMap[size],
     marginToClassNameMap[margin],
-    className
+    className,
   );
 
   return (

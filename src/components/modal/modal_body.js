@@ -13,5 +13,5 @@ export function EuiModalBody({ className, children, ...rest }) {
 
 EuiModalBody.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };

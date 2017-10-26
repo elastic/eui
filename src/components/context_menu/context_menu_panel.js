@@ -23,12 +23,12 @@ export const EuiContextMenuPanel = ({
   panelRef,
   transitionType,
   transitionDirection,
-  ...rest,
+  ...rest
 }) => {
   let panelTitle;
 
   if (title) {
-    if (Boolean(onClose)) {
+    if (onClose) {
       panelTitle = (
         <button
           className="euiContextMenuPanelTitle"
@@ -58,9 +58,11 @@ export const EuiContextMenuPanel = ({
   }
 
   const hasTransition = transitionDirection && transitionType;
-  const classes = classNames('euiContextMenuPanel', className, (
-    hasTransition ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType] : ''
-  ));
+  const classes = classNames(
+    'euiContextMenuPanel', className, (
+      hasTransition ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType] : ''
+    ),
+  );
 
   return (
     <div

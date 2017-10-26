@@ -17,14 +17,14 @@ export const EuiSelect = ({
   name,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiSelect',
     {
       'euiSelect--fullWidth': fullWidth,
     },
-    className
+    className,
   );
 
   return (
@@ -40,9 +40,7 @@ export const EuiSelect = ({
           className={classes}
           {...rest}
         >
-          {options.map((option, index) => {
-            return <option value={option.value} key={index}>{option.text}</option>;
-          })}
+          {options.map((option, index) => <option value={option.value} key={index}>{option.text}</option>)}
         </select>
       </EuiValidatableControl>
     </EuiFormControlLayout>

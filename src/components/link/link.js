@@ -2,19 +2,20 @@ import React from 'react';
 import classNames from 'classnames';
 
 const colorsToClassNameMap = {
-  'primary': 'euiLink--primary',
-  'subdued': 'euiLink--subdued',
-  'secondary': 'euiLink--secondary',
-  'accent': 'euiLink--accent',
-  'danger': 'euiLink--danger',
-  'warning': 'euiLink--warning',
-  'ghost': 'euiLink--ghost',
+  primary: 'euiLink--primary',
+  subdued: 'euiLink--subdued',
+  secondary: 'euiLink--secondary',
+  accent: 'euiLink--accent',
+  danger: 'euiLink--danger',
+  warning: 'euiLink--warning',
+  ghost: 'euiLink--ghost',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);
 
 export const EuiLink = ({
-  children, type, color, className, onClick, ...rest }) => {
+  children, type, color, className, onClick, ...rest
+}) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
 
   let link;
@@ -29,7 +30,6 @@ export const EuiLink = ({
         {children}
       </button>
     );
-
   } else {
     link = (
       <a

@@ -16,12 +16,12 @@ export const EuiCheckbox = ({
   onChange,
   type,
   disabled,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiCheckbox',
     typeToClassNameMap[type],
-    className
+    className,
   );
 
   let optionalLabel;

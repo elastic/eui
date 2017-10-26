@@ -20,7 +20,9 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
-export const EuiToast = ({ title, color, iconType, onClose, children, className, ...rest }) => {
+export const EuiToast = ({
+  title, color, iconType, onClose, children, className, ...rest
+}) => {
   const classes = classNames('euiToast', colorToClassNameMap[color], className);
   const headerClasses = classNames('euiToastHeader', {
     'euiToastHeader--withBody': children,

@@ -6,9 +6,7 @@ import { EuiAccordion } from './accordion';
 
 describe('EuiAccordion', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiAccordion {...requiredProps} />
-    );
+    const component = render(<EuiAccordion {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

@@ -6,9 +6,7 @@ import { EuiForm } from './form';
 
 describe('EuiForm', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiForm {...requiredProps} />
-    );
+    const component = render(<EuiForm {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

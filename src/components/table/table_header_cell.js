@@ -24,7 +24,7 @@ export const EuiTableHeaderCell = ({
   isSortAscending,
   className,
   ariaLabel,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className);
 
@@ -45,7 +45,7 @@ export const EuiTableHeaderCell = ({
       'euiTableHeaderButton-isSorted': isSorted,
     });
 
-    const columnTitle = ariaLabel ? ariaLabel : children;
+    const columnTitle = ariaLabel || children;
     const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
 
     return (

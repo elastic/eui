@@ -9,32 +9,28 @@ export const EuiCheckboxGroup = ({
   onChange,
   className,
   disabled,
-  ...rest,
+  ...rest
 }) => (
   <div className={className} {...rest}>
-    {options.map((option, index) => {
-      return (
-        <EuiCheckbox
-          className="euiCheckboxGroup__item"
-          key={index}
-          id={option.id}
-          checked={idToSelectedMap[option.id]}
-          label={option.label}
-          disabled={disabled}
-          onChange={onChange.bind(null, option.id)}
-        />
-      );
-    })}
+    {options.map((option, index) => (
+      <EuiCheckbox
+        className="euiCheckboxGroup__item"
+        key={index}
+        id={option.id}
+        checked={idToSelectedMap[option.id]}
+        label={option.label}
+        disabled={disabled}
+        onChange={onChange.bind(null, option.id)}
+      />
+      ))}
   </div>
 );
 
 EuiCheckboxGroup.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-    }),
-  ).isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    label: PropTypes.string,
+  })).isRequired,
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool).isRequired,
   onChange: PropTypes.func.isRequired,
 };

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiFormLabel = ({ children, isFocused, isInvalid, className, ...rest }) => {
+export const EuiFormLabel = ({
+  children, isFocused, isInvalid, className, ...rest
+}) => {
   const classes = classNames('euiFormLabel', className, {
     'euiFormLabel-isFocused': isFocused,
     'euiFormLabel-isInvalid': isInvalid,

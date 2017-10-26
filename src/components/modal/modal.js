@@ -8,7 +8,7 @@ import FocusTrap from 'focus-trap-react';
 import { keyCodes } from '../../services';
 
 export class EuiModal extends Component {
-  onKeyDown = event => {
+  onKeyDown = (event) => {
     if (event.keyCode === keyCodes.ESCAPE) {
       this.props.onClose();
     }
@@ -19,7 +19,7 @@ export class EuiModal extends Component {
       className,
       children,
       onClose, // eslint-disable-line no-unused-vars
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classnames('euiModal', className);
@@ -35,7 +35,7 @@ export class EuiModal extends Component {
           // fallbackFocus won't work.
         }
         <div
-          ref={node => { this.modal = node; }}
+          ref={(node) => { this.modal = node; }}
           className={classes}
           onKeyDown={this.onKeyDown}
           tabIndex={0}

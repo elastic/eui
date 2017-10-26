@@ -32,8 +32,8 @@ const iconSideToClassNameMap = {
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 const flushTypeToClassNameMap = {
-  'left': 'euiButtonEmpty--flushLeft',
-  'right': 'euiButtonEmpty--flushRight',
+  left: 'euiButtonEmpty--flushLeft',
+  right: 'euiButtonEmpty--flushRight',
 };
 
 export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
@@ -47,9 +47,8 @@ export const EuiButtonEmpty = ({
   size,
   flush,
   isDisabled,
-  ...rest,
+  ...rest
 }) => {
-
   const classes = classNames(
     'euiButtonEmpty',
     colorToClassNameMap[color],

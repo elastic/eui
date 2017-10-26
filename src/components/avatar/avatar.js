@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors';
 
 const sizeToClassNameMap = {
-  'none': null,
-  's': 'euiAvatar--s',
-  'm': 'euiAvatar--m',
-  'l': 'euiAvatar--l',
-  'xl': 'euiAvatar--xl',
+  none: null,
+  s: 'euiAvatar--s',
+  m: 'euiAvatar--m',
+  l: 'euiAvatar--l',
+  xl: 'euiAvatar--xl',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -18,25 +18,25 @@ export const EuiAvatar = ({
   name,
   className,
   size,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiAvatar',
     sizeToClassNameMap[size],
-    className
+    className,
   );
 
   let optionalInitial;
   if (name && !imageUrl) {
     optionalInitial = (
-      <span aria-hidden="true">{name.substring(0,1)}</span>
+      <span aria-hidden="true">{name.substring(0, 1)}</span>
     );
   }
 
   const assignedColor = VISUALIZATION_COLORS[Math.floor(name.length % VISUALIZATION_COLORS.length)];
 
   const avatarStyle = {
-    backgroundImage: imageUrl ? 'url(' + imageUrl + ')' : 'none',
+    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
     backgroundColor: assignedColor,
   };
 

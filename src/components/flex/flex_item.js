@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
+export const EuiFlexItem = ({
+  children, className, grow, ...rest
+}) => {
   const classes = classNames(
     'euiFlexItem',
     {
       'euiFlexItem--flexGrowZero': !grow,
     },
-    className
+    className,
   );
 
   return (

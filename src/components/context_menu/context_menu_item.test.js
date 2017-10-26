@@ -6,9 +6,7 @@ import { EuiContextMenuItem } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiContextMenuItem {...requiredProps} />
-    );
+    const component = render(<EuiContextMenuItem {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

@@ -36,7 +36,7 @@ export const EuiProgress = ({
   max,
   size,
   position,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiProgress',
@@ -46,7 +46,7 @@ export const EuiProgress = ({
     sizeToClassNameMap[size],
     colorToClassNameMap[color],
     positionsToClassNameMap[position],
-    className
+    className,
   );
 
   // Because of a FireFox issue with animation, indeterminate progress needs to use a div.

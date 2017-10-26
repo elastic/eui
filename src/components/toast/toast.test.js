@@ -6,9 +6,7 @@ import { EuiToast } from './toast';
 
 describe('EuiToast', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiToast {...requiredProps} />
-    );
+    const component = render(<EuiToast {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

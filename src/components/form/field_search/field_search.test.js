@@ -6,9 +6,7 @@ import { EuiFieldSearch } from './field_search';
 
 describe('EuiFieldSearch', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFieldSearch {...requiredProps} />
-    );
+    const component = render(<EuiFieldSearch {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

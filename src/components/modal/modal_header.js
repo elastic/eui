@@ -13,5 +13,5 @@ export function EuiModalHeader({ className, children, ...rest }) {
 
 EuiModalHeader.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };

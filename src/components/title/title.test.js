@@ -6,11 +6,9 @@ import { EuiTitle } from './title';
 
 describe('EuiTitle', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTitle {...requiredProps}>
-        <h1>Title</h1>
-      </EuiTitle>
-    );
+    const component = render(<EuiTitle {...requiredProps}>
+      <h1>Title</h1>
+                             </EuiTitle>);
 
     expect(component)
       .toMatchSnapshot();

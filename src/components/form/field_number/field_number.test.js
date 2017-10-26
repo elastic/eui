@@ -6,9 +6,7 @@ import { EuiFieldNumber } from './field_number';
 
 describe('EuiFieldNumber', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFieldNumber {...requiredProps} />
-    );
+    const component = render(<EuiFieldNumber {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

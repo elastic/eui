@@ -32,7 +32,7 @@ export class EuiValidatableControl extends Component {
 
   render() {
     return cloneElement(this.props.children, {
-      ref: node => {
+      ref: (node) => {
         this.control = node;
 
         // Call the original ref, if any

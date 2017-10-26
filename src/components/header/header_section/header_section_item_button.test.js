@@ -7,21 +7,17 @@ import { EuiHeaderSectionItemButton } from './header_section_item_button';
 
 describe('EuiHeaderSectionItemButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderSectionItemButton {...requiredProps} />
-    );
+    const component = render(<EuiHeaderSectionItemButton {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();
   });
 
   describe('onClick', () => {
-    test(`isn't called upon instantiation`, () => {
+    test('isn\'t called upon instantiation', () => {
       const onClickHandler = sinon.stub();
 
-      shallow(
-        <EuiHeaderSectionItemButton onClick={onClickHandler} />
-      );
+      shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
 
       sinon.assert.notCalled(onClickHandler);
     });
@@ -29,9 +25,7 @@ describe('EuiHeaderSectionItemButton', () => {
     test('is called when the button is clicked', () => {
       const onClickHandler = sinon.stub();
 
-      const $button = shallow(
-        <EuiHeaderSectionItemButton onClick={onClickHandler} />
-      );
+      const $button = shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
 
       $button.simulate('click');
 

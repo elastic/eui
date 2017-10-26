@@ -6,9 +6,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 
 describe('EuiCheckboxGroup', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiCheckboxGroup onChange={() => {}} {...requiredProps} />
-    );
+    const component = render(<EuiCheckboxGroup onChange={() => {}} {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

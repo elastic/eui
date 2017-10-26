@@ -41,9 +41,8 @@ export const EuiButton = ({
   size,
   fill,
   isDisabled,
-  ...rest,
+  ...rest
 }) => {
-
   const classes = classNames(
     'euiButton',
     colorToClassNameMap[color],

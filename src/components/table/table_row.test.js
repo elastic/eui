@@ -7,7 +7,7 @@ import {
 } from './table_row';
 
 import {
-  EuiTableRowCell
+  EuiTableRowCell,
 } from './table_row_cell';
 
 test('renders EuiTableRow', () => {
@@ -23,7 +23,7 @@ test('renders EuiTableRow', () => {
 describe('isSelected', () => {
   test('renders true when specified', () => {
     const component = (
-      <EuiTableRow isSelected={true}>
+      <EuiTableRow isSelected>
         <EuiTableRowCell />
       </EuiTableRow>
     );

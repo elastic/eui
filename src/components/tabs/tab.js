@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiTab = ({ isSelected, onClick, children, className, ...rest }) => {
+export const EuiTab = ({
+  isSelected, onClick, children, className, ...rest
+}) => {
   const classes = classNames('euiTab', className, {
-    'euiTab-isSelected': isSelected
+    'euiTab-isSelected': isSelected,
   });
 
   return (

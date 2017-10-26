@@ -154,14 +154,14 @@ export const EuiIcon = ({
   size,
   title,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiIcon', className, sizeToClassNameMap[size]);
 
   const titleElement =
     title
-    ? <title>{title}</title>
-    : <title>{`${humanizeCamelCase(type)} icon`}</title>;
+      ? <title>{title}</title>
+      : <title>{`${humanizeCamelCase(type)} icon`}</title>;
   const svgReference = <use xlinkHref={`#${typeToIconMap[type]}`} />;
 
   return (

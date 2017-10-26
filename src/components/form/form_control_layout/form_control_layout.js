@@ -11,14 +11,15 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, className }) => {
-
+export const EuiFormControlLayout = ({
+  children, icon, fullWidth, iconSide, className,
+}) => {
   const classes = classNames(
     'euiFormControlLayout',
     {
       'euiFormControlLayout--fullWidth': fullWidth,
     },
-    className
+    className,
   );
 
   if (icon) {

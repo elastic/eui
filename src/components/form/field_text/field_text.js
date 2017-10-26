@@ -20,7 +20,7 @@ export const EuiFieldText = ({
   isInvalid,
   inputRef,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiFieldText', className, {
     'euiFieldText--withIcon': icon,

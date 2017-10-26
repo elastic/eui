@@ -12,18 +12,18 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPanel, SIZES } from '../panel/panel';
 
 const anchorPositionToClassNameMap = {
-  'upCenter': 'euiPopover--anchorUpCenter',
-  'upLeft': 'euiPopover--anchorUpLeft',
-  'upRight': 'euiPopover--anchorUpRight',
-  'downCenter': 'euiPopover--anchorDownCenter',
-  'downLeft': 'euiPopover--anchorDownLeft',
-  'downRight': 'euiPopover--anchorDownRight',
-  'leftCenter': 'euiPopover--anchorLeftCenter',
-  'leftUp': 'euiPopover--anchorLeftUp',
-  'leftDown': 'euiPopover--anchorLeftDown',
-  'rightCenter': 'euiPopover--anchorRightCenter',
-  'rightUp': 'euiPopover--anchorRightUp',
-  'rightDown': 'euiPopover--anchorRightDown',
+  upCenter: 'euiPopover--anchorUpCenter',
+  upLeft: 'euiPopover--anchorUpLeft',
+  upRight: 'euiPopover--anchorUpRight',
+  downCenter: 'euiPopover--anchorDownCenter',
+  downLeft: 'euiPopover--anchorDownLeft',
+  downRight: 'euiPopover--anchorDownRight',
+  leftCenter: 'euiPopover--anchorLeftCenter',
+  leftUp: 'euiPopover--anchorLeftUp',
+  leftDown: 'euiPopover--anchorLeftDown',
+  rightCenter: 'euiPopover--anchorRightCenter',
+  rightUp: 'euiPopover--anchorRightUp',
+  rightDown: 'euiPopover--anchorRightDown',
 };
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
@@ -40,7 +40,7 @@ export class EuiPopover extends Component {
     };
   }
 
-  onKeyDown = e => {
+  onKeyDown = (e) => {
     if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
       this.props.closePopover();
     }
@@ -91,7 +91,7 @@ export class EuiPopover extends Component {
       closePopover,
       panelClassName,
       panelPaddingSize,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(
@@ -117,7 +117,7 @@ export class EuiPopover extends Component {
           }}
         >
           <EuiPanel
-            panelRef={node => { this.panel = node; }}
+            panelRef={(node) => { this.panel = node; }}
             className={panelClasses}
             paddingSize={panelPaddingSize}
             hasShadow

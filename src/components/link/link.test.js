@@ -6,13 +6,11 @@ import { EuiLink } from './link';
 
 describe('EuiLink', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiLink
-        href="#"
-        target="_blank"
-        {...requiredProps}
-      />
-    );
+    const component = render(<EuiLink
+      href="#"
+      target="_blank"
+      {...requiredProps}
+    />);
 
     expect(component)
       .toMatchSnapshot();

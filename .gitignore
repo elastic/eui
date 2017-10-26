@@ -1,7 +1,8 @@
 node_modules/
-docs/build/
+dist/
+docs/dist/
+lib/
 .DS_Store
-dist
-lib
 package-lock.json
+npm-debug.log
 .eslintcache

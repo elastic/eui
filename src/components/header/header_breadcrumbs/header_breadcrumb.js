@@ -7,7 +7,7 @@ export const EuiHeaderBreadcrumb = ({
   isActive,
   children,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiHeaderBreadcrumb', className, {
     'euiHeaderBreadcrumb-isActive': isActive,

@@ -6,9 +6,7 @@ import { EuiFlexGrid } from './flex_grid';
 
 describe('EuiFlexGrid', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFlexGrid columns={3} {...requiredProps} />
-    );
+    const component = render(<EuiFlexGrid columns={3} {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

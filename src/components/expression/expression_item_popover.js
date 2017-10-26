@@ -41,8 +41,8 @@ const outsideClickNotifier = WrappedComponent => class extends React.Component {
   }
 
   render() {
-    const { onOutsideClick, ...rest } = this.props; //eslint-disable-line no-unused-vars
-    return <WrappedComponent rootRef={(node)=> this.wrapperRef = node} {...rest} />;
+    const { onOutsideClick, ...rest } = this.props; // eslint-disable-line no-unused-vars
+    return <WrappedComponent rootRef={(node) => { this.wrapperRef = node; }} {...rest} />;
   }
 
   static propTypes = {
@@ -51,7 +51,7 @@ const outsideClickNotifier = WrappedComponent => class extends React.Component {
   };
 };
 
-let EuiExpressionItemPopover = ({
+const ExpressionItemPopover = ({
   className,
   title,
   isVisible,
@@ -62,7 +62,7 @@ let EuiExpressionItemPopover = ({
 }) => {
   const classes = classNames('euiExpressionItem__popover', className, {
     'euiExpressionItem__popover--isHidden': !isVisible,
-    'euiExpressionItem__popover--alignRight': align === 'right'
+    'euiExpressionItem__popover--alignRight': align === 'right',
   });
   return (
     <div
@@ -80,19 +80,19 @@ let EuiExpressionItemPopover = ({
   );
 };
 
-EuiExpressionItemPopover.propTypes = {
+ExpressionItemPopover.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   children: PropTypes.node,
   align: PropTypes.oneOf(POPOVER_ALIGN),
-  //only for outsideClickNotifier
+  // only for outsideClickNotifier
   rootRef: PropTypes.func.isRequired,
 };
 
-EuiExpressionItemPopover = outsideClickNotifier(EuiExpressionItemPopover);
+const EuiExpressionItemPopover = outsideClickNotifier(ExpressionItemPopover);
 
 export {
   POPOVER_ALIGN,
-  EuiExpressionItemPopover
+  EuiExpressionItemPopover,
 };

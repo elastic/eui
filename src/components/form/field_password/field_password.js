@@ -18,14 +18,14 @@ export const EuiFieldPassword = ({
   value,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiFieldPassword',
     {
       'euiFieldPassword--fullWidth': fullWidth,
     },
-    className
+    className,
   );
 
   return (

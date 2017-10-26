@@ -12,7 +12,7 @@ export const EuiPagination = ({
   pageCount,
   activePage,
   onPageClick,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiPagination', className);
 
@@ -21,16 +21,14 @@ export const EuiPagination = ({
   const lastPageInRange = Math.min(pageCount, firstPageInRange + MAX_VISIBLE_PAGES);
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
-    pages.push(
-      <EuiPaginationButton
-        isActive={i === activePage}
-        key={index}
-        onClick={onPageClick.bind(null, i)}
-        hideOnMobile
-      >
-        {i + 1}
-      </EuiPaginationButton>
-    );
+    pages.push(<EuiPaginationButton
+      isActive={i === activePage}
+      key={index}
+      onClick={onPageClick.bind(null, i)}
+      hideOnMobile
+    >
+      {i + 1}
+               </EuiPaginationButton>);
   }
 
   let previousButton;
@@ -49,24 +47,20 @@ export const EuiPagination = ({
   const firstPageButtons = [];
 
   if (firstPageInRange > 0) {
-    firstPageButtons.push(
-      <EuiPaginationButton
-        key="0"
-        onClick={onPageClick.bind(null, 0)}
-        hideOnMobile
-      >
+    firstPageButtons.push(<EuiPaginationButton
+      key="0"
+      onClick={onPageClick.bind(null, 0)}
+      hideOnMobile
+    >
         1
-      </EuiPaginationButton>
-    );
+                          </EuiPaginationButton>);
 
     if (firstPageInRange > 1) {
-      firstPageButtons.push(
-        <EuiPaginationButton
-          key="beginningEllipsis"
-          isPlaceholder
-          hideOnMobile
-        />
-      );
+      firstPageButtons.push(<EuiPaginationButton
+        key="beginningEllipsis"
+        isPlaceholder
+        hideOnMobile
+      />);
     }
   }
 
@@ -74,24 +68,20 @@ export const EuiPagination = ({
 
   if (lastPageInRange < pageCount) {
     if (lastPageInRange < pageCount - 1) {
-      lastPageButtons.push(
-        <EuiPaginationButton
-          key="endingEllipsis"
-          isPlaceholder
-          hideOnMobile
-        />
-      );
+      lastPageButtons.push(<EuiPaginationButton
+        key="endingEllipsis"
+        isPlaceholder
+        hideOnMobile
+      />);
     }
 
-    lastPageButtons.push(
-      <EuiPaginationButton
-        key={pageCount - 1}
-        onClick={onPageClick.bind(null, pageCount - 1)}
-        hideOnMobile
-      >
-        {pageCount}
-      </EuiPaginationButton>
-    );
+    lastPageButtons.push(<EuiPaginationButton
+      key={pageCount - 1}
+      onClick={onPageClick.bind(null, pageCount - 1)}
+      hideOnMobile
+    >
+      {pageCount}
+    </EuiPaginationButton>);
   }
 
   let nextButton;

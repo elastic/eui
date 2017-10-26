@@ -21,13 +21,13 @@ export const EuiPageContent = ({
   panelPaddingSize,
   children,
   className,
-  ...rest }) => {
-
+  ...rest
+}) => {
   const classes = classNames(
     'euiPageContent',
     className,
     verticalPositionToClassNameMap[verticalPosition],
-    horizontalPositionToClassNameMap[horizontalPosition]
+    horizontalPositionToClassNameMap[horizontalPosition],
   );
 
   return (

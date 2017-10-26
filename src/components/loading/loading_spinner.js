@@ -11,11 +11,13 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiLoadingSpinner = ({ children, size, className, ...rest }) => {
+export const EuiLoadingSpinner = ({
+  children, size, className, ...rest
+}) => {
   const classes = classNames(
     'euiLoadingSpinner',
     sizeToClassNameMap[size],
-    className
+    className,
   );
 
   return (

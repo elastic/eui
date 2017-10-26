@@ -11,7 +11,7 @@ export const EuiExpressionItemButton = ({
   ...rest
 }) => {
   const classes = classNames('euiExpressionItem__button', className, {
-    'euiExpressionItem__button--isActive': isActive
+    'euiExpressionItem__button--isActive': isActive,
   });
 
   return (

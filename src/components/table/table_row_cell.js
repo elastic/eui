@@ -17,7 +17,7 @@ export const EuiTableRowCell = ({
   children,
   className,
   wrapText,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTableRowCell', className);
 
