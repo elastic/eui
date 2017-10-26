@@ -10,7 +10,7 @@
     "build": "./scripts/compile-clean.sh && ./scripts/compile-scss.sh && ./scripts/compile-eui.sh",
     "deploy": "now --public",
     "now-build": "./scripts/compile-scss.sh && ./scripts/docs-build.sh",
-    "now-start": "serve docs/build",
+    "now-start": "serve docs/dist",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "test": "./scripts/test.sh"
