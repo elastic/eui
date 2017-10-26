@@ -16,7 +16,7 @@ const colorToClassNameMap = {
   ghost: 'euiButton--ghost',
 };
 
-export const COLORS = Object.keys(typeToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
   small: 'euiButton--small',
