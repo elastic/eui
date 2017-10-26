@@ -84,14 +84,14 @@ export class EuiGlobalToastList extends Component {
     const {
       children,
       className,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames('euiGlobalToastList', className);
 
     return (
       <div
-        ref={element => { this.listElement = element; }}
+        ref={(element) => { this.listElement = element; }}
         className={classes}
         {...rest}
       >

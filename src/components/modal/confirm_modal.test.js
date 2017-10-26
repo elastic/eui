@@ -9,6 +9,8 @@ import {
   CANCEL_BUTTON, CONFIRM_BUTTON, EuiConfirmModal,
 } from './confirm_modal';
 
+const { document } = global;
+
 let onConfirm;
 let onCancel;
 

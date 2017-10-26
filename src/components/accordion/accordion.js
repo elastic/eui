@@ -37,7 +37,7 @@ export class EuiAccordion extends Component {
     if (!currentState) {
       this.childWrapper.setAttribute('style', `height: ${height}px`);
     } else {
-      this.childWrapper.setAttribute('style', `height: 0px`);
+      this.childWrapper.setAttribute('style', 'height: 0px');
     }
   }
 
@@ -49,7 +49,7 @@ export class EuiAccordion extends Component {
       buttonClassName,
       buttonContentClassName,
       extraAction,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(
@@ -57,7 +57,7 @@ export class EuiAccordion extends Component {
       {
         'euiAccordion-isOpen': this.state.isOpen,
       },
-      className
+      className,
     );
 
     const buttonClasses = classNames(
@@ -107,8 +107,8 @@ export class EuiAccordion extends Component {
           {optionalAction}
         </EuiFlexGroup>
 
-        <div className="euiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
-          <div ref={node => { this.childContent = node; }}>
+        <div className="euiAccordion__childWrapper" ref={(node) => { this.childWrapper = node; }}>
+          <div ref={(node) => { this.childContent = node; }}>
             {children}
           </div>
         </div>

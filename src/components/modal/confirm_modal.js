@@ -30,7 +30,7 @@ export function EuiConfirmModal({
   confirmButtonText,
   className,
   defaultFocusedButton,
-  ...rest,
+  ...rest
 }) {
   const classes = classnames('euiModal--confirmation', className);
 
@@ -100,5 +100,5 @@ EuiConfirmModal.propTypes = {
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
   className: PropTypes.string,
-  defaultFocusedButton: PropTypes.oneOf(CONFIRM_MODAL_BUTTONS)
+  defaultFocusedButton: PropTypes.oneOf(CONFIRM_MODAL_BUTTONS),
 };

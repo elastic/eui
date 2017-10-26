@@ -41,12 +41,12 @@ export class EuiContextMenu extends Component {
     };
   }
 
-  onKeyDown = e => {
+  onKeyDown = (e) => {
     switch (e.keyCode) {
       case cascadingMenuKeyCodes.UP:
         if (this.menuItems.length) {
           e.preventDefault();
-          this.setState(prevState => {
+          this.setState((prevState) => {
             const nextFocusedMenuItemIndex = prevState.focusedMenuItemIndex - 1;
             return {
               focusedMenuItemIndex: nextFocusedMenuItemIndex < 0 ? this.menuItems.length - 1 : nextFocusedMenuItemIndex,
@@ -58,7 +58,7 @@ export class EuiContextMenu extends Component {
       case cascadingMenuKeyCodes.DOWN:
         if (this.menuItems.length) {
           e.preventDefault();
-          this.setState(prevState => {
+          this.setState((prevState) => {
             const nextFocusedMenuItemIndex = prevState.focusedMenuItemIndex + 1;
             return {
               focusedMenuItemIndex: nextFocusedMenuItemIndex > this.menuItems.length - 1 ? 0 : nextFocusedMenuItemIndex,
@@ -84,7 +84,7 @@ export class EuiContextMenu extends Component {
     }
   };
 
-  hasPreviousPanel = panelId => {
+  hasPreviousPanel = (panelId) => {
     const previousPanelId = this.props.idToPreviousPanelIdMap[panelId];
     return typeof previousPanelId === 'number';
   };
@@ -179,21 +179,11 @@ export class EuiContextMenu extends Component {
     const panel = this.props.idToPanelMap[panelId];
 
     if (!panel) {
-      return;
+      return null;
     }
 
-    const renderItems = items => items.map(item => {
-      let onClick;
-
-      if (item.onClick) {
-        onClick = item.onClick;
-      } else if (item.panel) {
-        onClick = () => {
-          // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
-          // need to wait for that logic to complete before re-rendering the DOM via showPanel.
-          window.requestAnimationFrame(this.showPanel.bind(this, item.panel.id, 'next'));
-        };
-      }
+    const renderItems = items => items.map((item) => {
+      const onClick = getClickHandler(item);
 
       return (
         <EuiContextMenuItem
@@ -217,7 +207,7 @@ export class EuiContextMenu extends Component {
 
     return (
       <EuiContextMenuPanel
-        panelRef={node => {
+        panelRef={(node) => {
           if (transitionType === 'in') {
             this.currentPanel = node;
           }
@@ -239,7 +229,7 @@ export class EuiContextMenu extends Component {
       className,
       initialPanelId, // eslint-disable-line no-unused-vars
       isVisible, // eslint-disable-line no-unused-vars
-      ...rest,
+      ...rest
     } = this.props;
 
     const currentPanel = this.renderPanel(this.state.currentPanelId, 'in');
@@ -254,7 +244,7 @@ export class EuiContextMenu extends Component {
 
     return (
       <div
-        ref={node => { this.menu = node; }}
+        ref={(node) => { this.menu = node; }}
         className={classes}
         onKeyDown={this.onKeyDown}
         {...rest}
@@ -264,4 +254,20 @@ export class EuiContextMenu extends Component {
       </div>
     );
   }
+}
+
+function getClickHandler(item) {
+  if (item.onClick) {
+    return item.onClick;
+  }
+
+  if (item.panel) {
+    return () => {
+      // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
+      // need to wait for that logic to complete before re-rendering the DOM via showPanel.
+      window.requestAnimationFrame(this.showPanel.bind(this, item.panel.id, 'next'));
+    };
+  }
+
+  return null;
 }
