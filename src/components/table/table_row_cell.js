@@ -17,7 +17,7 @@ export const EuiTableRowCell = ({
   children,
   className,
   wrapText,
-  allowOverflow,
+  textOnly,
   ...rest,
 }) => {
   const classes = classNames('euiTableRowCell', className);
@@ -31,9 +31,9 @@ export const EuiTableRowCell = ({
     <td className={classes} {...rest} >
       <div className={contentClasses}>
         {
-          allowOverflow === true
-            ? children
-            : <span className='euiTableCellContent__text'>{children}</span>
+          textOnly === true
+            ? <span className='euiTableCellContent__text'>{children}</span>
+            : children
         }
       </div>
     </td>
@@ -49,5 +49,5 @@ EuiTableRowCell.propTypes = {
 
 EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
-  allowOverflow: false
+  textOnly: true
 };
