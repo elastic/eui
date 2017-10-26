@@ -15,6 +15,18 @@ To install the Elastic UI Framework, use the `npm` CLI.
 npm install @elastic/eui
 ```
 
+# Running locally
+
+You can run the documentation locally at [http://localhost:8020/](http://localhost:8030/) by running.
+
+```
+npm start
+```
+
+# Contributing
+
+You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 # License
 
 [Apache Licensed.][license] Read the [FAQ][faq] for details.

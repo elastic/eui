@@ -11,6 +11,8 @@
     "deploy": "now --public",
     "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
     "now-start": "serve docs/build",
+    "yo-component": "yo ./build/generator-eui/app/component.js",
+    "yo-doc": "yo ./build/generator-eui/app/documentation.js",
     "test": "./build/scripts/test.sh"
   },
   "now": {
@@ -72,6 +74,7 @@
     "svg-sprite-loader": "3.3.1",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.2",
-    "yeoman-generator": "2.0.1"
+    "yeoman-generator": "2.0.1",
+    "yo": "^2.0.0"
   }
 }
