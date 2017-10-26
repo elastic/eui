@@ -49,4 +49,5 @@ EuiTableRowCell.propTypes = {
 
 EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
+  allowOverflow: false
 };
