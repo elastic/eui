@@ -13,14 +13,14 @@ export default () => (
 
     <EuiButtonIcon
       size="small"
-      type="danger"
+      color="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
     />
 
     <EuiButtonIcon
       size="small"
-      type="disabled"
+      color="disabled"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
     />

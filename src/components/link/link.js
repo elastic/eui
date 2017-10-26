@@ -13,13 +13,15 @@ const colorsToClassNameMap = {
 
 export const COLORS = Object.keys(colorsToClassNameMap);
 
-export const EuiLink = ({ children, color, className, onClick, ...rest }) => {
+export const EuiLink = ({
+  children, type, color, className, onClick, ...rest }) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
 
   let link;
   if (onClick) {
     link = (
       <button
+        type={type}
         className={classes}
         onClick={onClick}
         {...rest}
@@ -45,4 +47,5 @@ export const EuiLink = ({ children, color, className, onClick, ...rest }) => {
 
 EuiLink.defaultProps = {
   color: 'primary',
+  type: 'button',
 };

@@ -31,6 +31,7 @@ export const EuiTableHeaderButton = ({
 
   return (
     <button
+      type="button"
       className={classes}
       {...rest}
     >

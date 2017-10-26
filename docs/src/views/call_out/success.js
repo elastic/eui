@@ -8,7 +8,7 @@ import {
 export default () => (
   <EuiCallOut
     title="Good news, everyone!"
-    type="success"
+    color="success"
     iconType="user"
   >
     <p>

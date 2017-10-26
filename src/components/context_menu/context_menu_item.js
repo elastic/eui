@@ -52,6 +52,7 @@ export const EuiContextMenuItem = ({
   return (
     <button
       className={classes}
+      type="button"
       {...rest}
     >
       <span className="euiContextMenu__itemLayout">

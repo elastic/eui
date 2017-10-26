@@ -7,7 +7,7 @@ import {
   EuiIcon,
 } from '../icon';
 
-const typesToClassNameMap = {
+const colorToClassNameMap = {
   default: 'euiBadge--default',
   primary: 'euiBadge--primary',
   secondary: 'euiBadge--secondary',
@@ -16,7 +16,7 @@ const typesToClassNameMap = {
   danger: 'euiBadge--danger',
 };
 
-export const TYPES = Object.keys(typesToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
 const iconSideToClassNameMap = {
   left: '',
@@ -25,8 +25,13 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiBadge = ({ children, type, iconType, iconSide, className, ...rest }) => {
-  const classes = classNames('euiBadge', typesToClassNameMap[type], iconSideToClassNameMap[iconSide], className);
+export const EuiBadge = ({ children, color, iconType, iconSide, className, ...rest }) => {
+  const classes = classNames(
+    'euiBadge',
+    colorToClassNameMap[color],
+    iconSideToClassNameMap[iconSide],
+    className
+  );
 
   let optionalIcon = null;
   if (iconType) {
@@ -55,10 +60,10 @@ EuiBadge.propTypes = {
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.string,
-  type: PropTypes.string,
+  color: PropTypes.string,
 };
 
 EuiBadge.defaultProps = {
-  type: 'default',
+  color: 'default',
   iconSide: 'left',
 };

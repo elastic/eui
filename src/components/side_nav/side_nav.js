@@ -34,6 +34,7 @@ export const EuiSideNav = ({
     >
       {/* Hidden from view, except in mobile */}
       <button
+        type="button"
         className="euiSideNav__mobileToggle euiLink"
         onClick={toggleOpenOnMobile}
       >
