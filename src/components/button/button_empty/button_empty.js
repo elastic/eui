@@ -92,7 +92,7 @@ EuiButtonEmpty.propTypes = {
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
-  type: PropTypes.oneOf(COLORS),
+  color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   flush: PropTypes.oneOf(FLUSH_TYPES),
   isDisabled: PropTypes.bool,

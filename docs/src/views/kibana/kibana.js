@@ -484,7 +484,6 @@ export default class extends Component {
     const toasts = [(
       <EuiToast
         title="Check it out, here's a really long title that will wrap within a narrower browser"
-        color="info"
         onClose={dismissToast}
       >
         <p>

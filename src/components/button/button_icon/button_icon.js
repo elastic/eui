@@ -59,7 +59,7 @@ EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
-  type: PropTypes.oneOf(COLORS),
+  color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
 };
 
