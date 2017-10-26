@@ -6,9 +6,7 @@ import { EuiSelect } from './select';
 
 describe('EuiSelect', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiSelect {...requiredProps} />
-    );
+    const component = render(<EuiSelect {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

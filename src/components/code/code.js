@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export const EuiCode = ({
   children,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiCode', className);
 

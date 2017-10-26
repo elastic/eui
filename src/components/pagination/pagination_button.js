@@ -12,7 +12,7 @@ export const EuiPaginationButton = ({
   isActive,
   isPlaceholder,
   hideOnMobile,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiPaginationButton', className, {
     'euiPaginationButton-isActive': isActive,

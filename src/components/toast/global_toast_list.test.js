@@ -6,9 +6,7 @@ import { EuiGlobalToastList } from './global_toast_list';
 
 describe('EuiGlobalToastList', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiGlobalToastList {...requiredProps} />
-    );
+    const component = render(<EuiGlobalToastList {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

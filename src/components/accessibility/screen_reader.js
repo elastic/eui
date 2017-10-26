@@ -7,12 +7,12 @@ export const EuiScreenReaderOnly = ({ children }) => {
   const classes = classNames('euiScreenReaderOnly', children.props.className);
 
   const props = Object.assign({}, children.props, {
-    className: classes
+    className: classes,
   });
 
   return cloneElement(children, props);
 };
 
 EuiScreenReaderOnly.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };

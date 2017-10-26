@@ -13,7 +13,7 @@ export const EuiHeaderAlert = ({
   date,
   text,
   title,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiHeaderAlert', className);
 

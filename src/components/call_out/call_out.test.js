@@ -6,9 +6,7 @@ import { EuiCallOut } from './call_out';
 
 describe('EuiCallOut', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiCallOut {...requiredProps} />
-    );
+    const component = render(<EuiCallOut {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

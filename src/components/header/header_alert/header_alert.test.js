@@ -6,9 +6,7 @@ import { EuiHeaderAlert } from './header_alert';
 
 describe('EuiHeaderAlert', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderAlert {...requiredProps} />
-    );
+    const component = render(<EuiHeaderAlert {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

@@ -21,5 +21,5 @@ export const EuiExpressionItem = ({
 
 EuiExpressionItem.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };

@@ -21,15 +21,13 @@ describe('EuiKeyboardAccessible', () => {
       console.error.restore();
     });
 
-    test(`when there's no child`, () => {
+    test('when there\'s no child', () => {
       const component = ( // eslint-disable-line no-unused-vars
         <EuiKeyboardAccessible />
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `needs to wrap an element with which the user interacts.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('needs to wrap an element with which the user interacts.');
     });
 
     test('when the child is a button', () => {
@@ -40,9 +38,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `doesn't need to be used on a button.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('doesn\'t need to be used on a button.');
     });
 
     test('when the child is a link with an href', () => {
@@ -53,12 +49,10 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `doesn't need to be used on a link if it has a href attribute.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('doesn\'t need to be used on a link if it has a href attribute.');
     });
 
-    test(`when the child doesn't have an onClick prop`, () => {
+    test('when the child doesn\'t have an onClick prop', () => {
       const component = ( // eslint-disable-line no-unused-vars
         <EuiKeyboardAccessible>
           <div />
@@ -66,12 +60,10 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `needs to wrap an element which has an onClick prop assigned.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('needs to wrap an element which has an onClick prop assigned.');
     });
 
-    test(`when the child's onClick prop isn't a function`, () => {
+    test('when the child\'s onClick prop isn\'t a function', () => {
       const component = ( // eslint-disable-line no-unused-vars
         <EuiKeyboardAccessible>
           <div onClick="notAFunction" />
@@ -79,12 +71,10 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `child's onClick prop needs to be a function.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('child\'s onClick prop needs to be a function.');
     });
 
-    test(`when the child has an onKeyDown prop`, () => {
+    test('when the child has an onKeyDown prop', () => {
       const component = ( // eslint-disable-line no-unused-vars
         <EuiKeyboardAccessible>
           <div onClick={() => {}} onKeyDown={() => {}} />
@@ -92,12 +82,10 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `child can't have an onKeyDown prop because the implementation will override it.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('child can\'t have an onKeyDown prop because the implementation will override it.');
     });
 
-    test(`when the child has an onKeyUp prop`, () => {
+    test('when the child has an onKeyUp prop', () => {
       const component = ( // eslint-disable-line no-unused-vars
         <EuiKeyboardAccessible>
           <div onClick={() => {}} onKeyUp={() => {}} />
@@ -105,13 +93,11 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `child can't have an onKeyUp prop because the implementation will override it.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain('child can\'t have an onKeyUp prop because the implementation will override it.');
     });
   });
 
-  describe(`doesn't throw an error`, () => {
+  describe('doesn\'t throw an error', () => {
     test('when the element is a link without an href', () => {
       const consoleStub = sinon.stub(console, 'error');
       const component = ( // eslint-disable-line no-unused-vars
@@ -127,69 +113,59 @@ describe('EuiKeyboardAccessible', () => {
 
   describe('adds accessibility attributes', () => {
     test('tabindex and role', () => {
-      const $button = render(
-        <EuiKeyboardAccessible>
-          <div onClick={() => {}} />
-        </EuiKeyboardAccessible>
-      );
+      const $button = render(<EuiKeyboardAccessible>
+        <div onClick={() => {}} />
+      </EuiKeyboardAccessible>);
 
       expect($button)
         .toMatchSnapshot();
     });
   });
 
-  describe(`doesn't override pre-existing accessibility attributes`, () => {
+  describe('doesn\'t override pre-existing accessibility attributes', () => {
     test('tabindex', () => {
-      const $button = render(
-        <EuiKeyboardAccessible>
-          <div onClick={() => {}} tabIndex="1" />
-        </EuiKeyboardAccessible>
-      );
+      const $button = render(<EuiKeyboardAccessible>
+        <div onClick={() => {}} tabIndex="1" />
+                             </EuiKeyboardAccessible>);
 
       expect($button)
         .toMatchSnapshot();
     });
 
     test('role', () => {
-      const $button = render(
-        <EuiKeyboardAccessible>
-          <div onClick={() => {}} role="submit" />
-        </EuiKeyboardAccessible>
-      );
+      const $button = render(<EuiKeyboardAccessible>
+        <div onClick={() => {}} role="submit" />
+                             </EuiKeyboardAccessible>);
 
       expect($button)
         .toMatchSnapshot();
     });
   });
 
-  describe(`calls onClick`, () => {
-    test(`on ENTER keyup`, () => {
+  describe('calls onClick', () => {
+    test('on ENTER keyup', () => {
       const onClickHandler = sinon.stub();
 
-      const $button = shallow(
-        <EuiKeyboardAccessible>
-          <div data-div onClick={onClickHandler} />
-        </EuiKeyboardAccessible>
-      );
+      const $button = shallow(<EuiKeyboardAccessible>
+        <div data-div onClick={onClickHandler} />
+                              </EuiKeyboardAccessible>);
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.ENTER
+        keyCode: keyCodes.ENTER,
       });
 
       sinon.assert.calledOnce(onClickHandler);
     });
 
-    test(`on SPACE keyup`, () => {
+    test('on SPACE keyup', () => {
       const onClickHandler = sinon.stub();
 
-      const $button = shallow(
-        <EuiKeyboardAccessible>
-          <div data-div onClick={onClickHandler} />
-        </EuiKeyboardAccessible>
-      );
+      const $button = shallow(<EuiKeyboardAccessible>
+        <div data-div onClick={onClickHandler} />
+      </EuiKeyboardAccessible>);
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.SPACE
+        keyCode: keyCodes.SPACE,
       });
 
       sinon.assert.calledOnce(onClickHandler);

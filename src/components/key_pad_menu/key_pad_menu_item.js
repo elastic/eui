@@ -19,7 +19,9 @@ const commonPropTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export const EuiKeyPadMenuItem = ({ href, label, children, className, ...rest }) => {
+export const EuiKeyPadMenuItem = ({
+  href, label, children, className, ...rest
+}) => {
   const classes = classNames('euiKeyPadMenuItem', className);
 
   return (
@@ -37,7 +39,9 @@ EuiKeyPadMenuItem.propTypes = Object.assign({
   href: PropTypes.string,
 }, commonPropTypes);
 
-export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, ...rest }) => {
+export const EuiKeyPadMenuItemButton = ({
+  onClick, label, children, className, ...rest
+}) => {
   const classes = classNames('euiKeyPadMenuItem', className);
 
   return (

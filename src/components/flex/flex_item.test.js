@@ -6,9 +6,7 @@ import { EuiFlexItem } from './flex_item';
 
 describe('EuiFlexItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFlexItem {...requiredProps} />
-    );
+    const component = render(<EuiFlexItem {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

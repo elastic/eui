@@ -6,9 +6,7 @@ import { EuiButtonEmpty } from './button_empty';
 
 describe('EuiButtonEmpty', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiButtonEmpty {...requiredProps} />
-    );
+    const component = render(<EuiButtonEmpty {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

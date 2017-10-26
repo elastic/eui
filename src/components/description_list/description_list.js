@@ -29,7 +29,7 @@ export const EuiDescriptionList = ({
   align,
   compressed,
   type,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiDescriptionList',
@@ -38,18 +38,16 @@ export const EuiDescriptionList = ({
     {
       'euiDescriptionList--compressed': compressed,
     },
-    className
+    className,
   );
 
   let childrenOrListItems = null;
   if (listItems) {
     childrenOrListItems = (
-      listItems.map((item) => {
-        return [
-          <EuiDescriptionListTitle>{item.title}</EuiDescriptionListTitle>,
-          <EuiDescriptionListDescription>{item.description}</EuiDescriptionListDescription>
-        ];
-      })
+      listItems.map(item => [
+        <EuiDescriptionListTitle>{item.title}</EuiDescriptionListTitle>,
+        <EuiDescriptionListDescription>{item.description}</EuiDescriptionListDescription>,
+      ])
     );
   } else {
     childrenOrListItems = children;

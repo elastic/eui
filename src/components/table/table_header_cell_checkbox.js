@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export const EuiTableHeaderCellCheckbox = ({
   children,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
 

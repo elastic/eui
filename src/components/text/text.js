@@ -8,12 +8,13 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const EuiText = ({ size, children, className, ...rest }) => {
-
+export const EuiText = ({
+  size, children, className, ...rest
+}) => {
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
-    className
+    className,
   );
 
   return (

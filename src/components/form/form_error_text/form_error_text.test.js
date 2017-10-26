@@ -6,9 +6,7 @@ import { EuiFormErrorText } from './form_error_text';
 
 describe('EuiFormErrorText', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFormErrorText {...requiredProps} />
-    );
+    const component = render(<EuiFormErrorText {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

@@ -18,18 +18,16 @@ beforeEach(() => {
 });
 
 test('renders EuiConfirmModal', () => {
-  const component = render(
-    <EuiConfirmModal
-      title="A confirmation modal"
-      onCancel={() => {}}
-      onConfirm={onConfirm}
-      cancelButtonText="Cancel Button Text"
-      confirmButtonText="Confirm Button Text"
-      {...requiredProps}
-    >
+  const component = render(<EuiConfirmModal
+    title="A confirmation modal"
+    onCancel={() => {}}
+    onConfirm={onConfirm}
+    cancelButtonText="Cancel Button Text"
+    confirmButtonText="Confirm Button Text"
+    {...requiredProps}
+  >
       This is a confirmation modal example
-    </EuiConfirmModal>
-  );
+                           </EuiConfirmModal>);
   expect(component).toMatchSnapshot();
 });
 

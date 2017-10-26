@@ -41,7 +41,7 @@ describe('align', () => {
 describe('wrapText', () => {
   test('is rendered when specified', () => {
     const component = (
-      <EuiTableRowCell wrapText={true} />
+      <EuiTableRowCell wrapText />
     );
 
     expect(render(component)).toMatchSnapshot();

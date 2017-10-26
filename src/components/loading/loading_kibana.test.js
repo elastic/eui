@@ -6,9 +6,7 @@ import { EuiLoadingKibana } from './loading_kibana';
 
 describe('EuiLoadingKibana', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiLoadingKibana {...requiredProps} />
-    );
+    const component = render(<EuiLoadingKibana {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

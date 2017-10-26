@@ -16,12 +16,12 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 export const EuiSpacer = ({
   className,
   size,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiSpacer',
     sizeToClassNameMap[size],
-    className
+    className,
   );
 
   return (

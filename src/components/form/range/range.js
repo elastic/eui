@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {
+export const EuiRange = ({
+  className, id, name, min, max, fullWidth, value, ...rest
+}) => {
   const classes = classNames(
     'euiRange',
     {
       'euiRange--fullWidth': fullWidth,
     },
-    className
+    className,
   );
 
   return (

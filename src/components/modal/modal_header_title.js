@@ -13,5 +13,5 @@ export function EuiModalHeaderTitle({ className, children, ...rest }) {
 
 EuiModalHeaderTitle.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };

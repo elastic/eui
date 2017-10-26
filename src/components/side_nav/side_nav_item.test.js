@@ -6,22 +6,18 @@ import { EuiSideNavItem } from './side_nav_item';
 
 describe('EuiSideNavItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiSideNavItem>
-        <button {...requiredProps} />
-      </EuiSideNavItem>
-    );
+    const component = render(<EuiSideNavItem>
+      <button {...requiredProps} />
+                             </EuiSideNavItem>);
 
     expect(component)
       .toMatchSnapshot();
   });
 
-  test(`preserves child's classes`, () => {
-    const component = render(
-      <EuiSideNavItem>
-        <button className="test" />
-      </EuiSideNavItem>
-    );
+  test('preserves child\'s classes', () => {
+    const component = render(<EuiSideNavItem>
+      <button className="test" />
+                             </EuiSideNavItem>);
 
     expect(component)
       .toMatchSnapshot();
@@ -29,22 +25,18 @@ describe('EuiSideNavItem', () => {
 
   describe('isSelected', () => {
     test('defaults to false', () => {
-      const component = render(
-        <EuiSideNavItem>
-          <button />
-        </EuiSideNavItem>
-      );
+      const component = render(<EuiSideNavItem>
+        <button />
+      </EuiSideNavItem>);
 
       expect(component)
         .toMatchSnapshot();
     });
 
     test('is rendered when specified as true', () => {
-      const component = render(
-        <EuiSideNavItem isSelected>
-          <button />
-        </EuiSideNavItem>
-      );
+      const component = render(<EuiSideNavItem isSelected>
+        <button />
+                               </EuiSideNavItem>);
 
       expect(component)
         .toMatchSnapshot();

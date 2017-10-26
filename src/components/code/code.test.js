@@ -6,9 +6,7 @@ import { EuiCode } from './code';
 
 describe('EuiCode', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiCode {...requiredProps} />
-    );
+    const component = render(<EuiCode {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

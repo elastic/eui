@@ -31,13 +31,15 @@ const justifyContentToClassNameMap = {
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
-export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, justifyContent, ...rest }) => {
+export const EuiFlexGroup = ({
+  children, className, gutterSize, alignItems, justifyContent, ...rest
+}) => {
   const classes = classNames(
     'euiFlexGroup',
     gutterSizeToClassNameMap[gutterSize],
     alignItemsToClassNameMap[alignItems],
     justifyContentToClassNameMap[justifyContent],
-    className
+    className,
   );
 
   return (

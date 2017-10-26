@@ -6,9 +6,7 @@ import { EuiFormLabel } from './form_label';
 
 describe('EuiFormLabel', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFormLabel {...requiredProps} />
-    );
+    const component = render(<EuiFormLabel {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

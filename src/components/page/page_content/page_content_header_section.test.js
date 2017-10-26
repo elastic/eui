@@ -6,9 +6,7 @@ import { EuiPageContentHeaderSection } from './page_content_header_section';
 
 describe('EuiPageContentHeaderSection', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPageContentHeaderSection {...requiredProps} />
-    );
+    const component = render(<EuiPageContentHeaderSection {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

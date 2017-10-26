@@ -21,12 +21,14 @@ const columnsToClassNameMap = {
 
 export const COLUMNS = Object.keys(columnsToClassNameMap).map(columns => parseInt(columns, 10));
 
-export const EuiFlexGrid = ({ children, className, gutterSize, columns, ...rest }) => {
+export const EuiFlexGrid = ({
+  children, className, gutterSize, columns, ...rest
+}) => {
   const classes = classNames(
     'euiFlexGrid',
     gutterSizeToClassNameMap[gutterSize],
     columnsToClassNameMap[columns],
-    className
+    className,
   );
 
   return (

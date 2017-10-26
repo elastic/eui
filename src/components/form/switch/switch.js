@@ -12,7 +12,7 @@ export const EuiSwitch = ({
   disabled,
   onChange,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiSwitch', className);
 

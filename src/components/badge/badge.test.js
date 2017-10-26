@@ -6,9 +6,7 @@ import { EuiBadge } from './badge';
 
 describe('EuiBadge', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiBadge {...requiredProps} />
-    );
+    const component = render(<EuiBadge {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

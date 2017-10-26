@@ -6,9 +6,7 @@ import { EuiPage } from './page';
 
 describe('EuiPage', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPage {...requiredProps} />
-    );
+    const component = render(<EuiPage {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

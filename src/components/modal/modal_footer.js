@@ -13,5 +13,5 @@ export function EuiModalFooter({ className, children, ...rest }) {
 
 EuiModalFooter.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };

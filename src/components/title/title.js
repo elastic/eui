@@ -11,12 +11,13 @@ const titleSizeToClassNameMap = {
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 
-export const EuiTitle = ({ size, children, className, ...rest }) => {
-
+export const EuiTitle = ({
+  size, children, className, ...rest
+}) => {
   const classes = classNames(
     'euiTitle',
     titleSizeToClassNameMap[size],
-    className
+    className,
   );
 
   const props = {

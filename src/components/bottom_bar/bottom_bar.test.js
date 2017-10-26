@@ -6,9 +6,7 @@ import { EuiBottomBar } from './bottom_bar';
 
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiBottomBar {...requiredProps} />
-    );
+    const component = render(<EuiBottomBar {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

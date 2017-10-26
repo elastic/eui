@@ -6,9 +6,7 @@ import { EuiDescriptionListDescription } from './description_list_description';
 
 describe('EuiDescriptionListDescription', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiDescriptionListDescription {...requiredProps} />
-    );
+    const component = render(<EuiDescriptionListDescription {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

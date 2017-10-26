@@ -11,7 +11,9 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
+export const EuiLoadingKibana = ({
+  children, size, className, ...rest
+}) => {
   const classes = classNames(
     'euiLoadingKibana',
     sizeToClassNameMap[size],

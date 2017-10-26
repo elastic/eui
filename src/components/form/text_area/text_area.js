@@ -15,14 +15,14 @@ export const EuiTextArea = ({
   className,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiTextArea',
     {
       'euiTextArea--fullWidth': fullWidth,
     },
-    className
+    className,
   );
 
   return (

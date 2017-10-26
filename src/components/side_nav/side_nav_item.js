@@ -14,7 +14,7 @@ export const EuiSideNavItem = ({ children, indent, isSelected }) => {
     {
       'euiSideNavItem-isSelected': isSelected,
       'euiSideNavItem--indent': indent,
-    }
+    },
   );
 
   return cloneElement(child, Object.assign({}, child.props, {

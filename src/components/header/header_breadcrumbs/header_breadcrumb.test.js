@@ -6,29 +6,23 @@ import { EuiHeaderBreadcrumb } from './header_breadcrumb';
 
 describe('EuiHeaderBreadcrumb', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderBreadcrumb {...requiredProps}>
+    const component = render(<EuiHeaderBreadcrumb {...requiredProps}>
         content
-      </EuiHeaderBreadcrumb>
-    );
+                             </EuiHeaderBreadcrumb>);
 
     expect(component)
       .toMatchSnapshot();
   });
 
   test('href is rendered', () => {
-    const component = render(
-      <EuiHeaderBreadcrumb href="#" />
-    );
+    const component = render(<EuiHeaderBreadcrumb href="#" />);
 
     expect(component)
       .toMatchSnapshot();
   });
 
   test('isActive is rendered', () => {
-    const component = render(
-      <EuiHeaderBreadcrumb isActive={true} />
-    );
+    const component = render(<EuiHeaderBreadcrumb isActive />);
 
     expect(component)
       .toMatchSnapshot();

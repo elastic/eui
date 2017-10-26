@@ -10,9 +10,7 @@ import {
 
 describe('EuiIcon', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiIcon type="search" {...requiredProps} />
-    );
+    const component = render(<EuiIcon type="search" {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();
@@ -20,18 +18,14 @@ describe('EuiIcon', () => {
 
   describe('title', () => {
     test('defaults to a humanized version of the type', () => {
-      const component = render(
-        <EuiIcon type="dashboardApp" />
-      );
+      const component = render(<EuiIcon type="dashboardApp" />);
 
       expect(component)
         .toMatchSnapshot();
     });
 
     test('is rendered', () => {
-      const component = render(
-        <EuiIcon type="search" title="a custom title" />
-      );
+      const component = render(<EuiIcon type="search" title="a custom title" />);
 
       expect(component)
         .toMatchSnapshot();
@@ -39,11 +33,9 @@ describe('EuiIcon', () => {
   });
 
   describe('renders size', () => {
-    SIZES.forEach(size => {
+    SIZES.forEach((size) => {
       test(size, () => {
-        const component = render(
-          <EuiIcon type="search" size={size} />
-        );
+        const component = render(<EuiIcon type="search" size={size} />);
 
         expect(component)
           .toMatchSnapshot();
@@ -52,11 +44,9 @@ describe('EuiIcon', () => {
   });
 
   describe('renders type', () => {
-    TYPES.forEach(type => {
+    TYPES.forEach((type) => {
       test(type, () => {
-        const component = render(
-          <EuiIcon type={type} />
-        );
+        const component = render(<EuiIcon type={type} />);
 
         expect(component)
           .toMatchSnapshot();

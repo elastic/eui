@@ -10,22 +10,18 @@ import {
 
 describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiKeyPadMenuItem label="Label" {...requiredProps}>
+    const component = render(<EuiKeyPadMenuItem label="Label" {...requiredProps}>
         Icon
-      </EuiKeyPadMenuItem>
-    );
+                             </EuiKeyPadMenuItem>);
 
     expect(component)
       .toMatchSnapshot();
   });
 
   test('renders href', () => {
-    const component = render(
-      <EuiKeyPadMenuItem label="Label" href="#">
+    const component = render(<EuiKeyPadMenuItem label="Label" href="#">
         Icon
-      </EuiKeyPadMenuItem>
-    );
+                             </EuiKeyPadMenuItem>);
 
     expect(component)
       .toMatchSnapshot();
@@ -34,25 +30,21 @@ describe('EuiKeyPadMenuItem', () => {
 
 describe('EuiKeyPadMenuItemButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiKeyPadMenuItemButton label="Label" {...requiredProps}>
+    const component = render(<EuiKeyPadMenuItemButton label="Label" {...requiredProps}>
         Icon
-      </EuiKeyPadMenuItemButton>
-    );
+                             </EuiKeyPadMenuItemButton>);
 
     expect(component)
       .toMatchSnapshot();
   });
 
   describe('onClick', () => {
-    test(`isn't called upon instantiation`, () => {
+    test('isn\'t called upon instantiation', () => {
       const onClickHandler = sinon.stub();
 
-      shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+      shallow(<EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
           Icon
-        </EuiKeyPadMenuItemButton>
-      );
+              </EuiKeyPadMenuItemButton>);
 
       sinon.assert.notCalled(onClickHandler);
     });
@@ -60,11 +52,9 @@ describe('EuiKeyPadMenuItemButton', () => {
     test('is called when the button is clicked', () => {
       const onClickHandler = sinon.stub();
 
-      const $button = shallow(
-        <EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
+      const $button = shallow(<EuiKeyPadMenuItemButton label="Label" onClick={onClickHandler}>
           Icon
-        </EuiKeyPadMenuItemButton>
-      );
+                              </EuiKeyPadMenuItemButton>);
 
       $button.simulate('click');
 

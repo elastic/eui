@@ -6,9 +6,7 @@ import { EuiFieldPassword } from './field_password';
 
 describe('EuiFieldPassword', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFieldPassword {...requiredProps} />
-    );
+    const component = render(<EuiFieldPassword {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

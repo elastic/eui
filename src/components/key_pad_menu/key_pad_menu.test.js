@@ -6,9 +6,7 @@ import { EuiKeyPadMenu } from './key_pad_menu';
 
 describe('EuiKeyPadMenu', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiKeyPadMenu {...requiredProps} />
-    );
+    const component = render(<EuiKeyPadMenu {...requiredProps} />);
 
     expect(component)
       .toMatchSnapshot();

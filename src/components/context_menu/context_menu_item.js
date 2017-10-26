@@ -11,7 +11,7 @@ export const EuiContextMenuItem = ({
   className,
   hasPanel,
   icon,
-  ...rest,
+  ...rest
 }) => {
   let iconInstance;
 
@@ -30,7 +30,7 @@ export const EuiContextMenuItem = ({
       default:
         // Assume it's already an instance of an icon.
         iconInstance = cloneElement(icon, {
-          className: 'euiContextMenu__icon'
+          className: 'euiContextMenu__icon',
         });
     }
   }
