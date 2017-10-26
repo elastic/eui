@@ -17,7 +17,7 @@ npm install @elastic/eui
 
 # Running locally
 
-You can run the documentation locally with:
+You can run the documentation locally at [http://localhost:8020/](http://localhost:8030/) by running.
 
 ```
 npm start
