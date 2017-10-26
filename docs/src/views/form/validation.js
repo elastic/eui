@@ -32,7 +32,7 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiButton fill type="danger" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton fill color="danger" onClick={this.onButtonClick.bind(this)}>
         Toggle errors
       </EuiButton>
     );

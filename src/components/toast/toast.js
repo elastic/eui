@@ -12,7 +12,7 @@ import {
 } from '..';
 
 const colorToClassNameMap = {
-  info: 'euiToast--info',
+  primary: 'euiToast--primary',
   success: 'euiToast--success',
   warning: 'euiToast--warning',
   danger: 'euiToast--danger',

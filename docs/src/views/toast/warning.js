@@ -7,6 +7,6 @@ import {
 export default () => (
   <EuiToast
     title="Sometimes a title is enough!"
-    type="warning"
+    color="warning"
   />
 );

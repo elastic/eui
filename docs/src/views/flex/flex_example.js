@@ -56,7 +56,7 @@ export default props => (
   <GuidePage title={props.route.name}>
     <EuiCallOut
       title="Coloring and padding exist for examples only"
-      type="warning"
+      color="warning"
     >
       <p>
         Padding and background-color are added to all the <EuiCode>FlexItem</EuiCode> components on this

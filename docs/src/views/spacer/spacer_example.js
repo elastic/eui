@@ -23,7 +23,7 @@ export default props => (
   <GuidePage title={props.route.name}>
     <EuiCallOut
       title="Try not to stuff these in loops"
-      type="warning"
+      color="warning"
     >
       <EuiText size="s">
         <p>

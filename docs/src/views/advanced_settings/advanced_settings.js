@@ -511,10 +511,10 @@ export default class extends Component {
             <EuiFlexItem grow={false}>
               <EuiFlexGroup justifyContent="flexEnd" gutterSize="small">
                 <EuiFlexItem grow={false}>
-                  <EuiButtonEmpty type="ghost" size="small" iconType="check">Save</EuiButtonEmpty>
+                  <EuiButtonEmpty color="ghost" size="small" iconType="check">Save</EuiButtonEmpty>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
-                  <EuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
+                  <EuiButtonEmpty color="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>

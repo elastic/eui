@@ -34,7 +34,7 @@ export const EuiForm = ({
       <EuiCallOut
         className="euiForm__errors"
         title="Please address the errors in your form."
-        type="danger"
+        color="danger"
       >
         {optionalErrors}
       </EuiCallOut>

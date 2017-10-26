@@ -7,7 +7,7 @@ import {
 export default () => (
   <EuiToast
     title="Icons should be rare"
-    type="info"
+    color="info"
     iconType="user"
     onClose={() => window.alert('Dismiss toast')}
   >

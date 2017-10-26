@@ -13,7 +13,7 @@ import {
 } from '..';
 
 const colorToClassNameMap = {
-  info: 'euiCallOut--info',
+  primary: 'euiCallOut--primary',
   success: 'euiCallOut--success',
   warning: 'euiCallOut--warning',
   danger: 'euiCallOut--danger',
@@ -71,5 +71,5 @@ EuiCallOut.propTypes = {
 };
 
 EuiCallOut.defaultProps = {
-  color: 'info',
+  color: 'primary',
 };

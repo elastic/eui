@@ -7,7 +7,7 @@ import {
 export default () => (
   <EuiToast
     title="This is an example of a poor toast title. It's way too long."
-    type="success"
+    color="success"
     iconType="user"
   >
     <p>

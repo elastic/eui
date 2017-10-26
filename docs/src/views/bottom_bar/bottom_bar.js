@@ -28,7 +28,7 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiButton type="primary" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton color="primary" onClick={this.onButtonClick.bind(this)}>
         Toggle appearance of the bottom bar
       </EuiButton>
     );
@@ -41,20 +41,20 @@ export default class extends Component {
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="small">
                 <EuiFlexItem>
-                  <EuiButton type="ghost" size="small" iconType="help">Help</EuiButton>
+                  <EuiButton color="ghost" size="small" iconType="help">Help</EuiButton>
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <EuiButton type="ghost" size="small" iconType="user">Add user</EuiButton>
+                  <EuiButton color="ghost" size="small" iconType="user">Add user</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="small">
                 <EuiFlexItem>
-                  <EuiButtonEmpty type="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
+                  <EuiButtonEmpty color="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <EuiButton type="primary" fill size="small" iconType="check">Save</EuiButton>
+                  <EuiButton color="primary" fill size="small" iconType="check">Save</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
