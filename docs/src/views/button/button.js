@@ -43,7 +43,7 @@ export default () => (
     <br/><br/>
 
     <EuiButton
-      type="secondary"
+      color="secondary"
       onClick={() => window.alert('Button clicked')}
     >
       Secondary
@@ -52,7 +52,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="secondary"
+      color="secondary"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -62,7 +62,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="secondary"
+      color="secondary"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
@@ -72,7 +72,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="secondary"
+      color="secondary"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
@@ -83,7 +83,7 @@ export default () => (
     <br/><br/>
 
     <EuiButton
-      type="warning"
+      color="warning"
       onClick={() => window.alert('Button clicked')}
     >
       Warning
@@ -92,7 +92,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="warning"
+      color="warning"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -102,7 +102,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="warning"
+      color="warning"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
@@ -112,7 +112,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="warning"
+      color="warning"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}
@@ -123,7 +123,7 @@ export default () => (
     <br/><br/>
 
     <EuiButton
-      type="danger"
+      color="danger"
       onClick={() => window.alert('Button clicked')}
     >
       Danger
@@ -132,7 +132,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="danger"
+      color="danger"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -142,7 +142,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="danger"
+      color="danger"
       size="small"
       onClick={() => window.alert('Button clicked')}
     >
@@ -152,7 +152,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      type="danger"
+      color="danger"
       size="small"
       fill
       onClick={() => window.alert('Button clicked')}

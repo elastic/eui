@@ -11,17 +11,17 @@ import {
   EuiText,
 } from '..';
 
-const typeToClassNameMap = {
-  info: 'euiToast--info',
+const colorToClassNameMap = {
+  primary: 'euiToast--primary',
   success: 'euiToast--success',
   warning: 'euiToast--warning',
   danger: 'euiToast--danger',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
-export const EuiToast = ({ title, type, iconType, onClose, children, className, ...rest }) => {
-  const classes = classNames('euiToast', typeToClassNameMap[type], className);
+export const EuiToast = ({ title, color, iconType, onClose, children, className, ...rest }) => {
+  const classes = classNames('euiToast', colorToClassNameMap[color], className);
   const headerClasses = classNames('euiToastHeader', {
     'euiToastHeader--withBody': children,
   });
@@ -44,6 +44,7 @@ export const EuiToast = ({ title, type, iconType, onClose, children, className, 
   if (onClose) {
     closeButton = (
       <button
+        type="button"
         className="euiToast__closeButton"
         aria-label="Dismiss toast"
         onClick={onClose}
@@ -89,6 +90,6 @@ export const EuiToast = ({ title, type, iconType, onClose, children, className, 
 EuiToast.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
-  type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
   onClose: PropTypes.func,
 };

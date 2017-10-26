@@ -458,7 +458,7 @@ export default class extends Component {
                   </EuiFlexItem>
                   <EuiFlexItem>
                     <EuiButton
-                      type="danger"
+                      color="danger"
                       onClick={this.onDeleteAllToasts.bind(this)}
                       size="small"
                     >
@@ -484,7 +484,6 @@ export default class extends Component {
     const toasts = [(
       <EuiToast
         title="Check it out, here's a really long title that will wrap within a narrower browser"
-        type="info"
         onClose={dismissToast}
       >
         <p>
@@ -498,7 +497,7 @@ export default class extends Component {
     ), (
       <EuiToast
         title="Download complete!"
-        type="success"
+        color="success"
         onClose={dismissToast}
       >
         <p>
@@ -508,7 +507,7 @@ export default class extends Component {
     ), (
       <EuiToast
         title="Logging you out soon, due to inactivity"
-        type="warning"
+        color="warning"
         iconType="user"
         onClose={dismissToast}
       >
@@ -522,7 +521,7 @@ export default class extends Component {
     ), (
       <EuiToast
         title="Oops, there was an error"
-        type="danger"
+        color="danger"
         iconType="help"
         onClose={dismissToast}
       >

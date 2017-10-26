@@ -8,7 +8,7 @@ import {
 export default () => (
   <EuiCallOut
     title="Sorry, there was an error"
-    type="danger"
+    color="danger"
     iconType="cross"
   >
     <p>

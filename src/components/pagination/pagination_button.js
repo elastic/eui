@@ -24,7 +24,7 @@ export const EuiPaginationButton = ({
     <EuiButtonEmpty
       className={classes}
       size="small"
-      type="text"
+      color="text"
       {...rest}
     >
       {children}

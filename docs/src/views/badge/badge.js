@@ -6,37 +6,37 @@ import {
 
 export default () => (
   <div>
-    <EuiBadge type="default">
+    <EuiBadge color="default">
       Default
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="primary">
+    <EuiBadge color="primary">
       Primary
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="secondary">
+    <EuiBadge color="secondary">
       Secondary
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="accent">
+    <EuiBadge color="accent">
       Accent
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="warning">
+    <EuiBadge color="warning">
       Warning
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="danger">
+    <EuiBadge color="danger">
       Danger
     </EuiBadge>
   </div>

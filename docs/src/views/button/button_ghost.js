@@ -9,7 +9,7 @@ import {
 export default () => (
   <div className="guideDemo__ghostBackground">
     <EuiButton
-      type="ghost"
+      color="ghost"
       onClick={() => window.alert('Button clicked')}
     >
       Primary
@@ -19,7 +19,7 @@ export default () => (
 
     <EuiButton
       fill
-      type="ghost"
+      color="ghost"
       size="small"
       iconType="check"
       onClick={() => window.alert('Button clicked')}
@@ -31,7 +31,7 @@ export default () => (
 
     <EuiButtonEmpty
       size="small"
-      type="ghost"
+      color="ghost"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -41,7 +41,7 @@ export default () => (
 
     <EuiButtonIcon
       size="small"
-      type="ghost"
+      color="ghost"
       iconType="user"
       onClick={() => window.alert('Button clicked')}
     />

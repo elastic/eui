@@ -338,7 +338,7 @@ export class Table extends Component {
     if (this.areAnyRowsSelected() > 0) {
       optionalActionButtons = (
         <EuiFlexItem grow={false}>
-          <EuiButton type="danger">Delete selected</EuiButton>
+          <EuiButton color="danger">Delete selected</EuiButton>
         </EuiFlexItem>
       );
     }
@@ -351,7 +351,7 @@ export class Table extends Component {
             <EuiFieldSearch fullWidth placeholder="Search..." />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiButton type="primary">Add new thing</EuiButton>
+            <EuiButton color="primary">Add new thing</EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
 

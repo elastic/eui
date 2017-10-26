@@ -12,7 +12,7 @@ export default () => (
 
     &nbsp;&nbsp;
 
-    <EuiBadge type="primary" iconType="user" iconSide="right">
+    <EuiBadge color="primary" iconType="user" iconSide="right">
       Secondary
     </EuiBadge>
   </div>
