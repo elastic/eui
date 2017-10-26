@@ -291,7 +291,7 @@ export class Table extends Component {
 
         if (column.isCheckbox) {
           return (
-            <EuiTableRowCellCheckbox key={column.id}>
+            <EuiTableRowCellCheckbox key={column.id} textOnly={ false }>
               <EuiCheckbox
                 id={`${item.id}-checkbox`}
                 checked={this.isItemSelected(item.id)}

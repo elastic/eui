@@ -17,6 +17,7 @@ export const EuiTableRowCell = ({
   children,
   className,
   wrapText,
+  textOnly,
   ...rest,
 }) => {
   const classes = classNames('euiTableRowCell', className);
@@ -29,9 +30,11 @@ export const EuiTableRowCell = ({
   return (
     <td className={classes} {...rest} >
       <div className={contentClasses}>
-        <span className="euiTableCellContent__text">
-          {children}
-        </span>
+        {
+          textOnly === true
+            ? <span className='euiTableCellContent__text'>{children}</span>
+            : children
+        }
       </div>
     </td>
   );
@@ -46,4 +49,5 @@ EuiTableRowCell.propTypes = {
 
 EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
+  textOnly: true
 };
