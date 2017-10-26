@@ -8,7 +8,7 @@ import {
 export default () => (
   <EuiCallOut
     title="Proceed with caution!"
-    type="warning"
+    color="warning"
     iconType="help"
   >
     <p>

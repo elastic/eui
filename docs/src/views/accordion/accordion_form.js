@@ -65,7 +65,7 @@ const buttonContent = (
 );
 
 const extraAction = (
-  <EuiButtonIcon iconType="cross" type="danger" className="euiAccordionForm__extraAction" />
+  <EuiButtonIcon iconType="cross" color="danger" className="euiAccordionForm__extraAction" />
 );
 
 export default () => (

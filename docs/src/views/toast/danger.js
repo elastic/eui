@@ -8,7 +8,7 @@ import {
 export default () => (
   <EuiToast
     title="Save failed"
-    type="danger"
+    color="danger"
   >
     <p>
       Check your form for validation errors.

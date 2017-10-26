@@ -7,27 +7,26 @@ import {
   EuiIcon,
 } from '../../icon';
 
-const typeToClassNameMap = {
+const colorToClassNameMap = {
   primary: 'euiButtonIcon--primary',
   danger: 'euiButtonIcon--danger',
   disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
-
+export const COLORS = Object.keys(colorToClassNameMap);
 
 export const EuiButtonIcon = ({
   className,
   iconType,
-  type,
+  color,
   isDisabled,
   ...rest,
 }) => {
 
   const classes = classNames(
     'euiButtonIcon',
-    typeToClassNameMap[type],
+    colorToClassNameMap[color],
     className,
   );
 
@@ -60,10 +59,11 @@ EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
-  type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
 };
 
 EuiButtonIcon.defaultProps = {
-  type: 'primary',
+  type: 'button',
+  color: 'primary',
 };

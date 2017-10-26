@@ -61,7 +61,7 @@ export default class extends Component {
         <div>
           <EuiCallOut
             title="Look up!"
-            type="warning"
+            color="warning"
             iconType="sortUp"
           >
             <p>

@@ -7,7 +7,7 @@ import {
   EuiIcon,
 } from '../../icon';
 
-const typeToClassNameMap = {
+const colorToClassNameMap = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
   disabled: 'euiButtonEmpty--disabled',
@@ -15,7 +15,7 @@ const typeToClassNameMap = {
   ghost: 'euiButtonEmpty--ghost',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
   small: 'euiButtonEmpty--small',
@@ -43,7 +43,7 @@ export const EuiButtonEmpty = ({
   className,
   iconType,
   iconSide,
-  type,
+  color,
   size,
   flush,
   isDisabled,
@@ -52,7 +52,7 @@ export const EuiButtonEmpty = ({
 
   const classes = classNames(
     'euiButtonEmpty',
-    typeToClassNameMap[type],
+    colorToClassNameMap[color],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
     flushTypeToClassNameMap[flush],
@@ -92,13 +92,14 @@ EuiButtonEmpty.propTypes = {
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
-  type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   flush: PropTypes.oneOf(FLUSH_TYPES),
   isDisabled: PropTypes.bool,
 };
 
 EuiButtonEmpty.defaultProps = {
+  type: 'button',
   iconSide: 'left',
-  type: 'primary',
+  color: 'primary',
 };

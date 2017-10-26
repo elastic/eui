@@ -54,6 +54,7 @@ export const EuiTableHeaderCell = ({
         {...rest}
       >
         <button
+          type="button"
           className={buttonClasses}
           onClick={onSort}
           aria-label={statefulAriaLabel}

@@ -8,7 +8,7 @@ import {
   EuiIcon,
 } from '../icon';
 
-const typeToClassNameMap = {
+const colorToClassNameMap = {
   primary: 'euiButton--primary',
   secondary: 'euiButton--secondary',
   warning: 'euiButton--warning',
@@ -16,7 +16,7 @@ const typeToClassNameMap = {
   ghost: 'euiButton--ghost',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
   small: 'euiButton--small',
@@ -37,7 +37,7 @@ export const EuiButton = ({
   className,
   iconType,
   iconSide,
-  type,
+  color,
   size,
   fill,
   isDisabled,
@@ -46,7 +46,7 @@ export const EuiButton = ({
 
   const classes = classNames(
     'euiButton',
-    typeToClassNameMap[type],
+    colorToClassNameMap[color],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
     className,
@@ -89,13 +89,14 @@ EuiButton.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
   fill: PropTypes.bool,
-  type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   isDisabled: PropTypes.bool,
 };
 
 EuiButton.defaultProps = {
+  type: 'button',
   iconSide: 'left',
-  type: 'primary',
+  color: 'primary',
   fill: false,
 };

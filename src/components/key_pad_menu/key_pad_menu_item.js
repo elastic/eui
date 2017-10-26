@@ -42,6 +42,7 @@ export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, .
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={classes}
       {...rest}

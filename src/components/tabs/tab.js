@@ -9,6 +9,7 @@ export const EuiTab = ({ isSelected, onClick, children, className, ...rest }) =>
 
   return (
     <button
+      type="button"
       className={classes}
       onClick={onClick}
       {...rest}

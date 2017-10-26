@@ -17,6 +17,7 @@ export const EuiExpressionItemButton = ({
   return (
     <button
       className={classes}
+      type="button"
       onClick={onClick}
       {...rest}
     >

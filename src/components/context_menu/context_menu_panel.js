@@ -32,6 +32,7 @@ export const EuiContextMenuPanel = ({
       panelTitle = (
         <button
           className="euiContextMenuPanelTitle"
+          type="button"
           onClick={onClose}
         >
           <span className="euiContextMenu__itemLayout">

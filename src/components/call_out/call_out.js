@@ -12,17 +12,17 @@ import {
   EuiText,
 } from '..';
 
-const typeToClassNameMap = {
-  info: 'euiCallOut--info',
+const colorToClassNameMap = {
+  primary: 'euiCallOut--primary',
   success: 'euiCallOut--success',
   warning: 'euiCallOut--warning',
   danger: 'euiCallOut--danger',
 };
 
-export const TYPES = Object.keys(typeToClassNameMap);
+export const COLORS = Object.keys(colorToClassNameMap);
 
-export const EuiCallOut = ({ title, type, iconType, children, className, ...rest }) => {
-  const classes = classNames('euiCallOut', typeToClassNameMap[type], className);
+export const EuiCallOut = ({ title, color, iconType, children, className, ...rest }) => {
+  const classes = classNames('euiCallOut', colorToClassNameMap[color], className);
 
   let headerIcon;
 
@@ -67,9 +67,9 @@ export const EuiCallOut = ({ title, type, iconType, children, className, ...rest
 EuiCallOut.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
-  type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
 };
 
 EuiCallOut.defaultProps = {
-  type: 'info',
+  color: 'primary',
 };

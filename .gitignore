@@ -4,3 +4,4 @@ docs/build/
 dist
 lib
 package-lock.json
+.eslintcache
