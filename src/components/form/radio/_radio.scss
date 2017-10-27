@@ -1,0 +1,70 @@
+.euiRadio {
+  position: relative;
+  height: $euiSizeL;
+
+  /**
+   * 1. Float above the visual radio and match its dimension, so that when users try to click it
+   *    they actually click this input.
+   */
+  .euiRadio__input {
+    position: absolute; /* 1 */
+    opacity: 0; /* 1 */
+    height: $euiSizeL; /* 1 */
+    width: $euiSizeL; /* 1 */
+    z-index: 1; /* 1 */
+    margin: 0; /* 1 */
+    cursor: pointer;
+
+    &:checked ~ .euiRadio__circle {
+      .euiRadio__check {
+        background-color: $euiTextColor;
+        // This path is relative to ~/docs/postcss.config.js, which uses
+        // the postcss-line-svg plugin.
+        mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
+      }
+    }
+
+    &:focus ~ .euiRadio__circle,
+    &:active:not(:disabled) ~ .euiRadio__circle {
+      background-color: $euiFocusBackgroundColor;
+      border-color: $euiColorPrimary;
+    }
+
+    &:disabled {
+
+      ~ .euiRadio__circle {
+        background-color: $euiColorLightestShade;
+      }
+
+      ~ .euiRadio__label {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .euiRadio__circle {
+    position: absolute;
+    height: $euiSizeL;
+    width: $euiSizeL;
+    border-radius: 50%;
+    border: $euiBorderThin;
+    background: $euiFormBackgroundColor;
+    z-index: 0;
+  }
+
+    .euiRadio__check {
+      height: 100%;
+      width: 100%;
+    }
+
+  .euiRadio__label {
+    position: absolute;
+    padding-left: $euiSizeXL;
+    line-height: $euiSizeL;
+    display: block;
+    font-weight: $euiFontWeightRegular;
+    z-index: 2;
+    font-size: $euiFontSizeS;
+    cursor: pointer;
+  }
+}

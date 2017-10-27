@@ -12,6 +12,10 @@ export { EuiFormErrorText } from './form_error_text';
 export { EuiFormHelpText } from './form_help_text';
 export { EuiFormLabel } from './form_label';
 export { EuiFormRow } from './form_row';
+export {
+  EuiRadio,
+  EuiRadioGroup,
+} from './radio';
 export { EuiRange } from './range';
 export { EuiSelect } from './select';
 export { EuiSwitch } from './switch';

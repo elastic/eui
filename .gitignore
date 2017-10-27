@@ -6,3 +6,5 @@ lib/
 package-lock.json
 npm-debug.log
 .eslintcache
+.yo-rc.json
+tmp/

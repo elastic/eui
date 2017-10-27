@@ -62,6 +62,8 @@ export {
   EuiFormHelpText,
   EuiFormLabel,
   EuiFormRow,
+  EuiRadio,
+  EuiRadioGroup,
   EuiRange,
   EuiSelect,
   EuiSwitch,
