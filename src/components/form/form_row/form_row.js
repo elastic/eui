@@ -44,7 +44,7 @@ export class EuiFormRow extends Component {
       hasEmptyLabelSpace,
       fullWidth,
       className,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(

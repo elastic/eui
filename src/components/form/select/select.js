@@ -17,7 +17,7 @@ export const EuiSelect = ({
   name,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiSelect',

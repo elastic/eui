@@ -6,7 +6,7 @@ export const EuiTable = ({
   children,
   className,
   compressed,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTable', className, {
     'euiTable--compressed': compressed,

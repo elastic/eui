@@ -15,7 +15,7 @@ export const EuiBottomBar = ({
   children,
   className,
   paddingSize,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiBottomBar',

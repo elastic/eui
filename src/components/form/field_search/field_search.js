@@ -18,7 +18,7 @@ export const EuiFieldSearch = ({
   value,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiFieldSearch',

@@ -19,7 +19,7 @@ export const EuiTextColor = ({
   children,
   color,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiTextColor',

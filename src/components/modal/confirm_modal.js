@@ -30,7 +30,7 @@ export function EuiConfirmModal({
   confirmButtonText,
   className,
   defaultFocusedButton,
-  ...rest,
+  ...rest
 }) {
   const classes = classnames('euiModal--confirmation', className);
 

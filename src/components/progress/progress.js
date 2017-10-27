@@ -36,7 +36,7 @@ export const EuiProgress = ({
   max,
   size,
   position,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiProgress',

@@ -21,7 +21,7 @@ export const EuiButtonIcon = ({
   iconType,
   color,
   isDisabled,
-  ...rest,
+  ...rest
 }) => {
 
   const classes = classNames(

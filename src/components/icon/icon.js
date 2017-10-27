@@ -154,7 +154,7 @@ export const EuiIcon = ({
   size,
   title,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiIcon', className, sizeToClassNameMap[size]);
 

@@ -11,7 +11,7 @@ export const EuiContextMenuItem = ({
   className,
   hasPanel,
   icon,
-  ...rest,
+  ...rest
 }) => {
   let iconInstance;
 

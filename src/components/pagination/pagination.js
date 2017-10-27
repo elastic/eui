@@ -12,7 +12,7 @@ export const EuiPagination = ({
   pageCount,
   activePage,
   onPageClick,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiPagination', className);
 

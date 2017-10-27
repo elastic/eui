@@ -24,7 +24,7 @@ export const EuiTableHeaderCell = ({
   isSortAscending,
   className,
   ariaLabel,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className);
 

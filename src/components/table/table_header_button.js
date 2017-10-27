@@ -11,7 +11,7 @@ export const EuiTableHeaderButton = ({
   children,
   className,
   iconType,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiTableHeaderButton', className);
 
