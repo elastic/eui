@@ -1,36 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classNames from 'classnames';
-
 import {
   ICON_TYPES,
   KuiIcon,
 } from '../icon';
 
-const typeToClassNameMap = {
-  primary: 'kuiButton--primary',
-  secondary: 'kuiButton--secondary',
-  warning: 'kuiButton--warning',
-  danger: 'kuiButton--danger',
-  ghost: 'kuiButton--ghost',
-};
-
-export const TYPES = Object.keys(typeToClassNameMap);
-
-const sizeToClassNameMap = {
-  small: 'kuiButton--small',
-  large: 'kuiButton--large',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-const iconSideToClassNameMap = {
-  left: '',
-  right: 'kuiButton--iconRight',
-};
-
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
+import {
+  buttonClass
+} from '../../services'
 
 export const KuiButton = ({
   children,
@@ -43,17 +21,7 @@ export const KuiButton = ({
   isDisabled,
   ...rest,
 }) => {
-
-  const classes = classNames(
-    'kuiButton',
-    typeToClassNameMap[type],
-    sizeToClassNameMap[size],
-    iconSideToClassNameMap[iconSide],
-    className,
-    {
-      'kuiButton--fill': fill,
-    },
-  );
+  const classes = buttonClass.get({ type, size, iconSide, className, fill });
 
   // Add an icon to the button if one exists.
   let buttonIcon;
@@ -87,10 +55,10 @@ KuiButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
-  iconSide: PropTypes.oneOf(ICON_SIDES),
+  iconSide: PropTypes.oneOf(buttonClass.ICON_SIDES),
   fill: PropTypes.bool,
-  type: PropTypes.oneOf(TYPES),
-  size: PropTypes.oneOf(SIZES),
+  type: PropTypes.oneOf(buttonClass.TYPES),
+  size: PropTypes.oneOf(buttonClass.SIZES),
   isDisabled: PropTypes.bool,
 };
 
