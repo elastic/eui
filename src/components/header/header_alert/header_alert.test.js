@@ -7,7 +7,11 @@ import { EuiHeaderAlert } from './header_alert';
 describe('EuiHeaderAlert', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiHeaderAlert {...requiredProps} />
+      <EuiHeaderAlert
+        {...requiredProps}
+        title="title"
+        date="date"
+      />
     );
 
     expect(component)

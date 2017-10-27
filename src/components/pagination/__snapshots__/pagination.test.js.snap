@@ -8,6 +8,7 @@ exports[`EuiPagination is rendered 1`] = `
 >
   <button
     class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+    type="button"
   >
     <span
       class="euiButtonEmpty__content"
@@ -30,6 +31,7 @@ exports[`EuiPagination is rendered 1`] = `
   </button>
   <button
     class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty--iconRight euiPaginationButton"
+    type="button"
   >
     <span
       class="euiButtonEmpty__content"

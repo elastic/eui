@@ -24,7 +24,9 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   </button>
   <p
     class="euiHeaderAlert__title"
-  />
+  >
+    title
+  </p>
   <p
     class="euiHeaderAlert__text"
   />
@@ -43,7 +45,9 @@ exports[`EuiHeaderAlert is rendered 1`] = `
     >
       <div
         class="euiHeaderAlert__date"
-      />
+      >
+        date
+      </div>
     </div>
   </div>
 </div>
