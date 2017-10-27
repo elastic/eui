@@ -17,9 +17,9 @@ export const EuiSideNavItem = ({ children, indent, isSelected }) => {
     }
   );
 
-  return cloneElement(child, Object.assign({}, child.props, {
+  return cloneElement(child, ({ ...child.props, ...{
     className: classes,
-  }));
+  } }));
 };
 
 EuiSideNavItem.propTypes = {

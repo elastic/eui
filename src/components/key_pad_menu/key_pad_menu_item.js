@@ -33,9 +33,9 @@ export const EuiKeyPadMenuItem = ({ href, label, children, className, ...rest })
   );
 };
 
-EuiKeyPadMenuItem.propTypes = Object.assign({
+EuiKeyPadMenuItem.propTypes = ({ ...{
   href: PropTypes.string,
-}, commonPropTypes);
+}, ...commonPropTypes });
 
 export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, ...rest }) => {
   const classes = classNames('euiKeyPadMenuItem', className);
@@ -52,6 +52,6 @@ export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, .
   );
 };
 
-EuiKeyPadMenuItemButton.propTypes = Object.assign({
+EuiKeyPadMenuItemButton.propTypes = ({ ...{
   onClick: PropTypes.func,
-}, commonPropTypes);
+}, ...commonPropTypes });

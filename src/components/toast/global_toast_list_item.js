@@ -9,9 +9,9 @@ export const EuiGlobalToastListItem = ({ isDismissed, children }) => {
     'euiGlobalToastListItem-isDismissed': isDismissed,
   });
 
-  return cloneElement(children, Object.assign({}, children.props, {
+  return cloneElement(children, ({ ...children.props, ...{
     className: classes,
-  }));
+  } }));
 };
 
 EuiGlobalToastListItem.propTypes = {
