@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   EuiButton,
+  EuiSpacer,
 } from '../../../../src/components/';
 
 export default () => (
@@ -200,5 +201,15 @@ export default () => (
       small and filled
     </EuiButton>
 
+    <EuiSpacer size="m" />
+
+    <div>
+      <EuiButton
+        size="small"
+        href="/"
+      >
+        Button that renders as a link pointing at home
+      </EuiButton>
+    </div>
   </div>
 );
