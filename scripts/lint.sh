@@ -7,4 +7,4 @@ eslint \
   --ignore-pattern **/test/* **/*.test.js \
   ./src .docs/src
 
-jest --config ./build/jest/config.json "$@"
+jest --config ./scripts/jest/config.json "$@"

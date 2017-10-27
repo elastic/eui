@@ -7,3 +7,235 @@ exports[`EuiContextMenu is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
+<div
+  class="euiContextMenu"
+  style="height: 0px;"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <button
+      class="euiContextMenuPanelTitle"
+      data-test-subj="contextMenuPanelTitleButton"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <svg
+          class="euiIcon euiContextMenu__icon euiIcon--medium"
+        >
+          <title>
+            arrow left icon
+          </title>
+          <use
+            xlink:href="#arrow_left"
+          />
+        </svg>
+        <span
+          class="euiContextMenu__text"
+        >
+          2
+        </span>
+      </span>
+    </button>
+    <div>
+      <div>
+        2
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 2`] = `
+<div
+  class="euiContextMenu"
+  style="height: 0px;"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txOutRight"
+    tabindex="0"
+  >
+    <button
+      class="euiContextMenuPanelTitle"
+      data-test-subj="contextMenuPanelTitleButton"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <svg
+          class="euiIcon euiContextMenu__icon euiIcon--medium"
+        >
+          <title>
+            arrow left icon
+          </title>
+          <use
+            xlink:href="#arrow_left"
+          />
+        </svg>
+        <span
+          class="euiContextMenu__text"
+        >
+          2
+        </span>
+      </span>
+    </button>
+    <div>
+      <div>
+        2
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txInRight"
+    tabindex="0"
+  >
+    <button
+      class="euiContextMenuPanelTitle"
+      data-test-subj="contextMenuPanelTitleButton"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <svg
+          class="euiIcon euiContextMenu__icon euiIcon--medium"
+        >
+          <title>
+            arrow left icon
+          </title>
+          <use
+            xlink:href="#arrow_left"
+          />
+        </svg>
+        <span
+          class="euiContextMenu__text"
+        >
+          1
+        </span>
+      </span>
+    </button>
+    <div>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            2a
+          </span>
+          <svg
+            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+          >
+            <title>
+              arrow right icon
+            </title>
+            <use
+              xlink:href="#arrow_right"
+            />
+          </svg>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            2b
+          </span>
+          <svg
+            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+          >
+            <title>
+              arrow right icon
+            </title>
+            <use
+              xlink:href="#arrow_right"
+            />
+          </svg>
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
+        >
+          <span
+            class="euiContextMenuItem__text"
+          >
+            2c
+          </span>
+          <svg
+            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+          >
+            <title>
+              arrow right icon
+            </title>
+            <use
+              xlink:href="#arrow_right"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiContextMenu props panels and initialPanelId renders the referenced panel 1`] = `
+<div
+  class="euiContextMenu"
+>
+  <div
+    class="euiContextMenuPanel euiContextMenu__panel"
+    tabindex="0"
+  >
+    <button
+      class="euiContextMenuPanelTitle"
+      data-test-subj="contextMenuPanelTitleButton"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <svg
+          class="euiIcon euiContextMenu__icon euiIcon--medium"
+        >
+          <title>
+            arrow left icon
+          </title>
+          <use
+            href="#arrow_left"
+          />
+        </svg>
+        <span
+          class="euiContextMenu__text"
+        >
+          2
+        </span>
+      </span>
+    </button>
+    <div>
+      <div>
+        2
+      </div>
+    </div>
+  </div>
+</div>
+`;

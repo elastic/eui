@@ -35,6 +35,8 @@ export {
 
 export {
   EuiContextMenu,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
 } from './context_menu';
 
 export {

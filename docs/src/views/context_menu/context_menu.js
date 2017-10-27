@@ -11,34 +11,19 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-function convertPanelTreeToMap(panel, map = {}) {
-  if (panel) {
-    map[panel.id] = panel;
+function flattenPanelTree(tree, array = []) {
+  array.push(tree);
 
-    if (panel.items) {
-      panel.items.forEach(item => convertPanelTreeToMap(item.panel, map));
-    }
+  if (tree.items) {
+    tree.items.forEach(item => {
+      if (item.panel) {
+        flattenPanelTree(item.panel, array);
+        item.panel = item.panel.id;
+      }
+    });
   }
 
-  return map;
-}
-
-function extractPreviousIds(panels) {
-  const idToPreviousPanelIdMap = {};
-
-  Object.keys(panels).forEach(panelId => {
-    const panel = panels[panelId];
-    if (Array.isArray(panel.items)) {
-      panel.items.forEach(item => {
-        const isCloseable = Boolean(item.panel);
-        if (isCloseable) {
-          idToPreviousPanelIdMap[item.panel.id] = panel.id;
-        }
-      });
-    }
-  });
-
-  return idToPreviousPanelIdMap;
+  return array;
 }
 
 export default class extends Component {
@@ -60,7 +45,7 @@ export default class extends Component {
             size="medium"
           />
         ),
-        onClick: () => window.alert('Show fullscreen'),
+        onClick: () => { this.closePopover(); window.alert('Show fullscreen'); },
       }, {
         name: 'Share this dasbhoard',
         icon: 'user',
@@ -70,17 +55,17 @@ export default class extends Component {
           items: [{
             name: 'PDF reports',
             icon: 'user',
-            onClick: () => window.alert('PDF reports'),
+            onClick: () => { this.closePopover(); window.alert('PDF reports'); },
           }, {
             name: 'CSV reports',
             icon: 'user',
-            onClick: () => window.alert('CSV reports'),
+            onClick: () => { this.closePopover(); window.alert('CSV reports'); },
           }, {
             name: 'Embed code',
             icon: 'user',
             panel: {
               id: 2,
-              title: 'Share this dashboard',
+              title: 'Embed code',
               content: (
                 <div style={{ padding: 16 }}>
                   <EuiFormRow
@@ -108,39 +93,42 @@ export default class extends Component {
           }, {
             name: 'Permalinks',
             icon: 'user',
-            onClick: () => window.alert('Permalinks'),
+            onClick: () => { this.closePopover(); window.alert('Permalinks'); },
           }],
         },
       }, {
         name: 'Edit / add panels',
         icon: 'user',
-        onClick: () => window.alert('Edit / add panels'),
+        onClick: () => { this.closePopover(); window.alert('Edit / add panels'); },
       }, {
         name: 'Display options',
         icon: 'user',
-        onClick: () => window.alert('Display options'),
+        onClick: () => { this.closePopover(); window.alert('Display options'); },
       }],
     };
 
-    this.idToPanelMap = convertPanelTreeToMap(panelTree);
-    this.idToPreviousPanelIdMap = extractPreviousIds(this.idToPanelMap);
+    this.panels = flattenPanelTree(panelTree);
   }
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
+  onButtonClick = () => {
+    this.setState(prevState => ({
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
+  };
 
-  closePopover() {
+  closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
     const button = (
-      <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+      <EuiButton
+        iconType="arrowDown"
+        iconSide="right"
+        onClick={this.onButtonClick}
+      >
         Click me to load a context menu
       </EuiButton>
     );
@@ -149,15 +137,14 @@ export default class extends Component {
       <EuiPopover
         button={button}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
+        closePopover={this.closePopover}
         panelPaddingSize="none"
         withTitle
+        anchorPosition="downLeft"
       >
         <EuiContextMenu
           initialPanelId={0}
-          isVisible={this.state.isPopoverOpen}
-          idToPanelMap={this.idToPanelMap}
-          idToPreviousPanelIdMap={this.idToPreviousPanelIdMap}
+          panels={this.panels}
         />
       </EuiPopover>
     );

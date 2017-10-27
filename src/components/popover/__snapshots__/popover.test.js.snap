@@ -1,29 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPopover anchorPosition defaults to center 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownCenter"
->
-  <button />
-</div>
-`;
-
-exports[`EuiPopover anchorPosition downRight is rendered 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownRight"
->
-  <button />
-</div>
-`;
-
-exports[`EuiPopover anchorPosition leftCenter is rendered 1`] = `
-<div
-  class="euiPopover euiPopover--anchorLeftCenter"
->
-  <button />
-</div>
-`;
-
 exports[`EuiPopover children is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
@@ -42,7 +18,7 @@ exports[`EuiPopover is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiPopover isOpen defaults to false 1`] = `
+exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
 >
@@ -50,7 +26,31 @@ exports[`EuiPopover isOpen defaults to false 1`] = `
 </div>
 `;
 
-exports[`EuiPopover isOpen renders true 1`] = `
+exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownRight"
+>
+  <button />
+</div>
+`;
+
+exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorLeftCenter"
+>
+  <button />
+</div>
+`;
+
+exports[`EuiPopover props isOpen defaults to false 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+</div>
+`;
+
+exports[`EuiPopover props isOpen renders true 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
 >
@@ -60,5 +60,66 @@ exports[`EuiPopover isOpen renders true 1`] = `
       class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
     />
   </div>
+</div>
+`;
+
+exports[`EuiPopover props ownFocus defaults to false 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props ownFocus renders true 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props panelClassName is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel test"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingSmall euiPanel--shadow euiPopover__panel"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props withTitle is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--withTitle"
+>
+  <button />
 </div>
 `;

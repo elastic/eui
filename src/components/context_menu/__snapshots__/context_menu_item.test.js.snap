@@ -12,6 +12,51 @@ exports[`EuiContextMenuItem is rendered 1`] = `
   >
     <span
       class="euiContextMenuItem__text"
+    >
+      Hello
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
+<button
+  class="euiContextMenuItem"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+    <svg
+      class="euiIcon euiContextMenu__arrow euiIcon--medium"
+    >
+      <title>
+        arrow right icon
+      </title>
+      <use
+        href="#arrow_right"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props icon is rendered 1`] = `
+<button
+  class="euiContextMenuItem"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenu__icon"
+    />
+    <span
+      class="euiContextMenuItem__text"
     />
   </span>
 </button>

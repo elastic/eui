@@ -1,8 +1,47 @@
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { render, mount } from 'enzyme';
+import {
+  requiredProps,
+  takeMountedSnapshot,
+} from '../../test';
 
 import { EuiContextMenu } from './context_menu';
+
+const panel2 = {
+  id: 2,
+  title: '2',
+  content: <div>2</div>,
+};
+
+const panel1 = {
+  id: 1,
+  title: '1',
+  items: [{
+    name: '2a',
+    panel: 2,
+  }, {
+    name: '2b',
+    panel: 2,
+  }, {
+    name: '2c',
+    panel: 2,
+  }],
+};
+
+const panel0 = {
+  id: 0,
+  title: '0',
+  items: [{
+    name: '1',
+    panel: 1,
+  }],
+};
+
+const panels = [
+  panel0,
+  panel1,
+  panel2,
+];
 
 describe('EuiContextMenu', () => {
   test('is rendered', () => {
@@ -12,5 +51,39 @@ describe('EuiContextMenu', () => {
 
     expect(component)
       .toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('panels and initialPanelId', () => {
+      it('renders the referenced panel', () => {
+        const component = render(
+          <EuiContextMenu
+            panels={panels}
+            initialPanelId={2}
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+
+      it('allows you to click the title button to go back to the previous panel', () => {
+        const component = mount(
+          <EuiContextMenu
+            panels={panels}
+            initialPanelId={2}
+          />
+        );
+
+        expect(takeMountedSnapshot(component))
+          .toMatchSnapshot();
+
+        // Navigate to a different panel.
+        component.find('[data-test-subj="contextMenuPanelTitleButton"]').simulate('click');
+
+        expect(takeMountedSnapshot(component))
+          .toMatchSnapshot();
+      });
+    });
   });
 });

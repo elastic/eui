@@ -4,12 +4,13 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
+import tabbable from 'tabbable';
 
 import { cascadingMenuKeyCodes } from '../../services';
 
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-import { EuiPanel, SIZES } from '../panel/panel';
+import { EuiPanel, SIZES } from '../../components/panel';
 
 const anchorPositionToClassNameMap = {
   'upCenter': 'euiPopover--anchorUpCenter',
@@ -46,6 +47,30 @@ export class EuiPopover extends Component {
     }
   };
 
+  updateFocus() {
+    // Wait for the DOM to update.
+    window.requestAnimationFrame(() => {
+      if (!this.panel) {
+        return;
+      }
+
+      // If we've already focused on something inside the panel, everything's fine.
+      if (this.panel.contains(document.activeElement)) {
+        return;
+      }
+
+      // Otherwise let's focus the first tabbable item and expedite input from the user.
+      const tabbableItems = tabbable(this.panel);
+      if (tabbableItems.length) {
+        tabbableItems[0].focus();
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.updateFocus();
+  }
+
   componentWillReceiveProps(nextProps) {
     // The popover is being opened.
     if (!this.props.isOpen && nextProps.isOpen) {
@@ -76,15 +101,26 @@ export class EuiPopover extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.updateFocus();
+  }
+
   componentWillUnmount() {
     clearTimeout(this.closingTransitionTimeout);
   }
+
+  panelRef = node => {
+    if (this.props.ownFocus) {
+      this.panel = node;
+    }
+  };
 
   render() {
     const {
       anchorPosition,
       button,
       isOpen,
+      ownFocus,
       withTitle,
       children,
       className,
@@ -109,17 +145,26 @@ export class EuiPopover extends Component {
     let panel;
 
     if (isOpen || this.state.isClosing) {
+      let tabIndex;
+      let initialFocus;
+
+      if (ownFocus) {
+        tabIndex = '0';
+        initialFocus = () => this.panel;
+      }
+
       panel = (
         <FocusTrap
           focusTrapOptions={{
             clickOutsideDeactivates: true,
-            fallbackFocus: () => this.panel,
+            initialFocus,
           }}
         >
           <EuiPanel
-            panelRef={node => { this.panel = node; }}
+            panelRef={this.panelRef}
             className={panelClasses}
             paddingSize={panelPaddingSize}
+            tabIndex={tabIndex}
             hasShadow
           >
             {children}
@@ -145,6 +190,7 @@ export class EuiPopover extends Component {
 
 EuiPopover.propTypes = {
   isOpen: PropTypes.bool,
+  ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
   button: PropTypes.node.isRequired,
@@ -156,6 +202,7 @@ EuiPopover.propTypes = {
 
 EuiPopover.defaultProps = {
   isOpen: false,
+  ownFocus: false,
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',
 };

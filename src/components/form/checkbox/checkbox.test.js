@@ -7,7 +7,7 @@ import { EuiCheckbox } from './checkbox';
 describe('EuiCheckbox', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCheckbox onChange={() => {}} {...requiredProps} />
+      <EuiCheckbox id="id" onChange={() => {}} {...requiredProps} />
     );
 
     expect(component)

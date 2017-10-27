@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiRadio is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiRadio testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <input
+    class="euiRadio__input"
+    id="id"
+    type="radio"
+  />
+  <div
+    class="euiRadio__circle"
+  >
+    <div
+      class="euiRadio__check"
+    />
+  </div>
+</div>
+`;
