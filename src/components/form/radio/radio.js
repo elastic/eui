@@ -9,7 +9,7 @@ export const EuiRadio = ({
   label,
   onChange,
   disabled,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiRadio',

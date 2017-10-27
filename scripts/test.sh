@@ -2,5 +2,5 @@
 
 set -e
 
-npm run lint-fix
+npm run lint
 npm run test-unit

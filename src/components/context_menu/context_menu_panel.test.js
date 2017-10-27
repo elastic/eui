@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow, mount } from 'enzyme';
+import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { findTestSubject, requiredProps } from '../../test';
 
@@ -13,28 +13,30 @@ import {
 
 import { keyCodes } from '../../services';
 
-const items = [(
-  <EuiContextMenuItem
-    key="A"
-    data-test-subj="itemA"
-  >
-    Option A
-  </EuiContextMenuItem>
-), (
-  <EuiContextMenuItem
-    key="B"
-    data-test-subj="itemB"
-  >
-    Option B
-  </EuiContextMenuItem>
-), (
-  <EuiContextMenuItem
-    key="C"
-    data-test-subj="itemC"
-  >
-    Option C
-  </EuiContextMenuItem>
-)];
+const items = [
+  (
+    <EuiContextMenuItem
+      key="A"
+      data-test-subj="itemA"
+    >
+      Option A
+    </EuiContextMenuItem>
+  ), (
+    <EuiContextMenuItem
+      key="B"
+      data-test-subj="itemB"
+    >
+      Option B
+    </EuiContextMenuItem>
+  ), (
+    <EuiContextMenuItem
+      key="C"
+      data-test-subj="itemC"
+    >
+      Option C
+    </EuiContextMenuItem>
+  )
+];
 
 describe('EuiContextMenuPanel', () => {
   test('is rendered', () => {

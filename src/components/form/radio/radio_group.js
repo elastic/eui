@@ -9,7 +9,7 @@ export const EuiRadioGroup = ({
   onChange,
   className,
   disabled,
-  ...rest,
+  ...rest
 }) => (
   <div className={className} {...rest}>
     {options.map((option, index) => {

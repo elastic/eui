@@ -24,7 +24,7 @@ export class EuiContextMenuItem extends Component {
       hasPanel,
       icon,
       buttonRef,
-      ...rest,
+      ...rest
     } = this.props;
 
     let iconInstance;
