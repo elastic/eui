@@ -30,12 +30,15 @@
       border-color: $euiColorPrimary;
     }
 
-    &:disabled ~ .euiRadio__circle {
-      background-color: $euiColorLightestShade;
+    &:disabled {
 
-    }
-    &:disabled ~ .euiRadio__label {
-      cursor: not-allowed;
+      ~ .euiRadio__circle {
+        background-color: $euiColorLightestShade;
+      }
+
+      ~ .euiRadio__label {
+        cursor: not-allowed;
+      }
     }
   }
 
