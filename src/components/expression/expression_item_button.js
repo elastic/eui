@@ -29,8 +29,8 @@ export const EuiExpressionItemButton = ({
 
 EuiExpressionItemButton.propTypes = {
   className: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
+  value: PropTypes.node.isRequired,
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };

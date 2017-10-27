@@ -158,10 +158,10 @@ export const EuiIcon = ({
 }) => {
   const classes = classNames('euiIcon', className, sizeToClassNameMap[size]);
 
-  const titleElement =
-    title
-      ? <title>{title}</title>
-      : <title>{`${humanizeCamelCase(type)} icon`}</title>;
+  const titleText = title
+    ? title
+    : `${humanizeCamelCase(type)} icon`;
+
   const svgReference = <use xlinkHref={`#${typeToIconMap[type]}`} />;
 
   return (
@@ -169,7 +169,7 @@ export const EuiIcon = ({
       className={classes}
       {...rest}
     >
-      {titleElement}
+      <title>{titleText}</title>
       {svgReference}
     </svg>
   );

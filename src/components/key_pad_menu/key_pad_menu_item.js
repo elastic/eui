@@ -16,7 +16,7 @@ const renderContent = (children, label) => (
 
 const commonPropTypes = {
   children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
 };
 
 export const EuiKeyPadMenuItem = ({ href, label, children, className, ...rest }) => {

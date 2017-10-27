@@ -58,7 +58,7 @@ export const EuiSwitch = ({
 EuiSwitch.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
 };

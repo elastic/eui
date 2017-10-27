@@ -77,7 +77,7 @@ export const EuiContextMenuPanel = ({
 EuiContextMenuPanel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.node,
   onClose: PropTypes.func,
   panelRef: PropTypes.func,
   transitionType: PropTypes.oneOf(['in', 'out']),
