@@ -21,7 +21,6 @@ import {
 function mapStateToProps(state, ownProps) {
   return {
     routes: ownProps.routes,
-    isCodeViewerOpen: getIsCodeViewerOpen(state),
     isSandbox: getIsSandbox(state),
     source: getSource(state),
     title: getTitle(state),
