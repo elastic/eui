@@ -40,9 +40,10 @@ export const EuiHeaderAlert = ({
 };
 
 EuiHeaderAlert.propTypes = {
+  action: PropTypes.node,
   children: PropTypes.node,
   className: PropTypes.string,
-  date: PropTypes.string.isRequired,
-  text: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  date: PropTypes.node.isRequired,
+  text: PropTypes.node,
+  title: PropTypes.node.isRequired,
 };

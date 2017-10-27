@@ -64,7 +64,7 @@ EuiCheckbox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.node,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(TYPES),
   disabled: PropTypes.bool,

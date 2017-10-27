@@ -64,5 +64,5 @@ EuiSideNav.propTypes = {
   toggleOpenOnMobile: PropTypes.func,
   isOpenOnMobile: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),
-  mobileTitle: PropTypes.string,
+  mobileTitle: PropTypes.node,
 };

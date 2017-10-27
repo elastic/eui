@@ -94,9 +94,9 @@ export function EuiConfirmModal({
 
 EuiConfirmModal.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.string,
-  cancelButtonText: PropTypes.string,
-  confirmButtonText: PropTypes.string,
+  title: PropTypes.node,
+  cancelButtonText: PropTypes.node,
+  confirmButtonText: PropTypes.node,
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
   className: PropTypes.string,

@@ -82,7 +82,7 @@ let EuiExpressionItemPopover = ({
 
 EuiExpressionItemPopover.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   isVisible: PropTypes.bool.isRequired,
   children: PropTypes.node,
   align: PropTypes.oneOf(POPOVER_ALIGN),

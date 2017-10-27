@@ -114,7 +114,7 @@ export class EuiFormRow extends Component {
 EuiFormRow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   id: PropTypes.string,
   isInvalid: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),

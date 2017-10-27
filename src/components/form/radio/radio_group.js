@@ -32,7 +32,7 @@ EuiRadioGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string,
+      label: PropTypes.node,
     }),
   ).isRequired,
   idSelected: PropTypes.string,
