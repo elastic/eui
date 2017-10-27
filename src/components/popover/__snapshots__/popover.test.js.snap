@@ -42,33 +42,6 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiPopover props isFocusable defaults to false 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownCenter"
->
-  <button />
-  <div>
-    <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
-    />
-  </div>
-</div>
-`;
-
-exports[`EuiPopover props isFocusable renders true 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownCenter"
->
-  <button />
-  <div>
-    <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
@@ -85,6 +58,33 @@ exports[`EuiPopover props isOpen renders true 1`] = `
   <div>
     <div
       class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props ownFocus defaults to false 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props ownFocus renders true 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <button />
+  <div>
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+      tabindex="0"
     />
   </div>
 </div>
