@@ -32,7 +32,7 @@ EuiCheckboxGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string,
+      label: PropTypes.node,
     }),
   ).isRequired,
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool).isRequired,
