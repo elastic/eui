@@ -1,3 +1,6 @@
 {
   "extends": "@elastic/eslint-config-kibana",
+  "env": {
+    "jest": true
+  }
 }
