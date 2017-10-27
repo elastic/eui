@@ -15,6 +15,7 @@ export const EuiSelect = ({
   options,
   id,
   name,
+  inputRef,
   isInvalid,
   fullWidth,
   ...rest
@@ -38,6 +39,7 @@ export const EuiSelect = ({
           id={id}
           name={name}
           className={classes}
+          ref={inputRef}
           {...rest}
         >
           {options.map((option, index) => {
@@ -55,6 +57,7 @@ EuiSelect.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  inputRef: PropTypes.func,
 };
 
 EuiSelect.defaultProps = {
