@@ -32,7 +32,7 @@ export const EuiTableRowCell = ({
       <div className={contentClasses}>
         {
           textOnly === true
-            ? <span className='euiTableCellContent__text'>{children}</span>
+            ? <span className="euiTableCellContent__text">{children}</span>
             : children
         }
       </div>

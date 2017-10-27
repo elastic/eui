@@ -6,14 +6,15 @@
   "module": "src",
   "jsnext:main": "src",
   "scripts": {
-    "start": "./build/scripts/docs-dev.sh",
-    "build": "./build/scripts/compile-clean.sh && ./build/scripts/compile-scss.sh && ./build/scripts/compile-eui.sh",
-    "deploy": "now --public",
-    "now-build": "./build/scripts/compile-scss.sh && ./build/scripts/docs-build.sh",
-    "now-start": "serve docs/build",
-    "yo-component": "yo ./build/generator-eui/app/component.js",
-    "yo-doc": "yo ./build/generator-eui/app/documentation.js",
-    "test": "./build/scripts/test.sh"
+    "start": "./scripts/docs-dev.sh",
+    "build-docs": "./scripts/docs-build.sh",
+    "build": "./scripts/compile.sh",
+    "lint": "./scripts/lint.sh",
+    "lint-fix": "./scripts/lint-fix.sh",
+    "test": "./scripts/test.sh",
+    "yo-component": "yo ./generator-eui/app/component.js",
+    "yo-doc": "yo ./generator-eui/app/documentation.js",
+    "deploy": "now --public"
   },
   "now": {
     "name": "elastic-eui",
@@ -34,6 +35,7 @@
     "uuid": "3.1.0"
   },
   "devDependencies": {
+    "@elastic/eslint-config-kibana": "0.13.0",
     "autoprefixer": "7.1.5",
     "babel-cli": "6.26.0",
     "babel-loader": "7.1.2",
@@ -48,9 +50,11 @@
     "enzyme": "3.1.0",
     "enzyme-adapter-react-16": "1.0.2",
     "eslint": "4.9.0",
-    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-babel": "4.1.2",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-mocha": "4.11.0",
+    "eslint-plugin-prefer-object-spread": "1.2.1",
     "eslint-plugin-react": "7.4.0",
     "file-loader": "1.1.5",
     "highlight.js": "9.12.0",

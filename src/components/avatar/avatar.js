@@ -29,7 +29,7 @@ export const EuiAvatar = ({
   let optionalInitial;
   if (name && !imageUrl) {
     optionalInitial = (
-      <span aria-hidden="true">{name.substring(0,1)}</span>
+      <span aria-hidden="true">{name.substring(0, 1)}</span>
     );
   }
 
