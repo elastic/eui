@@ -5,3 +5,5 @@ dist
 lib
 package-lock.json
 .eslintcache
+.yo-rc.json
+tmp/

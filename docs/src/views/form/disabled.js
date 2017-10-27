@@ -9,6 +9,7 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiRange,
+  EuiRadioGroup,
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
@@ -40,6 +41,17 @@ export default class extends Component {
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
       },
+      radios: [{
+        id: `${idPrefix}4`,
+        label: 'Option one',
+      }, {
+        id: `${idPrefix}5`,
+        label: 'Option two is selected by default',
+      }, {
+        id: `${idPrefix}6`,
+        label: 'Option three',
+      }],
+      radioIdSelected: `${idPrefix}5`,
     };
   }
 
@@ -56,6 +68,12 @@ export default class extends Component {
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
+    });
+  }
+
+  onRadioChange = optionId => {
+    this.setState({
+      radioIdSelected: optionId,
     });
   }
 
@@ -136,6 +154,16 @@ export default class extends Component {
           options={this.state.checkboxes}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onCheckboxChange}
+          disabled
+        />
+
+        <br />
+        <br />
+
+        <EuiRadioGroup
+          options={this.state.radios}
+          idSelected={this.state.radioIdSelected}
+          onChange={this.onRadioChange}
           disabled
         />
       </div>

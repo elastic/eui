@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { EuiCheckbox } from './checkbox';
+import { EuiRadio } from './radio';
 
-export const EuiCheckboxGroup = ({
+export const EuiRadioGroup = ({
   options,
-  idToSelectedMap,
+  idSelected,
   onChange,
   className,
   disabled,
@@ -14,11 +14,11 @@ export const EuiCheckboxGroup = ({
   <div className={className} {...rest}>
     {options.map((option, index) => {
       return (
-        <EuiCheckbox
-          className="euiCheckboxGroup__item"
+        <EuiRadio
+          className="euiRadioGroup__item"
           key={index}
           id={option.id}
-          checked={idToSelectedMap[option.id]}
+          checked={option.id === idSelected}
           label={option.label}
           disabled={disabled}
           onChange={onChange.bind(null, option.id)}
@@ -28,18 +28,17 @@ export const EuiCheckboxGroup = ({
   </div>
 );
 
-EuiCheckboxGroup.propTypes = {
+EuiRadioGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.string,
     }),
   ).isRequired,
-  idToSelectedMap: PropTypes.objectOf(PropTypes.bool).isRequired,
+  idSelected: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-EuiCheckboxGroup.defaultProps = {
+EuiRadioGroup.defaultProps = {
   options: [],
-  idToSelectedMap: {},
 };

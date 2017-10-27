@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const typeToClassNameMap = {
-  inList: 'euiCheckbox--inList',
-};
-
-export const TYPES = Object.keys(typeToClassNameMap);
-
-export const EuiCheckbox = ({
+export const EuiRadio = ({
   className,
   id,
   checked,
   label,
   onChange,
-  type,
   disabled,
   ...rest,
 }) => {
   const classes = classNames(
-    'euiCheckbox',
-    typeToClassNameMap[type],
+    'euiRadio',
     className
   );
 
@@ -29,7 +21,7 @@ export const EuiCheckbox = ({
   if (label) {
     optionalLabel = (
       <label
-        className="euiCheckbox__label"
+        className="euiRadio__label"
         htmlFor={id}
       >
         {label}
@@ -43,16 +35,16 @@ export const EuiCheckbox = ({
       {...rest}
     >
       <input
-        className="euiCheckbox__input"
-        type="checkbox"
+        className="euiRadio__input"
+        type="radio"
         id={id}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
       />
 
-      <div className="euiCheckbox__square">
-        <div className="euiCheckbox__check" />
+      <div className="euiRadio__circle">
+        <div className="euiRadio__check" />
       </div>
 
       {optionalLabel}
@@ -60,17 +52,16 @@ export const EuiCheckbox = ({
   );
 };
 
-EuiCheckbox.propTypes = {
+EuiRadio.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(TYPES),
   disabled: PropTypes.bool,
 };
 
-EuiCheckbox.defaultProps = {
+EuiRadio.defaultProps = {
   checked: false,
   disabled: false,
 };
