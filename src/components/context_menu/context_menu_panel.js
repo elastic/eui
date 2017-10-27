@@ -105,8 +105,8 @@ export class EuiContextMenuPanel extends Component {
           this.setState({
             focusedItemIndex:
               (focusedItemIndex >= 0 && focusedItemIndex < this.menuItems.length)
-              ? focusedItemIndex
-              : undefined,
+                ? focusedItemIndex
+                : undefined,
           });
           break;
 
@@ -259,7 +259,7 @@ export class EuiContextMenuPanel extends Component {
       initialFocusedItemIndex, // eslint-disable-line no-unused-vars
       showNextPanel, // eslint-disable-line no-unused-vars
       showPreviousPanel, // eslint-disable-line no-unused-vars
-      ...rest,
+      ...rest
     } = this.props;
     let panelTitle;
 
@@ -299,8 +299,8 @@ export class EuiContextMenuPanel extends Component {
 
     const classes = classNames('euiContextMenuPanel', className, (
       this.state.isTransitioning && transitionDirectionAndTypeToClassNameMap[transitionDirection]
-      ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType]
-      : undefined
+        ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType]
+        : undefined
     ));
 
     const content = items.length
