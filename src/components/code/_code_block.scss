@@ -1,0 +1,38 @@
+.euiCodeBlock {
+  overflow: auto;
+
+  .euiCodeBlock__pre {
+    white-space: pre-wrap;
+  }
+
+  .hljs {
+    display: block;
+    line-height: $euiLineHeight;
+    font-family: $euiCodeFontFamily;
+    font-weight: $euiFontWeightRegular;
+  }
+
+  &.euiCodeBlock--fontSmall {
+    font-size: $euiFontSizeXS;
+  }
+
+  &.euiCodeBlock--fontMedium {
+    font-size: $euiFontSizeS;
+  }
+
+  &.euiCodeBlock--fontLarge {
+    font-size: $euiFontSize;
+  }
+
+  &.euiCodeBlock--paddingSmall {
+    padding: $euiSizeS;
+  }
+
+  &.euiCodeBlock--paddingMedium {
+    padding: $euiSize;
+  }
+
+  &.euiCodeBlock--paddingLarge {
+    padding: $euiSizeL;
+  }
+}

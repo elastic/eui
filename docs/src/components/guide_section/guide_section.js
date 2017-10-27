@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import hljs from 'highlight.js';
-
 import {
   EuiText,
   EuiTitle,
   EuiSpacer,
   EuiTabs,
   EuiTab,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import Slugify from '../../services/string/slugify';
@@ -56,16 +55,6 @@ export class GuideSection extends Component {
     this.props.unregisterSection(this.getId());
   }
 
-  componentDidUpdate() {
-    if (this.refs.html) {
-      hljs.highlightBlock(this.refs.html);
-    }
-
-    if (this.refs.javascript) {
-      hljs.highlightBlock(this.refs.javascript);
-    }
-  }
-
   renderTabs() {
     return this.tabs.map((tab,index) => (
       <EuiTab
@@ -89,14 +78,13 @@ export class GuideSection extends Component {
     if (code && (codeClass === this.state.selectedTabId)) {
       return (
         <div key={type} ref={type}>
-          <pre style={{ whiteSpace: 'pre-wrap' }}>
-            <code
-              ref={codeClass}
-              className={codeClass}
-            >
-              {code}
-            </code>
-          </pre>
+          <EuiCodeBlock
+            language={codeClass}
+            color="dark"
+            overflowHeight={400}
+          >
+            {code}
+          </EuiCodeBlock>
         </div>
       );
     }
