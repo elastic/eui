@@ -5,7 +5,7 @@
         "browsers": [
           "last 2 versions",
           "> 5%",
-          "Safari 7"
+          "Safari 7" // for PhantomJS support
         ]
       },
       "useBuiltIns": true
@@ -14,8 +14,10 @@
   ],
   "plugins": [
     "add-module-exports",
+    // stage 3
     "transform-async-generator-functions",
     "transform-object-rest-spread",
+    // stage 2
     "transform-class-properties"
   ]
 }
