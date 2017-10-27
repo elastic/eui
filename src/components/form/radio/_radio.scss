@@ -1,6 +1,6 @@
 .euiRadio {
   position: relative;
-  height: $euiSizeL;
+  min-height: $euiSizeL;
 
   /**
    * 1. Float above the visual radio and match its dimension, so that when users try to click it
