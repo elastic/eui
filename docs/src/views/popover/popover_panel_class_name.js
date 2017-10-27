@@ -31,7 +31,7 @@ export default class extends Component {
   render() {
     return (
       <EuiPopover
-        isFocusable
+        ownFocus
         button={(
           <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
             Turn padding off and apply a custom class

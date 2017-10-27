@@ -176,7 +176,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
                   downLeft
@@ -191,7 +191,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
                   downCenter
@@ -206,7 +206,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
                   downRight
@@ -226,7 +226,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
                   upLeft
@@ -241,7 +241,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick5.bind(this)}>
                   upCenter
@@ -256,7 +256,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick6.bind(this)}>
                   upRight
@@ -276,7 +276,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick7.bind(this)}>
                   leftUp
@@ -296,7 +296,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick8.bind(this)}>
                   leftCenter
@@ -311,7 +311,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick9.bind(this)}>
                   leftDown
@@ -336,7 +336,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick10.bind(this)}>
                   rightUp
@@ -356,7 +356,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick11.bind(this)}>
                   rightCenter
@@ -371,7 +371,7 @@ export default class extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
-              isFocusable
+              ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick12.bind(this)}>
                   rightDown

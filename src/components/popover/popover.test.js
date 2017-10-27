@@ -135,7 +135,7 @@ describe('EuiPopover', () => {
       });
     });
 
-    describe('isFocusable', () => {
+    describe('ownFocus', () => {
       test('defaults to false', () => {
         const component = render(
           <EuiPopover
@@ -153,7 +153,7 @@ describe('EuiPopover', () => {
         const component = render(
           <EuiPopover
             isOpen
-            isFocusable
+            ownFocus
             button={<button />}
             closePopover={() => {}}
           />
