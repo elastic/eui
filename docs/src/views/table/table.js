@@ -180,6 +180,7 @@ export class Table extends Component {
     this.columns = [{
       id: 'checkbox',
       isCheckbox: true,
+      textOnly: false,
       width: '20px',
     }, {
       id: 'title',
@@ -291,7 +292,7 @@ export class Table extends Component {
 
         if (column.isCheckbox) {
           return (
-            <EuiTableRowCellCheckbox key={column.id} textOnly={ false }>
+            <EuiTableRowCellCheckbox key={column.id}>
               <EuiCheckbox
                 id={`${item.id}-checkbox`}
                 checked={this.isItemSelected(item.id)}
@@ -315,6 +316,7 @@ export class Table extends Component {
             key={column.id}
             align={column.alignment}
             wrapText={cell && cell.isWrapped}
+            textOnly={cell ? cell.textOnly : true}
           >
             {child}
           </EuiTableRowCell>
