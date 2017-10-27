@@ -21,7 +21,7 @@ export const EuiFieldNumber = ({
   value,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
     'euiFieldNumber--withIcon': icon,

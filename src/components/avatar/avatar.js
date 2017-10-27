@@ -18,7 +18,7 @@ export const EuiAvatar = ({
   name,
   className,
   size,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiAvatar',

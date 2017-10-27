@@ -41,7 +41,7 @@ export const EuiButton = ({
   size,
   fill,
   isDisabled,
-  ...rest,
+  ...rest
 }) => {
 
   const classes = classNames(

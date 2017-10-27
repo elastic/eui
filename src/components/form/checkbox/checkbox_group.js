@@ -9,7 +9,7 @@ export const EuiCheckboxGroup = ({
   onChange,
   className,
   disabled,
-  ...rest,
+  ...rest
 }) => (
   <div className={className} {...rest}>
     {options.map((option, index) => {

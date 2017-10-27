@@ -13,7 +13,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
       Go to Kibana home page
     </title>
     <use
-      href="#logo"
+      href="#logo_kibana"
     />
   </svg>
 </a>
@@ -31,7 +31,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
       Go to Kibana home page
     </title>
     <use
-      href="#logo"
+      href="#logo_kibana"
     />
   </svg>
 </a>

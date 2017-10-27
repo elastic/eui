@@ -36,6 +36,7 @@ exports[`renders EuiConfirmModal 1`] = `
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
         data-test-subj="confirmModalCancelButton"
+        type="button"
       >
         <span
           class="euiButtonEmpty__content"
@@ -48,6 +49,7 @@ exports[`renders EuiConfirmModal 1`] = `
       <button
         class="euiButton euiButton--primary euiButton--small euiButton--fill"
         data-test-subj="confirmModalConfirmButton"
+        type="button"
       >
         <span
           class="euiButton__content"

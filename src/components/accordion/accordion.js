@@ -49,7 +49,7 @@ export class EuiAccordion extends Component {
       buttonClassName,
       buttonContentClassName,
       extraAction,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(

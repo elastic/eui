@@ -8,7 +8,7 @@ export const EuiForm = ({
   className,
   isInvalid,
   error,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiForm', className);
 

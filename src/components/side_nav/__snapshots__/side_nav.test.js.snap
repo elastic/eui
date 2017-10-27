@@ -8,6 +8,7 @@ exports[`EuiSideNav is rendered 1`] = `
 >
   <button
     class="euiSideNav__mobileToggle euiLink"
+    type="button"
   >
     <span
       class="euiSideNav__mobileWrap"
@@ -40,6 +41,7 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
 >
   <button
     class="euiSideNav__mobileToggle euiLink"
+    type="button"
   >
     <span
       class="euiSideNav__mobileWrap"
@@ -72,6 +74,7 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
 >
   <button
     class="euiSideNav__mobileToggle euiLink"
+    type="button"
   >
     <span
       class="euiSideNav__mobileWrap"

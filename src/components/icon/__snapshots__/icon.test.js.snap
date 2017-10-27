@@ -366,6 +366,84 @@ exports[`EuiIcon renders type dot 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type empty 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    empty icon
+  </title>
+  <use
+    href="#empty"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type faceHappy 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    face happy icon
+  </title>
+  <use
+    href="#face_happy"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type faceSad 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    face sad icon
+  </title>
+  <use
+    href="#face_sad"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type empty 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    empty icon
+  </title>
+  <use
+    href="#empty"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type faceHappy 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    face happy icon
+  </title>
+  <use
+    href="#face_happy"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type faceSad 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    face sad icon
+  </title>
+  <use
+    href="#face_sad"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type fullScreen 1`] = `
 <svg
   class="euiIcon euiIcon--basic euiIcon--medium"
@@ -522,6 +600,58 @@ exports[`EuiIcon renders type logoCloud 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type logoElastic 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    logo elastic icon
+  </title>
+  <use
+    href="#logo_elastic"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type logoElasticSearch 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    logo elastic search icon
+  </title>
+  <use
+    href="#logo_elastic_search"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type logoElastic 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    logo elastic icon
+  </title>
+  <use
+    href="#logo_elastic"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type logoElasticSearch 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    logo elastic search icon
+  </title>
+  <use
+    href="#logo_elastic_search"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type logoElasticStack 1`] = `
 <svg
   class="euiIcon euiIcon--basic euiIcon--medium"
@@ -556,7 +686,7 @@ exports[`EuiIcon renders type logoKibana 1`] = `
     logo kibana icon
   </title>
   <use
-    href="#logo"
+    href="#logo_kibana"
   />
 </svg>
 `;
@@ -652,6 +782,32 @@ exports[`EuiIcon renders type monitoringApp 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type node 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    node icon
+  </title>
+  <use
+    href="#node"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type node 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    node icon
+  </title>
+  <use
+    href="#node"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type pencil 1`] = `
 <svg
   class="euiIcon euiIcon--basic euiIcon--medium"
@@ -687,6 +843,32 @@ exports[`EuiIcon renders type search 1`] = `
   </title>
   <use
     href="#search"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type shard 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    shard icon
+  </title>
+  <use
+    href="#shard"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type shard 1`] = `
+<svg
+  class="euiIcon euiIcon--basic euiIcon--medium"
+>
+  <title>
+    shard icon
+  </title>
+  <use
+    href="#shard"
   />
 </svg>
 `;

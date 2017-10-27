@@ -7,7 +7,8 @@ exports[`EuiPagination is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <button
-    class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiPaginationButton"
+    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+    type="button"
   >
     <span
       class="euiButtonEmpty__content"
@@ -29,7 +30,8 @@ exports[`EuiPagination is rendered 1`] = `
     </span>
   </button>
   <button
-    class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--iconRight euiPaginationButton"
+    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty--iconRight euiPaginationButton"
+    type="button"
   >
     <span
       class="euiButtonEmpty__content"

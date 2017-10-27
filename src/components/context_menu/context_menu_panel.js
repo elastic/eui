@@ -23,7 +23,7 @@ export const EuiContextMenuPanel = ({
   panelRef,
   transitionType,
   transitionDirection,
-  ...rest,
+  ...rest
 }) => {
   let panelTitle;
 

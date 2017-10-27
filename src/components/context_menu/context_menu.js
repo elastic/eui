@@ -239,7 +239,7 @@ export class EuiContextMenu extends Component {
       className,
       initialPanelId, // eslint-disable-line no-unused-vars
       isVisible, // eslint-disable-line no-unused-vars
-      ...rest,
+      ...rest
     } = this.props;
 
     const currentPanel = this.renderPanel(this.state.currentPanelId, 'in');

@@ -15,7 +15,7 @@ export const EuiTextArea = ({
   className,
   isInvalid,
   fullWidth,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiTextArea',

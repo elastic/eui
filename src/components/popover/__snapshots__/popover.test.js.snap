@@ -2,23 +2,23 @@
 
 exports[`EuiPopover anchorPosition defaults to center 1`] = `
 <div
-  class="euiPopover"
+  class="euiPopover euiPopover--anchorDownCenter"
 >
   <button />
 </div>
 `;
 
-exports[`EuiPopover anchorPosition left is rendered 1`] = `
+exports[`EuiPopover anchorPosition downRight is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeft"
+  class="euiPopover euiPopover--anchorDownRight"
 >
   <button />
 </div>
 `;
 
-exports[`EuiPopover anchorPosition right is rendered 1`] = `
+exports[`EuiPopover anchorPosition leftCenter is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorRight"
+  class="euiPopover euiPopover--anchorLeftCenter"
 >
   <button />
 </div>
@@ -26,7 +26,7 @@ exports[`EuiPopover anchorPosition right is rendered 1`] = `
 
 exports[`EuiPopover children is rendered 1`] = `
 <div
-  class="euiPopover"
+  class="euiPopover euiPopover--anchorDownCenter"
 >
   <button />
 </div>
@@ -35,7 +35,7 @@ exports[`EuiPopover children is rendered 1`] = `
 exports[`EuiPopover is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopover testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <button />
@@ -44,7 +44,7 @@ exports[`EuiPopover is rendered 1`] = `
 
 exports[`EuiPopover isOpen defaults to false 1`] = `
 <div
-  class="euiPopover"
+  class="euiPopover euiPopover--anchorDownCenter"
 >
   <button />
 </div>
@@ -52,7 +52,7 @@ exports[`EuiPopover isOpen defaults to false 1`] = `
 
 exports[`EuiPopover isOpen renders true 1`] = `
 <div
-  class="euiPopover"
+  class="euiPopover euiPopover--anchorDownCenter"
 >
   <button />
   <div>

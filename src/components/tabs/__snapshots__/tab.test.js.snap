@@ -5,6 +5,7 @@ exports[`EuiTab renders 1`] = `
   aria-label="aria-label"
   class="euiTab testClass1 testClass2"
   data-test-subj="test subject string"
+  type="button"
 >
   <span
     class="euiTab__content"
@@ -19,6 +20,7 @@ exports[`EuiTab renders isSelected 1`] = `
   aria-label="aria-label"
   class="euiTab testClass1 testClass2 euiTab-isSelected"
   data-test-subj="test subject string"
+  type="button"
 >
   <span
     class="euiTab__content"

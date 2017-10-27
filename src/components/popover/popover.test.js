@@ -45,12 +45,12 @@ describe('EuiPopover', () => {
         .toMatchSnapshot();
     });
 
-    test('left is rendered', () => {
+    test('leftCenter is rendered', () => {
       const component = render(
         <EuiPopover
           button={<button />}
           closePopover={() => {}}
-          anchorPosition="left"
+          anchorPosition="leftCenter"
         />
       );
 
@@ -58,7 +58,7 @@ describe('EuiPopover', () => {
         .toMatchSnapshot();
     });
 
-    test('right is rendered', () => {
+    test('downRight is rendered', () => {
       const component = render(
         <EuiPopover
           button={<button />}

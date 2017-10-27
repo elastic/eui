@@ -29,7 +29,7 @@ export const EuiDescriptionList = ({
   align,
   compressed,
   type,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiDescriptionList',

@@ -47,7 +47,7 @@ export const EuiButtonEmpty = ({
   size,
   flush,
   isDisabled,
-  ...rest,
+  ...rest
 }) => {
 
   const classes = classNames(

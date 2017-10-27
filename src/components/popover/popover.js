@@ -91,7 +91,7 @@ export class EuiPopover extends Component {
       closePopover,
       panelClassName,
       panelPaddingSize,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(

@@ -24,7 +24,7 @@ export const EuiHorizontalRule = ({
   className,
   size,
   margin,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiHorizontalRule',

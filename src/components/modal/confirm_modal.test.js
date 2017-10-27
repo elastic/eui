@@ -38,7 +38,7 @@ test('onConfirm', () => {
     onCancel={onCancel}
     onConfirm={onConfirm}
   />);
-  component.find('[data-test-subj="confirmModalConfirmButton"]').simulate('click');
+  component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().simulate('click');
   sinon.assert.calledOnce(onConfirm);
   sinon.assert.notCalled(onCancel);
 });
@@ -49,7 +49,7 @@ describe('onCancel', () => {
       onCancel={onCancel}
       onConfirm={onConfirm}
     />);
-    component.find('[data-test-subj="confirmModalCancelButton"]').simulate('click');
+    component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().simulate('click');
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -60,7 +60,7 @@ describe('onCancel', () => {
       onConfirm={onConfirm}
       data-test-subj="modal"
     />);
-    component.find('[data-test-subj="modal"]').simulate('keydown', { keyCode: keyCodes.ESCAPE });
+    component.find('[data-test-subj="modal"]').hostNodes().simulate('keydown', { keyCode: keyCodes.ESCAPE });
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -72,7 +72,7 @@ describe('defaultFocusedButton', () => {
       onCancel={onCancel}
       defaultFocusedButton={CANCEL_BUTTON}
     />);
-    const button = component.find('[data-test-subj="confirmModalCancelButton"]').getDOMNode();
+    const button = component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().getDOMNode();
     expect(document.activeElement).toEqual(button);
   });
 
@@ -81,7 +81,7 @@ describe('defaultFocusedButton', () => {
       onCancel={onCancel}
       defaultFocusedButton={CONFIRM_BUTTON}
     />);
-    const button = component.find('[data-test-subj="confirmModalConfirmButton"]').getDOMNode();
+    const button = component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().getDOMNode();
     expect(document.activeElement).toEqual(button);
   });
 

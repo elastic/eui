@@ -18,7 +18,7 @@ export const EuiPanel = ({
   hasShadow,
   grow,
   panelRef,
-  ...rest,
+  ...rest
 }) => {
 
   const classes = classNames(

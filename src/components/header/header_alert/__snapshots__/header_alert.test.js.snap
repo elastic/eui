@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHeaderAlert is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <button
+    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+    >
+      <title>
+        cross icon
+      </title>
+      <use
+        href="#cross"
+      />
+    </svg>
+  </button>
+  <p
+    class="euiHeaderAlert__title"
+  >
+    title
+  </p>
+  <p
+    class="euiHeaderAlert__text"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__action euiLink"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+  </div>
+</div>
+`;
