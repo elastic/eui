@@ -1,6 +1,6 @@
 .euiCheckbox {
   position: relative;
-  height: $euiSizeL;
+  min-height: $euiSizeL;
 
   /**
    * 1. Float above the visual checkbox and match its dimension, so that when users try to click it

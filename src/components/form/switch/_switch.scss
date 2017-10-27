@@ -1,7 +1,7 @@
 .euiSwitch {
   position: relative;
   display: inline-block;
-  height: $euiSwitchHeight;
+  min-height: $euiSwitchHeight;
 
   .euiSwitch__label {
     padding-left: $euiSizeS;
