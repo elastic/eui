@@ -6,6 +6,7 @@
  * LEFT: Show the previous menu.
  * RIGHT: Show the next menu for the selected item.
  * ESC: Deselect the current selection and hide the list.
+ * TAB: Normal tabbing navigation is still supported.
  */
 
 import {
@@ -14,6 +15,7 @@ import {
   LEFT,
   RIGHT,
   UP,
+  TAB,
 } from '../key_codes';
 
 export const cascadingMenuKeyCodes = {
@@ -22,4 +24,5 @@ export const cascadingMenuKeyCodes = {
   LEFT,
   RIGHT,
   UP,
+  TAB,
 };
