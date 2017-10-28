@@ -5,3 +5,7 @@ export function getIsSandbox(state) {
 export function getSections(state) {
   return state.sections.sections;
 }
+
+export function getTheme(state) {
+  return state.theme.theme;
+}

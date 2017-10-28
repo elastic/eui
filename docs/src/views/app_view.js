@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 import {
   Routes,
-  getTheme,
   applyTheme,
 } from '../services';
 
@@ -20,25 +19,17 @@ import {
 } from '../../../src/components';
 
 export class AppView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      theme: getTheme(),
-    };
+  updateTheme = () => {
+    applyTheme(this.props.theme);
   }
 
-  onToggleTheme = () => {
-    if (getTheme() === 'light') {
-      applyTheme('dark');
-    } else {
-      applyTheme('light');
-    }
+  componentDidUpdate() {
+    this.updateTheme();
+  }
 
-    this.setState({
-      theme: getTheme(),
-    });
-  };
+  componentDidMount() {
+    this.updateTheme();
+  }
 
   renderContent() {
     if (this.props.isSandbox) {
@@ -53,7 +44,7 @@ export class AppView extends Component {
           <EuiPageBody>
             <EuiPageSideBar>
               <GuidePageChrome
-                onToggleTheme={this.onToggleTheme}
+                onToggleTheme={this.props.toggleTheme}
                 routes={this.props.routes}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
@@ -87,4 +78,10 @@ AppView.propTypes = {
   unregisterSection: PropTypes.func,
   sections: PropTypes.array,
   isSandbox: PropTypes.bool,
+  toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+};
+
+AppView.defaultProps = {
+  currentRouteName: '',
 };

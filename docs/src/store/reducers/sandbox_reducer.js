@@ -11,11 +11,12 @@ export default function sandboxReducer(state = defaultState, action) {
   switch (action.type) {
     case LOCATION_CHANGE: {
       const path = action.payload.pathname;
-      const { isSandbox } = Routes.getRouteForPath(path);
+      const route = Routes.getRouteForPath(path);
+      const isSandbox = route ? route.isSandbox : false;
 
-      return Object.assign({}, state, {
+      return {
         isSandbox,
-      });
+      };
     }
 
     default:

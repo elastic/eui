@@ -6,11 +6,13 @@ import { AppView } from './app_view';
 import {
   getIsSandbox,
   getSections,
+  getTheme,
 } from '../store';
 
 import {
   registerSection,
   unregisterSection,
+  toggleTheme,
 } from '../actions';
 
 function mapStateToProps(state, ownProps) {
@@ -18,6 +20,7 @@ function mapStateToProps(state, ownProps) {
     currentRouteName: ownProps.routes[1].name,
     isSandbox: getIsSandbox(state),
     sections: getSections(state),
+    theme: getTheme(state),
   };
 }
 
@@ -26,5 +29,6 @@ export const AppContainer = connect(
   {
     registerSection,
     unregisterSection,
+    toggleTheme,
   },
 )(AppView);

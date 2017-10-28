@@ -9,6 +9,7 @@ import {
 import {
   registerSection,
   unregisterSection,
+  toggleTheme,
 } from '../../actions';
 
 function mapStateToProps(state) {
@@ -22,6 +23,6 @@ export const GuideSectionContainer = connect(
   {
     registerSection,
     unregisterSection,
-    toggleTheme: () => {},
+    toggleTheme,
   },
 )(GuideSection);
