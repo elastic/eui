@@ -12,6 +12,7 @@ export const EuiTextArea = ({
   name,
   id,
   placeholder,
+  inputRef,
   className,
   isInvalid,
   fullWidth,
@@ -33,6 +34,7 @@ export const EuiTextArea = ({
         rows={rows}
         name={name}
         id={id}
+        ref={inputRef}
         placeholder={placeholder}
       >
         {children}
