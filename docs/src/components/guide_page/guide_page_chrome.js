@@ -17,7 +17,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-export class GuideNav extends Component {
+export class GuidePageChrome extends Component {
   constructor(props) {
     super(props);
 
@@ -158,7 +158,7 @@ export class GuideNav extends Component {
   }
 }
 
-GuideNav.propTypes = {
+GuidePageChrome.propTypes = {
   enterSandbox: PropTypes.func,
   routes: PropTypes.array,
   getPreviousRoute: PropTypes.func,

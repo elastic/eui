@@ -13,7 +13,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-export class GuideHeader extends Component {
+export class GuideSandboxChrome extends Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +24,7 @@ export class GuideHeader extends Component {
 
   render() {
     return (
-      <div className="guideHeader">
+      <div className="guideSandboxChrome">
         <EuiFlexGroup alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
             <Link
@@ -37,7 +37,7 @@ export class GuideHeader extends Component {
           <EuiFlexItem grow={false}>
             <button
               onClick={this.props.onToggleTheme}
-              className="guideHeader__link"
+              className="guideSandboxChrome__link"
             >
               Theme
             </button>
@@ -46,7 +46,7 @@ export class GuideHeader extends Component {
             <button
               onClick={this.props.exitSandbox}
             >
-              <EuiIcon type="list" size="m" className="guideHeader__appListIcon" />
+              <EuiIcon type="list" size="m" className="guideSandboxChrome__appListIcon" />
             </button>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -55,7 +55,7 @@ export class GuideHeader extends Component {
   }
 }
 
-GuideHeader.propTypes = {
+GuideSandboxChrome.propTypes = {
   exitSandbox: PropTypes.func,
   onClickNavItem: PropTypes.func,
   routes: PropTypes.array,

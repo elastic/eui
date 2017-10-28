@@ -8,8 +8,8 @@ import {
 } from '../services';
 
 import {
-  GuideHeader,
-  GuideNav,
+  GuideSandboxChrome,
+  GuidePageChrome,
 } from '../components';
 
 import {
@@ -45,7 +45,7 @@ export class AppView extends Component {
     if (this.props.isSandbox) {
       return (
         <div className="guideSandbox">
-          <GuideHeader
+          <GuideSandboxChrome
             onToggleTheme={this.onToggleTheme}
             routes={this.props.routes}
             components={Routes.components}
@@ -59,7 +59,7 @@ export class AppView extends Component {
         <EuiPage>
           <EuiPageBody>
             <EuiPageSideBar>
-              <GuideNav
+              <GuidePageChrome
                 onToggleTheme={this.onToggleTheme}
                 routes={this.props.routes}
                 components={Routes.components}
