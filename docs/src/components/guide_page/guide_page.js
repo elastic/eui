@@ -2,10 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export class GuidePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
@@ -18,5 +14,4 @@ export class GuidePage extends Component {
 GuidePage.propTypes = {
   children: PropTypes.any,
   title: PropTypes.string,
-  sections: PropTypes.array,
 };

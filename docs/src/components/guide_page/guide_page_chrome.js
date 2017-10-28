@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import $ from 'jquery';
 
 import {
   Link,
@@ -25,8 +26,6 @@ export class GuidePageChrome extends Component {
       search: '',
       isSideNavOpenOnMobile: false,
     };
-
-    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   toggleOpenOnMobile() {
@@ -35,11 +34,18 @@ export class GuidePageChrome extends Component {
     });
   }
 
-  onSearchChange(event) {
+  onSearchChange = event => {
     this.setState({
       search: event.target.value,
     });
-  }
+  };
+
+  onClickLink = id => {
+    // Scroll to element.
+    $('html, body').animate({ // eslint-disable-line no-undef
+      scrollTop: $(`#${id}`).offset().top - 20 // eslint-disable-line no-undef
+    }, 250);
+  };
 
   renderIdentity() {
     const homeLink = (
@@ -72,20 +78,54 @@ export class GuidePageChrome extends Component {
   }
 
   renderComponentPageLinks() {
-    return this.props.components.filter(item => (
+    const matchingItems = this.props.components.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    )).map((item, index) => {
-      return (
-        <EuiSideNavItem
-          key={`componentNavItem-${index}`}
-          isSelected={item.name === this.props.currentRouteName}
-        >
+    ));
+
+    // Build links to subsections if there's more than 1.
+    if (this.props.sections.length > 1) {
+      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
+      if (currentSectionIndex !== -1) {
+        const subSections = this.props.sections.map(section => {
+          return {
+            ...section,
+            isSubSection: true,
+          };
+        });
+        matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
+      }
+    }
+
+    return matchingItems.map((item, index) => {
+      let button;
+
+      if (item.isSubSection) {
+        button = (
+          <button
+            className="guideNavItem__link"
+            onClick={this.onClickLink.bind(this, item.id)}
+          >
+            {item.name}
+          </button>
+        );
+      } else {
+        button = (
           <Link
             className="guideNavItem__link"
             to={item.path}
           >
             {item.name}
           </Link>
+        );
+      }
+
+      return (
+        <EuiSideNavItem
+          key={`componentNavItem-${index}`}
+          isSelected={item.name === this.props.currentRouteName}
+          indent={item.isSubSection}
+        >
+          {button}
         </EuiSideNavItem>
       );
     });
@@ -150,9 +190,8 @@ export class GuidePageChrome extends Component {
 }
 
 GuidePageChrome.propTypes = {
-  enterSandbox: PropTypes.func,
-  currentRouteName: PropTypes.string,
-  getPreviousRoute: PropTypes.func,
-  components: PropTypes.array,
-  sandboxes: PropTypes.array,
+  currentRouteName: PropTypes.string.isRequired,
+  components: PropTypes.array.isRequired,
+  sandboxes: PropTypes.array.isRequired,
+  sections: PropTypes.array.isRequired,
 };

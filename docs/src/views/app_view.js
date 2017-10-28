@@ -44,10 +44,12 @@ export class AppView extends Component {
           <EuiPageBody>
             <EuiPageSideBar>
               <GuidePageChrome
+                currentRouteName={this.props.currentRouteName}
                 onToggleTheme={this.props.toggleTheme}
                 routes={this.props.routes}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
+                sections={this.props.sections}
               />
             </EuiPageSideBar>
 
@@ -80,8 +82,10 @@ AppView.propTypes = {
   isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
+  sections: PropTypes.array.isRequired,
 };
 
 AppView.defaultProps = {
   currentRouteName: '',
+  sections: [],
 };

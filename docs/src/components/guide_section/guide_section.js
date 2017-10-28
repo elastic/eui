@@ -154,7 +154,7 @@ export class GuideSection extends Component {
 
   render() {
     return (
-      <div className="guideSection">
+      <div className="guideSection" id={this.getId()}>
         {this.renderChrome()}
         {this.renderContent()}
       </div>

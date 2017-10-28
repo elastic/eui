@@ -1,6 +1,6 @@
 export {
-  GuidePageContainer as GuidePage,
-} from './guide_page_container';
+  GuidePage,
+} from './guide_page';
 
 export {
   GuidePageChrome,
