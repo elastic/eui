@@ -6,13 +6,13 @@ const defaultState = {
 
 export default function sandboxReducer(state = defaultState, action) {
   switch (action.type) {
-    case ActionTypes.OPEN_SANDBOX: {
+    case ActionTypes.ENTER_SANDBOX: {
       return Object.assign({}, state, {
         isSandbox: true,
       });
     }
 
-    case ActionTypes.CLOSE_SANDBOX: {
+    case ActionTypes.EXIT_SANDBOX: {
       return Object.assign({}, state, {
         isSandbox: false,
       });

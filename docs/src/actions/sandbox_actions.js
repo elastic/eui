@@ -1,9 +1,9 @@
 import ActionTypes from './action_types';
 
-export const openSandbox = () => ({
-  type: ActionTypes.OPEN_SANDBOX,
+export const enterSandbox = () => ({
+  type: ActionTypes.ENTER_SANDBOX,
 });
 
-export const closeSandbox = () => ({
-  type: ActionTypes.CLOSE_SANDBOX,
+export const exitSandbox = () => ({
+  type: ActionTypes.EXIT_SANDBOX,
 });

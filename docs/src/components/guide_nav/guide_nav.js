@@ -41,72 +41,89 @@ export class GuideNav extends Component {
     });
   }
 
-  render() {
-    const componentNavItems =
-      this.props.components.filter(item => (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-      )).map((item, index) => {
-        return (
-          <EuiSideNavItem key={`componentNavItem-${index}`} isSelected={this.props.routes[1].name === item.name}>
-            <Link
-              className="guideNavItem__link"
-              to={item.path}
-              onClick={this.props.onShowChrome}
-            >
-              {item.name}
-            </Link>
-          </EuiSideNavItem>
-        );
-      });
+  onGoToSandbox = () => {
+    this.props.enterSandbox();
+  };
 
-    const sandboxNavItems =
-      this.props.sandboxes.filter(item => (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-      )).map((item, index) => {
-        return (
-          <EuiSideNavItem key={`sandboxNavItem-${index}`}>
-            <Link
-              className="guideNavItem__link"
-              to={item.path}
-              onClick={this.props.onHideChrome}
+  renderIdentity() {
+    const homeLink = (
+      <Link
+        to="/"
+        className="guideLogo"
+      >
+        <EuiIcon type="logoElastic" size="l" />
+      </Link>
+    );
+
+    return (
+      <EuiFlexGroup alignItems="center" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          {homeLink}
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiText size="s">
+            <button
+              onClick={this.props.onToggleTheme}
+              className="euiLink"
             >
-              {item.name}
-            </Link>
-          </EuiSideNavItem>
-        );
-      });
+              Theme
+            </button>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <button
+            onClick={this.props.enterSandbox}
+          >
+            <EuiIcon type="fullScreen" size="m" />
+          </button>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+  }
+
+  renderComponentPageLinks() {
+    return this.props.components.filter(item => (
+      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    )).map((item, index) => {
+      return (
+        <EuiSideNavItem key={`componentNavItem-${index}`} isSelected={this.props.routes[1].name === item.name}>
+          <Link
+            className="guideNavItem__link"
+            to={item.path}
+          >
+            {item.name}
+          </Link>
+        </EuiSideNavItem>
+      );
+    });
+  }
+
+  renderSandboxLinks() {
+    return this.props.sandboxes.filter(item => (
+      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    )).map((item, index) => {
+      return (
+        <EuiSideNavItem key={`sandboxNavItem-${index}`}>
+          <Link
+            className="guideNavItem__link"
+            to={item.path}
+            onClick={this.onGoToSandbox}
+          >
+            {item.name}
+          </Link>
+        </EuiSideNavItem>
+      );
+    });
+  }
+
+  render() {
+    const componentNavItems = this.renderComponentPageLinks();
+    const sandboxNavItems = this.renderSandboxLinks();
 
     return (
       <div>
-        <EuiFlexGroup alignItems="center" gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <Link
-              to="/"
-              className="guideLogo"
-              onClick={this.props.onShowChrome}
-            >
-              <EuiIcon type="logoElastic" size="l" />
-            </Link>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiText size="s">
-              <button
-                to="/"
-                onClick={this.props.onToggleTheme}
-                className="euiLink"
-              >
-                Theme
-              </button>
-            </EuiText>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <button
-              onClick={this.props.onHideChrome}
-            >
-              <EuiIcon type="fullScreen" size="m" />
-            </button>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        {this.renderIdentity()}
 
         <EuiSpacer size="m" />
 
@@ -142,11 +159,7 @@ export class GuideNav extends Component {
 }
 
 GuideNav.propTypes = {
-  isChromeVisible: PropTypes.bool,
-  isSandbox: PropTypes.bool,
-  onToggleNav: PropTypes.func,
-  onHideChrome: PropTypes.func,
-  onShowChrome: PropTypes.func,
+  enterSandbox: PropTypes.func,
   routes: PropTypes.array,
   getPreviousRoute: PropTypes.func,
   components: PropTypes.array,

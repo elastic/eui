@@ -15,7 +15,6 @@ import Slugify from '../../services/string/slugify';
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
-    this.onClickSource = this.onClickSource.bind(this);
 
     this.tabs = [{
       id: 'demo',
@@ -41,10 +40,6 @@ export class GuideSection extends Component {
 
   getId() {
     return Slugify.one(this.props.title);
-  }
-
-  onClickSource() {
-    this.props.openCodeViewer(this.props.source, this.props.title);
   }
 
   componentWillMount() {
@@ -131,7 +126,6 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   source: PropTypes.array,
   children: PropTypes.any,
-  openCodeViewer: PropTypes.func,
   registerSection: PropTypes.func,
   unregisterSection: PropTypes.func,
 };

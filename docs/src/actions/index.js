@@ -1,11 +1,6 @@
 export {
-  openCodeViewer,
-  closeCodeViewer,
-} from './code_viewer_actions';
-
-export {
-  openSandbox,
-  closeSandbox,
+  enterSandbox,
+  exitSandbox,
 } from './sandbox_actions';
 
 export {

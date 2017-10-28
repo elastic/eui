@@ -8,11 +8,12 @@
   height: $euiSizeL;
 }
 
-.guide__hasNoChrome {
+.guideSandbox {
   .guideSection__text {
     margin-top: $euiSizeXL;
     padding: 0 $euiSizeL;
   }
+
   .guideSection__space {
     height: 0;
   }

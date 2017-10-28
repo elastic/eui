@@ -29,7 +29,7 @@ export class GuideHeader extends Component {
           <EuiFlexItem grow={false}>
             <Link
               to="/"
-              onClick={this.props.onShowChrome}
+              onClick={this.props.exitSandbox}
             >
               <EuiIcon type="logoKibana" size="m" />
             </Link>
@@ -44,7 +44,7 @@ export class GuideHeader extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <button
-              onClick={this.props.onShowChrome}
+              onClick={this.props.exitSandbox}
             >
               <EuiIcon type="list" size="m" className="guideHeader__appListIcon" />
             </button>
@@ -56,10 +56,7 @@ export class GuideHeader extends Component {
 }
 
 GuideHeader.propTypes = {
-  isChromeVisible: PropTypes.bool,
-  onToggleNav: PropTypes.func,
-  onHideChrome: PropTypes.func,
-  onShowChrome: PropTypes.func,
+  exitSandbox: PropTypes.func,
   onClickNavItem: PropTypes.func,
   routes: PropTypes.array,
   getPreviousRoute: PropTypes.func,

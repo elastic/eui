@@ -1,21 +1,20 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { AppView } from './app_view';
+
 import {
-  getIsCodeViewerOpen,
   getIsSandbox,
   getSections,
   getSource,
   getTitle,
 } from '../store';
 
-import { AppView } from './app_view';
-
 import {
-  openCodeViewer,
-  closeCodeViewer,
   registerSection,
   unregisterSection,
+  enterSandbox,
+  exitSandbox,
 } from '../actions';
 
 function mapStateToProps(state, ownProps) {
@@ -30,10 +29,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   const actions = {
-    openCodeViewer,
-    closeCodeViewer,
     registerSection,
     unregisterSection,
+    enterSandbox,
+    exitSandbox,
   };
 
   return bindActionCreators(actions, dispatch);
