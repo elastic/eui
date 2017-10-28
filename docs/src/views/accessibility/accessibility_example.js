@@ -13,7 +13,6 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
-
 import KeyboardAccessible from './keyboard_accessible';
 import ScreenReaderOnly from './screen_reader';
 

@@ -10,7 +10,6 @@ import {
   routerReducer,
 } from 'react-router-redux';
 
-import codeViewerReducer from './reducers/code_viewer_reducer';
 import sandboxReducer from './reducers/sandbox_reducer';
 import sectionsReducer from './reducers/sections_reducer';
 
@@ -22,7 +21,6 @@ export default function configureStore(initialState) {
   function rootReducer(state = {}, action) {
     return {
       routing: routerReducer(state.routing, action),
-      codeViewer: codeViewerReducer(state.codeViewer, action),
       sandbox: sandboxReducer(state.sandbox, action),
       sections: sectionsReducer(state.sections, action),
     };

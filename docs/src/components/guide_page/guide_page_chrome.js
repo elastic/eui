@@ -41,10 +41,6 @@ export class GuidePageChrome extends Component {
     });
   }
 
-  onGoToSandbox = () => {
-    this.props.enterSandbox();
-  };
-
   renderIdentity() {
     const homeLink = (
       <Link
@@ -71,13 +67,6 @@ export class GuidePageChrome extends Component {
             </button>
           </EuiText>
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <button
-            onClick={this.props.enterSandbox}
-          >
-            <EuiIcon type="fullScreen" size="m" />
-          </button>
-        </EuiFlexItem>
       </EuiFlexGroup>
     );
   }
@@ -87,7 +76,10 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     )).map((item, index) => {
       return (
-        <EuiSideNavItem key={`componentNavItem-${index}`} isSelected={this.props.routes[1].name === item.name}>
+        <EuiSideNavItem
+          key={`componentNavItem-${index}`}
+          isSelected={item.name === this.props.currentRouteName}
+        >
           <Link
             className="guideNavItem__link"
             to={item.path}
@@ -108,7 +100,6 @@ export class GuidePageChrome extends Component {
           <Link
             className="guideNavItem__link"
             to={item.path}
-            onClick={this.onGoToSandbox}
           >
             {item.name}
           </Link>
@@ -160,7 +151,7 @@ export class GuidePageChrome extends Component {
 
 GuidePageChrome.propTypes = {
   enterSandbox: PropTypes.func,
-  routes: PropTypes.array,
+  currentRouteName: PropTypes.string,
   getPreviousRoute: PropTypes.func,
   components: PropTypes.array,
   sandboxes: PropTypes.array,

@@ -22,5 +22,6 @@ export const GuideSectionContainer = connect(
   {
     registerSection,
     unregisterSection,
+    toggleTheme: () => {},
   },
 )(GuideSection);

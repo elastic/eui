@@ -106,148 +106,121 @@ import TextScalingSandbox
 const components = [{
   name: 'Accordion',
   component: AccordionExample,
-  hasReact: true,
 }, {
   name: 'Accessibility',
   component: AccessibilityExample,
-  hasReact: true,
 }, {
   name: 'Avatar',
   component: AvatarExample,
-  hasReact: true,
 }, {
   name: 'Button',
   component: ButtonExample,
-  hasReact: true,
 }, {
   name: 'Badge',
   component: BadgeExample,
-  hasReact: true,
 }, {
   name: 'BottomBar',
   component: BottomBarExample,
-  hasReact: true,
 }, {
   name: 'CallOut',
   component: CallOutExample,
-  hasReact: true,
 }, {
   name: 'Code',
   component: CodeExample,
-  hasReact: true,
 }, {
   name: 'ContextMenu',
   component: ContextMenuExample,
-  hasReact: true,
 }, {
   name: 'DescriptionList',
   component: DescriptionListExample,
-  hasReact: true,
 }, {
   name: 'Flex',
   component: FlexExample,
-  hasReact: true,
 }, {
   name: 'Form',
   component: FormExample,
-  hasReact: true,
 }, {
   name: 'Header',
   component: HeaderExample,
-  hasReact: true,
 }, {
   name: 'HorizontalRule',
   component: HorizontalRuleExample,
-  hasReact: true,
 }, {
   name: 'Icon',
   component: IconExample,
-  hasReact: true,
 }, {
   name: 'KeyPadMenu',
   component: KeyPadMenuExample,
-  hasReact: true,
 }, {
   name: 'Link',
   component: LinkExample,
-  hasReact: true,
 }, {
   name: 'Loading',
   component: LoadingExample,
-  hasReact: true,
 }, {
   name: 'Modal',
   component: ModalExample,
-  hasReact: true,
 }, {
   name: 'Page',
   component: PageExample,
-  hasReact: true,
 }, {
   name: 'Pagination',
   component: PaginationExample,
-  hasReact: true,
 }, {
   name: 'Panel',
   component: PanelExample,
-  hasReact: true,
 }, {
   name: 'Popover',
   component: PopoverExample,
-  hasReact: true,
 }, {
   name: 'Progress',
   component: ProgressExample,
-  hasReact: true,
 }, {
   name: 'SideNav',
   component: SideNavExample,
-  hasReact: true,
 }, {
   name: 'Spacer',
   component: SpacerExample,
-  hasReact: true,
 }, {
   name: 'Table',
   component: TableExample,
-  hasReact: true,
 }, {
   name: 'Tabs',
   component: TabsExample,
-  hasReact: true,
 }, {
   name: 'Text',
   component: TextExample,
-  hasReact: true,
 }, {
   name: 'Toast',
   component: ToastExample,
-  hasReact: true,
 }, {
   name: 'Title',
   component: TitleExample,
-  hasReact: true,
 }];
 
 const sandboxes = [{
   name: 'AdvancedSettings',
   component: AdvancedSettingsExample,
-  hasReact: true,
 }, {
   name: 'Kibana',
   component: KibanaSandbox,
-  hasReact: true,
 }, {
   name: 'TextScalingSandbox',
   component: TextScalingSandbox,
-  hasReact: true,
 }];
+
+sandboxes.forEach(sandbox => { sandbox.isSandbox = true; });
 
 const allRoutes = components.concat(sandboxes);
 
 export default {
   components: Slugify.each(components, 'name', 'path'),
   sandboxes: Slugify.each(sandboxes, 'name', 'path'),
+  getRouteForPath: path => {
+    // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
+    const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
+    return allRoutes.find(route => normalizedPath === route.path);
+  },
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
   },

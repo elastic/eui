@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -8,57 +6,53 @@ import {
 } from 'react-router';
 
 import {
+  GuideSandboxChromeToggle,
+} from './guide_sandbox_chrome_toggle';
+
+import {
   EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
-export class GuideSandboxChrome extends Component {
-  constructor(props) {
-    super(props);
+export const GuideSandboxChrome = ({
+  isVisible,
+  onToggleTheme,
+  onToggleSandboxChrome,
+}) => {
+  const toggle = <GuideSandboxChromeToggle onClick={onToggleSandboxChrome} />;
 
-    this.state = {
-      search: '',
-    };
+  if (!isVisible) {
+    return toggle;
   }
 
-  render() {
-    return (
-      <div className="guideSandboxChrome">
-        <EuiFlexGroup alignItems="center" gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <Link
-              to="/"
-              onClick={this.props.exitSandbox}
-            >
-              <EuiIcon type="logoKibana" size="m" />
-            </Link>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <button
-              onClick={this.props.onToggleTheme}
-              className="guideSandboxChrome__link"
-            >
-              Theme
-            </button>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <button
-              onClick={this.props.exitSandbox}
-            >
-              <EuiIcon type="list" size="m" className="guideSandboxChrome__appListIcon" />
-            </button>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="guideSandboxChrome">
+      <EuiFlexGroup alignItems="center" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          <Link to="/">
+            <EuiIcon type="logoKibana" size="m" />
+          </Link>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <button
+            onClick={onToggleTheme}
+            className="guideSandboxChrome__link"
+          >
+            Theme
+          </button>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      {toggle}
+    </div>
+  );
+};
 
 GuideSandboxChrome.propTypes = {
-  exitSandbox: PropTypes.func,
-  onClickNavItem: PropTypes.func,
-  routes: PropTypes.array,
-  getPreviousRoute: PropTypes.func,
-  components: PropTypes.array,
+  routes: PropTypes.array.isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
+  onToggleSandboxChrome: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool,
 };

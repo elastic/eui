@@ -8,7 +8,6 @@ import {
 } from '../services';
 
 import {
-  GuideSandboxChrome,
   GuidePageChrome,
 } from '../components';
 
@@ -45,12 +44,6 @@ export class AppView extends Component {
     if (this.props.isSandbox) {
       return (
         <div className="guideSandbox">
-          <GuideSandboxChrome
-            onToggleTheme={this.onToggleTheme}
-            routes={this.props.routes}
-            components={Routes.components}
-            exitSandbox={this.props.exitSandbox}
-          />
           {this.props.children}
         </div>
       );
@@ -64,7 +57,6 @@ export class AppView extends Component {
                 routes={this.props.routes}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
-                enterSandbox={this.props.enterSandbox}
               />
             </EuiPageSideBar>
 
@@ -90,17 +82,9 @@ export class AppView extends Component {
 
 AppView.propTypes = {
   children: PropTypes.any,
-  routes: PropTypes.array.isRequired,
+  currentRouteName: PropTypes.string.isRequired,
   registerSection: PropTypes.func,
   unregisterSection: PropTypes.func,
   sections: PropTypes.array,
-  source: PropTypes.array,
-  title: PropTypes.string,
   isSandbox: PropTypes.bool,
-  enterSandbox: PropTypes.func,
-  exitSandbox: PropTypes.func,
-};
-
-AppView.defaultProps = {
-  source: [],
 };

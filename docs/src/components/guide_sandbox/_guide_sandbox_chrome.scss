@@ -14,3 +14,17 @@
 .guideSandboxChrome__appListIcon {
   fill: #FFF !important;
 }
+
+.guideSandboxChromeToggle {
+  position: fixed;
+  z-index: 9999999;
+  right: 0;
+  bottom: $euiSizeXXL;
+  padding: $euiSizeS;
+  background-color: $euiColorPrimary;
+  color: $euiColorEmptyShade;
+
+  svg {
+    fill: $euiColorEmptyShade;
+  }
+}

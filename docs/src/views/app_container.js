@@ -6,36 +6,25 @@ import { AppView } from './app_view';
 import {
   getIsSandbox,
   getSections,
-  getSource,
-  getTitle,
 } from '../store';
 
 import {
   registerSection,
   unregisterSection,
-  enterSandbox,
-  exitSandbox,
 } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
-    routes: ownProps.routes,
+    currentRouteName: ownProps.routes[1].name,
     isSandbox: getIsSandbox(state),
-    source: getSource(state),
-    title: getTitle(state),
     sections: getSections(state),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  const actions = {
+export const AppContainer = connect(
+  mapStateToProps,
+  {
     registerSection,
     unregisterSection,
-    enterSandbox,
-    exitSandbox,
-  };
-
-  return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppView);
+  },
+)(AppView);
