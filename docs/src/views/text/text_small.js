@@ -2,10 +2,12 @@ import React from 'react';
 
 import {
   EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiText size="s">
+const exampleText = (
+  <div>
     <h1>This is Heading One</h1>
     <p>
       Far out in the uncharted backwaters of the unfashionable end of
@@ -60,5 +62,20 @@ export default () => (
       So it thought the dog was making a poor life choice by focusing so much on mindfulness.
       What if its car broke down?
     </p>
-  </EuiText>
+  </div>
+);
+
+export default () => (
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiText size="s">
+        {exampleText}
+      </EuiText>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiText size="xs">
+        {exampleText}
+      </EuiText>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );

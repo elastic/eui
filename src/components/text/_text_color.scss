@@ -14,5 +14,10 @@ $textColors: (
 @each $name, $color in $textColors {
   .euiTextColor.euiTextColor--#{$name} {
     color: $color !important;
+
+    // We need a blanket approach for coloring. It should overule everything.
+    * {
+      color: $color !important;
+    }
   }
 }

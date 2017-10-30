@@ -9,6 +9,7 @@ import {
 
 export default () => (
   <div>
+
     <EuiTitle>
       <h2>
         <EuiTextColor color="default">You </EuiTextColor>
@@ -64,6 +65,17 @@ export default () => (
             Ghost text color is always white regardless of theme.
           </EuiTextColor>
         </span>
+      </p>
+    </EuiText>
+
+    <EuiSpacer />
+
+    <EuiText color="primary">
+      <h2>Works on EuiText as well.</h2>
+      <p>
+        Sometimes you need to color entire blocks of text, no matter what is in them.
+        You can always apply color directly (versus using the separated component) to
+        make it easy.
       </p>
     </EuiText>
   </div>

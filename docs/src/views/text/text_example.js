@@ -50,7 +50,7 @@ export default props => (
     />
 
     <GuideSection
-      title="TextSmall"
+      title="Text can come in various sizes."
       source={[{
         type: GuideSectionTypes.JS,
         code: textSmallSource,
@@ -58,13 +58,19 @@ export default props => (
         type: GuideSectionTypes.HTML,
         code: textSmallHtml,
       }]}
+      text={
+        <p>
+          Using the <EuiCode>size</EuiCode> prop on <EuiCode>EuiText</EuiCode> you
+          can get smaller sizes of text then the default.
+        </p>
+      }
       demo={
         <TextSmall />
       }
     />
 
     <GuideSection
-      title="TextColor"
+      title="Coloring text"
       source={[{
         type: GuideSectionTypes.JS,
         code: textColorSource,
@@ -74,8 +80,12 @@ export default props => (
       }]}
       text={
         <p>
-          Any text element can be colored as needed. Wraps the element in a span
-          with the <EuiCode>!important</EuiCode> applied to the color.
+          There are two ways to color text. Either individually by
+          applying <EuiCode>EuiTextColor</EuiCode> on individual text objects, or
+          by passing the <EuiCode>color</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
+          a blanket approach across the entirely of your text. Either solution wraps
+          the element in a span with the <EuiCode>!important</EuiCode> applied to the color.
+          It will override any other colors in use, so be careful.
         </p>
       }
       demo={
