@@ -10,11 +10,13 @@ import {
 
 const iconColors = [
   'default',
-  'text',
   'primary',
   'secondary',
+  'accent',
   'warning',
   'danger',
+  'text',
+  'subdued',
 ];
 
 export default () => (

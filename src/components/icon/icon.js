@@ -140,12 +140,14 @@ const typeToIconMap = {
 export const TYPES = Object.keys(typeToIconMap);
 
 const colorToClassMap = {
-  default: 'euiIcon--default',
-  text: 'euiIcon--text',
+  default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
+  accent: 'euiIcon--accent',
   warning: 'euiIcon--warning',
   danger: 'euiIcon--danger',
+  text: 'euiIcon--text',
+  subdued: 'euiIcon--subdued',
 };
 
 export const COLORS = Object.keys(colorToClassMap);
@@ -195,6 +197,5 @@ EuiIcon.propTypes = {
 };
 
 EuiIcon.defaultProps = {
-  color: 'default',
   size: 'm',
 };
