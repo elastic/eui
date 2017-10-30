@@ -16,10 +16,6 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .euiButtonIcon__icon {
-      fill: $euiButtonColorDisabled;
-    }
-
     &:hover, &:focus {
       background-color: $euiColorEmptyShade;
       text-decoration: none;
@@ -39,10 +35,6 @@ $buttonTypes: (
 @each $name, $color in $buttonTypes {
   .euiButtonIcon--#{$name} {
     color: $color;
-
-    .euiButtonIcon__icon {
-      fill: $color;
-    }
 
     &:focus {
       background-color: transparentize($color, .9);
