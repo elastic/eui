@@ -40,11 +40,15 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  scrollTo = position => {
+    $('html, body').animate({
+      scrollTop: position,
+    }, 250);
+  };
+
   onClickLink = id => {
     // Scroll to element.
-    $('html, body').animate({ // eslint-disable-line no-undef
-      scrollTop: $(`#${id}`).offset().top - 20 // eslint-disable-line no-undef
-    }, 250);
+    this.scrollTo($(`#${id}`).offset().top - 20);
   };
 
   renderIdentity() {
@@ -92,6 +96,7 @@ export class GuidePageChrome extends Component {
             isSubSection: true,
           };
         });
+        matchingItems[currentSectionIndex].hasSubSections = true;
         matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
       }
     }
@@ -109,10 +114,17 @@ export class GuidePageChrome extends Component {
           </button>
         );
       } else {
+        let onClick;
+
+        if (item.hasSubSections) {
+          onClick = this.scrollTo.bind(this, 0);
+        }
+
         button = (
           <Link
             className="guideNavItem__link"
             to={item.path}
+            onClick={onClick}
           >
             {item.name}
           </Link>
