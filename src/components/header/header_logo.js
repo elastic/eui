@@ -6,7 +6,7 @@ import {
   EuiIcon,
 } from '../icon';
 
-export const EuiHeaderLogo = ({ type, href, className, ...rest }) => {
+export const EuiHeaderLogo = ({ type, iconTitle, href, className, ...rest }) => {
   const classes = classNames('euiHeaderLogo', className);
 
   return (
@@ -15,6 +15,7 @@ export const EuiHeaderLogo = ({ type, href, className, ...rest }) => {
         className="euiHeaderLogo__icon"
         type={type}
         size="xl"
+        iconTitle={iconTitle}
       />
     </a>
   );
