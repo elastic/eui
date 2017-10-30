@@ -6,15 +6,15 @@ import {
   EuiIcon,
 } from '../icon';
 
-export const EuiHeaderLogo = ({ type, iconTitle, href, className, ...rest }) => {
+export const EuiHeaderLogo = ({ iconType, iconTitle, href, className, ...rest }) => {
   const classes = classNames('euiHeaderLogo', className);
 
   return (
     <a href={href} className={classes} {...rest}>
       <EuiIcon
         className="euiHeaderLogo__icon"
-        type={type}
         size="xl"
+        type={iconType}
         title={iconTitle}
       />
     </a>
@@ -26,5 +26,5 @@ EuiHeaderLogo.propTypes = {
 };
 
 EuiHeaderLogo.defaultProps = {
-  type: 'logoElastic'
+  iconType: 'logoElastic'
 };
