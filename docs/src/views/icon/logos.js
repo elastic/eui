@@ -34,7 +34,7 @@ export default () => (
           <EuiPanel>
             <EuiIcon
               type={iconType}
-              size="large"
+              size="l"
             />
             <EuiText size="s">
               <p>{iconType}</p>

@@ -38,7 +38,7 @@ export const EuiButtonIcon = ({
       <EuiIcon
         className="euiButtonIcon__icon"
         type={iconType}
-        size="medium"
+        size="m"
         aria-hidden="true"
       />
     );

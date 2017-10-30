@@ -20,7 +20,7 @@ export default () => (
     <EuiButton
       fill
       color="ghost"
-      size="small"
+      size="s"
       iconType="check"
       onClick={() => window.alert('Button clicked')}
     >
@@ -30,7 +30,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButtonEmpty
-      size="small"
+      size="s"
       color="ghost"
       onClick={() => window.alert('Button clicked')}
     >
@@ -40,7 +40,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButtonIcon
-      size="small"
+      size="s"
       color="ghost"
       iconType="user"
       onClick={() => window.alert('Button clicked')}

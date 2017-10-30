@@ -16,7 +16,7 @@ export default () => (
   <EuiPage>
     <EuiPageHeader>
       <EuiPageHeaderSection>
-        <EuiTitle size="large">
+        <EuiTitle size="l">
           <h1>Page title</h1>
         </EuiTitle>
       </EuiPageHeaderSection>

@@ -24,7 +24,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -33,7 +33,7 @@ export default () => (
     &nbsp;&nbsp;
 
     <EuiButton
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -63,7 +63,7 @@ export default () => (
 
     <EuiButton
       color="secondary"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -73,7 +73,7 @@ export default () => (
 
     <EuiButton
       color="secondary"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -103,7 +103,7 @@ export default () => (
 
     <EuiButton
       color="warning"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -113,7 +113,7 @@ export default () => (
 
     <EuiButton
       color="warning"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -143,7 +143,7 @@ export default () => (
 
     <EuiButton
       color="danger"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -153,7 +153,7 @@ export default () => (
 
     <EuiButton
       color="danger"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -183,7 +183,7 @@ export default () => (
 
     <EuiButton
       isDisabled
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -193,7 +193,7 @@ export default () => (
 
     <EuiButton
       isDisabled
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >

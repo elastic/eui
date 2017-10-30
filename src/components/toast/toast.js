@@ -33,7 +33,7 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
       <EuiIcon
         className="euiToastHeader__icon"
         type={iconType}
-        size="medium"
+        size="m"
         aria-hidden="true"
       />
     );
@@ -51,7 +51,7 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
       >
         <EuiIcon
           type="cross"
-          size="medium"
+          size="m"
           aria-hidden="true"
         />
       </button>

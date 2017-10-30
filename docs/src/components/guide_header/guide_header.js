@@ -25,13 +25,13 @@ export class GuideHeader extends Component {
   render() {
     return (
       <div className="guideHeader">
-        <EuiFlexGroup alignItems="center" gutterSize="small">
+        <EuiFlexGroup alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
             <Link
               to="/"
               onClick={this.props.onShowChrome}
             >
-              <EuiIcon type="logoKibana" size="medium" />
+              <EuiIcon type="logoKibana" size="m" />
             </Link>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -46,7 +46,7 @@ export class GuideHeader extends Component {
             <button
               onClick={this.props.onShowChrome}
             >
-              <EuiIcon type="list" size="medium" className="guideHeader__appListIcon" />
+              <EuiIcon type="list" size="m" className="guideHeader__appListIcon" />
             </button>
           </EuiFlexItem>
         </EuiFlexGroup>

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const paddingSizeToClassNameMap = {
-  'none': null,
-  's': 'euiBottomBar--paddingSmall',
-  'm': 'euiBottomBar--paddingMedium',
-  'l': 'euiBottomBar--paddingLarge',
+  none: null,
+  s: 'euiBottomBar--paddingSmall',
+  m: 'euiBottomBar--paddingMedium',
+  l: 'euiBottomBar--paddingLarge',
 };
 
 export const SIZES = Object.keys(paddingSizeToClassNameMap);

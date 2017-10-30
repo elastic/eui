@@ -78,14 +78,14 @@ export class GuideNav extends Component {
 
     return (
       <div>
-        <EuiFlexGroup alignItems="center" gutterSize="small">
+        <EuiFlexGroup alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
             <Link
               to="/"
               className="guideLogo"
               onClick={this.props.onShowChrome}
             >
-              <EuiIcon type="logoElastic" size="large" />
+              <EuiIcon type="logoElastic" size="l" />
             </Link>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -103,7 +103,7 @@ export class GuideNav extends Component {
             <button
               onClick={this.props.onHideChrome}
             >
-              <EuiIcon type="fullScreen" size="medium" />
+              <EuiIcon type="fullScreen" size="m" />
             </button>
           </EuiFlexItem>
         </EuiFlexGroup>

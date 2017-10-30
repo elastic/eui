@@ -33,13 +33,13 @@ export const EuiSwitch = ({
         <span className="euiSwitch__track">
           <EuiIcon
             type="cross"
-            size="medium"
+            size="m"
             className="euiSwitch__icon"
           />
 
           <EuiIcon
             type="check"
-            size="medium"
+            size="m"
             className="euiSwitch__icon euiSwitch__icon--checked"
           />
         </span>

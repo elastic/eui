@@ -36,7 +36,7 @@ export const EuiBadge = ({ children, color, iconType, iconSide, className, ...re
   let optionalIcon = null;
   if (iconType) {
     optionalIcon = (
-      <EuiIcon type={iconType} size="medium" className="euiBadge__icon" />
+      <EuiIcon type={iconType} size="m" className="euiBadge__icon" />
     );
   }
 

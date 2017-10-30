@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  small: 'euiLoadingSpinner--small',
-  medium: 'euiLoadingSpinner--medium',
-  large: 'euiLoadingSpinner--large',
-  xLarge: 'euiLoadingSpinner--xLarge',
+  s: 'euiLoadingSpinner--small',
+  m: 'euiLoadingSpinner--medium',
+  l: 'euiLoadingSpinner--large',
+  xl: 'euiLoadingSpinner--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);

@@ -140,11 +140,11 @@ const typeToIconMap = {
 export const TYPES = Object.keys(typeToIconMap);
 
 const sizeToClassNameMap = {
-  original: '',
-  medium: 'euiIcon--medium',
-  large: 'euiIcon--large',
-  xLarge: 'euiIcon--xLarge',
-  xxLarge: 'euiIcon--xxLarge',
+  original: null,
+  m: 'euiIcon--medium',
+  l: 'euiIcon--large',
+  xl: 'euiIcon--xLarge',
+  xxl: 'euiIcon--xxLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -183,5 +183,5 @@ EuiIcon.propTypes = {
 
 EuiIcon.defaultProps = {
   className: 'euiIcon--basic',
-  size: 'medium',
+  size: 'm',
 };

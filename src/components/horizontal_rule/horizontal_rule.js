@@ -11,11 +11,12 @@ const sizeToClassNameMap = {
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 const marginToClassNameMap = {
-  small: 'euiHorizontalRule--marginSmall',
-  medium: 'euiHorizontalRule--marginMedium',
-  large: 'euiHorizontalRule--marginLarge',
-  XLarge: 'euiHorizontalRule--marginXLarge',
-  XXLarge: 'euiHorizontalRule--marginXXLarge',
+  none: null,
+  s: 'euiHorizontalRule--marginSmall',
+  m: 'euiHorizontalRule--marginMedium',
+  l: 'euiHorizontalRule--marginLarge',
+  xl: 'euiHorizontalRule--marginXLarge',
+  xxl: 'euiHorizontalRule--marginXXLarge',
 };
 
 export const MARGINS = Object.keys(marginToClassNameMap);
@@ -50,5 +51,5 @@ EuiHorizontalRule.propTypes = {
 
 EuiHorizontalRule.defaultProps = {
   size: 'full',
-  margin: 'large',
+  margin: 'l',
 };

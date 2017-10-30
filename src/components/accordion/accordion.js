@@ -71,7 +71,7 @@ export class EuiAccordion extends Component {
     );
 
     const icon = (
-      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="medium" />
+      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="m" />
     );
 
     let optionalAction = null;
@@ -89,11 +89,11 @@ export class EuiAccordion extends Component {
         className={classes}
         {...rest}
       >
-        <EuiFlexGroup gutterSize="none" alignItems="center">
+        <EuiFlexGroup gutterSize={ false } alignItems="center">
           <EuiFlexItem>
             <EuiKeyboardAccessible>
               <div onClick={this.onToggleOpen} className={buttonClasses}>
-                <EuiFlexGroup gutterSize="small" alignItems="center">
+                <EuiFlexGroup gutterSize="s" alignItems="center">
                   <EuiFlexItem grow={false}>
                     {icon}
                   </EuiFlexItem>

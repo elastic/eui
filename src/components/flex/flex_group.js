@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const gutterSizeToClassNameMap = {
-  none: '',
-  small: 'euiFlexGroup--gutterSmall',
-  medium: 'euiFlexGroup--gutterMedium',
-  large: 'euiFlexGroup--gutterLarge',
-  extraLarge: 'euiFlexGroup--gutterExtraLarge',
+  none: null,
+  s: 'euiFlexGroup--gutterSmall',
+  m: 'euiFlexGroup--gutterMedium',
+  l: 'euiFlexGroup--gutterLarge',
+  xl: 'euiFlexGroup--gutterExtraLarge',
 };
 
 export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
 
 const alignItemsToClassNameMap = {
-  stretch: '',
+  stretch: null,
   flexStart: 'euiFlexGroup--alignItemsStart',
   flexEnd: 'euiFlexGroup--alignItemsEnd',
   center: 'euiFlexGroup--alignItemsCenter',
@@ -22,7 +22,7 @@ const alignItemsToClassNameMap = {
 export const ALIGN_ITEMS = Object.keys(alignItemsToClassNameMap);
 
 const justifyContentToClassNameMap = {
-  flexStart: '',
+  flexStart: null,
   flexEnd: 'euiFlexGroup--justifyContentFlexEnd',
   center: 'euiFlexGroup--justifyContentCenter',
   spaceBetween: 'euiFlexGroup--justifyContentSpaceBetween',
@@ -59,7 +59,7 @@ EuiFlexGroup.propTypes = {
 };
 
 EuiFlexGroup.defaultProps = {
-  gutterSize: 'large',
+  gutterSize: 'l',
   alignItems: 'stretch',
   justifyContent: 'flexStart',
 };

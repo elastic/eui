@@ -44,12 +44,12 @@ const repeatableForm = (
 
 const buttonContent = (
   <div>
-    <EuiFlexGroup gutterSize="small">
+    <EuiFlexGroup gutterSize="s">
       <EuiFlexItem grow={false}>
-        <EuiIcon type="logoWebhook" size="medium" />
+        <EuiIcon type="logoWebhook" size="m" />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiTitle size="small" className="euiAccordionForm__title">
+        <EuiTitle size="s" className="euiAccordionForm__title">
           <h6>Webhook</h6>
         </EuiTitle>
       </EuiFlexItem>
@@ -70,7 +70,7 @@ const extraAction = (
 
 export default () => (
   <div>
-    <EuiTitle size="small">
+    <EuiTitle size="s">
       <h3>I am a complicated, highly styled, repeatable form!</h3>
     </EuiTitle>
     <EuiSpacer size="l" />

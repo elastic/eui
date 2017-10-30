@@ -22,7 +22,7 @@ export const EuiHeaderAlert = ({
       className={classes}
       {...rest}
     >
-      <EuiButtonIcon iconType="cross" size="small" className="euiHeaderAlert__dismiss" />
+      <EuiButtonIcon iconType="cross" size="s" className="euiHeaderAlert__dismiss" />
       <p className="euiHeaderAlert__title">{title}</p>
       <p className="euiHeaderAlert__text">{text}</p>
       <EuiFlexGroup justifyContent="spaceBetween">

@@ -73,7 +73,7 @@ export function EuiConfirmModal({
           autoFocus={defaultFocusedButton === CANCEL_BUTTON}
           data-test-subj="confirmModalCancelButton"
           onClick={onCancel}
-          size="small"
+          size="s"
         >
           {cancelButtonText}
         </EuiButtonEmpty>
@@ -82,7 +82,7 @@ export function EuiConfirmModal({
           autoFocus={defaultFocusedButton === CONFIRM_BUTTON}
           data-test-subj="confirmModalConfirmButton"
           onClick={onConfirm}
-          size="small"
+          size="s"
           fill
         >
           {confirmButtonText}

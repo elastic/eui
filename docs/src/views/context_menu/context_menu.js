@@ -42,7 +42,7 @@ export default class extends Component {
         icon: (
           <EuiIcon
             type="search"
-            size="medium"
+            size="m"
           />
         ),
         onClick: () => { this.closePopover(); window.alert('Show fullscreen'); },

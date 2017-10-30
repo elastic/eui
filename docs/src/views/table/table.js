@@ -192,7 +192,7 @@ export class Table extends Component {
       label: 'Type',
       alignment: LEFT_ALIGNMENT,
       width: '60px',
-      cellProvider: cell => <EuiIcon type={cell} size="medium" />,
+      cellProvider: cell => <EuiIcon type={cell} size="m" />,
     }, {
       id: 'dateCreated',
       label: 'Date created',
@@ -347,7 +347,7 @@ export class Table extends Component {
 
     return (
       <div>
-        <EuiFlexGroup gutterSize="medium">
+        <EuiFlexGroup gutterSize="m">
           {optionalActionButtons}
           <EuiFlexItem>
             <EuiFieldSearch fullWidth placeholder="Search..." />

@@ -23,7 +23,7 @@ export const EuiPaginationButton = ({
   return (
     <EuiButtonEmpty
       className={classes}
-      size="small"
+      size="s"
       color="text"
       {...rest}
     >

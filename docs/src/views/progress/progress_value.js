@@ -56,7 +56,7 @@ export default class extends Component {
     return (
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton size="small" onClick={this.toggleProgress}>
+          <EuiButton size="s" onClick={this.toggleProgress}>
             Toggle progress
           </EuiButton>
         </EuiFlexItem>

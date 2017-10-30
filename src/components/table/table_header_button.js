@@ -23,7 +23,7 @@ export const EuiTableHeaderButton = ({
       <EuiIcon
         className="euiTableHeaderButton__icon"
         type={iconType}
-        size="medium"
+        size="m"
         aria-hidden="true"
       />
     );

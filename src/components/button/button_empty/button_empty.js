@@ -18,8 +18,8 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
-  small: 'euiButtonEmpty--small',
-  large: 'euiButtonEmpty--large',
+  s: 'euiButtonEmpty--small',
+  l: 'euiButtonEmpty--large',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -67,7 +67,7 @@ export const EuiButtonEmpty = ({
       <EuiIcon
         className="euiButtonEmpty__icon"
         type={iconType}
-        size="medium"
+        size="m"
         aria-hidden="true"
       />
     );

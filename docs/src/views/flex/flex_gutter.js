@@ -17,7 +17,7 @@ export default () => (
     <br/>
     <br/>
 
-    <EuiFlexGroup gutterSize="small">
+    <EuiFlexGroup gutterSize="s">
       <EuiFlexItem>Small</EuiFlexItem>
       <EuiFlexItem>Small</EuiFlexItem>
       <EuiFlexItem>Small</EuiFlexItem>
@@ -27,7 +27,7 @@ export default () => (
     <br/>
     <br/>
 
-    <EuiFlexGroup gutterSize="medium">
+    <EuiFlexGroup gutterSize="m">
       <EuiFlexItem>Medium</EuiFlexItem>
       <EuiFlexItem>Medium</EuiFlexItem>
       <EuiFlexItem>Medium</EuiFlexItem>
@@ -37,7 +37,7 @@ export default () => (
     <br/>
     <br/>
 
-    <EuiFlexGroup gutterSize="large">
+    <EuiFlexGroup gutterSize="l">
       <EuiFlexItem>Large (default)</EuiFlexItem>
       <EuiFlexItem>Large (default)</EuiFlexItem>
       <EuiFlexItem>Large (default)</EuiFlexItem>
@@ -47,7 +47,7 @@ export default () => (
     <br/>
     <br/>
 
-    <EuiFlexGroup gutterSize="extraLarge">
+    <EuiFlexGroup gutterSize="xl">
       <EuiFlexItem>Extra Large</EuiFlexItem>
       <EuiFlexItem>Extra Large</EuiFlexItem>
       <EuiFlexItem>Extra Large</EuiFlexItem>

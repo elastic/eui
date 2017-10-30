@@ -88,7 +88,7 @@ export class Compressed extends Component {
       label: 'Type',
       alignment: LEFT_ALIGNMENT,
       width: '60px',
-      cellProvider: cell => <EuiIcon type={cell} size="medium" />,
+      cellProvider: cell => <EuiIcon type={cell} size="m" />,
     }, {
       id: 'dateCreated',
       label: 'Date created',

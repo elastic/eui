@@ -6,8 +6,8 @@ import {
 
 export default () => (
   <div>
-    <EuiLoadingKibana size="medium"/>
-    <EuiLoadingKibana size="large"/>
-    <EuiLoadingKibana size="xLarge"/>
+    <EuiLoadingKibana size="m"/>
+    <EuiLoadingKibana size="l"/>
+    <EuiLoadingKibana size="xl"/>
   </div>
 );

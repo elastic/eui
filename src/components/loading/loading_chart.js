@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeToClassNameMap = {
-  medium: 'euiLoadingChart--medium',
-  large: 'euiLoadingChart--large',
-  xLarge: 'euiLoadingChart--xLarge',
+  m: 'euiLoadingChart--medium',
+  l: 'euiLoadingChart--large',
+  xl: 'euiLoadingChart--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);

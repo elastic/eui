@@ -12,7 +12,7 @@ export default () => (
     <EuiAvatar size="l" name="Leornardo" />
     <EuiAvatar size="xl" name="Michaelangelo" />
 
-    <EuiHorizontalRule margin="large" />
+    <EuiHorizontalRule margin="l" />
 
     <EuiAvatar size="s" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
     <EuiAvatar size="m" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />

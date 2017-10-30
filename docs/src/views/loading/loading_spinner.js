@@ -6,19 +6,19 @@ import {
 
 export default () => (
   <div>
-    <EuiLoadingSpinner size="small"/>
+    <EuiLoadingSpinner size="s"/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingSpinner size="medium"/>
+    <EuiLoadingSpinner size="m"/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingSpinner size="large"/>
+    <EuiLoadingSpinner size="l"/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingSpinner size="xLarge"/>
+    <EuiLoadingSpinner size="xl"/>
   </div>
 );
 

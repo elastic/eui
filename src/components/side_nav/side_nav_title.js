@@ -10,7 +10,7 @@ export const EuiSideNavTitle = ({ children, className, ...rest }) => {
 
   return (
     <EuiTitle
-      size="small"
+      size="s"
       className={classes}
       {...rest}
     >
