@@ -1,7 +1,6 @@
 .euiIcon {
   display: inline-block;
   vertical-align: middle;
-  fill: $euiTextColor;
 
   &:focus {
     opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
@@ -9,8 +8,28 @@
   }
 }
 
-.euiIcon--basic {
+.euiIcon--default {
+  fill: currentColor;
+}
+
+.euiIcon--text {
   fill: $euiTextColor;
+}
+
+.euiIcon--primary {
+  fill: $euiColorPrimary;
+}
+
+.euiIcon--secondary {
+  fill: $euiColorSecondary;
+}
+
+.euiIcon--warning {
+  fill: $euiColorWarning;
+}
+
+.euiIcon--danger {
+  fill: $euiColorDanger;
 }
 
 .euiIcon--medium {
