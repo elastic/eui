@@ -89,7 +89,7 @@ export class EuiAccordion extends Component {
         className={classes}
         {...rest}
       >
-        <EuiFlexGroup gutterSize={ false } alignItems="center">
+        <EuiFlexGroup gutterSize="none" alignItems="center">
           <EuiFlexItem>
             <EuiKeyboardAccessible>
               <div onClick={this.onToggleOpen} className={buttonClasses}>
