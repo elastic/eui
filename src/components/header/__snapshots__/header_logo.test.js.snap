@@ -7,7 +7,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <svg
-    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
+    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge euiIcon--default"
   >
     <title>
       logo elastic icon
@@ -25,7 +25,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
   href="#"
 >
   <svg
-    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
+    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge euiIcon--default"
   >
     <title>
       logo elastic icon

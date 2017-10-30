@@ -20,7 +20,7 @@ exports[`EuiSwitch is rendered 1`] = `
       class="euiSwitch__track"
     >
       <svg
-        class="euiIcon euiSwitch__icon euiIcon--medium"
+        class="euiIcon euiSwitch__icon euiIcon--medium euiIcon--default"
       >
         <title>
           cross icon
@@ -30,7 +30,7 @@ exports[`EuiSwitch is rendered 1`] = `
         />
       </svg>
       <svg
-        class="euiIcon euiSwitch__icon euiSwitch__icon--checked euiIcon--medium"
+        class="euiIcon euiSwitch__icon euiSwitch__icon--checked euiIcon--medium euiIcon--default"
       >
         <title>
           check icon

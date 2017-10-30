@@ -26,7 +26,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          class="euiIcon euiContextMenu__icon euiIcon--medium"
+          class="euiIcon euiContextMenu__icon euiIcon--medium euiIcon--default"
         >
           <title>
             arrow left icon
@@ -69,7 +69,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          class="euiIcon euiContextMenu__icon euiIcon--medium"
+          class="euiIcon euiContextMenu__icon euiIcon--medium euiIcon--default"
         >
           <title>
             arrow left icon
@@ -104,7 +104,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          class="euiIcon euiContextMenu__icon euiIcon--medium"
+          class="euiIcon euiContextMenu__icon euiIcon--medium euiIcon--default"
         >
           <title>
             arrow left icon
@@ -134,7 +134,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2a
           </span>
           <svg
-            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+            class="euiIcon euiContextMenu__arrow euiIcon--medium euiIcon--default"
           >
             <title>
               arrow right icon
@@ -158,7 +158,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2b
           </span>
           <svg
-            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+            class="euiIcon euiContextMenu__arrow euiIcon--medium euiIcon--default"
           >
             <title>
               arrow right icon
@@ -182,7 +182,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2c
           </span>
           <svg
-            class="euiIcon euiContextMenu__arrow euiIcon--medium"
+            class="euiIcon euiContextMenu__arrow euiIcon--medium euiIcon--default"
           >
             <title>
               arrow right icon
@@ -215,7 +215,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
         class="euiContextMenu__itemLayout"
       >
         <svg
-          class="euiIcon euiContextMenu__icon euiIcon--medium"
+          class="euiIcon euiContextMenu__icon euiIcon--medium euiIcon--default"
         >
           <title>
             arrow left icon

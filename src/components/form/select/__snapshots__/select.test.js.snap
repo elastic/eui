@@ -10,7 +10,7 @@ exports[`EuiSelect is rendered 1`] = `
     data-test-subj="test subject string"
   />
   <svg
-    class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium"
+    class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium euiIcon--default"
   >
     <title>
       arrow down icon
