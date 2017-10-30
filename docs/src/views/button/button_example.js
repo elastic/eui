@@ -24,10 +24,6 @@ import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
 const buttonOptionHtml = renderToHtml(ButtonOption);
 
-import ButtonOptionFlush from './button_empty_flush';
-const buttonOptionFlushSource = require('!!raw-loader!./button_empty_flush');
-const buttonOptionFlushHtml = renderToHtml(ButtonOptionFlush);
-
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
 const buttonIconHtml = renderToHtml(ButtonIcon);
@@ -97,27 +93,6 @@ export default props => (
       }
       demo={
         <ButtonOption />
-      }
-    />
-
-    <GuideSection
-      title="Flush ButtonEmpty"
-      source={[{
-        type: GuideSectionTypes.JS,
-        code: buttonOptionFlushSource,
-      }, {
-        type: GuideSectionTypes.HTML,
-        code: buttonOptionFlushHtml,
-      }]}
-      text={
-        <p>
-          When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left or the right,
-          you should make sure they&rsquo;re flush with the edge of their container, so that they&rsquo;re
-          horizontally-aligned with the other content in the container.
-        </p>
-      }
-      demo={
-        <ButtonOptionFlush />
       }
     />
 

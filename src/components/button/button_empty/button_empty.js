@@ -31,13 +31,6 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-const flushTypeToClassNameMap = {
-  'left': 'euiButtonEmpty--flushLeft',
-  'right': 'euiButtonEmpty--flushRight',
-};
-
-export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
-
 export const EuiButtonEmpty = ({
   children,
   className,
@@ -45,7 +38,6 @@ export const EuiButtonEmpty = ({
   iconSide,
   color,
   size,
-  flush,
   isDisabled,
   ...rest
 }) => {
@@ -55,7 +47,6 @@ export const EuiButtonEmpty = ({
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
-    flushTypeToClassNameMap[flush],
     className,
   );
 
@@ -94,7 +85,6 @@ EuiButtonEmpty.propTypes = {
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
-  flush: PropTypes.oneOf(FLUSH_TYPES),
   isDisabled: PropTypes.bool,
 };
 
