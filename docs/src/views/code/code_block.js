@@ -15,13 +15,13 @@ const jsCode = require('!!raw-loader!./code_block');
 
 export default () => (
   <div>
-    <EuiCodeBlock language="html" fontSize="l">
+    <EuiCodeBlock language="html">
       {htmlCode}
     </EuiCodeBlock>
 
     <EuiSpacer />
 
-    <EuiCodeBlock language="js" color="light" overflowHeight={300}>
+    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="light" overflowHeight={300}>
       {jsCode}
     </EuiCodeBlock>
   </div>

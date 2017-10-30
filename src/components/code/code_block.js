@@ -37,23 +37,10 @@ export class EuiCodeBlock extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      isOpen: false,
-    };
-
-    this.onToggleOpen = this.onToggleOpen.bind(this);
   }
 
   componentDidMount() {
     hljs.highlightBlock(this.refs.code);
-  }
-
-  onToggleOpen() {
-    const currentState = this.state.isOpen;
-    this.setState({
-      isOpen: !currentState,
-    });
   }
 
   render() {
