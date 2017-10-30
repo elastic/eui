@@ -28,6 +28,10 @@ import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
 const iconSizesHtml = renderToHtml(IconSizes);
 
+import IconColors from './icon_colors';
+const iconColorsSource = require('!!raw-loader!./icon_colors');
+const iconColorsHtml = renderToHtml(IconColors);
+
 import Accessibility from './accessibility';
 const accessibilitySource = require('!!raw-loader!./accessibility');
 const accessibilityHtml = renderToHtml(Accessibility);
@@ -126,6 +130,26 @@ export default props => (
       }
       demo={
         <IconSizes />
+      }
+    />
+
+    <GuideSection
+      title="Colors"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: iconColorsSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: iconColorsHtml,
+      }]}
+      text={
+        <p>
+          Use the <EuiCode>color</EuiCode> prop to assign a color for your icons.
+          The default behavior is to inherit the text color as the SVG color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
+        </p>
+      }
+      demo={
+        <IconColors />
       }
     />
 

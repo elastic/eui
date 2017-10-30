@@ -139,6 +139,19 @@ const typeToIconMap = {
 
 export const TYPES = Object.keys(typeToIconMap);
 
+const colorToClassMap = {
+  default: null,
+  primary: 'euiIcon--primary',
+  secondary: 'euiIcon--secondary',
+  accent: 'euiIcon--accent',
+  warning: 'euiIcon--warning',
+  danger: 'euiIcon--danger',
+  text: 'euiIcon--text',
+  subdued: 'euiIcon--subdued',
+};
+
+export const COLORS = Object.keys(colorToClassMap);
+
 const sizeToClassNameMap = {
   original: null,
   m: 'euiIcon--medium',
@@ -152,11 +165,12 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 export const EuiIcon = ({
   type,
   size,
+  color,
   title,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiIcon', className, sizeToClassNameMap[size]);
+  const classes = classNames('euiIcon', className, sizeToClassNameMap[size], colorToClassMap[color]);
 
   const titleText = title
     ? title
@@ -177,11 +191,11 @@ export const EuiIcon = ({
 
 EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
+  color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   title: PropTypes.string,
 };
 
 EuiIcon.defaultProps = {
-  className: 'euiIcon--basic',
   size: 'm',
 };

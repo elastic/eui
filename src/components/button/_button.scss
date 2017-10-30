@@ -44,10 +44,6 @@
       cursor: not-allowed;
     }
 
-    .euiButton__icon {
-      fill: $euiButtonColorDisabled;
-    }
-
     &.euiButton--fill {
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
@@ -80,10 +76,6 @@ $buttonTypes: (
     color: $color;
     border-color: $color;
 
-    .euiButton__icon {
-      fill: $color;
-    }
-
     &.euiButton--fill {
       background-color: $color;
       border-color: $color;
@@ -100,16 +92,6 @@ $buttonTypes: (
       &:hover, &:focus {
         background-color: darken($color, 5%);
         border-color: darken($color, 5%);
-      }
-
-      .euiButton__icon {
-        @if ($name == 'ghost') {
-          fill: #000;
-        } @elseif (lightness($euiTextColor) > 50) {
-          fill: $euiTextColor;
-        } @else {
-          fill: #FFF;
-        }
       }
     }
 
