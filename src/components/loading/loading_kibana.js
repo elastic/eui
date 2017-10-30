@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import { EuiIcon } from '..';
 
 const sizeToClassNameMap = {
-  medium: 'euiLoadingKibana--medium',
-  large: 'euiLoadingKibana--large',
-  xLarge: 'euiLoadingKibana--xLarge',
+  m: 'euiLoadingKibana--medium',
+  l: 'euiLoadingKibana--large',
+  xl: 'euiLoadingKibana--xLarge',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);

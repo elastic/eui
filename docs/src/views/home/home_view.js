@@ -191,7 +191,7 @@ export const HomeView = () => (
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiFlexGrid columns={2} gutterSize="small">
+        <EuiFlexGrid columns={2} gutterSize="s">
           {colors.map((item, index) => {
             return (
               <EuiFlexItem className="guideDemo__color" style={{ background: item.hex }} key={index}>
@@ -231,7 +231,7 @@ export const HomeView = () => (
 
     <EuiSpacer size="l" />
 
-    <EuiFlexGroup gutterSize="small" className="guideDemo__sizeGrid">
+    <EuiFlexGroup gutterSize="s" className="guideDemo__sizeGrid">
       <EuiFlexItem>
         <EuiText><h3>Element sizes / paddings / margins</h3></EuiText>
         {sizes.map((item, index) => {

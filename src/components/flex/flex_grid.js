@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const gutterSizeToClassNameMap = {
-  none: '',
-  small: 'euiFlexGrid--gutterSmall',
-  medium: 'euiFlexGrid--gutterMedium',
-  large: 'euiFlexGrid--gutterLarge',
-  extraLarge: 'euiFlexGrid--gutterXLarge',
+  none: null,
+  s: 'euiFlexGrid--gutterSmall',
+  m: 'euiFlexGrid--gutterMedium',
+  l: 'euiFlexGrid--gutterLarge',
+  xl: 'euiFlexGrid--gutterXLarge',
 };
 
 export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
@@ -47,7 +47,7 @@ EuiFlexGrid.propTypes = {
 };
 
 EuiFlexGrid.defaultProps = {
-  gutterSize: 'large',
+  gutterSize: 'l',
   columns: 0,
 };
 

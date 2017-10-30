@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const titleSizeToClassNameMap = {
-  small: 'euiTitle--small',
-  large: 'euiTitle--large',
+  s: 'euiTitle--small',
+  l: 'euiTitle--large',
 };
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);

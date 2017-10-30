@@ -28,7 +28,7 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, clas
       <EuiIcon
         className={iconClasses}
         type={icon}
-        size="medium"
+        size="m"
       />
     );
 

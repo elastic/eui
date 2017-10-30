@@ -9,10 +9,10 @@ import {
 } from '../../../../src/components';
 
 const iconSizes = [
-  'medium',
-  'large',
-  'xLarge',
-  'xxLarge',
+  'm',
+  'l',
+  'xl',
+  'xxl',
   'original',
 ];
 

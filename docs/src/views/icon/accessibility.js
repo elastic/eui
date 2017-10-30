@@ -8,7 +8,7 @@ export default () => (
   <div>
     <EuiIcon
       type="search"
-      size="large"
+      size="l"
       title="Find information"
     />
   </div>

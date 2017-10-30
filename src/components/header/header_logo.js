@@ -14,7 +14,7 @@ export const EuiHeaderLogo = ({ href, className, ...rest }) => {
       <EuiIcon
         className="euiHeaderLogo__icon"
         type="logoKibana"
-        size="xLarge"
+        size="xl"
         title="Go to Kibana home page"
       />
     </a>

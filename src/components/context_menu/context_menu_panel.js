@@ -276,7 +276,7 @@ export class EuiContextMenuPanel extends Component {
             <span className="euiContextMenu__itemLayout">
               <EuiIcon
                 type="arrowLeft"
-                size="medium"
+                size="m"
                 className="euiContextMenu__icon"
               />
 

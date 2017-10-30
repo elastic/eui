@@ -89,7 +89,7 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiButton size="small" onClick={this.toggleProgress}>
+        <EuiButton size="s" onClick={this.toggleProgress}>
           Toggle a fixed bar
         </EuiButton>
 

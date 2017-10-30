@@ -37,7 +37,7 @@ export const EuiTableHeaderCell = ({
       <EuiIcon
         className="euiTableSortIcon"
         type={isSortAscending ? 'sortUp' : 'sortDown'}
-        size="medium"
+        size="m"
       />
     );
 

@@ -97,7 +97,7 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiButtonEmpty size="small" color="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
+      <EuiButtonEmpty size="s" color="text" iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
         Rows per page: 50
       </EuiButtonEmpty>
     );

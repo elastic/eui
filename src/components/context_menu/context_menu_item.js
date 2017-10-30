@@ -35,7 +35,7 @@ export class EuiContextMenuItem extends Component {
           iconInstance = (
             <EuiIcon
               type={icon}
-              size="medium"
+              size="m"
               className="euiContextMenu__icon"
             />
           );
@@ -55,7 +55,7 @@ export class EuiContextMenuItem extends Component {
       arrow = (
         <EuiIcon
           type="arrowRight"
-          size="medium"
+          size="m"
           className="euiContextMenu__arrow"
         />
       );

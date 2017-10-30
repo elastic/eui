@@ -27,7 +27,7 @@ export default () => (
 
     <EuiButton
       iconType="arrowLeft"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -37,7 +37,7 @@ export default () => (
 
     <EuiButton
       iconType="arrowRight"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -70,7 +70,7 @@ export default () => (
     <EuiButton
       iconSide="right"
       iconType="arrowLeft"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
     >
       small
@@ -81,7 +81,7 @@ export default () => (
     <EuiButton
       iconSide="right"
       iconType="arrowRight"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
     >
@@ -116,7 +116,7 @@ export default () => (
     <EuiButton
       iconSide="right"
       iconType="arrowLeft"
-      size="small"
+      size="s"
       onClick={() => window.alert('Button clicked')}
       isDisabled
     >
@@ -128,7 +128,7 @@ export default () => (
     <EuiButton
       iconSide="right"
       iconType="arrowRight"
-      size="small"
+      size="s"
       fill
       onClick={() => window.alert('Button clicked')}
       isDisabled

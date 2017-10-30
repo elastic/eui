@@ -39,22 +39,22 @@ export default class extends Component {
         <EuiBottomBar>
           <EuiFlexGroup justifyContent="spaceBetween">
             <EuiFlexItem grow={false}>
-              <EuiFlexGroup gutterSize="small">
+              <EuiFlexGroup gutterSize="s">
                 <EuiFlexItem>
-                  <EuiButton color="ghost" size="small" iconType="help">Help</EuiButton>
+                  <EuiButton color="ghost" size="s" iconType="help">Help</EuiButton>
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <EuiButton color="ghost" size="small" iconType="user">Add user</EuiButton>
+                  <EuiButton color="ghost" size="s" iconType="user">Add user</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiFlexGroup gutterSize="small">
+              <EuiFlexGroup gutterSize="s">
                 <EuiFlexItem>
-                  <EuiButtonEmpty color="ghost" size="small" iconType="cross">Discard</EuiButtonEmpty>
+                  <EuiButtonEmpty color="ghost" size="s" iconType="cross">Discard</EuiButtonEmpty>
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <EuiButton color="primary" fill size="small" iconType="check">Save</EuiButton>
+                  <EuiButton color="primary" fill size="s" iconType="check">Save</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>

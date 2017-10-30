@@ -10,6 +10,6 @@ export default () => (
     label="Dashboard"
     onClick={() => window.alert('Clicked')}
   >
-    <EuiIcon type="dashboardApp" size="large" />
+    <EuiIcon type="dashboardApp" size="l" />
   </EuiKeyPadMenuItemButton>
 );

@@ -12,28 +12,28 @@ export default () => (
       label="Dashboard"
       href="#"
     >
-      <EuiIcon type="dashboardApp" size="large" />
+      <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
 
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <EuiIcon type="dashboardApp" size="large" />
+      <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
 
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <EuiIcon type="dashboardApp" size="large" />
+      <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
 
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
     >
-      <EuiIcon type="dashboardApp" size="large" />
+      <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>
 );

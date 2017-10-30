@@ -33,7 +33,7 @@ export default class extends Component {
   render() {
     const button = (
       <EuiButtonEmpty
-        size="small"
+        size="s"
         type="text"
         iconType="arrowDown"
         iconSide="right"

@@ -31,7 +31,7 @@ export const EuiCallOut = ({ title, color, iconType, children, className, ...res
       <EuiIcon
         className="euiCallOutHeader__icon"
         type={iconType}
-        size="medium"
+        size="m"
         aria-hidden="true"
       />
     );

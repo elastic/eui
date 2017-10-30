@@ -106,14 +106,14 @@ export class ModalExample extends Component {
             <EuiModalFooter>
               <EuiButtonEmpty
                 onClick={this.closeModal}
-                size="small"
+                size="s"
               >
                 Cancel
               </EuiButtonEmpty>
 
               <EuiButton
                 onClick={this.closeModal}
-                size="small"
+                size="s"
                 fill
               >
                 Save

@@ -181,7 +181,7 @@ export default class extends Component {
   renderSearch() {
     return (
       <EuiHeaderSectionItemButton>
-        <EuiIcon type="search" size="medium" />
+        <EuiIcon type="search" size="m" />
       </EuiHeaderSectionItemButton>
     );
   }
@@ -189,7 +189,7 @@ export default class extends Component {
   renderUserMenu() {
     const button = (
       <EuiHeaderSectionItemButton onClick={this.onUserMenuButtonClick.bind(this)}>
-        <EuiIcon type="user" size="medium" />
+        <EuiIcon type="user" size="m" />
         <span className="euiHeader__notification">3</span>
       </EuiHeaderSectionItemButton>
     );
@@ -202,7 +202,7 @@ export default class extends Component {
         closePopover={this.closeUserMenu.bind(this)}
         panelClassName="euiHeaderPopover"
       >
-        <EuiFlexGroup gutterSize="medium" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
+        <EuiFlexGroup gutterSize="m" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -249,7 +249,7 @@ export default class extends Component {
   renderAppMenu() {
     const button = (
       <EuiHeaderSectionItemButton onClick={this.onAppMenuButtonClick.bind(this)}>
-        <EuiIcon type="apps" size="medium" />
+        <EuiIcon type="apps" size="m" />
       </EuiHeaderSectionItemButton>
     );
 
@@ -266,49 +266,49 @@ export default class extends Component {
             label="Discover"
             href="#"
           >
-            <EuiIcon type="discoverApp" size="large" />
+            <EuiIcon type="discoverApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Dashboard"
             href="#"
           >
-            <EuiIcon type="dashboardApp" size="large" />
+            <EuiIcon type="dashboardApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Dev Tools"
             href="#"
           >
-            <EuiIcon type="devToolsApp" size="large" />
+            <EuiIcon type="devToolsApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Machine Learning"
             href="#"
           >
-            <EuiIcon type="machineLearningApp" size="large" />
+            <EuiIcon type="machineLearningApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Graph"
             href="#"
           >
-            <EuiIcon type="graphApp" size="large" />
+            <EuiIcon type="graphApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Visualize"
             href="#"
           >
-            <EuiIcon type="visualizeApp" size="large" />
+            <EuiIcon type="visualizeApp" size="l" />
           </EuiKeyPadMenuItem>
 
           <EuiKeyPadMenuItem
             label="Timelion"
             href="#"
           >
-            <EuiIcon type="timelionApp" size="large" />
+            <EuiIcon type="timelionApp" size="l" />
           </EuiKeyPadMenuItem>
         </EuiKeyPadMenu>
       </EuiPopover>
@@ -432,7 +432,7 @@ export default class extends Component {
       <EuiPage>
         <EuiPageHeader>
           <EuiPageHeaderSection>
-            <EuiTitle size="large">
+            <EuiTitle size="l">
               <h1>Management</h1>
             </EuiTitle>
           </EuiPageHeaderSection>
@@ -447,11 +447,11 @@ export default class extends Component {
                 </EuiTitle>
               </EuiPageContentHeaderSection>
               <EuiPageContentHeaderSection>
-                <EuiFlexGroup gutterSize="medium">
+                <EuiFlexGroup gutterSize="m">
                   <EuiFlexItem>
                     <EuiButton
                       onClick={this.onAddToastClick.bind(this)}
-                      size="small"
+                      size="s"
                     >
                       Add toast
                     </EuiButton>
@@ -460,7 +460,7 @@ export default class extends Component {
                     <EuiButton
                       color="danger"
                       onClick={this.onDeleteAllToasts.bind(this)}
-                      size="small"
+                      size="s"
                     >
                       Clear toasts
                     </EuiButton>

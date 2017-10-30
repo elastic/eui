@@ -6,27 +6,27 @@ import {
 
 export default () => (
   <div>
-    <EuiLoadingChart size="medium"/>
+    <EuiLoadingChart size="m"/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingChart size="large"/>
+    <EuiLoadingChart size="l"/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingChart size="xLarge"/>
+    <EuiLoadingChart size="xl"/>
 
     <br/><br/>
 
-    <EuiLoadingChart mono size="medium"/>
+    <EuiLoadingChart size="m" mono/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingChart mono size="large"/>
+    <EuiLoadingChart size="l" mono/>
 
     &nbsp;&nbsp;
 
-    <EuiLoadingChart mono size="xLarge"/>
+    <EuiLoadingChart size="xl" mono/>
   </div>
 );
 

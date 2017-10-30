@@ -46,7 +46,7 @@ export const EuiSideNav = ({
           <EuiIcon
             className="euiSideNav__mobileIcon"
             type="apps"
-            size="medium"
+            size="m"
             aria-hidden="true"
           />
         </span>

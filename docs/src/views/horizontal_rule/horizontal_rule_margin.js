@@ -7,15 +7,15 @@ import {
 export default () => (
   <div>
     <p>Small</p>
-    <EuiHorizontalRule margin="small" />
+    <EuiHorizontalRule margin="s" />
     <p>Medium</p>
-    <EuiHorizontalRule margin="medium" />
+    <EuiHorizontalRule margin="m" />
     <p>Large</p>
-    <EuiHorizontalRule margin="large" />
+    <EuiHorizontalRule margin="l" />
     <p>XLarge</p>
-    <EuiHorizontalRule margin="XLarge" />
+    <EuiHorizontalRule margin="xl" />
     <p>XXLarge</p>
-    <EuiHorizontalRule margin="XXLarge" />
+    <EuiHorizontalRule margin="xxl" />
   </div>
 );
 
