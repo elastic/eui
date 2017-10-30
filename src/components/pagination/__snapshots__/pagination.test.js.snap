@@ -15,7 +15,7 @@ exports[`EuiPagination is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiButtonEmpty__icon euiIcon--medium euiIcon--default"
+        class="euiIcon euiButtonEmpty__icon euiIcon--medium"
       >
         <title>
           arrow left icon
@@ -38,7 +38,7 @@ exports[`EuiPagination is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiButtonEmpty__icon euiIcon--medium euiIcon--default"
+        class="euiIcon euiButtonEmpty__icon euiIcon--medium"
       >
         <title>
           arrow right icon

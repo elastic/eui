@@ -10,7 +10,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--medium euiIcon--default"
+      class="euiIcon euiIcon--medium"
     >
       <title>
         logo kibana icon

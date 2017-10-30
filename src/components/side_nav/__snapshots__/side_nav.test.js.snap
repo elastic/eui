@@ -18,7 +18,7 @@ exports[`EuiSideNav is rendered 1`] = `
       />
       <svg
         aria-hidden="true"
-        class="euiIcon euiSideNav__mobileIcon euiIcon--medium euiIcon--default"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon
@@ -51,7 +51,7 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
       />
       <svg
         aria-hidden="true"
-        class="euiIcon euiSideNav__mobileIcon euiIcon--medium euiIcon--default"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon
@@ -84,7 +84,7 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
       />
       <svg
         aria-hidden="true"
-        class="euiIcon euiSideNav__mobileIcon euiIcon--medium euiIcon--default"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
       >
         <title>
           apps icon

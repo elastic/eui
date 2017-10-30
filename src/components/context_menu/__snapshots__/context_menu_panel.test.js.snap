@@ -27,7 +27,7 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
       class="euiContextMenu__itemLayout"
     >
       <svg
-        class="euiIcon euiContextMenu__icon euiIcon--medium euiIcon--default"
+        class="euiIcon euiContextMenu__icon euiIcon--medium"
       >
         <title>
           arrow left icon

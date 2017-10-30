@@ -11,7 +11,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
     type="search"
   />
   <svg
-    class="euiIcon euiFormControlLayout__icon euiIcon--medium euiIcon--default"
+    class="euiIcon euiFormControlLayout__icon euiIcon--medium"
   >
     <title>
       search icon
