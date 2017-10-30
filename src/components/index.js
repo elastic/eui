@@ -31,6 +31,7 @@ export {
 
 export {
   EuiCode,
+  EuiCodeBlock,
 } from './code';
 
 export {
