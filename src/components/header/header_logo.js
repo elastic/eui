@@ -6,16 +6,15 @@ import {
   EuiIcon,
 } from '../icon';
 
-export const EuiHeaderLogo = ({ href, className, ...rest }) => {
+export const EuiHeaderLogo = ({ type, href, className, ...rest }) => {
   const classes = classNames('euiHeaderLogo', className);
 
   return (
     <a href={href} className={classes} {...rest}>
       <EuiIcon
         className="euiHeaderLogo__icon"
-        type="logoKibana"
+        type={type}
         size="xl"
-        title="Go to Kibana home page"
       />
     </a>
   );
@@ -23,4 +22,8 @@ export const EuiHeaderLogo = ({ href, className, ...rest }) => {
 
 EuiHeaderLogo.propTypes = {
   href: PropTypes.string,
+};
+
+EuiHeaderLogo.defaultProps = {
+  type: 'logoElastic'
 };

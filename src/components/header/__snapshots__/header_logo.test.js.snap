@@ -10,10 +10,10 @@ exports[`EuiHeaderLogo is rendered 1`] = `
     class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
   >
     <title>
-      Go to Kibana home page
+      logo elastic icon
     </title>
     <use
-      href="#logo_kibana"
+      href="#logo_elastic"
     />
   </svg>
 </a>
@@ -28,10 +28,10 @@ exports[`EuiHeaderLogo renders href 1`] = `
     class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
   >
     <title>
-      Go to Kibana home page
+      logo elastic icon
     </title>
     <use
-      href="#logo_kibana"
+      href="#logo_elastic"
     />
   </svg>
 </a>
