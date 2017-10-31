@@ -7,7 +7,6 @@ export { default as Routes } from './routes/routes';
 export {
   registerTheme,
   applyTheme,
-  getTheme,
 } from './theme/theme';
 
 export { default as Slugify } from './string/slugify';

@@ -1,43 +1,34 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import {
-  getIsCodeViewerOpen,
-  getIsSandbox,
-  getSections,
-  getSource,
-  getTitle,
-} from '../store';
-
 import { AppView } from './app_view';
 
 import {
-  openCodeViewer,
-  closeCodeViewer,
+  getIsSandbox,
+  getSections,
+  getTheme,
+} from '../store';
+
+import {
   registerSection,
   unregisterSection,
+  toggleTheme,
 } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
-    routes: ownProps.routes,
-    isCodeViewerOpen: getIsCodeViewerOpen(state),
+    currentRouteName: ownProps.routes[1].name,
     isSandbox: getIsSandbox(state),
-    source: getSource(state),
-    title: getTitle(state),
     sections: getSections(state),
+    theme: getTheme(state),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  const actions = {
-    openCodeViewer,
-    closeCodeViewer,
+export const AppContainer = connect(
+  mapStateToProps,
+  {
     registerSection,
     unregisterSection,
-  };
-
-  return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppView);
+    toggleTheme,
+  },
+)(AppView);

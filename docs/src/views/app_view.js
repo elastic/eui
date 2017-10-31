@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 
 import {
   Routes,
-  getTheme,
   applyTheme,
 } from '../services';
 
 import {
-  GuideHeader,
-  GuideNav,
+  GuidePageChrome,
 } from '../components';
 
 import {
@@ -21,66 +19,40 @@ import {
 } from '../../../src/components';
 
 export class AppView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isNavOpen: false,
-      isChromeVisible: true,
-      theme: getTheme(),
-    };
-
-    this.onHideChrome = this.onHideChrome.bind(this);
-    this.onShowChrome = this.onShowChrome.bind(this);
-    this.onToggleTheme = this.onToggleTheme.bind(this);
+  updateTheme = () => {
+    applyTheme(this.props.theme);
   }
 
-  onToggleTheme() {
-    if (getTheme() === 'light') {
-      applyTheme('dark');
+  componentDidUpdate() {
+    this.updateTheme();
+  }
+
+  componentDidMount() {
+    this.updateTheme();
+  }
+
+  renderContent() {
+    if (this.props.isSandbox) {
+      return (
+        <div className="guideSandbox">
+          {this.props.children}
+        </div>
+      );
     } else {
-      applyTheme('light');
-    }
-
-    this.setState({
-      theme: getTheme(),
-    });
-  }
-
-  onHideChrome() {
-    this.setState({
-      isChromeVisible: false,
-    });
-
-    this.props.closeCodeViewer();
-  }
-
-  onShowChrome() {
-    this.setState({
-      isChromeVisible: true,
-    });
-  }
-
-  renderChrome() {
-
-    if (this.state.isChromeVisible) {
       return (
         <EuiPage>
           <EuiPageBody>
             <EuiPageSideBar>
-              <GuideNav
-                isChromeVisible={this.state.isChromeVisible}
-                isNavOpen={this.state.isNavOpen}
-                isSandbox={this.props.isSandbox}
-                onHideChrome={this.onHideChrome}
-                onShowChrome={this.onShowChrome}
-                onToggleNav={this.onToggleNav}
-                onToggleTheme={this.onToggleTheme}
+              <GuidePageChrome
+                currentRouteName={this.props.currentRouteName}
+                onToggleTheme={this.props.toggleTheme}
                 routes={this.props.routes}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
+                sections={this.props.sections}
               />
             </EuiPageSideBar>
+
             <EuiPageContent>
               <EuiPageContentBody>
                 {this.props.children}
@@ -89,30 +61,13 @@ export class AppView extends Component {
           </EuiPageBody>
         </EuiPage>
       );
-    } else {
-      return (
-        <div className="guide__hasNoChrome">
-          <GuideHeader
-            isChromeVisible={this.state.isChromeVisible}
-            isNavOpen={this.state.isNavOpen}
-            onHideChrome={this.onHideChrome}
-            onShowChrome={this.onShowChrome}
-            onToggleNav={this.onToggleNav}
-            onToggleTheme={this.onToggleTheme}
-            routes={this.props.routes}
-            components={Routes.components}
-          />
-          {this.props.children}
-        </div>
-      );
     }
   }
 
   render() {
-
     return (
       <div className="guide">
-        {this.renderChrome()}
+        {this.renderContent()}
       </div>
     );
   }
@@ -120,14 +75,17 @@ export class AppView extends Component {
 
 AppView.propTypes = {
   children: PropTypes.any,
-  routes: PropTypes.array.isRequired,
+  currentRouteName: PropTypes.string.isRequired,
   registerSection: PropTypes.func,
   unregisterSection: PropTypes.func,
   sections: PropTypes.array,
-  source: PropTypes.array,
-  title: PropTypes.string,
+  isSandbox: PropTypes.bool,
+  toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+  sections: PropTypes.array.isRequired,
 };
 
 AppView.defaultProps = {
-  source: [],
+  currentRouteName: '',
+  sections: [],
 };

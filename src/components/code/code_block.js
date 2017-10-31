@@ -52,7 +52,7 @@ export class EuiCodeBlock extends Component {
       fontSize,
       paddingSize,
       overflowHeight,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(
@@ -70,11 +70,15 @@ export class EuiCodeBlock extends Component {
     }
 
     return (
-      <div className={classes} style={{ height: optionalOverflowHeight }}>
+      <div
+        className={classes}
+        style={{ height: optionalOverflowHeight }}
+      >
         <pre className="euiCodeBlock__pre">
           <code
             ref="code"
             className={language}
+            {...rest}
           >
             {children}
           </code>

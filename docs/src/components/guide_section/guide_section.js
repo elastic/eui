@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import {
+  GuideSandboxChrome,
+} from '..';
+
+import {
   EuiText,
   EuiTitle,
   EuiSpacer,
@@ -10,41 +14,49 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
-import Slugify from '../../services/string/slugify';
+import {
+  Routes,
+  Slugify,
+} from '../../services';
 
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
-    this.onClickSource = this.onClickSource.bind(this);
 
     this.tabs = [{
-      id: 'demo',
       name: 'Demo',
     }, {
-      id: 'javascript',
       name: 'JavaScript',
+      isCode: true,
     }, {
-      id: 'html',
       name: 'HTML',
+      isCode: true,
     }];
 
     this.state = {
-      selectedTabId: 'demo',
+      selectedTab: this.tabs[0],
+      sandbox: {
+        isChromeVisible: props.isSandbox ? false : undefined,
+      },
     };
   }
 
-  onSelectedTabChanged = id => {
+  onSelectedTabChanged = selectedTab => {
     this.setState({
-      selectedTabId: id,
+      selectedTab,
+    });
+  }
+
+  onToggleSandboxChrome = () => {
+    this.setState({
+      sandbox: {
+        isChromeVisible: !this.state.sandbox.isChromeVisible,
+      },
     });
   }
 
   getId() {
     return Slugify.one(this.props.title);
-  }
-
-  onClickSource() {
-    this.props.openCodeViewer(this.props.source, this.props.title);
   }
 
   componentWillMount() {
@@ -56,59 +68,38 @@ export class GuideSection extends Component {
   }
 
   renderTabs() {
-    return this.tabs.map((tab,index) => (
+    return this.tabs.map(tab => (
       <EuiTab
-        onClick={() => this.onSelectedTabChanged(tab.id)}
-        isSelected={tab.id === this.state.selectedTabId}
-        key={index}
+        onClick={() => this.onSelectedTabChanged(tab)}
+        isSelected={tab === this.state.selectedTab}
+        key={tab.name}
       >
         {tab.name}
       </EuiTab>
     ));
   }
 
-  renderSection(type, code) {
-    const typeToCodeClassMap = {
-      JavaScript: 'javascript',
-      HTML: 'html',
-    };
+  renderChrome() {
+    let header;
 
-    const codeClass = typeToCodeClassMap[type];
-
-    if (code && (codeClass === this.state.selectedTabId)) {
-      return (
-        <div key={type} ref={type}>
-          <EuiCodeBlock
-            language={codeClass}
-            color="dark"
-            overflowHeight={400}
-          >
-            {code}
-          </EuiCodeBlock>
-        </div>
+    if (this.props.isSandbox) {
+      header = (
+        <GuideSandboxChrome
+          routes={Routes.getAppRoutes()}
+          onToggleTheme={this.props.toggleTheme}
+          onToggleSandboxChrome={this.onToggleSandboxChrome}
+          isVisible={this.state.sandbox.isChromeVisible}
+        />
       );
     }
-  }
 
-  renderDemo() {
-    if (this.props.demo && (this.state.selectedTabId === 'demo')) {
-      return (
-        <div>
-          <div className="guideSection__space" />
-          {this.props.demo}
-        </div>
-      );
+    if (this.props.isSandbox && !this.state.sandbox.isChromeVisible) {
+      return header;
     }
-  }
-
-  render() {
-
-    const codeSections = this.props.source.map(sourceObject => (
-      this.renderSection(sourceObject.type, sourceObject.code)
-    ));
 
     return (
-      <div className="guideSection">
+      <div>
+        {header}
         <div className="guideSection__text">
           <EuiTitle>
             <h2>{this.props.title}</h2>
@@ -116,12 +107,56 @@ export class GuideSection extends Component {
           <EuiSpacer size="m" />
           <EuiText>{this.props.text}</EuiText>
         </div>
+
         <EuiSpacer size="m" />
+
         <EuiTabs>
           {this.renderTabs()}
         </EuiTabs>
-        {this.renderDemo()}
-        {codeSections}
+      </div>
+    );
+  }
+
+  renderCode(name) {
+    const nameToCodeClassMap = {
+      JavaScript: 'javascript',
+      HTML: 'html',
+    };
+
+    const codeClass = nameToCodeClassMap[name];
+    const source = this.props.source.find(sourceObject => sourceObject.type === name);
+
+    return (
+      <div key={name} ref={name}>
+        <EuiCodeBlock
+          language={codeClass}
+          color="dark"
+          overflowHeight={400}
+        >
+          {source.code}
+        </EuiCodeBlock>
+      </div>
+    );
+  }
+
+  renderContent() {
+    if (this.state.selectedTab.isCode) {
+      return this.renderCode(this.state.selectedTab.name);
+    }
+
+    return (
+      <div>
+        <div className="guideSection__space" />
+        {this.props.demo}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="guideSection" id={this.getId()}>
+        {this.renderChrome()}
+        {this.renderContent()}
       </div>
     );
   }
@@ -131,7 +166,8 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   source: PropTypes.array,
   children: PropTypes.any,
-  openCodeViewer: PropTypes.func,
-  registerSection: PropTypes.func,
-  unregisterSection: PropTypes.func,
+  registerSection: PropTypes.func.isRequired,
+  unregisterSection: PropTypes.func.isRequired,
+  isSandbox: PropTypes.bool,
+  toggleTheme: PropTypes.func.isRequired,
 };

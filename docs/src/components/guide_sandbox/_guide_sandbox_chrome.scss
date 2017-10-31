@@ -1,0 +1,30 @@
+.guideSandboxChrome {
+  background: #222;
+  color: #FFF !important;
+  height: $euiSizeXXL;
+  border-bottom: $euiBorderThin;
+  line-height: $euiSizeXXL;
+  padding-left: $euiSizeS;
+}
+
+.guideSandboxChrome__link {
+  color: #FFF;
+}
+
+.guideSandboxChrome__appListIcon {
+  fill: #FFF !important;
+}
+
+.guideSandboxChromeToggle {
+  position: fixed;
+  z-index: $guideZLevelHighest;
+  right: 0;
+  bottom: $euiSizeXXL;
+  padding: $euiSizeS;
+  background-color: $euiColorPrimary;
+  color: $euiColorEmptyShade;
+
+  svg {
+    fill: $euiColorEmptyShade;
+  }
+}
