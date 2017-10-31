@@ -40,7 +40,11 @@ export class EuiCodeBlock extends Component {
   }
 
   componentDidMount() {
-    hljs.highlightBlock(this.code);
+    this.highlight();
+  }
+
+  componentDidUpdate() {
+    this.highlight();
   }
 
   render() {
@@ -52,7 +56,7 @@ export class EuiCodeBlock extends Component {
       fontSize,
       paddingSize,
       overflowHeight,
-      ...rest
+      ...otherProps
     } = this.props;
 
     const classes = classNames(
@@ -62,6 +66,8 @@ export class EuiCodeBlock extends Component {
       paddingSizeToClassNameMap[paddingSize],
       className
     );
+
+    const codeClasses = classNames('euiCodeBlock__code', language);
 
     let optionalOverflowHeight = 'auto';
 
@@ -77,14 +83,20 @@ export class EuiCodeBlock extends Component {
         <pre className="euiCodeBlock__pre">
           <code
             ref={ref => { this.code = ref; }}
-            className={language}
-            {...rest}
+            className={codeClasses}
+            {...otherProps}
           >
             {children}
           </code>
         </pre>
       </div>
     );
+  }
+
+  highlight() {
+    if (this.props.language) {
+      hljs.highlightBlock(this.code);
+    }
   }
 }
 
