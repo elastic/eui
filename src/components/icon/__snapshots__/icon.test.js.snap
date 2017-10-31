@@ -288,6 +288,19 @@ exports[`EuiIcon renders type controlsVertical 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type copy 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    copy icon
+  </title>
+  <use
+    href="#copy"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type cross 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
