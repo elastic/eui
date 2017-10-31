@@ -12,6 +12,7 @@ import {
   EuiPageContentBody,
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
+  EuiPageSideBar,
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiTitle,
@@ -38,7 +39,9 @@ export default class extends Component {
           </EuiPageHeaderSection>
         </EuiPageHeader>
         <EuiPageBody>
-          <ManagementSideNav />
+          <EuiPageSideBar>
+            <ManagementSideNav />
+          </EuiPageSideBar>
 
           <EuiPageContent>
             <EuiPageContentHeader>

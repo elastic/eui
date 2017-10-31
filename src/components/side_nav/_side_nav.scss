@@ -1,7 +1,6 @@
 .euiSideNav {
   position: relative;
   height: 100%;
-  width: 200px;
 }
 
   // These mobile children are hidden in everything but mobile view.
@@ -59,10 +58,6 @@
 }
 
 @include screenXSmall {
-  .euiSideNav {
-    width: auto;
-  }
-
   /**
    * 1. Animation doesn't work against height. Need max-height instead.
    *    We set a value larger than what is needed to fake "auto".
