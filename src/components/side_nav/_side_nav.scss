@@ -59,6 +59,10 @@
 }
 
 @include screenXSmall {
+  .euiSideNav {
+    width: auto;
+  }
+
   /**
    * 1. Animation doesn't work against height. Need max-height instead.
    *    We set a value larger than what is needed to fake "auto".
