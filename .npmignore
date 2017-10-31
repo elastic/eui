@@ -2,8 +2,8 @@ node_modules/
 docs/dist/
 reports/
 tmp/
-dist/
-lib/
+
+
 .DS_Store
 .eslintcache
 .yo-rc.json

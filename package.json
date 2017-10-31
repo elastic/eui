@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "0.0.1",
+  "version": "0.0.1-prealpha",
   "main": "lib",
   "module": "src",
   "jsnext:main": "src",
@@ -15,7 +15,8 @@
     "test-unit": "./scripts/test-unit.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
-    "deploy": "now --public"
+    "deploy": "now --public",
+    "prepublish": "npm test && npm run build"
   },
   "now": {
     "name": "elastic-eui",
