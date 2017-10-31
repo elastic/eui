@@ -21,7 +21,7 @@ import {
   RIGHT_ALIGNMENT,
 } from '../../../../src/services';
 
-export class Compressed extends Component {
+export default class extends Component {
   constructor(props) {
     super(props);
 

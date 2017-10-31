@@ -27,7 +27,7 @@ import {
   SortableProperties,
 } from '../../../../src/services';
 
-export class Table extends Component {
+export default class extends Component {
   constructor(props) {
     super(props);
 

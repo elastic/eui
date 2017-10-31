@@ -11,11 +11,11 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
-import { Table } from './table';
+import Table from './table';
 const tableSource = require('!!raw-loader!./table');
 const tableHtml = renderToHtml(Table);
 
-import { Compressed } from './compressed';
+import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 
