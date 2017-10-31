@@ -17,17 +17,17 @@ export default class extends Component {
     };
   }
 
-  toggleOpenOnMobile() {
+  toggleOpenOnMobile = () => {
     this.setState({
       isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
     });
-  }
+  };
 
   render() {
     return (
       <EuiSideNav
         mobileTitle="Navigate within $APP_NAME"
-        toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
+        toggleOpenOnMobile={this.toggleOpenOnMobile}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
       >
         {/* Elasticsearch section */}
