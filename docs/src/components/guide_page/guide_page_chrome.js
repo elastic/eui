@@ -114,17 +114,11 @@ export class GuidePageChrome extends Component {
           </button>
         );
       } else {
-        let onClick;
-
-        if (item.hasSubSections) {
-          onClick = this.scrollTo.bind(this, 0);
-        }
-
         button = (
           <Link
             className="guideNavItem__link"
             to={item.path}
-            onClick={onClick}
+            onClick={this.scrollTo.bind(this, 0)}
           >
             {item.name}
           </Link>
