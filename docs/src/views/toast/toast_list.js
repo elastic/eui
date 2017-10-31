@@ -91,8 +91,6 @@ export default class extends Component {
 
   componentWillUnmount() {
     timeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
-    addToastHandler = undefined;
-    removeAllToastsHandler = undefined;
   }
 
   renderRandomToast = () => {
