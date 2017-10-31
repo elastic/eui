@@ -27,6 +27,7 @@ import './assets/clock.svg';
 import './assets/console.svg';
 import './assets/controls_horizontal.svg';
 import './assets/controls_vertical.svg';
+import './assets/copy.svg';
 import './assets/cross.svg';
 import './assets/document.svg';
 import './assets/dot.svg';
@@ -88,6 +89,7 @@ const typeToIconMap = {
   console: 'console',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
+  copy: 'copy',
   cross: 'cross',
   dashboardApp: 'app_dashboard',
   devToolsApp: 'app_devtools',
