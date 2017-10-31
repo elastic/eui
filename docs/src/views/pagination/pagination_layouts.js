@@ -4,12 +4,13 @@ import React, {
 
 import {
   EuiButtonEmpty,
-  EuiContextMenu,
-  EuiPopover,
-  EuiPagination,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
   EuiFlexGroup,
   EuiFlexItem,
   EuiHorizontalRule,
+  EuiPagination,
+  EuiPopover,
 } from '../../../../src/components';
 
 function convertPanelTreeToMap(panel, map = {}) {
@@ -102,6 +103,40 @@ export default class extends Component {
       </EuiButtonEmpty>
     );
 
+    const items = [(
+      <EuiContextMenuItem
+        key="10 rows"
+        icon="empty"
+        onClick={() => { this.closePopover(); window.alert('10 rows'); }}
+      >
+        10 rows
+      </EuiContextMenuItem>
+    ), (
+      <EuiContextMenuItem
+        key="20 rows"
+        icon="empty"
+        onClick={() => { this.closePopover(); window.alert('20 rows'); }}
+      >
+        20 rows
+      </EuiContextMenuItem>
+    ), (
+      <EuiContextMenuItem
+        key="50 rows"
+        icon="check"
+        onClick={() => { this.closePopover(); window.alert('50 rows'); }}
+      >
+        50 rows
+      </EuiContextMenuItem>
+    ), (
+      <EuiContextMenuItem
+        key="100 rows"
+        icon="empty"
+        onClick={() => { this.closePopover(); window.alert('100 rows'); }}
+      >
+        100 rows
+      </EuiContextMenuItem>
+    )];
+
     return (
       <div>
         <EuiHorizontalRule />
@@ -127,14 +162,12 @@ export default class extends Component {
               panelPaddingSize="none"
               withTitle
             >
-              <EuiContextMenu
-                initialPanelId={0}
-                isVisible={this.state.isPopoverOpen}
-                idToPanelMap={this.idToPanelMap}
-                idToPreviousPanelIdMap={this.idToPreviousPanelIdMap}
+              <EuiContextMenuPanel
+                items={items}
               />
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPagination
               pageCount={this.PAGE_COUNT}

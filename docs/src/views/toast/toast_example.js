@@ -9,8 +9,13 @@ import {
 } from '../../components';
 
 import {
+  EuiButton,
   EuiCode,
 } from '../../../../src/components';
+
+import ToastList, { addToast, removeAllToasts } from './toast_list';
+const toastListSource = require('!!raw-loader!./toast_list');
+const toastListHtml = renderToHtml(ToastList);
 
 import Default from './default';
 const defaultSource = require('!!raw-loader!./default');
@@ -34,6 +39,26 @@ const dangerHtml = renderToHtml(Danger);
 
 export default props => (
   <GuidePage title={props.route.name}>
+    <GuideSection
+      title="ToastList"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: toastListSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: toastListHtml,
+      }]}
+      demo={
+        <div style={{ width: 320 }}>
+          <EuiButton onClick={addToast}>
+            Add toast to global toast list
+          </EuiButton>
+
+          <ToastList />
+        </div>
+      }
+    />
+
     <GuideSection
       title="Default"
       source={[{
