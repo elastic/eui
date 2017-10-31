@@ -113,7 +113,10 @@ import { PopoverExample }
 import { ProgressExample }
   from '../../views/progress/progress_example';
 
-import { SideNavExample }
+import QueryPanelExample
+  from '../../views/query_panel/query_panel_example';
+
+import SideNavExample
   from '../../views/side_nav/side_nav_example';
 
 import { SpacerExample }
@@ -218,6 +221,7 @@ const components = [
   PanelExample,
   PopoverExample,
   ProgressExample,
+  QueryPanelExample,
   SideNavExample,
   SpacerExample,
   StepsExample,
