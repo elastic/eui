@@ -25,7 +25,7 @@ import {
   removeAllToasts,
   Table,
   ToastList,
-} from '../common';
+} from '../partials';
 
 export default class extends Component {
   renderPage() {

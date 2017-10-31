@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   KibanaHeader,
-} from '../common';
+} from '../partials';
 
 export default ({
   children,
