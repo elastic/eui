@@ -40,7 +40,7 @@ export class EuiCodeBlock extends Component {
   }
 
   componentDidMount() {
-    hljs.highlightBlock(this.refs.code);
+    hljs.highlightBlock(this.code);
   }
 
   render() {
@@ -76,7 +76,7 @@ export class EuiCodeBlock extends Component {
       >
         <pre className="euiCodeBlock__pre">
           <code
-            ref="code"
+            ref={ref => { this.code = ref; }}
             className={language}
             {...rest}
           >
