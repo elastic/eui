@@ -1,0 +1,20 @@
+.euiQueryPanelBar {
+  border: $euiBorderThin;
+  padding: $euiSizeS;
+
+  &:only-child {
+    border-radius: $euiBorderRadius;
+  }
+
+  &:first-child {
+    border-top-left-radius: $euiBorderRadius;
+    border-top-right-radius: $euiBorderRadius;
+  }
+
+  &:last-child {
+    border-top: none;
+    border-bottom-left-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
+    background: $euiColorLightestShade;
+  }
+}
