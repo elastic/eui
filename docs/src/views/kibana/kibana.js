@@ -38,6 +38,7 @@ export default class extends Component {
             </EuiTitle>
           </EuiPageHeaderSection>
         </EuiPageHeader>
+
         <EuiPageBody>
           <EuiPageSideBar>
             <ManagementSideNav />
