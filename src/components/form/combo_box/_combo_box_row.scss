@@ -1,0 +1,17 @@
+.euiComboBoxRow {
+  font-size: $euiFontSizeS;
+  padding: $euiSizeXS $euiSizeS;
+  width: 100%;
+  text-align: left;
+  border: $euiBorderThin;
+  border-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  &:focus {
+    cursor: pointer;
+    color: $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+  }
+}

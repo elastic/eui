@@ -2,6 +2,7 @@ export {
   EuiCheckbox,
   EuiCheckboxGroup,
 } from './checkbox';
+export { EuiComboBox, EuiComboBoxPill, EuiComboBoxRow } from './combo_box';
 export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
 export { EuiFieldSearch } from './field_search';
