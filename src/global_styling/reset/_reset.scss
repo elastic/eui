@@ -93,6 +93,7 @@ button {
   font-size: $euiFontSize;
   color: inherit;
   font-size: inherit;
+  border-radius: 0;
 
   &:hover {
     cursor: pointer;
