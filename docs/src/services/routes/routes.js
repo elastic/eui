@@ -26,6 +26,9 @@ import CallOutExample
 import CodeExample
   from '../../views/code/code_example';
 
+import CodeEditorExample
+  from '../../views/code_editor/code_editor_example';
+
 import ContextMenuExample
   from '../../views/context_menu/context_menu_example';
 
@@ -131,6 +134,9 @@ const components = [{
 }, {
   name: 'Code',
   component: CodeExample,
+}, {
+  name: 'CodeEditor',
+  component: CodeEditorExample,
 }, {
   name: 'ContextMenu',
   component: ContextMenuExample,
