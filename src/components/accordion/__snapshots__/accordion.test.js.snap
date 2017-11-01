@@ -7,7 +7,7 @@ exports[`EuiAccordion is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -18,7 +18,7 @@ exports[`EuiAccordion is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"

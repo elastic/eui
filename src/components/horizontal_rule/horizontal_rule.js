@@ -12,6 +12,7 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 
 const marginToClassNameMap = {
   none: null,
+  xs: 'euiHorizontalRule--marginXSmall',
   s: 'euiHorizontalRule--marginSmall',
   m: 'euiHorizontalRule--marginMedium',
   l: 'euiHorizontalRule--marginLarge',

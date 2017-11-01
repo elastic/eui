@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../components';
@@ -32,7 +31,6 @@ export const EuiTogglePill = ({
         <EuiFlexItem grow={false} className="euiTogglePill__title">
           <div>
             <span>{children}</span>
-            <EuiIcon type="arrowDown" className="euiTogglePill__icon" />
           </div>
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="euiTogglePill__toggle">
