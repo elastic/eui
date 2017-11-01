@@ -29,13 +29,16 @@ const repeatableForm = (
           <EuiFieldText icon="user" placeholder="John" />
         </EuiFormRow>
       </EuiFlexItem>
+
       <EuiFlexItem>
         <EuiFormRow label="Password" id={makeId()} helpText="Must include one number and one symbol">
           <EuiFieldPassword icon="lock" />
         </EuiFormRow>
       </EuiFlexItem>
     </EuiFlexGroup>
+
     <EuiSpacer size="m" />
+
     <EuiFormRow label="Body" id={makeId()}>
       <EuiTextArea placeholder="I am a textarea, put some content in me!" />
     </EuiFormRow>
@@ -48,12 +51,14 @@ const buttonContent = (
       <EuiFlexItem grow={false}>
         <EuiIcon type="logoWebhook" size="m" />
       </EuiFlexItem>
+
       <EuiFlexItem>
         <EuiTitle size="s" className="euiAccordionForm__title">
           <h6>Webhook</h6>
         </EuiTitle>
       </EuiFlexItem>
     </EuiFlexGroup>
+
     <EuiText size="s">
       <p>
         <EuiTextColor color="subdued">
@@ -65,7 +70,12 @@ const buttonContent = (
 );
 
 const extraAction = (
-  <EuiButtonIcon iconType="cross" color="danger" className="euiAccordionForm__extraAction" />
+  <EuiButtonIcon
+    iconType="cross"
+    color="danger"
+    className="euiAccordionForm__extraAction"
+    aria-label="Delete"
+  />
 );
 
 export default () => (
@@ -73,8 +83,11 @@ export default () => (
     <EuiTitle size="s">
       <h3>I am a complicated, highly styled, repeatable form!</h3>
     </EuiTitle>
+
     <EuiSpacer size="l" />
+
     <EuiAccordion
+      id="accordionForm1"
       className="euiAccordionForm"
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
@@ -84,7 +97,9 @@ export default () => (
         {repeatableForm}
       </div>
     </EuiAccordion>
+
     <EuiAccordion
+      id="accordionForm2"
       className="euiAccordionForm"
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}

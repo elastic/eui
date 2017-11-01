@@ -60,11 +60,19 @@ export default props => (
         code: formControlsHtml,
       }]}
       text={
-        <p>
-          These are the base inputs without their labels. If you need labels
-          then use the <EuiCode>FormRow</EuiCode> wrapper as explained
-          in the next example.
-        </p>
+        <div>
+          <p>
+            These are the base inputs without their labels. If you need labels
+            then use the <EuiCode>FormRow</EuiCode> wrapper as explained
+            in the next example.
+          </p>
+          <p>
+            Never forget to label every input element. You can either
+            use a <EuiCode>label</EuiCode> element with a <EuiCode>for</EuiCode> attribute
+            referencing the <EuiCode>id</EuiCode> of the input field, wrap the <EuiCode>input</EuiCode> field
+            within the <EuiCode>label</EuiCode> element or use <EuiCode>aria-label</EuiCode> or <EuiCode>aria-labelledby</EuiCode>.
+          </p>
+        </div>
       }
       demo={
         <FormControls />

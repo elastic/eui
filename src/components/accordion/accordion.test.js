@@ -4,10 +4,16 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiAccordion } from './accordion';
 
+let id = 0;
+const getId = () => (`${id++}`);
+
 describe('EuiAccordion', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiAccordion {...requiredProps} />
+      <EuiAccordion
+        id={getId()}
+        {...requiredProps}
+      />
     );
 
     expect(component)

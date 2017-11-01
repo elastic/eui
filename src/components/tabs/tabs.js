@@ -11,6 +11,7 @@ export const EuiTabs = ({
 
   return (
     <div
+      role="tablist"
       className={classes}
       {...rest}
     >

@@ -7,10 +7,14 @@ import { EuiPopover } from './popover';
 
 import { keyCodes } from '../../services';
 
+let id = 0;
+const getId = () => (`${id++}`);
+
 describe('EuiPopover', () => {
   test('is rendered', () => {
     const component = render(
       <EuiPopover
+        id={getId()}
         button={<button />}
         closePopover={() => {}}
         {...requiredProps}
@@ -24,6 +28,7 @@ describe('EuiPopover', () => {
   test('children is rendered', () => {
     const component = render(
       <EuiPopover
+        id={getId()}
         button={<button />}
         closePopover={() => {}}
       >
@@ -40,6 +45,7 @@ describe('EuiPopover', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             withTitle
             button={<button />}
             closePopover={() => {}}
@@ -57,6 +63,7 @@ describe('EuiPopover', () => {
 
         const component = mount(
           <EuiPopover
+            id={getId()}
             withTitle
             button={<button />}
             closePopover={closePopoverHandler}
@@ -72,6 +79,7 @@ describe('EuiPopover', () => {
       test('defaults to centerDown', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
           />
@@ -84,6 +92,7 @@ describe('EuiPopover', () => {
       test('leftCenter is rendered', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
             anchorPosition="leftCenter"
@@ -97,6 +106,7 @@ describe('EuiPopover', () => {
       test('downRight is rendered', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
             anchorPosition="downRight"
@@ -112,6 +122,7 @@ describe('EuiPopover', () => {
       test('defaults to false', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
           />
@@ -124,6 +135,7 @@ describe('EuiPopover', () => {
       test('renders true', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
             isOpen
@@ -139,6 +151,7 @@ describe('EuiPopover', () => {
       test('defaults to false', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             isOpen
             button={<button />}
             closePopover={() => {}}
@@ -152,6 +165,7 @@ describe('EuiPopover', () => {
       test('renders true', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             isOpen
             ownFocus
             button={<button />}
@@ -168,6 +182,7 @@ describe('EuiPopover', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
             panelClassName="test"
@@ -184,6 +199,7 @@ describe('EuiPopover', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
+            id={getId()}
             button={<button />}
             closePopover={() => {}}
             panelPaddingSize="s"

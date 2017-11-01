@@ -52,6 +52,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
+        id="headerUserMenu"
         ownFocus
         button={button}
         isOpen={this.state.isOpen}

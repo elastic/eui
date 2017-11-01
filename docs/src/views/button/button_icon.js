@@ -9,6 +9,7 @@ export default () => (
     <EuiButtonIcon
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
+      aria-label="Next"
     />
 
     <EuiButtonIcon
@@ -16,6 +17,7 @@ export default () => (
       color="danger"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
+      aria-label="Next"
     />
 
     <EuiButtonIcon
@@ -23,6 +25,7 @@ export default () => (
       color="disabled"
       onClick={() => window.alert('Button clicked')}
       iconType="arrowRight"
+      aria-label="Next"
     />
   </div>
 );

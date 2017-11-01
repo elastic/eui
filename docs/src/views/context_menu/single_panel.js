@@ -79,6 +79,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
+        id="singlePanel"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}

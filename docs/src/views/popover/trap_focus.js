@@ -43,6 +43,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
+        id="trapFocus"
         ownFocus
         button={button}
         isOpen={this.state.isPopoverOpen}
@@ -57,6 +58,7 @@ export default class extends Component {
             label="Snapshot data"
           />
         </EuiFormRow>
+
         <EuiFormRow
           label="Include the following in the embed"
         >
@@ -66,7 +68,8 @@ export default class extends Component {
             label="Current time range"
           />
         </EuiFormRow>
-        <EuiButton fill>Copy iFrame code</EuiButton>
+
+        <EuiButton fill>Copy IFRAME code</EuiButton>
       </EuiPopover>
     );
   }
