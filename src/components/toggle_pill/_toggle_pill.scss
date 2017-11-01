@@ -1,18 +1,21 @@
 .euiTogglePill {
   display: inline-block;
   line-height: $euiSizeL;
+  margin-right: $euiSizeS;
+  border-radius: $euiBorderRadius;
+  background: $euiColorLightestShade;
+  border: $euiBorderThin;
 
-  + .euiTogglePill {
-    margin-left: $euiSizeS;
+  &:hover {
+    cursor: pointer;
+    .euiTogglePill__title {
+      text-decoration: underline;
+    }
   }
 
   .euiTogglePill__title {
-    border: $euiBorderThin;
-    border-top-left-radius: $euiBorderRadius;
-    border-bottom-left-radius: $euiBorderRadius;
-    font-size: $euiFontSizeS;
+    font-size: $euiFontSizeXS;
     padding: 0 $euiSizeS;
-    background: $euiColorEmptyShade;
   }
 
   .euiTogglePill__icon {
@@ -22,24 +25,17 @@
 
   .euiTogglePill__toggle {
     font-size: $euiFontSizeXS;
-    background: $euiBorderColor;
-    border: $euiBorderThin;
-    border-top-right-radius: $euiBorderRadius;
-    border-bottom-right-radius: $euiBorderRadius;
     text-transform: uppercase;
-    font-size: $euiFontSizeXS;
+    font-size: $euiFontSizeXS - 2px;
     padding: 0 $euiSizeS;
+    border-left: $euiBorderThin;
+    color: $euiColorDarkShade;
   }
 
   &.euiTogglePill--active {
 
-    .euiTogglePill__title, .euiTogglePill__toggle {
-      border-color: $euiColorSecondary;
-    }
-
     .euiTogglePill__toggle {
-      background: $euiColorSecondary;
-      color: $euiColorGhost;
+      color: $euiColorPrimary;
     }
   }
 }

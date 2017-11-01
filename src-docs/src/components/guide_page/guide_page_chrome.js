@@ -62,7 +62,7 @@ export class GuidePageChrome extends Component {
     );
 
     return (
-      <EuiFlexGroup alignItems="center" gutterSize="s">
+      <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
         <EuiFlexItem grow={false}>
           {homeLink}
         </EuiFlexItem>
