@@ -1,13 +1,12 @@
 import Slugify from '../string/slugify';
 
+// Component examples
+
 import AccordionExample
   from '../../views/accordion/accordion_example';
 
 import AccessibilityExample
   from '../../views/accessibility/accessibility_example';
-
-import AdvancedSettingsExample
-  from '../../views/advanced_settings/advanced_settings_example';
 
 import AvatarExample
   from '../../views/avatar/avatar_example';
@@ -50,9 +49,6 @@ import HorizontalRuleExample
 
 import KeyPadMenuExample
   from '../../views/key_pad_menu/key_pad_menu_example';
-
-import KibanaSandbox
-  from '../../views/kibana/kibana_sandbox';
 
 import LinkExample
   from '../../views/link/link_example';
@@ -98,6 +94,14 @@ import ToastExample
 
 import TitleExample
   from '../../views/title/title_example';
+
+// Sandboxes
+
+import AdvancedSettingsSandbox
+  from '../../views/kibana/advanced_settings_sandbox';
+
+import WatchesSandbox
+  from '../../views/kibana/watches_sandbox';
 
 import TextScalingSandbox
   from '../../views/text_scaling/text_scaling_sandbox';
@@ -199,13 +203,13 @@ const components = [{
 }];
 
 const sandboxes = [{
-  name: 'AdvancedSettings',
-  component: AdvancedSettingsExample,
+  name: 'Advanced Settings',
+  component: AdvancedSettingsSandbox,
 }, {
-  name: 'Kibana',
-  component: KibanaSandbox,
+  name: 'Watches',
+  component: WatchesSandbox,
 }, {
-  name: 'TextScalingSandbox',
+  name: 'Text scales',
   component: TextScalingSandbox,
 }];
 

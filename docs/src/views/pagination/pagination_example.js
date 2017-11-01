@@ -20,9 +20,13 @@ import FewPages from './few_pages';
 const fewPagesSource = require('!!raw-loader!./few_pages');
 const fewPagesnHtml = renderToHtml(FewPages);
 
-import PaginationLayouts from './pagination_layouts';
-const paginationLayoutsSource = require('!!raw-loader!./pagination_layouts');
-const paginationLayoutsHtml = renderToHtml(PaginationLayouts);
+import CenteredPagination from './centered_pagination';
+const centeredPaginationSource = require('!!raw-loader!./centered_pagination');
+const centeredPaginationHtml = renderToHtml(CenteredPagination);
+
+import CustomizablePagination from './customizable_pagination';
+const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
+const customizablePaginationHtml = renderToHtml(CustomizablePagination);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -65,22 +69,40 @@ export default props => (
     />
 
     <GuideSection
-      title="Pagination layouts"
+      title="Centered pagination"
       source={[{
         type: GuideSectionTypes.JS,
-        code: paginationLayoutsSource,
+        code: centeredPaginationSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: paginationLayoutsHtml,
+        code: centeredPaginationHtml,
       }]}
       text={
         <p>
-          Below are some common layout examples for pagination. In both cases we use
-          <EuiCode>FlexGroup</EuiCode> to set up the layout.
+          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination layout.
         </p>
       }
       demo={
-        <PaginationLayouts />
+        <CenteredPagination />
+      }
+    />
+
+    <GuideSection
+      title="Customizable pagination"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: customizablePaginationSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: customizablePaginationHtml,
+      }]}
+      text={
+        <p>
+          You can use <EuiCode>FlexGroup</EuiCode> to set up this pagination layout, commonly used with Tables.
+        </p>
+      }
+      demo={
+        <CustomizablePagination />
       }
     />
   </GuidePage>

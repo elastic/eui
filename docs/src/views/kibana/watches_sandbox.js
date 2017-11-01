@@ -8,9 +8,9 @@ import {
   GuideSectionTypes,
 } from '../../components';
 
-import Kibana from './kibana';
-const kibanaSource = require('!!raw-loader!./kibana');
-const kibanaHtml = renderToHtml(Kibana);
+import Watches from './watches';
+const watchesSource = require('!!raw-loader!./watches');
+const watchesHtml = renderToHtml(Watches);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -18,16 +18,13 @@ export default props => (
       title={props.route.name}
       source={[{
         type: GuideSectionTypes.JS,
-        code: kibanaSource,
+        code: watchesSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: kibanaHtml,
+        code: watchesHtml,
       }]}
-      text={
-        <p>A demo showing off a fully constructed page.</p>
-      }
       demo={
-        <Kibana />
+        <Watches />
       }
     />
   </GuidePage>
