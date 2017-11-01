@@ -32,9 +32,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      itemIdToSelectedMap: {
-        2: true,
-      },
+      itemIdToSelectedMap: {},
       sortedColumn: 'title',
     };
 
@@ -349,11 +347,9 @@ export default class extends Component {
       <div>
         <EuiFlexGroup gutterSize="m">
           {optionalActionButtons}
+
           <EuiFlexItem>
             <EuiFieldSearch fullWidth placeholder="Search..." />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton color="primary">Add new thing</EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
 
