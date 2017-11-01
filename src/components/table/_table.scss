@@ -93,16 +93,15 @@
 
 /**
  * 1. Vertically align all children.
- * 2. Truncate text with an ellipsis. The padding on this div allows the ellipsis to show. If
+ * 2. The padding on this div allows the ellipsis to show if the content is truncated. If
  *    the padding was on the cell, the ellipsis would be cropped.
+ * 3. Support wrapping.
  */
 .euiTableCellContent {
   display: flex;
   align-items: center;
-  white-space: nowrap; /* 2 */
-  overflow: hidden; /* 2 */
-  text-overflow: ellipsis; /* 2 */
   padding: $euiTableCellPadding; /* 2 */
+  white-space: nowrap; /* 3 */
 }
 
   .euiTableCellContent__text {
@@ -117,4 +116,17 @@
 
 .euiTableCellContent--wrapText {
   white-space: normal;
+
+  .euiTableCellContent__text {
+    overflow: visible;
+  }
+}
+
+.euiTableCellContent--overflowingContent {
+  overflow: visible;
+  white-space: normal;
+
+  .euiTableCellContent__text {
+    overflow: visible;
+  }
 }

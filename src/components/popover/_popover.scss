@@ -18,7 +18,6 @@
     .euiPopover__panel {
       opacity: 1;
       visibility: visible;
-      z-index: $euiZContentMenu;
       pointer-events: auto;
     }
   }
@@ -27,7 +26,7 @@
   // Animation happens on the panel.
   .euiPopover__panel {
     position: absolute;
-    min-width: $euiSize * 16; // Can expand further, but this size is good for our menus.
+    z-index: $euiZContentMenu;
     backface-visibility: hidden;
     transition:
       opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
