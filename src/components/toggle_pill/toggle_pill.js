@@ -23,21 +23,21 @@ export const EuiTogglePill = ({
   );
 
   return (
-    <div
+    <button
       className={classes}
       {...rest}
     >
-      <EuiFlexGroup gutterSize="none">
+      <EuiFlexGroup gutterSize="none" responsive={false}>
         <EuiFlexItem grow={false} className="euiTogglePill__title">
-          <div>
-            <span>{children}</span>
-          </div>
+          <span className="euiTogglePill__titleText">
+            {children}
+          </span>
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="euiTogglePill__toggle">
           {toggleText}
         </EuiFlexItem>
       </EuiFlexGroup>
-    </div>
+    </button>
   );
 };
 
