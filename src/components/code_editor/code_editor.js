@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AceEditor from 'react-ace';
 
+import { EuiKeyboardAccessible } from '..';
 import { htmlIdGenerator, keyCodes } from '../../services';
 
 export class EuiCodeEditor extends Component {
@@ -37,13 +38,6 @@ export class EuiCodeEditor extends Component {
     }
   };
 
-  onKeyDownHint = (ev) => {
-    if (ev.keyCode === keyCodes.ENTER) {
-      ev.preventDefault();
-      this.startEditing();
-    }
-  };
-
   startEditing = () => {
     this.setState({ isHintActive: false });
     this.aceEditor.editor.textInput.focus();
@@ -70,24 +64,23 @@ export class EuiCodeEditor extends Component {
         className="euiCodeEditorWrapper"
         style={{ width, height }}
       >
-        <div
-          className={classes}
-          id={this.idGenerator('codeEditor')}
-          ref={(hint) => { this.editorHint = hint; }}
-          tabIndex="0"
-          role="button"
-          onClick={this.startEditing}
-          onKeyDown={this.onKeyDownHint}
-          data-test-subj="codeEditorHint"
-        >
-          <p className="euiText euiVerticalRhythmSmall">
-            Press Enter to start editing.
-          </p>
+        <EuiKeyboardAccessible>
+          <div
+            className={classes}
+            id={this.idGenerator('codeEditor')}
+            ref={(hint) => { this.editorHint = hint; }}
+            onClick={this.startEditing}
+            data-test-subj="codeEditorHint"
+          >
+            <p className="euiText euiVerticalRhythmSmall">
+              Press Enter to start editing.
+            </p>
 
-          <p className="euiText euiVerticalRhythmSmall">
-            When you&rsquo;re done, press Escape to stop editing.
-          </p>
-        </div>
+            <p className="euiText euiVerticalRhythmSmall">
+              When you&rsquo;re done, press Escape to stop editing.
+            </p>
+          </div>
+        </EuiKeyboardAccessible>
 
         <AceEditor
           ref={this.aceEditorRef}

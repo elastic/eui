@@ -34,13 +34,13 @@ describe('EuiCodeEditor', () => {
 
     test('should be disabled when the ui ace box gains focus', () => {
       const hint = findTestSubject(element, 'codeEditorHint', false);
-      hint.simulate('keydown', { keyCode: keyCodes.ENTER });
+      hint.simulate('keyup', { keyCode: keyCodes.ENTER });
       expect(findTestSubject(element, 'codeEditorHint')).toMatchSnapshot();
     });
 
     test('should be enabled when the ui ace box loses focus', () => {
       const hint = findTestSubject(element, 'codeEditorHint', false);
-      hint.simulate('keydown', { keyCode: keyCodes.ENTER });
+      hint.simulate('keyup', { keyCode: keyCodes.ENTER });
       element.instance().onBlurAce();
       expect(findTestSubject(element, 'codeEditorHint')).toMatchSnapshot();
     });

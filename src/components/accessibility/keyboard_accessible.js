@@ -33,6 +33,10 @@ export class EuiKeyboardAccessible extends Component {
     if (e.keyCode === keyCodes.SPACE) {
       e.preventDefault();
     }
+
+    if (this.props.children.props.onKeyDown) {
+      this.props.children.props.onKeyDown(e);
+    }
   }
 
   onKeyUp = e => {
@@ -40,6 +44,10 @@ export class EuiKeyboardAccessible extends Component {
     if (e.keyCode === keyCodes.ENTER || e.keyCode === keyCodes.SPACE) {
       // Delegate to the click handler on the element.
       this.props.children.props.onClick(e);
+    }
+
+    if (this.props.children.props.onKeyUp) {
+      this.props.children.props.onKeyUp(e);
     }
   }
 
@@ -85,14 +93,6 @@ const keyboardInaccessibleElement = (props, propName, componentName) => {
 
   if (typeof child.props.onClick !== 'function') {
     throw new Error(`${componentName}'s child's onClick prop needs to be a function.`);
-  }
-
-  if (child.props.onKeyDown) {
-    throw new Error(`${componentName}'s child can't have an onKeyDown prop because the implementation will override it.`);
-  }
-
-  if (child.props.onKeyUp) {
-    throw new Error(`${componentName}'s child can't have an onKeyUp prop because the implementation will override it.`);
   }
 };
 
