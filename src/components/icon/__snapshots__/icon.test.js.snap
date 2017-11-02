@@ -496,6 +496,19 @@ exports[`EuiIcon renders type help 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type invert 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    invert icon
+  </title>
+  <use
+    href="#invert"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type link 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -730,6 +743,19 @@ exports[`EuiIcon renders type mapMarker 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type minusInCircle 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    minus in circle icon
+  </title>
+  <use
+    href="#minus_in_circle"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type monitoringApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -765,6 +791,19 @@ exports[`EuiIcon renders type pencil 1`] = `
   </title>
   <use
     href="#pencil"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type pin 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    pin icon
+  </title>
+  <use
+    href="#pin"
   />
 </svg>
 `;
