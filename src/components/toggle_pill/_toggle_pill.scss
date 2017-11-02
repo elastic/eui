@@ -5,7 +5,7 @@
   border-radius: $euiBorderRadius;
   background: $euiColorLightestShade;
   border: $euiBorderThin;
-  margin-top: $euiSizeS;
+  vertical-align: middle;
 
   &:hover {
     cursor: pointer;
@@ -40,14 +40,18 @@
     text-transform: uppercase;
     font-size: $euiFontSizeXS - 2px;
     padding: 0 $euiSizeS;
-    border-left: $euiBorderThin;
+    border-right: $euiBorderThin;
     color: $euiColorDarkShade;
   }
 
-  &.euiTogglePill--active {
-
-    .euiTogglePill__toggle {
-      color: $euiColorPrimary;
-    }
+  &.euiTogglePill--inactive {
+    color: $euiColorDarkShade;
+    background: repeating-linear-gradient(
+      45deg,
+      darken($euiColorLightestShade, 1%),
+      darken($euiColorLightestShade, 1%) $euiSizeS,
+      $euiColorEmptyShade $euiSizeS,
+      $euiColorEmptyShade $euiSize
+    );
   }
 }
