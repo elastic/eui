@@ -32,7 +32,7 @@ export class AppView extends Component {
   componentDidMount() {
     this.updateTheme();
 
-    document.addEventListener('keyup', e => {
+    document.addEventListener('keydown', e => {
       if (e.target !== document.body) {
         return;
       }
