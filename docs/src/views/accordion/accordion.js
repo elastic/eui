@@ -11,6 +11,7 @@ import {
 export default () => (
   <div>
     <EuiAccordion
+      id="accordion1"
       buttonContent="Click me to toggle open / close"
     >
       <EuiText>
@@ -21,6 +22,7 @@ export default () => (
     <EuiSpacer size="l" />
 
     <EuiAccordion
+      id="accordion2"
       buttonContent="You can click me as well"
     >
       <EuiText>

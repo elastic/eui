@@ -7,6 +7,7 @@ import {
 
 export default () => (
   <EuiAccordion
+    id="accordionExtra"
     buttonContent="Click to open"
     extraAction={<EuiButton size="s">Extra action!</EuiButton>}
   >

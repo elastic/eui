@@ -7,7 +7,7 @@ import { EuiButtonIcon } from './button_icon';
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonIcon {...requiredProps} />
+      <EuiButtonIcon aria-label="ariaLabel" {...requiredProps} />
     );
 
     expect(component)

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiKeyboardAccessible,
   EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
@@ -46,6 +45,7 @@ export class EuiAccordion extends Component {
       children,
       buttonContent,
       className,
+      id,
       buttonClassName,
       buttonContentClassName,
       extraAction,
@@ -91,23 +91,32 @@ export class EuiAccordion extends Component {
       >
         <EuiFlexGroup gutterSize="none" alignItems="center">
           <EuiFlexItem>
-            <EuiKeyboardAccessible>
-              <div onClick={this.onToggleOpen} className={buttonClasses}>
-                <EuiFlexGroup gutterSize="s" alignItems="center">
-                  <EuiFlexItem grow={false}>
-                    {icon}
-                  </EuiFlexItem>
-                  <EuiFlexItem className={buttonContentClasses}>
-                    {buttonContent}
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </div>
-            </EuiKeyboardAccessible>
+            <button
+              aria-controls={id}
+              aria-expanded={!!this.state.isOpen}
+              onClick={this.onToggleOpen}
+              className={buttonClasses}
+            >
+              <EuiFlexGroup gutterSize="s" alignItems="center">
+                <EuiFlexItem grow={false}>
+                  {icon}
+                </EuiFlexItem>
+
+                <EuiFlexItem className={buttonContentClasses}>
+                  {buttonContent}
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </button>
           </EuiFlexItem>
+
           {optionalAction}
         </EuiFlexGroup>
 
-        <div className="euiAccordion__childWrapper"  ref={node => { this.childWrapper = node; }}>
+        <div
+          className="euiAccordion__childWrapper"
+          ref={node => { this.childWrapper = node; }}
+          id={id}
+        >
           <div ref={node => { this.childContent = node; }}>
             {children}
           </div>
@@ -119,6 +128,7 @@ export class EuiAccordion extends Component {
 
 EuiAccordion.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string.isRequired,
   className: PropTypes.string,
   buttonContentClassName: PropTypes.string,
   buttonContent: PropTypes.node,

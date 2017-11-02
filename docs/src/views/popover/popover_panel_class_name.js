@@ -31,6 +31,7 @@ export default class extends Component {
   render() {
     return (
       <EuiPopover
+        id="popoverPanelClassName"
         ownFocus
         button={(
           <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>

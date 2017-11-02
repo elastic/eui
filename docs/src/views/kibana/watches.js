@@ -103,6 +103,7 @@ export default class extends Component {
 
     return (
       <EuiPopover
+        id="watches"
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}

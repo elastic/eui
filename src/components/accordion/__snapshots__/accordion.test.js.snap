@@ -12,10 +12,10 @@ exports[`EuiAccordion is rendered 1`] = `
     <div
       class="euiFlexItem"
     >
-      <div
+      <button
+        aria-controls="0"
+        aria-expanded="false"
         class="euiAccordion__button"
-        role="button"
-        tabindex="0"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
@@ -38,11 +38,12 @@ exports[`EuiAccordion is rendered 1`] = `
             class="euiFlexItem euiAccordion__buttonContent"
           />
         </div>
-      </div>
+      </button>
     </div>
   </div>
   <div
     class="euiAccordion__childWrapper"
+    id="0"
   >
     <div />
   </div>

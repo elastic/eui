@@ -44,6 +44,7 @@ export default () => (
       color="ghost"
       iconType="user"
       onClick={() => window.alert('Button clicked')}
+      aria-label="Your account"
     />
   </div>
 );

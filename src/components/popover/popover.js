@@ -1,4 +1,5 @@
 import React, {
+  cloneElement,
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -123,6 +124,7 @@ export class EuiPopover extends Component {
       ownFocus,
       withTitle,
       children,
+      id,
       className,
       closePopover,
       panelClassName,
@@ -166,6 +168,7 @@ export class EuiPopover extends Component {
             paddingSize={panelPaddingSize}
             tabIndex={tabIndex}
             hasShadow
+            id={id}
           >
             {children}
           </EuiPanel>
@@ -180,7 +183,10 @@ export class EuiPopover extends Component {
           onKeyDown={this.onKeyDown}
           {...rest}
         >
-          {button}
+          {cloneElement(button, {
+            'aria-controls': id,
+            'aria-expanded': !!isOpen,
+          })}
           {panel}
         </div>
       </EuiOutsideClickDetector>
@@ -189,6 +195,7 @@ export class EuiPopover extends Component {
 }
 
 EuiPopover.propTypes = {
+  id: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,

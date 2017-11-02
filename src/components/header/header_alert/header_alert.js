@@ -22,13 +22,22 @@ export const EuiHeaderAlert = ({
       className={classes}
       {...rest}
     >
-      <EuiButtonIcon iconType="cross" size="s" className="euiHeaderAlert__dismiss" />
+      <EuiButtonIcon
+        aria-label="Dismiss"
+        iconType="cross"
+        size="s"
+        className="euiHeaderAlert__dismiss"
+      />
+
       <p className="euiHeaderAlert__title">{title}</p>
+
       <p className="euiHeaderAlert__text">{text}</p>
+
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
           <div className="euiHeaderAlert__action euiLink">{action}</div>
         </EuiFlexItem>
+
         <EuiFlexItem grow={false}>
           <div className="euiHeaderAlert__date">
             {date}

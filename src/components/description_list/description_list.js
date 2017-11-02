@@ -44,10 +44,15 @@ export const EuiDescriptionList = ({
   let childrenOrListItems = null;
   if (listItems) {
     childrenOrListItems = (
-      listItems.map((item) => {
+      listItems.map((item, index) => {
         return [
-          <EuiDescriptionListTitle>{item.title}</EuiDescriptionListTitle>,
-          <EuiDescriptionListDescription>{item.description}</EuiDescriptionListDescription>
+          <EuiDescriptionListTitle key={`title-${index}`}>
+            {item.title}
+          </EuiDescriptionListTitle>,
+
+          <EuiDescriptionListDescription key={`description-${index}`}>
+            {item.description}
+          </EuiDescriptionListDescription>
         ];
       })
     );

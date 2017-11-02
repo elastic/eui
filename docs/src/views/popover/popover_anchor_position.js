@@ -176,6 +176,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="downLeft"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
@@ -189,8 +190,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="downCenter"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
@@ -204,8 +207,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="downRight"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
@@ -226,6 +231,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="upLeft"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
@@ -239,8 +245,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="upCenter"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick5.bind(this)}>
@@ -254,8 +262,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="upRight"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick6.bind(this)}>
@@ -276,6 +286,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="leftUp"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick7.bind(this)}>
@@ -294,8 +305,10 @@ export default class extends Component {
               </EuiText>
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="leftCenter"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick8.bind(this)}>
@@ -309,8 +322,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="leftDown"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick9.bind(this)}>
@@ -336,6 +351,7 @@ export default class extends Component {
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="rightUp"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick10.bind(this)}>
@@ -354,8 +370,10 @@ export default class extends Component {
               </EuiText>
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="rightCenter"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick11.bind(this)}>
@@ -369,8 +387,10 @@ export default class extends Component {
               Popover content
             </EuiPopover>
           </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiPopover
+              id="rightDown"
               ownFocus
               button={(
                 <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick12.bind(this)}>

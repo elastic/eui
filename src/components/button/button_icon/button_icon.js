@@ -7,6 +7,21 @@ import {
   EuiIcon,
 } from '../../icon';
 
+const accessibleButtonIcon = (props, propName, componentName) => {
+  if (props['aria-label']) {
+    return;
+  }
+
+  if (props['aria-labelledby']) {
+    return;
+  }
+
+  throw new Error(
+    `${componentName} requires aria-label or aria-labelledby to be specified because icon-only
+    buttons are screen-reader-inaccessible without them.`
+  );
+};
+
 const colorToClassNameMap = {
   primary: 'euiButtonIcon--primary',
   danger: 'euiButtonIcon--danger',
@@ -61,6 +76,7 @@ EuiButtonIcon.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
+  'aria-label': accessibleButtonIcon,
 };
 
 EuiButtonIcon.defaultProps = {
