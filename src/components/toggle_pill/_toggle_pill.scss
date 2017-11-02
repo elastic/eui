@@ -5,6 +5,7 @@
   border-radius: $euiBorderRadius;
   background: $euiColorLightestShade;
   border: $euiBorderThin;
+  margin-top: $euiSizeS;
 
   &:hover {
     cursor: pointer;
@@ -13,9 +14,20 @@
     }
   }
 
+  &:focus {
+    background: $euiFocusBackgroundColor;
+  }
+
   .euiTogglePill__title {
     font-size: $euiFontSizeXS;
     padding: 0 $euiSizeS;
+    max-width: $euiSize * 12;
+    white-space: nowrap;
+  }
+
+  .euiTogglePill__titleText {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .euiTogglePill__icon {
