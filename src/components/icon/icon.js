@@ -38,6 +38,7 @@ import './assets/full_screen.svg';
 import './assets/gear.svg';
 import './assets/grid.svg';
 import './assets/help.svg';
+import './assets/invert.svg';
 import './assets/link.svg';
 import './assets/list_add.svg';
 import './assets/list.svg';
@@ -54,8 +55,10 @@ import './assets/logo_webhook.svg';
 import './assets/logo_xpack.svg';
 import './assets/logo_kibana.svg';
 import './assets/map_marker.svg';
+import './assets/minus_in_circle.svg';
 import './assets/node.svg';
 import './assets/pencil.svg';
+import './assets/pin.svg';
 import './assets/plus_in_circle.svg';
 import './assets/search.svg';
 import './assets/shard.svg';
@@ -104,6 +107,7 @@ const typeToIconMap = {
   graphApp: 'app_graph',
   grid: 'grid',
   help: 'help',
+  invert: 'invert',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
@@ -122,9 +126,11 @@ const typeToIconMap = {
   logoXpack: 'logo_xpack',
   machineLearningApp: 'app_ml',
   mapMarker: 'map_marker',
+  minusInCircle: 'minus_in_circle',
   monitoringApp: 'app_monitoring',
   node: 'node',
   pencil: 'pencil',
+  pin: 'pin',
   plusInCircle: 'plus_in_circle',
   search: 'search',
   shard: 'shard',

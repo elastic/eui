@@ -10,31 +10,39 @@ import {
 export const EuiTogglePill = ({
   children,
   className,
-  toggleText,
-  active,
+  toggleStatus,
+  inactive,
   ...rest,
 }) => {
   const classes = classNames(
     'euiTogglePill',
     className,
     {
-      'euiTogglePill--active': active,
+      'euiTogglePill--inactive': inactive,
     },
   );
+
+  let optionalToggleStatus;
+
+  if (toggleStatus) {
+    optionalToggleStatus = (
+      <EuiFlexItem grow={false} className="euiTogglePill__toggle">
+        {toggleStatus}
+      </EuiFlexItem>
+    );
+  }
 
   return (
     <button
       className={classes}
       {...rest}
     >
-      <EuiFlexGroup gutterSize="none" responsive={false}>
+      <EuiFlexGroup gutterSize="none" alignItems="center" responsive={false}>
+        {optionalToggleStatus}
         <EuiFlexItem grow={false} className="euiTogglePill__title">
           <span className="euiTogglePill__titleText">
             {children}
           </span>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false} className="euiTogglePill__toggle">
-          {toggleText}
         </EuiFlexItem>
       </EuiFlexGroup>
     </button>
@@ -43,6 +51,10 @@ export const EuiTogglePill = ({
 
 EuiTogglePill.propTypes = {
   children: PropTypes.node,
-  active: PropTypes.bool,
+  inactive: PropTypes.bool,
   className: PropTypes.string,
+};
+
+EuiTogglePill.defaultProps = {
+  inactive: false,
 };

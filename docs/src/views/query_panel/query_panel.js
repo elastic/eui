@@ -57,6 +57,66 @@ export default class extends Component {
   };
 
   render() {
+
+    const createForm = (
+      <div>
+        <EuiFormRow
+          id="asdfasdf1"
+          label="Field"
+        >
+          <EuiSelect
+            options={[
+              { value: 'option_one', text: 'someNumericalField' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+          />
+        </EuiFormRow>
+        <EuiFormRow
+          id="asdfasdf2"
+          label="Operand"
+        >
+          <EuiSelect
+            options={[
+              { value: 'option_three', text: 'is between' },
+              { value: 'option_one', text: 'is' },
+              { value: 'option_two', text: 'is not' },
+            ]}
+          />
+        </EuiFormRow>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiFormRow
+              id="asdfasdf3"
+              label="From"
+            >
+              <EuiFieldNumber
+                placeholder="1"
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFormRow
+              id="asdfasdf4"
+              label="To"
+            >
+              <EuiFieldNumber
+                placeholder="999"
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiFlexGroup justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>
+            <EuiButton size="s">Create filter</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty size="s">Edit DSL</EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </div>
+    );
     const items = [(
       <div>
         <div style={{ padding: '16px 16px 0px 16px'}}>
@@ -72,7 +132,7 @@ export default class extends Component {
     ), (
       <EuiContextMenuItem
         key="pin"
-        icon="bullseye"
+        icon="pin"
         onClick={() => { this.closePopover(); window.alert('pin'); }}
       >
         Pin for use across pages
@@ -88,15 +148,15 @@ export default class extends Component {
     ), (
       <EuiContextMenuItem
         key="invert"
-        icon="sortUp"
+        icon="invert"
         onClick={() => { this.closePopover(); window.alert('invert'); }}
       >
-        De-invert this filter
+        Invert the results
       </EuiContextMenuItem>
     ), (
       <EuiContextMenuItem
         key="disable"
-        icon="faceSad"
+        icon="minusInCircle"
         onClick={() => { this.closePopover(); window.alert('disable'); }}
       >
         Temporarily disable
@@ -126,7 +186,10 @@ export default class extends Component {
         <EuiQueryPanelBar>
           <EuiPopover
             button={
-              <EuiTogglePill active toggleText="active, inverted" onClick={this.onButtonClick}>
+              <EuiTogglePill
+                toggleStatus={<EuiIcon type="pin" />}
+                onClick={this.onButtonClick}
+              >
                 Some complicated filter
               </EuiTogglePill>
             }
@@ -142,15 +205,17 @@ export default class extends Component {
               items={items}
             />
           </EuiPopover>
-          <EuiTogglePill toggleText="inactive">
+          <EuiTogglePill inactive>
             type:"someExtremelyLongValueThatNeedsTruncation"
           </EuiTogglePill>
-          <EuiTogglePill toggleText="inactive">
+          <EuiTogglePill toggleStatus={<EuiIcon type="invert" />}>
             type:"someExtremelyLongValueThatNeedsTruncation"
           </EuiTogglePill>
           <EuiPopover
             button={
-              <EuiIcon type="plusInCircle" onClick={this.onCreateClick} />
+              <EuiButtonEmpty iconType="plusInCircle" size="xs" onClick={this.onCreateClick}>
+                Add filter
+              </EuiButtonEmpty>
             }
             isOpen={this.state.isCreateOpen}
             closePopover={this.closeCreate}
@@ -158,67 +223,11 @@ export default class extends Component {
             ownFocus
           >
             <div style={{ width: 300}}>
-              <EuiTitle size="m">
+              <EuiTitle>
                 <h4>New filter</h4>
               </EuiTitle>
-
               <EuiSpacer size="m" />
-
-              <EuiFormRow
-                id="asdfasdf1"
-                label="Field"
-              >
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'someNumericalField' },
-                    { value: 'option_two', text: 'Option two' },
-                    { value: 'option_three', text: 'Option three' },
-                  ]}
-                />
-              </EuiFormRow>
-              <EuiFormRow
-                id="asdfasdf2"
-                label="Operand"
-              >
-                <EuiSelect
-                  options={[
-                    { value: 'option_three', text: 'is between' },
-                    { value: 'option_one', text: 'is' },
-                    { value: 'option_two', text: 'is not' },
-                  ]}
-                />
-              </EuiFormRow>
-              <EuiFlexGroup>
-                <EuiFlexItem>
-                  <EuiFormRow
-                    id="asdfasdf3"
-                    label="From"
-                  >
-                    <EuiFieldNumber
-                      placeholder="1"
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiFormRow
-                    id="asdfasdf4"
-                    label="To"
-                  >
-                    <EuiFieldNumber
-                      placeholder="999"
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              <EuiSpacer />
-              <EuiFlexGroup justifyContent="spaceBetween">
-                <EuiFlexItem grow={false}>
-                  <EuiButton size="s">Create filter</EuiButton>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiButtonEmpty size="s">Edit DSL</EuiButtonEmpty>
-                </EuiFlexItem>
-              </EuiFlexGroup>
+              {createForm}
             </div>
           </EuiPopover>
         </EuiQueryPanelBar>
