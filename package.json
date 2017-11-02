@@ -23,6 +23,7 @@
     "alias": "eui"
   },
   "dependencies": {
+    "brace": "0.10.0",
     "classnames": "2.2.5",
     "core-js": "2.5.1",
     "focus-trap-react": "3.0.4",
@@ -32,6 +33,7 @@
     "lodash": "4.17.4",
     "prop-types": "15.6.0",
     "react": "16.0.0",
+    "react-ace": "5.5.0",
     "react-router": "3.2.0",
     "serve": "6.3.1",
     "tabbable": "1.1.0",

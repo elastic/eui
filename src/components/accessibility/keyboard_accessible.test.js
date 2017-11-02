@@ -83,32 +83,6 @@ describe('EuiKeyboardAccessible', () => {
         `child's onClick prop needs to be a function.`
       );
     });
-
-    test(`when the child has an onKeyDown prop`, () => {
-      const component = ( // eslint-disable-line no-unused-vars
-        <EuiKeyboardAccessible>
-          <div onClick={() => {}} onKeyDown={() => {}} />
-        </EuiKeyboardAccessible>
-      );
-
-      expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `child can't have an onKeyDown prop because the implementation will override it.`
-      );
-    });
-
-    test(`when the child has an onKeyUp prop`, () => {
-      const component = ( // eslint-disable-line no-unused-vars
-        <EuiKeyboardAccessible>
-          <div onClick={() => {}} onKeyUp={() => {}} />
-        </EuiKeyboardAccessible>
-      );
-
-      expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `child can't have an onKeyUp prop because the implementation will override it.`
-      );
-    });
   });
 
   describe(`doesn't throw an error`, () => {
@@ -193,6 +167,40 @@ describe('EuiKeyboardAccessible', () => {
       });
 
       sinon.assert.calledOnce(onClickHandler);
+    });
+  });
+
+  describe(`child's props`, () => {
+    test(`onKeyUp handler is called`, () => {
+      const onKeyUpHandler = sinon.stub();
+
+      const $button = shallow(
+        <EuiKeyboardAccessible>
+          <div data-div onKeyUp={onKeyUpHandler} />
+        </EuiKeyboardAccessible>
+      );
+
+      $button.find('[data-div]').simulate('keyup', {
+        keyCode: 0,
+      });
+
+      sinon.assert.calledOnce(onKeyUpHandler);
+    });
+
+    test(`onKeyDown handler is called`, () => {
+      const onKeyDownHandler = sinon.stub();
+
+      const $button = shallow(
+        <EuiKeyboardAccessible>
+          <div data-div onKeyDown={onKeyDownHandler} />
+        </EuiKeyboardAccessible>
+      );
+
+      $button.find('[data-div]').simulate('keydown', {
+        keyCode: 0,
+      });
+
+      sinon.assert.calledOnce(onKeyDownHandler);
     });
   });
 });
