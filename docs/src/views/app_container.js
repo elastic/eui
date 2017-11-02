@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { AppView } from './app_view';
@@ -17,6 +16,7 @@ import {
 
 function mapStateToProps(state, ownProps) {
   return {
+    routes: ownProps.routes,
     currentRouteName: ownProps.routes[1].name,
     isSandbox: getIsSandbox(state),
     sections: getSections(state),
@@ -32,3 +32,4 @@ export const AppContainer = connect(
     toggleTheme,
   },
 )(AppView);
+

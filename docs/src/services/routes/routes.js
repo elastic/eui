@@ -1,3 +1,6 @@
+import { useRouterHistory } from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory';
+
 import Slugify from '../string/slugify';
 
 // Component examples
@@ -218,16 +221,20 @@ sandboxes.forEach(sandbox => { sandbox.isSandbox = true; });
 const allRoutes = components.concat(sandboxes);
 
 export default {
+  history: useRouterHistory(createHashHistory)(),
   components: Slugify.each(components, 'name', 'path'),
   sandboxes: Slugify.each(sandboxes, 'name', 'path'),
+
   getRouteForPath: path => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
     const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
     return allRoutes.find(route => normalizedPath === route.path);
   },
+
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
   },
+
   getPreviousRoute: function getPreviousRoute(routeName) {
     const index = allRoutes.findIndex(item => {
       return item.name === routeName;
@@ -235,6 +242,7 @@ export default {
 
     return index >= 0 ? allRoutes[index - 1] : undefined;
   },
+
   getNextRoute: function getNextRoute(routeName) {
     const index = allRoutes.findIndex(item => {
       return item.name === routeName;

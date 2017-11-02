@@ -18,6 +18,8 @@ import {
   EuiPageSideBar,
 } from '../../../src/components';
 
+import { keyCodes } from '../../../src/services';
+
 export class AppView extends Component {
   updateTheme = () => {
     applyTheme(this.props.theme);
@@ -29,6 +31,29 @@ export class AppView extends Component {
 
   componentDidMount() {
     this.updateTheme();
+
+    document.addEventListener('keydown', e => {
+      if (e.target !== document.body) {
+        return;
+      }
+
+      let route;
+
+      switch (e.keyCode) {
+        case keyCodes.LEFT:
+          route = Routes.getPreviousRoute(this.props.currentRouteName);
+          break;
+        case keyCodes.RIGHT:
+          route = Routes.getNextRoute(this.props.currentRouteName);
+          break;
+        default:
+          break;
+      }
+
+      if (route) {
+        Routes.history.push(route.path);
+      }
+    });
   }
 
   renderContent() {
