@@ -4,11 +4,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import {
   Router,
-  useRouterHistory,
 } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-
-import createHashHistory from 'history/lib/createHashHistory';
 
 import configureStore from './store/configure_store';
 
@@ -35,8 +32,7 @@ registerTheme('dark', [
 // Set up app
 
 const store = configureStore();
-const browserHistory = useRouterHistory(createHashHistory)();
-const history = syncHistoryWithStore(browserHistory, store);
+const routerHistory = syncHistoryWithStore(Routes.history, store);
 
 const childRoutes = [].concat(Routes.getAppRoutes());
 childRoutes.push({
@@ -81,7 +77,7 @@ syncTitleWithRoutes(routes);
 ReactDOM.render(
   <Provider store={store}>
     <Router
-      history={history}
+      history={routerHistory}
       routes={routes}
     />
   </Provider>,
