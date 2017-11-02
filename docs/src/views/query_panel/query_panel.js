@@ -10,7 +10,7 @@ import {
   EuiTogglePill,
   EuiPopover,
   EuiContextMenuItem,
-  EuiContextMenuPanel,
+  EuiContextMenu,
   EuiFormRow,
   EuiFieldText,
   EuiFieldNumber,
@@ -22,6 +22,21 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
+function flattenPanelTree(tree, array = []) {
+  array.push(tree);
+
+  if (tree.items) {
+    tree.items.forEach(item => {
+      if (item.panel) {
+        flattenPanelTree(item.panel, array);
+        item.panel = item.panel.id;
+      }
+    });
+  }
+
+  return array;
+}
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -30,33 +45,6 @@ export default class extends Component {
       isPopoverOpen: false,
       isCreateOpen: false,
     };
-  }
-
-  onButtonClick = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
-  };
-
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  onCreateClick = () => {
-    this.setState(prevState => ({
-      isCreateOpen: !prevState.isCreateOpen,
-    }));
-  };
-
-  closeCreate = () => {
-    this.setState({
-      isCreateOpen: false,
-    });
-  };
-
-  render() {
 
     const createForm = (
       <div>
@@ -117,6 +105,76 @@ export default class extends Component {
         </EuiFlexGroup>
       </div>
     );
+
+    const panelTree = {
+      id: 0,
+      title: 'Adjust this filter',
+      items: [{
+        name: 'Pin across all pages',
+        icon: (
+          <EuiIcon
+            type="pin"
+          />
+        ),
+        onClick: () => { this.closePopover(); window.alert('Pinned'); },
+      }, {
+        name: 'Edit filter query',
+        icon: 'pencil',
+        panel: {
+          id: 1,
+          title: 'Edit filter query',
+          content: (
+            <div style={{ padding: 16}}>
+              {createForm}
+            </div>
+          ),
+        },
+      }, {
+        name: 'Invert results',
+        icon: 'invert',
+        onClick: () => { this.closePopover(); window.alert('invert'); },
+      }, {
+        name: 'Temporarily disable',
+        icon: 'minusInCircle',
+        onClick: () => { this.closePopover(); window.alert('disable'); },
+      }, {
+        name: 'Delete',
+        icon: 'trash',
+        onClick: () => { this.closePopover(); window.alert('Delete'); },
+      }],
+    };
+
+    this.panels = flattenPanelTree(panelTree);
+    this.createForm = createForm;
+
+  }
+
+  onButtonClick = () => {
+    this.setState(prevState => ({
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
+  };
+
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  };
+
+  onCreateClick = () => {
+    this.setState(prevState => ({
+      isCreateOpen: !prevState.isCreateOpen,
+    }));
+  };
+
+  closeCreate = () => {
+    this.setState({
+      isCreateOpen: false,
+    });
+  };
+
+  render() {
+
     const items = [(
       <div>
         <div style={{ padding: '16px 16px 0px 16px'}}>
@@ -200,9 +258,9 @@ export default class extends Component {
             withTitle
             ownFocus
           >
-            <EuiContextMenuPanel
-              title="Adjust this filter"
-              items={items}
+            <EuiContextMenu
+              initialPanelId={0}
+              panels={this.panels}
             />
           </EuiPopover>
           <EuiTogglePill inactive>
@@ -227,7 +285,7 @@ export default class extends Component {
                 <h4>New filter</h4>
               </EuiTitle>
               <EuiSpacer size="m" />
-              {createForm}
+              {this.createForm}
             </div>
           </EuiPopover>
         </EuiQueryPanelBar>
