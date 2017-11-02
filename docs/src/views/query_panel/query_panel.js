@@ -175,60 +175,6 @@ export default class extends Component {
 
   render() {
 
-    const items = [(
-      <div>
-        <div style={{ padding: '16px 16px 0px 16px'}}>
-          <EuiFormRow
-            id="asdf"
-            label="Filter name"
-          >
-            <EuiFieldText name="label" value="Some complicated filter"/>
-          </EuiFormRow>
-        </div>
-        <EuiHorizontalRule margin="m" style={{ marginBottom: 0 }}/>
-      </div>
-    ), (
-      <EuiContextMenuItem
-        key="pin"
-        icon="pin"
-        onClick={() => { this.closePopover(); window.alert('pin'); }}
-      >
-        Pin for use across pages
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="edit"
-        icon="pencil"
-        onClick={() => { this.closePopover(); window.alert('edit'); }}
-      >
-        Edit filter
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="invert"
-        icon="invert"
-        onClick={() => { this.closePopover(); window.alert('invert'); }}
-      >
-        Invert the results
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="disable"
-        icon="minusInCircle"
-        onClick={() => { this.closePopover(); window.alert('disable'); }}
-      >
-        Temporarily disable
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="remove"
-        icon="trash"
-        onClick={() => { this.closePopover(); window.alert('delete'); }}
-      >
-        Delete
-      </EuiContextMenuItem>
-    )];
-
     return (
       <EuiQueryPanel>
         <EuiQueryPanelBar>
