@@ -29,7 +29,9 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <EuiCode>QueryPanel</EuiCode> component.
+          This is an example pattern for how to construct a search query panel
+          like you'd find in Kibana's discover. Only the first pill shows off
+          the dropdown.
         </p>
       }
       demo={<QueryPanel />}
