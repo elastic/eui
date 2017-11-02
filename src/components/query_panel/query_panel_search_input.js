@@ -12,6 +12,7 @@ export const EuiQueryPanelSearchInput = ({
     <input
       type="search"
       className={classes}
+      placeholder="status:[400 TO 499] AND extension:PHP"
       {...rest}
     />
   );
