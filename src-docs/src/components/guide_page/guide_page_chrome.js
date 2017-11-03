@@ -9,6 +9,7 @@ import {
 import {
   EuiSideNav,
   EuiIcon,
+  EuiButtonEmpty,
   EuiSideNavItem,
   EuiSideNavTitle,
   EuiFieldSearch,
@@ -68,14 +69,16 @@ export class GuidePageChrome extends Component {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiText size="s">
-            <button
+            <EuiButtonEmpty
+              size="xs"
               onClick={this.props.onToggleTheme}
               className="euiLink"
+              iconSide="right"
+              color="text"
+              iconType="invert"
             >
-              Theme
-            </button>
-          </EuiText>
+              Flip theme
+          </EuiButtonEmpty>
         </EuiFlexItem>
       </EuiFlexGroup>
     );
