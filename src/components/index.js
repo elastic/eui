@@ -163,7 +163,8 @@ export {
 
 export {
   EuiQueryPanel,
-  EuiQueryPanelBar,
+  EuiQueryPanelFilters,
+  EuiQueryPanelSearch,
   EuiQueryPanelSearchInput,
 } from './query_panel';
 

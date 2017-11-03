@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiQueryPanelBar = ({
+export const EuiQueryPanelSearch = ({
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('euiQueryPanelBar', className);
+  const classes = classNames(
+    'euiQueryPanelSearch',
+    className
+  );
 
   return (
     <div
@@ -19,7 +22,8 @@ export const EuiQueryPanelBar = ({
   );
 };
 
-EuiQueryPanelBar.propTypes = {
+EuiQueryPanelSearch.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  animateIn: PropTypes.bool,
 };
