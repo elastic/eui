@@ -2,7 +2,6 @@ $euiButtonHeightSmall: $euiSizeXL;
 $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
 
 @mixin euiButton {
-
   display: inline-block;
   appearance: none;
   cursor: pointer;
