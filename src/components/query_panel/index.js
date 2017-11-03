@@ -3,8 +3,12 @@ export {
 } from './query_panel';
 
 export {
-  EuiQueryPanelBar,
-} from './query_panel_bar';
+  EuiQueryPanelFilters,
+} from './query_panel_filters';
+
+export {
+  EuiQueryPanelSearch,
+} from './query_panel_search';
 
 export {
   EuiQueryPanelSearchInput,
