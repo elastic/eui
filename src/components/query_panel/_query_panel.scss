@@ -1,3 +1,8 @@
 .euiQueryPanel {
 
+  // Round everything off when only one type (search or filters) exists in the panel.
+  > *:only-child {
+    border-radius: $euiBorderRadius;
+    border: $euiBorderThin;
+  }
 }

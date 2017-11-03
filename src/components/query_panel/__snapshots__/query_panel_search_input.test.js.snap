@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiQueryPanelSearchInput is rendered 1`] = `
+<input
+  aria-label="aria-label"
+  class="euiQueryPanelSearchInput testClass1 testClass2"
+  data-test-subj="test subject string"
+  placeholder="status:[400 TO 499] AND extension:PHP"
+  type="search"
+/>
+`;

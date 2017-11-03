@@ -1,0 +1,5 @@
+.euiQueryPanelSearch {
+  @include euiQueryPanelBar;
+  border-top-left-radius: $euiBorderRadius;
+  border-top-right-radius: $euiBorderRadius;
+}
