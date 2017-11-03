@@ -53,5 +53,15 @@
       $euiColorEmptyShade $euiSizeS,
       $euiColorEmptyShade $euiSize
     );
+
+    &:focus {
+      background: repeating-linear-gradient(
+        45deg,
+        darken($euiFocusBackgroundColor, 5%),
+        darken($euiFocusBackgroundColor, 5%) $euiSizeS,
+        $euiFocusBackgroundColor $euiSizeS,
+        $euiFocusBackgroundColor $euiSize
+      );
+    }
   }
 }
