@@ -4,6 +4,7 @@ import React, {
 
 import {
   EuiButton,
+  EuiButtonIcon,
   EuiCheckbox,
   EuiContextMenuItem,
   EuiContextMenuPanel,
@@ -210,7 +211,7 @@ export default class extends Component {
       label: 'Actions',
       alignment: RIGHT_ALIGNMENT,
       isActionsPopover: true,
-      width: '160px',
+      width: '100px',
     }];
   }
 
@@ -353,14 +354,13 @@ export default class extends Component {
               <EuiPopover
                 id={`${item.id}-actions`}
                 button={(
-                  <EuiButton
+                  <EuiButtonIcon
+                    aria-label="Actions"
+                    iconType="gear"
+                    size="s"
                     color="primary"
                     onClick={() => this.togglePopover(item.id)}
-                    iconType="arrowDown"
-                    iconSide="right"
-                  >
-                    Actions
-                  </EuiButton>
+                  />
                 )}
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}
