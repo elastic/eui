@@ -4,7 +4,7 @@
   @include euiSlightShadow;
 
   border-radius: $euiBorderRadius;
-  min-width: $euiSize * 7;
+  min-width: $euiButtonMinWidth;
 
   .euiButton__content {
     @include euiButtonContent;
