@@ -351,6 +351,7 @@ export default class extends Component {
               align="right"
             >
               <EuiPopover
+                id={`${item.id}-actions`}
                 button={(
                   <EuiButton
                     color="primary"
