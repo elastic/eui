@@ -3,13 +3,17 @@ import React, {
 } from 'react';
 
 import {
-  EuiCheckbox,
-  EuiIcon,
   EuiButton,
-  EuiLink,
+  EuiButtonIcon,
+  EuiCheckbox,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiFieldSearch,
+  EuiIcon,
+  EuiLink,
+  EuiPopover,
   EuiSpacer,
   EuiTable,
   EuiTableBody,
@@ -33,6 +37,7 @@ export default class extends Component {
 
     this.state = {
       itemIdToSelectedMap: {},
+      itemIdToOpenActionsPopoverMap: {},
       sortedColumn: 'title',
     };
 
@@ -201,6 +206,12 @@ export default class extends Component {
       label: 'Orders of magnitude',
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,
+    }, {
+      id: 'actions',
+      label: 'Actions',
+      alignment: RIGHT_ALIGNMENT,
+      isActionsPopover: true,
+      width: '100px',
     }];
   }
 
@@ -213,12 +224,15 @@ export default class extends Component {
   }
 
   toggleItem = itemId => {
-    const newItemIdToSelectedMap = Object.assign({}, this.state.itemIdToSelectedMap, {
-      [itemId]: !this.state.itemIdToSelectedMap[itemId],
-    });
+    this.setState(previousState => {
+      const newItemIdToSelectedMap = {
+        ...previousState.itemIdToSelectedMap,
+        [itemId]: !previousState.itemIdToSelectedMap[itemId],
+      };
 
-    this.setState({
-      itemIdToSelectedMap: newItemIdToSelectedMap,
+      return {
+        itemIdToSelectedMap: newItemIdToSelectedMap,
+      };
     });
   }
 
@@ -226,7 +240,6 @@ export default class extends Component {
     const allSelected = this.areAllItemsSelected();
     const newItemIdToSelectedMap = {};
     this.items.forEach(item => newItemIdToSelectedMap[item.id] = !allSelected);
-
 
     this.setState({
       itemIdToSelectedMap: newItemIdToSelectedMap,
@@ -247,6 +260,36 @@ export default class extends Component {
       return this.state.itemIdToSelectedMap[id];
     }) !== -1;
   }
+
+  togglePopover = itemId => {
+    this.setState(previousState => {
+      const newItemIdToOpenActionsPopoverMap = {
+        ...previousState.itemIdToOpenActionsPopoverMap,
+        [itemId]: !previousState.itemIdToOpenActionsPopoverMap[itemId],
+      };
+
+     return {
+        itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
+     };
+    });
+  };
+
+  closePopover = itemId => {
+    this.setState(previousState => {
+      const newItemIdToOpenActionsPopoverMap = {
+        ...previousState.itemIdToOpenActionsPopoverMap,
+        [itemId]: false,
+      };
+
+     return {
+        itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
+      };
+    });
+  };
+
+  isPopoverOpen = itemId => {
+    return this.state.itemIdToOpenActionsPopoverMap[itemId];
+  };
 
   renderHeaderCells() {
     return this.columns.map((column, columnIndex) => {
@@ -299,7 +342,66 @@ export default class extends Component {
               />
             </EuiTableRowCellCheckbox>
           );
-        } else if (column.cellProvider) {
+        }
+
+        if (column.isActionsPopover) {
+          return (
+            <EuiTableRowCell
+              key={column.id}
+              textOnly={false}
+              align="right"
+            >
+              <EuiPopover
+                id={`${item.id}-actions`}
+                button={(
+                  <EuiButtonIcon
+                    aria-label="Actions"
+                    iconType="gear"
+                    size="s"
+                    color="primary"
+                    onClick={() => this.togglePopover(item.id)}
+                  />
+                )}
+                isOpen={this.isPopoverOpen(item.id)}
+                closePopover={() => this.closePopover(item.id)}
+                panelPaddingSize="none"
+                withTitle
+                anchorPosition="downRight"
+              >
+                <EuiContextMenuPanel
+                  style={{ width: '100px' }}
+                  items={[(
+                    <EuiContextMenuItem
+                      key="A"
+                      icon="pencil"
+                      onClick={() => { this.closePopover(item.id); }}
+                    >
+                      Edit
+                    </EuiContextMenuItem>
+                  ), (
+                    <EuiContextMenuItem
+                      key="B"
+                      icon="share"
+                      onClick={() => { this.closePopover(item.id); }}
+                    >
+                      Share
+                    </EuiContextMenuItem>
+                  ), (
+                    <EuiContextMenuItem
+                      key="C"
+                      icon="trash"
+                      onClick={() => { this.closePopover(item.id); }}
+                    >
+                      Delete
+                    </EuiContextMenuItem>
+                  )]}
+                />
+              </EuiPopover>
+            </EuiTableRowCell>
+          );
+        }
+
+        if (column.cellProvider) {
           child = column.cellProvider(cell);
         } else if (cell.isLink) {
           child = <EuiLink href="">{cell.value}</EuiLink>;

@@ -32,8 +32,11 @@ export default props => (
       }]}
       text={
         <p>
-          <EuiCode>EuiTable</EuiCode>. This example has sortable headers which respond to mouse
-          interaction and exhibit the desired behavior, and selectable rows.
+          This example has sortable headers which respond to mouse
+          interaction and exhibit the desired behavior, and selectable rows. You can apply
+          the <EuiCode>wrapText</EuiCode> prop to cells to wrap their text, or set
+          the <EuiCode>textOnly</EuiCode> prop to <EuiCode>false</EuiCode> if they contain
+          overflowing content like popovers.
         </p>
       }
       demo={

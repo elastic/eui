@@ -1,8 +1,3 @@
-// SOME NOTES
-// SOME NOTES
-// SOME NOTES
-// SOME NOTES
-
 // Because of the animations and positioning involved, this code gets pretty
 // repetitive. What you generally need to know if you work in here is that
 // the positioning of the popovers (and the arrows attached to them)
@@ -18,25 +13,28 @@
     .euiPopover__panel {
       opacity: 1;
       visibility: visible;
-      z-index: $euiZContentMenu;
       pointer-events: auto;
     }
   }
 }
 
-  // Animation happens on the panel.
+  /**
+   * 1. Can expand further, but it looks weird if it's smaller than the originating button.
+   * 2. Animation happens on the panel.
+   */
   .euiPopover__panel {
     position: absolute;
-    min-width: $euiSize * 16; // Can expand further, but this size is good for our menus.
+    z-index: $euiZContentMenu;
+    min-width: $euiButtonMinWidth; /* 1 */
     backface-visibility: hidden;
-    transition:
+    pointer-events: none;
+    transition: /* 2 */
       opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
       visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
       transform $euiAnimSlightBounce $euiAnimSpeedSlow;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(0) translateZ(0);
+    opacity: 0; /* 2 */
+    visibility: hidden; /* 2 */
+    transform: translateY(0) translateZ(0); /* 2 */
 
     // This fakes a border on the arrow.
     &:before {
