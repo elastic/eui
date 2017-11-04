@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiTogglePill } from './toggle_pill';
+import { EuiStatusPill } from './status_pill';
 
-describe('EuiTogglePill', () => {
+describe('EuiStatusPill', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiTogglePill {...requiredProps} />
+      <EuiStatusPill {...requiredProps} />
     );
 
     expect(component)

@@ -8,7 +8,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
-  EuiTogglePill,
+  EuiStatusPill,
   EuiPopover,
   EuiContextMenuItem,
   EuiContextMenu,
@@ -284,14 +284,15 @@ export default class extends Component {
         <EuiQueryPanelFilters>
           <EuiPopover
             button={
-              <EuiTogglePill
-                toggleStatus={<EuiIcon type="pin" />}
+              <EuiStatusPill
+                status={<EuiIcon type="pin" />}
                 onClick={this.onButtonClick}
               >
                 Some complicated filter
-              </EuiTogglePill>
+              </EuiStatusPill>
             }
             isOpen={this.state.isPopoverOpen}
+            id="someRandomId"
             closePopover={this.closePopover}
             panelPaddingSize="none"
             anchorPosition="downCenter"
@@ -303,8 +304,10 @@ export default class extends Component {
               panels={this.panels}
             />
           </EuiPopover>
-          <EuiTogglePill inactive
-            toggleStatus={
+          <EuiStatusPill
+            inactive
+            onClick={() => window.alert('Menu would appear')}
+            status={
               <span>
                 <EuiIcon type="pin" />
                 <EuiIcon type="invert" />
@@ -312,10 +315,13 @@ export default class extends Component {
             }
           >
             type:"someExtremelyLongValueThatNeedsTruncation"
-          </EuiTogglePill>
-          <EuiTogglePill toggleStatus={<EuiIcon type="invert" />}>
+          </EuiStatusPill>
+          <EuiStatusPill
+            status={<EuiIcon type="invert" />}
+            onClick={() => window.alert('Menu would appear')}
+          >
             type:"someExtremelyLongValueThatNeedsTruncation"
-          </EuiTogglePill>
+          </EuiStatusPill>
           <EuiPopover
             button={
               <EuiButtonEmpty iconType="plusInCircle" size="xs" onClick={this.onCreateClick}>
@@ -327,6 +333,7 @@ export default class extends Component {
             anchorPosition="downRight"
             panelPaddingSize="none"
             withTitle
+            id="anotherRandomPopover"
             ownFocus
           >
             <EuiContextMenu

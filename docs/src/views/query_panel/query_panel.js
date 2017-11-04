@@ -8,7 +8,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
-  EuiTogglePill,
+  EuiStatusPill,
   EuiPopover,
   EuiContextMenuItem,
   EuiContextMenu,
@@ -215,11 +215,11 @@ export default class extends Component {
         <EuiQueryPanelFilters animateIn>
           <EuiPopover
             button={
-              <EuiTogglePill
+              <EuiStatusPill
                 onClick={this.onButtonClick}
               >
                 Some complicated filter
-              </EuiTogglePill>
+              </EuiStatusPill>
             }
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover}
