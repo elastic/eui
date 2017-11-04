@@ -7,7 +7,7 @@ import { EuiStatusPill } from './status_pill';
 describe('EuiStatusPill', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiStatusPill {...requiredProps} />
+      <EuiStatusPill onClick={() => window.alert('alert')} {...requiredProps} />
     );
 
     expect(component)
