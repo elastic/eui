@@ -242,5 +242,5 @@ export {
 } from './text';
 
 export {
-  EuiTogglePill,
-} from './toggle_pill';
+  EuiStatusPill,
+} from './status_pill';

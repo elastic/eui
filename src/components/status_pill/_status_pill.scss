@@ -1,4 +1,4 @@
-.euiTogglePill {
+.euiStatusPill {
   display: inline-block;
   line-height: $euiSizeL;
   margin-right: $euiSizeS;
@@ -9,7 +9,7 @@
 
   &:hover {
     cursor: pointer;
-    .euiTogglePill__title {
+    .euiStatusPill__title {
       text-decoration: underline;
     }
   }
@@ -18,33 +18,32 @@
     background: $euiFocusBackgroundColor;
   }
 
-  .euiTogglePill__title {
+  .euiStatusPill__title {
     font-size: $euiFontSizeXS;
     padding: 0 $euiSizeS;
     max-width: $euiSize * 12;
     white-space: nowrap;
   }
 
-  .euiTogglePill__titleText {
+  .euiStatusPill__titleText {
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .euiTogglePill__icon {
+  .euiStatusPill__icon {
     margin-left: $euiSizeXS;
   }
 
 
-  .euiTogglePill__toggle {
+  .euiStatusPill__toggle {
     font-size: $euiFontSizeXS;
-    text-transform: uppercase;
     font-size: $euiFontSizeXS - 2px;
     padding: 0 $euiSizeS;
     border-right: $euiBorderThin;
     color: $euiColorDarkShade;
   }
 
-  &.euiTogglePill--inactive {
+  &.euiStatusPill--inactive {
     color: $euiColorDarkShade;
     background: repeating-linear-gradient(
       45deg,

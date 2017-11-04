@@ -116,11 +116,14 @@ import { ProgressExample }
 import QueryPanelExample
   from '../../views/query_panel/query_panel_example';
 
-import SideNavExample
+import { SideNavExample }
   from '../../views/side_nav/side_nav_example';
 
 import { SpacerExample }
   from '../../views/spacer/spacer_example';
+
+import { StatusPillExample }
+  from '../../views/status_pill/status_pill_example';
 
 import { StepsExample }
   from '../../views/steps/steps_example';
@@ -224,6 +227,7 @@ const components = [
   QueryPanelExample,
   SideNavExample,
   SpacerExample,
+  StatusPillExample,
   StepsExample,
   TableExample,
   TabsExample,

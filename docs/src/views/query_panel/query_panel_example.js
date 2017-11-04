@@ -25,17 +25,12 @@ const queryPanelExpandedHtml = renderToHtml(QueryPanelExpanded);
 export default props => (
   <GuidePage title={props.route.name}>
     <EuiCallOut
-      title="This demo illustrates a design pattern, not actual functionality"
+      title="Design prototype"
       color="warning"
     >
       <p>
-        The demos on this page use state management to simulate actions you would
-        handle with much deeper Javascript. Its intention is only to show how to
-        deal with certain pattern patterns in Kibana's complicated query panel.
-      </p>
-
-      <p>
-        <strong>The code would need to be heavily modified for use in a real site.</strong>
+        This is a design prototype in the works. It exists to show off flow and animation,
+        but still needs work before its ready for use.
       </p>
     </EuiCallOut>
 
