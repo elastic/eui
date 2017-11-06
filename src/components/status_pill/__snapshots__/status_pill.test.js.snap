@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiStatusPill is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiStatusPill testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="button"
+  tabindex="0"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero euiStatusPill__title"
+    >
+      <span
+        class="euiStatusPill__titleText"
+      />
+    </div>
+  </div>
+</div>
+`;
