@@ -20,7 +20,11 @@ const queryPanelHtml = renderToHtml(QueryPanel);
 
 import QueryPanelExpanded from './query_panel_expanded';
 const queryPanelExpandedSource = require('!!raw-loader!./query_panel_expanded');
-const queryPanelExpandedHtml = renderToHtml(QueryPanelExpanded);
+const queryPanelExpandedHtml = renderToHtml(QueryFiltersOnly);
+
+import QueryFiltersOnly from './query_filters_only.js';
+const queryFiltersOnlySource = require('!!raw-loader!./query_filters_only');
+const queryFiltersOnlyHtml = renderToHtml(QueryFiltersOnly);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -79,6 +83,27 @@ export default props => (
         </div>
       }
       demo={<QueryPanelExpanded />}
+    />
+    <GuideSection
+      title="Filters only"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: queryFiltersOnlySource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: queryFiltersOnlyHtml,
+      }]}
+      text={
+        <div>
+          <p>
+            Sometimes you want a search mechanism that is not freeform and only allows
+            more structured, hand-held searching. In those cases, simply
+            remove the freeform search component bar and the filter bar will correctly
+            style itself.
+          </p>
+        </div>
+      }
+      demo={<QueryFiltersOnly />}
     />
   </GuidePage>
 );
