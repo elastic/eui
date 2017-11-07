@@ -15,11 +15,13 @@
 
   &.euiSideNavItem--parent:hover {
     background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
   }
 
   &.euiSideNavItem--parent.euiSideNavItem-isSelected {
     color: $euiColorFullShade;
     background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
   }
 
   &.euiSideNavItem-isSelected:not(.euiSideNavItem--parent) {

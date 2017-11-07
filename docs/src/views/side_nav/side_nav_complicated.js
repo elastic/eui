@@ -48,7 +48,6 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <EuiSideNavGroup>
           <EuiSideNavItem>
             <button onClick={() => window.alert('Button clicked')}>
               Data sources
@@ -78,7 +77,6 @@ export default class extends Component {
               Extremely long title will become truncated when the browser is narrow enough
             </button>
           </EuiSideNavItem>
-        </EuiSideNavGroup>
 
         {/* Kibana section */}
 
@@ -93,7 +91,6 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <EuiSideNavGroup>
           <EuiSideNavItem isSelected parent>
             <button>
               Advanced settings
@@ -151,7 +148,6 @@ export default class extends Component {
               Reporting
             </button>
           </EuiSideNavItem>
-        </EuiSideNavGroup>
 
         {/* Logstash section */}
 
@@ -166,13 +162,11 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <EuiSideNavGroup>
           <EuiSideNavItem>
             <button>
               Pipeline Viewer
             </button>
           </EuiSideNavItem>
-        </EuiSideNavGroup>
       </EuiSideNav>
     );
   }
