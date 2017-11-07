@@ -1,9 +1,6 @@
 .euiSideNavTitle {
-  @include euiFontSize;
-
-  font-weight: $euiFontWeightMedium;
-  margin-bottom: $euiSizeS;
   margin-top: $euiSize;
+  font-size: $euiSize + 2px !important;
 
   /**
    * 1. Only want the first title to have margin. Since buttons exist in nav

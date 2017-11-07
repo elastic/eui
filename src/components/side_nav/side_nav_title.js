@@ -14,7 +14,7 @@ export const EuiSideNavTitle = ({ children, className, ...rest }) => {
       className={classes}
       {...rest}
     >
-      <p>{children}</p>
+      <div>{children}</div>
     </EuiTitle>
   );
 };
