@@ -2,50 +2,6 @@
   position: relative;
   height: 100%;
 
-  // These mobile children are hidden in everything but mobile view.
-  .euiSideNav__mobileToggle {
-    display: none;
-    border-bottom: $euiBorderThin;
-    padding: $euiSize $euiSizeL;
-    width: 100%;
-    text-align: left;
-
-    /**
-     * 1. This toggle also works with EUI link, but we need the outline
-     *    that comes with the focus state.
-     */
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .euiSideNav__mobileIcon {
-    fill: $euiColorPrimary;
-  }
-
-  .euiSideNav__mobileWrap {
-    display: flex;
-  }
-
-  .euiSideNav__mobileTitle {
-    flex-grow: 1;
-    color: $euiColorPrimary;
-  }
-
-  .euiSideNav__hideButton {
-    width: $euiSizeL;
-    height: $euiSizeL;
-    border-radius: $euiBorderRadius;
-    border: $euiBorderThin;
-    background: $euiColorEmptyShade;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    right: -$euiSizeXXL;
-    top: $euiSizeXL;
-  }
-
   &.euiSideNav--iconsInTitles {
 
     .euiSideNav__content {
@@ -59,6 +15,50 @@
       }
     }
   }
+}
+
+// These mobile children are hidden in everything but mobile view.
+.euiSideNav__mobileToggle {
+  display: none;
+  border-bottom: $euiBorderThin;
+  padding: $euiSize $euiSizeL;
+  width: 100%;
+  text-align: left;
+
+  /**
+   * 1. This toggle also works with EUI link, but we need the outline
+   *    that comes with the focus state.
+   */
+  &:focus {
+    outline: none;
+  }
+}
+
+.euiSideNav__mobileIcon {
+  fill: $euiColorPrimary;
+}
+
+.euiSideNav__mobileWrap {
+  display: flex;
+}
+
+.euiSideNav__mobileTitle {
+  flex-grow: 1;
+  color: $euiColorPrimary;
+}
+
+.euiSideNav__hideButton {
+  width: $euiSizeL;
+  height: $euiSizeL;
+  border-radius: $euiBorderRadius;
+  border: $euiBorderThin;
+  background: $euiColorEmptyShade;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  right: -$euiSizeXXL;
+  top: $euiSizeXL;
 }
 
 @include screenXSmall {
