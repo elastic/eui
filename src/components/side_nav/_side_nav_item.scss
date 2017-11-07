@@ -35,7 +35,7 @@
 
   // Focus state background regardless of index/selected state.
   &:focus {
-    background-color: $euiColorPrimary !important;
-    color: $euiColorGhost !important;
+    background-color: $euiFocusBackgroundColor !important;
+    color: $euiColorPrimary !important;
   }
 }
