@@ -66,13 +66,16 @@
 }
 
 .euiTableRow {
-  transition: background-color $euiAnimSpeedFast $euiAnimSlightResistance;
   &:hover {
     background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
   }
 
   &.euiTableRow-isSelected {
-    background-color: transparentize($euiColorPrimary, .95);
+    background-color: tintOrShade($euiFocusBackgroundColor, 30%, 0%);
+
+    &:hover {
+      background-color: tintOrShade($euiFocusBackgroundColor, 0, 10%);
+    }
   }
 }
 
