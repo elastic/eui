@@ -1,7 +1,6 @@
 .euiSideNav {
   position: relative;
   height: 100%;
-}
 
   // These mobile children are hidden in everything but mobile view.
   .euiSideNav__mobileToggle {
@@ -47,13 +46,18 @@
     top: $euiSizeXL;
   }
 
-/**
- * 1. Panels already have padding, so we need to remove it.
- */
-.euiSideNav--inPanel {
-  .euiSideNav__mobileToggle {
-    padding-left: 0; /* 1 */
-    padding-right: 0; /* 1 */
+  &.euiSideNav--iconsInTitles {
+
+    .euiSideNav__content {
+
+      > .euiSideNavItem {
+        padding-left: $euiSizeL;
+      }
+
+      .euiSideNavGroup {
+        margin-left: $euiSizeL;
+      }
+    }
   }
 }
 
@@ -81,25 +85,5 @@
     opacity: 0;
     max-height: 0;
     margin: 0 $euiSizeL;
-  }
-}
-
-@include screenSmallMediumLarge {
-  .euiSideNav--inPanel {
-    border-right: $euiBorderThin;
-    background: linear-gradient(to left, rgba(0,0,0,.05) 0, $euiColorEmptyShade $euiSizeXS / 2, $euiColorEmptyShade 100%);
-
-    /**
-     * 1. We need the extra specificity to override the original nested selector.
-     * 2. Adjust width to take overlap of border into account.
-     */
-    .euiSideNavItem.euiSideNavItem-isSelected { /* 1 */
-      position: relative;
-      width: calc(100% + 1px); /* 2 */
-      box-shadow: none;
-      border: $euiBorderThin;
-      border-right: none;
-      border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
-    }
   }
 }

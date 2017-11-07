@@ -33,6 +33,7 @@ export default class extends Component {
         mobileTitle="Navigate within $APP_NAME"
         toggleOpenOnMobile={this.toggleOpenOnMobile}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
+        iconsInTitles
         style={{ width: 192 }}
       >
         {/* Elasticsearch section */}

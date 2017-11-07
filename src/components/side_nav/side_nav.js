@@ -3,27 +3,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiIcon } from '..';
 
-const typeToClassNameMap = {
-  inPanel: 'euiSideNav--inPanel',
-};
-
-export const TYPES = Object.keys(typeToClassNameMap);
-
 export const EuiSideNav = ({
   children,
-  type,
   toggleOpenOnMobile,
   isOpenOnMobile,
   mobileTitle,
   className,
+  iconsInTitles,
   ...rest
 }) => {
   const classes = classNames(
     'euiSideNav',
     className,
-    typeToClassNameMap[type],
     {
       'euiSideNav-isOpenMobile': isOpenOnMobile,
+      'euiSideNav--iconsInTitles': iconsInTitles,
     },
   );
 
@@ -63,6 +57,5 @@ export const EuiSideNav = ({
 EuiSideNav.propTypes = {
   toggleOpenOnMobile: PropTypes.func,
   isOpenOnMobile: PropTypes.bool,
-  type: PropTypes.oneOf(TYPES),
   mobileTitle: PropTypes.node,
 };
