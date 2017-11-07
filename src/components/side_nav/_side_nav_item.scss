@@ -9,7 +9,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-color: transparent;
   font-size: $euiFontSizeS;
   padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
 
@@ -36,6 +35,7 @@
 
   // Focus state background regardless of index/selected state.
   &:focus {
-    background-color: $euiFocusBackgroundColor !important;
+    background-color: $euiColorPrimary !important;
+    color: $euiColorGhost !important;
   }
 }

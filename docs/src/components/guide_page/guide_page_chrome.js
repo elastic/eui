@@ -87,19 +87,20 @@ export class GuidePageChrome extends Component {
     ));
 
     // Build links to subsections if there's more than 1.
-    if (this.props.sections.length > 1) {
-      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
-      if (currentSectionIndex !== -1) {
-        const subSections = this.props.sections.map(section => {
-          return {
-            ...section,
-            isSubSection: true,
-          };
-        });
-        matchingItems[currentSectionIndex].hasSubSections = true;
-        matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
-      }
-    }
+
+    // if (this.props.sections.length > 1) {
+    //   const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
+    //   if (currentSectionIndex !== -1) {
+    //     const subSections = this.props.sections.map(section => {
+    //       return {
+    //         ...section,
+    //         isSubSection: true,
+    //       };
+    //     });
+    //     matchingItems[currentSectionIndex].hasSubSections = true;
+    //     matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
+    //   }
+    // }
 
     return matchingItems.map((item, index) => {
       let button;
