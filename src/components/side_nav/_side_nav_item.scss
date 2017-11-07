@@ -2,39 +2,36 @@
   @include euiFontSizeS;
 
   display: block;
+  position: relative;
   width: 100%;
   text-align: left;
-  padding: $euiSizeXS $euiSizeS;
   color: $euiColorDarkShade;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border: $euiBorderThin;
-  border-color: transparent;
+  font-size: $euiFontSizeS;
+  padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
 
-  &.euiSideNavItem-isSelected {
-    @include euiBottomShadowSmall;
-
-    color: $euiColorSecondary;
-    border-left: $euiBorderThick;
-    border-left-color: $euiColorSecondary;
-    background-color: $euiColorEmptyShade;
+  &.euiSideNavItem--parent {
+    border-right: solid $euiSizeXS transparent;
   }
 
-  // We allow one level of nesting.
-  &.euiSideNavItem--indent {
-    margin-left: $euiSize;
-    font-size: $euiFontSizeS;
-    padding: $euiSizeXS / 2 $euiSizeS;
-    border-left: $euiBorderThin;
-    border-left-color: $euiBorderColor;
+  &.euiSideNavItem--parent:hover,
+  &.euiSideNavItem--parent:focus {
+    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
+  }
 
-    // When indented and selected, make it not so heavy.
-    &.euiSideNavItem-isSelected {
-      border-left-color: $euiColorSecondary;
-      background-color: transparent;
-      box-shadow: none;
-    }
+  &.euiSideNavItem--parent.euiSideNavItem-isSelected {
+    color: $euiColorFullShade;
+    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
+  }
+
+  &.euiSideNavItem-isSelected:not(.euiSideNavItem--parent) {
+    color: $euiColorPrimary;
+    font-weight: $euiFontWeightMedium;
+    text-decoration: underline;
   }
 
   &:hover {
@@ -44,9 +41,6 @@
   // Focus state background regardless of index/selected state.
   &:focus {
     background-color: $euiFocusBackgroundColor !important;
-  }
-
-  &:focus:not(.euiSideNavItem-isSelected) {
-    border: solid 1px darken($euiFocusBackgroundColor, 10%);
+    color: $euiColorPrimary !important;
   }
 }

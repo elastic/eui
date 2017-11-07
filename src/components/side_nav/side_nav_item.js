@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiSideNavItem = ({ children, indent, isSelected }) => {
+export const EuiSideNavItem = ({ children, parent, isSelected }) => {
   const child = Children.only(children);
 
   const classes = classNames(
@@ -13,7 +13,7 @@ export const EuiSideNavItem = ({ children, indent, isSelected }) => {
     'euiSideNavItem',
     {
       'euiSideNavItem-isSelected': isSelected,
-      'euiSideNavItem--indent': indent,
+      'euiSideNavItem--parent': parent,
     }
   );
 
@@ -24,5 +24,10 @@ export const EuiSideNavItem = ({ children, indent, isSelected }) => {
 
 EuiSideNavItem.propTypes = {
   isSelected: PropTypes.bool,
-  indent: PropTypes.bool,
+  parent: PropTypes.bool,
+};
+
+EuiSideNavItem.defaultProps = {
+  parent: false,
+  isSelected: false,
 };

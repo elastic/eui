@@ -18,9 +18,9 @@ import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
 const sideNavHtml = renderToHtml(SideNav);
 
-import SideNavInPanel from './side_nav_in_panel';
-const sideNavInPanelSource = require('!!raw-loader!./side_nav_in_panel');
-const sideNavInPanelHtml = renderToHtml(SideNavInPanel);
+import SideNavComplicated from './side_nav_complicated';
+const sideNavComplicatedSource = require('!!raw-loader!./side_nav_complicated');
+const sideNavComplicatedHtml = renderToHtml(SideNavComplicated);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -46,24 +46,26 @@ export default props => (
     />
 
     <GuideSection
-      title="SideNav can be used in Panels"
+      title="Complicated side nav"
       source={[{
         type: GuideSectionTypes.JS,
-        code: sideNavInPanelSource,
+        code: sideNavSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: sideNavInPanelHtml,
+        code: sideNavHtml,
       }]}
       text={
         <p>
-          <EuiCode>SideNav</EuiCode> accepts a <EuiCode>type=&ldquo;inPanel&rdquo;</EuiCode> prop
-          that gives it more contextual styling when included within a <Link to="/page">Panel</Link> (like
-          this documentation page). Note that in mobile mode it drops itself down to the original styling
-          and still works responsively.
+          <EuiCode>SideNav</EuiCode> can also handle more stylized, tree based layouts. In the below
+          example icons with titles have been added within the <EuiCode>EuiSideNavTitle</EuiCode>.
+          This requires the addition of the <EuiCode>iconsInTitles</EuiCode> prop on
+          <EuiCode>EuiSideNav</EuiCode> for extra spacing. The inner tree bordering is added by
+          wrapping <EuiCode>EuiSideNavItems</EuiCode> with <EuiCode>EuiSideNavGroup</EuiCode>.
+          Note that they can be nested for even deeper trees.
         </p>
       }
       demo={
-        <SideNavInPanel />
+        <SideNavComplicated />
       }
     />
   </GuidePage>

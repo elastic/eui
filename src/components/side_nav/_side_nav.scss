@@ -1,60 +1,64 @@
 .euiSideNav {
   position: relative;
   height: 100%;
-}
 
-  // These mobile children are hidden in everything but mobile view.
-  .euiSideNav__mobileToggle {
-    display: none;
-    border-bottom: $euiBorderThin;
-    padding: $euiSize $euiSizeL;
-    width: 100%;
-    text-align: left;
+  &.euiSideNav--iconsInTitles {
 
-    /**
-     * 1. This toggle also works with EUI link, but we need the outline
-     *    that comes with the focus state.
-     */
-    &:focus {
-      outline: none;
+    .euiSideNav__content {
+
+      > .euiSideNavItem {
+        padding-left: $euiSizeL;
+      }
+
+      .euiSideNavGroup {
+        margin-left: $euiSizeL;
+      }
     }
   }
+}
 
-  .euiSideNav__mobileIcon {
-    fill: $euiColorPrimary;
-  }
+// These mobile children are hidden in everything but mobile view.
+.euiSideNav__mobileToggle {
+  display: none;
+  border-bottom: $euiBorderThin;
+  padding: $euiSize $euiSizeL;
+  width: 100%;
+  text-align: left;
 
-  .euiSideNav__mobileWrap {
-    display: flex;
+  /**
+   * 1. This toggle also works with EUI link, but we need the outline
+   *    that comes with the focus state.
+   */
+  &:focus {
+    outline: none;
   }
+}
 
-  .euiSideNav__mobileTitle {
-    flex-grow: 1;
-    color: $euiColorPrimary;
-  }
+.euiSideNav__mobileIcon {
+  fill: $euiColorPrimary;
+}
 
-  .euiSideNav__hideButton {
-    width: $euiSizeL;
-    height: $euiSizeL;
-    border-radius: $euiBorderRadius;
-    border: $euiBorderThin;
-    background: $euiColorEmptyShade;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    right: -$euiSizeXXL;
-    top: $euiSizeXL;
-  }
+.euiSideNav__mobileWrap {
+  display: flex;
+}
 
-/**
- * 1. Panels already have padding, so we need to remove it.
- */
-.euiSideNav--inPanel {
-  .euiSideNav__mobileToggle {
-    padding-left: 0; /* 1 */
-    padding-right: 0; /* 1 */
-  }
+.euiSideNav__mobileTitle {
+  flex-grow: 1;
+  color: $euiColorPrimary;
+}
+
+.euiSideNav__hideButton {
+  width: $euiSizeL;
+  height: $euiSizeL;
+  border-radius: $euiBorderRadius;
+  border: $euiBorderThin;
+  background: $euiColorEmptyShade;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  right: -$euiSizeXXL;
+  top: $euiSizeXL;
 }
 
 @include screenXSmall {
@@ -81,25 +85,5 @@
     opacity: 0;
     max-height: 0;
     margin: 0 $euiSizeL;
-  }
-}
-
-@include screenSmallMediumLarge {
-  .euiSideNav--inPanel {
-    border-right: $euiBorderThin;
-    background: linear-gradient(to left, rgba(0,0,0,.05) 0, $euiColorEmptyShade $euiSizeXS / 2, $euiColorEmptyShade 100%);
-
-    /**
-     * 1. We need the extra specificity to override the original nested selector.
-     * 2. Adjust width to take overlap of border into account.
-     */
-    .euiSideNavItem.euiSideNavItem-isSelected { /* 1 */
-      position: relative;
-      width: calc(100% + 1px); /* 2 */
-      box-shadow: none;
-      border: $euiBorderThin;
-      border-right: none;
-      border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
-    }
   }
 }

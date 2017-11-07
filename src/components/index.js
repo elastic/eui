@@ -184,6 +184,7 @@ export {
 
 export {
   EuiSideNav,
+  EuiSideNavGroup,
   EuiSideNavItem,
   EuiSideNavTitle,
 } from './side_nav';

@@ -1,0 +1,27 @@
+.euiSideNavGroup {
+  position: relative;
+  margin-left: $euiSize;
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: $euiSizeM;
+    width: 1px;
+    background: $euiBorderColor;
+    left: 0px;
+  }
+
+  .euiSideNavItem {
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: 0;
+      width: $euiSizeXS;
+      height: 1px;
+      background: $euiBorderColor;
+    }
+  }
+}
