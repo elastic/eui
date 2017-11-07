@@ -35,53 +35,22 @@ export default class extends Component {
         style={{ width: 192 }}
       >
 
-        <EuiSideNavItem isSelected parent>
+        <EuiSideNavTitle>
+          Kibana
+        </EuiSideNavTitle>
+        <EuiSideNavItem>
           <button>
             Advanced settings
           </button>
         </EuiSideNavItem>
 
-        <div className="euiSideNavGroup">
-          <EuiSideNavItem>
-            <button>
-              General
-            </button>
-          </EuiSideNavItem>
-
-          <EuiSideNavItem isSelected parent>
-            <button>
-              Timelion
-            </button>
-          </EuiSideNavItem>
-
-          <div className="euiSideNavGroup">
-            <EuiSideNavItem>
-              <button>
-                Time stuff
-              </button>
-            </EuiSideNavItem>
-
-            <EuiSideNavItem isSelected>
-              <button>
-                Lion stuff
-              </button>
-            </EuiSideNavItem>
-          </div>
-
-          <EuiSideNavItem>
-            <button>
-              Visualizations
-            </button>
-          </EuiSideNavItem>
-        </div>
-
-        <EuiSideNavItem>
+        <EuiSideNavItem isSelected>
           <button>
             Index Patterns
           </button>
         </EuiSideNavItem>
 
-        <EuiSideNavItem parent>
+        <EuiSideNavItem>
           <button>
             Saved Objects
           </button>

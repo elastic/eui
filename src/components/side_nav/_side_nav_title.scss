@@ -1,5 +1,8 @@
 .euiSideNavTitle {
-  margin-top: $euiSize;
+  @include euiTitle;
+
+  margin-top: $euiSizeXL;
+  margin-bottom: $euiSizeS;
   font-size: $euiSize + 2px !important;
 
   /**
