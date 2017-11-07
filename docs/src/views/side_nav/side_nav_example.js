@@ -22,6 +22,10 @@ import SideNavInPanel from './side_nav_in_panel';
 const sideNavInPanelSource = require('!!raw-loader!./side_nav_in_panel');
 const sideNavInPanelHtml = renderToHtml(SideNavInPanel);
 
+import SideNavComplicated from './side_nav_complicated';
+const sideNavComplicatedSource = require('!!raw-loader!./side_nav_complicated');
+const sideNavComplicatedHtml = renderToHtml(SideNavComplicated);
+
 export default props => (
   <GuidePage title={props.route.name}>
     <GuideSection
@@ -42,6 +46,27 @@ export default props => (
       }
       demo={
         <SideNav />
+      }
+    />
+
+    <GuideSection
+      title="Complicated side nav"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: sideNavSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: sideNavHtml,
+      }]}
+      text={
+        <p>
+          <EuiCode>SideNav</EuiCode> is a responsive menu system that usually sits on the left side of a page layout.
+          It will exapand to the width of its container. This is the menu that is used on the left side of the
+          page you are looking at.
+        </p>
+      }
+      demo={
+        <SideNavComplicated />
       }
     />
 
