@@ -5,6 +5,7 @@ import React, {
 import {
   EuiIcon,
   EuiSideNav,
+  EuiSideNavGroup,
   EuiSideNavItem,
   EuiSideNavTitle,
   EuiFlexGroup,
@@ -47,7 +48,7 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <div className="euiSideNavGroup">
+        <EuiSideNavGroup>
           <EuiSideNavItem>
             <button onClick={() => window.alert('Button clicked')}>
               Data sources
@@ -77,7 +78,7 @@ export default class extends Component {
               Extremely long title will become truncated when the browser is narrow enough
             </button>
           </EuiSideNavItem>
-        </div>
+        </EuiSideNavGroup>
 
         {/* Kibana section */}
 
@@ -92,14 +93,14 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <div className="euiSideNavGroup">
+        <EuiSideNavGroup>
           <EuiSideNavItem isSelected parent>
             <button>
               Advanced settings
             </button>
           </EuiSideNavItem>
 
-          <div className="euiSideNavGroup">
+          <EuiSideNavGroup>
             <EuiSideNavItem>
               <button>
                 General
@@ -112,7 +113,7 @@ export default class extends Component {
               </button>
             </EuiSideNavItem>
 
-            <div className="euiSideNavGroup">
+            <EuiSideNavGroup>
               <EuiSideNavItem>
                 <button>
                   Time stuff
@@ -124,14 +125,14 @@ export default class extends Component {
                   Lion stuff
                 </button>
               </EuiSideNavItem>
-            </div>
+            </EuiSideNavGroup>
 
             <EuiSideNavItem>
               <button>
                 Visualizations
               </button>
             </EuiSideNavItem>
-          </div>
+          </EuiSideNavGroup>
 
           <EuiSideNavItem>
             <button>
@@ -150,7 +151,7 @@ export default class extends Component {
               Reporting
             </button>
           </EuiSideNavItem>
-        </div>
+        </EuiSideNavGroup>
 
         {/* Logstash section */}
 
@@ -165,13 +166,13 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-        <div className="euiSideNavGroup">
+        <EuiSideNavGroup>
           <EuiSideNavItem>
             <button>
               Pipeline Viewer
             </button>
           </EuiSideNavItem>
-        </div>
+        </EuiSideNavGroup>
       </EuiSideNav>
     );
   }
