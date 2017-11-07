@@ -28,6 +28,7 @@ import './assets/console.svg';
 import './assets/controls_horizontal.svg';
 import './assets/controls_vertical.svg';
 import './assets/copy.svg';
+import './assets/copy_clipboard.svg';
 import './assets/cross.svg';
 import './assets/document.svg';
 import './assets/dot.svg';
@@ -90,6 +91,7 @@ const typeToIconMap = {
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
+  copyClipboard: 'copy_clipboard',
   cross: 'cross',
   dashboardApp: 'app_dashboard',
   devToolsApp: 'app_devtools',

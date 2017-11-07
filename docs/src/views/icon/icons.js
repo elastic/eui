@@ -25,6 +25,7 @@ const iconTypes = [
   'controlsHorizontal',
   'controlsVertical',
   'copy',
+  'copyClipboard',
   'cross',
   'document',
   'dot',
