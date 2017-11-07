@@ -12,7 +12,12 @@
   font-size: $euiFontSizeS;
   padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
 
-  &.euiSideNavItem--parent:hover {
+  &.euiSideNavItem--parent {
+    border-right: solid $euiSizeXS transparent;
+  }
+
+  &.euiSideNavItem--parent:hover,
+  &.euiSideNavItem--parent:focus {
     background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
     background-size: $euiSizeM $euiSizeM;
   }
