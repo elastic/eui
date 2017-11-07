@@ -3,9 +3,12 @@ import React, {
 } from 'react';
 
 import {
+  EuiIcon,
   EuiSideNav,
   EuiSideNavItem,
   EuiSideNavTitle,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -29,74 +32,19 @@ export default class extends Component {
         mobileTitle="Navigate within $APP_NAME"
         toggleOpenOnMobile={this.toggleOpenOnMobile}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
+        style={{ width: 192 }}
       >
-        {/* Elasticsearch section */}
-
-        <EuiSideNavTitle>
-          Elasticsearch
-        </EuiSideNavTitle>
-
-        <EuiSideNavItem>
-          <button onClick={() => window.alert('Button clicked')}>
-            Data sources
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <a href="http://www.elastic.co">
-            Users
-          </a>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-            Roles
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-            Watches
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-            Extremely long title will become truncated when the browser is narrow enough
-          </button>
-        </EuiSideNavItem>
-
-        {/* Kibana section */}
 
         <EuiSideNavTitle>
           Kibana
         </EuiSideNavTitle>
-
-        <EuiSideNavItem isSelected>
+        <EuiSideNavItem>
           <button>
             Advanced settings
           </button>
         </EuiSideNavItem>
 
-        <EuiSideNavItem indent>
-          <button>
-            General
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem indent isSelected>
-          <button>
-            Timelion
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem indent>
-          <button>
-            Visualizations
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
+        <EuiSideNavItem isSelected>
           <button>
             Index Patterns
           </button>
@@ -114,17 +62,6 @@ export default class extends Component {
           </button>
         </EuiSideNavItem>
 
-        {/* Logstash section */}
-
-        <EuiSideNavTitle>
-          Logstash
-        </EuiSideNavTitle>
-
-        <EuiSideNavItem>
-          <button>
-            Pipeline Viewer
-          </button>
-        </EuiSideNavItem>
       </EuiSideNav>
     );
   }
