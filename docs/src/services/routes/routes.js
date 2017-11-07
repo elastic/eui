@@ -80,11 +80,17 @@ import PopoverExample
 import ProgressExample
   from '../../views/progress/progress_example';
 
+import QueryPanelExample
+  from '../../views/query_panel/query_panel_example';
+
 import SideNavExample
   from '../../views/side_nav/side_nav_example';
 
 import SpacerExample
   from '../../views/spacer/spacer_example';
+
+import StatusPillExample
+  from '../../views/status_pill/status_pill_example';
 
 import TableExample
   from '../../views/table/table_example';
@@ -189,11 +195,17 @@ const components = [{
   name: 'Progress',
   component: ProgressExample,
 }, {
+  name: 'QueryPanel',
+  component: QueryPanelExample,
+}, {
   name: 'SideNav',
   component: SideNavExample,
 }, {
   name: 'Spacer',
   component: SpacerExample,
+}, {
+  name: 'StatusPill',
+  component: StatusPillExample,
 }, {
   name: 'Table',
   component: TableExample,

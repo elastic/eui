@@ -162,6 +162,13 @@ export {
 } from './progress';
 
 export {
+  EuiQueryPanel,
+  EuiQueryPanelFilters,
+  EuiQueryPanelSearch,
+  EuiQueryPanelSearchInput,
+} from './query_panel';
+
+export {
   EuiSpacer,
 } from './spacer';
 
@@ -203,3 +210,7 @@ export {
   EuiText,
   EuiTextColor,
 } from './text';
+
+export {
+  EuiStatusPill,
+} from './status_pill';

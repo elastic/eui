@@ -21,6 +21,15 @@ export default () => (
       small
     </EuiButtonEmpty>
 
+    &nbsp;&nbsp;
+
+    <EuiButtonEmpty
+      size="xs"
+      onClick={() => window.alert('Button clicked')}
+    >
+      extra small
+    </EuiButtonEmpty>
+
     <br/><br/>
 
     <EuiButtonEmpty
@@ -78,6 +87,16 @@ export default () => (
       onClick={() => window.alert('Button clicked')}
     >
       small
+    </EuiButtonEmpty>
+
+    &nbsp;&nbsp;
+
+    <EuiButtonEmpty
+      color="danger"
+      size="xs"
+      onClick={() => window.alert('Button clicked')}
+    >
+      extra small
     </EuiButtonEmpty>
 
     <br/><br/>
@@ -141,6 +160,16 @@ export default () => (
       onClick={() => window.alert('Button clicked')}
     >
       small
+    </EuiButtonEmpty>
+
+    &nbsp;&nbsp;
+
+    <EuiButtonEmpty
+      color="text"
+      size="xs"
+      onClick={() => window.alert('Button clicked')}
+    >
+      extra small
     </EuiButtonEmpty>
 
     <br/><br/>
@@ -206,6 +235,17 @@ export default () => (
       isDisabled
     >
       small
+    </EuiButtonEmpty>
+
+    &nbsp;&nbsp;
+
+    <EuiButtonEmpty
+      color="danger"
+      size="xs"
+      onClick={() => window.alert('Button clicked')}
+      isDisabled
+    >
+      extra small
     </EuiButtonEmpty>
 
     <br/><br/>

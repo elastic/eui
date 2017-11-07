@@ -6,16 +6,17 @@ import {
 
 export default () => (
   <div>
-    <p>Small</p>
+    <p>xs</p>
+    <EuiHorizontalRule margin="xs" />
+    <p>s</p>
     <EuiHorizontalRule margin="s" />
-    <p>Medium</p>
+    <p>m</p>
     <EuiHorizontalRule margin="m" />
-    <p>Large</p>
+    <p>l (default)</p>
     <EuiHorizontalRule margin="l" />
-    <p>XLarge</p>
+    <p>xl</p>
     <EuiHorizontalRule margin="xl" />
-    <p>XXLarge</p>
+    <p>xxl</p>
     <EuiHorizontalRule margin="xxl" />
   </div>
 );
-

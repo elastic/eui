@@ -1,0 +1,11 @@
+@mixin euiQueryPanelBar {
+  border: $euiBorderThin;
+  padding: $euiSizeS;
+  vertical-align: middle;
+  background: $euiColorEmptyShade;
+}
+
+@import 'query_panel';
+@import 'query_panel_filters';
+@import 'query_panel_search';
+@import 'query_panel_search_input';
