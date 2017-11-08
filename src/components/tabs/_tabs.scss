@@ -5,7 +5,7 @@
   &.euiTabs--small {
     .euiTab {
       @include euiFontSizeS;
-      padding: $euiSizeXS $euiSizeS;
+      padding: $euiSizeS $euiSizeS;
     }
   }
 }
