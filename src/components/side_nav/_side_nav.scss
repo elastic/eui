@@ -10,8 +10,8 @@
         padding-left: $euiSizeL;
       }
 
-      .euiSideNavGroup {
-        margin-left: $euiSizeL;
+      > .euiSideNavGroup {
+        margin-left: $euiSizeXL;
       }
     }
   }
