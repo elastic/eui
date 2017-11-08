@@ -64,10 +64,10 @@ export default props => (
             <li><EuiCode>overflowHeight</EuiCode> accepts a number. By default it is not set.</li>
           </ul>
         </div>
-     }
+      }
       demo={
         <CodeBlock />
-     }
+      }
     />
   </GuidePage>
 );

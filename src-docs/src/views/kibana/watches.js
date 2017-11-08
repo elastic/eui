@@ -77,29 +77,29 @@ export default class extends Component {
       </EuiContextMenuItem>
     ), (
       <EuiContextMenuItem
-        key={1}
-        onClick={this.closePopover}
-      >
-        <EuiText>
+          key={1}
+          onClick={this.closePopover}
+        >
+          <EuiText>
           Change-based alert
         </EuiText>
-        <EuiText size="xs">
+          <EuiText size="xs">
           Send out an alert on a specific change.
         </EuiText>
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key={2}
-        onClick={this.closePopover}
-      >
-        <EuiText>
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key={2}
+          onClick={this.closePopover}
+        >
+          <EuiText>
           Advanced watch
-        </EuiText>
-        <EuiText size="xs">
+          </EuiText>
+          <EuiText size="xs">
           Set up a custom watch in raw JSON.
-        </EuiText>
-      </EuiContextMenuItem>
-    )];
+          </EuiText>
+        </EuiContextMenuItem>
+      )];
 
     return (
       <EuiPopover
@@ -111,7 +111,7 @@ export default class extends Component {
         anchorPosition="downRight"
       >
         <EuiContextMenuPanel
-          style={{ width: "270px" }}
+          style={{ width: '270px' }}
           items={items}
         />
       </EuiPopover>

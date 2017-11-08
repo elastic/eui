@@ -74,10 +74,10 @@ export default props => (
           the click state that expands the accordion. This is needed to make
           it accessibile.
         </p>
-     }
+      }
       demo={
         <AccordionExtra />
-     }
+      }
     />
     <GuideSection
       title="Accordion for forms"
@@ -94,10 +94,10 @@ export default props => (
           and <EuiCode>extraAction</EuiCode> as explained above, we can
           style the accordion in a way common for form use.
         </p>
-     }
+      }
       demo={
         <AccordionForm />
-     }
+      }
     />
   </GuidePage>
 );

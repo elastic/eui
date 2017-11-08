@@ -57,10 +57,10 @@ export default props => (
           pagination example has no nesting and no title.
         </p>
 
-     }
+      }
       demo={
         <SinglePanel />
-     }
+      }
     />
   </GuidePage>
 );

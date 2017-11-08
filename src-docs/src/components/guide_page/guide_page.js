@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-export class GuidePage extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
+function GuidePage() {
+  return (
+    <div>
+      {this.props.children}
+    </div>
+  );
 }
 
 GuidePage.propTypes = {

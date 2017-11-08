@@ -268,9 +268,9 @@ export default class extends Component {
         [itemId]: !previousState.itemIdToOpenActionsPopoverMap[itemId],
       };
 
-     return {
+      return {
         itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
-     };
+      };
     });
   };
 
@@ -281,7 +281,7 @@ export default class extends Component {
         [itemId]: false,
       };
 
-     return {
+      return {
         itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
       };
     });
@@ -380,21 +380,21 @@ export default class extends Component {
                     </EuiContextMenuItem>
                   ), (
                     <EuiContextMenuItem
-                      key="B"
-                      icon="share"
-                      onClick={() => { this.closePopover(item.id); }}
-                    >
+                        key="B"
+                        icon="share"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
                       Share
-                    </EuiContextMenuItem>
-                  ), (
-                    <EuiContextMenuItem
-                      key="C"
-                      icon="trash"
-                      onClick={() => { this.closePopover(item.id); }}
-                    >
+                      </EuiContextMenuItem>
+                    ), (
+                      <EuiContextMenuItem
+                        key="C"
+                        icon="trash"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
                       Delete
-                    </EuiContextMenuItem>
-                  )]}
+                      </EuiContextMenuItem>
+                    )]}
                 />
               </EuiPopover>
             </EuiTableRowCell>

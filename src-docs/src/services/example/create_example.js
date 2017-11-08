@@ -10,7 +10,7 @@ export default function creatExample(examples) {
     }
   }
 
-  Example.propTypes = Object.assign({}, GuideExample.propTypes);
+  Example.propTypes = ({ ...GuideExample.propTypes });
 
   return Example;
 }

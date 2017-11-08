@@ -62,9 +62,9 @@ export default class extends Component {
   }
 
   onCheckboxChange = optionId => {
-    const newCheckboxIdToSelectedMap = Object.assign({}, this.state.checkboxIdToSelectedMap, {
+    const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
       [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-    });
+    } });
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
@@ -154,7 +154,7 @@ export default class extends Component {
 
         <br />
         <br />
-        
+
         <EuiRadioGroup
           options={this.state.radios}
           idSelected={this.state.radioIdSelected}

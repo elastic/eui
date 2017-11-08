@@ -35,7 +35,7 @@ class EuiTabsExample extends React.Component {
   }
 
   renderTabs() {
-    return this.tabs.map((tab,index) => (
+    return this.tabs.map((tab, index) => (
       <EuiTab
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}

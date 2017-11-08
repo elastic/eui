@@ -82,10 +82,10 @@ export default props => (
           can be presented in an inline, blob format. This is useful for JSON code blocks. Inline
           description lists are sized smaller then normal lists due to their compact nature.
         </p>
-     }
+      }
       demo={
         <DescriptionListInline />
-     }
+      }
     />
     <GuideSection
       title="Description lists can be centered and compressed"
@@ -102,10 +102,10 @@ export default props => (
           can further tailor the look of a description list. This works with column
           and inline types.
         </p>
-     }
+      }
       demo={
         <DescriptionListStyling />
-     }
+      }
     />
   </GuidePage>
 );

@@ -101,9 +101,9 @@ export default class extends Component {
   }
 
   toggleItem = itemId => {
-    const newItemIdToSelectedMap = Object.assign({}, this.state.itemIdToSelectedMap, {
+    const newItemIdToSelectedMap = ({ ...this.state.itemIdToSelectedMap, ...{
       [itemId]: !this.state.itemIdToSelectedMap[itemId],
-    });
+    } });
 
     this.setState({
       itemIdToSelectedMap: newItemIdToSelectedMap,

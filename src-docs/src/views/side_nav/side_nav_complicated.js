@@ -49,35 +49,35 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-          <EuiSideNavItem>
-            <button onClick={() => window.alert('Button clicked')}>
+        <EuiSideNavItem>
+          <button onClick={() => window.alert('Button clicked')}>
               Data sources
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem>
-            <a href="http://www.elastic.co">
+        <EuiSideNavItem>
+          <a href="http://www.elastic.co">
               Users
-            </a>
-          </EuiSideNavItem>
+          </a>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem>
-            <button>
+        <EuiSideNavItem>
+          <button>
               Roles
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem>
-            <button>
+        <EuiSideNavItem>
+          <button>
               Watches
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem>
-            <button>
+        <EuiSideNavItem>
+          <button>
               Extremely long title will become truncated when the browser is narrow enough
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
         {/* Kibana section */}
 
@@ -92,63 +92,63 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
+        <EuiSideNavItem isSelected parent>
+          <button>
+              Advanced settings
+          </button>
+        </EuiSideNavItem>
+
+        <EuiSideNavGroup>
+          <EuiSideNavItem>
+            <button>
+                General
+            </button>
+          </EuiSideNavItem>
+
           <EuiSideNavItem isSelected parent>
             <button>
-              Advanced settings
+                Timelion
             </button>
           </EuiSideNavItem>
 
           <EuiSideNavGroup>
             <EuiSideNavItem>
               <button>
-                General
-              </button>
-            </EuiSideNavItem>
-
-            <EuiSideNavItem isSelected parent>
-              <button>
-                Timelion
-              </button>
-            </EuiSideNavItem>
-
-            <EuiSideNavGroup>
-              <EuiSideNavItem>
-                <button>
                   Time stuff
-                </button>
-              </EuiSideNavItem>
+              </button>
+            </EuiSideNavItem>
 
-              <EuiSideNavItem isSelected>
-                <button>
-                  Lion stuff
-                </button>
-              </EuiSideNavItem>
-            </EuiSideNavGroup>
-
-            <EuiSideNavItem>
+            <EuiSideNavItem isSelected>
               <button>
-                Visualizations
+                  Lion stuff
               </button>
             </EuiSideNavItem>
           </EuiSideNavGroup>
 
           <EuiSideNavItem>
             <button>
+                Visualizations
+            </button>
+          </EuiSideNavItem>
+        </EuiSideNavGroup>
+
+        <EuiSideNavItem>
+          <button>
               Index Patterns
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem parent>
-            <button>
+        <EuiSideNavItem parent>
+          <button>
               Saved Objects
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
-          <EuiSideNavItem>
-            <button>
+        <EuiSideNavItem>
+          <button>
               Reporting
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
 
         {/* Logstash section */}
 
@@ -163,11 +163,11 @@ export default class extends Component {
           </EuiFlexGroup>
         </EuiSideNavTitle>
 
-          <EuiSideNavItem>
-            <button>
+        <EuiSideNavItem>
+          <button>
               Pipeline Viewer
-            </button>
-          </EuiSideNavItem>
+          </button>
+        </EuiSideNavItem>
       </EuiSideNav>
     );
   }

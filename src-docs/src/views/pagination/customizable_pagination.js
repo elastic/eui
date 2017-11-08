@@ -59,29 +59,29 @@ export default class extends Component {
       </EuiContextMenuItem>
     ), (
       <EuiContextMenuItem
-        key="20 rows"
-        icon="empty"
-        onClick={() => { this.closePopover(); window.alert('20 rows'); }}
-      >
+          key="20 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('20 rows'); }}
+        >
         20 rows
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="50 rows"
-        icon="check"
-        onClick={() => { this.closePopover(); window.alert('50 rows'); }}
-      >
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key="50 rows"
+          icon="check"
+          onClick={() => { this.closePopover(); window.alert('50 rows'); }}
+        >
         50 rows
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="100 rows"
-        icon="empty"
-        onClick={() => { this.closePopover(); window.alert('100 rows'); }}
-      >
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key="100 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('100 rows'); }}
+        >
         100 rows
-      </EuiContextMenuItem>
-    )];
+        </EuiContextMenuItem>
+      )];
 
     return (
       <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">

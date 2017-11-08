@@ -112,40 +112,40 @@ export default class extends Component {
       </EuiToast>
     ), (
       <EuiToast
-        title="Download complete!"
-        color="success"
-        onClose={dismissToast}
-      >
-        <p>
+          title="Download complete!"
+          color="success"
+          onClose={dismissToast}
+        >
+          <p>
           Thanks for your patience!
         </p>
-      </EuiToast>
-    ), (
-      <EuiToast
-        title="Logging you out soon, due to inactivity"
-        color="warning"
-        iconType="user"
-        onClose={dismissToast}
-      >
-        <p>
+        </EuiToast>
+      ), (
+        <EuiToast
+          title="Logging you out soon, due to inactivity"
+          color="warning"
+          iconType="user"
+          onClose={dismissToast}
+        >
+          <p>
           This is a security measure.
-        </p>
-        <p>
+          </p>
+          <p>
           Please move your mouse to show that you&rsquo;re still using Kibana.
-        </p>
-      </EuiToast>
-    ), (
-      <EuiToast
-        title="Oops, there was an error"
-        color="danger"
-        iconType="help"
-        onClose={dismissToast}
-      >
-        <p>
+          </p>
+        </EuiToast>
+      ), (
+        <EuiToast
+          title="Oops, there was an error"
+          color="danger"
+          iconType="help"
+          onClose={dismissToast}
+        >
+          <p>
           Sorry. We&rsquo;ll try not to let it happen it again.
-        </p>
-      </EuiToast>
-    )];
+          </p>
+        </EuiToast>
+      )];
 
     const toast = (
       <EuiGlobalToastListItem key={toastId}>

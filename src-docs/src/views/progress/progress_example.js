@@ -67,10 +67,10 @@ export default props => (
           are set, it will act as a determinate progress bar. This is rendered
           using an HTML5 <EuiCode>progress</EuiCode> tag.
         </p>
-     }
+      }
       demo={
         <ProgressValue />
-     }
+      }
     />
 
     <GuideSection
@@ -91,10 +91,10 @@ export default props => (
           absolute option, make sure that your wrapping element
           has <EuiCode>position: relative</EuiCode> applied.
         </p>
-     }
+      }
       demo={
         <ProgressFixed />
-     }
+      }
     />
 
     <GuideSection
