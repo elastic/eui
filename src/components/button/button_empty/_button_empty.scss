@@ -15,6 +15,11 @@
     height: $euiButtonHeightSmall;
   }
 
+  &.euiButtonEmpty--xSmall {
+    height: $euiSizeL;
+    font-size: $euiFontSizeS;
+  }
+
   &.euiButtonEmpty--iconRight {
     .euiButtonEmpty__content {
       @include euiButtonContent($isReverse: true);

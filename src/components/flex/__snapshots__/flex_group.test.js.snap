@@ -3,7 +3,7 @@
 exports[`EuiFlexGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGroup euiFlexGroup--gutterLarge testClass1 testClass2"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

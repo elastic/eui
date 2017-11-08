@@ -52,6 +52,10 @@ import FlexItemPanel from './flex_item_panel';
 const flexItemPanelSource = require('!!raw-loader!./flex_item_panel');
 const flexItemPanelHtml = renderToHtml(FlexItemPanel);
 
+import FlexGroupResponsive from './flex_responsive';
+const flexItemResponsiveSource = require('!!raw-loader!./flex_responsive');
+const flexItemResonsiveHtml = renderToHtml(FlexGroupResponsive);
+
 export default props => (
   <GuidePage title={props.route.name}>
     <EuiCallOut
@@ -251,6 +255,28 @@ export default props => (
       }
       demo={
         <div className="guideDemo__highlightGrid"><FlexGutter /></div>
+      }
+    />
+
+    <GuideSection
+      title="FlexGroups can turn off responsive layouts"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: flexGutterSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: flexGutterHtml,
+      }]}
+      text={
+        <p>
+          By default <EuiCode>EuiFlexGroup</EuiCode> is responsive. However, often
+          you only want to use groups for alignment and margins, rather than layouts.
+          Simply apply the <EuiCode>responsive={`{false}`}</EuiCode> prop
+          to retain a single row layout for the group.
+        </p>
+      }
+      demo={
+        <div className="guideDemo__highlightGrid"><FlexGroupResponsive /></div>
       }
     />
   </GuidePage>

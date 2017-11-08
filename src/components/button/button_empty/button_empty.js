@@ -18,6 +18,7 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
+  xs: 'euiButtonEmpty--xSmall',
   s: 'euiButtonEmpty--small',
   l: 'euiButtonEmpty--large',
 };

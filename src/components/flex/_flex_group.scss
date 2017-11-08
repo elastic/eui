@@ -57,7 +57,7 @@
 
 
 @include screenXSmall {
-  .euiFlexGroup {
+  .euiFlexGroup--responsive {
     flex-wrap: wrap;
   }
 }

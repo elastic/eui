@@ -31,12 +31,15 @@ const justifyContentToClassNameMap = {
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
-export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, justifyContent, ...rest }) => {
+export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, responsive, justifyContent, ...rest }) => {
   const classes = classNames(
     'euiFlexGroup',
     gutterSizeToClassNameMap[gutterSize],
     alignItemsToClassNameMap[alignItems],
     justifyContentToClassNameMap[justifyContent],
+    {
+      'euiFlexGroup--responsive': responsive,
+    },
     className
   );
 
@@ -53,6 +56,7 @@ export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, just
 EuiFlexGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  responsive: PropTypes.bool,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
@@ -61,5 +65,6 @@ EuiFlexGroup.propTypes = {
 EuiFlexGroup.defaultProps = {
   gutterSize: 'l',
   alignItems: 'stretch',
+  responsive: true,
   justifyContent: 'flexStart',
 };
