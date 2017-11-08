@@ -167,19 +167,20 @@ export class GuidePageChrome extends Component {
         {this.renderIdentity()}
 
         <EuiSpacer size="m" />
+        
+        <EuiFieldSearch
+          placeholder="Search..."
+          value={this.state.search}
+          onChange={this.onSearchChange}
+        />
+
+        <EuiSpacer size="m" />
 
         <EuiSideNav
           mobileTitle="Navigate components"
           toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         >
-          <EuiFieldSearch
-            placeholder="Search..."
-            value={this.state.search}
-            onChange={this.onSearchChange}
-          />
-
-          <EuiSpacer size="m" />
 
           <EuiSideNavTitle>
             Components
