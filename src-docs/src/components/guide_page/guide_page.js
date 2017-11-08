@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-function GuidePage() {
+export function GuidePage({ children }) {
   return (
     <div>
-      {this.props.children}
+      {children}
     </div>
   );
 }
