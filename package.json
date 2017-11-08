@@ -16,7 +16,7 @@
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "deploy": "now --public",
-    "prepublish": "npm test && npm run build"
+    "release": "./scripts/release.sh"
   },
   "now": {
     "name": "elastic-eui",
