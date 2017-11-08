@@ -7,6 +7,7 @@
   "jsnext:main": "src",
   "scripts": {
     "start": "./scripts/docs-dev.sh",
+    "sync-docs": "./scripts/docs-sync.sh",
     "build-docs": "./scripts/docs-build.sh",
     "build": "./scripts/compile.sh",
     "lint": "./scripts/lint.sh",
@@ -15,12 +16,7 @@
     "test-unit": "./scripts/test-unit.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
-    "deploy": "now --public",
     "release": "./scripts/release.sh"
-  },
-  "now": {
-    "name": "elastic-eui",
-    "alias": "eui"
   },
   "dependencies": {
     "brace": "0.10.0",

@@ -22,7 +22,7 @@ There are four steps to creating a new component:
 1. Create the SCSS for the component in `src/components`.
 2. Create the React portion of the component.
 3. Write tests.
-4. Document it with examples in `docs`.
+4. Document it with examples in `src-docs`.
 
 You can do this using Yeoman (the easy way), or you can do it manually (the hard way).
 
@@ -74,9 +74,9 @@ that expects a new route. A `Page Demo` will create a file you can include withi
 created document page. Usually you'll create a Page first, then follow it up with more demos.
 
 The script will ask you for a name of the component you'd like to document,
-then create some files in `/docs/src/views/`. If the name you provide isn't the exact name of a component,
+then create some files in `src-docs/src/views/`. If the name you provide isn't the exact name of a component,
 you might need to adjust the import in the generated files. Otherwise simply add the document to the
-`/docs/src/services/routes/routes.js` file to make it available in the navigation / browser.
+`src-docs/src/services/routes/routes.js` file to make it available in the navigation / browser.
 
 ### Manually
 
@@ -112,11 +112,11 @@ To see how well the components have been covered by tests, you can run
 
 #### Document the component with examples
 
-1. Create a directory for your example in `docs/src/views`. Name it the name of the
+1. Create a directory for your example in `src-docs/src/views`. Name it the name of the
 component.
 2. Create a `{component name}_example.js` file inside the directory. You'll use this file to define
 the different examples for your component.
-3. Add the route to this file in `docs/src/services/routes/routes.js`.
+3. Add the route to this file in `src-docs/src/services/routes/routes.js`.
 4. In the `{component name}_example.js` file you created, define examples which demonstrate the component and describe
 its role from a UI perspective.
 

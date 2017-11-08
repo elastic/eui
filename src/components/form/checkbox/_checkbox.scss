@@ -18,7 +18,7 @@
     &:checked ~ .euiCheckbox__square {
       .euiCheckbox__check {
         background-color: $euiTextColor;
-        // This path is relative to ~/docs/postcss.config.js, which uses
+        // This path is relative to ~/src-docs/postcss.config.js, which uses
         // the postcss-line-svg plugin.
         mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
       }

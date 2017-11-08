@@ -1,0 +1,119 @@
+$guideZLevelHighest: $euiZLevel9 + 1000;
+
+@mixin whenNarrowerThan($browserWidth) {
+  @media only screen and (max-width: #{$browserWidth}) {
+    @content;
+  }
+}
+
+@mixin whenWiderThan($browserWidth) {
+  @media only screen and (min-width: #{$browserWidth}) {
+    @content;
+  }
+}
+
+@mixin scrollbar($color: rgba(#454D58, 0.4)) {
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+.guideLogo {
+  width: 40px;
+  height: 40px;
+  background: $euiColorEmptyShade;
+  border-radius: 40px;
+  margin: auto;
+  border: $euiBorderThin;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  &:hover {
+    border-color: $euiColorMediumShade;
+  }
+}
+
+.guideDemo__highlightLayout {
+  div {
+    background: transparentize(#0096CC, .9);
+  }
+}
+.guideDemo__highlightSpacer {
+  .euiSpacer {
+    background: transparentize(#0096CC, .9);
+  }
+}
+
+.guideDemo__highlightGrid {
+  .euiFlexItem {
+    background: transparentize(#0096CC, .9);
+    padding: 16px;
+  }
+}
+
+.guideDemo__highlightGridWrap {
+  .euiFlexItem div {
+    background: transparentize(#0096CC, .9);
+    padding: 16px;
+  }
+}
+
+.guideDemo__textLines {
+  background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
+  background-size: 100% 8px !important;
+}
+
+.guideDemo__color {
+  padding: $euiSizeS;
+  color: $euiColorEmptyShade;
+  font-size: $euiFontSizeS;
+  margin-top: $euiSizeS;
+  line-height: 1.5;
+  height: 64px;
+
+  .guideDemo__colorHex {
+    font-size: $euiFontSize;
+  }
+}
+
+.guideDemo__size {
+  background: $euiTextColor;
+  display: inline-block;
+}
+
+.guideDemo__sizeText {
+  line-height: 1.5;
+}
+
+.guideDemo__sizeGrid {
+  font-size: $euiFontSizeS;
+}
+
+.guideDemo__ghostBackground {
+  background: #444;
+  padding: $euiSizeL;
+}
+
+.guideDemo__icon {
+  text-align: center;
+
+  svg {
+    margin-bottom: $euiSizeS;
+  }
+}
+
+@import "guide_sandbox/index";
+@import "guide_section/index";

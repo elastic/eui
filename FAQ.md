@@ -18,4 +18,4 @@ Many of our products themselves are open source and rely upon this library to fu
 
 Bug reports are most welcome, but we're not considering external feature requests at this time.
 
-[docs]: https://eui.now.sh
+[docs]: https://elastic.github.io/eui/
