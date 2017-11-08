@@ -203,7 +203,3 @@ export {
   EuiText,
   EuiTextColor,
 } from './text';
-
-export {
-  EuiStatusPill,
-} from './status_pill';
