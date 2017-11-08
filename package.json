@@ -15,7 +15,7 @@
     "test-unit": "./scripts/test-unit.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
-    "sync-gh-pages": "sync-gh-pages",
+    "sync-docs": "sync-docs",
     "release": "./scripts/release.sh"
   },
   "now": {

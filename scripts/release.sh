@@ -4,8 +4,8 @@ set -e
 
 npm test
 npm run build
+npm run sync-docs
 npm version ${BUMP:-\"patch\"}
 git push --tags
-npm publish
 git push
-npm run sync-gh-pages
+npm publish
