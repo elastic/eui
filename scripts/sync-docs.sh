@@ -3,5 +3,5 @@
 set -e
 
 npm run build-docs
-git add .
+git add docs/dist
 git commit -am "Updated documentation." || echo "No documentation changes."
