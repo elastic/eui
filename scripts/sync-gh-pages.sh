@@ -7,3 +7,5 @@ git merge master
 npm run build-docs
 git add .
 git commit -am "Updated website off of \`master\`"
+git push
+git checkout master
