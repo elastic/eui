@@ -8,3 +8,4 @@ npm version ${BUMP:-\"patch\"}
 git push --tags
 npm publish
 git push
+npm run sync-gh-pages
