@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "0.0.1-prealpha",
+  "version": "0.0.1",
   "main": "lib",
   "module": "src",
   "jsnext:main": "src",
