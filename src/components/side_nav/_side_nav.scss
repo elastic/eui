@@ -7,11 +7,11 @@
     .euiSideNav__content {
 
       > .euiSideNavItem {
-        padding-left: $euiSizeL;
+        margin-left: $euiSize;
       }
 
-      .euiSideNavGroup {
-        margin-left: $euiSizeL;
+      > .euiSideNavGroup {
+        margin-left: $euiSizeXL;
       }
     }
   }
