@@ -39,7 +39,11 @@ export default class extends Component {
         {/* Elasticsearch section */}
 
         <EuiSideNavTitle>
-          <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+          >
             <EuiFlexItem grow={false}>
               <EuiIcon type="logoElasticSearch" />
             </EuiFlexItem>
@@ -82,7 +86,11 @@ export default class extends Component {
         {/* Kibana section */}
 
         <EuiSideNavTitle>
-          <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+          >
             <EuiFlexItem grow={false}>
               <EuiIcon type="logoKibana" />
             </EuiFlexItem>
@@ -153,7 +161,11 @@ export default class extends Component {
         {/* Logstash section */}
 
         <EuiSideNavTitle>
-          <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+          >
             <EuiFlexItem grow={false}>
               <EuiIcon type="logoLogstash" />
             </EuiFlexItem>
