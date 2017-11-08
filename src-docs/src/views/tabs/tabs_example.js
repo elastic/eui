@@ -28,8 +28,9 @@ export default props => (
       }]}
       text={
         <p>
-          The <EuiCode>EuiTabs</EuiCode> component should have <EuiCode>EuiTab</EuiCode>
-          components as children.
+          <EuiCode>EuiTabs</EuiCode> allow a <EuiCode>size</EuiCode> prop. In general
+          you should always use the default size, but in rare cases (like putting tabs
+          within a popover of other small menu) it is OK to use the smaller sizing.
         </p>
       }
       demo={

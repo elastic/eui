@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiTabs,
   EuiTab,
+  EuiSpacer,
 } from '../../../../src/components';
 
 class EuiTabsExample extends React.Component {
@@ -48,9 +49,17 @@ class EuiTabsExample extends React.Component {
 
   render() {
     return (
-      <EuiTabs>
-        {this.renderTabs()}
-      </EuiTabs>
+      <div>
+        <EuiTabs>
+          {this.renderTabs()}
+        </EuiTabs>
+
+        <EuiSpacer />
+
+        <EuiTabs size="s">
+          {this.renderTabs()}
+        </EuiTabs>
+      </div>
     );
   }
 }

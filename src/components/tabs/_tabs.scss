@@ -1,6 +1,13 @@
 .euiTabs {
   display: flex;
   border-bottom: $euiBorderThin;
+
+  &.euiTabs--small {
+    .euiTab {
+      @include euiFontSizeS;
+      padding: $euiSizeS $euiSizeS;
+    }
+  }
 }
 
 .euiTab {
@@ -38,7 +45,10 @@
       animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
     }
   }
+
 }
+
+
 
   .euiTab__content {
     display: block;
