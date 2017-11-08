@@ -1,6 +1,6 @@
 🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][faq] for details. 🚨
 
-# Elastic UI Framework
+# Elastic UI Framework [![Build Status][ci-badge]][ci-site]
 
 > The Elastic UI Framework is a collection of React UI components for quickly building user interfaces
 > at Elastic. Not using React? No problem! You can still use the CSS behind each component.
@@ -34,3 +34,5 @@ You can find documentation around creating and submitting new components in [CON
 [license]: LICENSE.md
 [faq]: FAQ.md
 [docs]: https://eui.now.sh
+[ci-badge]: https://travis-ci.org/elastic/eui.svg?branch=master
+[ci-site]: https://travis-ci.org/elastic/eui
