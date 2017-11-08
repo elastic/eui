@@ -18,10 +18,6 @@
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "./scripts/release.sh"
   },
-  "now": {
-    "name": "elastic-eui",
-    "alias": "eui"
-  },
   "dependencies": {
     "brace": "0.10.0",
     "classnames": "2.2.5",
