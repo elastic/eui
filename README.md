@@ -33,6 +33,6 @@ You can find documentation around creating and submitting new components in [CON
 
 [license]: LICENSE.md
 [faq]: FAQ.md
-[docs]: https://eui.now.sh
+[docs]: https://elastic.github.io/eui/
 [ci-badge]: https://travis-ci.org/elastic/eui.svg?branch=master
 [ci-site]: https://travis-ci.org/elastic/eui

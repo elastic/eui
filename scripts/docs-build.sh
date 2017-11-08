@@ -3,4 +3,4 @@
 set -e
 
 npm run build
-webpack --config=docs/webpack.config.js
+webpack --config=src-docs/webpack.config.js

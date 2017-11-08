@@ -1,7 +1,7 @@
 {
   "rootDir": "../../",
   "roots": [
-    "<rootDir>/docs/src",
+    "<rootDir>/src-docs/src",
     "<rootDir>/src/"
   ],
   "collectCoverageFrom": [

@@ -12,7 +12,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../docs'),
     filename: 'bundle.js'
   },
 
@@ -51,7 +51,7 @@ module.exports = {
   ],
 
   devServer: {
-    contentBase: 'docs/build',
+    contentBase: 'src-docs/build',
     host: 'localhost',
     port: 8020,
     disableHostCheck: true
