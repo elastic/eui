@@ -18,19 +18,19 @@
 
 // Families
 
-$euiFontFamily: "Roboto", Helvetica, Arial, sans-serif;
-$euiCodeFontFamily: "Roboto Mono", monospace;
+$euiFontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$euiCodeFontFamily: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 // Font sizes
 
 $euiFontSize:       $euiSize;
 
-$euiFontSizeXS:     12px;
-$euiFontSizeS:      14px;
+$euiFontSizeXS:     $euiFontSize * .75;
+$euiFontSizeS:      $euiFontSize * .875;
 $euiFontSizeM:      $euiFontSize;
-$euiFontSizeL:      24px;
-$euiFontSizeXL:     32px;
-$euiFontSizeXXL:    48px;
+$euiFontSizeL:      $euiFontSize * 1.5;
+$euiFontSizeXL:     $euiFontSize * 2;
+$euiFontSizeXXL:    $euiFontSize * 3;
 
 // Line height
 
