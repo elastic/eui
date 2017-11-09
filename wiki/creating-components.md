@@ -52,10 +52,7 @@ To see how well the components have been covered by tests, you can run `npm run 
 
 ## Logically-grouped components
 
-If a component has subcomponents (e.g. ToolBar and ToolBarSearch), tightly-coupled components (e.g.
-Button and ButtonGroup), or you just want to group some related components together (e.g. TextInput,
-TextArea, and CheckBox), then they belong in the same logical grouping. In this case, you can create
-additional SCSS files for these components in the same component directory.
+If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tightly-coupled components (`<EuiButton> and `<EuiButtonGroup>`), or you just want to group some related components together (`<EuiTextInput>`, `<EuiTextArea>`, and `<EuiCheckBox>`), then they belong in the same logical grouping. In this case, you can create additional SCSS files for these components in the same component directory.
 
 ## Writing CSS
 
@@ -79,7 +76,7 @@ The CSS portion of this framework means engineers don't need to spend mental cyc
 design into CSS. These cycles can be spent on the things critical to the identity of the specific
 project they're working on, like architecture and business logic.
 
-If they use the React components, engineers won't even need to _see_ CSS -- it will be encapsulated
+If they use the React components, engineers won't even need to _look at_ CSS -- it will be encapsulated
 behind the React components' interfaces.
 
 ## More UI tests mean fewer UI bugs
@@ -92,6 +89,7 @@ integration/end-to-end tests.
 
 In short: we've outgrown it! Third-party CSS frameworks like Bootstrap and Foundation are designed
 for a general audience, so they offer things we don't need and _don't_ offer things we _do_ need.
+
 As a result, we've been forced to override their styles until the original framework is no longer
 recognizable. When the CSS reaches that point, it's time to take ownership over it and build
 your own framework.
@@ -101,7 +99,7 @@ We also gain the ability to fix some of the common issues with third-party CSS f
 * They have non-semantic markup.
 * They deeply nest their selectors.
 
-For a more in-depth analysis of the shortcomings of Bootstrap (and similar frameworks), read the ["Bootstrap Bankruptcy"][bootstrap] article and follow the links it recommends near the end.
+For an in-depth analysis of the shortcomings in Bootstrap (and similar frameworks), read [Bootstrap Bankruptcy][bootstrap] and follow the recommended links near the end.
 
 [kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
 [kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
