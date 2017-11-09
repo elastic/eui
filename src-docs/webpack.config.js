@@ -53,7 +53,7 @@ module.exports = {
   devServer: {
     contentBase: 'src-docs/build',
     host: 'localhost',
-    port: 8020,
+    port: 8030,
     disableHostCheck: true
   }
 };
