@@ -33,15 +33,15 @@ export default class extends Component {
 
     this.items = [{
       id: 0,
-      title: 'A very long line which will not wrap on narrower screens and instead will become truncated and replaced by an ellipsis',
+      title: 'A very long line which will wrap on narrower screens and NOT become truncated using an ellipsis',
       type: 'user',
       dateCreated: 'Tue Dec 06 2016 12:56:15 GMT-0800 (PST)',
       magnitude: 1,
     }, {
       id: 1,
       title: {
-        value: 'A very long line which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis',
-        isWrapped: true,
+        value: 'A very long line which will not wrap on narrower screens and instead will become truncated using an ellipsis',
+        truncateText: true,
       },
       type: 'user',
       dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
@@ -182,7 +182,7 @@ export default class extends Component {
           child = column.cellProvider(cell);
         } else if (cell.isLink) {
           child = <EuiLink href="">{cell.value}</EuiLink>;
-        } else if (cell.isWrapped) {
+        } else if (cell.truncateText) {
           child = cell.value;
         } else {
           child = cell;
@@ -192,7 +192,7 @@ export default class extends Component {
           <EuiTableRowCell
             key={column.id}
             align={column.alignment}
-            wrapText={cell && cell.isWrapped}
+            truncateText={cell && cell.truncateText}
           >
             {child}
           </EuiTableRowCell>
