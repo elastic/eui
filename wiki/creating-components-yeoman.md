@@ -1,4 +1,4 @@
-# Create a new component
+# Creating a new component
 
 From the command line, run the following command:
 

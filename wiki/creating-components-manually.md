@@ -1,4 +1,4 @@
-# Create component SCSS
+# Creating component SCSS files
 
 1. Create a directory for your component in `src/components`.
 2. In this directory, create `_{component name}.scss`.
@@ -8,7 +8,7 @@
 
 This makes your styles available to your project and the EUI documentation.
 
-# Create the React component
+# Creating the React component
 
 1. Create the React component(s) in the same directory as the related SCSS file(s).
 2. Export these components from an `index.js` file.
