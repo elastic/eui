@@ -1,6 +1,6 @@
-# Component Creation Guidelines
+# Component Development
 
-Before creating a new component, you may want to run the documentation site. This is where we demonstrate how the components in our design system work.
+Before working with EUI components or creating new ones, you may want to run a local server for the [documentation site][docs]. This is where we demonstrate how the components in our design system work.
 
 # Launching the Documentation Server
 
@@ -104,5 +104,6 @@ For an in-depth analysis of the shortcomings in Bootstrap (and similar framework
 [kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
 [kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
 [bootstrap]: http://www.matthewcopeland.me/blog/2013/11/04/bootstrap-bankruptcy/
+[docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md

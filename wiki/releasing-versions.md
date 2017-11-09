@@ -46,7 +46,7 @@ Commit your updates to `CHANGELOG.md` before proceeding with the release.
 
 # Releasing
 
-Once you're ready to ship a new release, run the following command. This command will make sure to run tests, update the documentation website, bump the version patch number (`MINOR.MAJOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
+Once you're ready to ship a new release, run the following command. This command will make sure to run tests, update the [documentation site][docs], bump the version patch number (`MINOR.MAJOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
 
 ```shell
 npm run release
@@ -59,3 +59,7 @@ BUMP=patch npm run release # default
 BUMP=minor npm run release
 BUMP=major npm run release
 ```
+
+That's it. The latest changes were published to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily because GitHub caches GitHub pages sites aggressively.
+
+[docs]: https://elastic.github.io/eui/

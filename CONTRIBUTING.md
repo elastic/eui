@@ -8,7 +8,7 @@ When creating new components, adding new features, or fixing bugs, please refer 
 
 # Documentation
 
-Always remember to update documentation and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no different than how you would treat tests.
+Always remember to update [documentation site][docs] and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no different than how you would treat tests.
 
 Here are our guidelines for updating the `CHANGELOG.md` file:
 
@@ -22,5 +22,6 @@ Here are our guidelines for updating the `CHANGELOG.md` file:
 
 When we are ready to create a new release, please follow the [Release Process][docs-releases] documentation.
 
+[docs]: https://elastic.github.io/eui/
 [docs-components]: wiki/component-development.md
 [docs-releases]: wiki/releasing-versions.md

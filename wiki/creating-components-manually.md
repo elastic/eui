@@ -6,7 +6,7 @@
 4. Create an `_index.scss` file in this directory that import all of the new component SCSS files you created.
 5. Import the `_index.scss` file into `src/components/index.scss`.
 
-This makes your styles available to your project and the EUI documentation.
+This makes your styles available to your project and to the [EUI documentation][docs].
 
 # Creating the React component
 
@@ -29,4 +29,5 @@ The complexity of the component should determine how many examples you need to c
 * How the component handles edge cases, e.g. overflowing content, text-based vs. element-based content.
 * The various states of the component, e.g. disabled, selected, empty of content, error state.
 
+[docs]: https://elastic.github.io/eui/
 [docs-logical-group]: creating-components.md#logically-grouped-components

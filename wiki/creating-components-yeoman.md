@@ -37,7 +37,7 @@ For your convenience, it will also output some snippets you can tweak to import 
 
 # Documenting the component with examples
 
-From the command line, run the following command.
+From the command line, run the following command:
 
 ```shell
 npm run yo-doc
