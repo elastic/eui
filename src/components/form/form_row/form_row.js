@@ -101,7 +101,7 @@ export class EuiFormRow extends Component {
       describingIds.push(optionalHelpText.props.id);
     }
     if (optionalErrors) {
-      optionalErrors.map(error => describingIds.push(error.props.id));
+      optionalErrors.forEach(error => describingIds.push(error.props.id));
     }
 
     const optionalProps = {};
