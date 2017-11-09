@@ -8,6 +8,7 @@
 
       > .euiSideNavItem {
         margin-left: $euiSize;
+        width: calc(100% - #{$euiSize});
       }
 
       > .euiSideNavGroup {
