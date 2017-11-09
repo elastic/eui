@@ -18,6 +18,7 @@ export default class extends Component {
 
     this.state = {
       isSideNavOpenOnMobile: false,
+      selectedItemName: 'Lion stuff',
     };
   }
 
@@ -27,160 +28,70 @@ export default class extends Component {
     });
   };
 
+  selectItem = name => {
+    this.setState({
+      selectedItemName: name,
+    });
+  };
+
+  createItem = (name, data = {}) => {
+    // NOTE: Duplicate `name` values will cause `id` collisions.
+    return {
+      ...data,
+      id: name,
+      name,
+      isSelected: this.state.selectedItemName === name,
+      onClick: () => this.selectItem(name),
+    };
+  };
+
   render() {
+    const sideNav = [
+      this.createItem('Elasticsearch', {
+        icon: <EuiIcon type="logoElasticSearch" />,
+        items: [
+          this.createItem('Data sources'),
+          this.createItem('Users'),
+          this.createItem('Roles'),
+          this.createItem('Watches'),
+          this.createItem('Extremely long title will become truncated when the browser is narrow enough'),
+        ],
+      }),
+      this.createItem('Kibana', {
+        icon: <EuiIcon type="logoKibana" />,
+        items: [this.createItem('Advanced settings', {
+          items: [
+            this.createItem('General'),
+            this.createItem('Timelion', {
+              items: [
+                this.createItem('Time stuff'),
+                this.createItem('Lion stuff'),
+              ],
+            }),
+            this.createItem('Visualizations'),
+          ],
+        }),
+          this.createItem('Index Patterns'),
+          this.createItem('Saved Objects'),
+          this.createItem('Reporting'),
+        ],
+      }),
+      this.createItem('Logstash', {
+        icon: <EuiIcon type="logoLogstash" />,
+        items: [
+          this.createItem('Pipeline viewer'),
+        ],
+      }),
+    ];
+
     return (
       <EuiSideNav
         mobileTitle="Navigate within $APP_NAME"
         toggleOpenOnMobile={this.toggleOpenOnMobile}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-        iconsInTitles
+        items={sideNav}
         style={{ width: 192 }}
-      >
-        {/* Elasticsearch section */}
-
-        <EuiSideNavTitle>
-          <EuiFlexGroup
-            gutterSize="s"
-            alignItems="center"
-            responsive={false}
-          >
-            <EuiFlexItem grow={false}>
-              <EuiIcon type="logoElasticSearch" />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              Elasticsearch
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiSideNavTitle>
-
-        <EuiSideNavItem>
-          <button onClick={() => window.alert('Button clicked')}>
-              Data sources
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <a href="http://www.elastic.co">
-              Users
-          </a>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-              Roles
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-              Watches
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-              Extremely long title will become truncated when the browser is narrow enough
-          </button>
-        </EuiSideNavItem>
-
-        {/* Kibana section */}
-
-        <EuiSideNavTitle>
-          <EuiFlexGroup
-            gutterSize="s"
-            alignItems="center"
-            responsive={false}
-          >
-            <EuiFlexItem grow={false}>
-              <EuiIcon type="logoKibana" />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              Kibana
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiSideNavTitle>
-
-        <EuiSideNavItem isSelected parent>
-          <button>
-              Advanced settings
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavGroup>
-          <EuiSideNavItem>
-            <button>
-                General
-            </button>
-          </EuiSideNavItem>
-
-          <EuiSideNavItem isSelected parent>
-            <button>
-                Timelion
-            </button>
-          </EuiSideNavItem>
-
-          <EuiSideNavGroup>
-            <EuiSideNavItem>
-              <button>
-                  Time stuff
-              </button>
-            </EuiSideNavItem>
-
-            <EuiSideNavItem isSelected>
-              <button>
-                  Lion stuff
-              </button>
-            </EuiSideNavItem>
-          </EuiSideNavGroup>
-
-          <EuiSideNavItem>
-            <button>
-                Visualizations
-            </button>
-          </EuiSideNavItem>
-        </EuiSideNavGroup>
-
-        <EuiSideNavItem>
-          <button>
-              Index Patterns
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem parent>
-          <button>
-              Saved Objects
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-              Reporting
-          </button>
-        </EuiSideNavItem>
-
-        {/* Logstash section */}
-
-        <EuiSideNavTitle>
-          <EuiFlexGroup
-            gutterSize="s"
-            alignItems="center"
-            responsive={false}
-          >
-            <EuiFlexItem grow={false}>
-              <EuiIcon type="logoLogstash" />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              Logstash
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiSideNavTitle>
-
-        <EuiSideNavItem>
-          <button>
-              Pipeline Viewer
-          </button>
-        </EuiSideNavItem>
-      </EuiSideNav>
+      />
     );
   }
 }

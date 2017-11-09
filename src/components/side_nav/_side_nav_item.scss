@@ -1,38 +1,12 @@
-.euiSideNavItem {
+/**
+ * 1. Text-align defaults to center.
+ */
+.euiSideNavItemButton {
   @include euiFontSizeS;
-
+  text-align: left; /* 1 */
   display: block;
-  position: relative;
   width: 100%;
-  text-align: left;
-  color: $euiColorDarkShade;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: $euiFontSizeS;
-  padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
-
-  &.euiSideNavItem--parent {
-    border-right: solid $euiSizeXS transparent;
-  }
-
-  &.euiSideNavItem--parent:hover,
-  &.euiSideNavItem--parent:focus {
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-
-  &.euiSideNavItem--parent.euiSideNavItem-isSelected {
-    color: $euiColorFullShade;
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-
-  &.euiSideNavItem-isSelected:not(.euiSideNavItem--parent) {
-    color: $euiColorPrimary;
-    font-weight: $euiFontWeightMedium;
-    text-decoration: underline;
-  }
+  padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 0;
 
   &:hover {
     text-decoration: underline;
@@ -43,4 +17,138 @@
     background-color: $euiFocusBackgroundColor !important;
     color: $euiColorPrimary !important;
   }
+
+  &.euiSideNavItemButton-isOpen {
+    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
+
+    .euiSideNavItemButton__label {
+      color: $euiColorFullShade;
+    }
+  }
+
+  &.euiSideNavItemButton-isSelected {
+    .euiSideNavItemButton__label {
+      color: $euiColorPrimary;
+      font-weight: $euiFontWeightMedium;
+      text-decoration: underline;
+    }
+  }
 }
+
+  /**
+   * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
+   */
+  .euiSideNavItemButton__labelContainer {
+    min-width: 0; /* 1 */
+  }
+
+  .euiSideNavItemButton__label {
+    color: $euiColorDarkShade;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+/**
+ * 1. Draw the vertical line to group an expanded item's child items together.
+ */
+.euiSideNavItem__items {
+  position: relative;
+  margin-left: 0;
+
+  &:after { /* 1 */
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: $euiSizeM;
+    width: 1px;
+    background: $euiBorderColor;
+    left: 0px;
+  }
+}
+
+.euiSideNavItem--root {
+  &.euiSideNavItem--hasIcon > .euiSideNavItem__items {
+    margin-left: $euiSizeL;
+  }
+
+  & > .euiSideNavItem__items {
+    margin-left: 0;
+    position: static;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  & + & {
+    margin-top: $euiSizeXL;
+  }
+}
+
+.euiSideNavItem--deep {
+  & > .euiSideNavItem__items {
+    margin-left: $euiSize;
+  }
+}
+
+.euiSideNavItemButton--parent {
+  border-right: solid $euiSizeXS transparent;
+
+  &:hover,
+  &:focus {
+    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
+  }
+}
+
+.euiSideNavItemButton--root {
+  margin-bottom: $euiSizeS;
+  padding: 0;
+
+  .euiSideNavItemButton__label {
+    @include euiTitle;
+    font-size: $euiSize + 2px;
+  }
+}
+
+/**
+ * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
+ */
+.euiSideNavItemButton--deep {
+  padding-left: $euiSizeS;
+
+  position: relative; /* 1 */
+
+  &:after {
+    position: absolute; /* 1 */
+    content: "";
+    top: 50%;
+    left: 0;
+    width: $euiSizeXS;
+    height: 1px;
+    background: $euiBorderColor;
+  }
+}
+
+// .euiSideNavItem {
+//   @include euiFontSizeS;
+
+//   display: block;
+//   position: relative;
+//   width: 100%;
+//   text-align: left;
+//   color: $euiColorDarkShade;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   font-size: $euiFontSizeS;
+//   padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
+
+//   &.euiSideNavItem--parent {
+//     border-right: solid $euiSizeXS transparent;
+//   }
+
+
+// }

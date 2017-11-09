@@ -24,42 +24,37 @@ export default class extends Component {
   };
 
   render() {
+    const sideNav = [{
+      name: 'Kibana',
+      id: 0,
+      items: [{
+        name: 'Advanced settings',
+        id: 1,
+        onClick: () => { window.alert('Advanced settings'); },
+      }, {
+        name: 'Index Patterns (link)',
+        id: 2,
+        href: 'http://www.google.com',
+      }, {
+        name: 'Saved Objects',
+        id: 3,
+        onClick: () => { window.alert('Saved Objects'); },
+        isSelected: true,
+      }, {
+        name: 'Reporting',
+        id: 4,
+        onClick: () => { window.alert('Reporting'); },
+      }],
+    }];
+
     return (
       <EuiSideNav
         mobileTitle="Navigate within $APP_NAME"
         toggleOpenOnMobile={this.toggleOpenOnMobile}
         isOpenOnMobile={this.state.isSideNavOpenOnMobile}
         style={{ width: 192 }}
-      >
-
-        <EuiSideNavTitle>
-          Kibana
-        </EuiSideNavTitle>
-        <EuiSideNavItem>
-          <button>
-            Advanced settings
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem isSelected>
-          <button>
-            Index Patterns
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-            Saved Objects
-          </button>
-        </EuiSideNavItem>
-
-        <EuiSideNavItem>
-          <button>
-            Reporting
-          </button>
-        </EuiSideNavItem>
-
-      </EuiSideNav>
+        items={sideNav}
+      />
     );
   }
 }
