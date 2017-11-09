@@ -6,6 +6,8 @@ exports[`EuiFormRow is rendered 1`] = `
   class="euiFormRow testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <input />
+  <input
+    id="generated-id"
+  />
 </div>
 `;

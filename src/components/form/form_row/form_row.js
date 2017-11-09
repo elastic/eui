@@ -9,6 +9,8 @@ import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
 
+import makeId from './make_id';
+
 export class EuiFormRow extends Component {
   constructor(props) {
     super(props);
@@ -40,12 +42,15 @@ export class EuiFormRow extends Component {
       isInvalid,
       error,
       label,
-      id,
       hasEmptyLabelSpace,
       fullWidth,
       className,
       ...rest
     } = this.props;
+
+    const id = rest.id
+      || (children && children.props && children.props.id)
+      || makeId();
 
     const classes = classNames(
       'euiFormRow',
@@ -60,7 +65,7 @@ export class EuiFormRow extends Component {
 
     if (helpText) {
       optionalHelpText = (
-        <EuiFormHelpText className="euiFormRow__text">
+        <EuiFormHelpText id={makeId()} className="euiFormRow__text">
           {helpText}
         </EuiFormHelpText>
       );
@@ -71,7 +76,7 @@ export class EuiFormRow extends Component {
     if (error) {
       const errorTexts = Array.isArray(error) ? error : [error];
       optionalErrors = errorTexts.map(error => (
-        <EuiFormErrorText key={error} className="euiFormRow__text">
+        <EuiFormErrorText key={error} id={makeId()} className="euiFormRow__text">
           {error}
         </EuiFormErrorText>
       ));
@@ -91,10 +96,24 @@ export class EuiFormRow extends Component {
       );
     }
 
+    const describingIds = [];
+    if (optionalHelpText) {
+      describingIds.push(optionalHelpText.props.id);
+    }
+    if (optionalErrors) {
+      optionalErrors.map(error => describingIds.push(error.props.id));
+    }
+
+    const optionalProps = {};
+    if (describingIds.length > 0) {
+      optionalProps[`aria-describedby`] = describingIds.join(` `);
+    }
+
     const field = cloneElement(children, {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      ...optionalProps
     });
 
     return (
