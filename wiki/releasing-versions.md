@@ -27,7 +27,7 @@ We want to release what's in `master` under a new minor version (from `0.0.1`, t
 ```diff
  # [`master`](https://github.com/elastic/eui/tree/master)
 +
-+ No public interface changes since `0.1.0`.
++No public interface changes since `0.1.0`.
 +
 +# [`0.1.0`](https://github.com/elastic/eui/tree/v0.1.0)
  
