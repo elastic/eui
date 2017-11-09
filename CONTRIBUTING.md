@@ -2,7 +2,7 @@
 
 🙌 Thanks for your interest in contributing to EUI! 🙌
 
-# New Components, New Components, and Bug Fixes
+# New Components, Features, and Bug Fixes
 
 When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines][docs-components]. If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
 
