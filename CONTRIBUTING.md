@@ -1,19 +1,18 @@
-## Using the Framework
+# Contributing to EUI
 
-### Documentation
+## Compilation
 
-Compile the CSS with `npm run compileCss`.
+Compile the CSS with `npm run build`.
+
+## Documentation site
 
 You can view interactive documentation by executing `npm start` and then visiting
-[http://localhost:8020/](http://localhost:8030/). This will also start watching the SCSS files, and will recompile the CSS
-automatically for you when you make changes.
+[http://localhost:8030/](http://localhost:8030/). This will also start watching the SCSS files,
+and will recompile the CSS automatically for you when you make changes.
 
-You can run `node scripts/jest --watch` to watch for changes and run the tests as you code.
+## Tests
 
-You can run `node scripts/jest --coverage` to generate a code coverage report to see how
-fully-tested the code is.
-
-See the documentation in [`scripts/jest.js`](../scripts/jest.js) for more options.
+Refer to [TESTING.md](/TESTING.md).
 
 ## Creating components
 
@@ -102,13 +101,9 @@ This makes your React component available for import into Elastic.
 
 #### Test the component
 
-1. Start Jest in watch mode by running `node scripts/jest --watch`.
-2. Create test files with the name pattern of `{component name}.test.js`.
-3. Write your tests and see them fail or succeed.
-
-To see how well the components have been covered by tests, you can run
-`node scripts/jest --coverage` and check the generated report in
-`target/jest-coverage/index.html`.
+1. Create test files with the name pattern of `{component name}.test.js`.
+2. Write your tests and edit your tests and/or component until the tests pass.
+3. Check the code coverage report to see how well you've covered your tests with code coverage.
 
 #### Document the component with examples
 
@@ -204,13 +199,10 @@ article and the links it has at the bottom: ["Bootstrap Bankruptcy"](http://www.
 
 ## Examples of other in-house UI frameworks
 
+* [Awesome design systems](https://github.com/alexpate/awesome-design-systems)
 * [Smaato React UI Framework](http://smaato.github.io/ui-framework/#/modal)
 * [Ubiquiti CSS Framework](http://ubnt-css.herokuapp.com/#/app/popover)
-* [GitHub's Primer](http://primercss.io/)
 * [Palantir's Blueprint](http://blueprintjs.com/docs/#components)
-* [Lonely Planet Style Guide](http://rizzo.lonelyplanet.com/styleguide/design-elements/colours)
-* [MailChimp Patterns Library](http://ux.mailchimp.com/patterns)
-* [Salesforce Lightning Design System](https://www.lightningdesignsystem.com/)
 * [Refills](http://refills.bourbon.io/)
 * [Formstone](https://formstone.it/)
 * [Element VueJS Framework](http://element.eleme.io/#/en-US/component/dialog)
