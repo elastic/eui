@@ -38,10 +38,36 @@ describe('align', () => {
   });
 });
 
-describe('wrapText', () => {
+describe('textOnly', () => {
+  test('defaults to true', () => {
+    const component = (
+      <EuiTableRowCell />
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
   test('is rendered when specified', () => {
     const component = (
-      <EuiTableRowCell wrapText={true} />
+      <EuiTableRowCell textOnly={false} />
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
+
+describe('truncateText', () => {
+  test('defaults to false', () => {
+    const component = (
+      <EuiTableRowCell />
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('is rendered when specified', () => {
+    const component = (
+      <EuiTableRowCell truncateText={true} />
     );
 
     expect(render(component)).toMatchSnapshot();
