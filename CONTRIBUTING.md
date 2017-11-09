@@ -20,7 +20,7 @@ Here are our guidelines for updating the `CHANGELOG.md` file:
 
 # Software Releases
 
-When we are ready to create a new release, please follow the [Release Process][docs-releases] documentation.
+When we are ready to create a new release, we follow the [Release Process][docs-releases] documentation.
 
 [docs]: https://elastic.github.io/eui/
 [docs-components]: wiki/component-development.md
