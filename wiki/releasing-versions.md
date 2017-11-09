@@ -60,6 +60,8 @@ BUMP=minor npm run release
 BUMP=major npm run release
 ```
 
-That's it. The latest changes were published to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily because GitHub caches GitHub pages sites aggressively.
+That's it. The latest changes were published to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
+
+<sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
 
 [docs]: https://elastic.github.io/eui/
