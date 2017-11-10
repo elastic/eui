@@ -63,7 +63,7 @@ export default props => (
             <li><EuiCode>fontSize</EuiCode> accepts "s" (default) / "m" / "l".</li>
             <li><EuiCode>overflowHeight</EuiCode> accepts a number. By default it is not set.</li>
             <li><EuiCode>transparentBackground</EuiCode> set to <EuiCode>false</EuiCode> will remove the background.</li>
-            <li><EuiCode>inline</EuiCode>Will display the passed code in an inline format.</li>
+            <li><EuiCode>inline</EuiCode> will display the passed code in an inline format. Will also remove any margins set.</li>
           </ul>
         </div>
       }
