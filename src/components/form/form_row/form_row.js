@@ -17,6 +17,7 @@ export class EuiFormRow extends Component {
 
     this.state = {
       isFocused: false,
+      id: props.id || makeId()
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -48,9 +49,7 @@ export class EuiFormRow extends Component {
       ...rest
     } = this.props;
 
-    const id = rest.id
-      || (children && children.props && children.props.id)
-      || makeId();
+    const { id } = this.state;
 
     const classes = classNames(
       'euiFormRow',
@@ -65,7 +64,7 @@ export class EuiFormRow extends Component {
 
     if (helpText) {
       optionalHelpText = (
-        <EuiFormHelpText id={makeId()} className="euiFormRow__text">
+        <EuiFormHelpText id={`${id}-help`} className="euiFormRow__text">
           {helpText}
         </EuiFormHelpText>
       );
@@ -75,8 +74,8 @@ export class EuiFormRow extends Component {
 
     if (error) {
       const errorTexts = Array.isArray(error) ? error : [error];
-      optionalErrors = errorTexts.map(error => (
-        <EuiFormErrorText key={error} id={makeId()} className="euiFormRow__text">
+      optionalErrors = errorTexts.map((error, i) => (
+        <EuiFormErrorText key={error} id={`${id}-error-${i}`} className="euiFormRow__text">
           {error}
         </EuiFormErrorText>
       ));
