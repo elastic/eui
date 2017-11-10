@@ -2,17 +2,17 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCode } from './code';
+import { EuiCodeBlock } from './code_block';
 
 const code = `var some = 'code';
 console.log(some);`;
 
-describe('EuiCode', () => {
-  test('renders a code snippet', () => {
+describe('EuiCodeBlock', () => {
+  test('renders a code block', () => {
     const component = render(
-      <EuiCode {...requiredProps}>
+      <EuiCodeBlock {...requiredProps}>
         {code}
-      </EuiCode>
+      </EuiCodeBlock>
     );
 
     expect(component).toMatchSnapshot();
