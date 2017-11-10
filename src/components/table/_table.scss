@@ -102,13 +102,11 @@
  */
 .euiTableCellContent {
   display: flex;
-  align-items: center;
+  align-items: center; /* 1 */
   padding: $euiTableCellPadding; /* 2 */
-  white-space: nowrap; /* 3 */
 }
 
   .euiTableCellContent__text {
-    overflow: hidden;
     min-width: 0;
     text-overflow: ellipsis;
   }
@@ -117,11 +115,11 @@
   justify-content: flex-end;
 }
 
-.euiTableCellContent--wrapText {
-  white-space: normal;
+.euiTableCellContent--truncateText {
+  white-space: nowrap; /* 3 */
 
   .euiTableCellContent__text {
-    overflow: visible;
+    overflow: hidden;
   }
 }
 

@@ -46,12 +46,50 @@ exports[`renders EuiTableRowCell 1`] = `
 </td>
 `;
 
-exports[`wrapText is rendered when specified 1`] = `
+exports[`textOnly defaults to true 1`] = `
 <td
   class="euiTableRowCell"
 >
   <div
-    class="euiTableCellContent euiTableCellContent--wrapText"
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`textOnly is rendered when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--overflowingContent"
+  />
+</td>
+`;
+
+exports[`truncateText defaults to false 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`truncateText is rendered when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--truncateText"
   >
     <span
       class="euiTableCellContent__text"

@@ -34,7 +34,7 @@ export default props => (
         <p>
           This example has sortable headers which respond to mouse
           interaction and exhibit the desired behavior, and selectable rows. You can apply
-          the <EuiCode>wrapText</EuiCode> prop to cells to wrap their text, or set
+          the <EuiCode>truncateText</EuiCode> prop to cells to enforce a single-line behavior and truncate their contents, or set
           the <EuiCode>textOnly</EuiCode> prop to <EuiCode>false</EuiCode> if they contain
           overflowing content like popovers.
         </p>

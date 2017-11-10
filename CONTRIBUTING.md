@@ -1,216 +1,27 @@
-## Using the Framework
+# Contributing to EUI
 
-### Documentation
+🙌 Thanks for your interest in contributing to EUI! 🙌
 
-Compile the CSS with `npm run compileCss`.
+# New Components, Features, and Bug Fixes
 
-You can view interactive documentation by executing `npm start` and then visiting
-[http://localhost:8020/](http://localhost:8030/). This will also start watching the SCSS files, and will recompile the CSS
-automatically for you when you make changes.
+When creating new components, adding new features, or fixing bugs, please refer to the [Component Development guidelines][docs-components]. If there isn't an associated issue on the bug tracker yet, consider creating one so that you get a chance to discuss the changes you have in mind with the rest of the team.
 
-You can run `node scripts/jest --watch` to watch for changes and run the tests as you code.
+# Documentation
 
-You can run `node scripts/jest --coverage` to generate a code coverage report to see how
-fully-tested the code is.
+Always remember to update [documentation site][docs] and the [`CHANGELOG.md`](CHANGELOG.md) in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no different than how you would treat tests.
 
-See the documentation in [`scripts/jest.js`](../scripts/jest.js) for more options.
+Here are our guidelines for updating the `CHANGELOG.md` file:
 
-## Creating components
+* Append your changes to the `master` sub-heading of [`CHANGELOG.md`](CHANGELOG.md).
+* Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
+* In the list item, always link to any relevant Pull Requests, commit ranges, or individual commits
+* Add a short summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
+* Avoid documenting internal implementation changes that don't have an effect on the public interface
 
-There are four steps to creating a new component:
+# Software Releases
 
-1. Create the SCSS for the component in `src/components`.
-2. Create the React portion of the component.
-3. Write tests.
-4. Document it with examples in `src-docs`.
+When we are ready to create a new release, we follow the [Release Process][docs-releases] documentation.
 
-You can do this using Yeoman (the easy way), or you can do it manually (the hard way).
-
-### Using Yeoman
-
-### Create a new component
-
-From the command line, run `npm run yo-component`.
-
-First, you'll be prompted for what kind of component to create:
-
-| Choice | Description |
-|---|---|
-| Stateless function | A stateless functional React component |
-| Component class | A class-based React component |
-
-Next, you'll enter a series of prompts.
-
-#### "What's the name of this component?"
-
-Yeoman will ask you what to name the file. It expects you to provide the name
-in snake case. Yeoman will automatically add file extensions and a "eui" prefix so you should leave those out.
-
-#### "Where do you want to create this component's files?"
-
-This defaults to the last directory you specified for this prompt, or to the UI Framework's
-components directory if you haven't specified one. To change this location, type in the path to the
-directory where the files should live.
-
-If you want Yeoman to automatically generate a directory to organize the files,
-that directory will be created inside of the location you specify (see next prompt).
-
-#### "Does it need its own directory?""
-
-This defaults to `YES`. This will automatically generate a directory with the
-same name as the file, but without a "eui" prefix.
-
-#### Done!
-
-Yeoman will generate the files you need in your project's folder system.
-
-For your convenience, it will also output some snippets you can tweak to import
-and re-export the generated JS and SCSS files.
-
-### Document a component
-
-From the command line, run `npm run yo-doc`. A `Page` will create a brand new documentation page
-that expects a new route. A `Page Demo` will create a file you can include within an already
-created document page. Usually you'll create a Page first, then follow it up with more demos.
-
-The script will ask you for a name of the component you'd like to document,
-then create some files in `src-docs/src/views/`. If the name you provide isn't the exact name of a component,
-you might need to adjust the import in the generated files. Otherwise simply add the document to the
-`src-docs/src/services/routes/routes.js` file to make it available in the navigation / browser.
-
-### Manually
-
-#### Create component SCSS
-
-1. Create a directory for your component in `src/components`.
-2. In this directory, create `_{component name}.scss`.
-3. _Optional:_ Create any other components that should be [logically-grouped](#logically-grouped-components)
-in this directory.
-4. Create an `_index.scss` file in this directory that import all of the new component SCSS files
-you created.
-5. Import the `_index.scss` file into `src/components/index.scss`.
-
-This makes your styles available to Elastic and the UI Framework documentation.
-
-#### Create the React component
-
-1. Create the React component(s) in the same directory as the related SCSS file(s).
-2. Export these components from an `index.js` file.
-3. Re-export these components from `src/components/index.js`.
-
-This makes your React component available for import into Elastic.
-
-#### Test the component
-
-1. Start Jest in watch mode by running `node scripts/jest --watch`.
-2. Create test files with the name pattern of `{component name}.test.js`.
-3. Write your tests and see them fail or succeed.
-
-To see how well the components have been covered by tests, you can run
-`node scripts/jest --coverage` and check the generated report in
-`target/jest-coverage/index.html`.
-
-#### Document the component with examples
-
-1. Create a directory for your example in `src-docs/src/views`. Name it the name of the
-component.
-2. Create a `{component name}_example.js` file inside the directory. You'll use this file to define
-the different examples for your component.
-3. Add the route to this file in `src-docs/src/services/routes/routes.js`.
-4. In the `{component name}_example.js` file you created, define examples which demonstrate the component and describe
-its role from a UI perspective.
-
-The complexity of the component should determine how many examples you need to create, and how
-complex they should be. In general, your examples should demonstrate:
-
-* The most common use-cases for the component.
-* How the component handles edge cases, e.g. overflowing content, text-based vs. element-based
-content.
-* The various states of the component, e.g. disabled, selected, empty of content, error state.
-
-## Creating documentation
-
-You can use the same Yeoman generator referenced above to create documentation.
-
-From the command line, run `npm run documentComponent`.
-
-First, you'll be prompted for what kind of documentation to create:
-
-| Choice | Description |
-|---|---|
-| Page | A page for documenting a component(s) with multiple demos |
-| Page demo | An individual demo of a particular component use case |
-| Sandbox | An empty document where you can do pretty much anything |
-
-Just follow the prompts and your documentation files will be created.
-You can use the snippets that are printed to the terminal to integrate these files into the UI Framework documentation site.
-
-## Principles
-
-### Logically-grouped components
-
-If a component has subcomponents (e.g. ToolBar and ToolBarSearch), tightly-coupled components (e.g.
-Button and ButtonGroup), or you just want to group some related components together (e.g. TextInput,
-TextArea, and CheckBox), then they belong in the same logical grouping. In this case, you can create
-additional SCSS files for these components in the same component directory.
-
-### Writing CSS
-
-Check out our [CSS style guide](https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md)
-and [SCSS style guide](https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md).
-
-## Benefits
-
-### Dynamic, interactive documentation
-
-By having a "living style guide", we relieve our designers of the burden of creating and maintaining
-static style guides. This also makes it easier for our engineers to translate mockups, prototypes,
-and wireframes into products.
-
-### Copy-pasteable UI
-
-Engineers can copy and paste sample code into their projects to quickly get reliable, consistent results.
-
-### Remove CSS from the day-to-day
-
-The CSS portion of this framework means engineers don't need to spend mental cycles translating a
-design into CSS. These cycles can be spent on the things critical to the identity of the specific
-project they're working on, like architecture and business logic.
-
-If they use the React components, engineers won't even need to _see_ CSS -- it will be encapsulated
-behind the React components' interfaces.
-
-### More UI tests === fewer UI bugs
-
-By covering our UI components with great unit tests and having those tests live within the framework
-itself, we can rest assured that our UI layer is tested and remove some of that burden from our
-integration/end-to-end tests.
-
-## Why not just use Bootstrap?
-
-In short: we've outgrown it! Third-party CSS frameworks like Bootstrap and Foundation are designed
-for a general audience, so they offer things we don't need and _don't_ offer things we _do_ need.
-As a result, we've been forced to override their styles until the original framework is no longer
-recognizable. When the CSS reaches that point, it's time to take ownership over it and build
-your own framework.
-
-We also gain the ability to fix some of the common issues with third-party CSS frameworks:
-
-* They have non-semantic markup.
-* They deeply nest their selectors.
-
-For a more in-depth analysis of the problems with Bootstrap (and similar frameworks), check out this
-article and the links it has at the bottom: ["Bootstrap Bankruptcy"](http://www.matthewcopeland.me/blog/2013/11/04/bootstrap-bankruptcy/).
-
-## Examples of other in-house UI frameworks
-
-* [Smaato React UI Framework](http://smaato.github.io/ui-framework/#/modal)
-* [Ubiquiti CSS Framework](http://ubnt-css.herokuapp.com/#/app/popover)
-* [GitHub's Primer](http://primercss.io/)
-* [Palantir's Blueprint](http://blueprintjs.com/docs/#components)
-* [Lonely Planet Style Guide](http://rizzo.lonelyplanet.com/styleguide/design-elements/colours)
-* [MailChimp Patterns Library](http://ux.mailchimp.com/patterns)
-* [Salesforce Lightning Design System](https://www.lightningdesignsystem.com/)
-* [Refills](http://refills.bourbon.io/)
-* [Formstone](https://formstone.it/)
-* [Element VueJS Framework](http://element.eleme.io/#/en-US/component/dialog)
+[docs]: https://elastic.github.io/eui/
+[docs-components]: wiki/component-development.md
+[docs-releases]: wiki/releasing-versions.md

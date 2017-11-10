@@ -16,7 +16,7 @@ export const EuiTableRowCell = ({
   align,
   children,
   className,
-  wrapText,
+  truncateText,
   textOnly,
   ...rest
 }) => {
@@ -24,8 +24,8 @@ export const EuiTableRowCell = ({
 
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--wrapText': wrapText,
-    // We're doing this rigamarole instead of creating kuiTabelRowCell--textOnly for BWC
+    'euiTableCellContent--truncateText': truncateText,
+    // We're doing this rigamarole instead of creating `euiTableRowCell--textOnly` for BWC
     // purposes for the time-being.
     'euiTableCellContent--overflowingContent': !textOnly,
   });
@@ -45,7 +45,7 @@ export const EuiTableRowCell = ({
 
 EuiTableRowCell.propTypes = {
   align: PropTypes.oneOf(ALIGNMENT),
-  wrapText: PropTypes.bool,
+  truncateText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   textOnly: PropTypes.bool,

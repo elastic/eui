@@ -140,10 +140,10 @@ export const HomeView = () => (
       <h1>Elastic UI Framework</h1>
       <p>Version: <strong>{ pkg.version }</strong></p>
       <p>
-        The Kibana team uses the UI Framework to build Kibana&rsquo;s user interface. Please see
+        Elastic UI teams use the UI Framework to build Kibana&rsquo;s user interface. Please see
         the <a href="https://www.elastic.co/guide/en/kibana/current/index.html">general Kibana docs</a> for information on how to use Kibana, and
         the <a href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">plugin-specific section</a> for
-        help developing Kibana plugins. You can find the source for the <a href="https://github.com/elastic/eui">UI Framework on GitHub</a>.
+        help developing Kibana plugins. You can find the source for the <a href="https://github.com/elastic/eui">Elastic UI Framework on GitHub</a>.
       </p>
 
       <h2>Goals</h2>
