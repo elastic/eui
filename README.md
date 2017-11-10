@@ -1,4 +1,4 @@
-🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][faq] for details. 🚨
+🚨 **WARNING** While open source, the intended consumers of this repository are Elastic products. Read the [FAQ][faq] for details.
 
 # Elastic UI Framework [![Build Status][ci-badge]][ci-site]
 
@@ -7,7 +7,7 @@
 
 You should check out our [living style guide][docs], which contains many examples on how components in the EUI framework look and feel, and how to use them in your products.
 
-# Installation
+## Installation
 
 To install the Elastic UI Framework, use the `npm` CLI.
 
@@ -15,7 +15,7 @@ To install the Elastic UI Framework, use the `npm` CLI.
 npm install @elastic/eui
 ```
 
-# Running locally
+## Running locally
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running.
 
@@ -23,11 +23,11 @@ You can run the documentation locally at [http://localhost:8030/](http://localho
 npm start
 ```
 
-# Contributing
+## Contributing
 
 You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-# License
+## License
 
 [Apache Licensed.][license] Read the [FAQ][faq] for details.
 

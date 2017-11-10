@@ -2,7 +2,7 @@
 
 Before working with EUI components or creating new ones, you may want to run a local server for the [documentation site][docs]. This is where we demonstrate how the components in our design system work.
 
-# Launching the Documentation Server
+## Launching the Documentation Server
 
 To view interactive documentation, start the development server using the command below.
 
@@ -26,7 +26,7 @@ npm run test-unit -- --coverage
 
 See the documentation in [`scripts/jest`](../scripts/jest) for more options.
 
-# Creating Components
+## Creating Components
 
 There are four steps to creating a new component:
 
@@ -40,7 +40,7 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 - [Yeoman component creation guide][docs-yeoman]
 - [Manual component creation guide][docs-manual]
 
-# Testing the component
+## Testing the component
 
 1. Start Jest in watch mode by running `node scripts/jest --watch`.
 2. Create test files with the name pattern of `{component name}.test.js`.
@@ -48,29 +48,29 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 To see how well the components have been covered by tests, you can run `npm run test-unit -- --coverage` and check the generated report in `target/jest-coverage/index.html`.
 
-# Principles
+## Principles
 
-## Logically-grouped components
+### Logically-grouped components
 
 If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tightly-coupled components (`<EuiButton>` and `<EuiButtonGroup>`), or you just want to group some related components together (`<EuiTextInput>`, `<EuiTextArea>`, and `<EuiCheckBox>`), then they belong in the same logical grouping. In this case, you can create additional SCSS files for these components in the same component directory.
 
-## Writing CSS
+### Writing CSS
 
 We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
 
-# Benefits
+## Benefits
 
-## Dynamic, interactive documentation
+### Dynamic, interactive documentation
 
 By having a "living style guide", we relieve our designers of the burden of creating and maintaining
 static style guides. This also makes it easier for our engineers to translate mockups, prototypes,
 and wireframes into products.
 
-## Copy-pasteable UI
+### Copy-pasteable UI
 
 Engineers can copy and paste sample code into their projects to quickly get reliable, consistent results.
 
-## Remove CSS from the day-to-day
+### Remove CSS from the day-to-day
 
 The CSS portion of this framework means engineers don't need to spend mental cycles translating a
 design into CSS. These cycles can be spent on the things critical to the identity of the specific
@@ -79,13 +79,13 @@ project they're working on, like architecture and business logic.
 If they use the React components, engineers won't even need to _look at_ CSS -- it will be encapsulated
 behind the React components' interfaces.
 
-## More UI tests mean fewer UI bugs
+### More UI tests mean fewer UI bugs
 
 By covering our UI components with great unit tests and having those tests live within the framework
 itself, we can rest assured that our UI layer is tested and remove some of that burden from our
 integration/end-to-end tests.
 
-# Why not just use Bootstrap?
+## Why not just use Bootstrap?
 
 In short: we've outgrown it! Third-party CSS frameworks like Bootstrap and Foundation are designed
 for a general audience, so they offer things we don't need and _don't_ offer things we _do_ need.

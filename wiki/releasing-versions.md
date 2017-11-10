@@ -1,4 +1,6 @@
-# Preparing for a release
+# Release process
+
+## Preparing for a release
 
 When preparing a release, make sure to move the [`CHANGELOG.md`](CHANGELOG.md) changes listed under `master` into a new section titled with the new version number, and link to the `git` tag on GitHub. Come up with a title for the new version, alluding to the major changes since the previous release. Like so:
 
@@ -6,7 +8,7 @@ When preparing a release, make sure to move the [`CHANGELOG.md`](CHANGELOG.md) c
 # [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
 ```
 
-### Example
+## Example
 
 Say you're preparing to release a minor change and the version is currently `0.0.1`. Let's assume that the `CHANGELOG.md` file currently looks like this:
 
@@ -44,7 +46,7 @@ Don't worry about the fact that a `v0.1.0` tag doesn't exist in `git` yet. It wi
 
 Commit your updates to `CHANGELOG.md` before proceeding with the release.
 
-# Releasing
+## Releasing
 
 Once you're ready to ship a new release, run the following command. This command will make sure to run tests, update the [documentation site][docs], bump the version patch number (`MAJOR.MINOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
 

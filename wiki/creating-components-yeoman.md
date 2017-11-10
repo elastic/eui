@@ -1,4 +1,6 @@
-# Creating a new component
+# Creating components with Yeoman
+
+## Create a new component
 
 From the command line, run the following command:
 
@@ -35,7 +37,7 @@ Yeoman will generate the files you need in your project's folder system.
 
 For your convenience, it will also output some snippets you can tweak to import and re-export the generated JS and SCSS files.
 
-# Documenting the component with examples
+## Documenting the component with examples
 
 From the command line, run the following command:
 
