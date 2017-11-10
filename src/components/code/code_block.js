@@ -85,13 +85,13 @@ export class EuiCodeBlock extends Component {
         style={{ height: optionalOverflowHeight }}
       >
         <span className="euiCodeBlock__pre">
-          <span
+          <code
             ref={ref => { this.code = ref; }}
             className={codeClasses}
             {...otherProps}
           >
             {children}
-          </span>
+          </code>
         </span>
       </span>
     );

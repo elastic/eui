@@ -8,8 +8,6 @@ import {
 
 export const EuiCode = ({
   children,
-  transparentBackground,
-  language,
   className,
   ...rest
 }) => {
@@ -17,8 +15,6 @@ export const EuiCode = ({
 
   return (
     <EuiCodeBlock
-      transparentBackground={transparentBackground}
-      language={language}
       className={classes}
       {...rest}
     >
@@ -30,5 +26,4 @@ export const EuiCode = ({
 EuiCode.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  transparentBackground: PropTypes.bool,
 };

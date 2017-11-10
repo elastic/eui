@@ -8,7 +8,7 @@ exports[`EuiCode is rendered 1`] = `
   <span
     class="euiCodeBlock__pre"
   >
-    <span
+    <code
       aria-label="aria-label"
       class="euiCodeBlock__code"
       data-test-subj="test subject string"
