@@ -33,7 +33,8 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <EuiCode>Code</EuiCode> component.
+          <EuiCode>Code</EuiCode> is for making inline code snippets that can work
+          within or next to bodies of text.
         </p>
       }
       demo={
@@ -62,6 +63,8 @@ export default props => (
             <li><EuiCode>paddingSize</EuiCode> accepts "s" / "m" / "l" (default).</li>
             <li><EuiCode>fontSize</EuiCode> accepts "s" (default) / "m" / "l".</li>
             <li><EuiCode>overflowHeight</EuiCode> accepts a number. By default it is not set.</li>
+            <li><EuiCode>transparentBackground</EuiCode> set to <EuiCode>false</EuiCode> will remove the background.</li>
+            <li><EuiCode>inline</EuiCode> will display the passed code in an inline format. Will also remove any margins set.</li>
           </ul>
         </div>
       }

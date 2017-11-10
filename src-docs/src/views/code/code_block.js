@@ -21,8 +21,11 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="light" overflowHeight={300}>
+    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="dark" overflowHeight={300}>
       {jsCode}
     </EuiCodeBlock>
+
+    <EuiSpacer />
+
   </div>
 );
