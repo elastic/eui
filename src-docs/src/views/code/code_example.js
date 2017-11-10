@@ -33,7 +33,8 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <EuiCode>Code</EuiCode> component.
+          <EuiCode>Code</EuiCode> is for making inline code snippets that can work
+          within or next to bodies of text.
         </p>
       }
       demo={
