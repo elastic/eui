@@ -1,7 +1,9 @@
 .euiCodeBlock {
+  display: block;
   overflow: auto;
 
   .euiCodeBlock__pre {
+    display: block;
     white-space: pre-wrap;
   }
 
@@ -34,5 +36,27 @@
 
   &.euiCodeBlock--paddingLarge {
     padding: $euiSizeL;
+  }
+
+  /**
+  ** 1. Size the code against the text its embedded within.
+  **/
+  &.euiCodeBlock--inline {
+    vertical-align: middle;
+    display: inline-block;
+    white-space: pre;
+    color: $euiTextColor;
+    font-size: 75%; // 1
+    padding:  0 $euiSizeXS;
+    background: $euiColorLightestShade;
+
+    .euiCodeBlock__pre, .euiCodeBlock__code {
+      display: inline;
+      white-space: normal;
+    }
+  }
+
+  &.euiCodeBlock--transparentBackground {
+    background: transparent;
   }
 }
