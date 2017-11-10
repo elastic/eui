@@ -2,20 +2,15 @@
 
 exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
   >
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code js"
-      data-test-subj="test subject string"
-    >
-      var some = 'code';
-console.log(some);
-    </code>
+    />
   </pre>
 </div>
 `;
@@ -42,57 +37,42 @@ console.log(some);
 
 exports[`EuiCodeBlockImpl block renders with dark theme 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
   >
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code"
-      data-test-subj="test subject string"
-    >
-      var some = 'code';
-console.log(some);
-    </code>
+    />
   </pre>
 </div>
 `;
 
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
   style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
   >
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code"
-      data-test-subj="test subject string"
-    >
-      var some = 'code';
-console.log(some);
-    </code>
+    />
   </pre>
 </div>
 `;
 
 exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
   style="height:auto"
 >
   <code
-    aria-label="aria-label"
     class="euiCodeBlock__code js"
-    data-test-subj="test subject string"
-  >
-    var some = 'code';
-console.log(some);
-  </code>
+  />
 </span>
 `;
 
@@ -114,32 +94,22 @@ console.log(some);
 
 exports[`EuiCodeBlockImpl inline renders with dark theme 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
   style="height:auto"
 >
   <code
-    aria-label="aria-label"
     class="euiCodeBlock__code"
-    data-test-subj="test subject string"
-  >
-    var some = 'code';
-console.log(some);
-  </code>
+  />
 </span>
 `;
 
 exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline"
   style="height:auto"
 >
   <code
-    aria-label="aria-label"
     class="euiCodeBlock__code"
-    data-test-subj="test subject string"
-  >
-    var some = 'code';
-console.log(some);
-  </code>
+  />
 </span>
 `;

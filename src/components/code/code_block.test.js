@@ -4,20 +4,17 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlock } from './code_block';
 
-jest.mock('./_code_block', () => ({ EuiCodeBlockImpl: 'EuiCodeBlockImpl' }));
-
 const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCodeBlock', () => {
-  test('is rendered', () => {
+  test('renders a code block', () => {
     const component = render(
       <EuiCodeBlock {...requiredProps}>
         {code}
       </EuiCodeBlock>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

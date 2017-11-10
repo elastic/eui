@@ -21,9 +21,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('highlights javascript code, adding "js" class', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={true} language="js" {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={true} language="js" />
       );
 
       expect(component).toMatchSnapshot();
@@ -31,9 +29,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('renders with transparent background', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={true} transparentBackground={true} {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={true} transparentBackground={true} />
       );
 
       expect(component).toMatchSnapshot();
@@ -41,9 +37,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('renders with dark theme', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={true} color="dark" {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={true} color="dark" />
       );
 
       expect(component).toMatchSnapshot();
@@ -63,9 +57,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('highlights javascript code, adding "js" class', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={false} language="js" {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={false} language="js" />
       );
 
       expect(component).toMatchSnapshot();
@@ -73,9 +65,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('renders with transparent background', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={false} transparentBackground={true} {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={false} transparentBackground={true} />
       );
 
       expect(component).toMatchSnapshot();
@@ -83,9 +73,7 @@ describe('EuiCodeBlockImpl', () => {
 
     test('renders with dark theme', () => {
       const component = render(
-        <EuiCodeBlockImpl inline={false} color="dark" {...requiredProps}>
-          {code}
-        </EuiCodeBlockImpl>
+        <EuiCodeBlockImpl inline={false} color="dark" />
       );
 
       expect(component).toMatchSnapshot();

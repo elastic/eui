@@ -4,7 +4,10 @@ import {
   EuiCodeBlockImpl,
 } from './_code_block';
 
-export const EuiCode = ({ ...rest }) => {
+export const EuiCode = ({
+  inline, // eslint-disable-line
+  ...rest
+}) => {
   return (
     <EuiCodeBlockImpl
       inline={true}

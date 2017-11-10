@@ -127,7 +127,7 @@ EuiCodeBlockImpl.propTypes = {
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
   fontSize: PropTypes.oneOf(FONT_SIZES),
   transparentBackground: PropTypes.bool,
-  inline: PropTypes.bool.isRequired,
+  inline: PropTypes.bool,
 };
 
 EuiCodeBlockImpl.defaultProps = {

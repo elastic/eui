@@ -1,12 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCode is rendered using EuiCodeBlockImpl 1`] = `
-<euicodeblockimpl
-  aria-label="aria-label"
-  class="testClass1 testClass2"
-  data-test-subj="test subject string"
+exports[`EuiCode renders a code snippet 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+  style="height:auto"
 >
-  var some = 'code';
+  <code
+    aria-label="aria-label"
+    class="euiCodeBlock__code"
+    data-test-subj="test subject string"
+  >
+    var some = 'code';
 console.log(some);
-</euicodeblockimpl>
+  </code>
+</span>
 `;
