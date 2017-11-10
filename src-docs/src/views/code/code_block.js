@@ -21,8 +21,19 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="light" overflowHeight={300}>
+    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="dark" overflowHeight={300}>
       {jsCode}
     </EuiCodeBlock>
+
+    <EuiSpacer />
+
+    <div>
+      {/* You should probably vertically align your content against the code block for centering. */}
+      <span style={{ verticalAlign: 'middle'}}>Inline code with a transparent background: </span>
+      <EuiCodeBlock language="html" fontSize="m" inline transparentBackground>
+        {htmlCode}
+      </EuiCodeBlock>
+    </div>
+
   </div>
 );

@@ -51,11 +51,13 @@ export class EuiCodeBlock extends Component {
     const {
       children,
       className,
-      language,
       color,
       fontSize,
-      paddingSize,
+      inline,
+      language,
       overflowHeight,
+      paddingSize,
+      transparentBackground,
       ...otherProps
     } = this.props;
 
@@ -64,6 +66,12 @@ export class EuiCodeBlock extends Component {
       colorToClassNameMap[color],
       fontSizeToClassNameMap[fontSize],
       paddingSizeToClassNameMap[paddingSize],
+      {
+        'euiCodeBlock--transparentBackground': transparentBackground,
+      },
+      {
+        'euiCodeBlock--inline': inline,
+      },
       className
     );
 
@@ -109,7 +117,8 @@ EuiCodeBlock.propTypes = {
 };
 
 EuiCodeBlock.defaultProps = {
-  color: 'dark',
+  color: 'light',
+  transparentBackground: false,
   paddingSize: 'l',
   fontSize: 's',
 };

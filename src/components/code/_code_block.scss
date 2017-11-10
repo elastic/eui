@@ -35,4 +35,20 @@
   &.euiCodeBlock--paddingLarge {
     padding: $euiSizeL;
   }
+
+  &.euiCodeBlock--inline {
+    display: inline;
+    padding: 0;
+    background: transparent;
+    vertical-align: middle;
+
+    .euiCodeBlock__pre, .euiCodeBlock__code {
+      display: inline;
+      white-space: normal;
+    }
+  }
+
+  &.euiCodeBlock--transparentBackground {
+    background: transparent;
+  }
 }
