@@ -30,5 +30,5 @@ export const EuiCode = ({
 EuiCode.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  transparentBackground: false,
+  transparentBackground: PropTypes.bool,
 };

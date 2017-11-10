@@ -27,13 +27,5 @@ export default () => (
 
     <EuiSpacer />
 
-    <div>
-      {/* You should probably vertically align your content against the code block for centering. */}
-      <span style={{ verticalAlign: 'middle'}}>Inline code with a transparent background: </span>
-      <EuiCodeBlock language="html" fontSize="m" inline transparentBackground>
-        {htmlCode}
-      </EuiCodeBlock>
-    </div>
-
   </div>
 );

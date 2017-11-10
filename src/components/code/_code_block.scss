@@ -1,7 +1,9 @@
 .euiCodeBlock {
+  display: block;
   overflow: auto;
 
   .euiCodeBlock__pre {
+    display: block;
     white-space: pre-wrap;
   }
 

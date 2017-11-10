@@ -80,20 +80,20 @@ export class EuiCodeBlock extends Component {
     }
 
     return (
-      <div
+      <span
         className={classes}
         style={{ height: optionalOverflowHeight }}
       >
-        <pre className="euiCodeBlock__pre">
-          <code
+        <span className="euiCodeBlock__pre">
+          <span
             ref={ref => { this.code = ref; }}
             className={codeClasses}
             {...otherProps}
           >
             {children}
-          </code>
-        </pre>
-      </div>
+          </span>
+        </span>
+      </span>
     );
   }
 
@@ -110,6 +110,7 @@ EuiCodeBlock.propTypes = {
   color: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
   fontSize: PropTypes.oneOf(FONT_SIZES),
+  transparentBackground: PropTypes.bool,
 };
 
 EuiCodeBlock.defaultProps = {
