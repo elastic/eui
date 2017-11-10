@@ -1,29 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import {
-  EuiCodeBlock,
-} from '../../components';
+  EuiCodeBlockImpl,
+} from './_code_block';
 
-export const EuiCode = ({
-  children,
-  className,
-  ...rest
-}) => {
-  const classes = classNames('euiCodeBlock--inline', className);
-
+export function EuiCode({ ...rest }) {
   return (
-    <EuiCodeBlock
-      className={classes}
+    <EuiCodeBlockImpl
+      inline={true}
       {...rest}
-    >
-      {children}
-    </EuiCodeBlock>
+    />
   );
-};
-
-EuiCode.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
+}
