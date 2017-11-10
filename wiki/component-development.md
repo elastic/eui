@@ -32,7 +32,7 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 `npm run test-unit button` will run tests with "button" in the spec name. You can pass other
 [Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html) by just adding them to the
-end of the command like this.
+end of the command like this:
 
 `npm run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need 
 to follow the format of `npm run test-unit -- [arguments]`.
