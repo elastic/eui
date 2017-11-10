@@ -12,19 +12,23 @@ npm start
 
 Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
 
-Watch for changes and run the tests as you code using the following command.
+## Tests
 
-```shell
-npm run test-unit -- --watch
-```
+`npm run test-unit` runs the Jest unit tests once.
 
-To generate a code coverage report to see how fully-tested the codebase is, use the following command.
+`npm run test-unit button` will run tests with "button" in the spec name. You can pass other
+[Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html) by just adding them to the
+end of the command like this.
 
-```shell
-npm run test-unit -- --coverage
-```
+`npm run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need 
+to follow the format of `npm run test-unit -- [arguments]`.
 
-See the documentation in [`scripts/jest`](../scripts/jest) for more options.
+`npm run test-unit -- --watch` watches for changes and runs the tests as you code.
+
+`npm run test-unit -- --coverage` generates a code coverage report showing you how
+fully-tested the code is, located at `reports/jest-coverage`.
+
+Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
 ## Creating Components
 
@@ -105,5 +109,6 @@ For an in-depth analysis of the shortcomings in Bootstrap (and similar framework
 [kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
 [bootstrap]: http://www.matthewcopeland.me/blog/2013/11/04/bootstrap-bankruptcy/
 [docs]: https://elastic.github.io/eui/
+[testing]: testing.md
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
