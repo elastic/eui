@@ -1,5 +1,10 @@
 # Testing
 
+## Naming your test files
+
+Create test files with the name pattern of `{component name}.test.js` in the same directory which
+contains `{component name}.js`.
+
 ## Test helpers
 
 The [`src/test`](../src/test) module exports some functions and constants to help you write better tests:
