@@ -9,12 +9,15 @@ import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
 
+import makeId from './make_id';
+
 export class EuiFormRow extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isFocused: false,
+      id: props.id || makeId()
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -40,12 +43,13 @@ export class EuiFormRow extends Component {
       isInvalid,
       error,
       label,
-      id,
       hasEmptyLabelSpace,
       fullWidth,
       className,
       ...rest
     } = this.props;
+
+    const { id } = this.state;
 
     const classes = classNames(
       'euiFormRow',
@@ -60,7 +64,7 @@ export class EuiFormRow extends Component {
 
     if (helpText) {
       optionalHelpText = (
-        <EuiFormHelpText className="euiFormRow__text">
+        <EuiFormHelpText id={`${id}-help`} className="euiFormRow__text">
           {helpText}
         </EuiFormHelpText>
       );
@@ -70,8 +74,8 @@ export class EuiFormRow extends Component {
 
     if (error) {
       const errorTexts = Array.isArray(error) ? error : [error];
-      optionalErrors = errorTexts.map(error => (
-        <EuiFormErrorText key={error} className="euiFormRow__text">
+      optionalErrors = errorTexts.map((error, i) => (
+        <EuiFormErrorText key={error} id={`${id}-error-${i}`} className="euiFormRow__text">
           {error}
         </EuiFormErrorText>
       ));
@@ -91,10 +95,24 @@ export class EuiFormRow extends Component {
       );
     }
 
+    const describingIds = [];
+    if (optionalHelpText) {
+      describingIds.push(optionalHelpText.props.id);
+    }
+    if (optionalErrors) {
+      optionalErrors.forEach(error => describingIds.push(error.props.id));
+    }
+
+    const optionalProps = {};
+    if (describingIds.length > 0) {
+      optionalProps[`aria-describedby`] = describingIds.join(` `);
+    }
+
     const field = cloneElement(children, {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      ...optionalProps
     });
 
     return (
