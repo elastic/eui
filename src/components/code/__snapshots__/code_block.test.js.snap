@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCode is rendered using EuiCodeBlockImpl 1`] = `
+exports[`EuiCodeBlock is rendered 1`] = `
 <euicodeblockimpl
   aria-label="aria-label"
   class="testClass1 testClass2"

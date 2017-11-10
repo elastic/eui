@@ -4,11 +4,15 @@ import {
   EuiCodeBlockImpl,
 } from './_code_block';
 
-export function EuiCode({ ...rest }) {
+export const EuiCode = ({ ...rest }) => {
   return (
     <EuiCodeBlockImpl
       inline={true}
       {...rest}
     />
   );
-}
+};
+
+EuiCode.propTypes = {
+  ...EuiCodeBlockImpl.propTypes
+};
