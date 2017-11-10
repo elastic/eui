@@ -53,7 +53,6 @@ export class EuiCodeBlock extends Component {
       className,
       color,
       fontSize,
-      inline,
       language,
       overflowHeight,
       paddingSize,
@@ -68,9 +67,6 @@ export class EuiCodeBlock extends Component {
       paddingSizeToClassNameMap[paddingSize],
       {
         'euiCodeBlock--transparentBackground': transparentBackground,
-      },
-      {
-        'euiCodeBlock--inline': inline,
       },
       className
     );
