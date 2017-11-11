@@ -19,8 +19,8 @@
   }
 
   &.euiSideNavItemButton-isOpen {
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
+    // background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    // background-size: $euiSizeM $euiSizeM;
 
     .euiSideNavItemButton__label {
       color: $euiColorFullShade;
@@ -96,8 +96,7 @@
 .euiSideNavItemButton--parent {
   border-right: solid $euiSizeXS transparent;
 
-  &:hover,
-  &:focus {
+  &:not(.euiSideNavItemButton-isOpen):not(.euiSideNavItemButton-isSelected) {
     background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
     background-size: $euiSizeM $euiSizeM;
   }
