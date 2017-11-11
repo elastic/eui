@@ -35,7 +35,7 @@ const EuiSideNavItem = ({
 
   if (icon) {
     buttonIcon = (
-      <EuiFlexItem grow={false}>
+      <EuiFlexItem isInline grow={false}>
         {icon}
       </EuiFlexItem>
     );

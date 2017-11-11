@@ -31,7 +31,16 @@ const justifyContentToClassNameMap = {
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
-export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, responsive, justifyContent, ...rest }) => {
+export const EuiFlexGroup = ({
+  children,
+  className,
+  gutterSize,
+  alignItems,
+  responsive,
+  justifyContent,
+  isInline,
+  ...rest,
+}) => {
   const classes = classNames(
     'euiFlexGroup',
     gutterSizeToClassNameMap[gutterSize],
@@ -42,6 +51,17 @@ export const EuiFlexGroup = ({ children, className, gutterSize, alignItems, resp
     },
     className
   );
+
+  if (isInline) {
+    return (
+      <span
+        className={classes}
+        {...rest}
+      >
+        {children}
+      </span>
+    );
+  }
 
   return (
     <div
@@ -60,6 +80,7 @@ EuiFlexGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
+  isInline: PropTypes.bool,
 };
 
 EuiFlexGroup.defaultProps = {
@@ -67,4 +88,5 @@ EuiFlexGroup.defaultProps = {
   alignItems: 'stretch',
   responsive: true,
   justifyContent: 'flexStart',
+  isInline: false,
 };
