@@ -1,33 +1,119 @@
-import {
-  Children,
-  cloneElement,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiSideNavItem = ({ children, parent, isSelected }) => {
-  const child = Children.only(children);
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '..';
 
-  const classes = classNames(
-    child.props.className,
-    'euiSideNavItem',
-    {
-      'euiSideNavItem-isSelected': isSelected,
-      'euiSideNavItem--parent': parent,
-    }
+export const EuiSideNavItem = ({
+  isOpen,
+  isSelected,
+  isParent,
+  icon,
+  onClick,
+  href,
+  items,
+  children,
+  depth,
+  ...rest,
+}) => {
+  let childItems;
+
+  if (isOpen) {
+    childItems = (
+      <div className="euiSideNavItem__items">
+        {items}
+      </div>
+    );
+  }
+
+  let buttonIcon;
+
+  if (icon) {
+    buttonIcon = (
+      <EuiFlexItem isInline grow={false}>
+        {icon}
+      </EuiFlexItem>
+    );
+  }
+
+  const classes = classNames('euiSideNavItem', {
+    'euiSideNavItem--root': depth === 0,
+    'euiSideNavItem--hasIcon': depth === 0 && icon,
+    'euiSideNavItem--deep': depth > 1,
+  });
+
+  const buttonClasses = classNames('euiSideNavItemButton', {
+    'euiSideNavItemButton--root': depth === 0,
+    'euiSideNavItemButton--deep': depth > 1,
+    'euiSideNavItemButton--parent': depth > 0 && isParent,
+    'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
+    'euiSideNavItemButton-isSelected': isSelected,
+  });
+
+  const buttonContent = (
+    <EuiFlexGroup
+      isInline
+      gutterSize="s"
+      alignItems="center"
+      responsive={false}
+    >
+      {buttonIcon}
+
+      <EuiFlexItem
+        isInline
+        grow={false}
+        className="euiSideNavItemButton__labelContainer"
+      >
+        <span
+          className="euiSideNavItemButton__label"
+        >
+          {children}
+        </span>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 
-  return cloneElement(child, ({ ...child.props, ...{
-    className: classes,
-  } }));
+  let button;
+
+  if (href) {
+    button = (
+      <a
+        className={buttonClasses}
+        href={href}
+      >
+        {buttonContent}
+      </a>
+    );
+  } else {
+    button = (
+      <button
+        className={buttonClasses}
+        onClick={onClick}
+      >
+        {buttonContent}
+      </button>
+    );
+  }
+
+  return (
+    <div className={classes} {...rest}>
+      {button}
+      {childItems}
+    </div>
+  );
 };
 
 EuiSideNavItem.propTypes = {
+  isOpen: PropTypes.bool,
   isSelected: PropTypes.bool,
-  parent: PropTypes.bool,
-};
-
-EuiSideNavItem.defaultProps = {
-  parent: false,
-  isSelected: false,
+  isParent: PropTypes.bool,
+  icon: PropTypes.node,
+  onClick: PropTypes.func,
+  href: PropTypes.string,
+  items: PropTypes.node,
+  children: PropTypes.node,
+  depth: PropTypes.number,
 };
