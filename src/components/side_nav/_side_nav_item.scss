@@ -113,6 +113,15 @@
 }
 
 /**
+ * 1. Create padding around focus area without indenting the item itself.
+ */
+.euiSideNavItemButton--root,
+.euiSideNavItemButton--trunk {
+  padding-left: $euiSizeS; /* 1 */
+  margin-left: -$euiSizeS; /* 1 */
+}
+
+/**
  * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
  */
 .euiSideNavItemButton--deep {

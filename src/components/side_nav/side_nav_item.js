@@ -47,6 +47,7 @@ export const EuiSideNavItem = ({
 
   const buttonClasses = classNames('euiSideNavItemButton', {
     'euiSideNavItemButton--root': depth === 0,
+    'euiSideNavItemButton--trunk': depth === 1,
     'euiSideNavItemButton--deep': depth > 1,
     'euiSideNavItemButton--parent': depth > 0 && isParent,
     'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
