@@ -23,14 +23,14 @@ $euiCodeFontFamily: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courie
 
 // Font sizes
 
-$euiFontSize:       $euiSize;
+$euiFontSize:       $euiSize !default;
 
-$euiFontSizeXS:     $euiFontSize * .75;
-$euiFontSizeS:      $euiFontSize * .875;
-$euiFontSizeM:      $euiFontSize;
-$euiFontSizeL:      $euiFontSize * 1.5;
-$euiFontSizeXL:     $euiFontSize * 2;
-$euiFontSizeXXL:    $euiFontSize * 3;
+$euiFontSizeXS:     $euiFontSize * .75 !default;
+$euiFontSizeS:      $euiFontSize * .875 !default;
+$euiFontSizeM:      $euiFontSize !default;
+$euiFontSizeL:      $euiFontSize * 1.5 !default;
+$euiFontSizeXL:     $euiFontSize * 2 !default;
+$euiFontSizeXXL:    $euiFontSize * 3 !default;
 
 // Line height
 
