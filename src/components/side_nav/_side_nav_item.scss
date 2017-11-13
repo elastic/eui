@@ -18,6 +18,11 @@
     color: $euiColorPrimary !important;
   }
 
+  &.euiSideNavItemButton-isOpenable {
+    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
+    background-size: $euiSizeM $euiSizeM;
+  }
+
   &.euiSideNavItemButton-isOpen {
     // background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
     // background-size: $euiSizeM $euiSizeM;
@@ -55,7 +60,6 @@
  */
 .euiSideNavItem__items {
   position: relative;
-  margin-left: 0;
 
   &:after { /* 1 */
     position: absolute;
@@ -69,13 +73,29 @@
 }
 
 .euiSideNavItem--root {
-  &.euiSideNavItem--hasIcon > .euiSideNavItem__items {
+  &.euiSideNavItem--rootIcon > .euiSideNavItem__items {
     margin-left: $euiSizeL;
   }
 
+  /**
+   * 1. Create padding around focus area without indenting the item itself.
+   */
+  & > .euiSideNavItemButton {
+    margin-bottom: $euiSizeS;
+    padding: 0;
+    padding-left: $euiSizeS; /* 1 */
+    margin-left: -$euiSizeS; /* 1 */
+
+    .euiSideNavItemButton__label {
+      @include euiTitle;
+      font-size: $euiSize + 2px;
+    }
+  }
+
+
   & > .euiSideNavItem__items {
-    margin-left: 0;
     position: static;
+    margin-left: 0;
 
     &:after {
       display: none;
@@ -87,55 +107,41 @@
   }
 }
 
-.euiSideNavItem--deep {
+.euiSideNavItem--trunk {
+  /**
+   * 1. Create padding around focus area without indenting the item itself.
+   */
+  & > .euiSideNavItemButton {
+    padding-left: $euiSizeS; /* 1 */
+    margin-left: -$euiSizeS; /* 1 */
+  }
+
+  & > .euiSideNavItem__items {
+    margin-left: $euiSizeS;
+  }
+}
+
+.euiSideNavItem--branch {
+  /**
+   * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
+   */
+  & > .euiSideNavItemButton {
+    padding-left: $euiSizeS;
+
+    position: relative; /* 1 */
+
+    &:after {
+      position: absolute; /* 1 */
+      content: "";
+      top: 50%;
+      left: 0;
+      width: $euiSizeXS;
+      height: 1px;
+      background: $euiBorderColor;
+    }
+  }
+
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
-  }
-}
-
-.euiSideNavItemButton--parent {
-  border-right: solid $euiSizeXS transparent;
-
-  &:not(.euiSideNavItemButton-isOpen):not(.euiSideNavItemButton-isSelected) {
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-}
-
-.euiSideNavItemButton--root {
-  margin-bottom: $euiSizeS;
-  padding: 0;
-
-  .euiSideNavItemButton__label {
-    @include euiTitle;
-    font-size: $euiSize + 2px;
-  }
-}
-
-/**
- * 1. Create padding around focus area without indenting the item itself.
- */
-.euiSideNavItemButton--root,
-.euiSideNavItemButton--trunk {
-  padding-left: $euiSizeS; /* 1 */
-  margin-left: -$euiSizeS; /* 1 */
-}
-
-/**
- * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
- */
-.euiSideNavItemButton--deep {
-  padding-left: $euiSizeS;
-
-  position: relative; /* 1 */
-
-  &:after {
-    position: absolute; /* 1 */
-    content: "";
-    top: 50%;
-    left: 0;
-    width: $euiSizeXS;
-    height: 1px;
-    background: $euiBorderColor;
   }
 }

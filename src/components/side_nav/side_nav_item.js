@@ -41,15 +41,13 @@ export const EuiSideNavItem = ({
 
   const classes = classNames('euiSideNavItem', {
     'euiSideNavItem--root': depth === 0,
-    'euiSideNavItem--hasIcon': depth === 0 && icon,
-    'euiSideNavItem--deep': depth > 1,
+    'euiSideNavItem--trunk': depth === 1,
+    'euiSideNavItem--branch': depth > 1,
+    'euiSideNavItem--rootIcon': depth === 0 && icon,
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {
-    'euiSideNavItemButton--root': depth === 0,
-    'euiSideNavItemButton--trunk': depth === 1,
-    'euiSideNavItemButton--deep': depth > 1,
-    'euiSideNavItemButton--parent': depth > 0 && isParent,
+    'euiSideNavItemButton-isOpenable': depth > 0 && isParent && !isOpen && !isSelected,
     'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
     'euiSideNavItemButton-isSelected': isSelected,
   });
