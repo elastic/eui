@@ -14,9 +14,9 @@ export default () => (
 
     <EuiHorizontalRule margin="l" />
 
-    <EuiAvatar size="s" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <EuiAvatar size="m" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <EuiAvatar size="l"  name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
-    <EuiAvatar size="xl" name="Cat" imageUrl="http://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="s" name="Cat" imageUrl="https://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="m" name="Cat" imageUrl="https://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="l"  name="Cat" imageUrl="https://lorempixel.com/64/64/cats/" />
+    <EuiAvatar size="xl" name="Cat" imageUrl="https://lorempixel.com/64/64/cats/" />
   </div>
 );
