@@ -100,3 +100,332 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
   />
 </nav>
 `;
+
+exports[`EuiSideNav items is rendered 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+      >
+        <title>
+          apps icon
+        </title>
+        <use
+          href="#apps"
+        />
+      </svg>
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root"
+    >
+      <button
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </button>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+              <svg
+                class="euiIcon euiIcon--medium"
+              >
+                <title>
+                  arrow down icon
+                </title>
+                <use
+                  href="#arrow_down"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav items renders items with are links 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+      >
+        <title>
+          apps icon
+        </title>
+        <use
+          href="#apps"
+        />
+      </svg>
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root"
+    >
+      <a
+        class="euiSideNavItemButton"
+        href="http://www.elastic.co"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </a>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </button>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+              <svg
+                class="euiIcon euiIcon--medium"
+              >
+                <title>
+                  arrow down icon
+                </title>
+                <use
+                  href="#arrow_down"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav items renders selected item and automatically opens parent items 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+      >
+        <title>
+          apps icon
+        </title>
+        <use
+          href="#apps"
+        />
+      </svg>
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root"
+    >
+      <button
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </button>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <button
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+            </span>
+          </button>
+          <div
+            class="euiSideNavItem__items"
+          >
+            <div
+              class="euiSideNavItem euiSideNavItem--branch"
+            >
+              <button
+                class="euiSideNavItemButton euiSideNavItemButton-isSelected"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    D
+                  </span>
+                </span>
+              </button>
+              <div
+                class="euiSideNavItem__items"
+              />
+            </div>
+            <div
+              class="euiSideNavItem euiSideNavItem--branch"
+            >
+              <button
+                class="euiSideNavItemButton"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    E
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
