@@ -7,6 +7,7 @@ export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
     'euiFlexItem',
     {
       'euiFlexItem--flexGrowZero': !grow,
+      [`euiFlexItem--flexGrow${grow}`]: Number(parseFloat(grow)) === grow && grow >= 1 && grow <= 10
     },
     className
   );
@@ -23,7 +24,7 @@ export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
 
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
-  grow: PropTypes.bool,
+  grow: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 };
 
 EuiFlexItem.defaultProps = {
