@@ -6,8 +6,15 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup useSpan>
-    <EuiFlexItem useSpan>This a span within a span</EuiFlexItem>
-    <EuiFlexItem useSpan>This a span within a span</EuiFlexItem>
-  </EuiFlexGroup>
+  <button onClick={() => { window.alert('click'); }}>
+    <EuiFlexGroup useSpan>
+      <EuiFlexItem useSpan>
+        These items are within a button
+      </EuiFlexItem>
+
+      <EuiFlexItem useSpan>
+        So they all have useSpan
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </button>
 );
