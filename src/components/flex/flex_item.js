@@ -7,7 +7,7 @@ export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
     'euiFlexItem',
     {
       'euiFlexItem--flexGrowZero': !grow,
-      [`euiFlexItem--flexGrow${grow}`]: Number(parseFloat(grow)) === grow && grow >= 1 && grow <= 10
+      [`euiFlexItem--flexGrow${grow}`]: Number(parseInt(grow)) === grow && grow >= 1 && grow <= 10
     },
     className
   );
