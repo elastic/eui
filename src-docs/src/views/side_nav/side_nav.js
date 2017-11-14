@@ -34,7 +34,7 @@ export default class extends Component {
       }, {
         name: 'Index Patterns (link)',
         id: 2,
-        href: 'http://www.google.com',
+        href: 'http://www.elastic.co',
       }, {
         name: 'Saved Objects',
         id: 3,
