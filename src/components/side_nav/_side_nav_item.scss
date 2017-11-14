@@ -1,5 +1,6 @@
 /**
  * 1. Text-align defaults to center.
+ * 2. Need on the button element to color the underline.
  */
 .euiSideNavItemButton {
   @include euiFontSizeS;
@@ -7,6 +8,7 @@
   display: block;
   width: 100%;
   padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 0;
+  color: $euiColorFullShade; /* 2 */
 
   &:hover {
     text-decoration: underline;
