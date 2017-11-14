@@ -4,6 +4,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlexGrid,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -12,7 +13,7 @@ export default () => (
       <EuiFlexItem grow={false}>Group One</EuiFlexItem>
       <EuiFlexItem grow={false}>
         <div>Group Two</div>
-        <br/><br/>
+        <EuiSpacer />
         <EuiFlexGrid columns={3}>
           <EuiFlexItem>Nested Grid One</EuiFlexItem>
           <EuiFlexItem>Nested Grid Two</EuiFlexItem>

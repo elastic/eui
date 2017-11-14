@@ -4,6 +4,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -13,13 +14,13 @@ export default () => (
       <EuiFlexItem grow={false}>The other over here on the right.</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/><br/>
+    <EuiSpacer />
 
     <EuiFlexGroup justifyContent="spaceAround">
       <EuiFlexItem grow={false}>I&rsquo;m a single centered item!</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/><br/>
+    <EuiSpacer />
 
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false}>

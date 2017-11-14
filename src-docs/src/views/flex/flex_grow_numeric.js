@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -14,7 +15,7 @@ export default () => (
       <EuiFlexItem grow={4}>4</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/><br/>
+    <EuiSpacer />
 
     <EuiFlexGroup>
       <EuiFlexItem grow={6}>6</EuiFlexItem>
