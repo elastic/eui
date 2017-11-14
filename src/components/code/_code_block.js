@@ -75,10 +75,10 @@ export class EuiCodeBlockImpl extends Component {
 
     const codeClasses = classNames('euiCodeBlock__code', language);
 
-    let optionalOverflowHeight = 'auto';
+    const optionalStyles = {};
 
     if (overflowHeight) {
-      optionalOverflowHeight = overflowHeight;
+      optionalStyles.height = overflowHeight;
     }
 
     const codeSnippet = (
@@ -93,7 +93,7 @@ export class EuiCodeBlockImpl extends Component {
 
     const wrapperProps = {
       className: classes,
-      style: { height: optionalOverflowHeight }
+      style: optionalStyles
     };
 
     if (inline) {
