@@ -3,7 +3,6 @@
 exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
-  style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -18,7 +17,6 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
 exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
-  style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -38,7 +36,6 @@ console.log(some);
 exports[`EuiCodeBlockImpl block renders with dark theme 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
-  style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -53,7 +50,6 @@ exports[`EuiCodeBlockImpl block renders with dark theme 1`] = `
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
-  style="height:auto"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -68,7 +64,6 @@ exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1`] = `
 <span
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
-  style="height:auto"
 >
   <code
     class="euiCodeBlock__code js"
@@ -79,7 +74,6 @@ exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1
 exports[`EuiCodeBlockImpl inline renders an inline code tag 1`] = `
 <span
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
-  style="height:auto"
 >
   <code
     aria-label="aria-label"
@@ -95,7 +89,6 @@ console.log(some);
 exports[`EuiCodeBlockImpl inline renders with dark theme 1`] = `
 <span
   class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
-  style="height:auto"
 >
   <code
     class="euiCodeBlock__code"
@@ -106,7 +99,6 @@ exports[`EuiCodeBlockImpl inline renders with dark theme 1`] = `
 exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
 <span
   class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline"
-  style="height:auto"
 >
   <code
     class="euiCodeBlock__code"
