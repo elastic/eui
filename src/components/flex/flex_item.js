@@ -24,8 +24,24 @@ export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
 
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
-  grow: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  grow: growPropType
 };
+
+function growPropType(props, propName, componentName) {
+  const value = props[propName];
+
+  const validValues = [
+    null, undefined,
+    true, false,
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  ];
+
+  if (validValues.indexOf(value) === -1) {
+    return new Error(
+      'Prop `' + propName + '` supplied to' + ' `' + componentName + '` must be a boolean or an integer between 1 and 10.'
+    );
+  }
+}
 
 EuiFlexItem.defaultProps = {
   grow: true,

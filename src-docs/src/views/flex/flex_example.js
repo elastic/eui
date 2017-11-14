@@ -168,7 +168,7 @@ export default props => (
       text={
         <p>
           You can specify a number between 1 and 10 for a <EuiCode>FlexItem</EuiCode> to
-          take up a proportional part of the flex box it is in.
+          try to take up a proportional part of the flex box it is in.
         </p>
       }
       demo={
