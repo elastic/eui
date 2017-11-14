@@ -7,7 +7,7 @@
   text-align: left; /* 1 */
   display: block;
   width: 100%;
-  padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 0;
+  padding: $euiSizeXS / 2 0;
   color: $euiColorFullShade; /* 2 */
 
   &:hover {
@@ -20,15 +20,7 @@
     color: $euiColorPrimary !important;
   }
 
-  &.euiSideNavItemButton-isOpenable {
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-
   &.euiSideNavItemButton-isOpen {
-    // background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    // background-size: $euiSizeM $euiSizeM;
-
     .euiSideNavItemButton__label {
       color: $euiColorFullShade;
     }
@@ -42,6 +34,16 @@
     }
   }
 }
+
+  .euiSideNavItemButton__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .euiSideNavItemButton__icon {
+    margin-right: $euiSizeS;
+  }
 
   /**
    * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
@@ -81,12 +83,19 @@
 
   /**
    * 1. Create padding around focus area without indenting the item itself.
+   * 2. Align icon and label to the left.
    */
   & > .euiSideNavItemButton {
     margin-bottom: $euiSizeS;
     padding: 0;
     padding-left: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 1 */
     margin-left: -$euiSizeS; /* 1 */
+    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
+
+    .euiSideNavItemButton__content {
+      justify-content: flex-start; /* 2 */
+    }
 
     .euiSideNavItemButton__label {
       @include euiTitle;
@@ -115,11 +124,14 @@
    */
   & > .euiSideNavItemButton {
     padding-left: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 1 */
     margin-left: -$euiSizeS; /* 1 */
+    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
   }
 
   & > .euiSideNavItem__items {
     margin-left: $euiSizeS;
+    width: 100%;
   }
 }
 
@@ -130,6 +142,7 @@
   & > .euiSideNavItemButton {
     position: relative; /* 1 */
     padding-left: $euiSizeS;
+    padding-right: $euiSizeS; /* 1 */
 
     &:after {
       position: absolute; /* 1 */

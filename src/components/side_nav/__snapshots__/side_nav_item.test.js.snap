@@ -8,15 +8,11 @@ exports[`EuiSideNavItem is rendered 1`] = `
     class="euiSideNavItemButton"
   >
     <span
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+      class="euiSideNavItemButton__content"
     >
       <span
-        class="euiFlexItem euiFlexItem--flexGrowZero euiSideNavItemButton__labelContainer"
-      >
-        <span
-          class="euiSideNavItemButton__label"
-        />
-      </span>
+        class="euiSideNavItemButton__label"
+      />
     </span>
   </button>
   <button
@@ -35,15 +31,11 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
     class="euiSideNavItemButton"
   >
     <span
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+      class="euiSideNavItemButton__content"
     >
       <span
-        class="euiFlexItem euiFlexItem--flexGrowZero euiSideNavItemButton__labelContainer"
-      >
-        <span
-          class="euiSideNavItemButton__label"
-        />
-      </span>
+        class="euiSideNavItemButton__label"
+      />
     </span>
   </button>
   <button />
@@ -58,15 +50,11 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
     class="euiSideNavItemButton euiSideNavItemButton-isSelected"
   >
     <span
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+      class="euiSideNavItemButton__content"
     >
       <span
-        class="euiFlexItem euiFlexItem--flexGrowZero euiSideNavItemButton__labelContainer"
-      >
-        <span
-          class="euiSideNavItemButton__label"
-        />
-      </span>
+        class="euiSideNavItemButton__label"
+      />
     </span>
   </button>
   <button />
@@ -81,15 +69,11 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
     class="euiSideNavItemButton"
   >
     <span
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+      class="euiSideNavItemButton__content"
     >
       <span
-        class="euiFlexItem euiFlexItem--flexGrowZero euiSideNavItemButton__labelContainer"
-      >
-        <span
-          class="euiSideNavItemButton__label"
-        />
-      </span>
+        class="euiSideNavItemButton__label"
+      />
     </span>
   </button>
   <button

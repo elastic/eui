@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {
+  cloneElement,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiFlexGroup,
-  EuiFlexItem,
+  EuiIcon,
 } from '..';
 
 export const EuiSideNavItem = ({
@@ -32,11 +33,9 @@ export const EuiSideNavItem = ({
   let buttonIcon;
 
   if (icon) {
-    buttonIcon = (
-      <EuiFlexItem useSpan grow={false}>
-        {icon}
-      </EuiFlexItem>
-    );
+    buttonIcon = cloneElement(icon, {
+      className: 'euiSideNavItemButton__icon',
+    });
   }
 
   const classes = classNames('euiSideNavItem', {
@@ -47,32 +46,28 @@ export const EuiSideNavItem = ({
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {
-    'euiSideNavItemButton-isOpenable': depth > 0 && isParent && !isOpen && !isSelected,
     'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
     'euiSideNavItemButton-isSelected': isSelected,
   });
 
+  let caret;
+
+  if (depth > 0 && isParent && !isOpen && !isSelected) {
+    caret = <EuiIcon type="arrowDown" />;
+  }
+
   const buttonContent = (
-    <EuiFlexGroup
-      useSpan
-      gutterSize="s"
-      alignItems="center"
-      responsive={false}
-    >
+    <span className="euiSideNavItemButton__content">
       {buttonIcon}
 
-      <EuiFlexItem
-        useSpan
-        grow={false}
-        className="euiSideNavItemButton__labelContainer"
+      <span
+        className="euiSideNavItemButton__label"
       >
-        <span
-          className="euiSideNavItemButton__label"
-        >
-          {children}
-        </span>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+        {children}
+      </span>
+
+      {caret}
+    </span>
   );
 
   let button;
