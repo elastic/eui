@@ -89,56 +89,21 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
-    // Build links to subsections if there's more than 1.
-
-    // if (this.props.sections.length > 1) {
-    //   const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
-    //   if (currentSectionIndex !== -1) {
-    //     const subSections = this.props.sections.map(section => {
-    //       return {
-    //         ...section,
-    //         isSubSection: true,
-    //       };
-    //     });
-    //     matchingItems[currentSectionIndex].hasSubSections = true;
-    //     matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
-    //   }
-    // }
-
-    return matchingItems.map((item, index) => {
-      let button;
-
-      if (item.isSubSection) {
-        button = (
-          <button
-            className="guideNavItem__link"
-            onClick={this.onClickLink.bind(this, item.id)}
-          >
-            {item.name}
-          </button>
-        );
-      } else {
-        button = (
-          <Link
-            className="guideNavItem__link"
-            to={item.path}
-            onClick={this.scrollTo.bind(this, 0)}
-          >
-            {item.name}
-          </Link>
-        );
-      }
-
-      return (
-        <EuiSideNavItem
-          key={`componentNavItem-${index}`}
-          isSelected={item.name === this.props.currentRouteName}
-          indent={item.isSubSection}
+    return matchingItems.map((item, index) => (
+      <EuiSideNavItem
+        key={`componentNavItem-${index}`}
+        isSelected={item.name === this.props.currentRouteName}
+        indent={item.isSubSection}
+      >
+        <Link
+          className="guideNavItem__link"
+          to={item.path}
+          onClick={this.scrollTo.bind(this, 0)}
         >
-          {button}
-        </EuiSideNavItem>
-      );
-    });
+          {item.name.replace(/([a-z])([A-Z])/g, '$1 $2')}
+        </Link>
+      </EuiSideNavItem>
+    ));
   }
 
   renderSandboxLinks() {
@@ -167,7 +132,7 @@ export class GuidePageChrome extends Component {
         {this.renderIdentity()}
 
         <EuiSpacer size="m" />
-        
+
         <EuiFieldSearch
           placeholder="Search..."
           value={this.state.search}
