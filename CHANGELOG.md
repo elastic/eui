@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- No public interface changes since `0.0.2`.
+
+# [`0.0.2`](https://github.com/elastic/eui/tree/v0.0.2)
+
 - Changed the hover states of `<EuiButtonEmpty>` to look more like links. [(#135)](https://github.com/elastic/eui/pull/135)
 - `<EuiCode>` now wraps `<EuiCodeBlock>`, so it can do everything `<EuiCodeBlock>` could, but inline [(#138)](https://github.com/elastic/eui/pull/138)
 - Added `transparentBackground` prop to `<EuiCodeBlock>` [(#138)](https://github.com/elastic/eui/pull/138)
