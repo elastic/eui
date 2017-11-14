@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../..';
+import { EuiIcon, EuiLoadingSpinner } from '../..';
 
 const iconSideToClassNameMap = {
   left: '',
@@ -11,7 +11,7 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, className }) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLoading, className }) => {
 
   const classes = classNames(
     'euiFormControlLayout',
@@ -21,34 +21,43 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, clas
     className
   );
 
+  let optionalLoader;
+  if (isLoading) {
+    optionalLoader = (
+      <EuiLoadingSpinner size="m" className="euiFormControlLayout__loading" />
+    );
+  }
+
+  let optionalIcon;
   if (icon) {
     const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
 
-    const optionalIcon = (
+    optionalIcon = (
       <EuiIcon
         className={iconClasses}
         type={icon}
         size="m"
       />
     );
-
-    return (
-      <div className={classes}>
-        {children}
-        {optionalIcon}
-      </div>
-    );
   }
 
-  return children;
+  return (
+    <div className={classes}>
+      {children}
+      {optionalIcon}
+      {optionalLoader}
+    </div>
+  );
 };
 
 EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.string,
   iconSide: PropTypes.oneOf(ICON_SIDES),
+  isLoading: PropTypes.bool,
 };
 
 EuiFormControlLayout.defaultProps = {
   iconSide: 'left',
+  isLoading: false,
 };

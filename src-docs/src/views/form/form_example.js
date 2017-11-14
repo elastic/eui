@@ -48,6 +48,10 @@ import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
 
+import Loading from './form_controls_loading';
+const loadingSource = require('!!raw-loader!./form_controls_loading');
+const loadingHtml = renderToHtml(Loading);
+
 export default props => (
   <GuidePage title={props.route.name}>
     <GuideSection
@@ -136,6 +140,27 @@ export default props => (
       }
       demo={
         <Disabled />
+      }
+    />
+
+    <GuideSection
+      title="Fields can be in a loading state"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: loadingSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: loadingHtml,
+      }]}
+      text={
+        <p>
+          Pass <EuiCode>isLoading</EuiCode> onto any field level (text, number, search, select)
+          component to put it in a loading state. This can be in combination with any other
+          props you attach (like <EuiCode>disabled</EuiCode>).
+        </p>
+      }
+      demo={
+        <Loading />
       }
     />
 
@@ -245,5 +270,6 @@ export default props => (
         <InlineFormPopover />
       }
     />
+
   </GuidePage>
 );

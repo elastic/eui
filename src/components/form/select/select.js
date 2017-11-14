@@ -18,12 +18,14 @@ export const EuiSelect = ({
   inputRef,
   isInvalid,
   fullWidth,
+  isLoading,
   ...rest
 }) => {
   const classes = classNames(
     'euiSelect',
     {
       'euiSelect--fullWidth': fullWidth,
+      'euiSelect-isLoading': isLoading,
     },
     className
   );
@@ -33,6 +35,7 @@ export const EuiSelect = ({
       icon="arrowDown"
       iconSide="right"
       fullWidth={fullWidth}
+      isLoading={isLoading}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
@@ -57,10 +60,12 @@ EuiSelect.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  isLoading: PropTypes.bool,
   inputRef: PropTypes.func,
 };
 
 EuiSelect.defaultProps = {
   options: [],
   fullWidth: false,
+  isLoading: false,
 };

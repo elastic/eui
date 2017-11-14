@@ -3,6 +3,7 @@
  */
 .euiSelect {
   @include euiFormControlStyle;
+  @include euiFormControlIsLoading($isNextToIcon: true);
 
   padding-right: $euiSizeXXL; /* 1 */
   appearance: none;

@@ -18,12 +18,14 @@ export const EuiFieldPassword = ({
   value,
   isInvalid,
   fullWidth,
+  isLoading,
   ...rest
 }) => {
   const classes = classNames(
     'euiFieldPassword',
     {
       'euiFieldPassword--fullWidth': fullWidth,
+      'euiFieldPassword-isLoading': isLoading,
     },
     className
   );
@@ -32,6 +34,7 @@ export const EuiFieldPassword = ({
     <EuiFormControlLayout
       icon="lock"
       fullWidth={fullWidth}
+      isLoading={isLoading}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
@@ -55,9 +58,11 @@ EuiFieldPassword.propTypes = {
   value: PropTypes.string,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 EuiFieldPassword.defaultProps = {
   value: undefined,
   fullWidth: false,
+  isLoading: false,
 };

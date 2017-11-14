@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiFieldText is rendered 1`] = `
-<input
-  aria-label="aria-label"
-  class="euiFieldText testClass1 testClass2"
-  data-test-subj="test subject string"
-  type="text"
-/>
+<div
+  class="euiFormControlLayout"
+>
+  <input
+    aria-label="aria-label"
+    class="euiFieldText testClass1 testClass2"
+    data-test-subj="test subject string"
+    type="text"
+  />
+</div>
 `;

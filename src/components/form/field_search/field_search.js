@@ -18,12 +18,14 @@ export const EuiFieldSearch = ({
   value,
   isInvalid,
   fullWidth,
+  isLoading,
   ...rest
 }) => {
   const classes = classNames(
     'euiFieldSearch',
     {
       'euiFieldSearch--fullWidth': fullWidth,
+      'euiFieldSearch-isLoading': isLoading,
     },
     className
   );
@@ -32,6 +34,7 @@ export const EuiFieldSearch = ({
     <EuiFormControlLayout
       icon="search"
       fullWidth={fullWidth}
+      isLoading={isLoading}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
@@ -55,9 +58,11 @@ EuiFieldSearch.propTypes = {
   value: PropTypes.string,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 EuiFieldSearch.defaultProps = {
   value: undefined,
   fullWidth: false,
+  isLoading: false,
 };
