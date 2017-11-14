@@ -41,9 +41,9 @@ export const EuiSideNavItem = ({
 
   const classes = classNames('euiSideNavItem', {
     'euiSideNavItem--root': depth === 0,
+    'euiSideNavItem--rootIcon': depth === 0 && icon,
     'euiSideNavItem--trunk': depth === 1,
     'euiSideNavItem--branch': depth > 1,
-    'euiSideNavItem--rootIcon': depth === 0 && icon,
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {

@@ -1,6 +1,6 @@
 /**
- * 1. Text-align defaults to center.
- * 2. Need on the button element to color the underline.
+ * 1. Text-align defaults to center, so we have to override that.
+ * 2. Need this on the button element to color the underline.
  */
 .euiSideNavItemButton {
   @include euiFontSizeS;
@@ -128,9 +128,8 @@
    * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
    */
   & > .euiSideNavItemButton {
-    padding-left: $euiSizeS;
-
     position: relative; /* 1 */
+    padding-left: $euiSizeS;
 
     &:after {
       position: absolute; /* 1 */
