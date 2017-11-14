@@ -38,7 +38,7 @@ function growPropType(props, propName, componentName) {
 
   if (validValues.indexOf(value) === -1) {
     return new Error(
-      'Prop `' + propName + '` supplied to' + ' `' + componentName + '` must be a boolean or an integer between 1 and 10.'
+      `Prop \`${propName}\` supplied to \`${componentName}\` must be a boolean or an integer between 1 and 10.`
     );
   }
 }
