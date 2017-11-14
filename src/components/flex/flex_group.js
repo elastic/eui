@@ -38,7 +38,7 @@ export const EuiFlexGroup = ({
   alignItems,
   responsive,
   justifyContent,
-  isInline,
+  useSpan,
   ...rest,
 }) => {
   const classes = classNames(
@@ -52,7 +52,7 @@ export const EuiFlexGroup = ({
     className
   );
 
-  if (isInline) {
+  if (useSpan) {
     return (
       <span
         className={classes}
@@ -80,7 +80,7 @@ EuiFlexGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
-  isInline: PropTypes.bool,
+  useSpan: PropTypes.bool,
 };
 
 EuiFlexGroup.defaultProps = {
@@ -88,5 +88,5 @@ EuiFlexGroup.defaultProps = {
   alignItems: 'stretch',
   responsive: true,
   justifyContent: 'flexStart',
-  isInline: false,
+  useSpan: false,
 };

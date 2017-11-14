@@ -8,7 +8,7 @@ export const EuiFlexItem = ({
   children,
   className,
   grow,
-  isInline,
+  useSpan,
   ...rest,
 }) => {
   const classes = classNames(
@@ -20,7 +20,7 @@ export const EuiFlexItem = ({
     className
   );
 
-  if (isInline) {
+  if (useSpan) {
     return (
       <span
         className={classes}
@@ -44,7 +44,7 @@ export const EuiFlexItem = ({
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
   grow: growPropType,
-  isInline: PropTypes.bool,
+  useSpan: PropTypes.bool,
 };
 
 function growPropType(props, propName, componentName) {
@@ -65,5 +65,5 @@ function growPropType(props, propName, componentName) {
 
 EuiFlexItem.defaultProps = {
   grow: true,
-  isInline: false,
+  useSpan: false,
 };

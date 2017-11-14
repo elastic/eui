@@ -33,7 +33,7 @@ export const EuiSideNavItem = ({
 
   if (icon) {
     buttonIcon = (
-      <EuiFlexItem isInline grow={false}>
+      <EuiFlexItem useSpan grow={false}>
         {icon}
       </EuiFlexItem>
     );
@@ -54,7 +54,7 @@ export const EuiSideNavItem = ({
 
   const buttonContent = (
     <EuiFlexGroup
-      isInline
+      useSpan
       gutterSize="s"
       alignItems="center"
       responsive={false}
@@ -62,7 +62,7 @@ export const EuiSideNavItem = ({
       {buttonIcon}
 
       <EuiFlexItem
-        isInline
+        useSpan
         grow={false}
         className="euiSideNavItemButton__labelContainer"
       >

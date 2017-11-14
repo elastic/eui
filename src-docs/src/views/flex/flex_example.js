@@ -24,6 +24,10 @@ import FlexItems from './flex_items';
 const flexItemsSource = require('!!raw-loader!./flex_items');
 const flexItemsHtml = renderToHtml(FlexItems);
 
+import UseSpan from './use_span';
+const useSpanSource = require('!!raw-loader!./use_span');
+const useSpanHtml = renderToHtml(UseSpan);
+
 import FlexGutter from './flex_gutter';
 const flexGutterSource = require('!!raw-loader!./flex_gutter');
 const flexGutterHtml = renderToHtml(FlexGutter);
@@ -113,6 +117,25 @@ export default props => (
       }
       demo={
         <div className="guideDemo__highlightGrid"><FlexItems /></div>
+      }
+    />
+
+    <GuideSection
+      title="You can specify spans instead of divs"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: useSpanSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: useSpanHtml,
+      }]}
+      text={
+        <p>
+         <EuiCode>useSpan</EuiCode> can be set on <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
+        </p>
+      }
+      demo={
+        <div className="guideDemo__highlightGrid"><UseSpan /></div>
       }
     />
 
