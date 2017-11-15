@@ -1,6 +1,7 @@
 .euiFieldSearch {
   @include euiFormControlStyle;
   @include euiFormControlWithIcon($isIconOptional: false);
+  @include euiFormControlIsLoading;
   // This is a hack, since in Safari the search boxes were ignoring
   // padding. Get Dave Snider involved. It improves rendering significantly
   // although the padding still looks a bit off.

@@ -20,6 +20,19 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
   }
 }
 
+@mixin euiFormControlIsLoading($isNextToIcon: false) {
+
+  @at-root {
+    #{&}-isLoading {
+      @if ($isNextToIcon) {
+        padding-right: $euiSizeXXL + $euiSize;
+      } @else {
+        padding-right: $euiSizeXXL;
+      }
+    }
+  }
+}
+
 /**
  * 1. Override invalid state with focus state.
  */

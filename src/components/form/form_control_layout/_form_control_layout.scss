@@ -18,5 +18,16 @@
   .euiFormControlLayout__icon--right {
     left: auto;
     right: $euiSizeM;
+
+    // Loading spinner needs adjustment if icon also exists like selects.
+    ~ .euiFormControlLayout__loading {
+      right: $euiSizeXL;
+    }
+  }
+
+  .euiFormControlLayout__loading {
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeM;
   }
 }

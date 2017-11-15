@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiFieldNumber is rendered 1`] = `
-<input
-  aria-label="aria-label"
-  class="euiFieldNumber testClass1 testClass2"
-  data-test-subj="test subject string"
-  type="number"
-/>
+<div
+  class="euiFormControlLayout"
+>
+  <input
+    aria-label="aria-label"
+    class="euiFieldNumber testClass1 testClass2"
+    data-test-subj="test subject string"
+    type="number"
+  />
+</div>
 `;

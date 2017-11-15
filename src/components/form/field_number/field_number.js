@@ -21,17 +21,20 @@ export const EuiFieldNumber = ({
   value,
   isInvalid,
   fullWidth,
+  isLoading,
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
     'euiFieldNumber--withIcon': icon,
     'euiFieldNumber--fullWidth': fullWidth,
+    'euiFieldNumber-isLoading': isLoading,
   });
 
   return (
     <EuiFormControlLayout
       icon={icon}
       fullWidth={fullWidth}
+      isLoading={isLoading}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
@@ -60,9 +63,11 @@ EuiFieldNumber.propTypes = {
   icon: PropTypes.string,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 EuiFieldNumber.defaultProps = {
   value: undefined,
   fullWidth: false,
+  isLoading: false,
 };
