@@ -4,5 +4,6 @@ set -e
 
 eslint \
   --cache \
-  --ignore-pattern **/test/* **/*.test.js \
-  ./src
+  --ignore-pattern **/*.snap.js \
+  "./src/**/*.js" \
+  "./src-docs/**/*.js"

@@ -3,6 +3,14 @@ import React, {
 } from 'react';
 
 import {
+  EuiBottomBar,
+  EuiButtonEmpty,
+  EuiCallOut,
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiForm,
+  EuiFormRow,
   EuiLink,
   EuiPage,
   EuiPageBody,
@@ -14,15 +22,9 @@ import {
   EuiPageHeaderSection,
   EuiPageSideBar,
   EuiSpacer,
-  EuiTitle,
-  EuiCallOut,
-  EuiForm,
-  EuiFormRow,
-  EuiFieldText,
-  EuiBottomBar,
-  EuiButtonEmpty,
   EuiText,
   EuiTextColor,
+  EuiTitle,
 } from '../../../../src/components';
 
 import {

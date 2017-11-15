@@ -57,8 +57,8 @@ const flexItemPanelSource = require('!!raw-loader!./flex_item_panel');
 const flexItemPanelHtml = renderToHtml(FlexItemPanel);
 
 import FlexGroupResponsive from './flex_responsive';
-const flexItemResponsiveSource = require('!!raw-loader!./flex_responsive');
-const flexItemResonsiveHtml = renderToHtml(FlexGroupResponsive);
+const flexGroupResponsiveSource = require('!!raw-loader!./flex_responsive');
+const flexGroupResonsiveHtml = renderToHtml(FlexGroupResponsive);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -286,10 +286,10 @@ export default props => (
       title="FlexGroups can turn off responsive layouts"
       source={[{
         type: GuideSectionTypes.JS,
-        code: flexGutterSource,
+        code: flexGroupResponsiveSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: flexGutterHtml,
+        code: flexGroupResonsiveHtml,
       }]}
       text={
         <p>

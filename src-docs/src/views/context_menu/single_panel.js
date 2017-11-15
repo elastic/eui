@@ -43,21 +43,22 @@ export default class extends Component {
       </EuiButtonEmpty>
     );
 
-    const items = [(
-      <EuiContextMenuItem
-        key="10 rows"
-        icon="empty"
-        onClick={() => { this.closePopover(); window.alert('10 rows'); }}
-      >
-        10 rows
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
+    const items = [
+      (
+        <EuiContextMenuItem
+          key="10 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('10 rows'); }}
+        >
+          10 rows
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
           key="20 rows"
           icon="empty"
           onClick={() => { this.closePopover(); window.alert('20 rows'); }}
         >
-        20 rows
+          20 rows
         </EuiContextMenuItem>
       ), (
         <EuiContextMenuItem
@@ -75,7 +76,8 @@ export default class extends Component {
         >
         100 rows
         </EuiContextMenuItem>
-      )];
+      )
+    ];
 
     return (
       <EuiPopover

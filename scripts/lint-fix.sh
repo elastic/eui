@@ -3,7 +3,8 @@
 set -e
 
 eslint \
-  --cache \
   --fix \
-  --ignore-pattern **/test/* **/*.test.js \
-  ./src
+  --cache \
+  --ignore-pattern **/*.snap.js \
+  "./src/**/*.js" \
+  "./src-docs/**/*.js"

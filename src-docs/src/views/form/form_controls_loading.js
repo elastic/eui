@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 
 import {
   EuiFieldNumber,
@@ -10,73 +8,58 @@ import {
   EuiSelect,
 } from '../../../../src/components';
 
-// Don't use this, make proper ids instead. This is just for the example.
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
+export default () => (
+  <div>
+    <EuiFieldText
+      placeholder="Placeholder text"
+      isLoading
+    />
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+    <br />
+    <br />
 
-    const idPrefix = makeId();
-  }
+    <EuiFieldText
+      defaultValue="Text field with customizable icon"
+      icon="user"
+      isLoading
+      disabled
+    />
 
-  render() {
-    return (
-      <div>
-        <EuiFieldText
-          placeholder="Placeholder text"
-          isLoading
-        />
+    <br />
+    <br />
 
-        <br />
-        <br />
+    <EuiFieldNumber
+      defaultValue="23"
+      isLoading
+    />
 
-        <EuiFieldText
-          defaultValue="Text field with customizable icon"
-          icon="user"
-          isLoading
-          disabled
-        />
+    <br />
+    <br />
 
-        <br />
-        <br />
+    <EuiFieldPassword
+      defaultValue="password"
+      isLoading
+    />
 
-        <EuiFieldNumber
-          defaultValue="23"
-          isLoading
-        />
+    <br />
+    <br />
 
-        <br />
-        <br />
+    <EuiFieldSearch
+      defaultValue="Search field"
+      isLoading
+    />
 
-        <EuiFieldPassword
-          defaultValue="password"
-          isLoading
-        />
+    <br />
+    <br />
 
-        <br />
-        <br />
+    <EuiSelect
+      isLoading
+      options={[
+        { value: 'option_one', text: 'Option one' },
+        { value: 'option_two', text: 'Option two' },
+        { value: 'option_three', text: 'Option three' },
+      ]}
+    />
 
-        <EuiFieldSearch
-          defaultValue="Search field"
-          isLoading
-        />
-
-        <br />
-        <br />
-
-        <EuiSelect
-          isLoading
-          options={[
-            { value: 'option_one', text: 'Option one' },
-            { value: 'option_two', text: 'Option two' },
-            { value: 'option_three', text: 'Option three' },
-          ]}
-        />
-
-      </div>
-    );
-  }
-}
+  </div>
+);

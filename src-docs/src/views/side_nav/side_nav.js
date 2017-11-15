@@ -3,12 +3,9 @@ import React, {
 } from 'react';
 
 import {
-  EuiIcon,
   EuiSideNav,
   EuiSideNavItem,
   EuiSideNavTitle,
-  EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../src/components';
 
 export default class extends Component {

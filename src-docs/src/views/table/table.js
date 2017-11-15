@@ -370,21 +370,22 @@ export default class extends Component {
               >
                 <EuiContextMenuPanel
                   style={{ width: '100px' }}
-                  items={[(
-                    <EuiContextMenuItem
-                      key="A"
-                      icon="pencil"
-                      onClick={() => { this.closePopover(item.id); }}
-                    >
-                      Edit
-                    </EuiContextMenuItem>
-                  ), (
-                    <EuiContextMenuItem
+                  items={[
+                    (
+                      <EuiContextMenuItem
+                        key="A"
+                        icon="pencil"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
+                        Edit
+                      </EuiContextMenuItem>
+                    ), (
+                      <EuiContextMenuItem
                         key="B"
                         icon="share"
                         onClick={() => { this.closePopover(item.id); }}
                       >
-                      Share
+                        Share
                       </EuiContextMenuItem>
                     ), (
                       <EuiContextMenuItem
@@ -392,9 +393,10 @@ export default class extends Component {
                         icon="trash"
                         onClick={() => { this.closePopover(item.id); }}
                       >
-                      Delete
+                        Delete
                       </EuiContextMenuItem>
-                    )]}
+                    ),
+                  ]}
                 />
               </EuiPopover>
             </EuiTableRowCell>

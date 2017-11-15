@@ -60,8 +60,8 @@ export default props => (
           <ul>
             <li><EuiCode>language</EuiCode> sets the syntax highlighting for a specific language.</li>
             <li><EuiCode>color</EuiCode> accepts dark (default) or light.</li>
-            <li><EuiCode>paddingSize</EuiCode> accepts "s" / "m" / "l" (default).</li>
-            <li><EuiCode>fontSize</EuiCode> accepts "s" (default) / "m" / "l".</li>
+            <li><EuiCode>paddingSize</EuiCode> accepts &ldquo;s&rdquo; / &ldquo;m&rdquo; / &ldquo;l&rdquo; (default).</li>
+            <li><EuiCode>fontSize</EuiCode> accepts &ldquo;s&rdquo; (default) / &ldquo;m&rdquo; / &ldquo;l&rdquo;.</li>
             <li><EuiCode>overflowHeight</EuiCode> accepts a number. By default it is not set.</li>
             <li><EuiCode>transparentBackground</EuiCode> set to <EuiCode>false</EuiCode> will remove the background.</li>
             <li><EuiCode>inline</EuiCode> will display the passed code in an inline format. Will also remove any margins set.</li>

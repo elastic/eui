@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router';
-
 import { renderToHtml } from '../../services';
 
 import {
@@ -49,10 +47,10 @@ export default props => (
       title="Complicated side nav"
       source={[{
         type: GuideSectionTypes.JS,
-        code: sideNavSource,
+        code: sideNavComplicatedSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: sideNavHtml,
+        code: sideNavComplicatedHtml,
       }]}
       text={
         <p>

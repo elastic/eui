@@ -14,8 +14,6 @@ import {
   EuiPageContentBody,
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
-  EuiPageHeader,
-  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiPopover,
   EuiSpacer,
@@ -63,29 +61,30 @@ export default class extends Component {
       </EuiButton>
     );
 
-    const items = [(
-      <EuiContextMenuItem
-        key={0}
-        onClick={this.closePopover}
-      >
-        <EuiText>
-          Threshold alert
-        </EuiText>
-        <EuiText size="xs">
-          Send out an alert on a specific condition.
-        </EuiText>
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
+    const items = [
+      (
+        <EuiContextMenuItem
+          key={0}
+          onClick={this.closePopover}
+        >
+          <EuiText>
+            Threshold alert
+          </EuiText>
+          <EuiText size="xs">
+            Send out an alert on a specific condition.
+          </EuiText>
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
           key={1}
           onClick={this.closePopover}
         >
           <EuiText>
-          Change-based alert
-        </EuiText>
+            Change-based alert
+          </EuiText>
           <EuiText size="xs">
-          Send out an alert on a specific change.
-        </EuiText>
+            Send out an alert on a specific change.
+          </EuiText>
         </EuiContextMenuItem>
       ), (
         <EuiContextMenuItem
@@ -93,13 +92,14 @@ export default class extends Component {
           onClick={this.closePopover}
         >
           <EuiText>
-          Advanced watch
+            Advanced watch
           </EuiText>
           <EuiText size="xs">
-          Set up a custom watch in raw JSON.
+            Set up a custom watch in raw JSON.
           </EuiText>
         </EuiContextMenuItem>
-      )];
+      ),
+    ];
 
     return (
       <EuiPopover
