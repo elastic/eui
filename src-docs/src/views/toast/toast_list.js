@@ -97,28 +97,29 @@ export default class extends Component {
     const toastId = (toastIdCounter++).toString();
     const dismissToast = () => this.scheduleToastForDismissal(toastId, true);
 
-    const toasts = [(
-      <EuiToast
-        title="Check it out, here's a really long title that will wrap within a narrower browser"
-        onClose={dismissToast}
-      >
-        <p>
-          Here&rsquo;s some stuff that you need to know. We can make this text really long so that,
-          when viewed within a browser that&rsquo;s fairly narrow, it will wrap, too.
-        </p>
-        <p>
-          And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
-        </p>
-      </EuiToast>
-    ), (
-      <EuiToast
+    const toasts = [
+      (
+        <EuiToast
+          title="Check it out, here's a really long title that will wrap within a narrower browser"
+          onClose={dismissToast}
+        >
+          <p>
+            Here&rsquo;s some stuff that you need to know. We can make this text really long so that,
+            when viewed within a browser that&rsquo;s fairly narrow, it will wrap, too.
+          </p>
+          <p>
+            And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+          </p>
+        </EuiToast>
+      ), (
+        <EuiToast
           title="Download complete!"
           color="success"
           onClose={dismissToast}
         >
           <p>
-          Thanks for your patience!
-        </p>
+            Thanks for your patience!
+          </p>
         </EuiToast>
       ), (
         <EuiToast
@@ -128,10 +129,10 @@ export default class extends Component {
           onClose={dismissToast}
         >
           <p>
-          This is a security measure.
+            This is a security measure.
           </p>
           <p>
-          Please move your mouse to show that you&rsquo;re still using Kibana.
+            Please move your mouse to show that you&rsquo;re still using Kibana.
           </p>
         </EuiToast>
       ), (
@@ -142,10 +143,11 @@ export default class extends Component {
           onClose={dismissToast}
         >
           <p>
-          Sorry. We&rsquo;ll try not to let it happen it again.
+            Sorry. We&rsquo;ll try not to let it happen it again.
           </p>
         </EuiToast>
-      )];
+      ),
+    ];
 
     const toast = (
       <EuiGlobalToastListItem key={toastId}>

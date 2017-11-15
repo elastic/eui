@@ -15,7 +15,6 @@ import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiText,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -69,14 +68,14 @@ export class GuidePageChrome extends Component {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="xs"
-              onClick={this.props.onToggleTheme}
-              className="euiLink"
-              iconSide="right"
-              color="text"
-              iconType="invert"
-            >
+          <EuiButtonEmpty
+            size="xs"
+            onClick={this.props.onToggleTheme}
+            className="euiLink"
+            iconSide="right"
+            color="text"
+            iconType="invert"
+          >
               Flip theme
           </EuiButtonEmpty>
         </EuiFlexItem>
@@ -167,7 +166,7 @@ export class GuidePageChrome extends Component {
         {this.renderIdentity()}
 
         <EuiSpacer size="m" />
-        
+
         <EuiFieldSearch
           placeholder="Search..."
           value={this.state.search}

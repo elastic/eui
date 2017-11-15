@@ -13,7 +13,7 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
-import ToastList, { addToast, removeAllToasts } from './toast_list';
+import ToastList, { addToast } from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
 const toastListHtml = renderToHtml(ToastList);
 

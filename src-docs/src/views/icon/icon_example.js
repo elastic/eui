@@ -145,7 +145,8 @@ export default props => (
       text={
         <p>
           Use the <EuiCode>color</EuiCode> prop to assign a color for your icons.
-          The default behavior is to inherit the text color as the SVG color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
+          The default behavior is to inherit the text color as the SVG
+          color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
         </p>
       }
       demo={

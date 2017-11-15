@@ -1,4 +1,14 @@
 {
+  "settings": {
+    "import/resolver": {
+       "node": {
+        "extensions": [".js"]
+      },
+      "webpack": {
+        "config": "./src-docs/webpack.config.js"
+      }
+    }
+  },
   "extends": "@elastic/eslint-config-kibana",
   "env": {
     "jest": true
