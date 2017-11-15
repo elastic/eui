@@ -28,9 +28,13 @@ import FlexGutter from './flex_gutter';
 const flexGutterSource = require('!!raw-loader!./flex_gutter');
 const flexGutterHtml = renderToHtml(FlexGutter);
 
-import FlexGrow from './flex_grow';
-const flexGrowSource = require('!!raw-loader!./flex_grow');
-const flexGrowHtml = renderToHtml(FlexGrow);
+import FlexGrowZero from './flex_grow_zero';
+const flexGrowZeroSource = require('!!raw-loader!./flex_grow_zero');
+const flexGrowZeroHtml = renderToHtml(FlexGrowZero);
+
+import FlexGrowNumeric from './flex_grow_numeric';
+const flexGrowNumericSource = require('!!raw-loader!./flex_grow_numeric');
+const flexGrowNumericHtml = renderToHtml(FlexGrowNumeric);
 
 import FlexJustify from './flex_justify';
 const flexJustifySource = require('!!raw-loader!./flex_justify');
@@ -136,10 +140,10 @@ export default props => (
       title="FlexItem can individually turn off stretching"
       source={[{
         type: GuideSectionTypes.JS,
-        code: flexGrowSource,
+        code: flexGrowZeroSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: flexGrowHtml,
+        code: flexGrowZeroHtml,
       }]}
       text={
         <p>
@@ -148,7 +152,27 @@ export default props => (
         </p>
       }
       demo={
-        <div className="guideDemo__highlightGrid"><FlexGrow /></div>
+        <div className="guideDemo__highlightGrid"><FlexGrowZero /></div>
+      }
+    />
+
+    <GuideSection
+      title="FlexItem can specify a proportional width"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: flexGrowNumericSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: flexGrowNumericHtml,
+      }]}
+      text={
+        <p>
+          You can specify a number between 1 and 10 for a <EuiCode>FlexItem</EuiCode> to
+          try to take up a proportional part of the flex box it is in.
+        </p>
+      }
+      demo={
+        <div className="guideDemo__highlightGrid"><FlexGrowNumeric /></div>
       }
     />
 

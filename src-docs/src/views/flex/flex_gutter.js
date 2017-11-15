@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -14,8 +15,7 @@ export default () => (
       <EuiFlexItem>None</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/>
-    <br/>
+    <EuiSpacer />
 
     <EuiFlexGroup gutterSize="s">
       <EuiFlexItem>Small</EuiFlexItem>
@@ -24,8 +24,7 @@ export default () => (
       <EuiFlexItem>Small</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/>
-    <br/>
+    <EuiSpacer />
 
     <EuiFlexGroup gutterSize="m">
       <EuiFlexItem>Medium</EuiFlexItem>
@@ -34,8 +33,7 @@ export default () => (
       <EuiFlexItem>Medium</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/>
-    <br/>
+    <EuiSpacer />
 
     <EuiFlexGroup gutterSize="l">
       <EuiFlexItem>Large (default)</EuiFlexItem>
@@ -44,8 +42,7 @@ export default () => (
       <EuiFlexItem>Large (default)</EuiFlexItem>
     </EuiFlexGroup>
 
-    <br/>
-    <br/>
+    <EuiSpacer />
 
     <EuiFlexGroup gutterSize="xl">
       <EuiFlexItem>Extra Large</EuiFlexItem>
