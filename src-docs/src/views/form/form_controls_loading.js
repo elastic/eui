@@ -3,16 +3,11 @@ import React, {
 } from 'react';
 
 import {
-  EuiCheckboxGroup,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
-  EuiRange,
-  EuiRadioGroup,
   EuiSelect,
-  EuiSwitch,
-  EuiTextArea,
 } from '../../../../src/components';
 
 // Don't use this, make proper ids instead. This is just for the example.
