@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - `<EuiFlexItem>` now accepts integers between 1 and 10 for the `grow` prop. [(#144)](https://github.com/elastic/eui/pull/144)
+- Add `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
 
 # [`0.0.2`](https://github.com/elastic/eui/tree/v0.0.2)
 
