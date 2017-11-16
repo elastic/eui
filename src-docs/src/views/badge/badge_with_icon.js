@@ -29,17 +29,5 @@ export default () => (
       Right side
     </EuiBadge>
 
-    <EuiSpacer />
-
-    <EuiBadge color="secondary" iconType="check" />
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="warning" iconType="minusInCircle" />
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="danger" iconType="alert" />
-
   </div>
 );

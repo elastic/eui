@@ -3,13 +3,10 @@
   line-height: $euiSizeL;
   display: inline-block;
   text-decoration: none;
-  border-radius: $euiSizeL;
   padding: 0 $euiSizeXS;
-  background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
-  border: $euiBorderThin;
-  border-color: transparent;
+  border-radius: $euiBorderRadius;
 
   .euiBadge__content {
     display: flex;
@@ -53,7 +50,7 @@ $badgeTypes: (
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
-    background-color: tintOrShade($color, 90%, 70%);
-    border-color: tintOrShade($color, 70%, 70%);
+    color: $euiColorEmptyShade;
+    background-color: $color;
   }
 }

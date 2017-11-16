@@ -4,6 +4,7 @@ import React, {
 
 import {
   EuiBadge,
+  EuiHealth,
   EuiButton,
   EuiButtonIcon,
   EuiCheckbox,
@@ -46,9 +47,9 @@ export default class extends Component {
       id: 0,
       title: 'A very long line which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis',
       type: 'user',
-      dateCreated: 'Tue Dec 06 2016',
+      dateCreated: 'Tue Dec 28 2016',
       magnitude: 1,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 1,
       title: {
@@ -58,7 +59,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 01 2016',
       magnitude: 1,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 2,
       title: {
@@ -66,9 +67,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 28 2016',
+      dateCreated: <span>Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge></span>,
       magnitude: 10,
-      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 3,
       title: {
@@ -78,7 +79,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 16 2016',
       magnitude: 100,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 4,
       title: {
@@ -88,7 +89,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 13 2016',
       magnitude: 1000,
-      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 5,
       title: {
@@ -98,7 +99,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 6,
       title: {
@@ -108,7 +109,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="danger" iconType="alert">Danger</EuiBadge>,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }, {
       id: 7,
       title: {
@@ -118,7 +119,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 8,
       title: {
@@ -128,7 +129,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 9,
       title: {
@@ -138,7 +139,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 10,
       title: {
@@ -148,7 +149,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="danger" iconType="alert">Danger</EuiBadge>,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }, {
       id: 11,
       title: {
@@ -158,7 +159,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 12,
       title: {
@@ -168,7 +169,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 13,
       title: {
@@ -178,7 +179,7 @@ export default class extends Component {
       type: 'user',
       dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
-      health: <EuiBadge color="danger" iconType="alert">Danger</EuiBadge>,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }];
 
     this.sortableProperties = new SortableProperties([{
@@ -212,6 +213,11 @@ export default class extends Component {
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
     }, {
+      id: 'health',
+      label: 'Health',
+      alignment: LEFT_ALIGNMENT,
+      isSortable: true,
+    }, {
       id: 'dateCreated',
       label: 'Date created',
       alignment: LEFT_ALIGNMENT,
@@ -219,11 +225,6 @@ export default class extends Component {
     }, {
       id: 'magnitude',
       label: 'Orders of magnitude',
-      alignment: RIGHT_ALIGNMENT,
-      isSortable: true,
-    }, {
-      id: 'health',
-      label: 'Health',
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,
     }, {

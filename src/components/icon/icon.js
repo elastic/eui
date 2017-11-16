@@ -188,6 +188,7 @@ const colorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
+  success: 'euiIcon--success',
   accent: 'euiIcon--accent',
   warning: 'euiIcon--warning',
   danger: 'euiIcon--danger',
