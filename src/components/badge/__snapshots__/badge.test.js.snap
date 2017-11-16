@@ -8,8 +8,6 @@ exports[`EuiBadge is rendered 1`] = `
 >
   <span
     class="euiBadge__content"
-  >
-    <span />
-  </span>
+  />
 </div>
 `;

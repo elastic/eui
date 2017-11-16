@@ -28,16 +28,30 @@ export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 export const EuiBadge = ({ children, color, iconType, iconSide, className, ...rest }) => {
   const classes = classNames(
     'euiBadge',
+    {
+      'euiBadge--padded': children,
+    },
     colorToClassNameMap[color],
     iconSideToClassNameMap[iconSide],
     className
   );
 
-  let optionalIcon = null;
+  let optionalIcon;
   if (iconType) {
     optionalIcon = (
       <EuiIcon type={iconType} size="m" className="euiBadge__icon" />
     );
+  }
+
+  {/* The extra span applies margin */}
+  let optionalChildren;
+  if (children) {
+    optionalChildren = (
+      <span>
+        {children}
+      </span>
+    );
+
   }
 
   return (
@@ -47,9 +61,7 @@ export const EuiBadge = ({ children, color, iconType, iconSide, className, ...re
     >
       <span className="euiBadge__content">
         {optionalIcon}
-        <span>
-          {children}
-        </span>
+        {optionalChildren}
       </span>
     </div>
   );

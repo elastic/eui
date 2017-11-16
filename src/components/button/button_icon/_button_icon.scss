@@ -4,8 +4,9 @@
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
-  height: $euiSizeXL;
-  width: $euiSizeXL;
+  height: $euiSizeL;
+  width: $euiSizeL;
+  border-radius: $euiBorderRadius;
 
   // Account for border.
   .euiButtonIcon__icon {
@@ -29,6 +30,7 @@ $buttonTypes: (
   danger: $euiColorDanger,
   disabled: tintOrShade($euiTextColor, 70%, 80%),
   ghost: $euiColorGhost,
+  text: $euiTextColor,
 );
 
 // Create button modifiders based upon the map.
@@ -41,7 +43,6 @@ $buttonTypes: (
     }
 
     &:hover, &:focus {
-      background-color: transparentize($color, .9);
 
       @if ($name == 'disabled') {
         cursor: not-allowed;

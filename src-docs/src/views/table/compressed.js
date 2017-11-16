@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 
 import {
+  EuiBadge,
   EuiCheckbox,
   EuiIcon,
   EuiLink,
@@ -36,7 +37,7 @@ export default class extends Component {
       title: 'A very long line which will wrap on narrower screens and NOT become truncated using an ellipsis',
       type: 'user',
       dateCreated: 'Tue Dec 06 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1,
+      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
     }, {
       id: 1,
       title: {
@@ -45,7 +46,7 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1,
+      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
     }, {
       id: 2,
       title: {
@@ -54,7 +55,7 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 28 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 10,
+      health: <EuiBadge color="warning" iconType="minusInCircle">Warning</EuiBadge>,
     }, {
       id: 3,
       title: {
@@ -63,7 +64,7 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 16 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 100,
+      health: <EuiBadge color="danger" iconType="alert">Danger</EuiBadge>,
     }, {
       id: 4,
       title: {
@@ -72,7 +73,7 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 13 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1000,
+      health: <EuiBadge color="secondary" iconType="check">OK</EuiBadge>,
     }];
 
     this.columns = [{
@@ -94,8 +95,8 @@ export default class extends Component {
       label: 'Date created',
       alignment: LEFT_ALIGNMENT,
     }, {
-      id: 'magnitude',
-      label: 'Orders of magnitude',
+      id: 'health',
+      label: 'Health',
       alignment: RIGHT_ALIGNMENT,
     }];
   }

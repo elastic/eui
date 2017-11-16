@@ -9,6 +9,7 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'alert',
   'apps',
   'arrowDown',
   'arrowLeft',
@@ -47,6 +48,7 @@ const iconTypes = [
   'pencil',
   'pin',
   'plusInCircle',
+  'questionInCircle',
   'search',
   'shard',
   'share',
@@ -56,6 +58,7 @@ const iconTypes = [
   'tear',
   'trash',
   'user',
+  'wrench',
 ];
 
 export default () => (

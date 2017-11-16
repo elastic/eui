@@ -3,20 +3,22 @@
   line-height: $euiSizeL;
   display: inline-block;
   text-decoration: none;
-  border: solid 1px transparent;
-  border-radius: $euiSizeL;
-  padding: 0 $euiSizeS;
+  border-radius: $euiBorderRadius;
+  padding: 0 $euiSizeXS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
+  border: $euiBorderThin;
+  border-color: transparent;
 
   .euiBadge__content {
     display: flex;
     align-items: center;
+    min-height: $euiSizeL;
   }
 
-  .euiBadge__icon {
-    margin-right: $euiSizeXS;
+  .euiBadge__icon + * {
+    margin-left: $euiSizeXS;
   }
 
   &.euiBadge--iconRight .euiBadge__content {
@@ -26,13 +28,22 @@
       margin-left: $euiSizeXS;
       margin-right: 0;
     }
+
+    .euiBadge__icon + * {
+      margin-left: 0;
+      margin-right: $euiSizeXS;
+    }
+  }
+
+  &.euiBadge--padded {
+    padding: 0 $euiSizeS;
   }
 }
 
 
 // Modifier naming and colors.
 $badgeTypes: (
-  default: $euiColorLightShade,
+  default: $euiColorMediumShade,
   primary: $euiColorPrimary,
   secondary: $euiColorSecondary,
   warning: $euiColorWarning,
@@ -42,7 +53,7 @@ $badgeTypes: (
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
-    border-color: $color;
-    background-color: transparentize($color, .9);
+    background-color: tintOrShade($color, 90%, 70%);
+    border-color: tintOrShade($color, 70%, 70%);
   }
 }
