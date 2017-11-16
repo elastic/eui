@@ -54,10 +54,10 @@ export default props => (
       title="Complex side nav"
       source={[{
         type: GuideSectionTypes.JS,
-        code: sideNavComplicatedSource,
+        code: sideNavComplexSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: sideNavComplicatedHtml,
+        code: sideNavComplexHtml,
       }]}
       text={
         <p>

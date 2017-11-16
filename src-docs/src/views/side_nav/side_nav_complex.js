@@ -5,11 +5,6 @@ import React, {
 import {
   EuiIcon,
   EuiSideNav,
-  EuiSideNavGroup,
-  EuiSideNavItem,
-  EuiSideNavTitle,
-  EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -59,18 +54,19 @@ export default class extends Component {
       }),
       this.createItem('Kibana', {
         icon: <EuiIcon type="logoKibana" />,
-        items: [this.createItem('Advanced settings', {
-          items: [
-            this.createItem('General'),
-            this.createItem('Timelion', {
-              items: [
-                this.createItem('Time stuff'),
-                this.createItem('Lion stuff'),
-              ],
-            }),
-            this.createItem('Visualizations'),
-          ],
-        }),
+        items: [
+          this.createItem('Advanced settings', {
+            items: [
+              this.createItem('General'),
+              this.createItem('Timelion', {
+                items: [
+                  this.createItem('Time stuff'),
+                  this.createItem('Lion stuff'),
+                ],
+              }),
+              this.createItem('Visualizations'),
+            ],
+          }),
           this.createItem('Index Patterns'),
           this.createItem('Saved Objects'),
           this.createItem('Reporting'),

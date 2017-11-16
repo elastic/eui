@@ -4,8 +4,6 @@ import React, {
 
 import {
   EuiSideNav,
-  EuiSideNavItem,
-  EuiSideNavTitle,
 } from '../../../../src/components';
 
 export default class extends Component {

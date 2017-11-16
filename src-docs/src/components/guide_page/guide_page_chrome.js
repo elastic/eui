@@ -14,7 +14,6 @@ import {
   EuiIcon,
   EuiSideNav,
   EuiSpacer,
-  EuiText,
 } from '../../../../src/components';
 
 export class GuidePageChrome extends Component {
@@ -82,6 +81,18 @@ export class GuidePageChrome extends Component {
     );
   }
 
+  renderSubSections = subSections => {
+    if (!subSections) {
+      return;
+    }
+
+    return subSections.map(subSection => ({
+      id: `subSection-${subSection.id}`,
+      name: subSection.name,
+      onClick: this.onClickLink.bind(this, subSection.id),
+    }));
+  }
+
   renderComponentNavItems() {
     const matchingItems = this.props.components.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -92,9 +103,7 @@ export class GuidePageChrome extends Component {
       const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
       if (currentSectionIndex !== -1) {
         matchingItems[currentSectionIndex].subSections = this.props.sections.map(section => {
-          return {
-            ...section,
-          };
+          return { ...section };
         });
       }
     }
@@ -109,23 +118,11 @@ export class GuidePageChrome extends Component {
           subSections,
         } = item;
 
-        let items;
-
-        if (subSections) {
-          // Sometimes subsections have the same ID as the parents section, so let's give them
-          // a unique prefix.
-          items = subSections.map(subSection => ({
-            id: `subSection-${subSection.id}`,
-            name: subSection.name,
-            onClick: this.onClickLink.bind(this, subSection.id),
-          }));
-        }
-
         return {
           id: `component-${path}`,
           name,
           href: `#/${path}`,
-          items,
+          items: this.renderSubSections(subSections),
           isSelected: name === this.props.currentRouteName,
         };
       }),
@@ -144,43 +141,16 @@ export class GuidePageChrome extends Component {
         const {
           name,
           path,
-          subSections,
         } = item;
-
-        let items;
-
-        if (subSections) {
-          // Sometimes subsections have the same ID as the parents section, so let's give them
-          // a unique prefix.
-          items = subSections.map(subSection => ({
-            id: `subSection-${subSection.id}`,
-            name: subSection.name,
-            onClick: this.onClickLink.bind(this, subSection.id),
-          }));
-        }
 
         return {
           id: `sandbox-${path}`,
           name,
           href: `#/${path}`,
-          items,
           isSelected: name === this.props.currentRouteName,
         };
       }),
     };
-
-    return map((item, index) => {
-      return (
-        <EuiSideNavItem key={`sandboxNavItem-${index}`}>
-          <Link
-            className="guideNavItem__link"
-            to={item.path}
-          >
-            {item.name}
-          </Link>
-        </EuiSideNavItem>
-      );
-    });
   }
 
   render() {

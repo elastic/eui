@@ -131,7 +131,7 @@ export default props => (
       }]}
       text={
         <p>
-         <EuiCode>useSpan</EuiCode> can be set on <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
+          <EuiCode>useSpan</EuiCode> can be set on <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
         </p>
       }
       demo={
