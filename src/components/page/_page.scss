@@ -1,9 +1,9 @@
 .euiPage {
-  padding: $euiSizeL;
+  padding: $euiSize;
 }
 
 @include screenXSmall {
   .euiPage {
-    padding: $euiSizeL 0;
+    padding: $euiSize 0;
   }
 }

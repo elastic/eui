@@ -18,6 +18,7 @@ import {
   EuiPopover,
   EuiSpacer,
   EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 
 import {
@@ -121,6 +122,13 @@ export default class extends Component {
   renderPage() {
     return (
       <EuiPage>
+        <EuiPageHeader>
+          <EuiPageHeaderSection>
+            <EuiTitle size="l">
+              <h1>Management</h1>
+            </EuiTitle>
+          </EuiPageHeaderSection>
+        </EuiPageHeader>
         <EuiPageBody>
           <EuiPageSideBar>
             <ManagementSideNav />

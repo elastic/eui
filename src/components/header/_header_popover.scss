@@ -1,8 +1,7 @@
 /**
  * 1. Override KeyPadMenu.
- * 2. Override popover default.
  */
 .euiHeaderPopover {
-  top: calc(100% - #{$euiSizeS}) !important; /* 1 */
-  border-radius: $euiBorderRadius 0 $euiBorderRadius $euiBorderRadius !important; /* 2 */
+  top: 100% !important; /* 1 */
+  width: $euiSize * 20;
 }
