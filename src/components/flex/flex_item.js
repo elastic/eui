@@ -8,7 +8,7 @@ export const EuiFlexItem = ({
   children,
   className,
   grow,
-  useSpan,
+  component: Component,
   ...rest,
 }) => {
   const classes = classNames(
@@ -20,31 +20,20 @@ export const EuiFlexItem = ({
     className
   );
 
-  if (useSpan) {
-    return (
-      <span
-        className={classes}
-        {...rest}
-      >
-        {children}
-      </span>
-    );
-  }
-
   return (
-    <div
+    <Component
       className={classes}
       {...rest}
     >
       {children}
-    </div>
+    </Component>
   );
 };
 
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
   grow: growPropType,
-  useSpan: PropTypes.bool,
+  component: PropTypes.oneOf(['div', 'span']),
 };
 
 function growPropType(props, propName, componentName) {
@@ -65,5 +54,5 @@ function growPropType(props, propName, componentName) {
 
 EuiFlexItem.defaultProps = {
   grow: true,
-  useSpan: false,
+  component: 'div',
 };
