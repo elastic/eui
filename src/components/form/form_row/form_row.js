@@ -24,18 +24,25 @@ export class EuiFormRow extends Component {
     this.onBlur = this.onBlur.bind(this);
   }
 
-  onFocus() {
+  onFocus(...args) {
+    if (this.props.children.props.onFocus) {
+      this.props.children.props.onFocus(...args);
+    }
+
     this.setState({
       isFocused: true,
     });
   }
 
-  onBlur() {
+  onBlur(...args) {
+    if (this.props.children.props.onBlur) {
+      this.props.children.props.onBlur(...args);
+    }
+
     this.setState({
       isFocused: false,
     });
   }
-
   render() {
     const {
       children,
