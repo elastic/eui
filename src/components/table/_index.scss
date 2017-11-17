@@ -7,7 +7,7 @@
 }
 
 @mixin euiTableCellCheckbox {
-  width: $euiSizeL + $euiSizeS;
+  width: $euiSize + $euiSizeS;
   vertical-align: middle;
 
   .euiTableCellContent {

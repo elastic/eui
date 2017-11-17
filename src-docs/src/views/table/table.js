@@ -216,7 +216,6 @@ export default class extends Component {
       id: 'health',
       label: 'Health',
       alignment: LEFT_ALIGNMENT,
-      isSortable: true,
     }, {
       id: 'dateCreated',
       label: 'Date created',
