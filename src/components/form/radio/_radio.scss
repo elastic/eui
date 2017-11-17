@@ -45,8 +45,8 @@
     }
 
     &:disabled:checked ~ .euiRadio__circle {
-      background-color: $euiColorMediumShade;
-      border-color: $euiColorMediumShade;
+      background-color: $euiColorLightShade;
+      border-color: $euiColorLightShade;
     }
 
     &:disabled:not(:checked) ~ .euiRadio__circle {

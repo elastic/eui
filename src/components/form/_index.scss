@@ -75,7 +75,7 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 
   &:disabled {
     cursor: not-allowed;
-    background: $euiColorLightestShade;
+    background: darken($euiColorLightestShade, 2%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
   }
 }

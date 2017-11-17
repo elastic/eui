@@ -99,6 +99,10 @@
     cursor: not-allowed;
   }
 
+  .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+    background: $euiColorLightShade;
+  }
+
   .euiSwitch__input:disabled ~ .euiSwitch__body {
     background: $euiColorLightestShade;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.08);

@@ -144,6 +144,7 @@ export default class extends Component {
           label="Switch control"
           checked={this.state.isSwitchChecked}
           onChange={this.onSwitchChange}
+          checked
           disabled
         />
 
