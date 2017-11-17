@@ -2,32 +2,18 @@ import React from 'react';
 
 import {
   EuiBadge,
-  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiBadge color="secondary" iconType="check">
-      OK
+    <EuiBadge iconType="help">
+      Primary
     </EuiBadge>
 
     &nbsp;&nbsp;
 
-    <EuiBadge color="warning" iconType="minusInCircle">
-      Warning
+    <EuiBadge color="primary" iconType="user" iconSide="right">
+      Secondary
     </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="danger" iconType="alert">
-      Danger
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="primary" iconType="faceHappy" iconSide="right">
-      Right side
-    </EuiBadge>
-
   </div>
 );

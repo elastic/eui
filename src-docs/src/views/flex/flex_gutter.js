@@ -17,6 +17,15 @@ export default () => (
 
     <EuiSpacer />
 
+    <EuiFlexGroup gutterSize="xs">
+      <EuiFlexItem>Extra small</EuiFlexItem>
+      <EuiFlexItem>Extra small</EuiFlexItem>
+      <EuiFlexItem>Extra small</EuiFlexItem>
+      <EuiFlexItem>Extra small</EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer />
+
     <EuiFlexGroup gutterSize="s">
       <EuiFlexItem>Small</EuiFlexItem>
       <EuiFlexItem>Small</EuiFlexItem>

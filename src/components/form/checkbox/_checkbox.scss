@@ -43,10 +43,14 @@
     &:disabled ~ .euiCheckbox__label {
       cursor: not-allowed;
     }
-    
+
+    &:disabled:checked ~ .euiCheckbox__square {
+      background-color: $euiColorMediumShade;
+      border-color: $euiColorMediumShade;
+    }
+
     &:disabled:not(:checked) ~ .euiCheckbox__square {
       background-color: $euiColorLightestShade;
-
     }
   }
 

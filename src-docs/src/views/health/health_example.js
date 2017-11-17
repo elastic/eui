@@ -29,7 +29,10 @@ export default props => (
       }]}
       text={
         <p>
-          Description needed: how to use the <EuiCode>Health</EuiCode> component.
+          The <EuiCode>Health</EuiCode> component should be used when showing comparitive
+          health of listed objects (like servers, nodes, indexes..etc). Because icons are
+          vague and bulky and color alone does not work, we think color plus text provides
+          a recognizable, lightweight combo that works in most situations.
         </p>
       }
       demo={<Health />}

@@ -21,7 +21,7 @@ export const EuiHealth = ({
       className={classes}
       {...rest}
     >
-      <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexGroup gutterSize="xs" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiIcon type="dot" color={color} />
         </EuiFlexItem>

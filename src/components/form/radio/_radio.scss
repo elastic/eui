@@ -44,6 +44,11 @@
       cursor: not-allowed;
     }
 
+    &:disabled:checked ~ .euiRadio__circle {
+      background-color: $euiColorMediumShade;
+      border-color: $euiColorMediumShade;
+    }
+
     &:disabled:not(:checked) ~ .euiRadio__circle {
       background-color: $euiColorLightestShade;
 

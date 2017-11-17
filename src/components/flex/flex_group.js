@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 const gutterSizeToClassNameMap = {
   none: null,
+  xs: 'euiFlexGroup--gutterExtraSmall',
   s: 'euiFlexGroup--gutterSmall',
   m: 'euiFlexGroup--gutterMedium',
   l: 'euiFlexGroup--gutterLarge',

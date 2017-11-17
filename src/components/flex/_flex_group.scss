@@ -8,6 +8,10 @@
   }
 
   // Gutter Sizes
+  &.euiFlexGroup--gutterExtraSmall > .euiFlexItem + .euiFlexItem {
+    margin-left: $euiSizeXS;
+  }
+
   &.euiFlexGroup--gutterSmall > .euiFlexItem + .euiFlexItem {
     margin-left: $euiSizeS;
   }

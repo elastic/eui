@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   EuiHealth,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -10,13 +11,19 @@ export default () => (
       Unknown
     </EuiHealth>
 
+    <EuiSpacer />
+
     <EuiHealth color="success">
       Healthy
     </EuiHealth>
 
+    <EuiSpacer />
+
     <EuiHealth color="warning">
       Warning
     </EuiHealth>
+
+    <EuiSpacer />
 
     <EuiHealth color="danger">
       Failure
