@@ -39,12 +39,14 @@
       border-color: darken($euiColorPrimary, 10%);
     }
 
-    &:disabled ~ .euiCheckbox__square {
-      background-color: $euiColorLightestShade;
-
-    }
+    &:disabled,
     &:disabled ~ .euiCheckbox__label {
       cursor: not-allowed;
+    }
+    
+    &:disabled:not(:checked) ~ .euiCheckbox__square {
+      background-color: $euiColorLightestShade;
+
     }
   }
 

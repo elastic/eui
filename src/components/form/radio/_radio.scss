@@ -3,7 +3,7 @@
   min-height: $euiSizeL;
 
   /**
-   * 1. Float above the visual checkbox and match its dimension, so that when users try to click it
+   * 1. Float above the visual radio and match its dimension, so that when users try to click it
    *    they actually click this input.
    */
   .euiRadio__input {
@@ -30,20 +30,23 @@
 
     &:focus ~ .euiRadio__circle,
     &:active:not(:disabled) ~ .euiRadio__circle {
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
       border-color: $euiColorPrimary;
       border-width: $euiSizeXS / 2;
     }
 
     &:focus:checked ~.euiRadio__circle {
-      border-color: darken($euiColorPrimary, 10%)
+      border-color: darken($euiColorPrimary, 10%);
     }
 
-    &:disabled ~ .euiRadio__circle {
-      background-color: $euiColorLightestShade;
-
-    }
+    &:disabled,
     &:disabled ~ .euiRadio__label {
       cursor: not-allowed;
+    }
+
+    &:disabled:not(:checked) ~ .euiRadio__circle {
+      background-color: $euiColorLightestShade;
+
     }
   }
 
@@ -55,6 +58,7 @@
     border: $euiBorderThin;
     background: $euiFormBackgroundColor;
     z-index: 0;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
   }
 
     .euiRadio__check {
