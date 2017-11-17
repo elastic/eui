@@ -18,7 +18,6 @@ import {
 
 import {
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
 } from '../../../../src/services';
 
 export default class extends Component {

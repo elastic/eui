@@ -11,6 +11,8 @@ import {
   EuiPage,
   EuiPageBody,
   EuiPageContent,
+  EuiPageHeader,
+  EuiPageHeaderSection,
   EuiPageContentBody,
   EuiPageContentHeader,
   EuiPageContentHeaderSection,
