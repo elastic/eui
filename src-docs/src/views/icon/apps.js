@@ -9,14 +9,20 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'advancedSettingsApp',
   'apmApp',
+  'consoleApp',
   'dashboardApp',
   'devToolsApp',
   'discoverApp',
   'graphApp',
+  'grokApp',
+  'indexPatternApp',
   'loggingApp',
   'machineLearningApp',
+  'managementApp',
   'monitoringApp',
+  'pipelineApp',
   'timelionApp',
   'visualizeApp',
 ];

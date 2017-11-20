@@ -2,14 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './assets/app_advanced_settings.svg';
 import './assets/app_apm.svg';
+import './assets/app_console.svg';
 import './assets/app_dashboard.svg';
 import './assets/app_devtools.svg';
 import './assets/app_discover.svg';
 import './assets/app_graph.svg';
+import './assets/app_grok.svg';
+import './assets/app_index_pattern.svg';
 import './assets/app_logging.svg';
+import './assets/app_management.svg';
 import './assets/app_ml.svg';
 import './assets/app_monitoring.svg';
+import './assets/app_pipeline.svg';
 import './assets/app_timelion.svg';
 import './assets/app_visualize.svg';
 import './assets/apps.svg';
@@ -77,6 +83,7 @@ const humanizeCamelCase = str => (
 );
 
 const typeToIconMap = {
+  advancedSettingsApp: 'app_advanced_settings',
   apmApp: 'app_apm',
   apps: 'apps',
   arrowDown: 'arrow_down',
@@ -91,6 +98,7 @@ const typeToIconMap = {
   check: 'check',
   clock: 'clock',
   console: 'console',
+  consoleApp: 'app_console',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
@@ -108,7 +116,9 @@ const typeToIconMap = {
   gear: 'gear',
   graphApp: 'app_graph',
   grid: 'grid',
+  grokApp: 'app_grok',
   help: 'help',
+  indexPatternApp: 'app_index_pattern',
   invert: 'invert',
   link: 'link',
   list: 'list',
@@ -127,12 +137,14 @@ const typeToIconMap = {
   logoWebhook: 'logo_webhook',
   logoXpack: 'logo_xpack',
   machineLearningApp: 'app_ml',
+  managementApp: 'app_management',
   mapMarker: 'map_marker',
   minusInCircle: 'minus_in_circle',
   monitoringApp: 'app_monitoring',
   node: 'node',
   pencil: 'pencil',
   pin: 'pin',
+  pipelineApp: 'app_pipeline',
   plusInCircle: 'plus_in_circle',
   search: 'search',
   shard: 'shard',
