@@ -388,7 +388,6 @@ export default class extends Component {
                 anchorPosition="leftCenter"
               >
                 <EuiContextMenuPanel
-                  style={{ width: '100px' }}
                   items={[
                     (
                       <EuiContextMenuItem
