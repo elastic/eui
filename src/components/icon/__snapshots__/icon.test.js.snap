@@ -80,6 +80,19 @@ exports[`EuiIcon renders size xxl 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type addDataApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    add data app icon
+  </title>
+  <use
+    href="#app_add_data"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type advancedSettingsApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
