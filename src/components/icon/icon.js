@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './assets/app_add_data.svg';
 import './assets/app_advanced_settings.svg';
 import './assets/app_apm.svg';
 import './assets/app_console.svg';
@@ -83,6 +84,7 @@ const humanizeCamelCase = str => (
 );
 
 const typeToIconMap = {
+  addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   apmApp: 'app_apm',
   apps: 'apps',

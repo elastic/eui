@@ -9,6 +9,7 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'addDataApp',
   'advancedSettingsApp',
   'apmApp',
   'consoleApp',
@@ -39,7 +40,7 @@ export default () => (
           <EuiPanel>
             <EuiIcon
               type={iconType}
-              size="l"
+              size="xl"
             />
             <EuiText size="s">
               <p>{iconType}</p>

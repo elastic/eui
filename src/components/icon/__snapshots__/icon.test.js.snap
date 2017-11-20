@@ -80,6 +80,19 @@ exports[`EuiIcon renders size xxl 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type advancedSettingsApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    advanced settings app icon
+  </title>
+  <use
+    href="#app_advanced_settings"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type apmApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -258,6 +271,19 @@ exports[`EuiIcon renders type console 1`] = `
   </title>
   <use
     href="#console"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type consoleApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    console app icon
+  </title>
+  <use
+    href="#app_console"
   />
 </svg>
 `;
@@ -483,6 +509,19 @@ exports[`EuiIcon renders type grid 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type grokApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    grok app icon
+  </title>
+  <use
+    href="#app_grok"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type help 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -492,6 +531,19 @@ exports[`EuiIcon renders type help 1`] = `
   </title>
   <use
     href="#help"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type indexPatternApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    index pattern app icon
+  </title>
+  <use
+    href="#app_index_pattern"
   />
 </svg>
 `;
@@ -730,6 +782,19 @@ exports[`EuiIcon renders type machineLearningApp 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type managementApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    management app icon
+  </title>
+  <use
+    href="#app_management"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type mapMarker 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -804,6 +869,19 @@ exports[`EuiIcon renders type pin 1`] = `
   </title>
   <use
     href="#pin"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type pipelineApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    pipeline app icon
+  </title>
+  <use
+    href="#app_pipeline"
   />
 </svg>
 `;
