@@ -24,8 +24,14 @@ const iconTypes = [
   'managementApp',
   'monitoringApp',
   'pipelineApp',
+  'reportingApp',
+  'savedObjectsApp',
+  'searchProfilerApp',
   'timelionApp',
+  'upgradeAssistantApp',
+  'usersRolesApp',
   'visualizeApp',
+  'watchesApp',
 ];
 
 export default () => (

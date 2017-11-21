@@ -17,8 +17,14 @@ import './assets/app_management.svg';
 import './assets/app_ml.svg';
 import './assets/app_monitoring.svg';
 import './assets/app_pipeline.svg';
+import './assets/app_reporting.svg';
+import './assets/app_saved_objects.svg';
+import './assets/app_search_profiler.svg';
 import './assets/app_timelion.svg';
+import './assets/app_upgrade_assistant.svg';
+import './assets/app_users_roles.svg';
 import './assets/app_visualize.svg';
+import './assets/app_watches.svg';
 import './assets/apps.svg';
 import './assets/arrow_down.svg';
 import './assets/arrow_left.svg';
@@ -148,8 +154,12 @@ const typeToIconMap = {
   pin: 'pin',
   pipelineApp: 'app_pipeline',
   plusInCircle: 'plus_in_circle',
+  reportingApp: 'app_reporting',
+  savedObjectsApp: 'app_saved_objects',
   search: 'search',
+  searchProfilerApp: 'app_search_profiler',
   shard: 'shard',
+  share: 'share',
   share: 'share',
   sortDown: 'sort_down',
   sortUp: 'sort_up',
@@ -157,8 +167,11 @@ const typeToIconMap = {
   tear: 'tear',
   timelionApp: 'app_timelion',
   trash: 'trash',
+  usersRolesApp: 'app_users_roles',
+  upgradeAssistantApp: 'app_upgrade_assistant',
   user: 'user',
   visualizeApp: 'app_visualize',
+  watchesApp: 'app_watches',
 };
 
 export const TYPES = Object.keys(typeToIconMap);
