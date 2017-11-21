@@ -2,16 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './assets/app_add_data.svg';
+import './assets/app_advanced_settings.svg';
 import './assets/app_apm.svg';
+import './assets/app_console.svg';
 import './assets/app_dashboard.svg';
 import './assets/app_devtools.svg';
 import './assets/app_discover.svg';
 import './assets/app_graph.svg';
+import './assets/app_grok.svg';
+import './assets/app_index_pattern.svg';
 import './assets/app_logging.svg';
+import './assets/app_management.svg';
 import './assets/app_ml.svg';
 import './assets/app_monitoring.svg';
+import './assets/app_pipeline.svg';
+import './assets/app_reporting.svg';
+import './assets/app_saved_objects.svg';
+import './assets/app_search_profiler.svg';
+import './assets/app_security.svg';
 import './assets/app_timelion.svg';
+import './assets/app_upgrade_assistant.svg';
+import './assets/app_users_roles.svg';
 import './assets/app_visualize.svg';
+import './assets/app_watches.svg';
 import './assets/apps.svg';
 import './assets/arrow_down.svg';
 import './assets/arrow_left.svg';
@@ -77,6 +91,8 @@ const humanizeCamelCase = str => (
 );
 
 const typeToIconMap = {
+  addDataApp: 'app_add_data',
+  advancedSettingsApp: 'app_advanced_settings',
   apmApp: 'app_apm',
   apps: 'apps',
   arrowDown: 'arrow_down',
@@ -91,6 +107,7 @@ const typeToIconMap = {
   check: 'check',
   clock: 'clock',
   console: 'console',
+  consoleApp: 'app_console',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
@@ -108,7 +125,9 @@ const typeToIconMap = {
   gear: 'gear',
   graphApp: 'app_graph',
   grid: 'grid',
+  grokApp: 'app_grok',
   help: 'help',
+  indexPatternApp: 'app_index_pattern',
   invert: 'invert',
   link: 'link',
   list: 'list',
@@ -127,15 +146,22 @@ const typeToIconMap = {
   logoWebhook: 'logo_webhook',
   logoXpack: 'logo_xpack',
   machineLearningApp: 'app_ml',
+  managementApp: 'app_management',
   mapMarker: 'map_marker',
   minusInCircle: 'minus_in_circle',
   monitoringApp: 'app_monitoring',
   node: 'node',
   pencil: 'pencil',
   pin: 'pin',
+  pipelineApp: 'app_pipeline',
   plusInCircle: 'plus_in_circle',
+  reportingApp: 'app_reporting',
+  savedObjectsApp: 'app_saved_objects',
   search: 'search',
+  searchProfilerApp: 'app_search_profiler',
+  securityApp: 'app_security',
   shard: 'shard',
+  share: 'share',
   share: 'share',
   sortDown: 'sort_down',
   sortUp: 'sort_up',
@@ -143,8 +169,11 @@ const typeToIconMap = {
   tear: 'tear',
   timelionApp: 'app_timelion',
   trash: 'trash',
+  usersRolesApp: 'app_users_roles',
+  upgradeAssistantApp: 'app_upgrade_assistant',
   user: 'user',
   visualizeApp: 'app_visualize',
+  watchesApp: 'app_watches',
 };
 
 export const TYPES = Object.keys(typeToIconMap);

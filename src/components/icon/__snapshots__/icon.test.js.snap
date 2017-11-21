@@ -80,6 +80,32 @@ exports[`EuiIcon renders size xxl 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type addDataApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    add data app icon
+  </title>
+  <use
+    href="#app_add_data"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type advancedSettingsApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    advanced settings app icon
+  </title>
+  <use
+    href="#app_advanced_settings"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type apmApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -258,6 +284,19 @@ exports[`EuiIcon renders type console 1`] = `
   </title>
   <use
     href="#console"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type consoleApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    console app icon
+  </title>
+  <use
+    href="#app_console"
   />
 </svg>
 `;
@@ -483,6 +522,19 @@ exports[`EuiIcon renders type grid 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type grokApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    grok app icon
+  </title>
+  <use
+    href="#app_grok"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type help 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -492,6 +544,19 @@ exports[`EuiIcon renders type help 1`] = `
   </title>
   <use
     href="#help"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type indexPatternApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    index pattern app icon
+  </title>
+  <use
+    href="#app_index_pattern"
   />
 </svg>
 `;
@@ -730,6 +795,19 @@ exports[`EuiIcon renders type machineLearningApp 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type managementApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    management app icon
+  </title>
+  <use
+    href="#app_management"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type mapMarker 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -808,6 +886,19 @@ exports[`EuiIcon renders type pin 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type pipelineApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    pipeline app icon
+  </title>
+  <use
+    href="#app_pipeline"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type plusInCircle 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -821,6 +912,32 @@ exports[`EuiIcon renders type plusInCircle 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type reportingApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    reporting app icon
+  </title>
+  <use
+    href="#app_reporting"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type savedObjectsApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    saved objects app icon
+  </title>
+  <use
+    href="#app_saved_objects"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type search 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -830,6 +947,32 @@ exports[`EuiIcon renders type search 1`] = `
   </title>
   <use
     href="#search"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type searchProfilerApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    search profiler app icon
+  </title>
+  <use
+    href="#app_search_profiler"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type securityApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    security app icon
+  </title>
+  <use
+    href="#app_security"
   />
 </svg>
 `;
@@ -938,6 +1081,19 @@ exports[`EuiIcon renders type trash 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type upgradeAssistantApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    upgrade assistant app icon
+  </title>
+  <use
+    href="#app_upgrade_assistant"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type user 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -951,6 +1107,19 @@ exports[`EuiIcon renders type user 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type usersRolesApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    users roles app icon
+  </title>
+  <use
+    href="#app_users_roles"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type visualizeApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -960,6 +1129,19 @@ exports[`EuiIcon renders type visualizeApp 1`] = `
   </title>
   <use
     href="#app_visualize"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type watchesApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    watches app icon
+  </title>
+  <use
+    href="#app_watches"
   />
 </svg>
 `;
