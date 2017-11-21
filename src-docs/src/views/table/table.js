@@ -3,6 +3,8 @@ import React, {
 } from 'react';
 
 import {
+  EuiBadge,
+  EuiHealth,
   EuiButton,
   EuiButtonIcon,
   EuiCheckbox,
@@ -45,8 +47,9 @@ export default class extends Component {
       id: 0,
       title: 'A very long line which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis',
       type: 'user',
-      dateCreated: 'Tue Dec 06 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 28 2016',
       magnitude: 1,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 1,
       title: {
@@ -54,8 +57,9 @@ export default class extends Component {
         truncateText: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 01 2016',
       magnitude: 1,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 2,
       title: {
@@ -63,8 +67,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 28 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: <span>Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge></span>,
       magnitude: 10,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 3,
       title: {
@@ -72,8 +77,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 16 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 16 2016',
       magnitude: 100,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 4,
       title: {
@@ -81,8 +87,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 13 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 13 2016',
       magnitude: 1000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 5,
       title: {
@@ -90,8 +97,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 6,
       title: {
@@ -99,8 +107,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }, {
       id: 7,
       title: {
@@ -108,8 +117,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 8,
       title: {
@@ -117,8 +127,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 9,
       title: {
@@ -126,8 +137,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 10,
       title: {
@@ -135,8 +147,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }, {
       id: 11,
       title: {
@@ -144,8 +157,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
     }, {
       id: 12,
       title: {
@@ -153,8 +167,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 13,
       title: {
@@ -162,8 +177,9 @@ export default class extends Component {
         isLink: true,
       },
       type: 'user',
-      dateCreated: 'Tue Dec 11 2016 12:56:15 GMT-0800 (PST)',
+      dateCreated: 'Tue Dec 11 2016',
       magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
     }];
 
     this.sortableProperties = new SortableProperties([{
@@ -184,18 +200,22 @@ export default class extends Component {
       id: 'checkbox',
       isCheckbox: true,
       textOnly: false,
-      width: '20px',
+      width: '24px',
+    }, {
+      id: 'type',
+      label: '',
+      alignment: LEFT_ALIGNMENT,
+      width: '24px',
+      cellProvider: cell => <EuiIcon type={cell} size="m" />,
     }, {
       id: 'title',
       label: 'Title',
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
     }, {
-      id: 'type',
-      label: 'Type',
+      id: 'health',
+      label: 'Health',
       alignment: LEFT_ALIGNMENT,
-      width: '60px',
-      cellProvider: cell => <EuiIcon type={cell} size="m" />,
     }, {
       id: 'dateCreated',
       label: 'Date created',
@@ -208,10 +228,10 @@ export default class extends Component {
       isSortable: true,
     }, {
       id: 'actions',
-      label: 'Actions',
+      label: '',
       alignment: RIGHT_ALIGNMENT,
       isActionsPopover: true,
-      width: '100px',
+      width: '32px',
     }];
   }
 
@@ -358,18 +378,16 @@ export default class extends Component {
                     aria-label="Actions"
                     iconType="gear"
                     size="s"
-                    color="primary"
+                    color="text"
                     onClick={() => this.togglePopover(item.id)}
                   />
                 )}
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}
                 panelPaddingSize="none"
-                withTitle
-                anchorPosition="downRight"
+                anchorPosition="leftCenter"
               >
                 <EuiContextMenuPanel
-                  style={{ width: '100px' }}
                   items={[
                     (
                       <EuiContextMenuItem

@@ -142,8 +142,8 @@ export default class extends Component {
 
         <EuiSwitch
           label="Switch control"
-          checked={this.state.isSwitchChecked}
           onChange={this.onSwitchChange}
+          checked
           disabled
         />
 

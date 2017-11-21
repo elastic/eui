@@ -50,6 +50,9 @@ import IconExample
 import HeaderExample
   from '../../views/header/header_example';
 
+import HealthExample
+  from '../../views/health/health_example';
+
 import HorizontalRuleExample
   from '../../views/horizontal_rule/horizontal_rule_example';
 
@@ -155,6 +158,9 @@ const components = [{
 }, {
   name: 'Header',
   component: HeaderExample,
+}, {
+  name: 'Health',
+  component: HealthExample,
 }, {
   name: 'HorizontalRule',
   component: HorizontalRuleExample,

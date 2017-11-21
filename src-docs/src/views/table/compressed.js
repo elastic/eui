@@ -18,7 +18,6 @@ import {
 
 import {
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
 } from '../../../../src/services';
 
 export default class extends Component {
@@ -35,8 +34,7 @@ export default class extends Component {
       id: 0,
       title: 'A very long line which will wrap on narrower screens and NOT become truncated using an ellipsis',
       type: 'user',
-      dateCreated: 'Tue Dec 06 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1,
+      dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
     }, {
       id: 1,
       title: {
@@ -45,7 +43,6 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1,
     }, {
       id: 2,
       title: {
@@ -54,7 +51,6 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 28 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 10,
     }, {
       id: 3,
       title: {
@@ -63,7 +59,6 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 16 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 100,
     }, {
       id: 4,
       title: {
@@ -72,7 +67,6 @@ export default class extends Component {
       },
       type: 'user',
       dateCreated: 'Tue Dec 13 2016 12:56:15 GMT-0800 (PST)',
-      magnitude: 1000,
     }];
 
     this.columns = [{
@@ -93,10 +87,6 @@ export default class extends Component {
       id: 'dateCreated',
       label: 'Date created',
       alignment: LEFT_ALIGNMENT,
-    }, {
-      id: 'magnitude',
-      label: 'Orders of magnitude',
-      alignment: RIGHT_ALIGNMENT,
     }];
   }
 

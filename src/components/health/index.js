@@ -1,0 +1,3 @@
+export {
+  EuiHealth,
+} from './health';

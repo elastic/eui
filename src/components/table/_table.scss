@@ -13,11 +13,13 @@
 
 .euiTable--compressed {
   .euiTableCellContent {
-    padding: $euiTableCellPaddingCompressed;
+    padding: $euiSizeXS;
+    @include euiFontSizeXS;
+
   }
 
   .euiTableHeaderButton:focus {
-    outline: solid $euiTableCellPaddingCompressed $euiFocusBackgroundColor;
+    outline: solid $euiSizeXS $euiFocusBackgroundColor;
   }
 }
 
@@ -49,10 +51,6 @@
       display: block;
       fill: $euiColorPrimary;
     }
-  }
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
   }
 }
 
@@ -103,7 +101,7 @@
 .euiTableCellContent {
   display: flex;
   align-items: center; /* 1 */
-  padding: $euiTableCellPadding; /* 2 */
+  padding: $euiSizeS; /* 2 */
 }
 
   .euiTableCellContent__text {

@@ -92,6 +92,10 @@ export {
 } from './header';
 
 export {
+  EuiHealth,
+} from './health';
+
+export {
   EuiHorizontalRule,
 } from './horizontal_rule';
 

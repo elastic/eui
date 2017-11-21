@@ -47,7 +47,7 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
   background: $euiFormBackgroundColor;
   box-shadow:
     0 2px 2px -1px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(0,0,0,0.08),
+    0 0 0 1px transparentize($euiColorFullShade, .92),
     inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
   border-radius: 0;
@@ -59,24 +59,24 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
   &:invalid { /* 1 */
     box-shadow:
       0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(0,0,0,0.16),
+      0 0 0 1px transparentize($euiColorFullShade, .84),
       inset 0 0 0 0 $euiColorEmptyShade,
       inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
   }
 
   &:focus { /* 1 */
-    background: $euiColorEmptyShade;
+    background: tintOrShade($euiColorEmptyShade, 0%, 20%);
     box-shadow:
       0 4px 4px -2px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(0,0,0,0.16),
-      inset 0 0 0 0 $euiColorEmptyShade,
+      0 0 0 1px transparentize($euiColorFullShade, .84),
+      inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
       inset 0 -2px 0 0 $euiColorPrimary;
   }
 
   &:disabled {
     cursor: not-allowed;
-    background: $euiColorLightestShade;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+    background: darken($euiColorLightestShade, 2%);
+    box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
   }
 }
 

@@ -16,8 +16,12 @@
     cursor: pointer;
 
     &:checked ~ .euiRadio__circle {
+      background: $euiColorPrimary;
+      border-color: $euiColorPrimary;
+
       .euiRadio__check {
-        background-color: $euiTextColor;
+        border-color: $euiColorPrimary;
+        background-color: $euiColorEmptyShade;
         // This path is relative to ~/src-docs/postcss.config.js, which uses
         // the postcss-line-svg plugin.
         mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
@@ -26,19 +30,28 @@
 
     &:focus ~ .euiRadio__circle,
     &:active:not(:disabled) ~ .euiRadio__circle {
-      background-color: $euiFocusBackgroundColor;
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
       border-color: $euiColorPrimary;
+      border-width: $euiSizeXS / 2;
     }
 
-    &:disabled {
+    &:focus:checked ~.euiRadio__circle {
+      border-color: darken($euiColorPrimary, 10%);
+    }
 
-      ~ .euiRadio__circle {
-        background-color: $euiColorLightestShade;
-      }
+    &:disabled,
+    &:disabled ~ .euiRadio__label {
+      cursor: not-allowed;
+    }
 
-      ~ .euiRadio__label {
-        cursor: not-allowed;
-      }
+    &:disabled:checked ~ .euiRadio__circle {
+      background-color: $euiColorLightShade;
+      border-color: $euiColorLightShade;
+    }
+
+    &:disabled:not(:checked) ~ .euiRadio__circle {
+      background-color: $euiColorLightestShade;
+
     }
   }
 
@@ -46,10 +59,11 @@
     position: absolute;
     height: $euiSizeL;
     width: $euiSizeL;
-    border-radius: 50%;
+    border-radius: $euiSizeL;
     border: $euiBorderThin;
     background: $euiFormBackgroundColor;
     z-index: 0;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
   }
 
     .euiRadio__check {
@@ -65,5 +79,19 @@
     z-index: 2;
     font-size: $euiFontSizeS;
     cursor: pointer;
+  }
+
+  &.euiRadio--inList {
+    min-height: $euiSize;
+
+    .euiRadio__circle {
+      height: $euiSize;
+      width: $euiSize;
+    }
+
+    .euiRadio__input {
+      height: $euiSize;
+      width: $euiSize;
+    }
   }
 }

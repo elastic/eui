@@ -20,6 +20,21 @@
 
   &:disabled {
     cursor: not-allowed;
+
+    &::-webkit-slider-thumb {
+      border-color: $euiColorLightShade;
+    }
+
+    &::-moz-range-thumb {
+      border-color: $euiColorLightShade;
+    }
+
+    &::-ms-thumb {
+      border-color: $euiColorLightShade;
+    }
+    &::-webkit-slider-runnable-track {
+      background-color: $euiColorLightShade;
+    }
   }
 
   &:focus {

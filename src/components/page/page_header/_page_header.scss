@@ -1,5 +1,5 @@
 .euiPageHeader {
-  margin-bottom: $euiSizeL;
+  margin-bottom: $euiSize;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,7 +9,7 @@
 @include screenXSmall {
   .euiPageHeader {
     flex-direction: column;
-    padding: 0 $euiSizeL;
+    padding: 0 $euiSize;
     margin-bottom: 0;
   }
 }

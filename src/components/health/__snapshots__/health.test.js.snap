@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHealth is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiHealth testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <svg
+        class="euiIcon euiIcon--medium"
+      >
+        <title>
+          dot icon
+        </title>
+        <use
+          href="#dot"
+        />
+      </svg>
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    />
+  </div>
+</div>
+`;

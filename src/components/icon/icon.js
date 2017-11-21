@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './assets/alert.svg';
 import './assets/app_add_data.svg';
 import './assets/app_advanced_settings.svg';
 import './assets/app_apm.svg';
@@ -75,6 +76,7 @@ import './assets/node.svg';
 import './assets/pencil.svg';
 import './assets/pin.svg';
 import './assets/plus_in_circle.svg';
+import './assets/question_in_circle.svg';
 import './assets/search.svg';
 import './assets/shard.svg';
 import './assets/share.svg';
@@ -84,6 +86,7 @@ import './assets/star_empty.svg';
 import './assets/tear.svg';
 import './assets/trash.svg';
 import './assets/user.svg';
+import './assets/wrench.svg';
 
 const humanizeCamelCase = str => (
   // Put spaces between words in camel-cased strings.
@@ -91,6 +94,7 @@ const humanizeCamelCase = str => (
 );
 
 const typeToIconMap = {
+  alert: 'alert',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   apmApp: 'app_apm',
@@ -155,6 +159,7 @@ const typeToIconMap = {
   pin: 'pin',
   pipelineApp: 'app_pipeline',
   plusInCircle: 'plus_in_circle',
+  questionInCircle: 'question_in_circle',
   reportingApp: 'app_reporting',
   savedObjectsApp: 'app_saved_objects',
   search: 'search',
@@ -174,6 +179,7 @@ const typeToIconMap = {
   user: 'user',
   visualizeApp: 'app_visualize',
   watchesApp: 'app_watches',
+  wrench: 'wrench',
 };
 
 export const TYPES = Object.keys(typeToIconMap);
@@ -182,6 +188,7 @@ const colorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
+  success: 'euiIcon--success',
   accent: 'euiIcon--accent',
   warning: 'euiIcon--warning',
   danger: 'euiIcon--danger',

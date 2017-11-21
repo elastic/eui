@@ -106,6 +106,19 @@ exports[`EuiIcon renders type advancedSettingsApp 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type alert 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    alert icon
+  </title>
+  <use
+    href="#alert"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type apmApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -912,6 +925,19 @@ exports[`EuiIcon renders type plusInCircle 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type questionInCircle 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    question in circle icon
+  </title>
+  <use
+    href="#question_in_circle"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type reportingApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -1142,6 +1168,19 @@ exports[`EuiIcon renders type watchesApp 1`] = `
   </title>
   <use
     href="#app_watches"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type wrench 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    wrench icon
+  </title>
+  <use
+    href="#wrench"
   />
 </svg>
 `;

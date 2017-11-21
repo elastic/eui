@@ -31,10 +31,11 @@
 $euiColorPrimary: #0079a5 !default;
 $euiColorSecondary: #00A69B !default;
 $euiColorAccent: #DD0A73 !default;
-$euiColorHighlight: #FFFF00 !default;
+$euiColorHighlight: #FFFBF1 !default;
 $euiColorGhost: #FFF !default;
 
 // Status
+$euiColorSuccess: $euiColorSecondary !default;
 $euiColorDanger: #A30000 !default;
 $euiColorWarning: #E5830E !default;
 
