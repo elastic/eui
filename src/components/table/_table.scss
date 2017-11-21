@@ -3,6 +3,8 @@
  * specifying a column width, e.g. the checkbox column.
  */
 .euiTable {
+  @include euiFontSizeS;
+
   width: 100%;
   border: none;
   border-collapse: collapse;
@@ -36,6 +38,8 @@
 }
 
 .euiTableHeaderButton {
+  @include euiFontSizeS;
+
   color: inherit;
   width: 100%;
 
