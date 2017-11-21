@@ -964,6 +964,19 @@ exports[`EuiIcon renders type searchProfilerApp 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type securityApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    security app icon
+  </title>
+  <use
+    href="#app_security"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type shard 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
