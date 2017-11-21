@@ -30,6 +30,7 @@ export class EuiFormRow extends Component {
     const onChildFocus = get(this.props, 'children.props.onFocus');
     if (onChildFocus) {
       onChildFocus(...args);
+
     }
 
     this.setState({
@@ -42,6 +43,7 @@ export class EuiFormRow extends Component {
     const onChildBlur = get(this.props, 'children.props.onBlur');
     if (onChildBlur) {
       onChildBlur(...args);
+
     }
 
     this.setState({
