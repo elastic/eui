@@ -27,6 +27,7 @@ const iconTypes = [
   'reportingApp',
   'savedObjectsApp',
   'searchProfilerApp',
+  'securityApp',
   'timelionApp',
   'upgradeAssistantApp',
   'usersRolesApp',

@@ -20,6 +20,7 @@ import './assets/app_pipeline.svg';
 import './assets/app_reporting.svg';
 import './assets/app_saved_objects.svg';
 import './assets/app_search_profiler.svg';
+import './assets/app_security.svg';
 import './assets/app_timelion.svg';
 import './assets/app_upgrade_assistant.svg';
 import './assets/app_users_roles.svg';
@@ -158,6 +159,7 @@ const typeToIconMap = {
   savedObjectsApp: 'app_saved_objects',
   search: 'search',
   searchProfilerApp: 'app_search_profiler',
+  securityApp: 'app_security',
   shard: 'shard',
   share: 'share',
   share: 'share',

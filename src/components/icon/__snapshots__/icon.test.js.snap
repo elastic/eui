@@ -912,6 +912,32 @@ exports[`EuiIcon renders type plusInCircle 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type reportingApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    reporting app icon
+  </title>
+  <use
+    href="#app_reporting"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type savedObjectsApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    saved objects app icon
+  </title>
+  <use
+    href="#app_saved_objects"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type search 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -921,6 +947,19 @@ exports[`EuiIcon renders type search 1`] = `
   </title>
   <use
     href="#search"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type searchProfilerApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    search profiler app icon
+  </title>
+  <use
+    href="#app_search_profiler"
   />
 </svg>
 `;
@@ -1029,6 +1068,19 @@ exports[`EuiIcon renders type trash 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type upgradeAssistantApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    upgrade assistant app icon
+  </title>
+  <use
+    href="#app_upgrade_assistant"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type user 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -1042,6 +1094,19 @@ exports[`EuiIcon renders type user 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type usersRolesApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    users roles app icon
+  </title>
+  <use
+    href="#app_users_roles"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type visualizeApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -1051,6 +1116,19 @@ exports[`EuiIcon renders type visualizeApp 1`] = `
   </title>
   <use
     href="#app_visualize"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type watchesApp 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+>
+  <title>
+    watches app icon
+  </title>
+  <use
+    href="#app_watches"
   />
 </svg>
 `;
