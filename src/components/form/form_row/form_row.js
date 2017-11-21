@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { get } from 'lodash';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
@@ -25,8 +26,11 @@ export class EuiFormRow extends Component {
   }
 
   onFocus(...args) {
-    if (this.props.children.props.onFocus) {
-      this.props.children.props.onFocus(...args);
+    // Doing this to allow onFocus to be called correctly from the child input element as this component overrides it
+    const onChildFocus = get(this.props, 'children.props.onFocus');
+    if (onChildFocus) {
+      onChildFocus(...args);
+
     }
 
     this.setState({
@@ -35,8 +39,11 @@ export class EuiFormRow extends Component {
   }
 
   onBlur(...args) {
-    if (this.props.children.props.onBlur) {
-      this.props.children.props.onBlur(...args);
+    // Doing this to allow onBlur to be called correctly from the child input element as this component overrides it
+    const onChildBlur = get(this.props, 'children.props.onBlur');
+    if (onChildBlur) {
+      onChildBlur(...args);
+
     }
 
     this.setState({
