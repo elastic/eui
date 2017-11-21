@@ -1,6 +1,13 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.3`.
+- Adds `EuiHealth` components for status checks. [(#158)](https://github.com/elastic/eui/pull/158)
+- Visual cleanup of checkboxes, switches and radios. [(#158)](https://github.com/elastic/eui/pull/158)
+- Form disabled states are much more consistant. [(#158)](https://github.com/elastic/eui/pull/158)
+- Page / title padding adjusted to be more compact. [(#158)](https://github.com/elastic/eui/pull/158)
+- Table spacing compressed visually. [(#158)](https://github.com/elastic/eui/pull/158)
+- Dark theme forms now have better contrast with their borders. [(#158)](https://github.com/elastic/eui/pull/158)
+- New app icons added to match Kibana's app directory. [(#162)](https://github.com/elastic/eui/pull/162)
+
 
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 
