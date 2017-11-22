@@ -18,13 +18,22 @@ exports[`EuiSideNav is rendered 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label="apps icon"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -51,13 +60,22 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label="apps icon"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -84,13 +102,22 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label="apps icon"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>

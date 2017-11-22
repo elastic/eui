@@ -18,6 +18,17 @@
     "transform-async-generator-functions",
     "transform-object-rest-spread",
     // stage 2
-    "transform-class-properties"
+    "transform-class-properties",
+    [
+      "inline-react-svg",
+      {
+        "svgo": {
+          "plugins": [
+            { "cleanupIDs": false },
+            { "removeViewBox": false },
+          ]
+        }
+      }
+    ]
   ]
 }
