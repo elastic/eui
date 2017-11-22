@@ -54,53 +54,8 @@ If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tigh
 
 We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
 
-## Benefits
-
-### Dynamic, interactive documentation
-
-By having a "living style guide", we relieve our designers of the burden of creating and maintaining
-static style guides. This also makes it easier for our engineers to translate mockups, prototypes,
-and wireframes into products.
-
-### Copy-pasteable UI
-
-Engineers can copy and paste sample code into their projects to quickly get reliable, consistent results.
-
-### Remove CSS from the day-to-day
-
-The CSS portion of this framework means engineers don't need to spend mental cycles translating a
-design into CSS. These cycles can be spent on the things critical to the identity of the specific
-project they're working on, like architecture and business logic.
-
-If they use the React components, engineers won't even need to _look at_ CSS -- it will be encapsulated
-behind the React components' interfaces.
-
-### More UI tests mean fewer UI bugs
-
-By covering our UI components with great unit tests and having those tests live within the framework
-itself, we can rest assured that our UI layer is tested and remove some of that burden from our
-integration/end-to-end tests.
-
-## Why not just use Bootstrap?
-
-In short: we've outgrown it! Third-party CSS frameworks like Bootstrap and Foundation are designed
-for a general audience, so they offer things we don't need and _don't_ offer things we _do_ need.
-
-As a result, we've been forced to override their styles until the original framework is no longer
-recognizable. When the CSS reaches that point, it's time to take ownership over it and build
-your own framework.
-
-We also gain the ability to fix some of the common issues with third-party CSS frameworks:
-
-* They have non-semantic markup.
-* They deeply nest their selectors.
-
-For an in-depth analysis of the shortcomings in Bootstrap (and similar frameworks), read [Bootstrap Bankruptcy][bootstrap] and follow the recommended links near the end.
-
-[kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
-[kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
-[bootstrap]: http://www.matthewcopeland.me/blog/2013/11/04/bootstrap-bankruptcy/
 [docs]: https://elastic.github.io/eui/
-[testing]: testing.md
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
+[kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
+[kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md

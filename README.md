@@ -31,6 +31,33 @@ You can find documentation around creating and submitting new components in [CON
 
 [Apache Licensed.][license] Read the [FAQ][faq] for details.
 
+## Goals
+
+### Dynamic, interactive documentation
+
+By having a "living style guide", we relieve our designers of the burden of creating and maintaining
+static style guides. This also makes it easier for our engineers to translate mockups, prototypes,
+and wireframes into products.
+
+### Copy-pasteable UI
+
+Engineers can copy and paste sample code into their projects to quickly get reliable, consistent results.
+
+### Remove CSS from the day-to-day
+
+The CSS portion of this framework means engineers don't need to spend mental cycles translating a
+design into CSS. These cycles can be spent on the things critical to the identity of the specific
+project they're working on, like architecture and business logic.
+
+If they use the React components, engineers won't even need to _look at_ CSS -- it will be encapsulated
+behind the React components' interfaces.
+
+### More UI tests mean fewer UI bugs
+
+By covering our UI components with great unit tests and having those tests live within the framework
+itself, we can rest assured that our UI layer is tested and remove some of that burden from our
+integration/end-to-end tests.
+
 [license]: LICENSE.md
 [faq]: FAQ.md
 [docs]: https://elastic.github.io/eui/

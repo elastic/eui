@@ -19,3 +19,23 @@ Many of our products themselves are open source and rely upon this library to fu
 Bug reports are most welcome, but we're not considering external feature requests at this time.
 
 [docs]: https://elastic.github.io/eui/
+
+## Why not just use Bootstrap?
+
+In short: we've outgrown it! Third-party CSS frameworks like Bootstrap and Foundation are designed
+for a general audience, so they offer things we don't need and _don't_ offer things we _do_ need.
+
+Typically when this happens in a codebase, the engineers are forced to override the original styles
+until the original framework is no longer recognizable. When the CSS reaches that point, it's time
+to take ownership over it and build your own framework.
+
+We also gain the ability to fix some of the common issues with third-party CSS frameworks:
+
+* They have non-semantic markup.
+* They deeply nest their selectors.
+
+For an in-depth analysis of the shortcomings in Bootstrap (and similar frameworks), read [Bootstrap Bankruptcy][bootstrap] and follow the recommended links near the end.
+
+[bootstrap]: http://www.matthewcopeland.me/blog/2013/11/04/bootstrap-bankruptcy/
+[docs]: https://elastic.github.io/eui/
+[testing]: testing.md
