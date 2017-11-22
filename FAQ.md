@@ -17,5 +17,3 @@ Many of our products themselves are open source and rely upon this library to fu
 ## What about reporting bugs and feature requests?
 
 Bug reports are most welcome, but we're not considering external feature requests at this time.
-
-[docs]: https://elastic.github.io/eui/

@@ -23,6 +23,14 @@ You can run the documentation locally at [http://localhost:8030/](http://localho
 npm start
 ```
 
+## Goals
+
+The primary goal of this library is to provide reusable UI components that can be used throughout
+Elastic's web products. As React components, they remove CSS from the process of building UIs.
+As a single source of truth, the framework allows our designers to make changes to our look-and-feel
+directly in the code. And unit test coverage for the UI components allows us to deliver a stable
+"API for user interfaces".
+
 ## Contributing
 
 You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
