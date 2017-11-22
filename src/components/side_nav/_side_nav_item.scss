@@ -1,38 +1,14 @@
-.euiSideNavItem {
+/**
+ * 1. Text-align defaults to center, so we have to override that.
+ * 2. Need this on the button element to color the underline.
+ */
+.euiSideNavItemButton {
   @include euiFontSizeS;
-
+  text-align: left; /* 1 */
   display: block;
-  position: relative;
   width: 100%;
-  text-align: left;
-  color: $euiColorDarkShade;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: $euiFontSizeS;
-  padding: $euiSizeXS / 2 $euiSize $euiSizeXS / 2 $euiSizeS;
-
-  &.euiSideNavItem--parent {
-    border-right: solid $euiSizeXS transparent;
-  }
-
-  &.euiSideNavItem--parent:hover,
-  &.euiSideNavItem--parent:focus {
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-
-  &.euiSideNavItem--parent.euiSideNavItem-isSelected {
-    color: $euiColorFullShade;
-    background: svg-load('../src/components/icon/assets/arrow_down.svg') center right no-repeat;
-    background-size: $euiSizeM $euiSizeM;
-  }
-
-  &.euiSideNavItem-isSelected:not(.euiSideNavItem--parent) {
-    color: $euiColorPrimary;
-    font-weight: $euiFontWeightMedium;
-    text-decoration: underline;
-  }
+  padding: $euiSizeXS / 2 0;
+  color: $euiColorFullShade; /* 2 */
 
   &:hover {
     text-decoration: underline;
@@ -42,5 +18,144 @@
   &:focus {
     background-color: $euiFocusBackgroundColor !important;
     color: $euiColorPrimary !important;
+  }
+
+  &.euiSideNavItemButton-isOpen {
+    .euiSideNavItemButton__label {
+      color: $euiColorFullShade;
+    }
+  }
+
+  &.euiSideNavItemButton-isSelected {
+    .euiSideNavItemButton__label {
+      color: $euiColorPrimary;
+      font-weight: $euiFontWeightMedium;
+      text-decoration: underline;
+    }
+  }
+}
+
+  .euiSideNavItemButton__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .euiSideNavItemButton__icon {
+    margin-right: $euiSizeS;
+  }
+
+  /**
+   * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
+   */
+  .euiSideNavItemButton__labelContainer {
+    min-width: 0; /* 1 */
+  }
+
+  .euiSideNavItemButton__label {
+    color: $euiColorDarkShade;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+/**
+ * 1. Draw the vertical line to group an expanded item's child items together.
+ */
+.euiSideNavItem__items {
+  position: relative;
+
+  &:after { /* 1 */
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: $euiSizeM;
+    width: 1px;
+    background: $euiBorderColor;
+    left: 0px;
+  }
+}
+
+.euiSideNavItem--root {
+  &.euiSideNavItem--rootIcon > .euiSideNavItem__items {
+    margin-left: $euiSizeL;
+  }
+
+  /**
+   * 1. Create padding around focus area without indenting the item itself.
+   * 2. Align icon and label to the left.
+   */
+  & > .euiSideNavItemButton {
+    margin-bottom: $euiSizeS;
+    padding: 0;
+    padding-left: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 1 */
+    margin-left: -$euiSizeS; /* 1 */
+    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
+
+    .euiSideNavItemButton__content {
+      justify-content: flex-start; /* 2 */
+    }
+
+    .euiSideNavItemButton__label {
+      @include euiTitle;
+      font-size: $euiSize + 2px;
+    }
+  }
+
+
+  & > .euiSideNavItem__items {
+    position: static;
+    margin-left: 0;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  & + & {
+    margin-top: $euiSizeXL;
+  }
+}
+
+.euiSideNavItem--trunk {
+  /**
+   * 1. Create padding around focus area without indenting the item itself.
+   */
+  & > .euiSideNavItemButton {
+    padding-left: $euiSizeS; /* 1 */
+    padding-right: $euiSizeS; /* 1 */
+    margin-left: -$euiSizeS; /* 1 */
+    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
+  }
+
+  & > .euiSideNavItem__items {
+    margin-left: $euiSizeS;
+    width: 100%;
+  }
+}
+
+.euiSideNavItem--branch {
+  /**
+   * 1. Absolutely position the horizontal tick connecting the item to the vertical line.
+   */
+  & > .euiSideNavItemButton {
+    position: relative; /* 1 */
+    padding-left: $euiSizeS;
+    padding-right: $euiSizeS; /* 1 */
+
+    &:after {
+      position: absolute; /* 1 */
+      content: "";
+      top: 50%;
+      left: 0;
+      width: $euiSizeXS;
+      height: 1px;
+      background: $euiBorderColor;
+    }
+  }
+
+  & > .euiSideNavItem__items {
+    margin-left: $euiSize;
   }
 }

@@ -12,7 +12,12 @@
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 
 - `<EuiFlexItem>` now accepts integers between 1 and 10 for the `grow` prop. [(#144)](https://github.com/elastic/eui/pull/144)
+- `<EuiFlexItem>` and `<EuiFlexGrow>` now accept a `component` prop which you can set to `span` or `div` (default). [(#141)](https://github.com/elastic/eui/pull/141)
 - Add `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
+
+**Breaking**
+- `<EuiSideNav>` now accepts a tree data structure via the `items` prop. [(#141)](https://github.com/elastic/eui/pull/141)
+- `<EuiSideNavGroup>`, `<EuiSideNavItem>`, and `<EuiSideNavTitle>` have been removed from the public API. [(#141)](https://github.com/elastic/eui/pull/141)
 
 # [`0.0.2`](https://github.com/elastic/eui/tree/v0.0.2)
 

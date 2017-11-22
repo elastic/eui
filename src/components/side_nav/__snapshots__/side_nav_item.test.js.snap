@@ -1,27 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSideNavItem is rendered 1`] = `
-<button
-  aria-label="aria-label"
-  class="testClass1 testClass2 euiSideNavItem"
-  data-test-subj="test subject string"
-/>
+<div
+  class="euiSideNavItem"
+>
+  <button
+    class="euiSideNavItemButton"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      />
+    </span>
+  </button>
+  <button
+    aria-label="aria-label"
+    class="testClass1 testClass2"
+    data-test-subj="test subject string"
+  />
+</div>
 `;
 
 exports[`EuiSideNavItem isSelected defaults to false 1`] = `
-<button
+<div
   class="euiSideNavItem"
-/>
+>
+  <button
+    class="euiSideNavItemButton"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      />
+    </span>
+  </button>
+  <button />
+</div>
 `;
 
 exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
-<button
-  class="euiSideNavItem euiSideNavItem-isSelected"
-/>
+<div
+  class="euiSideNavItem"
+>
+  <button
+    class="euiSideNavItemButton euiSideNavItemButton-isSelected"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      />
+    </span>
+  </button>
+  <button />
+</div>
 `;
 
 exports[`EuiSideNavItem preserves child's classes 1`] = `
-<button
-  class="test euiSideNavItem"
-/>
+<div
+  class="euiSideNavItem"
+>
+  <button
+    class="euiSideNavItemButton"
+  >
+    <span
+      class="euiSideNavItemButton__content"
+    >
+      <span
+        class="euiSideNavItemButton__label"
+      />
+    </span>
+  </button>
+  <button
+    class="test"
+  />
+</div>
 `;

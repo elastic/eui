@@ -4,7 +4,13 @@ import classNames from 'classnames';
 
 const validGrowNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
+export const EuiFlexItem = ({
+  children,
+  className,
+  grow,
+  component: Component,
+  ...rest,
+}) => {
   const classes = classNames(
     'euiFlexItem',
     {
@@ -15,18 +21,19 @@ export const EuiFlexItem = ({ children, className, grow, ...rest }) => {
   );
 
   return (
-    <div
+    <Component
       className={classes}
       {...rest}
     >
       {children}
-    </div>
+    </Component>
   );
 };
 
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
-  grow: growPropType
+  grow: growPropType,
+  component: PropTypes.oneOf(['div', 'span']),
 };
 
 function growPropType(props, propName, componentName) {
@@ -47,4 +54,5 @@ function growPropType(props, propName, componentName) {
 
 EuiFlexItem.defaultProps = {
   grow: true,
+  component: 'div',
 };

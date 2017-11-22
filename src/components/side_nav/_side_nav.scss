@@ -1,21 +1,4 @@
 .euiSideNav {
-  position: relative;
-  height: 100%;
-
-  &.euiSideNav--iconsInTitles {
-
-    .euiSideNav__content {
-
-      > .euiSideNavItem {
-        margin-left: $euiSize;
-        width: calc(100% - #{$euiSize});
-      }
-
-      > .euiSideNavGroup {
-        margin-left: $euiSizeXL;
-      }
-    }
-  }
 }
 
 // These mobile children are hidden in everything but mobile view.

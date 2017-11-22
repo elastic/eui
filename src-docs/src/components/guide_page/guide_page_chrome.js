@@ -7,14 +7,12 @@ import {
 } from 'react-router';
 
 import {
-  EuiSideNav,
-  EuiIcon,
   EuiButtonEmpty,
-  EuiSideNavItem,
-  EuiSideNavTitle,
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiIcon,
+  EuiSideNav,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -28,11 +26,11 @@ export class GuidePageChrome extends Component {
     };
   }
 
-  toggleOpenOnMobile() {
+  toggleOpenOnMobile = () => {
     this.setState({
       isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
     });
-  }
+  };
 
   onSearchChange = event => {
     this.setState({
@@ -83,83 +81,83 @@ export class GuidePageChrome extends Component {
     );
   }
 
-  renderComponentPageLinks() {
+  renderSubSections = subSections => {
+    if (!subSections) {
+      return;
+    }
+
+    return subSections.map(subSection => ({
+      id: `subSection-${subSection.id}`,
+      name: subSection.name,
+      onClick: this.onClickLink.bind(this, subSection.id),
+    }));
+  }
+
+  renderComponentNavItems() {
     const matchingItems = this.props.components.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
     // Build links to subsections if there's more than 1.
-
-    // if (this.props.sections.length > 1) {
-    //   const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
-    //   if (currentSectionIndex !== -1) {
-    //     const subSections = this.props.sections.map(section => {
-    //       return {
-    //         ...section,
-    //         isSubSection: true,
-    //       };
-    //     });
-    //     matchingItems[currentSectionIndex].hasSubSections = true;
-    //     matchingItems.splice(currentSectionIndex + 1, 0, ...subSections);
-    //   }
-    // }
-
-    return matchingItems.map((item, index) => {
-      let button;
-
-      if (item.isSubSection) {
-        button = (
-          <button
-            className="guideNavItem__link"
-            onClick={this.onClickLink.bind(this, item.id)}
-          >
-            {item.name}
-          </button>
-        );
-      } else {
-        button = (
-          <Link
-            className="guideNavItem__link"
-            to={item.path}
-            onClick={this.scrollTo.bind(this, 0)}
-          >
-            {item.name}
-          </Link>
-        );
+    if (this.props.sections.length > 1) {
+      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
+      if (currentSectionIndex !== -1) {
+        matchingItems[currentSectionIndex].subSections = this.props.sections.map(section => {
+          return { ...section };
+        });
       }
+    }
 
-      return (
-        <EuiSideNavItem
-          key={`componentNavItem-${index}`}
-          isSelected={item.name === this.props.currentRouteName}
-          indent={item.isSubSection}
-        >
-          {button}
-        </EuiSideNavItem>
-      );
-    });
+    return {
+      name: 'Components',
+      id: 'components',
+      items: matchingItems.map(item => {
+        const {
+          name,
+          path,
+          subSections,
+        } = item;
+
+        return {
+          id: `component-${path}`,
+          name,
+          href: `#/${path}`,
+          items: this.renderSubSections(subSections),
+          isSelected: name === this.props.currentRouteName,
+        };
+      }),
+    };
   }
 
-  renderSandboxLinks() {
-    return this.props.sandboxes.filter(item => (
+  renderSandboxNavItems() {
+    const matchingItems = this.props.sandboxes.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    )).map((item, index) => {
-      return (
-        <EuiSideNavItem key={`sandboxNavItem-${index}`}>
-          <Link
-            className="guideNavItem__link"
-            to={item.path}
-          >
-            {item.name}
-          </Link>
-        </EuiSideNavItem>
-      );
-    });
+    ));
+
+    return {
+      name: 'Sandboxes',
+      id: 'sandboxes',
+      items: matchingItems.map(item => {
+        const {
+          name,
+          path,
+        } = item;
+
+        return {
+          id: `sandbox-${path}`,
+          name,
+          href: `#/${path}`,
+          isSelected: name === this.props.currentRouteName,
+        };
+      }),
+    };
   }
 
   render() {
-    const componentNavItems = this.renderComponentPageLinks();
-    const sandboxNavItems = this.renderSandboxLinks();
+    const sideNav = [
+      this.renderComponentNavItems(),
+      this.renderSandboxNavItems(),
+    ];
 
     return (
       <div>
@@ -177,23 +175,10 @@ export class GuidePageChrome extends Component {
 
         <EuiSideNav
           mobileTitle="Navigate components"
-          toggleOpenOnMobile={this.toggleOpenOnMobile.bind(this)}
+          toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-        >
-
-          <EuiSideNavTitle>
-            Components
-          </EuiSideNavTitle>
-
-          {componentNavItems}
-
-          <EuiSideNavTitle>
-            Sandboxes
-          </EuiSideNavTitle>
-
-          {sandboxNavItems}
-
-        </EuiSideNav>
+          items={sideNav}
+        />
       </div>
     );
   }

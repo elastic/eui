@@ -24,6 +24,10 @@ import FlexItems from './flex_items';
 const flexItemsSource = require('!!raw-loader!./flex_items');
 const flexItemsHtml = renderToHtml(FlexItems);
 
+import ComponentSpan from './component_span';
+const componentSpanSource = require('!!raw-loader!./component_span');
+const componentSpanHtml = renderToHtml(ComponentSpan);
+
 import FlexGutter from './flex_gutter';
 const flexGutterSource = require('!!raw-loader!./flex_gutter');
 const flexGutterHtml = renderToHtml(FlexGutter);
@@ -113,6 +117,26 @@ export default props => (
       }
       demo={
         <div className="guideDemo__highlightGrid"><FlexItems /></div>
+      }
+    />
+
+    <GuideSection
+      title="You can specify spans instead of divs"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: componentSpanSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: componentSpanHtml,
+      }]}
+      text={
+        <p>
+          <EuiCode>component=&ldquo;span&rdquo;</EuiCode> can be set
+          on <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
+        </p>
+      }
+      demo={
+        <div className="guideDemo__highlightGrid"><ComponentSpan /></div>
       }
     />
 

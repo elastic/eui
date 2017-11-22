@@ -16,9 +16,9 @@ import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
 const sideNavHtml = renderToHtml(SideNav);
 
-import SideNavComplicated from './side_nav_complicated';
-const sideNavComplicatedSource = require('!!raw-loader!./side_nav_complicated');
-const sideNavComplicatedHtml = renderToHtml(SideNavComplicated);
+import SideNavComplex from './side_nav_complex';
+const sideNavComplexSource = require('!!raw-loader!./side_nav_complex');
+const sideNavComplexHtml = renderToHtml(SideNavComplex);
 
 export default props => (
   <GuidePage title={props.route.name}>
@@ -32,11 +32,18 @@ export default props => (
         code: sideNavHtml,
       }]}
       text={
-        <p>
-          <EuiCode>SideNav</EuiCode> is a responsive menu system that usually sits on the left side of a page layout.
-          It will exapand to the width of its container. This is the menu that is used on the left side of the
-          page you are looking at.
-        </p>
+        <div>
+          <p>
+            <EuiCode>SideNav</EuiCode> is a responsive menu system that usually sits on the left side of a page layout.
+            It will exapand to the width of its container. This is the menu that is used on the left side of the
+            page you are looking at.
+          </p>
+
+          <p>
+            Configure the content of a <EuiCode>SideNav</EuiCode> by passing in an <EuiCode>items</EuiCode> prop.
+            Referring to the source code for an example of this data structure&rsquo;s anatomy.
+          </p>
+        </div>
       }
       demo={
         <SideNav />
@@ -44,26 +51,21 @@ export default props => (
     />
 
     <GuideSection
-      title="Complicated side nav"
+      title="Complex side nav"
       source={[{
         type: GuideSectionTypes.JS,
-        code: sideNavComplicatedSource,
+        code: sideNavComplexSource,
       }, {
         type: GuideSectionTypes.HTML,
-        code: sideNavComplicatedHtml,
+        code: sideNavComplexHtml,
       }]}
       text={
         <p>
-          <EuiCode>SideNav</EuiCode> can also handle more stylized, tree based layouts. In the below
-          example icons with titles have been added within the <EuiCode>EuiSideNavTitle</EuiCode>.
-          This requires the addition of the <EuiCode>iconsInTitles</EuiCode> prop on
-          <EuiCode>EuiSideNav</EuiCode> for extra spacing. The inner tree bordering is added by
-          wrapping <EuiCode>EuiSideNavItems</EuiCode> with <EuiCode>EuiSideNavGroup</EuiCode>.
-          Note that they can be nested for even deeper trees.
+          <EuiCode>SideNav</EuiCode> also supports deeply-nested tree-based data.
         </p>
       }
       demo={
-        <SideNavComplicated />
+        <SideNavComplex />
       }
     />
   </GuidePage>
