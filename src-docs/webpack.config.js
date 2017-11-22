@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -30,9 +29,6 @@ module.exports = {
       loaders: ['style-loader/useable', 'css-loader'],
       exclude: /node_modules/
     }, {
-      test: /\.svg$/,
-      loader: 'svg-sprite-loader'
-    }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
       loader: 'file-loader',
     }]
@@ -45,9 +41,7 @@ module.exports = {
       inject: 'body',
       cache: true,
       showErrors: true
-    }),
-
-    new SpriteLoaderPlugin()
+    })
   ],
 
   devServer: {
