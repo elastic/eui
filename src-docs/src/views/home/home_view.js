@@ -148,7 +148,7 @@ export const HomeView = () => (
 
       <h2>Goals</h2>
       <p>EUI has the following primary goals..</p>
-      <ol>
+      <ul>
         <li><EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast,
           color-blind safe palettes and proper aria labels.
         </li>
@@ -164,7 +164,7 @@ export const HomeView = () => (
         <li><EuiCode>EUI is documented and has tests</EuiCode>. Make sure
           the code is friendly to the novice and expert alike.
         </li>
-      </ol>
+      </ul>
     </EuiText>
 
     <EuiHorizontalRule />
