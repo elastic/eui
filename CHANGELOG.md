@@ -8,6 +8,10 @@
 - Dark theme forms now have better contrast with their borders. [(#158)](https://github.com/elastic/eui/pull/158)
 - New app icons added to match Kibana's app directory. [(#162)](https://github.com/elastic/eui/pull/162)
 
+**Bug fixes**
+
+- Fixes bug where screen-reader-only styles weren't being imported.
+
 
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 
