@@ -26,7 +26,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="arrow left icon"
           class="euiIcon euiContextMenu__icon euiIcon--medium"
           height="16"
           viewBox="0 0 16 16"
@@ -80,7 +79,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="arrow left icon"
           class="euiIcon euiContextMenu__icon euiIcon--medium"
           height="16"
           viewBox="0 0 16 16"
@@ -126,7 +124,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="arrow left icon"
           class="euiIcon euiContextMenu__icon euiIcon--medium"
           height="16"
           viewBox="0 0 16 16"
@@ -167,7 +164,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2a
           </span>
           <svg
-            aria-label="arrow right icon"
             class="euiIcon euiContextMenu__arrow euiIcon--medium"
             height="16"
             viewBox="0 0 16 16"
@@ -202,7 +198,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2b
           </span>
           <svg
-            aria-label="arrow right icon"
             class="euiIcon euiContextMenu__arrow euiIcon--medium"
             height="16"
             viewBox="0 0 16 16"
@@ -237,7 +232,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
             2c
           </span>
           <svg
-            aria-label="arrow right icon"
             class="euiIcon euiContextMenu__arrow euiIcon--medium"
             height="16"
             viewBox="0 0 16 16"
@@ -281,7 +275,6 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
         class="euiContextMenu__itemLayout"
       >
         <svg
-          aria-label="arrow left icon"
           class="euiIcon euiContextMenu__icon euiIcon--medium"
           height="16"
           viewBox="0 0 16 16"

@@ -7,7 +7,6 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <svg
-    aria-label="logo elastic icon"
     class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
     height="32"
     viewBox="0 0 32 32"
@@ -53,7 +52,6 @@ exports[`EuiHeaderLogo renders href 1`] = `
   href="#"
 >
   <svg
-    aria-label="logo elastic icon"
     class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
     height="32"
     viewBox="0 0 32 32"

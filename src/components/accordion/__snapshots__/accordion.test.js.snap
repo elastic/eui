@@ -24,7 +24,6 @@ exports[`EuiAccordion is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero"
           >
             <svg
-              aria-label="arrow right icon"
               class="euiIcon euiIcon--medium"
               height="16"
               viewBox="0 0 16 16"

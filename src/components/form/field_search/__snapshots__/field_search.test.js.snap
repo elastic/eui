@@ -11,7 +11,6 @@ exports[`EuiFieldSearch is rendered 1`] = `
     type="search"
   />
   <svg
-    aria-label="search icon"
     class="euiIcon euiFormControlLayout__icon euiIcon--medium"
     height="16"
     viewBox="0 0 16 16"

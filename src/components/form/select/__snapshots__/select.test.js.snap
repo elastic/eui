@@ -10,7 +10,6 @@ exports[`EuiSelect is rendered 1`] = `
     data-test-subj="test subject string"
   />
   <svg
-    aria-label="arrow down icon"
     class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium"
     height="16"
     viewBox="0 0 16 16"

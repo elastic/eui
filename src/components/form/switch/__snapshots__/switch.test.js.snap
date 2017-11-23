@@ -20,7 +20,6 @@ exports[`EuiSwitch is rendered 1`] = `
       class="euiSwitch__track"
     >
       <svg
-        aria-label="cross icon"
         class="euiIcon euiSwitch__icon euiIcon--medium"
         height="16"
         viewBox="0 0 16 16"
@@ -40,7 +39,6 @@ exports[`EuiSwitch is rendered 1`] = `
         />
       </svg>
       <svg
-        aria-label="check icon"
         class="euiIcon euiSwitch__icon euiSwitch__icon--checked euiIcon--medium"
         height="16"
         viewBox="0 0 16 16"

@@ -25,7 +25,6 @@ exports[`EuiIcon is rendered 1`] = `
 
 exports[`EuiIcon renders size l 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon euiIcon--large"
   height="16"
   viewBox="0 0 16 16"
@@ -47,7 +46,6 @@ exports[`EuiIcon renders size l 1`] = `
 
 exports[`EuiIcon renders size m 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -69,7 +67,6 @@ exports[`EuiIcon renders size m 1`] = `
 
 exports[`EuiIcon renders size original 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon"
   height="16"
   viewBox="0 0 16 16"
@@ -91,7 +88,6 @@ exports[`EuiIcon renders size original 1`] = `
 
 exports[`EuiIcon renders size xl 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon euiIcon--xLarge"
   height="16"
   viewBox="0 0 16 16"
@@ -113,7 +109,6 @@ exports[`EuiIcon renders size xl 1`] = `
 
 exports[`EuiIcon renders size xxl 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon euiIcon--xxLarge"
   height="16"
   viewBox="0 0 16 16"
@@ -135,7 +130,6 @@ exports[`EuiIcon renders size xxl 1`] = `
 
 exports[`EuiIcon renders type addDataApp 1`] = `
 <svg
-  aria-label="add data app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -168,7 +162,6 @@ exports[`EuiIcon renders type addDataApp 1`] = `
 
 exports[`EuiIcon renders type advancedSettingsApp 1`] = `
 <svg
-  aria-label="advanced settings app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -212,7 +205,6 @@ exports[`EuiIcon renders type advancedSettingsApp 1`] = `
 
 exports[`EuiIcon renders type alert 1`] = `
 <svg
-  aria-label="alert icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -234,7 +226,6 @@ exports[`EuiIcon renders type alert 1`] = `
 
 exports[`EuiIcon renders type apmApp 1`] = `
 <svg
-  aria-label="apm app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -328,7 +319,6 @@ exports[`EuiIcon renders type apmApp 1`] = `
 
 exports[`EuiIcon renders type apps 1`] = `
 <svg
-  aria-label="apps icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -350,7 +340,6 @@ exports[`EuiIcon renders type apps 1`] = `
 
 exports[`EuiIcon renders type arrowDown 1`] = `
 <svg
-  aria-label="arrow down icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -373,7 +362,6 @@ exports[`EuiIcon renders type arrowDown 1`] = `
 
 exports[`EuiIcon renders type arrowLeft 1`] = `
 <svg
-  aria-label="arrow left icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -397,7 +385,6 @@ exports[`EuiIcon renders type arrowLeft 1`] = `
 
 exports[`EuiIcon renders type arrowRight 1`] = `
 <svg
-  aria-label="arrow right icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -421,7 +408,6 @@ exports[`EuiIcon renders type arrowRight 1`] = `
 
 exports[`EuiIcon renders type arrowUp 1`] = `
 <svg
-  aria-label="arrow up icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -445,7 +431,6 @@ exports[`EuiIcon renders type arrowUp 1`] = `
 
 exports[`EuiIcon renders type bolt 1`] = `
 <svg
-  aria-label="bolt icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -467,7 +452,6 @@ exports[`EuiIcon renders type bolt 1`] = `
 
 exports[`EuiIcon renders type boxesHorizontal 1`] = `
 <svg
-  aria-label="boxes horizontal icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -489,7 +473,6 @@ exports[`EuiIcon renders type boxesHorizontal 1`] = `
 
 exports[`EuiIcon renders type boxesVertical 1`] = `
 <svg
-  aria-label="boxes vertical icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -511,7 +494,6 @@ exports[`EuiIcon renders type boxesVertical 1`] = `
 
 exports[`EuiIcon renders type brush 1`] = `
 <svg
-  aria-label="brush icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -533,7 +515,6 @@ exports[`EuiIcon renders type brush 1`] = `
 
 exports[`EuiIcon renders type bullseye 1`] = `
 <svg
-  aria-label="bullseye icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -555,7 +536,6 @@ exports[`EuiIcon renders type bullseye 1`] = `
 
 exports[`EuiIcon renders type check 1`] = `
 <svg
-  aria-label="check icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -577,7 +557,6 @@ exports[`EuiIcon renders type check 1`] = `
 
 exports[`EuiIcon renders type clock 1`] = `
 <svg
-  aria-label="clock icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -599,7 +578,6 @@ exports[`EuiIcon renders type clock 1`] = `
 
 exports[`EuiIcon renders type console 1`] = `
 <svg
-  aria-label="console icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -621,7 +599,6 @@ exports[`EuiIcon renders type console 1`] = `
 
 exports[`EuiIcon renders type consoleApp 1`] = `
 <svg
-  aria-label="console app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -656,7 +633,6 @@ exports[`EuiIcon renders type consoleApp 1`] = `
 
 exports[`EuiIcon renders type controlsHorizontal 1`] = `
 <svg
-  aria-label="controls horizontal icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -679,7 +655,6 @@ exports[`EuiIcon renders type controlsHorizontal 1`] = `
 
 exports[`EuiIcon renders type controlsVertical 1`] = `
 <svg
-  aria-label="controls vertical icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -701,7 +676,6 @@ exports[`EuiIcon renders type controlsVertical 1`] = `
 
 exports[`EuiIcon renders type copy 1`] = `
 <svg
-  aria-label="copy icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -726,7 +700,6 @@ exports[`EuiIcon renders type copy 1`] = `
 
 exports[`EuiIcon renders type copyClipboard 1`] = `
 <svg
-  aria-label="copy clipboard icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -744,7 +717,6 @@ exports[`EuiIcon renders type copyClipboard 1`] = `
 
 exports[`EuiIcon renders type cross 1`] = `
 <svg
-  aria-label="cross icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -767,7 +739,6 @@ exports[`EuiIcon renders type cross 1`] = `
 
 exports[`EuiIcon renders type dashboardApp 1`] = `
 <svg
-  aria-label="dashboard app icon"
   class="euiIcon euiIcon--medium"
   height="30"
   viewBox="0 0 30 30"
@@ -812,7 +783,6 @@ exports[`EuiIcon renders type dashboardApp 1`] = `
 
 exports[`EuiIcon renders type devToolsApp 1`] = `
 <svg
-  aria-label="dev tools app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -841,7 +811,6 @@ exports[`EuiIcon renders type devToolsApp 1`] = `
 
 exports[`EuiIcon renders type discoverApp 1`] = `
 <svg
-  aria-label="discover app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -876,7 +845,6 @@ exports[`EuiIcon renders type discoverApp 1`] = `
 
 exports[`EuiIcon renders type document 1`] = `
 <svg
-  aria-label="document icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -898,7 +866,6 @@ exports[`EuiIcon renders type document 1`] = `
 
 exports[`EuiIcon renders type dot 1`] = `
 <svg
-  aria-label="dot icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -922,7 +889,6 @@ exports[`EuiIcon renders type dot 1`] = `
 
 exports[`EuiIcon renders type empty 1`] = `
 <svg
-  aria-label="empty icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -933,7 +899,6 @@ exports[`EuiIcon renders type empty 1`] = `
 
 exports[`EuiIcon renders type faceHappy 1`] = `
 <svg
-  aria-label="face happy icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -974,7 +939,6 @@ exports[`EuiIcon renders type faceHappy 1`] = `
 
 exports[`EuiIcon renders type faceSad 1`] = `
 <svg
-  aria-label="face sad icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1009,7 +973,6 @@ exports[`EuiIcon renders type faceSad 1`] = `
 
 exports[`EuiIcon renders type fullScreen 1`] = `
 <svg
-  aria-label="full screen icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1032,7 +995,6 @@ exports[`EuiIcon renders type fullScreen 1`] = `
 
 exports[`EuiIcon renders type gear 1`] = `
 <svg
-  aria-label="gear icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1054,7 +1016,6 @@ exports[`EuiIcon renders type gear 1`] = `
 
 exports[`EuiIcon renders type graphApp 1`] = `
 <svg
-  aria-label="graph app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1079,7 +1040,6 @@ exports[`EuiIcon renders type graphApp 1`] = `
 
 exports[`EuiIcon renders type grid 1`] = `
 <svg
-  aria-label="grid icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1101,7 +1061,6 @@ exports[`EuiIcon renders type grid 1`] = `
 
 exports[`EuiIcon renders type grokApp 1`] = `
 <svg
-  aria-label="grok app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1129,7 +1088,6 @@ exports[`EuiIcon renders type grokApp 1`] = `
 
 exports[`EuiIcon renders type help 1`] = `
 <svg
-  aria-label="help icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1152,7 +1110,6 @@ exports[`EuiIcon renders type help 1`] = `
 
 exports[`EuiIcon renders type indexPatternApp 1`] = `
 <svg
-  aria-label="index pattern app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1185,7 +1142,6 @@ exports[`EuiIcon renders type indexPatternApp 1`] = `
 
 exports[`EuiIcon renders type invert 1`] = `
 <svg
-  aria-label="invert icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1203,7 +1159,6 @@ exports[`EuiIcon renders type invert 1`] = `
 
 exports[`EuiIcon renders type link 1`] = `
 <svg
-  aria-label="link icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1225,7 +1180,6 @@ exports[`EuiIcon renders type link 1`] = `
 
 exports[`EuiIcon renders type list 1`] = `
 <svg
-  aria-label="list icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1248,7 +1202,6 @@ exports[`EuiIcon renders type list 1`] = `
 
 exports[`EuiIcon renders type listAdd 1`] = `
 <svg
-  aria-label="list add icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1263,7 +1216,6 @@ exports[`EuiIcon renders type listAdd 1`] = `
 
 exports[`EuiIcon renders type lock 1`] = `
 <svg
-  aria-label="lock icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1286,7 +1238,6 @@ exports[`EuiIcon renders type lock 1`] = `
 
 exports[`EuiIcon renders type loggingApp 1`] = `
 <svg
-  aria-label="logging app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1318,7 +1269,6 @@ exports[`EuiIcon renders type loggingApp 1`] = `
 
 exports[`EuiIcon renders type logoBeats 1`] = `
 <svg
-  aria-label="logo beats icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1358,7 +1308,6 @@ exports[`EuiIcon renders type logoBeats 1`] = `
 
 exports[`EuiIcon renders type logoCloud 1`] = `
 <svg
-  aria-label="logo cloud icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1394,7 +1343,6 @@ exports[`EuiIcon renders type logoCloud 1`] = `
 
 exports[`EuiIcon renders type logoElastic 1`] = `
 <svg
-  aria-label="logo elastic icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1435,7 +1383,6 @@ exports[`EuiIcon renders type logoElastic 1`] = `
 
 exports[`EuiIcon renders type logoElasticSearch 1`] = `
 <svg
-  aria-label="logo elastic search icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1477,7 +1424,6 @@ exports[`EuiIcon renders type logoElasticSearch 1`] = `
 
 exports[`EuiIcon renders type logoElasticStack 1`] = `
 <svg
-  aria-label="logo elastic stack icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1511,7 +1457,6 @@ exports[`EuiIcon renders type logoElasticStack 1`] = `
 
 exports[`EuiIcon renders type logoGmail 1`] = `
 <svg
-  aria-label="logo gmail icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1555,7 +1500,6 @@ exports[`EuiIcon renders type logoGmail 1`] = `
 
 exports[`EuiIcon renders type logoKibana 1`] = `
 <svg
-  aria-label="logo kibana icon"
   class="euiIcon euiIcon--medium"
   height="40"
   viewBox="0 0 30 40"
@@ -1583,7 +1527,6 @@ exports[`EuiIcon renders type logoKibana 1`] = `
 
 exports[`EuiIcon renders type logoLogstash 1`] = `
 <svg
-  aria-label="logo logstash icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1615,7 +1558,6 @@ exports[`EuiIcon renders type logoLogstash 1`] = `
 
 exports[`EuiIcon renders type logoSlack 1`] = `
 <svg
-  aria-label="logo slack icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1640,7 +1582,6 @@ exports[`EuiIcon renders type logoSlack 1`] = `
 
 exports[`EuiIcon renders type logoWebhook 1`] = `
 <svg
-  aria-label="logo webhook icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1668,7 +1609,6 @@ exports[`EuiIcon renders type logoWebhook 1`] = `
 
 exports[`EuiIcon renders type logoXpack 1`] = `
 <svg
-  aria-label="logo xpack icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1708,7 +1648,6 @@ exports[`EuiIcon renders type logoXpack 1`] = `
 
 exports[`EuiIcon renders type machineLearningApp 1`] = `
 <svg
-  aria-label="machine learning app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1735,7 +1674,6 @@ exports[`EuiIcon renders type machineLearningApp 1`] = `
 
 exports[`EuiIcon renders type managementApp 1`] = `
 <svg
-  aria-label="management app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1765,7 +1703,6 @@ exports[`EuiIcon renders type managementApp 1`] = `
 
 exports[`EuiIcon renders type mapMarker 1`] = `
 <svg
-  aria-label="map marker icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1788,7 +1725,6 @@ exports[`EuiIcon renders type mapMarker 1`] = `
 
 exports[`EuiIcon renders type minusInCircle 1`] = `
 <svg
-  aria-label="minus in circle icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1803,7 +1739,6 @@ exports[`EuiIcon renders type minusInCircle 1`] = `
 
 exports[`EuiIcon renders type monitoringApp 1`] = `
 <svg
-  aria-label="monitoring app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1831,7 +1766,6 @@ exports[`EuiIcon renders type monitoringApp 1`] = `
 
 exports[`EuiIcon renders type node 1`] = `
 <svg
-  aria-label="node icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1847,7 +1781,6 @@ exports[`EuiIcon renders type node 1`] = `
 
 exports[`EuiIcon renders type pencil 1`] = `
 <svg
-  aria-label="pencil icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1869,7 +1802,6 @@ exports[`EuiIcon renders type pencil 1`] = `
 
 exports[`EuiIcon renders type pin 1`] = `
 <svg
-  aria-label="pin icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1885,7 +1817,6 @@ exports[`EuiIcon renders type pin 1`] = `
 
 exports[`EuiIcon renders type pipelineApp 1`] = `
 <svg
-  aria-label="pipeline app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -1944,7 +1875,6 @@ exports[`EuiIcon renders type pipelineApp 1`] = `
 
 exports[`EuiIcon renders type plusInCircle 1`] = `
 <svg
-  aria-label="plus in circle icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1966,7 +1896,6 @@ exports[`EuiIcon renders type plusInCircle 1`] = `
 
 exports[`EuiIcon renders type questionInCircle 1`] = `
 <svg
-  aria-label="question in circle icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -1984,7 +1913,6 @@ exports[`EuiIcon renders type questionInCircle 1`] = `
 
 exports[`EuiIcon renders type reportingApp 1`] = `
 <svg
-  aria-label="reporting app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2018,7 +1946,6 @@ exports[`EuiIcon renders type reportingApp 1`] = `
 
 exports[`EuiIcon renders type savedObjectsApp 1`] = `
 <svg
-  aria-label="saved objects app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2062,7 +1989,6 @@ exports[`EuiIcon renders type savedObjectsApp 1`] = `
 
 exports[`EuiIcon renders type search 1`] = `
 <svg
-  aria-label="search icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2084,7 +2010,6 @@ exports[`EuiIcon renders type search 1`] = `
 
 exports[`EuiIcon renders type searchProfilerApp 1`] = `
 <svg
-  aria-label="search profiler app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2112,7 +2037,6 @@ exports[`EuiIcon renders type searchProfilerApp 1`] = `
 
 exports[`EuiIcon renders type securityApp 1`] = `
 <svg
-  aria-label="security app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2138,7 +2062,6 @@ exports[`EuiIcon renders type securityApp 1`] = `
 
 exports[`EuiIcon renders type shard 1`] = `
 <svg
-  aria-label="shard icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2154,7 +2077,6 @@ exports[`EuiIcon renders type shard 1`] = `
 
 exports[`EuiIcon renders type share 1`] = `
 <svg
-  aria-label="share icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2176,7 +2098,6 @@ exports[`EuiIcon renders type share 1`] = `
 
 exports[`EuiIcon renders type sortDown 1`] = `
 <svg
-  aria-label="sort down icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2200,7 +2121,6 @@ exports[`EuiIcon renders type sortDown 1`] = `
 
 exports[`EuiIcon renders type sortUp 1`] = `
 <svg
-  aria-label="sort up icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2223,7 +2143,6 @@ exports[`EuiIcon renders type sortUp 1`] = `
 
 exports[`EuiIcon renders type starEmpty 1`] = `
 <svg
-  aria-label="star empty icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2245,7 +2164,6 @@ exports[`EuiIcon renders type starEmpty 1`] = `
 
 exports[`EuiIcon renders type tear 1`] = `
 <svg
-  aria-label="tear icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2267,7 +2185,6 @@ exports[`EuiIcon renders type tear 1`] = `
 
 exports[`EuiIcon renders type timelionApp 1`] = `
 <svg
-  aria-label="timelion app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2293,7 +2210,6 @@ exports[`EuiIcon renders type timelionApp 1`] = `
 
 exports[`EuiIcon renders type trash 1`] = `
 <svg
-  aria-label="trash icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2315,7 +2231,6 @@ exports[`EuiIcon renders type trash 1`] = `
 
 exports[`EuiIcon renders type upgradeAssistantApp 1`] = `
 <svg
-  aria-label="upgrade assistant app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2339,7 +2254,6 @@ exports[`EuiIcon renders type upgradeAssistantApp 1`] = `
 
 exports[`EuiIcon renders type user 1`] = `
 <svg
-  aria-label="user icon"
   class="euiIcon euiIcon--medium"
   height="18"
   viewBox="0 0 18 18"
@@ -2361,7 +2275,6 @@ exports[`EuiIcon renders type user 1`] = `
 
 exports[`EuiIcon renders type usersRolesApp 1`] = `
 <svg
-  aria-label="users roles app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2407,7 +2320,6 @@ exports[`EuiIcon renders type usersRolesApp 1`] = `
 
 exports[`EuiIcon renders type visualizeApp 1`] = `
 <svg
-  aria-label="visualize app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2448,7 +2360,6 @@ exports[`EuiIcon renders type visualizeApp 1`] = `
 
 exports[`EuiIcon renders type watchesApp 1`] = `
 <svg
-  aria-label="watches app icon"
   class="euiIcon euiIcon--medium"
   height="32"
   viewBox="0 0 32 32"
@@ -2477,7 +2388,6 @@ exports[`EuiIcon renders type watchesApp 1`] = `
 
 exports[`EuiIcon renders type wrench 1`] = `
 <svg
-  aria-label="wrench icon"
   class="euiIcon euiIcon--medium"
   height="16"
   viewBox="0 0 16 16"
@@ -2495,7 +2405,6 @@ exports[`EuiIcon renders type wrench 1`] = `
 
 exports[`EuiIcon title defaults to a humanized version of the type 1`] = `
 <svg
-  aria-label="dashboard app icon"
   class="euiIcon euiIcon--medium"
   height="30"
   viewBox="0 0 30 30"
@@ -2540,9 +2449,9 @@ exports[`EuiIcon title defaults to a humanized version of the type 1`] = `
 
 exports[`EuiIcon title is rendered 1`] = `
 <svg
-  aria-label="a custom title"
   class="euiIcon euiIcon--medium"
   height="16"
+  title="a custom title"
   viewBox="0 0 16 16"
   width="16"
   xlink="http://www.w3.org/1999/xlink"

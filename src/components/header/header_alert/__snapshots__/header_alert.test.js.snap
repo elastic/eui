@@ -13,7 +13,6 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      aria-label="cross icon"
       class="euiIcon euiButtonIcon__icon euiIcon--medium"
       height="16"
       viewBox="0 0 16 16"

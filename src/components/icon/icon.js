@@ -88,11 +88,6 @@ import trash from './assets/trash.svg';
 import user from './assets/user.svg';
 import wrench from './assets/wrench.svg';
 
-const humanizeCamelCase = str => (
-  // Put spaces between words in camel-cased strings.
-  str.replace(/([A-Z])/g, g => ` ${g[0].toLowerCase()}`)
-);
-
 const typeToIconMap = {
   alert,
   addDataApp,
@@ -211,26 +206,20 @@ export const EuiIcon = ({
   type,
   size,
   color,
-  title,
   className,
   ...rest
 }) => {
   const classes = classNames('euiIcon', className, sizeToClassNameMap[size], colorToClassMap[color]);
 
-  const titleText = title
-    ? title
-    : `${humanizeCamelCase(type)} icon`;
-
   const Svg = typeToIconMap[type] || empty;
 
-  return <Svg className={classes} aria-label={titleText} {...rest} />;
+  return <Svg className={classes} {...rest} />;
 };
 
 EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
   color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-  title: PropTypes.string,
+  size: PropTypes.oneOf(SIZES)
 };
 
 EuiIcon.defaultProps = {

@@ -10,7 +10,6 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      aria-label="logo kibana icon"
       class="euiIcon euiIcon--medium"
       height="40"
       viewBox="0 0 30 40"

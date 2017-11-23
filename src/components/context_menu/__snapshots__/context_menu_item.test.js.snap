@@ -31,7 +31,6 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
       class="euiContextMenuItem__text"
     />
     <svg
-      aria-label="arrow right icon"
       class="euiIcon euiContextMenu__arrow euiIcon--medium"
       height="16"
       viewBox="0 0 16 16"
