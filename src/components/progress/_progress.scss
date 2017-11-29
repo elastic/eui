@@ -1,16 +1,80 @@
+.euiProgress {
+  position: relative;
+  overflow: hidden;
+  background-color: $euiColorLightShade;
+}
+
+// Progress bars come in different colors.
+$euiProgressColors: (
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  accent: $euiColorAccent,
+  subdued: $euiColorMediumShade,
+);
+
+@each $name, $color in $euiProgressColors {
+  .euiProgress--#{$name} {
+    &::-webkit-progress-value {
+      background-color: $color;
+    }
+
+    &::-moz-progress-bar {
+      background-color: $color;
+    }
+
+    &.euiProgress--indeterminate {
+      &:before {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+// Progress bars come in different sizes.
+$euiProgressSizes: (
+  xs: $euiSizeXS / 2,
+  s: $euiSizeXS,
+  m: $euiSizeS,
+  l: $euiSize,
+);
+
+@each $name, $size in $euiProgressSizes {
+  .euiProgress--#{$name} {
+    height: $size;
+  }
+}
+
+// Progress bars can be set to fixed or absolute.
+.euiProgress--fixed,
+.euiProgress--absolute {
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+
+  &::-webkit-progress-bar {
+    background-color: transparent;
+  }
+}
+
+.euiProgress--fixed {
+  position: fixed;
+}
+
+.euiProgress--absolute {
+  position: absolute;
+}
+
 // https://css-tricks.com/html5-progress-element/
 // Good resource if you need to work in here. There's some gotchas with
 // dealing with cross-browser progress bars.
-
-.euiProgress {
+.euiProgress--native {
   display: block;
   width: 100%;
   appearance: none;
   border: none;
-  vertical-align: middle;
-  position: relative;
-  overflow: hidden;
-  background-color: $euiColorLightShade;
 
   &::-webkit-progress-bar {
     background-color: $euiColorLightShade;
@@ -23,85 +87,23 @@
   &::-moz-progress-bar {
     transition: width $euiAnimSpeedNormal linear;
   }
+}
 
-  // Progress bars come in different colors.
-  $euiProgressColors: (
-    primary: $euiColorPrimary,
-    secondary: $euiColorSecondary,
-    warning: $euiColorWarning,
-    danger: $euiColorDanger,
-    accent: $euiColorAccent,
-    subdued: $euiColorMediumShade,
-  );
-
-  @each $name, $color in $euiProgressColors {
-    &.euiProgress--#{$name} {
-      &::-webkit-progress-value {
-        background-color: $color;
-      }
-
-      &::-moz-progress-bar {
-        background-color: $color;
-      }
-
-      &.euiProgress--indeterminate {
-        &:before {
-          background-color: $color;
-        }
-      }
-    }
-  }
-
-  // Progress bars come in different sizes.
-  $euiProgressSizes: (
-    xs: $euiSizeXS / 2,
-    s: $euiSizeXS,
-    m: $euiSizeS,
-    l: $euiSize,
-  );
-
-  @each $name, $size in $euiProgressSizes {
-    &.euiProgress--#{$name} {
-      height: $size;
-    }
-  }
-
-  // Progress bars can be set to fixed or absolute.
-  &.euiProgress--fixed, &.euiProgress--absolute {
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-
-    &::-webkit-progress-bar {
-      background-color: transparent;
-    }
-  }
-
-  &.euiProgress--fixed {
-    position: fixed;
-  }
-
-  &.euiProgress--absolute {
+/**
+ * An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
+ * we apply this style to a <div> instead of a <progress> element.
+ * See https://css-tricks.com/html5-progress-element/ for more info.
+ */
+.euiProgress--indeterminate {
+  &:before {
     position: absolute;
-  }
-
-  /**
-   * An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
-   * we apply this style to a <div> instead of a <progress> element.
-   * See https://css-tricks.com/html5-progress-element/ for more info.
-   */
-  &.euiProgress--indeterminate {
-    &:before {
-      position: absolute;
-      content: "";
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      transform: scaleX(0) translateX(0%);
-      animation: euiProgress 1s $euiAnimSlightResistance infinite;
-    }
+    content: "";
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0) translateX(0%);
+    animation: euiProgress 1s $euiAnimSlightResistance infinite;
   }
 }
 

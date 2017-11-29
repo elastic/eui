@@ -38,40 +38,32 @@ export const EuiProgress = ({
   position,
   ...rest
 }) => {
+  const indeterminate = max === null;
   const classes = classNames(
     'euiProgress',
     {
-      'euiProgress--indeterminate': max === null,
+      'euiProgress--indeterminate': indeterminate,
+      'euiProgress--native': !indeterminate
     },
     sizeToClassNameMap[size],
     colorToClassNameMap[color],
     positionsToClassNameMap[position],
-    className
+    className,
   );
 
-  // Because of a FireFox issue with animation, indeterminate progress needs to use a div.
-  // See https://css-tricks.com/html5-progress-element/.
-  let progressType = null;
-  if (max) {
-    progressType = (
-      <progress
-        value={value}
-        max={max}
-        className={classes}
-        {...rest}
-      />
-    );
-  } else {
-    progressType = (
-      <div
-        className={classes}
-        {...rest}
-      />
-    );
+  // Because of a Firefox animation issue, indeterminate progress needs to use a <div>.
+  // See https://css-tricks.com/html5-progress-element/
+  if (indeterminate) {
+    return <div className={classes} {...rest} />;
   }
 
   return (
-    <div>{progressType}</div>
+    <progress
+      className={classes}
+      value={value}
+      max={max}
+      {...rest}
+    />
   );
 };
 
