@@ -29,8 +29,8 @@ export const EuiTableRowCell = ({
   });
 
   return (
-    <td className="euiTableRowCell" {...rest} >
-      <div className={contentClasses}>
+    <td className="euiTableRowCell">
+      <div className={contentClasses} {...rest}>
         {
           textOnly === true
             ? <span className="euiTableCellContent__text">{children}</span>
