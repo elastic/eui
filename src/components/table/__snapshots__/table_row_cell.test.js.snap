@@ -31,7 +31,7 @@ exports[`align renders right when specified 1`] = `
 exports[`renders EuiTableRowCell 1`] = `
 <td
   aria-label="aria-label"
-  class="euiTableRowCell testClass1 testClass2"
+  class="euiTableRowCell"
   data-test-subj="test subject string"
 >
   <div

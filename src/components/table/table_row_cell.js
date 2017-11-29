@@ -20,18 +20,16 @@ export const EuiTableRowCell = ({
   textOnly,
   ...rest
 }) => {
-  const classes = classNames('euiTableRowCell', className);
-
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--truncateText': truncateText,
-    // We're doing this rigamarole instead of creating `euiTableRowCell--textOnly` for BWC
+    // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
     'euiTableCellContent--overflowingContent': !textOnly,
   });
 
   return (
-    <td className={classes} {...rest} >
+    <td className="euiTableRowCell" {...rest} >
       <div className={contentClasses}>
         {
           textOnly === true
