@@ -19,7 +19,7 @@
 
 **Breaking**
 
-- Fixed a bug where table cell classes were being applied twice
+- Fixed a bug where table cell classes were being applied twice [(#167)](https://github.com/elastic/eui/pull/167)
 
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 
