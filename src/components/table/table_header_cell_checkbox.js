@@ -21,4 +21,9 @@ export const EuiTableHeaderCellCheckbox = ({
 EuiTableHeaderCellCheckbox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
+};
+
+EuiTableHeaderCellCheckbox.defaultProps = {
+  scope: 'col',
 };

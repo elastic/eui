@@ -24,6 +24,7 @@ export const EuiTableHeaderCell = ({
   isSortAscending,
   className,
   ariaLabel,
+  scope,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className);
@@ -51,6 +52,7 @@ export const EuiTableHeaderCell = ({
     return (
       <th
         className={classes}
+        scope={scope}
         {...rest}
       >
         <button
@@ -72,6 +74,7 @@ export const EuiTableHeaderCell = ({
     <th
       className={classes}
       aria-label={ariaLabel}
+      scope={scope}
       {...rest}
     >
       <div className={contentClasses}>
@@ -88,8 +91,10 @@ EuiTableHeaderCell.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
+  scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
 };
 
 EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
+  scope: 'col',
 };
