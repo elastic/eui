@@ -9,6 +9,7 @@
 - Added icons to match Kibana's app directory [(#162)](https://github.com/elastic/eui/pull/162)
 - Convert icons from SVG to React component during the build and stop using
   sprites [(#160)](https://github.com/elastic/eui/pull/160)
+- Add `isReadOnly`, `setOptions`, and `cursorStart` props to  `<EuiCodeEditor>` ([#169](https://github.com/elastic/eui/pull/169))
 
 **Bug fixes**
 
