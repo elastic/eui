@@ -7,6 +7,8 @@
 - Table spacing is now smaller [(#158)](https://github.com/elastic/eui/pull/158)
 - Dark theme forms now have better contrast with their borders [(#158)](https://github.com/elastic/eui/pull/158)
 - Added icons to match Kibana's app directory [(#162)](https://github.com/elastic/eui/pull/162)
+- Convert icons from SVG to React component during the build and stop using
+  sprites [(#160)](https://github.com/elastic/eui/pull/160)
 
 **Bug fixes**
 

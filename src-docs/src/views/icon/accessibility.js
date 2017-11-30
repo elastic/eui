@@ -9,7 +9,7 @@ export default () => (
     <EuiIcon
       type="search"
       size="l"
-      title="Find information"
+      aria-label="Find information"
     />
   </div>
 );
