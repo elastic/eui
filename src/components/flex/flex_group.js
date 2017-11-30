@@ -39,6 +39,7 @@ export const EuiFlexGroup = ({
   alignItems,
   responsive,
   justifyContent,
+  wrap,
   component: Component,
   ...rest,
 }) => {
@@ -49,6 +50,7 @@ export const EuiFlexGroup = ({
     justifyContentToClassNameMap[justifyContent],
     {
       'euiFlexGroup--responsive': responsive,
+      'euiFlexGroup--wrap': wrap,
     },
     className
   );
@@ -71,6 +73,7 @@ EuiFlexGroup.propTypes = {
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
   component: PropTypes.oneOf(['div', 'span']),
+  wrap: PropTypes.bool,
 };
 
 EuiFlexGroup.defaultProps = {
@@ -79,4 +82,5 @@ EuiFlexGroup.defaultProps = {
   responsive: true,
   justifyContent: 'flexStart',
   component: 'div',
+  wrap: false,
 };

@@ -20,6 +20,10 @@ import FlexGroup from './flex_group';
 const flexGroupSource = require('!!raw-loader!./flex_group');
 const flexGroupHtml = renderToHtml(FlexGroup);
 
+import FlexGroupWrap from './flex_group_wrap';
+const flexGroupWrapSource = require('!!raw-loader!./flex_group_wrap');
+const flexGroupWrapHtml = renderToHtml(FlexGroupWrap);
+
 import FlexItems from './flex_items';
 const flexItemsSource = require('!!raw-loader!./flex_items');
 const flexItemsHtml = renderToHtml(FlexItems);
@@ -97,6 +101,27 @@ export default props => (
       }
       demo={
         <div className="guideDemo__highlightGrid"><FlexGroup /></div>
+      }
+    />
+
+    <GuideSection
+      title="FlexGroup can wrap its items"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: flexGroupWrapSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: flexGroupWrapHtml,
+      }]}
+      text={
+        <p>
+          You can set <EuiCode>wrap</EuiCode> on <EuiCode>FlexGroup</EuiCode> if it
+          contains <EuiCode>FlexItem</EuiCode>s with minimum widths, which you want to wrap as
+          the container becomes narrower.
+        </p>
+      }
+      demo={
+        <div className="guideDemo__highlightGrid"><FlexGroupWrap /></div>
       }
     />
 
