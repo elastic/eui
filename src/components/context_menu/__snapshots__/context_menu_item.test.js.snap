@@ -19,6 +19,22 @@ exports[`EuiContextMenuItem is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiContextMenuItem props disabled is rendered 1`] = `
+<button
+  class="euiContextMenuItem euiContextMenuItem-isDisabled"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
 <button
   class="euiContextMenuItem"

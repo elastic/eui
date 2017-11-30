@@ -11,6 +11,15 @@
   &:focus {
     background-color: $euiFocusBackgroundColor;
   }
+
+  &.euiContextMenuItem-isDisabled {
+    color: $euiButtonColorDisabled;
+    cursor: default;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
 }
 
   .euiContextMenuItem__inner {

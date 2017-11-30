@@ -12,6 +12,7 @@
 - Add `isReadOnly`, `setOptions`, and `cursorStart` props to  `<EuiCodeEditor>` ([#169](https://github.com/elastic/eui/pull/169))
 - Add `wrap` prop to `<EuiFlexGroup>` ([#170](https://github.com/elastic/eui/pull/170))
 - Add `scope` prop to `<EuiTableHeaderCell>` and `<EuiTableHeaderCellCheckbox>` ([#171](https://github.com/elastic/eui/pull/171))
+- Add `disabled` prop to `<EuiContextMenuItem>` ([#172](https://github.com/elastic/eui/pull/172))
 
 **Bug fixes**
 

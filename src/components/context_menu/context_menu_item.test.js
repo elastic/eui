@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render, shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
@@ -29,6 +29,17 @@ describe('EuiContextMenuItem', () => {
       });
     });
 
+    describe('disabled', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiContextMenuItem disabled />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
     describe('onClick', () => {
       test(`isn't called upon instantiation`, () => {
         const onClickHandler = sinon.stub();
@@ -50,6 +61,18 @@ describe('EuiContextMenuItem', () => {
         component.simulate('click');
 
         sinon.assert.calledOnce(onClickHandler);
+      });
+
+      test('is not called when the item is clicked but set to disabled', () => {
+        const onClickHandler = sinon.stub();
+
+        const component = mount(
+          <EuiContextMenuItem disabled onClick={onClickHandler} />
+        );
+
+        component.simulate('click');
+
+        sinon.assert.notCalled(onClickHandler);
       });
     });
 
