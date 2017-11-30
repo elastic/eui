@@ -19,12 +19,20 @@ exports[`EuiSideNav is rendered 1`] = `
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -52,12 +60,20 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -85,12 +101,20 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -118,12 +142,20 @@ exports[`EuiSideNav items is rendered 1`] = `
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -183,12 +215,21 @@ exports[`EuiSideNav items is rendered 1`] = `
               </span>
               <svg
                 class="euiIcon euiIcon--medium"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xlink="http://www.w3.org/1999/xlink"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <title>
-                  arrow down icon
-                </title>
+                <defs>
+                  <path
+                    d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                    id="arrow_down-a"
+                  />
+                </defs>
                 <use
-                  href="#arrow_down"
+                  fill-rule="nonzero"
+                  href="#arrow_down-a"
                 />
               </svg>
             </span>
@@ -217,12 +258,20 @@ exports[`EuiSideNav items renders items with are links 1`] = `
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>
@@ -283,12 +332,21 @@ exports[`EuiSideNav items renders items with are links 1`] = `
               </span>
               <svg
                 class="euiIcon euiIcon--medium"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xlink="http://www.w3.org/1999/xlink"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <title>
-                  arrow down icon
-                </title>
+                <defs>
+                  <path
+                    d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                    id="arrow_down-a"
+                  />
+                </defs>
                 <use
-                  href="#arrow_down"
+                  fill-rule="nonzero"
+                  href="#arrow_down-a"
                 />
               </svg>
             </span>
@@ -317,12 +375,20 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
       <svg
         aria-hidden="true"
         class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <title>
-          apps icon
-        </title>
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
         <use
-          href="#apps"
+          href="#apps-a"
         />
       </svg>
     </span>

@@ -1,11 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
-  new SpriteLoaderPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
 ];
 
@@ -50,9 +48,6 @@ module.exports = {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       exclude: /node_modules/
-    }, {
-      test: /\.svg$/,
-      loader: 'svg-sprite-loader'
     }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
       loader: 'file-loader',

@@ -2,184 +2,178 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './assets/alert.svg';
-import './assets/app_add_data.svg';
-import './assets/app_advanced_settings.svg';
-import './assets/app_apm.svg';
-import './assets/app_console.svg';
-import './assets/app_dashboard.svg';
-import './assets/app_devtools.svg';
-import './assets/app_discover.svg';
-import './assets/app_graph.svg';
-import './assets/app_grok.svg';
-import './assets/app_index_pattern.svg';
-import './assets/app_logging.svg';
-import './assets/app_management.svg';
-import './assets/app_ml.svg';
-import './assets/app_monitoring.svg';
-import './assets/app_pipeline.svg';
-import './assets/app_reporting.svg';
-import './assets/app_saved_objects.svg';
-import './assets/app_search_profiler.svg';
-import './assets/app_security.svg';
-import './assets/app_timelion.svg';
-import './assets/app_upgrade_assistant.svg';
-import './assets/app_users_roles.svg';
-import './assets/app_visualize.svg';
-import './assets/app_watches.svg';
-import './assets/apps.svg';
-import './assets/arrow_down.svg';
-import './assets/arrow_left.svg';
-import './assets/arrow_right.svg';
-import './assets/arrow_up.svg';
-import './assets/bolt.svg';
-import './assets/boxes_horizontal.svg';
-import './assets/boxes_vertical.svg';
-import './assets/brush.svg';
-import './assets/bullseye.svg';
-import './assets/check.svg';
-import './assets/clock.svg';
-import './assets/console.svg';
-import './assets/controls_horizontal.svg';
-import './assets/controls_vertical.svg';
-import './assets/copy.svg';
-import './assets/copy_clipboard.svg';
-import './assets/cross.svg';
-import './assets/document.svg';
-import './assets/dot.svg';
-import './assets/empty.svg';
-import './assets/face_happy.svg';
-import './assets/face_sad.svg';
-import './assets/full_screen.svg';
-import './assets/gear.svg';
-import './assets/grid.svg';
-import './assets/help.svg';
-import './assets/invert.svg';
-import './assets/link.svg';
-import './assets/list_add.svg';
-import './assets/list.svg';
-import './assets/lock.svg';
-import './assets/logo_beats.svg';
-import './assets/logo_cloud.svg';
-import './assets/logo_elastic.svg';
-import './assets/logo_elastic_search.svg';
-import './assets/logo_elastic_stack.svg';
-import './assets/logo_gmail.svg';
-import './assets/logo_logstash.svg';
-import './assets/logo_slack.svg';
-import './assets/logo_webhook.svg';
-import './assets/logo_xpack.svg';
-import './assets/logo_kibana.svg';
-import './assets/map_marker.svg';
-import './assets/minus_in_circle.svg';
-import './assets/node.svg';
-import './assets/pencil.svg';
-import './assets/pin.svg';
-import './assets/plus_in_circle.svg';
-import './assets/question_in_circle.svg';
-import './assets/search.svg';
-import './assets/shard.svg';
-import './assets/share.svg';
-import './assets/sort_down.svg';
-import './assets/sort_up.svg';
-import './assets/star_empty.svg';
-import './assets/tear.svg';
-import './assets/trash.svg';
-import './assets/user.svg';
-import './assets/wrench.svg';
-
-const humanizeCamelCase = str => (
-  // Put spaces between words in camel-cased strings.
-  str.replace(/([A-Z])/g, g => ` ${g[0].toLowerCase()}`)
-);
+import alert from './assets/alert.svg';
+import addDataApp from './assets/app_add_data.svg';
+import advancedSettingsApp from './assets/app_advanced_settings.svg';
+import apmApp from './assets/app_apm.svg';
+import consoleApp from './assets/app_console.svg';
+import dashboardApp from './assets/app_dashboard.svg';
+import devToolsApp from './assets/app_devtools.svg';
+import discoverApp from './assets/app_discover.svg';
+import graphApp from './assets/app_graph.svg';
+import grokApp from './assets/app_grok.svg';
+import indexPatternApp from './assets/app_index_pattern.svg';
+import loggingApp from './assets/app_logging.svg';
+import managementApp from './assets/app_management.svg';
+import machineLearningApp from './assets/app_ml.svg';
+import monitoringApp from './assets/app_monitoring.svg';
+import pipelineApp from './assets/app_pipeline.svg';
+import reportingApp from './assets/app_reporting.svg';
+import savedObjectsApp from './assets/app_saved_objects.svg';
+import searchProfilerApp from './assets/app_search_profiler.svg';
+import securityApp from './assets/app_security.svg';
+import timelionApp from './assets/app_timelion.svg';
+import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
+import usersRolesApp from './assets/app_users_roles.svg';
+import visualizeApp from './assets/app_visualize.svg';
+import watchesApp from './assets/app_watches.svg';
+import apps from './assets/apps.svg';
+import arrowDown from './assets/arrow_down.svg';
+import arrowLeft from './assets/arrow_left.svg';
+import arrowRight from './assets/arrow_right.svg';
+import arrowUp from './assets/arrow_up.svg';
+import bolt from './assets/bolt.svg';
+import boxesHorizontal from './assets/boxes_horizontal.svg';
+import boxesVertical from './assets/boxes_vertical.svg';
+import brush from './assets/brush.svg';
+import bullseye from './assets/bullseye.svg';
+import check from './assets/check.svg';
+import clock from './assets/clock.svg';
+import console from './assets/console.svg';
+import controlsHorizontal from './assets/controls_horizontal.svg';
+import controlsVertical from './assets/controls_vertical.svg';
+import copy from './assets/copy.svg';
+import copyClipboard from './assets/copy_clipboard.svg';
+import cross from './assets/cross.svg';
+import document from './assets/document.svg';
+import dot from './assets/dot.svg';
+import empty from './assets/empty.svg';
+import faceHappy from './assets/face_happy.svg';
+import faceSad from './assets/face_sad.svg';
+import fullScreen from './assets/full_screen.svg';
+import gear from './assets/gear.svg';
+import grid from './assets/grid.svg';
+import help from './assets/help.svg';
+import invert from './assets/invert.svg';
+import link from './assets/link.svg';
+import listAdd from './assets/list_add.svg';
+import list from './assets/list.svg';
+import lock from './assets/lock.svg';
+import logoBeats from './assets/logo_beats.svg';
+import logoCloud from './assets/logo_cloud.svg';
+import logoElastic from './assets/logo_elastic.svg';
+import logoElasticSearch from './assets/logo_elastic_search.svg';
+import logoElasticStack from './assets/logo_elastic_stack.svg';
+import logoGmail from './assets/logo_gmail.svg';
+import logoLogstash from './assets/logo_logstash.svg';
+import logoSlack from './assets/logo_slack.svg';
+import logoWebhook from './assets/logo_webhook.svg';
+import logoXpack from './assets/logo_xpack.svg';
+import logoKibana from './assets/logo_kibana.svg';
+import mapMarker from './assets/map_marker.svg';
+import minusInCircle from './assets/minus_in_circle.svg';
+import node from './assets/node.svg';
+import pencil from './assets/pencil.svg';
+import pin from './assets/pin.svg';
+import plusInCircle from './assets/plus_in_circle.svg';
+import questionInCircle from './assets/question_in_circle.svg';
+import search from './assets/search.svg';
+import shard from './assets/shard.svg';
+import share from './assets/share.svg';
+import sortDown from './assets/sort_down.svg';
+import sortUp from './assets/sort_up.svg';
+import starEmpty from './assets/star_empty.svg';
+import tear from './assets/tear.svg';
+import trash from './assets/trash.svg';
+import user from './assets/user.svg';
+import wrench from './assets/wrench.svg';
 
 const typeToIconMap = {
-  alert: 'alert',
-  addDataApp: 'app_add_data',
-  advancedSettingsApp: 'app_advanced_settings',
-  apmApp: 'app_apm',
-  apps: 'apps',
-  arrowDown: 'arrow_down',
-  arrowLeft: 'arrow_left',
-  arrowRight: 'arrow_right',
-  arrowUp: 'arrow_up',
-  bolt: 'bolt',
-  boxesHorizontal: 'boxes_horizontal',
-  boxesVertical: 'boxes_vertical',
-  brush: 'brush',
-  bullseye: 'bullseye',
-  check: 'check',
-  clock: 'clock',
-  console: 'console',
-  consoleApp: 'app_console',
-  controlsHorizontal: 'controls_horizontal',
-  controlsVertical: 'controls_vertical',
-  copy: 'copy',
-  copyClipboard: 'copy_clipboard',
-  cross: 'cross',
-  dashboardApp: 'app_dashboard',
-  devToolsApp: 'app_devtools',
-  discoverApp: 'app_discover',
-  document: 'document',
-  dot: 'dot',
-  empty: 'empty',
-  faceHappy: 'face_happy',
-  faceSad: 'face_sad',
-  fullScreen: 'full_screen',
-  gear: 'gear',
-  graphApp: 'app_graph',
-  grid: 'grid',
-  grokApp: 'app_grok',
-  help: 'help',
-  indexPatternApp: 'app_index_pattern',
-  invert: 'invert',
-  link: 'link',
-  list: 'list',
-  listAdd: 'list_add',
-  lock: 'lock',
-  loggingApp: 'app_logging',
-  logoBeats: 'logo_beats',
-  logoCloud: 'logo_cloud',
-  logoElastic: 'logo_elastic',
-  logoElasticSearch: 'logo_elastic_search',
-  logoElasticStack: 'logo_elastic_stack',
-  logoGmail: 'logo_gmail',
-  logoKibana: 'logo_kibana',
-  logoLogstash: 'logo_logstash',
-  logoSlack: 'logo_slack',
-  logoWebhook: 'logo_webhook',
-  logoXpack: 'logo_xpack',
-  machineLearningApp: 'app_ml',
-  managementApp: 'app_management',
-  mapMarker: 'map_marker',
-  minusInCircle: 'minus_in_circle',
-  monitoringApp: 'app_monitoring',
-  node: 'node',
-  pencil: 'pencil',
-  pin: 'pin',
-  pipelineApp: 'app_pipeline',
-  plusInCircle: 'plus_in_circle',
-  questionInCircle: 'question_in_circle',
-  reportingApp: 'app_reporting',
-  savedObjectsApp: 'app_saved_objects',
-  search: 'search',
-  searchProfilerApp: 'app_search_profiler',
-  securityApp: 'app_security',
-  shard: 'shard',
-  share: 'share',
-  share: 'share',
-  sortDown: 'sort_down',
-  sortUp: 'sort_up',
-  starEmpty: 'star_empty',
-  tear: 'tear',
-  timelionApp: 'app_timelion',
-  trash: 'trash',
-  usersRolesApp: 'app_users_roles',
-  upgradeAssistantApp: 'app_upgrade_assistant',
-  user: 'user',
-  visualizeApp: 'app_visualize',
-  watchesApp: 'app_watches',
-  wrench: 'wrench',
+  alert,
+  addDataApp,
+  advancedSettingsApp,
+  apmApp,
+  apps,
+  arrowDown,
+  arrowLeft,
+  arrowRight,
+  arrowUp,
+  bolt,
+  boxesHorizontal,
+  boxesVertical,
+  brush,
+  bullseye,
+  check,
+  clock,
+  console,
+  consoleApp,
+  controlsHorizontal,
+  controlsVertical,
+  copy,
+  copyClipboard,
+  cross,
+  dashboardApp,
+  devToolsApp,
+  discoverApp,
+  document,
+  dot,
+  empty,
+  faceHappy,
+  faceSad,
+  fullScreen,
+  gear,
+  graphApp,
+  grid,
+  grokApp,
+  help,
+  indexPatternApp,
+  invert,
+  link,
+  list,
+  listAdd,
+  lock,
+  loggingApp,
+  logoBeats,
+  logoCloud,
+  logoElastic,
+  logoElasticSearch,
+  logoElasticStack,
+  logoGmail,
+  logoKibana,
+  logoLogstash,
+  logoSlack,
+  logoWebhook,
+  logoXpack,
+  machineLearningApp,
+  managementApp,
+  mapMarker,
+  minusInCircle,
+  monitoringApp,
+  node,
+  pencil,
+  pin,
+  pipelineApp,
+  plusInCircle,
+  questionInCircle,
+  reportingApp,
+  savedObjectsApp,
+  search,
+  searchProfilerApp,
+  securityApp,
+  shard,
+  share,
+  sortDown,
+  sortUp,
+  starEmpty,
+  tear,
+  timelionApp,
+  trash,
+  usersRolesApp,
+  upgradeAssistantApp,
+  user,
+  visualizeApp,
+  watchesApp,
+  wrench
 };
 
 export const TYPES = Object.keys(typeToIconMap);
@@ -212,34 +206,20 @@ export const EuiIcon = ({
   type,
   size,
   color,
-  title,
   className,
   ...rest
 }) => {
   const classes = classNames('euiIcon', className, sizeToClassNameMap[size], colorToClassMap[color]);
 
-  const titleText = title
-    ? title
-    : `${humanizeCamelCase(type)} icon`;
+  const Svg = typeToIconMap[type] || empty;
 
-  const svgReference = <use xlinkHref={`#${typeToIconMap[type]}`} />;
-
-  return (
-    <svg
-      className={classes}
-      {...rest}
-    >
-      <title>{titleText}</title>
-      {svgReference}
-    </svg>
-  );
+  return <Svg className={classes} {...rest} />;
 };
 
 EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
   color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-  title: PropTypes.string,
+  size: PropTypes.oneOf(SIZES)
 };
 
 EuiIcon.defaultProps = {
