@@ -15,6 +15,7 @@ export class EuiContextMenuItem extends Component {
     onClick: PropTypes.func,
     hasPanel: PropTypes.bool,
     buttonRef: PropTypes.func,
+    disabled: PropTypes.bool,
   }
 
   render() {
@@ -24,6 +25,7 @@ export class EuiContextMenuItem extends Component {
       hasPanel,
       icon,
       buttonRef,
+      disabled,
       ...rest
     } = this.props;
 
@@ -61,13 +63,16 @@ export class EuiContextMenuItem extends Component {
       );
     }
 
-    const classes = classNames('euiContextMenuItem', className);
+    const classes = classNames('euiContextMenuItem', className, {
+      'euiContextMenuItem-isDisabled': disabled,
+    });
 
     return (
       <button
         className={classes}
         type="button"
         ref={buttonRef}
+        disabled={disabled}
         {...rest}
       >
         <span className="euiContextMenu__itemLayout">
