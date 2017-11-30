@@ -6,59 +6,62 @@
     flex-grow: 1;
     flex-basis: 0;
   }
+}
 
-  // Gutter Sizes
-  &.euiFlexGroup--gutterExtraSmall > .euiFlexItem + .euiFlexItem {
-    margin-left: $euiSizeXS;
-  }
+$gutterTypes: (
+  gutterExtraSmall: $euiSizeXS,
+  gutterSmall: $euiSizeS,
+  gutterMedium: $euiSize,
+  gutterLarge: $euiSizeL,
+  gutterExtraLarge: $euiSizeXXL,
+);
 
-  &.euiFlexGroup--gutterSmall > .euiFlexItem + .euiFlexItem {
-    margin-left: $euiSizeS;
-  }
+// Gutter Sizes
+@each $gutterName, $gutterSize in $gutterTypes {
+  $halfGutterSize: $gutterSize * 0.5;
 
-  &.euiFlexGroup--gutterMedium > .euiFlexItem + .euiFlexItem {
-    margin-left: $euiSize;
-  }
+  &.euiFlexGroup--#{$gutterName} {
+    margin: -$halfGutterSize;
 
-  &.euiFlexGroup--gutterLarge > .euiFlexItem + .euiFlexItem {
-    margin-left: $euiSizeL;
-  }
-
-  &.euiFlexGroup--gutterExtraLarge > .euiFlexItem + .euiFlexItem {
-    margin-left: $euiSizeXXL;
-  }
-
-  // Justify the grid
-  &.euiFlexGroup--justifyContentSpaceBetween {
-    justify-content: space-between;
-  }
-
-  &.euiFlexGroup--justifyContentSpaceAround {
-    justify-content: space-around;
-  }
-
-  &.euiFlexGroup--justifyContentCenter {
-    justify-content: center;
-  }
-
-  &.euiFlexGroup--justifyContentFlexEnd {
-    justify-content: flex-end;
-  }
-
-  // Align Items
-  &.euiFlexGroup--alignItemsStart {
-    align-items: flex-start;
-  }
-
-  &.euiFlexGroup--alignItemsCenter {
-    align-items: center;
-  }
-
-  &.euiFlexGroup--alignItemsEnd {
-    align-items: flex-end;
+    & > .euiFlexItem {
+      margin: $halfGutterSize;
+    }
   }
 }
 
+// Justify the grid
+.euiFlexGroup--justifyContentSpaceBetween {
+  justify-content: space-between;
+}
+
+.euiFlexGroup--justifyContentSpaceAround {
+  justify-content: space-around;
+}
+
+.euiFlexGroup--justifyContentCenter {
+  justify-content: center;
+}
+
+.euiFlexGroup--justifyContentFlexEnd {
+  justify-content: flex-end;
+}
+
+// Align Items
+.euiFlexGroup--alignItemsStart {
+  align-items: flex-start;
+}
+
+.euiFlexGroup--alignItemsCenter {
+  align-items: center;
+}
+
+.euiFlexGroup--alignItemsEnd {
+  align-items: flex-end;
+}
+
+.euiFlexGroup--wrap {
+  flex-wrap: wrap;
+}
 
 @include screenXSmall {
   .euiFlexGroup--responsive {
