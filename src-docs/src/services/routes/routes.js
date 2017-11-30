@@ -118,6 +118,10 @@ import { TitleExample }
 import { ToastExample }
   from '../../views/toast/toast_example';
 
+import { TooltipExample }
+  from '../../views/tooltip/tooltip_example';
+
+
 // Sandboxes
 
 import AdvancedSettingsSandbox
@@ -193,6 +197,7 @@ const components = [
   TextExample,
   TitleExample,
   ToastExample,
+  TooltipExample,
 ].map(example => createExample(example));
 
 const sandboxes = [{

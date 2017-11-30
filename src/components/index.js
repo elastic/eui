@@ -198,6 +198,11 @@ export {
 } from './toast';
 
 export {
+  Tooltip,
+  TooltipTrigger
+} from './tooltip';
+
+export {
   EuiTitle,
 } from './title';
 
