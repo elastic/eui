@@ -1,27 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCodeEditor hint element should be disabled when the ui ace box gains focus 1`] = `
-<div
-  class="euiCodeEditorKeyboardHint euiCodeEditorKeyboardHint-isInactive"
-  data-test-subj="codeEditorHint"
-  id="42"
-  role="button"
-  tabindex="0"
->
-  <p
-    class="euiText euiVerticalRhythmSmall"
-  >
-    Press Enter to start editing.
-  </p>
-  <p
-    class="euiText euiVerticalRhythmSmall"
-  >
-    When you’re done, press Escape to stop editing.
-  </p>
-</div>
-`;
-
-exports[`EuiCodeEditor hint element should be enabled when the ui ace box loses focus 1`] = `
+exports[`EuiCodeEditor behavior hint element should be disabled when the ui ace box gains focus 1`] = `
 <div
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
@@ -30,19 +9,23 @@ exports[`EuiCodeEditor hint element should be enabled when the ui ace box loses 
   tabindex="0"
 >
   <p
-    class="euiText euiVerticalRhythmSmall"
+    class="euiText"
   >
-    Press Enter to start editing.
+    Press Enter to start 
+    editing
+    .
   </p>
   <p
-    class="euiText euiVerticalRhythmSmall"
+    class="euiText"
   >
-    When you’re done, press Escape to stop editing.
+    When you’re done, press Escape to stop 
+    editing
+    .
   </p>
 </div>
 `;
 
-exports[`EuiCodeEditor hint element should be tabable 1`] = `
+exports[`EuiCodeEditor behavior hint element should be enabled when the ui ace box loses focus 1`] = `
 <div
   class="euiCodeEditorKeyboardHint"
   data-test-subj="codeEditorHint"
@@ -51,14 +34,43 @@ exports[`EuiCodeEditor hint element should be tabable 1`] = `
   tabindex="0"
 >
   <p
-    class="euiText euiVerticalRhythmSmall"
+    class="euiText"
   >
-    Press Enter to start editing.
+    Press Enter to start 
+    editing
+    .
   </p>
   <p
-    class="euiText euiVerticalRhythmSmall"
+    class="euiText"
   >
-    When you’re done, press Escape to stop editing.
+    When you’re done, press Escape to stop 
+    editing
+    .
+  </p>
+</div>
+`;
+
+exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
+<div
+  class="euiCodeEditorKeyboardHint"
+  data-test-subj="codeEditorHint"
+  id="42"
+  role="button"
+  tabindex="0"
+>
+  <p
+    class="euiText"
+  >
+    Press Enter to start 
+    editing
+    .
+  </p>
+  <p
+    class="euiText"
+  >
+    When you’re done, press Escape to stop 
+    editing
+    .
   </p>
 </div>
 `;
@@ -75,12 +87,12 @@ exports[`EuiCodeEditor is rendered 1`] = `
     tabindex="0"
   >
     <p
-      class="euiText euiVerticalRhythmSmall"
+      class="euiText"
     >
       Press Enter to start editing.
     </p>
     <p
-      class="euiText euiVerticalRhythmSmall"
+      class="euiText"
     >
       When you’re done, press Escape to stop editing.
     </p>
@@ -107,6 +119,120 @@ exports[`EuiCodeEditor is rendered 1`] = `
       />
       <div
         class="ace_gutter-active-line"
+      />
+    </div>
+    <div
+      class="ace_scroller"
+    >
+      <div
+        class="ace_content"
+      >
+        <div
+          class="ace_layer ace_print-margin-layer"
+        >
+          <div
+            class="ace_print-margin"
+            style="left: 4px; visibility: visible;"
+          />
+        </div>
+        <div
+          class="ace_layer ace_marker-layer"
+        />
+        <div
+          class="ace_layer ace_text-layer"
+          style="padding: 0px 4px;"
+        />
+        <div
+          class="ace_layer ace_marker-layer"
+        />
+        <div
+          class="ace_layer ace_cursor-layer ace_hidden-cursors"
+        >
+          <div
+            class="ace_cursor"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="ace_scrollbar ace_scrollbar-v"
+      style="display: none; width: 20px;"
+    >
+      <div
+        class="ace_scrollbar-inner"
+        style="width: 20px;"
+      />
+    </div>
+    <div
+      class="ace_scrollbar ace_scrollbar-h"
+      style="display: none; height: 20px;"
+    >
+      <div
+        class="ace_scrollbar-inner"
+        style="height: 20px;"
+      />
+    </div>
+    <div
+      style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: hidden;"
+    >
+      <div
+        style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: visible;"
+      />
+      <div
+        style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; overflow: visible;"
+      >
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
+<div
+  class="euiCodeEditorWrapper"
+>
+  <div
+    class="euiCodeEditorKeyboardHint"
+    data-test-subj="codeEditorHint"
+    id="42"
+    role="button"
+    tabindex="0"
+  >
+    <p
+      class="euiText"
+    >
+      Press Enter to start interacting with the code.
+    </p>
+    <p
+      class="euiText"
+    >
+      When you’re done, press Escape to stop interacting with the code.
+    </p>
+  </div>
+  <div
+    class=" ace_editor ace-tm"
+    id="brace-editor"
+    style="width: 500px; height: 500px;"
+  >
+    <textarea
+      autocapitalize="off"
+      autocorrect="off"
+      class="ace_text-input"
+      spellcheck="false"
+      style="opacity: 0;"
+      tabindex="-1"
+      wrap="off"
+    />
+    <div
+      class="ace_gutter"
+    >
+      <div
+        class="ace_layer ace_gutter-layer ace_folding-enabled"
+      />
+      <div
+        class="ace_gutter-active-line"
+        style="display: none;"
       />
     </div>
     <div

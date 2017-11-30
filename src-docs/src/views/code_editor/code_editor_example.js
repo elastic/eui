@@ -16,6 +16,10 @@ import CodeEditor from './code_editor';
 const codeEditorSource = require('!!raw-loader!./code_editor');
 const codeEditorHtml = renderToHtml(CodeEditor);
 
+import ReadOnly from './read_only';
+const readOnlySource = require('!!raw-loader!./read_only');
+const readOnlyrHtml = renderToHtml(ReadOnly);
+
 export default props => (
   <GuidePage title={props.route.name}>
     <GuideSection
@@ -42,6 +46,20 @@ export default props => (
       }
       demo={
         <CodeEditor />
+      }
+    />
+
+    <GuideSection
+      title="Read-only"
+      source={[{
+        type: GuideSectionTypes.JS,
+        code: readOnlySource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: readOnlyrHtml,
+      }]}
+      demo={
+        <ReadOnly />
       }
     />
   </GuidePage>
