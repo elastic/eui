@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AceEditor from 'react-ace';
 
-import { EuiKeyboardAccessible } from '..';
 import { htmlIdGenerator, keyCodes } from '../../services';
 
 export class EuiCodeEditor extends Component {
 
   state = {
-    isHintActive: true
+    isHintActive: true,
+    isEditing: false,
   };
 
   idGenerator = htmlIdGenerator();
@@ -31,6 +31,15 @@ export class EuiCodeEditor extends Component {
     }
   }
 
+  onFocusAce = (...args) => {
+    this.setState({
+      isEditing: true,
+    });
+    if (this.props.onFocus) {
+      this.props.onFocus(...args);
+    }
+  }
+
   onBlurAce = (...args) => {
     this.stopEditing();
     if (this.props.onBlur) {
@@ -38,13 +47,25 @@ export class EuiCodeEditor extends Component {
     }
   };
 
+  onKeyDownHint = (ev) => {
+    if (ev.keyCode === keyCodes.ENTER) {
+      ev.preventDefault();
+      this.startEditing();
+    }
+  };
+
   startEditing = () => {
-    this.setState({ isHintActive: false });
+    this.setState({
+      isHintActive: false,
+    });
     this.aceEditor.editor.textInput.focus();
   }
 
   stopEditing() {
-    this.setState({ isHintActive: true });
+    this.setState({
+      isHintActive: true,
+      isEditing: false,
+    });
   }
 
   render() {
@@ -52,41 +73,80 @@ export class EuiCodeEditor extends Component {
       width,
       height,
       onBlur, // eslint-disable-line no-unused-vars
+      isReadOnly,
+      setOptions,
+      cursorStart,
       ...rest
     } = this.props;
 
-    const classes = classNames('euiCodeEditorKeyboardHint', {
-      'euiCodeEditorKeyboardHint-isInactive': !this.state.isHintActive
+    const classes = classNames('euiCodeEditorWrapper', {
+      'euiCodeEditorWrapper-isEditing': this.state.isEditing,
     });
+
+    const promptClasses = classNames('euiCodeEditorKeyboardHint', {
+      'euiCodeEditorKeyboardHint-isInactive': !this.state.isHintActive,
+    });
+
+    let filteredCursorStart;
+
+    const options = { ...setOptions };
+
+    if (isReadOnly) {
+      // Put the cursor at the beginning of the editor, so that it doesn't look like
+      // a prompt to begin typing.
+      filteredCursorStart = -1;
+
+      Object.assign(options, {
+        readOnly: true,
+        highlightActiveLine: false,
+        highlightGutterLine: false,
+      });
+    } else {
+      filteredCursorStart = cursorStart;
+    }
+
+    const activity = isReadOnly
+      ? 'interacting with the code'
+      : 'editing';
+
+
+    // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
+    const prompt = (
+      <div
+        className={promptClasses}
+        id={this.idGenerator('codeEditor')}
+        ref={(hint) => { this.editorHint = hint; }}
+        tabIndex="0"
+        role="button"
+        onClick={this.startEditing}
+        onKeyDown={this.onKeyDownHint}
+        data-test-subj="codeEditorHint"
+      >
+        <p className="euiText">
+          Press Enter to start {activity}.
+        </p>
+
+        <p className="euiText">
+          When you&rsquo;re done, press Escape to stop {activity}.
+        </p>
+      </div>
+    );
 
     return (
       <div
-        className="euiCodeEditorWrapper"
+        className={classes}
         style={{ width, height }}
       >
-        <EuiKeyboardAccessible>
-          <div
-            className={classes}
-            id={this.idGenerator('codeEditor')}
-            ref={(hint) => { this.editorHint = hint; }}
-            onClick={this.startEditing}
-            data-test-subj="codeEditorHint"
-          >
-            <p className="euiText euiVerticalRhythmSmall">
-              Press Enter to start editing.
-            </p>
-
-            <p className="euiText euiVerticalRhythmSmall">
-              When you&rsquo;re done, press Escape to stop editing.
-            </p>
-          </div>
-        </EuiKeyboardAccessible>
+        {prompt}
 
         <AceEditor
           ref={this.aceEditorRef}
           width={width}
           height={height}
+          onFocus={this.onFocusAce}
           onBlur={this.onBlurAce}
+          setOptions={options}
+          cursorStart={filteredCursorStart}
           {...rest}
         />
       </div>
@@ -98,4 +158,11 @@ EuiCodeEditor.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   onBlur: PropTypes.func,
+  isReadOnly: PropTypes.bool,
+  setOptions: PropTypes.object,
+  cursorStart: PropTypes.number,
+};
+
+EuiCodeEditor.defaultProps = {
+  setOptions: {},
 };
