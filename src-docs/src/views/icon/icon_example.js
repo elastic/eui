@@ -165,8 +165,7 @@ export default props => (
       }]}
       text={
         <p>
-          By default, this component will use a human-readable version of the <EuiCode>type</EuiCode>
-          to title the SVG. You can specify a <EuiCode>title</EuiCode> prop to override this.
+          You can title the SVG by passing the `aria-label` prop to <EuiCode>EuiCode</EuiCode>. No value is set by default.
         </p>
       }
       demo={
