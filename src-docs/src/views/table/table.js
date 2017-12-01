@@ -22,6 +22,7 @@ import {
   EuiTableHeader,
   EuiTableHeaderCell,
   EuiTableHeaderCellCheckbox,
+  EuiTablePagination,
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
@@ -30,6 +31,7 @@ import {
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
+  Pager,
   SortableProperties,
 } from '../../../../src/services';
 
@@ -41,6 +43,7 @@ export default class extends Component {
       itemIdToSelectedMap: {},
       itemIdToOpenActionsPopoverMap: {},
       sortedColumn: 'title',
+      itemsPerPage: 20,
     };
 
     this.items = [{
@@ -233,7 +236,28 @@ export default class extends Component {
       isActionsPopover: true,
       width: '32px',
     }];
+
+    this.pager = new Pager(this.items.length, this.state.itemsPerPage);
+    this.state.firstItemIndex = this.pager.getFirstItemIndex();
+    this.state.lastItemIndex = this.pager.getLastItemIndex();
   }
+
+  onChangeItemsPerPage = itemsPerPage => {
+    this.pager.setItemsPerPage(itemsPerPage);
+    this.setState({
+      itemsPerPage,
+      firstItemIndex: this.pager.getFirstItemIndex(),
+      lastItemIndex: this.pager.getLastItemIndex(),
+    });
+  }
+
+  onChangePage = pageIndex => {
+    this.pager.goToPageIndex(pageIndex);
+    this.setState({
+      firstItemIndex: this.pager.getFirstItemIndex(),
+      lastItemIndex: this.pager.getLastItemIndex(),
+    });
+  };
 
   onSort = prop => {
     this.sortableProperties.sortOn(prop);
@@ -345,7 +369,7 @@ export default class extends Component {
   }
 
   renderRows() {
-    return this.items.map(item => {
+    const renderRow = item => {
       const cells = this.columns.map(column => {
         const cell = item[column.id];
 
@@ -451,7 +475,16 @@ export default class extends Component {
           {cells}
         </EuiTableRow>
       );
-    });
+    };
+
+    const rows = [];
+
+    for (let itemIndex = this.state.firstItemIndex; itemIndex <= this.state.lastItemIndex; itemIndex++) {
+      const item = this.items[itemIndex];
+      rows.push(renderRow(item));
+    }
+
+    return rows;
   }
 
   render() {
@@ -486,6 +519,17 @@ export default class extends Component {
             {this.renderRows()}
           </EuiTableBody>
         </EuiTable>
+
+        <EuiSpacer size="m" />
+
+        <EuiTablePagination
+          activePage={this.pager.getCurrentPageIndex()}
+          itemsPerPage={this.state.itemsPerPage}
+          itemsPerPageOptions={[5, 10, 20]}
+          pageCount={this.pager.getTotalPages()}
+          onChangeItemsPerPage={this.onChangeItemsPerPage}
+          onChangePage={this.onChangePage}
+        />
       </div>
     );
   }

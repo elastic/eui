@@ -27,7 +27,6 @@ import {
   KibanaChrome,
   ManagementSideNav,
   Table,
-  TablePagination,
 } from '../partials';
 
 export default class extends Component {
@@ -162,8 +161,6 @@ export default class extends Component {
               <Table />
 
               <EuiSpacer size="m" />
-
-              <TablePagination />
             </EuiPageContentBody>
           </EuiPageContent>
         </EuiPageBody>
