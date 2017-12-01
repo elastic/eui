@@ -48,7 +48,7 @@ export class EuiTablePagination extends Component {
       <EuiButtonEmpty
         size="s"
         color="text"
-        iconType="arrowUp"
+        iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick}
       >
