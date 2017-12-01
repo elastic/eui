@@ -3,6 +3,11 @@ import createHashHistory from 'history/lib/createHashHistory';
 
 import Slugify from '../string/slugify';
 
+// Guidelines
+
+import WritingGuidelines
+  from '../../views/guidelines/writing';
+
 // Component examples
 
 import AccordionExample
@@ -114,6 +119,11 @@ import WatchesSandbox
 
 import TextScalingSandbox
   from '../../views/text_scaling/text_scaling_sandbox';
+
+const guidelines = [{
+  name: 'Writing',
+  component: WritingGuidelines,
+}];
 
 // Component route names should match the component name exactly.
 const components = [{
@@ -230,10 +240,15 @@ const sandboxes = [{
 
 sandboxes.forEach(sandbox => { sandbox.isSandbox = true; });
 
-const allRoutes = components.concat(sandboxes);
+const allRoutes = [
+  ...guidelines,
+  ...components,
+  ...sandboxes,
+];
 
 export default {
   history: useRouterHistory(createHashHistory)(),
+  guidelines: Slugify.each(guidelines, 'name', 'path'),
   components: Slugify.each(components, 'name', 'path'),
   sandboxes: Slugify.each(sandboxes, 'name', 'path'),
 
