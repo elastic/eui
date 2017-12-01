@@ -72,6 +72,7 @@ export class AppView extends Component {
                 currentRouteName={this.props.currentRouteName}
                 onToggleTheme={this.props.toggleTheme}
                 routes={this.props.routes}
+                guidelines={Routes.guidelines}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
                 sections={this.props.sections}

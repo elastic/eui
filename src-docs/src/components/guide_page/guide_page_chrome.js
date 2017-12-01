@@ -93,6 +93,42 @@ export class GuidePageChrome extends Component {
     }));
   }
 
+  renderGuidelineNavItems() {
+    const matchingItems = this.props.guidelines.filter(item => (
+      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    ));
+
+    // Build links to subsections if there's more than 1.
+    if (this.props.sections.length > 1) {
+      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
+      if (currentSectionIndex !== -1) {
+        matchingItems[currentSectionIndex].subSections = this.props.sections.map(section => {
+          return { ...section };
+        });
+      }
+    }
+
+    return {
+      name: 'Guidelines',
+      id: 'guidelines',
+      items: matchingItems.map(item => {
+        const {
+          name,
+          path,
+          subSections,
+        } = item;
+
+        return {
+          id: `guideline-${path}`,
+          name,
+          href: `#/${path}`,
+          items: this.renderSubSections(subSections),
+          isSelected: name === this.props.currentRouteName,
+        };
+      }),
+    };
+  }
+
   renderComponentNavItems() {
     const matchingItems = this.props.components.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -155,6 +191,7 @@ export class GuidePageChrome extends Component {
 
   render() {
     const sideNav = [
+      this.renderGuidelineNavItems(),
       this.renderComponentNavItems(),
       this.renderSandboxNavItems(),
     ];
