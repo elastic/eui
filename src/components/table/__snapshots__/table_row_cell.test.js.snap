@@ -30,12 +30,12 @@ exports[`align renders right when specified 1`] = `
 
 exports[`renders EuiTableRowCell 1`] = `
 <td
-  aria-label="aria-label"
-  class="euiTableRowCell testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiTableRowCell"
 >
   <div
+    aria-label="aria-label"
     class="euiTableCellContent testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <span
       class="euiTableCellContent__text"
