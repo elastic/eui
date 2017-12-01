@@ -10,10 +10,14 @@ export {
 } from './accessibility';
 
 export {
-  SortableProperties,
-} from './sort';
-
-export {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
 } from './alignment';
+
+export {
+  Pager,
+} from './paging';
+
+export {
+  SortableProperties,
+} from './sort';
