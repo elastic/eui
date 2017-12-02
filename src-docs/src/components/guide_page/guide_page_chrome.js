@@ -87,15 +87,31 @@ export class GuidePageChrome extends Component {
       </EuiButtonEmpty>
     );
 
-    const themeOptions = ['Light', 'Dark', 'K6'].map(option => (
-      <EuiContextMenuItem
-        key={option}
-        icon={option.toLowerCase() === this.props.selectedTheme ? 'check' : 'empty'}
-        onClick={() => { this.closeThemePopover(); this.props.onToggleTheme(option.toLowerCase()); }}
-      >
-        {`${option}`}
-      </EuiContextMenuItem>
-    ));
+    const themeOptions = [{
+      name: 'Light',
+      value: 'light',
+    }, {
+      name: 'Dark',
+      value: 'dark',
+    }, {
+      name: 'K6',
+      value: 'k6',
+    }, {
+      name: 'K6 dark',
+      value: 'k6_dark',
+    }].map(option => {
+      const { name, value } = option;
+
+      return (
+        <EuiContextMenuItem
+          key={value}
+          icon={value === this.props.selectedTheme ? 'check' : 'empty'}
+          onClick={() => { this.closeThemePopover(); this.props.onToggleTheme(value); }}
+        >
+          {`${name}`}
+        </EuiContextMenuItem>
+      );
+    });
 
     return (
       <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
@@ -114,6 +130,7 @@ export class GuidePageChrome extends Component {
             anchorPosition="downRight"
           >
             <EuiContextMenuPanel
+              style={{ width: '120px' }}
               items={themeOptions}
             />
           </EuiPopover>
