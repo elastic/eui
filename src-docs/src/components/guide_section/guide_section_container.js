@@ -7,8 +7,6 @@ import {
 } from '../../store';
 
 import {
-  registerSection,
-  unregisterSection,
   toggleTheme,
 } from '../../actions';
 
@@ -21,8 +19,6 @@ function mapStateToProps(state) {
 export const GuideSectionContainer = connect(
   mapStateToProps,
   {
-    registerSection,
-    unregisterSection,
     toggleTheme,
   },
 )(GuideSection);

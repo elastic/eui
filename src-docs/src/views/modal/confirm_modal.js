@@ -9,7 +9,7 @@ import {
   EUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
-export class ConfirmModalExample extends Component {
+export class ConfirmModal extends Component {
   constructor(props) {
     super(props);
 

@@ -81,15 +81,15 @@ export class GuidePageChrome extends Component {
     );
   }
 
-  renderSubSections = subSections => {
-    if (!subSections) {
+  renderSubSections = (subSections = []) => {
+    if (subSections.length <= 1) {
       return;
     }
 
-    return subSections.map(subSection => ({
-      id: `subSection-${subSection.id}`,
-      name: subSection.name,
-      onClick: this.onClickLink.bind(this, subSection.id),
+    return subSections.map(({ title, id }) => ({
+      id: `subSection-${id}`,
+      name: title,
+      onClick: this.onClickLink.bind(this, id),
     }));
   }
 
@@ -98,16 +98,6 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
-    // Build links to subsections if there's more than 1.
-    if (this.props.sections.length > 1) {
-      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
-      if (currentSectionIndex !== -1) {
-        matchingItems[currentSectionIndex].subSections = this.props.sections.map(section => {
-          return { ...section };
-        });
-      }
-    }
-
     return {
       name: 'Guidelines',
       id: 'guidelines',
@@ -115,14 +105,14 @@ export class GuidePageChrome extends Component {
         const {
           name,
           path,
-          subSections,
+          sections,
         } = item;
 
         return {
           id: `guideline-${path}`,
           name,
           href: `#/${path}`,
-          items: this.renderSubSections(subSections),
+          items: this.renderSubSections(sections),
           isSelected: name === this.props.currentRouteName,
         };
       }),
@@ -134,16 +124,6 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
-    // Build links to subsections if there's more than 1.
-    if (this.props.sections.length > 1) {
-      const currentSectionIndex = matchingItems.findIndex(item => item.name === this.props.currentRouteName);
-      if (currentSectionIndex !== -1) {
-        matchingItems[currentSectionIndex].subSections = this.props.sections.map(section => {
-          return { ...section };
-        });
-      }
-    }
-
     return {
       name: 'Components',
       id: 'components',
@@ -151,14 +131,14 @@ export class GuidePageChrome extends Component {
         const {
           name,
           path,
-          subSections,
+          sections,
         } = item;
 
         return {
           id: `component-${path}`,
           name,
           href: `#/${path}`,
-          items: this.renderSubSections(subSections),
+          items: this.renderSubSections(sections),
           isSelected: name === this.props.currentRouteName,
         };
       }),
@@ -225,5 +205,4 @@ GuidePageChrome.propTypes = {
   currentRouteName: PropTypes.string.isRequired,
   components: PropTypes.array.isRequired,
   sandboxes: PropTypes.array.isRequired,
-  sections: PropTypes.array.isRequired,
 };
