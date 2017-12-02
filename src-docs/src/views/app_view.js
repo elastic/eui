@@ -41,10 +41,10 @@ export class AppView extends Component {
 
       switch (e.keyCode) {
         case keyCodes.LEFT:
-          route = Routes.getPreviousRoute(this.props.currentRouteName);
+          route = Routes.getPreviousRoute(this.props.currentRoute.name);
           break;
         case keyCodes.RIGHT:
-          route = Routes.getNextRoute(this.props.currentRouteName);
+          route = Routes.getNextRoute(this.props.currentRoute.name);
           break;
         default:
           break;
