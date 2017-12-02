@@ -75,6 +75,7 @@ export class GuideSection extends Component {
           routes={Routes.getAppRoutes()}
           onToggleTheme={this.props.toggleTheme}
           onToggleSandboxChrome={this.onToggleSandboxChrome}
+          selectedTheme={this.props.theme}
           isVisible={this.state.sandbox.isChromeVisible}
         />
       );
@@ -156,4 +157,5 @@ GuideSection.propTypes = {
   children: PropTypes.any,
   isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
 };
