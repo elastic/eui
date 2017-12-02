@@ -7,17 +7,17 @@ import {
 } from 'react-router';
 
 import {
-  EuiButtonEmpty,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
-  EuiPopover,
   EuiSideNav,
   EuiSpacer,
 } from '../../../../src/components';
+
+import {
+  GuideThemeSelector,
+} from '../guide_theme_selector';
 
 export class GuidePageChrome extends Component {
   constructor(props) {
@@ -26,7 +26,6 @@ export class GuidePageChrome extends Component {
     this.state = {
       search: '',
       isSideNavOpenOnMobile: false,
-      isThemePopoverOpen: false,
     };
   }
 
@@ -53,18 +52,6 @@ export class GuidePageChrome extends Component {
     this.scrollTo($(`#${id}`).offset().top - 20);
   };
 
-  onThemeButtonClick = () => {
-    this.setState({
-      isThemePopoverOpen: !this.state.isThemePopoverOpen,
-    });
-  };
-
-  closeThemePopover = () => {
-    this.setState({
-      isThemePopoverOpen: false,
-    });
-  };
-
   renderIdentity() {
     const homeLink = (
       <Link
@@ -75,44 +62,6 @@ export class GuidePageChrome extends Component {
       </Link>
     );
 
-    const themeButton = (
-      <EuiButtonEmpty
-        size="s"
-        color="text"
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onThemeButtonClick}
-      >
-        Theme
-      </EuiButtonEmpty>
-    );
-
-    const themeOptions = [{
-      name: 'Light',
-      value: 'light',
-    }, {
-      name: 'Dark',
-      value: 'dark',
-    }, {
-      name: 'K6',
-      value: 'k6',
-    }, {
-      name: 'K6 dark',
-      value: 'k6_dark',
-    }].map(option => {
-      const { name, value } = option;
-
-      return (
-        <EuiContextMenuItem
-          key={value}
-          icon={value === this.props.selectedTheme ? 'check' : 'empty'}
-          onClick={() => { this.closeThemePopover(); this.props.onToggleTheme(value); }}
-        >
-          {`${name}`}
-        </EuiContextMenuItem>
-      );
-    });
-
     return (
       <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
         <EuiFlexItem grow={false}>
@@ -120,20 +69,10 @@ export class GuidePageChrome extends Component {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiPopover
-            id="pageChromeThemePopover"
-            button={themeButton}
-            isOpen={this.state.isThemePopoverOpen}
-            closePopover={this.closeThemePopover}
-            panelPaddingSize="none"
-            withTitle
-            anchorPosition="downRight"
-          >
-            <EuiContextMenuPanel
-              style={{ width: '120px' }}
-              items={themeOptions}
-            />
-          </EuiPopover>
+          <GuideThemeSelector
+            onToggleTheme={this.props.onToggleTheme}
+            selectedTheme={this.props.selectedTheme}
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
     );

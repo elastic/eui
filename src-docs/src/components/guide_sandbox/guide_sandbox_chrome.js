@@ -6,19 +6,24 @@ import {
 } from 'react-router';
 
 import {
-  GuideSandboxChromeToggle,
-} from './guide_sandbox_chrome_toggle';
-
-import {
   EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
+import {
+  GuideThemeSelector,
+} from '../guide_theme_selector';
+
+import {
+  GuideSandboxChromeToggle,
+} from './guide_sandbox_chrome_toggle';
+
 export const GuideSandboxChrome = ({
   isVisible,
   onToggleTheme,
   onToggleSandboxChrome,
+  selectedTheme,
 }) => {
   const toggle = <GuideSandboxChromeToggle onClick={onToggleSandboxChrome} />;
 
@@ -36,12 +41,10 @@ export const GuideSandboxChrome = ({
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <button
-            onClick={onToggleTheme}
-            className="guideSandboxChrome__link"
-          >
-            Theme
-          </button>
+          <GuideThemeSelector
+            onToggleTheme={onToggleTheme}
+            selectedTheme={selectedTheme}
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
 
@@ -54,5 +57,6 @@ GuideSandboxChrome.propTypes = {
   routes: PropTypes.array.isRequired,
   onToggleTheme: PropTypes.func.isRequired,
   onToggleSandboxChrome: PropTypes.func.isRequired,
+  selectedTheme: PropTypes.string.isRequired,
   isVisible: PropTypes.bool,
 };
