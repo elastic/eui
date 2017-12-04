@@ -42,14 +42,17 @@ export class Tooltip extends React.PureComponent {
     let tooltipTitle;
     if (title) {
       tooltipTitle = (
-        <div className="tooltip-content tooltip-title">{title}</div>
+        <div>{title}</div>
       );
     }
 
     return (
       <div className={newClasses} {...others}>
         {tooltipTitle}
-        <div className="tooltip-content">{children}</div>
+        <div className="tooltip-content">
+          {tooltipTitle}
+          {children}
+        </div>
       </div>
     );
   }
