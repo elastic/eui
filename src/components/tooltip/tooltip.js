@@ -2,30 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+const SMALL = 's';
+const MEDIUM = 'm';
+const LARGE = 'l';
+const AUTO = 'auto';
+
 export class Tooltip extends React.PureComponent {
   static propTypes = {
-    visible: PropTypes.bool,
-    size: PropTypes.oneOf(['auto','sm', 'md', 'lg']),
+    isVisible: PropTypes.bool,
+    size: PropTypes.oneOf([AUTO,SMALL, MEDIUM, LARGE]),
     isSticky: PropTypes.bool
   };
 
   static defaultProps = {
-    visible: true,
-    size: 'auto',
+    isVisible: true,
+    size: AUTO,
     isSticky: false
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let {isSticky, visible, size, className, children, ...others} = this.props;
+    const {
+      isSticky,
+      isVisible,
+      size,
+      className,
+      children,
+      ...others
+    } = this.props;
 
-    const newClasses = classnames('tooltip-container', visible ? 'tooltip-container-visible' : 'tooltip-container-hidden',
-                                  size === 'auto' ? null : `tooltip-${size}`,
-                                  isSticky? 'tooltip-hoverable': null,
-                                  className);
+    const newClasses = classnames('tooltip-container', {
+      'tooltip-container-visible': isVisible,
+      'tooltip-container-hidden': !isVisible,
+      'tooltip-hoverable': isSticky,
+      [`tooltip-${size}`]: size !== 'auto'
+    }, className);
 
     return (
       <div className={newClasses} {...others}>
@@ -46,7 +56,7 @@ export class TooltipTrigger extends React.Component {
     onEntered: PropTypes.func,
     onExited: PropTypes.func,
     theme: PropTypes.oneOf(['dark', 'light']),
-    size: PropTypes.oneOf(['auto', 'sm', 'md', 'lg']),
+    size: PropTypes.oneOf([AUTO, SMALL, MEDIUM, LARGE]),
     isSticky: PropTypes.bool
   };
 
@@ -59,25 +69,26 @@ export class TooltipTrigger extends React.Component {
     onEntered: () => {},
     onExited: () => {},
     theme: 'dark',
-    size: 'auto',
+    size: AUTO,
     isSticky: false
   };
 
   constructor(props) {
     super(props);
-    this.state = {visible: props.trigger === 'manual' ? props.display : false};
+    const openOnLoad = props.trigger === 'manual' ? props.display : false;
+    this.state = { isVisible: openOnLoad };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   hoverHandler(e) {
-    this.setState({visible: e.type === 'mouseenter'});
+    this.setState({isVisible: e.type === 'mouseenter'});
   }
 
   clickHandler(e, onClick) {
-    this.setState({visible: true});
+    this.setState({isVisible: true});
     onClick(e);
     setTimeout(() => {
-      this.setState({visible: false});
+      this.setState({isVisible: false});
     }, this.props.clickHideDelay);
   }
 
@@ -86,56 +97,72 @@ export class TooltipTrigger extends React.Component {
     const displayChanged = this.props.display !== nextProps.display;
 
     if (triggerChanged && nextProps.trigger === 'manual') {
-      this.setState({visible: nextProps.display});
+      this.setState({isVisible: nextProps.display});
     } else if (triggerChanged) {
-      this.setState({visible: false});
+      this.setState({isVisible: false});
     } else if (displayChanged) {
-      this.setState({visible: nextProps.display});
+      this.setState({isVisible: nextProps.display});
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.visible && !this.state.visible) {
+    if(prevState.isVisible && !this.state.isVisible) {
       this.props.onExited();
-    } else if(!prevState.visible && this.state.visible) {
+    } else if(!prevState.isVisible && this.state.isVisible) {
       this.props.onEntered();
     }
   }
 
-  render() {
-    const {isSticky, placement, tooltip, trigger, className, clickHideDelay, onEntered, onExited, theme, size, onClick, display, ...others} = this.props;
-    const {visible} = this.state;
-
-    let placementClass;
-    if(placement !== 'top') {
-      placementClass = `tooltip-${placement}`;
-    }
-
-    let triggerHandler;
+  getTriggerHandler(trigger, onClick) {
     switch(trigger) {
       case 'click':
-        triggerHandler = {onClick: e => this.clickHandler(e, onClick)};
-        break;
+        return {onClick: e => this.clickHandler(e, onClick)};
       case 'manual':
-        triggerHandler = {};
-        break;
+        return {};
       default:
-        triggerHandler = {
+        return {
           onClick,
           onMouseEnter: this.hoverHandler.bind(this),
           onMouseLeave: this.hoverHandler.bind(this)
         };
-        break;
     }
+  }
 
-    const newClasses = classnames('tooltip', className, placementClass,
-      theme === 'light' ? 'tooltip-light' : null);
-    const newProps = Object.assign({className: newClasses}, triggerHandler, others);
+  render() {
+    const {
+      isSticky,
+      placement,
+      tooltip,
+      trigger,
+      className,
+      clickHideDelay,
+      onEntered,
+      onExited,
+      theme,
+      size,
+      onClick,
+      display,
+      ...others
+    } = this.props;
+    const { isVisible } = this.state;
+
+    const triggerHandler = this.getTriggerHandler(trigger, onClick);
+
+    const newClasses = classnames('tooltip', className, {
+      'tooltip-light': theme === 'light',
+      [`tooltip-${placement}`]: placement !== 'top'
+    });
+    const newProps = {
+      className: newClasses,
+      ...triggerHandler,
+      ...others
+    };
+    const tooltipProps = { isSticky, size, isVisible };
 
     return (
       <div {...newProps}>
         {this.props.children}
-        <Tooltip {...{isSticky, size: this.props.size, visible}}>{tooltip}</Tooltip>
+        <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
       </div>
     );
   }
