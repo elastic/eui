@@ -16,7 +16,6 @@ import {
 
 import {
   Routes,
-  Slugify,
 } from '../../services';
 
 export class GuideSection extends Component {
@@ -53,18 +52,6 @@ export class GuideSection extends Component {
         isChromeVisible: !this.state.sandbox.isChromeVisible,
       },
     });
-  }
-
-  getId() {
-    return Slugify.one(this.props.title);
-  }
-
-  componentWillMount() {
-    this.props.registerSection(this.getId(), this.props.title);
-  }
-
-  componentWillUnmount() {
-    this.props.unregisterSection(this.getId());
   }
 
   renderTabs() {
@@ -154,7 +141,7 @@ export class GuideSection extends Component {
 
   render() {
     return (
-      <div className="guideSection" id={this.getId()}>
+      <div className="guideSection" id={this.props.id}>
         {this.renderChrome()}
         {this.renderContent()}
       </div>
@@ -164,10 +151,9 @@ export class GuideSection extends Component {
 
 GuideSection.propTypes = {
   title: PropTypes.string,
+  id: PropTypes.string,
   source: PropTypes.array,
   children: PropTypes.any,
-  registerSection: PropTypes.func.isRequired,
-  unregisterSection: PropTypes.func.isRequired,
   isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
 };

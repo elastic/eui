@@ -41,10 +41,10 @@ export class AppView extends Component {
 
       switch (e.keyCode) {
         case keyCodes.LEFT:
-          route = Routes.getPreviousRoute(this.props.currentRouteName);
+          route = Routes.getPreviousRoute(this.props.currentRoute.name);
           break;
         case keyCodes.RIGHT:
-          route = Routes.getNextRoute(this.props.currentRouteName);
+          route = Routes.getNextRoute(this.props.currentRoute.name);
           break;
         default:
           break;
@@ -69,13 +69,12 @@ export class AppView extends Component {
           <EuiPageBody>
             <EuiPageSideBar>
               <GuidePageChrome
-                currentRouteName={this.props.currentRouteName}
+                currentRouteName={this.props.currentRoute.name}
                 onToggleTheme={this.props.toggleTheme}
                 routes={this.props.routes}
                 guidelines={Routes.guidelines}
                 components={Routes.components}
                 sandboxes={Routes.sandboxes}
-                sections={this.props.sections}
               />
             </EuiPageSideBar>
 
@@ -101,9 +100,7 @@ export class AppView extends Component {
 
 AppView.propTypes = {
   children: PropTypes.any,
-  currentRouteName: PropTypes.string.isRequired,
-  registerSection: PropTypes.func,
-  unregisterSection: PropTypes.func,
+  currentRoute: PropTypes.object.isRequired,
   sections: PropTypes.array,
   isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
@@ -112,6 +109,6 @@ AppView.propTypes = {
 };
 
 AppView.defaultProps = {
-  currentRouteName: '',
+  currentRoute: {},
   sections: [],
 };

@@ -22,7 +22,7 @@ function makeId() {
   return Math.random().toString(36).substr(2, 5);
 }
 
-export class ModalExample extends Component {
+export class Modal extends Component {
   constructor(props) {
     super(props);
 

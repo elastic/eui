@@ -4,22 +4,18 @@ import { AppView } from './app_view';
 
 import {
   getIsSandbox,
-  getSections,
   getTheme,
 } from '../store';
 
 import {
-  registerSection,
-  unregisterSection,
   toggleTheme,
 } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
     routes: ownProps.routes,
-    currentRouteName: ownProps.routes[1].name,
+    currentRoute: ownProps.routes[1],
     isSandbox: getIsSandbox(state),
-    sections: getSections(state),
     theme: getTheme(state),
   };
 }
@@ -27,8 +23,6 @@ function mapStateToProps(state, ownProps) {
 export const AppContainer = connect(
   mapStateToProps,
   {
-    registerSection,
-    unregisterSection,
     toggleTheme,
   },
 )(AppView);
