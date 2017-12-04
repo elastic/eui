@@ -18,6 +18,7 @@
 
 - Fixed bug where screen-reader styles weren't being imported [(#103)](https://github.com/elastic/eui/pull/103)
 - Fixed a bug where `<progress>` wasn't being rendered under `block` display [(#166)](https://github.com/elastic/eui/pull/166)
+- Fixed a bug that caused `<EuiPageSideBar>` width to change when the width of its content changed [(#181)](https://github.com/elastic/eui/pull/181)
 
 **Breaking**
 

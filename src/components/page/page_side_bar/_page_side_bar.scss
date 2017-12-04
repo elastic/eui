@@ -1,5 +1,9 @@
+/**
+ * 1. Prevent side bar width from changing when content width changes.
+ */
 .euiPageSideBar {
-  width: $euiSize * 12;
+  min-width: $euiSize * 12; /* 1 */
+  flex: 0 0 0; /* 1 */
   margin-right: $euiSizeL;
 }
 
