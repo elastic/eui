@@ -71,6 +71,13 @@ export default props => (
               <span className="overlay-trigger" tabIndex="0"> light tooltip.</span>
             </TooltipTrigger>
           </div>
+
+          <div>
+            Check out this
+            <TooltipTrigger tooltip="I am the body" title="I am the title">
+              <span className="overlay-trigger" tabIndex="0"> tooltip with title.</span>
+            </TooltipTrigger>
+          </div>
         </div>
       }
     />

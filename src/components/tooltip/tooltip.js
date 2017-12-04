@@ -11,7 +11,8 @@ export class Tooltip extends React.PureComponent {
   static propTypes = {
     isVisible: PropTypes.bool,
     size: PropTypes.oneOf([AUTO,SMALL, MEDIUM, LARGE]),
-    isSticky: PropTypes.bool
+    isSticky: PropTypes.bool,
+    title: PropTypes.title
   };
 
   static defaultProps = {
@@ -25,6 +26,7 @@ export class Tooltip extends React.PureComponent {
       isSticky,
       isVisible,
       size,
+      title,
       className,
       children,
       ...others
@@ -37,8 +39,16 @@ export class Tooltip extends React.PureComponent {
       [`tooltip-${size}`]: size !== 'auto'
     }, className);
 
+    let tooltipTitle;
+    if (title) {
+      tooltipTitle = (
+        <div className="tooltip-content tooltip-title">{title}</div>
+      );
+    }
+
     return (
       <div className={newClasses} {...others}>
+        {tooltipTitle}
         <div className="tooltip-content">{children}</div>
       </div>
     );
@@ -48,6 +58,7 @@ export class Tooltip extends React.PureComponent {
 export class TooltipTrigger extends React.Component {
   static propTypes = {
     display: PropTypes.bool,
+    title: PropTypes.string,
     tooltip: PropTypes.oneOfType([PropTypes.node, PropTypes.object]).isRequired,
     placement: PropTypes.oneOf(['left', 'right', 'bottom', 'top']),
     trigger: PropTypes.oneOf(['manual', 'hover', 'click']),
@@ -132,6 +143,7 @@ export class TooltipTrigger extends React.Component {
     const {
       isSticky,
       placement,
+      title,
       tooltip,
       trigger,
       className,
@@ -157,7 +169,7 @@ export class TooltipTrigger extends React.Component {
       ...triggerHandler,
       ...others
     };
-    const tooltipProps = { isSticky, size, isVisible };
+    const tooltipProps = { isSticky, size, isVisible, title };
 
     return (
       <div {...newProps}>
