@@ -3,16 +3,12 @@ import React from 'react';
 import { renderToHtml } from '../../services';
 
 import {
-  GuidePage,
-  GuideSection,
   GuideSectionTypes,
 } from '../../components';
 
 import {
   EuiCallOut,
   EuiSpacer,
-  EuiButton,
-  EuiCode,
 } from '../../../../src/components';
 
 import TooltipExamples from './examples';
@@ -40,14 +36,13 @@ export const TooltipExample = {
     title: 'Tooltip',
     source: [{
       type: GuideSectionTypes.JS,
-      code: '',
+      code: examplesSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: '',
+      code: examplesHtml,
     }],
     text: (
-      <p>
-      </p>
+      <p />
     ),
     demo: <TooltipExamples />,
   }],

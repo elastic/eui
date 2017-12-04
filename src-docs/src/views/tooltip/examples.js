@@ -20,8 +20,7 @@ export default () => (
     </div>
     <div>
       Check out this {(
-        <TooltipTrigger
-          tooltip={autoPlacementTooltip} placement="top" size="s">
+        <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
           <span className="overlay-trigger" tabIndex="0"> tooltip on the top (overflow).</span>
         </TooltipTrigger>
       )}
