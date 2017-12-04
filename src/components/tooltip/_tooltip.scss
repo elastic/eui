@@ -268,21 +268,21 @@ $tooltip-lg-width:           $base-unit * 45;
 }
 
 //Tooltip Sizes
-.tooltip-sm.tooltip-container {
+.tooltip-s.tooltip-container {
   width: $tooltip-sm-width;
   .tooltip-content {
     white-space: normal;
   }
 }
 
-.tooltip-md.tooltip-container {
+.tooltip-m.tooltip-container {
   width: $tooltip-md-width;
   .tooltip-content {
     white-space: normal;
   }
 }
 
-.tooltip-lg.tooltip-container {
+.tooltip-l.tooltip-container {
   width: $tooltip-lg-width;
   .tooltip-content {
     white-space: normal;

@@ -4,12 +4,24 @@ import {
   TooltipTrigger,
 } from '../../../../src/components';
 
+const autoPlacementTooltip = `I should be on the top but may get placed in another location
+if I overflow the browser window. This will come in handy when tooltips get placed near the top
+of pages. Its very hard to read a tooltip when part of it gets cut off and if you can't read it
+then what is the point?`;
+
 export default () => (
   <div>
     <div>
       Check out this
       <TooltipTrigger tooltip="I am the body" title="I am the title">
         <span className="overlay-trigger" tabIndex="0"> tooltip with title.</span>
+      </TooltipTrigger>
+    </div>
+    <div>
+      Check out this
+      <TooltipTrigger
+        tooltip={autoPlacementTooltip} placement="top" size="s">
+        <span className="overlay-trigger" tabIndex="0"> tooltip on the top (overflow).</span>
       </TooltipTrigger>
     </div>
     <div>

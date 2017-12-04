@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -90,12 +91,41 @@ export class TooltipTrigger extends React.Component {
   constructor(props) {
     super(props);
     const openOnLoad = props.trigger === 'manual' ? props.display : false;
-    this.state = { isVisible: openOnLoad };
+    this.state = {
+      isVisible: openOnLoad,
+      noOverflowPlacement: props.placement
+    };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   hoverHandler(e) {
-    this.setState({isVisible: e.type === 'mouseenter'});
+    const domNode = ReactDOM.findDOMNode(this);
+    const tooltipContainer = domNode.getElementsByClassName('tooltip-container')[0];
+    const rect = tooltipContainer.getBoundingClientRect();
+    const vWidth   = window.innerWidth;
+    const vHeight  = window.innerHeight;
+    const windowOverflow = {
+      top: rect.y - rect.height,
+      right: vWidth - rect.right,
+      bottom: vHeight - rect.bottom,
+      left: rect.left
+    }
+    const userPlacement = this.props.placement;
+    let bestPlacement = userPlacement;
+    if (windowOverflow[userPlacement] <= 0) {
+      // requested placement overflows window bounds
+      // select direction what has the most free space
+      Object.keys(windowOverflow).forEach((key) => {
+        if (windowOverflow[key] > windowOverflow[bestPlacement]) {
+          bestPlacement = key;
+        }
+      });
+    }
+
+    this.setState({
+      isVisible: e.type === 'mouseenter',
+      noOverflowPlacement: bestPlacement
+    });
   }
 
   clickHandler(e, onClick) {
@@ -145,7 +175,6 @@ export class TooltipTrigger extends React.Component {
   render() {
     const {
       isSticky,
-      placement,
       title,
       tooltip,
       trigger,
@@ -165,7 +194,7 @@ export class TooltipTrigger extends React.Component {
 
     const newClasses = classnames('tooltip', className, {
       'tooltip-light': theme === 'light',
-      [`tooltip-${placement}`]: placement !== 'top'
+      [`tooltip-${this.state.noOverflowPlacement}`]: this.state.noOverflowPlacement !== 'top'
     });
     const newProps = {
       className: newClasses,

@@ -43,7 +43,7 @@ export default props => (
         code: examplesHtml,
       }]}
       demo={
-        <div style={{ width: 320 }}>
+        <div>
           <TooltipExamples />
         </div>
       }
