@@ -14,7 +14,13 @@ const colorsToClassNameMap = {
 export const COLORS = Object.keys(colorsToClassNameMap);
 
 export const EuiLink = ({
-  children, type, color, className, onClick, ...rest }) => {
+  children,
+  type,
+  color,
+  className,
+  onClick,
+  ...rest
+}) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
 
   let link;
