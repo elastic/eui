@@ -12,7 +12,7 @@ export class Tooltip extends React.PureComponent {
     isVisible: PropTypes.bool,
     size: PropTypes.oneOf([AUTO,SMALL, MEDIUM, LARGE]),
     isSticky: PropTypes.bool,
-    title: PropTypes.title
+    title: PropTypes.string
   };
 
   static defaultProps = {
