@@ -5,14 +5,14 @@ const documentationGenerator = require.resolve('../documentation/index.js');
 module.exports = class extends Generator {
   prompting() {
     return this.prompt([{
-      message: 'What do you want to create?',
+      message: 'What do you want to do?',
       name: 'fileType',
       type: 'list',
       choices: [{
-        name: 'Page',
+        name: 'Create a new component documention page',
         value: 'documentation',
       }, {
-        name: 'Page demo',
+        name: 'Add an example to an existing component documentation page',
         value: 'demo',
       }],
     }]).then(answers => {
