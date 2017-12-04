@@ -176,6 +176,7 @@ export {
   EuiTableHeaderButton,
   EuiTableHeaderCell,
   EuiTableHeaderCellCheckbox,
+  EuiTablePagination,
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,

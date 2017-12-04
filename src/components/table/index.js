@@ -4,6 +4,7 @@ export { EuiTableHeader } from './table_header';
 export { EuiTableHeaderButton } from './table_header_button';
 export { EuiTableHeaderCell } from './table_header_cell';
 export { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
+export { EuiTablePagination } from './table_pagination';
 export { EuiTableRow } from './table_row';
 export { EuiTableRowCell } from './table_row_cell';
 export { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';

@@ -124,8 +124,7 @@ export const EuiPagination = ({
 
 EuiPagination.propTypes = {
   className: PropTypes.string,
-  pagesCount: PropTypes.number,
+  pageCount: PropTypes.number,
   activePage: PropTypes.number,
   onPageClick: PropTypes.func,
-  pageLinkProvider: PropTypes.func,
 };
