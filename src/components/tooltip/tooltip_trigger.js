@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Tooltip } from './tooltip';
 import { SIZE } from './tooltip_constants';
+import { noOverflowPlacement } from '../../services';
 
 export class TooltipTrigger extends React.Component {
   static propTypes = {
@@ -44,73 +45,25 @@ export class TooltipTrigger extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  noOverflowPlacement() {
+  getPlacement() {
     const domNode = ReactDOM.findDOMNode(this);
-    const domNodeRect = domNode.getBoundingClientRect();
     const tooltipContainer = domNode.getElementsByClassName('tooltip-container')[0];
-    const tooltipRect = tooltipContainer.getBoundingClientRect();
-    const BUFFER = 10; // avoid tooltip from getting touching window edge and account for padding
-
-    // determine tooltip overflow in each direction
-    // negative values signal window overflow, large values signal lots of free space
-    const tooltipOverflow = {
-      top: domNodeRect.top - (tooltipRect.height + BUFFER),
-      right: window.innerWidth - (domNodeRect.right + tooltipRect.width + BUFFER),
-      bottom: window.innerHeight - (domNodeRect.bottom + tooltipRect.height + BUFFER),
-      left: domNodeRect.left - (domNodeRect.width + BUFFER)
-    };
-
-    function hasCrossDimensionOverflow(key) {
-      if (key === 'left' || key === 'right') {
-        const domNodeCenterY = domNodeRect.top + (domNodeRect.height / 2);
-        const tooltipTop = domNodeCenterY - ((tooltipRect.height / 2) + BUFFER);
-        if (tooltipTop <= 0) {
-          return true;
-        }
-        const tooltipBottom = domNodeCenterY + (tooltipRect.height / 2) + BUFFER;
-        if (tooltipBottom >= window.innerHeight) {
-          return true;
-        }
-      } else {
-        const domNodeCenterX = domNodeRect.left + (domNodeRect.width / 2);
-        const tooltipLeft = domNodeCenterX - ((tooltipRect.width / 2) + BUFFER);
-        if (tooltipLeft <= 0) {
-          return true;
-        }
-        const tooltipRight = domNodeCenterX + (tooltipRect.width / 2) + BUFFER;
-        if (tooltipRight >= window.innerWidth) {
-          return true;
-        }
-      }
-      return false;
-    }
-
     const userPlacement = this.props.placement;
-    let bestPlacement = userPlacement;
-    if (tooltipOverflow[userPlacement] <= 0 || hasCrossDimensionOverflow(userPlacement)) {
-      // requested placement overflows window bounds
-      // select direction what has the most free space
-      Object.keys(tooltipOverflow).forEach((key) => {
-        if (tooltipOverflow[key] > tooltipOverflow[bestPlacement] && !hasCrossDimensionOverflow(key)) {
-          bestPlacement = key;
-        }
-      });
-    }
-
-    return bestPlacement;
+    const WINDOW_BUFFER = 8;
+    return noOverflowPlacement(domNode, tooltipContainer, userPlacement, WINDOW_BUFFER);
   }
 
   hoverHandler(e) {
     this.setState({
       isVisible: e.type === 'mouseenter',
-      noOverflowPlacement: this.noOverflowPlacement()
+      noOverflowPlacement: this.getPlacement()
     });
   }
 
   clickHandler(e, onClick) {
     this.setState({
       isVisible: true,
-      noOverflowPlacement: this.noOverflowPlacement()
+      noOverflowPlacement: this.getPlacement()
     });
     onClick(e);
     setTimeout(() => {

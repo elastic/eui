@@ -21,3 +21,7 @@ export {
 export {
   SortableProperties,
 } from './sort';
+
+export {
+  noOverflowPlacement,
+} from './overflow';
