@@ -9,9 +9,19 @@ export class EuiOutsideClickDetector extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onOutsideClick: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
   }
 
   onClickOutside = event => {
+    const {
+      isDisabled,
+      onOutsideClick,
+    } = this.props;
+
+    if (isDisabled) {
+      return;
+    }
+
     if (!this.wrapperRef) {
       return;
     }
@@ -24,7 +34,7 @@ export class EuiOutsideClickDetector extends Component {
       return;
     }
 
-    this.props.onOutsideClick();
+    onOutsideClick();
   }
 
   componentDidMount() {

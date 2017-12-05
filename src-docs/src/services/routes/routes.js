@@ -82,6 +82,9 @@ import { LoadingExample }
 import { ModalExample }
   from '../../views/modal/modal_example';
 
+import { OutsideClickDetectorExample }
+  from '../../views/outside_click_detector/outside_click_detector_example';
+
 import { PageExample }
   from '../../views/page/page_example';
 
@@ -181,6 +184,7 @@ const components = [
   LinkExample,
   LoadingExample,
   ModalExample,
+  OutsideClickDetectorExample,
   PageExample,
   PaginationExample,
   PanelExample,
