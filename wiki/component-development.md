@@ -1,5 +1,7 @@
 # Component Development
 
+For information on how to design components, see the [component design docs][component-design].
+
 Before working with EUI components or creating new ones, you may want to run a local server for the [documentation site][docs]. This is where we demonstrate how the components in our design system work.
 
 ## Launching the Documentation Server
@@ -54,6 +56,7 @@ If a component has subcomponents (`<EuiToolBar>` and `<EuiToolBarSearch>`), tigh
 
 We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-scss].
 
+[component-design]: component-design.md
 [docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
