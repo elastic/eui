@@ -5,5 +5,7 @@ exports[`EuiDescriptionListDescription is rendered 1`] = `
   aria-label="aria-label"
   class="euiDescriptionList__description testClass1 testClass2"
   data-test-subj="test subject string"
-/>
+>
+  Content
+</dd>
 `;

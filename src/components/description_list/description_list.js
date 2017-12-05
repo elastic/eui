@@ -73,6 +73,10 @@ export const EuiDescriptionList = ({
 EuiDescriptionList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  listItems: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+  })),
   compressed: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),
   align: PropTypes.oneOf(ALIGNMENTS),
