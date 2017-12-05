@@ -21,7 +21,14 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the top (overflow).</span>
+          <span className="overlay-trigger" tabIndex="0"> tooltip on the top.</span>
+        </TooltipTrigger>
+      )}
+    </div>
+    <div>
+      Check out this {(
+        <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m" trigger="click">
+          <span className="overlay-trigger" tabIndex="0"> tooltip on click.</span>
         </TooltipTrigger>
       )}
     </div>
@@ -37,14 +44,6 @@ export default () => (
       Check out this {(
         <TooltipTrigger tooltip="I should be on the right" placement="right">
           <span className="overlay-trigger" tabIndex="0"> tooltip on the right.</span>
-        </TooltipTrigger>
-      )}
-    </div>
-
-    <div>
-      Check out this {(
-        <TooltipTrigger tooltip="I should be on the top" placement="top">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the top.</span>
         </TooltipTrigger>
       )}
     </div>

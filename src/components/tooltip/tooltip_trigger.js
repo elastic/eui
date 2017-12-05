@@ -44,7 +44,7 @@ export class TooltipTrigger extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  hoverHandler(e) {
+  noOverflowPlacement() {
     const domNode = ReactDOM.findDOMNode(this);
     const domNodeRect = domNode.getBoundingClientRect();
     const tooltipContainer = domNode.getElementsByClassName('tooltip-container')[0];
@@ -97,14 +97,21 @@ export class TooltipTrigger extends React.Component {
       });
     }
 
+    return bestPlacement;
+  }
+
+  hoverHandler(e) {
     this.setState({
       isVisible: e.type === 'mouseenter',
-      noOverflowPlacement: bestPlacement
+      noOverflowPlacement: this.noOverflowPlacement()
     });
   }
 
   clickHandler(e, onClick) {
-    this.setState({ isVisible: true });
+    this.setState({
+      isVisible: true,
+      noOverflowPlacement: this.noOverflowPlacement()
+    });
     onClick(e);
     setTimeout(() => {
       this.setState({ isVisible: false });
