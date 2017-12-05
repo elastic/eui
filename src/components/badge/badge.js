@@ -25,7 +25,14 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiBadge = ({ children, color, iconType, iconSide, className, ...rest }) => {
+export const EuiBadge = ({
+  children,
+  color,
+  iconType,
+  iconSide,
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiBadge',
     colorToClassNameMap[color],

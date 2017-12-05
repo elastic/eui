@@ -5,5 +5,31 @@ exports[`EuiBottomBar is rendered 1`] = `
   aria-label="aria-label"
   class="euiBottomBar euiBottomBar--paddingMedium testClass1 testClass2"
   data-test-subj="test subject string"
+>
+  Content
+</div>
+`;
+
+exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
+<div
+  class="euiBottomBar euiBottomBar--paddingLarge"
+/>
+`;
+
+exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
+<div
+  class="euiBottomBar euiBottomBar--paddingMedium"
+/>
+`;
+
+exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
+<div
+  class="euiBottomBar"
+/>
+`;
+
+exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
+<div
+  class="euiBottomBar euiBottomBar--paddingSmall"
 />
 `;
