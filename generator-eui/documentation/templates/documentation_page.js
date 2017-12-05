@@ -3,8 +3,6 @@ import React from 'react';
 import { renderToHtml } from '../../services';
 
 import {
-  GuidePage,
-  GuideSection,
   GuideSectionTypes,
 } from '../../components';
 
@@ -17,7 +15,7 @@ const <%= componentExamplePrefix %>Source = require('!!raw-loader!./<%= fileName
 const <%= componentExamplePrefix %>Html = renderToHtml(<%= componentExampleName %>);
 
 export const <%= componentExampleName %>Example = {
-  title: <%= componentExampleName %>,
+  title: '<%= componentExampleName %>',
   sections: [{
     title: '<%= componentExampleName %>',
     source: [{
