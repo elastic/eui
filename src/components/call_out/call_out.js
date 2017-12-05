@@ -21,7 +21,14 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
-export const EuiCallOut = ({ title, color, iconType, children, className, ...rest }) => {
+export const EuiCallOut = ({
+  title,
+  color,
+  iconType,
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiCallOut', colorToClassNameMap[color], className);
 
   let headerIcon;
@@ -65,6 +72,8 @@ export const EuiCallOut = ({ title, color, iconType, children, className, ...res
 };
 
 EuiCallOut.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOf(COLORS),
