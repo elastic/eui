@@ -49,8 +49,8 @@ First, you'll be prompted for what kind of documentation to create:
 
 | Choice             | Description                                               |
 |--------------------|-----------------------------------------------------------|
-| Page               | A page for documenting a component(s) with multiple demos |
-| Page demo          | An individual demo of a particular component use case     |
+| Component documention page               | A new page for documenting a component |
+| Add example to an existing page         | A new subsection of an existing documentation page   |
 | Sandbox            | An empty document where you can do pretty much anything   |
 
 Follow the prompts and your documentation files will be created. You can use the snippets that are printed to the terminal to integrate these files into the EUI documentation site.
