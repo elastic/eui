@@ -46,23 +46,52 @@ export class TooltipTrigger extends React.Component {
 
   hoverHandler(e) {
     const domNode = ReactDOM.findDOMNode(this);
+    const domNodeRect = domNode.getBoundingClientRect();
     const tooltipContainer = domNode.getElementsByClassName('tooltip-container')[0];
-    const rect = tooltipContainer.getBoundingClientRect();
-    const vWidth   = window.innerWidth;
-    const vHeight  = window.innerHeight;
-    const windowOverflow = {
-      top: rect.y - rect.height,
-      right: vWidth - rect.right,
-      bottom: vHeight - rect.bottom,
-      left: rect.left
+    const tooltipRect = tooltipContainer.getBoundingClientRect();
+    const BUFFER = 10; // avoid tooltip from getting touching window edge and account for padding
+
+    // determine tooltip overflow in each direction
+    // negative values signal window overflow, large values signal lots of free space
+    const tooltipOverflow = {
+      top: domNodeRect.top - (tooltipRect.height + BUFFER),
+      right: window.innerWidth - (domNodeRect.right + tooltipRect.width + BUFFER),
+      bottom: window.innerHeight - (domNodeRect.bottom + tooltipRect.height + BUFFER),
+      left: domNodeRect.left - (domNodeRect.width + BUFFER)
     };
+
+    function noMinorDimensionOverflow(key) {
+      if (key === 'left' || key === 'right') {
+        const domNodeCenterY = domNodeRect.top + (domNodeRect.height / 2);
+        const tooltipTop = domNodeCenterY - ((tooltipRect.height / 2) + BUFFER);
+        if (tooltipTop <= 0) {
+          return false;
+        }
+        const tooltipBottom = domNodeCenterY + (tooltipRect.height / 2) + BUFFER;
+        if (tooltipBottom >= window.innerHeight) {
+          return false;
+        }
+      } else {
+        const domNodeCenterX = domNodeRect.left + (domNodeRect.width / 2);
+        const tooltipLeft = domNodeCenterX - ((tooltipRect.width / 2) + BUFFER);
+        if (tooltipLeft <= 0) {
+          return false;
+        }
+        const tooltipRight = domNodeCenterX + (tooltipRect.width / 2) + BUFFER;
+        if (tooltipRight >= window.innerWidth) {
+          return false;
+        }
+      }
+      return true;
+    }
+
     const userPlacement = this.props.placement;
     let bestPlacement = userPlacement;
-    if (windowOverflow[userPlacement] <= 0) {
+    if (tooltipOverflow[userPlacement] <= 0) {
       // requested placement overflows window bounds
       // select direction what has the most free space
-      Object.keys(windowOverflow).forEach((key) => {
-        if (windowOverflow[key] > windowOverflow[bestPlacement]) {
+      Object.keys(tooltipOverflow).forEach((key) => {
+        if (tooltipOverflow[key] > tooltipOverflow[bestPlacement] && noMinorDimensionOverflow(key)) {
           bestPlacement = key;
         }
       });
@@ -125,14 +154,14 @@ export class TooltipTrigger extends React.Component {
       tooltip,
       trigger,
       className,
-      clickHideDelay,
-      onEntered,
-      onExited,
+      clickHideDelay, // eslint-disable-line no-unused-vars
+      onEntered, // eslint-disable-line no-unused-vars
+      onExited, // eslint-disable-line no-unused-vars
       theme,
       size,
       onClick,
-      display,
-      ...others
+      display, // eslint-disable-line no-unused-vars
+      ...rest
     } = this.props;
     const { isVisible } = this.state;
 
@@ -145,7 +174,7 @@ export class TooltipTrigger extends React.Component {
     const newProps = {
       className: newClasses,
       ...triggerHandler,
-      ...others
+      ...rest
     };
     const tooltipProps = { isSticky, size, isVisible, title };
 
