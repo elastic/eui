@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAvatar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAvatar euiAvatar--m testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props imageUrl is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m"
+  style="background-image:url(image url);background-color:#FEB6DB"
+/>
+`;
+
+exports[`EuiAvatar props size l is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--l"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props size m is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props size none is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props size s is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--s"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
+exports[`EuiAvatar props size xl is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--xl"
+  style="background-image:none;background-color:#FEB6DB"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;

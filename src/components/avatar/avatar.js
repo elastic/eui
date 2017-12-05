@@ -53,10 +53,10 @@ export const EuiAvatar = ({
 };
 
 EuiAvatar.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   imageUrl: PropTypes.string,
   name: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(SIZES),
 };
 
 EuiAvatar.defaultProps = {
