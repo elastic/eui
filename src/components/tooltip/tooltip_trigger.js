@@ -60,38 +60,38 @@ export class TooltipTrigger extends React.Component {
       left: domNodeRect.left - (domNodeRect.width + BUFFER)
     };
 
-    function noMinorDimensionOverflow(key) {
+    function hasCrossDimensionOverflow(key) {
       if (key === 'left' || key === 'right') {
         const domNodeCenterY = domNodeRect.top + (domNodeRect.height / 2);
         const tooltipTop = domNodeCenterY - ((tooltipRect.height / 2) + BUFFER);
         if (tooltipTop <= 0) {
-          return false;
+          return true;
         }
         const tooltipBottom = domNodeCenterY + (tooltipRect.height / 2) + BUFFER;
         if (tooltipBottom >= window.innerHeight) {
-          return false;
+          return true;
         }
       } else {
         const domNodeCenterX = domNodeRect.left + (domNodeRect.width / 2);
         const tooltipLeft = domNodeCenterX - ((tooltipRect.width / 2) + BUFFER);
         if (tooltipLeft <= 0) {
-          return false;
+          return true;
         }
         const tooltipRight = domNodeCenterX + (tooltipRect.width / 2) + BUFFER;
         if (tooltipRight >= window.innerWidth) {
-          return false;
+          return true;
         }
       }
-      return true;
+      return false;
     }
 
     const userPlacement = this.props.placement;
     let bestPlacement = userPlacement;
-    if (tooltipOverflow[userPlacement] <= 0) {
+    if (tooltipOverflow[userPlacement] <= 0 || hasCrossDimensionOverflow(userPlacement)) {
       // requested placement overflows window bounds
       // select direction what has the most free space
       Object.keys(tooltipOverflow).forEach((key) => {
-        if (tooltipOverflow[key] > tooltipOverflow[bestPlacement] && noMinorDimensionOverflow(key)) {
+        if (tooltipOverflow[key] > tooltipOverflow[bestPlacement] && !hasCrossDimensionOverflow(key)) {
           bestPlacement = key;
         }
       });
