@@ -52,6 +52,9 @@ import { ContextMenuExample }
 import { DescriptionListExample }
   from '../../views/description_list/description_list_example';
 
+import { ExpressionExample }
+  from '../../views/expression/expression_example';
+
 import { FlexExample }
   from '../../views/flex/flex_example';
 
@@ -174,6 +177,7 @@ const components = [
   CodeExample,
   ContextMenuExample,
   DescriptionListExample,
+  ExpressionExample,
   FlexExample,
   FormExample,
   HeaderExample,
