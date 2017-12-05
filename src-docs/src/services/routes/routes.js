@@ -52,6 +52,9 @@ import { ContextMenuExample }
 import { DescriptionListExample }
   from '../../views/description_list/description_list_example';
 
+import { ExpressionExample }
+  from '../../views/expression/expression_example';
+
 import { FlexExample }
   from '../../views/flex/flex_example';
 
@@ -81,6 +84,9 @@ import { LoadingExample }
 
 import { ModalExample }
   from '../../views/modal/modal_example';
+
+import { OutsideClickDetectorExample }
+  from '../../views/outside_click_detector/outside_click_detector_example';
 
 import { PageExample }
   from '../../views/page/page_example';
@@ -171,6 +177,7 @@ const components = [
   CodeExample,
   ContextMenuExample,
   DescriptionListExample,
+  ExpressionExample,
   FlexExample,
   FormExample,
   HeaderExample,
@@ -181,6 +188,7 @@ const components = [
   LinkExample,
   LoadingExample,
   ModalExample,
+  OutsideClickDetectorExample,
   PageExample,
   PaginationExample,
   PanelExample,

@@ -1,0 +1,27 @@
+.euiExpression {
+  padding: 20px;
+  white-space: nowrap;
+}
+
+.euiExpressionButton {
+  background-color: transparent;
+  padding: 5px 0px;
+  border: none;
+  border-bottom: $euiBorderEditable;
+  font-size: $euiFontSize;
+  cursor: pointer;
+}
+
+.euiExpressionButton__description {
+  color: $expressionColorHighlight;
+  text-transform: uppercase;
+}
+
+.euiExpressionButton__value {
+  color: $euiTextColor;
+  text-transform: lowercase;
+}
+
+.euiExpressionButton-isActive {
+  border-bottom: solid 2px $expressionColorHighlight;
+}

@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiExpressionItem = ({
+export const EuiExpression = ({
   children,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiExpressionItem', className);
+  const classes = classNames('euiExpression', className);
 
   return (
     <div
@@ -19,7 +19,7 @@ export const EuiExpressionItem = ({
   );
 };
 
-EuiExpressionItem.propTypes = {
+EuiExpression.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
 };

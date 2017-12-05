@@ -147,19 +147,10 @@ module.exports = class extends Generator {
         fileName,
       } = this.config.documentationVars;
 
-      this.log(chalk.white('\n// Import example into routes.js.'));
+      this.log(chalk.white('\n// Import example into routes.js and then add it to the "components" array.'));
       this.log(
-        `${chalk.magenta('import')} ${componentExampleName}${suffix}\n` +
+        `${chalk.magenta('import')} { ${componentExampleName}${suffix} }\n` +
         `  ${chalk.magenta('from')} ${chalk.cyan(`'../../views/${fileName}/${fileName}_${suffix.toLowerCase()}'`)};`
-      );
-
-      this.log(chalk.white('\n// Import route definition into routes.js.'));
-      this.log(
-        `{\n` +
-        `  name: ${chalk.cyan(`'${componentExampleName}${appendToRoute ? suffix : ''}'`)},\n` +
-        `  component: ${componentExampleName}${suffix},\n` +
-        `  hasReact: ${chalk.magenta('true')},\n` +
-        `}`
       );
     }
 

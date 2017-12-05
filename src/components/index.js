@@ -51,6 +51,11 @@ export {
 } from './description_list';
 
 export {
+  EuiExpression,
+  EuiExpressionButton,
+} from './expression';
+
+export {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
