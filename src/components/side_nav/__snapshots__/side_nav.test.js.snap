@@ -331,7 +331,11 @@ exports[`EuiSideNav items renders items with are links 1`] = `
                 C
               </span>
               <svg
+<<<<<<< HEAD
                 class="euiIcon euiIcon--small euiIcon--subdued"
+=======
+                class="euiIcon euiIcon--medium euiIcon--subdued"
+>>>>>>> fix coloring of sidenav icons
                 height="16"
                 viewBox="0 0 16 16"
                 width="16"
