@@ -8,7 +8,7 @@ export default function sectionsReducer(state = defaultState, action) {
   switch (action.type) {
     case ActionTypes.TOGGLE_THEME: {
       return {
-        theme: (state.theme === 'light') ? 'dark' : 'light',
+        theme: action.data.theme,
       };
     }
 

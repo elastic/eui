@@ -20,6 +20,8 @@ import {
 
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
+import themeK6 from './theme_k6.scss';
+import themeK6Dark from './theme_k6_dark.scss';
 
 registerTheme('light', [
   themeLight
@@ -27,6 +29,14 @@ registerTheme('light', [
 
 registerTheme('dark', [
   themeDark
+]);
+
+registerTheme('k6', [
+  themeK6
+]);
+
+registerTheme('k6_dark', [
+  themeK6Dark
 ]);
 
 // Set up app
