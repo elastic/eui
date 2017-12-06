@@ -32,8 +32,7 @@ describe('EuiFlexItem', () => {
   test('tests the grow prop correctly', () => {
     const propType = EuiFlexItem.propTypes.grow;
 
-    // TODO: should this use GROW_SIZES?
-    const validValues = [undefined, null, true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const validValues = GROW_SIZES;
     const invalidValues = ['true', 'false', '1', 0];
 
     validValues.forEach(value =>
