@@ -4,6 +4,18 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiFlexItem } from './flex_item';
 
+const consoleWarn = console.warn;
+const consoleError = console.error;
+
+beforeAll(() => {
+  console.warn = console.error = (msg) => { throw msg; };
+});
+
+afterAll(() => {
+  console.warn = consoleWarn;
+  console.error = consoleError;
+});
+
 describe('EuiFlexItem', () => {
   test('is rendered', () => {
     const component = render(
@@ -26,5 +38,32 @@ describe('EuiFlexItem', () => {
     invalidValues.forEach(value =>
       expect(propType({ grow: value }, `grow`) instanceof Error).toBe(true)
     );
+  });
+
+  describe('component', () => {
+    ['div', 'span'].forEach(value => {
+      test(`${value} is rendered`, () => {
+        const component = render(
+          <EuiFlexItem
+            component={value}
+            {...requiredProps}
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
+    ['h2'].forEach(value => {
+      test(`${value} is not rendered`, () => {
+        expect(() => render(
+          <EuiFlexItem
+            component={value}
+            {...requiredProps}
+          />
+        )).toThrow();
+      });
+    });
   });
 });

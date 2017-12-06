@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiFlexItem component div is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlexItem testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiFlexItem component span is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiFlexItem testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiFlexItem is rendered 1`] = `
 <div
   aria-label="aria-label"
