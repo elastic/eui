@@ -24,7 +24,9 @@ afterAll(() => {
 describe('EuiFlexGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFlexGroup {...requiredProps} />
+      <EuiFlexGroup {...requiredProps}>
+        <h2>My Child</h2>
+      </EuiFlexGroup>
     );
 
     expect(component)
@@ -32,25 +34,11 @@ describe('EuiFlexGroup', () => {
   });
 
   describe('props', () => {
-    test('children', () => {
-      const component = render(
-        <EuiFlexGroup {...requiredProps}>
-          <h2>My Child</h2>
-        </EuiFlexGroup>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
     describe('responsive', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              responsive={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup responsive={value} />
           );
 
           expect(component)
@@ -63,10 +51,7 @@ describe('EuiFlexGroup', () => {
       GUTTER_SIZES.forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              gutterSize={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup gutterSize={value} />
           );
 
           expect(component)
@@ -79,10 +64,7 @@ describe('EuiFlexGroup', () => {
       ALIGN_ITEMS.forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              alignItems={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup alignItems={value} />
           );
 
           expect(component)
@@ -95,10 +77,7 @@ describe('EuiFlexGroup', () => {
       JUSTIFY_CONTENTS.forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              justifyContent={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup justifyContent={value} />
           );
 
           expect(component)
@@ -111,10 +90,7 @@ describe('EuiFlexGroup', () => {
       ['div', 'span'].forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              component={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup component={value} />
           );
 
           expect(component)
@@ -125,10 +101,7 @@ describe('EuiFlexGroup', () => {
       ['h2'].forEach(value => {
         test(`${value} is not rendered`, () => {
           expect(() => render(
-            <EuiFlexGroup
-              component={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup component={value} />
           )).toThrow();
         });
       });
@@ -138,10 +111,7 @@ describe('EuiFlexGroup', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup
-              wrap={value}
-              {...requiredProps}
-            />
+            <EuiFlexGroup wrap={value} />
           );
 
           expect(component)

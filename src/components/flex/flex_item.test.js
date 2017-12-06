@@ -2,7 +2,10 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiFlexItem } from './flex_item';
+import {
+  EuiFlexItem,
+  GROW_SIZES,
+} from './flex_item';
 
 const consoleWarn = console.warn;
 const consoleError = console.error;
@@ -29,6 +32,7 @@ describe('EuiFlexItem', () => {
   test('tests the grow prop correctly', () => {
     const propType = EuiFlexItem.propTypes.grow;
 
+    // TODO: should this use GROW_SIZES?
     const validValues = [undefined, null, true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const invalidValues = ['true', 'false', '1', 0];
 
@@ -40,14 +44,24 @@ describe('EuiFlexItem', () => {
     );
   });
 
+  describe('grow', () => {
+    GROW_SIZES.concat([true, false]).forEach(value => {
+      test(`${value} is rendered`, () => {
+        const component = render(
+          <EuiFlexItem grow={value} />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+  });
+
   describe('component', () => {
     ['div', 'span'].forEach(value => {
       test(`${value} is rendered`, () => {
         const component = render(
-          <EuiFlexItem
-            component={value}
-            {...requiredProps}
-          />
+          <EuiFlexItem component={value} />
         );
 
         expect(component)
@@ -58,10 +72,7 @@ describe('EuiFlexItem', () => {
     ['h2'].forEach(value => {
       test(`${value} is not rendered`, () => {
         expect(() => render(
-          <EuiFlexItem
-            component={value}
-            {...requiredProps}
-          />
+          <EuiFlexItem component={value} />
         )).toThrow();
       });
     });

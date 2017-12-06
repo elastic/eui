@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const validGrowNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const GROW_SIZES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const EuiFlexItem = ({
   children,
@@ -15,7 +15,7 @@ export const EuiFlexItem = ({
     'euiFlexItem',
     {
       'euiFlexItem--flexGrowZero': !grow,
-      [`euiFlexItem--flexGrow${grow}`]: validGrowNumbers.indexOf(grow) >= 0
+      [`euiFlexItem--flexGrow${grow}`]: GROW_SIZES.indexOf(grow) >= 0
     },
     className
   );
@@ -42,7 +42,7 @@ function growPropType(props, propName, componentName) {
   const validValues = [
     null, undefined,
     true, false,
-    ...validGrowNumbers
+    ...GROW_SIZES
   ];
 
   if (validValues.indexOf(value) === -1) {
