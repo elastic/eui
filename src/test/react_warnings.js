@@ -1,8 +1,7 @@
 /*
-  We want our unit tests to verify that invalid property values will
-  trigger the default react warning message. It feels easier to capture
-  that scenario as an actual throwing error so these two utility functions
-  allow you to do that.
+  Use this utility to throw errors whenever React complains via the console
+  about things like invalid propTypes. This lets us assert that a propType
+  check works correctly with `toThrow`.
 
   Usage looks like:
 
