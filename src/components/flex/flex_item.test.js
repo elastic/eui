@@ -1,23 +1,18 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import {
+  requiredProps,
+  startThrowingReactWarnings,
+  stopThrowingReactWarnings,
+} from '../../test';
 
 import {
   EuiFlexItem,
   GROW_SIZES,
 } from './flex_item';
 
-const consoleWarn = console.warn;
-const consoleError = console.error;
-
-beforeAll(() => {
-  console.warn = console.error = (msg) => { throw msg; };
-});
-
-afterAll(() => {
-  console.warn = consoleWarn;
-  console.error = consoleError;
-});
+beforeAll(startThrowingReactWarnings);
+afterAll(stopThrowingReactWarnings);
 
 describe('EuiFlexItem', () => {
   test('is rendered', () => {

@@ -1,6 +1,10 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import {
+  requiredProps,
+  startThrowingReactWarnings,
+  stopThrowingReactWarnings,
+} from '../../test';
 
 import {
   EuiFlexGroup,
@@ -9,17 +13,8 @@ import {
   JUSTIFY_CONTENTS,
 } from './flex_group';
 
-const consoleWarn = console.warn;
-const consoleError = console.error;
-
-beforeAll(() => {
-  console.warn = console.error = (msg) => { throw msg; };
-});
-
-afterAll(() => {
-  console.warn = consoleWarn;
-  console.error = consoleError;
-});
+beforeAll(startThrowingReactWarnings);
+afterAll(stopThrowingReactWarnings);
 
 describe('EuiFlexGroup', () => {
   test('is rendered', () => {
