@@ -12,57 +12,57 @@ then what is the point?`;
 
 export default () => (
   <div>
-    <p>
+    <div style={{overflow: 'hidden'}}>
       Check out this {(
         <TooltipTrigger tooltip="I am the body" title="I am the title">
-          <EuiLink> tooltip with title.</EuiLink>
+          <EuiLink>tooltip</EuiLink>
         </TooltipTrigger>
-      )}
-    </p>
+      )} with title.
+    </div>
     <br/>
     <br/>
-    <p>
+    <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
           <EuiLink> tooltip on the top.</EuiLink>
         </TooltipTrigger>
       )}
-    </p>
+    </div>
     <br/>
     <br/>
-    <p>
+    <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m" trigger="click">
           <EuiLink> tooltip on click.</EuiLink>
         </TooltipTrigger>
       )}
-    </p>
+    </div>
     <br/>
     <br/>
-    <p>
+    <div>
       Check out this {(
-        <EuiLink tooltip="I should be on the left" placement="left">
+        <TooltipTrigger tooltip="I should be on the left" placement="left">
           <EuiLink> tooltip on the left.</EuiLink>
-        </EuiLink>
+        </TooltipTrigger>
       )}
-    </p>
+    </div>
     <br/>
     <br/>
-    <p>
+    <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the right" placement="right">
           <EuiLink> tooltip on the right.</EuiLink>
         </TooltipTrigger>
       )}
-    </p>
+    </div>
     <br/>
     <br/>
-    <p>
+    <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the bottom" placement="bottom">
           <EuiLink> tooltip on the bottom.</EuiLink>
         </TooltipTrigger>
       )}
-    </p>
+    </div>
   </div>
 );
