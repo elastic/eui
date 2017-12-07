@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCheckboxGroup idToSelectedMap is rendered 1`] = `
+<div>
+  <euicheckbox
+    checked=""
+    class="euiCheckboxGroup__item"
+    id="1"
+    label="kibana"
+  />
+  <euicheckbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
+
+exports[`EuiCheckboxGroup is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+  id="foobar"
+/>
+`;
+
+exports[`EuiCheckboxGroup options are rendered 1`] = `
+<div>
+  <euicheckbox
+    class="euiCheckboxGroup__item"
+    id="1"
+    label="kibana"
+  />
+  <euicheckbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
