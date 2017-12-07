@@ -34,10 +34,14 @@ test('renders EuiConfirmModal', () => {
 });
 
 test('onConfirm', () => {
-  const component = mount(<EuiConfirmModal
-    onCancel={onCancel}
-    onConfirm={onConfirm}
-  />);
+  const component = mount(
+    <EuiConfirmModal
+      onCancel={onCancel}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+    />
+  );
   component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().simulate('click');
   sinon.assert.calledOnce(onConfirm);
   sinon.assert.notCalled(onCancel);
@@ -45,21 +49,29 @@ test('onConfirm', () => {
 
 describe('onCancel', () => {
   test('triggerd by click', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      onConfirm={onConfirm}
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
     component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().simulate('click');
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
 
   test('triggered by esc key', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      onConfirm={onConfirm}
-      data-test-subj="modal"
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        data-test-subj="modal"
+      />
+    );
     component.find('[data-test-subj="modal"]').hostNodes().simulate('keydown', { keyCode: keyCodes.ESCAPE });
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
@@ -68,27 +80,42 @@ describe('onCancel', () => {
 
 describe('defaultFocusedButton', () => {
   test('is cancel', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      defaultFocusedButton={CANCEL_BUTTON}
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        defaultFocusedButton={CANCEL_BUTTON}
+      />
+    );
     const button = component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().getDOMNode();
     expect(document.activeElement).toEqual(button);
   });
 
   test('is confirm', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      defaultFocusedButton={CONFIRM_BUTTON}
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        defaultFocusedButton={CONFIRM_BUTTON}
+      />
+    );
     const button = component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().getDOMNode();
     expect(document.activeElement).toEqual(button);
   });
 
   test('when not given gives focus to the modal', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
     expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
   });
 });
