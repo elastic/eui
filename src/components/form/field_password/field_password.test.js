@@ -8,15 +8,6 @@ jest.mock('../form_control_layout', () => ({ EuiFormControlLayout: 'eui-form-con
 jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
 
 describe('EuiFieldPassword', () => {
-  /*
-  name: PropTypes.string,
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  */
   test('is rendered', () => {
     const component = render(
       <EuiFieldPassword
