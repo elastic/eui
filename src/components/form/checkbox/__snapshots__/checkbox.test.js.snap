@@ -20,3 +20,127 @@ exports[`EuiCheckbox is rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiCheckbox props checked false is rendered 1`] = `
+<div
+  class="euiCheckbox"
+>
+  <input
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCheckbox props checked true is rendered 1`] = `
+<div
+  class="euiCheckbox"
+>
+  <input
+    checked=""
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCheckbox props disabled false is rendered 1`] = `
+<div
+  class="euiCheckbox"
+>
+  <input
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCheckbox props disabled true is rendered 1`] = `
+<div
+  class="euiCheckbox"
+>
+  <input
+    class="euiCheckbox__input"
+    disabled=""
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCheckbox props label [object Object] is rendered 1`] = `
+<div
+  class="euiCheckbox"
+>
+  <input
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+  <label
+    class="euiCheckbox__label"
+    for="id"
+  >
+    <span>
+      Label
+    </span>
+  </label>
+</div>
+`;
+
+exports[`EuiCheckbox props type inList is rendered 1`] = `
+<div
+  class="euiCheckbox euiCheckbox--inList"
+>
+  <input
+    class="euiCheckbox__input"
+    id="id"
+    type="checkbox"
+  />
+  <div
+    class="euiCheckbox__square"
+  >
+    <div
+      class="euiCheckbox__check"
+    />
+  </div>
+</div>
+`;
