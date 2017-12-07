@@ -4,7 +4,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
-jest.mock('./checkbox', () => ({ EuiCheckbox: 'euicheckbox' }));
+jest.mock('./checkbox', () => ({ EuiCheckbox: 'eui_checkbox' }));
 
 describe('EuiCheckboxGroupMockedCheckbox', () => {
   test('is rendered', () => {
