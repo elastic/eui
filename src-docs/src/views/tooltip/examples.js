@@ -14,17 +14,17 @@ export default () => (
   <div>
     <div style={{ overflow: 'hidden' }}>
       Check out this {(
-        <TooltipTrigger tooltip="I am the body" title="I am the title">
-          <EuiLink>tooltip</EuiLink>
+        <TooltipTrigger tooltip={autoPlacementTooltip} title="I am the title" size="m">
+          <EuiLink>medium tooltip</EuiLink>
         </TooltipTrigger>
-      )} with title.
+      )} with <strong>title</strong>.
     </div>
     <br/>
     <br/>
     <div>
       Check out this {(
-        <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
-          <EuiLink>tooltip on the top.</EuiLink>
+        <TooltipTrigger tooltip="I should be on the top" placement="top" >
+          <EuiLink>tooltip on the <strong>top</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -33,7 +33,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m" trigger="click">
-          <EuiLink>medium tooltip on click.</EuiLink>
+          <EuiLink> tooltip on <strong>click</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -42,7 +42,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="left" size="l">
-          <EuiLink>large tooltip  on the left.</EuiLink>
+          <EuiLink>large tooltip  on the <strong>left</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -51,18 +51,16 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the right" placement="right">
-          <EuiLink>tooltip on the right.</EuiLink>
+          <EuiLink>tooltip on the <strong>right</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
     <br/>
     <br/>
-    <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the bottom" placement="bottom">
-          <EuiLink>tooltip on the bottom.</EuiLink>
+          <EuiLink>tooltip on the <strong>bottom</strong>.</EuiLink>
         </TooltipTrigger>
       )}
-    </div>
   </div>
 );

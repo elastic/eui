@@ -20,14 +20,22 @@
     @include euiTooltipSize(30);
   }
 
-  // ANIMATING
+  // ANIMATING -- with slight delay
   transition: 
-    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
-    visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
-    transform $euiAnimSlightBounce $euiAnimSpeedSlow;
+    opacity $euiAnimSpeedNormal ease-out $euiAnimSpeedSlow,
+    visibility $euiAnimSpeedNormal ease-out $euiAnimSpeedSlow,
+    transform $euiAnimSpeedNormal ease-out $euiAnimSpeedSlow;
   opacity: 0; 
   visibility: hidden; 
-  transform: translateX(0) translateY($euiSizeL * -1) translateY(0);
+  transform: translateX(0) translateY($euiSize * -1) translateY(0); // default starting position of top
+
+  // Don't delay the animation if the tooltip is on click
+  .euiTooltip--click & {
+    transition: 
+      opacity $euiAnimSpeedNormal ease-out,
+      visibility $euiAnimSpeedNormal ease-out,
+      transform $euiAnimSpeedNormal ease-out;
+  }
 
   &.euiTooltip-isVisible {
     opacity: 1;
@@ -39,15 +47,15 @@
 
     // Starting positions
     .euiTooltip--right & {
-      transform: translateX($euiSizeL) translateY(0) translateZ(0);
+      transform: translateX($euiSize) translateY(0) translateZ(0);
     }
 
     .euiTooltip--bottom & {
-      transform: translateX(0) translateY($euiSizeL) translateZ(0);
+      transform: translateX(0) translateY($euiSize) translateZ(0);
     }
 
     .euiTooltip--left & {
-      transform: translateX($euiSizeL * -1) translateY(0) translateZ(0);
+      transform: translateX($euiSize * -1) translateY(0) translateZ(0);
     }
 }
 
@@ -65,7 +73,7 @@
     @include euiFontSizeS();  
     background-color: $background-color;
     border-radius: $euiBorderRadius;
-    padding: $euiSize;
+    padding: $euiSizeM;
     color: $text-color;
     white-space: nowrap;
     
@@ -106,6 +114,7 @@
   // The tooltip title if it exists
   .euiTooltip__title {
     @include euiFontSizeM;
-    font-weight: $euiFontWeightLight;    
+    font-weight: $euiFontWeightMedium;    
     margin-bottom: $euiSizeS;
+    border-bottom: $euiBorderWidthThin solid $euiColorDarkShade;
   }

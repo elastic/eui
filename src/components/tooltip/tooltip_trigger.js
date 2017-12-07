@@ -129,7 +129,8 @@ export class TooltipTrigger extends React.Component {
 
     const newClasses = classnames('euiTooltip', className, {
       'tooltip-light': theme === 'light',
-      [`euiTooltip--${this.state.noOverflowPlacement}`]: this.state.noOverflowPlacement !== 'top'
+      [`euiTooltip--${this.state.noOverflowPlacement}`]: this.state.noOverflowPlacement !== 'top',
+      [`euiTooltip--${trigger}`]: trigger !== 'hover',
     });
     const newProps = {
       className: newClasses,
