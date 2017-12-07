@@ -1,54 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { SIZE } from './tooltip_constants';
+import classNames from 'classnames';
 
-export class Tooltip extends React.PureComponent {
-  static propTypes = {
-    isVisible: PropTypes.bool,
-    size: PropTypes.oneOf([SIZE.AUTO, SIZE.SMALL, SIZE.MEDIUM, SIZE.LARGE]),
-    isSticky: PropTypes.bool,
-    title: PropTypes.string
-  };
+const sizeToClassNameMap = {
+  auto: null,
+  s: 'euiTooltip--small',
+  m: 'euiTooltip--medium',
+  l: 'euiTooltip--large',
+};
 
-  static defaultProps = {
-    isVisible: true,
-    size: SIZE.AUTO,
-    isSticky: false
-  };
+export const SIZES = Object.keys(sizeToClassNameMap);
 
-  render() {
-    const {
-      isSticky,
-      isVisible,
-      size,
-      title,
-      className,
-      children,
-      ...others
-    } = this.props;
+export const Tooltip = ({
+  children,
+  className,
+  size,
+  isVisible,
+  isSticky,
+  title,
+  ...rest
+}) => {
 
-    const newClasses = classnames('tooltip-container', {
-      'tooltip-container-visible': isVisible,
-      'tooltip-container-hidden': !isVisible,
-      'tooltip-hoverable': isSticky,
-      [`tooltip-${size}`]: size !== 'auto'
-    }, className);
+  const classes = classNames(
+    'euiTooltip__container',
+    sizeToClassNameMap[size],
+    {
+      'euiTooltip-isVisible': isVisible,
+      'euiTooltip-isHidden': !isVisible,
+      'euiTooltip-isSticky': isSticky,
+    },
+    className
+  );
 
-    let tooltipTitle;
-    if (title) {
-      tooltipTitle = (
-        <div>{title}</div>
-      );
-    }
-
-    return (
-      <div className={newClasses} {...others}>
-        <div className="tooltip-content">
-          {tooltipTitle}
-          {children}
-        </div>
-      </div>
+  let tooltipTitle;
+  if (title) {
+    tooltipTitle = (
+      <div className="euiTooltip__title">{title}</div>
     );
   }
-}
+
+  return (
+    <div className={classes} {...rest}>
+      <div className="euiTooltip__content">
+        {tooltipTitle}
+        {children}
+      </div>
+    </div>
+  );
+
+};
+
+Tooltip.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  size: PropTypes.oneOf(SIZES),
+  isVisible: PropTypes.bool,
+  isSticky: PropTypes.bool,
+  title: PropTypes.string
+};
+
+Tooltip.defaultProps = {
+  size: 'auto',
+  isVisible: true,
+  isSticky: false
+};

@@ -47,7 +47,7 @@ export class TooltipTrigger extends React.Component {
 
   getPlacement() {
     const domNode = ReactDOM.findDOMNode(this);
-    const tooltipContainer = domNode.getElementsByClassName('tooltip-container')[0];
+    const tooltipContainer = domNode.getElementsByClassName('euiTooltip__container')[0];
     const userPlacement = this.props.placement;
     const WINDOW_BUFFER = 8;
     return noOverflowPlacement(domNode, tooltipContainer, userPlacement, WINDOW_BUFFER);
@@ -127,9 +127,10 @@ export class TooltipTrigger extends React.Component {
 
     const triggerHandler = this.getTriggerHandler(trigger, onClick);
 
-    const newClasses = classnames('tooltip', className, {
+    const newClasses = classnames('euiTooltip', className, {
       'tooltip-light': theme === 'light',
-      [`tooltip-${this.state.noOverflowPlacement}`]: this.state.noOverflowPlacement !== 'top'
+      [`euiTooltip--${this.state.noOverflowPlacement}`]: this.state.noOverflowPlacement !== 'top',
+      [`euiTooltip--${trigger}`]: trigger !== 'hover',
     });
     const newProps = {
       className: newClasses,

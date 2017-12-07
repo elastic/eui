@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  EuiLink,
   TooltipTrigger,
 } from '../../../../src/components';
 
@@ -11,47 +12,55 @@ then what is the point?`;
 
 export default () => (
   <div>
+    <div style={{ overflow: 'hidden' }}>
+      Check out this {(
+        <TooltipTrigger tooltip={autoPlacementTooltip} title="I am the title" size="m">
+          <EuiLink>medium tooltip</EuiLink>
+        </TooltipTrigger>
+      )} with <strong>title</strong>.
+    </div>
+    <br/>
+    <br/>
     <div>
       Check out this {(
-        <TooltipTrigger tooltip="I am the body" title="I am the title">
-          <span className="overlay-trigger" tabIndex="0"> tooltip with title.</span>
+        <TooltipTrigger tooltip="I should be on the top" placement="top" >
+          <EuiLink>tooltip on the <strong>top</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
-    <div>
-      Check out this {(
-        <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the top.</span>
-        </TooltipTrigger>
-      )}
-    </div>
+    <br/>
+    <br/>
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m" trigger="click">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on click.</span>
+          <EuiLink> tooltip on <strong>click</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
+    <br/>
+    <br/>
     <div>
       Check out this {(
-        <TooltipTrigger tooltip="I should be on the left" placement="left">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the left.</span>
+        <TooltipTrigger tooltip={autoPlacementTooltip} placement="left" size="l">
+          <EuiLink>large tooltip  on the <strong>left</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
-
+    <br/>
+    <br/>
     <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the right" placement="right">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the right.</span>
+          <EuiLink>tooltip on the <strong>right</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
-
+    <br/>
+    <br/>
     <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the bottom" placement="bottom">
-          <span className="overlay-trigger" tabIndex="0"> tooltip on the bottom.</span>
+          <EuiLink>tooltip on the <strong>bottom</strong>.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
