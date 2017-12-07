@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCheckboxGroup idToSelectedMap is rendered 1`] = `
+exports[`EuiCheckboxGroupMockedCheckbox idToSelectedMap is rendered 1`] = `
 <div>
   <euicheckbox
     checked=""
@@ -16,7 +16,7 @@ exports[`EuiCheckboxGroup idToSelectedMap is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckboxGroup is rendered 1`] = `
+exports[`EuiCheckboxGroupMockedCheckbox is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="testClass1 testClass2"
@@ -25,7 +25,7 @@ exports[`EuiCheckboxGroup is rendered 1`] = `
 />
 `;
 
-exports[`EuiCheckboxGroup options are rendered 1`] = `
+exports[`EuiCheckboxGroupMockedCheckbox options are rendered 1`] = `
 <div>
   <euicheckbox
     class="euiCheckboxGroup__item"

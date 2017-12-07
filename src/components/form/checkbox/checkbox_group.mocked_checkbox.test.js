@@ -6,7 +6,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 
 jest.mock('./checkbox', () => ({ EuiCheckbox: 'euicheckbox' }));
 
-describe('EuiCheckboxGroup', () => {
+describe('EuiCheckboxGroupMockedCheckbox', () => {
   test('is rendered', () => {
     const component = render(
       <EuiCheckboxGroup onChange={() => {}} {...requiredProps} id="foobar" />

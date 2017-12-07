@@ -3,7 +3,10 @@ import { mount } from 'enzyme';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
-describe('EuiCheckboxGroup', () => {
+// This exists because we need to run the following tests
+// without mocking the Checkbox component, such as testing
+// an interaction that is handled by the Checkbox component.
+describe('EuiCheckboxGroupUnmockedCheckbox', () => {
   test('id is bound to onChange', () => {
     let id;
 
