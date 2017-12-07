@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount, render } from 'enzyme';
 
-import { requiredProps } from '../../test/required_props';
+import { findTestSubject, requiredProps } from '../../test';
 import { keyCodes } from '../../services';
 
 import {
@@ -42,7 +42,8 @@ test('onConfirm', () => {
       confirmButtonText="Confirm Button Text"
     />
   );
-  component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().simulate('click');
+
+  findTestSubject(component, 'confirmModalConfirmButton', false).simulate('click');
   sinon.assert.calledOnce(onConfirm);
   sinon.assert.notCalled(onCancel);
 });
@@ -57,7 +58,8 @@ describe('onCancel', () => {
         confirmButtonText="Confirm Button Text"
       />
     );
-    component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().simulate('click');
+
+    findTestSubject(component, 'confirmModalCancelButton', false).simulate('click');
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -72,7 +74,8 @@ describe('onCancel', () => {
         data-test-subj="modal"
       />
     );
-    component.find('[data-test-subj="modal"]').hostNodes().simulate('keydown', { keyCode: keyCodes.ESCAPE });
+
+    findTestSubject(component, 'modal', false).simulate('keydown', { keyCode: keyCodes.ESCAPE });
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -89,7 +92,8 @@ describe('defaultFocusedButton', () => {
         defaultFocusedButton={CANCEL_BUTTON}
       />
     );
-    const button = component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().getDOMNode();
+
+    const button = findTestSubject(component, 'confirmModalCancelButton');
     expect(document.activeElement).toEqual(button);
   });
 
@@ -103,7 +107,8 @@ describe('defaultFocusedButton', () => {
         defaultFocusedButton={CONFIRM_BUTTON}
       />
     );
-    const button = component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().getDOMNode();
+
+    const button = findTestSubject(component, 'confirmModalConfirmButton');
     expect(document.activeElement).toEqual(button);
   });
 
