@@ -194,6 +194,7 @@ export const COLORS = Object.keys(colorToClassMap);
 
 const sizeToClassNameMap = {
   original: null,
+  s: 'euiIcon--small',
   m: 'euiIcon--medium',
   l: 'euiIcon--large',
   xl: 'euiIcon--xLarge',

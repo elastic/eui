@@ -41,6 +41,10 @@
   fill: $euiColorDanger;
 }
 
+.euiIcon--small {
+  @include size($euiSizeM);
+}
+
 .euiIcon--medium {
   @include size($euiSize);
 }
