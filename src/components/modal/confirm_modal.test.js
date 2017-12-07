@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount, render } from 'enzyme';
 
-import { requiredProps } from '../../test/required_props';
+import { findTestSubject, requiredProps } from '../../test';
 import { keyCodes } from '../../services';
 
 import {
@@ -34,33 +34,48 @@ test('renders EuiConfirmModal', () => {
 });
 
 test('onConfirm', () => {
-  const component = mount(<EuiConfirmModal
-    onCancel={onCancel}
-    onConfirm={onConfirm}
-  />);
-  component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().simulate('click');
+  const component = mount(
+    <EuiConfirmModal
+      onCancel={onCancel}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+    />
+  );
+
+  findTestSubject(component, 'confirmModalConfirmButton', false).simulate('click');
   sinon.assert.calledOnce(onConfirm);
   sinon.assert.notCalled(onCancel);
 });
 
 describe('onCancel', () => {
   test('triggerd by click', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      onConfirm={onConfirm}
-    />);
-    component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().simulate('click');
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
+
+    findTestSubject(component, 'confirmModalCancelButton', false).simulate('click');
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
 
   test('triggered by esc key', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      onConfirm={onConfirm}
-      data-test-subj="modal"
-    />);
-    component.find('[data-test-subj="modal"]').hostNodes().simulate('keydown', { keyCode: keyCodes.ESCAPE });
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        data-test-subj="modal"
+      />
+    );
+
+    findTestSubject(component, 'modal', false).simulate('keydown', { keyCode: keyCodes.ESCAPE });
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -68,27 +83,44 @@ describe('onCancel', () => {
 
 describe('defaultFocusedButton', () => {
   test('is cancel', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      defaultFocusedButton={CANCEL_BUTTON}
-    />);
-    const button = component.find('[data-test-subj="confirmModalCancelButton"]').hostNodes().getDOMNode();
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        defaultFocusedButton={CANCEL_BUTTON}
+      />
+    );
+
+    const button = findTestSubject(component, 'confirmModalCancelButton');
     expect(document.activeElement).toEqual(button);
   });
 
   test('is confirm', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-      defaultFocusedButton={CONFIRM_BUTTON}
-    />);
-    const button = component.find('[data-test-subj="confirmModalConfirmButton"]').hostNodes().getDOMNode();
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+        defaultFocusedButton={CONFIRM_BUTTON}
+      />
+    );
+
+    const button = findTestSubject(component, 'confirmModalConfirmButton');
     expect(document.activeElement).toEqual(button);
   });
 
   test('when not given gives focus to the modal', () => {
-    const component = mount(<EuiConfirmModal
-      onCancel={onCancel}
-    />);
+    const component = mount(
+      <EuiConfirmModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        cancelButtonText="Cancel Button Text"
+        confirmButtonText="Confirm Button Text"
+      />
+    );
     expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
   });
 });

@@ -53,7 +53,7 @@ export const EuiSideNavItem = ({
   let caret;
 
   if (depth > 0 && isParent && !isOpen && !isSelected) {
-    caret = <EuiIcon type="arrowDown" />;
+    caret = <EuiIcon type="arrowDown" color="subdued" size="s" />;
   }
 
   const buttonContent = (

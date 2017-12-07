@@ -9,6 +9,7 @@ import {
 } from '../../../../src/components';
 
 const iconSizes = [
+  's',
   'm',
   'l',
   'xl',

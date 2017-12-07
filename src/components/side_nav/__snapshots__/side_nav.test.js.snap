@@ -214,7 +214,7 @@ exports[`EuiSideNav items is rendered 1`] = `
                 C
               </span>
               <svg
-                class="euiIcon euiIcon--medium"
+                class="euiIcon euiIcon--small euiIcon--subdued"
                 height="16"
                 viewBox="0 0 16 16"
                 width="16"
@@ -331,7 +331,7 @@ exports[`EuiSideNav items renders items with are links 1`] = `
                 C
               </span>
               <svg
-                class="euiIcon euiIcon--medium"
+                class="euiIcon euiIcon--small euiIcon--subdued"
                 height="16"
                 viewBox="0 0 16 16"
                 width="16"

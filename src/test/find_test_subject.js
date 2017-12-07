@@ -6,5 +6,5 @@ export const findTestSubject = (mountedComponent, testSubjectSelector, isDOMNode
     return testSubject.hostNodes().getDOMNode();
   }
 
-  return testSubject;
+  return testSubject.hostNodes();
 };

@@ -16,6 +16,7 @@
 - Add `<EuiTablePagination>` component and `Pager` service ([#178](https://github.com/elastic/eui/pull/178))
 - Add `<Tooltip>` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
 - Add a bold weight of 700 and apply it to `<strong>` elements by default ([#193](https://github.com/elastic/eui/pull/193))
+- Icon size prop now accepts `s`. Adjusted coloring of sidenav arrows ([#178](https://github.com/elastic/eui/pull/197))
 
 **Bug fixes**
 
