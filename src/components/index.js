@@ -50,6 +50,8 @@ export {
 } from './context_menu';
 
 export {
+  EuiCalendar,
+  EuiCalendarBox,
   EuiDateTime,
 } from './date_time';
 
