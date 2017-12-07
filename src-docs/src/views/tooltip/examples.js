@@ -12,7 +12,7 @@ then what is the point?`;
 
 export default () => (
   <div>
-    <div style={{overflow: 'hidden'}}>
+    <div style={{ overflow: 'hidden' }}>
       Check out this {(
         <TooltipTrigger tooltip="I am the body" title="I am the title">
           <EuiLink>tooltip</EuiLink>
@@ -24,7 +24,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m">
-          <EuiLink> tooltip on the top.</EuiLink>
+          <EuiLink>tooltip on the top.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -33,7 +33,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip={autoPlacementTooltip} placement="top" size="m" trigger="click">
-          <EuiLink> tooltip on click.</EuiLink>
+          <EuiLink>medium tooltip on click.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -41,8 +41,8 @@ export default () => (
     <br/>
     <div>
       Check out this {(
-        <TooltipTrigger tooltip="I should be on the left" placement="left">
-          <EuiLink> tooltip on the left.</EuiLink>
+        <TooltipTrigger tooltip={autoPlacementTooltip} placement="left" size="l">
+          <EuiLink>large tooltip  on the left.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -51,7 +51,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the right" placement="right">
-          <EuiLink> tooltip on the right.</EuiLink>
+          <EuiLink>tooltip on the right.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
@@ -60,7 +60,7 @@ export default () => (
     <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the bottom" placement="bottom">
-          <EuiLink> tooltip on the bottom.</EuiLink>
+          <EuiLink>tooltip on the bottom.</EuiLink>
         </TooltipTrigger>
       )}
     </div>
