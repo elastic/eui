@@ -4,13 +4,79 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiFieldPassword } from './field_password';
 
+jest.mock('../form_control_layout', () => ({ EuiFormControlLayout: 'eui-form-control-layout' }));
+jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
+
 describe('EuiFieldPassword', () => {
+  /*
+  name: PropTypes.string,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  isInvalid: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  */
   test('is rendered', () => {
     const component = render(
-      <EuiFieldPassword {...requiredProps} />
+      <EuiFieldPassword
+        name="elastic"
+        id="1"
+        placeholder="Placeholder"
+        value="1"
+        onChange={() => {}}
+        {...requiredProps}
+      />
     );
 
     expect(component)
       .toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('isInvalid', () => {
+      [true, false].forEach(value => {
+        test(`${value} is rendered`, () => {
+          const component = render(
+            <EuiFieldPassword
+              isInvalid={value}
+            />
+          );
+
+          expect(component)
+            .toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('fullWidth', () => {
+      [true, false].forEach(value => {
+        test(`${value} is rendered`, () => {
+          const component = render(
+            <EuiFieldPassword
+              fullWidth={value}
+            />
+          );
+
+          expect(component)
+            .toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('isLoading', () => {
+      [true, false].forEach(value => {
+        test(`${value} is rendered`, () => {
+          const component = render(
+            <EuiFieldPassword
+              isLoading={value}
+            />
+          );
+
+          expect(component)
+            .toMatchSnapshot();
+        });
+      });
+    });
   });
 });
