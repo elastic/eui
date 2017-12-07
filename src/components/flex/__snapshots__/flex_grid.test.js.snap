@@ -5,5 +5,63 @@ exports[`EuiFlexGrid is rendered 1`] = `
   aria-label="aria-label"
   class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds testClass1 testClass2"
   data-test-subj="test subject string"
+>
+  <h2>
+    My Child
+  </h2>
+</div>
+`;
+
+exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 2 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 3 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--fourths"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterMedium euiFlexGrid--wrap"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--wrap"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize s is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterSmall euiFlexGrid--wrap"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap"
 />
 `;

@@ -5,5 +5,135 @@ exports[`EuiFlexGroup is rendered 1`] = `
   aria-label="aria-label"
   class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive testClass1 testClass2"
   data-test-subj="test subject string"
+>
+  <h2>
+    My Child
+  </h2>
+</div>
+`;
+
+exports[`EuiFlexGroup props alignItems center is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props alignItems flexEnd is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsEnd euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props alignItems flexStart is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsStart euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props alignItems stretch is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props component div is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props component span is rendered 1`] = `
+<span
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize l is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize m is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize none is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize s is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize xl is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterExtraLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props gutterSize xs is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props justifyContent center is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentCenter euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props justifyContent flexEnd is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props justifyContent flexStart is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props justifyContent spaceAround is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceAround euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props justifyContent spaceBetween is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props responsive false is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge"
+/>
+`;
+
+exports[`EuiFlexGroup props responsive true is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props wrap false is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+/>
+`;
+
+exports[`EuiFlexGroup props wrap true is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive euiFlexGroup--wrap"
 />
 `;
