@@ -57,10 +57,12 @@ export default () => (
     </div>
     <br/>
     <br/>
+    <div>
       Check out this {(
         <TooltipTrigger tooltip="I should be on the bottom" placement="bottom">
           <EuiLink>tooltip on the <strong>bottom</strong>.</EuiLink>
         </TooltipTrigger>
       )}
+    </div>
   </div>
 );
