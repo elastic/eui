@@ -50,6 +50,10 @@ export {
 } from './context_menu';
 
 export {
+  EuiDateTime,
+} from './date_time';
+
+export {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
