@@ -11,6 +11,7 @@ import {
 } from '../components';
 
 import {
+  EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
   EuiPageContent,
@@ -67,16 +68,18 @@ export class AppView extends Component {
       return (
         <EuiPage>
           <EuiPageBody>
-            <EuiPageSideBar>
-              <GuidePageChrome
-                currentRouteName={this.props.currentRoute.name}
-                onToggleTheme={this.props.toggleTheme}
-                routes={this.props.routes}
-                guidelines={Routes.guidelines}
-                components={Routes.components}
-                sandboxes={Routes.sandboxes}
-              />
-            </EuiPageSideBar>
+            <EuiErrorBoundary>
+              <EuiPageSideBar>
+                <GuidePageChrome
+                  currentRouteName={this.props.currentRoute.name}
+                  onToggleTheme={this.props.toggleTheme}
+                  routes={this.props.routes}
+                  guidelines={Routes.guidelines}
+                  components={Routes.components}
+                  sandboxes={Routes.sandboxes}
+                />
+              </EuiPageSideBar>
+            </EuiErrorBoundary>
 
             <EuiPageContent>
               <EuiPageContentBody>

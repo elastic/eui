@@ -51,6 +51,10 @@ export {
 } from './description_list';
 
 export {
+  EuiErrorBoundary,
+} from './error_boundary';
+
+export {
   EuiExpression,
   EuiExpressionButton,
 } from './expression';
