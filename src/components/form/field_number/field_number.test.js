@@ -28,49 +28,37 @@ describe('EuiFieldNumber', () => {
   });
 
   describe('props', () => {
-    describe('isInvalid', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldNumber
-              isInvalid={value}
-            />
-          );
+    test(`isInvalid is rendered`, () => {
+      const component = render(
+        <EuiFieldNumber
+          isInvalid
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('fullWidth', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldNumber
-              fullWidth={value}
-            />
-          );
+    test(`fullWidth is rendered`, () => {
+      const component = render(
+        <EuiFieldNumber
+          fullWidth
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('isLoading', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldNumber
-              isLoading={value}
-            />
-          );
+    test(`isLoading is rendered`, () => {
+      const component = render(
+        <EuiFieldNumber
+          isLoading
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

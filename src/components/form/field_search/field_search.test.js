@@ -25,49 +25,37 @@ describe('EuiFieldSearch', () => {
   });
 
   describe('props', () => {
-    describe('isInvalid', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldSearch
-              isInvalid={value}
-            />
-          );
+    test(`isInvalid is rendered`, () => {
+      const component = render(
+        <EuiFieldSearch
+          isInvalid
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('fullWidth', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldSearch
-              fullWidth={value}
-            />
-          );
+    test(`fullWidth is rendered`, () => {
+      const component = render(
+        <EuiFieldSearch
+          fullWidth
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('isLoading', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldSearch
-              isLoading={value}
-            />
-          );
+    test(`isLoading is rendered`, () => {
+      const component = render(
+        <EuiFieldSearch
+          isLoading
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

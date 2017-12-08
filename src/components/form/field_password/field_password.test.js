@@ -25,49 +25,37 @@ describe('EuiFieldPassword', () => {
   });
 
   describe('props', () => {
-    describe('isInvalid', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldPassword
-              isInvalid={value}
-            />
-          );
+    test(`isInvalid is rendered`, () => {
+      const component = render(
+        <EuiFieldPassword
+          isInvalid
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('fullWidth', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldPassword
-              fullWidth={value}
-            />
-          );
+    test(`fullWidth is rendered`, () => {
+      const component = render(
+        <EuiFieldPassword
+          fullWidth
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('isLoading', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFieldPassword
-              isLoading={value}
-            />
-          );
+    test(`isLoading is rendered`, () => {
+      const component = render(
+        <EuiFieldPassword
+          isLoading
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

@@ -23,21 +23,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldNumber props fullWidth false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  isloading="false"
->
-  <eui-validatable-control>
-    <input
-      class="euiFieldNumber"
-      type="number"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldNumber props fullWidth true is rendered 1`] = `
+exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="true"
   isloading="false"
@@ -51,23 +37,7 @@ exports[`EuiFieldNumber props fullWidth true is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldNumber props isInvalid false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  isloading="false"
->
-  <eui-validatable-control
-    isinvalid="false"
-  >
-    <input
-      class="euiFieldNumber"
-      type="number"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldNumber props isInvalid true is rendered 1`] = `
+exports[`EuiFieldNumber props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
   isloading="false"
@@ -83,21 +53,7 @@ exports[`EuiFieldNumber props isInvalid true is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldNumber props isLoading false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  isloading="false"
->
-  <eui-validatable-control>
-    <input
-      class="euiFieldNumber"
-      type="number"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldNumber props isLoading true is rendered 1`] = `
+exports[`EuiFieldNumber props isLoading is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
   isloading="true"

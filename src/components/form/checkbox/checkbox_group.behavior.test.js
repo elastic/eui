@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
@@ -8,12 +9,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 // an interaction that is handled by the Checkbox component.
 describe('EuiCheckboxGroupUnmockedCheckbox', () => {
   test('id is bound to onChange', () => {
-    let id;
-
-    const onChange = (_id) => {
-      id = _id;
-    };
-
+    const onChangeHandler = sinon.stub();
     const component = mount(
       <EuiCheckboxGroup
         options={[
@@ -22,11 +18,11 @@ describe('EuiCheckboxGroupUnmockedCheckbox', () => {
         idToSelectedMap={{
           '1': true,
         }}
-        onChange={onChange}
+        onChange={onChangeHandler}
       />
     );
 
     component.find('input[type="checkbox"]').simulate('change');
-    expect(id).toBe('1');
+    sinon.assert.calledWith(onChangeHandler, '1');
   });
 });

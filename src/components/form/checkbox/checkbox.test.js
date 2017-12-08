@@ -35,47 +35,39 @@ describe('EuiCheckbox', () => {
 
   describe('props', () => {
     test('id is required', () => {
-      expect(() => render(
-        <EuiCheckbox checked={true} onChange={() => {}}/>
-      )).toThrow();
+      expect(
+        () => <EuiCheckbox checked={true} onChange={() => {}}/>
+      ).toThrow();
     });
 
     test('onChange is required', () => {
-      expect(() => render(
-        <EuiCheckbox id="id" checked={true}/>
-      )).toThrow();
+      expect(
+        () => <EuiCheckbox id="id" checked={true}/>
+      ).toThrow();
     });
 
-    describe('checked', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiCheckbox
-              {...checkboxRequiredProps}
-              checked={value}
-            />
-          );
+    test('check is rendered', () => {
+      const component = render(
+        <EuiCheckbox
+          {...checkboxRequiredProps}
+          checked
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
-    describe('label', () => {
-      [(<span>Label</span>)].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiCheckbox
-              {...checkboxRequiredProps}
-              label={value}
-            />
-          );
+    test('label is rendered', () => {
+      const component = render(
+        <EuiCheckbox
+          {...checkboxRequiredProps}
+          label={<span>Label</span>}
+        />
+      );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
 
     describe('type', () => {
@@ -109,14 +101,5 @@ describe('EuiCheckbox', () => {
         });
       });
     });
-    /*
-    id: PropTypes.string.isRequired,
-    checked: PropTypes.bool.isRequired,
-    label: PropTypes.node,
-    onChange: PropTypes.func.isRequired,
-    type: PropTypes.oneOf(TYPES),
-    disabled: PropTypes.bool,
-    */
-
   });
 });

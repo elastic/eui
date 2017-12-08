@@ -21,22 +21,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldSearch props fullWidth false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  icon="search"
-  isloading="false"
->
-  <eui-validatable-control>
-    <input
-      class="euiFieldSearch"
-      type="search"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldSearch props fullWidth true is rendered 1`] = `
+exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="true"
   icon="search"
@@ -51,24 +36,7 @@ exports[`EuiFieldSearch props fullWidth true is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldSearch props isInvalid false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  icon="search"
-  isloading="false"
->
-  <eui-validatable-control
-    isinvalid="false"
-  >
-    <input
-      class="euiFieldSearch"
-      type="search"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldSearch props isInvalid true is rendered 1`] = `
+exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
   icon="search"
@@ -85,22 +53,7 @@ exports[`EuiFieldSearch props isInvalid true is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldSearch props isLoading false is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  icon="search"
-  isloading="false"
->
-  <eui-validatable-control>
-    <input
-      class="euiFieldSearch"
-      type="search"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
-`;
-
-exports[`EuiFieldSearch props isLoading true is rendered 1`] = `
+exports[`EuiFieldSearch props isLoading is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
   icon="search"

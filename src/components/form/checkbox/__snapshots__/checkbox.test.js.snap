@@ -21,26 +21,7 @@ exports[`EuiCheckbox is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props checked false is rendered 1`] = `
-<div
-  class="euiCheckbox"
->
-  <input
-    class="euiCheckbox__input"
-    id="id"
-    type="checkbox"
-  />
-  <div
-    class="euiCheckbox__square"
-  >
-    <div
-      class="euiCheckbox__check"
-    />
-  </div>
-</div>
-`;
-
-exports[`EuiCheckbox props checked true is rendered 1`] = `
+exports[`EuiCheckbox props check is rendered 1`] = `
 <div
   class="euiCheckbox"
 >
@@ -99,7 +80,7 @@ exports[`EuiCheckbox props disabled true is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props label [object Object] is rendered 1`] = `
+exports[`EuiCheckbox props label is rendered 1`] = `
 <div
   class="euiCheckbox"
 >
