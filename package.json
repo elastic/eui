@@ -89,5 +89,8 @@
     "webpack-dev-server": "2.9.2",
     "yeoman-generator": "2.0.1",
     "yo": "2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0-rc || ^16.0"
   }
 }
