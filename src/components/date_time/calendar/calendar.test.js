@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../../test/required_props';
 
-import { EuiCalendarBox } from './calendar_box';
+import { EuiCalendar } from './calendar';
 
-describe('EuiCalendarBox', () => {
+describe('EuiCalendar', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCalendarBox {...requiredProps} />
+      <EuiCalendar {...requiredProps} />
     );
 
     expect(component)

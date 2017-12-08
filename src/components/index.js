@@ -51,7 +51,8 @@ export {
 
 export {
   EuiCalendar,
-  EuiCalendarBox,
+  EuiCalendarGrid,
+  EuiCalendarGridItem,
   EuiDateTime,
 } from './date_time';
 

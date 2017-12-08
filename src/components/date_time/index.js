@@ -4,8 +4,6 @@ export {
 
 export {
   EuiCalendar,
+  EuiCalendarGrid,
+  EuiCalendarGridItem,
 } from './calendar';
-
-export {
-  EuiCalendarBox,
-} from './calendar_box';

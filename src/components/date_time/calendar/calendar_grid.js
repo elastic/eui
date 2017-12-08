@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiCalendarBox = ({
+export const EuiCalendarGrid = ({
   children,
   className,
-  ...rest
+  ...rest,
 }) => {
-  const classes = classNames('euiCalendarBox', className);
+  const classes = classNames('euiCalendarGrid', className);
 
   return (
     <div
@@ -19,7 +19,7 @@ export const EuiCalendarBox = ({
   );
 };
 
-EuiCalendarBox.propTypes = {
+EuiCalendarGrid.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
