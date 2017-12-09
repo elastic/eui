@@ -49,7 +49,7 @@ module.exports = {
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       exclude: /node_modules/
     }, {
-      test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
+      test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
       loader: 'file-loader',
     }]
   },
