@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSteps renders steps 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        1
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        first title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        2
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        second title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        3
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        third title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSteps renders steps with offset 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        10
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        first title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        11
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        second title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        12
+      </div>
+      <h3
+        class="euiStepTitle"
+      >
+        third title
+      </h3>
+    </div>
+    <div
+      class="euiStep"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;
