@@ -1,13 +1,13 @@
 /**
  * Find node which matches a specific test subject selector. Returns ReactWrappers around DOM element,
  * https://github.com/airbnb/enzyme/tree/master/docs/api/ReactWrapper.
- * Typically call simulate on ReactWrapper or call getDOMNode to get underlying DOM node.
+ * Common use cases include calling simulate or getDOMNode on the returned ReactWrapper.
  */
 export const findTestSubject = (mountedComponent, testSubjectSelector) => {
   const testSubject = mountedComponent.find(`[data-test-subj="${testSubjectSelector}"]`);
 
-  // restore enzyme 2 default find behavior of only returning ReactWrappers around DOM element
-  // where as enzyme 3 returns both 1) ReactWrappers around DOM element and 2) react component.
+  // Restores Enzyme 2's find behavior, which was to only return ReactWrappers around DOM elements.
+  // Enzyme 3 returns ReactWrappers around both DOM elements and React components.
   // https://github.com/airbnb/enzyme/issues/1174
   return testSubject.hostNodes();
 };
