@@ -6,7 +6,7 @@ compile_lib() {
   local color_green="\033[0;32m"
   local color_reset="\033[0m"
 
-  mkdir -p lib/components lib/services
+  mkdir -p lib/components lib/services lib/test
 
   # We use tput below to save the cursor position, then restore it later in
   # order to overwrite "processing" messages.
@@ -16,7 +16,7 @@ compile_lib() {
   babel \
     --quiet \
     --out-dir=lib \
-    --ignore "**/webpack.config.js,**/test/*.js,**/*.test.js" \
+    --ignore "**/webpack.config.js,**/*.test.js" \
     src
   tput rc
   echo -e "${color_green}✔ Finished compiling src/ to lib/${color_reset}" >&2

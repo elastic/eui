@@ -17,6 +17,8 @@
 - Add `<Tooltip>` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
 - Add a bold weight of 700 and apply it to `<strong>` elements by default ([#193](https://github.com/elastic/eui/pull/193))
 - Icon size prop now accepts `s`. Adjusted coloring of sidenav arrows ([#178](https://github.com/elastic/eui/pull/197))
+- Add `<EuiErrorBoundary>` ([#198](https://github.com/elastic/eui/pull/198))
+- Export `test` module, which includes `findTestSubject`, `startThrowingReactWarnings`, `stopThrowingReactWarnings`, `requiredProps`, and `takeMountedSnapshot` helpers ([#198](https://github.com/elastic/eui/pull/198))
 
 **Bug fixes**
 
@@ -27,6 +29,7 @@
 **Breaking**
 
 - Fixed a bug where table cell classes were being applied twice [(#167)](https://github.com/elastic/eui/pull/167)
+- React ^16.0 is now a peer dependency ([#198](https://github.com/elastic/eui/pull/198))
 
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 

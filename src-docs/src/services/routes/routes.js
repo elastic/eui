@@ -10,6 +10,10 @@ import {
   GuideSection,
 } from '../../components';
 
+import {
+  EuiErrorBoundary,
+} from '../../../../src/components';
+
 import Slugify from '../string/slugify';
 
 // Guidelines
@@ -51,6 +55,9 @@ import { ContextMenuExample }
 
 import { DescriptionListExample }
   from '../../views/description_list/description_list_example';
+
+import { ErrorBoundaryExample }
+  from '../../views/error_boundary/error_boundary_example';
 
 import { ExpressionExample }
   from '../../views/expression/expression_example';
@@ -155,10 +162,12 @@ const createExample = ({ title, intro, sections }) => {
   }));
 
   const component = () => (
-    <GuidePage title={title}>
-      {intro}
-      {renderedSections}
-    </GuidePage>
+    <EuiErrorBoundary>
+      <GuidePage title={title}>
+        {intro}
+        {renderedSections}
+      </GuidePage>
+    </EuiErrorBoundary>
   );
 
   return {
@@ -181,6 +190,7 @@ const components = [
   CodeExample,
   ContextMenuExample,
   DescriptionListExample,
+  ErrorBoundaryExample,
   ExpressionExample,
   FlexExample,
   FormExample,

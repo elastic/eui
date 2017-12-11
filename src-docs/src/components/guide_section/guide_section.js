@@ -6,12 +6,13 @@ import {
 } from '..';
 
 import {
+  EuiCodeBlock,
+  EuiErrorBoundary,
+  EuiSpacer,
+  EuiTab,
+  EuiTabs,
   EuiText,
   EuiTitle,
-  EuiSpacer,
-  EuiTabs,
-  EuiTab,
-  EuiCodeBlock,
 } from '../../../../src/components';
 
 import {
@@ -132,10 +133,12 @@ export class GuideSection extends Component {
     }
 
     return (
-      <div>
-        <div className="guideSection__space" />
-        {this.props.demo}
-      </div>
+      <EuiErrorBoundary>
+        <div>
+          <div className="guideSection__space" />
+          {this.props.demo}
+        </div>
+      </EuiErrorBoundary>
     );
   }
 
