@@ -175,6 +175,10 @@ export {
 } from './spacer';
 
 export {
+  EuiSteps,
+} from './steps';
+
+export {
   EuiTable,
   EuiTableBody,
   EuiTableHeader,
