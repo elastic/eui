@@ -23,14 +23,14 @@ $euiCodeFontFamily: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courie
 
 // Font sizes
 
-$euiFontSize:       $euiSize;
+$euiFontSize:       $euiSize !default;
 
-$euiFontSizeXS:     $euiFontSize * .75;
-$euiFontSizeS:      $euiFontSize * .875;
-$euiFontSizeM:      $euiFontSize;
-$euiFontSizeL:      $euiFontSize * 1.5;
-$euiFontSizeXL:     $euiFontSize * 2;
-$euiFontSizeXXL:    $euiFontSize * 3;
+$euiFontSizeXS:     $euiFontSize * .75 !default;
+$euiFontSizeS:      $euiFontSize * .875 !default;
+$euiFontSizeM:      $euiFontSize !default;
+$euiFontSizeL:      $euiFontSize * 1.5 !default;
+$euiFontSizeXL:     $euiFontSize * 2 !default;
+$euiFontSizeXXL:    $euiFontSize * 3 !default;
 
 // Line height
 
@@ -39,65 +39,7 @@ $euiLineHeight:     1.5;
 
 // Font weights
 
-$euiFontWeightLight:    300;
-$euiFontWeightRegular:  400;
-$euiFontWeightMedium:   500;
-$euiFontWeightBold:     700;
-
-// Our base fonts
-
-@mixin euiFont {
-  font-family: $euiFontFamily;
-  font-weight: $euiFontWeightRegular;
-}
-
-@mixin euiCodeFont {
-  font-family: $euiCodeFontFamily;
-}
-
-@mixin euiTitle {
-  color: $euiTitleColor;
-  font-weight: $euiFontWeightLight;
-}
-
-@mixin euiText {
-  color: $euiTextColor;
-  font-weight: $euiFontWeightRegular;
-}
-
-// Font sizing extends, using rem mixin
-
-@mixin euiFontSize {
-  @include fontSize($euiFontSize);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeXS {
-  @include fontSize($euiFontSizeXS);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeS {
-  @include fontSize($euiFontSizeS);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeM {
-  @include fontSize($euiFontSizeM);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeL {
-  @include fontSize($euiFontSizeL);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeXL {
-  @include fontSize($euiFontSizeXL);
-  line-height: $euiLineHeight;
-}
-
-@mixin euiFontSizeXXL {
-  @include fontSize($euiFontSizeXXL);
-  line-height: $euiLineHeight;
-}
+$euiFontWeightLight:    300 !default;
+$euiFontWeightRegular:  400 !default;
+$euiFontWeightMedium:   500 !default;
+$euiFontWeightBold:     700 !default;
