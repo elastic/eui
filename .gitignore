@@ -7,5 +7,4 @@ lib/
 .DS_Store
 .eslintcache
 .yo-rc.json
-package-lock.json
 npm-debug.log
