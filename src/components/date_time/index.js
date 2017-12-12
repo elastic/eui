@@ -4,6 +4,7 @@ export {
 
 export {
   EuiCalendar,
+  EuiCalendarMonthYearSelector,
   EuiCalendarGrid,
   EuiCalendarGridItem,
 } from './calendar';

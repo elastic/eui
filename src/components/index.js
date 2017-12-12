@@ -54,6 +54,7 @@ export {
   EuiCalendarGrid,
   EuiCalendarGridItem,
   EuiDateTime,
+  EuiCalendarMonthYearSelector,
 } from './date_time';
 
 export {

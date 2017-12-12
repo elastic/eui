@@ -9,3 +9,7 @@ export {
 export {
   EuiCalendarGrid,
 } from './calendar_grid';
+
+export {
+  EuiCalendarMonthYearSelector,
+} from './calendar_month_year_selector';

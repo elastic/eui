@@ -5,9 +5,7 @@ import classNames from 'classnames';
 import {
   EuiCalendarGrid,
   EuiCalendarGridItem,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiButtonIcon,
+  EuiCalendarMonthYearSelector,
   EuiSpacer,
 } from '../../../components';
 
@@ -18,13 +16,66 @@ export const EuiCalendar = ({
   const classes = classNames('euiCalendar', className);
 
   const numberedDays = [
-    26, 27, 28, 29, 30, 1, 2,
-    3, 4, 5, 6, 7, 8, 9,
-    10, 11, 12, 13, 14, 15, 16,
-    17, 18, 19, 20, 21, 22, 23,
-    24, 25, 26, 27, 28, 29, 30,
-    31, 1, 2, 3, 4, 5, 6
+    {numberedDay: 26},
+    {numberedDay: 27},
+    {numberedDay: 28},
+    {numberedDay: 29},
+    {numberedDay: 30},
+    {numberedDay: 1, isInTheCurrentMonth: true},
+    {numberedDay: 2, isInTheCurrentMonth: true},
+    {numberedDay: 3, isInTheCurrentMonth: true},
+    {numberedDay: 4, isInTheCurrentMonth: true},
+    {numberedDay: 5, isInTheCurrentMonth: true},
+    {numberedDay: 6, isInTheCurrentMonth: true},
+    {numberedDay: 7, isInTheCurrentMonth: true, isToday: true},
+    {numberedDay: 8, isInTheCurrentMonth: true, isSelected: true, isStartDate: true},
+    {numberedDay: 9, isInTheCurrentMonth: true, isSelected: true},
+    {numberedDay: 10, isInTheCurrentMonth: true, isSelected: true},
+    {numberedDay: 11, isInTheCurrentMonth: true, isSelected: true},
+    {numberedDay: 12, isInTheCurrentMonth: true, isSelected: true},
+    {numberedDay: 13, isInTheCurrentMonth: true, isSelected: true},
+    {numberedDay: 14, isInTheCurrentMonth: true, isSelected: true, isEndDate: true},
+    {numberedDay: 15, isInTheCurrentMonth: true},
+    {numberedDay: 16, isInTheCurrentMonth: true},
+    {numberedDay: 17, isInTheCurrentMonth: true},
+    {numberedDay: 18, isInTheCurrentMonth: true},
+    {numberedDay: 19, isInTheCurrentMonth: true},
+    {numberedDay: 20, isInTheCurrentMonth: true},
+    {numberedDay: 21, isInTheCurrentMonth: true},
+    {numberedDay: 22, isInTheCurrentMonth: true},
+    {numberedDay: 23, isInTheCurrentMonth: true},
+    {numberedDay: 24, isInTheCurrentMonth: true},
+    {numberedDay: 25, isInTheCurrentMonth: true},
+    {numberedDay: 26, isInTheCurrentMonth: true},
+    {numberedDay: 27, isInTheCurrentMonth: true},
+    {numberedDay: 28, isInTheCurrentMonth: true},
+    {numberedDay: 29, isInTheCurrentMonth: true},
+    {numberedDay: 30, isInTheCurrentMonth: true},
+    {numberedDay: 31, isInTheCurrentMonth: true},
+    {numberedDay: 1},
+    {numberedDay: 2},
+    {numberedDay: 3},
+    {numberedDay: 4},
+    {numberedDay: 5},
+    {numberedDay: 6},
   ];
+
+  const gridItemNumberedDays = (
+    numberedDays.map((item, index) => {
+      return  (
+        <EuiCalendarGridItem
+          key={index}
+          isInTheCurrentMonth={item.isInTheCurrentMonth}
+          isSelected={item.isSelected}
+          isToday={item.isToday}
+          isStartDate={item.isStartDate}
+          isEndDate={item.isEndDate}
+        >
+          {item.numberedDay}
+        </EuiCalendarGridItem>
+      );
+    })
+  );
 
   const daysOfWeek = [
     'SUN',
@@ -37,21 +88,15 @@ export const EuiCalendar = ({
   ];
 
   const gridItemDaysOfWeek = (
-    daysOfWeek.map((day, index) => {
+    daysOfWeek.map((item, index) => {
       return (
         <EuiCalendarGridItem
-          color="subdued"
           key={index}
+          disabled
         >
-          {day}
+         {item}
         </EuiCalendarGridItem>
       );
-    })
-  );
-
-  const gridItemNumberedDays = (
-    numberedDays.map((number, index) => {
-      return <EuiCalendarGridItem key={index}>{number}</EuiCalendarGridItem>;
     })
   );
 
@@ -60,30 +105,7 @@ export const EuiCalendar = ({
       className={classes}
       {...rest}
     >
-      <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            size="s"
-            color="text"
-            iconType="arrowLeft"
-            aria-label="Previous month"
-          />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <div>
-            <span className="euiCalendarMonth">December</span>
-            <span className="euiCalendarYear"> 2017</span>
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            size="s"
-            color="text"
-            iconType="arrowRight"
-            aria-label="Next month"
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiCalendarMonthYearSelector />
       <EuiSpacer size="s" />
       <EuiCalendarGrid>
         {gridItemDaysOfWeek}
