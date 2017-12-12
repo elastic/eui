@@ -20,7 +20,7 @@ import {
 
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
-import themeK6 from './theme_k6.scss';
+import themeK6Light from './theme_k6_light.scss';
 import themeK6Dark from './theme_k6_dark.scss';
 
 registerTheme('light', [
@@ -32,7 +32,7 @@ registerTheme('dark', [
 ]);
 
 registerTheme('k6', [
-  themeK6
+  themeK6Light
 ]);
 
 registerTheme('k6_dark', [

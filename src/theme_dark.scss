@@ -1,8 +1,8 @@
-// Variables
-@import 'global_styling/theme_dark_variables';
+// These are variable overwrites used only for this theme.
+@import 'themes/eui/eui_colors_dark';
 
 // Global styling
-@import 'global_styling/core';
+@import 'global_styling/index';
 
 // Components
 @import 'components/index';
