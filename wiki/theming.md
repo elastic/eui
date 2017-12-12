@@ -14,7 +14,7 @@ overwrites that adjust colors and sizing to fit the needs of that theme.
 
 #### Set up your Sass
 
-1. Create a `src/themes/my_theme_name`.
+1. Create a `src/themes/my_theme_name/` directory.
 2. Add any `.scss` files you need for your theme in this folder (Ex: `src/themes/my_theme_name/my_theme_color.scss`).
 3. Duplicate `src/theme_light.scss` and call it `src/my_theme_name.scss`.
 4. Import your variables into the top of this file, making sure the global_variables and
