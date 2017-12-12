@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.3`.
+
+# [`0.0.4`](https://github.com/elastic/eui/tree/v0.0.4)
+
 - Added `EuiHealth` components for status checks [(#158)](https://github.com/elastic/eui/pull/158)
 - Cleaned up styling for checkboxes, switches, and radios [(#158)](https://github.com/elastic/eui/pull/158)
 - Form `disabled` states are now more consistant [(#158)](https://github.com/elastic/eui/pull/158)
