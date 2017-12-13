@@ -88,8 +88,8 @@ describe('YourComponent', () => {
         <YourComponent />
       );
 
-      expect(findTestSubject(component, 'button')).toBe(document.activeElement);
-    }); 
+      expect(findTestSubject(component, 'button').getDOMNode()).toBe(document.activeElement);
+    });
   });
 });
 
