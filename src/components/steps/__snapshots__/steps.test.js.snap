@@ -6,7 +6,9 @@ exports[`EuiSteps renders steps 1`] = `
   class="euiSteps testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -20,14 +22,16 @@ exports[`EuiSteps renders steps 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         Do this first
       </p>
     </div>
   </div>
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -41,14 +45,16 @@ exports[`EuiSteps renders steps 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         Then this
       </p>
     </div>
   </div>
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -62,7 +68,7 @@ exports[`EuiSteps renders steps 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         And finally, do this
@@ -78,7 +84,9 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   class="euiSteps testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -92,14 +100,16 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         Do this first
       </p>
     </div>
   </div>
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -113,14 +123,16 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         Then this
       </p>
     </div>
   </div>
-  <div>
+  <div
+    class="euiStep"
+  >
     <div>
       <div
         class="euiStepNumber"
@@ -134,7 +146,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       </p>
     </div>
     <div
-      class="euiStep"
+      class="euiStepContent"
     >
       <p>
         And finally, do this

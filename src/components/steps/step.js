@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {
   EuiTitle
@@ -12,9 +13,10 @@ export const EuiStep = ({
   title,
   ...rest
 }) => {
+  const classes = classNames('euiStep', className);
   return (
     <div
-      className={className}
+      className={classes}
       {...rest}
     >
 
@@ -27,7 +29,7 @@ export const EuiStep = ({
         </EuiTitle>
       </div>
 
-      <div className="euiStep">
+      <div className="euiStepContent">
         {children}
       </div>
 
