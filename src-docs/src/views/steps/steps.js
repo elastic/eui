@@ -46,13 +46,13 @@ export default () => (
     <EuiText>
       <EuiSpacer size="m"/>
       <p>
-        Set <EuiCode>offset</EuiCode> to continue step numbering after any type of break in the content
+        Set <EuiCode>firstStepNumber</EuiCode> to continue step numbering after any type of break in the content
       </p>
       <EuiSpacer size="m"/>
     </EuiText>
 
     <EuiSteps
-      offset={firstSetOfSteps.length}
+      firstStepNumber={firstSetOfSteps.length}
       steps={nextSetOfSteps}
     />
   </div>

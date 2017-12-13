@@ -1,17 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function EuiStep({ children, step, title }) {
+import {
+  EuiTitle
+} from '../title';
+
+export const EuiStep = ({
+  className,
+  children,
+  step,
+  title,
+  ...rest
+}) => {
   return (
-    <div>
+    <div
+      className={className}
+      {...rest}
+    >
 
       <div>
         <div className="euiStepNumber">
           {step}
         </div>
-        <h3 className="euiStepTitle">
-          {title}
-        </h3>
+        <EuiTitle className="euiStepTitle">
+          <p>{title}</p>
+        </EuiTitle>
       </div>
 
       <div className="euiStep">
@@ -20,7 +33,7 @@ export function EuiStep({ children, step, title }) {
 
     </div>
   );
-}
+};
 
 EuiStep.propTypes = {
   children: PropTypes.node.isRequired,

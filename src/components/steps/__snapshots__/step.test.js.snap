@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiStep is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div>
+    <div
+      class="euiStepNumber"
+    >
+      1
+    </div>
+    <p
+      class="euiTitle euiStepTitle"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;

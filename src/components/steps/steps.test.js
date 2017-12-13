@@ -29,9 +29,9 @@ describe('EuiSteps', () => {
       .toMatchSnapshot();
   });
 
-  test('renders steps with offset', () => {
+  test('renders steps with firstStepNumber', () => {
     const component = render(
-      <EuiSteps {...requiredProps} steps={steps} offset={9} />
+      <EuiSteps {...requiredProps} steps={steps} firstStepNumber={9} />
     );
 
     expect(component)

@@ -3,22 +3,32 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiStep } from './step';
 
-function renderSteps(steps, offset = 0) {
-  return steps.map((step, index) => (
-    <EuiStep
-      className="kuiVerticalRhythm"
-      key={index}
-      step={offset + index + 1}
-      title={step.title}
-    >
-      {step.children}
-    </EuiStep>
-  ));
+function renderSteps(steps, firstStepNumber) {
+  return steps.map((step, index) => {
+    const {
+      className,
+      children,
+      title,
+      ...rest
+    } = step;
+
+    return (
+      <EuiStep
+        className={className}
+        key={index}
+        step={firstStepNumber + index + 1}
+        title={title}
+        {...rest}
+      >
+        {children}
+      </EuiStep>
+    );
+  });
 }
 
 export const EuiSteps = ({
   className,
-  offset,
+  firstStepNumber,
   steps,
   ...rest,
 }) => {
@@ -29,7 +39,7 @@ export const EuiSteps = ({
       className={classes}
       {...rest}
     >
-      {renderSteps(steps, offset)}
+      {renderSteps(steps, firstStepNumber)}
     </div>
   );
 };
@@ -41,6 +51,10 @@ const stepPropType = PropTypes.shape({
 
 EuiSteps.propTypes = {
   className: PropTypes.string,
-  offset: PropTypes.number,
+  firstStepNumber: PropTypes.number,
   steps: PropTypes.arrayOf(stepPropType).isRequired,
+};
+
+EuiSteps.defaultProps = {
+  firstStepNumber: 0
 };
