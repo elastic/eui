@@ -11,7 +11,7 @@ import {
   EuiFlexItem,
   EuiPagination,
   EuiPopover,
-} from '../../../../src/components';
+} from '../../';
 
 export class EuiTablePagination extends Component {
   constructor(props) {

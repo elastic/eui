@@ -11,7 +11,7 @@ import { cascadingMenuKeyCodes } from '../../services';
 
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-import { EuiPanel, SIZES } from '../../components/panel';
+import { EuiPanel, SIZES } from '../panel';
 
 const anchorPositionToClassNameMap = {
   'upCenter': 'euiPopover--anchorUpCenter',
