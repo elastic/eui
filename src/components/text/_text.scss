@@ -1,6 +1,6 @@
 .euiText {
   @include euiText;
-  @include euiFontSizeM;
+  @include euiFontSize;
 
   a {
     color: $euiLinkColor;
@@ -57,6 +57,7 @@
   }
 
   h3 {
+    font-size: 112.5%;
     font-weight: $euiFontWeightMedium;
   }
 

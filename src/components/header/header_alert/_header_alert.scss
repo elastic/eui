@@ -24,7 +24,7 @@
 
   .euiHeaderAlert__title {
     font-weight: $euiFontWeightMedium;
-    @include euiFontSizeM;
+    @include euiFontSize;
     padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 

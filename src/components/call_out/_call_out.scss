@@ -35,7 +35,7 @@ $callOutTypes: (
  * 3. Apply margin to all but last item in the flex.
  */
 .euiCallOutHeader {
-  @include euiFontSizeM;
+  @include euiFontSize;
   display: flex;
   align-items: baseline; /* 1 */
 

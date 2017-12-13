@@ -42,6 +42,11 @@
   line-height: $euiLineHeight;
 }
 
+@mixin euiFontSize {
+  @include fontSize($euiFontSize);
+  line-height: $euiLineHeight;
+}
+
 @mixin euiFontSizeL {
   @include fontSize($euiFontSizeL);
   line-height: $euiLineHeight;
