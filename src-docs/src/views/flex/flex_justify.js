@@ -9,6 +9,13 @@ import {
 
 export default () => (
   <div>
+    <EuiFlexGroup justifyContent="spaceEvenly">
+      <EuiFlexItem grow={false}>One here on the left</EuiFlexItem>
+      <EuiFlexItem grow={false}>The other over here on the right.</EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer />
+
     <EuiFlexGroup justifyContent="spaceBetween">
       <EuiFlexItem grow={false}>One here on the left</EuiFlexItem>
       <EuiFlexItem grow={false}>The other over here on the right.</EuiFlexItem>
