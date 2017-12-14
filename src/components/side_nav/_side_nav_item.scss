@@ -99,7 +99,7 @@
 
     .euiSideNavItemButton__label {
       @include euiTitle;
-      font-size: $euiSize + 2px;
+      font-size: $euiFontSizeM;
     }
   }
 
