@@ -53,8 +53,10 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLo
 EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.string,
+  fullWidth: PropTypes.bool,
   iconSide: PropTypes.oneOf(ICON_SIDES),
   isLoading: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 EuiFormControlLayout.defaultProps = {
