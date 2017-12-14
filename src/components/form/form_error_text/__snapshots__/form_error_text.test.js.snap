@@ -6,6 +6,6 @@ exports[`EuiFormErrorText is rendered 1`] = `
   class="euiFormErrorText testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <input />
+  This is an error.
 </div>
 `;

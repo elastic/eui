@@ -8,7 +8,7 @@ describe('EuiFormErrorText', () => {
   test('is rendered', () => {
     const component = render(
       <EuiFormErrorText {...requiredProps}>
-        <input/>
+        This is an error.
       </EuiFormErrorText>
     );
 

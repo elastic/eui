@@ -8,7 +8,7 @@ describe('EuiFormHelpText', () => {
   test('is rendered', () => {
     const component = render(
       <EuiFormHelpText {...requiredProps}>
-        <input/>
+        This is help text.
       </EuiFormHelpText>
     );
 
