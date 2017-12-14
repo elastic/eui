@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        1
+      </div>
+      <h2
+        class="euiTitle euiStepTitle"
+      >
+        first title
+      </h2>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        2
+      </div>
+      <h2
+        class="euiTitle euiStepTitle"
+      >
+        second title
+      </h2>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        3
+      </div>
+      <h2
+        class="euiTitle euiStepTitle"
+      >
+        third title
+      </h2>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSteps renders steps 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        1
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        first title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        2
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        second title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        3
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        third title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSteps renders steps with firstStepNumber 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSteps testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        10
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        first title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Do this first
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        11
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        second title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        Then this
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiStep"
+  >
+    <div>
+      <div
+        class="euiStepNumber"
+      >
+        12
+      </div>
+      <p
+        class="euiTitle euiStepTitle"
+      >
+        third title
+      </p>
+    </div>
+    <div
+      class="euiStepContent"
+    >
+      <p>
+        And finally, do this
+      </p>
+    </div>
+  </div>
+</div>
+`;

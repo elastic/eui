@@ -1,0 +1,27 @@
+.euiSteps {
+
+}
+
+.euiStepNumber {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  line-height: 32px;
+  text-align: center;
+  color: #FFF;
+  border-radius: 100%;
+  background-color: #0079a5;
+}
+
+.euiStepTitle {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+.euiStepContent {
+  border-left: medium solid #D9D9D9;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  padding-left: 24px;
+}
