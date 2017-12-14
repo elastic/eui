@@ -30,6 +30,10 @@ $gutterTypes: (
 }
 
 // Justify the grid
+.euiFlexGroup--justifyContentSpaceEvenly {
+  justify-content: space-evenly;
+}
+
 .euiFlexGroup--justifyContentSpaceBetween {
   justify-content: space-between;
 }

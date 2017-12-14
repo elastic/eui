@@ -114,6 +114,12 @@ exports[`EuiFlexGroup props justifyContent spaceBetween is rendered 1`] = `
 />
 `;
 
+exports[`EuiFlexGroup props justifyContent spaceEvenly is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceEvenly euiFlexGroup--responsive"
+/>
+`;
+
 exports[`EuiFlexGroup props responsive false is rendered 1`] = `
 <div
   class="euiFlexGroup euiFlexGroup--gutterLarge"

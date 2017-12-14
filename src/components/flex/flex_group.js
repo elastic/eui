@@ -28,6 +28,7 @@ const justifyContentToClassNameMap = {
   center: 'euiFlexGroup--justifyContentCenter',
   spaceBetween: 'euiFlexGroup--justifyContentSpaceBetween',
   spaceAround: 'euiFlexGroup--justifyContentSpaceAround',
+  spaceEvenly: 'euiFlexGroup--justifyContentSpaceEvenly',
 };
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
