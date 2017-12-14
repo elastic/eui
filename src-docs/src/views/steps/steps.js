@@ -10,30 +10,30 @@ import {
 const firstSetOfSteps = [
   {
     title: 'step 1',
-    children: (<p>{'Do this first'}</p>)
+    children: <p>Do this first</p>
   },
   {
     title: 'step 2',
-    children: (<p>{'Then this'}</p>)
+    children: <p>Then this</p>
   },
   {
     title: 'step 3',
-    children: (<p>{'And finally, do this'}</p>)
+    children: <p>And finally, do this</p>
   },
 ];
 
 const nextSetOfSteps = [
   {
     title: 'good step',
-    children: (<p>{'Do this first'}</p>)
+    children: <p>Do this first</p>
   },
   {
     title: 'better step',
-    children: (<p>{'Then this'}</p>)
+    children: <p>Then this</p>
   },
   {
     title: 'best step',
-    children: (<p>{'And finally, do this'}</p>)
+    children: <p>And finally, do this</p>
   },
 ];
 
@@ -52,7 +52,7 @@ export default () => (
     </EuiText>
 
     <EuiSteps
-      firstStepNumber={firstSetOfSteps.length}
+      firstStepNumber={firstSetOfSteps.length + 1}
       steps={nextSetOfSteps}
     />
   </div>

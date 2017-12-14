@@ -7,15 +7,15 @@ import { EuiSteps } from './steps';
 const steps = [
   {
     title: 'first title',
-    children: (<p>{'Do this first'}</p>)
+    children: <p>Do this first</p>
   },
   {
     title: 'second title',
-    children: (<p>{'Then this'}</p>)
+    children: <p>Then this</p>
   },
   {
     title: 'third title',
-    children: (<p>{'And finally, do this'}</p>)
+    children: <p>And finally, do this</p>
   },
 ];
 
@@ -31,7 +31,7 @@ describe('EuiSteps', () => {
 
   test('renders steps with firstStepNumber', () => {
     const component = render(
-      <EuiSteps {...requiredProps} steps={steps} firstStepNumber={9} />
+      <EuiSteps {...requiredProps} steps={steps} firstStepNumber={10} />
     );
 
     expect(component)
@@ -40,7 +40,7 @@ describe('EuiSteps', () => {
 
   test('renders step title inside "headingElement" element', () => {
     const component = render(
-      <EuiSteps {...requiredProps} steps={steps} headingElement={'h2'} />
+      <EuiSteps {...requiredProps} steps={steps} headingElement="h2" />
     );
 
     expect(component)

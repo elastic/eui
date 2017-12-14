@@ -17,7 +17,7 @@ function renderSteps(steps, firstStepNumber, headingElement) {
         className={className}
         key={index}
         headingElement={headingElement}
-        step={firstStepNumber + index + 1}
+        step={firstStepNumber + index}
         title={title}
         {...rest}
       >
@@ -59,6 +59,6 @@ EuiSteps.propTypes = {
 };
 
 EuiSteps.defaultProps = {
-  firstStepNumber: 0,
+  firstStepNumber: 1,
   headingElement: 'p'
 };
