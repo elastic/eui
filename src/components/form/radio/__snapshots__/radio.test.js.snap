@@ -20,3 +20,70 @@ exports[`EuiRadio is rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiRadio props checked is rendered 1`] = `
+<div
+  class="euiRadio"
+>
+  <input
+    checked=""
+    class="euiRadio__input"
+    id="id"
+    type="radio"
+  />
+  <div
+    class="euiRadio__circle"
+  >
+    <div
+      class="euiRadio__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRadio props disabled is rendered 1`] = `
+<div
+  class="euiRadio"
+>
+  <input
+    class="euiRadio__input"
+    disabled=""
+    id="id"
+    type="radio"
+  />
+  <div
+    class="euiRadio__circle"
+  >
+    <div
+      class="euiRadio__check"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRadio props label is rendered 1`] = `
+<div
+  class="euiRadio"
+>
+  <input
+    class="euiRadio__input"
+    id="id"
+    type="radio"
+  />
+  <div
+    class="euiRadio__circle"
+  >
+    <div
+      class="euiRadio__check"
+    />
+  </div>
+  <label
+    class="euiRadio__label"
+    for="id"
+  >
+    <span>
+      Label
+    </span>
+  </label>
+</div>
+`;
