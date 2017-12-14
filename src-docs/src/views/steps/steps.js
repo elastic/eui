@@ -9,30 +9,30 @@ import {
 
 const firstSetOfSteps = [
   {
-    title: 'step 1',
+    title: 'Step 1',
     children: (<p>{'Do this first'}</p>)
   },
   {
-    title: 'step 2',
+    title: 'Step 2',
     children: (<p>{'Then this'}</p>)
   },
   {
-    title: 'step 3',
+    title: 'Step 3',
     children: (<p>{'And finally, do this'}</p>)
   },
 ];
 
 const nextSetOfSteps = [
   {
-    title: 'good step',
+    title: 'Good step',
     children: (<p>{'Do this first'}</p>)
   },
   {
-    title: 'better step',
+    title: 'Better step',
     children: (<p>{'Then this'}</p>)
   },
   {
-    title: 'best step',
+    title: 'Best step',
     children: (<p>{'And finally, do this'}</p>)
   },
 ];
