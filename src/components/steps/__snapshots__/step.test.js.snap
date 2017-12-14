@@ -7,19 +7,20 @@ exports[`EuiStep is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div>
-    <div
-      class="euiStepNumber"
+    <span
+      class="euiScreenReaderOnly"
     >
-      1
-    </div>
+      Step 1
+    </span>
     <h3
-      class="euiTitle euiStepTitle"
+      class="euiTitle euiStep__title"
+      data-step-num="1"
     >
       First step
     </h3>
   </div>
   <div
-    class="euiStepContent"
+    class="euiStep__content"
   >
     <p>
       Do this

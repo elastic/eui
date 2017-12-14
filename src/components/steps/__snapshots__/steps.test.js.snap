@@ -10,19 +10,20 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        1
-      </div>
+        Step 1
+      </span>
       <h2
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="1"
       >
         first title
       </h2>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Do this first
@@ -33,19 +34,20 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        2
-      </div>
+        Step 2
+      </span>
       <h2
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="2"
       >
         second title
       </h2>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Then this
@@ -56,19 +58,20 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        3
-      </div>
+        Step 3
+      </span>
       <h2
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="3"
       >
         third title
       </h2>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         And finally, do this
@@ -88,19 +91,20 @@ exports[`EuiSteps renders steps 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        1
-      </div>
+        Step 1
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="1"
       >
         first title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Do this first
@@ -111,19 +115,20 @@ exports[`EuiSteps renders steps 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        2
-      </div>
+        Step 2
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="2"
       >
         second title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Then this
@@ -134,19 +139,20 @@ exports[`EuiSteps renders steps 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        3
-      </div>
+        Step 3
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="3"
       >
         third title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         And finally, do this
@@ -166,19 +172,20 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        10
-      </div>
+        Step 10
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="10"
       >
         first title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Do this first
@@ -189,19 +196,20 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        11
-      </div>
+        Step 11
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="11"
       >
         second title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         Then this
@@ -212,19 +220,20 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     class="euiStep"
   >
     <div>
-      <div
-        class="euiStepNumber"
+      <span
+        class="euiScreenReaderOnly"
       >
-        12
-      </div>
+        Step 12
+      </span>
       <p
-        class="euiTitle euiStepTitle"
+        class="euiTitle euiStep__title"
+        data-step-num="12"
       >
         third title
       </p>
     </div>
     <div
-      class="euiStepContent"
+      class="euiStep__content"
     >
       <p>
         And finally, do this

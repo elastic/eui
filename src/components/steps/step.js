@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiTitle
-} from '../title';
+  EuiScreenReaderOnly,
+  EuiTitle,
+} from '../';
 
 export const EuiStep = ({
   className,
@@ -22,15 +23,13 @@ export const EuiStep = ({
     >
 
       <div>
-        <div className="euiStepNumber">
-          {step}
-        </div>
-        <EuiTitle className="euiStepTitle">
+        <EuiScreenReaderOnly><span>Step {step}</span></EuiScreenReaderOnly>
+        <EuiTitle className="euiStep__title" data-step-num={step}>
           {React.createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
 
-      <div className="euiStepContent">
+      <div className="euiStep__content">
         {children}
       </div>
 
