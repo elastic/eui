@@ -6,19 +6,17 @@ exports[`EuiStep is rendered 1`] = `
   class="euiStep testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
-    <span
-      class="euiScreenReaderOnly"
-    >
-      Step 1
-    </span>
-    <h3
-      class="euiTitle euiStep__title"
-      data-step-num="1"
-    >
-      First step
-    </h3>
-  </div>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Step
+  </span>
+  <h3
+    class="euiTitle euiStep__title"
+    data-step-num="1"
+  >
+    First step
+  </h3>
   <div
     class="euiStep__content"
   >

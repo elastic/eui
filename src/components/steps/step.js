@@ -22,12 +22,11 @@ export const EuiStep = ({
       {...rest}
     >
 
-      <div>
-        <EuiScreenReaderOnly><span>Step {step}</span></EuiScreenReaderOnly>
-        <EuiTitle className="euiStep__title" data-step-num={step}>
-          {React.createElement(headingElement, null, title)}
-        </EuiTitle>
-      </div>
+      <EuiScreenReaderOnly><span>Step</span></EuiScreenReaderOnly>
+
+      <EuiTitle className="euiStep__title" data-step-num={step}>
+        {React.createElement(headingElement, null, title)}
+      </EuiTitle>
 
       <div className="euiStep__content">
         {children}

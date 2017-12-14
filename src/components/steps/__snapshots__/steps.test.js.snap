@@ -9,19 +9,17 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 1
-      </span>
-      <h2
-        class="euiTitle euiStep__title"
-        data-step-num="1"
-      >
-        first title
-      </h2>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <h2
+      class="euiTitle euiStep__title"
+      data-step-num="1"
+    >
+      first title
+    </h2>
     <div
       class="euiStep__content"
     >
@@ -33,19 +31,17 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 2
-      </span>
-      <h2
-        class="euiTitle euiStep__title"
-        data-step-num="2"
-      >
-        second title
-      </h2>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <h2
+      class="euiTitle euiStep__title"
+      data-step-num="2"
+    >
+      second title
+    </h2>
     <div
       class="euiStep__content"
     >
@@ -57,19 +53,17 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 3
-      </span>
-      <h2
-        class="euiTitle euiStep__title"
-        data-step-num="3"
-      >
-        third title
-      </h2>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <h2
+      class="euiTitle euiStep__title"
+      data-step-num="3"
+    >
+      third title
+    </h2>
     <div
       class="euiStep__content"
     >
@@ -90,19 +84,17 @@ exports[`EuiSteps renders steps 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 1
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="1"
-      >
-        first title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="1"
+    >
+      first title
+    </p>
     <div
       class="euiStep__content"
     >
@@ -114,19 +106,17 @@ exports[`EuiSteps renders steps 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 2
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="2"
-      >
-        second title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="2"
+    >
+      second title
+    </p>
     <div
       class="euiStep__content"
     >
@@ -138,19 +128,17 @@ exports[`EuiSteps renders steps 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 3
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="3"
-      >
-        third title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="3"
+    >
+      third title
+    </p>
     <div
       class="euiStep__content"
     >
@@ -171,19 +159,17 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 10
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="10"
-      >
-        first title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="10"
+    >
+      first title
+    </p>
     <div
       class="euiStep__content"
     >
@@ -195,19 +181,17 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 11
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="11"
-      >
-        second title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="11"
+    >
+      second title
+    </p>
     <div
       class="euiStep__content"
     >
@@ -219,19 +203,17 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   <div
     class="euiStep"
   >
-    <div>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        Step 12
-      </span>
-      <p
-        class="euiTitle euiStep__title"
-        data-step-num="12"
-      >
-        third title
-      </p>
-    </div>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <p
+      class="euiTitle euiStep__title"
+      data-step-num="12"
+    >
+      third title
+    </p>
     <div
       class="euiStep__content"
     >
