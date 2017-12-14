@@ -142,6 +142,32 @@ export class GuidePageChrome extends Component {
     };
   }
 
+  rendePatternNavItems() {
+    const matchingItems = this.props.patterns.filter(item => (
+      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    ));
+
+    return {
+      name: 'Patterns',
+      id: 'patterns',
+      items: matchingItems.map(item => {
+        const {
+          name,
+          path,
+          sections,
+        } = item;
+
+        return {
+          id: `pattern-${path}`,
+          name,
+          href: `#/${path}`,
+          items: this.renderSubSections(sections),
+          isSelected: name === this.props.currentRouteName,
+        };
+      }),
+    };
+  }
+
   renderSandboxNavItems() {
     const matchingItems = this.props.sandboxes.filter(item => (
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -170,6 +196,7 @@ export class GuidePageChrome extends Component {
     const sideNav = [
       this.renderGuidelineNavItems(),
       this.renderComponentNavItems(),
+      this.rendePatternNavItems(),
       this.renderSandboxNavItems(),
     ];
 
@@ -204,5 +231,6 @@ GuidePageChrome.propTypes = {
   selectedTheme: PropTypes.string.isRequired,
   guidelines: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
+  patterns: PropTypes.array.isRequired,
   sandboxes: PropTypes.array.isRequired,
 };
