@@ -7,7 +7,9 @@ import { EuiFormHelpText } from './form_help_text';
 describe('EuiFormHelpText', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFormHelpText {...requiredProps} />
+      <EuiFormHelpText {...requiredProps}>
+        <input/>
+      </EuiFormHelpText>
     );
 
     expect(component)
