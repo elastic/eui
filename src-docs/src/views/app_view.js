@@ -84,10 +84,12 @@ export class AppView extends Component {
                   selectedTheme={theme}
                   guidelines={Routes.guidelines}
                   components={Routes.components}
+                  patterns={Routes.patterns}
                   sandboxes={Routes.sandboxes}
                 />
               </EuiPageSideBar>
             </EuiErrorBoundary>
+
             <EuiPageContent>
               <EuiPageContentBody>
                 {children}
