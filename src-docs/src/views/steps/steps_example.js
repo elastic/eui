@@ -10,6 +10,10 @@ import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 
+import HeadingElementSteps from './heading_element_steps';
+const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
+const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
+
 export const StepsExample = {
   title: 'Steps',
   sections: [{
@@ -27,5 +31,21 @@ export const StepsExample = {
       </p>
     ),
     demo: <Steps />,
+  },
+  {
+    title: 'Heading Element Steps',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: headingElementStepsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: headingElementStepsHtml,
+    }],
+    text: (
+      <p>
+        something something better accessibility
+      </p>
+    ),
+    demo: <HeadingElementSteps />,
   }],
 };
