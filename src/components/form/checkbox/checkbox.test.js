@@ -87,18 +87,16 @@ describe('EuiCheckbox', () => {
     });
 
     describe('disabled', () => {
-      [true, false].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiCheckbox
-              {...checkboxRequiredProps}
-              disabled={value}
-            />
-          );
+      test(`disabled is rendered`, () => {
+        const component = render(
+          <EuiCheckbox
+            {...checkboxRequiredProps}
+            disabled
+          />
+        );
 
-          expect(component)
-            .toMatchSnapshot();
-        });
+        expect(component)
+          .toMatchSnapshot();
       });
     });
   });

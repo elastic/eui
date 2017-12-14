@@ -7,7 +7,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 // This exists because we need to run the following tests
 // without mocking the Checkbox component, such as testing
 // an interaction that is handled by the Checkbox component.
-describe('EuiCheckboxGroupUnmockedCheckbox', () => {
+describe('EuiCheckboxGroup behavior', () => {
   test('id is bound to onChange', () => {
     const onChangeHandler = sinon.stub();
     const component = mount(
