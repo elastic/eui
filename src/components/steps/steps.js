@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiStep } from './step';
 
-function renderSteps(steps, firstStepNumber) {
+function renderSteps(steps, firstStepNumber, headingElement) {
   return steps.map((step, index) => {
     const {
       className,
@@ -16,6 +16,7 @@ function renderSteps(steps, firstStepNumber) {
       <EuiStep
         className={className}
         key={index}
+        headingElement={headingElement}
         step={firstStepNumber + index + 1}
         title={title}
         {...rest}
@@ -29,6 +30,7 @@ function renderSteps(steps, firstStepNumber) {
 export const EuiSteps = ({
   className,
   firstStepNumber,
+  headingElement,
   steps,
   ...rest,
 }) => {
@@ -39,7 +41,7 @@ export const EuiSteps = ({
       className={classes}
       {...rest}
     >
-      {renderSteps(steps, firstStepNumber)}
+      {renderSteps(steps, firstStepNumber, headingElement)}
     </div>
   );
 };
@@ -52,9 +54,11 @@ const stepPropType = PropTypes.shape({
 EuiSteps.propTypes = {
   className: PropTypes.string,
   firstStepNumber: PropTypes.number,
+  headingElement: PropTypes.string,
   steps: PropTypes.arrayOf(stepPropType).isRequired,
 };
 
 EuiSteps.defaultProps = {
-  firstStepNumber: 0
+  firstStepNumber: 0,
+  headingElement: 'p'
 };

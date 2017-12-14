@@ -37,4 +37,13 @@ describe('EuiSteps', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('renders step title inside "headingElement" element', () => {
+    const component = render(
+      <EuiSteps {...requiredProps} steps={steps} headingElement={'h2'} />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });

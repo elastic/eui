@@ -10,6 +10,7 @@ describe('EuiStep', () => {
     const component = render(
       <EuiStep
         {...requiredProps}
+        headingElement={'h3'}
         step={1}
         title={'First step'}
         children={stepContent}

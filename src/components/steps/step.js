@@ -9,6 +9,7 @@ import {
 export const EuiStep = ({
   className,
   children,
+  headingElement,
   step,
   title,
   ...rest
@@ -25,7 +26,7 @@ export const EuiStep = ({
           {step}
         </div>
         <EuiTitle className="euiStepTitle">
-          <p>{title}</p>
+          {React.createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
 
@@ -41,4 +42,5 @@ EuiStep.propTypes = {
   children: PropTypes.node.isRequired,
   step: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  headingElement: PropTypes.string.isRequired,
 };
