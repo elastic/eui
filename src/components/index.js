@@ -50,14 +50,6 @@ export {
 } from './context_menu';
 
 export {
-  EuiCalendar,
-  EuiCalendarGrid,
-  EuiCalendarGridItem,
-  EuiDateTime,
-  EuiCalendarMonthYearSelector,
-} from './date_time';
-
-export {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
@@ -86,8 +78,14 @@ export {
 } from './flyout';
 
 export {
+  EuiCalendar,
+  EuiCalendarGrid,
+  EuiCalendarGridItem,
+  EuiCalendarMonthYearSelector,
   EuiCheckbox,
   EuiCheckboxGroup,
+  EuiDateTime,
+  EuiDateTimeInput,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
