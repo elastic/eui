@@ -1,32 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSelect is rendered 1`] = `
-<div
-  class="euiFormControlLayout"
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
 >
-  <select
-    aria-label="aria-label"
-    class="euiSelect testClass1 testClass2"
-    data-test-subj="test subject string"
-  />
-  <svg
-    class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xlink="http://www.w3.org/1999/xlink"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <path
-        d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-        id="arrow_down-a"
-      />
-    </defs>
-    <use
-      fill-rule="nonzero"
-      href="#arrow_down-a"
+  <eui-validatable-control>
+    <select
+      aria-label="aria-label"
+      class="euiSelect testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="id"
+      name="name"
     />
-  </svg>
-</div>
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiSelect props fullWidth is rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="true"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect euiSelect--fullWidth"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiSelect props isInvalid is rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
+>
+  <eui-validatable-control
+    isinvalid="true"
+  >
+    <select
+      class="euiSelect"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiSelect props isLoading is rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="true"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect euiSelect-isLoading"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiSelect props options are rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect"
+    >
+      <option
+        value="1"
+      >
+        Option #1
+      </option>
+      <option
+        value="2"
+      >
+        Option #2
+      </option>
+    </select>
+  </eui-validatable-control>
+</eui-form-control-layout>
 `;
