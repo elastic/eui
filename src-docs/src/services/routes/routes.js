@@ -222,7 +222,7 @@ const components = [
 ].map(example => createExample(example));
 
 const patterns = [
-];
+].map(example => createExample(example));
 
 const sandboxes = [{
   name: 'Advanced Settings',
@@ -241,6 +241,7 @@ const allRoutes = [
   ...guidelines,
   ...components,
   ...sandboxes,
+  ...patterns,
 ];
 
 export default {
