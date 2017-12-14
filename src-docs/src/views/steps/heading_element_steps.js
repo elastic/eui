@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {
-  EuiText,
   EuiSteps,
+  EuiText
 } from '../../../../src/components';
 
 const steps = [
   {
     title: 'Inspect me',
-    children: (<EuiText><h3>{'Did you notice the step title is inside a Heading 2 element?'}</h3></EuiText>)
+    children: <EuiText><h3>Did you notice the step title is inside a Heading 2 element?</h3></EuiText>
   }
 ];
 
@@ -20,7 +20,7 @@ export default () => (
 
     <EuiSteps
       steps={steps}
-      headingElement={'h2'}
+      headingElement="h2"
     />
   </div>
 );
