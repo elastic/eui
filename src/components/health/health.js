@@ -6,7 +6,7 @@ import {
   EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../components';
+} from '../';
 
 export const EuiHealth = ({
   children,

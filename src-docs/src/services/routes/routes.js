@@ -137,6 +137,9 @@ import { ToastExample }
 import { TooltipExample }
   from '../../views/tooltip/tooltip_example';
 
+// Patterns
+
+
 
 // Sandboxes
 
@@ -222,6 +225,9 @@ const components = [
   TooltipExample,
 ].map(example => createExample(example));
 
+const patterns = [
+].map(example => createExample(example));
+
 const sandboxes = [{
   name: 'Advanced Settings',
   component: AdvancedSettingsSandbox,
@@ -239,12 +245,14 @@ const allRoutes = [
   ...guidelines,
   ...components,
   ...sandboxes,
+  ...patterns,
 ];
 
 export default {
   history: useRouterHistory(createHashHistory)(),
   guidelines: Slugify.each(guidelines, 'name', 'path'),
   components: Slugify.each(components, 'name', 'path'),
+  patterns: Slugify.each(patterns, 'name', 'path'),
   sandboxes: Slugify.each(sandboxes, 'name', 'path'),
 
   getRouteForPath: path => {

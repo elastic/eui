@@ -4,6 +4,7 @@ import { GuideSection } from './guide_section';
 
 import {
   getIsSandbox,
+  getTheme,
 } from '../../store';
 
 import {
@@ -13,6 +14,7 @@ import {
 function mapStateToProps(state) {
   return {
     isSandbox: getIsSandbox(state),
+    theme: getTheme(state),
   };
 }
 

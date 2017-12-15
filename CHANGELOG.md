@@ -1,6 +1,20 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiSteps` component ([(#202)](https://github.com/elastic/eui/pull/202), [(#208)](https://github.com/elastic/eui/pull/208))
+
+# [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
+
+- `justify` prop of `<EuiFlexGroup>` now accepts `spaceEvenly` [(#205)](https://github.com/elastic/eui/pull/205)
+- Increase size of  `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
+
+# [`0.0.5`](https://github.com/elastic/eui/tree/v0.0.5)
+
+**Bug fixes**
+
+- Fixed import paths for `EuiTable`, `EuiHealth`, and `EuiPopover` which prevented dependents of EUI from being able to compile when importing components from the `lib` directory  [(#203)](https://github.com/elastic/eui/pull/203)
+
+# [`0.0.4`](https://github.com/elastic/eui/tree/v0.0.4)
+
 - Added `EuiHealth` components for status checks [(#158)](https://github.com/elastic/eui/pull/158)
 - Cleaned up styling for checkboxes, switches, and radios [(#158)](https://github.com/elastic/eui/pull/158)
 - Form `disabled` states are now more consistant [(#158)](https://github.com/elastic/eui/pull/158)
@@ -20,6 +34,7 @@
 - Icon size prop now accepts `s`. Adjusted coloring of sidenav arrows ([#178](https://github.com/elastic/eui/pull/197))
 - Add `<EuiErrorBoundary>` ([#198](https://github.com/elastic/eui/pull/198))
 - Export `test` module, which includes `findTestSubject`, `startThrowingReactWarnings`, `stopThrowingReactWarnings`, `requiredProps`, and `takeMountedSnapshot` helpers ([#198](https://github.com/elastic/eui/pull/198))
+- Added a more systematic way to add themes; includes a new K6 theme for Kibana. [(#191)](https://github.com/elastic/eui/pull/191)
 
 **Bug fixes**
 

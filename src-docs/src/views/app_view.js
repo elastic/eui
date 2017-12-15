@@ -58,10 +58,18 @@ export class AppView extends Component {
   }
 
   renderContent() {
-    if (this.props.isSandbox) {
+    const {
+      children,
+      currentRoute,
+      isSandbox,
+      toggleTheme,
+      theme,
+    } = this.props;
+
+    if (isSandbox) {
       return (
         <div className="guideSandbox">
-          {this.props.children}
+          {children}
         </div>
       );
     } else {
@@ -71,11 +79,12 @@ export class AppView extends Component {
             <EuiErrorBoundary>
               <EuiPageSideBar>
                 <GuidePageChrome
-                  currentRouteName={this.props.currentRoute.name}
-                  onToggleTheme={this.props.toggleTheme}
-                  routes={this.props.routes}
+                  currentRouteName={currentRoute.name}
+                  onToggleTheme={toggleTheme}
+                  selectedTheme={theme}
                   guidelines={Routes.guidelines}
                   components={Routes.components}
+                  patterns={Routes.patterns}
                   sandboxes={Routes.sandboxes}
                 />
               </EuiPageSideBar>
@@ -83,7 +92,7 @@ export class AppView extends Component {
 
             <EuiPageContent>
               <EuiPageContentBody>
-                {this.props.children}
+                {children}
               </EuiPageContentBody>
             </EuiPageContent>
           </EuiPageBody>
@@ -104,14 +113,11 @@ export class AppView extends Component {
 AppView.propTypes = {
   children: PropTypes.any,
   currentRoute: PropTypes.object.isRequired,
-  sections: PropTypes.array,
   isSandbox: PropTypes.bool,
-  toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
-  sections: PropTypes.array.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
 };
 
 AppView.defaultProps = {
   currentRoute: {},
-  sections: [],
 };

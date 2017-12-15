@@ -1,0 +1,63 @@
+
+// Our base fonts
+
+@mixin euiFont {
+  font-family: $euiFontFamily;
+  font-weight: $euiFontWeightRegular;
+}
+
+@mixin euiCodeFont {
+  font-family: $euiCodeFontFamily;
+}
+
+@mixin euiTitle {
+  color: $euiTitleColor;
+  font-weight: $euiFontWeightLight;
+}
+
+@mixin euiText {
+  color: $euiTextColor;
+  font-weight: $euiFontWeightRegular;
+}
+
+// Font sizing extends, using rem mixin
+
+@mixin euiFontSize {
+  @include fontSize($euiFontSize);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeXS {
+  @include fontSize($euiFontSizeXS);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeS {
+  @include fontSize($euiFontSizeS);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeM {
+  @include fontSize($euiFontSizeM);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSize {
+  @include fontSize($euiFontSize);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeL {
+  @include fontSize($euiFontSizeL);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeXL {
+  @include fontSize($euiFontSizeXL);
+  line-height: $euiLineHeight;
+}
+
+@mixin euiFontSizeXXL {
+  @include fontSize($euiFontSizeXXL);
+  line-height: $euiLineHeight;
+}

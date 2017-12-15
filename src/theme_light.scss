@@ -1,8 +1,7 @@
-// Variables
-@import 'global_styling/theme_light_variables';
+// This is the default theme, it does not contain any variable overwrites.
 
 // Global styling
-@import 'global_styling/core';
+@import 'global_styling/index';
 
 // Components
 @import 'components/index';
