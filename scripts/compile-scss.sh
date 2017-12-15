@@ -2,9 +2,14 @@
 
 set -e
 
-mkdir -p dist
+eui="$(pwd)"
 
-for THEME in src/theme_*.scss; do
-  node-sass "$THEME" > "dist/eui_$(basename "$THEME" .scss).css"
-  postcss --replace --config src-docs/postcss.config.js "dist/eui_$(basename "$THEME" .scss).css"
+mkdir -p "${eui}/dist"
+
+src="${eui}/src/theme_*.scss"
+
+for THEME in $src; do
+  dest="${eui}/dist/eui_$(basename "$THEME" .scss).css"
+  node-sass "$THEME" > "$dest"
+  postcss --replace --config "${eui}/src-docs/postcss.config.js" "$dest"
 done

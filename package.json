@@ -10,13 +10,15 @@
     "sync-docs": "./scripts/docs-sync.sh",
     "build-docs": "./scripts/docs-build.sh",
     "build": "./scripts/compile.sh",
+    "build-init": "./scripts/compile-init.sh",
     "lint": "./scripts/lint.sh",
     "lint-fix": "./scripts/lint-fix.sh",
     "test": "./scripts/test.sh",
     "test-unit": "./scripts/test-unit.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
-    "release": "./scripts/release.sh"
+    "release": "./scripts/release.sh",
+    "postinstall": "npm run build-init"
   },
   "dependencies": {
     "brace": "0.10.0",
@@ -32,9 +34,7 @@
     "react-ace": "5.5.0",
     "serve": "6.3.1",
     "tabbable": "1.1.0",
-    "uuid": "3.1.0"
-  },
-  "devDependencies": {
+    "uuid": "3.1.0",
     "@elastic/eslint-config-kibana": "0.13.0",
     "autoprefixer": "7.1.5",
     "babel-cli": "6.26.0",

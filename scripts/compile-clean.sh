@@ -2,4 +2,6 @@
 
 set -e
 
-rm -rf dist lib
+eui="$(pwd)"
+
+rm -rf "${eui}/dist" "${eui}/lib"

@@ -2,6 +2,8 @@
 
 set -e
 
-./scripts/compile-clean.sh
-./scripts/compile-scss.sh
-./scripts/compile-eui.sh
+eui="$(pwd)"
+
+"${eui}/scripts/compile-clean.sh"
+"${eui}/scripts/compile-scss.sh"
+"${eui}/scripts/compile-eui.sh"

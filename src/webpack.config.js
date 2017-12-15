@@ -43,11 +43,11 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
-      exclude: /node_modules/
+      include: path.resolve(__dirname, '../src'),
     }, {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      exclude: /node_modules/
+      include: path.resolve(__dirname, '../src'),
     }, {
       test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
       loader: 'file-loader',
