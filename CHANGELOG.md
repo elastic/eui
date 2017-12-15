@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.6`.
+- Added `EuiSteps` component ([(#202)](https://github.com/elastic/eui/pull/202), [(#208)](https://github.com/elastic/eui/pull/208))
 
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
@@ -70,3 +70,5 @@ No public interface changes since `0.0.6`.
 # [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
 
 - Initial public release
+
+

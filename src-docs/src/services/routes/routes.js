@@ -116,6 +116,9 @@ import { SideNavExample }
 import { SpacerExample }
   from '../../views/spacer/spacer_example';
 
+import { StepsExample }
+  from '../../views/steps/steps_example';
+
 import { TableExample }
   from '../../views/table/table_example';
 
@@ -213,6 +216,7 @@ const components = [
   ProgressExample,
   SideNavExample,
   SpacerExample,
+  StepsExample,
   TableExample,
   TabsExample,
   TextExample,
