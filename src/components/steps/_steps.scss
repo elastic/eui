@@ -1,27 +1,46 @@
-.euiSteps {
+$euiStepNumberSize: $euiSizeXL !default;
+$euiStepNumberMargin: $euiSize !default;
 
+/**
+ * 1. Ensure that the step number vertically aligns with the title text
+ */
+
+.euiStep {
+  // Do not show the content border if it is the last step
+  &:last-of-type .euiStep__content {
+    border-left-color: transparent;
+  }
+
+  .euiTitle {
+    line-height: $euiStepNumberSize; /* 1 */
+  }
 }
 
-.euiStepNumber {
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-  line-height: 32px;
-  text-align: center;
-  color: #FFF;
-  border-radius: 100%;
-  background-color: #0079a5;
-}
+  .euiStep__title::before {
+    content: attr(data-step-num); // Get the number from the data attribute
+    display: inline-block;
+    @include size($euiStepNumberSize);
+    line-height: $euiStepNumberSize;
+    border-radius: $euiStepNumberSize;
+    margin-right: $euiStepNumberMargin;
+    text-align: center;
+    
+    color: $euiColorEmptyShade;
+    background-color: $euiColorPrimary;
 
-.euiStepTitle {
-  display: inline-block;
-  margin-left: 16px;
-}
+    font-size: $euiFontSize;
+    font-weight: $euiFontWeightMedium;
+    vertical-align: top; /* 1 */
+  }
 
-.euiStepContent {
-  border-left: medium solid #D9D9D9;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-left: 16px;
-  padding-left: 24px;
-}
+  .euiStep__content {
+    border-left: $euiBorderThick;
+    padding: $euiSize;
+    margin: $euiSizeS 0;
+    
+    // Align the content's contents with the title
+    padding-left: ($euiStepNumberSize/2) - 1px + $euiStepNumberMargin;
+
+    // Align content border to horizontal center of step number
+    margin-left: ($euiStepNumberSize/2) - 1px;
+  }
