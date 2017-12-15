@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiDateTimeInput } from './date_time_input';
+import { EuiTimeSelector } from './time_selector';
 
-describe('EuiDateTimeInput', () => {
+describe('EuiTimeSelector', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiDateTimeInput {...requiredProps} />
+      <EuiTimeSelector {...requiredProps} />
     );
 
     expect(component)

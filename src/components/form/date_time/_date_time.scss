@@ -1,3 +1,19 @@
 .euiDateTime {
+  max-width: $euiFormMaxWidth;
 
+  .euiDateTime__input {
+    padding-right: $euiSizeXXL;
+    padding-left:$euiSizeM;
+  }
+
+  .euiDateTime__dateColumn {
+    padding: $euiSize;
+  }
+
+  .euiDateTime__timeColumn {
+    background: $euiColorLightestShade;
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+    border-left: $euiBorderThin;
+    padding: $euiSize 0 $euiSize $euiSizeS;
+  }
 }

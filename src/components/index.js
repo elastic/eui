@@ -102,6 +102,7 @@ export {
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
+  EuiTimeSelector,
   EuiValidatableControl,
 } from './form';
 

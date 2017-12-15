@@ -1,0 +1,22 @@
+.euiTimeSelector {
+  @include euiScrollBar;
+  max-height: 256px;
+  overflow-y: auto;
+
+  .euiTimeSelector__button {
+    display: block;
+    font-size: $euiFontSizeXS;
+    color: $euiColorDarkShade;
+    padding: $euiSizeXS / 2 $euiSizeXS;
+    text-align: right;
+    width: 100%;
+    border: $euiBorderThin;
+    border-color: transparent;
+
+    &:focus {
+      background: $euiColorEmptyShade;
+      border-color: $euiColorPrimary;
+      color: $euiColorPrimary;
+    }
+  }
+}

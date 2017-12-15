@@ -3,12 +3,12 @@ export {
 } from './date_time';
 
 export {
-  EuiDateTimeInput,
-} from './date_time_input';
-
-export {
   EuiCalendar,
   EuiCalendarMonthYearSelector,
   EuiCalendarGrid,
   EuiCalendarGridItem,
 } from './calendar';
+
+export {
+  EuiTimeSelector,
+} from './time_selector';

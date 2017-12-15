@@ -8,7 +8,6 @@ import {
 
 export default () => (
   <EuiDateTime>
-    <EuiDateTimeInput />
     <EuiCalendar />
   </EuiDateTime>
 );

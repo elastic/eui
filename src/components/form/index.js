@@ -4,11 +4,11 @@ export {
 } from './checkbox';
 export {
   EuiDateTime,
-  EuiDateTimeInput,
   EuiCalendar,
   EuiCalendarGrid,
   EuiCalendarGridItem,
   EuiCalendarMonthYearSelector,
+  EuiTimeSelector,
 } from './date_time';
 export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
