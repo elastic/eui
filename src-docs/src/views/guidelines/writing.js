@@ -17,6 +17,7 @@ import {
   EuiFieldText,
   EuiButtonEmpty,
   EuiFieldPassword,
+  EuiCheckbox,
 } from '../../../../src/components';
 
 export default () => (
@@ -45,7 +46,7 @@ export default () => (
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Clear and concise</h3>
-            <p>Get straight to the point&mdash;in a that way your users understand.  Make every word contribute to meaning.</p>
+            <p>Get straight to the point&mdash;in a way that your users understand.  Make every word contribute to meaning.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -276,9 +277,7 @@ export default () => (
     </EuiFlexGroup>
 
 
-    <EuiSpacer />
-    <EuiSpacer />
-    <EuiSpacer />
+    <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>Capitalization</h2>
@@ -319,9 +318,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer />
-    <EuiSpacer />
-    <EuiSpacer />
+    <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>Punctuation</h2>
@@ -383,8 +380,14 @@ export default () => (
           <p><font color="green">Do</font></p>
         </EuiText>
       </EuiFlexItem>
-
-      <EuiFlexItem />
+      <EuiFlexItem>
+        <EuiToast color="danger"  >
+          <p>Did not find what you were looking for?</p>
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
     </EuiFlexGroup>
 
     <EuiSpacer />
@@ -409,9 +412,8 @@ export default () => (
       <EuiFlexItem />
     </EuiFlexGroup>
 
-    <EuiSpacer />
-    <EuiSpacer />
-    <EuiSpacer />
+    <EuiSpacer size="xxl"/>
+
 
     <EuiText>
       <h2>Messages</h2>
@@ -424,7 +426,7 @@ export default () => (
         <EuiText>
           <p>
             <strong>Summarize the message in the title.</strong>&nbsp;
-            Don&rsquo;t use the words error, warning, confirm, or jaron such as oops and uh-oh.
+            Don&rsquo;t use the words error, warning, confirm, or jargon such as oops and uh-oh.
           </p>
           <p><strong>In the body text, provide a clear course of action</strong>, if applicable.
             A title-only message is ok.
@@ -544,10 +546,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
-    <EuiSpacer/>
-    <EuiSpacer/>
-
+    <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>Informational text</h2>
@@ -568,7 +567,7 @@ export default () => (
           color="success"
         >
         For maximum compatibility, share the short URL of the snapshot.
-        Not all wiki and markup parsers can the handle full-length version.
+        Not all wiki and markup parsers can handle the full-length version.
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -656,7 +655,11 @@ export default () => (
         <EuiToast
           color="success"
         >
-      checkbox with label Show remaining slices
+          <EuiCheckbox
+            onChange={() => {}}
+            id="checkbox1"
+            label="Show remaining slices"
+          />
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -667,7 +670,11 @@ export default () => (
         <EuiToast
           color="danger"
         >
-        checkbox with label Show other
+          <EuiCheckbox
+            onChange={() => {}}
+            id="checkbox2"
+            label="Show other"
+          />
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -730,9 +737,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer />
-    <EuiSpacer/>
-    <EuiSpacer/>
+    <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>When to be clever</h2>
@@ -779,9 +784,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
-    <EuiSpacer/>
-    <EuiSpacer />
+    <EuiSpacer size="xxl"/>
 
     <EuiFlexGroup>
       <EuiFlexItem>
