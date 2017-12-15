@@ -1,6 +1,11 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.6`.
+
+# [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
+
 - `justify` prop of `<EuiFlexGroup>` now accepts `spaceEvenly` [(#205)](https://github.com/elastic/eui/pull/205)
+- Increase size of  `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
 
 # [`0.0.5`](https://github.com/elastic/eui/tree/v0.0.5)
 
