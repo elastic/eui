@@ -37,7 +37,7 @@ export const StepsExample = {
     demo: <Steps />,
   },
   {
-    title: 'Heading Elements',
+    title: 'Heading elements',
     source: [{
       type: GuideSectionTypes.JS,
       code: headingElementStepsSource,
@@ -48,7 +48,7 @@ export const StepsExample = {
     text: (
       <div>
         <p>
-          To aide with accessibility and hierachical headings,
+          To aid with accessibility and hierarchical headings,
           you can and should pass in a heading element to use for each step title.
           The example below shows that the logical heading element should be an <EuiCode>h2</EuiCode>
           and therefore adds <EuiCode>headingElement=&quot;h2&quot;</EuiCode> to the EuiSteps component.
