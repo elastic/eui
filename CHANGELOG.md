@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `EuiSteps` component
+- Added `EuiSteps` component ([(#202)](https://github.com/elastic/eui/pull/202), [(#208)](https://github.com/elastic/eui/pull/208))
 - Added `EuiHealth` components for status checks [(#158)](https://github.com/elastic/eui/pull/158)
 - Cleaned up styling for checkboxes, switches, and radios [(#158)](https://github.com/elastic/eui/pull/158)
 - Form `disabled` states are now more consistant [(#158)](https://github.com/elastic/eui/pull/158)
