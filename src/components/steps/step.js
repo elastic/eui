@@ -42,3 +42,7 @@ EuiStep.propTypes = {
   title: PropTypes.string.isRequired,
   headingElement: PropTypes.string.isRequired,
 };
+
+EuiStep.defaultProps = {
+  headingElement: 'p'
+};
