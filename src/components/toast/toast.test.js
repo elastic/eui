@@ -6,7 +6,10 @@ import {
   requiredProps
 } from '../../test';
 
-import { EuiToast } from './toast';
+import {
+  COLORS,
+  EuiToast
+} from './toast';
 
 describe('EuiToast', () => {
   test('is rendered', () => {
@@ -29,9 +32,11 @@ describe('EuiToast', () => {
     });
 
     describe('color', () => {
-      test('is rendered', () => {
-        const component = <EuiToast color="success" />;
-        expect(shallow(component)).toMatchSnapshot();
+      COLORS.forEach(color => {
+        test(`${color} is rendered`, () => {
+          const component = <EuiToast color={color} />;
+          expect(shallow(component)).toMatchSnapshot();
+        });
       });
     });
 

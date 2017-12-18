@@ -1,8 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiToast Props color is rendered 1`] = `
+exports[`EuiToast Props color danger is rendered 1`] = `
+<div
+  className="euiToast euiToast--danger"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color primary is rendered 1`] = `
+<div
+  className="euiToast euiToast--primary"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color success is rendered 1`] = `
 <div
   className="euiToast euiToast--success"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color warning is rendered 1`] = `
+<div
+  className="euiToast euiToast--warning"
 >
   <div
     className="euiToastHeader"
