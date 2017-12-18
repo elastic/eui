@@ -13,4 +13,15 @@ describe('EuiGlobalToastList', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('renders children', () => {
+    const component = render(
+      <EuiGlobalToastList>
+        <div>hi</div>
+      </EuiGlobalToastList>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });

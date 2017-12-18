@@ -15,3 +15,74 @@ exports[`EuiToast is rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiToast renders children 1`] = `
+<div
+  className="euiToast"
+>
+  <div
+    className="euiToastHeader euiToastHeader--withBody"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+  <EuiText
+    size="s"
+  >
+    <p>
+      Hi
+    </p>
+  </EuiText>
+</div>
+`;
+
+exports[`EuiToast renders color 1`] = `
+<div
+  className="euiToast euiToast--success"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast renders iconType 1`] = `
+<div
+  className="euiToast"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <EuiIcon
+      aria-hidden="true"
+      className="euiToastHeader__icon"
+      size="m"
+      type="user"
+    />
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast renders title 1`] = `
+<div
+  className="euiToast"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    >
+      toast title
+    </span>
+  </div>
+</div>
+`;
