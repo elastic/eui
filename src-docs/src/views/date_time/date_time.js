@@ -1,13 +1,32 @@
-import React from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiDateTime,
-  EuiDateTimeInput,
-  EuiCalendar,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiDateTime>
-    <EuiCalendar />
-  </EuiDateTime>
-);
+export default class extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPopoverOpen: false,
+    };
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+
+  render() {
+    return (
+      <EuiDateTime
+        isPopoverOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover.bind(this)}
+      />
+    );
+  }
+}

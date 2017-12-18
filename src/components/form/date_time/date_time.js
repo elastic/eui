@@ -12,6 +12,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiTimeSelector,
+  EuiOutsideClickDetector,
 } from '../../../components';
 
 export class EuiDateTime extends Component {
@@ -22,47 +23,77 @@ export class EuiDateTime extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      isPopoverOpen: this.props.isPopoverOpen,
+      value: '12/18/2017 01:02:03 PM',
+    };
+
+    this.handleShowPopover = this.handleShowPopover.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isPopoverOpen !== this.state.isPopoverOpen) {
+      this.setState({ isPopoverOpen: nextProps.isPopoverOpen });
+    }
+  }
+
+  handleShowPopover() {
+    this.setState({
+      isPopoverOpen: true,
+    });
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value,
+    });
   }
 
   render() {
     const {
       children,
       className,
+      closePopover,
+      isPopoverOpen,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiDateTime',
+      {
+        'euiDateTime-isOpen': this.state.isPopoverOpen,
+      },
       className
     );
 
     return (
-      <div
-        className={classes}
-        {...rest}
-      >
-        <EuiFormRow
-          id="asdf"
-          label="Calendar"
+      <EuiOutsideClickDetector onOutsideClick={closePopover}>
+        <div
+          className={classes}
+          {...rest}
         >
           <EuiFieldText
             icon="calendar"
-            iconSide="right"
             className="euiDateTime__input"
-            value="12/13/2017 01:02:03 PM"
+            onFocus={this.handleShowPopover}
+            value={this.state.value}
+            onChange={this.handleChange}
           />
-        </EuiFormRow>
-        <EuiPanel hasShadow paddingSize="none">
-          <EuiFlexGroup gutterSize="none">
-            <EuiFlexItem grow={false} className="euiDateTime__dateColumn">
-              <EuiCalendar />
-            </EuiFlexItem>
-            <EuiFlexItem className="euiDateTime__timeColumn">
-              <EuiTimeSelector />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPanel>
-      </div>
+
+          <EuiPanel hasShadow paddingSize="none" className="euiDateTime__panel">
+            <EuiFlexGroup gutterSize="none">
+              <EuiFlexItem grow={false} className="euiDateTime__dateColumn">
+                <EuiCalendar />
+              </EuiFlexItem>
+              <EuiFlexItem className="euiDateTime__timeColumn">
+                <EuiTimeSelector />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        </div>
+      </EuiOutsideClickDetector>
     );
   }
 }

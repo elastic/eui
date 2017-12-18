@@ -1,5 +1,6 @@
 .euiCalendar {
   width: ($euiSizeXL * 7) + ($euiSizeXS * 13);
+  position: relative;
 
   .euiCalendarMonth {
     display: inline;
