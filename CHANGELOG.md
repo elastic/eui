@@ -2,6 +2,10 @@
 
 - Added `EuiSteps` component ([(#202)](https://github.com/elastic/eui/pull/202), [(#208)](https://github.com/elastic/eui/pull/208))
 
+**Bug fixes**
+
+- Case sensitive file name fix for Kibana dark theme. [(#216)](https://github.com/elastic/eui/pull/216)
+
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
 - `justify` prop of `<EuiFlexGroup>` now accepts `spaceEvenly` [(#205)](https://github.com/elastic/eui/pull/205)
@@ -70,5 +74,3 @@
 # [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
 
 - Initial public release
-
-
