@@ -1,43 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiToast is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiToast testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiToastHeader"
-  >
-    <span
-      class="euiToastHeader__title"
-    />
-  </div>
-</div>
-`;
-
-exports[`EuiToast renders children 1`] = `
-<div
-  className="euiToast"
->
-  <div
-    className="euiToastHeader euiToastHeader--withBody"
-  >
-    <span
-      className="euiToastHeader__title"
-    />
-  </div>
-  <EuiText
-    size="s"
-  >
-    <p>
-      Hi
-    </p>
-  </EuiText>
-</div>
-`;
-
-exports[`EuiToast renders color 1`] = `
+exports[`EuiToast Props color is rendered 1`] = `
 <div
   className="euiToast euiToast--success"
 >
@@ -51,7 +14,7 @@ exports[`EuiToast renders color 1`] = `
 </div>
 `;
 
-exports[`EuiToast renders iconType 1`] = `
+exports[`EuiToast Props iconType is rendered 1`] = `
 <div
   className="euiToast"
 >
@@ -71,7 +34,7 @@ exports[`EuiToast renders iconType 1`] = `
 </div>
 `;
 
-exports[`EuiToast renders title 1`] = `
+exports[`EuiToast Props title is rendered 1`] = `
 <div
   className="euiToast"
 >
@@ -83,6 +46,29 @@ exports[`EuiToast renders title 1`] = `
     >
       toast title
     </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiToast testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiToastHeader euiToastHeader--withBody"
+  >
+    <span
+      class="euiToastHeader__title"
+    />
+  </div>
+  <div
+    class="euiText euiText--small"
+  >
+    <p>
+      Hi
+    </p>
   </div>
 </div>
 `;

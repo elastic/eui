@@ -11,34 +11,37 @@ import { EuiToast } from './toast';
 describe('EuiToast', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiToast {...requiredProps} />
+      <EuiToast {...requiredProps}>
+        <p>Hi</p>
+      </EuiToast>
     );
 
     expect(component)
       .toMatchSnapshot();
   });
 
-  test('renders children', () => {
-    const component = <EuiToast><p>Hi</p></EuiToast>;
-    expect(shallow(component)).toMatchSnapshot();
-  });
-
-  test('renders title', () => {
-    const component = <EuiToast title="toast title" />;
-    expect(shallow(component)).toMatchSnapshot();
-  });
-
-  test('renders color', () => {
-    const component = <EuiToast color="success" />;
-    expect(shallow(component)).toMatchSnapshot();
-  });
-
-  test('renders iconType', () => {
-    const component = <EuiToast iconType="user" />;
-    expect(shallow(component)).toMatchSnapshot();
-  });
-
   describe('Props', () => {
+    describe('title', () => {
+      test('is rendered', () => {
+        const component = <EuiToast title="toast title" />;
+        expect(shallow(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('color', () => {
+      test('is rendered', () => {
+        const component = <EuiToast color="success" />;
+        expect(shallow(component)).toMatchSnapshot();
+      });
+    });
+
+    describe('iconType', () => {
+      test('is rendered', () => {
+        const component = <EuiToast iconType="user" />;
+        expect(shallow(component)).toMatchSnapshot();
+      });
+    });
+
     describe('onClose', () => {
       test('is called when the close button is clicked', () => {
         const onCloseHandler = sinon.stub();
