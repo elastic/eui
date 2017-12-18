@@ -13,4 +13,33 @@ describe('EuiRadio', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('checked is rendered', () => {
+      const component = render(
+        <EuiRadio id="id" onChange={() => {}} checked/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('label is rendered', () => {
+      const component = render(
+        <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>}/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('disabled is rendered', () => {
+      const component = render(
+        <EuiRadio id="id" onChange={() => {}} disabled/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+  });
 });

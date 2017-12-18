@@ -5,6 +5,18 @@ exports[`EuiRange is rendered 1`] = `
   aria-label="aria-label"
   class="euiRange testClass1 testClass2"
   data-test-subj="test subject string"
+  id="id"
+  max="10"
+  min="1"
+  name="name"
+  type="range"
+  value="value"
+/>
+`;
+
+exports[`EuiRange props fullWidth should render 1`] = `
+<input
+  class="euiRange euiRange--fullWidth"
   max="100"
   min="1"
   type="range"

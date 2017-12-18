@@ -1,5 +1,149 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiFormRow behavior onBlur is called in child 1`] = `
+<EuiFormRow
+  fullWidth={false}
+  hasEmptyLabelSpace={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiFormRow"
+  >
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={false}
+      isInvalid={undefined}
+    >
+      <label
+        className="euiFormLabel"
+        htmlFor="generated-id"
+      >
+        <span>
+          Label
+        </span>
+      </label>
+    </EuiFormLabel>
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
+</EuiFormRow>
+`;
+
+exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
+<EuiFormRow
+  fullWidth={false}
+  hasEmptyLabelSpace={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiFormRow"
+  >
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={false}
+      isInvalid={undefined}
+    >
+      <label
+        className="euiFormLabel"
+        htmlFor="generated-id"
+      >
+        <span>
+          Label
+        </span>
+      </label>
+    </EuiFormLabel>
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
+</EuiFormRow>
+`;
+
+exports[`EuiFormRow behavior onFocus is called in child 1`] = `
+<EuiFormRow
+  fullWidth={false}
+  hasEmptyLabelSpace={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiFormRow"
+  >
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={true}
+      isInvalid={undefined}
+    >
+      <label
+        className="euiFormLabel euiFormLabel-isFocused"
+        htmlFor="generated-id"
+      >
+        <span>
+          Label
+        </span>
+      </label>
+    </EuiFormLabel>
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
+</EuiFormRow>
+`;
+
+exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
+<EuiFormRow
+  fullWidth={false}
+  hasEmptyLabelSpace={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiFormRow"
+  >
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={true}
+      isInvalid={undefined}
+    >
+      <label
+        className="euiFormLabel euiFormLabel-isFocused"
+        htmlFor="generated-id"
+      >
+        <span>
+          Label
+        </span>
+      </label>
+    </EuiFormLabel>
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
+</EuiFormRow>
+`;
+
 exports[`EuiFormRow is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -8,6 +152,130 @@ exports[`EuiFormRow is rendered 1`] = `
 >
   <input
     id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props error as array is rendered 1`] = `
+<div
+  class="euiFormRow"
+>
+  <input
+    aria-describedby="generated-id-error-0 generated-id-error-1"
+    id="generated-id"
+  />
+  <div
+    class="euiFormErrorText euiFormRow__text"
+    id="generated-id-error-0"
+  >
+    Error
+  </div>
+  <div
+    class="euiFormErrorText euiFormRow__text"
+    id="generated-id-error-1"
+  >
+    Error2
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props error as string is rendered 1`] = `
+<div
+  class="euiFormRow"
+>
+  <input
+    aria-describedby="generated-id-error-0"
+    id="generated-id"
+  />
+  <div
+    class="euiFormErrorText euiFormRow__text"
+    id="generated-id-error-0"
+  >
+    Error
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props fullWidth is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--fullWidth"
+>
+  <input
+    id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--hasEmptyLabelSpace"
+>
+  <input
+    id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props helpText is rendered 1`] = `
+<div
+  class="euiFormRow"
+>
+  <input
+    aria-describedby="generated-id-help"
+    id="generated-id"
+  />
+  <div
+    class="euiFormHelpText euiFormRow__text"
+    id="generated-id-help"
+  >
+    <span>
+      This is help text.
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props id is rendered 1`] = `
+<div
+  class="euiFormRow"
+  id="id"
+>
+  <input
+    id="id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props isInvalid is rendered 1`] = `
+<div
+  class="euiFormRow"
+>
+  <label
+    class="euiFormLabel euiFormLabel-isInvalid"
+    for="generated-id"
+  >
+    label
+  </label>
+  <input
+    id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props label is rendered 1`] = `
+<div
+  className="euiFormRow"
+>
+  <EuiFormLabel
+    htmlFor="generated-id"
+    isFocused={false}
+  >
+    label
+  </EuiFormLabel>
+  <input
+    id="generated-id"
+    onBlur={[Function]}
+    onFocus={[Function]}
   />
 </div>
 `;
