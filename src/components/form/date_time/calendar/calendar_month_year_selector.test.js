@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../../../test/required_props';
 
 import { EuiCalendarMonthYearSelector } from './calendar_month_year_selector';
 

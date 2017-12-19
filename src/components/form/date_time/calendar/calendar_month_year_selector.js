@@ -125,6 +125,7 @@ export class EuiCalendarMonthYearSelector extends Component {
         <EuiFlexGroup
           alignItems="center"
           justifyContent="spaceBetween"
+          responsive={false}
         >
           <EuiFlexItem grow={false}>
             <EuiButtonIcon
@@ -150,7 +151,12 @@ export class EuiCalendarMonthYearSelector extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
         <div className="euiCalendarMonthYearSelector__menu">
-          <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween" alignItems="center">
+          <EuiFlexGroup
+            gutterSize="s"
+            justifyContent="spaceBetween"
+            alignItems="center"
+            responsive={false}
+          >
             <EuiFlexItem>
               <EuiTextColor color="subdued">
                 <EuiText>

@@ -16,7 +16,7 @@ export const EuiTimeSelector = ({
     { time: '2:00 AM' },
     { time: '2:30 AM' },
     { time: '3:00 AM' },
-    { time: '3:30 AM', isSelected: true},
+    { time: '3:30 AM', isSelected: true },
     { time: '4:00 AM' },
     { time: '4:30 AM' },
     { time: '5:00 AM' },
@@ -57,7 +57,7 @@ export const EuiTimeSelector = ({
     { time: '10:30 PM' },
     { time: '11:00 PM' },
     { time: '11:30 PM' },
-  ]
+  ];
 
   const timeListItems = (
     times.map((item, index) => {
@@ -87,7 +87,7 @@ export const EuiTimeSelector = ({
       className={classes}
       {...rest}
     >
-    { timeListItems}
+      { timeListItems}
     </ul>
   );
 };

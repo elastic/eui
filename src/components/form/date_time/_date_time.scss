@@ -21,6 +21,7 @@
     top: 100%;
     left: -1px;
     right: -1px;
+    z-index: $euiZContentMenu;
     transition:
       transition $euiAnimSpeedNormal $euiAnimSlightResistance,
       opacity $euiAnimSpeedNormal $euiAnimSlightResistance

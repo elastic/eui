@@ -24,7 +24,7 @@ export class EuiDateTime extends Component {
 
     this.state = {
       isPopoverOpen: this.props.isPopoverOpen,
-      value: '12/18/2017 01:02:03 PM',
+      value: this.props.value,
     };
 
     this.handleShowPopover = this.handleShowPopover.bind(this);
@@ -54,6 +54,8 @@ export class EuiDateTime extends Component {
       className,
       closePopover,
       isPopoverOpen,
+      days,
+      hasTimeSelector,
       ...rest
     } = this.props;
 
@@ -64,6 +66,16 @@ export class EuiDateTime extends Component {
       },
       className
     );
+
+    let optionalTimeSelector;
+
+    if (hasTimeSelector) {
+      optionalTimeSelector = (
+        <EuiFlexItem className="euiDateTime__timeColumn">
+          <EuiTimeSelector />
+        </EuiFlexItem>
+      );
+    }
 
     return (
       <EuiOutsideClickDetector onOutsideClick={closePopover}>
@@ -80,13 +92,11 @@ export class EuiDateTime extends Component {
           />
 
           <EuiPanel hasShadow paddingSize="none" className="euiDateTime__panel">
-            <EuiFlexGroup gutterSize="none">
+            <EuiFlexGroup gutterSize="none" justifyContent="spaceAround">
               <EuiFlexItem grow={false} className="euiDateTime__dateColumn">
-                <EuiCalendar />
+                <EuiCalendar days={days} />
               </EuiFlexItem>
-              <EuiFlexItem className="euiDateTime__timeColumn">
-                <EuiTimeSelector />
-              </EuiFlexItem>
+              {optionalTimeSelector}
             </EuiFlexGroup>
           </EuiPanel>
         </div>
