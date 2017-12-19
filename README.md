@@ -35,12 +35,29 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Wiki
+
+* [Component design][component-design]
+* [Component development][component-development]
+  * [Creating components manually][creating-components-manually]
+  * [Creating components with Yeoman][creating-components-yeoman]
+  * [Testing][testing]
+* [Theming][theming]
+* [Releasing versions][releasing-versions]
+
 ## License
 
 [Apache Licensed.][license] Read the [FAQ][faq] for details.
 
 [license]: LICENSE.md
 [faq]: FAQ.md
+[component-design]: wiki/component-design.md
+[component-development]: wiki/component-development.md
+[creating-components-manually]: wiki/creating-components-manually.md
+[creating-components-yeoman]: wiki/creating-components-yeoman.md
+[releasing-versions]: wiki/releasing-versions.md
+[testing]: wiki/testing.md
+[theming]: wiki/theming.md
 [docs]: https://elastic.github.io/eui/
 [ci-badge]: https://travis-ci.org/elastic/eui.svg?branch=master
 [ci-site]: https://travis-ci.org/elastic/eui

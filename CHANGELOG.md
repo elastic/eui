@@ -8,7 +8,7 @@ No public interface changes since `0.0.7`.
 
 **Breaking changes**
 
-- Test helpers now published at `@elastic/eui/test`
+- Test helpers now published at `@elastic/eui/lib/test`
 
 **Bug fixes**
 
