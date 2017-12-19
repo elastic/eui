@@ -17,7 +17,37 @@
   }
 
   &.euiCalendarMonthYearSelector-isOpen {
-    visibility: visible;
-    opacity: 1;
+    .euiCalendarMonthYearSelector__menu {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .euiCalendarMonthYearSelector__month {
+    display: inline;
+    font-size: $euiFontSizeL;
+    font-weight: $euiFontWeightMedium;
+    color: $euiColorFullShade;
+  }
+
+  .euiCalendarMonthYearSelector__year {
+    display: inline;
+    font-size: $euiFontSizeL;
+    color: $euiColorDarkShade;
+    font-weight: $euiFontWeightLight;
+  }
+
+  .euiCalendarMonthYearSelector__button {
+
+    &:focus {
+      background: $euiFocusBackgroundColor;
+    }
+
+    &:hover {
+      .euiCalendarMonthYearSelector__month,
+      .euiCalendarMonthYearSelector__year {
+        color: $euiColorPrimary;
+      }
+    }
   }
 }

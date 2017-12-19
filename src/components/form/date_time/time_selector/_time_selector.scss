@@ -12,6 +12,18 @@
     width: 100%;
     border: $euiBorderThin;
     border-color: transparent;
+    border-radius: $euiBorderRadius;
+
+    &.euiTimeSelector__button-isSelected {
+      background: $euiColorPrimary;
+      color: $euiColorEmptyShade;
+
+      &:focus {
+        background: $euiColorPrimary;
+        color: $euiColorEmptyShade;
+        border-color: darken($euiColorPrimary, 10%);
+      }
+    }
 
     &:focus {
       background: $euiColorEmptyShade;

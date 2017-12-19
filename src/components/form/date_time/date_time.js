@@ -6,7 +6,6 @@ import classNames from 'classnames';
 
 import {
   EuiCalendar,
-  EuiFormRow,
   EuiFieldText,
   EuiPanel,
   EuiFlexGroup,
@@ -17,7 +16,6 @@ import {
 
 export class EuiDateTime extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
   }
 
@@ -53,7 +51,6 @@ export class EuiDateTime extends Component {
 
   render() {
     const {
-      children,
       className,
       closePopover,
       isPopoverOpen,

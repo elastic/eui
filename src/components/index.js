@@ -85,7 +85,6 @@ export {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiDateTime,
-  EuiDateTimeInput,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,

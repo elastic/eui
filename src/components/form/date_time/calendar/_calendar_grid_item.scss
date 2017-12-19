@@ -49,6 +49,10 @@
     &:focus {
       box-shadow: 0 0 0 2px $euiColorPrimary;
     }
+
+    &:disabled {
+      cursor: default;
+    }
   }
 
   &.euiCalendarGridItem-isStartDate,

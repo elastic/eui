@@ -2,15 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  COLORS,
-  EuiTextColor,
-} from './../../../text//text_color';
 
 export const EuiCalendarGridItem = ({
   children,
   className,
-  color,
   isInTheCurrentMonth,
   isSelected,
   isStartDate,
@@ -46,7 +41,6 @@ export const EuiCalendarGridItem = ({
 EuiCalendarGridItem.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.oneOf(COLORS),
   isInTheCurrentMonth: PropTypes.bool,
   isSelected: PropTypes.bool,
   isToday: PropTypes.bool,

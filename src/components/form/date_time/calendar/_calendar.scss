@@ -2,17 +2,4 @@
   width: ($euiSizeXL * 7) + ($euiSizeXS * 13);
   position: relative;
 
-  .euiCalendarMonth {
-    display: inline;
-    font-size: $euiFontSizeL;
-    font-weight: $euiFontWeightMedium;
-    color: $euiColorFullShade;
-  }
-
-  .euiCalendarYear {
-    display: inline;
-    font-size: $euiFontSizeL;
-    color: $euiColorDarkShade;
-    font-weight: $euiFontWeightLight;
-  }
 }
