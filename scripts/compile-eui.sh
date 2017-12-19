@@ -4,6 +4,14 @@ set -e
 
 eui="$(pwd)"
 
+while getopts 'e:' arg
+do
+  case ${arg} in
+    e) eui=${OPTARG};;
+    *) return 1 # illegal option
+  esac
+done
+
 compile_lib() {
   local color_green="\033[0;32m"
   local color_reset="\033[0m"

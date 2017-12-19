@@ -4,6 +4,14 @@ set -e
 
 eui="$(pwd)"
 
+while getopts 'e:' arg
+do
+  case ${arg} in
+    e) eui=${OPTARG};;
+    *) return 1 # illegal option
+  esac
+done
+
 mkdir -p "${eui}/dist"
 
 src="${eui}/src/theme_*.scss"
