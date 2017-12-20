@@ -2,31 +2,39 @@ import React from 'react';
 
 import {
   EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
-  <div>
-    <EuiButtonIcon
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowRight"
-      aria-label="Next"
-    />
+  <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        onClick={() => window.alert('Button clicked')}
+        iconType="arrowRight"
+        aria-label="Next"
+      />
+    </EuiFlexItem>
 
-    <EuiButtonIcon
-      size="s"
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowRight"
-      aria-label="Next"
-    />
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        size="s"
+        color="danger"
+        onClick={() => window.alert('Button clicked')}
+        iconType="arrowRight"
+        aria-label="Next"
+      />
+    </EuiFlexItem>
 
-    <EuiButtonIcon
-      size="s"
-      color="disabled"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowRight"
-      aria-label="Next"
-    />
-  </div>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        size="s"
+        color="disabled"
+        onClick={() => window.alert('Button clicked')}
+        iconType="arrowRight"
+        aria-label="Next"
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
 
