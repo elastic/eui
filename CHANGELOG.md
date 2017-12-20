@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.9`.
+
+# [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
+
 **Breaking changes**
 
 - Renamed `euiFlexGroup--alignItemsEnd` class to `euiFlexGroup--alignItemsFlexEnd`.
