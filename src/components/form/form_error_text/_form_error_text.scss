@@ -1,5 +1,5 @@
 .euiFormErrorText {
-  font-size: $euiFontSizeXS;
+  @include euiFontSizeXS;
   padding: $euiSizeS 0;
   color: $euiColorDanger;
 }
