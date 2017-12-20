@@ -90,7 +90,7 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
       >
-        <div style={{ width: 500, padding: 16 }}>
+        <div style={{ width: 500 }}>
           {formSample}
         </div>
       </EuiPopover>
