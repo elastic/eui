@@ -97,6 +97,7 @@ export default class extends Component {
             closePopover={this.closePopover2.bind(this)}
             anchorPosition="upCenter"
             withTitle
+            panelPaddingSize="l"
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
@@ -122,6 +123,7 @@ export default class extends Component {
             closePopover={this.closePopover3.bind(this)}
             anchorPosition="rightUp"
             withTitle
+            panelPaddingSize="none"
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>

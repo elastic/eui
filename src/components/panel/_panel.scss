@@ -1,3 +1,13 @@
+/** Padding map eferenced in:
+ *  - Popover
+*/
+$euiPanelPadding: (
+  "Small": $euiSizeS,
+  "Medium": $euiSize,
+  "Large": $euiSizeL
+) !default;
+
+
 .euiPanel {
   @include euiBottomShadowSmall;
 
@@ -6,17 +16,18 @@
   border-radius: $euiBorderRadius;
   flex-grow: 1;
 
-  &.euiPanel--paddingSmall {
-    padding: $euiSizeS;
+  @each $size, $amount in $euiPanelPadding {
+
+    &.euiPanel--padding#{$size} {
+      padding: $amount;
+    }
+
   }
 
-  &.euiPanel--paddingMedium {
-    padding: $euiSize;
-  }
 
-  &.euiPanel--paddingLarge {
-    padding: $euiSizeL;
-  }
+
+
+
 
   &.euiPanel--shadow {
     @include euiBottomShadow;
