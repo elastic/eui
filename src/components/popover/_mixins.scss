@@ -2,4 +2,6 @@
   background-color: $euiColorLightestShade;
   border-bottom: $euiBorderThin;
   padding: $euiSizeM;
+  border-top-left-radius: $euiBorderRadius - 1;
+  border-top-right-radius: $euiBorderRadius - 1;
 }
