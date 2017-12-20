@@ -20,11 +20,11 @@ const iconTypes = [
   'logoSlack',
   'logoWebhook',
   'logoXpack',
-  'logoColorElasticsearch',
-  'logoColorKibana',
-  'logoColorAPM',
-  'logoColorLogstash',
-  'logoColorML',
+  'logoCircleElasticsearch',
+  'logoCircleKibana',
+  'logoCircleAPM',
+  'logoCircleLogstash',
+  'logoCircleML',
 ].sort();
 
 export default () => (
