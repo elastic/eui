@@ -8,6 +8,6 @@ npm test
 npm run build
 npm run sync-docs
 npm version $BUMP
-git push --tags
-git push
+git push upstream --tags
+git push upstream
 npm publish
