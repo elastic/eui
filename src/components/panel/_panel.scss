@@ -17,17 +17,10 @@ $euiPanelPadding: (
   flex-grow: 1;
 
   @each $size, $amount in $euiPanelPadding {
-
     &.euiPanel--padding#{$size} {
       padding: $amount;
     }
-
   }
-
-
-
-
-
 
   &.euiPanel--shadow {
     @include euiBottomShadow;
