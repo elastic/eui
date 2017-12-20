@@ -1,0 +1,26 @@
+.euiFlyout {
+  position: fixed;
+  width: 50vw;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-left: $euiBorderThin;
+  z-index: $euiZModal;
+  background: $euiColorEmptyShade;
+  animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
+  display: flex;
+  flex-direction: column;
+  align-items: strecth;
+  box-shadow: -$euiSizeXS 0px $euiSizeXS 0px rgba(0,0,0,.05);
+}
+
+@keyframes euiFlyout {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}

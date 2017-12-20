@@ -65,6 +65,9 @@ import { ExpressionExample }
 import { FlexExample }
   from '../../views/flex/flex_example';
 
+import { FlyoutExample }
+  from '../../views/flyout/flyout_example';
+
 import { FormExample }
   from '../../views/form/form_example';
 
@@ -199,6 +202,7 @@ const components = [
   ErrorBoundaryExample,
   ExpressionExample,
   FlexExample,
+  FlyoutExample,
   FormExample,
   HeaderExample,
   HealthExample,

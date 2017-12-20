@@ -66,6 +66,13 @@ export {
 } from './flex';
 
 export {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+} from './flyout';
+
+export {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiFieldNumber,
