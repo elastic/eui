@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.8`.
+
+# [`0.0.8`](https://github.com/elastic/eui/tree/v0.0.8)
+
 **Bug fixes**
 
 - Fix button vertical alignment. [(#232)](https://github.com/elastic/eui/pull/232)
