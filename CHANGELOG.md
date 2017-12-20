@@ -1,6 +1,8 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.7`.
+**Bug fixes**
+
+- Fix button vertical alignment. [(#232)](https://github.com/elastic/eui/pull/232)
 
 # [`0.0.7`](https://github.com/elastic/eui/tree/v0.0.7)
 
@@ -13,7 +15,6 @@ No public interface changes since `0.0.7`.
 **Bug fixes**
 
 - Case sensitive file name fix for Kibana dark theme. [(#216)](https://github.com/elastic/eui/pull/216)
-- Fix button vertical alignment. [(#232)](https://github.com/elastic/eui/pull/232)
 
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
