@@ -2,298 +2,318 @@ import React from 'react';
 
 import {
   EuiButtonEmpty,
-} from '../../../../src/components';
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components/';
 
 export default () => (
   <div>
-    <EuiButtonEmpty
-      onClick={() => window.alert('Button clicked')}
-    >
-      Primary
-    </EuiButtonEmpty>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          onClick={() => window.alert('Button clicked')}
+        >
+          Primary
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          size="xs"
+          onClick={() => window.alert('Button clicked')}
+        >
+          extra small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    &nbsp;&nbsp;
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          Primary
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      size="xs"
-      onClick={() => window.alert('Button clicked')}
-    >
-      extra small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <br/><br/>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          Primary
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      Primary
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    &nbsp;&nbsp;
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+        >
+          Danger
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="xs"
+          onClick={() => window.alert('Button clicked')}
+        >
+          extra small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <EuiButtonEmpty
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      Primary
-    </EuiButtonEmpty>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          Danger
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          Danger
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <br/><br/>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-    >
-      Danger
-    </EuiButtonEmpty>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          onClick={() => window.alert('Button clicked')}
+        >
+          Text
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          size="xs"
+          onClick={() => window.alert('Button clicked')}
+        >
+          extra small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    &nbsp;&nbsp;
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          Text
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      color="danger"
-      size="xs"
-      onClick={() => window.alert('Button clicked')}
-    >
-      extra small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <br/><br/>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          Text
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      Danger
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    &nbsp;&nbsp;
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          Disabled
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="xs"
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          extra small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      Danger
-    </EuiButtonEmpty>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          isDisabled
+        >
+          Disabled
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          isDisabled
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+          isDisabled
+        >
+          Disabled
+        </EuiButtonEmpty>
+      </EuiFlexItem>
 
-    <br/><br/>
-
-    <EuiButtonEmpty
-      color="text"
-      onClick={() => window.alert('Button clicked')}
-    >
-      Text
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="text"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-    >
-      small
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="text"
-      size="xs"
-      onClick={() => window.alert('Button clicked')}
-    >
-      extra small
-    </EuiButtonEmpty>
-
-    <br/><br/>
-
-    <EuiButtonEmpty
-      color="text"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      Text
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="text"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-    >
-      small
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="text"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      Text
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="text"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-    >
-      small
-    </EuiButtonEmpty>
-
-    <br/><br/>
-
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      Disabled
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      small
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="danger"
-      size="xs"
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      extra small
-    </EuiButtonEmpty>
-
-    <br/><br/>
-
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      isDisabled
-    >
-      Disabled
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      isDisabled
-    >
-      small
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="danger"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-      isDisabled
-    >
-      Disabled
-    </EuiButtonEmpty>
-
-    &nbsp;&nbsp;
-
-    <EuiButtonEmpty
-      color="danger"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowDown"
-      iconSide="right"
-      isDisabled
-    >
-      small
-    </EuiButtonEmpty>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="danger"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+          isDisabled
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

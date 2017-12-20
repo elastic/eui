@@ -13,7 +13,6 @@ export default () => (
     <EuiTitle>
       <h2>
         <EuiTextColor color="default">You </EuiTextColor>
-        <EuiTextColor color="primary">can </EuiTextColor>
         <EuiTextColor color="secondary">use </EuiTextColor>
         <EuiTextColor color="accent">it </EuiTextColor>
         <EuiTextColor color="warning">on </EuiTextColor>
@@ -32,11 +31,6 @@ export default () => (
       <p>
         <EuiTextColor color="subdued">
           Subdued text color
-        </EuiTextColor>
-      </p>
-      <p>
-        <EuiTextColor color="primary">
-          Primary text color
         </EuiTextColor>
       </p>
       <p>
@@ -70,7 +64,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiText color="primary">
+    <EuiText color="danger">
       <h2>Works on EuiText as well.</h2>
       <p>
         Sometimes you need to color entire blocks of text, no matter what is in them.

@@ -2,138 +2,148 @@ import React from 'react';
 
 import {
   EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiButton
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowUp"
-    >
-      Primary
-    </EuiButton>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowUp"
+        >
+          Primary
+        </EuiButton>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          fill
+          iconType="arrowDown"
+          onClick={() => window.alert('Button clicked')}
+        >
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
 
-    <EuiButton
-      fill
-      iconType="arrowDown"
-      onClick={() => window.alert('Button clicked')}
-    >
-      Filled
-    </EuiButton>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconType="arrowLeft"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+        >
+          small
+        </EuiButton>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconType="arrowRight"
+          size="s"
+          fill
+          onClick={() => window.alert('Button clicked')}
+        >
+          small and filled
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <EuiButton
-      iconType="arrowLeft"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-    >
-      small
-    </EuiButton>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowUp"
+        >
+          Primary
+        </EuiButton>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          fill
+          iconType="arrowDown"
+          onClick={() => window.alert('Button clicked')}
+        >
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
 
-    <EuiButton
-      iconType="arrowRight"
-      size="s"
-      fill
-      onClick={() => window.alert('Button clicked')}
-    >
-      small and filled
-    </EuiButton>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowLeft"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+        >
+          small
+        </EuiButton>
+      </EuiFlexItem>
 
-    <br/><br/>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowRight"
+          size="s"
+          fill
+          onClick={() => window.alert('Button clicked')}
+        >
+          small and filled
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
 
-    <EuiButton
-      iconSide="right"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowUp"
-    >
-      Primary
-    </EuiButton>
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowUp"
+          isDisabled
+        >
+          Disabled
+        </EuiButton>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          fill
+          iconType="arrowDown"
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
 
-    <EuiButton
-      iconSide="right"
-      fill
-      iconType="arrowDown"
-      onClick={() => window.alert('Button clicked')}
-    >
-      Filled
-    </EuiButton>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowLeft"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          small
+        </EuiButton>
+      </EuiFlexItem>
 
-    &nbsp;&nbsp;
-
-    <EuiButton
-      iconSide="right"
-      iconType="arrowLeft"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-    >
-      small
-    </EuiButton>
-
-    &nbsp;&nbsp;
-
-    <EuiButton
-      iconSide="right"
-      iconType="arrowRight"
-      size="s"
-      fill
-      onClick={() => window.alert('Button clicked')}
-    >
-      small and filled
-    </EuiButton>
-
-    <br/><br/>
-
-    <EuiButton
-      iconSide="right"
-      onClick={() => window.alert('Button clicked')}
-      iconType="arrowUp"
-      isDisabled
-    >
-      Disabled
-    </EuiButton>
-
-    &nbsp;&nbsp;
-
-    <EuiButton
-      iconSide="right"
-      fill
-      iconType="arrowDown"
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      Filled
-    </EuiButton>
-
-    &nbsp;&nbsp;
-
-    <EuiButton
-      iconSide="right"
-      iconType="arrowLeft"
-      size="s"
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      small
-    </EuiButton>
-
-    &nbsp;&nbsp;
-
-    <EuiButton
-      iconSide="right"
-      iconType="arrowRight"
-      size="s"
-      fill
-      onClick={() => window.alert('Button clicked')}
-      isDisabled
-    >
-      small and filled
-    </EuiButton>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowRight"
+          size="s"
+          fill
+          onClick={() => window.alert('Button clicked')}
+          isDisabled
+        >
+          small and filled
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );
