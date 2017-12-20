@@ -1,6 +1,5 @@
 .euiFlyout {
   position: fixed;
-  width: 50vw;
   top: 0;
   bottom: 0;
   right: 0;
@@ -12,6 +11,19 @@
   flex-direction: column;
   align-items: strecth;
   box-shadow: -$euiSizeXS 0px $euiSizeXS 0px rgba(0,0,0,.05);
+}
+
+// Modifier naming and colors.
+$flyoutSizes: (
+  small: 25vw,
+  medium: 50vw,
+  large: 75vw,
+);
+
+@each $name, $size in $flyoutSizes {
+  .euiFlyout--#{$name} {
+    width: $size;
+  }
 }
 
 @keyframes euiFlyout {

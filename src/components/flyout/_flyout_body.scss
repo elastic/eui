@@ -2,4 +2,5 @@
   flex-grow: 1;
   overflow-y: auto;
   padding: $euiSize;
+  @include euiScrollBar;
 }

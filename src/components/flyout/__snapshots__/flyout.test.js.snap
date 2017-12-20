@@ -4,7 +4,7 @@ exports[`EuiFlyout is rendered 1`] = `
 <span>
   <div
     aria-label="aria-label"
-    class="euiFlyout testClass1 testClass2"
+    class="euiFlyout euiFlyout--medium testClass1 testClass2"
     data-test-subj="test subject string"
     tabindex="0"
   />

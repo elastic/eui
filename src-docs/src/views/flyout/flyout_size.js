@@ -9,7 +9,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export class Flyout extends Component {
+export class FlyoutSize extends Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +42,9 @@ export class Flyout extends Component {
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
+          ownFocus
           onClose={this.closeFlyout}
+          size="s"
         >
           <EuiFlyoutBody>
             <EuiText>
