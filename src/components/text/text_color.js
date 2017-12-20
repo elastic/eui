@@ -5,7 +5,6 @@ import classNames from 'classnames';
 const colorsToClassNameMap = {
   'default': 'euiTextColor--default',
   'subdued': 'euiTextColor--subdued',
-  'primary': 'euiTextColor--primary',
   'secondary': 'euiTextColor--secondary',
   'accent': 'euiTextColor--accent',
   'danger': 'euiTextColor--danger',

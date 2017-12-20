@@ -3,10 +3,11 @@
 **Breaking changes**
 
 - Renamed `euiFlexGroup--alignItemsEnd` class to `euiFlexGroup--alignItemsFlexEnd`.
+- Remove support for `primary` color from `<EuiTextColor>` because it looked too much like a link.
 
 **Bug fixes**
 
-- Give `EuiFormErrorText` and `EuiFormHelpText` proper line-height. [(#234)](https://github.com/elastic/eui/pull/234)
+- Give `<EuiFormErrorText>` and `<EuiFormHelpText>` proper line-height. [(#234)](https://github.com/elastic/eui/pull/234)
 
 # [`0.0.8`](https://github.com/elastic/eui/tree/v0.0.8)
 
