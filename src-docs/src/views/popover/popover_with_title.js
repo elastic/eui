@@ -77,7 +77,7 @@ export default class extends Component {
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content
+                  Popover content with default padding
                 </p>
               </EuiText>
             </div>
@@ -103,7 +103,7 @@ export default class extends Component {
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content
+                  Popover content with large padding
                 </p>
               </EuiText>
             </div>
@@ -129,7 +129,7 @@ export default class extends Component {
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content
+                  Popover content with no padding
                 </p>
               </EuiText>
             </div>
