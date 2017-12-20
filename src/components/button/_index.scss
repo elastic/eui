@@ -16,6 +16,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  vertical-align: middle;
 
   &:hover:not(:disabled) {
     transform: translateY(-1px);
@@ -41,6 +42,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
 @mixin euiButtonContent($isReverse: false) {
   height: 100%;
   width: 100%;
+  vertical-align: middle;
 
   @if ($isReverse) {
     flex-direction: row-reverse;
