@@ -1,13 +1,18 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.8`.
+**Breaking changes**
+
+- Renamed `euiFlexGroup--alignItemsEnd` class to `euiFlexGroup--alignItemsFlexEnd`.
+
+**Bug fixes**
+
+- Give `EuiFormErrorText` and `EuiFormHelpText` proper line-height. [(#234)](https://github.com/elastic/eui/pull/234)
 
 # [`0.0.8`](https://github.com/elastic/eui/tree/v0.0.8)
 
 **Bug fixes**
 
 - Fix button vertical alignment. [(#232)](https://github.com/elastic/eui/pull/232)
-- Give help / error text proper line-height. [(#234)](https://github.com/elastic/eui/pull/234)
 
 # [`0.0.7`](https://github.com/elastic/eui/tree/v0.0.7)
 
