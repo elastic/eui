@@ -18,6 +18,7 @@ import {
   EuiButtonEmpty,
   EuiFieldPassword,
   EuiCheckbox,
+  EuiLink,
 } from '../../../../src/components';
 
 export default () => (
@@ -61,16 +62,16 @@ export default () => (
             </p>
           </EuiText>
         </EuiPanel>
-
       </EuiFlexItem>
+
+
 
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Conversational</h3>
             <p>Write as a professional in the field would talk&mdash;not as
-            a professor lecturing students. Use words that the user would use. Add a touch of whimsy when it
-            fits the experience.
+            a professor lecturing students. Use words that the user would use.
             </p>
           </EuiText>
         </EuiPanel>
@@ -88,16 +89,18 @@ export default () => (
     <EuiSpacer />
     <EuiSpacer />
 
+
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Address your users as &quot;you.&quot;</strong> You&rsquo;ll connect with them on a personal level.</p>
+          <h3>Address users as &quot;you.&quot;</h3>
+          <p>It&apos;s friendly and engages the user directly.</p>
         </EuiText>
       </EuiFlexItem>
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>You must configure TLS to apply a Platinum License</p>
+          <p>You must configure TLS to apply a Platinum License.</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -106,7 +109,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>Configuring TLS will be required to apply a Platinum License</p>
+          <p>Configuring TLS will be required to apply a Platinum License.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -120,13 +123,16 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Use active rather than passive voice.</strong> It&apos;s more clear and less wordy.</p>
+          <h3>Write in active voice</h3>
+          <p>Active voice puts the
+          focus on who or what is performing the action and makes the sentence easier to understand.
+          </p>
         </EuiText>
       </EuiFlexItem>
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>The Elasticsearch Query DSL builds filters</p>
+          <p>The Elasticsearch Query DSL builds filters.</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -135,7 +141,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>Filters are built using the Elasticsearch Query DSL</p>
+          <p>Filters are built using the Elasticsearch Query DSL.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -149,9 +155,12 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Keep text short and snappy.</strong>&nbsp;
-           Don&rsquo;t repeat what&rsquo;s already been said or state the obvious.&nbsp;
-           Omit common introductory phrases and other unneccessary words.
+          <h3>Write short, snappy text</h3>
+
+          <p>
+           Identify the most important information and say it succinctly.
+           Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
+           Omit common introductory phrases.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -168,7 +177,7 @@ export default () => (
       <EuiFlexItem>
         <EuiToast color="danger" >
           <h2>Edit saved objects</h2>
-          <p>From here, you can edit saved objects</p>
+          <p>From here, you can edit saved objects.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -185,7 +194,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>Configure at least one index pattern</p>
+          <p>Configure at least one index pattern.</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -194,7 +203,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>In order to use Kibana, you must configure at least one index pattern</p>
+          <p>In order to use Kibana, you must configure at least one index pattern.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -211,7 +220,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>No active shard records for this cluster</p>
+          <p>No active shard records for this cluster.</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -220,7 +229,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>There are currently no active shard records for this cluster</p>
+          <p>There are currently no active shard records for this cluster.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -237,7 +246,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>To get started, follow the steps below</p>
+          <p>To get started, follow the steps below.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -251,7 +260,8 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Avoid using &quot;we&quot; or &quot;I.&quot;</strong>&nbsp;
+          <h3>Avoid using &quot;I&quot; and &quot;we&quot;</h3>
+          <p>The use of &quot;I&quot; and &quot;we&quot; can come across as patronizing.
           Instead of what you recommend or what your app is doing, focus on your users.
           </p>
         </EuiText>
@@ -259,7 +269,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>Your index has a date field</p>
+          <p>Your index has a date field.</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -268,7 +278,7 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-          <p>I see that you are looking at an index with a date field</p>
+          <p>I see that you are looking at an index with a date field.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -277,6 +287,34 @@ export default () => (
     </EuiFlexGroup>
 
 
+    <EuiSpacer />
+    <EuiSpacer />
+
+    <EuiFlexGroup>
+      <EuiFlexItem />
+      <EuiFlexItem>
+        <EuiToast
+          color="success"
+        >
+        For maximum compatibility, share the short URL of the snapshot.
+        </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast
+          color="danger"
+        >
+        We recommend sharing shortened snapshot URLs for maximum compatibility.
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="xxl"/>
     <EuiSpacer size="xxl"/>
 
     <EuiText>
@@ -287,7 +325,10 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Use sentence case for all text</strong>, including buttons, menus, and titles.</p>
+          <h3>Use sentence case for all text</h3>
+          <p>This includes buttons, menus, and titles.
+          In sentence case, only the first word and proper names are capped.
+          </p>
         </EuiText>
       </EuiFlexItem>
 
@@ -318,7 +359,11 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
+
+
     <EuiSpacer size="xxl"/>
+    <EuiSpacer size="xxl"/>
+
 
     <EuiText>
       <h2>Punctuation</h2>
@@ -328,18 +373,18 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Avoid using punctuation marks</strong>, unless they help clarify meaning.&nbsp;
-          Don&rsquo;t add a colon after a label, an ellipsis at the end of an action, or an (s) at the end of a noun.
+          <h3>Use punctuation judiciously</h3>
+          <p>Although punctuation can help clarify meaning, it can also clutter the UI.
+          Don&apos;t add a colon after a label, an ellipsis at the end of an action, or an (s) at the end of a noun.
           </p>
-          <p><strong>Omit the ending period in single sentences</strong> in tooltips, lists, and body text in forms.</p>
         </EuiText>
       </EuiFlexItem>
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-                  Number
+                  Airports
           <EuiFieldText />
-                  Number must be between 1 and 5
+                  Separate multiple names with a comma
           <EuiSpacer />
           <EuiFieldSearch defaultValue="Search"/>
         </EuiToast>
@@ -350,9 +395,9 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="danger" >
-                  Number:
+                  Airport(s):
           <EuiFieldText />
-                  Number must be between 1 and 5.
+                  Separate multiple names with a comma.
           <EuiSpacer />
           <EuiFieldSearch defaultValue="Search..."/>
         </EuiToast>
@@ -365,24 +410,35 @@ export default () => (
     <EuiSpacer />
     <EuiSpacer />
 
+
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Use contractions</strong> if they make your text easier to comprehend.</p>
+          <h3>Omit the ending period</h3>
+          <p>Short phrases and single sentences in tooltips, lists, help text, and subtitles don&apos;t
+          typically require a full stop, but multiple sentences do.
+          </p>
         </EuiText>
       </EuiFlexItem>
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>Didn&apos;t find what you were looking for?</p>
+                  Number
+          <EuiFieldText />
+                  Number must be between 1 and 5
+          <EuiSpacer />
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
         </EuiText>
       </EuiFlexItem>
+
       <EuiFlexItem>
-        <EuiToast color="danger"  >
-          <p>Did not find what you were looking for?</p>
+        <EuiToast color="danger" >
+                  Number
+          <EuiFieldText />
+                  Number must be between 1 and 5.
+          <EuiSpacer />
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -394,9 +450,60 @@ export default () => (
     <EuiSpacer />
 
     <EuiFlexGroup>
+      <EuiFlexItem />
+
+      <EuiFlexItem>
+        <EuiToast color="success"  >
+        Number
+          <EuiFieldText />
+          Number must be between 1 and 5.&nbsp;
+          <EuiLink href="" target="_blank">
+          Learn more.
+          </EuiLink>
+          <EuiSpacer />
+        </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+
+      <EuiFlexItem />
+    </EuiFlexGroup>
+
+    <EuiSpacer />
+    <EuiSpacer />
+
+    <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Limit exclamation points</strong> to greetings and success messages and never use more than one per page.</p>
+          <h3>Use contractions</h3>
+          <p>Use contractions if they make your text flow more naturally, such as
+           &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and  &quot;can&apos;t&quot; instead of &quot;cannot.&quot;
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiToast color="success"  >
+          <p>Didn&apos;t find what you were looking for?</p>
+        </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem />
+    </EuiFlexGroup>
+
+    <EuiSpacer />
+    <EuiSpacer />
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiText>
+          <h3>Limit the use of exclamation points</h3>
+          <p>Showing excitement is best reserved for greetings and success messages.
+          Don&apos;t use more than one exclamation point per page.
+          </p>
         </EuiText>
       </EuiFlexItem>
 
@@ -413,6 +520,7 @@ export default () => (
     </EuiFlexGroup>
 
     <EuiSpacer size="xxl"/>
+    <EuiSpacer size="xxl"/>
 
 
     <EuiText>
@@ -424,11 +532,10 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p>
-            <strong>Summarize the message in the title.</strong>&nbsp;
-            Don&rsquo;t use the words error, warning, confirm, or jargon such as oops and uh-oh.
-          </p>
-          <p><strong>In the body text, provide a clear course of action</strong>, if applicable.
+          <h3>
+            Summarize the message in the title
+          </h3>
+          <p>Don&apos;t use the words error, warning, and confirm, or jargon such as oops and uh-oh.
             A title-only message is ok.
           </p>
         </EuiText>
@@ -462,7 +569,40 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Use &quot;Are you sure&quot; only rarely.</strong> Your text is more direct without it.</p>
+          <h3>Provide a clear course of action</h3>
+          <p>Tell the user what to do next, if applicable.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast color="success">
+          <p>No data sources. Go to the Management app to define an index pattern.</p>
+        </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast
+          color="success"
+        >
+            Oops, no data sources.
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer/>
+    <EuiSpacer/>
+
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiText>
+          <h3>Avoid using &quot;Are you sure&quot;</h3>
+          <p>Your text is more direct without it.</p>
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
@@ -519,8 +659,9 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Avoid using &quot;please.&quot;</strong>&nbsp;
-          An exception is when you ask the user to do something inconvenient, such as wait.
+          <h3>Use &quot;please&quot; only rarely</h3>
+          <p>
+          Use &quot;please&quot; for situations where the user must wait or do something inconvenient.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -528,7 +669,7 @@ export default () => (
         <EuiToast
           color="success"
         >
-     Save your work before generating a report
+     Save your work before generating a report.
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -538,7 +679,7 @@ export default () => (
         <EuiToast
           color="danger"
         >
-    Please save your work before generating a report
+    Please save your work before generating a report.
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -546,6 +687,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
+    <EuiSpacer size="xxl"/>
     <EuiSpacer size="xxl"/>
 
     <EuiText>
@@ -557,49 +699,10 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p>
-            <strong> Use one to two simple, short sentences</strong> for introductions and informational text.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
-        >
-        For maximum compatibility, share the short URL of the snapshot.
-        Not all wiki and markup parsers can handle the full-length version.
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
-        >
-        We recommend sharing shortened snapshot URLs for maximum compatibility.&nbsp;
-        Internet Explorer has URL length restrictions, and some wiki and markup parsers&nbsp;
-        do not do well with the full-length version of the snapshot URL,&nbsp;
-        but the short URL should work great.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <p>
-            <strong>Avoid the urge to explain
-      everything.
-            </strong>  Not every field requires placeholder
-      text nor every task requires an explanation.
+          <h3>
+             Use 1 to 2 simple, short sentences
+          </h3>
+          <p>Don&rsquo;t force the user to read long blocks of text. Write for scanning. Link to documentation.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -609,7 +712,7 @@ export default () => (
         >
         Password
           <EuiFieldPassword defaultValue="password" />
-        Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%&.
+        Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%&
 
         </EuiToast>
         <EuiText>
@@ -636,6 +739,48 @@ export default () => (
 
 
     <EuiSpacer />
+    <EuiSpacer />
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiText>
+          <h3>
+            Avoid the urge to explain
+      everything
+          </h3>
+          <p> Not every task requires an explanation nor every field requires placeholder
+      text.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast color="success"  >
+          <EuiFieldText placeholder="Username"/>
+          <EuiSpacer />
+          <EuiFieldText placeholder="Password"/>
+        </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast color="success"  >
+                Name
+          <EuiFieldText placeholder="Username"/>
+          <EuiSpacer />
+        Password
+          <EuiFieldText placeholder="Password"/>
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+
+    <EuiSpacer size="xxl"/>
+    <EuiSpacer size="xxl"/>
+
 
     <EuiText>
       <h2>Labels</h2>
@@ -646,8 +791,9 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Use just enough words to convey the purpose of the component</strong>, typically three words or less.
-      When needed, add a short instruction under the component.
+          <h3>Convey the purpose of a component</h3>
+          <p>Avoid long labels, but don&apos;t sacrifice clarity.
+      If needed, put additional information in help text and tooltips.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -658,8 +804,12 @@ export default () => (
           <EuiCheckbox
             onChange={() => {}}
             id="checkbox1"
-            label="Show remaining slices"
+            label="Combine values in other bucket"
           />
+          <EuiSpacer />
+          Bucket label
+          <EuiFieldText/>
+          <EuiSpacer />
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
@@ -673,8 +823,13 @@ export default () => (
           <EuiCheckbox
             onChange={() => {}}
             id="checkbox2"
-            label="Show other"
+            label="Combine other"
           />
+          <EuiSpacer />
+
+          Custom bucket label
+          <EuiFieldText/>
+          <EuiSpacer />
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -682,13 +837,15 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
-    <EuiSpacer/>
+
+    <EuiSpacer />
+    <EuiSpacer />
 
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <p><strong>Label buttons with their action.</strong> Don&apos;t use Yes or OK when you can use a verb phrase instead.  </p>
+          <h3>Label buttons with their action</h3>
+          <p>Don&apos;t use Yes or OK when you can use a verb phrase instead.</p>
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
@@ -738,6 +895,7 @@ export default () => (
     </EuiFlexGroup>
 
     <EuiSpacer size="xxl"/>
+    <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>When to be clever</h2>
@@ -745,16 +903,14 @@ export default () => (
 
     <EuiSpacer />
 
-
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
+          <h3>Be careful with humor</h3>
           <p>
-           Your text can be fun and witty as long as it doesn&apos;t get in the way of the user.
-          </p>
-          <p>
-            <strong>Don&apos;t be clever with a serious message</strong>&mdash;especially if the
-           user might lose data&mdash;or a frequently performed task.
+           Your text can be fun and witty as long as it fits the experience&mdash;and
+           doesn&apos;t get in the user&apos;s way. Clever text can become annoying
+           when used for frequently performed tasks.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -762,12 +918,35 @@ export default () => (
         <EuiToast color="success">
           <p>Odd, exciting, and scary trends and anomalies in your Elasticsearch data</p>
         </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
         <EuiSpacer/>
         <EuiSpacer/>
 
         <EuiToast color="success"  >
           <p>Some cool stuff you can do</p>
         </EuiToast>
+        <EuiText>
+          <p><font color="green">Do</font></p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem />
+    </EuiFlexGroup>
+
+    <EuiSpacer />
+    <EuiSpacer />
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiText>
+          <h3>Don&apos;t be clever wtih a serious message</h3>
+          <p>Losing data and other situations that might frustrate the user are not a time for humor.</p>
+
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiToast color="danger" title="No results matched your search" />
         <EuiText>
           <p><font color="green">Do</font></p>
         </EuiText>
@@ -783,6 +962,9 @@ export default () => (
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+
+
 
     <EuiSpacer size="xxl"/>
 
