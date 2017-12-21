@@ -12,7 +12,7 @@ const GoodComponent = () => (
 );
 
 const BadComponent = () => {
-  throw new Error('Terrible error!');
+  throw new Error('I\'m here to kick butt and chew bubblegum.\n\n\And I\'m all out of gum.');
 };
 
 describe('EuiErrorBoundary', () => {

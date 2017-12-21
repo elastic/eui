@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `euiPopover` to propogate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
+- Updated `euiPopover` to propagate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
+- Updated `<EuiErrorBoundary>` to preserve newlines in error. [(#238)[https://github.com/elastic/eui/pull/238]]
 
 **Bug fixes**
 
