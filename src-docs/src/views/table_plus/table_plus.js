@@ -24,7 +24,6 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      searchTerm: undefined,
       itemIdToOpenActionsPopoverMap: {},
     };
 
@@ -348,6 +347,13 @@ export default class extends Component {
     return this.state.itemIdToOpenActionsPopoverMap[itemId];
   };
 
+  doesRowMatchSearch = (row, searchTerm) => {
+    const title = typeof row.title === 'string' ? row.title : row.title.value;
+    const normalizedTerm = searchTerm.toLowerCase().trim();
+    const normalizedTitle = title.toLowerCase().trim();
+    return normalizedTitle.indexOf(normalizedTerm) !== -1;
+  };
+
   renderCell = (EuiTablePlusCell, cell, column, row) => {
     if (this.columnIdToCellProviderMap[column.id]) {
       return this.columnIdToCellProviderMap[column.id](EuiTablePlusCell, cell, column, row);
@@ -368,11 +374,11 @@ export default class extends Component {
   render() {
     return (
       <EuiTablePlus
-        search={this.state.searchTerm}
-        onSearchChange={() => {}}
+        id="exampleTablePlus"
+        searchFilterer={this.doesRowMatchSearch}
         columns={this.columns}
         rows={this.items}
-        rowCellProvider={this.renderCell}
+        rowCellRenderer={this.renderCell}
         initialSortedColumn={'title'}
         sortablePropertiesConfig={[{
           name: 'title',

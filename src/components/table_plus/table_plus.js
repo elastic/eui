@@ -42,12 +42,11 @@ export class EuiTablePlus extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
-    search: PropTypes.string,
-    onSearchChange: PropTypes.func,
+    searchFilterer: PropTypes.func,
     initialSortedColumn: PropTypes.string,
     columns: PropTypes.array.isRequired,
     rows: PropTypes.array.isRequired,
-    rowCellProvider: PropTypes.func.isRequired,
+    rowCellRenderer: PropTypes.func.isRequired,
     sortablePropertiesConfig: PropTypes.array,
   }
 
@@ -64,6 +63,7 @@ export class EuiTablePlus extends Component {
       rowIdToSelectedMap: {},
       sortedColumn: initialSortedColumn || props.columns[0].id,
       rowsPerPage: 20,
+      filteredRows: rows
     };
 
     this.sortableProperties = sortablePropertiesConfig
@@ -102,7 +102,7 @@ export class EuiTablePlus extends Component {
 
   getVisibleRowIds = () => {
     // If there are no rows.
-    if (this.state.firstRowIndex === this.state.lastRowIndex) {
+    if (this.state.firstRowIndex === -1) {
       return [];
     }
 
@@ -157,6 +157,16 @@ export class EuiTablePlus extends Component {
     }) !== -1;
   }
 
+  onSearch = e => {
+    const filteredRows = this.props.rows.filter(row => this.props.searchFilterer(row, e.target.value));
+    this.pager.setTotalItems(filteredRows.length);
+    this.setState({
+      filteredRows,
+      firstRowIndex: this.pager.getFirstItemIndex(),
+      lastRowIndex: this.pager.getLastItemIndex(),
+    });
+  }
+
   renderHeaderCells(columns) {
     const customColumns = columns.map((column, columnIndex) => {
       const {
@@ -199,11 +209,11 @@ export class EuiTablePlus extends Component {
     )].concat(customColumns);
   }
 
-  renderRows(rows, columns, rowCellProvider) {
+  renderRows(rows, columns, rowCellRenderer) {
     const renderRow = row => {
       const customCells = columns.map(column => {
         const cell = row[column.id];
-        return rowCellProvider(EuiTableRowCell, cell, column, row);
+        return rowCellRenderer(EuiTableRowCell, cell, column, row);
       });
 
       const cells = [(
@@ -234,7 +244,7 @@ export class EuiTablePlus extends Component {
     const renderedRows = [];
 
     // If we have rows.
-    if (this.state.firstRowIndex !== this.state.lastRowIndex) {
+    if (this.state.firstRowIndex !== -1) {
       for (let rowIndex = this.state.firstRowIndex; rowIndex <= this.state.lastRowIndex; rowIndex++) {
         const item = rows[rowIndex];
         renderedRows.push(renderRow(item));
@@ -248,22 +258,36 @@ export class EuiTablePlus extends Component {
     const {
       id, // eslint-disable-line no-unused-vars
       className,
-      search, // eslint-disable-line no-unused-vars
-      onSearchChange, // eslint-disable-line no-unused-vars
+      searchFilterer,
       columns,
-      rows,
-      rowCellProvider,
+      rows, // eslint-disable-line no-unused-vars
+      rowCellRenderer,
       initialSortedColumn, // eslint-disable-line no-unused-vars
       sortablePropertiesConfig, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    let optionalActionButtons;
+    let bulkActions;
 
     if (this.areAnyRowsSelected() > 0) {
-      optionalActionButtons = (
+      bulkActions = (
         <EuiFlexItem grow={false}>
           <EuiButton color="danger">Delete selected</EuiButton>
+        </EuiFlexItem>
+      );
+    }
+
+    let search;
+
+    if (searchFilterer) {
+      search = (
+        <EuiFlexItem>
+          <EuiFieldSearch
+            fullWidth
+            placeholder="Search"
+            data-test-subj="tableSearch"
+            onChange={this.onSearch}
+          />
         </EuiFlexItem>
       );
     }
@@ -274,15 +298,8 @@ export class EuiTablePlus extends Component {
         {...rest}
       >
         <EuiFlexGroup gutterSize="m">
-          {optionalActionButtons}
-
-          <EuiFlexItem>
-            <EuiFieldSearch
-              fullWidth
-              placeholder="Search"
-              data-test-subj="tableSearch"
-            />
-          </EuiFlexItem>
+          {bulkActions}
+          {search}
         </EuiFlexGroup>
 
         <EuiSpacer size="m" />
@@ -293,7 +310,7 @@ export class EuiTablePlus extends Component {
           </EuiTableHeader>
 
           <EuiTableBody>
-            {this.renderRows(rows, columns, rowCellProvider)}
+            {this.renderRows(this.state.filteredRows, columns, rowCellRenderer)}
           </EuiTableBody>
         </EuiTable>
 

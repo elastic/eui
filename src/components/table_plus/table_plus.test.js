@@ -12,7 +12,7 @@ describe('EuiTablePlus', () => {
         id="id"
         columns={[{ id: 0 }]}
         rows={[]}
-        rowCellProvider={() => {}}
+        rowCellRenderer={() => {}}
       />
     );
 
