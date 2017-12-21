@@ -29,6 +29,8 @@ export class Pager {
     this.update();
   };
 
+  isPageable = () => this.firstItemIndex !== -1;
+
   getTotalPages = () => this.totalPages;
 
   getCurrentPageIndex = () => this.currentPageIndex;
