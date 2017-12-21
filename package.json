@@ -32,9 +32,7 @@
     "react-ace": "5.5.0",
     "serve": "6.3.1",
     "tabbable": "1.1.0",
-    "uuid": "3.1.0"
-  },
-  "devDependencies": {
+    "uuid": "3.1.0",
     "@elastic/eslint-config-kibana": "0.13.0",
     "autoprefixer": "7.1.5",
     "babel-cli": "6.26.0",
