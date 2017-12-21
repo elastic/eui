@@ -39,15 +39,36 @@ describe('Pager', () => {
       });
     });
 
+    describe('isPageable', () => {
+      test('returns true when there are pages', () => {
+        expect(pager.isPageable()).toBe(true);
+      });
+
+      test('returns false when there no pages', () => {
+        pager.setTotalItems(0);
+        expect(pager.isPageable()).toBe(false);
+      });
+    });
+
     describe('getFirstItemIndex', () => {
       test('returns first item index', () => {
         expect(pager.getFirstItemIndex()).toBe(3);
+      });
+
+      test('defaults to -1 when there are no items', () => {
+        pager.setTotalItems(0);
+        expect(pager.getFirstItemIndex()).toBe(-1);
       });
     });
 
     describe('getLastItemIndex', () => {
       test('returns last item index', () => {
         expect(pager.getLastItemIndex()).toBe(5);
+      });
+
+      test('defaults to -1 when there are no items', () => {
+        pager.setTotalItems(0);
+        expect(pager.getLastItemIndex()).toBe(-1);
       });
     });
 
@@ -140,15 +161,6 @@ describe('Pager', () => {
 
   describe('behavior', () => {
     describe('when there are no items', () => {
-      test('getFirstItemIndex defaults to 0', () => {
-        const pager = new Pager(0, 20);
-        expect(pager.getFirstItemIndex()).toBe(0);
-      });
-
-      test('getLastItemIndex defaults to 0', () => {
-        const pager = new Pager(0, 20);
-        expect(pager.getLastItemIndex()).toBe(0);
-      });
     });
   });
 });
