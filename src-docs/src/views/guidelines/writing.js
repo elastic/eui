@@ -57,8 +57,8 @@ export default () => (
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Consistent</h3>
-            <p>Use the same terminology to mean the same thing. Make sure spelling, use of
-              abbreviations, labels, capitalization, and punctuation are all consistent.
+            <p>Use the same terminology to mean the same thing. Make sure spelling, capitalization,
+              punctuation, labels, and use of abbreviations are all consistent.
             </p>
           </EuiText>
         </EuiPanel>
@@ -158,7 +158,7 @@ export default () => (
           <h3>Write short, snappy text</h3>
 
           <p>
-           Identify the most important information and say it succinctly.
+           Identify the most important information and say it concisely.
            Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
            Omit common introductory phrases.
           </p>
@@ -177,7 +177,7 @@ export default () => (
       <EuiFlexItem>
         <EuiToast color="danger" >
           <h2>Edit saved objects</h2>
-          <p>From here, you can edit saved objects.</p>
+          <p>From here, you can edit saved objects. To get started, follow these steps.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -230,23 +230,6 @@ export default () => (
       <EuiFlexItem>
         <EuiToast color="danger" >
           <p>There are currently no active shard records for this cluster.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem />
-
-      <EuiFlexItem />
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>To get started, follow the steps below.</p>
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -416,7 +399,7 @@ export default () => (
         <EuiText>
           <h3>Omit the ending period</h3>
           <p>Short phrases and single sentences in tooltips, lists, help text, and subtitles don&apos;t
-          typically require a full stop, but multiple sentences do.
+          typically require a full stop. Always use periods on multiple sentences.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -491,7 +474,14 @@ export default () => (
           <p><font color="green">Do</font></p>
         </EuiText>
       </EuiFlexItem>
-      <EuiFlexItem />
+      <EuiFlexItem>
+        <EuiToast color="danger"  >
+          <p>Did not find what you were looking for?</p>
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
     </EuiFlexGroup>
 
     <EuiSpacer />
@@ -501,7 +491,7 @@ export default () => (
       <EuiFlexItem>
         <EuiText>
           <h3>Limit the use of exclamation points</h3>
-          <p>Showing excitement is best reserved for greetings and success messages.
+          <p>Showing excitement is best reserved for greetings and encouraging messages.
           Don&apos;t use more than one exclamation point per page.
           </p>
         </EuiText>
@@ -509,14 +499,20 @@ export default () => (
 
       <EuiFlexItem>
         <EuiToast color="success"  >
-          <p>You don&apos;t have any dashboards. Let&apos;s create some!</p>
+          <p>This dashboard is empty.  Let&apos;s fill it up!</p>
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
         </EuiText>
       </EuiFlexItem>
-
-      <EuiFlexItem />
+      <EuiFlexItem>
+        <EuiToast color="danger"  >
+          <p>Couldn&apos;t find any Elasticsearch data!</p>
+        </EuiToast>
+        <EuiText>
+          <p><font color="red">Don&apos;t</font></p>
+        </EuiText>
+      </EuiFlexItem>
     </EuiFlexGroup>
 
     <EuiSpacer size="xxl"/>
@@ -535,7 +531,8 @@ export default () => (
           <h3>
             Summarize the message in the title
           </h3>
-          <p>Don&apos;t use the words error, warning, and confirm, or jargon such as oops and uh-oh.
+          <p>Get straight to the message.
+          Don&apos;t start with the words error, warning, and confirm, or jargon such as oops and uh-oh.
             A title-only message is ok.
           </p>
         </EuiText>
@@ -552,7 +549,7 @@ export default () => (
       <EuiFlexItem>
         <EuiToast
           title="Uh-oh!"
-          color="success"
+          color="danger"
         >
             This dashboard is empty.  To add a visualization, click Add in the menu bar. No visualizations yet?
             Go to the Visualize app to create one.
@@ -584,7 +581,7 @@ export default () => (
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiToast
-          color="success"
+          color="danger"
         >
             Oops, no data sources.
         </EuiToast>
@@ -659,9 +656,9 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <h3>Use &quot;please&quot; only rarely</h3>
+          <h3>Avoid using &quot;please&quot;</h3>
           <p>
-          Use &quot;please&quot; for situations where the user must wait or do something inconvenient.
+          An exception is for situations where the user must wait or do something inconvenient.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -754,22 +751,23 @@ export default () => (
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiToast color="success"  >
-          <EuiFieldText placeholder="Username"/>
-          <EuiSpacer />
-          <EuiFieldText placeholder="Password"/>
+        <EuiToast
+          color="success"
+        >
+      Email
+          <EuiFieldText />
         </EuiToast>
         <EuiText>
           <p><font color="green">Do</font></p>
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiToast color="success"  >
-                Name
-          <EuiFieldText placeholder="Username"/>
-          <EuiSpacer />
-        Password
-          <EuiFieldText placeholder="Password"/>
+        <EuiToast
+          color="success"
+        >
+    Email
+          <EuiFieldText />
+      Please enter your email address.
         </EuiToast>
         <EuiText>
           <p><font color="red">Don&apos;t</font></p>
@@ -791,7 +789,7 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <h3>Convey the purpose of a component</h3>
+          <h3>Convey the purpose of the component</h3>
           <p>Avoid long labels, but don&apos;t sacrifice clarity.
       If needed, put additional information in help text and tooltips.
           </p>
@@ -863,7 +861,7 @@ export default () => (
             size="s"
             onClick={() => window.alert('Button clicked')}
           >
-          Remove index
+          Remove
           </EuiButton>
         </EuiToast>
         <EuiText>
@@ -940,7 +938,7 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiText>
-          <h3>Don&apos;t be clever wtih a serious message</h3>
+          <h3>Don&apos;t be clever with a serious message</h3>
           <p>Losing data and other situations that might frustrate the user are not a time for humor.</p>
 
         </EuiText>
