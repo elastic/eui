@@ -66,6 +66,13 @@ export {
 } from './flex';
 
 export {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+} from './flyout';
+
+export {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiFieldNumber,
@@ -138,8 +145,11 @@ export {
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiModalOverlay,
 } from './modal';
+
+export {
+  EuiOverlayMask,
+} from './overlay_mask';
 
 export {
   EuiOutsideClickDetector,

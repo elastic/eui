@@ -1,0 +1,7 @@
+.euiFlyoutHeader {
+  flex-grow: 0;
+  padding: $euiSizeL;
+  padding-bottom: 0;
+  box-shadow: 0 $euiSize $euiSize (-$euiSize / 2) $euiColorEmptyShade;
+  z-index: 2;
+}

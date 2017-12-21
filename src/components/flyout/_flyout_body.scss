@@ -1,0 +1,7 @@
+.euiFlyoutBody {
+  @include euiScrollBar;
+
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: $euiSizeL;
+}

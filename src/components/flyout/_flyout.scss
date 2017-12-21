@@ -1,0 +1,65 @@
+.euiFlyout {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-left: $euiBorderThin;
+  z-index: $euiZModal;
+  background: $euiColorEmptyShade;
+  animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: -$euiSizeS $euiSizeXS $euiSizeM 0px rgba(0,0,0,.05);
+}
+
+/**
+  * 1. Calculating the minimum width based on the screen takover breakpoint
+  * 2. Only small flyouts should NOT takover the entire screen
+ */
+$flyoutSizes: (
+  "small": (
+    min: map-get($breakpoints, "small") * .5, /* 1 */
+    width: 25vw
+  ),
+  "medium": (
+    min:  map-get($breakpoints, "small") * .7, /* 1 */
+    width: 50vw
+  ),
+  "large": (
+    min:  map-get($breakpoints, "small") * .9, /* 1 */
+    width: 75vw
+  )
+);
+
+@each $name, $sizing in $flyoutSizes {
+  .euiFlyout--#{$name} {
+    min-width: map-get($sizing, min);
+    width: map-get($sizing, width);
+  }
+}
+
+@keyframes euiFlyout {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@include screenXSmall {
+  .euiFlyout:not(.euiFlyout--small) {  /* 2 */
+    left: 0;
+    min-width: 0;
+    width: auto;
+    border-left: none;
+  }
+
+  .euiFlyout--small {
+    width: 80vw; // ensure that it's only partially showing the main content
+    min-width: 0; /* 2 */
+  }
+}
