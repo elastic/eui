@@ -122,6 +122,9 @@ import { StepsExample }
 import { TableExample }
   from '../../views/table/table_example';
 
+import { TablePlusExample }
+  from '../../views/table_plus/table_plus_example';
+
 import { TabsExample }
   from '../../views/tabs/tabs_example';
 
@@ -218,6 +221,7 @@ const components = [
   SpacerExample,
   StepsExample,
   TableExample,
+  TablePlusExample,
   TabsExample,
   TextExample,
   TitleExample,

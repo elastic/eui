@@ -216,6 +216,10 @@ export {
 } from './tooltip';
 
 export {
+  EuiTablePlus,
+} from './table_plus';
+
+export {
   EuiTitle,
 } from './title';
 
