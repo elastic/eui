@@ -1,10 +1,11 @@
-/** Padding map eferenced in:
+/**
+ * Padding map referenced in:
  *  - Popover
 */
-$euiPanelPadding: (
-  "Small": $euiSizeS,
-  "Medium": $euiSize,
-  "Large": $euiSizeL
+$euiPanelPaddingModifiers: (
+  "--paddingSmall": $euiSizeS,
+  "--paddingMedium": $euiSize,
+  "--paddingLarge": $euiSizeL
 ) !default;
 
 
@@ -16,8 +17,8 @@ $euiPanelPadding: (
   border-radius: $euiBorderRadius;
   flex-grow: 1;
 
-  @each $size, $amount in $euiPanelPadding {
-    &.euiPanel--padding#{$size} {
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    &.euiPanel#{$modifier} {
       padding: $amount;
     }
   }

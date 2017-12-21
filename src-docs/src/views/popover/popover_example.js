@@ -30,6 +30,10 @@ import PopoverWithTitle from './popover_with_title';
 const popoverWithTitleSource = require('!!raw-loader!./popover_with_title');
 const popoverWithTitleHtml = renderToHtml(PopoverWithTitle);
 
+import PopoverWithTitlePadding from './popover_with_title_padding';
+const popoverWithTitlePaddingSource = require('!!raw-loader!./popover_with_title_padding');
+const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
+
 export const PopoverExample = {
   title: 'Popover',
   sections: [{
@@ -112,11 +116,6 @@ export const PopoverExample = {
           <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child
           prop.
         </p>
-        <p>
-          Note that when using popover titles, you will need to
-          set <EuiCode>panelPaddingSize=&quot;none&quot;</EuiCode> and apply
-          some sort of padding around your content block itself.
-        </p>
       </div>
     ),
     demo: <PopoverWithTitle />,
@@ -137,5 +136,24 @@ export const PopoverExample = {
       </p>
     ),
     demo: <PopoverPanelClassName />,
+  }, {
+    title: 'Popover with title and padding size',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverWithTitlePaddingSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverWithTitlePaddingHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          When using popover titles, you can still propogate the padding size
+          by using <EuiCode>panelPaddingSize</EuiCode>. This will only affect
+          the horizontal padding of the title and the overall padding of the content.
+        </p>
+      </div>
+    ),
+    demo: <PopoverWithTitlePadding />,
   }],
 };
