@@ -54,8 +54,10 @@ export class EuiFlyout extends Component {
       </div>
     );
 
+    // If ownFocus is set, show an overlay behind the flyout and allow the user
+    // to click it to close it.
     let flyout;
-    let optionalMask;
+    let optionalOverlay;
     if (ownFocus) {
       flyout = (
         <FocusTrap
@@ -67,7 +69,7 @@ export class EuiFlyout extends Component {
           {flyoutContent}
         </FocusTrap>
       );
-      optionalMask = (
+      optionalOverlay = (
         <EuiModalOverlay onClick={onClose} />
       );
     } else {
@@ -76,7 +78,7 @@ export class EuiFlyout extends Component {
 
     return (
       <span>
-        {optionalMask}
+        {optionalOverlay}
         {flyout}
       </span>
     );
