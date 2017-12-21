@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fix bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
+- Add `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. [(#242)[https://github.com/elastic/eui/pull/242]]
 
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 
