@@ -165,6 +165,7 @@ export class FlyoutComplicated extends Component {
                 <EuiButtonEmpty
                   iconType="cross"
                   onClick={this.closeFlyout}
+                  flush="left"
                 >
                   Close
                 </EuiButtonEmpty>
