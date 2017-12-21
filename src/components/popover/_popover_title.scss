@@ -5,8 +5,8 @@
   // ensure the title expands to cover that padding and
   // take on the same amount of padding horizontally
 
-  @each $size, $amount in $euiPanelPadding {
-    .euiPopover__panel.euiPanel--padding#{$size} & {
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    .euiPopover__panel.euiPanel#{$modifier} & {
       padding: $euiSizeM $amount;
       margin: ($amount * -1) ($amount * -1) $amount;
     }
