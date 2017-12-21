@@ -5,7 +5,7 @@ import {
 } from '../../../../src/components';
 
 const BadComponent = () => {
-  throw new Error('There was a terrible error!');
+  throw new Error('I\'m here to kick butt and chew bubblegum.\n\n\And I\'m all out of gum.');
 };
 
 export default () => (

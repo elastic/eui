@@ -15,9 +15,11 @@ exports[`EuiErrorBoundary is rendered with an error 1`] = `
       <h1>
         Error
       </h1>
-      <p>
-        Error: Terrible error!
-      </p>
+      <pre>
+        <p>
+          Error: Terrible error!
+        </p>
+      </pre>
     </div>
   </div>
 </div>
