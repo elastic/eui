@@ -1,4 +1,4 @@
-@import '../panel/panel'; // grab the $euiPanelPaddingModifiers map
+@import '../panel/variables'; // grab the $euiPanelPaddingModifiers map
 
 .euiPopoverTitle {
   @include euiPopoverTitle;
@@ -8,7 +8,7 @@
   // take on the same amount of padding horizontally
 
   @each $modifier, $amount in $euiPanelPaddingModifiers {
-    .euiPopover__panel.euiPanel#{$modifier} & {
+    .euiPopover__panel.euiPanel--#{$modifier} & {
       padding: $euiSizeM $amount;
       margin: ($amount * -1) ($amount * -1) $amount;
     }
