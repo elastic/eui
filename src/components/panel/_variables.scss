@@ -1,0 +1,9 @@
+/**
+ * Padding map referenced in:
+ *  - Popover
+*/
+$euiPanelPaddingModifiers: (
+  "paddingSmall": $euiSizeS,
+  "paddingMedium": $euiSize,
+  "paddingLarge": $euiSizeL
+) !default;

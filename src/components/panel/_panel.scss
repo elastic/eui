@@ -6,16 +6,10 @@
   border-radius: $euiBorderRadius;
   flex-grow: 1;
 
-  &.euiPanel--paddingSmall {
-    padding: $euiSizeS;
-  }
-
-  &.euiPanel--paddingMedium {
-    padding: $euiSize;
-  }
-
-  &.euiPanel--paddingLarge {
-    padding: $euiSizeL;
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    &.euiPanel--#{$modifier} {
+      padding: $amount;
+    }
   }
 
   &.euiPanel--shadow {

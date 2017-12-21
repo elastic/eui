@@ -56,28 +56,41 @@ export default class extends Component {
     });
   }
 
+  onButtonClick4() {
+    this.setState({
+      isPopoverOpen4: !this.state.isPopoverOpen4,
+    });
+  }
+
+  closePopover4() {
+    this.setState({
+      isPopoverOpen4: false,
+    });
+  }
+
   render() {
     return (
-      <EuiFlexGroup>
+      <EuiFlexGroup wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="downCenterWithTitle"
+            id="titleWithSmallPadding"
             ownFocus
             button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
-                downCenter with title
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
+                Title and small padding
               </EuiButton>
             )}
-            isOpen={this.state.isPopoverOpen1}
-            closePopover={this.closePopover1.bind(this)}
-            anchorPosition="downCenter"
+            isOpen={this.state.isPopoverOpen2}
+            closePopover={this.closePopover2.bind(this)}
+            anchorPosition="upCenter"
             withTitle
+            panelPaddingSize="s"
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with default padding
+                  Popover content
                 </p>
               </EuiText>
             </div>
@@ -86,15 +99,15 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="upCenterWithTitle"
+            id="titleWithDefaultPadding"
             ownFocus
             button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
-                upCenter with title
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
+                Title and default padding (m)
               </EuiButton>
             )}
-            isOpen={this.state.isPopoverOpen2}
-            closePopover={this.closePopover2.bind(this)}
+            isOpen={this.state.isPopoverOpen1}
+            closePopover={this.closePopover1.bind(this)}
             anchorPosition="upCenter"
             withTitle
           >
@@ -102,7 +115,7 @@ export default class extends Component {
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with large padding
+                  Popover content
                 </p>
               </EuiText>
             </div>
@@ -111,23 +124,50 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="rightUpWithTitle"
+            id="titleWithLargePadding"
             ownFocus
             button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
-                rightUp with title
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
+                Title and large padding
               </EuiButton>
             )}
-            isOpen={this.state.isPopoverOpen3}
-            closePopover={this.closePopover3.bind(this)}
-            anchorPosition="rightUp"
+            isOpen={this.state.isPopoverOpen4}
+            closePopover={this.closePopover4.bind(this)}
+            anchorPosition="upCenter"
             withTitle
+            panelPaddingSize="l"
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with no padding
+                  Popover content
+                </p>
+              </EuiText>
+            </div>
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            id="titleWithNoPadding"
+            ownFocus
+            button={(
+              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
+                Title and no padding
+              </EuiButton>
+            )}
+            isOpen={this.state.isPopoverOpen3}
+            closePopover={this.closePopover3.bind(this)}
+            anchorPosition="upCenter"
+            withTitle
+            panelPaddingSize="none"
+          >
+            <EuiPopoverTitle>As the title, I keep my padding</EuiPopoverTitle>
+            <div style={{ width: '300px' }}>
+              <EuiText>
+                <p>
+                  Popover content
                 </p>
               </EuiText>
             </div>

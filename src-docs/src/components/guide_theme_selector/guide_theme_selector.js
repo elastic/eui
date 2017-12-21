@@ -75,7 +75,6 @@ export class GuideThemeSelector extends Component {
         isOpen={this.state.isThemePopoverOpen}
         closePopover={this.closeThemePopover}
         panelPaddingSize="none"
-        withTitle
         anchorPosition="downRight"
       >
         <EuiContextMenuPanel

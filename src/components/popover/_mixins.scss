@@ -1,5 +1,9 @@
 @mixin euiPopoverTitle {
   background-color: $euiColorLightestShade;
-  border-bottom: $euiBorderThin;
   padding: $euiSizeM;
+
+  // Subtract 1px from the border radius since it's inside another container that also has the border radius
+  // -- makes for better rounded corners
+  border-top-left-radius: $euiBorderRadius - 1px;
+  border-top-right-radius: $euiBorderRadius - 1px;
 }
