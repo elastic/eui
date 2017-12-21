@@ -20,7 +20,7 @@ export class EuiAccordion extends Component {
     super(props);
 
     this.state = {
-      isOpen: false,
+      isOpen: props.isOpen,
     };
 
     this.onToggleOpen = this.onToggleOpen.bind(this);
@@ -49,6 +49,7 @@ export class EuiAccordion extends Component {
       buttonClassName,
       buttonContentClassName,
       extraAction,
+      isOpen, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -133,4 +134,9 @@ EuiAccordion.propTypes = {
   buttonContentClassName: PropTypes.string,
   buttonContent: PropTypes.node,
   extraAction: PropTypes.node,
+  isOpen: PropTypes.bool,
+};
+
+EuiAccordion.defaultProps = {
+  isOpen: false,
 };
