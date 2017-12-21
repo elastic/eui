@@ -1,3 +1,5 @@
+@import '../panel/panel'; // grab the $euiPanelPaddingModifiers map
+
 .euiPopoverTitle {
   @include euiPopoverTitle;
 
