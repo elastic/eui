@@ -145,8 +145,11 @@ export {
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiModalOverlay,
 } from './modal';
+
+export {
+  EuiOverlayMask,
+} from './overlay_mask';
 
 export {
   EuiOutsideClickDetector,

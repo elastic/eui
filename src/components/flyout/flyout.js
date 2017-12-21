@@ -8,7 +8,7 @@ import FocusTrap from 'focus-trap-react';
 import { keyCodes } from '../../services';
 
 import {
-  EuiModalOverlay,
+  EuiOverlayMask,
 } from '../../components';
 
 const sizeToClassNameMap = {
@@ -70,7 +70,7 @@ export class EuiFlyout extends Component {
         </FocusTrap>
       );
       optionalOverlay = (
-        <EuiModalOverlay onClick={onClose} />
+        <EuiOverlayMask onClick={onClose} />
       );
     } else {
       flyout = flyoutContent;

@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-export function EuiModalOverlay({ className,  ...rest }) {
-  const classes = classnames('euiModalOverlay', className);
+export function EuiOverlayMask({ className,  ...rest }) {
+  const classes = classnames('euiOverlayMask', className);
   return (
     <div
       className={classes}
@@ -12,6 +12,6 @@ export function EuiModalOverlay({ className,  ...rest }) {
   );
 }
 
-EuiModalOverlay.propTypes = {
+EuiOverlayMask.propTypes = {
   className: PropTypes.string,
 };
