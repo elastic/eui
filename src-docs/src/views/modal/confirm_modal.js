@@ -5,7 +5,7 @@ import React, {
 import {
   EuiButton,
   EuiConfirmModal,
-  EuiModalOverlay,
+  EuiOverlayMask,
   EUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
@@ -34,7 +34,7 @@ export class ConfirmModal extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <EuiModalOverlay>
+        <EuiOverlayMask>
           <EuiConfirmModal
             title="Do this thing"
             onCancel={this.closeModal}
@@ -46,7 +46,7 @@ export class ConfirmModal extends Component {
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
-        </EuiModalOverlay>
+        </EuiOverlayMask>
       );
     }
 

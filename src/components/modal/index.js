@@ -6,6 +6,5 @@ export {
 export { EuiModal } from './modal';
 export { EuiModalFooter } from './modal_footer';
 export { EuiModalHeader } from './modal_header';
-export { EuiModalOverlay } from './modal_overlay';
 export { EuiModalBody } from './modal_body';
 export { EuiModalHeaderTitle } from './modal_header_title';

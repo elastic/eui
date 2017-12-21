@@ -13,7 +13,7 @@ import {
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiModalOverlay,
+  EuiOverlayMask,
   EuiRange,
   EuiSwitch,
 } from '../../../../src/components';
@@ -88,7 +88,7 @@ export class Modal extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <EuiModalOverlay>
+        <EuiOverlayMask>
           <EuiModal
             onClose={this.closeModal}
             style={{ width: '800px' }}
@@ -120,7 +120,7 @@ export class Modal extends Component {
               </EuiButton>
             </EuiModalFooter>
           </EuiModal>
-        </EuiModalOverlay>
+        </EuiOverlayMask>
       );
     }
     return (
