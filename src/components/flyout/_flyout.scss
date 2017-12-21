@@ -9,8 +9,8 @@
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
   display: flex;
   flex-direction: column;
-  align-items: strecth;
-  box-shadow: -$euiSizeXS 0px $euiSizeXS 0px rgba(0,0,0,.05);
+  align-items: stretch;
+  box-shadow: -$euiSizeS $euiSizeXS $euiSizeM 0px rgba(0,0,0,.05);
 }
 
 /**
@@ -44,13 +44,12 @@ $flyoutSizes: (
     opacity: 0;
     transform: translateX(100%);
   }
-  100% {
+  75% {
     opacity: 1;
     transform: translateX(0%);
   }
 }
 
-// On extra small screens we force these to takeover the screen.
 @include screenXSmall {
   .euiFlyout:not(.euiFlyout--small) {  /* 2 */
     left: 0;

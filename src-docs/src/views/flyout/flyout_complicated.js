@@ -138,6 +138,7 @@ export class FlyoutComplicated extends Component {
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
+          ownFocus
           onClose={this.closeFlyout}
         >
           <EuiFlyoutHeader>
@@ -165,6 +166,7 @@ export class FlyoutComplicated extends Component {
                 <EuiButtonEmpty
                   iconType="cross"
                   onClick={this.closeFlyout}
+                  flush="left"
                 >
                   Close
                 </EuiButtonEmpty>
