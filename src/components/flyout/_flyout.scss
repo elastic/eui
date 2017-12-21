@@ -44,11 +44,3 @@ $flyoutSizes: (
     border-left: none;
   }
 }
-
-@include screenXSmall {
-  .euiFlyout {
-    left: 0;
-    width: auto;
-    border-left: none;
-  }
-}
