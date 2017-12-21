@@ -46,8 +46,8 @@ export class EuiFlyout extends Component {
       <div
         ref={node => { this.flyout = node; }}
         className={classes}
-        onKeyDown={this.onKeyDown}
         tabIndex={0}
+        onKeyDown={this.onKeyDown}
         {...rest}
       >
         {children}
@@ -56,10 +56,16 @@ export class EuiFlyout extends Component {
 
     // If ownFocus is set, show an overlay behind the flyout and allow the user
     // to click it to close it.
-    let flyout;
     let optionalOverlay;
     if (ownFocus) {
-      flyout = (
+      optionalOverlay = (
+        <EuiOverlayMask onClick={onClose} />
+      );
+    }
+
+    return (
+      <span>
+        {optionalOverlay}
         <FocusTrap
           focusTrapOptions={{
             fallbackFocus: () => this.flyout,
@@ -68,18 +74,6 @@ export class EuiFlyout extends Component {
         >
           {flyoutContent}
         </FocusTrap>
-      );
-      optionalOverlay = (
-        <EuiOverlayMask onClick={onClose} />
-      );
-    } else {
-      flyout = flyoutContent;
-    }
-
-    return (
-      <span>
-        {optionalOverlay}
-        {flyout}
       </span>
     );
   }

@@ -138,6 +138,7 @@ export class FlyoutComplicated extends Component {
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
+          ownFocus
           onClose={this.closeFlyout}
         >
           <EuiFlyoutHeader>
