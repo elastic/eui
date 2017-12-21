@@ -196,6 +196,16 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
+<div
+  class="euiFormRow"
+>
+  <input
+    id="generated-id"
+  />
+</div>
+`;
+
 exports[`EuiFormRow props fullWidth is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--fullWidth"

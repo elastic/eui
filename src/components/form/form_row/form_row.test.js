@@ -104,6 +104,17 @@ describe('EuiFormRow', () => {
         .toMatchSnapshot();
     });
 
+    test('error is not rendered if isInvalid is false', () => {
+      const component = render(
+        <EuiFormRow error={['Error']} isInvalid={false}>
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('helpText is rendered', () => {
       const component = render(
         <EuiFormRow helpText={<span>This is help text.</span>}>
