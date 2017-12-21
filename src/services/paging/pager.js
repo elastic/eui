@@ -55,6 +55,14 @@ export class Pager {
   }
 
   update = () => {
+    if (this.totalItems <= 0) {
+      this.totalPages = 0;
+      this.currentPageIndex = 0;
+      this.firstItemIndex = 0;
+      this.lastItemIndex = 0;
+      return;
+    }
+
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
 
     // Ensure the current page falls within our range of total pages.

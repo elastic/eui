@@ -137,4 +137,18 @@ describe('Pager', () => {
       });
     });
   });
+
+  describe('behavior', () => {
+    describe('when there are no items', () => {
+      test('getFirstItemIndex defaults to 0', () => {
+        const pager = new Pager(0, 20);
+        expect(pager.getFirstItemIndex()).toBe(0);
+      });
+
+      test('getLastItemIndex defaults to 0', () => {
+        const pager = new Pager(0, 20);
+        expect(pager.getLastItemIndex()).toBe(0);
+      });
+    });
+  });
 });

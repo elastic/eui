@@ -2,6 +2,10 @@
 
 - Updated `euiPopover` to propogate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
 
+**Bug fixes**
+
+- Fix bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
+
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 
 **Breaking changes**
