@@ -70,6 +70,11 @@ import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
 import logoXpack from './assets/logo_xpack.svg';
 import logoKibana from './assets/logo_kibana.svg';
+import logoCircleElasticsearch from './assets/logo_circle_elasticsearch.svg';
+import logoCircleKibana from './assets/logo_circle_kibana.svg';
+import logoCircleAPM from './assets/logo_circle_apm.svg';
+import logoCircleLogstash from './assets/logo_circle_logstash.svg';
+import logoCircleML from './assets/logo_circle_ml.svg';
 import mapMarker from './assets/map_marker.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import node from './assets/node.svg';
@@ -144,6 +149,11 @@ const typeToIconMap = {
   logoSlack,
   logoWebhook,
   logoXpack,
+  logoCircleElasticsearch,
+  logoCircleKibana,
+  logoCircleAPM,
+  logoCircleLogstash,
+  logoCircleML,
   machineLearningApp,
   managementApp,
   mapMarker,
