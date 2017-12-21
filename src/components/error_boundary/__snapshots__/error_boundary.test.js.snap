@@ -17,7 +17,9 @@ exports[`EuiErrorBoundary is rendered with an error 1`] = `
       </h1>
       <pre>
         <p>
-          Error: Terrible error!
+          Error: I'm here to kick butt and chew bubblegum.
+
+And I'm all out of gum.
         </p>
       </pre>
     </div>
