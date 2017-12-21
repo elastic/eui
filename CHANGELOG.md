@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.9`.
+- Updated `euiPopover` to propogate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
 
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 
