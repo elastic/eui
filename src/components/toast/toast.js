@@ -48,6 +48,7 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
         className="euiToast__closeButton"
         aria-label="Dismiss toast"
         onClick={onClose}
+        data-test-subj="toastCloseButton"
       >
         <EuiIcon
           type="cross"
@@ -92,4 +93,5 @@ EuiToast.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOf(COLORS),
   onClose: PropTypes.func,
+  children: PropTypes.node,
 };

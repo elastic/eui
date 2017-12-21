@@ -1,5 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiToast Props color danger is rendered 1`] = `
+<div
+  className="euiToast euiToast--danger"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color primary is rendered 1`] = `
+<div
+  className="euiToast euiToast--primary"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color success is rendered 1`] = `
+<div
+  className="euiToast euiToast--success"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color warning is rendered 1`] = `
+<div
+  className="euiToast euiToast--warning"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props iconType is rendered 1`] = `
+<div
+  className="euiToast"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <EuiIcon
+      aria-hidden="true"
+      className="euiToastHeader__icon"
+      size="m"
+      type="user"
+    />
+    <span
+      className="euiToastHeader__title"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props title is rendered 1`] = `
+<div
+  className="euiToast"
+>
+  <div
+    className="euiToastHeader"
+  >
+    <span
+      className="euiToastHeader__title"
+    >
+      toast title
+    </span>
+  </div>
+</div>
+`;
+
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -7,11 +99,18 @@ exports[`EuiToast is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiToastHeader"
+    class="euiToastHeader euiToastHeader--withBody"
   >
     <span
       class="euiToastHeader__title"
     />
+  </div>
+  <div
+    class="euiText euiText--small"
+  >
+    <p>
+      Hi
+    </p>
   </div>
 </div>
 `;
