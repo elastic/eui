@@ -6,6 +6,7 @@ import { EuiCheckbox } from './checkbox';
 export const EuiCheckboxGroup = ({
   options,
   idToSelectedMap,
+  idToIndeterminateMap,
   onChange,
   className,
   disabled,
@@ -13,12 +14,18 @@ export const EuiCheckboxGroup = ({
 }) => (
   <div className={className} {...rest}>
     {options.map((option, index) => {
+      let optionalIndeterminateId;
+      if (idToIndeterminateMap) {
+        optionalIndeterminateId = idToIndeterminateMap[option.id];
+      }
+
       return (
         <EuiCheckbox
           className="euiCheckboxGroup__item"
           key={index}
           id={option.id}
           checked={idToSelectedMap[option.id]}
+          indeterminate={optionalIndeterminateId}
           label={option.label}
           disabled={disabled}
           onChange={onChange.bind(null, option.id)}

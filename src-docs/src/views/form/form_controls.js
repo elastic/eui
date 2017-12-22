@@ -30,7 +30,7 @@ export default class extends Component {
       isSwitchChecked: false,
       checkboxes: [{
         id: `${idPrefix}0`,
-        label: 'Option one',
+        label: 'Option one is an indeterminate checkbox',
       }, {
         id: `${idPrefix}1`,
         label: 'Option two is checked by default',
@@ -40,6 +40,9 @@ export default class extends Component {
       }],
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
+      },
+      checkboxIdToIndeterminateMap: {
+        [`${idPrefix}0`]: true,
       },
       radios: [{
         id: `${idPrefix}4`,
@@ -148,6 +151,7 @@ export default class extends Component {
 
         <EuiCheckboxGroup
           options={this.state.checkboxes}
+          idToIndeterminateMap={this.state.checkboxIdToIndeterminateMap}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onCheckboxChange}
         />
