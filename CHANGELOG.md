@@ -2,6 +2,7 @@
 
 - Updated `euiPopover` to propagate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
 - Updated `<EuiErrorBoundary>` to preserve newlines in error. [(#238)[https://github.com/elastic/eui/pull/238]]
+- Added more icons and fixed a few for dark mode [(#228)](https://github.com/elastic/eui/pull/228)
 - Added `EuiFlyout` component. [(#227)](https://github.com/elastic/eui/pull/227)
 
 **Breaking changes**
