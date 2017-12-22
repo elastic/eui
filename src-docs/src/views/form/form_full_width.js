@@ -11,11 +11,6 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-// Don't use this, make proper ids instead. This is just for the example.
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
-
 export default () => (
   <div>
     <EuiFlexGroup>
@@ -30,7 +25,6 @@ export default () => (
     <EuiSpacer size="l" />
 
     <EuiFormRow
-      id={makeId()}
       label="Works on form rows too"
       fullWidth
       helpText="Note that fullWidth prop is passed to both the row and the child in this example"
@@ -43,7 +37,6 @@ export default () => (
       />
     </EuiFormRow>
     <EuiFormRow
-      id={makeId()}
       label="Often useful for text areas"
       fullWidth
       helpText="Again, passed to both the row and the textarea."

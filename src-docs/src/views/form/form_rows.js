@@ -17,10 +17,7 @@ import {
   EuiTextArea,
 } from '../../../../src/components';
 
-// Don't use this, make proper ids instead. This is just for the example.
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
+import makeId from '../../../../src/components/form/form_row/make_id';
 
 export default class extends Component {
   constructor(props) {
@@ -83,7 +80,6 @@ export default class extends Component {
     return (
       <EuiForm>
         <EuiFormRow
-          id={makeId()}
           label="Text field"
           helpText="I am some friendly help text."
         >
@@ -91,7 +87,6 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Text field with icon"
         >
           <EuiFieldText
@@ -101,7 +96,6 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Number field"
           helpText="Any number between 1 and 5"
         >
@@ -113,14 +107,12 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Password"
         >
           <EuiFieldPassword defaultValue="password" />
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Search"
         >
           <EuiFieldSearch />
@@ -128,14 +120,12 @@ export default class extends Component {
 
         <EuiFormRow
           label="Text area"
-          id={makeId()}
         >
           <EuiTextArea name="textarea"/>
         </EuiFormRow>
 
         <EuiFormRow
           label="Select"
-          id={makeId()}
         >
           <EuiSelect
             options={[
@@ -147,7 +137,6 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Range"
         >
           <EuiRange
@@ -163,7 +152,7 @@ export default class extends Component {
         >
           <EuiSwitch
             name="switch"
-            id={makeId()}
+
             label="Should we do this?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
@@ -171,7 +160,6 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Checkboxes"
         >
           <EuiCheckboxGroup
