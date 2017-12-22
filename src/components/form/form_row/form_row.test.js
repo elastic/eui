@@ -23,6 +23,7 @@ describe('EuiFormRow', () => {
     const props = {
       label: `Label`,
       helpText: `Help text`,
+      isInvalid: true,
       error: [
         `Error one`,
         `Error two`
@@ -83,7 +84,7 @@ describe('EuiFormRow', () => {
 
     test('error as string is rendered', () => {
       const component = render(
-        <EuiFormRow error="Error">
+        <EuiFormRow error="Error" isInvalid={true}>
           <input/>
         </EuiFormRow>
       );
@@ -94,7 +95,18 @@ describe('EuiFormRow', () => {
 
     test('error as array is rendered', () => {
       const component = render(
-        <EuiFormRow error={['Error', 'Error2']}>
+        <EuiFormRow error={['Error', 'Error2']} isInvalid={true}>
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('error is not rendered if isInvalid is false', () => {
+      const component = render(
+        <EuiFormRow error={['Error']} isInvalid={false}>
           <input/>
         </EuiFormRow>
       );

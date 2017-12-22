@@ -86,7 +86,7 @@ export class EuiFormRow extends Component {
 
     let optionalErrors;
 
-    if (error) {
+    if (error && isInvalid) {
       const errorTexts = Array.isArray(error) ? error : [error];
       optionalErrors = errorTexts.map((error, i) => (
         <EuiFormErrorText key={error} id={`${id}-error-${i}`} className="euiFormRow__text">
