@@ -11,7 +11,7 @@ $textColors: (
 
 // Create color modifiers based on the map
 @each $name, $color in $textColors {
-  .euiTextColor.euiTextColor--#{$name} {
+  .euiTextColor--#{$name} {
     color: $color !important;
 
     // We need a blanket approach for coloring. It should overule everything.

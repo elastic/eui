@@ -4,8 +4,18 @@ import PropTypes from 'prop-types';
 
 import {
   COLORS,
-  EuiTextColor,
+  colorsToClassNameMap,
 } from './text_color';
+
+import {
+  ALIGNMENTS,
+  alignmentToClassNameMap,
+} from './text_align';
+
+import {
+  FONT_FAMILIES,
+  fontFamiliesToClassNameMap,
+} from './text_font_family';
 
 const textSizeToClassNameMap = {
   s: 'euiText--small',
@@ -14,28 +24,28 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const EuiText = ({ size, color, children, className, ...rest }) => {
+export const EuiText = ({
+  size,
+  color,
+  fontFamily,
+  textAlign,
+  children,
+  className,
+  ...rest
+}) => {
 
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
+    fontFamiliesToClassNameMap[fontFamily],
+    alignmentToClassNameMap[textAlign],
+    colorsToClassNameMap[color],
     className
   );
 
-  let optionallyColoredText;
-  if (color) {
-    optionallyColoredText = (
-      <EuiTextColor color={color}>
-        {children}
-      </EuiTextColor>
-    );
-  } else {
-    optionallyColoredText = children;
-  }
-
   return (
     <div className={classes} {...rest}>
-      {optionallyColoredText}
+      {children}
     </div>
   );
 };
@@ -45,4 +55,6 @@ EuiText.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(TEXT_SIZES),
   color: PropTypes.oneOf(COLORS),
+  fontFamily: PropTypes.oneOf(FONT_FAMILIES),
+  textAlign: PropTypes.oneOf(ALIGNMENTS),
 };

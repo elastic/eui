@@ -232,4 +232,6 @@ export {
 export {
   EuiText,
   EuiTextColor,
+  EuiTextAlign,
+  EuiTextFontFamily,
 } from './text';

@@ -22,6 +22,14 @@ import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
 
+import TextAlign from './text_align';
+const textAlignSource = require('!!raw-loader!./text_align');
+const textAlignHtml = renderToHtml(TextAlign);
+
+import TextFontFamily from './text_font_family';
+const textFontFamilySource = require('!!raw-loader!./text_font_family');
+const textFontFamilyHtml = renderToHtml(TextFontFamily);
+
 export const TextExample = {
   title: 'Text',
   sections: [{
@@ -79,5 +87,45 @@ export const TextExample = {
       </p>
     ),
     demo: <TextColor />,
+  }, {
+    title: 'Setting alignment',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: textAlignSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: textAlignHtml,
+    }],
+    text: (
+      <p>
+        There are two ways to align text. Either individually by
+        applying <EuiCode>EuiTextAlign</EuiCode> on individual text objects, or
+        by passing the <EuiCode>textAlign</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
+        a blanket approach across the entirely of your text. Either solution wraps
+        the element in a span with the <EuiCode>!important</EuiCode> applied to the alignment.
+        It will override any other alignment in use, so be careful.
+      </p>
+    ),
+    demo: <TextAlign />,
+  }, {
+    title: 'Setting font family',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: textFontFamilySource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: textFontFamilyHtml,
+    }],
+    text: (
+      <p>
+        There are two ways to set the font family text. Either individually by
+        applying <EuiCode>EuiTextFontFamily</EuiCode> on individual text objects, or
+        by passing the <EuiCode>fontFamily</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
+        a blanket approach across the entirely of your text. Either solution wraps
+        the element in a span with the <EuiCode>!important</EuiCode> applied to the font family.
+        It will override any other font families in use, so be careful.
+      </p>
+    ),
+    demo: <TextFontFamily />,
   }],
 };
