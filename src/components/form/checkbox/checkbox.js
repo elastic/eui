@@ -12,6 +12,7 @@ export const EuiCheckbox = ({
   className,
   id,
   checked,
+  indeterminate,
   label,
   onChange,
   type,
@@ -21,6 +22,9 @@ export const EuiCheckbox = ({
   const classes = classNames(
     'euiCheckbox',
     typeToClassNameMap[type],
+    {
+      'euiCheckbox--indeterminate': indeterminate,
+    },
     className
   );
 

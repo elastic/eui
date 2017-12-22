@@ -4,6 +4,7 @@
 - Updated `<EuiErrorBoundary>` to preserve newlines in error. [(#238)[https://github.com/elastic/eui/pull/238]]
 - Added more icons and fixed a few for dark mode [(#228)](https://github.com/elastic/eui/pull/228)
 - Added `EuiFlyout` component. [(#227)](https://github.com/elastic/eui/pull/227)
+- Added `indeterminate` prop and styling to checkboxes. [(#245)](https://github.com/elastic/eui/pull/245)
 
 **Breaking changes**
 

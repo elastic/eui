@@ -52,6 +52,7 @@
     &:disabled:not(:checked) ~ .euiCheckbox__square {
       background-color: $euiColorLightestShade;
     }
+
   }
 
   .euiCheckbox__square {
@@ -92,5 +93,9 @@
       height: $euiSize;
       width: $euiSize;
     }
+  }
+
+  &.euiCheckbox--indeterminate  .euiCheckbox__square {
+    background: linear-gradient(to right bottom, $euiFormBackgroundColor 50%, $euiColorPrimary 50%);
   }
 }
