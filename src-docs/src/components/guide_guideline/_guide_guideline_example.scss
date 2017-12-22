@@ -1,0 +1,31 @@
+.GuidelineExample {
+  .euiPanel {
+    border-bottom: 2px solid;
+    margin-bottom: $euiSize;
+
+    + small {
+      font-size: $euiSizeM;
+    }
+  }
+
+  // Coloring
+  &.GuidelineExample--do {
+    .euiPanel {
+      border-bottom-color: $euiColorSuccess;
+
+      + small {
+          color: $euiColorSuccess;
+      }
+    }
+  }
+
+  &.GuidelineExample--dont {
+    .euiPanel {
+      border-bottom-color: $euiColorDanger;
+
+      + small {
+          color: $euiColorDanger;
+      }
+    }
+  }
+}

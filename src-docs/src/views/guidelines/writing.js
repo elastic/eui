@@ -2,11 +2,13 @@ import React from 'react';
 
 import {
   GuidePage,
+  GuideGuideline,
 } from '../../components';
 
 
 import {
   EuiText,
+  EuiTitle,
   EuiButton,
   EuiSpacer,
   EuiFlexGroup,
@@ -20,6 +22,7 @@ import {
   EuiCheckbox,
   EuiLink,
 } from '../../../../src/components';
+
 
 export default () => (
   <GuidePage title="Writing">
@@ -82,40 +85,15 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiText>
+    <EuiTitle>
       <h2>Style</h2>
-    </EuiText>
+    </EuiTitle>
 
     <EuiSpacer />
     <EuiSpacer />
 
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Address users as &quot;you.&quot;</h3>
-          <p>It&apos;s friendly and engages the user directly.</p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>You must configure TLS to apply a Platinum License.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>Configuring TLS will be required to apply a Platinum License.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <GuideGuideline />
 
     <EuiSpacer />
     <EuiSpacer />
@@ -849,7 +827,6 @@ export default () => (
       <EuiFlexItem>
         <EuiToast
           title="Remove this index pattern?"
-          fill
           color="success"
         >
           <EuiButtonEmpty
@@ -880,7 +857,6 @@ export default () => (
           </EuiButtonEmpty>
           <EuiButton
             size="s"
-            fill
             onClick={() => window.alert('Button clicked')}
           >
   OK

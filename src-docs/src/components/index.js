@@ -1,4 +1,9 @@
 export {
+  GuideGuideline,
+  GuideGuidelineExample,
+} from './guide_guideline';
+
+export {
   GuidePage,
   GuidePageChrome,
 } from './guide_page';
