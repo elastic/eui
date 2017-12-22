@@ -7,7 +7,7 @@ import { EuiTextFontFamily } from './text_font_family';
 describe('EuiTextFontFamily', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiTextFontFamily {...requiredProps} />
+      <EuiTextFontFamily fontFamily="code" {...requiredProps} />
     );
 
     expect(component)

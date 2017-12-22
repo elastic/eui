@@ -7,7 +7,7 @@ import { EuiTextAlign } from './text_align';
 describe('EuiTextAlign', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiTextAlign {...requiredProps} />
+      <EuiTextAlign textAlign="center" {...requiredProps} />
     );
 
     expect(component)
