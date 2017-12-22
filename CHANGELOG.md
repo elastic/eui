@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.10`.
+
+# [`0.0.10`](https://github.com/elastic/eui/tree/v0.0.10)
+
 - Updated `euiPopover` to propagate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
 - Updated `<EuiErrorBoundary>` to preserve newlines in error. [(#238)[https://github.com/elastic/eui/pull/238]]
 - Added more icons and fixed a few for dark mode [(#228)](https://github.com/elastic/eui/pull/228)
