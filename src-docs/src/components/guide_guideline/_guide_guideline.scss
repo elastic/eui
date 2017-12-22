@@ -1,3 +1,11 @@
 .Guideline {
+  margin-bottom: $euiSizeXL;
 
+  &.Guideline--hasHeading {
+    margin-top: $euiSizeXL * 2;
+
+    & + .Guideline:not(.Guideline--hasHeading) {
+      margin-top: $euiSizeXL * -1;
+    }
+  }
 }

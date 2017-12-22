@@ -21,6 +21,7 @@ export const GuideGuidelineExample = ({
   children,
   className,
   type,
+  text,
   ...rest,
 }) => {
 
@@ -30,15 +31,24 @@ export const GuideGuidelineExample = ({
     className
   );
 
+
+  let textNode;
+
+  if (text) {
+    textNode = (
+      <EuiText><p>{text}</p></EuiText>
+    );
+  }
+
   return (
     <EuiFlexItem
       className={classes}
       {...rest}
     >
 
-      <EuiPanel hasShadow={true}>
+      <EuiPanel>
+        {textNode}
         {children}
-        <EuiText><p>You must configure TLS to apply a Platinum License.</p></EuiText>
       </EuiPanel>
       <small>{typeToSubtitleTextMap[type]}</small>
 
@@ -49,7 +59,8 @@ export const GuideGuidelineExample = ({
 GuideGuidelineExample.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string
 };
 
 GuideGuidelineExample.defaultProps = {

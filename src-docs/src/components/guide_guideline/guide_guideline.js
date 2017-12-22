@@ -7,31 +7,51 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-import { GuideGuidelineExample } from './guide_guideline_example';
-
 export const GuideGuideline = ({
   children,
   className,
+  heading,
+  description,
   ...rest,
 }) => {
-  const classes = classNames('Guideline', className);
+  const classes = classNames(
+    'Guideline',
+    {
+      'Guideline--hasHeading': heading
+    },
+    className,
+  );
+
+  let headingNode;
+
+  if (heading) {
+    headingNode = (
+      <h3>{heading}</h3>
+    );
+  }
+
+  let descriptionNode;
+
+  if (description) {
+    descriptionNode = (
+      <p>{description}</p>
+    );
+  }
 
   return (
     <EuiFlexGroup
       className={classes}
       {...rest}
     >
-      {children}
 
       <EuiFlexItem className="Guideline__description">
         <EuiText>
-          <h3>Address users as &quot;you.&quot;</h3>
-          <p>It&apos;s friendly and engages the user directly.</p>
+          {headingNode}
+          {descriptionNode}
         </EuiText>
       </EuiFlexItem>
 
-      <GuideGuidelineExample type="do" />
-      <GuideGuidelineExample type="dont" />
+      {children}
 
     </EuiFlexGroup>
   );
@@ -40,4 +60,6 @@ export const GuideGuideline = ({
 GuideGuideline.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  heading: PropTypes.string,
+  description: PropTypes.string,
 };

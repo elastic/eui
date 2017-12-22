@@ -3,6 +3,7 @@ import React from 'react';
 import {
   GuidePage,
   GuideGuideline,
+  GuideGuidelineExample,
 } from '../../components';
 
 
@@ -13,16 +14,18 @@ import {
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiToast,
   EuiPanel,
   EuiFieldSearch,
   EuiFieldText,
   EuiButtonEmpty,
   EuiFieldPassword,
   EuiCheckbox,
-  EuiLink,
+  EuiFormRow,
+  EuiIcon,
+  EuiFieldNumber,
 } from '../../../../src/components';
 
+import makeId from '../../../../src/components/form/form_row/make_id';
 
 export default () => (
   <GuidePage title="Writing">
@@ -89,853 +92,433 @@ export default () => (
       <h2>Style</h2>
     </EuiTitle>
 
-    <EuiSpacer />
-    <EuiSpacer />
+    <GuideGuideline
+      heading="Address users as &quot;you.&quot;"
+      description="It&apos;s friendly and engages the user directly."
+    >
 
+      <GuideGuidelineExample type="do" text="You must configure TLS to apply a Platinum License." />
+      <GuideGuidelineExample type="dont" text="Configuring TLS will be required to apply a Platinum License." />
+    </GuideGuideline>
 
-    <GuideGuideline />
+    <GuideGuideline
+      heading="Write in active voice"
+      description="Active voice puts the focus on who or what is performing the action and makes the sentence easier to understand."
+    >
 
-    <EuiSpacer />
-    <EuiSpacer />
+      <GuideGuidelineExample type="do" text="The Elasticsearch Query DSL builds filters." />
+      <GuideGuidelineExample type="dont" text="Filters are built using the Elasticsearch Query DSL." />
+    </GuideGuideline>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
+    <GuideGuideline
+      heading="Write short, snappy text"
+      description="Identify the most important information and say it concisely.
+        Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
+        Omit common introductory phrases."
+    >
+
+      <GuideGuidelineExample type="do">
+        <EuiText><h2>Edit saved objects</h2></EuiText>
+      </GuideGuidelineExample>
+
+      <GuideGuidelineExample type="dont">
         <EuiText>
-          <h3>Write in active voice</h3>
-          <p>Active voice puts the
-          focus on who or what is performing the action and makes the sentence easier to understand.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>The Elasticsearch Query DSL builds filters.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>Filters are built using the Elasticsearch Query DSL.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Write short, snappy text</h3>
-
-          <p>
-           Identify the most important information and say it concisely.
-           Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
-           Omit common introductory phrases.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <h2>Edit saved objects</h2>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
           <h2>Edit saved objects</h2>
           <p>From here, you can edit saved objects. To get started, follow these steps.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
         </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiSpacer />
-    <EuiSpacer />
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="Configure at least one index pattern." />
+      <GuideGuidelineExample type="dont" text="In order to use Kibana, you must configure at least one index pattern." />
+    </GuideGuideline>
 
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="No active shard records for this cluster." />
+      <GuideGuidelineExample type="dont" text="There are currently no active shard records for this cluster." />
+    </GuideGuideline>
 
-    <EuiFlexGroup>
-      <EuiFlexItem />
+    <GuideGuideline
+      heading="Avoid using &quot;I&quot; and &quot;we&quot;"
+      description="The use of &quot;I&quot; and &quot;we&quot; can come across as patronizing.
+        Instead of what you recommend or what your app is doing, focus on your users."
+    >
+      <GuideGuidelineExample type="do" text="Your index has a date field." />
+      <GuideGuidelineExample type="dont" text="I see that you are looking at an index with a date field." />
+    </GuideGuideline>
 
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>Configure at least one index pattern.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="For maximum compatibility, share the short URL of the snapshot." />
+      <GuideGuidelineExample type="dont" text="We recommend sharing shortened snapshot URLs for maximum compatibility." />
+    </GuideGuideline>
 
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>In order to use Kibana, you must configure at least one index pattern.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-
-    <EuiFlexGroup>
-      <EuiFlexItem />
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>No active shard records for this cluster.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>There are currently no active shard records for this cluster.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Avoid using &quot;I&quot; and &quot;we&quot;</h3>
-          <p>The use of &quot;I&quot; and &quot;we&quot; can come across as patronizing.
-          Instead of what you recommend or what your app is doing, focus on your users.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>Your index has a date field.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <p>I see that you are looking at an index with a date field.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem />
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
-        >
-        For maximum compatibility, share the short URL of the snapshot.
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
-        >
-        We recommend sharing shortened snapshot URLs for maximum compatibility.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer size="xxl"/>
     <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>Capitalization</h2>
     </EuiText>
+
     <EuiSpacer />
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Use sentence case for all text</h3>
-          <p>This includes buttons, menus, and titles.
-          In sentence case, only the first word and proper names are capped.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
+    <GuideGuideline
+      heading="Use sentence case for all text"
+      description="This includes buttons, menus, and titles.
+        In sentence case, only the first word and proper names are capped."
+    >
 
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <h2>Create index patterns</h2>
-          <EuiSpacer />
-          <EuiButton size="s" onClick={() => window.alert('Button clicked')} >
-                  Set up index pattern
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
+      <GuideGuidelineExample type="do">
+        <EuiTitle>
+          <span>Create index patterns</span>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiButton>
+          Set up index pattern
+        </EuiButton>
+      </GuideGuidelineExample>
 
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-          <h2>Create Index Patterns</h2>
-          <EuiSpacer />
-          <EuiButton size="s" onClick={() => window.alert('Button clicked')} >
-                  Set Up Index Pattern
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
+      <GuideGuidelineExample type="dont">
+        <EuiTitle>
+          <span>Create Index Patterns</span>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiButton>
+          Set Up Index Pattern
+        </EuiButton>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
     <EuiSpacer size="xxl"/>
-    <EuiSpacer size="xxl"/>
 
-
-    <EuiText>
+    <EuiTitle>
       <h2>Punctuation</h2>
-    </EuiText>
-    <EuiSpacer />
+    </EuiTitle>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Use punctuation judiciously</h3>
-          <p>Although punctuation can help clarify meaning, it can also clutter the UI.
-          Don&apos;t add a colon after a label, an ellipsis at the end of an action, or an (s) at the end of a noun.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
+    <GuideGuideline
+      heading="Use punctuation judiciously"
+      description="Although punctuation can help clarify meaning, it can also clutter the UI.
+        Don&apos;t add a colon after a label, an ellipsis at the end of an action, or an (s) at the end of a noun."
+    >
 
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-                  Airports
+      <GuideGuidelineExample type="do">
+        <EuiFormRow
+          label="Airports"
+          helpText="Separate multiple names with a comma"
+        >
           <EuiFieldText />
-                  Separate multiple names with a comma
-          <EuiSpacer />
-          <EuiFieldSearch defaultValue="Search"/>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
+        </EuiFormRow>
+      </GuideGuidelineExample>
 
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-                  Airport(s):
+      <GuideGuidelineExample type="dont">
+        <EuiFormRow
+          label="Airport(s):"
+          helpText="Separate multiple names with a comma."
+        >
           <EuiFieldText />
-                  Separate multiple names with a comma.
-          <EuiSpacer />
-          <EuiFieldSearch defaultValue="Search..."/>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiSpacer />
-    <EuiSpacer />
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFieldSearch defaultValue="Search"/>
+      </GuideGuidelineExample>
+
+      <GuideGuidelineExample type="dont">
+        <EuiFieldSearch defaultValue="Search..."/>
+      </GuideGuidelineExample>
+    </GuideGuideline>
+
+    <GuideGuideline
+      heading="Omit the ending period"
+      description="Short phrases and single sentences in tooltips, lists, help text, and subtitles don&apos;t
+        typically require a full stop. Always use periods on multiple sentences."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFormRow
+          label="Number"
+          helpText="Number must be between 1 and 5"
+        >
+          <EuiFieldNumber min={1} max={5} step={1} />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+
+      <GuideGuidelineExample type="dont" text="">
+        <EuiFormRow
+          label="Number"
+          helpText="Number must be between 1 and 5."
+        >
+          <EuiFieldNumber min={1} max={5} step={1} />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
+
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFormRow
+          label="Number"
+          helpText="Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink>"
+        >
+          <EuiFieldNumber min={1} max={5} step={1} />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Omit the ending period</h3>
-          <p>Short phrases and single sentences in tooltips, lists, help text, and subtitles don&apos;t
-          typically require a full stop. Always use periods on multiple sentences.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
+    <GuideGuideline
+      heading="Use contractions"
+      description="Use contractions if they make your text flow more naturally, such as
+        &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and  &quot;can&apos;t&quot; instead of &quot;cannot.&quot;"
+    >
+      <GuideGuidelineExample type="do" text="Didn&apos;t find what you were looking for?" />
+      <GuideGuidelineExample type="dont" text="Did not find what you were looking for?" />
+    </GuideGuideline>
 
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-                  Number
-          <EuiFieldText />
-                  Number must be between 1 and 5
-          <EuiSpacer />
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="danger" >
-                  Number
-          <EuiFieldText />
-                  Number must be between 1 and 5.
-          <EuiSpacer />
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem />
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-        Number
-          <EuiFieldText />
-          Number must be between 1 and 5.&nbsp;
-          <EuiLink href="" target="_blank">
-          Learn more.
-          </EuiLink>
-          <EuiSpacer />
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem />
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Use contractions</h3>
-          <p>Use contractions if they make your text flow more naturally, such as
-           &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and  &quot;can&apos;t&quot; instead of &quot;cannot.&quot;
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>Didn&apos;t find what you were looking for?</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="danger"  >
-          <p>Did not find what you were looking for?</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Limit the use of exclamation points</h3>
-          <p>Showing excitement is best reserved for greetings and encouraging messages.
-          Don&apos;t use more than one exclamation point per page.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast color="success"  >
-          <p>This dashboard is empty.  Let&apos;s fill it up!</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="danger"  >
-          <p>Couldn&apos;t find any Elasticsearch data!</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <GuideGuideline
+      heading="Limit the use of exclamation points"
+      description="Showing excitement is best reserved for greetings and encouraging messages.
+        Don&apos;t use more than one exclamation point per page."
+    >
+      <GuideGuidelineExample type="do" text="This dashboard is empty.  Let&apos;s fill it up!" />
+      <GuideGuidelineExample type="dont" text="Couldn&apos;t find any Elasticsearch data!" />
+    </GuideGuideline>
 
     <EuiSpacer size="xxl"/>
-    <EuiSpacer size="xxl"/>
-
 
     <EuiText>
       <h2>Messages</h2>
     </EuiText>
 
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
+    <GuideGuideline
+      heading="Summarize the message in the title"
+      description="Get straight to the message.
+        Don&apos;t start with the words error, warning, and confirm, or jargon such as oops and uh-oh.
+        A title-only message is ok."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiTitle size="s"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
+        <EuiSpacer/>
         <EuiText>
-          <h3>
-            Summarize the message in the title
-          </h3>
-          <p>Get straight to the message.
-          Don&apos;t start with the words error, warning, and confirm, or jargon such as oops and uh-oh.
-            A title-only message is ok.
+          <p>
+            To add a visualization, click Add in the menu bar. No visualizations yet?
+            Go to the Visualize app to create one.
           </p>
         </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast title="This dashboard is empty.  Let's fill it up!" color="success">
-              To add a visualization, click Add in the menu bar. No visualizations yet?
-              Go to the Visualize app to create one.
-        </EuiToast>
+      </GuideGuidelineExample>
+
+      <GuideGuidelineExample type="dont" text="">
+        <EuiTitle size="s"><span>Uh-oh!</span></EuiTitle>
+        <EuiSpacer/>
         <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          title="Uh-oh!"
-          color="danger"
-        >
+          <p>
             This dashboard is empty.  To add a visualization, click Add in the menu bar. No visualizations yet?
             Go to the Visualize app to create one.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer/>
-    <EuiSpacer/>
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Provide a clear course of action</h3>
-          <p>Tell the user what to do next, if applicable.
           </p>
         </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="success">
-          <p>No data sources. Go to the Management app to define an index pattern.</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
-        >
-            Oops, no data sources.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiSpacer/>
-    <EuiSpacer/>
+    <GuideGuideline
+      heading="Provide a clear course of action"
+      description="Tell the user what to do next, if applicable."
+    >
+      <GuideGuidelineExample type="do" text="No data sources. Go to the Management app to define an index pattern." />
+      <GuideGuidelineExample type="dont" text="Oops, no data sources." />
+    </GuideGuideline>
 
+    <GuideGuideline
+      heading="Avoid using &quot;Are you sure&quot;"
+      description="Your text is more direct without it."
+    >
+      <GuideGuidelineExample type="do" text="Delete this report?">
+        <EuiSpacer />
+        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+        <EuiButton color="danger" size="s">Delete</EuiButton>
+      </GuideGuidelineExample>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Avoid using &quot;Are you sure&quot;</h3>
-          <p>Your text is more direct without it.</p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          title="Delete this report?"
-          color="success"
-        >
-          <EuiSpacer />
-          <EuiButtonEmpty
-            onClick={() => window.alert('Button clicked')}
-          >
-    Cancel
-          </EuiButtonEmpty>
-          <EuiButton
-            size="s"
-            color="danger"
-            onClick={() => window.alert('Button clicked')}
-          >
-    Delete report
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          title="Are you sure you want to delete this report?"
-          color="danger"
-        >
-          <EuiSpacer />
-          <EuiButtonEmpty
-            onClick={() => window.alert('Button clicked')}
-          >
-    Cancel
-          </EuiButtonEmpty>
-          <EuiButton
-            size="s"
-            color="danger"
-            onClick={() => window.alert('Button clicked')}
-          >
-    Delete report
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+      <GuideGuidelineExample type="dont" text="Are you sure you want to delete this report?">
+        <EuiSpacer />
+        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+        <EuiButton color="danger" size="s">Delete Report</EuiButton>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiSpacer/>
-    <EuiSpacer/>
+    <GuideGuideline
+      heading="Avoid using &quot;please&quot;"
+      description="An exception is for situations where the user must wait or do something inconvenient."
+    >
+      <GuideGuidelineExample type="do" text="Save your work before generating a report." />
+      <GuideGuidelineExample type="dont" text="Please save your work before generating a report." />
+    </GuideGuideline>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Avoid using &quot;please&quot;</h3>
-          <p>
-          An exception is for situations where the user must wait or do something inconvenient.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
-        >
-     Save your work before generating a report.
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
-        >
-    Please save your work before generating a report.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer size="xxl"/>
     <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>Informational text</h2>
     </EuiText>
 
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>
-             Use 1 to 2 simple, short sentences
-          </h3>
-          <p>Don&rsquo;t force the user to read long blocks of text. Write for scanning. Link to documentation.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
+    <GuideGuideline
+      heading="Use 1 to 2 simple, short sentences"
+      description="Don&rsquo;t force the user to read long blocks of text. Write for scanning. Link to documentation."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFormRow
+          label="Password"
+          helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%&"
         >
-        Password
-          <EuiFieldPassword defaultValue="password" />
-        Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%&
+          <EuiFieldPassword />
+        </EuiFormRow>
+      </GuideGuidelineExample>
 
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
+      <GuideGuidelineExample type="dont" text="">
+        <EuiFormRow
+          label="Password"
+          helpText="Passwords must be at least 8 characters long.
+            Good passwords contain either a combination of upper and lowercase letters or a combination of letters with one digit.
+            Strong passwords contain either a combination of letters and more than one digit or special characters."
         >
-        Password
-          <EuiFieldPassword defaultValue="password" />
-        Passwords must be at least 8 characters long.
-        Good passwords contain either a combination of upper and lowercase
-        letters or a combination of letters with one digit.
-        Strong passwords contain either a combination of letters and more
-        than one digit or special characters.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+          <EuiFieldPassword />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>
-            Avoid the urge to explain
-      everything
-          </h3>
-          <p> Not every task requires an explanation nor every field requires placeholder
-      text.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
+    <GuideGuideline
+      heading="Avoid the urge to explain everything"
+      description="Not every task requires an explanation nor every field requires placeholder text."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFormRow
+          label="Email"
         >
-      Email
           <EuiFieldText />
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
-        >
-    Email
-          <EuiFieldText />
-      Please enter your email address.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+        </EuiFormRow>
+      </GuideGuidelineExample>
 
+      <GuideGuidelineExample type="dont" text="">
+        <EuiFormRow
+          label="Email"
+          helpText="Please enter your email address."
+        >
+          <EuiFieldText />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
     <EuiSpacer size="xxl"/>
-    <EuiSpacer size="xxl"/>
-
 
     <EuiText>
       <h2>Labels</h2>
     </EuiText>
 
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Convey the purpose of the component</h3>
-          <p>Avoid long labels, but don&apos;t sacrifice clarity.
-      If needed, put additional information in help text and tooltips.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          color="success"
-        >
+    <GuideGuideline
+      heading="Convey the purpose of the component"
+      description="Avoid long labels, but don&apos;t sacrifice clarity.
+        If needed, put additional information in help text and tooltips."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id="checkbox1"
+            id={makeId()}
             label="Combine values in other bucket"
           />
-          <EuiSpacer />
-          Bucket label
-          <EuiFieldText/>
-          <EuiSpacer />
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiToast
-          color="danger"
+        </EuiFormRow>
+        <EuiFormRow
+          label="Bucket label"
         >
+          <EuiFieldText />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont" text="">
+        <EuiFormRow>
           <EuiCheckbox
             onChange={() => {}}
-            id="checkbox2"
+            id={makeId()}
             label="Combine other"
           />
-          <EuiSpacer />
-
-          Custom bucket label
-          <EuiFieldText/>
-          <EuiSpacer />
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Label buttons with their action</h3>
-          <p>Don&apos;t use Yes or OK when you can use a verb phrase instead.</p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          title="Remove this index pattern?"
-          color="success"
+        </EuiFormRow>
+        <EuiFormRow
+          label="Custom bucket label"
         >
-          <EuiButtonEmpty
-            onClick={() => window.alert('Button clicked')}
-          >
-        Cancel
-          </EuiButtonEmpty>
-          <EuiButton
-            size="s"
-            onClick={() => window.alert('Button clicked')}
-          >
-          Remove
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast
-          title="Remove this index pattern?"
-          color="success"
-        >
-          <EuiButtonEmpty
-            onClick={() => window.alert('Button clicked')}
-          >
-        Cancel
-          </EuiButtonEmpty>
-          <EuiButton
-            size="s"
-            onClick={() => window.alert('Button clicked')}
-          >
-  OK
-          </EuiButton>
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+          <EuiFieldText />
+        </EuiFormRow>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
+    <GuideGuideline
+      heading="Label buttons with their action"
+      description="Don&apos;t use Yes or OK when you can use a verb phrase instead."
+    >
+      <GuideGuidelineExample type="do" text="Remove this index pattern?">
+        <EuiSpacer />
+        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+        <EuiButton color="danger" size="s">Remove</EuiButton>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont" text="Remove this index pattern?">
+        <EuiSpacer />
+        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+        <EuiButton color="danger" size="s">Ok</EuiButton>
+      </GuideGuidelineExample>
+    </GuideGuideline>
+
     <EuiSpacer size="xxl"/>
 
     <EuiText>
       <h2>When to be clever</h2>
     </EuiText>
 
-    <EuiSpacer />
+    <GuideGuideline
+      heading="Be careful with humor"
+      description="Your text can be fun and witty as long as it fits the experience&mdash;and
+        doesn&apos;t get in the user&apos;s way. Clever text can become annoying
+        when used for frequently performed tasks."
+    >
+      <GuideGuidelineExample type="do" text="Odd, exciting, and scary trends and anomalies in your Elasticsearch data" />
+      <GuideGuidelineExample type="dont" text="" />
+    </GuideGuideline>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="Some cool stuff you can do" />
+      <GuideGuidelineExample type="dont" text="" />
+    </GuideGuideline>
+
+    <GuideGuideline
+      heading="Don&apos;t be clever with a serious message"
+      description="Losing data and other situations that might frustrate the user are not a time for humor."
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiTitle size="s"><span>No results matched your search</span></EuiTitle>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont" text="">
+        <EuiTitle size="s"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
+        <EuiSpacer />
         <EuiText>
-          <h3>Be careful with humor</h3>
           <p>
-           Your text can be fun and witty as long as it fits the experience&mdash;and
-           doesn&apos;t get in the user&apos;s way. Clever text can become annoying
-           when used for frequently performed tasks.
+            Unfortunately, I could not find any results matching your search.
+            I tried really hard.  I looked all over the place and frankly, I just couldn&apos;t find anything good.
+            Help me, help you.
           </p>
         </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="success">
-          <p>Odd, exciting, and scary trends and anomalies in your Elasticsearch data</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-        <EuiSpacer/>
-        <EuiSpacer/>
-
-        <EuiToast color="success"  >
-          <p>Some cool stuff you can do</p>
-        </EuiToast>
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem />
-    </EuiFlexGroup>
-
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Don&apos;t be clever with a serious message</h3>
-          <p>Losing data and other situations that might frustrate the user are not a time for humor.</p>
-
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="danger" title="No results matched your search" />
-        <EuiText>
-          <p><font color="green">Do</font></p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiToast color="danger" title="No results found" iconType="faceSad">
-          Unfortunately, I could not find any results matching your search.
-          I tried really hard.  I looked all over the place and frankly, I just couldn&apos;t find anything good.
-          Help me, help you.
-        </EuiToast>
-        <EuiText>
-          <p><font color="red">Don&apos;t</font></p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
 
 
@@ -958,8 +541,6 @@ export default () => (
 
         </EuiText>
       </EuiFlexItem>
-      <EuiFlexItem />
-      <EuiFlexItem />
     </EuiFlexGroup>
 
 
