@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v1';
 import { times } from 'lodash';
 
 import { EuiTableOfRecords, } from '../../../../src/components';
@@ -46,6 +47,23 @@ export default class PeopleTable extends React.Component {
       items,
       totalItemCount: people.length
     };
+  }
+
+  deletePerson(personToDelete) {
+    const i = people.findIndex((person) => person.id === personToDelete.id);
+    if (i >= 0) {
+      people.splice(i, 1);
+    }
+    const page = this.loadPage(this.state.page.index, this.state.page.size);
+    setTimeout(() => this.setState({ page }), 0);
+  }
+
+  clonePerson(personToClone) {
+    const i = people.findIndex((person) => person.id === personToClone.id);
+    const clone = { ...personToClone, id: uuid() };
+    people.splice(i, 0, clone);
+    const page = this.loadPage(this.state.page.index, this.state.page.size);
+    this.setState({ page });
   }
 
   onPageChange(index) {
@@ -100,6 +118,26 @@ export default class PeopleTable extends React.Component {
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
           }
+        },
+        {
+          name: '',
+          actions: [
+            {
+              type: 'button',
+              name: 'Clone',
+              description: 'Clone this person',
+              icon: 'copy',
+              onClick: (person) => this.clonePerson(person)
+            },
+            {
+              type: 'button',
+              name: 'Delete',
+              description: 'Delete this person',
+              icon: 'trash',
+              color: 'danger',
+              onClick: (person) => this.deletePerson(person)
+            }
+          ]
         }
       ],
       pagination: {
@@ -115,8 +153,7 @@ export default class PeopleTable extends React.Component {
       },
 
       selection: {
-        selectable: (record) => record.online,
-        // onSelectionChanged: (selection) => this.onSelectionChanged(selection)
+        selectable: (record) => record.online
       }
 
     };

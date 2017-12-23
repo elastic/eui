@@ -3,7 +3,8 @@ import { times } from 'lodash';
 
 import { EuiTableOfRecords, } from '../../../../src/components';
 import { ValueRenderers } from '../../../../src/services/value_renderer';
-import { EuiHealth } from '../../../../src/components/health';
+import { EuiSwitch } from '../../../../src/components/form/switch';
+import { EuiIcon } from '../../../../src/components/icon';
 
 const selectRandom = (...array) => {
   const i = Math.floor(Math.random() * array.length);
@@ -58,11 +59,33 @@ export default class PeopleTable extends React.Component {
     this.setState({ page });
   }
 
+  onPersonOnlineStatusChange(personId, online) {
+    const person = people.find(person => person.id === personId);
+    if (person) {
+      person.online = online;
+    }
+    const page = this.loadPage(this.state.page.index, this.state.page.size);
+    this.setState({ page });
+  }
+
+  onSelectionChanged(selection) {
+    this.setState({ selection });
+  }
+
   render() {
 
     const config = {
       recordId: 'id',
       columns: [
+        {
+          width: '30px',
+          align: 'right',
+          render: (person) => {
+            const color = person.online ? 'success' : 'subdued';
+            const title = person.online ? 'Online' : 'Offline';
+            return <EuiIcon type="user" color={color} title={title}/>;
+          }
+        },
         {
           key: 'firstName',
           name: 'First Name',
@@ -95,10 +118,12 @@ export default class PeopleTable extends React.Component {
           key: 'online',
           name: 'Online',
           description: `Is this person is currently online?`,
-          render: (value) => {
-            const color = value ? 'success' : 'danger';
-            const content = value ? 'Online' : 'Offline';
-            return <EuiHealth color={color}>{content}</EuiHealth>;
+          render: (online, person) => {
+            const disabled = this.state.selection.length !== 0;
+            const onChange = (event) => {
+              this.onPersonOnlineStatusChange(person.id, event.target.checked);
+            };
+            return <EuiSwitch id={`${person.id}-online`} onChange={onChange} checked={online} disabled={disabled} />;
           }
         }
       ],
@@ -116,7 +141,7 @@ export default class PeopleTable extends React.Component {
 
       selection: {
         selectable: (record) => record.online,
-        // onSelectionChanged: (selection) => this.onSelectionChanged(selection)
+        onSelectionChanged: (selection) => this.onSelectionChanged(selection)
       }
 
     };

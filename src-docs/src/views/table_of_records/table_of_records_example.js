@@ -15,6 +15,10 @@ import PaginatedTable from './pagination';
 import SelectableTable from './selection';
 import CustomRenderingTable from './rendering';
 import AdvanceRenderingTable from './advance_rendering';
+import SingleRecordActionTable from './single_record_action';
+import MultipleRecordActionsTable from './multiple_record_actions';
+import ImplicitRecordActionsTable from './implicit_record_action';
+import { EuiCallOut } from '../../../../src/components/call_out';
 
 const tableSource = require('!!raw-loader!./table_of_records');
 const tableHtml = renderToHtml(Table);
@@ -30,6 +34,15 @@ const renderingHtml = renderToHtml(CustomRenderingTable);
 
 const advanceRenderingSource = require('!!raw-loader!./advance_rendering');
 const advanceRenderingHtml = renderToHtml(AdvanceRenderingTable);
+
+const singleRecordActionsSource = require('!!raw-loader!./single_record_action');
+const singleRecordActionsHtml = renderToHtml(SingleRecordActionTable);
+
+const multipleRecordActionsSource = require('!!raw-loader!./multiple_record_actions');
+const multipleRecordActionsHtml = renderToHtml(MultipleRecordActionsTable);
+
+const implicitRecordActionSource = require('!!raw-loader!./implicit_record_action');
+const implicitRecordActionHtml = renderToHtml(ImplicitRecordActionsTable);
 
 export const TableOfRecordsExample = {
   title: 'TableOfRecords',
@@ -202,9 +215,123 @@ export const TableOfRecordsExample = {
             configuration, you can define your own renderer from scratch. The following example, shows how we can add
             some color to the record values.
           </p>
+          <EuiCallOut title="Tip" iconType="starEmpty">
+            <p>
+              While this example is here to demonstrate how you can provide your own custom renderers. Specifically
+              with the case of the Health rendering, there is a built-in renderer at your disposal -
+              <EuiCode>ValueRenderers.health</EuiCode>
+            </p>
+          </EuiCallOut>
         </div>
       ),
       demo: <AdvanceRenderingTable/>
+    },
+    {
+      title: 'Record Actions',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleRecordActionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: singleRecordActionsHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiTableOfRecords</EuiCode> enables you to place action controls on each record row. Typically this
+            is placed in the last column of the table (although this is more of a best practice and common design pattern
+            rather than enforced by the table component).
+          </p>
+          <p>
+            To add actions, all you need to do is to define a special actions column as part of the columns configuration.
+            In this column you can then define the actions that should be displayed. Note that you can define as many actions
+            as you&#39;d like, though some design pattern should be followed, and some are actually enforced by the table
+            component itself:
+          </p>
+          <ul>
+            <li>
+              Don&#39;t go overboard and configure too many actions. As a rule of thumb, choose maximum top 3 actions that
+              should be promoted to the user and configure those. All other actions that may be associated with the
+              record should most likely be placed in a dedicate page for the record itself.
+            </li>
+            <li>
+              At any given time, there should not be more than one (1) control visible on the record rows. The reason
+              for this is obvious - we want to leave enough room for the data and we don&#39;t want to clutter the table
+              view. If more than one action is associated with a record, it should be collapsed into a popover control.
+              The good news - <EuiCode>EuiTableOfRecords</EuiCode> already takes care of that for you!!
+            </li>
+            <li>
+              Actions are hidden by default. You can only see the actions on the rows when you hover with your mouse
+              on the relevant row. This is for the same reason as above - minimize the clutter in the table.
+              The good news - <EuiCode>EuiTableOfRecords</EuiCode> already taks care of that too!!
+            </li>
+          </ul>
+          <p>
+            In the following example, we added an <EuiCode>icon</EuiCode> action to delete the record it is
+            associated with.
+          </p>
+        </div>
+      ),
+      demo: <SingleRecordActionTable/>
+    },
+    {
+      title: 'Record Actions (Multiple)',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: multipleRecordActionsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: multipleRecordActionsHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            As mentioned above, when multiple record actions are configured, they&#39;ll all collapse into a
+            popover with a single trigger button
+          </p>
+        </div>
+      ),
+      demo: <MultipleRecordActionsTable/>
+    },
+    {
+      title: 'Record Actions (Implicit)',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: implicitRecordActionSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: implicitRecordActionHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            Event though the table tries to dictate our common design patterns rules, at times these rules
+            need to be broken for good reaons. For example, there can be a valid use case for having muliple
+            controls visible all the time (that is, not collapsed into a popover).
+          </p>
+          <p>
+            You can achieve this by using custom renderers. The following example, enables switching the online/offline
+            status of a person. Also note how listening to selection state changes enables us to follow the design
+            guidelines and disable these switches when selection is on.
+          </p>
+          <p>
+            As a bonus, we show how you can define a <EuiCode>computed</EuiCode> column that is not associated with any
+            specific record key and simply renders content that is computed/derived out of the record itself (here we
+            added a small little icon column that shows the user icon that is colored based on the person&#39;s
+            <EuiCode>online</EuiCode> status).
+          </p>
+        </div>
+      ),
+      demo: <ImplicitRecordActionsTable/>
     }
   ]
 };

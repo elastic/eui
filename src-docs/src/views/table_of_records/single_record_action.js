@@ -48,6 +48,15 @@ export default class PeopleTable extends React.Component {
     };
   }
 
+  deletePerson(personToDelete) {
+    const i = people.findIndex((person) => person.id === personToDelete.id);
+    if (i >= 0) {
+      people.splice(i, 1);
+    }
+    const page = this.loadPage(this.state.page.index, this.state.page.size);
+    this.setState({ page });
+  }
+
   onPageChange(index) {
     const page = this.loadPage(index, this.state.page.size);
     this.setState({ page });
@@ -100,6 +109,19 @@ export default class PeopleTable extends React.Component {
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
           }
+        },
+        {
+          name: '',
+          actions: [
+            {
+              type: 'icon',
+              name: 'Delete',
+              description: 'Delete this person',
+              icon: 'trash',
+              color: 'danger',
+              onClick: (person) => this.deletePerson(person)
+            }
+          ]
         }
       ],
       pagination: {
@@ -115,8 +137,7 @@ export default class PeopleTable extends React.Component {
       },
 
       selection: {
-        selectable: (record) => record.online,
-        // onSelectionChanged: (selection) => this.onSelectionChanged(selection)
+        selectable: (record) => record.online
       }
 
     };

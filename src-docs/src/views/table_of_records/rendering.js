@@ -31,8 +31,7 @@ export default class PeopleTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: this.loadPage(0, 5),
-      selection: []
+      page: this.loadPage(0, 5)
     };
   }
 
@@ -55,13 +54,6 @@ export default class PeopleTable extends React.Component {
   onPageSizeChange(size) {
     const page = this.loadPage(this.state.page.index, size);
     this.setState({ page });
-  }
-
-  onSelectionChanged(selection) {
-    this.setState((prevState) => ({
-      ...prevState,
-      selection
-    }));
   }
 
   render() {
@@ -118,7 +110,7 @@ export default class PeopleTable extends React.Component {
 
       selection: {
         selectable: (record) => record.online,
-        onSelectionChanged: (selection) => this.onSelectionChanged(selection)
+        // onSelectionChanged: (selection) => this.onSelectionChanged(selection)
       }
 
     };
