@@ -70,5 +70,7 @@ $gutterTypes: (
 @include screenXSmall {
   .euiFlexGroup--responsive {
     flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
