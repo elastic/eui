@@ -1,2 +1,3 @@
 export { SortableProperties } from './sortable_properties';
-export { SortDirectionType, ASC, DESC } from './sort_direction';
+export { SortDirectionType, SortDirection } from './sort_direction';
+export { Comparators } from './comparators';

@@ -2,6 +2,7 @@ import React from 'react';
 import { times } from 'lodash';
 
 import { EuiTableOfRecords, } from '../../../../src/components';
+import { SortDirection, Comparators } from '../../../../src/services/sort';
 
 const selectRandom = (...array) => {
   const i = Math.floor(Math.random() * array.length);
@@ -30,29 +31,45 @@ export default class PeopleTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: this.loadPage(0, 5)
+      page: this.loadPage(0, 5),
+      sort: null
     };
   }
 
-  loadPage(pageIndex, pageSize) {
+  loadPage(pageIndex, pageSize, sort) {
+    let list = people;
+    if (sort) {
+      list = people.sort(Comparators.property(sort.key, sort.direction));
+    }
     const from = pageIndex * pageSize;
-    const items = people.slice(from, Math.min(from + pageSize, people.length));
+    const items = list.slice(from, Math.min(from + pageSize, list.length));
     return {
       index: pageIndex,
       size: pageSize,
       items,
-      totalItemCount: people.length
+      totalItemCount: list.length
     };
   }
 
   onPageChange(index) {
-    const page = this.loadPage(index, this.state.page.size);
+    const page = this.loadPage(index, this.state.page.size, this.state.sort);
     this.setState({ page });
   }
 
   onPageSizeChange(size) {
-    const page = this.loadPage(this.state.page.index, size);
+    const page = this.loadPage(this.state.page.index, size, this.state.sort);
     this.setState({ page });
+  }
+
+  onColumnSort(key) {
+    this.setState((prevState) => {
+      const prevSort = prevState.sort;
+      const sort = prevSort && prevSort.key === key ?
+        { key, direction: SortDirection.reverse(prevSort.direction) } :
+        { key, direction: SortDirection.ASC };
+      const page = this.loadPage(0, prevState.page.size, sort);
+      return { ...prevState, page, sort };
+    });
   }
 
   render() {
@@ -63,7 +80,8 @@ export default class PeopleTable extends React.Component {
         {
           key: 'firstName',
           name: 'First Name',
-          description: `Person's given name`
+          description: `Person's given name`,
+          sortable: true
         },
         {
           key: 'lastName',
@@ -78,12 +96,14 @@ export default class PeopleTable extends React.Component {
         {
           key: 'dateOfBirth',
           name: 'Date of Birth',
-          description: `Person's date of birth`
+          description: `Person's date of birth`,
+          sortable: true
         },
         {
           key: 'online',
           name: 'Online',
-          description: `Is this person is currently online?`
+          description: `Is this person is currently online?`,
+          sortable: true
         }
       ],
       pagination: {
@@ -99,10 +119,11 @@ export default class PeopleTable extends React.Component {
       },
 
       selection: {
-        selectable: person => person.online,
-        // implementing this callback enables you to communicate the
-        // reason for this person not being selectable
-        selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
+        selectable: (record) => record.online
+      },
+
+      sort: {
+        onColumnSort: (column) => this.onColumnSort(column.key)
       }
 
     };

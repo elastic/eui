@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { EuiPropTypes } from '../../utils/prop_types';
 import classNames from 'classnames';
@@ -21,7 +19,7 @@ import { EuiPopover } from '../popover';
 import { Page, PageType, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
 import { ValueRenderers } from '../../services/value_renderer';
 import { PropertySortType } from '../../services/sort/property_sort';
-
+import { SortDirection } from '../../services/sort';
 
 const dataTypesProfiles = {
   string: {
@@ -136,7 +134,7 @@ const RecordIdType = PropTypes.oneOfType([
 
 const ConfigType = PropTypes.shape({
   // when string, it's treated as the id property name
-  // when function
+  // when function it needs to have the following signature: (record) => string
   recordId: RecordIdType.isRequired,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   selection: SelectionType,
@@ -174,7 +172,7 @@ const EuiTableOfRecordsProps = {
   className: PropTypes.string
 };
 
-export class EuiTableOfRecords extends Component {
+export class EuiTableOfRecords extends React.Component {
 
   static propTypes = EuiTableOfRecordsProps;
 
@@ -190,6 +188,10 @@ export class EuiTableOfRecords extends Component {
   recordId(record) {
     const id = this.props.config.recordId;
     return _.isString(id) ? record[id] : id(record);
+  }
+
+  isPopoverOpen(id) {
+    return !!this.state.popovers[id];
   }
 
   togglePopover(id) {
@@ -213,8 +215,31 @@ export class EuiTableOfRecords extends Component {
     }
   }
 
-  isPopoverOpen(id) {
-    return !!this.state.popovers[id];
+  clearSelection() {
+    this.changeSelection([]);
+  }
+
+  onPageSizeChange(size) {
+    this.clearSelection();
+    this.props.config.pagination.onPageSizeChange(size, this.props.model.page);
+  }
+
+  onPageChange(index) {
+    this.clearSelection();
+    this.props.config.pagination.onPageChange(index, this.props.model.page);
+  }
+
+  onColumnSort(column) {
+    this.clearSelection();
+    this.props.config.sort.onColumnSort(column, this.props.model);
+  }
+
+  onRecordHover(recordId) {
+    this.setState({ hoverRecordId: recordId });
+  }
+
+  clearRecordHover() {
+    this.setState({ hoverRecordId: null });
   }
 
   render() {
@@ -275,6 +300,7 @@ export class EuiTableOfRecords extends Component {
 
     config.columns.forEach((column, index) => {
 
+      // actions column
       if (column.actions) {
         headers.push(
           <EuiTableHeaderCell
@@ -290,6 +316,7 @@ export class EuiTableOfRecords extends Component {
 
       const align = this.resolveColumnAlign(column);
 
+      // computed column
       if (!column.key) {
         headers.push(
           <EuiTableHeaderCell
@@ -303,14 +330,15 @@ export class EuiTableOfRecords extends Component {
         return;
       }
 
+      // data column
       const sortDirection = this.resolveColumnSortDirection(column, config, model);
-      const onSort = this.resolveColumnOnSort(column, config, model);
+      const onSort = this.resolveColumnOnSort(column, config);
       headers.push(
         <EuiTableHeaderCell
           key={column.key}
           align={align}
           isSorted={!!sortDirection}
-          isSortAscending={sortDirection === 'asc'}
+          isSortAscending={SortDirection.isAsc(sortDirection)}
           onSort={onSort}
           width={column.width}
         >
@@ -331,14 +359,15 @@ export class EuiTableOfRecords extends Component {
     }
     return defaultProps.config.column.align;
   }
+
   resolveColumnSortDirection(column, config, model) {
     if (config.sort && column.sortable && model.sort && model.sort.key === column.key) {
       return model.sort.direction;
     }
   }
-  resolveColumnOnSort(column, config, model) {
+  resolveColumnOnSort(column, config) {
     if (config.sort && column.sortable) {
-      return () => config.sort.onColumnSort(column, model);
+      return () => this.onColumnSort(column);
     }
   }
 
@@ -371,8 +400,8 @@ export class EuiTableOfRecords extends Component {
       }
     });
 
-    const onMouseOver = () => this.setState({ hoverRecordId: recordId });
-    const onMouseOut = () => this.setState({ hoverRecordId: null });
+    const onMouseOver = () => this.onRecordHover(recordId);
+    const onMouseOut = () => this.clearRecordHover();
     return (
       <EuiTableRow
         key={`row-${recordId}`}
@@ -425,6 +454,7 @@ export class EuiTableOfRecords extends Component {
     const key = `${recordId}_selection_column`;
     const checked = selected;
     const disabled = config.selection.selectable && !config.selection.selectable(record);
+    const title = config.selection.selectableMessage && config.selection.selectableMessage(record);
     const onChange = (event) => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, record]);
@@ -437,9 +467,10 @@ export class EuiTableOfRecords extends Component {
         }, []));
       }
     };
+
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiCheckbox id={`${key}-checkbox`} type="inList" disabled={disabled} checked={checked} onChange={onChange}/>
+        <EuiCheckbox id={`${key}-checkbox`} type="inList" disabled={disabled} checked={checked} onChange={onChange} title={title}/>
       </EuiTableRowCellCheckbox>
     );
   }
@@ -637,8 +668,8 @@ export class EuiTableOfRecords extends Component {
           itemsPerPage={model.page.size}
           itemsPerPageOptions={config.pagination.pageSizeOptions || defaultProps.config.pagination.pageSizeOptions}
           pageCount={Page.getTotalPageCount(model.page)}
-          onChangeItemsPerPage={(size) => config.pagination.onPageSizeChange(size, model.page)}
-          onChangePage={(index) => config.pagination.onPageChange(index, model.page)}
+          onChangeItemsPerPage={(size) => this.onPageSizeChange(size)}
+          onChangePage={(index) => this.onPageChange(index)}
         />
       </div>
     );

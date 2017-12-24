@@ -13,6 +13,7 @@ import {
 import Table from './table_of_records';
 import PaginatedTable from './pagination';
 import SelectableTable from './selection';
+import SortableTable from './sorting';
 import CustomRenderingTable from './rendering';
 import AdvanceRenderingTable from './advance_rendering';
 import SingleRecordActionTable from './single_record_action';
@@ -28,6 +29,9 @@ const paginatedHtml = renderToHtml(PaginatedTable);
 
 const selectableSource = require('!!raw-loader!./selection');
 const selectableHtml = renderToHtml(SelectableTable);
+
+const sortableSource = require('!!raw-loader!./sorting');
+const sortableHtml = renderToHtml(SortableTable);
 
 const renderingSource = require('!!raw-loader!./rendering');
 const renderingHtml = renderToHtml(CustomRenderingTable);
@@ -118,7 +122,7 @@ export const TableOfRecordsExample = {
       demo: <PaginatedTable/>
     },
     {
-      title: 'Records Selection',
+      title: 'Selection',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -148,6 +152,34 @@ export const TableOfRecordsExample = {
         </div>
       ),
       demo: <SelectableTable/>
+    },
+    {
+      title: 'Sorting',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: sortableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: sortableHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiTableOfRecords</EuiCode> supports sortable columns. To enable this feature, all you need
+            to do is set <EuiCode>sortable: true</EuiCode> on the data columns you would like to be sortable. And
+            also configure the <EuiCode>sort</EuiCode> section in the table config.
+          </p>
+          <p>
+            Like with paging, the sorting responsiblity is handed to the consumer of the table. All the table does
+            is taking care of the UI aspects of it and lets the consumer know when the data needs to be sorted (via
+            the <EuiCode>onColumnSort</EuiCode> callback).
+          </p>
+        </div>
+      ),
+      demo: <SortableTable/>
     },
     {
       title: 'Custom Rendering',
