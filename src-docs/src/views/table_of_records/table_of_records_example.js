@@ -7,10 +7,10 @@ import {
 } from '../../components';
 
 import {
-  EuiCode,
+  EuiCode, EuiText, EuiTitle, EuiCodeBlock, EuiCallOut, EuiSpacer
 } from '../../../../src/components';
 
-import Table from './table_of_records';
+import BasicTable from './basic';
 import PaginatedTable from './pagination';
 import SelectableTable from './selection';
 import SortableTable from './sorting';
@@ -19,10 +19,9 @@ import AdvanceRenderingTable from './advance_rendering';
 import SingleRecordActionTable from './single_record_action';
 import MultipleRecordActionsTable from './multiple_record_actions';
 import ImplicitRecordActionsTable from './implicit_record_action';
-import { EuiCallOut } from '../../../../src/components/call_out';
 
-const tableSource = require('!!raw-loader!./table_of_records');
-const tableHtml = renderToHtml(Table);
+const basicSource = require('!!raw-loader!./basic');
+const basicHtml = renderToHtml(BasicTable);
 
 const paginatedSource = require('!!raw-loader!./pagination');
 const paginatedHtml = renderToHtml(PaginatedTable);
@@ -50,42 +49,76 @@ const implicitRecordActionHtml = renderToHtml(ImplicitRecordActionsTable);
 
 export const TableOfRecordsExample = {
   title: 'TableOfRecords',
+  intro: (
+    <EuiText>
+      <EuiTitle>
+        <h2>TableOfRecords</h2>
+      </EuiTitle>
+      <p>
+        <EuiCode>EuiTableOfRecords</EuiCode> is a high level component that aims to simplify and unifiy the way
+        one creates a table of... (wait for it....) records!!!
+      </p>
+      <EuiCallOut iconType="questionInCircle" title="What is a High Level Component?">
+        The goal of a high level components is to make the consumer not think about design or UX/UI behaviour.
+        Instead, the consumer only need to define the functional requirements - features of the component (in
+        this case, table), the data, and the type of interaction the user should have with it. Through high level
+        components, Eui can promote best/common UI practices and patterns.
+
+        High level components are as stateless as they can possibly be. Meaning, all the management of the data
+        (e.g. where is it coming from, how is it loaded, how is it filtered, etc...) is expected to be done
+        externally to this component. Typically one would use a container component to wrap around this component
+        that will either manage this state internally, or use other state stores (e.g. such as Redux).
+      </EuiCallOut>
+      <EuiSpacer size="l"/>
+      <EuiCallOut iconType="questionInCircle" title="What is a Record?">
+        Think of a record in a data store - typically it represents an entity with a very clear
+        schema and is something that can be presented in a tabular form.
+      </EuiCallOut>
+      <EuiSpacer size="l"/>
+      <p>
+        The <EuiCode>EuiTableOfRecords</EuiCode> accepts two required properties:
+      </p>
+      <ul>
+        <li>
+          <EuiCode>config</EuiCode> - This is the configuration of the table. It provides all information the
+          table needs to render its records.
+        </li>
+        <li>
+          <EuiCode>model</EuiCode> - This object provides the table two things - the <b>data</b> (the records that
+          should be shown), and the <b>criteria</b> of the data. The criteria effectively describes what data is
+          show and how it was collected.
+        </li>
+      </ul>
+      <EuiSpacer size="l"/>
+    </EuiText>
+  ),
   sections: [
     {
-      title: 'TableOfRecords',
+      title: 'Basic Table',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: tableSource,
+          code: basicSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: tableHtml,
+          code: basicHtml,
         }
       ],
       text: (
         <div>
           <p>
             This is the most basic form of a <EuiCode>EuiTableOfRecords</EuiCode> component. In its essence it is
-            solely configured with the list of columns that should be visible to the user. Internally, the model
-            for every <EuiCode>EuiTableOfRecords</EuiCode> is represented by a <EuiCode>Page</EuiCode> which has the
-            following properties:
+            solely configured with the list of columns that should be visible to the user. The provided model is
+            a simple list of records that should be shown.
           </p>
-          <ul>
-            <li><EuiCode>index</EuiCode> - the page index (out of all available pages of data)</li>
-            <li><EuiCode>size</EuiCode> - the page size (what is the maximum number of records that can be shown at a
-              time)
-            </li>
-            <li><EuiCode>items</EuiCode> - the actual records that belong to this page (that should be shown)</li>
-            <li><EuiCode>totalItemCount</EuiCode> - the total number of records across all pages</li>
-          </ul>
           <p>
-            In this simple example, we create a page that simply holds all the data we have. For this reasons, we don&#39;t
-            need any pagination feature here (we know we show all data, why would we need that??).
+            Since the model does not hold a criteria, the table assumes all records are shown, thus there is no
+            need for pagination controls.
           </p>
         </div>
       ),
-      demo: <Table/>
+      demo: <BasicTable/>
     },
     {
       title: 'Pagination',
@@ -102,20 +135,33 @@ export const TableOfRecordsExample = {
       text: (
         <div>
           <p>
-            In the previous example we left out the pagination features as we were already showing all the data to the
-            user and it was fully under our control to do so. This is not how things usually work though. More often
-            than
-            not, records will be loaded from a data store and shown to the user. In this scenaio, we don&#39;t really have
-            control over the number of records in the system. Moreover, this number may be quite large, too large to be
-            shown all at once. For this reason, the <EuiCode>EuiTableOfRecords</EuiCode> component supports pagination.
+            In the previous example we showed the whole data (the full list of people) and so there was no use for
+            pagination controls. This is not how things usually work though as more often than not, records will be
+            loaded from an external data store where we don&apos;t really have control over the number of records in
+            the system. Moreover, this number may be quite large, too large to be shown all at once. For this reason
+            the <EuiCode>EuiTableOfRecords</EuiCode> component supports pagination.
           </p>
           <p>
-            In the following example, we enabled the pagination feature in the <EuiCode>EuiTableOfRecords</EuiCode>.
+            To view the pagination controls, the model is required to include information about the current page that
+            is shown by the table - namely the page size (maximum number of records that can be shown per page) and
+            the page index (the zero based index of the page out of all the possible pages of records). You can
+            specify these values as part of the model criteria as follows
+          </p>
+          <EuiCodeBlock language="js" color="light" >
+            {require('!!raw-loader!./snippets/page_criteria.txt')}
+          </EuiCodeBlock>
+          <EuiSpacer size="l" />
+          <p>
+            In the following example, we provide the required page information to enable the pagination controls.
             Note that while the table knows how to render all the parts and pieces of the pagination functionality, it
-            does not manage the pagination state, but instead provides all callbacks for the consumer to manage the
-            state externally. Here we use a container components that wraps around <EuiCode>EuiTableOfRecords</EuiCode>
-            which manages the state internally (using the component&#39;s internal state). An alternative to that could be
-            to manage this state in an external state store such as Redux.
+            does not manage the pagination state itself, but instead notifies the consumer about the changes in the
+            model criteria via the <EuiCode>onModelCriteriaChange</EuiCode> callback. Here we use a container
+            components that wraps around <EuiCode>EuiTableOfRecords</EuiCode> which manages the state internally.
+            Alternatively one could manage this state in an external state store such as Redux.
+          </p>
+          <p>
+            In this example we also show how you can configure the &quot;page size selector&quot;. It&apos;s a control
+            that lets the user change the table page size.
           </p>
         </div>
       ),
@@ -136,15 +182,21 @@ export const TableOfRecordsExample = {
       text: (
         <div>
           <p>
-            So far we&#39;ve seen how to create a simple table and how to add pagination to it. Now we&#39;ll show how the
+            So far we&apos;ve seen how to create a simple table and how to add pagination to it. Now we&apos;ll show how the
             <EuiCode>EuiTableOfRecords</EuiCode> enables the user to select records.
           </p>
           <p>
             Selection is yet another feature that you can opt-in to. All that is needed is to configure the
-            <EuiCode>selection</EuiCode> section in the table configuration. As with pagination, the table itself is not
-            managing the selection state and relies on the consumer to do it. Here we expanded our paginated table to also
-            manage the selection state as part of the component internal state.
+            <EuiCode>selection</EuiCode> section in the table configuration which will enabled you to define a callback
+            function that will notify you whenever selection has changed. Note that specifying this callback is
+            required (otherwise, if you&apos;re not planning to do anything with the selected records, what&apos;s the point in
+            enabling the user to select them in the first place?)
           </p>
+          <EuiCallOut iconType="iInCircle" color="success" title="Behaviour Note">
+            Selection is reset on any pagination event, that is, either during pagination (when the user navigates between
+            the pages) or when the page size changes.
+          </EuiCallOut>
+          <EuiSpacer size="m"/>
           <p>
             This example also shows how you can control which records are selectable. Here we chose to only make the
             online people selectable.
@@ -169,14 +221,16 @@ export const TableOfRecordsExample = {
         <div>
           <p>
             <EuiCode>EuiTableOfRecords</EuiCode> supports sortable columns. To enable this feature, all you need
-            to do is set <EuiCode>sortable: true</EuiCode> on the data columns you would like to be sortable. And
-            also configure the <EuiCode>sort</EuiCode> section in the table config.
+            to do is set <EuiCode>sortable: true</EuiCode> on the data columns you would like to be sortable.
           </p>
           <p>
             Like with paging, the sorting responsiblity is handed to the consumer of the table. All the table does
             is taking care of the UI aspects of it and lets the consumer know when the data needs to be sorted (via
             the <EuiCode>onColumnSort</EuiCode> callback).
           </p>
+          <EuiCallOut iconType="iInCircle" color="success" title="Behaviour Note">
+            Pagination is reset (back to the first page) on sort
+          </EuiCallOut>
         </div>
       ),
       demo: <SortableTable/>
@@ -197,26 +251,26 @@ export const TableOfRecordsExample = {
         <div>
           <p>
             <EuiCode>EuiTableOfRecords</EuiCode> enables you to customize the rendering of the records values. For each
-            column you configure can accepts rendering hints and instructions that will be used to render the column
-            values. There are two settings you can use for such hints/instructions:
+            column you may configure rendering hints and instructions to how the column should render its associated
+            record value. There are two settings you can use for such hints/instructions:
           </p>
           <ul>
             <li>
-              <EuiCode>dataType</EuiCode> - this serves as a hint about the data type that values in this column.
+              <EuiCode>dataType</EuiCode> - This serves as a hint about the data type of the values in this column.
               Supported values are: <EuiCode>string</EuiCode>, <EuiCode>number</EuiCode>, <EuiCode>boolean</EuiCode>
               and <EuiCode>date</EuiCode>.
             </li>
             <li>
-              <EuiCode>render</EuiCode> - this is a function that is called for each record and accepts the value
-              of the record for this column and the record itself, as an output it returns a react node.
+              <EuiCode>render</EuiCode> - A function that accepts the value that should be rendered and the record and
+              returns the react node that should be rendered for that value.
             </li>
           </ul>
           <p>
             Using the <EuiCode>dataType</EuiCode> setting simplifies rendering quite a lot. Further more, EUI comes with
-            a built-in set of value renderers that are easy to use and can be enough for all the simple use cases. You can
-            access these value renderer via the <EuiCode>ValueRenderers</EuiCode> object. Among the renderers it support
-            you will find ones for dates, links, booleans, numeric patters (currencies), and more. In the next section
-            you will read more about how to create and configure advance custom renderer.
+            a built-in set of value renderers that can be used for the simple/typical use cases. You can access these
+            value renderer via the <EuiCode>ValueRenderers</EuiCode> object. Among the renderers it support you will
+            find ones for dates, links, booleans, numeric patters (currencies), and more. In the next section you will
+            read more about how to create and configure advance custom renderer.
           </p>
         </div>
       ),
@@ -237,7 +291,7 @@ export const TableOfRecordsExample = {
       text: (
         <div>
           <p>
-            In the previous section we&#39;ve seen how to customize the rendering of the records values, determined by
+            In the previous section we&apos;ve seen how to customize the rendering of the records values, determined by
             the configuration of the table columns. There we used the <EuiCode>dataType</EuiCode> to hint about the
             data type of the show values. We also used <EuiCode>ValueRenderers</EuiCode> to configure the built-in
             renderers EUI providers out of the box.
@@ -280,18 +334,18 @@ export const TableOfRecordsExample = {
           <p>
             To add actions, all you need to do is to define a special actions column as part of the columns configuration.
             In this column you can then define the actions that should be displayed. Note that you can define as many actions
-            as you&#39;d like, though some design pattern should be followed, and some are actually enforced by the table
+            as you&apos;d like, though some design pattern should be followed, and some are actually enforced by the table
             component itself:
           </p>
           <ul>
             <li>
-              Don&#39;t go overboard and configure too many actions. As a rule of thumb, choose maximum top 3 actions that
+              Don&apos;t go overboard and configure too many actions. As a rule of thumb, choose maximum top 3 actions that
               should be promoted to the user and configure those. All other actions that may be associated with the
               record should most likely be placed in a dedicate page for the record itself.
             </li>
             <li>
               At any given time, there should not be more than one (1) control visible on the record rows. The reason
-              for this is obvious - we want to leave enough room for the data and we don&#39;t want to clutter the table
+              for this is obvious - we want to leave enough room for the data and we don&apos;t want to clutter the table
               view. If more than one action is associated with a record, it should be collapsed into a popover control.
               The good news - <EuiCode>EuiTableOfRecords</EuiCode> already takes care of that for you!!
             </li>
@@ -324,7 +378,7 @@ export const TableOfRecordsExample = {
       text: (
         <div>
           <p>
-            As mentioned above, when multiple record actions are configured, they&#39;ll all collapse into a
+            As mentioned above, when multiple record actions are configured, they&apos;ll all collapse into a
             popover with a single trigger button
           </p>
         </div>
@@ -332,7 +386,7 @@ export const TableOfRecordsExample = {
       demo: <MultipleRecordActionsTable/>
     },
     {
-      title: 'Record Actions (Implicit)',
+      title: 'Computed Columns and \"Implicit\" Record Actions',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -358,7 +412,7 @@ export const TableOfRecordsExample = {
           <p>
             As a bonus, we show how you can define a <EuiCode>computed</EuiCode> column that is not associated with any
             specific record key and simply renders content that is computed/derived out of the record itself (here we
-            added a small little icon column that shows the user icon that is colored based on the person&#39;s
+            added a small little icon column that shows the user icon that is colored based on the person&apos;s
             <EuiCode>online</EuiCode> status).
           </p>
         </div>

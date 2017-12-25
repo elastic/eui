@@ -11,9 +11,9 @@ const selectRandom = (...array) => {
 const people = times(20, (index) => {
   return {
     id: index,
-    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Jordan'),
-    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Sissel'),
-    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'whack'),
+    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
+    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'rashidkpc', 'whack'),
     dateOfBirth: new Date(
       1990 + Math.floor(Math.random() * (1990 - 1971)), // year
       Math.floor(Math.random() * 12), // month
@@ -25,34 +25,47 @@ const people = times(20, (index) => {
   };
 });
 
+function loadPage(pageIndex, pageSize) {
+  const from = pageIndex * pageSize;
+  const items = people.slice(from, Math.min(from + pageSize, people.length));
+  return {
+    index: pageIndex,
+    size: pageSize,
+    items,
+    totalRecordCount: people.length
+  };
+}
+
 export default class PeopleTable extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      page: this.loadPage(0, 5)
-    };
+    this.state = this.computeState({
+      page: {
+        index: 0,
+        size: 5
+      }
+    });
   }
 
-  loadPage(pageIndex, pageSize) {
-    const from = pageIndex * pageSize;
-    const items = people.slice(from, Math.min(from + pageSize, people.length));
+  computeState(criteria) {
+    const page = loadPage(criteria.page.index, criteria.page.size);
     return {
-      index: pageIndex,
-      size: pageSize,
-      items,
-      totalItemCount: people.length
+      data: {
+        records: page.items,
+        totalRecordCount: page.totalRecordCount
+      },
+      criteria: {
+        page: {
+          index: page.index,
+          size: page.size
+        }
+      }
     };
   }
 
-  onPageChange(index) {
-    const page = this.loadPage(index, this.state.page.size);
-    this.setState({ page });
-  }
-
-  onPageSizeChange(size) {
-    const page = this.loadPage(this.state.page.index, size);
-    this.setState({ page });
+  onDataCriteriaChange(criteria) {
+    this.setState(() => this.computeState(criteria));
   }
 
   render() {
@@ -87,23 +100,15 @@ export default class PeopleTable extends React.Component {
         }
       ],
       pagination: {
-        // called whenever the user chooses to change the page size. It's the
-        // responsibility of the consumer to update the state accordingly
-        onPageSizeChange: (size) => this.onPageSizeChange(size),
-        // called every time the page is changing, it's the responsibility
-        // of the consumer to update the state accordingly
-        onPageChange: (index) => this.onPageChange(index),
-        // this will let the user change the page size, with these sizes
-        // serving as the optional page sizes to show
         pageSizeOptions: [3, 5, 8]
       },
 
       selection: {
         selectable: person => person.online,
-        // implementing this callback enables you to communicate the
-        // reason for this person not being selectable
         selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
-      }
+      },
+
+      onDataCriteriaChange: (criteria) => this.onDataCriteriaChange(criteria)
 
     };
 

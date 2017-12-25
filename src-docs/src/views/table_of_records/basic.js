@@ -13,9 +13,9 @@ const selectRandom = (...array) => {
 const people = times(20, (index) => {
   return {
     id: index,
-    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Jordan'),
-    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Sissel'),
-    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'whack'),
+    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
+    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'rashidkpc', 'whack'),
     dateOfBirth: new Date(
       1990 + Math.floor(Math.random() * (1990 - 1971)), // year
       Math.floor(Math.random() * 12), // month
@@ -30,11 +30,9 @@ const people = times(20, (index) => {
 export default () => {
 
   const model = {
-    page: {
-      pageIndex: 0,
-      pageSize: people.length,
-      items: people,
-      totalItemCount: people.length
+    data: {
+      records: people,
+      totalRecordCount: people.length
     }
   };
 

@@ -20,9 +20,7 @@ export {
 } from './color';
 
 export {
-  Pager,
-  Page,
-  PageType
+  Pager
 } from './paging';
 
 export {
@@ -34,6 +32,9 @@ export {
 } from './security';
 
 export {
+  PropertySortType,
+  SortDirectionType,
+  SortDirection,
   SortableProperties,
 } from './sort';
 

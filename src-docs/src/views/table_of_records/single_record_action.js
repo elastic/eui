@@ -4,6 +4,7 @@ import { times } from 'lodash';
 import { EuiTableOfRecords, } from '../../../../src/components';
 import { ValueRenderers } from '../../../../src/services/value_renderer';
 import { EuiHealth } from '../../../../src/components/health';
+import { Comparators } from '../../../../src/services/sort';
 
 const selectRandom = (...array) => {
   const i = Math.floor(Math.random() * array.length);
@@ -13,9 +14,9 @@ const selectRandom = (...array) => {
 const people = times(20, (index) => {
   return {
     id: index,
-    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Jordan'),
-    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Sissel'),
-    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'whack'),
+    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
+    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'rashidkpc', 'whack'),
     dateOfBirth: new Date(
       1990 + Math.floor(Math.random() * (1990 - 1971)), // year
       Math.floor(Math.random() * 12), // month
@@ -27,25 +28,52 @@ const people = times(20, (index) => {
   };
 });
 
+function loadPage(pageIndex, pageSize, sort) {
+  let list = people;
+  if (sort) {
+    list = people.sort(Comparators.property(sort.key, sort.direction));
+  }
+  const from = pageIndex * pageSize;
+  const items = list.slice(from, Math.min(from + pageSize, list.length));
+  return {
+    index: pageIndex,
+    size: pageSize,
+    items,
+    totalRecordCount: list.length
+  };
+}
+
 export default class PeopleTable extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      page: this.loadPage(0, 5),
-      selection: []
+    this.state = this.computeState({
+      page: {
+        index: 0,
+        size: 5
+      }
+    });
+  }
+
+  computeState(criteria) {
+    const page = loadPage(criteria.page.index, criteria.page.size, criteria.sort);
+    return {
+      data: {
+        records: page.items,
+        totalRecordCount: page.totalRecordCount
+      },
+      criteria: {
+        page: {
+          index: page.index,
+          size: page.size
+        },
+        sort: criteria.sort
+      }
     };
   }
 
-  loadPage(pageIndex, pageSize) {
-    const from = pageIndex * pageSize;
-    const items = people.slice(from, Math.min(from + pageSize, people.length));
-    return {
-      index: pageIndex,
-      size: pageSize,
-      items,
-      totalItemCount: people.length
-    };
+  onDataCriteriaChange(criteria) {
+    this.setState(() => this.computeState(criteria));
   }
 
   deletePerson(personToDelete) {
@@ -53,18 +81,7 @@ export default class PeopleTable extends React.Component {
     if (i >= 0) {
       people.splice(i, 1);
     }
-    const page = this.loadPage(this.state.page.index, this.state.page.size);
-    this.setState({ page });
-  }
-
-  onPageChange(index) {
-    const page = this.loadPage(index, this.state.page.size);
-    this.setState({ page });
-  }
-
-  onPageSizeChange(size) {
-    const page = this.loadPage(this.state.page.index, size);
-    this.setState({ page });
+    this.onDataCriteriaChange(this.state.criteria);
   }
 
   render() {
@@ -76,7 +93,8 @@ export default class PeopleTable extends React.Component {
           key: 'firstName',
           name: 'First Name',
           description: `Person's given name`,
-          dataType: 'string'
+          dataType: 'string',
+          sortable: true
         },
         {
           key: 'lastName',
@@ -98,7 +116,8 @@ export default class PeopleTable extends React.Component {
           key: 'dateOfBirth',
           name: 'Date of Birth',
           description: `Person's date of birth`,
-          render: ValueRenderers.date.with({ format: 'D MMM YYYY' })
+          render: ValueRenderers.date.with({ format: 'D MMM YYYY' }),
+          sortable: true
         },
         {
           key: 'online',
@@ -108,7 +127,8 @@ export default class PeopleTable extends React.Component {
             const color = value ? 'success' : 'danger';
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
-          }
+          },
+          sortable: true
         },
         {
           name: '',
@@ -125,20 +145,15 @@ export default class PeopleTable extends React.Component {
         }
       ],
       pagination: {
-        // called whenever the user chooses to change the page size. It's the
-        // responsibility of the consumer to update the state accordingly
-        onPageSizeChange: (size) => this.onPageSizeChange(size),
-        // called every time the page is changing, it's the responsibility
-        // of the consumer to update the state accordingly
-        onPageChange: (index) => this.onPageChange(index),
-        // this will let the user change the page size, with these sizes
-        // serving as the optional page sizes to show
         pageSizeOptions: [3, 5, 8]
       },
 
       selection: {
-        selectable: (record) => record.online
-      }
+        selectable: (record) => record.online,
+        selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
+      },
+
+      onDataCriteriaChange: (criteria) => this.onDataCriteriaChange(criteria)
 
     };
 

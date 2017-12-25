@@ -1,8 +1,8 @@
 import React from 'react';
+import * as _ from 'lodash';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { EuiPropTypes } from '../../utils/prop_types';
-import classNames from 'classnames';
-import * as _ from 'lodash';
 import {
   EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableHeaderCellCheckbox,
   EuiTableRow, EuiTableRowCell, EuiTableRowCellCheckbox
@@ -16,10 +16,11 @@ import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiPopover } from '../popover';
-import { Page, PageType, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
-import { ValueRenderers } from '../../services/value_renderer';
-import { PropertySortType } from '../../services/sort/property_sort';
-import { SortDirection } from '../../services/sort';
+import {
+  LEFT_ALIGNMENT, RIGHT_ALIGNMENT,
+  SortDirection, PropertySortType,
+  ValueRenderers
+} from '../../services';
 
 const dataTypesProfiles = {
   string: {
@@ -113,18 +114,12 @@ const ActionsColumnType = PropTypes.shape({
 const ColumnType = PropTypes.oneOfType([DataColumnType, ComputedColumnType, ActionsColumnType]);
 
 const PaginationType = PropTypes.shape({
-  onPageSizeChange: PropTypes.func.isRequired, // (pageSize: number, page: PageType) => void;
-  onPageChange: PropTypes.func.isRequired, //(pageIndex: number, page: PageType) => void;,
   pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
 });
 
 const SelectionType = PropTypes.shape({
   onSelectionChanged: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func // (record) => boolean;
-});
-
-const ConfigSortType = PropTypes.shape({
-  onColumnSort: PropTypes.func.isRequired // (column: Column, model: Model) => void;
 });
 
 const RecordIdType = PropTypes.oneOfType([
@@ -137,14 +132,23 @@ const ConfigType = PropTypes.shape({
   // when function it needs to have the following signature: (record) => string
   recordId: RecordIdType.isRequired,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
+  onDataCriteriaChange: PropTypes.func,
   selection: SelectionType,
-  sort: ConfigSortType,
   pagination: PaginationType
 });
 
 const ModelType = PropTypes.shape({
-  page: PageType.isRequired,
-  sort: PropertySortType
+  data: PropTypes.shape({
+    records: PropTypes.array.isRequired,
+    totalRecordCount: PropTypes.number.isRequired
+  }).isRequired,
+  criteria: PropTypes.shape({
+    page: PropTypes.shape({
+      index: PropTypes.number.isRequired,
+      size: PropTypes.number.isRequired
+    }).isRequired,
+    sort: PropertySortType
+  })
 });
 
 const defaultProps = {
@@ -209,6 +213,9 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   changeSelection(selection) {
+    if (!this.props.config.selection) {
+      return;
+    }
     this.setState({ selection });
     if (this.props.config.selection.onSelectionChanged) {
       this.props.config.selection.onSelectionChanged(selection);
@@ -221,17 +228,46 @@ export class EuiTableOfRecords extends React.Component {
 
   onPageSizeChange(size) {
     this.clearSelection();
-    this.props.config.pagination.onPageSizeChange(size, this.props.model.page);
+    const criteria = {
+      ...this.props.model.criteria,
+      page: {
+        index: 0,
+        size
+      }
+    };
+    this.props.config.onDataCriteriaChange(criteria);
   }
 
   onPageChange(index) {
     this.clearSelection();
-    this.props.config.pagination.onPageChange(index, this.props.model.page);
+    const criteria = {
+      ...this.props.model.criteria,
+      page: {
+        ...this.props.model.criteria.page,
+        index
+      }
+    };
+    this.props.config.onDataCriteriaChange(criteria);
   }
 
-  onColumnSort(column) {
+  onColumnSortChange(column) {
     this.clearSelection();
-    this.props.config.sort.onColumnSort(column, this.props.model);
+    const currentCriteria = this.props.model.criteria;
+    let direction = SortDirection.ASC;
+    if (currentCriteria && currentCriteria.sort && currentCriteria.sort.key === column.key) {
+      direction = SortDirection.reverse(currentCriteria.sort.direction);
+    }
+    const criteria = {
+      page: {
+        index: 0,
+        size: currentCriteria.page.size
+      },
+      sort: {
+        key: column.key,
+        direction
+      }
+    };
+    this.props.config.onDataCriteriaChange(criteria);
   }
 
   onRecordHover(recordId) {
@@ -275,7 +311,7 @@ export class EuiTableOfRecords extends React.Component {
       const checked = this.state.selection && this.state.selection.length > 0;
       const onChange = (event) => {
         if (event.target.checked) {
-          const selectableRecords = model.page.items.reduce((records, record) => {
+          const selectableRecords = model.data.records.reduce((records, record) => {
             if (!config.selection.selectable || config.selection.selectable(record)) {
               records.push(record);
             }
@@ -361,18 +397,25 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   resolveColumnSortDirection(column, config, model) {
-    if (config.sort && column.sortable && model.sort && model.sort.key === column.key) {
-      return model.sort.direction;
+    const modelCriteriaSort = model.criteria ? model.criteria.sort : undefined;
+    if (column.sortable && modelCriteriaSort && modelCriteriaSort.key === column.key) {
+      return modelCriteriaSort.direction;
     }
   }
+
   resolveColumnOnSort(column, config) {
-    if (config.sort && column.sortable) {
-      return () => this.onColumnSort(column);
+    if (column.sortable) {
+      if (!config.onDataCriteriaChange) {
+        throw new Error(`The table of records is configured to be sortable on column [${column.key}] but 
+          [onDataCriteriaChange] is not configured. This callback must be implemented to handle to handle the
+          sort requests`);
+      }
+      return () => this.onColumnSortChange(column);
     }
   }
 
   renderTableBody(config, model) {
-    const rows = model.page.items.map((record) => {
+    const rows = model.data.records.map((record) => {
       return this.renderTableRecordRow(record, config, model);
     });
     return <EuiTableBody>{rows}</EuiTableBody>;
@@ -470,15 +513,19 @@ export class EuiTableOfRecords extends React.Component {
 
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiCheckbox id={`${key}-checkbox`} type="inList" disabled={disabled} checked={checked} onChange={onChange} title={title}/>
+        <EuiCheckbox
+          id={`${key}-checkbox`}
+          type="inList"
+          disabled={disabled}
+          checked={checked}
+          onChange={onChange}
+          title={title}
+        />
       </EuiTableRowCellCheckbox>
     );
   }
 
-  renderTableRecordActionsCell(recordId, record,
-    actions /* SupportedRecordActionType[] */,
-    config /* ConfigType */,
-    model /* ModelType */) {
+  renderTableRecordActionsCell(recordId, record, actions, config, model) {
 
     // when each record may potentially have more than one action we'll show these actions
     // within a context menu triggered by a single button. The idea here is that we want to keep the
@@ -593,10 +640,12 @@ export class EuiTableOfRecords extends React.Component {
           return items;
 
         case 'custom':
-          //TODO I don't think this will work... need to figure out how to embed different components as custom items
           const enabled = action.enabled ? action.enabled(record, model) : !defaultProps.config.column.action.disabled;
           const customItem = action.render(record, model, enabled);
-          items.push(customItem);
+          const itemWrapper = (
+            <div key={`${recordId}-action-${index}`} className="euiContextMenuItem">{customItem}</div>
+          );
+          items.push(itemWrapper);
           return items;
       }
     }, []);
@@ -657,22 +706,29 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderFooter(config, model) {
-    if (!config.pagination) {
+    if (!model.criteria || !model.criteria.page) {
       return;
     }
+    const pageSizeOptions = config.pagination && config.pagination.pageSizeOptions ?
+      config.pagination.pageSizeOptions :
+      defaultProps.config.pagination.pageSizeOptions;
     return (
       <div>
         <EuiSpacer size="m"/>
         <EuiTablePagination
-          activePage={model.page.index}
-          itemsPerPage={model.page.size}
-          itemsPerPageOptions={config.pagination.pageSizeOptions || defaultProps.config.pagination.pageSizeOptions}
-          pageCount={Page.getTotalPageCount(model.page)}
+          activePage={model.criteria.page.index}
+          itemsPerPage={model.criteria.page.size}
+          itemsPerPageOptions={pageSizeOptions}
+          pageCount={this.computeTotalPageCount(model.criteria.page, model.data.totalRecordCount)}
           onChangeItemsPerPage={(size) => this.onPageSizeChange(size)}
           onChangePage={(index) => this.onPageChange(index)}
         />
       </div>
     );
+  }
+
+  computeTotalPageCount(page, totalCount) {
+    return Math.ceil(totalCount / page.size);
   }
 
 }

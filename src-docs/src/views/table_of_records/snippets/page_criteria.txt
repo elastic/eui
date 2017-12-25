@@ -1,0 +1,9 @@
+{
+  data: { ... },
+  criteria: {
+    page: {
+      index: 0, // the page index
+      size: 10  // the page size
+    }
+  }
+}
