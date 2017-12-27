@@ -2,7 +2,7 @@ import React from 'react';
 import { times } from 'lodash';
 
 import { EuiTableOfRecords, } from '../../../../src/components';
-import { ValueRenderers } from '../../../../src/services/value_renderer';
+import { ValueRenderers } from '../../../../src/components/value_renderer';
 import { Comparators } from '../../../../src/services/sort';
 
 const selectRandom = (...array) => {

@@ -16,10 +16,10 @@ import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table/table_pagination';
 import { EuiPopover } from '../popover';
+import { ValueRenderers } from '../value_renderer';
 import {
   LEFT_ALIGNMENT, RIGHT_ALIGNMENT,
-  SortDirection, PropertySortType,
-  ValueRenderers
+  SortDirection, PropertySortType
 } from '../../services';
 
 const dataTypesProfiles = {
@@ -105,10 +105,10 @@ const ComputedColumnType = PropTypes.shape({
 });
 
 const ActionsColumnType = PropTypes.shape({
-  name: PropTypes.string.isRequired,
+  actions: PropTypes.arrayOf(SupportedRecordActionType).isRequired,
+  name: PropTypes.string,
   description: PropTypes.string,
-  width: PropTypes.string,
-  actions: PropTypes.arrayOf(SupportedRecordActionType)
+  width: PropTypes.string
 });
 
 const ColumnType = PropTypes.oneOfType([DataColumnType, ComputedColumnType, ActionsColumnType]);
@@ -146,7 +146,7 @@ const ModelType = PropTypes.shape({
     page: PropTypes.shape({
       index: PropTypes.number.isRequired,
       size: PropTypes.number.isRequired
-    }).isRequired,
+    }),
     sort: PropertySortType
   })
 });
@@ -231,6 +231,7 @@ export class EuiTableOfRecords extends React.Component {
     const criteria = {
       ...this.props.model.criteria,
       page: {
+        ...this.props.model.criteria.page,
         index: 0,
         size
       }
@@ -258,7 +259,9 @@ export class EuiTableOfRecords extends React.Component {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
     }
     const criteria = {
+      ...this.props.model.criteria,
       page: {
+        ...this.props.model.criteria.page,
         index: 0,
         size: currentCriteria.page.size
       },
@@ -279,15 +282,15 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   render() {
-    const { className, ...rest } = this.props;
+    const { className, config, model, ...rest } = this.props;
 
     const classes = classNames(
       'euiRecordsTable',
       className
     );
 
-    const table = this.renderTable(this.props.config, this.props.model);
-    const footer = this.renderFooter(this.props.config, this.props.model);
+    const table = this.renderTable(config, model);
+    const footer = this.renderFooter(config, model);
 
     return (
       <div className={classes} {...rest}>
@@ -391,7 +394,11 @@ export class EuiTableOfRecords extends React.Component {
       return column.align;
     }
     if (column.dataType) {
-      return dataTypesProfiles[column.dataType].align;
+      const dataTypeProfile = dataTypesProfiles[column.dataType];
+      if (!dataTypeProfile) {
+        throw new Error(`Unknown dataType [${column.dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
+      }
+      return dataTypeProfile.align;
     }
     return defaultProps.config.column.align;
   }
@@ -488,7 +495,11 @@ export class EuiTableOfRecords extends React.Component {
       return column.render;
     }
     if (column.dataType) {
-      return dataTypesProfiles[column.dataType].render;
+      const dataTypeProfile = dataTypesProfiles[column.dataType];
+      if (!dataTypeProfile) {
+        throw new Error(`Unknown dataType [${column.dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
+      }
+      return dataTypeProfile.render;
     }
     return defaultProps.config.column.render;
   }
@@ -708,6 +719,10 @@ export class EuiTableOfRecords extends React.Component {
   renderFooter(config, model) {
     if (!model.criteria || !model.criteria.page) {
       return;
+    }
+    if (!config.onDataCriteriaChange) {
+      throw new Error(`The table of records is provided with a paginated model but [onDataCriteriaChange] is
+        not configured. This callback must be implemented to handle to handle pagination`);
     }
     const pageSizeOptions = config.pagination && config.pagination.pageSizeOptions ?
       config.pagination.pageSizeOptions :

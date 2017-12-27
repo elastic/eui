@@ -245,3 +245,7 @@ export {
   EuiText,
   EuiTextColor,
 } from './text';
+
+export {
+  ValueRenderers
+} from './value_renderer';

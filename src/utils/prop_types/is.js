@@ -19,7 +19,7 @@ export const is = (expectedValue) => {
       return new Error(`[${propName}] property in [${compName}] component is required but seems to be missing`);
     }
     return validator(props, propName, componentName);
-  }
+  };
 
   return validator;
 };

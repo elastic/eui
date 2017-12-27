@@ -102,7 +102,7 @@ export const defaultRenderer = (value) => {
 
 export const link = (config = {}) => {
   if (!config.onClick) {
-    throw Error(`linkRenderer requires a [onClick] setting. This neecs to be configured as a function that will be 
+    throw Error(`linkRenderer requires a [onClick] setting. This needs to be configured as a function that will be 
       called whenever the rendered link is clicked. It accepts rendered value as argument - [(value) => void]`);
   }
   return (value, ctx = undefined) => {
