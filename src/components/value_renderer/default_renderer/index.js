@@ -1,0 +1,1 @@
+export { defaultRenderer } from './defaultRenderer';

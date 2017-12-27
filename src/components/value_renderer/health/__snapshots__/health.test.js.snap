@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Value Renderer health color 1`] = `
+<div
+  className="euiHealth"
+>
+  <EuiFlexGroup
+    alignItems="center"
+    component="div"
+    gutterSize="xs"
+    justifyContent="flexStart"
+    responsive={true}
+    wrap={false}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      <EuiIcon
+        color="danger"
+        size="m"
+        type="dot"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      value
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;
+
+exports[`Value Renderer health color and content 1`] = `
+<div
+  className="euiHealth"
+>
+  <EuiFlexGroup
+    alignItems="center"
+    component="div"
+    gutterSize="xs"
+    justifyContent="flexStart"
+    responsive={true}
+    wrap={false}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      <EuiIcon
+        color="danger"
+        size="m"
+        type="dot"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      VALUE
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;

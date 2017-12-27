@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Value Renderer booleanIcon no config - false 1`] = `
+<empty
+  className="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`Value Renderer booleanIcon no config - true 1`] = `
+<check
+  className="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlnsXlink="http://www.w3.org/1999/xlink"
+/>
+`;
+
+exports[`Value Renderer booleanIcon with config - false : faceSad : danger 1`] = `
+<faceSad
+  className="euiIcon euiIcon--medium euiIcon--danger"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`Value Renderer booleanIcon with config - true : faceHappy : success 1`] = `
+<faceHappy
+  className="euiIcon euiIcon--medium euiIcon--success"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
