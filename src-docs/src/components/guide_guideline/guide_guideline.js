@@ -40,6 +40,7 @@ export const GuideGuideline = ({
 
   return (
     <EuiFlexGroup
+      wrap={true}
       className={classes}
       {...rest}
     >

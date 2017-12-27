@@ -4,6 +4,7 @@ import {
   GuidePage,
   GuideGuideline,
   GuideGuidelineExample,
+  GuideGuidelineTitle,
 } from '../../components';
 
 
@@ -36,19 +37,13 @@ export default () => (
         but without <b>consistent, easy-to-understand text</b>,
         you haven’t built the best user experience.
       </p>
-
-    </EuiText>
-    <EuiSpacer />
-    <EuiSpacer />
-
-    <EuiText>
-      <h2>Principles</h2>
     </EuiText>
 
-    <EuiSpacer />
-    <EuiSpacer />
+    <GuideGuidelineTitle>Principles</GuideGuidelineTitle>
 
-    <EuiFlexGroup>
+    <EuiSpacer size="xxl" />
+
+    <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiPanel paddingSize="l">
           <EuiText>
@@ -70,8 +65,6 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-
-
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiPanel paddingSize="l">
           <EuiText>
@@ -84,13 +77,7 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer />
-
-    <EuiSpacer />
-
-    <EuiTitle>
-      <h2>Style</h2>
-    </EuiTitle>
+    <GuideGuidelineTitle>Style</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Address users as &quot;you.&quot;"
@@ -162,13 +149,7 @@ export default () => (
       <GuideGuidelineExample type="dont" text="We recommend sharing shortened snapshot URLs for maximum compatibility." />
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
-
-    <EuiText>
-      <h2>Capitalization</h2>
-    </EuiText>
-
-    <EuiSpacer />
+    <GuideGuidelineTitle>Capitalization</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Use sentence case for all text"
@@ -180,28 +161,28 @@ export default () => (
         <EuiTitle>
           <span>Create index patterns</span>
         </EuiTitle>
-        <EuiSpacer />
-        <EuiButton>
-          Set up index pattern
-        </EuiButton>
       </GuideGuidelineExample>
 
       <GuideGuidelineExample type="dont">
         <EuiTitle>
           <span>Create Index Patterns</span>
         </EuiTitle>
-        <EuiSpacer />
-        <EuiButton>
-          Set Up Index Pattern
-        </EuiButton>
       </GuideGuidelineExample>
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
+    <GuideGuideline
+      heading=""
+      description=""
+    >
+      <GuideGuidelineExample type="do" text="">
+        <EuiButton>Set up index pattern</EuiButton>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont" text="">
+        <EuiButton>Set Up Index Pattern</EuiButton>
+      </GuideGuidelineExample>
+    </GuideGuideline>
 
-    <EuiTitle>
-      <h2>Punctuation</h2>
-    </EuiTitle>
+    <GuideGuidelineTitle>Punctuation</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Use punctuation judiciously"
@@ -298,11 +279,7 @@ export default () => (
       <GuideGuidelineExample type="dont" text="Couldn&apos;t find any Elasticsearch data!" />
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
-
-    <EuiText>
-      <h2>Messages</h2>
-    </EuiText>
+    <GuideGuidelineTitle>Messages</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Summarize the message in the title"
@@ -366,11 +343,7 @@ export default () => (
       <GuideGuidelineExample type="dont" text="Please save your work before generating a report." />
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
-
-    <EuiText>
-      <h2>Informational text</h2>
-    </EuiText>
+    <GuideGuidelineTitle>Informational text</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Use 1 to 2 simple, short sentences"
@@ -419,11 +392,7 @@ export default () => (
       </GuideGuidelineExample>
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
-
-    <EuiText>
-      <h2>Labels</h2>
-    </EuiText>
+    <GuideGuidelineTitle>Labels</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Convey the purpose of the component"
@@ -476,11 +445,7 @@ export default () => (
       </GuideGuidelineExample>
     </GuideGuideline>
 
-    <EuiSpacer size="xxl"/>
-
-    <EuiText>
-      <h2>When to be clever</h2>
-    </EuiText>
+    <GuideGuidelineTitle>When to be clever</GuideGuidelineTitle>
 
     <GuideGuideline
       heading="Be careful with humor"
@@ -489,15 +454,7 @@ export default () => (
         when used for frequently performed tasks."
     >
       <GuideGuidelineExample type="do" text="Odd, exciting, and scary trends and anomalies in your Elasticsearch data" />
-      <GuideGuidelineExample type="dont" text="" />
-    </GuideGuideline>
-
-    <GuideGuideline
-      heading=""
-      description=""
-    >
       <GuideGuidelineExample type="do" text="Some cool stuff you can do" />
-      <GuideGuidelineExample type="dont" text="" />
     </GuideGuideline>
 
     <GuideGuideline
@@ -520,31 +477,39 @@ export default () => (
       </GuideGuidelineExample>
     </GuideGuideline>
 
+    <GuideGuidelineTitle>Verifying your text</GuideGuidelineTitle>
 
+    <EuiSpacer size="xxl" />
 
+    <EuiFlexGroup wrap={true}>
+      <EuiFlexItem style={{ minWidth: 300 }}>
+        <EuiPanel paddingSize="l">
+          <EuiText>
+            <h3>Work with a writer on your text</h3>
+            <p>A writer can help determine where you need text and what it should say.</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
 
-    <EuiSpacer size="xxl"/>
+      <EuiFlexItem style={{ minWidth: 300 }}>
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h2>
-           Verifying your text
-          </h2>
-          <p>Work with a writer on your text.&nbsp;
-          A writer can help determine where you need text and what it should say.
-          </p>
-          <p>Word flow has a natural feel to it.&nbsp;
-          Read your text out loud, make changes, and then repeat until the flow of your text feels just right.
-          </p>
-          <p>Run your text through a spelling and grammar checker.</p>
+        <EuiPanel paddingSize="l">
+          <EuiText>
+            <h3>Word flow has a natural feel to it</h3>
+            <p>Read your text out loud, make changes, and then repeat until the flow of your text feels just right.</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
 
-        </EuiText>
+      <EuiFlexItem style={{ minWidth: 300 }}>
+        <EuiPanel paddingSize="l">
+          <EuiText>
+            <h3>Use spell check</h3>
+            <p>Run your text through a spelling and grammar checker.</p>
+          </EuiText>
+        </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup>
-
-
-
 
   </GuidePage>
 );

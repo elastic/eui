@@ -8,4 +8,8 @@
       margin-top: $euiSizeXL * -1;
     }
   }
+
+  .euiTitle + &.Guideline--hasHeading {
+    margin-top: $euiSizeXL;
+  }
 }
