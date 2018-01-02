@@ -13,6 +13,7 @@
     position: absolute;
     top: $euiSizeM;
     left: $euiSizeM;
+    pointer-events: none;
   }
 
   .euiFormControlLayout__icon--right {
