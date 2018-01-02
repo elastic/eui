@@ -7,7 +7,10 @@ import { EuiFlyout } from './flyout';
 describe('EuiFlyout', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFlyout {...requiredProps} />
+      <EuiFlyout
+        {...requiredProps}
+        onClose={() => {}}
+      />
     );
 
     expect(component)
