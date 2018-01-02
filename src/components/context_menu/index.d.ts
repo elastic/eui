@@ -1,44 +1,81 @@
+/// <reference path="../common.d.ts" />
+
+import { ReactElement } from 'react';
+
 declare module '@elastic/eui' {
 
-  import * as React from 'react';
-  import { ReactElement, ReactNode } from 'react';
+  import { SFC, ButtonHTMLAttributes, DOMAttributes, ReactElement, ReactNode } from 'react';
+
+  /**
+   * context menu panel type defs
+   *
+   * @see './context_menu_panel.js`
+   */
+
+  export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
+
+  export type EuiContextMenuPanelTransitionType = 'in' | 'out';
+  export type EuiContextMenuPanelTransitionDirection = 'next' | 'previous';
+  export type EuiContextMenuPanelShowPanelCallback = (currentPanelIndex: number) => void;
 
   export interface EuiContextMenuPanelProps {
     items?: ReactNode[],
-    children?: ReactNode,
-    className?: string,
     title?: ReactNode,
-    onClose?: () => void,
-    onHeightChange?: (height: number) => void,
-    transitionType?: 'in' | 'out',
-    transitionDirection?: 'next' | 'previous',
-    onTransitionComplete?: () => void,
-    onUseKeyboardToNavigate?: () => void,
+    onClose?: NoArgCallback<void>,
+    onHeightChange?: EuiContextMenuPanelHeightChangeHandler,
+    transitionType?: EuiContextMenuPanelTransitionType,
+    transitionDirection?: EuiContextMenuPanelTransitionDirection,
+    onTransitionComplete?: NoArgCallback<void>,
+    onUseKeyboardToNavigate?: NoArgCallback<void>,
     hasFocus?: boolean,
-    showNextPanel?: (currentPanelIndex: number) => void,
-    showPreviousPanel?: (currentPanelIndex: number) => void,
+    showNextPanel?: EuiContextMenuPanelShowPanelCallback,
+    showPreviousPanel?: EuiContextMenuPanelShowPanelCallback,
     initialFocusedItemIndex?: number,
   }
-  export class EuiContextMenuPanel extends React.Component<EuiContextMenuPanelProps, {}> {}
+
+  export type EuiContextMenuPanel = SFC<
+    CommonProps &
+    Omit<DOMAttributes<HTMLDivElement>, 'ref', 'onKeyDown', 'tabIndex', 'onAnimationEnd'> &
+    EuiContextMenuPanelProps
+    >;
+
+
+  /**
+   * context menu item type defs
+   *
+   * @see './context_menu_item.js`
+   */
+
+  export type EuiContextMenuItemIcon = ReactElement<any> | string;
 
   export interface EuiContextMenuItemProps {
-    children?: ReactNode,
-    className?: string,
-    icon?: ReactElement<any> | string,
-    onClick?: () => void,
+    icon?: EuiContextMenuItemIcon,
     hasPanel?: boolean,
-    buttonRef?: (button: HTMLButtonElement) => void,
-    disabled?: boolean,
+    buttonRef?: RefCallback<HTMLButtonElement>
   }
-  export class EuiContextMenuItem extends React.Component<EuiContextMenuItemProps, {}> {}
 
+  export type EuiContextMenuItem = SFC<
+    CommonProps &
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type', 'ref'> &
+    EuiContextMenuItemProps
+    >;
+
+
+  /**
+   * context menu type defs
+   *
+   * @see './context_menu.js`
+   */
+
+  export type EuiContextMenuPanelId = string | number;
 
   export interface EuiContextMenuProps {
-    className?: string,
     panels?: EuiContextMenuPanel[],
-    initialPanelId?: string | number
+    initialPanelId?: EuiContextMenuPanelId
   }
-  export class EuiContextMenu extends React.Component<EuiContextMenuProps, {}> {}
 
+  export type EuiContextMenu = SFC<
+    Omit<DOMAttributes<HTMLDivElement>, 'ref', 'className', 'style'> &
+    EuiContextMenuProps>;
 
 }

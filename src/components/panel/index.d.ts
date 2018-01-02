@@ -1,17 +1,31 @@
+/// <reference path="../common.d.ts" />
+
 declare module '@elastic/eui' {
 
-  import { ReactNode } from 'react';
+  import { DOMAttributes, SFC } from 'react';
+
+
+  /**
+   * panel type defs
+   *
+   * @see './panel.js'
+   */
 
   export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
 
+  export type PanelRefCallback = (panel: HTMLDivElement) => void;
+
   export interface EuiPanelProps {
-    children?: ReactNode,
-    className?: string,
     hasShadow?: boolean,
     paddingSize?: PanelPaddingSize,
     grow?: boolean,
-    panelRef: (panel: HTMLDivElement) => void
+    panelRef?: RefCallback<HTMLDivElement>
   }
-  export class EuiPanel extends React.Component<EuiPanelProps, {}> {
-  }
+
+  export type EuiPanel = SFC<
+    CommonProps &
+    Omit<DOMAttributes<HTMLDivElement>, 'ref'> &
+    EuiPanelProps
+    >;
+
 }

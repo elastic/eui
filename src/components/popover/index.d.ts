@@ -1,23 +1,34 @@
+/// <reference path="../common.d.ts" />
+
 declare module '@elastic/eui' {
 
-  import { ReactNode } from 'react';
+  import { SFC, ReactNode, DOMAttributes } from 'react';
+
+  /**
+   * popover type defs
+   *
+   * @see './popover.js'
+   */
 
   export type PopoverAnchorPosition = 'upCenter' | 'upLeft' | 'upRight' | 'downCenter' | 'downLeft' | 'downRight' |
     'leftCenter' | 'leftUp' | 'leftDown' | 'rightCenter' | 'rightUp' | 'rightDown';
 
   interface EuiPopoverProps {
     id: string,
-    closePopover: () => void;
+    closePopover: NoArgCallback<void>;
     button: ReactNode,
     withTitle?: boolean,
     isOpen?: boolean,
     ownFocus?: boolean,
-    children?: ReactNode,
     anchorPosition?: PopoverAnchorPosition,
     panelClassName?: string,
     panelPaddingSize?: PanelPaddingSize,
   }
-  export class EuiPopover extends React.Component<EuiPopoverProps, {}> {
-  }
+
+  export type EuiPopover = SFC<
+    CommonProps &
+    DOMAttributes<HTMLDivElement> &
+    EuiPanelProps
+    >;
 
 }

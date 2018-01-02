@@ -1,15 +1,24 @@
+/// <reference path="../common.d.ts" />
+
 declare module "@elastic/eui" {
 
-  import { ReactNode } from 'react';
+  import { SFC, DOMAttributes } from 'react';
+
+  /**
+   * spacer type defs
+   *
+   * @see './spacer.js'
+   */
 
   export type SpacerSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
   export interface EuiSpacerProps {
-    children?: ReactNode,
-    className?: string,
-    size?: SpacerSize,
-    [key: string]: any
+    size?: SpacerSize
   }
-  export class EuiSpacer extends React.Component<EuiSpacerProps, {}> {}
 
+  export type EuiSpacer = SFC<
+    CommonProps &
+    DOMAttributes<HTMLDivElement> &
+    EuiSpacerProps
+    >;
 }

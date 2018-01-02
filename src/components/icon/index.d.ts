@@ -1,4 +1,14 @@
+/// <reference path="../common.d.ts" />
+
 declare module '@elastic/eui' {
+
+  import { SFC, SVGAttributes } from 'react';
+
+  /**
+   * icon type defs
+   *
+   * @see './icon.js'
+   */
 
   export type IconType = 'alert' | 'addDataApp' | 'advancedSettingsApp' | 'apmApp' | 'apps' | 'arrowDown' |
     'arrowLeft' | 'arrowRight' | 'arrowUp' | 'bolt' | 'boxesHorizontal' | 'boxesVertical' | 'brush' | 'bullseye' |
@@ -22,6 +32,10 @@ declare module '@elastic/eui' {
     color?: IconColor,
     size?: IconSize
   }
-  export class EuiIcon extends React.Component<EuiIconProps, {}> {
-  }
+
+  export type EuiIcon = SFC<
+    CommonProps &
+    SVGAttributes<SVGAElement> &
+    EuiIconProps
+    >;
 }

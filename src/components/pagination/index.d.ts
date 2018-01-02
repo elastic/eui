@@ -1,22 +1,47 @@
+/// <reference path="../common.d.ts" />
+
 declare module "@elastic/eui" {
 
-  import { ReactNode } from 'react';
+  import { DOMAttributes, SFC } from 'react';
+
+
+  /**
+   * pagination type defs
+   *
+   * @see './pagination.js'
+   */
+
+  export type PageClickHandler = (pageIndex: number) => void;
 
   export interface EuiPaginationProps {
-    className?: string,
     pageCount?: number,
     activePage?: number,
-    onPageClick?: (pageIndex: number) => void
+    onPageClick?: PageClickHandler
   }
-  export class EuiPagination extends React.Component<EuiPaginationProps, {}>{}
 
+  export type EuiPagination = SFC<
+    CommonProps &
+    DOMAttributes<HTMLDivElement> &
+    EuiPaginationProps
+    >;
+
+
+  /**
+   * pagination button type defs
+   *
+   * @see './pagination_button.js'
+   */
 
   export interface EuiPaginationButtonProps {
-    children?: ReactNode,
-    className?: string,
     isActive?: boolean,
     isPlaceholder?: boolean,
     hideOnMobile?: boolean
   }
-  export class EuiPaginationButton extends React.Component<EuiPaginationButtonProps, {}>{}
+
+  export type EuiPaginationButton = SFC<
+    CommonProps &
+    Omit<EuiButtonEmptyProps, 'size', 'color'> &
+    EuiPaginationButtonProps
+    >;
+
 }

@@ -1,43 +1,67 @@
+/// <reference path="../common.d.ts" />
+
+import { MouseEventHandler } from 'react';
+
 declare module '@elastic/eui' {
 
-  import { ReactNode } from 'react';
+  import { SFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+
+
+  /**
+   * Normal button type defs
+   *
+   * @see './button.js'
+   */
 
   export type ButtonIconSide = 'left' | 'right';
-
   export type ButtonColor = 'primary' | 'secondary' | 'warning' | 'danger' | 'ghost';
-
   export type ButtonSize = 's' | 'l';
 
   export interface EuiButtonProps {
-    onClick: (event: any) => void;
-    children?: ReactNode,
-    className?: string,
+    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType,
     iconSide?: ButtonIconSide,
     fill?: boolean,
     color?: ButtonColor,
     size?: ButtonSize,
-    isDisabled?: boolean,
-    [key: string]: any
+    isDisabled?: boolean
   }
-  export class EuiButton extends React.Component<EuiButtonProps, {}> {}
 
+  export type EuiButton = SFC<
+    CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> &
+    EuiButtonProps
+    >;
+
+
+  /**
+   * button icon type defs
+   *
+   * @see './button_icon/button_icon.js'
+   */
 
   export type ButtonIconColor = 'primary' | 'danger' | 'disabled' | 'ghost' | 'text';
 
   export interface EuiButtonIconProps {
-    onClick: (event: any) => void;
-    children?: ReactNode,
-    className?: string,
+    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType,
     color?: ButtonIconColor,
     isDisabled?: boolean,
     'aria-label'?: string,
-    'aria-labelledby'?: string,
-    [key: string]: any
+    'aria-labelledby'?: string
   }
-  export class EuiButtonIcon extends React.Component<EuiButtonIconProps, {}> {}
+  export type EuiButtonIcon = SFC<
+    CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> &
+    EuiButtonIconProps
+    >;
 
+
+  /**
+   * button icon type defs
+   *
+   * @see './button_empty/button_empty.js'
+   */
 
   export type EmptyButtonIconSide = 'left' | 'right';
   export type EmptyButtonColor = 'primary' | 'danger' | 'disabled' | 'text' | 'ghost';
@@ -45,8 +69,6 @@ declare module '@elastic/eui' {
   export type EmptyButtonFlush = 'left' | 'right';
 
   export interface EuiButtonEmptyProps {
-    children?: ReactNode,
-    className?: string,
     iconType?: IconType,
     iconSide?: EmptyButtonIconSide,
     color?: EmptyButtonColor,
@@ -54,5 +76,10 @@ declare module '@elastic/eui' {
     flush?: EmptyButtonFlush,
     isDisabled?: boolean
   }
-  export class EuiButtonEmpty extends React.Component<EuiButtonEmptyProps, {}>{}
+
+  export type EuiButtonEmpty = SFC<
+    CommonProps,
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    EuiButtonEmptyProps
+    >;
 }

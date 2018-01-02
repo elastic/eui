@@ -1,85 +1,170 @@
+/// <reference path="../common.d.ts" />
 /// <reference path="./table_pagination/index.d.ts" />
 
 declare module '@elastic/eui' {
 
-  import { ReactNode } from 'react';
+  import {
+    SFC, DOMAttributes, TableHTMLAttributes, ButtonHTMLAttributes,
+    ThHTMLAttributes, TdHTMLAttributes
+  } from 'react';
+  import { EuiTableRowCellProps } from '@elastic/eui';
 
-  interface EuiTableProps {
-    compressed?: boolean,
-    className?: string,
-    children?: ReactNode
+  /**
+   * table type defs
+   *
+   * @see './table.js'
+   */
+
+  export interface EuiTableProps {
+    compressed?: boolean
   }
-  export class EuiTable extends React.Component<EuiTableProps, any> {
-  }
+
+  export type EuiTable = SFC<
+    CommonProps &
+    TableHTMLAttributes<HTMLTableElement> &
+    EuiTableProps
+    >;
+
+
+  /**
+   * table body type defs
+   *
+   * @see './table_body.js'
+   */
 
   export interface EuiTableBodyProps {
-    children?: ReactNode,
-    className?: string
-  }
-  export class EuiTableBody extends React.Component<EuiTableProps, any> {
   }
 
-  interface EuiTableHeaderProps {
-    children?: ReactNode,
-    className?: string
-  }
-  export class EuiTableHeader extends React.Component<EuiTableHeaderProps, any> {
+  export type EuiTableBody = SFC<
+    CommonProps &
+    EuiTableBodyProps
+    >;
+
+
+  /**
+   * table header type defs
+   *
+   * @see './table_header.js'
+   */
+
+  export interface EuiTableHeaderProps {
   }
 
-  interface EuiTableHeaderButtonProps {
-    children?: ReactNode,
-    className?: string,
+  export type EuiTableHeader = SFC<
+    CommonProps &
+    EuiTableHeaderProps
+    >;
+
+
+  /**
+   * table header button type defs
+   *
+   * @see './table_header_button.js'
+   */
+
+  export interface EuiTableHeaderButtonProps {
     iconType?: IconType
   }
-  export class EuiTableHeaderButton extends React.Component<EuiTableHeaderButtonProps, any> {
-  }
 
-  interface EuiTableHeaderCellProps {
-    children?: ReactNode,
-    className?: string,
+  export type EuiTableHeaderButton = SFC<
+    CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> &
+    EuiTableHeaderButtonProps
+    >;
+
+  /**
+   * table header cell type defs
+   *
+   * @see './table_header_cell.js'
+   */
+
+  export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
+
+  export interface EuiTableHeaderCellProps {
     align?: HorizontalAlignment,
     width?: string,
-    onSort?: () => void,
+    onSort?: NoArgCallback<void>,
     isSorted?: boolean,
     isSortAscending?: boolean,
-    scope?: 'col'| 'row' | 'colgroup' | 'rowgroup'
-  }
-  export class EuiTableHeaderCell extends React.Component<EuiTableHeaderCellProps, any> {
+    scope?: TableHeaderCellScope
   }
 
-  interface EuiTableHeaderCellCheckboxProps {
-    children?: ReactNode,
-    className?: string,
+  export type EuiTableHeaderCell = SFC<
+    CommonProps &
+    ThHTMLAttributes<HTMLTableHeaderCellElement> &
+    EuiTableHeaderCellProps
+    >;
+
+
+  /**
+   * table header cell checkbox type defs
+   *
+   * @see './table_header_cell_checkbox.js'
+   */
+
+  export type EuiTableHeaderCellCheckboxScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
+
+  export interface EuiTableHeaderCellCheckboxProps {
     width?: string,
-    scope?: 'col' | 'row' | 'colgroup' | 'rowgroup'
-  }
-  export class EuiTableHeaderCellCheckbox extends React.Component<EuiTableHeaderCellCheckboxProps, any> {
+    scope?: EuiTableHeaderCellCheckboxScope
   }
 
-  interface EuiTableRowProps {
-    children?: ReactNode,
-    className?: string,
-    isSelected?: boolean,
-    [key: string]: any
-  }
-  export class EuiTableRow extends React.Component<EuiTableRowProps, any> {
+  export type EuiTableHeaderCellCheckbox = SFC<
+    CommonProps &
+    TdHTMLAttributes<HTMLTableCellElement> &
+    EuiTableHeaderCellCheckboxProps
+    >;
+
+
+  /**
+   * table row type defs
+   *
+   * @see './table_row.js'
+   */
+
+  export interface EuiTableRowProps {
+    isSelected?: boolean
   }
 
-  interface EuiTableRowCellProps {
+  export type EuiTableRow = SFC<
+    CommonProps &
+    AnyProps & // at least according to the contract of table_row.js
+    EuiTableRowProps
+    >;
+
+
+  /**
+   * table row cell type defs
+   *
+   * @see './table_row_cell.js'
+   */
+
+  export interface EuiTableRowCellProps {
     truncateText?: boolean,
     align?: HorizontalAlignment,
-    className?: string,
-    textOnly?: boolean,
-    [key: string]: any
-  }
-  export class EuiTableRowCell extends React.Component<EuiTableRowCellProps, any> {
+    textOnly?: boolean
   }
 
-  interface EuiTableRowCellCheckboxProps {
-    children?: ReactNode,
-    className?: string
+  export type EuiTableRowCell = SFC<
+    CommonProps &
+    DOMAttributes<HTMLDivElement> &
+    EuiTableRowCellProps
+    >;
+
+
+  /**
+   * table row cell checkbox type defs
+   *
+   * @see './table_row_cell_checkbox.js'
+   */
+
+  export interface EuiTableRowCellCheckboxProps {
   }
-  export class EuiTableRowCellCheckbox extends React.Component<EuiTableRowCellCheckboxProps, any> {
-  }
+
+  export type EuiTableRowCellCheckbox = SFC<
+    CommonProps &
+    TdHTMLAttributes<HTMLTableCellElement> &
+    EuiTableRowCellCheckbox
+    >;
 
 }
