@@ -62,6 +62,22 @@ describe('EuiAccordion', () => {
           .toMatchSnapshot();
       });
     });
+
+    describe('initialIsOpen', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion
+            id={getId()}
+            initialIsOpen={true}
+          >
+            <p>You can see me.</p>
+          </EuiAccordion>
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {

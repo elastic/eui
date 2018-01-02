@@ -2,7 +2,8 @@
 
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
-  id="5"
+  id="6"
+  initialIsOpen={false}
 >
   <div
     className="euiAccordion"
@@ -26,7 +27,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             className="euiFlexItem"
           >
             <button
-              aria-controls="5"
+              aria-controls="6"
               aria-expanded={false}
               className="euiAccordion__button"
               onClick={[Function]}
@@ -103,7 +104,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     </EuiFlexGroup>
     <div
       className="euiAccordion__childWrapper"
-      id="5"
+      id="6"
     >
       <div />
     </div>
@@ -113,7 +114,8 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
-  id="4"
+  id="5"
+  initialIsOpen={false}
 >
   <div
     className="euiAccordion euiAccordion-isOpen"
@@ -137,7 +139,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             className="euiFlexItem"
           >
             <button
-              aria-controls="4"
+              aria-controls="5"
               aria-expanded={true}
               className="euiAccordion__button"
               onClick={[Function]}
@@ -213,7 +215,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     </EuiFlexGroup>
     <div
       className="euiAccordion__childWrapper"
-      id="4"
+      id="5"
     >
       <div />
     </div>
@@ -462,6 +464,67 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     id="3"
   >
     <div />
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
+<div
+  class="euiAccordion euiAccordion-isOpen"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <button
+        aria-controls="4"
+        aria-expanded="true"
+        class="euiAccordion__button"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        >
+          <div
+            class="euiFlexItem euiFlexItem--flexGrowZero"
+          >
+            <svg
+              class="euiIcon euiIcon--medium"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xlink="http://www.w3.org/1999/xlink"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_down-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                href="#arrow_down-a"
+              />
+            </svg>
+          </div>
+          <div
+            class="euiFlexItem euiAccordion__buttonContent"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="4"
+  >
+    <div>
+      <p>
+        You can see me.
+      </p>
+    </div>
   </div>
 </div>
 `;

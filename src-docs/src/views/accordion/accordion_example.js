@@ -22,6 +22,10 @@ import AccordionExtra from './accordion_extra';
 const accordionExtraSource = require('!!raw-loader!./accordion_extra');
 const accordionExtraHtml = renderToHtml(AccordionExtra);
 
+import AccordionOpen from './accordion_open';
+const accordionOpenSource = require('!!raw-loader!./accordion_open');
+const accordionOpenHtml = renderToHtml(AccordionOpen);
+
 export const AccordionExample = {
   title: 'Accordion',
   sections: [{
@@ -73,6 +77,21 @@ export const AccordionExample = {
       </p>
     ),
     demo: <AccordionExtra />,
+  },  {
+    title: 'Accordion can be opened on initial render',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: accordionOpenSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: accordionOpenHtml,
+    }],
+    text: (
+      <p>
+        Use the <EuiCode>initialIsOpen</EuiCode> prop to open the accordion when first rendered.
+      </p>
+    ),
+    demo: <AccordionOpen />,
   }, {
     title: 'Accordion for forms',
     source: [{
