@@ -40,7 +40,6 @@ export const EuiCheckbox = ({
   return (
     <div
       className={classes}
-      {...rest}
     >
       <input
         className="euiCheckbox__input"
@@ -49,6 +48,7 @@ export const EuiCheckbox = ({
         checked={checked}
         onChange={onChange}
         disabled={disabled}
+        {...rest}
       />
 
       <div className="euiCheckbox__square">

@@ -17,7 +17,7 @@ export const EuiSwitch = ({
   const classes = classNames('euiSwitch', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes}>
       <input
         className="euiSwitch__input"
         name={name}
@@ -26,6 +26,7 @@ export const EuiSwitch = ({
         checked={checked}
         disabled={disabled}
         onChange={onChange}
+        {...rest}
       />
 
       <span className="euiSwitch__body">

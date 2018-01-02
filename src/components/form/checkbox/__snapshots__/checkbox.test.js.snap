@@ -2,12 +2,12 @@
 
 exports[`EuiCheckbox is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiCheckbox testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <input
+    aria-label="aria-label"
     class="euiCheckbox__input"
+    data-test-subj="test subject string"
     id="id"
     type="checkbox"
   />
