@@ -3,24 +3,18 @@ import React, { Component } from 'react';
 import {
   EuiQueryPanel,
   EuiQueryPanelFilters,
-  EuiQueryPanelSearch,
-  EuiQueryPanelSearchInput,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
   EuiStatusPill,
   EuiPopover,
-  EuiContextMenuItem,
   EuiContextMenu,
   EuiFormRow,
-  EuiFieldText,
   EuiFieldNumber,
-  EuiHorizontalRule,
   EuiSelect,
   EuiButton,
   EuiButtonEmpty,
   EuiSpacer,
-  EuiTitle,
 } from '../../../../src/components';
 
 function flattenPanelTree(tree, array = []) {
@@ -125,7 +119,7 @@ export default class extends Component {
           id: 1,
           title: 'Edit filter query',
           content: (
-            <div style={{ padding: 16}}>
+            <div style={{ padding: 16 }}>
               {createForm}
             </div>
           ),
@@ -155,7 +149,7 @@ export default class extends Component {
           id: 1,
           title: 'Add new filter',
           content: (
-            <div style={{ padding: 16}}>
+            <div style={{ padding: 16 }}>
               {createForm}
             </div>
           ),
@@ -215,60 +209,6 @@ export default class extends Component {
 
   render() {
 
-    const items = [(
-      <div>
-        <div style={{ padding: '16px 16px 0px 16px'}}>
-          <EuiFormRow
-            id="asdf"
-            label="Filter name"
-          >
-            <EuiFieldText name="label" value="Some complicated filter"/>
-          </EuiFormRow>
-        </div>
-        <EuiHorizontalRule margin="m" style={{ marginBottom: 0 }}/>
-      </div>
-    ), (
-      <EuiContextMenuItem
-        key="pin"
-        icon="pin"
-        onClick={() => { this.closePopover(); window.alert('pin'); }}
-      >
-        Pin for use across pages
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="edit"
-        icon="pencil"
-        onClick={() => { this.closePopover(); window.alert('edit'); }}
-      >
-        Edit filter
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="invert"
-        icon="invert"
-        onClick={() => { this.closePopover(); window.alert('invert'); }}
-      >
-        Invert the results
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="disable"
-        icon="minusInCircle"
-        onClick={() => { this.closePopover(); window.alert('disable'); }}
-      >
-        Temporarily disable
-      </EuiContextMenuItem>
-    ), (
-      <EuiContextMenuItem
-        key="remove"
-        icon="trash"
-        onClick={() => { this.closePopover(); window.alert('delete'); }}
-      >
-        Delete
-      </EuiContextMenuItem>
-    )];
-
     return (
       <EuiQueryPanel>
         <EuiQueryPanelFilters>
@@ -298,7 +238,7 @@ export default class extends Component {
             status={<EuiIcon type="invert" />}
             onClick={() => window.alert('Menu would appear')}
           >
-            type:"someExtremelyLongValueThatNeedsTruncation"
+            type:someExtremelyLongValueThatNeedsTruncation
           </EuiStatusPill>
           <EuiPopover
             button={

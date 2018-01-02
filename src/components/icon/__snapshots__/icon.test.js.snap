@@ -1229,19 +1229,6 @@ exports[`EuiIcon renders type invert 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon renders type invert 1`] = `
-<svg
-  class="euiIcon euiIcon--medium"
->
-  <title>
-    invert icon
-  </title>
-  <use
-    href="#invert"
-  />
-</svg>
-`;
-
 exports[`EuiIcon renders type link 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -1822,19 +1809,6 @@ exports[`EuiIcon renders type minusInCircle 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon renders type minusInCircle 1`] = `
-<svg
-  class="euiIcon euiIcon--medium"
->
-  <title>
-    minus in circle icon
-  </title>
-  <use
-    href="#minus_in_circle"
-  />
-</svg>
-`;
-
 exports[`EuiIcon renders type monitoringApp 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -2008,19 +1982,6 @@ exports[`EuiIcon renders type play 1`] = `
 >
   <path
     d="M10.996 7.382L5.447 3.796c-.585-.378-.902-.205-.902.501v7.493c0 .708.314.881.902.501l5.549-3.586c.614-.397.615-.925 0-1.323zm.543-.84c1.226.793 1.222 2.213 0 3.003l-5.55 3.586c-1.256.812-2.444.155-2.444-1.341V4.297c0-1.498 1.194-2.15 2.445-1.341l5.549 3.586z"
-  />
-</svg>
-`;
-
-exports[`EuiIcon renders type pin 1`] = `
-<svg
-  class="euiIcon euiIcon--medium"
->
-  <title>
-    pin icon
-  </title>
-  <use
-    href="#pin"
   />
 </svg>
 `;

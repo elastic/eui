@@ -113,9 +113,6 @@ import { PopoverExample }
 import { ProgressExample }
   from '../../views/progress/progress_example';
 
-import QueryPanelExample
-  from '../../views/query_panel/query_panel_example';
-
 import { SideNavExample }
   from '../../views/side_nav/side_nav_example';
 
@@ -148,7 +145,8 @@ import { TooltipExample }
 
 // Patterns
 
-
+import { QueryPanelExample }
+  from '../../views/query_panel/query_panel_example';
 
 // Sandboxes
 
@@ -224,7 +222,6 @@ const components = [
   PanelExample,
   PopoverExample,
   ProgressExample,
-  QueryPanelExample,
   SideNavExample,
   SpacerExample,
   StatusPillExample,
@@ -237,7 +234,9 @@ const components = [
   TooltipExample,
 ].map(example => createExample(example));
 
+
 const patterns = [
+  QueryPanelExample,
 ].map(example => createExample(example));
 
 const sandboxes = [{

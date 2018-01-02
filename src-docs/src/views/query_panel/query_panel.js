@@ -10,12 +10,9 @@ import {
   EuiIcon,
   EuiStatusPill,
   EuiPopover,
-  EuiContextMenuItem,
   EuiContextMenu,
   EuiFormRow,
-  EuiFieldText,
   EuiFieldNumber,
-  EuiHorizontalRule,
   EuiSelect,
   EuiButton,
   EuiButtonEmpty,
@@ -99,7 +96,7 @@ export default class extends Component {
         <EuiSpacer />
         <EuiFlexGroup justifyContent="spaceBetween">
           <EuiFlexItem grow={false}>
-            <EuiButton size="s" onClick={ this.addPill }>Create filter</EuiButton>
+            <EuiButton size="s" onClick={this.addPill}>Create filter</EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty size="s">Edit DSL</EuiButtonEmpty>
@@ -126,7 +123,7 @@ export default class extends Component {
           id: 1,
           title: 'Edit filter query',
           content: (
-            <div style={{ padding: 16}}>
+            <div style={{ padding: 16 }}>
               {createForm}
             </div>
           ),
@@ -152,11 +149,11 @@ export default class extends Component {
   }
 
   addPill = () => {
-    this.setState({isPillAdded: true});
+    this.setState({ isPillAdded: true });
   };
 
   removePill = () => {
-    this.setState({isPillAdded: false});
+    this.setState({ isPillAdded: false });
   };
 
   onButtonClick = () => {
@@ -198,7 +195,7 @@ export default class extends Component {
         ownFocus
         id="test"
       >
-        <div style={{ width: 300}}>
+        <div style={{ width: 300 }}>
           <EuiTitle>
             <h4>New filter</h4>
           </EuiTitle>
