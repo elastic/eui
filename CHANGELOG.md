@@ -1,5 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `<EuiOverlayMask>` to append `<div>` to body. [(#254)](https://github.com/elastic/eui/pull/254)
+
 **Bug fixes**
 
 - Clicking the downArrow icon in `EuiSelect` now triggers selection. [(#237)[https://github.com/elastic/eui/pull/255]]
