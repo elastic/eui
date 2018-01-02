@@ -3,7 +3,7 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   id="6"
-  isOpen={false}
+  initialIsOpen={false}
 >
   <div
     className="euiAccordion"
@@ -115,7 +115,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   id="5"
-  isOpen={false}
+  initialIsOpen={false}
 >
   <div
     className="euiAccordion euiAccordion-isOpen"
@@ -468,7 +468,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiAccordion props isOpen is rendered 1`] = `
+exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
 <div
   class="euiAccordion euiAccordion-isOpen"
 >

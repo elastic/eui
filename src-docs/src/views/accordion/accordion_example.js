@@ -88,7 +88,7 @@ export const AccordionExample = {
     }],
     text: (
       <p>
-        Use the <EuiCode>isOpen</EuiCode> prop to open the accordion when first rendered.
+        Use the <EuiCode>initialIsOpen</EuiCode> prop to open the accordion when first rendered.
       </p>
     ),
     demo: <AccordionOpen />,

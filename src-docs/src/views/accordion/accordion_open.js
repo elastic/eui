@@ -12,7 +12,7 @@ export default () => (
     <EuiAccordion
       id="accordion1"
       buttonContent="I am opened by default. Click me to toggle close / open"
-      isOpen={true}
+      initialIsOpen={true}
     >
       <EuiText>
         <p>Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear here.</p>

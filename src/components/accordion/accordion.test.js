@@ -63,12 +63,12 @@ describe('EuiAccordion', () => {
       });
     });
 
-    describe('isOpen', () => {
+    describe('initialIsOpen', () => {
       it('is rendered', () => {
         const component = render(
           <EuiAccordion
             id={getId()}
-            isOpen={true}
+            initialIsOpen={true}
           >
             <p>You can see me.</p>
           </EuiAccordion>
