@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Clicking the downArrow icon in `EuiSelect` now triggers selection. [(#237)[https://github.com/elastic/eui/pull/255]]
+- Fixed `euiFormRow` id's from being the same as the containing input and label. [(#251)[https://github.com/elastic/eui/pull/251]]
 
 **Breaking changes**
 
@@ -23,7 +24,6 @@
 
 - Fix bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
 - Add `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. [(#242)[https://github.com/elastic/eui/pull/242]]
-- Fixed `euiFormRow` id's from being the same as the containing input and label. [(#251)[https://github.com/elastic/eui/pull/251]]
 
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 
