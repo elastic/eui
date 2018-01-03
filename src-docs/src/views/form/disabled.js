@@ -15,10 +15,7 @@ import {
   EuiTextArea,
 } from '../../../../src/components';
 
-// Don't use this, make proper ids instead. This is just for the example.
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
+import makeId from '../../../../src/components/form/form_row/make_id';
 
 export default class extends Component {
   constructor(props) {

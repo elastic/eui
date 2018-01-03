@@ -133,6 +133,7 @@ export class EuiFormRow extends Component {
       <div
         className={classes}
         {...rest}
+        id={`${id}-row`}
       >
         {optionalLabel}
         {field}

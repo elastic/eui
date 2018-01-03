@@ -11,10 +11,6 @@ import {
   EuiFieldText,
 } from '../../../../src/components';
 
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
-
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +49,6 @@ export default class extends Component {
           error={errors}
         >
           <EuiFormRow
-            id={makeId()}
             label="Validation only"
             isInvalid={this.state.showErrors}
           >
@@ -64,7 +59,6 @@ export default class extends Component {
           </EuiFormRow>
 
           <EuiFormRow
-            id={makeId()}
             label="Validation with help text and errors"
             helpText="I am some friendly help text."
             isInvalid={this.state.showErrors}
@@ -77,7 +71,6 @@ export default class extends Component {
           </EuiFormRow>
 
           <EuiFormRow
-            id={makeId()}
             label="Text area"
             isInvalid={this.state.showErrors}
           >

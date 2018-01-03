@@ -17,21 +17,17 @@ import {
   EuiButtonIcon,
 } from '../../../../src/components';
 
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
-
 const repeatableForm = (
   <EuiForm>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiFormRow label="Username"  id={makeId()}>
+        <EuiFormRow label="Username">
           <EuiFieldText icon="user" placeholder="John" />
         </EuiFormRow>
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiFormRow label="Password" id={makeId()} helpText="Must include one number and one symbol">
+        <EuiFormRow label="Password" helpText="Must include one number and one symbol">
           <EuiFieldPassword icon="lock" />
         </EuiFormRow>
       </EuiFlexItem>
@@ -39,7 +35,7 @@ const repeatableForm = (
 
     <EuiSpacer size="m" />
 
-    <EuiFormRow label="Body" id={makeId()}>
+    <EuiFormRow label="Body">
       <EuiTextArea placeholder="I am a textarea, put some content in me!" />
     </EuiFormRow>
   </EuiForm>

@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Clicking the downArrow icon in `EuiSelect` now triggers selection. [(#237)[https://github.com/elastic/eui/pull/255]]
+- Fixed `euiFormRow` id's from being the same as the containing input and label. [(#251)[https://github.com/elastic/eui/pull/251]]
 
 **Breaking changes**
 

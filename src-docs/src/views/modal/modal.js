@@ -18,9 +18,7 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-function makeId() {
-  return Math.random().toString(36).substr(2, 5);
-}
+import makeId from '../../../../src/components/form/form_row/make_id';
 
 export class Modal extends Component {
   constructor(props) {
@@ -63,14 +61,12 @@ export class Modal extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="A text field"
         >
           <EuiFieldText name="popfirst" />
         </EuiFormRow>
 
         <EuiFormRow
-          id={makeId()}
           label="Range"
           helpText="Some help text for the range"
         >

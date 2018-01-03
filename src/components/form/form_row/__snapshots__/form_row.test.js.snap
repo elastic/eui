@@ -12,6 +12,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 >
   <div
     className="euiFormRow"
+    id="generated-id-row"
   >
     <EuiFormLabel
       htmlFor="generated-id"
@@ -48,6 +49,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 >
   <div
     className="euiFormRow"
+    id="generated-id-row"
   >
     <EuiFormLabel
       htmlFor="generated-id"
@@ -84,6 +86,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 >
   <div
     className="euiFormRow"
+    id="generated-id-row"
   >
     <EuiFormLabel
       htmlFor="generated-id"
@@ -120,6 +123,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
 >
   <div
     className="euiFormRow"
+    id="generated-id-row"
   >
     <EuiFormLabel
       htmlFor="generated-id"
@@ -149,6 +153,7 @@ exports[`EuiFormRow is rendered 1`] = `
   aria-label="aria-label"
   class="euiFormRow testClass1 testClass2"
   data-test-subj="test subject string"
+  id="generated-id-row"
 >
   <input
     id="generated-id"
@@ -159,6 +164,7 @@ exports[`EuiFormRow is rendered 1`] = `
 exports[`EuiFormRow props error as array is rendered 1`] = `
 <div
   class="euiFormRow"
+  id="generated-id-row"
 >
   <input
     aria-describedby="generated-id-error-0 generated-id-error-1"
@@ -182,6 +188,7 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
 exports[`EuiFormRow props error as string is rendered 1`] = `
 <div
   class="euiFormRow"
+  id="generated-id-row"
 >
   <input
     aria-describedby="generated-id-error-0"
@@ -199,6 +206,7 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
 exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 <div
   class="euiFormRow"
+  id="generated-id-row"
 >
   <input
     id="generated-id"
@@ -209,6 +217,7 @@ exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 exports[`EuiFormRow props fullWidth is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--fullWidth"
+  id="generated-id-row"
 >
   <input
     id="generated-id"
@@ -219,6 +228,7 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
 exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--hasEmptyLabelSpace"
+  id="generated-id-row"
 >
   <input
     id="generated-id"
@@ -229,6 +239,7 @@ exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 exports[`EuiFormRow props helpText is rendered 1`] = `
 <div
   class="euiFormRow"
+  id="generated-id-row"
 >
   <input
     aria-describedby="generated-id-help"
@@ -248,7 +259,7 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
 exports[`EuiFormRow props id is rendered 1`] = `
 <div
   class="euiFormRow"
-  id="id"
+  id="id-row"
 >
   <input
     id="id"
@@ -259,6 +270,7 @@ exports[`EuiFormRow props id is rendered 1`] = `
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
   class="euiFormRow"
+  id="generated-id-row"
 >
   <label
     class="euiFormLabel euiFormLabel-isInvalid"
@@ -275,6 +287,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
 exports[`EuiFormRow props label is rendered 1`] = `
 <div
   className="euiFormRow"
+  id="generated-id-row"
 >
   <EuiFormLabel
     htmlFor="generated-id"
