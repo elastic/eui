@@ -34,7 +34,7 @@ export class ConfirmModal extends Component {
 
     if (this.state.isModalVisible) {
       modal = (
-        <EuiOverlayMask data-test-subj="exampleOverlayMask" className="test1">
+        <EuiOverlayMask>
           <EuiConfirmModal
             title="Do this thing"
             onCancel={this.closeModal}

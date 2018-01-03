@@ -1,49 +1,48 @@
-import React, {
-  Component,
-} from 'react';
+/**
+ * NOTE: We can't test this component because Enzyme doesn't support rendering
+ * into portals.
+ */
+
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 export class EuiOverlayMask extends Component {
   constructor(props) {
     super(props);
+
+    const {
+      className,
+      children, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
+
+    this.overlayMaskNode = document.createElement('div');
+    this.overlayMaskNode.className = classNames(
+      'euiOverlayMask',
+      className
+    );
+    Object.keys(rest).forEach((key) => {
+      this.overlayMaskNode.setAttribute(key, rest[key]);
+    });
   }
 
   componentDidMount() {
     document.body.classList.add('euiBody-hasOverlayMask');
+    document.body.appendChild(this.overlayMaskNode);
   }
 
   componentWillUnmount() {
     document.body.classList.remove('euiBody-hasOverlayMask');
 
-    if (this.overlayMaskNode) {
-      document.body.removeChild(this.overlayMaskNode);
-    }
+    document.body.removeChild(this.overlayMaskNode);
     this.overlayMaskNode = null;
   }
 
   render() {
-    const {
-      className,
-      children,
-      ...rest
-    } = this.props;
-
-    if (!this.overlayMaskNode) {
-      this.overlayMaskNode = document.createElement('div');
-      this.overlayMaskNode.className = classnames(
-        'euiOverlayMask',
-        className
-      );
-      Object.keys(rest).forEach((key) => {
-        this.overlayMaskNode.setAttribute(key, rest[key]);
-      });
-      document.body.appendChild(this.overlayMaskNode);
-    }
-
     return createPortal(
-      children,
+      this.props.children,
       this.overlayMaskNode
     );
   }
