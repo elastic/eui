@@ -1,8 +1,8 @@
 /// <reference path="../../common.d.ts" />
 
-declare module "@elastic/eui" {
+import { SFC } from 'react';
 
-  import { SFC } from 'react';
+declare module "@elastic/eui" {
 
   /**
    * table pagination type defs
@@ -23,6 +23,6 @@ declare module "@elastic/eui" {
     pageCount?: number
   }
 
-  export type EuiTablePagination = SFC<EuiTablePaginationProps>;
+  export const EuiTablePagination: SFC<EuiTablePaginationProps>;
 
 }

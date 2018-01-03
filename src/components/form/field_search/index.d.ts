@@ -1,8 +1,8 @@
 /// <reference path="../../common.d.ts" />
 
-declare module "@elastic/eui" {
+import { SFC, InputHTMLAttributes } from 'react';
 
-  import { SFC, InputHTMLAttributes } from 'react';
+declare module "@elastic/eui" {
 
   /**
    * search field type defs
@@ -20,7 +20,7 @@ declare module "@elastic/eui" {
     isLoading?: boolean
   }
 
-  export type EuiFieldSearch = SFC<
+  export const EuiFieldSearch: SFC<
     CommonProps &
     InputHTMLAttributes<HTMLInputElement> &
     EuiFieldSearchProps

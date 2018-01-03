@@ -1,8 +1,9 @@
 /// <reference path="../common.d.ts" />
+/// <reference path="../panel/index.d.ts" />
+
+import { SFC, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-
-  import { SFC, ReactNode, DOMAttributes } from 'react';
 
   /**
    * popover type defs
@@ -25,9 +26,9 @@ declare module '@elastic/eui' {
     panelPaddingSize?: PanelPaddingSize,
   }
 
-  export type EuiPopover = SFC<
+  export const EuiPopover: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiPanelProps
     >;
 

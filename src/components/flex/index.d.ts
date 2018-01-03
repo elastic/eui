@@ -1,11 +1,8 @@
 /// <reference path="../common.d.ts" />
 
-import { DOMAttributes } from 'react';
+import { SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-
-  import { SFC, DOMAttributes } from 'react';
-
 
   /**
    * flex grid type defs
@@ -21,9 +18,9 @@ declare module '@elastic/eui' {
     gutterSize?: FlexGridGutterSize,
   }
 
-  export type EuiFlexGrid = SFC<
+  export const EuiFlexGrid: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiFlexGridProps
     >;
 
@@ -48,9 +45,9 @@ declare module '@elastic/eui' {
     wrap?: boolean,
   }
 
-  export type EuiFlexGroup = SFC<
+  export const EuiFlexGroup: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement|HTMLSpanElement> &
+    HTMLAttributes<HTMLDivElement|HTMLSpanElement> &
     EuiFlexGroupProps
     >;
 
@@ -69,9 +66,9 @@ declare module '@elastic/eui' {
     component?: FlexItemComponentType
   }
 
-  export type EuiFlexItem = SFC<
+  export const EuiFlexItem: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement|HTMLSpanElement> &
+    HTMLAttributes<HTMLDivElement|HTMLSpanElement> &
     EuiFlexItemProps
     >;
 

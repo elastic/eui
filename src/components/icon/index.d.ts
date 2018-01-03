@@ -1,8 +1,8 @@
 /// <reference path="../common.d.ts" />
 
-declare module '@elastic/eui' {
+import { SFC, SVGAttributes } from 'react';
 
-  import { SFC, SVGAttributes } from 'react';
+declare module '@elastic/eui' {
 
   /**
    * icon type defs
@@ -33,7 +33,7 @@ declare module '@elastic/eui' {
     size?: IconSize
   }
 
-  export type EuiIcon = SFC<
+  export const EuiIcon: SFC<
     CommonProps &
     SVGAttributes<SVGAElement> &
     EuiIconProps

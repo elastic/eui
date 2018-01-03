@@ -1,11 +1,9 @@
 /// <reference path="../common.d.ts" />
+/// <reference path="../icon/index.d.ts" />
 
-import { MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 
 declare module '@elastic/eui' {
-
-  import { SFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
-
 
   /**
    * Normal button type defs
@@ -27,7 +25,7 @@ declare module '@elastic/eui' {
     isDisabled?: boolean
   }
 
-  export type EuiButton = SFC<
+  export const EuiButton: SFC<
     CommonProps &
     ButtonHTMLAttributes<HTMLButtonElement> &
     EuiButtonProps
@@ -50,7 +48,7 @@ declare module '@elastic/eui' {
     'aria-label'?: string,
     'aria-labelledby'?: string
   }
-  export type EuiButtonIcon = SFC<
+  export const EuiButtonIcon: SFC<
     CommonProps &
     ButtonHTMLAttributes<HTMLButtonElement> &
     EuiButtonIconProps
@@ -77,9 +75,9 @@ declare module '@elastic/eui' {
     isDisabled?: boolean
   }
 
-  export type EuiButtonEmpty = SFC<
-    CommonProps,
-    ButtonHTMLAttributes<HTMLButtonElement>,
+  export const EuiButtonEmpty: SFC<
+    CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> &
     EuiButtonEmptyProps
     >;
 }

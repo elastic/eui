@@ -1,10 +1,8 @@
 /// <reference path="../../common.d.ts" />
 
-import { ChangeEventHandler, ReactNode } from 'react';
+import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler } from 'react';
 
 declare module "@elastic/eui" {
-
-  import { SFC, ReactNode, DOMAttributes, ChangeEventHandler } from 'react';
 
 
   /**
@@ -24,9 +22,9 @@ declare module "@elastic/eui" {
     disabled?: boolean
   }
 
-  export type EuiCheckbox = SFC<
+  export const EuiCheckbox: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiCheckboxProps
     >;
 
@@ -50,9 +48,9 @@ declare module "@elastic/eui" {
     onChange: ChangeEventHandler<HTMLInputElement>
   }
 
-  export type EuiCheckboxGroup = SFC<
+  export const EuiCheckboxGroup: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiCheckboxGroupProps
     >;
 }

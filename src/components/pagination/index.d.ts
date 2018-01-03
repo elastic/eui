@@ -1,9 +1,8 @@
 /// <reference path="../common.d.ts" />
 
+import { HTMLAttributes, SFC } from 'react';
+
 declare module "@elastic/eui" {
-
-  import { DOMAttributes, SFC } from 'react';
-
 
   /**
    * pagination type defs
@@ -19,9 +18,9 @@ declare module "@elastic/eui" {
     onPageClick?: PageClickHandler
   }
 
-  export type EuiPagination = SFC<
+  export const EuiPagination: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiPaginationProps
     >;
 
@@ -38,9 +37,9 @@ declare module "@elastic/eui" {
     hideOnMobile?: boolean
   }
 
-  export type EuiPaginationButton = SFC<
+  export const EuiPaginationButton: SFC<
     CommonProps &
-    Omit<EuiButtonEmptyProps, 'size', 'color'> &
+    Omit<EuiButtonEmptyProps, 'size' | 'color'> &
     EuiPaginationButtonProps
     >;
 

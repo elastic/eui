@@ -1,8 +1,8 @@
 /// <reference path="../common.d.ts" />
 
-declare module "@elastic/eui" {
+import { SFC, AnchorHTMLAttributes, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 
-  import { SFC, AnchorHTMLAttributes, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+declare module "@elastic/eui" {
 
   /**
    * link type defs
@@ -13,17 +13,21 @@ declare module "@elastic/eui" {
   export type EuiLinkType = 'button' | 'reset' | 'submit';
   export type EuiLinkColor = 'primary' | 'subdued' | 'secondary' | 'accent' | 'danger' | 'warning' | 'ghost';
 
-  export interface EuiLinkButtonProps extends CommonProps, ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface LinkButtonProps {
     type?: EuiLinkType,
     color?: EuiLinkColor,
     onClick?: MouseEventHandler<HTMLButtonElement>
   }
 
-  type AnchorProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'>;
-  export interface EuiLinkAnchorProps extends CommonProps, AnchorProps {
+  type EuiLinkButtonProps = CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & LinkButtonProps;
+
+  export interface LinkAnchorProps {
     type?: EuiLinkType,
     color?: EuiLinkColor
   }
 
-  export type EuiLink = SFC<EuiLinkButtonProps | EuiLinkAnchorProps>;
+  type EuiLinkAnchorProps = CommonProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'> & LinkAnchorProps;
+
+
+  export const EuiLink: SFC<EuiLinkButtonProps | EuiLinkAnchorProps>;
 }

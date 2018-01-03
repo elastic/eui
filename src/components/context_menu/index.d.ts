@@ -1,10 +1,8 @@
 /// <reference path="../common.d.ts" />
 
-import { ReactElement } from 'react';
+import { SFC, ButtonHTMLAttributes, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
-
-  import { SFC, ButtonHTMLAttributes, DOMAttributes, ReactElement, ReactNode } from 'react';
 
   /**
    * context menu panel type defs
@@ -12,6 +10,7 @@ declare module '@elastic/eui' {
    * @see './context_menu_panel.js`
    */
 
+  import { HTMLAttributes } from 'react';
   export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 
   export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -33,9 +32,9 @@ declare module '@elastic/eui' {
     initialFocusedItemIndex?: number,
   }
 
-  export type EuiContextMenuPanel = SFC<
+  export const EuiContextMenuPanel: SFC<
     CommonProps &
-    Omit<DOMAttributes<HTMLDivElement>, 'ref', 'onKeyDown', 'tabIndex', 'onAnimationEnd'> &
+    Omit<HTMLAttributes<HTMLDivElement>, 'onKeyDown' | 'tabIndex' | 'onAnimationEnd'> &
     EuiContextMenuPanelProps
     >;
 
@@ -54,9 +53,9 @@ declare module '@elastic/eui' {
     buttonRef?: RefCallback<HTMLButtonElement>
   }
 
-  export type EuiContextMenuItem = SFC<
+  export const EuiContextMenuItem: SFC<
     CommonProps &
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type', 'ref'> &
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' > &
     EuiContextMenuItemProps
     >;
 
@@ -74,8 +73,8 @@ declare module '@elastic/eui' {
     initialPanelId?: EuiContextMenuPanelId
   }
 
-  export type EuiContextMenu = SFC<
-    Omit<DOMAttributes<HTMLDivElement>, 'ref', 'className', 'style'> &
+  export const EuiContextMenu: SFC<
+    Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'style'> &
     EuiContextMenuProps>;
 
 }

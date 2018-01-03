@@ -2,7 +2,7 @@
 
 declare module "@elastic/eui" {
 
-  import { SFC, DOMAttributes } from 'react';
+  import { SFC, HTMLAttributes } from 'react';
 
   /**
    * spacer type defs
@@ -16,9 +16,9 @@ declare module "@elastic/eui" {
     size?: SpacerSize
   }
 
-  export type EuiSpacer = SFC<
+  export const EuiSpacer: SFC<
     CommonProps &
-    DOMAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLDivElement> &
     EuiSpacerProps
     >;
 }
