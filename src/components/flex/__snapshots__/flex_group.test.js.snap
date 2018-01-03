@@ -20,13 +20,13 @@ exports[`EuiFlexGroup props alignItems center is rendered 1`] = `
 
 exports[`EuiFlexGroup props alignItems flexEnd is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsEnd euiFlexGroup--responsive"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexEnd euiFlexGroup--responsive"
 />
 `;
 
 exports[`EuiFlexGroup props alignItems flexStart is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsStart euiFlexGroup--responsive"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--responsive"
 />
 `;
 

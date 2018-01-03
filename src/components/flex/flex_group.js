@@ -15,8 +15,8 @@ export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
 
 const alignItemsToClassNameMap = {
   stretch: null,
-  flexStart: 'euiFlexGroup--alignItemsStart',
-  flexEnd: 'euiFlexGroup--alignItemsEnd',
+  flexStart: 'euiFlexGroup--alignItemsFlexStart',
+  flexEnd: 'euiFlexGroup--alignItemsFlexEnd',
   center: 'euiFlexGroup--alignItemsCenter',
 };
 
