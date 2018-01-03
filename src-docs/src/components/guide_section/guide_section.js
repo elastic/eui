@@ -1,11 +1,13 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {
   GuideSandboxChrome,
 } from '..';
 
 import {
+  EuiButtonIcon,
   EuiCodeBlock,
   EuiErrorBoundary,
   EuiSpacer,
@@ -38,6 +40,7 @@ export class GuideSection extends Component {
       sandbox: {
         isChromeVisible: props.isSandbox ? false : undefined,
       },
+      isCodeFullScreen: false,
     };
   }
 
@@ -47,12 +50,26 @@ export class GuideSection extends Component {
     });
   }
 
+  onToggleCodeFullScreen = () => {
+    this.setState({
+      isCodeFullScreen: !this.state.isCodeFullScreen,
+    });
+  };
+
   onToggleSandboxChrome = () => {
     this.setState({
       sandbox: {
         isChromeVisible: !this.state.sandbox.isChromeVisible,
       },
     });
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isCodeFullScreen) {
+      document.body.classList.add('euiBody-hasOverlayMask');
+    } else {
+      document.body.classList.remove('euiBody-hasOverlayMask');
+    }
   }
 
   renderTabs() {
@@ -114,16 +131,27 @@ export class GuideSection extends Component {
 
     const codeClass = nameToCodeClassMap[name];
     const source = this.props.source.find(sourceObject => sourceObject.type === name);
+    const classes = classNames('guideCode', {
+      'guideCode-isExpanded': this.state.isCodeFullScreen,
+    });
 
     return (
-      <div key={name} ref={name}>
+      <div key={name} ref={name} className={classes}>
         <EuiCodeBlock
           language={codeClass}
           color="dark"
-          overflowHeight={400}
+          overflowHeight={this.state.isCodeFullScreen ? '100vh' : 400}
         >
           {source.code}
         </EuiCodeBlock>
+
+        <EuiButtonIcon
+          className="guideCodeFullScreenButton"
+          size="s"
+          onClick={this.onToggleCodeFullScreen}
+          iconType={this.state.isCodeFullScreen ? 'cross' : 'expand'}
+          aria-label="Expand"
+        />
       </div>
     );
   }
@@ -144,9 +172,11 @@ export class GuideSection extends Component {
   }
 
   render() {
+    const chrome = this.state.isCodeFullScreen ? undefined : this.renderChrome();
+
     return (
       <div className="guideSection" id={this.props.id}>
-        {this.renderChrome()}
+        {chrome}
         {this.renderContent()}
       </div>
     );
