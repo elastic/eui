@@ -7,10 +7,12 @@ export const EuiTab = ({
   onClick,
   children,
   className,
+  disabled,
   ...rest
 }) => {
   const classes = classNames('euiTab', className, {
-    'euiTab-isSelected': isSelected
+    'euiTab-isSelected': isSelected,
+    'euiTab-isDisabled': disabled,
   });
 
   return (
@@ -20,6 +22,7 @@ export const EuiTab = ({
       type="button"
       className={classes}
       onClick={onClick}
+      disabled={disabled}
       {...rest}
     >
       <span className="euiTab__content">
@@ -31,6 +34,7 @@ export const EuiTab = ({
 
 EuiTab.defaultProps = {
   isSelected: false,
+  disabled: false,
 };
 
 EuiTab.propTypes = {
@@ -38,4 +42,5 @@ EuiTab.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
 };

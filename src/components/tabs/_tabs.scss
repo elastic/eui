@@ -30,6 +30,16 @@
     text-decoration: underline;
   }
 
+  &.euiTab-isDisabled {
+    color: $euiColorMediumShade;
+
+    &:hover {
+      cursor: not-allowed;
+      text-decoration: none;
+      color: $euiColorMediumShade;
+    }
+  }
+
   &.euiTab-isSelected {
     cursor: default;
     color: $euiColorPrimary;

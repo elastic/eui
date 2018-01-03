@@ -13,15 +13,19 @@ class EuiTabsExample extends React.Component {
     this.tabs = [{
       id: 'cobalt',
       name: 'Cobalt',
+      disabled: false,
     }, {
       id: 'dextrose',
       name: 'Dextrose',
+      disabled: false,
     }, {
       id: 'hydrogen',
       name: 'Hydrogen',
+      disabled: true,
     }, {
       id: 'monosodium_glutammate',
       name: 'Monosodium Glutamate',
+      disabled: false,
     }];
 
     this.state = {
@@ -40,6 +44,7 @@ class EuiTabsExample extends React.Component {
       <EuiTab
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}
+        disabled={tab.disabled}
         key={index}
       >
         {tab.name}
