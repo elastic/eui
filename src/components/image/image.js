@@ -121,4 +121,5 @@ export class EuiImage extends Component {
 
 EuiImage.defaultProps = {
   title: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
 };
