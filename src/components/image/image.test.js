@@ -7,7 +7,7 @@ import { EuiImage } from './image';
 describe('EuiImage', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiImage {...requiredProps} />
+      <EuiImage title="" {...requiredProps} />
     );
 
     expect(component)

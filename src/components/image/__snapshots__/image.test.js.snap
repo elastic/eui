@@ -8,6 +8,7 @@ exports[`EuiImage is rendered 1`] = `
 >
   <img
     class="euiImage__img"
+    title=""
   />
 </figure>
 `;
