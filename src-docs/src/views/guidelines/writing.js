@@ -24,6 +24,7 @@ import {
   EuiFormRow,
   EuiIcon,
   EuiFieldNumber,
+  EuiLink,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -253,11 +254,13 @@ export default () => (
       <GuideGuidelineExample type="do" text="">
         <EuiFormRow
           label="Number"
-          helpText="Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink>"
+          helpText={<span>Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink></span>}
         >
           <EuiFieldNumber min={1} max={5} step={1} />
         </EuiFormRow>
       </GuideGuidelineExample>
+
+      <EuiFlexItem />
     </GuideGuideline>
 
 
