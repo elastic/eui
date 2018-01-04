@@ -1,21 +1,45 @@
+// Main <figure> that wraps images.
 .euiImage {
   display: inline-block;
+  max-width: 100%;
+
+  &.euiImage--hasShadow {
+    .euiImage__img {
+      @include euiBottomShadowMedium;
+    }
+  }
+
+  &.euiImage--allowFullScreen:hover {
+    .euiImage__img {
+      cursor: pointer;
+    }
+  }
+
+  // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
+  &.euiImage--small {
+    width: convertToRem(120px);
+  }
+
+  &.euiImage--medium {
+    width: convertToRem(200px);
+  }
+
+  &.euiImage--large {
+    width: convertToRem(360px);
+  }
+
+  &.euiImage--xlarge {
+    width: convertToRem(600px);
+  }
+
+  &.euiImage--fullWidth {
+    width: 100%;
+  }
 }
 
+// The image itself is full width within the container.
 .euiImage__img {
   width: 100%;
-}
-
-.euiImage--hasShadow {
-  .euiImage__img {
-    @include euiBottomShadowMedium;
-  }
-}
-
-.euiImage--allowFullScreen:hover {
-  .euiImage__img {
-    cursor: pointer;
-  }
 }
 
 .euiImage__caption {
@@ -23,6 +47,7 @@
   @include euiFontSizeS;
 }
 
+// The fullscreen image that optionally pops up on click.
 .euiImageFullscreen {
   max-height: 80vh;
   max-width: 80vw;
@@ -39,21 +64,6 @@
   }
 }
 
-.euiImage--small {
-  width: 10vw;
-}
-
-.euiImage--medium {
-  width: 20vw;
-}
-
-.euiImage--large {
-  width: 33vw;
-}
-
-.euiImage--fullWidth {
-  width: 100%;
-}
 
 @keyframes euiImageFullscreen {
   0% {

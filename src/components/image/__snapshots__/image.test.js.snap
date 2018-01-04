@@ -1,15 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiImage is rendered 1`] = `
-<div>
-  <figure
-    aria-label="aria-label"
-    class="euiImage testClass1 testClass2"
-    data-test-subj="test subject string"
-  >
-    <img
-      class="euiImage__img"
-    />
-  </figure>
-</div>
+<figure
+  aria-label="aria-label"
+  class="euiImage testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <img
+    class="euiImage__img"
+  />
+</figure>
 `;

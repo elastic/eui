@@ -6,11 +6,11 @@ import {
 
 export default () => (
   <EuiImage
-    size="s"
+    size="l"
     hasShadow
     allowFullScreen
     caption="Click me to see full screen"
     title="Accessible image title goes here"
-    url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+    url="https://i.imgur.com/4qx7HhE.jpg"
   />
 );

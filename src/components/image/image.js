@@ -13,6 +13,7 @@ const sizeToClassNameMap = {
   s: 'euiImage--small',
   m: 'euiImage--medium',
   l: 'euiImage--large',
+  xl: 'euiImage--xlarge',
   fullWidth: 'euiImage--fullWidth',
   original: '',
 };
@@ -100,17 +101,20 @@ export class EuiImage extends Component {
     }
 
     return (
-      <div>
-        <figure
-          className={classes}
-          onClick={this.toggleImageFullscreen}
-          {...rest}
-        >
-          <img src={url} className="euiImage__img" title={title} />
-          {optionalCaption}
-        </figure>
+      <figure
+        className={classes}
+        onClick={this.toggleImageFullscreen}
+        {...rest}
+      >
+        <img src={url} className="euiImage__img" title={title} />
+        {optionalCaption}
+
+        {/*
+          If the below fullscreen image renders, it actually attaches to the body because of
+          EuiOverlayMask's React portal usage.
+        */}
         {fullScreenDisplay}
-      </div>
+      </figure>
     );
   }
 }

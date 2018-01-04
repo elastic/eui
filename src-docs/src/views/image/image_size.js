@@ -13,7 +13,7 @@ export default () => (
       allowFullScreen
       caption="Small"
       title="Accessible image title goes here"
-      url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+      url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
     <EuiImage
@@ -22,7 +22,7 @@ export default () => (
       allowFullScreen
       caption="Medium"
       title="Accessible image title goes here"
-      url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+      url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
     <EuiImage
@@ -31,7 +31,16 @@ export default () => (
       allowFullScreen
       caption="Large"
       title="Accessible image title goes here"
-      url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+      url="https://i.imgur.com/4qx7HhE.jpg"
+    />
+    <EuiSpacer />
+    <EuiImage
+      size="xl"
+      hasShadow
+      allowFullScreen
+      caption="Extra large"
+      title="Accessible image title goes here"
+      url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
     <EuiImage
@@ -39,7 +48,7 @@ export default () => (
       allowFullScreen
       caption="Original"
       title="Accessible image title goes here"
-      url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+      url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
     <EuiImage
@@ -48,7 +57,7 @@ export default () => (
       size="fullWidth"
       caption="Full width"
       title="Accessible image title goes here"
-      url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
+      url="https://i.imgur.com/4qx7HhE.jpg"
     />
   </div>
 );
