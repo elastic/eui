@@ -33,6 +33,7 @@ export class EuiImage extends Component {
     };
 
     this.toggleImageFullscreen = this.toggleImageFullscreen.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   onKeyDown = event => {
@@ -45,9 +46,11 @@ export class EuiImage extends Component {
 
   toggleImageFullscreen() {
     const currentState = this.state.isImageFullscreen;
-    this.setState({
-      isImageFullscreen: !currentState,
-    });
+    if (this.props.allowFullScreen) {
+      this.setState({
+        isImageFullscreen: !currentState,
+      });
+    }
   }
 
 
