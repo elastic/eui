@@ -15,6 +15,7 @@ export class EuiOverlayMask extends Component {
     const {
       className,
       children, // eslint-disable-line no-unused-vars
+      onClick,
       ...rest
     } = this.props;
 
@@ -23,7 +24,13 @@ export class EuiOverlayMask extends Component {
       'euiOverlayMask',
       className
     );
+    if (onClick) {
+      this.overlayMaskNode.addEventListener('click', onClick);
+    }
     Object.keys(rest).forEach((key) => {
+      if (typeof rest[key] !== 'string') {
+        throw new Error(`Unhandled property type. EuiOverlayMask property ${key} is not a string.`);
+      }
       this.overlayMaskNode.setAttribute(key, rest[key]);
     });
   }
@@ -36,6 +43,9 @@ export class EuiOverlayMask extends Component {
   componentWillUnmount() {
     document.body.classList.remove('euiBody-hasOverlayMask');
 
+    if (this.props.onClick) {
+      this.overlayMaskNode.removeEventListener('click', this.props.onClick);
+    }
     document.body.removeChild(this.overlayMaskNode);
     this.overlayMaskNode = null;
   }
@@ -51,4 +61,5 @@ export class EuiOverlayMask extends Component {
 EuiOverlayMask.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
