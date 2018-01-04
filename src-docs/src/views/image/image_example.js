@@ -38,7 +38,7 @@ export const ImageExample = {
           </p>
           <ul>
             <li>
-              <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l / original / fullWidth</EuiCode>.
+              <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l / xl / original / fullWidth</EuiCode>.
               The later will set the figure to stretch to 100% of its container.
             </li>
             <li>

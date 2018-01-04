@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { keyCodes } from '../../services';
+import FocusTrap from 'focus-trap-react';
 
 import {
   EuiOverlayMask,
@@ -31,27 +32,24 @@ export class EuiImage extends Component {
     super(props);
 
     this.state = {
-      isImageFullscreen: false,
+      isImageFullScreen: false,
     };
 
-    this.toggleImageFullscreen = this.toggleImageFullscreen.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
+    this.toggleImageFullScreen = this.toggleImageFullScreen.bind(this);
   }
 
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
-      this.setState({
-        isImageFullscreen: false,
-      });
+      this.toggleImageFullScreen();
     }
   };
 
   // Only toggle the state if allowed by allowFullScreen prop.
-  toggleImageFullscreen() {
-    const currentState = this.state.isImageFullscreen;
+  toggleImageFullScreen() {
+    const currentState = this.state.isImageFullScreen;
     if (this.props.allowFullScreen) {
       this.setState({
-        isImageFullscreen: !currentState,
+        isImageFullScreen: !currentState,
       });
     }
   }
@@ -87,33 +85,46 @@ export class EuiImage extends Component {
       );
     }
 
-    let fullScreenDisplay;
+    let FullScreenDisplay;
 
-    if (this.state.isImageFullscreen) {
-      fullScreenDisplay = (
-        <EuiOverlayMask onClick={this.toggleImageFullscreen}>
-          <figure className="euiImageFullscreen" onClick={this.toggleImageFullscreen}>
-            <img src={url} className="euiImageFullscreen__img" title={title} />
-            {optionalCaption}
-          </figure>
-        </EuiOverlayMask>
+    if (this.state.isImageFullScreen) {
+      FullScreenDisplay = (
+        <FocusTrap
+          focusTrapOptions={{
+            clickOutsideDeactivates: true,
+            initialFocus: () => this.figure,
+          }}
+        >
+          <EuiOverlayMask onClick={this.toggleImageFullScreen}>
+            <figure
+              ref={node => { this.figure = node; }}
+              className="euiImageFullScreen"
+              onClick={this.toggleImageFullScreen}
+              tabIndex={0}
+              onKeyDown={this.onKeyDown}
+            >
+              <img src={url} className="euiImageFullScreen__img" title={title} />
+              {optionalCaption}
+            </figure>
+          </EuiOverlayMask>
+        </FocusTrap>
       );
     }
 
     return (
       <figure
         className={classes}
-        onClick={this.toggleImageFullscreen}
+        onClick={this.toggleImageFullScreen}
         {...rest}
       >
         <img src={url} className="euiImage__img" title={title} />
         {optionalCaption}
 
         {/*
-          If the below fullscreen image renders, it actually attaches to the body because of
+          If the below FullScreen image renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
         */}
-        {fullScreenDisplay}
+        {FullScreenDisplay}
       </figure>
     );
   }

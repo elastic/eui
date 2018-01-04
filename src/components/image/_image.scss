@@ -3,6 +3,7 @@
   display: inline-block;
   max-width: 100%;
 
+
   &.euiImage--hasShadow {
     .euiImage__img {
       @include euiBottomShadowMedium;
@@ -47,25 +48,25 @@
   @include euiFontSizeS;
 }
 
-// The fullscreen image that optionally pops up on click.
-.euiImageFullscreen {
+// The FullScreen image that optionally pops up on click.
+.euiImageFullScreen {
   max-height: 80vh;
   max-width: 80vw;
-  animation: euiImageFullscreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
+  animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  .euiImageFullscreen__img {
+  .euiImageFullScreen__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
   }
 
-  &:hover .euiImageFullscreen__img {
+  &:hover .euiImageFullScreen__img {
     cursor: pointer;
   }
 }
 
 
-@keyframes euiImageFullscreen {
+@keyframes euiImageFullScreen {
   0% {
     opacity: 0;
     transform: translateY($euiSizeXL * 2);
