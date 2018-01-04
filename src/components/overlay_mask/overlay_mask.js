@@ -24,7 +24,11 @@ export class EuiOverlayMask extends Component {
       className
     );
     Object.keys(rest).forEach((key) => {
-      this.overlayMaskNode.setAttribute(key, rest[key]);
+      if (typeof rest[key] === 'function') {
+        this.overlayMaskNode[key.toLowerCase()] = rest[key];
+      } else {
+        this.overlayMaskNode.setAttribute(key, rest[key]);
+      }
     });
   }
 
