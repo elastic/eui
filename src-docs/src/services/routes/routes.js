@@ -83,6 +83,9 @@ import { HorizontalRuleExample }
 import { IconExample }
   from '../../views/icon/icon_example';
 
+import { ImageExample }
+  from '../../views/image/image_example';
+
 import { KeyPadMenuExample }
   from '../../views/key_pad_menu/key_pad_menu_example';
 
@@ -208,6 +211,7 @@ const components = [
   HealthExample,
   HorizontalRuleExample,
   IconExample,
+  ImageExample,
   KeyPadMenuExample,
   LinkExample,
   LoadingExample,

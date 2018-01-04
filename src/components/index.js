@@ -121,6 +121,10 @@ export {
 } from './icon';
 
 export {
+  EuiImage,
+} from './image';
+
+export {
   EuiLoadingKibana,
   EuiLoadingChart,
   EuiLoadingSpinner,

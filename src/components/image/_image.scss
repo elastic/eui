@@ -1,0 +1,41 @@
+.euiImage {
+  display: inline-block;
+}
+
+.euiImage__img {
+  width: 100%;
+}
+
+.euiImage--hasShadow {
+  .euiImage__img {
+    @include euiBottomShadowMedium;
+  }
+}
+
+.euiImage__caption {
+  text-align: center;
+  @include euiFontSizeS;
+}
+
+.euiImageFullscreen {
+  max-height: 80vh;
+  max-width: 80vw;
+  animation: euiImageFullscreen $euiAnimSpeedSlow $euiAnimSlightBounce;
+  .euiImageFullscreen__img {
+  }
+}
+
+.euiImage--small {
+  width: $euiSize * 12;
+}
+
+@keyframes euiImageFullscreen {
+  0% {
+    opacity: 0;
+    transform: translateY($euiSizeXL * 2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
