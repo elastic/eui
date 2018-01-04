@@ -63,6 +63,7 @@ export class EuiImage extends Component {
       caption,
       hasShadow,
       allowFullScreen,
+      title,
       ...rest
     } = this.props;
 
@@ -91,7 +92,7 @@ export class EuiImage extends Component {
       fullScreenDisplay = (
         <EuiOverlayMask onClick={this.toggleImageFullscreen}>
           <figure className="euiImageFullscreen" onClick={this.toggleImageFullscreen}>
-            <img src={url} className="euiImageFullscreen__img" />
+            <img src={url} className="euiImageFullscreen__img" title={title} />
             {optionalCaption}
           </figure>
         </EuiOverlayMask>
@@ -105,7 +106,7 @@ export class EuiImage extends Component {
           onClick={this.toggleImageFullscreen}
           {...rest}
         >
-          <img src={url} className="euiImage__img" />
+          <img src={url} className="euiImage__img" title={title} />
           {optionalCaption}
         </figure>
         {fullScreenDisplay}
@@ -113,3 +114,7 @@ export class EuiImage extends Component {
     );
   }
 }
+
+EuiImage.defaultProps = {
+  title: PropTypes.string.isRequired,
+};

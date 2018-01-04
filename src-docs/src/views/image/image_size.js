@@ -12,6 +12,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Small"
+      title="Accessible image title goes here"
       url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
     />
     <EuiSpacer />
@@ -20,6 +21,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Medium"
+      title="Accessible image title goes here"
       url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
     />
     <EuiSpacer />
@@ -28,6 +30,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Large"
+      title="Accessible image title goes here"
       url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
     />
     <EuiSpacer />
@@ -35,6 +38,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Original"
+      title="Accessible image title goes here"
       url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
     />
     <EuiSpacer />
@@ -43,6 +47,7 @@ export default () => (
       allowFullScreen
       size="fullWidth"
       caption="Full width"
+      title="Accessible image title goes here"
       url="http://bookmans.com/wp-content/uploads/2016/07/E6e7_dungeons_dragons.jpg"
     />
   </div>
