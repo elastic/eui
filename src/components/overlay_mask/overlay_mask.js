@@ -43,6 +43,9 @@ export class EuiOverlayMask extends Component {
   componentWillUnmount() {
     document.body.classList.remove('euiBody-hasOverlayMask');
 
+    if (this.props.onClick) {
+      this.overlayMaskNode.removeEventListener('click', this.props.onClick);
+    }
     document.body.removeChild(this.overlayMaskNode);
     this.overlayMaskNode = null;
   }
@@ -58,4 +61,5 @@ export class EuiOverlayMask extends Component {
 EuiOverlayMask.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
