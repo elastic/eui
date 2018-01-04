@@ -12,6 +12,12 @@
   }
 }
 
+.euiImage--allowFullScreen:hover {
+  .euiImage__img {
+    cursor: pointer;
+  }
+}
+
 .euiImage__caption {
   text-align: center;
   @include euiFontSizeS;
@@ -20,13 +26,33 @@
 .euiImageFullscreen {
   max-height: 80vh;
   max-width: 80vw;
-  animation: euiImageFullscreen $euiAnimSpeedSlow $euiAnimSlightBounce;
+  animation: euiImageFullscreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
+
   .euiImageFullscreen__img {
+    max-height: 80vh;
+    max-width: 80vw;
+    cursor: pointer;
+  }
+
+  &:hover .euiImageFullscreen__img {
+    cursor: pointer;
   }
 }
 
 .euiImage--small {
-  width: $euiSize * 12;
+  width: 10vw;
+}
+
+.euiImage--medium {
+  width: 20vw;
+}
+
+.euiImage--large {
+  width: 33vw;
+}
+
+.euiImage--fullWidth {
+  width: 100%;
 }
 
 @keyframes euiImageFullscreen {

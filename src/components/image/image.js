@@ -13,6 +13,7 @@ const sizeToClassNameMap = {
   s: 'euiImage--small',
   m: 'euiImage--medium',
   l: 'euiImage--large',
+  fullWidth: 'euiImage--fullWidth',
   original: '',
 };
 
@@ -44,6 +45,7 @@ export class EuiImage extends Component {
     }
   };
 
+  // Only toggle the state if allowed by allowFullScreen prop.
   toggleImageFullscreen() {
     const currentState = this.state.isImageFullscreen;
     if (this.props.allowFullScreen) {
@@ -53,8 +55,6 @@ export class EuiImage extends Component {
     }
   }
 
-
-
   render() {
     const {
       className,
@@ -62,6 +62,7 @@ export class EuiImage extends Component {
       size,
       caption,
       hasShadow,
+      allowFullScreen,
       ...rest
     } = this.props;
 
@@ -70,6 +71,7 @@ export class EuiImage extends Component {
       sizeToClassNameMap[size],
       {
         'euiImage--hasShadow': hasShadow,
+        'euiImage--allowFullScreen': allowFullScreen,
       },
       className
     );
@@ -84,6 +86,7 @@ export class EuiImage extends Component {
     }
 
     let fullScreenDisplay;
+
     if (this.state.isImageFullscreen) {
       fullScreenDisplay = (
         <EuiOverlayMask onClick={this.toggleImageFullscreen}>
