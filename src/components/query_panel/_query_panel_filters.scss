@@ -1,0 +1,35 @@
+.euiQueryPanelFilters {
+  @include euiQueryPanelBar;
+
+  border-top: none;
+  border-bottom-left-radius: $euiBorderRadius;
+  border-bottom-right-radius: $euiBorderRadius;
+  padding-top: 0;
+
+  &.euiQueryPanelFilters--animateIn {
+    animation:  euiPanelBarSlide $euiAnimSpeedNormal $euiAnimSlightResistance;
+    position: relative;
+  }
+
+  > * {
+    margin-top: $euiSizeS;
+  }
+}
+
+@keyframes euiPanelBarSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-$euiSizeXXL);
+  }
+  // This is a needed cheat. Because popovers exist in the filter bar, we can't
+  // use z-index (because it create a z-index statck) that could mess up the popover.
+  // Waiting a moment before applying opacity makes you think the
+  // filter bar is behind the search bar, when in reality its still on top.
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
