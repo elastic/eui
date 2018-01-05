@@ -32,7 +32,7 @@ import makeId from '../../../../src/components/form/form_row/make_id';
 export default () => (
   <GuidePage title="Writing">
     <EuiText>
-      <h1>Writing</h1>
+      <h1>Writing</h1>❏
       <p>
         You can have the most beautiful UI,
         but without <b>consistent, easy-to-understand text</b>,

@@ -2,6 +2,7 @@ export {
   GuideGuideline,
   GuideGuidelineTitle,
   GuideGuidelineExample,
+  GuideGuidelineDescription,
 } from './guide_guideline';
 
 export {

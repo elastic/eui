@@ -9,3 +9,7 @@ export {
 export {
   GuideGuidelineTitle,
 } from './guide_guideline_title';
+
+export {
+  GuideGuidelineDescription,
+} from './guide_guideline_description';

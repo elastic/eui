@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
   EuiFlexGroup,
-  EuiText,
-  EuiFlexItem,
 } from '../../../../src/components';
+
+import {
+  GuideGuidelineDescription,
+} from '../../components';
 
 export const GuideGuideline = ({
   children,
@@ -17,44 +19,35 @@ export const GuideGuideline = ({
   const classes = classNames(
     'Guideline',
     {
-      'Guideline--hasHeading': heading
+      'Guideline--hasHeading': description
     },
     className,
   );
-
-  let headingNode;
-
-  if (heading) {
-    headingNode = (
-      <h3>{heading}</h3>
-    );
-  }
 
   let descriptionNode;
 
   if (description) {
     descriptionNode = (
-      <p>{description}</p>
+      <GuideGuidelineDescription
+        heading={heading}
+        description={description}
+      />
     );
   }
 
   return (
-    <EuiFlexGroup
+    <div
       wrap={true}
       className={classes}
       {...rest}
     >
+      {descriptionNode}
 
-      <EuiFlexItem className="Guideline__description">
-        <EuiText>
-          {headingNode}
-          {descriptionNode}
-        </EuiText>
-      </EuiFlexItem>
+      <EuiFlexGroup className="Guideline__exampleRow" gutterSize="xl" wrap>
+        {children}
+      </EuiFlexGroup>
 
-      {children}
-
-    </EuiFlexGroup>
+    </div>
   );
 };
 

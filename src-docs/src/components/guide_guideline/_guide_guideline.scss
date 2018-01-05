@@ -1,15 +1,15 @@
 .Guideline {
-  margin-bottom: $euiSizeXL;
+  margin-bottom: $euiSizeXXL * 2;
 
   &.Guideline--hasHeading {
-    margin-top: $euiSizeXL * 2;
+    margin-top: $euiSizeXXL * 2;
+  }
 
-    & + .Guideline:not(.Guideline--hasHeading) {
-      margin-top: $euiSizeXL * -1;
-    }
+  & + .Guideline:not(.Guideline--hasHeading) {
+    margin-top: $euiSizeXXL * -2;
   }
 
   .euiTitle + &.Guideline--hasHeading {
-    margin-top: $euiSizeXL;
+    margin-top: $euiSizeXXL;
   }
 }
