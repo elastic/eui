@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `<EuiImage>` component to allow for image sizing and zooms. [(#262)](https://github.com/elastic/eui/pull/262)
 - Updated `<EuiOverlayMask>` to append `<div>` to body. [(#254)](https://github.com/elastic/eui/pull/254)
 
 **Bug fixes**

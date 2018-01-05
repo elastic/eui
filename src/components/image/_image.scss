@@ -1,0 +1,93 @@
+// Main <figure> that wraps images.
+.euiImage {
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+
+  &.euiImage--hasShadow {
+    .euiImage__img {
+      @include euiBottomShadowMedium;
+    }
+  }
+
+  &.euiImage--allowFullScreen:hover {
+    .euiImage__img {
+      cursor: pointer;
+    }
+
+    .euiImage__icon {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
+  &.euiImage--small {
+    width: convertToRem(120px);
+  }
+
+  &.euiImage--medium {
+    width: convertToRem(200px);
+  }
+
+  &.euiImage--large {
+    width: convertToRem(360px);
+  }
+
+  &.euiImage--xlarge {
+    width: convertToRem(600px);
+  }
+
+  &.euiImage--fullWidth {
+    width: 100%;
+  }
+}
+
+// The image itself is full width within the container.
+.euiImage__img {
+  width: 100%;
+}
+
+.euiImage__caption {
+  text-align: center;
+  @include euiFontSizeS;
+}
+
+.euiImage__icon {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: $euiSize;
+  top: $euiSize;
+  transition: opacity $euiAnimSpeedSlow $euiAnimSlightResistance ;
+  cursor: pointer;
+}
+
+// The FullScreen image that optionally pops up on click.
+.euiImageFullScreen {
+  max-height: 80vh;
+  max-width: 80vw;
+  animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
+
+  .euiImageFullScreen__img {
+    max-height: 80vh;
+    max-width: 80vw;
+    cursor: pointer;
+  }
+
+  &:hover .euiImageFullScreen__img {
+    cursor: pointer;
+  }
+}
+
+
+@keyframes euiImageFullScreen {
+  0% {
+    opacity: 0;
+    transform: translateY($euiSizeXL * 2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
