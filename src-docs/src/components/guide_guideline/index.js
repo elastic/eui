@@ -13,3 +13,7 @@ export {
 export {
   GuideGuidelineDescription,
 } from './guide_guideline_description';
+
+export {
+  GuideGuidelineWriting,
+} from './guide_guideline_writing';

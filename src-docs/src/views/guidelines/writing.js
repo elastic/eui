@@ -5,6 +5,7 @@ import {
   GuideGuideline,
   GuideGuidelineExample,
   GuideGuidelineTitle,
+  GuideGuidelineWriting,
 } from '../../components';
 
 
@@ -32,7 +33,7 @@ import makeId from '../../../../src/components/form/form_row/make_id';
 export default () => (
   <GuidePage title="Writing">
     <EuiText>
-      <h1>Writing</h1>❏
+      <h1>Writing</h1>
       <p>
         You can have the most beautiful UI,
         but without <b>consistent, easy-to-understand text</b>,
@@ -85,8 +86,13 @@ export default () => (
       description="It&apos;s friendly and engages the user directly."
     >
 
-      <GuideGuidelineExample type="do" text="You must configure TLS to apply a Platinum License." />
-      <GuideGuidelineExample type="dont" text="Configuring TLS will be required to apply a Platinum License." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>You must configure TLS to apply a Platinum License.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Configuring TLS will be required to apply a Platinum License.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
@@ -94,8 +100,12 @@ export default () => (
       description="Active voice puts the focus on who or what is performing the action and makes the sentence easier to understand."
     >
 
-      <GuideGuidelineExample type="do" text="The Elasticsearch Query DSL builds filters." />
-      <GuideGuidelineExample type="dont" text="Filters are built using the Elasticsearch Query DSL." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>The Elasticsearch Query DSL builds filters.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Filters are built using the Elasticsearch Query DSL.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
@@ -121,16 +131,24 @@ export default () => (
       heading=""
       description=""
     >
-      <GuideGuidelineExample type="do" text="Configure at least one index pattern." />
-      <GuideGuidelineExample type="dont" text="In order to use Kibana, you must configure at least one index pattern." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Configure at least one index pattern.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>In order to use Kibana, you must configure at least one index pattern.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
       heading=""
       description=""
     >
-      <GuideGuidelineExample type="do" text="No active shard records for this cluster." />
-      <GuideGuidelineExample type="dont" text="There are currently no active shard records for this cluster." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>No active shard records for this cluster.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>There are currently no active shard records for this cluster.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
@@ -138,16 +156,24 @@ export default () => (
       description="The use of &quot;I&quot; and &quot;we&quot; can come across as patronizing.
         Instead of what you recommend or what your app is doing, focus on your users."
     >
-      <GuideGuidelineExample type="do" text="Your index has a date field." />
-      <GuideGuidelineExample type="dont" text="I see that you are looking at an index with a date field." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Your index has a date field.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>I see that you are looking at an index with a date field.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
       heading=""
       description=""
     >
-      <GuideGuidelineExample type="do" text="For maximum compatibility, share the short URL of the snapshot." />
-      <GuideGuidelineExample type="dont" text="We recommend sharing shortened snapshot URLs for maximum compatibility." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>For maximum compatibility, share the short URL of the snapshot.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>We recommend sharing shortened snapshot URLs for maximum compatibility.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuidelineTitle>Capitalization</GuideGuidelineTitle>
@@ -269,8 +295,12 @@ export default () => (
       description="Use contractions if they make your text flow more naturally, such as
         &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and  &quot;can&apos;t&quot; instead of &quot;cannot.&quot;"
     >
-      <GuideGuidelineExample type="do" text="Didn&apos;t find what you were looking for?" />
-      <GuideGuidelineExample type="dont" text="Did not find what you were looking for?" />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Didn&apos;t find what you were looking for?</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Did not find what you were looking for?</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
@@ -278,8 +308,12 @@ export default () => (
       description="Showing excitement is best reserved for greetings and encouraging messages.
         Don&apos;t use more than one exclamation point per page."
     >
-      <GuideGuidelineExample type="do" text="This dashboard is empty.  Let&apos;s fill it up!" />
-      <GuideGuidelineExample type="dont" text="Couldn&apos;t find any Elasticsearch data!" />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>This dashboard is empty.  Let&apos;s fill it up!</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Couldn&apos;t find any Elasticsearch data!</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuidelineTitle>Messages</GuideGuidelineTitle>
@@ -317,24 +351,38 @@ export default () => (
       heading="Provide a clear course of action"
       description="Tell the user what to do next, if applicable."
     >
-      <GuideGuidelineExample type="do" text="No data sources. Go to the Management app to define an index pattern." />
-      <GuideGuidelineExample type="dont" text="Oops, no data sources." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>No data sources. Go to the Management app to define an index pattern.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Oops, no data sources.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline
       heading="Avoid using &quot;Are you sure&quot;"
       description="Your text is more direct without it."
     >
-      <GuideGuidelineExample type="do" text="Delete this report?">
-        <EuiSpacer />
-        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
-        <EuiButton color="danger" size="s">Delete</EuiButton>
+      <GuideGuidelineExample type="do" text="" panel={false}>
+        <EuiPanel>
+          <EuiTitle size="s"><span>Delete this report?</span></EuiTitle>
+          <EuiSpacer />
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Delete</EuiButton>
+          </EuiFlexGroup>
+        </EuiPanel>
       </GuideGuidelineExample>
 
-      <GuideGuidelineExample type="dont" text="Are you sure you want to delete this report?">
-        <EuiSpacer />
-        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
-        <EuiButton color="danger" size="s">Delete Report</EuiButton>
+      <GuideGuidelineExample type="dont" text="" panel={false}>
+        <EuiPanel>
+          <EuiTitle size="s"><span>Are you sure you want to delete this report?</span></EuiTitle>
+          <EuiSpacer />
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Delete Report</EuiButton>
+          </EuiFlexGroup>
+        </EuiPanel>
       </GuideGuidelineExample>
     </GuideGuideline>
 
@@ -342,8 +390,12 @@ export default () => (
       heading="Avoid using &quot;please&quot;"
       description="An exception is for situations where the user must wait or do something inconvenient."
     >
-      <GuideGuidelineExample type="do" text="Save your work before generating a report." />
-      <GuideGuidelineExample type="dont" text="Please save your work before generating a report." />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Save your work before generating a report.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="dont">
+        <GuideGuidelineWriting>Please save your work before generating a report.</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuidelineTitle>Informational text</GuideGuidelineTitle>
@@ -436,15 +488,25 @@ export default () => (
       heading="Label buttons with their action"
       description="Don&apos;t use Yes or OK when you can use a verb phrase instead."
     >
-      <GuideGuidelineExample type="do" text="Remove this index pattern?">
-        <EuiSpacer />
-        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
-        <EuiButton color="danger" size="s">Remove</EuiButton>
+      <GuideGuidelineExample type="do" text="" panel={false}>
+        <EuiPanel>
+          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiSpacer />
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Remove</EuiButton>
+          </EuiFlexGroup>
+        </EuiPanel>
       </GuideGuidelineExample>
-      <GuideGuidelineExample type="dont" text="Remove this index pattern?">
-        <EuiSpacer />
-        <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
-        <EuiButton color="danger" size="s">Ok</EuiButton>
+      <GuideGuidelineExample type="dont" text="" panel={false}>
+        <EuiPanel>
+          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiSpacer />
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Ok</EuiButton>
+          </EuiFlexGroup>
+        </EuiPanel>
       </GuideGuidelineExample>
     </GuideGuideline>
 
@@ -456,8 +518,12 @@ export default () => (
         doesn&apos;t get in the user&apos;s way. Clever text can become annoying
         when used for frequently performed tasks."
     >
-      <GuideGuidelineExample type="do" text="Odd, exciting, and scary trends and anomalies in your Elasticsearch data" />
-      <GuideGuidelineExample type="do" text="Some cool stuff you can do" />
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Odd, exciting, and scary trends and anomalies in your Elasticsearch data</GuideGuidelineWriting>
+      </GuideGuidelineExample>
+      <GuideGuidelineExample type="do">
+        <GuideGuidelineWriting>Some cool stuff you can do</GuideGuidelineWriting>
+      </GuideGuidelineExample>
     </GuideGuideline>
 
     <GuideGuideline

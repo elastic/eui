@@ -3,6 +3,7 @@ export {
   GuideGuidelineTitle,
   GuideGuidelineExample,
   GuideGuidelineDescription,
+  GuideGuidelineWriting,
 } from './guide_guideline';
 
 export {

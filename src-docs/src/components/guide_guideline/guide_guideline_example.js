@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  EuiText,
   EuiFlexItem,
   EuiPanel,
 } from '../../../../src/components';
@@ -22,6 +21,7 @@ export const GuideGuidelineExample = ({
   className,
   type,
   text,
+  panel,
   ...rest,
 }) => {
 
@@ -31,14 +31,12 @@ export const GuideGuidelineExample = ({
     className
   );
 
-
-  let textNode;
-
-  if (text) {
-    textNode = (
-      <EuiText><p>{text}</p></EuiText>
-    );
-  }
+  const panelClasses = classNames(
+    'GuidelineExample__panel',
+    {
+      'GuidelineExample__panel--plain': !panel
+    },
+  );
 
   return (
     <EuiFlexItem
@@ -46,11 +44,10 @@ export const GuideGuidelineExample = ({
       {...rest}
     >
 
-      <EuiPanel>
-        {textNode}
+      <EuiPanel className={panelClasses}>
         {children}
       </EuiPanel>
-      <small>{typeToSubtitleTextMap[type]}</small>
+      <small>{text || typeToSubtitleTextMap[type]}</small>
 
     </EuiFlexItem>
   );
@@ -60,9 +57,11 @@ GuideGuidelineExample.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   type: PropTypes.string.isRequired,
-  text: PropTypes.string
+  text: PropTypes.string,
+  panel: PropTypes.bool,
 };
 
 GuideGuidelineExample.defaultProps = {
-  type: 'do'
+  type: 'do',
+  panel: true,
 };

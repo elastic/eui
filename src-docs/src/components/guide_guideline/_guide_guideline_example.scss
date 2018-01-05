@@ -1,7 +1,17 @@
 .GuidelineExample {
-  .euiPanel {
+  .GuidelineExample__panel {
     border-bottom: 2px solid;
+    padding-bottom: $euiSize;
     margin-bottom: $euiSizeS;
+
+    &.GuidelineExample__panel--plain {
+      border-width: 0 0 2px 0;
+      border-radius: 0;
+      padding-left: 0;
+      padding-top: 0;
+      padding-right: 0;
+      box-shadow: none;
+    }
 
     + small {
       font-size: $euiSizeM;
@@ -10,7 +20,7 @@
 
   // Coloring
   &.GuidelineExample--do {
-    .euiPanel {
+    .GuidelineExample__panel {
       border-bottom-color: $euiColorSuccess;
 
       + small {
@@ -20,7 +30,7 @@
   }
 
   &.GuidelineExample--dont {
-    .euiPanel {
+    .GuidelineExample__panel {
       border-bottom-color: $euiColorDanger;
 
       + small {
