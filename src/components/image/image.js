@@ -8,6 +8,7 @@ import FocusTrap from 'focus-trap-react';
 
 import {
   EuiOverlayMask,
+  EuiIcon,
 } from '../../components';
 
 const sizeToClassNameMap = {
@@ -20,6 +21,11 @@ const sizeToClassNameMap = {
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
+
+const fullScreenIconColorMap = {
+  light: 'ghost',
+  dark: 'default',
+};
 
 export class EuiImage extends Component {
 
@@ -62,6 +68,7 @@ export class EuiImage extends Component {
       caption,
       hasShadow,
       allowFullScreen,
+      fullScreenIconColor,
       title,
       ...rest
     } = this.props;
@@ -83,6 +90,11 @@ export class EuiImage extends Component {
           {caption}
         </figcaption>
       );
+    }
+
+    let optionalIcon;
+    if (allowFullScreen) {
+      optionalIcon = <EuiIcon type="fullScreen" color={fullScreenIconColorMap[fullScreenIconColor]} className="euiImage__icon" />;
     }
 
     let FullScreenDisplay;
@@ -124,13 +136,20 @@ export class EuiImage extends Component {
           If the below FullScreen image renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
         */}
+        {optionalIcon}
         {FullScreenDisplay}
       </figure>
     );
   }
 }
 
-EuiImage.defaultProps = {
+EuiImage.propTypes = {
   title: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
+  fullScreenIconColor: PropTypes.string,
+};
+
+EuiImage.defaultProps = {
+  size: 'original',
+  fullScreenIconColor: 'light',
 };

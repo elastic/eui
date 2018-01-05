@@ -224,6 +224,7 @@ const colorToClassMap = {
   danger: 'euiIcon--danger',
   text: 'euiIcon--text',
   subdued: 'euiIcon--subdued',
+  ghost: 'euiIcon--ghost',
 };
 
 export const COLORS = Object.keys(colorToClassMap);
