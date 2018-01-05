@@ -69,7 +69,7 @@ export class EuiImage extends Component {
       hasShadow,
       allowFullScreen,
       fullScreenIconColor,
-      title,
+      alt,
       ...rest
     } = this.props;
 
@@ -115,7 +115,7 @@ export class EuiImage extends Component {
               tabIndex={0}
               onKeyDown={this.onKeyDown}
             >
-              <img src={url} className="euiImageFullScreen__img" title={title} />
+              <img src={url} className="euiImageFullScreen__img" alt={alt} />
               {optionalCaption}
             </figure>
           </EuiOverlayMask>
@@ -129,7 +129,7 @@ export class EuiImage extends Component {
         onClick={this.toggleImageFullScreen}
         {...rest}
       >
-        <img src={url} className="euiImage__img" title={title} />
+        <img src={url} className="euiImage__img" alt={alt} />
         {optionalCaption}
 
         {/*
@@ -144,7 +144,7 @@ export class EuiImage extends Component {
 }
 
 EuiImage.propTypes = {
-  title: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   fullScreenIconColor: PropTypes.string,
 };

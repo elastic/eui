@@ -63,7 +63,7 @@ export const ImageExample = {
               <EuiCode>caption</EuiCode> will provide a caption to the image.
             </li>
             <li>
-              <EuiCode>title</EuiCode> Sepearate from the caption is a title on the img tag itself.
+              <EuiCode>alt</EuiCode> Sepearate from the caption is a title on the alt tag itself.
               This one is required for accessibility.
             </li>
           </ul>

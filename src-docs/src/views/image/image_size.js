@@ -12,7 +12,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Small"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
@@ -21,7 +21,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Medium"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
@@ -30,7 +30,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Large"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
@@ -39,7 +39,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Extra large"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
@@ -47,7 +47,7 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Original"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
     <EuiSpacer />
@@ -56,7 +56,7 @@ export default () => (
       allowFullScreen
       size="fullWidth"
       caption="Full width"
-      title="Accessible image title goes here"
+      alt="Accessible image alt goes here"
       url="https://i.imgur.com/4qx7HhE.jpg"
     />
   </div>

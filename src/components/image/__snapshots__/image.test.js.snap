@@ -5,10 +5,10 @@ exports[`EuiImage is rendered 1`] = `
   aria-label="aria-label"
   class="euiImage euiImage--large testClass1 testClass2"
   data-test-subj="test subject string"
+  title="title"
 >
   <img
     class="euiImage__img"
-    title="title"
   />
 </figure>
 `;

@@ -9,7 +9,7 @@ export default () => (
     size="l"
     hasShadow
     caption="I am a starship. Zooom!"
-    title="Accessible image title goes here"
+    alt="Accessible image alt goes here"
     url="https://i.imgur.com/4qx7HhE.jpg"
   />
 );
