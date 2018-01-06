@@ -1,5 +1,6 @@
 .euiCodeBlock {
   display: block;
+  position: relative;
   overflow: auto;
   background: $euiCodeBlockBackgroundColor;
   color: $euiCodeBlockColor;
@@ -14,6 +15,21 @@
     line-height: $euiLineHeight;
     font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
+  }
+
+  .euiCodeBlock__fullScreenButton {
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeL;
+  }
+
+  &.euiCodeBlock-isFullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $euiSizeL !important;
   }
 
   &.euiCodeBlock--fontSmall {
