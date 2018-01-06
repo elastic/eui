@@ -116,7 +116,7 @@ export class GuideSection extends Component {
     const source = this.props.source.find(sourceObject => sourceObject.type === name);
 
     return (
-      <div key={name} ref={name} className="guideCode">
+      <div key={name} ref={name}>
         <EuiCodeBlock
           language={codeClass}
           overflowHeight={400}

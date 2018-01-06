@@ -18,23 +18,3 @@
     height: 0;
   }
 }
-
-.guideCode {
-  position: relative;
-
-  &.guideCode-isExpanded {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $euiColorEmptyShade;
-    z-index: 9000;
-  }
-}
-
-  .guideCodeFullScreenButton {
-    position: absolute;
-    top: $euiSizeM;
-    right: $euiSizeM;
-  }
