@@ -1,6 +1,8 @@
 .euiCodeBlock {
   display: block;
   overflow: auto;
+  background: $euiCodeBlockBackgroundColor;
+  color: $euiCodeBlockColor;
 
   .euiCodeBlock__pre {
     display: block;
@@ -58,5 +60,119 @@
 
   &.euiCodeBlock--transparentBackground {
     background: transparent;
+  }
+
+  .hljs > *::selection {
+    background-color: $euiCodeBlockSelectedBackgroundColor;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: $euiCodeBlockCommentColor;
+    font-style: italic;
+  }
+
+  .hljs-selector-tag {
+    color: $euiCodeBlockSelectorTagColor;
+    font-weight: bold;
+  }
+
+  .hljs-string,
+  .hljs-subst,
+  .hljs-doctag {
+    color: $euiCodeBlockStringColor;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-regexp,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: $euiCodeBlockNumberColor;
+  }
+
+  .hljs-keyword {
+    color: $euiCodeBlockKeywordColor;
+    font-weight: bold;
+  }
+
+  .hljs-function > .hljs-title {
+    color: $euiCodeBlockFunctionTitleColor;
+  }
+
+  .hljs-tag {
+    color: $euiCodeBlockTagColor;
+  }
+
+  .hljs-name {
+    color: euiCodeBlockNameColor;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: $euiCodeBlockTypeColor;
+  }
+
+  .hljs-attribute {
+    color: $euiCodeBlockAttributeColor;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-link {
+    color: $euiCodeBlockSymbolColor;
+  }
+
+  .hljs-params {
+    color: $euiCodeBlockParamsColor;
+  }
+
+  .hljs-meta {
+    color: $euiCodeBlockMetaColor;
+  }
+
+  .hljs-title {
+    color: $euiCodeBlockTitleColor;
+  }
+
+  .hljs-section {
+    color: $euiCodeBlockSectionColor;
+  }
+
+  .hljs-addition {
+    background-color: $euiCodeBlockAdditionBackgroundColor;
+    color: $euiCodeBlockAdditionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-deletion {
+    background-color: $euiCodeBlockDeletionBackgroundColor;
+    color: $euiCodeBlockDeletionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-selector-class {
+    color: $euiCodeBlockSelectorClassColor;
+  }
+
+  .hljs-selector-id {
+    color: $euiCodeBlockSelectorIdColor;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-link {
+    text-decoration: underline;
   }
 }

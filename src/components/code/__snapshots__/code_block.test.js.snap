@@ -2,7 +2,7 @@
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre"

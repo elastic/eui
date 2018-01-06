@@ -6,13 +6,6 @@ import classNames from 'classnames';
 
 import hljs from 'highlight.js';
 
-const colorToClassNameMap = {
-  light: 'euiCodeBlock--light',
-  dark: 'euiCodeBlock--dark',
-};
-
-export const COLORS = Object.keys(colorToClassNameMap);
-
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
@@ -52,7 +45,6 @@ export class EuiCodeBlockImpl extends Component {
       inline,
       children,
       className,
-      color,
       fontSize,
       language,
       overflowHeight,
@@ -63,7 +55,6 @@ export class EuiCodeBlockImpl extends Component {
 
     const classes = classNames(
       'euiCodeBlock',
-      colorToClassNameMap[color],
       fontSizeToClassNameMap[fontSize],
       paddingSizeToClassNameMap[paddingSize],
       {
@@ -123,7 +114,6 @@ export class EuiCodeBlockImpl extends Component {
 EuiCodeBlockImpl.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
   fontSize: PropTypes.oneOf(FONT_SIZES),
   transparentBackground: PropTypes.bool,
@@ -131,7 +121,6 @@ EuiCodeBlockImpl.propTypes = {
 };
 
 EuiCodeBlockImpl.defaultProps = {
-  color: 'light',
   transparentBackground: false,
   paddingSize: 'l',
   fontSize: 's',

@@ -139,7 +139,6 @@ export class GuideSection extends Component {
       <div key={name} ref={name} className={classes}>
         <EuiCodeBlock
           language={codeClass}
-          color="dark"
           overflowHeight={this.state.isCodeFullScreen ? '100vh' : 400}
         >
           {source.code}
