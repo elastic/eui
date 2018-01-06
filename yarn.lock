@@ -6983,6 +6983,7 @@ react-ace@^5.5.0:
     lodash.isequal "^4.1.1"
     prop-types "^15.5.8"
 
+<<<<<<< HEAD
 react-dom@^16.0.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
@@ -6995,6 +6996,11 @@ react-dom@^16.0.0:
 react-reconciler@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
+=======
+react-dom@16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+>>>>>>> Upgrade react to 16.2.0.
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7028,7 +7034,11 @@ react-router@^3.2.0:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
+<<<<<<< HEAD
 react-test-renderer@^16.0.0:
+=======
+react-test-renderer@16.2.0:
+>>>>>>> Upgrade react to 16.2.0.
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.2.0.tgz#bddf259a6b8fcd8555f012afc8eacc238872a211"
   dependencies:
@@ -7043,7 +7053,11 @@ react-test-renderer@^16.0.0-0:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
 
+<<<<<<< HEAD
 react@^16.0.0:
+=======
+react@16.2.0:
+>>>>>>> Upgrade react to 16.2.0.
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
   dependencies:
