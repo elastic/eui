@@ -169,6 +169,8 @@ export class EuiCodeBlockImpl extends Component {
                 <code
                   ref={ref => { this.codeFullScreen = ref; }}
                   className={codeClasses}
+                  tabIndex={0}
+                  onKeyDown={this.onKeyDown}
                 >
                   {children}
                 </code>
