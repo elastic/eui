@@ -21,15 +21,28 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
+const sizeToClassNameMap = {
+  s: 'euiCallOut--small',
+  m: '',
+};
+
+export const SIZES = Object.keys(sizeToClassNameMap);
+
 export const EuiCallOut = ({
   title,
   color,
+  size,
   iconType,
   children,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiCallOut', colorToClassNameMap[color], className);
+  const classes = classNames(
+    'euiCallOut',
+    colorToClassNameMap[color],
+    sizeToClassNameMap[size],
+    className,
+  );
 
   let headerIcon;
 
@@ -77,8 +90,10 @@ EuiCallOut.propTypes = {
   title: PropTypes.node,
   iconType: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOf(COLORS),
+  size: PropTypes.oneOf(SIZES),
 };
 
 EuiCallOut.defaultProps = {
   color: 'primary',
+  size: 'm',
 };

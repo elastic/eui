@@ -1,6 +1,10 @@
 .euiCallOut {
   padding: $euiSize;
   border-left: $euiSizeXS / 2 solid transparent;
+
+  &.euiCallOut--small {
+    padding: $euiSizeS;
+  }
 }
 
 // Modifier naming and colors.
@@ -45,6 +49,11 @@ $callOutTypes: (
 
   > * + * {
     margin-left: $euiSizeS; /* 3 */
+  }
+
+  // smaller font size for headers in small callout
+  .euiCallOut--small & {
+    @include euiFontSizeS;
   }
 }
 
