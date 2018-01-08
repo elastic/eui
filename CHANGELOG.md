@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.11`.
+- Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
 
 # [`0.0.11`](https://github.com/elastic/eui/tree/v0.0.11)
 
