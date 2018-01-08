@@ -58,7 +58,13 @@ export const EuiCallOut = ({
   }
 
   let optionalChildren;
-  if (children) {
+  if (children && size === 's') {
+    optionalChildren = (
+      <EuiText size="xs">
+        {children}
+      </EuiText>
+    );
+  } else if (children) {
     optionalChildren = (
       <EuiText size="s">
         {children}
