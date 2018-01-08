@@ -584,7 +584,7 @@ export class EuiTableOfRecords extends React.Component {
     const disabled = !this.resolveActionEnabled(button, record, model);
     const icon = button.icon;
     const onClick = () => button.onClick(record, model);
-    const style = !visible ? { visibility: 'hidden' } : undefined;
+    const style = !visible ? { opacity: 0 } : undefined;
     const onHover = () => this.setState({ hoverRecordId: recordId });
     if (button.type === 'icon') {
       return (
@@ -662,7 +662,7 @@ export class EuiTableOfRecords extends React.Component {
     }, []);
 
     const visible = this.state.hoverRecordId === recordId;
-    const style = visible ? undefined : { visibility: 'hidden' };
+    const style = !visible ? { opacity: 0 } : undefined;
     const popoverButton = (
       <EuiButtonIcon
         aria-label="Actions"

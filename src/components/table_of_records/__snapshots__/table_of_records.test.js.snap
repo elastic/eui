@@ -586,7 +586,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             size="s"
             style={
               Object {
-                "visibility": "hidden",
+                "opacity": 0,
               }
             }
             title="edit"
@@ -636,7 +636,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             size="s"
             style={
               Object {
-                "visibility": "hidden",
+                "opacity": 0,
               }
             }
             title="edit"
@@ -686,7 +686,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             size="s"
             style={
               Object {
-                "visibility": "hidden",
+                "opacity": 0,
               }
             }
             title="edit"
@@ -1062,7 +1062,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
                 onClick={[Function]}
                 style={
                   Object {
-                    "visibility": "hidden",
+                    "opacity": 0,
                   }
                 }
                 type="button"
@@ -1138,7 +1138,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
                 onClick={[Function]}
                 style={
                   Object {
-                    "visibility": "hidden",
+                    "opacity": 0,
                   }
                 }
                 type="button"
@@ -1214,7 +1214,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
                 onClick={[Function]}
                 style={
                   Object {
-                    "visibility": "hidden",
+                    "opacity": 0,
                   }
                 }
                 type="button"
