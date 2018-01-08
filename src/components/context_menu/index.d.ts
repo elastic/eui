@@ -1,6 +1,7 @@
 /// <reference path="../common.d.ts" />
 
 import { SFC, ButtonHTMLAttributes, HTMLAttributes, ReactElement, ReactNode } from 'react';
+import * as React from 'react';
 
 declare module '@elastic/eui' {
 
@@ -68,13 +69,27 @@ declare module '@elastic/eui' {
 
   export type EuiContextMenuPanelId = string | number;
 
+
+  export type EuiContextMenuPanelItemDescriptor = Omit<EuiContextMenuItemProps, 'hasPanel'> & {
+    name: string;
+    panel?: EuiContextMenuPanelId;
+  };
+
+  interface EuiContextMenuPanelDescriptor {
+    id: EuiContextMenuPanelId,
+    title: string;
+    items?: EuiContextMenuPanelItemDescriptor[];
+    content?: React.ReactNode;
+  }
+
   export interface EuiContextMenuProps {
-    panels?: EuiContextMenuPanel[],
+    panels?: EuiContextMenuPanelDescriptor[],
     initialPanelId?: EuiContextMenuPanelId
   }
 
   export const EuiContextMenu: SFC<
     Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'style'> &
-    EuiContextMenuProps>;
+    EuiContextMenuProps
+    >;
 
 }
