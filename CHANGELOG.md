@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.11`.
+- Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
 
 # [`0.0.11`](https://github.com/elastic/eui/tree/v0.0.11)
 
