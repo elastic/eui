@@ -9,6 +9,7 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'logoApache',
   'logoBeats',
   'logoCloud',
   'logoElastic',
@@ -17,6 +18,8 @@ const iconTypes = [
   'logoGmail',
   'logoKibana',
   'logoLogstash',
+  'logoMySQL',
+  'logoNginx',
   'logoSlack',
   'logoWebhook',
   'logoXpack',
