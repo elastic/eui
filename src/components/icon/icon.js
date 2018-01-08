@@ -53,6 +53,7 @@ import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import loggingApp from './assets/app_logging.svg';
+import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoElastic from './assets/logo_elastic.svg';
@@ -61,6 +62,8 @@ import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoLogstash from './assets/logo_logstash.svg';
+import logoMySQL from './assets/logo_mysql.svg';
+import logoNginx from './assets/logo_nginx.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
 import logoXpack from './assets/logo_xpack.svg';
@@ -158,6 +161,7 @@ const typeToIconMap = {
   listAdd,
   lock,
   loggingApp,
+  logoApache,
   logoBeats,
   logoCloud,
   logoElastic,
@@ -166,6 +170,8 @@ const typeToIconMap = {
   logoGmail,
   logoKibana,
   logoLogstash,
+  logoMySQL,
+  logoNginx,
   logoSlack,
   logoWebhook,
   logoXpack,
