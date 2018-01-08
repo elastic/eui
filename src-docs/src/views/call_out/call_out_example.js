@@ -38,10 +38,16 @@ export const CallOutExample = {
       code: infoHtml,
     }],
     text: (
-      <p>
-        Use <EuiCode>EuiCallOut</EuiCode> to communicate general information to the user.
-        Note that the <EuiCode>Icon</EuiCode> prop is optional.
-      </p>
+      <div>
+        <p>
+          Use <EuiCode>EuiCallOut</EuiCode> to communicate general information to the user.
+          Note that the <EuiCode>Icon</EuiCode> prop is optional.
+        </p>
+        <p>
+          For callouts that have a perminant spot in the UI, but need to be less obstructive,
+          set the <EuiCode>size</EuiCode> property to <EuiCode>s</EuiCode> (small).
+        </p>
+      </div>
     ),
     demo: <Info />,
   }, {

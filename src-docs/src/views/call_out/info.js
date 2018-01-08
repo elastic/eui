@@ -27,5 +27,14 @@ export default () => (
       title="Callouts can exist as just a title. Simply omit the child content."
       iconType="gear"
     />
+
+    <EuiSpacer size="m" />
+
+    <EuiCallOut
+      size="s"
+      title="This is a small callout for more unintrusive but constant messages."
+      iconType="pin"
+    />
+
   </div>
 );
