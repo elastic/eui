@@ -176,11 +176,14 @@ export class EuiContextMenu extends Component {
       } = item;
 
       const onClickHandler = panel
-        ? () => {
+        ? (event) => {
+          if (onClick && event) {
+            event.persist();
+          }
           // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
           // need to wait for that logic to complete before re-rendering the DOM via showPanel.
           window.requestAnimationFrame(() => {
-            if (onClick) onClick();
+            if (onClick) onClick(event);
             this.showNextPanel(index);
           });
         } : onClick;
