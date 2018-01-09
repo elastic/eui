@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components';
 
 const typeToClassNameMap = {
-  'do': 'GuidelineExample--do',
+  'do': 'guideRuleExample',
   'dont': 'GuidelineExample--dont',
 };
 
@@ -16,7 +16,7 @@ const typeToSubtitleTextMap = {
   'dont': 'Don\'t',
 };
 
-export const GuideGuidelineExample = ({
+export const GuideRuleExample = ({
   children,
   className,
   type,
@@ -53,7 +53,7 @@ export const GuideGuidelineExample = ({
   );
 };
 
-GuideGuidelineExample.propTypes = {
+GuideRuleExample.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   type: PropTypes.string.isRequired,
@@ -61,7 +61,7 @@ GuideGuidelineExample.propTypes = {
   panel: PropTypes.bool,
 };
 
-GuideGuidelineExample.defaultProps = {
+GuideRuleExample.defaultProps = {
   type: 'do',
   panel: true,
 };

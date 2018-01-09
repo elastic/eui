@@ -5,12 +5,12 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-export const GuideGuidelineTitle = ({
+export const GuideRuleTitle = ({
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('GuidelineTitle', className);
+  const classes = classNames('guideRule__title', className);
 
   return (
     <EuiTitle
@@ -22,7 +22,7 @@ export const GuideGuidelineTitle = ({
   );
 };
 
-GuideGuidelineTitle.propTypes = {
+GuideRuleTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

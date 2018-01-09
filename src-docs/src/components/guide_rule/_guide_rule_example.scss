@@ -1,10 +1,10 @@
-.GuidelineExample {
-  .GuidelineExample__panel {
+.guideRule__example {
+  .guideRule__example__panel {
     border-bottom: 2px solid;
     padding-bottom: $euiSize;
     margin-bottom: $euiSizeS;
 
-    &.GuidelineExample__panel--plain {
+    &.guideRule__example__panel--plain {
       border-width: 0 0 2px 0;
       border-radius: 0;
       padding-left: 0;
@@ -19,8 +19,8 @@
   }
 
   // Coloring
-  &.GuidelineExample--do {
-    .GuidelineExample__panel {
+  &.guideRule__example--do {
+    .guideRule__example__panel {
       border-bottom-color: $euiColorSuccess;
 
       + small {
@@ -29,8 +29,8 @@
     }
   }
 
-  &.GuidelineExample--dont {
-    .GuidelineExample__panel {
+  &.guideRule__example--dont {
+    .guideRule__example__panel {
       border-bottom-color: $euiColorDanger;
 
       + small {

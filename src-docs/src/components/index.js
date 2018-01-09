@@ -1,10 +1,10 @@
 export {
-  GuideGuideline,
-  GuideGuidelineTitle,
-  GuideGuidelineExample,
-  GuideGuidelineDescription,
-  GuideGuidelineWriting,
-} from './guide_guideline';
+  GuideRule,
+  GuideRuleTitle,
+  GuideRuleExample,
+  GuideRuleDescription,
+  GuideRuleWriting,
+} from './guide_rule';
 
 export {
   GuidePage,

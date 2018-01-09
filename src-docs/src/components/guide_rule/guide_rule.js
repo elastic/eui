@@ -6,10 +6,10 @@ import {
 } from '../../../../src/components';
 
 import {
-  GuideGuidelineDescription,
+  GuideRuleDescription,
 } from '../../components';
 
-export const GuideGuideline = ({
+export const GuideRule = ({
   children,
   className,
   heading,
@@ -17,9 +17,9 @@ export const GuideGuideline = ({
   ...rest,
 }) => {
   const classes = classNames(
-    'Guideline',
+    'guideRule',
     {
-      'Guideline--hasHeading': description
+      'guideRule--hasHeading': description
     },
     className,
   );
@@ -28,7 +28,7 @@ export const GuideGuideline = ({
 
   if (description) {
     descriptionNode = (
-      <GuideGuidelineDescription
+      <GuideRuleDescription
         heading={heading}
         description={description}
       />
@@ -43,7 +43,7 @@ export const GuideGuideline = ({
     >
       {descriptionNode}
 
-      <EuiFlexGroup className="Guideline__exampleRow" gutterSize="xl" wrap>
+      <EuiFlexGroup className="guideRule__exampleRow" gutterSize="xl" wrap>
         {children}
       </EuiFlexGroup>
 
@@ -51,7 +51,7 @@ export const GuideGuideline = ({
   );
 };
 
-GuideGuideline.propTypes = {
+GuideRule.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   heading: PropTypes.string,

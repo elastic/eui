@@ -5,14 +5,14 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export const GuideGuidelineDescription = ({
+export const GuideRuleDescription = ({
   children,
   className,
   heading,
   description,
   ...rest,
 }) => {
-  const classes = classNames('GuidelineDescription', className);
+  const classes = classNames('guideRule__description', className);
 
   let headingNode;
 
@@ -37,7 +37,7 @@ export const GuideGuidelineDescription = ({
   );
 };
 
-GuideGuidelineDescription.propTypes = {
+GuideRuleDescription.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   heading: PropTypes.string,
