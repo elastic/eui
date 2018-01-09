@@ -45,19 +45,11 @@ exports[`EuiHeaderAlert is rendered 1`] = `
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <div
-        class="euiHeaderAlert__action euiLink"
-      />
-    </div>
+    />
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
-      <div
-        class="euiHeaderAlert__date"
-      >
-        date
-      </div>
+      date
     </div>
   </div>
 </div>

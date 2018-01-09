@@ -9,30 +9,26 @@ exports[`EuiHealth is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    <svg
+      class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        class="euiIcon euiIcon--medium"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xlink="http://www.w3.org/1999/xlink"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <circle
-            cx="8"
-            cy="8"
-            id="dot-a"
-            r="4"
-          />
-        </defs>
-        <use
-          href="#dot-a"
+      <defs>
+        <circle
+          cx="8"
+          cy="8"
+          id="dot-a"
+          r="4"
         />
-      </svg>
-    </div>
+      </defs>
+      <use
+        href="#dot-a"
+      />
+    </svg>
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
     />

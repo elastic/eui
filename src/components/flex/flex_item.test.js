@@ -50,25 +50,4 @@ describe('EuiFlexItem', () => {
       });
     });
   });
-
-  describe('component', () => {
-    ['div', 'span'].forEach(value => {
-      test(`${value} is rendered`, () => {
-        const component = render(
-          <EuiFlexItem component={value} />
-        );
-
-        expect(component)
-          .toMatchSnapshot();
-      });
-    });
-
-    ['h2'].forEach(value => {
-      test(`${value} is not rendered`, () => {
-        expect(() => render(
-          <EuiFlexItem component={value} />
-        )).toThrow();
-      });
-    });
-  });
 });

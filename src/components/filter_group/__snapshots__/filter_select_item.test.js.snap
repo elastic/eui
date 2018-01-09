@@ -7,23 +7,20 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
   data-test-subj="test subject string"
   type="button"
 >
-  <span
+  <div
     class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    component="span"
   >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <svg
-        class="euiIcon euiIcon--medium"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      />
-    </div>
+    <svg
+      class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
     <div
       class="euiFlexItem"
     />
-  </span>
+  </div>
 </button>
 `;

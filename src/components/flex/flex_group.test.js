@@ -81,27 +81,6 @@ describe('EuiFlexGroup', () => {
       });
     });
 
-    describe('component', () => {
-      ['div', 'span'].forEach(value => {
-        test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup component={value} />
-          );
-
-          expect(component)
-            .toMatchSnapshot();
-        });
-      });
-
-      ['h2'].forEach(value => {
-        test(`${value} is not rendered`, () => {
-          expect(() => render(
-            <EuiFlexGroup component={value} />
-          )).toThrow();
-        });
-      });
-    });
-
     describe('wrap', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {

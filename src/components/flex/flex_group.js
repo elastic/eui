@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -41,7 +41,6 @@ export const EuiFlexGroup = ({
   responsive,
   justifyContent,
   wrap,
-  component: Component,
   ...rest,
 }) => {
   const classes = classNames(
@@ -56,14 +55,20 @@ export const EuiFlexGroup = ({
     className
   );
 
-  return (
-    <Component
-      className={classes}
-      {...rest}
-    >
-      {children}
-    </Component>
-  );
+  let originalChildren;
+
+  if (typeof children === 'string' || Array.isArray(children) || typeof children === 'undefined') {
+    originalChildren = (
+      <div>{children}</div>
+    );
+  } else {
+    originalChildren = children;
+  }
+
+  return cloneElement(originalChildren, {
+    className: classes,
+    ...rest
+  });
 };
 
 EuiFlexGroup.propTypes = {
@@ -73,7 +78,6 @@ EuiFlexGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
-  component: PropTypes.oneOf(['div', 'span']),
   wrap: PropTypes.bool,
 };
 
@@ -82,6 +86,5 @@ EuiFlexGroup.defaultProps = {
   alignItems: 'stretch',
   responsive: true,
   justifyContent: 'flexStart',
-  component: 'div',
   wrap: false,
 };
