@@ -11,7 +11,6 @@ declare module '@elastic/eui' {
    * @see './context_menu_panel.js`
    */
 
-  import { HTMLAttributes } from 'react';
   export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 
   export type EuiContextMenuPanelTransitionType = 'in' | 'out';
