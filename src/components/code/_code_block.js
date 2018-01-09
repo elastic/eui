@@ -3,15 +3,18 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import FocusTrap from 'focus-trap-react';
 import hljs from 'highlight.js';
 
-const colorToClassNameMap = {
-  light: 'euiCodeBlock--light',
-  dark: 'euiCodeBlock--dark',
-};
+import {
+  EuiButtonIcon,
+} from '../button';
 
-export const COLORS = Object.keys(colorToClassNameMap);
+import {
+  EuiOverlayMask,
+} from '../overlay_mask';
+
+import { keyCodes } from '../../services';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
@@ -37,7 +40,39 @@ export class EuiCodeBlockImpl extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      isFullScreen: false,
+    };
   }
+
+  highlight = () => {
+    if (this.props.language) {
+      hljs.highlightBlock(this.code);
+
+      if (this.codeFullScreen) {
+        hljs.highlightBlock(this.codeFullScreen);
+      }
+    }
+  }
+
+  onKeyDown = event => {
+    if (event.keyCode === keyCodes.ESCAPE) {
+      this.closeFullScreen();
+    }
+  };
+
+  toggleFullScreen = () => {
+    this.setState(prevState => ({
+      isFullScreen: !prevState.isFullScreen,
+    }));
+  };
+
+  closeFullScreen = () => {
+    this.setState({
+      isFullScreen: false,
+    });
+  };
 
   componentDidMount() {
     this.highlight();
@@ -52,7 +87,6 @@ export class EuiCodeBlockImpl extends Component {
       inline,
       children,
       className,
-      color,
       fontSize,
       language,
       overflowHeight,
@@ -63,7 +97,6 @@ export class EuiCodeBlockImpl extends Component {
 
     const classes = classNames(
       'euiCodeBlock',
-      colorToClassNameMap[color],
       fontSizeToClassNameMap[fontSize],
       paddingSizeToClassNameMap[paddingSize],
       {
@@ -104,26 +137,72 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
+    let fullScreenButton;
+
+    if (!inline) {
+      fullScreenButton = (
+        <EuiButtonIcon
+          className="euiCodeBlock__fullScreenButton"
+          size="s"
+          onClick={this.toggleFullScreen}
+          iconType={this.state.isFullScreen ? 'cross' : 'expand'}
+          aria-label={this.state.isFullScreen ? 'Collapse' : 'Expand'}
+        />
+      );
+    }
+
+    let fullScreenDisplay;
+
+    if (this.state.isFullScreen) {
+      const fullScreenClasses = classNames(classes, 'euiCodeBlock-isFullScreen');
+
+      fullScreenDisplay = (
+        <FocusTrap
+          focusTrapOptions={{
+            clickOutsideDeactivates: true,
+            initialFocus: () => this.codeFullScreen,
+          }}
+        >
+          <EuiOverlayMask>
+            <div className={fullScreenClasses}>
+              <pre className="euiCodeBlock__pre">
+                <code
+                  ref={ref => { this.codeFullScreen = ref; }}
+                  className={codeClasses}
+                  tabIndex={0}
+                  onKeyDown={this.onKeyDown}
+                >
+                  {children}
+                </code>
+              </pre>
+
+              {fullScreenButton}
+            </div>
+          </EuiOverlayMask>
+        </FocusTrap>
+      );
+    }
+
     return (
       <div {...wrapperProps}>
         <pre className="euiCodeBlock__pre">
           {codeSnippet}
         </pre>
+
+        {/*
+          If the below fullScreen code renders, it actually attaches to the body because of
+          EuiOverlayMask's React portal usage.
+        */}
+        {fullScreenButton}
+        {fullScreenDisplay}
       </div>
     );
-  }
-
-  highlight() {
-    if (this.props.language) {
-      hljs.highlightBlock(this.code);
-    }
   }
 }
 
 EuiCodeBlockImpl.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
   fontSize: PropTypes.oneOf(FONT_SIZES),
   transparentBackground: PropTypes.bool,
@@ -131,7 +210,6 @@ EuiCodeBlockImpl.propTypes = {
 };
 
 EuiCodeBlockImpl.defaultProps = {
-  color: 'light',
   transparentBackground: false,
   paddingSize: 'l',
   fontSize: 's',

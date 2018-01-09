@@ -34,14 +34,6 @@ describe('EuiCodeBlockImpl', () => {
 
       expect(component).toMatchSnapshot();
     });
-
-    test('renders with dark theme', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={true} color="dark" />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
   });
 
   describe('block', () => {
@@ -66,14 +58,6 @@ describe('EuiCodeBlockImpl', () => {
     test('renders with transparent background', () => {
       const component = render(
         <EuiCodeBlockImpl inline={false} transparentBackground={true} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('renders with dark theme', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={false} color="dark" />
       );
 
       expect(component).toMatchSnapshot();

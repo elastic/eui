@@ -2,7 +2,7 @@
 
 exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -11,12 +11,30 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
       class="euiCodeBlock__code js"
     />
   </pre>
+  <button
+    aria-label="Expand"
+    class="euiButtonIcon euiButtonIcon--primary euiCodeBlock__fullScreenButton"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.014 10.777l-.043 2.8a.52.52 0 0 0 .544.544l2.8-.043a.526.526 0 0 1 .546.546.598.598 0 0 1-.575.575l-2.802.044A1.571 1.571 0 0 1 .85 13.609l.044-2.802a.598.598 0 0 1 .575-.575.526.526 0 0 1 .545.545zm12.064-5.461l.043-2.801a.52.52 0 0 0-.543-.544l-2.801.043a.526.526 0 0 1-.545-.545.598.598 0 0 1 .575-.575L13.609.85a1.571 1.571 0 0 1 1.634 1.634l-.044 2.802a.598.598 0 0 1-.575.575.526.526 0 0 1-.546-.545zm-9.724 7.038a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708.708l-8 8z"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </button>
 </div>
 `;
 
 exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -30,26 +48,30 @@ exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
 console.log(some);
     </code>
   </pre>
-</div>
-`;
-
-exports[`EuiCodeBlockImpl block renders with dark theme 1`] = `
-<div
-  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
->
-  <pre
-    class="euiCodeBlock__pre"
+  <button
+    aria-label="Expand"
+    class="euiButtonIcon euiButtonIcon--primary euiCodeBlock__fullScreenButton"
+    type="button"
   >
-    <code
-      class="euiCodeBlock__code"
-    />
-  </pre>
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.014 10.777l-.043 2.8a.52.52 0 0 0 .544.544l2.8-.043a.526.526 0 0 1 .546.546.598.598 0 0 1-.575.575l-2.802.044A1.571 1.571 0 0 1 .85 13.609l.044-2.802a.598.598 0 0 1 .575-.575.526.526 0 0 1 .545.545zm12.064-5.461l.043-2.801a.52.52 0 0 0-.543-.544l-2.801.043a.526.526 0 0 1-.545-.545.598.598 0 0 1 .575-.575L13.609.85a1.571 1.571 0 0 1 1.634 1.634l-.044 2.802a.598.598 0 0 1-.575.575.526.526 0 0 1-.546-.545zm-9.724 7.038a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708.708l-8 8z"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </button>
 </div>
 `;
 
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
 >
   <pre
     class="euiCodeBlock__pre"
@@ -58,12 +80,30 @@ exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
       class="euiCodeBlock__code"
     />
   </pre>
+  <button
+    aria-label="Expand"
+    class="euiButtonIcon euiButtonIcon--primary euiCodeBlock__fullScreenButton"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.014 10.777l-.043 2.8a.52.52 0 0 0 .544.544l2.8-.043a.526.526 0 0 1 .546.546.598.598 0 0 1-.575.575l-2.802.044A1.571 1.571 0 0 1 .85 13.609l.044-2.802a.598.598 0 0 1 .575-.575.526.526 0 0 1 .545.545zm12.064-5.461l.043-2.801a.52.52 0 0 0-.543-.544l-2.801.043a.526.526 0 0 1-.545-.545.598.598 0 0 1 .575-.575L13.609.85a1.571 1.571 0 0 1 1.634 1.634l-.044 2.802a.598.598 0 0 1-.575.575.526.526 0 0 1-.546-.545zm-9.724 7.038a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708.708l-8 8z"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </button>
 </div>
 `;
 
 exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
 >
   <code
     class="euiCodeBlock__code js"
@@ -73,7 +113,7 @@ exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1
 
 exports[`EuiCodeBlockImpl inline renders an inline code tag 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
@@ -86,19 +126,9 @@ console.log(some);
 </span>
 `;
 
-exports[`EuiCodeBlockImpl inline renders with dark theme 1`] = `
-<span
-  class="euiCodeBlock euiCodeBlock--dark euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
->
-  <code
-    class="euiCodeBlock__code"
-  />
-</span>
-`;
-
 exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--light euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline"
 >
   <code
     class="euiCodeBlock__code"

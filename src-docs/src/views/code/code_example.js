@@ -53,7 +53,6 @@ export const CodeExample = {
         </p>
         <ul>
           <li><EuiCode>language</EuiCode> sets the syntax highlighting for a specific language.</li>
-          <li><EuiCode>color</EuiCode> accepts dark (default) or light.</li>
           <li><EuiCode>paddingSize</EuiCode> accepts &ldquo;s&rdquo; / &ldquo;m&rdquo; / &ldquo;l&rdquo; (default).</li>
           <li><EuiCode>fontSize</EuiCode> accepts &ldquo;s&rdquo; (default) / &ldquo;m&rdquo; / &ldquo;l&rdquo;.</li>
           <li><EuiCode>overflowHeight</EuiCode> accepts a number. By default it is not set.</li>

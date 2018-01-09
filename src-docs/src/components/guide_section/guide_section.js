@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   GuideSandboxChrome,
@@ -119,7 +119,6 @@ export class GuideSection extends Component {
       <div key={name} ref={name}>
         <EuiCodeBlock
           language={codeClass}
-          color="dark"
           overflowHeight={400}
         >
           {source.code}
@@ -144,9 +143,11 @@ export class GuideSection extends Component {
   }
 
   render() {
+    const chrome = this.renderChrome();
+
     return (
       <div className="guideSection" id={this.props.id}>
-        {this.renderChrome()}
+        {chrome}
         {this.renderContent()}
       </div>
     );

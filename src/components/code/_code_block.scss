@@ -1,8 +1,13 @@
 .euiCodeBlock {
   display: block;
-  overflow: auto;
+  position: relative;
+  background: $euiCodeBlockBackgroundColor;
+  color: $euiCodeBlockColor;
+  position: relative;
 
   .euiCodeBlock__pre {
+    height: 100%;
+    overflow: auto;
     display: block;
     white-space: pre-wrap;
   }
@@ -12,6 +17,24 @@
     line-height: $euiLineHeight;
     font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
+  }
+
+  .euiCodeBlock__fullScreenButton {
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeL;
+  }
+
+  &.euiCodeBlock-isFullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .euiCodeBlock__pre {
+      padding: $euiSizeXL !important;
+    }
   }
 
   &.euiCodeBlock--fontSmall {
@@ -27,15 +50,21 @@
   }
 
   &.euiCodeBlock--paddingSmall {
-    padding: $euiSizeS;
+    .euiCodeBlock__pre {
+      padding: $euiSizeS;
+    }
   }
 
   &.euiCodeBlock--paddingMedium {
-    padding: $euiSize;
+    .euiCodeBlock__pre {
+      padding: $euiSize;
+    }
   }
 
   &.euiCodeBlock--paddingLarge {
-    padding: $euiSizeL;
+    .euiCodeBlock__pre {
+      padding: $euiSizeL;
+    }
   }
 
   /**
@@ -47,8 +76,11 @@
     white-space: pre;
     color: $euiTextColor;
     font-size: 75%; // 1
-    padding:  0 $euiSizeXS;
     background: $euiColorLightestShade;
+
+    .euiCodeBlock__pre {
+      padding:  0 $euiSizeXS;
+    }
 
     .euiCodeBlock__code {
       display: inline;
@@ -58,5 +90,119 @@
 
   &.euiCodeBlock--transparentBackground {
     background: transparent;
+  }
+
+  .hljs > *::selection {
+    background-color: $euiCodeBlockSelectedBackgroundColor;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: $euiCodeBlockCommentColor;
+    font-style: italic;
+  }
+
+  .hljs-selector-tag {
+    color: $euiCodeBlockSelectorTagColor;
+    font-weight: bold;
+  }
+
+  .hljs-string,
+  .hljs-subst,
+  .hljs-doctag {
+    color: $euiCodeBlockStringColor;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-regexp,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: $euiCodeBlockNumberColor;
+  }
+
+  .hljs-keyword {
+    color: $euiCodeBlockKeywordColor;
+    font-weight: bold;
+  }
+
+  .hljs-function > .hljs-title {
+    color: $euiCodeBlockFunctionTitleColor;
+  }
+
+  .hljs-tag {
+    color: $euiCodeBlockTagColor;
+  }
+
+  .hljs-name {
+    color: euiCodeBlockNameColor;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: $euiCodeBlockTypeColor;
+  }
+
+  .hljs-attribute {
+    color: $euiCodeBlockAttributeColor;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-link {
+    color: $euiCodeBlockSymbolColor;
+  }
+
+  .hljs-params {
+    color: $euiCodeBlockParamsColor;
+  }
+
+  .hljs-meta {
+    color: $euiCodeBlockMetaColor;
+  }
+
+  .hljs-title {
+    color: $euiCodeBlockTitleColor;
+  }
+
+  .hljs-section {
+    color: $euiCodeBlockSectionColor;
+  }
+
+  .hljs-addition {
+    background-color: $euiCodeBlockAdditionBackgroundColor;
+    color: $euiCodeBlockAdditionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-deletion {
+    background-color: $euiCodeBlockDeletionBackgroundColor;
+    color: $euiCodeBlockDeletionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-selector-class {
+    color: $euiCodeBlockSelectorClassColor;
+  }
+
+  .hljs-selector-id {
+    color: $euiCodeBlockSelectorIdColor;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-link {
+    text-decoration: underline;
   }
 }

@@ -1,8 +1,15 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
-- Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
 - Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
+
+**Bug fixes**
+
+- Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
+
+**Breaking changes**
+
+- Removed `color` prop from `<EuiCodeBlock>`. This component's highlighting now matches whichever theme is currently active. [(#259)](https://github.com/elastic/eui/pull/259)
 
 # [`0.0.11`](https://github.com/elastic/eui/tree/v0.0.11)
 
