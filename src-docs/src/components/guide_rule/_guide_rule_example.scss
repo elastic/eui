@@ -1,41 +1,35 @@
 .guideRule__example {
   .guideRule__example__panel {
     border-bottom: 2px solid;
-    padding-bottom: $euiSize;
     margin-bottom: $euiSizeS;
 
-    &.guideRule__example__panel--plain {
-      border-width: 0 0 2px 0;
-      border-radius: 0;
-      padding-left: 0;
-      padding-top: 0;
-      padding-right: 0;
-      box-shadow: none;
+    &:not(.euiPanel) {
+      padding-bottom: $euiSize; // keep the original panel padding if it is one
     }
+  }
 
-    + small {
-      font-size: $euiSizeM;
-    }
+  .guideRule__caption {
+    font-size: $euiSizeM;
   }
 
   // Coloring
   &.guideRule__example--do {
     .guideRule__example__panel {
       border-bottom-color: $euiColorSuccess;
+    }
 
-      + small {
-          color: $euiColorSuccess;
-      }
+    .guideRule__caption {
+      color: $euiColorSuccess;
     }
   }
 
   &.guideRule__example--dont {
     .guideRule__example__panel {
       border-bottom-color: $euiColorDanger;
+    }
 
-      + small {
-          color: $euiColorDanger;
-      }
+    .guideRule__caption {
+      color: $euiColorDanger;
     }
   }
 }

@@ -31,23 +31,31 @@ export const GuideRuleExample = ({
     className
   );
 
-  const panelClasses = classNames(
-    'guideRule__example__panel',
-    {
-      'guideRule__example__panel--plain': !panel
-    },
-  );
+  let childrenNode;
+
+  if (panel) {
+    childrenNode = (
+      <EuiPanel className="guideRule__example__panel">
+        {children}
+      </EuiPanel>
+    );
+  } else {
+    childrenNode = (
+      <div className="guideRule__example__panel">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <EuiFlexItem
+      component="figure"
       className={classes}
       {...rest}
     >
 
-      <EuiPanel className={panelClasses}>
-        {children}
-      </EuiPanel>
-      <small>{text || typeToSubtitleTextMap[type]}</small>
+      {childrenNode}
+      <figcaption className="guideRule__caption">{text || typeToSubtitleTextMap[type]}</figcaption>
 
     </EuiFlexItem>
   );

@@ -37,7 +37,6 @@ export const GuideRule = ({
 
   return (
     <div
-      wrap={true}
       className={classes}
       {...rest}
     >
