@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EuiCallOut } from '..';
+import { EuiCallOut } from '../call_out';
 
 export const EuiForm = ({
   children,

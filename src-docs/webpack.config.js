@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -41,7 +42,11 @@ module.exports = {
       inject: 'body',
       cache: true,
       showErrors: true
-    })
+    }),
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      failOnError: true,
+    }),
   ],
 
   devServer: {

@@ -3,15 +3,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  EuiButtonEmpty,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiPagination,
-  EuiPopover,
-} from '../../';
+import { EuiButtonEmpty } from '../../button';
+import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPagination } from '../../pagination';
+import { EuiPopover } from '../../popover';
 
 export class EuiTablePagination extends Component {
   constructor(props) {

@@ -10,7 +10,7 @@ import {
 
 import {
   EuiText,
-} from '..';
+} from '../text';
 
 const colorToClassNameMap = {
   primary: 'euiCallOut--primary',

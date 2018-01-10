@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  KibanaHeader,
-} from '../partials';
+import KibanaHeader from '../header/header';
 
 export default ({
   children,

@@ -14,10 +14,10 @@ import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
 
 import {
-  Routes,
   registerTheme,
 } from './services';
 
+import Routes from './routes';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import themeK6Light from './theme_k6_light.scss';

@@ -7,11 +7,15 @@ import { EuiModalFooter } from './modal_footer';
 import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
+
 import {
   EuiButton,
   EuiButtonEmpty,
+} from '../button';
+
+import {
   EuiText,
-} from '..';
+} from '../text';
 
 export const CONFIRM_BUTTON = 'confirm';
 export const CANCEL_BUTTON = 'cancel';

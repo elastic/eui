@@ -9,7 +9,7 @@ import {
 
 import {
   EuiText,
-} from '..';
+} from '../text';
 
 const colorToClassNameMap = {
   primary: 'euiToast--primary',

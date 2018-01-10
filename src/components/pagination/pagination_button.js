@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   EuiButtonEmpty,
-} from '..';
+} from '../button';
 
 export const EuiPaginationButton = ({
   children,

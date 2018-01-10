@@ -4,8 +4,11 @@ import classNames from 'classnames';
 
 import {
   EuiScreenReaderOnly,
+} from '../accessibility';
+
+import {
   EuiTitle,
-} from '../';
+} from '../title';
 
 export const EuiStep = ({
   className,

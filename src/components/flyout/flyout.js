@@ -9,7 +9,7 @@ import { keyCodes } from '../../services';
 
 import {
   EuiOverlayMask,
-} from '../../components';
+} from '../overlay_mask';
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',

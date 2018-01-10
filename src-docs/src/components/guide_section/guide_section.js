@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   GuideSandboxChrome,
-} from '..';
+} from '../guide_sandbox';
 
 import {
   EuiCodeBlock,
@@ -14,10 +14,6 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-
-import {
-  Routes,
-} from '../../services';
 
 export class GuideSection extends Component {
   constructor(props) {
@@ -73,7 +69,7 @@ export class GuideSection extends Component {
     if (this.props.isSandbox) {
       header = (
         <GuideSandboxChrome
-          routes={Routes.getAppRoutes()}
+          routes={this.props.routes.getAppRoutes()}
           onToggleTheme={this.props.toggleTheme}
           onToggleSandboxChrome={this.onToggleSandboxChrome}
           selectedTheme={this.props.theme}
@@ -162,4 +158,5 @@ GuideSection.propTypes = {
   isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
+  routes: PropTypes.object.isRequired,
 };

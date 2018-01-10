@@ -4,9 +4,12 @@ import classNames from 'classnames';
 
 import {
   EuiIcon,
+} from '../icon';
+
+import {
   EuiFlexGroup,
   EuiFlexItem,
-} from '../';
+} from '../flex';
 
 export const EuiHealth = ({
   children,

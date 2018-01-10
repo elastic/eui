@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import {
   EuiButtonIcon,
+} from '../../button';
+
+import {
   EuiFlexGroup,
   EuiFlexItem,
-} from '../..';
+} from '../../flex';
 
 export const EuiHeaderAlert = ({
   action,
