@@ -3,7 +3,6 @@ export {
   GuideRuleTitle,
   GuideRuleExample,
   GuideRuleDescription,
-  GuideRuleWriting,
 } from './guide_rule';
 
 export {

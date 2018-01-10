@@ -13,7 +13,3 @@ export {
 export {
   GuideRuleDescription,
 } from './guide_rule_description';
-
-export {
-  GuideRuleWriting,
-} from './guide_rule_writing';

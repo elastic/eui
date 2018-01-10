@@ -9,7 +9,7 @@
     margin-top: $euiSizeXXL * -2;
   }
 
-  .euiTitle + &.guideRule--hasHeading {
+  .guideRule__title + &.guideRule--hasHeading {
     margin-top: $euiSizeXXL;
   }
 }

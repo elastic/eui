@@ -31,21 +31,7 @@ export const GuideRuleExample = ({
     className
   );
 
-  let childrenNode;
-
-  if (panel) {
-    childrenNode = (
-      <EuiPanel className="guideRule__example__panel">
-        {children}
-      </EuiPanel>
-    );
-  } else {
-    childrenNode = (
-      <div className="guideRule__example__panel">
-        {children}
-      </div>
-    );
-  }
+  const ChildrenComponent = panel ? EuiPanel : 'div';
 
   return (
     <EuiFlexItem
@@ -54,7 +40,9 @@ export const GuideRuleExample = ({
       {...rest}
     >
 
-      {childrenNode}
+      <ChildrenComponent className="guideRule__example__panel">
+        {children}
+      </ChildrenComponent>
       <figcaption className="guideRule__caption">{text || typeToSubtitleTextMap[type]}</figcaption>
 
     </EuiFlexItem>

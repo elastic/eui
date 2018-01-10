@@ -1,13 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
   GuideRuleTitle,
-  GuideRuleWriting,
 } from '../../components';
-
 
 import {
   EuiText,
@@ -29,6 +28,23 @@ import {
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
+
+export const GuideRuleWriting = ({
+  children,
+  className,
+  ...rest,
+}) => {
+  const classes = classNames(className);
+
+  return (
+    <EuiText
+      className={classes}
+      {...rest}
+    >
+      <p>{children}</p>
+    </EuiText>
+  );
+};
 
 export default () => (
   <GuidePage title="Writing">
