@@ -16,7 +16,7 @@ export class EuiContextMenuItem extends Component {
     hasPanel: PropTypes.bool,
     buttonRef: PropTypes.func,
     disabled: PropTypes.bool,
-  }
+  };
 
   render() {
     const {

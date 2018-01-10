@@ -4,6 +4,7 @@
   "version": "0.0.11",
   "main": "lib",
   "module": "src",
+  "types": "src/index.d.ts",
   "jsnext:main": "src",
   "scripts": {
     "start": "./scripts/docs-dev.sh",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@elastic/eslint-config-kibana": "0.13.0",
+    "@types/react": "16.0.31",
     "autoprefixer": "7.1.5",
     "babel-cli": "6.26.0",
     "babel-eslint": "8.0.1",
