@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EuiIcon } from '..';
+import { EuiIcon } from '../icon';
 
 const sizeToClassNameMap = {
   m: 'euiLoadingKibana--medium',

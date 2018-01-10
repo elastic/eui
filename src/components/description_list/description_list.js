@@ -4,8 +4,11 @@ import classNames from 'classnames';
 
 import {
   EuiDescriptionListTitle,
+} from './description_list_title';
+
+import {
   EuiDescriptionListDescription,
-} from '..';
+} from './description_list_description';
 
 const typesToClassNameMap = {
   row: 'euiDescriptionList--row',

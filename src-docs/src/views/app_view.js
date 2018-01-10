@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import {
-  Routes,
   applyTheme,
 } from '../services';
 
@@ -31,6 +30,10 @@ export class AppView extends Component {
   }
 
   componentDidMount() {
+    const {
+      routes,
+    } = this.props;
+
     this.updateTheme();
 
     document.addEventListener('keydown', e => {
@@ -42,17 +45,17 @@ export class AppView extends Component {
 
       switch (e.keyCode) {
         case keyCodes.LEFT:
-          route = Routes.getPreviousRoute(this.props.currentRoute.name);
+          route = routes.getPreviousRoute(this.props.currentRoute.name);
           break;
         case keyCodes.RIGHT:
-          route = Routes.getNextRoute(this.props.currentRoute.name);
+          route = routes.getNextRoute(this.props.currentRoute.name);
           break;
         default:
           break;
       }
 
       if (route) {
-        Routes.history.push(route.path);
+        routes.history.push(route.path);
       }
     });
   }
@@ -64,6 +67,7 @@ export class AppView extends Component {
       isSandbox,
       toggleTheme,
       theme,
+      routes,
     } = this.props;
 
     if (isSandbox) {
@@ -82,10 +86,10 @@ export class AppView extends Component {
                   currentRouteName={currentRoute.name}
                   onToggleTheme={toggleTheme}
                   selectedTheme={theme}
-                  guidelines={Routes.guidelines}
-                  components={Routes.components}
-                  patterns={Routes.patterns}
-                  sandboxes={Routes.sandboxes}
+                  guidelines={routes.guidelines}
+                  components={routes.components}
+                  patterns={routes.patterns}
+                  sandboxes={routes.sandboxes}
                 />
               </EuiPageSideBar>
             </EuiErrorBoundary>
@@ -116,6 +120,7 @@ AppView.propTypes = {
   isSandbox: PropTypes.bool,
   theme: PropTypes.string.isRequired,
   toggleTheme: PropTypes.func.isRequired,
+  routes: PropTypes.object.isRequired,
 };
 
 AppView.defaultProps = {

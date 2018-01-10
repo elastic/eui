@@ -1,6 +1,6 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { Routes } from '../../services';
+import Routes from '../../routes';
 
 const defaultState = {
   isSandbox: undefined,

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {
   EuiIcon,
-} from '..';
+} from '../icon';
 
 import {
   LEFT_ALIGNMENT,

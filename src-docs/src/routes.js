@@ -8,155 +8,153 @@ import createHashHistory from 'history/lib/createHashHistory';
 import {
   GuidePage,
   GuideSection,
-} from '../../components';
+} from './components';
 
 import {
   EuiErrorBoundary,
-} from '../../../../src/components';
+} from '../../src/components';
 
-import Slugify from '../string/slugify';
+import { Slugify } from './services';
 
 // Guidelines
 
 import WritingGuidelines
-  from '../../views/guidelines/writing';
+  from './views/guidelines/writing';
 
 // Component examples
 
 import { AccessibilityExample }
-  from '../../views/accessibility/accessibility_example';
+  from './views/accessibility/accessibility_example';
 
 import { AccordionExample }
-  from '../../views/accordion/accordion_example';
+  from './views/accordion/accordion_example';
 
 import { AvatarExample }
-  from '../../views/avatar/avatar_example';
+  from './views/avatar/avatar_example';
 
 import { BadgeExample }
-  from '../../views/badge/badge_example';
+  from './views/badge/badge_example';
 
 import { BottomBarExample }
-  from '../../views/bottom_bar/bottom_bar_example';
+  from './views/bottom_bar/bottom_bar_example';
 
 import { ButtonExample }
-  from '../../views/button/button_example';
+  from './views/button/button_example';
 
 import { CallOutExample }
-  from '../../views/call_out/call_out_example';
+  from './views/call_out/call_out_example';
 
 import { CodeEditorExample }
-  from '../../views/code_editor/code_editor_example';
+  from './views/code_editor/code_editor_example';
 
 import { CodeExample }
-  from '../../views/code/code_example';
+  from './views/code/code_example';
 
 import { ContextMenuExample }
-  from '../../views/context_menu/context_menu_example';
+  from './views/context_menu/context_menu_example';
 
 import { DescriptionListExample }
-  from '../../views/description_list/description_list_example';
+  from './views/description_list/description_list_example';
 
 import { ErrorBoundaryExample }
-  from '../../views/error_boundary/error_boundary_example';
+  from './views/error_boundary/error_boundary_example';
 
 import { ExpressionExample }
-  from '../../views/expression/expression_example';
+  from './views/expression/expression_example';
 
 import { FlexExample }
-  from '../../views/flex/flex_example';
+  from './views/flex/flex_example';
 
 import { FlyoutExample }
-  from '../../views/flyout/flyout_example';
+  from './views/flyout/flyout_example';
 
 import { FormExample }
-  from '../../views/form/form_example';
+  from './views/form/form_example';
 
 import { HeaderExample }
-  from '../../views/header/header_example';
+  from './views/header/header_example';
 
 import { HealthExample }
-  from '../../views/health/health_example';
+  from './views/health/health_example';
 
 import { HorizontalRuleExample }
-  from '../../views/horizontal_rule/horizontal_rule_example';
+  from './views/horizontal_rule/horizontal_rule_example';
 
 import { IconExample }
-  from '../../views/icon/icon_example';
+  from './views/icon/icon_example';
 
 import { ImageExample }
-  from '../../views/image/image_example';
+  from './views/image/image_example';
 
 import { KeyPadMenuExample }
-  from '../../views/key_pad_menu/key_pad_menu_example';
+  from './views/key_pad_menu/key_pad_menu_example';
 
 import { LinkExample }
-  from '../../views/link/link_example';
+  from './views/link/link_example';
 
 import { LoadingExample }
-  from '../../views/loading/loading_example';
+  from './views/loading/loading_example';
 
 import { ModalExample }
-  from '../../views/modal/modal_example';
+  from './views/modal/modal_example';
 
 import { OutsideClickDetectorExample }
-  from '../../views/outside_click_detector/outside_click_detector_example';
+  from './views/outside_click_detector/outside_click_detector_example';
 
 import { PageExample }
-  from '../../views/page/page_example';
+  from './views/page/page_example';
 
 import { PaginationExample }
-  from '../../views/pagination/pagination_example';
+  from './views/pagination/pagination_example';
 
 import { PanelExample }
-  from '../../views/panel/panel_example';
+  from './views/panel/panel_example';
 
 import { PopoverExample }
-  from '../../views/popover/popover_example';
+  from './views/popover/popover_example';
 
 import { ProgressExample }
-  from '../../views/progress/progress_example';
+  from './views/progress/progress_example';
 
 import { SideNavExample }
-  from '../../views/side_nav/side_nav_example';
+  from './views/side_nav/side_nav_example';
 
 import { SpacerExample }
-  from '../../views/spacer/spacer_example';
+  from './views/spacer/spacer_example';
 
 import { StepsExample }
-  from '../../views/steps/steps_example';
+  from './views/steps/steps_example';
 
 import { TableExample }
-  from '../../views/table/table_example';
+  from './views/table/table_example';
 
 import { TabsExample }
-  from '../../views/tabs/tabs_example';
+  from './views/tabs/tabs_example';
 
 import { TextExample }
-  from '../../views/text/text_example';
+  from './views/text/text_example';
 
 import { TitleExample }
-  from '../../views/title/title_example';
+  from './views/title/title_example';
 
 import { ToastExample }
-  from '../../views/toast/toast_example';
+  from './views/toast/toast_example';
 
 import { TooltipExample }
-  from '../../views/tooltip/tooltip_example';
+  from './views/tooltip/tooltip_example';
 
 // Patterns
-
-
 
 // Sandboxes
 
 import AdvancedSettingsSandbox
-  from '../../views/kibana/advanced_settings_sandbox';
+  from './views/kibana/advanced_settings_sandbox';
 
 import WatchesSandbox
-  from '../../views/kibana/watches_sandbox';
+  from './views/kibana/watches_sandbox';
 
 import TextScalingSandbox
-  from '../../views/text_scaling/text_scaling_sandbox';
+  from './views/text_scaling/text_scaling_sandbox';
 
 const guidelines = [{
   name: 'Writing',

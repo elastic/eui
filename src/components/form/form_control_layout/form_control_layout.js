@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiIcon, EuiLoadingSpinner } from '../..';
+import { EuiIcon } from '../../icon';
+import { EuiLoadingSpinner } from '../../loading';
 
 const iconSideToClassNameMap = {
   left: '',

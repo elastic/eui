@@ -5,6 +5,7 @@ import { GuideSection } from './guide_section';
 import {
   getIsSandbox,
   getTheme,
+  getRoutes,
 } from '../../store';
 
 import {
@@ -15,6 +16,7 @@ function mapStateToProps(state) {
   return {
     isSandbox: getIsSandbox(state),
     theme: getTheme(state),
+    routes: getRoutes(state),
   };
 }
 

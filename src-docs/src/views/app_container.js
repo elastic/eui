@@ -5,6 +5,7 @@ import { AppView } from './app_view';
 import {
   getIsSandbox,
   getTheme,
+  getRoutes,
 } from '../store';
 
 import {
@@ -17,6 +18,7 @@ function mapStateToProps(state, ownProps) {
     currentRoute: ownProps.routes[1],
     isSandbox: getIsSandbox(state),
     theme: getTheme(state),
+    routes: getRoutes(state),
   };
 }
 

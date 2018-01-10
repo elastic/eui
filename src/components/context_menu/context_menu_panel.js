@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { EuiIcon, EuiPopoverTitle } from '..';
+import { EuiIcon } from '../icon';
+import { EuiPopoverTitle } from '../popover';
 import { cascadingMenuKeyCodes } from '../../services';
 
 const transitionDirectionAndTypeToClassNameMap = {

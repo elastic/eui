@@ -150,7 +150,7 @@ module.exports = class extends Generator {
       this.log(chalk.white('\n// Import example into routes.js and then add it to the "components" array.'));
       this.log(
         `${chalk.magenta('import')} { ${componentExampleName}${suffix} }\n` +
-        `  ${chalk.magenta('from')} ${chalk.cyan(`'../../views/${fileName}/${fileName}_${suffix.toLowerCase()}'`)};`
+        `  ${chalk.magenta('from')} ${chalk.cyan(`'./views/${fileName}/${fileName}_${suffix.toLowerCase()}'`)};`
       );
     }
 

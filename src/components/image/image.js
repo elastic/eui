@@ -7,8 +7,11 @@ import FocusTrap from 'focus-trap-react';
 
 import {
   EuiOverlayMask,
+} from '../overlay_mask';
+
+import {
   EuiIcon,
-} from '../../components';
+} from '../icon';
 
 import { keyCodes } from '../../services';
 

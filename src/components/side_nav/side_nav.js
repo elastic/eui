@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import {
   EuiIcon,
-} from '..';
+} from '../icon';
 
 import {
   EuiSideNavItem,

@@ -1,10 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
+  new CircularDependencyPlugin({
+    exclude: /node_modules/,
+    failOnError: true,
+  }),
 ];
 
 if (isProduction) {
