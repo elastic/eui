@@ -3,7 +3,6 @@
 import { HTMLAttributes, SFC } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * panel type defs
    *
@@ -13,16 +12,13 @@ declare module '@elastic/eui' {
   export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
 
   export interface EuiPanelProps {
-    hasShadow?: boolean,
-    paddingSize?: PanelPaddingSize,
-    grow?: boolean,
-    panelRef?: RefCallback<HTMLDivElement>
+    hasShadow?: boolean;
+    paddingSize?: PanelPaddingSize;
+    grow?: boolean;
+    panelRef?: RefCallback<HTMLDivElement>;
   }
 
   export const EuiPanel: SFC<
-    CommonProps &
-    HTMLAttributes<HTMLDivElement> &
-    EuiPanelProps
-    >;
-
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiPanelProps
+  >;
 }

@@ -2,8 +2,7 @@
 
 import { SFC, InputHTMLAttributes } from 'react';
 
-declare module "@elastic/eui" {
-
+declare module '@elastic/eui' {
   /**
    * search field type defs
    *
@@ -11,19 +10,16 @@ declare module "@elastic/eui" {
    */
 
   export interface EuiFieldSearchProps {
-    name?: string,
-    id?: string,
-    placeholder?: string,
-    value?: string,
-    isInvalid?: boolean,
-    fullWidth?: boolean,
-    isLoading?: boolean
+    name?: string;
+    id?: string;
+    placeholder?: string;
+    value?: string;
+    isInvalid?: boolean;
+    fullWidth?: boolean;
+    isLoading?: boolean;
   }
 
   export const EuiFieldSearch: SFC<
-    CommonProps &
-    InputHTMLAttributes<HTMLInputElement> &
-    EuiFieldSearchProps
-    >;
-
+    CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps
+  >;
 }

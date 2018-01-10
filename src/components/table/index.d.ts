@@ -1,16 +1,19 @@
+/// <reference path="./table_pagination/index.d.ts" />
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
-/// <reference path="./table_pagination/index.d.ts" />
 /// <reference path="../../services/alignment.d.ts" />
 
 import {
-  SFC, HTMLAttributes, TableHTMLAttributes, ButtonHTMLAttributes,
-  ThHTMLAttributes, TdHTMLAttributes
+  SFC,
+  HTMLAttributes,
+  TableHTMLAttributes,
+  ButtonHTMLAttributes,
+  ThHTMLAttributes,
+  TdHTMLAttributes
 } from 'react';
 import { EuiTableRowCellProps } from '@elastic/eui';
 
 declare module '@elastic/eui' {
-
   /**
    * table type defs
    *
@@ -18,15 +21,12 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableProps {
-    compressed?: boolean
+    compressed?: boolean;
   }
 
   export const EuiTable: SFC<
-    CommonProps &
-    TableHTMLAttributes<HTMLTableElement> &
-    EuiTableProps
-    >;
-
+    CommonProps & TableHTMLAttributes<HTMLTableElement> & EuiTableProps
+  >;
 
   /**
    * table body type defs
@@ -34,14 +34,9 @@ declare module '@elastic/eui' {
    * @see './table_body.js'
    */
 
-  export interface EuiTableBodyProps {
-  }
+  export interface EuiTableBodyProps {}
 
-  export const EuiTableBody: SFC<
-    CommonProps &
-    EuiTableBodyProps
-    >;
-
+  export const EuiTableBody: SFC<CommonProps & EuiTableBodyProps>;
 
   /**
    * table header type defs
@@ -49,14 +44,9 @@ declare module '@elastic/eui' {
    * @see './table_header.js'
    */
 
-  export interface EuiTableHeaderProps {
-  }
+  export interface EuiTableHeaderProps {}
 
-  export const EuiTableHeader: SFC<
-    CommonProps &
-    EuiTableHeaderProps
-    >;
-
+  export const EuiTableHeader: SFC<CommonProps & EuiTableHeaderProps>;
 
   /**
    * table header button type defs
@@ -65,14 +55,14 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableHeaderButtonProps {
-    iconType?: IconType
+    iconType?: IconType;
   }
 
   export const EuiTableHeaderButton: SFC<
     CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> &
-    EuiTableHeaderButtonProps
-    >;
+      ButtonHTMLAttributes<HTMLButtonElement> &
+      EuiTableHeaderButtonProps
+  >;
 
   /**
    * table header cell type defs
@@ -83,20 +73,19 @@ declare module '@elastic/eui' {
   export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
   export interface EuiTableHeaderCellProps {
-    align?: HorizontalAlignment,
-    width?: string,
-    onSort?: NoArgCallback<void>,
-    isSorted?: boolean,
-    isSortAscending?: boolean,
-    scope?: TableHeaderCellScope
+    align?: HorizontalAlignment;
+    width?: string;
+    onSort?: NoArgCallback<void>;
+    isSorted?: boolean;
+    isSortAscending?: boolean;
+    scope?: TableHeaderCellScope;
   }
 
   export const EuiTableHeaderCell: SFC<
     CommonProps &
-    ThHTMLAttributes<HTMLTableHeaderCellElement> &
-    EuiTableHeaderCellProps
-    >;
-
+      ThHTMLAttributes<HTMLTableHeaderCellElement> &
+      EuiTableHeaderCellProps
+  >;
 
   /**
    * table header cell checkbox type defs
@@ -104,19 +93,22 @@ declare module '@elastic/eui' {
    * @see './table_header_cell_checkbox.js'
    */
 
-  export type EuiTableHeaderCellCheckboxScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
+  export type EuiTableHeaderCellCheckboxScope =
+    | 'col'
+    | 'row'
+    | 'colgroup'
+    | 'rowgroup';
 
   export interface EuiTableHeaderCellCheckboxProps {
-    width?: string,
-    scope?: EuiTableHeaderCellCheckboxScope
+    width?: string;
+    scope?: EuiTableHeaderCellCheckboxScope;
   }
 
   export const EuiTableHeaderCellCheckbox: SFC<
     CommonProps &
-    TdHTMLAttributes<HTMLTableCellElement> &
-    EuiTableHeaderCellCheckboxProps
-    >;
-
+      TdHTMLAttributes<HTMLTableCellElement> &
+      EuiTableHeaderCellCheckboxProps
+  >;
 
   /**
    * table row type defs
@@ -125,15 +117,14 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableRowProps {
-    isSelected?: boolean
+    isSelected?: boolean;
   }
 
   export const EuiTableRow: SFC<
     CommonProps &
-    AnyProps & // at least according to the contract of table_row.js
-    EuiTableRowProps
-    >;
-
+      AnyProps & // at least according to the contract of table_row.js
+      EuiTableRowProps
+  >;
 
   /**
    * table row cell type defs
@@ -142,17 +133,14 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableRowCellProps {
-    truncateText?: boolean,
-    align?: HorizontalAlignment,
-    textOnly?: boolean
+    truncateText?: boolean;
+    align?: HorizontalAlignment;
+    textOnly?: boolean;
   }
 
   export const EuiTableRowCell: SFC<
-    CommonProps &
-    HTMLAttributes<HTMLDivElement> &
-    EuiTableRowCellProps
-    >;
-
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiTableRowCellProps
+  >;
 
   /**
    * table row cell checkbox type defs
@@ -160,13 +148,11 @@ declare module '@elastic/eui' {
    * @see './table_row_cell_checkbox.js'
    */
 
-  export interface EuiTableRowCellCheckboxProps {
-  }
+  export interface EuiTableRowCellCheckboxProps {}
 
   export const EuiTableRowCellCheckbox: SFC<
     CommonProps &
-    TdHTMLAttributes<HTMLTableCellElement> &
-    EuiTableRowCellCheckboxProps
-    >;
-
+      TdHTMLAttributes<HTMLTableCellElement> &
+      EuiTableRowCellCheckboxProps
+  >;
 }

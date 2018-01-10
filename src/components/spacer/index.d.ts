@@ -1,7 +1,6 @@
 /// <reference path="../common.d.ts" />
 
-declare module "@elastic/eui" {
-
+declare module '@elastic/eui' {
   import { SFC, HTMLAttributes } from 'react';
 
   /**
@@ -13,12 +12,10 @@ declare module "@elastic/eui" {
   export type SpacerSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
   export interface EuiSpacerProps {
-    size?: SpacerSize
+    size?: SpacerSize;
   }
 
   export const EuiSpacer: SFC<
-    CommonProps &
-    HTMLAttributes<HTMLDivElement> &
-    EuiSpacerProps
-    >;
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiSpacerProps
+  >;
 }

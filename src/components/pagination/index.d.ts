@@ -1,9 +1,9 @@
 /// <reference path="../common.d.ts" />
+/// <reference path="../button/index.d.ts" />
 
 import { HTMLAttributes, SFC } from 'react';
 
-declare module "@elastic/eui" {
-
+declare module '@elastic/eui' {
   /**
    * pagination type defs
    *
@@ -13,17 +13,14 @@ declare module "@elastic/eui" {
   export type PageClickHandler = (pageIndex: number) => void;
 
   export interface EuiPaginationProps {
-    pageCount?: number,
-    activePage?: number,
-    onPageClick?: PageClickHandler
+    pageCount?: number;
+    activePage?: number;
+    onPageClick?: PageClickHandler;
   }
 
   export const EuiPagination: SFC<
-    CommonProps &
-    HTMLAttributes<HTMLDivElement> &
-    EuiPaginationProps
-    >;
-
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps
+  >;
 
   /**
    * pagination button type defs
@@ -32,15 +29,14 @@ declare module "@elastic/eui" {
    */
 
   export interface EuiPaginationButtonProps {
-    isActive?: boolean,
-    isPlaceholder?: boolean,
-    hideOnMobile?: boolean
+    isActive?: boolean;
+    isPlaceholder?: boolean;
+    hideOnMobile?: boolean;
   }
 
   export const EuiPaginationButton: SFC<
     CommonProps &
-    Omit<EuiButtonEmptyProps, 'size' | 'color'> &
-    EuiPaginationButtonProps
-    >;
-
+      Omit<EuiButtonEmptyProps, 'size' | 'color'> &
+      EuiPaginationButtonProps
+  >;
 }
