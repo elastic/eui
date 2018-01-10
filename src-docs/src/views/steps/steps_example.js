@@ -15,6 +15,10 @@ import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 
+import StepsComplex from './steps_complex';
+const stepsComplexSource = require('!!raw-loader!./steps_complex');
+const stepsComplexHtml = renderToHtml(StepsComplex);
+
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
 const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
@@ -37,6 +41,22 @@ export const StepsExample = {
     ),
     props: { EuiSteps },
     demo: <Steps />,
+  },
+  {
+    title: 'Complex steps',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: stepsComplexSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: stepsComplexHtml,
+    }],
+    text: (
+      <p>
+        Here&apos;s how to handle complex content within steps.
+      </p>
+    ),
+    demo: <StepsComplex />,
   },
   {
     title: 'Heading elements',
