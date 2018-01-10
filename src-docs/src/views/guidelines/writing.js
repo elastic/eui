@@ -29,7 +29,7 @@ import {
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
-export const GuideRuleWriting = ({
+const GuideRuleWriting = ({
   children,
   className,
   ...rest,

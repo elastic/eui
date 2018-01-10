@@ -7,7 +7,7 @@ import {
 
 import {
   GuideRuleDescription,
-} from '../../components';
+} from './guide_rule_description';
 
 export const GuideRule = ({
   children,
