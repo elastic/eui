@@ -44,10 +44,10 @@ exports[`EuiHeaderAlert is rendered 1`] = `
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--flexGrowZero euiHeaderAlert__action euiLink"
     />
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem euiFlexItem--flexGrowZero euiHeaderAlert__date"
     >
       date
     </div>

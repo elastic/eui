@@ -66,7 +66,7 @@ export const EuiFlexGroup = ({
   }
 
   return cloneElement(originalChildren, {
-    className: classes,
+    className: classNames(classes, originalChildren.props.className),
     ...rest
   });
 };

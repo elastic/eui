@@ -28,13 +28,15 @@ export default class extends Component {
   render() {
     return (
       <EuiFlexGroup justifyContent="spaceAround">
-        <EuiFlexItem grow={false}>
-          <EuiPagination
-            pageCount={this.PAGE_COUNT}
-            activePage={this.state.activePage}
-            onPageClick={this.goToPage}
-          />
-        </EuiFlexItem>
+        <div>
+          <EuiFlexItem grow={false}>
+            <EuiPagination
+              pageCount={this.PAGE_COUNT}
+              activePage={this.state.activePage}
+              onPageClick={this.goToPage}
+            />
+          </EuiFlexItem>
+        </div>
       </EuiFlexGroup>
     );
   }

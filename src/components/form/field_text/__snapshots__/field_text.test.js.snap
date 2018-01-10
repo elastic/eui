@@ -2,6 +2,7 @@
 
 exports[`EuiFieldText is rendered 1`] = `
 <eui-form-control-layout
+  classname="testClass1 testClass2"
   fullwidth="false"
   icon="foo"
   isloading="false"
@@ -9,7 +10,7 @@ exports[`EuiFieldText is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldText testClass1 testClass2 euiFieldText--withIcon"
+      class="euiFieldText euiFieldText--withIcon"
       data-test-subj="test subject string"
       id="1"
       name="elastic"

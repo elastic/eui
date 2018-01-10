@@ -29,7 +29,6 @@ export const EuiSelect = ({
       'euiSelect--fullWidth': fullWidth,
       'euiSelect-isLoading': isLoading,
     },
-    className
   );
 
   let emptyOptionNode;
@@ -45,6 +44,7 @@ export const EuiSelect = ({
       iconSide="right"
       fullWidth={fullWidth}
       isLoading={isLoading}
+      className={className}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select

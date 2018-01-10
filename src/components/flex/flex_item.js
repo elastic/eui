@@ -30,7 +30,7 @@ export const EuiFlexItem = ({
   }
 
   return cloneElement(originalChildren, {
-    className: classes,
+    className: classNames(classes, originalChildren.props.className),
     ...rest
   });
 };

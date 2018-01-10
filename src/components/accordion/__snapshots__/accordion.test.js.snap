@@ -24,7 +24,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
           <button
             aria-controls="6"
             aria-expanded={false}
-            className="euiFlexItem"
+            className="euiFlexItem euiAccordion__button"
             onClick={[Function]}
           >
             <EuiFlexGroup
@@ -124,7 +124,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
           <button
             aria-controls="5"
             aria-expanded={true}
-            className="euiFlexItem"
+            className="euiFlexItem euiAccordion__button"
             onClick={[Function]}
           >
             <EuiFlexGroup
@@ -211,7 +211,7 @@ exports[`EuiAccordion is rendered 1`] = `
     <button
       aria-controls="0"
       aria-expanded="false"
-      class="euiFlexItem"
+      class="euiFlexItem euiAccordion__button"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
@@ -261,7 +261,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     <button
       aria-controls="2"
       aria-expanded="false"
-      class="euiFlexItem"
+      class="euiFlexItem euiAccordion__button"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
@@ -313,7 +313,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     <button
       aria-controls="1"
       aria-expanded="false"
-      class="euiFlexItem"
+      class="euiFlexItem euiAccordion__button"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
@@ -363,7 +363,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     <button
       aria-controls="3"
       aria-expanded="false"
-      class="euiFlexItem"
+      class="euiFlexItem euiAccordion__button"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
@@ -418,7 +418,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     <button
       aria-controls="4"
       aria-expanded="true"
-      class="euiFlexItem"
+      class="euiFlexItem euiAccordion__button"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
