@@ -2,10 +2,12 @@
 
 - Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
 - Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
+- Added first batch of TypeScript type definitions for components and services [(#252)](https://github.com/elastic/eui/pull/252)
 
 **Bug fixes**
 
 - Remove padding on `<EuiPage>` mobile breakpoint. [(#282)](https://github.com/elastic/eui/pull/282)
+- Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. [(#277)](https://github.com/elastic/eui/pull/277)
 - Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
 
 **Breaking changes**
