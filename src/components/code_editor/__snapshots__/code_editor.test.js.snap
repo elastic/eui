@@ -112,6 +112,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
       wrap="off"
     />
     <div
+      aria-hidden="true"
       class="ace_gutter"
     >
       <div
@@ -225,6 +226,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
       wrap="off"
     />
     <div
+      aria-hidden="true"
       class="ace_gutter"
     >
       <div

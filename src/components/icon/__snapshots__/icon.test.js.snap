@@ -454,7 +454,6 @@ exports[`EuiIcon renders type asterisk 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -573,7 +572,6 @@ exports[`EuiIcon renders type calendar 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -609,7 +607,6 @@ exports[`EuiIcon renders type checkInCircleFilled 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -966,7 +963,6 @@ exports[`EuiIcon renders type exit 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -981,7 +977,6 @@ exports[`EuiIcon renders type expand 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -1010,7 +1005,6 @@ exports[`EuiIcon renders type faceNeutral 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -1176,7 +1170,6 @@ exports[`EuiIcon renders type iInCircle 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2124,7 +2117,6 @@ exports[`EuiIcon renders type number 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2139,7 +2131,6 @@ exports[`EuiIcon renders type pause 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2248,7 +2239,6 @@ exports[`EuiIcon renders type play 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2283,7 +2273,6 @@ exports[`EuiIcon renders type popout 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2315,7 +2304,6 @@ exports[`EuiIcon renders type refresh 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2406,7 +2394,6 @@ exports[`EuiIcon renders type scale 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2509,7 +2496,6 @@ exports[`EuiIcon renders type share 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2546,7 +2532,6 @@ exports[`EuiIcon renders type sortLeft 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2560,7 +2545,6 @@ exports[`EuiIcon renders type sortRight 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2617,7 +2601,6 @@ exports[`EuiIcon renders type starPlusFilled 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2632,7 +2615,6 @@ exports[`EuiIcon renders type string 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2647,7 +2629,6 @@ exports[`EuiIcon renders type tableOfContents 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="16"
-  viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
