@@ -6,7 +6,7 @@
 
 **Bug fixes**
 
-- Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. (#277)
+- Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. [(#277)](https://github.com/elastic/eui/pull/277)
 - Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
 
 **Breaking changes**
