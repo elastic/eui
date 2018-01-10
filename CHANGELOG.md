@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- All NPM dependencies now use ^ to install the latest minor version.
 - Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
 - Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
 - Added first batch of TypeScript type definitions for components and services [(#252)](https://github.com/elastic/eui/pull/252)
