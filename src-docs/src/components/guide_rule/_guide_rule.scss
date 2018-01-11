@@ -1,0 +1,15 @@
+.guideRule {
+  margin-bottom: $euiSizeXXL * 2;
+
+  &.guideRule--hasHeading {
+    margin-top: $euiSizeXXL * 2;
+  }
+
+  & + .guideRule:not(.guideRule--hasHeading) {
+    margin-top: $euiSizeXXL * -2;
+  }
+
+  .guideRule__title + &.guideRule--hasHeading {
+    margin-top: $euiSizeXXL;
+  }
+}
