@@ -12,7 +12,6 @@ import {
   EuiValidatableControl,
 } from '../validatable_control';
 
-
 const propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
@@ -95,7 +94,6 @@ export class EuiFieldSearch extends Component {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch-isLoading': isLoading,
       },
-      className
     );
 
     const ref = (inputElement) => {
@@ -111,6 +109,7 @@ export class EuiFieldSearch extends Component {
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
+        className={className}
       >
         <EuiValidatableControl isInvalid={isInvalid}>
           <input

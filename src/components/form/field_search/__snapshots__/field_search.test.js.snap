@@ -2,6 +2,7 @@
 
 exports[`EuiFieldSearch is rendered 1`] = `
 <eui-form-control-layout
+  classname="testClass1 testClass2"
   fullwidth="false"
   icon="search"
   isloading="false"
@@ -9,7 +10,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch testClass1 testClass2"
+      class="euiFieldSearch"
       data-test-subj="test subject string"
       id="1"
       name="elastic"
