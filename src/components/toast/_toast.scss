@@ -6,6 +6,7 @@
   background-color: $euiColorEmptyShade;
   border: $euiBorderThin;
   width: 100%;
+  z-index: $euiZToast;
 
   &:hover .euiToast__closeButton,
   &:focus .euiToast__closeButton, {
