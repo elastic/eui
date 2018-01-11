@@ -137,7 +137,7 @@ import { TableExample }
   from './views/table/table_example';
 
 import { TableOfRecordsExample }
-  from '../../views/table_of_records/table_of_records_example';
+  from './views/table_of_records/table_of_records_example';
 
 import { TabsExample }
   from './views/tabs/tabs_example';
