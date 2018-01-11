@@ -1,18 +1,20 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- All NPM dependencies now use ^ to install the latest minor version.
 - Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
 - Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
 - Added first batch of TypeScript type definitions for components and services [(#252)](https://github.com/elastic/eui/pull/252)
+- Added button for expanding `<EuiCodeBlock>` instances to be full-screen. [(#259)](https://github.com/elastic/eui/pull/259)
 
 **Bug fixes**
 
-- Remove padding on `<EuiPage>` mobile breakpoint. [(#282)](https://github.com/elastic/eui/pull/282)
+- Removed padding on `<EuiPage>` mobile breakpoint. [(#282)](https://github.com/elastic/eui/pull/282)
 - Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. [(#277)](https://github.com/elastic/eui/pull/277)
 - Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
 
 **Breaking changes**
 
-- Removed `color` prop from `<EuiCodeBlock>`. This component's highlighting now matches whichever theme is currently active. [(#259)](https://github.com/elastic/eui/pull/259)
+- Removed `color` prop from `<EuiCodeBlock>`. This component's highlighting now matches whichever theme is currently active. See PR for details on SCSS breaking changes. [(#259)](https://github.com/elastic/eui/pull/259)
 
 # [`0.0.11`](https://github.com/elastic/eui/tree/v0.0.11)
 

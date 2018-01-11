@@ -20,6 +20,7 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
       aria-hidden="true"
       class="euiIcon euiButtonIcon__icon euiIcon--medium"
       height="16"
+      viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -57,6 +58,7 @@ console.log(some);
       aria-hidden="true"
       class="euiIcon euiButtonIcon__icon euiIcon--medium"
       height="16"
+      viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -89,6 +91,7 @@ exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
       aria-hidden="true"
       class="euiIcon euiButtonIcon__icon euiIcon--medium"
       height="16"
+      viewBox="0 0 16 16"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
