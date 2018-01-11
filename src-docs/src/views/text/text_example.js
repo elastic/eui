@@ -16,7 +16,7 @@ const textHtml = renderToHtml(Text);
 
 import TextSmall from './text_small';
 const textSmallSource = require('!!raw-loader!./text_small');
-const textSmallHtml = renderToHtml(Text);
+const textSmallHtml = renderToHtml(TextSmall);
 
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');

@@ -9,7 +9,6 @@ import {
 
 export default () => (
   <div>
-
     <EuiTitle>
       <h2>
         <EuiTextColor color="default">You </EuiTextColor>
