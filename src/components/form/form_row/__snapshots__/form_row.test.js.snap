@@ -17,7 +17,6 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={false}
-      isInvalid={undefined}
     >
       <label
         className="euiFormLabel"
@@ -54,7 +53,6 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={false}
-      isInvalid={undefined}
     >
       <label
         className="euiFormLabel"
@@ -91,7 +89,6 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={true}
-      isInvalid={undefined}
     >
       <label
         className="euiFormLabel euiFormLabel-isFocused"
@@ -128,7 +125,6 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={true}
-      isInvalid={undefined}
     >
       <label
         className="euiFormLabel euiFormLabel-isFocused"
