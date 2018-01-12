@@ -5,6 +5,7 @@
 - Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
 - Added first batch of TypeScript type definitions for components and services [(#252)](https://github.com/elastic/eui/pull/252)
 - Added button for expanding `<EuiCodeBlock>` instances to be full-screen. [(#259)](https://github.com/elastic/eui/pull/259)
+- Add test helper for async functions that throw exceptions [#301](https://github.com/elastic/eui/pull/301)
 
 **Bug fixes**
 
