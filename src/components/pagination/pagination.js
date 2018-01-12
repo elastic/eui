@@ -108,6 +108,11 @@ export const EuiPagination = ({
     );
   }
 
+  let selectablePages;
+  if (pages.length > 1) {
+    selectablePages = pages;
+  }
+
   return (
     <div
       className={classes}
@@ -115,7 +120,7 @@ export const EuiPagination = ({
     >
       {previousButton}
       {firstPageButtons}
-      {pages}
+      {selectablePages}
       {lastPageButtons}
       {nextButton}
     </div>

@@ -56,7 +56,6 @@
 
 .euiTableSortIcon {
   margin-left: $euiSizeXS;
-  fill: tintOrShade($euiTitleColor, 80%, 70%);
 
   .euiTableHeaderButton-isSorted & {
     fill: $euiTitleColor;
