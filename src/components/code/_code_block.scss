@@ -71,11 +71,11 @@
   ** 1. Size the code against the text its embedded within.
   **/
   &.euiCodeBlock--inline {
-    vertical-align: middle;
     display: inline-block;
     white-space: pre;
     color: $euiTextColor;
-    font-size: 75%; // 1
+    font-size: 90%; // 1
+    padding: 0 $euiSizeS;
     background: $euiColorLightestShade;
 
     .euiCodeBlock__pre {

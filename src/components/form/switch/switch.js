@@ -63,7 +63,3 @@ EuiSwitch.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
-
-EuiSwitch.defaultProps = {
-  defaultChecked: false,
-};
