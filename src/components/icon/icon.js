@@ -15,6 +15,7 @@ import asterisk from './assets/asterisk.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
+import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
@@ -47,6 +48,12 @@ import grokApp from './assets/app_grok.svg';
 import help from './assets/help.svg';
 import iInCircle from './assets/iInCircle.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
+import indexClose from './assets/index_close.svg';
+import indexEdit from './assets/index_edit.svg';
+import indexFlush from './assets/index_flush.svg';
+import indexMapping from './assets/index_mapping.svg';
+import indexOpen from './assets/index_open.svg';
+import indexSettings from './assets/index_settings.svg';
 import invert from './assets/invert.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
@@ -70,6 +77,7 @@ import logoXpack from './assets/logo_xpack.svg';
 import machineLearningApp from './assets/app_ml.svg';
 import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
+import merge from './assets/merge.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import monitoringApp from './assets/app_monitoring.svg';
 import node from './assets/node.svg';
@@ -97,6 +105,7 @@ import sortRight from './assets/sortRight.svg';
 import sortUp from './assets/sort_up.svg';
 import starEmpty from './assets/star_empty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
+import stats from './assets/stats.svg';
 import string from './assets/string.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tear from './assets/tear.svg';
@@ -123,6 +132,7 @@ const typeToIconMap = {
   bolt,
   boxesHorizontal,
   boxesVertical,
+  broom,
   brush,
   bullseye,
   calendar,
@@ -154,6 +164,12 @@ const typeToIconMap = {
   grokApp,
   help,
   iInCircle,
+  indexClose,
+  indexEdit,
+  indexFlush,
+  indexMapping,
+  indexOpen,
+  indexSettings,
   indexPatternApp,
   invert,
   link,
@@ -178,6 +194,7 @@ const typeToIconMap = {
   machineLearningApp,
   managementApp,
   mapMarker,
+  merge,
   minusInCircle,
   monitoringApp,
   node,
@@ -205,6 +222,7 @@ const typeToIconMap = {
   sortUp,
   starEmpty,
   starPlusFilled,
+  stats,
   string,
   tableOfContents,
   tear,
