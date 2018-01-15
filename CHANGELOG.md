@@ -1,6 +1,8 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.12`.
+**Breaking changes**
+
+- Revert test helper for async functions that throw exceptions [#306](https://github.com/elastic/eui/pull/306). See PR for details on how this can be handled in Jest 22.
 
 # [`0.0.12`](https://github.com/elastic/eui/tree/v0.0.12)
 
