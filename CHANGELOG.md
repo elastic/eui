@@ -9,6 +9,7 @@
 **Bug fixes**
 
 - Adjust toast z-index to show over modals [(#296)](https://github.com/elastic/eui/pull/296)
+- Fix nested `<EuiFlexItem>` collapse issue in IE [(#308)](https://github.com/elastic/eui/pull/308)
 
 # [`0.0.12`](https://github.com/elastic/eui/tree/v0.0.12)
 
