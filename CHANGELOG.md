@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.13`.
+
+# [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
+
 - Added index management icons. [(#307)](https://github.com/elastic/eui/pull/307)
 
 **Breaking changes**
