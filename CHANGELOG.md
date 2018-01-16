@@ -1,8 +1,14 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added index management icons. [(#307)](https://github.com/elastic/eui/pull/307)
+
 **Breaking changes**
 
 - Revert test helper for async functions that throw exceptions [#306](https://github.com/elastic/eui/pull/306). See PR for details on how this can be handled in Jest 22.
+
+**Bug fixes**
+
+- Adjust toast z-index to show over modals [(#296)](https://github.com/elastic/eui/pull/296)
 
 # [`0.0.12`](https://github.com/elastic/eui/tree/v0.0.12)
 
@@ -16,7 +22,6 @@
 
 **Bug fixes**
 
-- Adjust toast z-index to show over modals [(#296)](https://github.com/elastic/eui/pull/296)
 - Removed padding on `<EuiPage>` mobile breakpoint. [(#282)](https://github.com/elastic/eui/pull/282)
 - Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. [(#277)](https://github.com/elastic/eui/pull/277)
 - Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
