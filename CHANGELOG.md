@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.13`.
+- In `EuiSideNav`, allow a component prop to be passed that will be used to render the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. [#310](https://github.com/elastic/eui/pull/310)
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 
