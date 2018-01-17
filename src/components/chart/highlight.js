@@ -70,9 +70,9 @@ export default class Highlight extends AbstractSeries {
       startLoc: 0
     });
 
-    // Invoke the callback with null if the selected area was < 5px
+    // Don't invoke the callback if the selected area was < 5px.
+    // This is a click not a select
     if (Math.abs(drawArea.right - drawArea.left) < 5) {
-      onSelectEnd(null);
       return;
     }
 
