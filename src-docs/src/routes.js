@@ -72,6 +72,9 @@ import { CardExample }
 import { CallOutExample }
   from './views/call_out/call_out_example';
 
+import { ChartExample }
+  from './views/chart/chart_example';
+
 import { CodeEditorExample }
   from './views/code_editor/code_editor_example';
 
@@ -312,6 +315,7 @@ const navigation = [{
     BadgeExample,
     CallOutExample,
     CardExample,
+    ChartExample,
     CodeExample,
     DescriptionListExample,
     EmptyPromptExample,
