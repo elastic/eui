@@ -26,8 +26,7 @@ export default () => (
         alert('clicked!');
       }}
       data={[{ x: 0, y: 0 }, { x: 1, y: 2 }]}
-      color={'#db1374'}
     />
-    <EuiLine name="Winners" title="changeingValue" color={'#db1374'} data={[{ x: 0, y: 0 }, { x: 5, y: 2 }]} />
+    <EuiLine name="Winners" title="changeingValue" data={[{ x: 0, y: 0 }, { x: 5, y: 2 }]} />
   </EuiChart>
 );

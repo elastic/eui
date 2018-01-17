@@ -3,7 +3,8 @@ import { XYPlot, makeWidthFlexible, XAxis, YAxis, HorizontalGridLines, Crosshair
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
 import Highlight from './highlight';
-
+import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors';
+5;
 export class InnerCustomPlot extends PureComponent {
   constructor(props) {
     super(props);
@@ -12,6 +13,7 @@ export class InnerCustomPlot extends PureComponent {
     this._getAllSeriesDataAtIndex = this._getAllSeriesDataAtIndex.bind(this);
     this._itemsFormat = this._itemsFormat.bind(this);
     this.seriesItems = {};
+    this.colorIterator = 0;
     this.classNameID = Math.random()
       .toString(36)
       .substring(7);
@@ -93,6 +95,7 @@ export class InnerCustomPlot extends PureComponent {
   render() {
     const { width, height, xAxisLocation, yAxisLocation, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
+    this.colorIterator = 0;
 
     return (
       <XYPlot
@@ -131,6 +134,13 @@ export class InnerCustomPlot extends PureComponent {
           if (plotValues) {
             plotValues.xDomain = plotValues.x.domain();
             plotValues.yDomain = plotValues.y.domain();
+          }
+
+          if (!child.props.color) {
+            props.color = VISUALIZATION_COLORS[this.colorIterator];
+
+            this.colorIterator++;
+            if (this.colorIterator > VISUALIZATION_COLORS.length - 1) this.colorIterator = 0;
           }
 
           return React.cloneElement(child, props);

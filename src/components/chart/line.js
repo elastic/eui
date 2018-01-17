@@ -64,7 +64,6 @@ EUILineSeries.propTypes = {
 };
 
 EUILineSeries.defaultProps = {
-  color: '#3185fc',
   curve: 'linear',
   hasLineMarks: true,
   lineMarkSize: 5

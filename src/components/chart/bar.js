@@ -39,6 +39,4 @@ EUIBarSeries.propTypes = {
   onClick: PropTypes.func
 };
 
-EUIBarSeries.defaultProps = {
-  color: '#3185fc'
-};
+EUIBarSeries.defaultProps = {};
