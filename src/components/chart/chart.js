@@ -91,7 +91,7 @@ export class InnerCustomPlot extends PureComponent {
   }
 
   render() {
-    const { width, height, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
+    const { width, height, xAxisLocation, yAxisLocation, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
 
     return (
@@ -105,8 +105,22 @@ export class InnerCustomPlot extends PureComponent {
         margin={2}
       >
         <HorizontalGridLines tickValues={this._getTicks(yTicks)} style={{ strokeDasharray: '5 5' }} />
-        {showXAxis && <XAxis tickSize={1} tickValues={this._getTicks(xTicks)} tickFormat={v => this._getTickLabels(xTicks)[v] || v} />}
-        {showYAxis && <YAxis tickSize={1} tickValues={this._getTicks(yTicks)} tickFormat={v => this._getTickLabels(yTicks)[v] || v} />}
+        {showXAxis && (
+          <XAxis
+            orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
+            tickSize={1}
+            tickValues={this._getTicks(xTicks)}
+            tickFormat={v => this._getTickLabels(xTicks)[v] || v}
+          />
+        )}
+        {showYAxis && (
+          <YAxis
+            tickSize={1}
+            orientation={yAxisLocation === 'right' ? 'right' : 'left'}
+            tickValues={this._getTicks(yTicks)}
+            tickFormat={v => this._getTickLabels(yTicks)[v] || v}
+          />
+        )}
         {React.Children.map(children, (child, i) => {
           const props = {
             registerSeriesDataCallback: this._registerSeriesDataCallback,
@@ -144,7 +158,9 @@ InnerCustomPlot.propTypes = {
   yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
   truncateLegends: PropTypes.bool,
   showYAxis: PropTypes.bool,
-  showYAxis: PropTypes.bool
+  showYAxis: PropTypes.bool,
+  xAxisLocation: PropTypes.string,
+  yAxisLocation: PropTypes.string
 };
 
 InnerCustomPlot.defaultProps = {
