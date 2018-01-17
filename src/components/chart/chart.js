@@ -91,7 +91,7 @@ export class InnerCustomPlot extends PureComponent {
   }
 
   render() {
-    const { width, height, yTicks, xTicks, onSelectEnd, children } = this.props;
+    const { width, height, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
 
     return (
@@ -105,8 +105,8 @@ export class InnerCustomPlot extends PureComponent {
         margin={2}
       >
         <HorizontalGridLines tickValues={this._getTicks(yTicks)} style={{ strokeDasharray: '5 5' }} />
-        <XAxis tickSize={1} tickValues={this._getTicks(xTicks)} tickFormat={v => this._getTickLabels(xTicks)[v] || v} />
-        <YAxis tickSize={1} tickValues={this._getTicks(yTicks)} tickFormat={v => this._getTickLabels(yTicks)[v] || v} />
+        {showXAxis && <XAxis tickSize={1} tickValues={this._getTicks(xTicks)} tickFormat={v => this._getTickLabels(xTicks)[v] || v} />}
+        {showYAxis && <YAxis tickSize={1} tickValues={this._getTicks(yTicks)} tickFormat={v => this._getTickLabels(yTicks)[v] || v} />}
         {React.Children.map(children, (child, i) => {
           const props = {
             registerSeriesDataCallback: this._registerSeriesDataCallback,
@@ -142,11 +142,15 @@ InnerCustomPlot.propTypes = {
   hoverIndex: PropTypes.number,
   xTicks: PropTypes.array, // [0, 1.2, 2.4]
   yTicks: PropTypes.array, // OR [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
-  truncateLegends: PropTypes.bool
+  truncateLegends: PropTypes.bool,
+  showYAxis: PropTypes.bool,
+  showYAxis: PropTypes.bool
 };
 
 InnerCustomPlot.defaultProps = {
-  truncateLegends: false
+  truncateLegends: false,
+  showYAxis: true,
+  showYAxis: true
 };
 
 export default makeWidthFlexible(InnerCustomPlot);
