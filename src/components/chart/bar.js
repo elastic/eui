@@ -13,11 +13,19 @@ class EUIBarSeries extends VerticalBarSeries {
     return index !== undefined ? this.props.data[index] : this.props.data;
   };
   render() {
-    const { name, data, color, onNearestX, ...rest } = this.props;
+    const { name, data, color, onNearestX, onClick, ...rest } = this.props;
 
     return (
       <g>
-        <VerticalBarSeries key={name} color={color} onNearestX={onNearestX} style={{ rx: 2, ry: 2 }} data={data} {...rest} />
+        <VerticalBarSeries
+          key={name}
+          onSeriesClick={onClick}
+          color={color}
+          onNearestX={onNearestX}
+          style={{ rx: 2, ry: 2 }}
+          data={data}
+          {...rest}
+        />
       </g>
     );
   }
@@ -25,7 +33,10 @@ class EUIBarSeries extends VerticalBarSeries {
 export default EUIBarSeries;
 
 EUIBarSeries.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  color: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 EUIBarSeries.defaultProps = {
