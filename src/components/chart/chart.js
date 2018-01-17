@@ -121,7 +121,12 @@ export class InnerCustomPlot extends PureComponent {
 
           return React.cloneElement(child, props);
         })}
-        <Crosshair values={this.state.crosshairValues} titleFormat={() => null} itemsFormat={this._itemsFormat} />
+        <Crosshair
+          values={this.state.crosshairValues}
+          style={{ line: { background: 'rgb(218, 218, 218)' } }}
+          titleFormat={() => null}
+          itemsFormat={this._itemsFormat}
+        />
         {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
       </XYPlot>
     );
