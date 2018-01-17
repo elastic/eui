@@ -140,8 +140,8 @@ InnerCustomPlot.propTypes = {
   onMouseLeave: PropTypes.func,
   onSelectEnd: PropTypes.func,
   hoverIndex: PropTypes.number,
-  xTicks: PropTypes.array, // [0, 1.2, 2.4]
-  yTicks: PropTypes.array, // OR [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
+  xTicks: PropTypes.array,
+  yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
   truncateLegends: PropTypes.bool,
   showYAxis: PropTypes.bool,
   showYAxis: PropTypes.bool
@@ -150,7 +150,7 @@ InnerCustomPlot.propTypes = {
 InnerCustomPlot.defaultProps = {
   truncateLegends: false,
   showYAxis: true,
-  showYAxis: true
+  showXAxis: true
 };
 
 export default makeWidthFlexible(InnerCustomPlot);

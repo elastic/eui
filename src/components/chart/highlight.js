@@ -5,8 +5,8 @@ export default class Highlight extends AbstractSeries {
   static displayName = 'HighlightOverlay';
   static defaultProps = {
     allow: 'x',
-    color: 'rgb(77, 182, 172)',
-    opacity: 0.3
+    color: 'rgb(0,0, 0)',
+    opacity: 0.2
   };
   state = {
     drawing: false,
