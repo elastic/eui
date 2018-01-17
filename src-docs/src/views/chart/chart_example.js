@@ -4,7 +4,7 @@ import { EuiCallOut, EuiSpacer, EuiCode } from '../../../../src/components';
 import ChartExampleCode from './examples';
 
 const examplesSource = require('!!raw-loader!./examples');
-console.log(EuiCode);
+
 export const ChartExample = {
   title: 'SeriesChart',
   intro: (

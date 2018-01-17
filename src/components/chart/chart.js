@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { XYPlot, makeWidthFlexible, XAxis, YAxis, HorizontalGridLines, Crosshair } from 'react-vis';
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
+import Highlight from './highlight';
 
 export class InnerCustomPlot extends PureComponent {
   constructor(props) {
@@ -90,7 +91,7 @@ export class InnerCustomPlot extends PureComponent {
   }
 
   render() {
-    const { width, height, yTicks, xTicks, children } = this.props;
+    const { width, height, yTicks, xTicks, onSelectEnd, children } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
 
     return (
@@ -121,6 +122,7 @@ export class InnerCustomPlot extends PureComponent {
           return React.cloneElement(child, props);
         })}
         <Crosshair values={this.state.crosshairValues} titleFormat={() => null} itemsFormat={this._itemsFormat} />
+        {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
       </XYPlot>
     );
   }
@@ -128,9 +130,10 @@ export class InnerCustomPlot extends PureComponent {
 
 InnerCustomPlot.propTypes = {
   width: PropTypes.number.isRequired,
-  onHover: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  onSelectionEnd: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
+  onHover: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onSelectEnd: PropTypes.func,
   hoverIndex: PropTypes.number,
   xTicks: PropTypes.array, // [0, 1.2, 2.4]
   yTicks: PropTypes.array, // OR [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]

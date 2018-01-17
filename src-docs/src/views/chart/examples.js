@@ -10,8 +10,9 @@ export default () => (
     onMouseLeave={() => {
       console.log('mouse leave');
     }}
-    onSelectionEnd={() => {
-      console.log('selection end');
+    onSelectEnd={area => {
+      alert('selection ended with an area :) Check console to see it');
+      console.log(area);
     }}
     width={600}
     height={200}
