@@ -93,12 +93,24 @@ export class InnerCustomPlot extends PureComponent {
   }
 
   render() {
-    const { width, height, xAxisLocation, yAxisLocation, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
+    const {
+      width,
+      height,
+      errorText,
+      xAxisLocation,
+      yAxisLocation,
+      showYAxis,
+      showXAxis,
+      yTicks,
+      xTicks,
+      onSelectEnd,
+      children
+    } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
     let colorIterator = 0;
 
-    if(!children) {
-      return (<StatusText text="No data returned to draw this graph." width={width} height={height}/>);
+    if (!children) {
+      return <StatusText text={errorText || 'No data returned to draw this graph.'} width={width} height={height} />;
     }
 
     return (
@@ -176,7 +188,8 @@ InnerCustomPlot.propTypes = {
   showYAxis: PropTypes.bool,
   showYAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
-  yAxisLocation: PropTypes.string
+  yAxisLocation: PropTypes.string,
+  errorText: PropTypes.string
 };
 
 InnerCustomPlot.defaultProps = {
