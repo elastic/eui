@@ -33,7 +33,7 @@ const getYScale = _.memoize(
 const getYTickValues = _.memoize(yMaxNice => [0, yMaxNice / 2, yMaxNice]);
 
 export function getPlotValues(series, width) {
-  if(series.length === 0) return;
+  if (series.length === 0) return;
 
   const allCoordinates = _.flatten(series);
 
@@ -46,7 +46,6 @@ export function getPlotValues(series, width) {
   const y = getYScale(yMin, yMax);
   const yTickValues = getYTickValues(y.domain()[1]);
   const xTickValues = getYTickValues(x.domain()[1]);
-  console.log(x.domain())
 
   return { x, y, yTickValues, xTickValues };
 }

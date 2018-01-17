@@ -3,56 +3,6 @@ import { XYPlot, makeWidthFlexible, XAxis, YAxis, HorizontalGridLines, Crosshair
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
 
-// TODO series need these options
-//     clickable: boolean
-//     hoverable: boolean
-//     highlightColor: color or number
-
-// TODO Document API
-
-// TODO chart needs these options for axis
-// show: null or true/false
-// position: "bottom" or "top" or "left" or "right"
-// mode: null or "time" ("time" requires jquery.flot.time.js plugin)
-// timezone: null, "browser" or timezone (only makes sense for mode: "time")
-
-// color: null or color spec
-// tickColor: null or color spec
-// font: null or font spec object
-
-// min: null or number
-// max: null or number
-// autoscaleMargin: null or number
-
-// transform: null or fn: number -> number
-// inverseTransform: null or fn: number -> number
-
-// ticks: null or number or ticks array or (fn: axis -> ticks array)
-// tickSize: number or array
-// minTickSize: number or array
-// tickFormatter: (fn: number, object -> string) or string
-// tickDecimals: null or number
-
-// labelWidth: null or number
-// labelHeight: null or number
-// reserveSpace: null or true
-
-// tickLength: null or number
-
-// alignTicksWithAxis: null or number
-
-// Legend component with these options
-// labelFormatter: null or (fn: string, series object -> string)
-// labelBoxBorderColor: color
-// noColumns: number
-// position: "ne" or "nw" or "se" or "sw"
-// margin: number of pixels or [x margin, y margin]
-// backgroundColor: null or color
-// backgroundOpacity: number between 0 and 1
-// sorted: null/false, true, "ascending", "descending", "reverse", or a comparator
-
-// TODO add aditional helper util functions
-
 export class InnerCustomPlot extends PureComponent {
   constructor(props) {
     super(props);
@@ -61,6 +11,9 @@ export class InnerCustomPlot extends PureComponent {
     this._getAllSeriesDataAtIndex = this._getAllSeriesDataAtIndex.bind(this);
     this._itemsFormat = this._itemsFormat.bind(this);
     this.seriesItems = {};
+    this.classNameID = Math.random()
+      .toString(36)
+      .substring(7);
   }
   state = {
     crosshairValues: []
@@ -70,14 +23,38 @@ export class InnerCustomPlot extends PureComponent {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
   }
 
-  _onNearestX = (value, { index }) => {
+  _onNearestX = (value, { index, event, innerX }) => {
     if (this.state.lastCrosshairIndex === index) return;
 
-    this.setState({
-      crosshairValues: this._getAllSeriesDataAtIndex(index),
-      lastCrosshairIndex: index
-    });
+    const svg = document.getElementsByClassName(this.classNameID)[0].firstChild;
+    const rect = svg.getBoundingClientRect();
+    const mouseX = event.pageX - rect.left;
+    const closer = this._closestX(mouseX, innerX, this.state.lastIndexsX);
+
+    if (closer === innerX) {
+      this.setState({
+        crosshairValues: this._getAllSeriesDataAtIndex(index),
+        lastCrosshairIndex: index,
+        lastIndexsX: innerX
+      });
+    }
   };
+
+  _closestX(mouseX, innerX, lastIndexsX) {
+    if (!lastIndexsX) return innerX;
+
+    const arr = [innerX, lastIndexsX];
+    let curr = arr[0];
+    let diff = Math.abs(mouseX - curr);
+    for (let val = 0; val < arr.length; val++) {
+      const newdiff = Math.abs(mouseX - arr[val]);
+      if (newdiff < diff) {
+        diff = newdiff;
+        curr = arr[val];
+      }
+    }
+    return curr;
+  }
 
   _registerSeriesDataCallback = (name, fn) => {
     if (name) this.seriesItems[name] = fn;
@@ -117,8 +94,8 @@ export class InnerCustomPlot extends PureComponent {
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
 
     return (
-
       <XYPlot
+        className={this.classNameID}
         dontCheckIfEmpty
         onMouseLeave={this._onMouseLeave}
         width={width}
@@ -128,7 +105,7 @@ export class InnerCustomPlot extends PureComponent {
       >
         <HorizontalGridLines tickValues={this._getTicks(yTicks)} style={{ strokeDasharray: '5 5' }} />
         <XAxis tickSize={1} tickValues={this._getTicks(xTicks)} tickFormat={v => this._getTickLabels(xTicks)[v] || v} />
-        <YAxis  tickSize={1} tickValues={this._getTicks(yTicks)} tickFormat={v => this._getTickLabels(yTicks)[v] || v} />
+        <YAxis tickSize={1} tickValues={this._getTicks(yTicks)} tickFormat={v => this._getTickLabels(yTicks)[v] || v} />
         {React.Children.map(children, (child, i) => {
           const props = {
             registerSeriesDataCallback: this._registerSeriesDataCallback,
@@ -136,16 +113,15 @@ export class InnerCustomPlot extends PureComponent {
             id: `chart-${i}`
           };
 
-          if(plotValues) {
+          if (plotValues) {
             plotValues.xDomain = plotValues.x.domain();
             plotValues.yDomain = plotValues.y.domain();
           }
 
-          return  React.cloneElement(child, props);
+          return React.cloneElement(child, props);
         })}
         <Crosshair values={this.state.crosshairValues} titleFormat={() => null} itemsFormat={this._itemsFormat} />
       </XYPlot>
-
     );
   }
 }
