@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.13`.
+- Added `requiresLightText` color util [(#311)](https://github.com/elastic/eui/pull/311)
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 
