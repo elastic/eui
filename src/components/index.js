@@ -37,8 +37,16 @@ export {
 } from './call_out';
 
 export {
+<<<<<<< HEAD
   EuiCard,
 } from './card';
+=======
+  EuiChart,
+  EuiLine,
+  EuiArea,
+  EuiBar
+} from './chart';
+>>>>>>> finish commit
 
 export {
   EuiCode,
