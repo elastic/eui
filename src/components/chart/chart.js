@@ -109,7 +109,7 @@ export class InnerCustomPlot extends PureComponent {
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
     let colorIterator = 0;
 
-    if (!children) {
+    if (!children || errorText) {
       return <StatusText text={errorText || 'No data returned to draw this graph.'} width={width} height={height} />;
     }
 
