@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
 import Highlight from './highlight';
 import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors';
-5;
+import StatusText from './status-text';
+
 export class InnerCustomPlot extends PureComponent {
   constructor(props) {
     super(props);
@@ -13,7 +14,6 @@ export class InnerCustomPlot extends PureComponent {
     this._getAllSeriesDataAtIndex = this._getAllSeriesDataAtIndex.bind(this);
     this._itemsFormat = this._itemsFormat.bind(this);
     this.seriesItems = {};
-    this.colorIterator = 0;
     this.classNameID = Math.random()
       .toString(36)
       .substring(7);
@@ -95,7 +95,11 @@ export class InnerCustomPlot extends PureComponent {
   render() {
     const { width, height, xAxisLocation, yAxisLocation, showYAxis, showXAxis, yTicks, xTicks, onSelectEnd, children } = this.props;
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
-    this.colorIterator = 0;
+    let colorIterator = 0;
+
+    if(!children) {
+      return (<StatusText text="No data returned to draw this graph." width={width} height={height}/>);
+    }
 
     return (
       <XYPlot
@@ -137,21 +141,23 @@ export class InnerCustomPlot extends PureComponent {
           }
 
           if (!child.props.color) {
-            props.color = VISUALIZATION_COLORS[this.colorIterator];
+            props.color = VISUALIZATION_COLORS[colorIterator];
 
-            this.colorIterator++;
-            if (this.colorIterator > VISUALIZATION_COLORS.length - 1) this.colorIterator = 0;
+            colorIterator++;
+            if (colorIterator > VISUALIZATION_COLORS.length - 1) colorIterator = 0;
           }
 
           return React.cloneElement(child, props);
         })}
-        <Crosshair
-          values={this.state.crosshairValues}
-          style={{ line: { background: 'rgb(218, 218, 218)' } }}
-          titleFormat={() => null}
-          itemsFormat={this._itemsFormat}
-        />
-        {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
+        {children && (
+          <Crosshair
+            values={this.state.crosshairValues}
+            style={{ line: { background: 'rgb(218, 218, 218)' } }}
+            titleFormat={() => null}
+            itemsFormat={this._itemsFormat}
+          />
+        )}
+        {children && onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
       </XYPlot>
     );
   }

@@ -1,3 +1,19 @@
 .rv-xy-plot__inner {
   overflow: visible;
 }
+
+.euichart-error-nodata {
+  position: relative;
+  border: 2px solid #e2e2e2;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.euichart-error-nodata .euiToastHeader__title {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.euichart-error-nodata .euiToastHeader__icon {
+  margin-top: -5px;
+}
