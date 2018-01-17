@@ -15,6 +15,10 @@ export {
 } from './alignment';
 
 export {
+  requiresLightText
+} from './colors';
+
+export {
   Pager,
 } from './paging';
 
