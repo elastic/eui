@@ -15,7 +15,7 @@ export {
 } from './alignment';
 
 export {
-  requiresLightText
+  isColorDark
 } from './colors';
 
 export {
