@@ -96,6 +96,7 @@ export class InnerCustomPlot extends PureComponent {
     const {
       width,
       height,
+      mode,
       errorText,
       xAxisLocation,
       yAxisLocation,
@@ -110,13 +111,14 @@ export class InnerCustomPlot extends PureComponent {
     let colorIterator = 0;
 
     if (!children || errorText) {
-      return <StatusText text={errorText || 'No data returned to draw this graph.'} width={width} height={height} />;
+      return <StatusText text={errorText} width={width} height={height} />;
     }
 
     return (
       <XYPlot
         className={this.classNameID}
         dontCheckIfEmpty
+        xType={mode}
         onMouseLeave={this._onMouseLeave}
         width={width}
         animation={true}
@@ -124,6 +126,7 @@ export class InnerCustomPlot extends PureComponent {
         margin={2}
       >
         <HorizontalGridLines tickValues={this._getTicks(yTicks)} style={{ strokeDasharray: '5 5' }} />
+
         {showXAxis && (
           <XAxis
             orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
@@ -132,6 +135,7 @@ export class InnerCustomPlot extends PureComponent {
             tickFormat={v => this._getTickLabels(xTicks)[v] || v}
           />
         )}
+
         {showYAxis && (
           <YAxis
             tickSize={1}
@@ -140,6 +144,7 @@ export class InnerCustomPlot extends PureComponent {
             tickFormat={v => this._getTickLabels(yTicks)[v] || v}
           />
         )}
+
         {React.Children.map(children, (child, i) => {
           const props = {
             registerSeriesDataCallback: this._registerSeriesDataCallback,
@@ -161,15 +166,14 @@ export class InnerCustomPlot extends PureComponent {
 
           return React.cloneElement(child, props);
         })}
-        {children && (
-          <Crosshair
-            values={this.state.crosshairValues}
-            style={{ line: { background: 'rgb(218, 218, 218)' } }}
-            titleFormat={() => null}
-            itemsFormat={this._itemsFormat}
-          />
-        )}
-        {children && onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
+
+        <Crosshair
+          values={this.state.crosshairValues}
+          style={{ line: { background: 'rgb(218, 218, 218)' } }}
+          titleFormat={() => null}
+          itemsFormat={this._itemsFormat}
+        />
+        <Highlight onSelectEnd={onSelectEnd} />
       </XYPlot>
     );
   }
@@ -189,13 +193,15 @@ InnerCustomPlot.propTypes = {
   showYAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
+  mode: PropTypes.string,
   errorText: PropTypes.string
 };
 
 InnerCustomPlot.defaultProps = {
   truncateLegends: false,
   showYAxis: true,
-  showXAxis: true
+  showXAxis: true,
+  mode: 'linear'
 };
 
 export default makeWidthFlexible(InnerCustomPlot);

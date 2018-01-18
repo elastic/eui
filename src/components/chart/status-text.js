@@ -19,7 +19,7 @@ function StatusText({ width, height, text }) {
           <EuiIcon className="euiToastHeader__icon" type="stats" size="m" aria-hidden="true" />
           <span className="euiToastHeader__title">Graph not avaliable</span>
         </div>
-        <EuiText size="s">{text}</EuiText>
+        {text && <EuiText size="s">{text}</EuiText>}
       </div>
     </div>
   );
