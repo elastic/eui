@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import checkHrefAndOnClick from '../../../services/prop_types/check_href_and_onclick';
+
 import {
   ICON_TYPES,
   EuiIcon,
@@ -48,6 +50,8 @@ export const EuiButtonEmpty = ({
   size,
   flush,
   isDisabled,
+  href,
+  onClick,
   ...rest
 }) => {
 
@@ -74,18 +78,34 @@ export const EuiButtonEmpty = ({
     );
   }
 
-  return (
-    <button
-      disabled={isDisabled}
-      className={classes}
-      {...rest}
-    >
-      <span className="euiButtonEmpty__content">
-        {buttonIcon}
-        <span>{children}</span>
-      </span>
-    </button>
-  );
+  if (href) {
+    return (
+      <a
+        className={classes}
+        href={href}
+        {...rest}
+      >
+        <span className="euiButtonEmpty__content">
+          {buttonIcon}
+          <span>{children}</span>
+        </span>
+      </a>
+    );
+  } else {
+    return (
+      <button
+        disabled={isDisabled}
+        className={classes}
+        onClick={onClick}
+        {...rest}
+      >
+        <span className="euiButtonEmpty__content">
+          {buttonIcon}
+          <span>{children}</span>
+        </span>
+      </button>
+    );
+  }
 };
 
 EuiButtonEmpty.propTypes = {
@@ -97,6 +117,8 @@ EuiButtonEmpty.propTypes = {
   size: PropTypes.oneOf(SIZES),
   flush: PropTypes.oneOf(FLUSH_TYPES),
   isDisabled: PropTypes.bool,
+  href: checkHrefAndOnClick,
+  onClick: PropTypes.func,
 };
 
 EuiButtonEmpty.defaultProps = {

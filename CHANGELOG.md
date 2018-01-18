@@ -1,6 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.13`.
+- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
+
+**Bug fixes**
+
+- Set `EuiFlexGroup` to `flex-grow: 1` to be more friendly with IE11 [(#315)](https://github.com/elastic/eui/pull/315)
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 
