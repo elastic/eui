@@ -104,6 +104,7 @@ export class InnerCustomPlot extends PureComponent {
       showXAxis,
       yTicks,
       xTicks,
+      showTooltips,
       onSelectEnd,
       children
     } = this.props;
@@ -167,13 +168,16 @@ export class InnerCustomPlot extends PureComponent {
           return React.cloneElement(child, props);
         })}
 
-        <Crosshair
-          values={this.state.crosshairValues}
-          style={{ line: { background: 'rgb(218, 218, 218)' } }}
-          titleFormat={() => null}
-          itemsFormat={this._itemsFormat}
-        />
-        <Highlight onSelectEnd={onSelectEnd} />
+        {showTooltips && (
+          <Crosshair
+            values={this.state.crosshairValues}
+            style={{ line: { background: 'rgb(218, 218, 218)' } }}
+            titleFormat={() => null}
+            itemsFormat={this._itemsFormat}
+          />
+        )}
+
+        {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
       </XYPlot>
     );
   }
@@ -194,6 +198,7 @@ InnerCustomPlot.propTypes = {
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
   mode: PropTypes.string,
+  showTooltips: PropTypes.bool,
   errorText: PropTypes.string
 };
 
@@ -201,6 +206,7 @@ InnerCustomPlot.defaultProps = {
   truncateLegends: false,
   showYAxis: true,
   showXAxis: true,
+  showTooltips: true,
   mode: 'linear'
 };
 
