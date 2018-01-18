@@ -68,7 +68,7 @@ export const ButtonExample = {
     text: (
       <p>
         Buttons will use an <EuiCode>{'<a>'}</EuiCode> tag
-        if an <EuiCode>href</EuiCode> prop is present.
+        if there is a <EuiCode>href</EuiCode> prop present.
       </p>
     ),
     demo: <ButtonAsLink />,
