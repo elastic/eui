@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import checkHrefAndOnClick from '../../../services/prop-types/check_href_and_onclick';
+import checkHrefAndOnClick from '../../../services/prop_types/check_href_and_onclick';
 
 import {
   ICON_TYPES,
@@ -81,7 +81,6 @@ export const EuiButtonEmpty = ({
   if (href) {
     return (
       <a
-        disabled={isDisabled}
         className={classes}
         href={href}
         {...rest}

@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an HREF [(#316)](https://github.com/elastic/eui/pull/316)
+- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
 
 **Bug fixes**
 
