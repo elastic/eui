@@ -3,9 +3,7 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCallOut, EuiSpacer, EuiCode } from '../../../../src/components';
 import ChartExampleCode from './examples';
 import EmptyExampleCode from './example-empty';
-
-const examplesSource = require('!!raw-loader!./examples');
-const emptyExamplesSource = require('!!raw-loader!./example-empty');
+import AutoAxisChartExampleCode from './example-auto-axis';
 
 export const ChartExample = {
   title: 'SeriesChart',
@@ -36,7 +34,7 @@ export const ChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: examplesSource
+          code: require('!!raw-loader!./examples')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -61,7 +59,7 @@ export const ChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: emptyExamplesSource
+          code: require('!!raw-loader!./example-empty')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -75,20 +73,18 @@ export const ChartExample = {
       )
     },
     {
-      title: 'Bar Series',
+      title: 'Auto Axis',
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiChart</EuiCode> to display line, bar, area, and stream charts. Note that charts are composed with{' '}
-            <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>, <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child
-            components.
+            If just displaying values is enough, then you can let the chart auto label axis
           </p>
         </div>
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: examplesSource
+          code: require('!!raw-loader!./example-auto-axis')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -97,7 +93,7 @@ export const ChartExample = {
       ],
       demo: (
         <div style={{ margin: 60 }}>
-          <ChartExampleCode />
+          <AutoAxisChartExampleCode />
         </div>
       )
     }

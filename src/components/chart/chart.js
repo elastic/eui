@@ -81,15 +81,21 @@ export class InnerCustomPlot extends PureComponent {
   }
 
   _getTickLabels(ticks) {
+    if (!ticks) return;
+
     return ticks.map(v => {
       return v[1];
     });
   }
 
   _getTicks(ticks) {
-    return ticks.map(v => {
-      return v[0];
-    });
+    if (!ticks) return;
+
+    {
+      return ticks.map(v => {
+        return v[0];
+      });
+    }
   }
 
   render() {
@@ -133,7 +139,7 @@ export class InnerCustomPlot extends PureComponent {
             orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
             tickSize={1}
             tickValues={this._getTicks(xTicks)}
-            tickFormat={v => this._getTickLabels(xTicks)[v] || v}
+            tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
           />
         )}
 
@@ -142,7 +148,7 @@ export class InnerCustomPlot extends PureComponent {
             tickSize={1}
             orientation={yAxisLocation === 'right' ? 'right' : 'left'}
             tickValues={this._getTicks(yTicks)}
-            tickFormat={v => this._getTickLabels(yTicks)[v] || v}
+            tickFormat={yTicks ? v => this._getTickLabels(yTicks)[v] || v : undefined}
           />
         )}
 
