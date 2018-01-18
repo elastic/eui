@@ -92,7 +92,7 @@ describe('EuiSideNav', () => {
         .toMatchSnapshot();
     });
 
-    test('renders items using a custom component', () => {
+    test('renders items using a specified callback', () => {
       const sideNav = [{
         name: 'A',
         id: 0,
@@ -103,13 +103,13 @@ describe('EuiSideNav', () => {
         }],
       }];
 
-      const MyNavButton = ({ href, className, children }) => (
-        <div data-test-id="my-custom-element" href={href} className={className}>
+      const renderItem = ({ href, className, children }) => (
+        <a data-test-id="my-custom-element" href={href} className={className}>
           {children}
-        </div>);
+        </a>);
 
       const component = render(
-        <EuiSideNav items={sideNav} component={MyNavButton} />
+        <EuiSideNav items={sideNav} renderItem={renderItem} />
       );
 
       expect(component)

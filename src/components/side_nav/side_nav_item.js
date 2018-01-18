@@ -8,7 +8,7 @@ import {
   EuiIcon,
 } from '../icon';
 
-const EuiSideNavButton = ({ href, onClick, className, children, ...rest }) => {
+const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   if (href) {
     return (
       <a
@@ -42,7 +42,7 @@ export const EuiSideNavItem = ({
   items,
   children,
   depth,
-  component: ButtonComponent = EuiSideNavButton,
+  renderItem = defaultRenderItem,
   ...rest,
 }) => {
   let childItems;
@@ -95,9 +95,7 @@ export const EuiSideNavItem = ({
 
   return (
     <div className={classes}>
-      <ButtonComponent href={href} onClick={onClick} className={buttonClasses} {...rest}>
-        {buttonContent}
-      </ButtonComponent>
+      {renderItem({ href, onClick, className: buttonClasses, children: buttonContent, ...rest })}
       {childItems}
     </div>
   );
@@ -113,4 +111,5 @@ EuiSideNavItem.propTypes = {
   items: PropTypes.node,
   children: PropTypes.node,
   depth: PropTypes.number,
+  renderItem: PropTypes.func,
 };

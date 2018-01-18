@@ -26,7 +26,7 @@ export class EuiSideNav extends Component {
   };
 
   renderTree = (items, depth = 0) => {
-    const { component } = this.props;
+    const { renderItem } = this.props;
 
     return items.map((item) => {
       const {
@@ -60,7 +60,7 @@ export class EuiSideNav extends Component {
           items={renderedItems}
           key={id}
           depth={depth}
-          component={component}
+          renderItem={renderItem}
           {...rest}
         >
           {name}
@@ -77,7 +77,7 @@ export class EuiSideNav extends Component {
       isOpenOnMobile,
       mobileTitle,
       // Extract this one out so it isn't passed to <nav>
-      component, // eslint-disable-line no-unused-vars
+      renderItem, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -132,7 +132,7 @@ EuiSideNav.propTypes = {
   isOpenOnMobile: PropTypes.bool,
   mobileTitle: PropTypes.node,
   items: PropTypes.array,
-  component: PropTypes.func,
+  renderItem: PropTypes.func,
 };
 
 EuiSideNav.defaultProps = {

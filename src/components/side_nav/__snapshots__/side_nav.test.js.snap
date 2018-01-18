@@ -241,7 +241,7 @@ exports[`EuiSideNav items is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items renders items using a custom component 1`] = `
+exports[`EuiSideNav items renders items using a specified callback 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -282,7 +282,7 @@ exports[`EuiSideNav items renders items using a custom component 1`] = `
     <div
       class="euiSideNavItem euiSideNavItem--root"
     >
-      <div
+      <a
         class="euiSideNavItemButton"
         data-test-id="my-custom-element"
         href="http://www.elastic.co"
@@ -296,14 +296,14 @@ exports[`EuiSideNav items renders items using a custom component 1`] = `
             A
           </span>
         </span>
-      </div>
+      </a>
       <div
         class="euiSideNavItem__items"
       >
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <div
+          <a
             class="euiSideNavItemButton"
             data-test-id="my-custom-element"
           >
@@ -316,7 +316,7 @@ exports[`EuiSideNav items renders items using a custom component 1`] = `
                 B
               </span>
             </span>
-          </div>
+          </a>
         </div>
       </div>
     </div>
