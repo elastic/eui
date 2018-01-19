@@ -10,3 +10,5 @@
 /// <reference path="./spacer/index.d.ts" />
 /// <reference path="./pagination/index.d.ts" />
 /// <reference path="./link/index.d.ts" />
+/// <reference path="./loading/index.d.ts" />
+/// <reference path="./progress/index.d.ts" />
