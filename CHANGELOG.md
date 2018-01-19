@@ -1,6 +1,11 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
 - In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. [#310](https://github.com/elastic/eui/pull/310)
+
+**Bug fixes**
+
+- Set `EuiFlexGroup` to `flex-grow: 1` to be more friendly with IE11 [(#315)](https://github.com/elastic/eui/pull/315)
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 

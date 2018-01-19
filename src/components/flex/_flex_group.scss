@@ -1,10 +1,16 @@
+/**
+ * 1. Not always needed, but fixes an IE11 issue when flex-groups are nested under display: flex elements.
+ * 2. IE requires a unit to grow.
+ */
+
 .euiFlexGroup {
   display: flex;
   align-items: stretch;
+  flex-grow: 1; /* 1 */
 
   .euiFlexItem {
     flex-grow: 1;
-    flex-basis: 0%;
+    flex-basis: 0%; /* 1 */
   }
 }
 
