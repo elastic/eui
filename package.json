@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "0.0.14",
+  "version": "0.0.13",
   "main": "lib",
   "module": "src",
   "types": "src/index.d.ts",
@@ -77,12 +77,12 @@
     "postcss-loader": "^2.0.8",
     "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.2.0",
     "react-router-redux": "^4.0.8",
-    "react-test-renderer": "^16.0.0",
+    "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
@@ -94,6 +94,6 @@
     "yo": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0-rc || ^16.0"
+    "react": "^16.2.0 || ^16.2"
   }
 }
