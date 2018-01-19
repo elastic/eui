@@ -2,6 +2,10 @@
 
 - `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
 
+**Breaking changes**
+
+- React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
+
 # [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
 
 - Added `isColorDark` color util [(#311)](https://github.com/elastic/eui/pull/311)
@@ -146,7 +150,7 @@
 - Fixed a bug where `<progress>` wasn't being rendered under `block` display [(#166)](https://github.com/elastic/eui/pull/166)
 - Fixed a bug that caused `<EuiPageSideBar>` width to change when the width of its content changed [(#181)](https://github.com/elastic/eui/pull/181)
 
-**Breaking**
+**Breaking changes**
 
 - Fixed a bug where table cell classes were being applied twice [(#167)](https://github.com/elastic/eui/pull/167)
 - React ^16.0 is now a peer dependency ([#198](https://github.com/elastic/eui/pull/198))
@@ -157,7 +161,7 @@
 - `<EuiFlexItem>` and `<EuiFlexGrow>` now accept a `component` prop which you can set to `span` or `div` (default). [(#141)](https://github.com/elastic/eui/pull/141)
 - Add `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
 
-**Breaking**
+**Breaking changes**
 
 - `<EuiSideNav>` now accepts a tree data structure via the `items` prop [(#141)](https://github.com/elastic/eui/pull/141)
 - `<EuiSideNavGroup>`, `<EuiSideNavItem>`, and `<EuiSideNavTitle>` have been removed from the public API [(#141)](https://github.com/elastic/eui/pull/141)
