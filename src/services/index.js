@@ -15,6 +15,10 @@ export {
 } from './alignment';
 
 export {
+  isColorDark
+} from './colors';
+
+export {
   Pager,
 } from './paging';
 

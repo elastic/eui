@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `requiresLightText` color util [(#311)](https://github.com/elastic/eui/pull/311)
 - EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
 
 **Bug fixes**
