@@ -26,6 +26,8 @@ export class EuiSideNav extends Component {
   };
 
   renderTree = (items, depth = 0) => {
+    const { renderItem } = this.props;
+
     return items.map((item) => {
       const {
         id,
@@ -35,6 +37,7 @@ export class EuiSideNav extends Component {
         icon,
         onClick,
         href,
+        ...rest
       } = item;
 
       // Root items are always open.
@@ -57,6 +60,8 @@ export class EuiSideNav extends Component {
           items={renderedItems}
           key={id}
           depth={depth}
+          renderItem={renderItem}
+          {...rest}
         >
           {name}
         </EuiSideNavItem>
@@ -71,6 +76,8 @@ export class EuiSideNav extends Component {
       toggleOpenOnMobile,
       isOpenOnMobile,
       mobileTitle,
+      // Extract this one out so it isn't passed to <nav>
+      renderItem, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -125,6 +132,7 @@ EuiSideNav.propTypes = {
   isOpenOnMobile: PropTypes.bool,
   mobileTitle: PropTypes.node,
   items: PropTypes.array,
+  renderItem: PropTypes.func,
 };
 
 EuiSideNav.defaultProps = {

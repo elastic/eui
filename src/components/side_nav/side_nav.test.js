@@ -63,7 +63,7 @@ describe('EuiSideNav', () => {
         .toMatchSnapshot();
     });
 
-    test('renders items with are links', () => {
+    test('renders items which are links', () => {
       const sideNav = [{
         name: 'A',
         id: 0,
@@ -86,6 +86,30 @@ describe('EuiSideNav', () => {
 
       const component = render(
         <EuiSideNav items={sideNav} />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('renders items using a specified callback', () => {
+      const sideNav = [{
+        name: 'A',
+        id: 0,
+        href: 'http://www.elastic.co',
+        items: [{
+          name: 'B',
+          id: 1,
+        }],
+      }];
+
+      const renderItem = ({ href, className, children }) => (
+        <a data-test-id="my-custom-element" href={href} className={className}>
+          {children}
+        </a>);
+
+      const component = render(
+        <EuiSideNav items={sideNav} renderItem={renderItem} />
       );
 
       expect(component)

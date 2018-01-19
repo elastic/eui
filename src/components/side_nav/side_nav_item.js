@@ -8,6 +8,30 @@ import {
   EuiIcon,
 } from '../icon';
 
+const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
+  if (href) {
+    return (
+      <a
+        className={className}
+        href={href}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      className={className}
+      onClick={onClick}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
+
 export const EuiSideNavItem = ({
   isOpen,
   isSelected,
@@ -18,6 +42,7 @@ export const EuiSideNavItem = ({
   items,
   children,
   depth,
+  renderItem = defaultRenderItem,
   ...rest,
 }) => {
   let childItems;
@@ -60,9 +85,7 @@ export const EuiSideNavItem = ({
     <span className="euiSideNavItemButton__content">
       {buttonIcon}
 
-      <span
-        className="euiSideNavItemButton__label"
-      >
+      <span className="euiSideNavItemButton__label">
         {children}
       </span>
 
@@ -70,31 +93,9 @@ export const EuiSideNavItem = ({
     </span>
   );
 
-  let button;
-
-  if (href) {
-    button = (
-      <a
-        className={buttonClasses}
-        href={href}
-      >
-        {buttonContent}
-      </a>
-    );
-  } else {
-    button = (
-      <button
-        className={buttonClasses}
-        onClick={onClick}
-      >
-        {buttonContent}
-      </button>
-    );
-  }
-
   return (
-    <div className={classes} {...rest}>
-      {button}
+    <div className={classes}>
+      {renderItem({ href, onClick, className: buttonClasses, children: buttonContent, ...rest })}
       {childItems}
     </div>
   );
@@ -110,4 +111,5 @@ EuiSideNavItem.propTypes = {
   items: PropTypes.node,
   children: PropTypes.node,
   depth: PropTypes.number,
+  renderItem: PropTypes.func,
 };

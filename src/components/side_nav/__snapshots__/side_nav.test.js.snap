@@ -241,7 +241,90 @@ exports[`EuiSideNav items is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items renders items with are links 1`] = `
+exports[`EuiSideNav items renders items using a specified callback 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
+        <use
+          href="#apps-a"
+        />
+      </svg>
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root"
+    >
+      <a
+        class="euiSideNavItemButton"
+        data-test-id="my-custom-element"
+        href="http://www.elastic.co"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </a>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <a
+            class="euiSideNavItemButton"
+            data-test-id="my-custom-element"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav items renders items which are links 1`] = `
 <nav
   class="euiSideNav"
 >
