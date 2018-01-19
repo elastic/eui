@@ -25,6 +25,7 @@ const fontSizeToClassNameMap = {
 export const FONT_SIZES = Object.keys(fontSizeToClassNameMap);
 
 const paddingSizeToClassNameMap = {
+  none: '',
   s: 'euiCodeBlock--paddingSmall',
   m: 'euiCodeBlock--paddingMedium',
   l: 'euiCodeBlock--paddingLarge',
@@ -139,13 +140,14 @@ export class EuiCodeBlockImpl extends Component {
 
     let fullScreenButton;
 
-    if (!inline) {
+    if (!inline && overflowHeight) {
       fullScreenButton = (
         <EuiButtonIcon
           className="euiCodeBlock__fullScreenButton"
           size="s"
           onClick={this.toggleFullScreen}
-          iconType={this.state.isFullScreen ? 'cross' : 'expand'}
+          iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
+          color="text"
           aria-label={this.state.isFullScreen ? 'Collapse' : 'Expand'}
         />
       );
@@ -154,7 +156,15 @@ export class EuiCodeBlockImpl extends Component {
     let fullScreenDisplay;
 
     if (this.state.isFullScreen) {
-      const fullScreenClasses = classNames(classes, 'euiCodeBlock-isFullScreen');
+      {/*
+        Force fullscreen to use large font and padding.
+      */}
+      const fullScreenClasses = classNames(
+        'euiCodeBlock',
+        'euiCodeBlock--fontLarge',
+        'euiCodeBlock-paddingLarge',
+        'euiCodeBlock-isFullScreen',
+      );
 
       fullScreenDisplay = (
         <FocusTrap
