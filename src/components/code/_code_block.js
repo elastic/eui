@@ -156,6 +156,9 @@ export class EuiCodeBlockImpl extends Component {
     let fullScreenDisplay;
 
     if (this.state.isFullScreen) {
+      {/*
+        Force fullscreen to use large font and padding.
+      */}
       const fullScreenClasses = classNames(
         'euiCodeBlock',
         'euiCodeBlock--fontLarge',
