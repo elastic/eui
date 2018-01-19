@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import checkHrefAndOnClick from '../../../services/prop_types/check_href_and_onclick';
+
 import {
   ICON_TYPES,
   EuiIcon,
@@ -37,6 +39,8 @@ export const EuiButtonIcon = ({
   iconType,
   color,
   isDisabled,
+  href,
+  onClick,
   ...rest
 }) => {
 
@@ -60,15 +64,28 @@ export const EuiButtonIcon = ({
     );
   }
 
-  return (
-    <button
-      disabled={isDisabled}
-      className={classes}
-      {...rest}
-    >
-      {buttonIcon}
-    </button>
-  );
+  if (href) {
+    return (
+      <a
+        className={classes}
+        href={href}
+        {...rest}
+      >
+        {buttonIcon}
+      </a>
+    );
+  } else {
+    return (
+      <button
+        disabled={isDisabled}
+        className={classes}
+        onClick={onClick}
+        {...rest}
+      >
+        {buttonIcon}
+      </button>
+    );
+  }
 };
 
 EuiButtonIcon.propTypes = {
@@ -78,6 +95,8 @@ EuiButtonIcon.propTypes = {
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
   'aria-label': accessibleButtonIcon,
+  href: checkHrefAndOnClick,
+  onClick: PropTypes.func,
 };
 
 EuiButtonIcon.defaultProps = {

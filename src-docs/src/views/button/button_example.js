@@ -34,6 +34,10 @@ import ButtonGhost from './button_ghost';
 const buttonGhostSource = require('!!raw-loader!./button_ghost');
 const buttonGhostHtml = renderToHtml(ButtonGhost);
 
+import ButtonAsLink from './button_as_link';
+const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
+const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
+
 export const ButtonExample = {
   title: 'Button',
   sections: [{
@@ -52,6 +56,22 @@ export const ButtonExample = {
       </p>
     ),
     demo: <Button />,
+  }, {
+    title: 'Buttons can also be links',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: buttonAsLinkSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: buttonAsLinkHtml,
+    }],
+    text: (
+      <p>
+        Buttons will use an <EuiCode>{'<a>'}</EuiCode> tag
+        if there is a <EuiCode>href</EuiCode> prop present.
+      </p>
+    ),
+    demo: <ButtonAsLink />,
   }, {
     title: 'Button with Icon',
     source: [{
