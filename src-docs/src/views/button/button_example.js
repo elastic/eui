@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiButton,
   EuiCode,
 } from '../../../../src/components';
 
@@ -49,12 +50,7 @@ export const ButtonExample = {
       type: GuideSectionTypes.HTML,
       code: buttonHtml,
     }],
-    text: (
-      <p>
-        Button <EuiCode>type</EuiCode> defines the color of the button.
-        <EuiCode>fill</EuiCode> can be optionally added to add more focus to an action.
-      </p>
-    ),
+    components: { EuiButton },
     demo: <Button />,
   }, {
     title: 'Buttons can also be links',

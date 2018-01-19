@@ -42,6 +42,8 @@ export const EuiPageContent = ({
 };
 
 EuiPageContent.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
   verticalPosition: PropTypes.oneOf(VERTICAL_POSITIONS),
   horizontalPosition: PropTypes.oneOf(HORIZONTAL_POSITIONS),

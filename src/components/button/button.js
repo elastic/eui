@@ -105,14 +105,31 @@ export const EuiButton = ({
 EuiButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * See EuiIcon
+   */
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
+
+  /**
+   * Add more focus to an action
+   */
   fill: PropTypes.bool,
+
+  /**
+   * Define the color of the button
+   */
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   isDisabled: PropTypes.bool,
   href: checkHrefAndOnClick,
   onClick: PropTypes.func,
+
+  /**
+   * Standard HTML attribute
+   */
+  type: PropTypes.string,
 };
 
 EuiButton.defaultProps = {

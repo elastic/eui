@@ -18,3 +18,11 @@
     height: 0;
   }
 }
+
+.guideSectionPropsTable {
+  width: auto;
+
+  th, td {
+    max-width: none;
+  }
+}

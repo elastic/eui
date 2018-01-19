@@ -14,11 +14,6 @@ import {
 } from '../flex';
 
 export class EuiAccordion extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-
   constructor(props) {
     super(props);
 

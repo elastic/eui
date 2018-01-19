@@ -56,6 +56,7 @@ export const SpacerExample = {
         to the large size, which matches the margins of <EuiCode>EuiFlex</EuiCode> elements.
       </p>
     ),
+    components: { EuiSpacer },
     demo: (
       <div className="guideDemo__highlightSpacer">
         <Spacer />

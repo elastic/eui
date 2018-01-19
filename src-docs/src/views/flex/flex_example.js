@@ -12,6 +12,9 @@ import {
   EuiCallOut,
   EuiSpacer,
   EuiCode,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlexGrid,
 } from '../../../../src/components';
 
 import FlexGroup from './flex_group';
@@ -102,6 +105,7 @@ export const FlexExample = {
         </p>
       </div>
     ),
+    components: { EuiFlexGroup, EuiFlexItem },
     demo: <div className="guideDemo__highlightGrid"><FlexGroup /></div>,
   }, {
     title: 'FlexGroup can wrap its items',
@@ -235,6 +239,7 @@ export const FlexExample = {
         rows of same width items.
       </p>
     ),
+    components: { EuiFlexGrid },
     demo: <div className="guideDemo__highlightGridWrap"><FlexGrid /></div>,
   }, {
     title: 'FlexGrids can have set column widths',

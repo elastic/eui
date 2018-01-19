@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiPageContentHeaderSection = ({ children, className, ...rest }) => {
@@ -12,4 +13,9 @@ export const EuiPageContentHeaderSection = ({ children, className, ...rest }) =>
       {children}
     </div>
   );
+};
+
+EuiPageContentHeaderSection.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
 };

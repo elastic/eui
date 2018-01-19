@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const EuiPage = ({ children, className, ...rest }) => {
@@ -12,4 +13,9 @@ export const EuiPage = ({ children, className, ...rest }) => {
       {children}
     </div>
   );
+};
+
+EuiPage.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
 };

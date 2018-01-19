@@ -32,12 +32,6 @@ const fullScreenIconColorMap = {
 };
 
 export class EuiImage extends Component {
-
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-
   constructor(props) {
     super(props);
 

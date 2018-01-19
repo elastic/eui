@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiIcon,
 } from '../../../../src/components';
 
 import Icons from './icons';
@@ -67,6 +68,7 @@ export const IconExample = {
         </p>
       </div>
     ),
+    components: { EuiIcon },
     demo: <Icons />,
   }, {
     title: 'Apps',

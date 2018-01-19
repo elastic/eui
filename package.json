@@ -45,6 +45,7 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-inline-react-svg": "^0.5.2",
+    "babel-plugin-react-docgen": "^1.8.2",
     "babel-plugin-transform-async-generator-functions": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

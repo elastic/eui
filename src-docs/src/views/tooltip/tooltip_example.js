@@ -9,6 +9,7 @@ import {
 import {
   EuiCallOut,
   EuiSpacer,
+  TooltipTrigger,
 } from '../../../../src/components';
 
 import TooltipExamples from './examples';
@@ -44,6 +45,7 @@ export const TooltipExample = {
     text: (
       <p />
     ),
+    components: { TooltipTrigger },
     demo: <TooltipExamples />,
   }],
 };

@@ -8,6 +8,8 @@ import {
 
 import {
   EuiCode,
+  EuiPopover,
+  EuiPopoverTitle,
 } from '../../../../src/components';
 
 import Popover from './popover';
@@ -50,6 +52,7 @@ export const PopoverExample = {
         Use the Popover component to hide controls or options behind a clickable element.
       </p>
     ),
+    components: { EuiPopover },
     demo: <Popover />,
   }, {
     title: 'Trap focus',
@@ -118,6 +121,7 @@ export const PopoverExample = {
         </p>
       </div>
     ),
+    components: { EuiPopoverTitle },
     demo: <PopoverWithTitle />,
   }, {
     title: 'Panel class name and padding size',
