@@ -8,6 +8,8 @@ import {
 
 import {
   EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
   EuiCode,
 } from '../../../../src/components';
 
@@ -101,6 +103,7 @@ export const ButtonExample = {
         the rest of the buttons.
       </p>
     ),
+    components: { EuiButtonEmpty },
     demo: <ButtonOption />,
   }, {
     title: 'Flush ButtonEmpty',
@@ -133,6 +136,7 @@ export const ButtonExample = {
         Button icons are buttons that only contain an icon (no text).
       </p>
     ),
+    components: { EuiButtonIcon },
     demo: <ButtonIcon />,
   }, {
     title: 'Ghost buttons for deep color backgrounds',
