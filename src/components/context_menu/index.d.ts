@@ -75,12 +75,13 @@ declare module '@elastic/eui' {
 
   export type EuiContextMenuPanelId = string | number;
 
-  export interface EuiContextMenuPanelItemDescriptor
-    extends EuiContextMenuItemProps {
-    hasPanel?: never;
+  export type EuiContextMenuPanelItemDescriptor = Omit<
+    EuiContextMenuItemProps,
+    'hasPanel'
+  > & {
     name: string;
     panel?: EuiContextMenuPanelId;
-  }
+  };
 
   interface EuiContextMenuPanelDescriptor {
     id: EuiContextMenuPanelId;
@@ -89,12 +90,11 @@ declare module '@elastic/eui' {
     content?: React.ReactNode;
   }
 
-  export interface EuiContextMenuProps {
-    panels?: EuiContextMenuPanelDescriptor[];
-    initialPanelId?: EuiContextMenuPanelId;
-  }
+  export type EuiContextMenuProps = CommonProps &
+    Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
+      panels?: EuiContextMenuPanelDescriptor[];
+      initialPanelId?: EuiContextMenuPanelId;
+    };
 
-  export const EuiContextMenu: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiContextMenuProps
-  >;
+  export const EuiContextMenu: SFC<EuiContextMenuProps>;
 }
