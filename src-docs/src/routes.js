@@ -21,6 +21,11 @@ import { Slugify } from './services';
 import WritingGuidelines
   from './views/guidelines/writing';
 
+// Services
+
+import { IsColorDarkExample }
+  from './views/is_color_dark/is_color_dark_example';
+
 // Component examples
 
 import { AccessibilityExample }
@@ -191,6 +196,11 @@ const createExample = ({ title, intro, sections }) => {
 };
 
 // Component route names should match the component name exactly.
+const services = [
+  IsColorDarkExample,
+].map(example => createExample(example));
+
+// Component route names should match the component name exactly.
 const components = [
   AccessibilityExample,
   AccordionExample,
@@ -253,6 +263,7 @@ sandboxes.forEach(sandbox => { sandbox.isSandbox = true; });
 
 const allRoutes = [
   ...guidelines,
+  ...services,
   ...components,
   ...sandboxes,
   ...patterns,
@@ -261,6 +272,7 @@ const allRoutes = [
 export default {
   history: useRouterHistory(createHashHistory)(),
   guidelines: Slugify.each(guidelines, 'name', 'path'),
+  services: Slugify.each(services, 'name', 'path'),
   components: Slugify.each(components, 'name', 'path'),
   patterns: Slugify.each(patterns, 'name', 'path'),
   sandboxes: Slugify.each(sandboxes, 'name', 'path'),
