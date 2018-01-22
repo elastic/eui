@@ -74,7 +74,6 @@ EuiProgress.propTypes = {
   color: PropTypes.oneOf(COLORS),
   position: PropTypes.oneOf(POSITIONS),
   max: PropTypes.number,
-  indeterminate: PropTypes.bool,
 };
 
 EuiProgress.defaultProps = {

@@ -32,6 +32,10 @@ export const EuiLoadingChart = ({ size, mono, className, ...rest }) => {
 };
 
 EuiLoadingChart.propTypes = {
-  size: PropTypes.oneOf(SIZES),
+  mono: PropTypes.bool,
+  size: PropTypes.oneOf(SIZES)
 };
 
+EuiLoadingChart.defaultProps = {
+  mono: false
+};

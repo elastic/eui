@@ -17,7 +17,7 @@ declare module '@elastic/eui' {
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
       options?: EuiRadioGroupOption[];
       idSelected?: string;
-      onChange: (id: string) => void;
+      onChange: EuiRadioGroupChangeCallback;
     };
 
   export type x = EuiRadioGroupProps['onChange'];

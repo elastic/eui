@@ -10,7 +10,7 @@ declare module '@elastic/eui' {
     | 'accent'
     | 'danger'
     | 'primary'
-    | 'secondar'
+    | 'secondary'
     | 'subdued';
 
   export type EuiProgressSize = 'xs' | 's' | 'm' | 'l';
