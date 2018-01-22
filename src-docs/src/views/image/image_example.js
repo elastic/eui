@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiImage,
 } from '../../../../src/components';
 
 import Image from './image';
@@ -69,6 +70,7 @@ export const ImageExample = {
           </ul>
         </div>
       ),
+      props: { EuiImage },
       demo: <Image />,
     },
     {

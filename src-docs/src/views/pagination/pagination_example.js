@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiPagination,
 } from '../../../../src/components';
 
 import ManyPages from './many_pages';
@@ -42,6 +43,7 @@ export const PaginationExample = {
         We only show at most 5 consecutive pages, with shortcuts to the first and/or last page.
       </p>
     ),
+    props: { EuiPagination },
     demo: <ManyPages />,
   }, {
     title: 'Few pages',

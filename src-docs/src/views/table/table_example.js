@@ -7,6 +7,14 @@ import {
 
 import {
   EuiCode,
+  EuiTable,
+  EuiTableBody,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableHeaderCellCheckbox,
+  EuiTableRow,
+  EuiTableRowCell,
+  EuiTableRowCellCheckbox,
 } from '../../../../src/components';
 
 import Table from './table';
@@ -37,6 +45,16 @@ export const TableExample = {
         overflowing content like popovers.
       </p>
     ),
+    props: {
+      EuiTable,
+      EuiTableBody,
+      EuiTableHeader,
+      EuiTableHeaderCell,
+      EuiTableHeaderCellCheckbox,
+      EuiTableRow,
+      EuiTableRowCell,
+      EuiTableRowCellCheckbox,
+    },
     demo: <Table />,
   }, {
     title: 'Compressed',

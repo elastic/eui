@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiLink,
+  EuiKeyboardAccessible,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import KeyboardAccessible from './keyboard_accessible';
@@ -38,6 +40,7 @@ export const AccessibilityExample = {
         <EuiCode>href</EuiCode> attributes.
       </p>
     ),
+    props: { EuiKeyboardAccessible },
     demo: <KeyboardAccessible />,
   }, {
     title: 'ScreenReaderOnly',
@@ -65,6 +68,7 @@ export const AccessibilityExample = {
         </p>
       </div>
     ),
+    props: { EuiScreenReaderOnly },
     demo: <ScreenReaderOnly />,
   }],
 };

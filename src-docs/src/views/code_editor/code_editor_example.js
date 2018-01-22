@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiCodeEditor,
 } from '../../../../src/components';
 
 import CodeEditor from './code_editor';
@@ -42,6 +43,7 @@ export const CodeEditorExample = {
         </p>
       </div>
     ),
+    props: { EuiCodeEditor },
     demo: <CodeEditor />,
   }, {
     title: 'Read-only',

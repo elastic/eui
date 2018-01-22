@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import Link from './link';
@@ -34,6 +35,7 @@ export const LinkExample = {
         link.
       </p>
     ),
+    props: { EuiLink },
     demo: <Link />,
   }],
 };

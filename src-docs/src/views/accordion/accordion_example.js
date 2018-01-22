@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiAccordion,
   EuiCode,
 } from '../../../../src/components';
 
@@ -57,6 +58,7 @@ export const AccordionExample = {
         </p>
       </div>
     ),
+    props: { EuiAccordion },
     demo: <Accordion />,
   }, {
     title: 'Accordion can have extra actions',

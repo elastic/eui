@@ -8,6 +8,16 @@ import {
 
 import {
   EuiCode,
+  EuiCheckboxGroup,
+  EuiFieldNumber,
+  EuiFieldPassword,
+  EuiFieldSearch,
+  EuiFieldText,
+  EuiRange,
+  EuiRadioGroup,
+  EuiSelect,
+  EuiSwitch,
+  EuiTextArea,
 } from '../../../../src/components';
 
 import FormControls from './form_controls';
@@ -76,6 +86,18 @@ export const FormExample = {
         </p>
       </div>
     ),
+    props: {
+      EuiCheckboxGroup,
+      EuiFieldNumber,
+      EuiFieldPassword,
+      EuiFieldSearch,
+      EuiFieldText,
+      EuiRange,
+      EuiRadioGroup,
+      EuiSelect,
+      EuiSwitch,
+      EuiTextArea,
+    },
     demo: <FormControls />,
   }, {
     title: 'Form rows',

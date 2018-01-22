@@ -32,6 +32,7 @@ export {
 export {
   EuiCode,
   EuiCodeBlock,
+  EuiCodeBlockImpl,
 } from './code';
 
 export {
@@ -97,7 +98,6 @@ export {
   EuiTextArea,
   EuiValidatableControl,
 } from './form';
-
 
 export {
   EuiHeader,

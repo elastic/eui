@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiSideNav,
 } from '../../../../src/components';
 
 import SideNav from './side_nav';
@@ -43,6 +44,7 @@ export const SideNavExample = {
         </p>
       </div>
     ),
+    props: { EuiSideNav },
     demo: <SideNav />,
   }, {
     title: 'Complex side nav',

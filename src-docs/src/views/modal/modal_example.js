@@ -8,6 +8,9 @@ import {
 
 import {
   EuiCode,
+  EuiModal,
+  EuiConfirmModal,
+  EuiOverlayMask,
 } from '../../../../src/components';
 
 import { Modal } from './modal';
@@ -35,6 +38,7 @@ export const ModalExample = {
         another UX within it.
       </p>
     ),
+    props: { EuiModal, EuiOverlayMask },
     demo: <Modal />,
   }, {
     title: 'ConfirmModal',
@@ -51,6 +55,7 @@ export const ModalExample = {
         typically one which is destructive and potentially regrettable.
       </p>
     ),
+    props: { EuiConfirmModal },
     demo: <ConfirmModal />,
   }],
 };

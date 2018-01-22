@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiFlyout,
 } from '../../../../src/components';
 
 import { Flyout } from './flyout';
@@ -54,6 +55,7 @@ export const FlyoutExample = {
           </ul>
         </div>
       ),
+      props: { EuiFlyout },
       demo: <Flyout />,
     },
     {

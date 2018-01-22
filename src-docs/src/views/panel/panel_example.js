@@ -10,6 +10,7 @@ import {
 
 import {
   EuiCode,
+  EuiPanel,
 } from '../../../../src/components';
 
 import Panel from './panel';
@@ -34,6 +35,7 @@ export const PanelExample = {
         other larger components like <Link to="/page">Page</Link> and <Link to="/popover">Popover</Link>.
       </p>
     ),
+    props: { EuiPanel },
     demo: <Panel />,
   }],
 };

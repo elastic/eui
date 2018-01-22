@@ -33,12 +33,11 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
+/**
+ * This is the base component extended by EuiCode and EuiCodeBlock. These components
+ * share the same propTypes definition with EuiCodeBlockImpl.
+ */
 export class EuiCodeBlockImpl extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-
   constructor(props) {
     super(props);
 
@@ -214,8 +213,18 @@ EuiCodeBlockImpl.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
+
+  /**
+   * Sets the syntax highlighting for a specific language
+   */
+  language: PropTypes.string,
+  overflowHeight: PropTypes.number,
   fontSize: PropTypes.oneOf(FONT_SIZES),
   transparentBackground: PropTypes.bool,
+
+  /**
+   * Displays the passed code in an inline format. Also removes any margins set.
+   */
   inline: PropTypes.bool,
 };
 

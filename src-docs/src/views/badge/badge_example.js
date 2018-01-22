@@ -6,6 +6,10 @@ import {
   GuideSectionTypes,
 } from '../../components';
 
+import {
+  EuiBadge,
+} from '../../../../src/components';
+
 import Badge from './badge';
 const badgeSource = require('!!raw-loader!./badge');
 const badgeHtml = renderToHtml(Badge);
@@ -30,6 +34,7 @@ export const BadgeExample = {
         Badges are used to focus on important bits of information.
       </p>
     ),
+    props: { EuiBadge },
     demo: <Badge />,
   }, {
     title: 'Badge with Icon',
