@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const colorsToClassNameMap = {
+export const colorsToClassNameMap = {
   'default': 'euiTextColor--default',
   'subdued': 'euiTextColor--subdued',
   'secondary': 'euiTextColor--secondary',
