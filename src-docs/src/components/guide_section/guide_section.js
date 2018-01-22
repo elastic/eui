@@ -20,6 +20,7 @@ import {
   EuiTableRowCell,
   EuiTabs,
   EuiText,
+  EuiTextColor,
   EuiTitle,
 } from '../../../../src/components';
 
@@ -138,9 +139,9 @@ export class GuideSection extends Component {
     }
 
     const docgenInfo = Array.isArray(component.__docgenInfo) ? component.__docgenInfo[0] : component.__docgenInfo;
-    const { props } = docgenInfo;
+    const { description, props } = docgenInfo;
 
-    if (!props) {
+    if (!props && !description) {
       return;
     }
 
@@ -148,22 +149,22 @@ export class GuideSection extends Component {
 
     const rows = propNames.map(propName => {
       const {
-        description,
+        description: propDescription,
         required,
         defaultValue,
         type,
       } = props[propName];
 
-      let humanizedName;
+      let humanizedName = (
+        <EuiTextColor color="secondary"><strong>{propName}</strong></EuiTextColor>
+      );
 
       if (required) {
         humanizedName = (
           <span>
-            <strong>{propName}</strong> (required)
+            {humanizedName} <EuiTextColor color="subdued">(required)</EuiTextColor>
           </span>
         );
-      } else {
-        humanizedName = <strong>{propName}</strong>;
       }
 
       const humanizedType = humanizeType(type);
@@ -183,7 +184,7 @@ export class GuideSection extends Component {
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="description">
-            {description}
+            {propDescription}
           </EuiTableRowCell>
         )
       ];
@@ -195,35 +196,54 @@ export class GuideSection extends Component {
       );
     });
 
-    const table = (
-      <EuiTable className="guideSectionPropsTable" compressed key={`propsTable-${componentName}`}>
-        <EuiTableHeader>
-          <EuiTableHeaderCell>
-            Prop
-          </EuiTableHeaderCell>
+    let descriptionElement;
 
-          <EuiTableHeaderCell>
-            Type
-          </EuiTableHeaderCell>
+    if (description) {
+      descriptionElement = (
+        <div key="description">
+          <EuiText>
+            <p>{description}</p>
+          </EuiText>
+          <EuiSpacer size="m" key={`propsSpacer-${componentName}`} />
+        </div>
+      );
+    }
 
-          <EuiTableHeaderCell>
-            Default
-          </EuiTableHeaderCell>
+    let table;
 
-          <EuiTableHeaderCell>
-            Note
-          </EuiTableHeaderCell>
-        </EuiTableHeader>
+    if (rows.length) {
+      table = (
+        <EuiTable className="guideSectionPropsTable" compressed key={`propsTable-${componentName}`}>
+          <EuiTableHeader>
+            <EuiTableHeaderCell>
+              Prop
+            </EuiTableHeaderCell>
 
-        <EuiTableBody>
-          {rows}
-        </EuiTableBody>
-      </EuiTable>
-    );
+            <EuiTableHeaderCell>
+              Type
+            </EuiTableHeaderCell>
+
+            <EuiTableHeaderCell>
+              Default
+            </EuiTableHeaderCell>
+
+            <EuiTableHeaderCell>
+              Note
+            </EuiTableHeaderCell>
+          </EuiTableHeader>
+
+          <EuiTableBody>
+            {rows}
+          </EuiTableBody>
+        </EuiTable>
+      );
+    }
 
     return [
-      <EuiSpacer size="m" key={`propsSpacer-${componentName}`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>{componentName}</h3></EuiTitle>,
+      <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
+      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>Props for {componentName}</h3></EuiTitle>,
+      <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
+      descriptionElement,
       table,
     ];
   }

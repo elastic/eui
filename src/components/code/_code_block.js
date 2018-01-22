@@ -33,6 +33,10 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
+/**
+ * This is the base component extended by EuiCode and EuiCodeBlock. These components
+ * share the same propTypes definition with EuiCodeBlockImpl.
+ */
 export class EuiCodeBlockImpl extends Component {
   constructor(props) {
     super(props);
