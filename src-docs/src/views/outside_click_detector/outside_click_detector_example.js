@@ -32,7 +32,7 @@ export const OutsideClickDetectorExample = {
         child element.
       </p>
     ),
-    components: { EuiOutsideClickDetector },
+    props: { EuiOutsideClickDetector },
     demo: <OutsideClickDetector />,
   }],
 };

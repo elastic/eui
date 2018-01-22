@@ -47,7 +47,7 @@ export const ProgressExample = {
         always strech <EuiCode>100%</EuiCode> to its container.
       </p>
     ),
-    components: { EuiProgress },
+    props: { EuiProgress },
     demo: <Progress />,
   }, {
     title: 'Progress with values',

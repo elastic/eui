@@ -56,7 +56,7 @@ export const PageExample = {
         purposes only.
       </p>
     ),
-    components: {
+    props: {
       EuiPage,
       EuiPageBody,
       EuiPageContent,

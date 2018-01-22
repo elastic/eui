@@ -45,7 +45,7 @@ export const TableExample = {
         overflowing content like popovers.
       </p>
     ),
-    components: {
+    props: {
       EuiTable,
       EuiTableBody,
       EuiTableHeader,

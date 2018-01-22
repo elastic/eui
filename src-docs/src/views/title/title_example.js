@@ -34,7 +34,7 @@ export const TitleExample = {
         they are margin neutral and more suitable for general layout design.
       </p>
     ),
-    components: { EuiTitle },
+    props: { EuiTitle },
     demo: <Title />,
   }],
 };

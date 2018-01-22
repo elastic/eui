@@ -67,7 +67,7 @@ export class GuideSection extends Component {
   constructor(props) {
     super(props);
 
-    this.componentNames = Object.keys(props.components);
+    this.componentNames = Object.keys(props.props);
 
     this.tabs = [{
       name: 'Demo',
@@ -229,9 +229,9 @@ export class GuideSection extends Component {
   }
 
   renderProps() {
-    const { components } = this.props;
+    const { props } = this.props;
     return flatten(
-      this.componentNames.map(componentName => this.renderPropsForComponent(componentName, components[componentName]))
+      this.componentNames.map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
     );
   }
 
@@ -342,9 +342,9 @@ GuideSection.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,
-  components: PropTypes.object,
+  props: PropTypes.object,
 };
 
 GuideSection.defaultProps = {
-  components: {},
+  props: {},
 };

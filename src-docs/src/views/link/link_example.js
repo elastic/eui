@@ -35,7 +35,7 @@ export const LinkExample = {
         link.
       </p>
     ),
-    components: { EuiLink },
+    props: { EuiLink },
     demo: <Link />,
   }],
 };

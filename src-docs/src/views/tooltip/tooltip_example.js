@@ -45,7 +45,7 @@ export const TooltipExample = {
     text: (
       <p />
     ),
-    components: { TooltipTrigger },
+    props: { TooltipTrigger },
     demo: <TooltipExamples />,
   }],
 };

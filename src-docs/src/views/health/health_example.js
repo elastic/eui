@@ -34,7 +34,7 @@ export const HealthExample = {
         a recognizable, lightweight combo that works in most situations.
       </p>
     ),
-    components: { EuiHealth },
+    props: { EuiHealth },
     demo: <Health />,
   }],
 };

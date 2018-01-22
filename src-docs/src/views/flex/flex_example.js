@@ -105,7 +105,7 @@ export const FlexExample = {
         </p>
       </div>
     ),
-    components: { EuiFlexGroup, EuiFlexItem },
+    props: { EuiFlexGroup, EuiFlexItem },
     demo: <div className="guideDemo__highlightGrid"><FlexGroup /></div>,
   }, {
     title: 'FlexGroup can wrap its items',
@@ -239,7 +239,7 @@ export const FlexExample = {
         rows of same width items.
       </p>
     ),
-    components: { EuiFlexGrid },
+    props: { EuiFlexGrid },
     demo: <div className="guideDemo__highlightGridWrap"><FlexGrid /></div>,
   }, {
     title: 'FlexGrids can have set column widths',

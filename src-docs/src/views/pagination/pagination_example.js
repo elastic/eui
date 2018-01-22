@@ -43,7 +43,7 @@ export const PaginationExample = {
         We only show at most 5 consecutive pages, with shortcuts to the first and/or last page.
       </p>
     ),
-    components: { EuiPagination },
+    props: { EuiPagination },
     demo: <ManyPages />,
   }, {
     title: 'Few pages',

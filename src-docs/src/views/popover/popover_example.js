@@ -52,7 +52,7 @@ export const PopoverExample = {
         Use the Popover component to hide controls or options behind a clickable element.
       </p>
     ),
-    components: { EuiPopover },
+    props: { EuiPopover },
     demo: <Popover />,
   }, {
     title: 'Trap focus',
@@ -121,7 +121,7 @@ export const PopoverExample = {
         </p>
       </div>
     ),
-    components: { EuiPopoverTitle },
+    props: { EuiPopoverTitle },
     demo: <PopoverWithTitle />,
   }, {
     title: 'Panel class name and padding size',

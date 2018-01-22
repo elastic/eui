@@ -49,7 +49,7 @@ export const ToastExample = {
       type: GuideSectionTypes.HTML,
       code: toastListHtml,
     }],
-    components: {
+    props: {
       EuiToast,
       EuiGlobalToastList,
       EuiGlobalToastListItem,

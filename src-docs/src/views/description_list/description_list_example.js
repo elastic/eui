@@ -47,7 +47,7 @@ export const DescriptionListExample = {
         components separately to build a list manually.
       </p>
     ),
-    components: { EuiDescriptionList },
+    props: { EuiDescriptionList },
     demo: <DescriptionList />,
   }, {
     title: 'DescriptionList as columns',

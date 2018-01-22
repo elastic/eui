@@ -40,7 +40,7 @@ export const LoadingExample = {
         Logo based load. Should only be used in very large panels, like bootup screens.
       </p>
     ),
-    components: { EuiLoadingKibana },
+    props: { EuiLoadingKibana },
     demo: <LoadingKibana />,
   }, {
     title: 'Loading chart',
@@ -59,7 +59,7 @@ export const LoadingExample = {
         mono versions should be used.
       </p>
     ),
-    components: { EuiLoadingChart },
+    props: { EuiLoadingChart },
     demo: <LoadingChart />,
   }, {
     title: 'Loading spinner',
@@ -75,7 +75,7 @@ export const LoadingExample = {
         A simple spinner for most loading applications.
       </p>
     ),
-    components: { EuiLoadingSpinner },
+    props: { EuiLoadingSpinner },
     demo: <LoadingSpinner />,
   }],
 };

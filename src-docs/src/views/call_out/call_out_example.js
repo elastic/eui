@@ -50,7 +50,7 @@ export const CallOutExample = {
         </p>
       </div>
     ),
-    components: { EuiCallOut },
+    props: { EuiCallOut },
     demo: <Info />,
   }, {
     title: 'Success',

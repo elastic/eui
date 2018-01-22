@@ -86,7 +86,7 @@ export const FormExample = {
         </p>
       </div>
     ),
-    components: {
+    props: {
       EuiCheckboxGroup,
       EuiFieldNumber,
       EuiFieldPassword,

@@ -70,7 +70,7 @@ export const ImageExample = {
           </ul>
         </div>
       ),
-      components: { EuiImage },
+      props: { EuiImage },
       demo: <Image />,
     },
     {

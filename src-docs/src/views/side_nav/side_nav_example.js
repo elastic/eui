@@ -44,7 +44,7 @@ export const SideNavExample = {
         </p>
       </div>
     ),
-    components: { EuiSideNav },
+    props: { EuiSideNav },
     demo: <SideNav />,
   }, {
     title: 'Complex side nav',

@@ -55,7 +55,7 @@ export const FlyoutExample = {
           </ul>
         </div>
       ),
-      components: { EuiFlyout },
+      props: { EuiFlyout },
       demo: <Flyout />,
     },
     {

@@ -44,7 +44,7 @@ export const TextExample = {
         their styling).
       </p>
     ),
-    components: { EuiText },
+    props: { EuiText },
     demo: <Text />,
   }, {
     title: 'Text can come in various sizes',
@@ -81,7 +81,7 @@ export const TextExample = {
         It will override any other colors in use, so be careful.
       </p>
     ),
-    components: { EuiTextColor },
+    props: { EuiTextColor },
     demo: <TextColor />,
   }],
 };

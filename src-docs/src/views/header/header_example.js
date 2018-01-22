@@ -37,7 +37,7 @@ export const HeaderExample = {
         The header is made up of several individual components.
       </p>
     ),
-    components: {
+    props: {
       EuiHeader,
       EuiHeaderBreadcrumb,
       EuiHeaderBreadcrumbCollapsed,

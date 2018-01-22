@@ -31,7 +31,7 @@ export const ErrorBoundaryExample = {
         Use <EuiCode>EuiErrorBoundary</EuiCode> to prevent errors from taking down the entire app.
       </p>
     ),
-    components: { EuiErrorBoundary },
+    props: { EuiErrorBoundary },
     demo: <ErrorBoundary />,
   }],
 };

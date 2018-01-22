@@ -35,7 +35,7 @@ export const HorizontalRuleExample = {
         <EuiCode>HorizontalRule</EuiCode> can carry a size. By default it will be full.
       </p>
     ),
-    components: { EuiHorizontalRule },
+    props: { EuiHorizontalRule },
     demo: <HorizontalRule />,
   }, {
     title: 'HorizontalRule margins',

@@ -31,7 +31,7 @@ export const ExpressionExample = {
         Use the <EuiCode>EuiExpression</EuiCode> component to surface editable expressions.
       </p>
     ),
-    components: { EuiExpression },
+    props: { EuiExpression },
     demo: <Expression />,
   }],
 };

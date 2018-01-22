@@ -40,7 +40,7 @@ export const AccessibilityExample = {
         <EuiCode>href</EuiCode> attributes.
       </p>
     ),
-    components: { EuiKeyboardAccessible },
+    props: { EuiKeyboardAccessible },
     demo: <KeyboardAccessible />,
   }, {
     title: 'ScreenReaderOnly',
@@ -68,7 +68,7 @@ export const AccessibilityExample = {
         </p>
       </div>
     ),
-    components: { EuiScreenReaderOnly },
+    props: { EuiScreenReaderOnly },
     demo: <ScreenReaderOnly />,
   }],
 };

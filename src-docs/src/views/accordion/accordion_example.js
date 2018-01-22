@@ -58,7 +58,7 @@ export const AccordionExample = {
         </p>
       </div>
     ),
-    components: { EuiAccordion },
+    props: { EuiAccordion },
     demo: <Accordion />,
   }, {
     title: 'Accordion can have extra actions',

@@ -41,7 +41,7 @@ export const BottomBarExample = {
         </p>
       </div>
     ),
-    components: { EuiBottomBar },
+    props: { EuiBottomBar },
     demo: <BottomBar />,
   }],
 };

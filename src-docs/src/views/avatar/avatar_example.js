@@ -34,7 +34,7 @@ export const AvatarExample = {
         come from the set of colors used for visualiations.
       </p>
     ),
-    components: { EuiAvatar },
+    props: { EuiAvatar },
     demo: <Avatar />,
   }]
 };

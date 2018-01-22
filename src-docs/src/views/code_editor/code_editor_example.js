@@ -43,7 +43,7 @@ export const CodeEditorExample = {
         </p>
       </div>
     ),
-    components: { EuiCodeEditor },
+    props: { EuiCodeEditor },
     demo: <CodeEditor />,
   }, {
     title: 'Read-only',

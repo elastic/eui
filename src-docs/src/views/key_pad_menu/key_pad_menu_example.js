@@ -37,7 +37,7 @@ export const KeyPadMenuExample = {
         accommodate three items and then wrap.
       </p>
     ),
-    components: { EuiKeyPadMenu, EuiKeyPadMenuItem },
+    props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
     demo: <KeyPadMenu />,
   }, {
     title: 'KeyPadMenuItemButton',

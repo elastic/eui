@@ -37,7 +37,7 @@ export const ContextMenuExample = {
         which itself can be wrapped around any component (like a button in this example).
       </p>
     ),
-    components: { EuiContextMenu },
+    props: { EuiContextMenu },
     demo: <ContextMenu />,
   }, {
     title: `ContextMenu can have a single panel`,

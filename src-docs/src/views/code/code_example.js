@@ -51,7 +51,7 @@ export const CodeExample = {
         <EuiCode>EuiCodeBlock</EuiCode> can be used to create multi-line code blocks.
       </p>
     ),
-    components: { EuiCodeBlockImpl },
+    props: { EuiCodeBlockImpl },
     demo: <CodeBlock />,
   }],
 };

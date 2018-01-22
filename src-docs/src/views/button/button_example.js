@@ -52,7 +52,7 @@ export const ButtonExample = {
       type: GuideSectionTypes.HTML,
       code: buttonHtml,
     }],
-    components: { EuiButton },
+    props: { EuiButton },
     demo: <Button />,
   }, {
     title: 'Buttons can also be links',
@@ -103,7 +103,7 @@ export const ButtonExample = {
         the rest of the buttons.
       </p>
     ),
-    components: { EuiButtonEmpty },
+    props: { EuiButtonEmpty },
     demo: <ButtonOption />,
   }, {
     title: 'Flush ButtonEmpty',
@@ -136,7 +136,7 @@ export const ButtonExample = {
         Button icons are buttons that only contain an icon (no text).
       </p>
     ),
-    components: { EuiButtonIcon },
+    props: { EuiButtonIcon },
     demo: <ButtonIcon />,
   }, {
     title: 'Ghost buttons for deep color backgrounds',

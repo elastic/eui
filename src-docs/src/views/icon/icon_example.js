@@ -68,7 +68,7 @@ export const IconExample = {
         </p>
       </div>
     ),
-    components: { EuiIcon },
+    props: { EuiIcon },
     demo: <Icons />,
   }, {
     title: 'Apps',

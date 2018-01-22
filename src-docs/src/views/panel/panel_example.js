@@ -35,7 +35,7 @@ export const PanelExample = {
         other larger components like <Link to="/page">Page</Link> and <Link to="/popover">Popover</Link>.
       </p>
     ),
-    components: { EuiPanel },
+    props: { EuiPanel },
     demo: <Panel />,
   }],
 };

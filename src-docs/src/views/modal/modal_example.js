@@ -38,7 +38,7 @@ export const ModalExample = {
         another UX within it.
       </p>
     ),
-    components: { EuiModal, EuiOverlayMask },
+    props: { EuiModal, EuiOverlayMask },
     demo: <Modal />,
   }, {
     title: 'ConfirmModal',
@@ -55,7 +55,7 @@ export const ModalExample = {
         typically one which is destructive and potentially regrettable.
       </p>
     ),
-    components: { EuiConfirmModal },
+    props: { EuiConfirmModal },
     demo: <ConfirmModal />,
   }],
 };

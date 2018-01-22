@@ -35,7 +35,7 @@ export const StepsExample = {
         Numbered steps
       </p>
     ),
-    components: { EuiSteps },
+    props: { EuiSteps },
     demo: <Steps />,
   },
   {

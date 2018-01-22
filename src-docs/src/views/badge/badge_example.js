@@ -34,7 +34,7 @@ export const BadgeExample = {
         Badges are used to focus on important bits of information.
       </p>
     ),
-    components: { EuiBadge },
+    props: { EuiBadge },
     demo: <Badge />,
   }, {
     title: 'Badge with Icon',
