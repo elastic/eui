@@ -1,1 +1,1 @@
-export { ValueRenderers } from './value_renderers';
+export { EuiValueRenderers } from './value_renderers';

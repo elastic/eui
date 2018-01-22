@@ -247,5 +247,5 @@ export {
 } from './text';
 
 export {
-  ValueRenderers
+  EuiValueRenderers,
 } from './value_renderer';

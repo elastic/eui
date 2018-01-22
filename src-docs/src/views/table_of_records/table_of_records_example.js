@@ -11,14 +11,16 @@ import {
 } from '../../../../src/components';
 
 import MultipleRecordActionsTable from './multiple_record_actions';
-import ImplicitRecordActionsTable from './implicit_record_action';
-
-
 const multipleRecordActionsSource = require('!!raw-loader!./multiple_record_actions');
 const multipleRecordActionsHtml = renderToHtml(MultipleRecordActionsTable);
 
+import ImplicitRecordActionsTable from './implicit_record_action';
 const implicitRecordActionSource = require('!!raw-loader!./implicit_record_action');
 const implicitRecordActionHtml = renderToHtml(ImplicitRecordActionsTable);
+
+import ColumnDataTypes from './column_data_types';
+const columnRenderersSource = require('!!raw-loader!./column_data_types');
+const columnRenderersHtml = renderToHtml(ColumnDataTypes);
 
 export const TableOfRecordsExample = {
   title: 'TableOfRecords',
@@ -42,12 +44,12 @@ export const TableOfRecordsExample = {
         externally to this component. Typically one would use a container component to wrap around this component
         that will either manage this state internally, or use other state stores (e.g. such as Redux).
       </EuiCallOut>
-      <EuiSpacer size="l"/>
+      <EuiSpacer size="l" />
       <EuiCallOut iconType="questionInCircle" title="What is a Record?">
         Think of a record in a data store - typically it represents an entity with a very clear
         schema and is something that can be presented in a tabular form.
       </EuiCallOut>
-      <EuiSpacer size="l"/>
+      <EuiSpacer size="l" />
       <p>
         The <EuiCode>EuiTableOfRecords</EuiCode> accepts two required properties:
       </p>
@@ -62,7 +64,7 @@ export const TableOfRecordsExample = {
           show and how it was collected.
         </li>
       </ul>
-      <EuiSpacer size="l"/>
+      <EuiSpacer size="l" />
     </EuiText>
   ),
   sections: [
@@ -110,10 +112,10 @@ export const TableOfRecordsExample = {
           </ul>
         </div>
       ),
-      demo: <MultipleRecordActionsTable/>
+      demo: <MultipleRecordActionsTable />
     },
     {
-      title: 'Computed Columns and \"Implicit\" Record Actions',
+      title: 'Computed Columns and "Implicit" Record Actions',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -132,7 +134,7 @@ export const TableOfRecordsExample = {
             controls visible all the time (that is, not collapsed into a popover).
           </p>
           <p>
-            You can achieve this by using custom renderers. The following example, enables switching the online/offline
+            You can achieve this by using custom columnRenderers. The following example, enables switching the online/offline
             status of a person. Also note how listening to selection state changes enables us to follow the design
             guidelines and disable these switches when selection is on.
           </p>
@@ -144,7 +146,30 @@ export const TableOfRecordsExample = {
           </p>
         </div>
       ),
-      demo: <ImplicitRecordActionsTable/>
+      demo: <ImplicitRecordActionsTable />
+    },
+    {
+      title: 'Column data types',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: columnRenderersSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: columnRenderersHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+           You can specify a <EuiCode>dataType</EuiCode> property in your column configuration
+           which will be used as the default format for rendering the data for each cell in
+           that column.
+          </p>
+        </div>
+      ),
+      demo: <ColumnDataTypes />
     }
   ]
 };

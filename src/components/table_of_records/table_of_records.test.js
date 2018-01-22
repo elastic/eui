@@ -14,7 +14,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description'
           }
@@ -45,7 +45,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description'
           }
@@ -79,11 +79,12 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description'
           }
         ],
+        pagination: {},
         onDataCriteriaChange: () => undefined
       },
       model: {
@@ -120,11 +121,12 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description'
           }
         ],
+        pagination: {},
         onDataCriteriaChange: () => undefined
       },
       model: {
@@ -160,7 +162,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description',
             sortable: true
@@ -178,7 +180,7 @@ describe('EuiTableOfRecords', () => {
           totalRecordCount: 3
         },
         criteria: {
-          sort: { key: 'name', direction: 'asc' }
+          sort: { field: 'name', direction: 'asc' }
         }
       }
     };
@@ -199,11 +201,12 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description'
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -243,12 +246,13 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description',
             sortable: true
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -288,13 +292,14 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description',
             sortable: true,
             render: (name) => name.toUpperCase()
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -334,13 +339,14 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'count',
+            field: 'count',
             name: 'Count',
             description: 'description',
             sortable: true,
             dataType: 'number'
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -381,7 +387,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'count',
+            field: 'count',
             name: 'Count',
             description: 'description',
             sortable: true,
@@ -389,6 +395,7 @@ describe('EuiTableOfRecords', () => {
             render: (count) => 'x'.repeat(count)
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -428,7 +435,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description',
             sortable: true
@@ -444,6 +451,7 @@ describe('EuiTableOfRecords', () => {
             ]
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },
@@ -483,7 +491,7 @@ describe('EuiTableOfRecords', () => {
         recordId: 'id',
         columns: [
           {
-            key: 'name',
+            field: 'name',
             name: 'Name',
             description: 'description',
             sortable: true
@@ -505,6 +513,7 @@ describe('EuiTableOfRecords', () => {
             ]
           }
         ],
+        pagination: {},
         selection: {
           onSelectionChanged: () => undefined
         },

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {
+  Component,
+} from 'react';
 import uuid from 'uuid/v1';
 import { times } from 'lodash';
 
-import { EuiTableOfRecords } from '../../../../src/components';
-import { ValueRenderers } from '../../../../src/components/value_renderer';
-import { EuiHealth } from '../../../../src/components/health';
-import { Comparators } from '../../../../src/services/sort';
-import { EuiCheckbox } from '../../../../src/components/form/checkbox';
+import {
+  EuiTableOfRecords,
+  EuiHealth,
+  EuiCheckbox,
+  EuiSwitch,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiValueRenderers,
+} from '../../../../src/components';
+
+import { Comparators } from '../../../../src/services';
 
 const selectRandom = (...array) => {
   const i = Math.floor(Math.random() * array.length);
@@ -33,7 +42,7 @@ const people = times(20, (index) => {
 function loadPage(pageIndex, pageSize, sort) {
   let list = people;
   if (sort) {
-    list = people.sort(Comparators.property(sort.key, sort.direction));
+    list = people.sort(Comparators.property(sort.field, sort.direction));
   }
   const from = pageIndex * pageSize;
   const items = list.slice(from, Math.min(from + pageSize, list.length));
@@ -45,16 +54,21 @@ function loadPage(pageIndex, pageSize, sort) {
   };
 }
 
-export default class PeopleTable extends React.Component {
-
+export default class PeopleTable extends Component {
   constructor(props) {
     super(props);
-    this.state = this.computeState({
-      page: {
-        index: 0,
-        size: 5
-      }
-    });
+
+    this.state = {
+      hasPagination: true,
+      hasSorting: true,
+      hasSelection: true,
+      ...this.computeState({
+        page: {
+          index: 0,
+          size: 5,
+        },
+      })
+    };
   }
 
   computeState(criteria) {
@@ -102,42 +116,47 @@ export default class PeopleTable extends React.Component {
   }
 
   render() {
+    const {
+      hasPagination,
+      hasSelection,
+      hasSorting,
+    } = this.state;
 
     const config = {
       recordId: 'id',
       columns: [
         {
-          key: 'firstName',
+          field: 'firstName',
           name: 'First Name',
           description: `Person's given name`,
           dataType: 'string',
-          sortable: true
+          sortable: hasSorting,
         },
         {
-          key: 'lastName',
+          field: 'lastName',
           name: 'Last Name',
           description: `Person's family name`,
           dataType: 'string'
         },
         {
-          key: 'nickname',
+          field: 'nickname',
           name: 'Nickname',
           description: `Person's nickname / online handle`,
-          render: ValueRenderers.link({
+          render: EuiValueRenderers.link({
             onClick: (value) => {
               window.open(`http://www.github.com/${value}`, '_blank');
             }
           })
         },
         {
-          key: 'dateOfBirth',
+          field: 'dateOfBirth',
           name: 'Date of Birth',
           description: `Person's date of birth`,
-          render: ValueRenderers.date.with({ format: 'D MMM YYYY' }),
-          sortable: true
+          render: EuiValueRenderers.date.with({ format: 'D MMM YYYY' }),
+          sortable: hasSorting,
         },
         {
-          key: 'online',
+          field: 'online',
           name: 'Online',
           description: `Is this person is currently online?`,
           render: (value) => {
@@ -145,7 +164,7 @@ export default class PeopleTable extends React.Component {
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
           },
-          sortable: true
+          sortable: hasSorting,
         },
         {
           name: '',
@@ -188,19 +207,64 @@ export default class PeopleTable extends React.Component {
         }
       ],
 
-      pagination: {
+      pagination: hasPagination ? {
         pageSizeOptions: [3, 5, 8]
-      },
+      } : undefined,
 
-      selection: {
+      selection: hasSelection ? {
         selectable: (record) => record.online,
         selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
-      },
+      } : undefined,
 
       onDataCriteriaChange: (criteria) => this.onDataCriteriaChange(criteria)
-
     };
 
-    return <EuiTableOfRecords config={config} model={this.state}/>;
+    const {
+      data,
+      criteria: {
+        page,
+        sort,
+      },
+    } = this.state;
+
+    const model = {
+      data,
+      criteria: {
+        page: hasPagination ? page : undefined,
+        sort: hasSorting ? sort : undefined,
+      },
+    };
+
+    return (
+      <div>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Pagination"
+              checked={this.state.hasPagination}
+              onChange={() => { this.setState({ hasPagination: !this.state.hasPagination }); }}
+            />
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Sorting"
+              checked={this.state.hasSorting}
+              onChange={() => { this.setState({ hasSorting: !this.state.hasSorting }); }}
+            />
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Selection"
+              checked={this.state.hasSelection}
+              onChange={() => { this.setState({ hasSelection: !this.state.hasSelection }); }}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="m" />
+        <EuiTableOfRecords config={config} model={model} />
+      </div>
+    );
   }
 }

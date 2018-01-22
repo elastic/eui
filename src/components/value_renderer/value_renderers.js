@@ -7,7 +7,7 @@ import { link } from './link';
 import { defaultRenderer } from './default_renderer';
 import { health } from './health';
 
-export const ValueRenderers = {
+export const EuiValueRenderers = {
   default: defaultRenderer,
   text,
   date,
@@ -19,9 +19,3 @@ export const ValueRenderers = {
   property,
   join
 };
-
-
-
-
-
-

@@ -1,11 +1,14 @@
 import React from 'react';
 import { times } from 'lodash';
 
-import { EuiTableOfRecords } from '../../../../src/components';
-import { ValueRenderers } from '../../../../src/components/value_renderer';
-import { EuiSwitch } from '../../../../src/components/form/switch';
-import { EuiIcon } from '../../../../src/components/icon';
-import { Comparators } from '../../../../src/services/sort';
+import {
+  EuiTableOfRecords,
+  EuiValueRenderers,
+  EuiSwitch,
+  EuiIcon,
+} from '../../../../src/components';
+
+import { Comparators } from '../../../../src/services';
 
 const selectRandom = (...array) => {
   const i = Math.floor(Math.random() * array.length);
@@ -32,7 +35,7 @@ const people = times(20, (index) => {
 function loadPage(pageIndex, pageSize, sort) {
   let list = people;
   if (sort) {
-    list = people.sort(Comparators.property(sort.key, sort.direction));
+    list = people.sort(Comparators.property(sort.field, sort.direction));
   }
   const from = pageIndex * pageSize;
   const items = list.slice(from, Math.min(from + pageSize, list.length));
@@ -105,37 +108,37 @@ export default class PeopleTable extends React.Component {
           }
         },
         {
-          key: 'firstName',
+          field: 'firstName',
           name: 'First Name',
           description: `Person's given name`,
           dataType: 'string',
           sortable: true
         },
         {
-          key: 'lastName',
+          field: 'lastName',
           name: 'Last Name',
           description: `Person's family name`,
           dataType: 'string'
         },
         {
-          key: 'nickname',
+          field: 'nickname',
           name: 'Nickname',
           description: `Person's nickname / online handle`,
-          render: ValueRenderers.link({
+          render: EuiValueRenderers.link({
             onClick: (value) => {
               window.open(`http://www.github.com/${value}`, '_blank');
             }
           })
         },
         {
-          key: 'dateOfBirth',
+          field: 'dateOfBirth',
           name: 'Date of Birth',
           description: `Person's date of birth`,
-          render: ValueRenderers.date.with({ format: 'D MMM YYYY' }),
+          render: EuiValueRenderers.date.with({ format: 'D MMM YYYY' }),
           sortable: true
         },
         {
-          key: 'online',
+          field: 'online',
           name: 'Online',
           description: `Is this person is currently online?`,
           render: (online, person) => {
