@@ -49,6 +49,7 @@ export default class extends Component {
         label: 'Option three',
       }],
       radioIdSelected: `${idPrefix}5`,
+      numberInputValue: '',
     };
   }
 
@@ -71,6 +72,16 @@ export default class extends Component {
   onRadioChange = optionId => {
     this.setState({
       radioIdSelected: optionId,
+    });
+  }
+
+  onNumberInputChange = (evt) => {
+    let value = parseFloat(evt.target.value);
+    if (isNaN(value)) {
+      value = '';
+    }
+    this.setState({
+      numberInputValue: value,
     });
   }
 
@@ -98,6 +109,17 @@ export default class extends Component {
         <EuiFieldNumber
           defaultValue="23"
           icon="user"
+        />
+
+        <br />
+        <br />
+
+        <p>
+          Number input with no initial value. Input value: {this.state.numberInputValue}
+        </p>
+        <EuiFieldNumber
+          value={this.state.numberInputValue}
+          onChange={this.onNumberInputChange}
         />
 
         <br />
