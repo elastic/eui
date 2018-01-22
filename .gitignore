@@ -8,3 +8,4 @@ lib/
 .eslintcache
 .yo-rc.json
 npm-debug.log
+yarn-error.log
