@@ -60,7 +60,10 @@ function numberOrEmptyString(props, propName, componentName) {
     const value = props[propName];
     if (typeof value === 'string' && value !== '') {
       return new Error(`Invalid prop '${propName}' of type 'string' supplied to '${componentName}',` +
-      ` expected empty string or type 'number', you supplied a string with the contents '${value}'`);
+      ` expected empty string or type 'number', you supplied a string with the contents '${value}'.`);
+    } else if (typeof value !== 'number') {
+      return new Error(`Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
+      ` expected empty string or type 'number'.`);
     }
   }
 

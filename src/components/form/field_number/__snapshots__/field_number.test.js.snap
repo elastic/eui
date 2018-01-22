@@ -66,3 +66,33 @@ exports[`EuiFieldNumber props isLoading is rendered 1`] = `
   </eui-validatable-control>
 </eui-form-control-layout>
 `;
+
+exports[`EuiFieldNumber props value no initial value 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldNumber"
+      type="number"
+      value=""
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldNumber props value value is number 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldNumber"
+      type="number"
+      value="0"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
