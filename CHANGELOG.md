@@ -1,9 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
+- Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])
 
 **Breaking changes**
 
+- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
 - React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
 
 # [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
@@ -23,7 +24,7 @@
 
 **Breaking changes**
 
-- Revert test helper for async functions that throw exceptions [#306](https://github.com/elastic/eui/pull/306). See PR for details on how this can be handled in Jest 22.
+- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. [#306](https://github.com/elastic/eui/pull/306)
 
 **Bug fixes**
 

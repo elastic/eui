@@ -50,6 +50,9 @@ import { CodeEditorExample }
 import { CodeExample }
   from './views/code/code_example';
 
+import { ColorPickerExample }
+  from './views/color_picker/color_picker_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -198,6 +201,7 @@ const components = [
   CallOutExample,
   CodeEditorExample,
   CodeExample,
+  ColorPickerExample,
   ContextMenuExample,
   DescriptionListExample,
   ErrorBoundaryExample,

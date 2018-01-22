@@ -17,8 +17,8 @@
     "\\.(css|less|scss)$": "<rootDir>/scripts/jest/mocks/style_mock.js"
   },
   "setupFiles": [
-    "<rootDir>/scripts/jest/setup/request_animation_frame_polyfill.js",
-    "<rootDir>/scripts/jest/setup/enzyme.js"
+    "<rootDir>/scripts/jest/setup/enzyme.js",
+    "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
   ],
   "coverageDirectory": "<rootDir>/reports/jest-coverage",
   "coverageReporters": [

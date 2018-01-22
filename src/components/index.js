@@ -39,6 +39,10 @@ export {
 } from './code_editor';
 
 export {
+  EuiColorPicker,
+} from './color_picker';
+
+export {
   EuiContextMenu,
   EuiContextMenuPanel,
   EuiContextMenuItem,
