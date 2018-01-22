@@ -156,13 +156,13 @@ export class GuideSection extends Component {
       } = props[propName];
 
       let humanizedName = (
-        <EuiTextColor color="secondary"><strong>{propName}</strong></EuiTextColor>
+        <strong>{propName}</strong>
       );
 
       if (required) {
         humanizedName = (
           <span>
-            {humanizedName} <EuiTextColor color="subdued">(required)</EuiTextColor>
+            <strong>{humanizedName}</strong> <EuiTextColor color="danger">(required)</EuiTextColor>
           </span>
         );
       }
