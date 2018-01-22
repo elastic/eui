@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors';
+import { VISUALIZATION_COLORS } from '../../services';
 
 const sizeToClassNameMap = {
   'none': null,

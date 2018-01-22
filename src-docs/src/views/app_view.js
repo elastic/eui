@@ -77,6 +77,14 @@ export class AppView extends Component {
         </div>
       );
     } else {
+      const {
+        guidelines,
+        services,
+        components,
+        patterns,
+        sandboxes,
+      } = routes;
+
       return (
         <EuiPage>
           <EuiPageBody>
@@ -86,10 +94,11 @@ export class AppView extends Component {
                   currentRouteName={currentRoute.name}
                   onToggleTheme={toggleTheme}
                   selectedTheme={theme}
-                  guidelines={routes.guidelines}
-                  components={routes.components}
-                  patterns={routes.patterns}
-                  sandboxes={routes.sandboxes}
+                  guidelines={guidelines}
+                  services={services}
+                  components={components}
+                  patterns={patterns}
+                  sandboxes={sandboxes}
                 />
               </EuiPageSideBar>
             </EuiErrorBoundary>
