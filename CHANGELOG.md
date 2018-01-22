@@ -11,6 +11,7 @@
 - Added `isColorDark` color util [(#311)](https://github.com/elastic/eui/pull/311)
 - EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
 - In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. [#310](https://github.com/elastic/eui/pull/310)
+- Add new icon types to `<EuiIcon>` TypeScript definitions [(#323)](https://github.com/elastic/eui/pull/323).
 
 **Bug fixes**
 
