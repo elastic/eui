@@ -67,11 +67,11 @@ function formatTimezoneOffset(offset) {
   offset = Math.abs(offset);
   let hrs = Math.floor(offset / 60);
   if (hrs < 9) {
-    hrs = hrs === 0 ? '00' : `0${hrs}`;
+    hrs = `0${hrs}`;
   }
   let mins = offset - hrs * 60;
   if (mins < 9) {
-    mins = mins === 0 ? '00' : `0${mins}`;
+    mins = `0${mins}`;
   }
   return `${sign}${hrs}:${mins}`;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { EuiPropTypes } from '../../utils/prop_types';
@@ -200,14 +200,12 @@ export class EuiTableOfRecords extends React.Component {
 
   togglePopover(id) {
     this.setState((prevState) => ({
-      ...prevState,
       popovers: { ...prevState.popovers, [id]: !prevState.popovers[id] }
     }));
   }
 
   closePopover(id) {
     this.setState((prevState) => ({
-      ...prevState,
       popovers: { ...prevState.popovers, [id]: undefined }
     }));
   }
@@ -314,12 +312,8 @@ export class EuiTableOfRecords extends React.Component {
       const checked = this.state.selection && this.state.selection.length > 0;
       const onChange = (event) => {
         if (event.target.checked) {
-          const selectableRecords = model.data.records.reduce((records, record) => {
-            if (!config.selection.selectable || config.selection.selectable(record)) {
-              records.push(record);
-            }
-            return records;
-          }, []);
+          const selectableRecords = model.data.records.filter((record) =>
+            !config.selection.selectable || config.selection.selectable(record));
           this.changeSelection(selectableRecords);
         } else {
           this.changeSelection([]);

@@ -84,7 +84,7 @@ export default class PeopleTable extends Component {
   }
 
   onDataCriteriaChange(criteria) {
-    this.setState(() => this.computeState(criteria));
+    this.setState(this.computeState(criteria));
   }
 
   deletePerson(personToDelete) {
@@ -149,17 +149,18 @@ export default class PeopleTable extends Component {
           description: `Person's date of birth`,
           render: EuiValueRenderers.date.with({ format: 'D MMM YYYY' }),
           sortable: hasSorting,
+          dataType: 'date'
         },
         {
           field: 'online',
           name: 'Online',
-          description: `Is this person is currently online?`,
+          description: `Is this person currently online?`,
           render: (value) => {
             const color = value ? 'success' : 'danger';
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
           },
-          sortable: hasSorting,
+          sortable: hasSorting
         },
         {
           name: '',
