@@ -62,19 +62,11 @@ describe('EuiFieldNumber', () => {
     });
 
     describe('value', () => {
-      let value = 0;
-      const onChange = (evt) => {
-        value = parseFloat(evt.target.value);
-        if (isNaN(value)) {
-          value = '';
-        }
-      };
-
       test(`value is number`, () => {
         const component = render(
           <EuiFieldNumber
-            value={value}
-            onChange={onChange}
+            value={0}
+            onChange={() => {}}
           />
         );
         expect(component)
@@ -82,11 +74,10 @@ describe('EuiFieldNumber', () => {
       });
 
       test(`no initial value`, () => {
-        value = '';
         const component = render(
           <EuiFieldNumber
-            value={value}
-            onChange={onChange}
+            value={''}
+            onChange={() => {}}
           />
         );
         expect(component)

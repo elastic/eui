@@ -101,7 +101,10 @@ export default class extends Component {
         <br />
         <br />
 
-        <EuiFieldNumber defaultValue="23" />
+        <EuiFieldNumber
+          value={this.state.numberInputValue}
+          onChange={this.onNumberInputChange}
+        />
 
         <br />
         <br />
@@ -109,17 +112,6 @@ export default class extends Component {
         <EuiFieldNumber
           defaultValue="23"
           icon="user"
-        />
-
-        <br />
-        <br />
-
-        <p>
-          Number input with no initial value. Input value: {this.state.numberInputValue}
-        </p>
-        <EuiFieldNumber
-          value={this.state.numberInputValue}
-          onChange={this.onNumberInputChange}
         />
 
         <br />
