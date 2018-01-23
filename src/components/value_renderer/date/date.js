@@ -1,3 +1,4 @@
+import { isNil } from 'lodash';
 import dateFormat from 'date-fns/format';
 
 export const dateFormatAliases = {
@@ -14,9 +15,8 @@ const createDateRenderer = (config = {}) => {
   const pattern = config.format || dateFormatAliases.dateTime;
   const options = config.options || {};
   const resolvedFormat = dateFormatAliases[pattern] || pattern;
-  return (value) => {
-    return dateFormat(value, resolvedFormat, options);
-  };
+  const nilValue = config.nil || '';
+  return (value) => isNil(value) ? nilValue : dateFormat(value, resolvedFormat, options);
 };
 
 export const date = createDateRenderer();

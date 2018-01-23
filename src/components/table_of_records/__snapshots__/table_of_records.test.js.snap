@@ -12,7 +12,7 @@ exports[`EuiTableOfRecords basic - empty 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         scope="col"
       >
         Name
@@ -35,7 +35,7 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         scope="col"
       >
         Name
@@ -44,13 +44,13 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -58,13 +58,13 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -72,13 +72,13 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
@@ -101,7 +101,7 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         scope="col"
       >
         Name
@@ -110,13 +110,13 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -124,13 +124,13 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -172,7 +172,7 @@ exports[`EuiTableOfRecords with pagination 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         scope="col"
       >
         Name
@@ -181,13 +181,13 @@ exports[`EuiTableOfRecords with pagination 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -195,13 +195,13 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -209,13 +209,13 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
@@ -270,7 +270,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         scope="col"
       >
         Name
@@ -279,7 +279,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -296,7 +296,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -304,7 +304,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -321,7 +321,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -329,7 +329,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -346,7 +346,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
@@ -401,7 +401,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -411,7 +411,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -428,7 +428,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -436,7 +436,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -453,7 +453,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -461,7 +461,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -478,7 +478,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
@@ -533,7 +533,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -541,14 +541,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
       </EuiTableHeaderCell>
       <EuiTableHeaderCell
         align="right"
-        key="_actions"
+        key="_actions_1"
         scope="col"
       />
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -565,14 +565,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="1_record_actions"
+          key="1_record_actions_1"
           textOnly={false}
         >
           <EuiButton
@@ -580,7 +580,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             fill={false}
             iconSide="left"
             isDisabled={false}
-            key="1-action-button-0"
+            key="1_action_button_0"
             onClick={[Function]}
             onMouseOver={[Function]}
             size="s"
@@ -598,7 +598,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -615,14 +615,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="2_record_actions"
+          key="2_record_actions_1"
           textOnly={false}
         >
           <EuiButton
@@ -630,7 +630,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             fill={false}
             iconSide="left"
             isDisabled={false}
-            key="2-action-button-0"
+            key="2_action_button_0"
             onClick={[Function]}
             onMouseOver={[Function]}
             size="s"
@@ -648,7 +648,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -665,14 +665,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="3_record_actions"
+          key="3_record_actions_1"
           textOnly={false}
         >
           <EuiButton
@@ -680,7 +680,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
             fill={false}
             iconSide="left"
             isDisabled={false}
-            key="3-action-button-0"
+            key="3_action_button_0"
             onClick={[Function]}
             onMouseOver={[Function]}
             size="s"
@@ -745,7 +745,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         align="right"
         isSortAscending={false}
         isSorted={false}
-        key="count"
+        key="count_0"
         onSort={[Function]}
         scope="col"
       >
@@ -755,7 +755,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -772,7 +772,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="1_count"
+          key="1_count_0"
           textOnly={true}
         >
           1
@@ -780,7 +780,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -797,7 +797,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="2_count"
+          key="2_count_0"
           textOnly={true}
         >
           2
@@ -805,7 +805,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -822,7 +822,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="3_count"
+          key="3_count_0"
           textOnly={true}
         >
           3
@@ -877,7 +877,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -887,7 +887,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -904,7 +904,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={false}
         >
           NAME1
@@ -912,7 +912,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -929,7 +929,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={false}
         >
           NAME2
@@ -937,7 +937,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -954,7 +954,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={false}
         >
           NAME3
@@ -1009,7 +1009,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name"
+        key="name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1017,14 +1017,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
       </EuiTableHeaderCell>
       <EuiTableHeaderCell
         align="right"
-        key="_actions"
+        key="_actions_1"
         scope="col"
       />
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1041,14 +1041,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="1_record_actions"
+          key="1_record_actions_1"
           textOnly={false}
         >
           <EuiPopover
@@ -1100,7 +1100,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1117,14 +1117,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="2_record_actions"
+          key="2_record_actions_1"
           textOnly={false}
         >
           <EuiPopover
@@ -1176,7 +1176,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1193,14 +1193,14 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="3_record_actions"
+          key="3_record_actions_1"
           textOnly={false}
         >
           <EuiPopover
@@ -1299,7 +1299,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         align="right"
         isSortAscending={false}
         isSorted={false}
-        key="count"
+        key="count_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1309,7 +1309,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1326,7 +1326,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="1_count"
+          key="1_count_0"
           textOnly={false}
         >
           x
@@ -1334,7 +1334,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1351,7 +1351,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="2_count"
+          key="2_count_0"
           textOnly={false}
         >
           xx
@@ -1359,7 +1359,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -1376,7 +1376,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="3_count"
+          key="3_count_0"
           textOnly={false}
         >
           xxx
@@ -1418,7 +1418,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
         align="left"
         isSortAscending={true}
         isSorted={true}
-        key="name"
+        key="name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1428,13 +1428,13 @@ exports[`EuiTableOfRecords with sorting 1`] = `
     <EuiTableBody>
       <EuiTableRow
         isSelected={false}
-        key="row-1"
+        key="row_1_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="1_name"
+          key="1_name_0"
           textOnly={true}
         >
           name1
@@ -1442,13 +1442,13 @@ exports[`EuiTableOfRecords with sorting 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-2"
+        key="row_2_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="2_name"
+          key="2_name_0"
           textOnly={true}
         >
           name2
@@ -1456,13 +1456,13 @@ exports[`EuiTableOfRecords with sorting 1`] = `
       </EuiTableRow>
       <EuiTableRow
         isSelected={false}
-        key="row-3"
+        key="row_3_2"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="3_name"
+          key="3_name_0"
           textOnly={true}
         >
           name3

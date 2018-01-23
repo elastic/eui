@@ -8,34 +8,29 @@ import {
   EuiIcon,
 } from '../../../../src/components';
 
-import { Comparators } from '../../../../src/services';
+import {
+  Random,
+  Comparators
+} from '../../../../src/services';
 
-const selectRandom = (...array) => {
-  const i = Math.floor(Math.random() * array.length);
-  return array[i];
-};
+const random = new Random();
 
 const people = times(20, (index) => {
   return {
     id: index,
-    firstName: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
-    lastName: selectRandom('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
-    nickname: selectRandom('mvg', 'elissa', 'clint', 'imotov', 'karmi', 'drewr', 'honza', 'rashidkpc', 'whack'),
-    dateOfBirth: new Date(
-      1990 + Math.floor(Math.random() * (1990 - 1971)), // year
-      Math.floor(Math.random() * 12), // month
-      Math.floor(Math.random() * 28), // day
-      0, 0, 0, 0
-    ),
-    country: selectRandom('us', 'nl', 'cz', 'za', 'au'),
-    online: selectRandom(true, false)
+    firstName: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    lastName: random.oneOf('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
+    nickname: random.oneOf('martijnvg', 'elissa', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
+    dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
+    country: random.oneOf('us', 'nl', 'cz', 'za', 'au'),
+    online: random.boolean()
   };
 });
 
 function loadPage(pageIndex, pageSize, sort) {
   let list = people;
   if (sort) {
-    list = people.sort(Comparators.property(sort.field, sort.direction));
+    list = people.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
   }
   const from = pageIndex * pageSize;
   const items = list.slice(from, Math.min(from + pageSize, list.length));

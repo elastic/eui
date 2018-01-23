@@ -17,6 +17,14 @@ describe('Value Renderer', () => {
       expect(date(value.toISOString())).toBe('1 Jan 1999 02:03');
     });
 
+    test('no config - no value', () => {
+      expect(date()).toBe('');
+    });
+
+    test('with config - no value', () => {
+      expect(date.with({ nil: '-' })()).toBe('-');
+    });
+
     test('with config - "date" format', () => {
       expect(date.with({ format: 'date' })(value)).toBe('1 Jan 1999');
     });

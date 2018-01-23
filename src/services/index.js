@@ -42,3 +42,7 @@ export {
 export {
   noOverflowPlacement,
 } from './overflow';
+
+export {
+  Random
+} from './random';

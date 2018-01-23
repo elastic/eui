@@ -10,12 +10,13 @@ const numberFormatAliases = {
 };
 
 export const createNumberRenderer = (config = {}) => {
+  const nilValue = config.nil || '';
   if (!config.format) {
-    return (value) => isNil(value) ? '' : value.toString();
+    return (value) => isNil(value) ? nilValue : value.toString();
   }
   const rounding = config.round ? Math.round : Math.floor;
   const format = numberFormatAliases[config.format] || config.format;
-  return (value) => numeral(value).format(format, rounding);
+  return (value) => isNil(value) ? nilValue : numeral(value).format(format, rounding);
 };
 
 export const number = createNumberRenderer();

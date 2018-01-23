@@ -53,7 +53,7 @@ const ButtonRecordActionType = PropTypes.shape({
   icon: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_COLORS),
-    PropTypes.func // (record, model) => BUTTON_COLORS
+    PropTypes.func // (record, model) => oneOf(BUTTON_COLORS)
   ])
 });
 
@@ -67,7 +67,7 @@ const IconRecordActionType = PropTypes.shape({
   icon: PropTypes.oneOf(ICON_TYPES),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
-    PropTypes.func // (record, model) => ICON_BUTTON_COLORS
+    PropTypes.func // (record, model) => oneOf(ICON_BUTTON_COLORS)
   ])
 });
 
@@ -84,7 +84,7 @@ const SupportedRecordActionType = PropTypes.oneOfType([
   CustomRecordActionType
 ]);
 
-const DataColumnType = PropTypes.shape({
+const FieldDataColumnType = PropTypes.shape({
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -111,7 +111,7 @@ const ActionsColumnType = PropTypes.shape({
   width: PropTypes.string
 });
 
-const ColumnType = PropTypes.oneOfType([DataColumnType, ComputedColumnType, ActionsColumnType]);
+const ColumnType = PropTypes.oneOfType([FieldDataColumnType, ComputedColumnType, ActionsColumnType]);
 
 const PaginationType = PropTypes.shape({
   pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
@@ -124,7 +124,7 @@ const SelectionType = PropTypes.shape({
 
 const RecordIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the record id property
-  PropTypes.func    // (record) => any
+  PropTypes.func    // (record) => string
 ]);
 
 const ConfigType = PropTypes.shape({
@@ -151,6 +151,12 @@ const ModelType = PropTypes.shape({
   })
 });
 
+const EuiTableOfRecordsPropTypes = {
+  config: ConfigType.isRequired,
+  model: ModelType.isRequired,
+  className: PropTypes.string
+};
+
 const defaultProps = {
   config: {
     column: {
@@ -170,15 +176,9 @@ const defaultProps = {
   }
 };
 
-const EuiTableOfRecordsProps = {
-  config: ConfigType.isRequired,
-  model: ModelType.isRequired,
-  className: PropTypes.string
-};
-
 export class EuiTableOfRecords extends React.Component {
 
-  static propTypes = EuiTableOfRecordsProps;
+  static propTypes = EuiTableOfRecordsPropTypes;
 
   constructor(props) {
     super(props);
@@ -232,7 +232,7 @@ export class EuiTableOfRecords extends React.Component {
       ...this.props.model.criteria,
       page: {
         ...this.props.model.criteria.page,
-        index: 0,
+        index: 0, // when page size changes, we take the user back to the first page
         size
       }
     };
@@ -343,7 +343,7 @@ export class EuiTableOfRecords extends React.Component {
       if (column.actions) {
         headers.push(
           <EuiTableHeaderCell
-            key="_actions"
+            key={`_actions_${index}`}
             align="right"
             width={column.width}
           >
@@ -359,7 +359,7 @@ export class EuiTableOfRecords extends React.Component {
       if (!column.field) {
         headers.push(
           <EuiTableHeaderCell
-            key={`computed-${index}`}
+            key={`_computed_${index}`}
             align={align}
             width={column.width}
           >
@@ -369,15 +369,17 @@ export class EuiTableOfRecords extends React.Component {
         return;
       }
 
-      // data column
+      // field data column
       const sortDirection = this.resolveColumnSortDirection(column, config, model);
       const onSort = this.resolveColumnOnSort(column, config);
+      const isSorted = !!sortDirection;
+      const isSortAscending = SortDirection.isAsc(sortDirection);
       headers.push(
         <EuiTableHeaderCell
-          key={column.field}
+          key={`${column.field}_${index}`}
           align={align}
-          isSorted={!!sortDirection}
-          isSortAscending={SortDirection.isAsc(sortDirection)}
+          isSorted={isSorted}
+          isSortAscending={isSortAscending}
           onSort={onSort}
           width={column.width}
         >
@@ -422,13 +424,13 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableBody(config, model) {
-    const rows = model.data.records.map((record) => {
-      return this.renderTableRecordRow(record, config, model);
+    const rows = model.data.records.map((record, index) => {
+      return this.renderTableRecordRow(record, config, model, index);
     });
     return <EuiTableBody>{rows}</EuiTableBody>;
   }
 
-  renderTableRecordRow(record, config, model) {
+  renderTableRecordRow(record, config, model, rowIndex) {
     const recordId = this.recordId(record);
     const selected = this.state.selection && !!this.state.selection.find(selectedRecord => {
       return this.recordId(selectedRecord) === recordId;
@@ -440,13 +442,13 @@ export class EuiTableOfRecords extends React.Component {
       cells.push(this.renderTableRecordSelectionCell(recordId, record, config, model, selected));
     }
 
-    config.columns.forEach((column, index) => {
+    config.columns.forEach((column, columnIndex) => {
       if (column.actions) {
-        cells.push(this.renderTableRecordActionsCell(recordId, record, column.actions, config, model));
+        cells.push(this.renderTableRecordActionsCell(recordId, record, column.actions, config, model, columnIndex));
       } else if (column.field) {
-        cells.push(this.renderTableRecordDataCell(recordId, record, column));
+        cells.push(this.renderTableRecordFieldDataCell(recordId, record, column, columnIndex));
       } else {
-        cells.push(this.renderTableRecordComputedCell(recordId, record, column, index));
+        cells.push(this.renderTableRecordComputedCell(recordId, record, column, columnIndex));
       }
     });
 
@@ -454,7 +456,7 @@ export class EuiTableOfRecords extends React.Component {
     const onMouseOut = () => this.clearRecordHover();
     return (
       <EuiTableRow
-        key={`row-${recordId}`}
+        key={`row_${recordId}_${rowIndex}`}
         isSelected={selected}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
@@ -464,13 +466,13 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  renderTableRecordDataCell(recordId, record, column) {
-    const key = `${recordId}_${column.field}`;
+  renderTableRecordFieldDataCell(recordId, record, column, index) {
+    const key = `${recordId}_${column.field}_${index}`;
     const align = this.resolveColumnAlign(column);
     const textOnly = !column.render;
     const value = record[column.field];
-    const contentRender = this.resolveContentRender(column);
-    const content = contentRender(value, record);
+    const contentRenderer = this.resolveContentRenderer(column);
+    const content = contentRenderer(value, record);
     return (
       <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={textOnly}>
         {content}
@@ -481,8 +483,8 @@ export class EuiTableOfRecords extends React.Component {
   renderTableRecordComputedCell(recordId, record, column, index) {
     const key = `${recordId}_computed_${index}`;
     const align = this.resolveColumnAlign(column);
-    const contentRender = this.resolveContentRender(column);
-    const content = contentRender(record);
+    const contentRenderer = this.resolveContentRenderer(column);
+    const content = contentRenderer(record);
     return (
       <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={false}>
         {content}
@@ -490,7 +492,7 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  resolveContentRender(column) {
+  resolveContentRenderer(column) {
     if (column.render) {
       return column.render;
     }
@@ -536,20 +538,20 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  renderTableRecordActionsCell(recordId, record, actions, config, model) {
+  renderTableRecordActionsCell(recordId, record, actions, config, model, columnIndex) {
 
     // when each record may potentially have more than one action we'll show these actions
     // within a context menu triggered by a single button. The idea here is that we want to keep the
     // actions on the rows clean - no more than a single button per row.
     if (actions.length > 1) {
-      return this.renderTableRecordActionsCellCollapsed(recordId, record, actions, config, model);
+      return this.renderTableRecordActionsCellCollapsed(recordId, record, actions, config, model, columnIndex);
     }
-    return this.renderTableRecordActionsCellExpanded(recordId, record, actions, config, model);
+    return this.renderTableRecordActionsCellExpanded(recordId, record, actions, config, model, columnIndex);
   }
 
   // yes, even though based on the logic above, actions is a single item array, we'll keep this
   // code generic enough so it can easily accommodate changes in this logic later on,
-  renderTableRecordActionsCellExpanded(recordId, record, actions, config, model) {
+  renderTableRecordActionsCellExpanded(recordId, record, actions, config, model, columnIndex) {
     const tools = actions.reduce((tools, action, index) => {
       const visible = action.visible ? action.visible(record, model) : true;
       if (!visible) {
@@ -569,7 +571,7 @@ export class EuiTableOfRecords extends React.Component {
           return tools;
       }
     }, []);
-    const key = `${recordId}_record_actions`;
+    const key = `${recordId}_record_actions_${columnIndex}`;
     return (
       <EuiTableRowCell key={key} align="right" textOnly={false}>
         {tools}
@@ -578,7 +580,7 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableRecordButton(button, recordId, record, model, index) {
-    const key = `${recordId}-action-button-${index}`;
+    const key = `${recordId}_action_button_${index}`;
     const visible = this.state.hoverRecordId === recordId;
     const color = this.resolveButtonColor(button, record, model);
     const disabled = !this.resolveActionEnabled(button, record, model);
@@ -619,13 +621,14 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  renderTableRecordActionsCellCollapsed(recordId, record, actions /* SupportedRecordAction[] */, config, model) {
+  renderTableRecordActionsCellCollapsed(recordId, record, actions /* SupportedRecordAction[] */, config, model, columnIndex) {
 
     const closePopover = () => this.closePopover(recordId);
     const isOpen = this.isPopoverOpen(recordId);
 
     let allDisabled = true;
     const items = actions.reduce((items, action, index) => {
+      const key = `${recordId}_action_${index}`;
       const visible = action.visible ? action.visible(record, model) : defaultProps.config.column.action.visible;
       if (!visible) {
         return items;
@@ -639,7 +642,7 @@ export class EuiTableOfRecords extends React.Component {
           const onClick = () => action.onClick(record, model);
           const item = (
             <EuiContextMenuItem
-              key={`${recordId}-action-${index}`}
+              key={key}
               disabled={disabled}
               icon={action.icon}
               onClick={onClick}
@@ -654,7 +657,7 @@ export class EuiTableOfRecords extends React.Component {
           const enabled = action.enabled ? action.enabled(record, model) : !defaultProps.config.column.action.disabled;
           const customItem = action.render(record, model, enabled);
           const itemWrapper = (
-            <div key={`${recordId}-action-${index}`} className="euiContextMenuItem">{customItem}</div>
+            <div key={key} className="euiContextMenuItem">{customItem}</div>
           );
           items.push(itemWrapper);
           return items;
@@ -674,7 +677,7 @@ export class EuiTableOfRecords extends React.Component {
       />
     );
 
-    const key = `${recordId}_record_actions`;
+    const key = `${recordId}_record_actions_${columnIndex}`;
 
     return (
       <EuiTableRowCell key={key} align="right" textOnly={false}>
@@ -700,7 +703,7 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableRecordCustomAction(action, recordId, record, model, index) {
-    const key = `${recordId}-action-custom-${index}`;
+    const key = `${recordId}_action_custom_${index}`;
     const enabled = this.resolveActionEnabled(action, record, model);
     const tool = action.render(record, model, enabled);
     return <span key={key}>{tool}</span>;
@@ -717,17 +720,19 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderFooter(config, model) {
-    if (!model.criteria || !model.criteria.page) {
-      return;
-    }
     if (!config.pagination) {
       return;
     }
+    if (!model.criteria || !model.criteria.page) {
+      throw new Error(`The table of records is configured to show pagination but the provided
+        model is missing page criteria. Make sure the page criteria (index and size) is specified
+        under model.criteria.page`);
+    }
     if (!config.onDataCriteriaChange) {
       throw new Error(`The table of records is provided with a paginated model but [onDataCriteriaChange] is
-        not configured. This callback must be implemented to handle to handle pagination`);
+        not configured. This callback must be implemented to handle pagination changes`);
     }
-    const pageSizeOptions = config.pagination && config.pagination.pageSizeOptions ?
+    const pageSizeOptions = config.pagination.pageSizeOptions ?
       config.pagination.pageSizeOptions :
       defaultProps.config.pagination.pageSizeOptions;
     return (

@@ -9,8 +9,8 @@ export const health = (config = {}) => {
       used based on the passed in value.`);
   }
   return (value, ctx = undefined) => {
-    const content = config.content || defaultRenderer(value);
-    const resolvedContent = isFunction(content) ? content(value) : content;
+    const content = config.content || defaultRenderer(value, ctx);
+    const resolvedContent = isFunction(content) ? content(value, ctx) : content;
     const color = config.color(value, ctx);
     return <EuiHealth color={color}>{resolvedContent}</EuiHealth>;
   };

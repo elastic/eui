@@ -4,26 +4,22 @@ import React, {
 import { times } from 'lodash';
 
 import {
+  Random
+} from '../../../../src/services';
+
+import {
   EuiTableOfRecords,
 } from '../../../../src/components';
 
-const selectRandom = (...array) => {
-  const i = Math.floor(Math.random() * array.length);
-  return array[i];
-};
+const random = new Random();
 
 const records = times(5, (index) => {
   return {
     id: index,
-    string: selectRandom('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
-    number: Math.floor(Math.random() * 20000),
-    boolean: selectRandom(true, false),
-    date: new Date(
-      1990 + Math.floor(Math.random() * (1990 - 1971)), // year
-      Math.floor(Math.random() * 12), // month
-      Math.floor(Math.random() * 28), // day
-      0, 0, 0, 0
-    ),
+    string: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    number: random.integer({ min: 0, max: 2000000 }),
+    boolean: random.boolean(),
+    date: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) })
   };
 });
 
