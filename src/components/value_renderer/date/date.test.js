@@ -1,8 +1,10 @@
 import { date } from '../date';
+import moment from 'moment';
 
 describe('Value Renderer', () => {
   describe('date', () => {
 
+    // 1st January 1999 02:03:04.005
     const value = new Date(1999, 0, 1, 2, 3, 4, 5);
 
     test('no config - date value', () => {
@@ -51,6 +53,46 @@ describe('Value Renderer', () => {
 
     test('with config - "iso8601" format', () => {
       expect(date.with({ format: 'iso8601' })(value)).toBe(`1999-01-01T02:03:04.005${formatTimezoneOffset(value.getTimezoneOffset())}`);
+    });
+
+    test('with config - "calendarDate" format', () => {
+      const options = {
+        refTime: value, // 1st January 1999 02:03:04.005 (Friday)
+      };
+      const oneMonthFromNow = moment(options.refTime).add(1, 'month').toDate();
+      expect(date.with({ format: 'calendarDate', options })(oneMonthFromNow)).toBe(`1st Feb 1999`);
+      const twoDaysFromNow = moment(options.refTime).add(2, 'day').toDate();
+      expect(date.with({ format: 'calendarDate', options })(twoDaysFromNow)).toBe(`Sunday`);
+      const oneDayFromNow = moment(options.refTime).add(1, 'day').toDate();
+      expect(date.with({ format: 'calendarDate', options })(oneDayFromNow)).toBe(`Tomorrow`);
+      const anMinuteAgo = moment(options.refTime).subtract(1, 'minute').toDate();
+      expect(date.with({ format: 'calendarDate', options })(anMinuteAgo)).toBe(`Today`);
+      const oneDayAgo = moment(options.refTime).subtract(1, 'day').toDate();
+      expect(date.with({ format: 'calendarDate', options })(oneDayAgo)).toBe(`Yesterday`);
+      const twoDaysWeekAgo = moment(options.refTime).subtract(2, 'day').toDate();
+      expect(date.with({ format: 'calendarDate', options })(twoDaysWeekAgo)).toBe(`Last Wednesday`);
+      const oneMonthAgo = moment(options.refTime).subtract(1, 'month').toDate();
+      expect(date.with({ format: 'calendarDate', options })(oneMonthAgo)).toBe(`1st Dec 1998`);
+    });
+
+    test('with config - "calendarDateTime" format', () => {
+      const options = {
+        refTime: value, // 1st January 1999 02:03:04.005
+      };
+      const oneMonthFromNow = moment(options.refTime).add(1, 'month').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(oneMonthFromNow)).toBe(`1st Feb 1999 at 2:03AM`);
+      const twoDaysFromNow = moment(options.refTime).add(2, 'day').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(twoDaysFromNow)).toBe(`Sunday at 2:03AM`);
+      const oneDayFromNow = moment(options.refTime).add(1, 'day').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(oneDayFromNow)).toBe(`Tomorrow at 2:03AM`);
+      const anMinuteAgo = moment(options.refTime).subtract(1, 'minute').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(anMinuteAgo)).toBe(`Today at 2:02AM`);
+      const oneDayAgo = moment(options.refTime).subtract(1, 'day').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(oneDayAgo)).toBe(`Yesterday at 2:03AM`);
+      const twoDaysWeekAgo = moment(options.refTime).subtract(2, 'day').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(twoDaysWeekAgo)).toBe(`Last Wednesday at 2:03AM`);
+      const oneMonthAgo = moment(options.refTime).subtract(1, 'month').toDate();
+      expect(date.with({ format: 'calendarDateTime', options })(oneMonthAgo)).toBe(`1st Dec 1998 at 2:03AM`);
     });
 
     test('with config - custom format', () => {
