@@ -140,7 +140,7 @@ const ConfigType = PropTypes.shape({
 const ModelType = PropTypes.shape({
   data: PropTypes.shape({
     records: PropTypes.array.isRequired,
-    totalRecordCount: PropTypes.number.isRequired
+    totalRecordCount: PropTypes.number
   }).isRequired,
   criteria: PropTypes.shape({
     page: PropTypes.shape({
@@ -288,12 +288,12 @@ export class EuiTableOfRecords extends React.Component {
     );
 
     const table = this.renderTable(config, model);
-    const footer = this.renderFooter(config, model);
+    const paginationBar = this.renderPaginationBar(config, model);
 
     return (
       <div className={classes} {...rest}>
         {table}
-        {footer}
+        {paginationBar}
       </div>
     );
   }
@@ -713,7 +713,7 @@ export class EuiTableOfRecords extends React.Component {
     return defaultProps.config.column.action.enabled;
   }
 
-  renderFooter(config, model) {
+  renderPaginationBar(config, model) {
     if (!config.pagination) {
       return;
     }
@@ -729,6 +729,8 @@ export class EuiTableOfRecords extends React.Component {
     const pageSizeOptions = config.pagination.pageSizeOptions ?
       config.pagination.pageSizeOptions :
       defaultProps.config.pagination.pageSizeOptions;
+    const totalRecordCount = model.data.totalRecordCount || model.data.records.length;
+    const pageCount = Math.ceil(totalRecordCount / model.criteria.page.size);
     return (
       <div>
         <EuiSpacer size="m"/>
@@ -736,16 +738,12 @@ export class EuiTableOfRecords extends React.Component {
           activePage={model.criteria.page.index}
           itemsPerPage={model.criteria.page.size}
           itemsPerPageOptions={pageSizeOptions}
-          pageCount={this.computeTotalPageCount(model.criteria.page, model.data.totalRecordCount)}
-          onChangeItemsPerPage={(size) => this.onPageSizeChange(size)}
-          onChangePage={(index) => this.onPageChange(index)}
+          pageCount={pageCount}
+          onChangeItemsPerPage={this.onPageSizeChange.bind(this)}
+          onChangePage={this.onPageChange.bind(this)}
         />
       </div>
     );
-  }
-
-  computeTotalPageCount(page, totalCount) {
-    return Math.ceil(totalCount / page.size);
   }
 
 }
