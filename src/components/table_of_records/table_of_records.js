@@ -50,7 +50,10 @@ const ButtonRecordActionType = PropTypes.shape({
   onClick: PropTypes.func.isRequired, // (record, model) => void,
   visible: PropTypes.func, // (record, model) => boolean;
   enabled: PropTypes.func, // (record, model) => boolean;
-  icon: PropTypes.oneOf(ICON_TYPES),
+  icon: PropTypes.oneOfType([
+    PropTypes.oneOf(ICON_TYPES),
+    PropTypes.func // (record, model) => oneOf(ICON_TYPES)
+  ]),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_COLORS),
     PropTypes.func // (record, model) => oneOf(BUTTON_COLORS)
@@ -62,9 +65,12 @@ const IconRecordActionType = PropTypes.shape({
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired, // (record, model) => void,
+  icon: PropTypes.oneOfType([
+    PropTypes.oneOf(ICON_TYPES),
+    PropTypes.func // (record, model) => oneOf(ICON_TYPES)
+  ]).isRequired,
   visible: PropTypes.func, // (record, model) => boolean;
   enabled: PropTypes.func, // (record, model) => boolean;
-  icon: PropTypes.oneOf(ICON_TYPES).isRequired,
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
     PropTypes.func // (record, model) => oneOf(ICON_BUTTON_COLORS)
@@ -119,7 +125,7 @@ const PaginationType = PropTypes.shape({
 
 const SelectionType = PropTypes.shape({
   onSelectionChanged: PropTypes.func, // (selection: Record[]) => void;,
-  selectable: PropTypes.func // (record) => boolean;
+  selectable: PropTypes.func // (record, model) => boolean;
 });
 
 const RecordIdType = PropTypes.oneOfType([
@@ -313,7 +319,7 @@ export class EuiTableOfRecords extends React.Component {
       const onChange = (event) => {
         if (event.target.checked) {
           const selectableRecords = model.data.records.filter((record) =>
-            !config.selection.selectable || config.selection.selectable(record));
+            !config.selection.selectable || config.selection.selectable(record, model));
           this.changeSelection(selectableRecords);
         } else {
           this.changeSelection([]);
@@ -442,7 +448,7 @@ export class EuiTableOfRecords extends React.Component {
       } else if (column.field) {
         cells.push(this.renderTableRecordFieldDataCell(recordId, record, column, columnIndex));
       } else {
-        cells.push(this.renderTableRecordComputedCell(recordId, record, column, columnIndex));
+        cells.push(this.renderTableRecordComputedCell(recordId, record, column, model, columnIndex));
       }
     });
 
@@ -464,7 +470,7 @@ export class EuiTableOfRecords extends React.Component {
     const key = `${recordId}_${column.field}_${index}`;
     const align = this.resolveColumnAlign(column);
     const textOnly = !column.render;
-    const value = record[column.field];
+    const value = _.get(record, column.field);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(value, record);
     return (
@@ -474,11 +480,11 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  renderTableRecordComputedCell(recordId, record, column, index) {
+  renderTableRecordComputedCell(recordId, record, column, model, index) {
     const key = `${recordId}_computed_${index}`;
     const align = this.resolveColumnAlign(column);
     const contentRenderer = this.resolveContentRenderer(column);
-    const content = contentRenderer(record);
+    const content = contentRenderer(record, model);
     return (
       <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={false}>
         {content}
@@ -578,7 +584,7 @@ export class EuiTableOfRecords extends React.Component {
     const visible = this.state.hoverRecordId === recordId;
     const color = this.resolveButtonColor(button, record, model);
     const disabled = !this.resolveActionEnabled(button, record, model);
-    const icon = button.icon;
+    const icon = this.resolveButtonIcon(button, record, model);
     const onClick = () => button.onClick(record, model);
     const style = !visible ? { opacity: 0 } : undefined;
     const onHover = () => this.setState({ hoverRecordId: recordId });
@@ -687,6 +693,12 @@ export class EuiTableOfRecords extends React.Component {
         </EuiPopover>
       </EuiTableRowCell>
     );
+  }
+
+  resolveButtonIcon(button, record, model) {
+    if (button.icon) {
+      return _.isString(button.icon) ? button.icon : button.icon(record, model);
+    }
   }
 
   resolveButtonColor(button, record, model) {

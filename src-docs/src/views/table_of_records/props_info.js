@@ -234,7 +234,7 @@ export const propsInfo = {
         render: {
           description: `A function that computes the value for each record and renders it`,
           required: true,
-          type: { name: '(value, record) => PropTypes.node' }
+          type: { name: '(record, model) => PropTypes.node' }
         },
         name: {
           description: 'The display name of the column',

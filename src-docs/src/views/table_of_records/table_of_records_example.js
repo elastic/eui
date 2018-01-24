@@ -19,7 +19,7 @@ const implicitRecordActionSource = require('!!raw-loader!./implicit_record_actio
 const implicitRecordActionHtml = renderToHtml(ImplicitRecordActionsTable);
 
 import ColumnDataTypes from './column_data_types';
-import { propsInfo } from './propsInfo';
+import { propsInfo } from './props_info';
 const columnRenderersSource = require('!!raw-loader!./column_data_types');
 const columnRenderersHtml = renderToHtml(ColumnDataTypes);
 
