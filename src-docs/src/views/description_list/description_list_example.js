@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiDescriptionList,
 } from '../../../../src/components';
 
 import DescriptionList from './description_list';
@@ -46,6 +47,7 @@ export const DescriptionListExample = {
         components separately to build a list manually.
       </p>
     ),
+    props: { EuiDescriptionList },
     demo: <DescriptionList />,
   }, {
     title: 'DescriptionList as columns',

@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiProgress,
 } from '../../../../src/components';
 
 import Progress from './progress';
@@ -46,6 +47,7 @@ export const ProgressExample = {
         always strech <EuiCode>100%</EuiCode> to its container.
       </p>
     ),
+    props: { EuiProgress },
     demo: <Progress />,
   }, {
     title: 'Progress with values',

@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiBottomBar,
   EuiCode,
 } from '../../../../src/components';
 
@@ -40,6 +41,7 @@ export const BottomBarExample = {
         </p>
       </div>
     ),
+    props: { EuiBottomBar },
     demo: <BottomBar />,
   }],
 };

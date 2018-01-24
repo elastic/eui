@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
 } from '../../../../src/components';
 
@@ -49,6 +50,7 @@ export const CallOutExample = {
         </p>
       </div>
     ),
+    props: { EuiCallOut },
     demo: <Info />,
   }, {
     title: 'Success',

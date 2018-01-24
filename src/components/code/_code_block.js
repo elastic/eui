@@ -25,6 +25,7 @@ const fontSizeToClassNameMap = {
 export const FONT_SIZES = Object.keys(fontSizeToClassNameMap);
 
 const paddingSizeToClassNameMap = {
+  none: '',
   s: 'euiCodeBlock--paddingSmall',
   m: 'euiCodeBlock--paddingMedium',
   l: 'euiCodeBlock--paddingLarge',
@@ -32,12 +33,11 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
+/**
+ * This is the base component extended by EuiCode and EuiCodeBlock. These components
+ * share the same propTypes definition with EuiCodeBlockImpl.
+ */
 export class EuiCodeBlockImpl extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-
   constructor(props) {
     super(props);
 
@@ -139,13 +139,14 @@ export class EuiCodeBlockImpl extends Component {
 
     let fullScreenButton;
 
-    if (!inline) {
+    if (!inline && overflowHeight) {
       fullScreenButton = (
         <EuiButtonIcon
           className="euiCodeBlock__fullScreenButton"
           size="s"
           onClick={this.toggleFullScreen}
-          iconType={this.state.isFullScreen ? 'cross' : 'expand'}
+          iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
+          color="text"
           aria-label={this.state.isFullScreen ? 'Collapse' : 'Expand'}
         />
       );
@@ -154,7 +155,15 @@ export class EuiCodeBlockImpl extends Component {
     let fullScreenDisplay;
 
     if (this.state.isFullScreen) {
-      const fullScreenClasses = classNames(classes, 'euiCodeBlock-isFullScreen');
+      {/*
+        Force fullscreen to use large font and padding.
+      */}
+      const fullScreenClasses = classNames(
+        'euiCodeBlock',
+        'euiCodeBlock--fontLarge',
+        'euiCodeBlock-paddingLarge',
+        'euiCodeBlock-isFullScreen',
+      );
 
       fullScreenDisplay = (
         <FocusTrap
@@ -204,8 +213,18 @@ EuiCodeBlockImpl.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
+
+  /**
+   * Sets the syntax highlighting for a specific language
+   */
+  language: PropTypes.string,
+  overflowHeight: PropTypes.number,
   fontSize: PropTypes.oneOf(FONT_SIZES),
   transparentBackground: PropTypes.bool,
+
+  /**
+   * Displays the passed code in an inline format. Also removes any margins set.
+   */
   inline: PropTypes.bool,
 };
 

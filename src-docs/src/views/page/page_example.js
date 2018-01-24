@@ -6,6 +6,18 @@ import {
   GuideSectionTypes,
 } from '../../components';
 
+import {
+  EuiPage,
+  EuiPageBody,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+  EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageSideBar,
+} from '../../../../src/components';
+
 import Page from './page';
 const pageSource = require('!!raw-loader!./page');
 const pageHtml = renderToHtml(Page);
@@ -44,6 +56,17 @@ export const PageExample = {
         purposes only.
       </p>
     ),
+    props: {
+      EuiPage,
+      EuiPageBody,
+      EuiPageContent,
+      EuiPageContentBody,
+      EuiPageContentHeader,
+      EuiPageContentHeaderSection,
+      EuiPageHeader,
+      EuiPageHeaderSection,
+      EuiPageSideBar,
+    },
     demo: <div className="guideDemo__highlightLayout"><Page /></div>,
   }, {
     title: 'Simple page with title',

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const colorsToClassNameMap = {
@@ -23,9 +24,8 @@ export const EuiLink = ({
 }) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
 
-  let link;
   if (onClick) {
-    link = (
+    return (
       <button
         type={type}
         className={classes}
@@ -35,20 +35,24 @@ export const EuiLink = ({
         {children}
       </button>
     );
-
-  } else {
-    link = (
-      <a
-        className={classes}
-        {...rest}
-      >
-        {children}
-      </a>
-    );
   }
+
   return (
-    link
+    <a
+      className={classes}
+      {...rest}
+    >
+      {children}
+    </a>
   );
+};
+
+EuiLink.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  color: PropTypes.oneOf(COLORS),
+  type: PropTypes.string,
 };
 
 EuiLink.defaultProps = {

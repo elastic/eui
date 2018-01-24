@@ -32,11 +32,16 @@ export {
 export {
   EuiCode,
   EuiCodeBlock,
+  EuiCodeBlockImpl,
 } from './code';
 
 export {
   EuiCodeEditor,
 } from './code_editor';
+
+export {
+  EuiColorPicker,
+} from './color_picker';
 
 export {
   EuiContextMenu,
@@ -93,7 +98,6 @@ export {
   EuiTextArea,
   EuiValidatableControl,
 } from './form';
-
 
 export {
   EuiHeader,

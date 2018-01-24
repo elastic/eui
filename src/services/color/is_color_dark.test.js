@@ -1,7 +1,6 @@
 import { isColorDark } from './is_color_dark';
 
 describe('isColorDark', () => {
-
   const DARK_COLORS = [
     [0, 104, 55],
     [165, 0, 38],
@@ -33,5 +32,4 @@ describe('isColorDark', () => {
       expect(isColorDark(...color)).toBe(false);
     });
   });
-
 });

@@ -8,6 +8,8 @@ import {
 
 import {
   EuiCode,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
 } from '../../../../src/components';
 
 import KeyPadMenu from './key_pad_menu';
@@ -35,6 +37,7 @@ export const KeyPadMenuExample = {
         accommodate three items and then wrap.
       </p>
     ),
+    props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
     demo: <KeyPadMenu />,
   }, {
     title: 'KeyPadMenuItemButton',

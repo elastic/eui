@@ -9,6 +9,9 @@ import {
 import {
   EuiButton,
   EuiCode,
+  EuiToast,
+  EuiGlobalToastList,
+  EuiGlobalToastListItem,
 } from '../../../../src/components';
 
 import ToastList, { addToast } from './toast_list';
@@ -46,6 +49,11 @@ export const ToastExample = {
       type: GuideSectionTypes.HTML,
       code: toastListHtml,
     }],
+    props: {
+      EuiToast,
+      EuiGlobalToastList,
+      EuiGlobalToastListItem,
+    },
     demo: (
       <div style={{ width: 320 }}>
         <EuiButton onClick={addToast}>

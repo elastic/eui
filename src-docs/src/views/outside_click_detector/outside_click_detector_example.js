@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiOutsideClickDetector,
 } from '../../../../src/components';
 
 import OutsideClickDetector from './outside_click_detector';
@@ -31,6 +32,7 @@ export const OutsideClickDetectorExample = {
         child element.
       </p>
     ),
+    props: { EuiOutsideClickDetector },
     demo: <OutsideClickDetector />,
   }],
 };

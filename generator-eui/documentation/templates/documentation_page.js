@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  <%= componentName %>,
 } from '../../../../src/components';
 
 import <%= componentExampleName %> from './<%= fileName %>';
@@ -30,6 +31,7 @@ export const <%= componentExampleName %>Example = {
         Description needed: how to use the <EuiCode>Eui<%= componentExampleName %></EuiCode> component.
       </p>
     ),
+    components: { <%= componentName %> },
     demo: <<%= componentExampleName %> />,
   }],
 };

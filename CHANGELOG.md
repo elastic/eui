@@ -1,9 +1,21 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])
+- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
+- Exported `VISUALIZATION_COLORS` from services ((#329)[https://github.com/elastic/eui/pull/329])
+- Added support for `disabled` options in `EuiSelect`. [#324](https://github.com/elastic/eui/pull/324)
+
+**Breaking changes**
+
+- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
+- React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
+
+# [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
+
 - Added `isColorDark` color util [(#311)](https://github.com/elastic/eui/pull/311)
 - EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
 - In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. [#310](https://github.com/elastic/eui/pull/310)
-- Added support for `disabled` options in `EuiSelect`. [#324](https://github.com/elastic/eui/pull/324)
+- Add new icon types to `<EuiIcon>` TypeScript definitions [(#323)](https://github.com/elastic/eui/pull/323).
 
 **Bug fixes**
 
@@ -15,7 +27,7 @@
 
 **Breaking changes**
 
-- Revert test helper for async functions that throw exceptions [#306](https://github.com/elastic/eui/pull/306). See PR for details on how this can be handled in Jest 22.
+- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. [#306](https://github.com/elastic/eui/pull/306)
 
 **Bug fixes**
 
@@ -143,7 +155,7 @@
 - Fixed a bug where `<progress>` wasn't being rendered under `block` display [(#166)](https://github.com/elastic/eui/pull/166)
 - Fixed a bug that caused `<EuiPageSideBar>` width to change when the width of its content changed [(#181)](https://github.com/elastic/eui/pull/181)
 
-**Breaking**
+**Breaking changes**
 
 - Fixed a bug where table cell classes were being applied twice [(#167)](https://github.com/elastic/eui/pull/167)
 - React ^16.0 is now a peer dependency ([#198](https://github.com/elastic/eui/pull/198))
@@ -154,7 +166,7 @@
 - `<EuiFlexItem>` and `<EuiFlexGrow>` now accept a `component` prop which you can set to `span` or `div` (default). [(#141)](https://github.com/elastic/eui/pull/141)
 - Add `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
 
-**Breaking**
+**Breaking changes**
 
 - `<EuiSideNav>` now accepts a tree data structure via the `items` prop [(#141)](https://github.com/elastic/eui/pull/141)
 - `<EuiSideNavGroup>`, `<EuiSideNavItem>`, and `<EuiSideNavTitle>` have been removed from the public API [(#141)](https://github.com/elastic/eui/pull/141)

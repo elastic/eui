@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiErrorBoundary,
 } from '../../../../src/components';
 
 import ErrorBoundary from './error_boundary';
@@ -30,6 +31,7 @@ export const ErrorBoundaryExample = {
         Use <EuiCode>EuiErrorBoundary</EuiCode> to prevent errors from taking down the entire app.
       </p>
     ),
+    props: { EuiErrorBoundary },
     demo: <ErrorBoundary />,
   }],
 };

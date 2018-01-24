@@ -7,6 +7,7 @@ import {
 
 import {
   EuiCode,
+  EuiTabs,
 } from '../../../../src/components';
 
 import Tabs from './tabs';
@@ -31,6 +32,9 @@ export const TabsExample = {
         within a popover of other small menu) it is OK to use the smaller sizing.
       </p>
     ),
+    props: {
+      EuiTabs,
+    },
     demo: <Tabs />,
   }],
 };

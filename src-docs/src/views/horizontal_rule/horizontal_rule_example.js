@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import HorizontalRule from './horizontal_rule';
@@ -34,6 +35,7 @@ export const HorizontalRuleExample = {
         <EuiCode>HorizontalRule</EuiCode> can carry a size. By default it will be full.
       </p>
     ),
+    props: { EuiHorizontalRule },
     demo: <HorizontalRule />,
   }, {
     title: 'HorizontalRule margins',

@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiExpression,
 } from '../../../../src/components';
 
 import Expression from './expression';
@@ -30,6 +31,7 @@ export const ExpressionExample = {
         Use the <EuiCode>EuiExpression</EuiCode> component to surface editable expressions.
       </p>
     ),
+    props: { EuiExpression },
     demo: <Expression />,
   }],
 };

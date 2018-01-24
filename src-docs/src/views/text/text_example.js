@@ -8,6 +8,8 @@ import {
 
 import {
   EuiCode,
+  EuiText,
+  EuiTextColor,
 } from '../../../../src/components';
 
 import Text from './text';
@@ -42,6 +44,7 @@ export const TextExample = {
         their styling).
       </p>
     ),
+    props: { EuiText },
     demo: <Text />,
   }, {
     title: 'Text can come in various sizes',
@@ -78,6 +81,7 @@ export const TextExample = {
         It will override any other colors in use, so be careful.
       </p>
     ),
+    props: { EuiTextColor },
     demo: <TextColor />,
   }],
 };

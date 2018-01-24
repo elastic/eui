@@ -15,8 +15,9 @@ export {
 } from './alignment';
 
 export {
-  isColorDark
-} from './colors';
+  isColorDark,
+  VISUALIZATION_COLORS,
+} from './color';
 
 export {
   Pager,

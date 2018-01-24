@@ -47,6 +47,7 @@ module.exports = class extends Generator {
     const writeDocumentationPage = () => {
       const componentExampleName = utils.makeComponentName(config.name, false);
       const componentExamplePrefix = utils.lowerCaseFirstLetter(componentExampleName);
+      const componentName = utils.makeComponentName(config.name);
       const fileName = config.name;
 
       const path = DOCUMENTATION_PAGE_PATH;
@@ -54,6 +55,7 @@ module.exports = class extends Generator {
       const vars = config.documentationVars = {
         componentExampleName,
         componentExamplePrefix,
+        componentName,
         fileName,
       };
 

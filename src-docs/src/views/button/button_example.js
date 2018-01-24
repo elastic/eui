@@ -7,6 +7,9 @@ import {
 } from '../../components';
 
 import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
   EuiCode,
 } from '../../../../src/components';
 
@@ -49,12 +52,7 @@ export const ButtonExample = {
       type: GuideSectionTypes.HTML,
       code: buttonHtml,
     }],
-    text: (
-      <p>
-        Button <EuiCode>type</EuiCode> defines the color of the button.
-        <EuiCode>fill</EuiCode> can be optionally added to add more focus to an action.
-      </p>
-    ),
+    props: { EuiButton },
     demo: <Button />,
   }, {
     title: 'Buttons can also be links',
@@ -105,6 +103,7 @@ export const ButtonExample = {
         the rest of the buttons.
       </p>
     ),
+    props: { EuiButtonEmpty },
     demo: <ButtonOption />,
   }, {
     title: 'Flush ButtonEmpty',
@@ -137,6 +136,7 @@ export const ButtonExample = {
         Button icons are buttons that only contain an icon (no text).
       </p>
     ),
+    props: { EuiButtonIcon },
     demo: <ButtonIcon />,
   }, {
     title: 'Ghost buttons for deep color backgrounds',

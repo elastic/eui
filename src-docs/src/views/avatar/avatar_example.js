@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiAvatar,
   EuiCode,
 } from '../../../../src/components';
 
@@ -33,6 +34,7 @@ export const AvatarExample = {
         come from the set of colors used for visualiations.
       </p>
     ),
+    props: { EuiAvatar },
     demo: <Avatar />,
   }]
 };

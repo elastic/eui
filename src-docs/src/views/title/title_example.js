@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiTitle,
 } from '../../../../src/components';
 
 import Title from './title';
@@ -33,6 +34,7 @@ export const TitleExample = {
         they are margin neutral and more suitable for general layout design.
       </p>
     ),
+    props: { EuiTitle },
     demo: <Title />,
   }],
 };

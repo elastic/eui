@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiHealth,
 } from '../../../../src/components';
 
 import Health from './health';
@@ -33,6 +34,7 @@ export const HealthExample = {
         a recognizable, lightweight combo that works in most situations.
       </p>
     ),
+    props: { EuiHealth },
     demo: <Health />,
   }],
 };
