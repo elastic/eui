@@ -64,7 +64,7 @@ const IconRecordActionType = PropTypes.shape({
   onClick: PropTypes.func.isRequired, // (record, model) => void,
   visible: PropTypes.func, // (record, model) => boolean;
   enabled: PropTypes.func, // (record, model) => boolean;
-  icon: PropTypes.oneOf(ICON_TYPES),
+  icon: PropTypes.oneOf(ICON_TYPES).isRequired,
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
     PropTypes.func // (record, model) => oneOf(ICON_BUTTON_COLORS)

@@ -19,6 +19,7 @@ const implicitRecordActionSource = require('!!raw-loader!./implicit_record_actio
 const implicitRecordActionHtml = renderToHtml(ImplicitRecordActionsTable);
 
 import ColumnDataTypes from './column_data_types';
+import { propsInfo } from './propsInfo';
 const columnRenderersSource = require('!!raw-loader!./column_data_types');
 const columnRenderersHtml = renderToHtml(ColumnDataTypes);
 
@@ -112,6 +113,7 @@ export const TableOfRecordsExample = {
           </ul>
         </div>
       ),
+      props: propsInfo,
       demo: <MultipleRecordActionsTable />
     },
     {

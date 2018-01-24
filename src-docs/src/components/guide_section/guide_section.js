@@ -22,6 +22,7 @@ import {
   EuiText,
   EuiTextColor,
   EuiTitle,
+  EuiLink
 } from '../../../../src/components';
 
 
@@ -139,7 +140,7 @@ export class GuideSection extends Component {
     }
 
     const docgenInfo = Array.isArray(component.__docgenInfo) ? component.__docgenInfo[0] : component.__docgenInfo;
-    const { description, props } = docgenInfo;
+    const { _euiObjectType, description, props } = docgenInfo;
 
     if (!props && !description) {
       return;
@@ -169,6 +170,22 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
+      function markup(text) {
+        const regex = /(#[a-zA-Z]+)/;
+        return text.split(regex).map(token => {
+          if (!token.startsWith('#')) {
+            return token;
+          }
+          const id = token.substring(1);
+          const onClick = () => {
+            document.getElementById(id).scrollIntoView();
+          };
+          return <EuiLink onClick={onClick}>{id}</EuiLink>;
+        });
+      }
+
+      const typeMarkup = markup(humanizedType);
+
       const cells = [
         (
           <EuiTableRowCell key="name">
@@ -176,7 +193,7 @@ export class GuideSection extends Component {
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="type">
-            <EuiCode>{humanizedType}</EuiCode>
+            <EuiCode>{typeMarkup}</EuiCode>
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="defaultValue">
@@ -195,6 +212,10 @@ export class GuideSection extends Component {
         </EuiTableRow>
       );
     });
+
+    const title = _euiObjectType === 'type' ?
+      <EuiCode id={componentName}>{componentName}</EuiCode> :
+      <EuiText color="accent">{componentName}</EuiText>;
 
     let descriptionElement;
 
@@ -241,7 +262,7 @@ export class GuideSection extends Component {
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>Props for {componentName}</h3></EuiTitle>,
+      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>{title}</h3></EuiTitle>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
