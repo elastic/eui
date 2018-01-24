@@ -5,14 +5,29 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiCalendar,
   EuiFieldText,
+} from '../../form/field_text';
+
+import {
+  EuiCalendar,
+} from './calendar';
+
+import {
   EuiPanel,
+} from '../../panel';
+
+import {
   EuiFlexGroup,
   EuiFlexItem,
+} from '../../flex';
+
+import {
   EuiTimeSelector,
+} from './time_selector';
+
+import {
   EuiOutsideClickDetector,
-} from '../../../components';
+} from '../../outside_click_detector';
 
 export class EuiDateTime extends Component {
   static propTypes = {

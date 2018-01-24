@@ -6,10 +6,19 @@ import classNames from 'classnames';
 
 import {
   EuiCalendarGrid,
+} from './calendar_grid';
+
+import {
   EuiCalendarGridItem,
+} from './calendar_grid_item';
+
+import {
   EuiCalendarMonthYearSelector,
+} from './calendar_month_year_selector';
+
+import {
   EuiSpacer,
-} from '../../../../components';
+} from '../../../spacer';
 
 export class EuiCalendar extends Component {
   static propTypes = {

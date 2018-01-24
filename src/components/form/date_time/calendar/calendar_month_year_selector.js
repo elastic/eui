@@ -5,15 +5,24 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiButtonIcon,
-  EuiFlexGrid,
-  EuiHorizontalRule,
   EuiButtonEmpty,
+} from '../../../button';
+
+import {
+  EuiHorizontalRule,
+} from '../../../horizontal_rule';
+
+import {
   EuiText,
   EuiTextColor,
-} from '../../../../components';
+} from '../../../text';
+
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlexGrid,
+} from '../../../flex';
 
 export class EuiCalendarMonthYearSelector extends Component {
   static propTypes = {
