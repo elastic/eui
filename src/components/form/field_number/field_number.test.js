@@ -60,5 +60,31 @@ describe('EuiFieldNumber', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    describe('value', () => {
+      test(`value is number`, () => {
+        const component = render(
+          <EuiFieldNumber
+            value={0}
+            onChange={() => {}}
+          />
+        );
+        expect(component)
+          .toMatchSnapshot();
+      });
+
+      test(`no initial value`, () => {
+        const component = render(
+          <EuiFieldNumber
+            value={''}
+            onChange={() => {}}
+          />
+        );
+        expect(component)
+          .toMatchSnapshot();
+      });
+
+    });
+
   });
 });

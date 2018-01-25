@@ -53,13 +53,31 @@ export const EuiFieldNumber = ({
   );
 };
 
+function numberOrEmptyString(props, propName, componentName) {
+  componentName = componentName || 'ANONYMOUS';
+
+  if (props[propName]) {
+    const value = props[propName];
+    if (typeof value === 'string' && value !== '') {
+      return new Error(`Invalid prop '${propName}' of type 'string' supplied to '${componentName}',` +
+      ` expected empty string or type 'number', you supplied a string with the contents '${value}'.`);
+    } else if (typeof value !== 'number') {
+      return new Error(`Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
+      ` expected empty string or type 'number'.`);
+    }
+  }
+
+  // assume all ok
+  return null;
+}
+
 EuiFieldNumber.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
   step: PropTypes.number,
-  value: PropTypes.number,
+  value: numberOrEmptyString,
   icon: PropTypes.string,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,

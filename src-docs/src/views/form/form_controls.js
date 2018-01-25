@@ -49,6 +49,7 @@ export default class extends Component {
         label: 'Option three',
       }],
       radioIdSelected: `${idPrefix}5`,
+      numberInputValue: '',
     };
   }
 
@@ -74,6 +75,16 @@ export default class extends Component {
     });
   }
 
+  onNumberInputChange = (evt) => {
+    let value = parseFloat(evt.target.value);
+    if (isNaN(value)) {
+      value = '';
+    }
+    this.setState({
+      numberInputValue: value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -90,7 +101,10 @@ export default class extends Component {
         <br />
         <br />
 
-        <EuiFieldNumber defaultValue="23" />
+        <EuiFieldNumber
+          value={this.state.numberInputValue}
+          onChange={this.onNumberInputChange}
+        />
 
         <br />
         <br />
