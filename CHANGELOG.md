@@ -19,6 +19,7 @@
 **Bug fixes**
 
 - Set `EuiFlexGroup` to `flex-grow: 1` to be more friendly with IE11 [(#315)](https://github.com/elastic/eui/pull/315)
+- Fix TypeScript definitions such that optional and readonly properties survive being passed through `Omit` [(#322)](https://github.com/elastic/eui/pull/322)
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 
