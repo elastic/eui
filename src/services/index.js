@@ -24,6 +24,14 @@ export {
 } from './paging';
 
 export {
+  checkHrefAndOnClick,
+} from './prop_types';
+
+export {
+  getSecureRelForTarget,
+} from './security';
+
+export {
   SortableProperties,
 } from './sort';
 

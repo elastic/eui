@@ -95,5 +95,16 @@ describe('EuiButton', () => {
         });
       });
     });
+
+    describe('href', () => {
+      it('secures the rel attribute when the target is _blank', () => {
+        const component = render(
+          <EuiButton href="#" target="_blank" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });

@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import checkHrefAndOnClick from '../../../services/prop_types/check_href_and_onclick';
+import {
+  checkHrefAndOnClick,
+  getSecureRelForTarget,
+} from '../../../services';
 
 import {
   ICON_TYPES,
@@ -41,6 +44,9 @@ export const EuiButtonIcon = ({
   isDisabled,
   href,
   onClick,
+  type,
+  target,
+  rel,
   ...rest
 }) => {
 
@@ -65,10 +71,14 @@ export const EuiButtonIcon = ({
   }
 
   if (href) {
+    const secureRel = getSecureRelForTarget(target, rel);
+
     return (
       <a
         className={classes}
         href={href}
+        target={target}
+        rel={secureRel}
         {...rest}
       >
         {buttonIcon}
@@ -80,6 +90,7 @@ export const EuiButtonIcon = ({
         disabled={isDisabled}
         className={classes}
         onClick={onClick}
+        type={type}
         {...rest}
       >
         {buttonIcon}
@@ -96,7 +107,10 @@ EuiButtonIcon.propTypes = {
   isDisabled: PropTypes.bool,
   'aria-label': accessibleButtonIcon,
   href: checkHrefAndOnClick,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   onClick: PropTypes.func,
+  type: PropTypes.string,
 };
 
 EuiButtonIcon.defaultProps = {

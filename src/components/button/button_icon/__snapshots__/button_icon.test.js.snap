@@ -49,6 +49,16 @@ exports[`EuiButtonIcon props color text is rendered 1`] = `
 />
 `;
 
+exports[`EuiButtonIcon props href secures the rel attribute when the target is _blank 1`] = `
+<a
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;
+
 exports[`EuiButtonIcon props iconType is rendered 1`] = `
 <button
   aria-label="button"

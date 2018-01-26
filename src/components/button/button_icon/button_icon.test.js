@@ -49,5 +49,16 @@ describe('EuiButtonIcon', () => {
         });
       });
     });
+
+    describe('href', () => {
+      it('secures the rel attribute when the target is _blank', () => {
+        const component = render(
+          <EuiButtonIcon aria-label="button" href="#" target="_blank" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });
