@@ -19,6 +19,10 @@ import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
 const appsHtml = renderToHtml(Apps);
 
+import Ml from './ml';
+const mlSource = require('!!raw-loader!./ml');
+const mlHtml = renderToHtml(Ml);
+
 import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
 const logosHtml = renderToHtml(Logos);
@@ -87,6 +91,22 @@ export const IconExample = {
     ),
     demo: <Apps />,
   }, {
+    title: 'Machine learning icons',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: mlSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: mlHtml,
+    }],
+    text: (
+      <p>
+        ML has some specific icons for job creation.
+        Again, these are made for <EuiCode>32x32</EuiCode>.
+      </p>
+    ),
+    demo: <Ml />,
+  }, {
     title: 'Logos',
     source: [{
       type: GuideSectionTypes.JS,
@@ -151,4 +171,3 @@ export const IconExample = {
     demo: <Accessibility />,
   }],
 };
-

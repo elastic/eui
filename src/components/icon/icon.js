@@ -28,8 +28,13 @@ import controlsHorizontal from './assets/controls_horizontal.svg';
 import controlsVertical from './assets/controls_vertical.svg';
 import copy from './assets/copy.svg';
 import copyClipboard from './assets/copy_clipboard.svg';
+import createAdvancedJob from './assets/ml_create_advanced_job.svg';
+import createMultiMetricJob from './assets/ml_create_multi_metric_job.svg';
+import createPopulationJob from './assets/ml_create_population_job.svg';
+import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import dashboardApp from './assets/app_dashboard.svg';
+import dataVisualizer from './assets/ml_data_visualizer.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
@@ -145,8 +150,13 @@ const typeToIconMap = {
   controlsVertical,
   copy,
   copyClipboard,
+  createAdvancedJob,
+  createMultiMetricJob,
+  createPopulationJob,
+  createSingleMetricJob,
   cross,
   dashboardApp,
+  dataVisualizer,
   devToolsApp,
   discoverApp,
   document,
