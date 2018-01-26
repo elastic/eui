@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.15`.
+
+# [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
+
 - Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])
 - `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
 - Exported `VISUALIZATION_COLORS` from services ((#329)[https://github.com/elastic/eui/pull/329])
