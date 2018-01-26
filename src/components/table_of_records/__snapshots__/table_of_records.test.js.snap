@@ -138,25 +138,47 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={1}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 1,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -223,25 +245,51 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -354,25 +402,54 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -486,25 +563,55 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+            "sortable": true,
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -572,28 +679,57 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="1_record_actions_1"
+          key="record_actions_1_1"
           textOnly={false}
         >
-          <EuiButton
-            color="primary"
-            fill={false}
-            iconSide="left"
-            isDisabled={false}
-            key="1_action_button_0"
-            onClick={[Function]}
-            onMouseOver={[Function]}
-            size="s"
-            style={
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "description": "edit",
+                  "name": "Edit",
+                  "onClick": [Function],
+                  "type": "button",
+                },
+              ]
+            }
+            model={
               Object {
-                "opacity": 0,
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
             }
-            title="edit"
-            type="button"
-          >
-            Edit
-          </EuiButton>
+            record={
+              Object {
+                "id": "1",
+                "name": "name1",
+              }
+            }
+            recordId="1"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
@@ -622,28 +758,57 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="2_record_actions_1"
+          key="record_actions_2_1"
           textOnly={false}
         >
-          <EuiButton
-            color="primary"
-            fill={false}
-            iconSide="left"
-            isDisabled={false}
-            key="2_action_button_0"
-            onClick={[Function]}
-            onMouseOver={[Function]}
-            size="s"
-            style={
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "description": "edit",
+                  "name": "Edit",
+                  "onClick": [Function],
+                  "type": "button",
+                },
+              ]
+            }
+            model={
               Object {
-                "opacity": 0,
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
             }
-            title="edit"
-            type="button"
-          >
-            Edit
-          </EuiButton>
+            record={
+              Object {
+                "id": "2",
+                "name": "name2",
+              }
+            }
+            recordId="2"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
@@ -672,51 +837,120 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="3_record_actions_1"
+          key="record_actions_3_1"
           textOnly={false}
         >
-          <EuiButton
-            color="primary"
-            fill={false}
-            iconSide="left"
-            isDisabled={false}
-            key="3_action_button_0"
-            onClick={[Function]}
-            onMouseOver={[Function]}
-            size="s"
-            style={
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "description": "edit",
+                  "name": "Edit",
+                  "onClick": [Function],
+                  "type": "button",
+                },
+              ]
+            }
+            model={
               Object {
-                "opacity": 0,
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
             }
-            title="edit"
-            type="button"
-          >
-            Edit
-          </EuiButton>
+            record={
+              Object {
+                "id": "3",
+                "name": "name3",
+              }
+            }
+            recordId="3"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+            "sortable": true,
+          },
+          Object {
+            "actions": Array [
+              Object {
+                "description": "edit",
+                "name": "Edit",
+                "onClick": [Function],
+                "type": "button",
+              },
+            ],
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -830,25 +1064,56 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "dataType": "number",
+            "description": "description",
+            "field": "count",
+            "name": "Count",
+            "sortable": true,
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "count": 1,
+              "id": "1",
+            },
+            Object {
+              "count": 2,
+              "id": "2",
+            },
+            Object {
+              "count": 3,
+              "id": "3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -962,25 +1227,56 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+            "render": [Function],
+            "sortable": true,
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -1048,54 +1344,55 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="1_record_actions_1"
+          key="record_actions_1_1"
           textOnly={false}
         >
-          <EuiPopover
-            anchorPosition="leftCenter"
-            button={
-              <EuiButtonIcon
-                aria-label="Actions"
-                color="text"
-                iconType="gear"
-                isDisabled={false}
-                onClick={[Function]}
-                style={
-                  Object {
-                    "opacity": 0,
-                  }
-                }
-                type="button"
-              />
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "name": "Actions",
+                  "render": [Function],
+                },
+              ]
             }
-            closePopover={[Function]}
-            id="1-actions"
-            isOpen={false}
-            ownFocus={false}
-            panelPaddingSize="none"
-          >
-            <EuiContextMenuPanel
-              hasFocus={true}
-              items={
-                Array [
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Edit
-                  </EuiContextMenuItem>,
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </EuiContextMenuItem>,
-                ]
+            model={
+              Object {
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
-            />
-          </EuiPopover>
+            }
+            record={
+              Object {
+                "id": "1",
+                "name": "name1",
+              }
+            }
+            recordId="1"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
@@ -1124,54 +1421,55 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="2_record_actions_1"
+          key="record_actions_2_1"
           textOnly={false}
         >
-          <EuiPopover
-            anchorPosition="leftCenter"
-            button={
-              <EuiButtonIcon
-                aria-label="Actions"
-                color="text"
-                iconType="gear"
-                isDisabled={false}
-                onClick={[Function]}
-                style={
-                  Object {
-                    "opacity": 0,
-                  }
-                }
-                type="button"
-              />
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "name": "Actions",
+                  "render": [Function],
+                },
+              ]
             }
-            closePopover={[Function]}
-            id="2-actions"
-            isOpen={false}
-            ownFocus={false}
-            panelPaddingSize="none"
-          >
-            <EuiContextMenuPanel
-              hasFocus={true}
-              items={
-                Array [
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Edit
-                  </EuiContextMenuItem>,
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </EuiContextMenuItem>,
-                ]
+            model={
+              Object {
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
-            />
-          </EuiPopover>
+            }
+            record={
+              Object {
+                "id": "2",
+                "name": "name2",
+              }
+            }
+            recordId="2"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
@@ -1200,77 +1498,124 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         </EuiTableRowCell>
         <EuiTableRowCell
           align="right"
-          key="3_record_actions_1"
+          key="record_actions_3_1"
           textOnly={false}
         >
-          <EuiPopover
-            anchorPosition="leftCenter"
-            button={
-              <EuiButtonIcon
-                aria-label="Actions"
-                color="text"
-                iconType="gear"
-                isDisabled={false}
-                onClick={[Function]}
-                style={
-                  Object {
-                    "opacity": 0,
-                  }
-                }
-                type="button"
-              />
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "name": "Actions",
+                  "render": [Function],
+                },
+              ]
             }
-            closePopover={[Function]}
-            id="3-actions"
-            isOpen={false}
-            ownFocus={false}
-            panelPaddingSize="none"
-          >
-            <EuiContextMenuPanel
-              hasFocus={true}
-              items={
-                Array [
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Edit
-                  </EuiContextMenuItem>,
-                  <EuiContextMenuItem
-                    disabled={false}
-                    icon={undefined}
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </EuiContextMenuItem>,
-                ]
+            model={
+              Object {
+                "criteria": Object {
+                  "page": Object {
+                    "index": 0,
+                    "size": 3,
+                  },
+                },
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": "1",
+                      "name": "name1",
+                    },
+                    Object {
+                      "id": "2",
+                      "name": "name2",
+                    },
+                    Object {
+                      "id": "3",
+                      "name": "name3",
+                    },
+                  ],
+                  "totalRecordCount": 5,
+                },
               }
-            />
-          </EuiPopover>
+            }
+            record={
+              Object {
+                "id": "3",
+                "name": "name3",
+              }
+            }
+            recordId="3"
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+            "sortable": true,
+          },
+          Object {
+            "actions": Array [
+              Object {
+                "description": "edit",
+                "name": "Edit",
+                "onClick": [Function],
+                "type": "button",
+              },
+              Object {
+                "description": "delete",
+                "name": "Delete",
+                "onClick": [Function],
+                "type": "button",
+              },
+            ],
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 
@@ -1384,25 +1729,57 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <div>
-    <EuiSpacer
-      size="m"
-    />
-    <EuiTablePagination
-      activePage={0}
-      itemsPerPage={3}
-      itemsPerPageOptions={
-        Array [
-          5,
-          10,
-          20,
-        ]
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "dataType": "number",
+            "description": "description",
+            "field": "count",
+            "name": "Count",
+            "render": [Function],
+            "sortable": true,
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+        "selection": Object {
+          "onSelectionChanged": [Function],
+        },
       }
-      onChangeItemsPerPage={[Function]}
-      onChangePage={[Function]}
-      pageCount={2}
-    />
-  </div>
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 3,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "count": 1,
+              "id": "1",
+            },
+            Object {
+              "count": 2,
+              "id": "2",
+            },
+            Object {
+              "count": 3,
+              "id": "3",
+            },
+          ],
+          "totalRecordCount": 5,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
 </div>
 `;
 

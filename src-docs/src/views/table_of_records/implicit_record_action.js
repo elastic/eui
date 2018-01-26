@@ -20,7 +20,7 @@ const people = times(20, (index) => {
     id: index,
     firstName: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
     lastName: random.oneOf('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
-    nickname: random.oneOf('martijnvg', 'elissa', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
+    nickname: random.oneOf('martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
     dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
     country: random.oneOf('us', 'nl', 'cz', 'za', 'au'),
     online: random.boolean()

@@ -27,7 +27,7 @@ const people = times(20, (index) => {
     id: index,
     firstName: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
     lastName: random.oneOf('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
-    nickname: random.oneOf('martijnvg', 'elissa', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
+    nickname: random.oneOf('martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
     dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
     country: random.oneOf('us', 'nl', 'cz', 'za', 'au'),
     online: random.boolean()
@@ -38,6 +38,14 @@ function loadPage(pageIndex, pageSize, sort) {
   let list = people;
   if (sort) {
     list = people.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
+  }
+  if (!pageIndex && !pageSize) {
+    return {
+      index: 0,
+      size: list.length,
+      items: list,
+      totalRecordCount: list.length
+    };
   }
   const from = pageIndex * pageSize;
   const items = list.slice(from, Math.min(from + pageSize, list.length));
@@ -54,10 +62,13 @@ export default class PeopleTable extends Component {
     super(props);
 
     this.state = {
-      hasPagination: true,
-      hasSorting: true,
-      hasSelection: true,
-      ...this.computeState({
+      features: {
+        pagination: true,
+        sorting: true,
+        selection: true,
+        multipleRecordActions: true
+      },
+      ...this.computeTableState({
         page: {
           index: 0,
           size: 5,
@@ -66,8 +77,10 @@ export default class PeopleTable extends Component {
     };
   }
 
-  computeState(criteria) {
-    const page = loadPage(criteria.page.index, criteria.page.size, criteria.sort);
+  computeTableState(criteria) {
+    const page = criteria.page ?
+      loadPage(criteria.page.index, criteria.page.size, criteria.sort) :
+      loadPage(undefined, undefined, criteria.sort);
     return {
       data: {
         records: page.items,
@@ -84,7 +97,7 @@ export default class PeopleTable extends Component {
   }
 
   onDataCriteriaChange(criteria) {
-    this.setState(this.computeState(criteria));
+    this.setState(this.computeTableState(criteria));
   }
 
   deletePerson(personToDelete) {
@@ -110,12 +123,17 @@ export default class PeopleTable extends Component {
     this.onDataCriteriaChange(this.state.criteria);
   }
 
+  toggleFeature(feature) {
+    this.setState(prevState => ({
+      features: {
+        ...prevState.features,
+        [feature]: !prevState.features[feature]
+      }
+    }));
+  }
+
   render() {
-    const {
-      hasPagination,
-      hasSelection,
-      hasSorting,
-    } = this.state;
+    const { features } = this.state;
 
     const config = {
       recordId: 'id',
@@ -125,7 +143,7 @@ export default class PeopleTable extends Component {
           name: 'First Name',
           description: `Person's given name`,
           dataType: 'string',
-          sortable: hasSorting,
+          sortable: features.sorting,
         },
         {
           field: 'lastName',
@@ -148,7 +166,7 @@ export default class PeopleTable extends Component {
           name: 'Date of Birth',
           description: `Person's date of birth`,
           render: EuiValueRenderers.date.with({ format: 'D MMM YYYY' }),
-          sortable: hasSorting,
+          sortable: features.sorting,
           dataType: 'date'
         },
         {
@@ -160,20 +178,18 @@ export default class PeopleTable extends Component {
             const content = value ? 'Online' : 'Offline';
             return <EuiHealth color={color}>{content}</EuiHealth>;
           },
-          sortable: hasSorting
+          sortable: features.sorting
         },
         {
           name: '',
-          actions: [
+          actions: features.multipleRecordActions ? [
             {
-              type: 'button',
               name: 'Clone',
               description: 'Clone this person',
               icon: 'copy',
               onClick: (person) => this.clonePerson(person)
             },
             {
-              type: 'button',
               name: 'Delete',
               description: 'Delete this person',
               icon: 'trash',
@@ -181,7 +197,6 @@ export default class PeopleTable extends Component {
               onClick: (person) => this.deletePerson(person)
             },
             {
-              type: 'custom',
               name: 'Online/Offline',
               description: 'toggles the online/offline state of the person',
               render: (person, model, enabled) => {
@@ -199,15 +214,24 @@ export default class PeopleTable extends Component {
                 );
               }
             }
+          ] : [
+            {
+              name: 'Delete',
+              description: 'Delete this person',
+              icon: 'trash',
+              type: 'icon',
+              color: 'danger',
+              onClick: (person) => this.deletePerson(person)
+            }
           ]
         }
       ],
 
-      pagination: hasPagination ? {
+      pagination: features.pagination ? {
         pageSizeOptions: [3, 5, 8]
       } : undefined,
 
-      selection: hasSelection ? {
+      selection: features.selection ? {
         selectable: (record) => record.online,
         selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
       } : undefined,
@@ -226,8 +250,8 @@ export default class PeopleTable extends Component {
     const model = {
       data,
       criteria: {
-        page: hasPagination ? page : undefined,
-        sort: hasSorting ? sort : undefined,
+        page: features.pagination ? page : undefined,
+        sort: features.sorting ? sort : undefined,
       },
     };
 
@@ -237,24 +261,31 @@ export default class PeopleTable extends Component {
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Pagination"
-              checked={this.state.hasPagination}
-              onChange={() => { this.setState({ hasPagination: !this.state.hasPagination }); }}
+              checked={features.pagination}
+              onChange={this.toggleFeature.bind(this, 'pagination')}
             />
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Sorting"
-              checked={this.state.hasSorting}
-              onChange={() => { this.setState({ hasSorting: !this.state.hasSorting }); }}
+              checked={features.sorting}
+              onChange={this.toggleFeature.bind(this, 'sorting')}
             />
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Selection"
-              checked={this.state.hasSelection}
-              onChange={() => { this.setState({ hasSelection: !this.state.hasSelection }); }}
+              checked={features.selection}
+              onChange={this.toggleFeature.bind(this, 'selection')}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Multiple Record Actions"
+              checked={features.multipleRecordActions}
+              onChange={this.toggleFeature.bind(this, 'multipleRecordActions')}
             />
           </EuiFlexItem>
         </EuiFlexGroup>

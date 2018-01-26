@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import { times } from 'lodash';
 
 import {
@@ -23,49 +21,36 @@ const records = times(5, (index) => {
   };
 });
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const model = {
+  data: { records }
+};
 
-    this.data = {
-      records,
-      totalRecordCount: records.length,
-    };
-  }
+const config = {
+  recordId: 'id',
+  columns: [
+    {
+      field: 'string',
+      name: 'string',
+      dataType: 'string',
+    },
+    {
+      field: 'number',
+      name: 'number',
+      dataType: 'number'
+    },
+    {
+      field: 'boolean',
+      name: 'boolean',
+      dataType: 'boolean'
+    },
+    {
+      field: 'date',
+      name: 'date',
+      dataType: 'date'
+    },
+  ],
+};
 
-  render() {
-    const config = {
-      recordId: 'id',
-      columns: [
-        {
-          field: 'string',
-          name: 'string',
-          dataType: 'string',
-        },
-        {
-          field: 'number',
-          name: 'number',
-          dataType: 'number'
-        },
-        {
-          field: 'boolean',
-          name: 'boolean',
-          dataType: 'boolean'
-        },
-        {
-          field: 'date',
-          name: 'date',
-          dataType: 'date'
-        },
-      ],
-    };
-
-    const model = {
-      data: this.data,
-    };
-
-    return (
-      <EuiTableOfRecords config={config} model={model} />
-    );
-  }
-}
+export default () => {
+  return <EuiTableOfRecords config={config} model={model} />;
+};

@@ -171,21 +171,36 @@ export class GuideSection extends Component {
       const humanizedType = humanizeType(type);
 
       function markup(text) {
-        const regex = /(#[a-zA-Z]+)/;
+        const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
         return text.split(regex).map(token => {
-          if (!token.startsWith('#')) {
-            return token;
+          if (!token) {
+            return '';
           }
-          const id = token.substring(1);
-          const onClick = () => {
-            document.getElementById(id).scrollIntoView();
-          };
-          return <EuiLink onClick={onClick}>{id}</EuiLink>;
+          if (token.startsWith('#')) {
+            const id = token.substring(1);
+            const onClick = () => {
+              document.getElementById(id).scrollIntoView();
+            };
+            return <EuiLink onClick={onClick}>{id}</EuiLink>;
+          }
+          if (token.startsWith('`')) {
+            const code = token.substring(1, token.length - 1);
+            return <EuiCode>{code}</EuiCode>;
+          }
+          return token;
+
         });
       }
 
       const typeMarkup = markup(humanizedType);
-
+      const descriptionMarkup = markup(propDescription);
+      let defaultValueMarkup = '';
+      if (defaultValue) {
+        defaultValueMarkup = [ <EuiCode>{defaultValue.value}</EuiCode> ];
+        if (defaultValue.comment) {
+          defaultValueMarkup.push(`(${defaultValue.comment})`);
+        }
+      }
       const cells = [
         (
           <EuiTableRowCell key="name">
@@ -197,11 +212,11 @@ export class GuideSection extends Component {
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="defaultValue">
-            {defaultValue ? <EuiCode>{defaultValue.value}</EuiCode> : ''}
+            {defaultValueMarkup}
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="description">
-            {propDescription}
+            {descriptionMarkup}
           </EuiTableRowCell>
         )
       ];

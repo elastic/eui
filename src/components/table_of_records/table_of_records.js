@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { EuiPropTypes } from '../../utils/prop_types';
 import {
   EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableHeaderCellCheckbox,
   EuiTableRow, EuiTableRowCell, EuiTableRowCellCheckbox
@@ -10,19 +9,20 @@ import {
 import { EuiCheckbox } from '../form/checkbox';
 import { ICON_TYPES } from '../icon';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
-import { EuiButtonIcon } from '../button/button_icon';
-import { EuiButton, COLORS as BUTTON_COLORS } from '../button/button';
-import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
-import { EuiSpacer } from '../spacer';
-import { EuiTablePagination } from '../table/table_pagination';
-import { EuiPopover } from '../popover';
 import { EuiValueRenderers } from '../value_renderer';
 import {
   LEFT_ALIGNMENT, RIGHT_ALIGNMENT,
   SortDirection, PropertySortType
 } from '../../services';
+import { PaginationBar } from './pagination_bar';
+import { CollapsedRecordActions } from './collapsed_record_actions';
+import { ExpandedRecordActions } from './expanded_record_actions';
 
 const dataTypesProfiles = {
+  default: {
+    align: LEFT_ALIGNMENT,
+    render: EuiValueRenderers.default
+  },
   string: {
     align: LEFT_ALIGNMENT,
     render: EuiValueRenderers.text
@@ -43,34 +43,17 @@ const dataTypesProfiles = {
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
-const ButtonRecordActionType = PropTypes.shape({
-  type: EuiPropTypes.is('button').isRequired,
+const DefaultRecordActionType = PropTypes.shape({
+  type: PropTypes.oneOf([ 'icon', 'button' ]), // default is 'button'
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired, // (record, model) => void,
-  visible: PropTypes.func, // (record, model) => boolean;
+  available: PropTypes.func, // (record, model) => boolean;
   enabled: PropTypes.func, // (record, model) => boolean;
-  icon: PropTypes.oneOfType([
+  icon: PropTypes.oneOfType([ // required when type is 'icon'
     PropTypes.oneOf(ICON_TYPES),
     PropTypes.func // (record, model) => oneOf(ICON_TYPES)
   ]),
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf(BUTTON_COLORS),
-    PropTypes.func // (record, model) => oneOf(BUTTON_COLORS)
-  ])
-});
-
-const IconRecordActionType = PropTypes.shape({
-  type: EuiPropTypes.is('icon').isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired, // (record, model) => void,
-  icon: PropTypes.oneOfType([
-    PropTypes.oneOf(ICON_TYPES),
-    PropTypes.func // (record, model) => oneOf(ICON_TYPES)
-  ]).isRequired,
-  visible: PropTypes.func, // (record, model) => boolean;
-  enabled: PropTypes.func, // (record, model) => boolean;
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
     PropTypes.func // (record, model) => oneOf(ICON_BUTTON_COLORS)
@@ -78,15 +61,13 @@ const IconRecordActionType = PropTypes.shape({
 });
 
 const CustomRecordActionType = PropTypes.shape({
-  type: EuiPropTypes.is('custom').isRequired,
   render: PropTypes.func.isRequired,  // (record, model, enabled) => PropTypes.node;
-  visible: PropTypes.func, // (record, model) => boolean;
+  available: PropTypes.func, // (record, model) => boolean;
   enabled: PropTypes.func // (record, model) => boolean;
 });
 
 const SupportedRecordActionType = PropTypes.oneOfType([
-  ButtonRecordActionType,
-  IconRecordActionType,
+  DefaultRecordActionType,
   CustomRecordActionType
 ]);
 
@@ -163,25 +144,6 @@ const EuiTableOfRecordsPropTypes = {
   className: PropTypes.string
 };
 
-const defaultProps = {
-  config: {
-    column: {
-      align: LEFT_ALIGNMENT,
-      action: {
-        visible: true,
-        enabled: true,
-        button: {
-          color: 'primary'
-        }
-      },
-      render: EuiValueRenderers.default
-    },
-    pagination: {
-      pageSizeOptions: [5, 10, 20]
-    }
-  }
-};
-
 export class EuiTableOfRecords extends React.Component {
 
   static propTypes = EuiTableOfRecordsPropTypes;
@@ -189,7 +151,6 @@ export class EuiTableOfRecords extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      popovers: {},
       hoverRecordId: null,
       selection: []
     };
@@ -198,22 +159,6 @@ export class EuiTableOfRecords extends React.Component {
   recordId(record) {
     const id = this.props.config.recordId;
     return _.isString(id) ? record[id] : id(record);
-  }
-
-  isPopoverOpen(id) {
-    return !!this.state.popovers[id];
-  }
-
-  togglePopover(id) {
-    this.setState((prevState) => ({
-      popovers: { ...prevState.popovers, [id]: !prevState.popovers[id] }
-    }));
-  }
-
-  closePopover(id) {
-    this.setState((prevState) => ({
-      popovers: { ...prevState.popovers, [id]: undefined }
-    }));
   }
 
   changeSelection(selection) {
@@ -263,9 +208,9 @@ export class EuiTableOfRecords extends React.Component {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
     }
     const criteria = {
-      ...this.props.model.criteria,
-      page: {
-        ...this.props.model.criteria.page,
+      ...currentCriteria,
+      // resetting the page if the criteria has one
+      page: !currentCriteria.page ? undefined : {
         index: 0,
         size: currentCriteria.page.size
       },
@@ -395,14 +340,12 @@ export class EuiTableOfRecords extends React.Component {
     if (column.align) {
       return column.align;
     }
-    if (column.dataType) {
-      const dataTypeProfile = dataTypesProfiles[column.dataType];
-      if (!dataTypeProfile) {
-        throw new Error(`Unknown dataType [${column.dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
-      }
-      return dataTypeProfile.align;
+    const dataType = column.dataType || 'default';
+    const profile = dataTypesProfiles[dataType];
+    if (!profile) {
+      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
     }
-    return defaultProps.config.column.align;
+    return profile.align;
   }
 
   resolveColumnSortDirection(column, config, model) {
@@ -496,14 +439,12 @@ export class EuiTableOfRecords extends React.Component {
     if (column.render) {
       return column.render;
     }
-    if (column.dataType) {
-      const dataTypeProfile = dataTypesProfiles[column.dataType];
-      if (!dataTypeProfile) {
-        throw new Error(`Unknown dataType [${column.dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
-      }
-      return dataTypeProfile.render;
+    const dataType = column.dataType || 'default';
+    const profile = dataTypesProfiles[dataType];
+    if (!profile) {
+      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
     }
-    return defaultProps.config.column.render;
+    return profile.render;
   }
 
   renderTableRecordSelectionCell(recordId, record, config, model, selected) {
@@ -540,38 +481,55 @@ export class EuiTableOfRecords extends React.Component {
 
   renderTableRecordActionsCell(recordId, record, actions, config, model, columnIndex) {
 
+    const visible = this.state.hoverRecordId === recordId;
+
+    const actionEnabled = (action) =>
+      this.state.selection.length === 0 && (!action.enabled || action.enabled(record, model));
+
+    let actualActions = actions;
+    if (actions.length > 1) {
+
+      // if we have more than 1 action, we don't show them all in the cell, instead we
+      // put them all in a popover tool. This effectively means we can only have a maximum
+      // of one tool per row (it's either and normal action, or it's a popover that shows multiple actions)
+      //
+      // here we create a single custom action that triggers the popover with all the configured actions
+
+      actualActions = [
+        {
+          name: 'Actions',
+          render: (record, model) => {
+            return (
+              <CollapsedRecordActions
+                actions={actions}
+                visible={visible}
+                recordId={recordId}
+                record={record}
+                model={model}
+                actionEnabled={actionEnabled}
+              />
+            );
+          }
+        }
+      ];
+    }
+
+    const tools = (
+      <ExpandedRecordActions
+        actions={actualActions}
+        visible={visible}
+        recordId={recordId}
+        record={record}
+        model={model}
+        actionEnabled={actionEnabled}
+      />
+    );
+
     // when each record may potentially have more than one action we'll show these actions
     // within a context menu triggered by a single button. The idea here is that we want to keep the
     // actions on the rows clean - no more than a single button per row.
-    if (actions.length > 1) {
-      return this.renderTableRecordActionsCellCollapsed(recordId, record, actions, config, model, columnIndex);
-    }
-    return this.renderTableRecordActionsCellExpanded(recordId, record, actions, config, model, columnIndex);
-  }
 
-  // yes, even though based on the logic above, actions is a single item array, we'll keep this
-  // code generic enough so it can easily accommodate changes in this logic later on,
-  renderTableRecordActionsCellExpanded(recordId, record, actions, config, model, columnIndex) {
-    const tools = actions.reduce((tools, action, index) => {
-      const visible = action.visible ? action.visible(record, model) : true;
-      if (!visible) {
-        return tools;
-      }
-      switch (action.type) {
-
-        case 'icon':
-        case 'button':
-          const button = this.renderTableRecordButton(action, recordId, record, model, index);
-          tools.push(button);
-          return tools;
-
-        case 'custom':
-          const customAction = this.renderTableRecordCustomAction(action, recordId, record, model, index);
-          tools.push(customAction);
-          return tools;
-      }
-    }, []);
-    const key = `${recordId}_record_actions_${columnIndex}`;
+    const key = `record_actions_${recordId}_${columnIndex}`;
     return (
       <EuiTableRowCell key={key} align="right" textOnly={false}>
         {tools}
@@ -579,183 +537,17 @@ export class EuiTableOfRecords extends React.Component {
     );
   }
 
-  renderTableRecordButton(button, recordId, record, model, index) {
-    const key = `${recordId}_action_button_${index}`;
-    const visible = this.state.hoverRecordId === recordId;
-    const color = this.resolveButtonColor(button, record, model);
-    const disabled = !this.resolveActionEnabled(button, record, model);
-    const icon = this.resolveButtonIcon(button, record, model);
-    const onClick = () => button.onClick(record, model);
-    const style = !visible ? { opacity: 0 } : undefined;
-    const onHover = () => this.setState({ hoverRecordId: recordId });
-    if (button.type === 'icon') {
+  renderPaginationBar(config, model) {
+    if (config.pagination) {
       return (
-        <EuiButtonIcon
-          key={key}
-          aria-label={button.name}
-          isDisabled={disabled}
-          color={color}
-          iconType={icon}
-          title={button.description}
-          style={style}
-          onClick={onClick}
-          onMouseOver={onHover}
+        <PaginationBar
+          config={config}
+          model={model}
+          onPageSizeChange={this.onPageSizeChange.bind(this)}
+          onPageChange={this.onPageChange.bind(this)}
         />
       );
     }
-    return (
-      <EuiButton
-        key={key}
-        size="s"
-        isDisabled={disabled}
-        color={color}
-        iconType={icon}
-        fill={false}
-        title={button.description}
-        style={style}
-        onClick={onClick}
-        onMouseOver={onHover}
-      >
-        {button.name}
-      </EuiButton>
-    );
-  }
-
-  renderTableRecordActionsCellCollapsed(recordId, record, actions /* SupportedRecordAction[] */, config, model, columnIndex) {
-
-    const closePopover = () => this.closePopover(recordId);
-    const isOpen = this.isPopoverOpen(recordId);
-
-    let allDisabled = true;
-    const items = actions.reduce((items, action, index) => {
-      const key = `${recordId}_action_${index}`;
-      const visible = action.visible ? action.visible(record, model) : defaultProps.config.column.action.visible;
-      if (!visible) {
-        return items;
-      }
-      const disabled = !this.resolveActionEnabled(action, record, model);
-      allDisabled = allDisabled && disabled;
-      switch (action.type) {
-
-        case 'icon':
-        case 'button':
-          const onClick = () => action.onClick(record, model);
-          const item = (
-            <EuiContextMenuItem
-              key={key}
-              disabled={disabled}
-              icon={action.icon}
-              onClick={onClick}
-            >
-              {action.name}
-            </EuiContextMenuItem>
-          );
-          items.push(item);
-          return items;
-
-        case 'custom':
-          const enabled = action.enabled ? action.enabled(record, model) : !defaultProps.config.column.action.disabled;
-          const customItem = action.render(record, model, enabled);
-          const itemWrapper = (
-            <div key={key} className="euiContextMenuItem">{customItem}</div>
-          );
-          items.push(itemWrapper);
-          return items;
-      }
-    }, []);
-
-    const visible = this.state.hoverRecordId === recordId;
-    const style = !visible ? { opacity: 0 } : undefined;
-    const popoverButton = (
-      <EuiButtonIcon
-        aria-label="Actions"
-        iconType="gear"
-        color="text"
-        style={style}
-        isDisabled={allDisabled}
-        onClick={() => this.togglePopover(recordId)}
-      />
-    );
-
-    const key = `${recordId}_record_actions_${columnIndex}`;
-
-    return (
-      <EuiTableRowCell key={key} align="right" textOnly={false}>
-        <EuiPopover
-          id={`${recordId}-actions`}
-          isOpen={isOpen}
-          button={popoverButton}
-          closePopover={closePopover}
-          panelPaddingSize="none"
-          anchorPosition="leftCenter"
-        >
-          <EuiContextMenuPanel items={items}/>
-        </EuiPopover>
-      </EuiTableRowCell>
-    );
-  }
-
-  resolveButtonIcon(button, record, model) {
-    if (button.icon) {
-      return _.isString(button.icon) ? button.icon : button.icon(record, model);
-    }
-  }
-
-  resolveButtonColor(button, record, model) {
-    if (button.color) {
-      return _.isString(button.color) ? button.color : button.color(record, model);
-    }
-    return defaultProps.config.column.action.button.color;
-  }
-
-  renderTableRecordCustomAction(action, recordId, record, model, index) {
-    const key = `${recordId}_action_custom_${index}`;
-    const enabled = this.resolveActionEnabled(action, record, model);
-    const tool = action.render(record, model, enabled);
-    return <span key={key}>{tool}</span>;
-  }
-
-  resolveActionEnabled(action, record, model) {
-    if (this.state.selection.length > 0) {
-      return false; // record actions can only be enabled if there's no selection
-    }
-    if (action.enabled) {
-      return action.enabled(record, model);
-    }
-    return defaultProps.config.column.action.enabled;
-  }
-
-  renderPaginationBar(config, model) {
-    if (!config.pagination) {
-      return;
-    }
-    if (!model.criteria || !model.criteria.page) {
-      throw new Error(`The table of records is configured to show pagination but the provided
-        model is missing page criteria. Make sure the page criteria (index and size) is specified
-        under model.criteria.page`);
-    }
-    if (!config.onDataCriteriaChange) {
-      throw new Error(`The table of records is provided with a paginated model but [onDataCriteriaChange] is
-        not configured. This callback must be implemented to handle pagination changes`);
-    }
-    const pageSizeOptions = config.pagination.pageSizeOptions ?
-      config.pagination.pageSizeOptions :
-      defaultProps.config.pagination.pageSizeOptions;
-    const totalRecordCount = model.data.totalRecordCount || model.data.records.length;
-    const pageCount = Math.ceil(totalRecordCount / model.criteria.page.size);
-    return (
-      <div>
-        <EuiSpacer size="m"/>
-        <EuiTablePagination
-          activePage={model.criteria.page.index}
-          itemsPerPage={model.criteria.page.size}
-          itemsPerPageOptions={pageSizeOptions}
-          pageCount={pageCount}
-          onChangeItemsPerPage={this.onPageSizeChange.bind(this)}
-          onChangePage={this.onPageChange.bind(this)}
-        />
-      </div>
-    );
   }
 
 }

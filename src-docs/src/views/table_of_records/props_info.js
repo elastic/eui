@@ -115,7 +115,6 @@ export const propsInfo = {
         columns: {
           description: 'Defines the table columns',
           required: true,
-          defaultValue: undefined,
           type: { name: '(#FieldDataColumn | #ComputedColumn | #ActionsColumn)[]' }
         },
         onDataCriteriaChange: {
@@ -162,7 +161,7 @@ export const propsInfo = {
         pageSizeOptions: {
           description: 'Configures the page size dropdown options',
           required: false,
-          defaultValue: '[5, 10, 20]',
+          defaultValue: { value: '[5, 10, 20]' },
           type: { name: 'number[]' }
         }
       }
@@ -192,7 +191,8 @@ export const propsInfo = {
         dataType: {
           description: 'Describes the data types of the displayed value (serves as a rendering hint for the table)',
           required: false,
-          type: { name: '"string" | "number" | "date" | "boolean"' }
+          defaultValue: { value: '"default"' },
+          type: { name: '"default" | string" | "number" | "date" | "boolean"' }
         },
         width: {
           description: 'A CSS width property. Hints for the required width of the column',
@@ -202,19 +202,19 @@ export const propsInfo = {
         sortable: {
           description: 'Defines whether the user can sort on this column',
           required: false,
-          defaultValue: 'false',
+          defaultValue: { value: 'false' },
           type: { name: 'boolean' }
         },
         align: {
           description: 'Defines the horizontal alignment of the column',
           required: false,
-          defaultValue: 'right (though may change when "dataType" is defined',
+          defaultValue: { value: '"right"', comment: 'May change when "dataType" is defined' },
           type: { name: '"left" | "right"' }
         },
         truncateText: {
           description: `Indicates whether this column should truncate its content when it doesn't fit`,
           required: false,
-          defaultValue: 'false',
+          defaultValue: { value: 'false' },
           type: { name: 'boolean' }
         },
         render: {
@@ -254,7 +254,7 @@ export const propsInfo = {
         truncateText: {
           description: `Indicates whether this column should truncate its content when it doesn't fit`,
           required: false,
-          defaultValue: 'false',
+          defaultValue: { value: 'false' },
           type: { name: 'boolean' }
         }
       }
@@ -269,7 +269,7 @@ export const propsInfo = {
         actions: {
           description: `An array of actions to associate per record`,
           required: true,
-          type: { name: '(#ButtonRecordAction | #IconRecordAction | #CustomRecordAction)[]' }
+          type: { name: '(#DefaultRecordAction | #CustomRecordAction)[]' }
         },
         name: {
           description: 'The display name of the column',
@@ -290,16 +290,11 @@ export const propsInfo = {
     }
   },
 
-  ButtonRecordAction: {
+  DefaultRecordAction: {
     __docgenInfo: {
       _euiObjectType: 'type',
       description: `Describes an action that is displayed as a button`,
       props: {
-        type: {
-          description: 'The type of action - must be set to "button"',
-          required: true,
-          type: { name: 'string (must be "button")' }
-        },
         name: {
           description: 'The display name of the action (will be the button caption',
           required: true,
@@ -315,16 +310,22 @@ export const propsInfo = {
           required: true,
           type: { name: '(record, model) => void' }
         },
-        visible: {
-          description: 'A callback function that determines whether the action is visible',
+        type: {
+          description: 'The type of action',
           required: false,
-          defaultValue: '() => true',
+          defaultValue: { value: '"button"' },
+          type: { name: '"button" | "icon"' }
+        },
+        available: {
+          description: 'A callback function that determines whether the action is available',
+          required: false,
+          defaultValue: { value: '() => true' },
           type: { name: '(record, model) => boolean' }
         },
         enabled: {
           description: 'A callback function that determines whether the action is enabled',
           required: false,
-          defaultValue: '() => true',
+          defaultValue: { value: '() => true' },
           type: { name: '(record, model) => boolean' }
         },
         icon: {
@@ -341,74 +342,19 @@ export const propsInfo = {
     }
   },
 
-  IconRecordAction: {
-    __docgenInfo: {
-      _euiObjectType: 'type',
-      description: `Describes an action that is displayed as an icon`,
-      props: {
-        type: {
-          description: 'The type of action - must be set to "icon"',
-          required: true,
-          type: { name: 'string (must be "icon")' }
-        },
-        name: {
-          description: 'The display name of the action',
-          required: true,
-          type: { name: 'string' }
-        },
-        description: {
-          description: 'Describes the action (will be the button title)',
-          required: true,
-          type: { name: 'string' }
-        },
-        onClick: {
-          description: 'A handler function to execute the action',
-          required: true,
-          type: { name: '(record, model) => void' }
-        },
-        visible: {
-          description: 'A callback function that determines whether the action is visible',
-          required: false,
-          defaultValue: '() => true',
-          type: { name: '(record, model) => boolean' }
-        },
-        enabled: {
-          description: 'A callback function that determines whether the action is enabled',
-          required: false,
-          defaultValue: '() => true',
-          type: { name: '(record, model) => boolean' }
-        },
-        icon: {
-          description: 'The icon that should be shown',
-          required: true,
-          type: { name: 'string (must be one of the supported icon types)' }
-        },
-        color: {
-          description: 'Defines the color of the icon',
-          required: false,
-          type: { name: 'string (must be one of the supported button colors)' }
-        }
-      }
-    }
-  },
-
   CustomRecordAction: {
     __docgenInfo: {
       _euiObjectType: 'type',
       description: `Describes a custom action`,
       props: {
-        type: {
-          description: 'The type of action - must be set to "custom"',
-          required: true,
-          type: { name: 'string (must be "custom")' }
-        },
         render: {
-          description: 'The function that renders the action',
+          description: 'The function that renders the action. Note that the returned node is ' +
+                       'expected to have`onFocus` and `onBlur` functions',
           required: true,
           type: { name: '(record, model, enabled) => PropTypes.node' }
         },
-        visible: {
-          description: 'A callback that defines whether the action is visible',
+        available: {
+          description: 'A callback that defines whether the action is available',
           required: false,
           type: { name: '(record, model) => boolean' }
         },
