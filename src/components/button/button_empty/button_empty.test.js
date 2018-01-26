@@ -98,5 +98,16 @@ describe('EuiButtonEmpty', () => {
         });
       });
     });
+
+    describe('href', () => {
+      it('secures the rel attribute when the target is _blank', () => {
+        const component = render(
+          <EuiButtonEmpty href="#" target="_blank" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });

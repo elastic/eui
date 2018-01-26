@@ -95,6 +95,21 @@ exports[`EuiButton props fill is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props href secures the rel attribute when the target is _blank 1`] = `
+<a
+  class="euiButton euiButton--primary"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span />
+  </span>
+</a>
+`;
+
 exports[`EuiButton props iconSide left is rendered 1`] = `
 <button
   class="euiButton euiButton--primary"
