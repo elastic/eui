@@ -6,8 +6,8 @@ set -e
 
 npm test
 npm run build
-npm run sync-docs
 npm version $BUMP
 git push upstream --tags
 git push upstream
 npm publish
+npm run sync-docs
