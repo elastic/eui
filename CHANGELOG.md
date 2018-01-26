@@ -8,6 +8,9 @@
 
 - `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
 - React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
+
+**Bug fixes**
+
 - Fix TypeScript definitions such that optional and readonly properties survive being passed through `Omit` [(#322)](https://github.com/elastic/eui/pull/322)
 
 # [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
