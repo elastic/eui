@@ -217,8 +217,25 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // Prevent calling `this.updateFocus()` below if we don't have to.
+    if (nextProps.hasFocus !== this.props.hasFocus) {
+      return true;
+    }
+
+    if (nextState.isTransitioning !== this.state.isTransitioning) {
+      return true;
+    }
+
+    if (nextState.focusedItemIndex !== this.state.focusedItemIndex) {
+      return true;
+    }
+
+    return false;
+  }
+
   componentDidUpdate() {
-    // this.updateFocus();
+    this.updateFocus();
   }
 
   menuItemRef = (index, node) => {
