@@ -7,7 +7,6 @@ import { times } from 'lodash';
 import {
   EuiTableOfRecords,
   EuiHealth,
-  EuiCheckbox,
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
@@ -196,24 +195,26 @@ export default class PeopleTable extends Component {
               color: 'danger',
               onClick: (person) => this.deletePerson(person)
             },
-            {
-              name: 'Online/Offline',
-              description: 'toggles the online/offline state of the person',
-              render: (person, model, enabled) => {
-                const onChange = (event) => this.changePersonOnlineStatus(person, event.target.checked);
-                return (
-                  <EuiCheckbox
-                    id={`${person.id}-online-cbx`}
-                    className="euiContextMenu__itemLayout"
-                    label={`Online`}
-                    type="inList"
-                    disabled={!enabled}
-                    checked={person.online}
-                    onChange={onChange}
-                  />
-                );
-              }
-            }
+            // uncomment once context menu officially supports checkbox elements
+            // see https://github.com/elastic/eui/issues/336
+            // {
+            //   name: 'Online/Offline',
+            //   description: 'toggles the online/offline state of the person',
+            //   render: (person, model, enabled) => {
+            //     const onChange = (event) => this.changePersonOnlineStatus(person, event.target.checked);
+            //     return (
+            //       <EuiCheckbox
+            //         id={`${person.id}-online-cbx`}
+            //         className="euiContextMenu__itemLayout"
+            //         label={`Online`}
+            //         type="inList"
+            //         disabled={!enabled}
+            //         checked={person.online}
+            //         onChange={onChange}
+            //       />
+            //     );
+            //   }
+            // }
           ] : [
             {
               name: 'Delete',

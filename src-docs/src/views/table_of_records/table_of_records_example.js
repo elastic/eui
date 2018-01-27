@@ -10,9 +10,9 @@ import {
   EuiCode, EuiText, EuiTitle, EuiCallOut, EuiSpacer
 } from '../../../../src/components';
 
-import MultipleRecordActionsTable from './multiple_record_actions';
-const multipleRecordActionsSource = require('!!raw-loader!./multiple_record_actions');
-const multipleRecordActionsHtml = renderToHtml(MultipleRecordActionsTable);
+import FullFeatured from './full_featured';
+const fullFeaturedSource = require('!!raw-loader!./full_featured');
+const fullFeaturedHtml = renderToHtml(FullFeatured);
 
 import ImplicitRecordActionsTable from './implicit_record_action';
 const implicitRecordActionSource = require('!!raw-loader!./implicit_record_action');
@@ -74,11 +74,11 @@ export const TableOfRecordsExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: multipleRecordActionsSource,
+          code: fullFeaturedSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: multipleRecordActionsHtml,
+          code: fullFeaturedHtml,
         }
       ],
       text: (
@@ -114,7 +114,7 @@ export const TableOfRecordsExample = {
         </div>
       ),
       props: propsInfo,
-      demo: <MultipleRecordActionsTable />
+      demo: <FullFeatured />
     },
     {
       title: 'Computed Columns and "Implicit" Record Actions',
