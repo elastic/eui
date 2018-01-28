@@ -13,6 +13,7 @@ import {
   EuiIcon,
   EuiSideNav,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 import {
@@ -95,24 +96,30 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
+    const items = matchingItems.map(item => {
+      const {
+        name,
+        path,
+        sections,
+      } = item;
+
+      return {
+        id: `guideline-${path}`,
+        name,
+        href: `#/${path}`,
+        items: this.renderSubSections(sections),
+        isSelected: name === this.props.currentRouteName,
+      };
+    });
+
+    if (!items.length) {
+      return;
+    }
+
     return {
       name: 'Guidelines',
       id: 'guidelines',
-      items: matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
-
-        return {
-          id: `guideline-${path}`,
-          name,
-          href: `#/${path}`,
-          items: this.renderSubSections(sections),
-          isSelected: name === this.props.currentRouteName,
-        };
-      }),
+      items,
     };
   }
 
@@ -121,24 +128,30 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
+    const items = matchingItems.map(item => {
+      const {
+        name,
+        path,
+        sections,
+      } = item;
+
+      return {
+        id: `service-${path}`,
+        name,
+        href: `#/${path}`,
+        items: this.renderSubSections(sections),
+        isSelected: name === this.props.currentRouteName,
+      };
+    });
+
+    if (!items.length) {
+      return;
+    }
+
     return {
       name: 'Services',
       id: 'services',
-      items: matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
-
-        return {
-          id: `service-${path}`,
-          name,
-          href: `#/${path}`,
-          items: this.renderSubSections(sections),
-          isSelected: name === this.props.currentRouteName,
-        };
-      }),
+      items,
     };
   }
 
@@ -147,24 +160,30 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
+    const items = matchingItems.map(item => {
+      const {
+        name,
+        path,
+        sections,
+      } = item;
+
+      return {
+        id: `component-${path}`,
+        name,
+        href: `#/${path}`,
+        items: this.renderSubSections(sections),
+        isSelected: name === this.props.currentRouteName,
+      };
+    });
+
+    if (!items.length) {
+      return;
+    }
+
     return {
       name: 'Components',
       id: 'components',
-      items: matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
-
-        return {
-          id: `component-${path}`,
-          name,
-          href: `#/${path}`,
-          items: this.renderSubSections(sections),
-          isSelected: name === this.props.currentRouteName,
-        };
-      }),
+      items,
     };
   }
 
@@ -173,24 +192,30 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
+    const items = matchingItems.map(item => {
+      const {
+        name,
+        path,
+        sections,
+      } = item;
+
+      return {
+        id: `pattern-${path}`,
+        name,
+        href: `#/${path}`,
+        items: this.renderSubSections(sections),
+        isSelected: name === this.props.currentRouteName,
+      };
+    });
+
+    if (!items.length) {
+      return;
+    }
+
     return {
       name: 'Patterns',
       id: 'patterns',
-      items: matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
-
-        return {
-          id: `pattern-${path}`,
-          name,
-          href: `#/${path}`,
-          items: this.renderSubSections(sections),
-          isSelected: name === this.props.currentRouteName,
-        };
-      }),
+      items,
     };
   }
 
@@ -199,22 +224,28 @@ export class GuidePageChrome extends Component {
       item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
     ));
 
+    const items = matchingItems.map(item => {
+      const {
+        name,
+        path,
+      } = item;
+
+      return {
+        id: `sandbox-${path}`,
+        name,
+        href: `#/${path}`,
+        isSelected: name === this.props.currentRouteName,
+      };
+    });
+
+    if (!items.length) {
+      return;
+    }
+
     return {
       name: 'Sandboxes',
       id: 'sandboxes',
-      items: matchingItems.map(item => {
-        const {
-          name,
-          path,
-        } = item;
-
-        return {
-          id: `sandbox-${path}`,
-          name,
-          href: `#/${path}`,
-          isSelected: name === this.props.currentRouteName,
-        };
-      }),
+      items,
     };
   }
 
@@ -225,7 +256,26 @@ export class GuidePageChrome extends Component {
       this.renderComponentNavItems(),
       this.rendePatternNavItems(),
       this.renderSandboxNavItems(),
-    ];
+    ].filter(section => section);
+
+    let sideNavContent;
+
+    if (sideNav.length) {
+      sideNavContent = (
+        <EuiSideNav
+          mobileTitle="Navigate components"
+          toggleOpenOnMobile={this.toggleOpenOnMobile}
+          isOpenOnMobile={this.state.isSideNavOpenOnMobile}
+          items={sideNav}
+        />
+      );
+    } else {
+      sideNavContent = (
+        <EuiText color="subdued" size="s">
+          <p>No matches</p>
+        </EuiText>
+      );
+    }
 
     return (
       <div>
@@ -241,12 +291,7 @@ export class GuidePageChrome extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiSideNav
-          mobileTitle="Navigate components"
-          toggleOpenOnMobile={this.toggleOpenOnMobile}
-          isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-          items={sideNav}
-        />
+        {sideNavContent}
       </div>
     );
   }
