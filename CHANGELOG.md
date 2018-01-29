@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s.
+- `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. [(#348)](https://github.com/elastic/eui/pull/348)
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
