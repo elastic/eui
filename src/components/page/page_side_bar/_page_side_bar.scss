@@ -2,9 +2,13 @@
  * 1. Prevent side bar width from changing when content width changes.
  */
 .euiPageSideBar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
   min-width: $euiSize * 12; /* 1 */
-  flex: 0 0 0; /* 1 */
-  margin-right: $euiSizeL;
+  flex: 1 1 auto; /* 1 */
+  padding: $euiPagePadding $euiSizeL $euiPagePadding $euiPagePadding;
 }
 
 @include screenXSmall {

@@ -1,8 +1,10 @@
 .euiPageBody {
   display: flex;
   flex-direction: row;
+  flex: 1 1 auto;
   align-items: stretch;
   min-height: 400px; // Temporary till we have a better doc system.
+  padding: $euiPagePadding;
 }
 
 @include screenXSmall {
