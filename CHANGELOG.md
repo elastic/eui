@@ -2,6 +2,10 @@
 
 No public interface changes since `0.0.15`.
 
+**Bug fixes**
+
+- Stop propagation and prevent default when closing components. [(#344)](https://github.com/elastic/eui/pull/344)
+
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
 - Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])
