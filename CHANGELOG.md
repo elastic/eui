@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.15`.
+- Machine learning create jobs icon set. ((338)[https://github.com/elastic/eui/pull/338])
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
