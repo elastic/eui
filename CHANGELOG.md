@@ -2,6 +2,10 @@
 
 No public interface changes since `0.0.15`.
 
+**Bug fixes**
+
+- Move `@types/react` from `devDependencies` to `dependencies` to make typescript definitions usable. [(#345)](https://github.com/elastic/eui/345)
+
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
 - Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])

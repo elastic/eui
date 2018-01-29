@@ -20,6 +20,7 @@
     "release": "./scripts/release.sh"
   },
   "dependencies": {
+    "@types/react": "^16.0.35",
     "brace": "^0.10.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
@@ -37,7 +38,6 @@
   },
   "devDependencies": {
     "@elastic/eslint-config-kibana": "^0.15.0",
-    "@types/react": "^16.0.31",
     "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
