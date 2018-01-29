@@ -68,14 +68,17 @@ import loggingApp from './assets/app_logging.svg';
 import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCloud from './assets/logo_cloud.svg';
+import logoDocker from './assets/logo_docker.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticSearch from './assets/logo_elastic_search.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoKibana from './assets/logo_kibana.svg';
+import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
+import logoRedis from './assets/logo_redis.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
 import logoXpack from './assets/logo_xpack.svg';
@@ -190,14 +193,17 @@ const typeToIconMap = {
   logoApache,
   logoBeats,
   logoCloud,
+  logoDocker,
   logoElastic,
   logoElasticSearch,
   logoElasticStack,
   logoGmail,
   logoKibana,
+  logoKubernetes,
   logoLogstash,
   logoMySQL,
   logoNginx,
+  logoRedis,
   logoSlack,
   logoWebhook,
   logoXpack,
