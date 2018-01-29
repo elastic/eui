@@ -44,6 +44,8 @@ export class EuiPopover extends Component {
 
   onKeyDown = e => {
     if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
+      e.preventDefault();
+      e.stopPropagation();
       this.props.closePopover();
     }
   };
