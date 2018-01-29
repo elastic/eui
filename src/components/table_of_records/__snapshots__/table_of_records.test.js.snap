@@ -12,7 +12,7 @@ exports[`EuiTableOfRecords basic - empty 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         scope="col"
       >
         Name
@@ -35,7 +35,7 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         scope="col"
       >
         Name
@@ -50,7 +50,7 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -64,7 +64,7 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -78,7 +78,7 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -101,7 +101,7 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         scope="col"
       >
         Name
@@ -116,7 +116,7 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -130,7 +130,7 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -194,7 +194,7 @@ exports[`EuiTableOfRecords with pagination 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         scope="col"
       >
         Name
@@ -209,7 +209,7 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -223,7 +223,7 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -237,7 +237,7 @@ exports[`EuiTableOfRecords with pagination 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -302,7 +302,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -318,7 +318,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         scope="col"
       >
         Name
@@ -332,19 +332,19 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -357,19 +357,19 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -382,19 +382,19 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -462,7 +462,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -478,7 +478,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -493,19 +493,19 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -518,19 +518,19 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -543,19 +543,19 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -624,7 +624,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -640,7 +640,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -648,7 +648,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
       </EuiTableHeaderCell>
       <EuiTableHeaderCell
         align="right"
-        key="_actions_1"
+        key="_actions_h_1"
         scope="col"
       />
     </EuiTableHeader>
@@ -660,19 +660,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -739,19 +739,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -818,19 +818,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -963,7 +963,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -979,7 +979,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         align="right"
         isSortAscending={false}
         isSorted={false}
-        key="count_0"
+        key="_data_h_count_0"
         onSort={[Function]}
         scope="col"
       >
@@ -994,19 +994,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="1_count_0"
+          key="_data_column_count_1_0"
           textOnly={true}
         >
           1
@@ -1019,19 +1019,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="2_count_0"
+          key="_data_column_count_2_0"
           textOnly={true}
         >
           2
@@ -1044,19 +1044,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="3_count_0"
+          key="_data_column_count_3_0"
           textOnly={true}
         >
           3
@@ -1126,7 +1126,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -1142,7 +1142,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1157,19 +1157,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={false}
         >
           NAME1
@@ -1182,19 +1182,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={false}
         >
           NAME2
@@ -1207,19 +1207,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={false}
         >
           NAME3
@@ -1289,7 +1289,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -1305,7 +1305,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         align="left"
         isSortAscending={false}
         isSorted={false}
-        key="name_0"
+        key="_data_h_name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1313,7 +1313,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
       </EuiTableHeaderCell>
       <EuiTableHeaderCell
         align="right"
-        key="_actions_1"
+        key="_actions_h_1"
         scope="col"
       />
     </EuiTableHeader>
@@ -1325,19 +1325,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -1402,19 +1402,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -1479,19 +1479,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3
@@ -1628,7 +1628,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
   <EuiTable>
     <EuiTableHeader>
       <EuiTableHeaderCellCheckbox
-        key="_selection_column"
+        key="_selection_column_h"
         scope="col"
         width="24px"
       >
@@ -1644,7 +1644,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         align="right"
         isSortAscending={false}
         isSorted={false}
-        key="count_0"
+        key="_data_h_count_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1659,19 +1659,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="1_selection_column"
+          key="_selection_column_1"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="1_selection_column-checkbox"
+            id="_selection_column_1-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="1_count_0"
+          key="_data_column_count_1_0"
           textOnly={false}
         >
           x
@@ -1684,19 +1684,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="2_selection_column"
+          key="_selection_column_2"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="2_selection_column-checkbox"
+            id="_selection_column_2-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="2_count_0"
+          key="_data_column_count_2_0"
           textOnly={false}
         >
           xx
@@ -1709,19 +1709,19 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="3_selection_column"
+          key="_selection_column_3"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="3_selection_column-checkbox"
+            id="_selection_column_3-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="right"
-          key="3_count_0"
+          key="_data_column_count_3_0"
           textOnly={false}
         >
           xxx
@@ -1795,7 +1795,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
         align="left"
         isSortAscending={true}
         isSorted={true}
-        key="name_0"
+        key="_data_h_name_0"
         onSort={[Function]}
         scope="col"
       >
@@ -1811,7 +1811,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="1_name_0"
+          key="_data_column_name_1_0"
           textOnly={true}
         >
           name1
@@ -1825,7 +1825,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="2_name_0"
+          key="_data_column_name_2_0"
           textOnly={true}
         >
           name2
@@ -1839,7 +1839,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
       >
         <EuiTableRowCell
           align="left"
-          key="3_name_0"
+          key="_data_column_name_3_0"
           textOnly={true}
         >
           name3

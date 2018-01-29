@@ -275,7 +275,7 @@ export class EuiTableOfRecords extends React.Component {
         }
       };
       headers.push(
-        <EuiTableHeaderCellCheckbox key="_selection_column" width="24px">
+        <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
           <EuiCheckbox
             id="_selection_column-checkbox"
             type="inList"
@@ -292,7 +292,7 @@ export class EuiTableOfRecords extends React.Component {
       if (column.actions) {
         headers.push(
           <EuiTableHeaderCell
-            key={`_actions_${index}`}
+            key={`_actions_h_${index}`}
             align="right"
             width={column.width}
           >
@@ -308,7 +308,7 @@ export class EuiTableOfRecords extends React.Component {
       if (!column.field) {
         headers.push(
           <EuiTableHeaderCell
-            key={`_computed_${index}`}
+            key={`_computed_column_h_${index}`}
             align={align}
             width={column.width}
           >
@@ -325,7 +325,7 @@ export class EuiTableOfRecords extends React.Component {
       const isSortAscending = SortDirection.isAsc(sortDirection);
       headers.push(
         <EuiTableHeaderCell
-          key={`${column.field}_${index}`}
+          key={`_data_h_${column.field}_${index}`}
           align={align}
           isSorted={isSorted}
           isSortAscending={isSortAscending}
@@ -414,7 +414,7 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableRecordFieldDataCell(recordId, record, column, index) {
-    const key = `${recordId}_${column.field}_${index}`;
+    const key = `_data_column_${column.field}_${recordId}_${index}`;
     const align = this.resolveColumnAlign(column);
     const textOnly = !column.render;
     const value = _.get(record, column.field);
@@ -428,7 +428,7 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableRecordComputedCell(recordId, record, column, model, index) {
-    const key = `${recordId}_computed_${index}`;
+    const key = `_computed_column_${recordId}_${index}`;
     const align = this.resolveColumnAlign(column);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(record, model);
@@ -452,7 +452,7 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableRecordSelectionCell(recordId, record, config, model, selected) {
-    const key = `${recordId}_selection_column`;
+    const key = `_selection_column_${recordId}`;
     const checked = selected;
     const disabled = config.selection.selectable && !config.selection.selectable(record);
     const title = config.selection.selectableMessage && config.selection.selectableMessage(record);
@@ -528,10 +528,6 @@ export class EuiTableOfRecords extends React.Component {
         actionEnabled={actionEnabled}
       />
     );
-
-    // when each record may potentially have more than one action we'll show these actions
-    // within a context menu triggered by a single button. The idea here is that we want to keep the
-    // actions on the rows clean - no more than a single button per row.
 
     const key = `record_actions_${recordId}_${columnIndex}`;
     return (
