@@ -1,1 +1,0 @@
-export { number } from './number';

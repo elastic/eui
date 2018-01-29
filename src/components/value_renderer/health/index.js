@@ -1,1 +1,0 @@
-export { health } from './health';

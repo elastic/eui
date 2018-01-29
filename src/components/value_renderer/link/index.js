@@ -1,1 +1,0 @@
-export { link } from './link';

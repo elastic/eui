@@ -191,8 +191,8 @@ export const propsInfo = {
         dataType: {
           description: 'Describes the data types of the displayed value (serves as a rendering hint for the table)',
           required: false,
-          defaultValue: { value: '"default"' },
-          type: { name: '"default" | string" | "number" | "date" | "boolean"' }
+          defaultValue: { value: '"auto"' },
+          type: { name: '"auto" | string" | "number" | "date" | "boolean"' }
         },
         width: {
           description: 'A CSS width property. Hints for the required width of the column',

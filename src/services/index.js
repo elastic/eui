@@ -20,6 +20,14 @@ export {
 } from './color';
 
 export {
+  formatAuto,
+  formatBoolean,
+  formatDate,
+  formatNumber,
+  formatText,
+} from './format';
+
+export {
   Pager
 } from './paging';
 

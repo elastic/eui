@@ -3,12 +3,13 @@ import { times } from 'lodash';
 
 import {
   EuiTableOfRecords,
-  EuiValueRenderers,
   EuiSwitch,
   EuiIcon,
+  EuiLink,
 } from '../../../../src/components';
 
 import {
+  formatDate,
   Random,
   Comparators
 } from '../../../../src/services';
@@ -119,17 +120,17 @@ export default class PeopleTable extends React.Component {
           field: 'nickname',
           name: 'Nickname',
           description: `Person's nickname / online handle`,
-          render: EuiValueRenderers.link({
-            onClick: (value) => {
-              window.open(`http://www.github.com/${value}`, '_blank');
-            }
-          })
+          render: value => (
+            <EuiLink href={`http://www.github.com/${value}`} target="_blank">
+              {value}
+            </EuiLink>
+          )
         },
         {
           field: 'dateOfBirth',
           name: 'Date of Birth',
           description: `Person's date of birth`,
-          render: EuiValueRenderers.date.with({ format: 'D MMM YYYY' }),
+          render: value => formatDate(value, 'D MMM YYYY'),
           sortable: true
         },
         {

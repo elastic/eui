@@ -9,8 +9,12 @@ import {
 import { EuiCheckbox } from '../form/checkbox';
 import { ICON_TYPES } from '../icon';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
-import { EuiValueRenderers } from '../value_renderer';
 import {
+  formatAuto,
+  formatBoolean,
+  formatDate,
+  formatNumber,
+  formatText,
   LEFT_ALIGNMENT, RIGHT_ALIGNMENT,
   SortDirection, PropertySortType
 } from '../../services';
@@ -19,25 +23,25 @@ import { CollapsedRecordActions } from './collapsed_record_actions';
 import { ExpandedRecordActions } from './expanded_record_actions';
 
 const dataTypesProfiles = {
-  default: {
+  auto: {
     align: LEFT_ALIGNMENT,
-    render: EuiValueRenderers.default
+    render: value => formatAuto(value)
   },
   string: {
     align: LEFT_ALIGNMENT,
-    render: EuiValueRenderers.text
+    render: value => formatText(value)
   },
   number: {
     align: RIGHT_ALIGNMENT,
-    render: EuiValueRenderers.number
+    render: value => formatNumber(value),
   },
   boolean: {
     align: LEFT_ALIGNMENT,
-    render: EuiValueRenderers.booleanText
+    render: value => formatBoolean(value),
   },
   date: {
     align: LEFT_ALIGNMENT,
-    render: EuiValueRenderers.date
+    render: value => formatDate(value),
   }
 };
 
@@ -340,7 +344,7 @@ export class EuiTableOfRecords extends React.Component {
     if (column.align) {
       return column.align;
     }
-    const dataType = column.dataType || 'default';
+    const dataType = column.dataType || 'auto';
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
@@ -439,7 +443,7 @@ export class EuiTableOfRecords extends React.Component {
     if (column.render) {
       return column.render;
     }
-    const dataType = column.dataType || 'default';
+    const dataType = column.dataType || 'auto';
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
