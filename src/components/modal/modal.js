@@ -10,6 +10,8 @@ import { keyCodes } from '../../services';
 export class EuiModal extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
       this.props.onClose();
     }
   };
