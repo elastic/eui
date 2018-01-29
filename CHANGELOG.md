@@ -1,6 +1,11 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.16`
+
+# [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
+
 - Machine learning create jobs icon set. ((338)[https://github.com/elastic/eui/pull/338])
+- Moved `react-color` version 2.13.8 from devDependencies to dependencies.
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 

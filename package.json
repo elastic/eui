@@ -31,6 +31,7 @@
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react-ace": "^5.5.0",
+	"react-color": "^2.13.8",
     "serve": "^6.3.1",
     "tabbable": "^1.1.0",
     "uuid": "^3.1.0"
@@ -80,7 +81,6 @@
     "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",
-    "react-color": "^2.13.8",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.2.0",
