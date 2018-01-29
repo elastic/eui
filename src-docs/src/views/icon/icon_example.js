@@ -54,7 +54,7 @@ export const IconExample = {
       <div>
         <p>
           <EuiCode>EuiIcon</EuiCode> can build out an icon from our SVG
-          icon library. Icons can be resized and recolored (through a
+          icon library. Icons are resized and recolored (through a
           CSS <EuiCode>Fill</EuiCode>) decleration.
         </p>
         <p>
