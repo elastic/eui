@@ -58,6 +58,11 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
+        search: {
+          description: 'If the data records match a search criteria, this describes this search',
+          required: false,
+          type: { name: '#ModelCriteriaSearch' }
+        },
         page: {
           description: 'If the data records represents a page into a bigger set, this describes this page',
           required: false,
@@ -67,6 +72,19 @@ export const propsInfo = {
           description: 'If the data records are sorted, this describes the sort criteria',
           required: false,
           type: { name: '#ModelCriteriaSort' }
+        }
+      }
+    }
+  },
+
+  ModelCriteriaSearch: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        query: {
+          description: 'The search query',
+          required: true,
+          type: { name: 'string | Query' }
         }
       }
     }
@@ -122,6 +140,11 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #ModelCriteria) => void' }
         },
+        search: {
+          description: 'Configuring search',
+          required: false,
+          type: { name: '#ConfigSearch' }
+        },
         selection: {
           description: 'Configuring selection',
           required: false,
@@ -131,6 +154,156 @@ export const propsInfo = {
           description: 'Configuring pagination',
           required: false,
           type: { name: '#ConfigPagination' }
+        }
+      }
+    }
+  },
+
+  ConfigSearch: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        box: {
+          description: 'Configuring the search box',
+          required: false,
+          type: { name: '#ConfigSearchBox' }
+        },
+        filters: {
+          description: 'Configuring the search filters',
+          required: false,
+          type: { name: '( #FieldValueSelectionFilter | #IsFilter )[]' }
+        }
+      }
+    }
+  },
+
+  ConfigSearchBox: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        placeholder: {
+          description: 'Defines the placeholder text when no query is specified',
+          required: false,
+          defaultValue: { value: 'Search...' },
+          type: { name: 'string' }
+        },
+        incremental: {
+          description: 'Indicates whether the search should execute as the user types the query. When set to `false`' +
+                       'the search will only be executed when the user presses `Enter`',
+          required: false,
+          defaultValue: { value: 'false' },
+          type: { name: 'boolean' }
+        }
+      }
+    }
+  },
+
+  FieldValueSelectionFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description: 'Defines the type of the filter (must be set to `field_value_selection`)',
+          required: true,
+          type: { name: '"field_value_selection"' }
+        },
+        name: {
+          description: 'The name of the filter (will be used as a caption of the filter button)',
+          required: true,
+          type: { name: 'string' }
+        },
+        field: {
+          description: 'Defines the field to filter by',
+          required: true,
+          type: { name: 'string' }
+        },
+        options: {
+          description: 'Defines possible field value option. These options will be presented to the user ' +
+                       'for selection',
+          required: true,
+          type: { name: '#FieldValueOption[] | () => #FieldValueOption[]' }
+        },
+        multiSelect: {
+          description: 'Indicates whether the user can filter by multiple values or by only a single one',
+          required: false,
+          defaultValue: { value: 'true' },
+          type: { name: 'boolean' }
+        },
+        loadingMessage: {
+          description: 'The message that will be shown while loading the options',
+          required: false,
+          defaultValue: { value: 'Loading...' },
+          type: { name: 'string' }
+        },
+        noOptionsMessage: {
+          description: 'The message that will be shown when no options are found',
+          required: false,
+          defaultValue: { value: 'No options found' },
+          type: { name: 'string' }
+        },
+        searchThreshold: {
+          description: 'The minimum number of options that are required before a search box is shown to the ' +
+                       'user to filter out options',
+          required: false,
+          defaultValue: { value: '10' },
+          type: { name: 'number' }
+        },
+        available: {
+          description: 'Called to check whether this filter is currently available. If not, it will not be shown',
+          required: false,
+          type: { name: '() => boolean' }
+        }
+      }
+    }
+  },
+
+  FieldValueOption: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        value: {
+          description: 'The actual value of the option (will be used as a filter)',
+          required: true,
+          type: { name: 'string' }
+        },
+        name: {
+          description: 'The name of the option (for display purposes and also for searching through all options). ' +
+                       'When not provided, the option `value` will be used as the name',
+          required: false,
+          type: { name: 'string' }
+        },
+        view: {
+          description: 'Enables to fully customize how an option is presented',
+          required: false,
+          type: { name: 'PropTypes.node' }
+        }
+      }
+    }
+  },
+
+  IsFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description: 'Defines the type of the filter (must be set to `is`)',
+          required: true,
+          type: { name: '"is"' }
+        },
+        name: {
+          description: 'The name of the filter (will be used as a caption of the filter button)',
+          required: true,
+          type: { name: 'string' }
+        },
+        field: {
+          description: 'Defines the field to filter by - must be of a boolean type',
+          required: true,
+          type: { name: 'string' }
+        },
+        available: {
+          description: 'Called to check whether this filter is currently available. If not, it will not be shown',
+          required: false,
+          type: { name: '() => boolean' }
         }
       }
     }

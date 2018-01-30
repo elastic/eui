@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import { get } from 'lodash';
 import { isString } from '../../services/predicate';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -19,9 +19,11 @@ import {
   LEFT_ALIGNMENT, RIGHT_ALIGNMENT,
   SortDirection, PropertySortType
 } from '../../services';
-import { PaginationBar } from './pagination_bar';
+import { PaginationBar } from './pagination';
+import { SearchBar, SearchConfigType } from './search';
 import { CollapsedRecordActions } from './collapsed_record_actions';
 import { ExpandedRecordActions } from './expanded_record_actions';
+import { Query } from './search/query';
 
 const dataTypesProfiles = {
   auto: {
@@ -114,6 +116,7 @@ const SelectionType = PropTypes.shape({
   selectable: PropTypes.func // (record, model) => boolean;
 });
 
+
 const RecordIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the record id property
   PropTypes.func    // (record) => string
@@ -126,7 +129,8 @@ const ConfigType = PropTypes.shape({
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   onDataCriteriaChange: PropTypes.func,
   selection: SelectionType,
-  pagination: PaginationType
+  pagination: PaginationType,
+  search: SearchConfigType
 });
 
 const ModelType = PropTypes.shape({
@@ -139,7 +143,10 @@ const ModelType = PropTypes.shape({
       index: PropTypes.number.isRequired,
       size: PropTypes.number.isRequired
     }),
-    sort: PropertySortType
+    sort: PropertySortType,
+    search: PropTypes.shape({
+      query: PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ])
+    })
   })
 });
 
@@ -205,6 +212,22 @@ export class EuiTableOfRecords extends React.Component {
     this.props.config.onDataCriteriaChange(criteria);
   }
 
+  onSearchQueryChange(query) {
+    this.clearSelection();
+    const criteria = {
+      ...this.props.model.criteria,
+      // resetting the page
+      page: !this.props.model.criteria.page ? undefined : {
+        index: 0,
+        size: this.props.model.criteria.page.size
+      },
+      search: {
+        query
+      }
+    };
+    this.props.config.onDataCriteriaChange(criteria);
+  }
+
   onColumnSortChange(column) {
     this.clearSelection();
     const currentCriteria = this.props.model.criteria;
@@ -263,15 +286,30 @@ export class EuiTableOfRecords extends React.Component {
       className
     );
 
+    const searchBar = this.renderSearchBar(config, model);
     const table = this.renderTable(config, model);
     const paginationBar = this.renderPaginationBar(config, model);
 
     return (
       <div className={classes} {...rest}>
+        {searchBar}
         {table}
         {paginationBar}
       </div>
     );
+  }
+
+  renderSearchBar(config, model) {
+    if (config.search) {
+      const query = model.criteria.search && model.criteria.search.query;
+      return (
+        <SearchBar
+          config={config.search}
+          query={query}
+          onChange={this.onSearchQueryChange.bind(this)}
+        />
+      );
+    }
   }
 
   renderTable(config, model) {
@@ -443,11 +481,16 @@ export class EuiTableOfRecords extends React.Component {
     const key = `_data_column_${column.field}_${recordId}_${index}`;
     const align = this.resolveColumnAlign(column);
     const textOnly = !column.render;
-    const value = _.get(record, column.field);
+    const value = get(record, column.field);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(value, record);
     return (
-      <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={textOnly}>
+      <EuiTableRowCell
+        key={key}
+        align={align}
+        truncateText={column.truncateText}
+        textOnly={textOnly}
+      >
         {content}
       </EuiTableRowCell>
     );

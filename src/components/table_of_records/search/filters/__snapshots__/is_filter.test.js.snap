@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsFilter render 1`] = `
+<EuiButtonEmpty
+  color="text"
+  iconSide="left"
+  iconType="empty"
+  onClick={[Function]}
+  type="button"
+>
+  Open
+</EuiButtonEmpty>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterBar render - no filters 1`] = `Array []`;
+
+exports[`FilterBar render - with filters 1`] = `
+Array [
+  <EuiFlexItem
+    component="div"
+    grow={false}
+    key="filter_0"
+  />,
+  <EuiFlexItem
+    component="div"
+    grow={false}
+    key="filter_1"
+  />,
+]
+`;

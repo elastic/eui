@@ -20,25 +20,69 @@ import {
   Random,
   Comparators
 } from '../../../../src/services';
+import { Query } from '../../../../src/components/table_of_records/search/query';
+import { EuiBadge } from '../../../../src/components/badge';
 
 const random = new Random();
+
+const countries = [
+  { code: 'NL', name: 'Netherlands', flag: '🇳🇱' },
+  { code: 'CZ', name: 'Czech Republic', flag: '🇨🇿' },
+  { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+  { code: 'US', name: 'United States', flag: '🇺🇲' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
+  { code: 'IL', name: 'Israel', flag: '🇮🇱' },
+  { code: 'NO', name: 'Norway', flag: '🇳🇴' },
+  { code: 'IT', name: 'Italy', flag: '🇮🇹' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦' },
+  { code: 'CG', name: 'Congo', flag: '🇨🇬' },
+  { code: 'CL', name: 'Chile', flag: '🇨🇱' },
+  { code: 'FJ', name: 'Fiji', flag: '🇫🇯' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'GR', name: 'Greece', flag: '🇬🇷' },
+  { code: 'HT', name: 'Haiti', flag: '🇭🇹' },
+  { code: 'LB', name: 'Lebanon', flag: '🇱🇧' },
+  { code: 'MM', name: 'Myanmar', flag: '🇲🇲' },
+  { code: 'MX', name: 'Mexico', flag: '🇲🇽' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
+  { code: 'SG', name: 'Singapore', flag: '🇸🇬' },
+  { code: 'SO', name: 'Somalia', flag: '🇸🇴' },
+  { code: 'TN', name: 'Tunisia', flag: '🇹🇳' },
+  { code: 'VE', name: 'Venezuela', flag: '🇻🇪' },
+  { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
+];
+
+const loadCountries = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const result = countries.sort(Comparators.default());
+      resolve(result);
+    }, random.integer({ min: 0, max: 1000 }));
+  });
+};
+
+const groups = [ 'eng', 'es', 'kibana', 'logstash', 'beats', 'sales' ];
 
 const people = times(20, (index) => {
   return {
     id: index,
-    firstName: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
-    lastName: random.oneOf('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
-    nickname: random.oneOf('martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack'),
+    firstName: random.oneOf([ 'Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan' ]),
+    lastName: random.oneOf([ 'van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel' ]),
+    nickname: random.oneOf([ 'martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'whack' ]),
     dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
-    country: random.oneOf('us', 'nl', 'cz', 'za', 'au'),
+    nationality: random.oneOf(countries.map(country => country.code)),
+    group: random.setOf(groups, { max: 3 }),
     online: random.boolean()
   };
 });
 
-function loadPage(pageIndex, pageSize, sort) {
+function loadPage(query, pageIndex, pageSize, sort) {
   let list = people;
+  if (query) {
+    list = query.execute(list, { defaultFields: [ 'firstName', 'lastName', 'nickname' ] });
+  }
   if (sort) {
-    list = people.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
+    list = list.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
   }
   if (!pageIndex && !pageSize) {
     return {
@@ -65,6 +109,7 @@ export default class PeopleTable extends Component {
     this.state = {
       selectedIds: [],
       features: {
+        search: true,
         pagination: true,
         sorting: true,
         selection: true,
@@ -75,14 +120,17 @@ export default class PeopleTable extends Component {
           index: 0,
           size: 5,
         },
+        search: { query: Query.parse('') }
       })
     };
   }
 
   computeTableState(criteria) {
-    const page = criteria.page ?
-      loadPage(criteria.page.index, criteria.page.size, criteria.sort) :
-      loadPage(undefined, undefined, criteria.sort);
+    const query = criteria.search ? criteria.search.query : undefined;
+    const pageIndex = criteria.page ? criteria.page.index : undefined;
+    const pageSize = criteria.page ? criteria.page.size : undefined;
+    const sort = criteria.sort;
+    const page = loadPage(query, pageIndex, pageSize, sort);
     return {
       data: {
         records: page.items,
@@ -93,7 +141,8 @@ export default class PeopleTable extends Component {
           index: page.index,
           size: page.size
         },
-        sort: criteria.sort
+        search: criteria.search,
+        sort
       }
     };
   }
@@ -181,12 +230,26 @@ export default class PeopleTable extends Component {
           )
         },
         {
+          field: 'nationality',
+          name: 'Nationality',
+          width: '200px',
+          render: code => {
+            const country = countries.find(country => country.code === code);
+            return country ? <span>{country.flag} {country.name}</span> : '';
+          }
+        },
+        {
           field: 'dateOfBirth',
           name: 'Date of Birth',
           description: `Person's date of birth`,
           render: value => formatDate(value, 'D MMM YYYY'),
           sortable: features.sorting,
           dataType: 'date'
+        },
+        {
+          field: 'group',
+          name: 'Group',
+          render: groups => <div>{groups.map((group, index) => <EuiBadge key={index}>{group}</EuiBadge>)}</div>
         },
         {
           field: 'online',
@@ -214,27 +277,7 @@ export default class PeopleTable extends Component {
               icon: 'trash',
               color: 'danger',
               onClick: (person) => this.deletePerson(person)
-            },
-            // uncomment once context menu officially supports checkbox elements
-            // see https://github.com/elastic/eui/issues/336
-            // {
-            //   name: 'Online/Offline',
-            //   description: 'toggles the online/offline state of the person',
-            //   render: (person, model, enabled) => {
-            //     const onChange = (event) => this.changePersonOnlineStatus(person, event.target.checked);
-            //     return (
-            //       <EuiCheckbox
-            //         id={`${person.id}-online-cbx`}
-            //         className="euiContextMenu__itemLayout"
-            //         label={`Online`}
-            //         type="inList"
-            //         disabled={!enabled}
-            //         checked={person.online}
-            //         onChange={onChange}
-            //       />
-            //     );
-            //   }
-            // }
+            }
           ] : [
             {
               name: 'Delete',
@@ -247,6 +290,43 @@ export default class PeopleTable extends Component {
           ]
         }
       ],
+
+      search: features.search ? {
+        box: {
+          placeholder: 'Find person...',
+          incremental: false
+        },
+        filters: [
+          {
+            type: 'is',
+            field: 'online',
+            name: 'Online'
+          },
+          {
+            type: 'field_value_selection',
+            field: 'nationality',
+            name: 'Nationality',
+            multiSelect: false,
+            loadingMessage: 'Loading nationalities...',
+            noOptionsMessage: 'No nationalities found',
+            options: () => {
+              return loadCountries().then((countries) => {
+                return countries.map(country => ({
+                  value: country.code,
+                  name: country.name,
+                  view: <span>{country.flag} {country.name}</span>
+                }));
+              });
+            }
+          },
+          {
+            type: 'field_value_selection',
+            field: 'group',
+            name: 'Group',
+            options: groups.map(group => ({ value: group, name: group }))
+          }
+        ]
+      } : undefined,
 
       pagination: features.pagination ? {
         pageSizeOptions: [3, 5, 8]
@@ -267,14 +347,16 @@ export default class PeopleTable extends Component {
       criteria: {
         page,
         sort,
+        search
       },
     } = this.state;
 
     const model = {
       data,
       criteria: {
-        page: features.pagination ? page : undefined,
+        search: features.search ? search : undefined,
         sort: features.sorting ? sort : undefined,
+        page: features.pagination ? page : undefined
       },
     };
 
@@ -294,7 +376,17 @@ export default class PeopleTable extends Component {
     return (
       <div>
         <EuiFlexGroup alignItems="center">
+
           { deleteButton }
+
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Search"
+              checked={features.search}
+              onChange={this.toggleFeature.bind(this, 'search')}
+            />
+          </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Pagination"

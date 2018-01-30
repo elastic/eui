@@ -1,0 +1,27 @@
+.euiFilterSelectItem {
+  @include euiFontSizeS;
+
+  padding: $euiSizeXS $euiSizeM;
+  width: 100%;
+  text-align: left;
+  color: $euiTextColor;
+  border-bottom: $euiBorderThin;
+  border-color: darken($euiColorLightestShade, 2%);
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    background-color: $euiFocusBackgroundColor;
+  }
+
+  &.euiContextMenuItem-isDisabled {
+    color: $euiButtonColorDisabled;
+    cursor: default;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}
