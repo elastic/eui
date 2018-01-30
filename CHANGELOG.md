@@ -1,69 +1,69 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Machine learning create jobs icon set. ((338)[https://github.com/elastic/eui/pull/338])
-- Initial commit of `EuiTableOfRecords` - a higher level table component to take away all your table listings frustrations. ((250)[https://github.com/elastic/eui/pull/250])
+- Machine learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
+- Initial commit of `EuiTableOfRecords` - a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
-- Added `EuiColorPicker`. ((328)[https://github.com/elastic/eui/pull/328])
-- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
-- Exported `VISUALIZATION_COLORS` from services ((#329)[https://github.com/elastic/eui/pull/329])
-- Added typescript definitions for `<EuiFormRow>`, `<EuiRadioGroup>`, `<EuiSwitch>`, `<EuiLoadingSpinner>`, `<EuiLoadingChart>` and `<EuiProgress>`. [(#326)](https://github.com/elastic/eui/pull/326)
+- Added `EuiColorPicker`. ([#328](https://github.com/elastic/eui/pull/328))
+- `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. ([#325](https://github.com/elastic/eui/pull/325))
+- Exported `VISUALIZATION_COLORS` from services ([#329](https://github.com/elastic/eui/pull/329))
+- Added typescript definitions for `<EuiFormRow>`, `<EuiRadioGroup>`, `<EuiSwitch>`, `<EuiLoadingSpinner>`, `<EuiLoadingChart>` and `<EuiProgress>`. ([#326](https://github.com/elastic/eui/pull/326))
 - Added `checkHrefAndOnClick` and `getSecureRelForTarget` to services.
 
 **Breaking changes**
 
 - `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. [(#325)](https://github.com/elastic/eui/pull/325)
 - React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
-- `<EuiProgress>` no longer accepts the `indeterminate` property, which never had any effect. [(#326)](https://github.com/elastic/eui/pull/326)
+- `<EuiProgress>` no longer accepts the `indeterminate` property, which never had any effect. ([#326](https://github.com/elastic/eui/pull/326))
 
 **Bug fixes**
 
-- Fix TypeScript definitions such that optional and readonly properties survive being passed through `Omit` [(#322)](https://github.com/elastic/eui/pull/322)
+- Fix TypeScript definitions such that optional and readonly properties survive being passed through `Omit` ([#322](https://github.com/elastic/eui/pull/322))
 
 # [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
 
-- Added `isColorDark` color util [(#311)](https://github.com/elastic/eui/pull/311)
-- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` [(#316)](https://github.com/elastic/eui/pull/316)
-- In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. [#310](https://github.com/elastic/eui/pull/310)
-- Add new icon types to `<EuiIcon>` TypeScript definitions [(#323)](https://github.com/elastic/eui/pull/323).
+- Added `isColorDark` color util ([#311](https://github.com/elastic/eui/pull/311))
+- EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` ([#316](https://github.com/elastic/eui/pull/316))
+- In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. ([#310](https://github.com/elastic/eui/pull/310))
+- Add new icon types to `<EuiIcon>` TypeScript definitions ([#323](https://github.com/elastic/eui/pull/323)).
 
 **Bug fixes**
 
-- Set `EuiFlexGroup` to `flex-grow: 1` to be more friendly with IE11 [(#315)](https://github.com/elastic/eui/pull/315)
+- Set `EuiFlexGroup` to `flex-grow: 1` to be more friendly with IE11 ([#315](https://github.com/elastic/eui/pull/315))
 
 # [`0.0.13`](https://github.com/elastic/eui/tree/v0.0.13)
 
-- Added index management icons. [(#307)](https://github.com/elastic/eui/pull/307)
+- Added index management icons. ([#307](https://github.com/elastic/eui/pull/307))
 
 **Breaking changes**
 
-- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. [#306](https://github.com/elastic/eui/pull/306)
+- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. ([#306](https://github.com/elastic/eui/pull/306))
 
 **Bug fixes**
 
-- Adjust toast z-index to show over modals [(#296)](https://github.com/elastic/eui/pull/296)
-- Fix nested `<EuiFlexItem>` collapse issue in IE [(#308)](https://github.com/elastic/eui/pull/308)
+- Adjust toast z-index to show over modals ([#296](https://github.com/elastic/eui/pull/296))
+- Fix nested `<EuiFlexItem>` collapse issue in IE ([#308](https://github.com/elastic/eui/pull/308))
 
 # [`0.0.12`](https://github.com/elastic/eui/tree/v0.0.12)
 
-- Minor style-only changes to `EuiPagination`, button reset, `EuiTableHeaderCell`, and `EuiCodeBlock`  [(#298)](https://github.com/elastic/eui/pull/298)
+- Minor style-only changes to `EuiPagination`, button reset, `EuiTableHeaderCell`, and `EuiCodeBlock`. ([#298](https://github.com/elastic/eui/pull/298))
 - All NPM dependencies now use ^ to install the latest minor version.
-- Added Apache, Nginx, MySQL logos [(#270)](https://github.com/elastic/eui/pull/270)
-- Added small version of `EuiCallOut` [(#269)](https://github.com/elastic/eui/pull/269)
-- Added first batch of TypeScript type definitions for components and services [(#252)](https://github.com/elastic/eui/pull/252)
-- Added button for expanding `<EuiCodeBlock>` instances to be full-screen. [(#259)](https://github.com/elastic/eui/pull/259)
-- Add test helper for async functions that throw exceptions [#301](https://github.com/elastic/eui/pull/301)
+- Added Apache, Nginx, MySQL logos ([#270](https://github.com/elastic/eui/pull/270))
+- Added small version of `EuiCallOut` ([#269](https://github.com/elastic/eui/pull/269))
+- Added first batch of TypeScript type definitions for components and services ([#252](https://github.com/elastic/eui/pull/252))
+- Added button for expanding `<EuiCodeBlock>` instances to be full-screen. ([#259](https://github.com/elastic/eui/pull/259))
+- Add test helper for async functions that throw exceptions ([#301](https://github.com/elastic/eui/pull/301))
 
 **Bug fixes**
 
-- Removed padding on `<EuiPage>` mobile breakpoint. [(#282)](https://github.com/elastic/eui/pull/282)
-- Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. [(#277)](https://github.com/elastic/eui/pull/277)
-- Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. [(#265)](https://github.com/elastic/eui/pull/265)
+- Removed padding on `<EuiPage>` mobile breakpoint. ([#282](https://github.com/elastic/eui/pull/282))
+- Fixed some `<EuiIcon>` `type`s not setting their `viewBox` attribute, which caused them to not honor the `size` properly. ([#277](https://github.com/elastic/eui/pull/277))
+- Fixed `<EuiContextMenu>` to pass the `event` argument to a `<EuiContextMenuItem>`'s `onClick` handler even when a panel is defined. ([#265](https://github.com/elastic/eui/pull/265))
 
 **Breaking changes**
 
-- Removed `color` prop from `<EuiCodeBlock>`. This component's highlighting now matches whichever theme is currently active. See PR for details on SCSS breaking changes. [(#259)](https://github.com/elastic/eui/pull/259)
+- Removed `color` prop from `<EuiCodeBlock>`. This component's highlighting now matches whichever theme is currently active. See PR for details on SCSS breaking changes. ([#259](https://github.com/elastic/eui/pull/259))
 
 # [`0.0.11`](https://github.com/elastic/eui/tree/v0.0.11)
 
