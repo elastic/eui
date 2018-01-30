@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. ([#348](https://github.com/elastic/eui/pull/348))
 - Machine learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
 - Initial commit of `EuiTableOfRecords` - a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
 
