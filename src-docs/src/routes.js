@@ -130,6 +130,9 @@ import { SideNavExample }
 import { SpacerExample }
   from './views/spacer/spacer_example';
 
+import { StatusPillExample }
+  from './views/status_pill/status_pill_example';
+
 import { StepsExample }
   from './views/steps/steps_example';
 
@@ -239,6 +242,7 @@ const components = [
   ProgressExample,
   SideNavExample,
   SpacerExample,
+  StatusPillExample,
   StepsExample,
   TableExample,
   TableOfRecordsExample,
