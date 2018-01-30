@@ -25,7 +25,6 @@ import {
   EuiLink
 } from '../../../../src/components';
 
-
 const humanizeType = type => {
   if (!type) {
     return '';
@@ -172,33 +171,35 @@ export class GuideSection extends Component {
 
       function markup(text) {
         const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-        return text.split(regex).map(token => {
+        return text.split(regex).reduce((elements, token, index) => {
           if (!token) {
-            return '';
+            return elements;
           }
           if (token.startsWith('#')) {
             const id = token.substring(1);
             const onClick = () => {
               document.getElementById(id).scrollIntoView();
             };
-            return <EuiLink onClick={onClick}>{id}</EuiLink>;
+            elements.push(<EuiLink key={index} onClick={onClick}>{id}</EuiLink>);
+            return elements;
           }
           if (token.startsWith('`')) {
             const code = token.substring(1, token.length - 1);
-            return <EuiCode>{code}</EuiCode>;
+            elements.push(<EuiCode key={index}>{code}</EuiCode>);
+            return elements;
           }
-          return token;
-
-        });
+          elements.push(<span key={index}>{token}</span>);
+          return elements;
+        }, []);
       }
 
       const typeMarkup = markup(humanizedType);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
-        defaultValueMarkup = [ <EuiCode>{defaultValue.value}</EuiCode> ];
+        defaultValueMarkup = [ <EuiCode key="value">{defaultValue.value}</EuiCode> ];
         if (defaultValue.comment) {
-          defaultValueMarkup.push(`(${defaultValue.comment})`);
+          defaultValueMarkup.push(<span key="comment">{`(${defaultValue.comment})`}</span>);
         }
       }
       const cells = [
@@ -236,7 +237,7 @@ export class GuideSection extends Component {
 
     if (description) {
       descriptionElement = (
-        <div key="description">
+        <div key={`${componentName}_description`}>
           <EuiText>
             <p>{description}</p>
           </EuiText>

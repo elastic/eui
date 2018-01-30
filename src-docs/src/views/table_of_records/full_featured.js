@@ -34,10 +34,18 @@ const people = times(20, (index) => {
   };
 });
 
-function loadPage(pageIndex, pageSize, sort) {
+function loadPage(query, pageIndex, pageSize, sort) {
   let list = people;
+  if (query) {
+    const normalizedQuery = query.toLowerCase();
+    list = people.filter(person => {
+      return [ 'firstName', 'lastName', 'nickname' ].some((field => {
+        return person[field] && person[field].toLowerCase().startsWith(normalizedQuery);
+      }));
+    });
+  }
   if (sort) {
-    list = people.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
+    list = list.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
   }
   if (!pageIndex && !pageSize) {
     return {
@@ -63,6 +71,7 @@ export default class PeopleTable extends Component {
 
     this.state = {
       features: {
+        search: true,
         pagination: true,
         sorting: true,
         selection: true,
@@ -73,14 +82,17 @@ export default class PeopleTable extends Component {
           index: 0,
           size: 5,
         },
+        search: { query: '' }
       })
     };
   }
 
   computeTableState(criteria) {
-    const page = criteria.page ?
-      loadPage(criteria.page.index, criteria.page.size, criteria.sort) :
-      loadPage(undefined, undefined, criteria.sort);
+    const query = criteria.search ? criteria.search.query : undefined;
+    const pageIndex = criteria.page ? criteria.page.index : undefined;
+    const pageSize = criteria.page ? criteria.page.size : undefined;
+    const sort = criteria.sort;
+    const page = loadPage(query, pageIndex, pageSize, sort);
     return {
       data: {
         records: page.items,
@@ -91,7 +103,8 @@ export default class PeopleTable extends Component {
           index: page.index,
           size: page.size
         },
-        sort: criteria.sort
+        search: { query },
+        sort
       }
     };
   }
@@ -229,6 +242,10 @@ export default class PeopleTable extends Component {
         }
       ],
 
+      search: features.search ? {
+        box: { placeholder: 'Find person...' }
+      } : undefined,
+
       pagination: features.pagination ? {
         pageSizeOptions: [3, 5, 8]
       } : undefined,
@@ -246,20 +263,31 @@ export default class PeopleTable extends Component {
       criteria: {
         page,
         sort,
+        search
       },
     } = this.state;
 
     const model = {
       data,
       criteria: {
-        page: features.pagination ? page : undefined,
+        search: features.search ? search : undefined,
         sort: features.sorting ? sort : undefined,
+        page: features.pagination ? page : undefined
       },
     };
 
     return (
       <div>
         <EuiFlexGroup>
+
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Search"
+              checked={features.search}
+              onChange={this.toggleFeature.bind(this, 'search')}
+            />
+          </EuiFlexItem>
+
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Pagination"

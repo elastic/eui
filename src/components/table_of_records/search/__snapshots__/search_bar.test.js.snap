@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar render - custom placeholder and asYouType 1`] = `
+<EuiFlexGroup
+  alignItems="stretch"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <SearchBox
+    config={
+      Object {
+        "asYouType": false,
+        "placeholder": "find something...",
+      }
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "search": Object {
+            "query": "",
+          },
+        },
+        "data": Object {
+          "records": Array [],
+          "totalRecordCount": 0,
+        },
+      }
+    }
+    onQueryChange={[Function]}
+  />
+</EuiFlexGroup>
+`;
+
+exports[`SearchBar render 1`] = `
+<EuiFlexGroup
+  alignItems="stretch"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <SearchBox
+    model={
+      Object {
+        "criteria": Object {
+          "search": Object {
+            "query": "",
+          },
+        },
+        "data": Object {
+          "records": Array [],
+          "totalRecordCount": 0,
+        },
+      }
+    }
+    onQueryChange={[Function]}
+  />
+</EuiFlexGroup>
+`;
