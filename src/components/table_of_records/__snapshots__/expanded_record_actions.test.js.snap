@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandedRecordActions render 1`] = `
+Array [
+  <DefaultRecordAction
+    action={
+      Object {
+        "description": "default 1",
+        "name": "default1",
+        "onClick": [Function],
+      }
+    }
+    enabled={true}
+    index={0}
+    key="record_action_id_0"
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 5,
+          },
+        },
+        "data": Object {
+          "records": Array [],
+          "totalRecordCount": 0,
+        },
+      }
+    }
+    record={
+      Object {
+        "id": "xyz",
+      }
+    }
+    recordId="id"
+    visible={true}
+  />,
+  <CustomRecordAction
+    action={
+      Object {
+        "description": "custom 1",
+        "name": "custom1",
+        "render": [Function],
+      }
+    }
+    enabled={true}
+    index={1}
+    key="record_action_id_1"
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 5,
+          },
+        },
+        "data": Object {
+          "records": Array [],
+          "totalRecordCount": 0,
+        },
+      }
+    }
+    record={
+      Object {
+        "id": "xyz",
+      }
+    }
+    recordId="id"
+    visible={true}
+  />,
+]
+`;

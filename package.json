@@ -15,6 +15,7 @@
     "lint-fix": "./scripts/lint-fix.sh",
     "test": "./scripts/test.sh",
     "test-unit": "./scripts/test-unit.sh",
+    "test-travis": "./scripts/test-travis.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "./scripts/release.sh"
@@ -29,6 +30,7 @@
     "jquery": "^3.2.1",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
+    "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-ace": "^5.5.0",
     "serve": "^6.3.1",
@@ -52,7 +54,6 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "chokidar": "^1.7.0",
-    "eslint-plugin-jest": "^21.6.2",
     "circular-dependency-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
     "enzyme": "^3.1.0",
@@ -62,6 +63,7 @@
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.6.2",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
@@ -72,6 +74,7 @@
     "jest": "^22.0.6",
     "jest-cli": "^22.0.6",
     "lodash": "^4.17.4",
+    "moment": "2.13.0",
     "node-sass": "^4.5.3",
     "npm-run": "^4.1.2",
     "postcss-cli": "^4.1.1",
@@ -97,6 +100,7 @@
     "yo": "^2.0.0"
   },
   "peerDependencies": {
+    "moment": "^2.13.0",
     "react": "^16.2.0 || ^16.2"
   }
 }
