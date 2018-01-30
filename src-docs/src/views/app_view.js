@@ -87,22 +87,22 @@ export class AppView extends Component {
 
       return (
         <EuiPage>
-          <EuiPageBody>
-            <EuiErrorBoundary>
-              <EuiPageSideBar>
-                <GuidePageChrome
-                  currentRouteName={currentRoute.name}
-                  onToggleTheme={toggleTheme}
-                  selectedTheme={theme}
-                  guidelines={guidelines}
-                  services={services}
-                  components={components}
-                  patterns={patterns}
-                  sandboxes={sandboxes}
-                />
-              </EuiPageSideBar>
-            </EuiErrorBoundary>
+          <EuiErrorBoundary>
+            <EuiPageSideBar>
+              <GuidePageChrome
+                currentRouteName={currentRoute.name}
+                onToggleTheme={toggleTheme}
+                selectedTheme={theme}
+                guidelines={guidelines}
+                services={services}
+                components={components}
+                patterns={patterns}
+                sandboxes={sandboxes}
+              />
+            </EuiPageSideBar>
+          </EuiErrorBoundary>
 
+          <EuiPageBody>
             <EuiPageContent>
               <EuiPageContentBody>
                 {children}
