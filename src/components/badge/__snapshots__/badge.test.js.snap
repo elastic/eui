@@ -58,6 +58,20 @@ exports[`EuiBadge props color default is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiBadge props color ghost is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--ghost"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
 exports[`EuiBadge props color primary is rendered 1`] = `
 <div
   class="euiBadge euiBadge--primary"
