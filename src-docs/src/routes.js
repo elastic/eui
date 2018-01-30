@@ -136,9 +136,6 @@ import { StepsExample }
 import { TableExample }
   from './views/table/table_example';
 
-import { TableOfRecordsExample }
-  from './views/table_of_records/table_of_records_example';
-
 import { TabsExample }
   from './views/tabs/tabs_example';
 
@@ -241,7 +238,6 @@ const components = [
   SpacerExample,
   StepsExample,
   TableExample,
-  TableOfRecordsExample,
   TabsExample,
   TextExample,
   TitleExample,

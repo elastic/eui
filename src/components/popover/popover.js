@@ -129,7 +129,6 @@ export class EuiPopover extends Component {
       closePopover,
       panelClassName,
       panelPaddingSize,
-      popoverRef,
       ...rest
     } = this.props;
 
@@ -182,7 +181,6 @@ export class EuiPopover extends Component {
         <div
           className={classes}
           onKeyDown={this.onKeyDown}
-          ref={popoverRef}
           {...rest}
         >
           {cloneElement(button, {
@@ -207,7 +205,6 @@ EuiPopover.propTypes = {
   anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
-  popoverRef: PropTypes.func
 };
 
 EuiPopover.defaultProps = {

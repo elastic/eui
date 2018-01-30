@@ -214,10 +214,6 @@ export {
 } from './table';
 
 export {
-  EuiTableOfRecords
-} from './table_of_records';
-
-export {
   EuiTab,
   EuiTabs,
 } from './tabs';

@@ -6,7 +6,4 @@ node_js:
 before_install:
   - "npm config set spin false"
 
-script:
-  - "npm run test-travis"
-
 cache: yarn

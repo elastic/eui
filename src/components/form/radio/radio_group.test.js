@@ -32,22 +32,6 @@ describe('EuiRadioGroup', () => {
         .toMatchSnapshot();
     });
 
-    test('name is propagated to radios', () => {
-      const component = render(
-        <EuiRadioGroup
-          name="radiogroupname"
-          options={[
-            { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
-          ]}
-          onChange={() => {}}
-        />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
     test('idSelected is rendered', () => {
       const component = render(
         <EuiRadioGroup

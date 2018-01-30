@@ -22,7 +22,6 @@ import {
   EuiText,
   EuiTextColor,
   EuiTitle,
-  EuiLink
 } from '../../../../src/components';
 
 
@@ -140,7 +139,7 @@ export class GuideSection extends Component {
     }
 
     const docgenInfo = Array.isArray(component.__docgenInfo) ? component.__docgenInfo[0] : component.__docgenInfo;
-    const { _euiObjectType, description, props } = docgenInfo;
+    const { description, props } = docgenInfo;
 
     if (!props && !description) {
       return;
@@ -170,37 +169,6 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
-      function markup(text) {
-        const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-        return text.split(regex).map(token => {
-          if (!token) {
-            return '';
-          }
-          if (token.startsWith('#')) {
-            const id = token.substring(1);
-            const onClick = () => {
-              document.getElementById(id).scrollIntoView();
-            };
-            return <EuiLink onClick={onClick}>{id}</EuiLink>;
-          }
-          if (token.startsWith('`')) {
-            const code = token.substring(1, token.length - 1);
-            return <EuiCode>{code}</EuiCode>;
-          }
-          return token;
-
-        });
-      }
-
-      const typeMarkup = markup(humanizedType);
-      const descriptionMarkup = markup(propDescription);
-      let defaultValueMarkup = '';
-      if (defaultValue) {
-        defaultValueMarkup = [ <EuiCode>{defaultValue.value}</EuiCode> ];
-        if (defaultValue.comment) {
-          defaultValueMarkup.push(`(${defaultValue.comment})`);
-        }
-      }
       const cells = [
         (
           <EuiTableRowCell key="name">
@@ -208,15 +176,15 @@ export class GuideSection extends Component {
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="type">
-            <EuiCode>{typeMarkup}</EuiCode>
+            <EuiCode>{humanizedType}</EuiCode>
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="defaultValue">
-            {defaultValueMarkup}
+            {defaultValue ? <EuiCode>{defaultValue.value}</EuiCode> : ''}
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="description">
-            {descriptionMarkup}
+            {propDescription}
           </EuiTableRowCell>
         )
       ];
@@ -227,10 +195,6 @@ export class GuideSection extends Component {
         </EuiTableRow>
       );
     });
-
-    const title = _euiObjectType === 'type' ?
-      <EuiCode id={componentName}>{componentName}</EuiCode> :
-      <EuiText color="accent">{componentName}</EuiText>;
 
     let descriptionElement;
 
@@ -277,7 +241,7 @@ export class GuideSection extends Component {
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>{title}</h3></EuiTitle>,
+      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>Props for {componentName}</h3></EuiTitle>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
