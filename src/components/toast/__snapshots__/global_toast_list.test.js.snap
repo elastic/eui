@@ -5,9 +5,135 @@ exports[`EuiGlobalToastList is rendered 1`] = `
   aria-label="aria-label"
   class="euiGlobalToastList testClass1 testClass2"
   data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiGlobalToastList props toasts is rendered 1`] = `
+<div
+  class="euiGlobalToastList"
 >
-  <div>
-    hi
+  <div
+    class="euiToast euiGlobalToastListItem"
+    id="A"
+  >
+    <div
+      class="euiToastHeader"
+    >
+      <span
+        class="euiToastHeader__title"
+      >
+        A
+      </span>
+    </div>
+    <button
+      aria-label="Dismiss toast"
+      class="euiToast__closeButton"
+      data-test-subj="toastCloseButton"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+            id="cross-a"
+          />
+        </defs>
+        <use
+          fill-rule="nonzero"
+          href="#cross-a"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="euiToast euiGlobalToastListItem"
+    id="B"
+  >
+    <div
+      class="euiToastHeader"
+    >
+      <span
+        class="euiToastHeader__title"
+      >
+        B
+      </span>
+    </div>
+    <button
+      aria-label="Dismiss toast"
+      class="euiToast__closeButton"
+      data-test-subj="toastCloseButton"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+            id="cross-a"
+          />
+        </defs>
+        <use
+          fill-rule="nonzero"
+          href="#cross-a"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="euiToast euiGlobalToastListItem"
+    id="C"
+  >
+    <div
+      class="euiToastHeader"
+    >
+      <span
+        class="euiToastHeader__title"
+      >
+        C
+      </span>
+    </div>
+    <button
+      aria-label="Dismiss toast"
+      class="euiToast__closeButton"
+      data-test-subj="toastCloseButton"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+            id="cross-a"
+          />
+        </defs>
+        <use
+          fill-rule="nonzero"
+          href="#cross-a"
+        />
+      </svg>
+    </button>
   </div>
 </div>
 `;

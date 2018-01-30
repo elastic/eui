@@ -6,6 +6,10 @@
   - Deleting selected items now resets the select all checkbox to an unchecked state
   - The select all checkbox only becomes checked when all selectable rows are checked, not just some of them
 
+**Breaking changes**
+
+- Changed `<EuiGlobalToastList>` to be responsible for instantiating toasts, tracking their lifetimes, and dismissing them. It now acepts `toasts`, `dismissToast`, and `toastLifeTimeMs` props. It no longer accepts `children`. ([]())
+
 # [`0.0.18`](https://github.com/elastic/eui/tree/v0.0.18)
 
 **Bug fixes**
@@ -21,7 +25,7 @@
 # [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
 
 - `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. ([#348](https://github.com/elastic/eui/pull/348))
-- Machine Learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
+- Added Machine Learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
 - Added `EuiTableOfRecords`, a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
 
 **Bug fixes**
