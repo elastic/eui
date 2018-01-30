@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.16`.
+
+# [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
+
 - `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. ([#348](https://github.com/elastic/eui/pull/348))
 - Machine Learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
 - Added `EuiTableOfRecords`, a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
