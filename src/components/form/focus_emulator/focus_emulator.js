@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
@@ -29,10 +28,7 @@ export class EuiFocusEmulator extends Component {
 
   render() {
     const { hasFocus } = this.state;
-    const { getSource, className, ...rest } = this.props;
-    const source = getSource();
-    const disabled = get(source, 'disabled', false);
-    const invalid = get(source, 'invalid', false);
+    const { className, disabled, invalid, ...rest } = this.props;
 
     const classes = classNames('euiFocusEmulator', {
       'euiFocusEmulator--focus': hasFocus,
@@ -41,7 +37,13 @@ export class EuiFocusEmulator extends Component {
     }, className);
 
     return (
-      <div className={classes} onClick={this.onClick} {...rest} />
+      <div
+        className={classes}
+        disabled={disabled}
+        invalid={invalid}
+        onClick={this.onClick}
+        {...rest}
+      />
     );
   }
 

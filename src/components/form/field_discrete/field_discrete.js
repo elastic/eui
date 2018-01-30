@@ -33,13 +33,14 @@ export class EuiFieldDiscrete extends Component {
     const { value } = this.state;
     const {
       values,
-      getText,
+      renderValue,
       inputRef,
       fullWidth,
       isLoading,
       isValid,
       onRemove,
       className,
+      disabled,
       ...rest
     } = this.props;
 
@@ -62,7 +63,11 @@ export class EuiFieldDiscrete extends Component {
         fullWidth={fullWidth}
         isLoading={isLoading}
       >
-        <EuiFocusEmulator getSource={() => this.input}>
+        <EuiFocusEmulator
+          getSource={() => this.input}
+          disabled={disabled}
+          invalid={isInvalid}
+        >
           <div className={fieldClasses}>
             <div className="euiFieldDiscrete-values">
               {
@@ -74,7 +79,7 @@ export class EuiFieldDiscrete extends Component {
                     onClick={() => onRemove(value)}
                   >
                     <span className="euiFieldDiscrete-valueText">
-                      { getText(value) }
+                      { renderValue(value) }
                     </span>
                     <span className="euiFieldDiscrete-valueRemove">
                       <EuiIcon type="cross" />
@@ -138,6 +143,7 @@ EuiFieldDiscrete.defaultProps = {
   fullWidth: false,
   isLoading: false,
   isValid: () => true,
+  renderValue: value => String(value),
   parse: value => value,
   onInsert: noop,
   onRemove: noop,

@@ -159,7 +159,7 @@ export default class extends Component {
 
         <EuiFieldDiscrete
           values={this.state.discreteValues}
-          getText={value => value.toUpperCase()}
+          renderValue={value => value.toUpperCase()}
           onInsert={this.onDiscreteInsert}
           onRemove={this.onDiscreteRemove}
           placeholder="Type and press enter …"
