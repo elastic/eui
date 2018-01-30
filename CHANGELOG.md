@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Machine learning create jobs icon set. ((338)[https://github.com/elastic/eui/pull/338])
+- Initial commit of `EuiTableOfRecords` - a higher level table component to take away all your table listings frustrations. ((250)[https://github.com/elastic/eui/pull/250])
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
