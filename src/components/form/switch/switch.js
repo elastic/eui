@@ -62,4 +62,5 @@ EuiSwitch.propTypes = {
   label: PropTypes.node,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool
 };
