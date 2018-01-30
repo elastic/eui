@@ -46,3 +46,8 @@ $badgeTypes: (
     background-color: transparentize($color, .9);
   }
 }
+
+.euiBadge--ghost {
+  border-color: $euiColorLightShade;
+  background-color: $euiColorGhost;
+}

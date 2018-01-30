@@ -6,6 +6,8 @@ export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
 export { EuiFieldSearch } from './field_search';
 export { EuiFieldText } from './field_text';
+export { EuiFieldDiscrete } from './field_discrete';
+export { EuiFocusEmulator } from './focus_emulator';
 export { EuiForm } from './form';
 export { EuiFormControlLayout } from './form_control_layout';
 export { EuiFormErrorText } from './form_error_text';

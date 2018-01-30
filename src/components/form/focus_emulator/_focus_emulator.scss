@@ -1,0 +1,18 @@
+.euiFocusEmulator {
+  @include euiFormControlStyle;
+  @include euiFormControlIsLoading;
+  cursor: text;
+  padding: 0;
+}
+
+.euiFocusEmulator--focus {
+  @include euiFormControlStyleFocus;
+}
+
+.euiFocusEmulator--disabled {
+  @include euiFormControlStyleDisabled;
+}
+
+.euiFocusEmulator--invalid {
+  @include euiFormControlStyleInvalid;
+}

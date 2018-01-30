@@ -14,6 +14,7 @@ const colorToClassNameMap = {
   accent: 'euiBadge--accent',
   warning: 'euiBadge--warning',
   danger: 'euiBadge--danger',
+  ghost: 'euiBadge--ghost',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);

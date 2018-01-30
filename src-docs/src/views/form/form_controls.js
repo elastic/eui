@@ -1,3 +1,5 @@
+import { without } from 'lodash';
+
 import React, {
   Component,
 } from 'react';
@@ -8,6 +10,7 @@ import {
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
+  EuiFieldDiscrete,
   EuiRange,
   EuiRadioGroup,
   EuiSelect,
@@ -50,6 +53,7 @@ export default class extends Component {
       }],
       radioIdSelected: `${idPrefix}5`,
       numberInputValue: '',
+      discreteValues: ['a', 'b', 'c', 'd']
     };
   }
 
@@ -83,6 +87,16 @@ export default class extends Component {
     this.setState({
       numberInputValue: value,
     });
+  }
+
+  onDiscreteInsert = value => {
+    const added = [...this.state.discreteValues, value];
+    this.setState({ discreteValues: added });
+  }
+
+  onDiscreteRemove = value => {
+    const removed = without(this.state.discreteValues, value);
+    this.setState({ discreteValues: removed });
   }
 
   render() {
@@ -138,6 +152,17 @@ export default class extends Component {
             { value: 'option_two', text: 'Option two' },
             { value: 'option_three', text: 'Option three' },
           ]}
+        />
+
+        <br />
+        <br />
+
+        <EuiFieldDiscrete
+          values={this.state.discreteValues}
+          getText={value => value.toUpperCase()}
+          onInsert={this.onDiscreteInsert}
+          onRemove={this.onDiscreteRemove}
+          placeholder="Type and press enter …"
         />
 
         <br />

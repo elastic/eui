@@ -80,10 +80,12 @@ export {
 export {
   EuiCheckbox,
   EuiCheckboxGroup,
+  EuiFieldDiscrete,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
+  EuiFocusEmulator,
   EuiForm,
   EuiFormControlLayout,
   EuiFormErrorText,
