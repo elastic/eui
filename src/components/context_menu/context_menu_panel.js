@@ -36,13 +36,13 @@ export class EuiContextMenuPanel extends Component {
     items: PropTypes.array,
     showNextPanel: PropTypes.func,
     showPreviousPanel: PropTypes.func,
-    initialFocusedItemIndex: PropTypes.number,
-  }
+    initialFocusedItemIndex: PropTypes.number
+  };
 
   static defaultProps = {
     hasFocus: true,
     items: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -215,6 +215,23 @@ export class EuiContextMenuPanel extends Component {
         isTransitioning: true,
       });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // Prevent calling `this.updateFocus()` below if we don't have to.
+    if (nextProps.hasFocus !== this.props.hasFocus) {
+      return true;
+    }
+
+    if (nextState.isTransitioning !== this.state.isTransitioning) {
+      return true;
+    }
+
+    if (nextState.focusedItemIndex !== this.state.focusedItemIndex) {
+      return true;
+    }
+
+    return false;
   }
 
   componentDidUpdate() {
