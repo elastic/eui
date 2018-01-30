@@ -5,6 +5,7 @@ import classNames from 'classnames';
 export const EuiRadio = ({
   className,
   id,
+  name,
   checked,
   label,
   onChange,
@@ -38,6 +39,7 @@ export const EuiRadio = ({
         className="euiRadio__input"
         type="radio"
         id={id}
+        name={name}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
