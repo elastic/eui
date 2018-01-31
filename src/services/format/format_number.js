@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import { isNil, isString } from 'lodash';
+import { isNil, isString } from '../predicate';
 
 const numberFormatAliases = {
   decimal1: '0,0.0',

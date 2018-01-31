@@ -2,6 +2,10 @@
 
 No public interface changes since `0.0.16`.
 
+**Bug fixes**
+
+- downgraded `lodash` version to `3.10.0` to align it with Kibana  
+
 # [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
 
 - `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. ([#348](https://github.com/elastic/eui/pull/348))

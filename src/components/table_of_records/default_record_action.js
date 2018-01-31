@@ -1,5 +1,5 @@
 import React from 'react';
-import { isString } from 'lodash';
+import { isString } from '../../services/predicate';
 import { EuiButton, EuiButtonIcon } from '../button';
 
 const defaults = {

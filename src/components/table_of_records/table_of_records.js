@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { isString } from '../../services/predicate';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {
@@ -162,7 +163,7 @@ export class EuiTableOfRecords extends React.Component {
 
   recordId(record) {
     const id = this.props.config.recordId;
-    return _.isString(id) ? record[id] : id(record);
+    return isString(id) ? record[id] : id(record);
   }
 
   changeSelection(selection) {

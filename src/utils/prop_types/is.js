@@ -1,4 +1,4 @@
-import { isNil } from 'lodash';
+import { isNil } from '../../services/predicate';
 
 export const is = (expectedValue) => {
 
