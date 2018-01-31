@@ -197,6 +197,10 @@ export {
 } from './spacer';
 
 export {
+  EuiStatusPill,
+} from './status_pill';
+
+export {
   EuiSteps,
 } from './steps';
 

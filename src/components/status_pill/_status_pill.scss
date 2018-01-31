@@ -1,0 +1,66 @@
+.euiStatusPill {
+  display: inline-block;
+  line-height: $euiSizeL;
+  margin-right: $euiSizeS;
+  border-radius: $euiBorderRadius;
+  background: $euiColorLightestShade;
+  border: $euiBorderThin;
+  vertical-align: middle;
+
+  &:hover {
+    cursor: pointer;
+    .euiStatusPill__title {
+      text-decoration: underline;
+    }
+  }
+
+  &:focus {
+    background: $euiFocusBackgroundColor;
+  }
+
+  .euiStatusPill__title {
+    font-size: $euiFontSizeXS;
+    padding: 0 $euiSizeS;
+    max-width: $euiSize * 12;
+    white-space: nowrap;
+  }
+
+  .euiStatusPill__titleText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .euiStatusPill__icon {
+    margin-left: $euiSizeXS;
+  }
+
+
+  .euiStatusPill__toggle {
+    font-size: $euiFontSizeXS;
+    font-size: $euiFontSizeXS - 2px;
+    padding: 0 $euiSizeS;
+    border-right: $euiBorderThin;
+    color: $euiColorDarkShade;
+  }
+
+  &.euiStatusPill--inactive {
+    color: $euiColorDarkShade;
+    background: repeating-linear-gradient(
+      45deg,
+      darken($euiColorLightestShade, 1%),
+      darken($euiColorLightestShade, 1%) $euiSizeS,
+      $euiColorEmptyShade $euiSizeS,
+      $euiColorEmptyShade $euiSize
+    );
+
+    &:focus {
+      background: repeating-linear-gradient(
+        45deg,
+        darken($euiFocusBackgroundColor, 5%),
+        darken($euiFocusBackgroundColor, 5%) $euiSizeS,
+        $euiFocusBackgroundColor $euiSizeS,
+        $euiFocusBackgroundColor $euiSize
+      );
+    }
+  }
+}
