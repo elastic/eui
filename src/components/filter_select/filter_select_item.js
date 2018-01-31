@@ -33,7 +33,7 @@ export const EuiFilterSelectItem = ({
         component="span"
       >
         <EuiFlexItem grow={false}>
-          <EuiIcon type={isSelected ? 'checkInCircleFilled' : 'empty'} />
+          <EuiIcon color="success" type={isSelected ? 'checkInCircleFilled' : 'empty'} />
         </EuiFlexItem>
         <EuiFlexItem>
           {children}
