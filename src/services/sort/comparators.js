@@ -16,13 +16,17 @@ export const Comparators = Object.freeze({
     return (v1, v2) => comparator(v2, v1);
   },
 
-  property(prop, comparator = undefined) {
+  value(valueCallback, comparator = undefined) {
     if (!comparator) {
       comparator = this.default(SortDirection.ASC);
     }
     return (o1, o2) => {
-      return comparator(o1[prop], o2[prop]);
+      return comparator(valueCallback(o1), valueCallback(o2));
     };
-  }
+  },
+
+  property(prop, comparator = undefined) {
+    return this.value(value => value[prop], comparator);
+  },
 
 });

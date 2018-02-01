@@ -1,4 +1,4 @@
-import sortBy from 'lodash/sortBy';
+import { Comparators } from './comparators';
 
 /**
  * @typedef {Object} SortableProperty
@@ -43,9 +43,13 @@ export class SortableProperties {
    * @returns {Array.<Object>} sorted array of items, based off the sort properties.
    */
   sortItems(items) {
-    return this.isCurrentSortAscending()
-      ? sortBy(items, this.getSortedProperty().getValue)
-      : sortBy(items, this.getSortedProperty().getValue).reverse();
+    const copy = [...items];
+    let comparator = Comparators.value(this.getSortedProperty().getValue);
+    if (!this.isCurrentSortAscending()) {
+      comparator = Comparators.reverse(comparator);
+    }
+    copy.sort(comparator);
+    return copy;
   }
 
   /**
