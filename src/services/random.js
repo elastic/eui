@@ -1,4 +1,4 @@
-import { isNil } from 'lodash';
+import { isNil } from './predicate';
 
 const defaultRand = Math.random;
 

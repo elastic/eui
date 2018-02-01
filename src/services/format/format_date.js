@@ -1,4 +1,4 @@
-import { isNil, isFunction, isString } from 'lodash';
+import { isNil, isFunction, isString } from '../predicate';
 import moment from 'moment';
 
 const calendar = (value, options = {}) => {

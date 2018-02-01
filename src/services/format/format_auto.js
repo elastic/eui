@@ -1,4 +1,4 @@
-import { isArray, isBoolean, isDate, isNaN, isNil, isNumber, isString } from 'lodash';
+import { isNil, isArray, isBoolean, isDate, isNaN, isNumber, isString } from '../predicate';
 import { formatBoolean } from './format_boolean';
 import { formatDate } from './format_date';
 import { formatNumber } from './format_number';
