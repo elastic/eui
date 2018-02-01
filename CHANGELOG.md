@@ -1,12 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.16`.
+No public interface changes since `0.0.17`.
 
 # [`0.0.17`](https://github.com/elastic/eui/tree/v0.0.17)
 
 **Bug fixes**
 
-- downgraded `lodash` version to `3.10.0` to align it with Kibana  
+- Downgraded `lodash` version to `3.10.0` to align it with Kibana. ([#359]()https://github.com/elastic/eui/pull/359)
 
 # [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
 
