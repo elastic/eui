@@ -1,6 +1,6 @@
 import React from 'react';
-import { EuiSpacer } from '../spacer';
-import { EuiTablePagination } from '../table';
+import { EuiSpacer } from '../../spacer';
+import { EuiTablePagination } from '../../table';
 
 const defaults = {
   pageSizeOptions: [5, 10, 20]

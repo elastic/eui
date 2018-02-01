@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox render - custom placeholder and asYouType 1`] = `
+<EuiFlexItem
+  component="div"
+  grow={true}
+>
+  <EuiFieldSearch
+    defaultValue=""
+    fullWidth={true}
+    isLoading={false}
+    onKeyUp={[Function]}
+    placeholder="find something..."
+  />
+</EuiFlexItem>
+`;
+
+exports[`SearchBox render 1`] = `
+<EuiFlexItem
+  component="div"
+  grow={true}
+>
+  <EuiFieldSearch
+    defaultValue=""
+    fullWidth={true}
+    isLoading={false}
+    onKeyUp={[Function]}
+    placeholder="Search..."
+  />
+</EuiFlexItem>
+`;

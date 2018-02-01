@@ -58,6 +58,11 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
+        search: {
+          description: 'If the data records match a search criteria, this describes this search',
+          required: false,
+          type: { name: '#ModelCriteriaSearch' }
+        },
         page: {
           description: 'If the data records represents a page into a bigger set, this describes this page',
           required: false,
@@ -67,6 +72,19 @@ export const propsInfo = {
           description: 'If the data records are sorted, this describes the sort criteria',
           required: false,
           type: { name: '#ModelCriteriaSort' }
+        }
+      }
+    }
+  },
+
+  ModelCriteriaSearch: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        query: {
+          description: 'The search query',
+          required: true,
+          type: { name: 'string' }
         }
       }
     }
@@ -122,6 +140,11 @@ export const propsInfo = {
           required: false,
           type: { name: '(criteria: #ModelCriteria) => void' }
         },
+        search: {
+          description: 'Configuring search',
+          required: false,
+          type: { name: '#ConfigSearch' }
+        },
         selection: {
           description: 'Configuring selection',
           required: false,
@@ -131,6 +154,40 @@ export const propsInfo = {
           description: 'Configuring pagination',
           required: false,
           type: { name: '#ConfigPagination' }
+        }
+      }
+    }
+  },
+
+  ConfigSearch: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        box: {
+          description: 'Configuring the search box',
+          required: true,
+          type: { name: '#ConfigSearchBox' }
+        }
+      }
+    }
+  },
+
+  ConfigSearchBox: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        placeholder: {
+          description: 'Defines the placeholder text when no query is specified',
+          required: false,
+          defaultValue: { value: 'Search...' },
+          type: { name: 'string' }
+        },
+        asYouType: {
+          description: 'Indicates whether the search should execute as the user types the query. When set to `false`' +
+                       'the search will only be executed when the user presses `Enter`',
+          required: false,
+          defaultValue: { value: 'true' },
+          type: { name: 'boolean' }
         }
       }
     }
