@@ -32,13 +32,13 @@ We want to release what's in `master` under a new minor version (from `0.0.1`, t
 +No public interface changes since `0.1.0`.
 +
 +# [`0.1.0`](https://github.com/elastic/eui/tree/v0.1.0)
- 
+
  - Fixed an issue where the `wrapText` prop of `<EuiTableRowCell>` wasn't working
  - Introduced `<EuiDraggable>` component and documentation
  - Improved performance by relying on system fonts, instead of web fonts
- 
+
  # [`0.0.1`](https://github.com/elastic/eui/tree/v0.0.1) Initial Release
- 
+
  - Initial public release
 ```
 
@@ -48,11 +48,15 @@ Commit your updates to `CHANGELOG.md` before proceeding with the release.
 
 ## Releasing
 
-Once you're ready to ship a new release, run the following command. This command will make sure to run tests, update the [documentation site][docs], bump the version patch number (`MAJOR.MINOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
+Once you're ready to ship a new release, run the following command.
 
 ```shell
 npm run release
 ```
+
+This command will make sure to run tests, update the [documentation site][docs], bump the version patch number (`MAJOR.MINOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
+
+The command will prompt you for your git credentials. If you are using 2FA for git (which you should be) then your git password must be a [one time token](https://github.com/settings/tokens).
 
 If you want to bump the minor or major version numbers, just add a `BUMP` environment variable to the command, as shown below:
 
