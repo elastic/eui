@@ -2,7 +2,6 @@ import { noop, omit } from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import hash from 'hash-sum';
 
 import {
   EuiFormControlLayout,
@@ -21,32 +20,37 @@ import {
 } from '../../icon';
 
 import {
-  EuiFocusEmulator
-} from '../focus_emulator';
+  EuiFieldProxy
+} from '../field_proxy';
 
-export class EuiFieldDiscrete extends Component {
+import {
+  ENTER
+} from '../../../services/key_codes';
+
+import makeId from '../form_row/make_id';
+
+export class EuiFieldBadges extends Component {
   state = {
-    value: ''
+    inputValue: ''
   }
 
   render() {
-    const { value } = this.state;
+    const { inputValue } = this.state;
     const {
       values,
-      renderValue,
+      renderContent,
       inputRef,
       fullWidth,
       isLoading,
-      isValid,
       onRemove,
       className,
       disabled,
       ...rest
     } = this.props;
 
-    const fieldClasses = classNames('euiFieldDiscrete', className);
+    const fieldClasses = classNames('euiFieldBadges', className);
 
-    const isInvalid = value !== `` && !isValid(value);
+    const isInvalid = this.validate(inputValue) ? null : true;
 
     const inputRefMix = node => {
       this.input = node;
@@ -56,33 +60,34 @@ export class EuiFieldDiscrete extends Component {
       }
     };
 
-    const otherProps = omit(rest, 'parse', 'onInsert');
+    const otherProps = omit(rest, 'parse', 'onInsert', 'isValid', 'allowEmpty');
 
     return (
       <EuiFormControlLayout
         fullWidth={fullWidth}
         isLoading={isLoading}
       >
-        <EuiFocusEmulator
+        <EuiFieldProxy
           getSource={() => this.input}
           disabled={disabled}
           invalid={isInvalid}
         >
-          <div className={fieldClasses}>
-            <div className="euiFieldDiscrete-values">
+          <div className={fieldClasses} {...otherProps}>
+            <div className="euiFieldBadges__badges">
               {
                 values.map(value => (
                   <EuiBadge
-                    key={hash(value)}
+                    key={makeId()}
                     color="ghost"
-                    className="euiFieldDiscrete-value"
+                    className="euiFieldBadges__badge"
                     onClick={() => onRemove(value)}
+                    data-test-subj="fieldProxyBadge"
                   >
-                    <span className="euiFieldDiscrete-valueText">
-                      { renderValue(value) }
+                    <span className="euiFieldBadges__badgeContents">
+                      { renderContent(value) }
                     </span>
-                    <span className="euiFieldDiscrete-valueRemove">
-                      <EuiIcon type="cross" />
+                    <span className="euiFieldBadges__badgeRemove">
+                      <EuiIcon type="cross" size="s" />
                     </span>
                   </EuiBadge>
                 ))
@@ -97,54 +102,61 @@ export class EuiFieldDiscrete extends Component {
               <input
                 type="text"
                 ref={inputRefMix}
-                className="euiFieldDiscrete-input"
-                value={value}
+                className="euiFieldBadges__input"
+                value={inputValue}
                 onChange={this.onChange}
                 onKeyPress={this.onKeyPress}
-                {...otherProps}
               />
             </EuiValidatableControl>
           </div>
-        </EuiFocusEmulator>
+        </EuiFieldProxy>
       </EuiFormControlLayout>
     );
   }
 
+  validate(value) {
+    const { allowEmpty, isValid } = this.props;
+    const isEmpty = value === `` && !allowEmpty;
+    const valid = isEmpty || isValid(value);
+    return valid;
+  }
+
   onChange = e => {
-    this.setState({ value: e.target.value });
+    this.setState({ inputValue: e.target.value });
   }
 
   onKeyPress = e => {
-    const { value } = this.state;
-    const { isValid, parse, onInsert } = this.props;
+    const { inputValue } = this.state;
+    const { parse, onInsert } = this.props;
 
-    if (e.key === 'Enter') {
-      if (!isValid(value)) {
+    if (e.which === ENTER) {
+      if (!this.validate(inputValue)) {
         return;
       }
 
-      const item = parse(value);
+      const item = parse(inputValue);
 
-      this.setState({ value: `` });
+      this.setState({ inputValue: `` });
       onInsert(item);
     }
   }
 }
 
-EuiFieldDiscrete.propTypes = {
+EuiFieldBadges.propTypes = {
   values: PropTypes.array,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
   inputRef: PropTypes.func,
 };
 
-EuiFieldDiscrete.defaultProps = {
+EuiFieldBadges.defaultProps = {
   values: [],
   fullWidth: false,
   isLoading: false,
+  allowEmpty: false,
   isValid: () => true,
-  renderValue: value => String(value),
-  parse: value => value,
+  renderContent: value => String(value),
+  parse: inputValue => inputValue,
   onInsert: noop,
   onRemove: noop,
 };

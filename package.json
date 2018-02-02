@@ -25,7 +25,6 @@
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
     "focus-trap-react": "^3.0.4",
-    "hash-sum": "1.0.2",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
     "jquery": "^3.2.1",

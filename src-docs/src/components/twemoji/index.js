@@ -1,0 +1,3 @@
+export {
+  Twemoji,
+} from './twemoji';

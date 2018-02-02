@@ -13,7 +13,7 @@ import {
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
-  EuiFieldDiscrete,
+  EuiFieldBadges,
   EuiRange,
   EuiRadioGroup,
   EuiSelect,
@@ -32,6 +32,10 @@ const formRowsHtml = renderToHtml(FormRows);
 import Validation from './validation';
 const validationSource = require('!!raw-loader!./validation');
 const validationHtml = renderToHtml(Validation);
+
+import FieldBadges from './field_badges';
+const fieldBadgesSource = require('!!raw-loader!./field_badges');
+const fieldBadgesHtml = renderToHtml(FieldBadges);
 
 import FormPopover from './form_popover';
 const formPopoverSource = require('!!raw-loader!./form_popover');
@@ -93,7 +97,7 @@ export const FormExample = {
       EuiFieldPassword,
       EuiFieldSearch,
       EuiFieldText,
-      EuiFieldDiscrete,
+      EuiFieldBadges,
       EuiRange,
       EuiRadioGroup,
       EuiSelect,
@@ -133,6 +137,23 @@ export const FormExample = {
       </p>
     ),
     demo: <FormPopover />,
+  }, {
+    title: 'Field with badges',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: fieldBadgesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: fieldBadgesHtml,
+    }],
+    text: (
+      <p>
+        Badges can be placed within <EuiCode>EuiFieldBadges</EuiCode> to allow
+        for input of discrete values treated as a list, allowing for custom
+          validation and manipulation logic.
+      </p>
+    ),
+    demo: <FieldBadges />,
   }, {
     title: 'Disabled form elements',
     source: [{

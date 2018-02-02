@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { omit } from 'lodash';
 
-export class EuiFocusEmulator extends Component {
+export class EuiFieldProxy extends Component {
   state = {
     hasFocus: false
   }
@@ -28,19 +29,19 @@ export class EuiFocusEmulator extends Component {
 
   render() {
     const { hasFocus } = this.state;
-    const { className, disabled, invalid, ...rest } = this.props;
+    const { className, disabled, invalid, ...remainder } = this.props;
+    const rest = omit(remainder, 'getSource');
 
-    const classes = classNames('euiFocusEmulator', {
-      'euiFocusEmulator--focus': hasFocus,
-      'euiFocusEmulator--disabled': disabled,
-      'euiFocusEmulator--invalid': invalid,
+    const classes = classNames('euiFieldProxy', {
+      'euiFieldProxy-focus': hasFocus,
+      'euiFieldProxy-disabled': disabled,
+      'euiFieldProxy-invalid': invalid,
     }, className);
 
     return (
       <div
         className={classes}
         disabled={disabled}
-        invalid={invalid}
         onClick={this.onClick}
         {...rest}
       />
@@ -55,7 +56,7 @@ export class EuiFocusEmulator extends Component {
     this.setState({ hasFocus: false });
   }
 
-  onClick = (...rest) => {
+  onClick = e => {
     const { getSource } = this.props;
     const source = getSource();
 
@@ -65,7 +66,7 @@ export class EuiFocusEmulator extends Component {
     }
 
     if (this.props.onClick) {
-      this.props.onClick(...rest);
+      this.props.onClick(e);
     }
   }
 }

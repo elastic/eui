@@ -1,18 +1,18 @@
-.euiFocusEmulator {
+.euiFieldProxy {
   @include euiFormControlStyle;
   @include euiFormControlIsLoading;
   cursor: text;
   padding: 0;
 }
 
-.euiFocusEmulator--focus {
+.euiFieldProxy-focus {
   @include euiFormControlStyleFocus;
 }
 
-.euiFocusEmulator--disabled {
+.euiFieldProxy-disabled {
   @include euiFormControlStyleDisabled;
 }
 
-.euiFocusEmulator--invalid {
+.euiFieldProxy-invalid {
   @include euiFormControlStyleInvalid;
 }

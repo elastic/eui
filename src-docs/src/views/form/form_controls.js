@@ -10,7 +10,7 @@ import {
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
-  EuiFieldDiscrete,
+  EuiFieldBadges,
   EuiRange,
   EuiRadioGroup,
   EuiSelect,
@@ -53,7 +53,7 @@ export default class extends Component {
       }],
       radioIdSelected: `${idPrefix}5`,
       numberInputValue: '',
-      discreteValues: ['a', 'b', 'c', 'd']
+      badges: ['a', 'b', 'c', 'd']
     };
   }
 
@@ -89,14 +89,14 @@ export default class extends Component {
     });
   }
 
-  onDiscreteInsert = value => {
-    const added = [...this.state.discreteValues, value];
-    this.setState({ discreteValues: added });
+  onInsertBadge = value => {
+    const added = [...this.state.badges, value];
+    this.setState({ badges: added });
   }
 
-  onDiscreteRemove = value => {
-    const removed = without(this.state.discreteValues, value);
-    this.setState({ discreteValues: removed });
+  onRemoveBadge = value => {
+    const removed = without(this.state.badges, value);
+    this.setState({ badges: removed });
   }
 
   render() {
@@ -157,11 +157,11 @@ export default class extends Component {
         <br />
         <br />
 
-        <EuiFieldDiscrete
-          values={this.state.discreteValues}
-          renderValue={value => value.toUpperCase()}
-          onInsert={this.onDiscreteInsert}
-          onRemove={this.onDiscreteRemove}
+        <EuiFieldBadges
+          values={this.state.badges}
+          renderContent={value => value.toUpperCase()}
+          onInsert={this.onInsertBadge}
+          onRemove={this.onRemoveBadge}
           placeholder="Type and press enter …"
         />
 
