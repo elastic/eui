@@ -16,3 +16,7 @@
 .euiFieldProxy-invalid {
   @include euiFormControlStyleInvalid;
 }
+
+.euiFieldProxy__proxySource {
+  color: currentColor;
+}
