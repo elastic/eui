@@ -18,3 +18,7 @@ export {
   GuideSection,
   GuideSectionTypes,
 } from './guide_section';
+
+export {
+  Twemoji
+} from './twemoji';

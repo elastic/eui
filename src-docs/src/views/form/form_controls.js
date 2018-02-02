@@ -1,3 +1,5 @@
+import { without } from 'lodash';
+
 import React, {
   Component,
 } from 'react';
@@ -8,6 +10,7 @@ import {
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
+  EuiFieldBadges,
   EuiRange,
   EuiRadioGroup,
   EuiSelect,
@@ -50,6 +53,7 @@ export default class extends Component {
       }],
       radioIdSelected: `${idPrefix}5`,
       numberInputValue: '',
+      badges: ['a', 'b', 'c', 'd']
     };
   }
 
@@ -83,6 +87,16 @@ export default class extends Component {
     this.setState({
       numberInputValue: value,
     });
+  }
+
+  onInsertBadge = value => {
+    const added = [...this.state.badges, value];
+    this.setState({ badges: added });
+  }
+
+  onRemoveBadge = value => {
+    const removed = without(this.state.badges, value);
+    this.setState({ badges: removed });
   }
 
   render() {
@@ -138,6 +152,17 @@ export default class extends Component {
             { value: 'option_two', text: 'Option two' },
             { value: 'option_three', text: 'Option three' },
           ]}
+        />
+
+        <br />
+        <br />
+
+        <EuiFieldBadges
+          values={this.state.badges}
+          renderContent={value => value.toUpperCase()}
+          onInsert={this.onInsertBadge}
+          onRemove={this.onRemoveBadge}
+          placeholder="Type and press enter …"
         />
 
         <br />

@@ -1,0 +1,22 @@
+.euiFieldProxy {
+  @include euiFormControlStyle;
+  @include euiFormControlIsLoading;
+  cursor: text;
+  padding: 0;
+}
+
+.euiFieldProxy-focus {
+  @include euiFormControlStyleFocus;
+}
+
+.euiFieldProxy-disabled {
+  @include euiFormControlStyleDisabled;
+}
+
+.euiFieldProxy-invalid {
+  @include euiFormControlStyleInvalid;
+}
+
+.euiFieldProxy input {
+  color: currentColor;
+}

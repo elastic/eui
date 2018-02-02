@@ -39,6 +39,11 @@ export default () => (
     <EuiBadge color="danger">
       Danger
     </EuiBadge>
+    &nbsp;&nbsp;
+
+    <EuiBadge color="ghost">
+      Ghost
+    </EuiBadge>
   </div>
 
 );

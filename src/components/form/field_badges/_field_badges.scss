@@ -1,0 +1,49 @@
+.euiFieldBadges {
+  /* use badges but stay aligned with other field types */
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.euiFieldBadges__input {
+  font: inherit;
+  background: transparent;
+  border: none;
+  padding: 12px 6px;
+  max-width: 30%;
+}
+
+.euiFieldBadges__badges {
+  margin-top: -1px;
+  padding: 3px;
+  max-width: 70%;
+}
+
+.euiFieldBadges__badge {
+  position: relative;
+  margin: 3px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.euiFieldBadges__badgeRemove {
+  display: none;
+}
+
+.euiFieldBadges__badge:hover {
+  cursor: pointer;
+  background-color: $euiColorLightShade;
+
+  .euiFieldBadges__badgeRemove {
+    display: flex;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    padding: 4px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    background-color: $euiColorAccent;
+    color: #fff;
+    z-index: $euiZLevel9;
+  }
+}
