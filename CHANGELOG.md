@@ -1,6 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.17`.
+No public interface changes since `0.0.18`.
+
+# [`0.0.18`](https://github.com/elastic/eui/tree/v0.0.18)
+
+**Bug fixes**
+
+- Fixed `EuiCodeEditor` bug in which hitting ESCAPE to close the autocompletion suggestions menu would also exit editing mode. ([#363](https://github.com/elastic/eui/pull/363))
 
 # [`0.0.17`](https://github.com/elastic/eui/tree/v0.0.17)
 
