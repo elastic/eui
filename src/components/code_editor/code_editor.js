@@ -24,10 +24,14 @@ export class EuiCodeEditor extends Component {
 
   onKeydownAce = (ev) => {
     if (ev.keyCode === keyCodes.ESCAPE) {
-      ev.preventDefault();
-      ev.stopPropagation();
-      this.stopEditing();
-      this.editorHint.focus();
+      // If the autocompletion context menu is open then we want to let ESCAPE close it but
+      // **not** exit out of editing mode.
+      if (!this.aceEditor.editor.completer) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this.stopEditing();
+        this.editorHint.focus();
+      }
     }
   }
 
