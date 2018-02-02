@@ -12,7 +12,6 @@ export class EuiFieldProxy extends Component {
     const source = getSource();
 
     if (source) {
-      source.classList.add('euiFieldProxy__proxySource');
       source.addEventListener('focus', this.onFocus);
       source.addEventListener('blur', this.onBlur);
     }
@@ -23,7 +22,6 @@ export class EuiFieldProxy extends Component {
     const source = getSource();
 
     if (source) {
-      source.classList.remove('euiFieldProxy__proxySource');
       source.removeEventListener('focus', this.onFocus);
       source.removeEventListener('blur', this.onBlur);
     }
