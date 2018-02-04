@@ -26,8 +26,8 @@ const modelBase = () => ({
 const addRecordsToModel = (model, count = 3) => {
   for (let i = 0; i < count; i++) {
     model.data.records.push({
-      id: i + 1,
-      name: `name${i + 1}`,
+      id: i,
+      name: `name${i}`,
     });
   }
   model.data.totalRecordCount = count;
