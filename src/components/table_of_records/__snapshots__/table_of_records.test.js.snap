@@ -23,6 +23,7 @@ exports[`EuiTableOfRecords column actions multiple is rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -83,6 +84,7 @@ exports[`EuiTableOfRecords column actions multiple is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -143,6 +145,7 @@ exports[`EuiTableOfRecords column actions multiple is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -230,6 +233,7 @@ exports[`EuiTableOfRecords column actions single is rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -292,6 +296,7 @@ exports[`EuiTableOfRecords column actions single is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -354,6 +359,7 @@ exports[`EuiTableOfRecords column actions single is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -420,70 +426,6 @@ exports[`EuiTableOfRecords column actions single is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiTableOfRecords column render function renders column value 1`] = `
-<div
-  className="euiRecordsTable"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_0_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_0_0"
-          textOnly={false}
-        >
-          NAME0
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={false}
-        >
-          NAME1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={false}
-        >
-          NAME2
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-</div>
-`;
-
 exports[`EuiTableOfRecords is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -507,7 +449,62 @@ exports[`EuiTableOfRecords is rendered 1`] = `
         </th>
       </tr>
     </thead>
-    <tbody />
+    <tbody>
+      <tr
+        class="euiTableRow"
+        data-test-subj="tableRow-0"
+      >
+        <td
+          class="euiTableRowCell"
+        >
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              name0
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow"
+        data-test-subj="tableRow-1"
+      >
+        <td
+          class="euiTableRowCell"
+        >
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              name1
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow"
+        data-test-subj="tableRow-2"
+      >
+        <td
+          class="euiTableRowCell"
+        >
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              name2
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 `;
@@ -543,6 +540,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -568,6 +566,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -593,6 +592,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -618,6 +618,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-3"
         isSelected={false}
         key="row_3_3"
         onMouseOut={[Function]}
@@ -643,6 +644,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-4"
         isSelected={false}
         key="row_4_4"
         onMouseOut={[Function]}
@@ -668,6 +670,7 @@ exports[`EuiTableOfRecords pagination and selection is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-5"
         isSelected={false}
         key="row_5_5"
         onMouseOut={[Function]}
@@ -775,6 +778,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -789,6 +793,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -803,6 +808,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -817,6 +823,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-3"
         isSelected={false}
         key="row_3_3"
         onMouseOut={[Function]}
@@ -831,6 +838,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-4"
         isSelected={false}
         key="row_4_4"
         onMouseOut={[Function]}
@@ -845,6 +853,7 @@ exports[`EuiTableOfRecords pagination is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-5"
         isSelected={false}
         key="row_5_5"
         onMouseOut={[Function]}
@@ -938,6 +947,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -952,6 +962,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -966,6 +977,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -980,6 +992,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-3"
         isSelected={false}
         key="row_3_3"
         onMouseOut={[Function]}
@@ -994,6 +1007,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-4"
         isSelected={false}
         key="row_4_4"
         onMouseOut={[Function]}
@@ -1008,6 +1022,7 @@ exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-5"
         isSelected={false}
         key="row_5_5"
         onMouseOut={[Function]}
@@ -1115,6 +1130,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -1140,6 +1156,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -1165,6 +1182,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}
@@ -1190,6 +1208,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-3"
         isSelected={false}
         key="row_3_3"
         onMouseOut={[Function]}
@@ -1215,6 +1234,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-4"
         isSelected={false}
         key="row_4_4"
         onMouseOut={[Function]}
@@ -1240,6 +1260,7 @@ exports[`EuiTableOfRecords pagination, selection, and sorting is rendered 1`] = 
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-5"
         isSelected={false}
         key="row_5_5"
         onMouseOut={[Function]}
@@ -1348,6 +1369,7 @@ exports[`EuiTableOfRecords records are rendered 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
         key="row_0_0"
         onMouseOut={[Function]}
@@ -1362,6 +1384,7 @@ exports[`EuiTableOfRecords records are rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-1"
         isSelected={false}
         key="row_1_1"
         onMouseOut={[Function]}
@@ -1376,6 +1399,7 @@ exports[`EuiTableOfRecords records are rendered 1`] = `
         </EuiTableRowCell>
       </EuiTableRow>
       <EuiTableRow
+        data-test-subj="tableRow-2"
         isSelected={false}
         key="row_2_2"
         onMouseOut={[Function]}

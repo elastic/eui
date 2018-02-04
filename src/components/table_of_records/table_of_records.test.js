@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { shallow, render, mount } from 'enzyme';
+import { requiredProps, findTestSubject } from '../../test';
 
 import { EuiTableOfRecords } from './table_of_records';
 
@@ -81,7 +81,7 @@ describe('EuiTableOfRecords', () => {
 
   test('is rendered', () => {
     config = configBase();
-    model = modelBase();
+    model = addRecordsToModel(modelBase());
 
     const component = render(
       <EuiTableOfRecords {...requiredProps} config={config} model={model} />
@@ -179,12 +179,12 @@ describe('EuiTableOfRecords', () => {
         config.columns[0].render = (name) => name.toUpperCase();
         model = addRecordsToModel(modelBase());
 
-        const component = shallow(
+        const component = mount(
           <EuiTableOfRecords config={config} model={model} />
         );
 
-        // TODO: Check cell value directly
-        expect(component).toMatchSnapshot();
+        const firstRow = findTestSubject(component, 'tableRow-1');
+        expect(firstRow.getDOMNode().textContent).toBe('NAME1');
       });
     });
 
