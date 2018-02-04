@@ -1,446 +1,198 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiTableOfRecords } from './table_of_records';
 
+const configBase = () => ({
+  recordId: 'id',
+  columns: [
+    {
+      field: 'name',
+      name: 'Name',
+      description: 'description'
+    }
+  ],
+  onDataCriteriaChange: () => {},
+});
+
+const modelBase = () => ({
+  data: {
+    records: [],
+    totalRecordCount: 0
+  }
+});
+
+const addRecordsToModel = (model, count = 3) => {
+  for (let i = 0; i < count; i++) {
+    model.data.records.push({
+      id: i + 1,
+      name: `name${i + 1}`,
+    });
+  }
+  model.data.totalRecordCount = count;
+  return model;
+};
+
+const addPaginationToConfig = (config) => {
+  config.pagination = {};
+  return config;
+};
+
+const addPaginationToModel = (model, pageIndex = 0) => {
+  const pageSize = 3;
+  addRecordsToModel(model, pageSize * 2);
+  model.criteria = {
+    page: {
+      index: pageIndex,
+      size: pageSize,
+    }
+  };
+  return model;
+};
+
+const addSortingToConfig = (config) => {
+  config.columns[0].sortable = true;
+  return config;
+};
+
+const addSortingToModel = (model) => {
+  model.criteria = {
+    sort: { field: 'name', direction: 'asc' }
+  };
+  return model;
+};
+
+const addSelectionToConfig = (config) => {
+  config.selection = {
+    onSelectionChanged: () => {},
+  };
+  return config;
+};
+
 describe('EuiTableOfRecords', () => {
+  let config;
+  let model;
 
-  test('basic - empty', () => {
-
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description'
-          }
-        ]
-      },
-      model: {
-        data: {
-          records: [],
-          totalRecordCount: 0
-        }
-      }
-    };
-
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component)
-      .toMatchSnapshot();
+  afterEach(() => {
+    config = undefined;
+    model = undefined;
   });
 
-  test('basic - with records', () => {
+  test('is rendered', () => {
+    config = configBase();
+    model = modelBase();
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description'
-          }
-        ]
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 3
-        }
-      }
-    };
-
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
+    const component = render(
+      <EuiTableOfRecords {...requiredProps} config={config} model={model} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination', () => {
+  describe('records', () => {
+    test('are rendered', () => {
+      config = configBase();
+      model = addRecordsToModel(modelBase());
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description'
-          }
-        ],
-        pagination: {},
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
 
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('with pagination - 2nd page', () => {
+  describe('pagination', () => {
+    test('is rendered', () => {
+      config = addPaginationToConfig(configBase());
+      model = addPaginationToModel(modelBase());
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description'
-          }
-        ],
-        pagination: {},
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 1,
-            size: 3
-          }
-        }
-      }
-    };
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
 
+      expect(component).toMatchSnapshot();
+    });
 
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
+    test('page 2 is rendered', () => {
+      config = addPaginationToConfig(configBase());
+      model = addPaginationToModel(modelBase(), 1);
 
-    expect(component).toMatchSnapshot();
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('with sorting', () => {
+  describe('sorting', () => {
+    test('is rendered', () => {
+      config = addSortingToConfig(configBase());
+      model = addSortingToModel(modelBase());
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-            sortable: true
-          }
-        ],
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 3
-        },
-        criteria: {
-          sort: { field: 'name', direction: 'asc' }
-        }
-      }
-    };
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
 
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('with pagination and selection', () => {
+  describe('pagination and selection', () => {
+    test('is rendered', () => {
+      config = addPaginationToConfig(
+        addSelectionToConfig(configBase())
+      );
+      model = addPaginationToModel(modelBase());
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description'
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
 
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('with pagination, selection and sorting', () => {
+  describe('pagination, selection, and sorting', () => {
+    test('is rendered', () => {
+      config = addSortingToConfig(
+        addPaginationToConfig(
+          addSelectionToConfig(configBase())
+        )
+      );
+      model = addSortingToModel(addPaginationToModel(modelBase()));
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-            sortable: true
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+      const component = shallow(
+        <EuiTableOfRecords config={config} model={model} />
+      );
 
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('with pagination, selection, sorting and column renderer', () => {
+  describe('column', () => {
+    describe('render function', () => {
+      test('renders column value', () => {
+        config = configBase();
+        config.columns[0].render = (name) => name.toUpperCase();
+        model = addRecordsToModel(modelBase());
 
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-            sortable: true,
-            render: (name) => name.toUpperCase()
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+        const component = shallow(
+          <EuiTableOfRecords config={config} model={model} />
+        );
 
+        // TODO: Check cell value directly
+        expect(component).toMatchSnapshot();
+      });
+    });
 
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection, sorting and column dataType', () => {
-
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'count',
-            name: 'Count',
-            description: 'description',
-            sortable: true,
-            dataType: 'number'
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', count: 1 },
-            { id: '2', count: 2 },
-            { id: '3', count: 3 }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
-
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  // here we want to verify that the column renderer takes precedence over the column data type
-  test('with pagination, selection, sorting, column renderer and column dataType', () => {
-
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'count',
-            name: 'Count',
-            description: 'description',
-            sortable: true,
-            dataType: 'number',
-            render: (count) => 'x'.repeat(count)
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', count: 1 },
-            { id: '2', count: 2 },
-            { id: '3', count: 3 }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
-
-
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection, sorting and a single record action', () => {
-
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-            sortable: true
-          },
-          {
+    describe('actions', () => {
+      describe('single', () => {
+        test('is rendered', () => {
+          config = configBase();
+          config.columns.push({
             actions: [
               {
                 type: 'button',
@@ -449,54 +201,21 @@ describe('EuiTableOfRecords', () => {
                 onClick: () => undefined
               }
             ]
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+          });
+          model = addRecordsToModel(modelBase());
 
+          const component = shallow(
+            <EuiTableOfRecords config={config} model={model} />
+          );
 
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
+          expect(component).toMatchSnapshot();
+        });
+      });
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection, sorting and multiple record actions', () => {
-
-    const props = {
-      ...requiredProps,
-      config: {
-        recordId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-            sortable: true
-          },
-          {
+      describe('multiple', () => {
+        test('is rendered', () => {
+          config = configBase();
+          config.columns.push({
             actions: [
               {
                 type: 'button',
@@ -511,38 +230,16 @@ describe('EuiTableOfRecords', () => {
                 onClick: () => undefined
               }
             ]
-          }
-        ],
-        pagination: {},
-        selection: {
-          onSelectionChanged: () => undefined
-        },
-        onDataCriteriaChange: () => undefined
-      },
-      model: {
-        data: {
-          records: [
-            { id: '1', name: 'name1' },
-            { id: '2', name: 'name2' },
-            { id: '3', name: 'name3' }
-          ],
-          totalRecordCount: 5
-        },
-        criteria: {
-          page: {
-            index: 0,
-            size: 3
-          }
-        }
-      }
-    };
+          });
+          model = addRecordsToModel(modelBase());
 
+          const component = shallow(
+            <EuiTableOfRecords config={config} model={model} />
+          );
 
-    const component = shallow(
-      <EuiTableOfRecords {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
-
 });
