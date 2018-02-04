@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
 
 import { EuiTableOfRecords } from './table_of_records';
@@ -23,7 +23,7 @@ const modelBase = () => ({
   }
 });
 
-const addRecordsToModel = (model, count = 3) => {
+const addRecordsToModel = (model, count = 2) => {
   for (let i = 0; i < count; i++) {
     model.data.records.push({
       id: i,
@@ -40,8 +40,10 @@ const addPaginationToConfig = (config) => {
 };
 
 const addPaginationToModel = (model, pageIndex = 0) => {
-  const pageSize = 3;
-  addRecordsToModel(model, pageSize * 2);
+  const pageSize = 2;
+  addRecordsToModel(model, pageSize);
+  // Fake that there are more records than are visible.
+  model.data.totalRecordCount = pageSize * 2;
   model.criteria = {
     page: {
       index: pageIndex,
@@ -83,7 +85,7 @@ describe('EuiTableOfRecords', () => {
     config = configBase();
     model = addRecordsToModel(modelBase());
 
-    const component = render(
+    const component = shallow(
       <EuiTableOfRecords {...requiredProps} config={config} model={model} />
     );
 
@@ -110,6 +112,9 @@ describe('EuiTableOfRecords', () => {
         <EuiTableOfRecords config={config} model={model} />
       );
 
+      // NOTE: This component isn't responsible for figure out which rows
+      // are rendered based on page index, so only the pagination state
+      // will update in this snapshot.
       expect(component).toMatchSnapshot();
     });
   });
@@ -127,29 +132,10 @@ describe('EuiTableOfRecords', () => {
     });
   });
 
-  describe('pagination and selection', () => {
+  describe('selection', () => {
     test('is rendered', () => {
-      config = addPaginationToConfig(
-        addSelectionToConfig(configBase())
-      );
-      model = addPaginationToModel(modelBase());
-
-      const component = shallow(
-        <EuiTableOfRecords config={config} model={model} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('pagination, selection, and sorting', () => {
-    test('is rendered', () => {
-      config = addSortingToConfig(
-        addPaginationToConfig(
-          addSelectionToConfig(configBase())
-        )
-      );
-      model = addSortingToModel(addPaginationToModel(modelBase()));
+      config = addSelectionToConfig(configBase());
+      model = addRecordsToModel(modelBase(), 1);
 
       const component = shallow(
         <EuiTableOfRecords config={config} model={model} />
