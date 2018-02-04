@@ -90,19 +90,6 @@ describe('EuiTableOfRecords', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('records', () => {
-    test('are rendered', () => {
-      config = configBase();
-      model = addRecordsToModel(modelBase());
-
-      const component = shallow(
-        <EuiTableOfRecords config={config} model={model} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
   describe('pagination', () => {
     test('is rendered', () => {
       config = addPaginationToConfig(configBase());
