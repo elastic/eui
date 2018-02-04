@@ -408,6 +408,7 @@ export class EuiTableOfRecords extends React.Component {
         isSelected={selected}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
+        data-test-subj={`tableRow-${recordId}`}
       >
         {cells}
       </EuiTableRow>

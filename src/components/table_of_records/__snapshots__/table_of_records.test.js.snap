@@ -1,10 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTableOfRecords basic - empty 1`] = `
+exports[`EuiTableOfRecords column actions multiple is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiRecordsTable"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -17,34 +15,74 @@ exports[`EuiTableOfRecords basic - empty 1`] = `
       >
         Name
       </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody />
-  </EuiTable>
-</div>
-`;
-
-exports[`EuiTableOfRecords basic - with records 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
       <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
+        align="right"
+        key="_actions_h_1"
         scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
+      />
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
-        key="row_1_0"
+        key="row_0_0"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_0_0"
+          textOnly={true}
+        >
+          name0
+        </EuiTableRowCell>
+        <EuiTableRowCell
+          align="right"
+          key="record_actions_0_1"
+          textOnly={false}
+        >
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "name": "Actions",
+                  "render": [Function],
+                },
+              ]
+            }
+            model={
+              Object {
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": 0,
+                      "name": "name0",
+                    },
+                    Object {
+                      "id": 1,
+                      "name": "name1",
+                    },
+                  ],
+                  "totalRecordCount": 2,
+                },
+              }
+            }
+            record={
+              Object {
+                "id": 0,
+                "name": "name0",
+              }
+            }
+            recordId={0}
+            visible={false}
+          />
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        data-test-subj="tableRow-1"
+        isSelected={false}
+        key="row_1_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -55,33 +93,47 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
         >
           name1
         </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
         <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
+          align="right"
+          key="record_actions_1_1"
+          textOnly={false}
         >
-          name2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "name": "Actions",
+                  "render": [Function],
+                },
+              ]
+            }
+            model={
+              Object {
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": 0,
+                      "name": "name0",
+                    },
+                    Object {
+                      "id": 1,
+                      "name": "name1",
+                    },
+                  ],
+                  "totalRecordCount": 2,
+                },
+              }
+            }
+            record={
+              Object {
+                "id": 1,
+                "name": "name1",
+              }
+            }
+            recordId={1}
+            visible={false}
+          />
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
@@ -89,7 +141,152 @@ exports[`EuiTableOfRecords basic - with records 1`] = `
 </div>
 `;
 
-exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
+exports[`EuiTableOfRecords column actions single is rendered 1`] = `
+<div
+  className="euiRecordsTable"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+      <EuiTableHeaderCell
+        align="right"
+        key="_actions_h_1"
+        scope="col"
+      />
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow
+        data-test-subj="tableRow-0"
+        isSelected={false}
+        key="row_0_0"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_0_0"
+          textOnly={true}
+        >
+          name0
+        </EuiTableRowCell>
+        <EuiTableRowCell
+          align="right"
+          key="record_actions_0_1"
+          textOnly={false}
+        >
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "description": "edit",
+                  "name": "Edit",
+                  "onClick": [Function],
+                  "type": "button",
+                },
+              ]
+            }
+            model={
+              Object {
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": 0,
+                      "name": "name0",
+                    },
+                    Object {
+                      "id": 1,
+                      "name": "name1",
+                    },
+                  ],
+                  "totalRecordCount": 2,
+                },
+              }
+            }
+            record={
+              Object {
+                "id": 0,
+                "name": "name0",
+              }
+            }
+            recordId={0}
+            visible={false}
+          />
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        data-test-subj="tableRow-1"
+        isSelected={false}
+        key="row_1_1"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_1_0"
+          textOnly={true}
+        >
+          name1
+        </EuiTableRowCell>
+        <EuiTableRowCell
+          align="right"
+          key="record_actions_1_1"
+          textOnly={false}
+        >
+          <ExpandedRecordActions
+            actionEnabled={[Function]}
+            actions={
+              Array [
+                Object {
+                  "description": "edit",
+                  "name": "Edit",
+                  "onClick": [Function],
+                  "type": "button",
+                },
+              ]
+            }
+            model={
+              Object {
+                "data": Object {
+                  "records": Array [
+                    Object {
+                      "id": 0,
+                      "name": "name0",
+                    },
+                    Object {
+                      "id": 1,
+                      "name": "name1",
+                    },
+                  ],
+                  "totalRecordCount": 2,
+                },
+              }
+            }
+            record={
+              Object {
+                "id": 1,
+                "name": "name1",
+              }
+            }
+            recordId={1}
+            visible={false}
+          />
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+</div>
+`;
+
+exports[`EuiTableOfRecords is rendered 1`] = `
 <div
   aria-label="aria-label"
   className="euiRecordsTable testClass1 testClass2"
@@ -109,8 +306,24 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
-        key="row_1_0"
+        key="row_0_0"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_0_0"
+          textOnly={true}
+        >
+          name0
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        data-test-subj="tableRow-1"
+        isSelected={false}
+        key="row_1_1"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -122,18 +335,149 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
           name1
         </EuiTableRowCell>
       </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+</div>
+`;
+
+exports[`EuiTableOfRecords pagination is rendered 1`] = `
+<div
+  className="euiRecordsTable"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
-        key="row_2_1"
+        key="row_0_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCell
           align="left"
-          key="_data_column_name_2_0"
+          key="_data_column_name_0_0"
           textOnly={true}
         >
-          name2
+          name0
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        data-test-subj="tableRow-1"
+        isSelected={false}
+        key="row_1_1"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_1_0"
+          textOnly={true}
+        >
+          name1
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+  <PaginationBar
+    config={
+      Object {
+        "columns": Array [
+          Object {
+            "description": "description",
+            "field": "name",
+            "name": "Name",
+          },
+        ],
+        "onDataCriteriaChange": [Function],
+        "pagination": Object {},
+        "recordId": "id",
+      }
+    }
+    model={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 2,
+          },
+        },
+        "data": Object {
+          "records": Array [
+            Object {
+              "id": 0,
+              "name": "name0",
+            },
+            Object {
+              "id": 1,
+              "name": "name1",
+            },
+          ],
+          "totalRecordCount": 4,
+        },
+      }
+    }
+    onPageChange={[Function]}
+    onPageSizeChange={[Function]}
+  />
+</div>
+`;
+
+exports[`EuiTableOfRecords pagination page 2 is rendered 1`] = `
+<div
+  className="euiRecordsTable"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow
+        data-test-subj="tableRow-0"
+        isSelected={false}
+        key="row_0_0"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_0_0"
+          textOnly={true}
+        >
+          name0
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        data-test-subj="tableRow-1"
+        isSelected={false}
+        key="row_1_1"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_1_0"
+          textOnly={true}
+        >
+          name1
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
@@ -158,21 +502,21 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
         "criteria": Object {
           "page": Object {
             "index": 1,
-            "size": 3,
+            "size": 2,
           },
         },
         "data": Object {
           "records": Array [
             Object {
-              "id": "1",
-              "name": "name1",
+              "id": 0,
+              "name": "name0",
             },
             Object {
-              "id": "2",
-              "name": "name2",
+              "id": 1,
+              "name": "name1",
             },
           ],
-          "totalRecordCount": 5,
+          "totalRecordCount": 4,
         },
       }
     }
@@ -182,122 +526,9 @@ exports[`EuiTableOfRecords with pagination - 2nd page 1`] = `
 </div>
 `;
 
-exports[`EuiTableOfRecords with pagination 1`] = `
+exports[`EuiTableOfRecords selection is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={true}
-        >
-          name1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination and selection 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiRecordsTable"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -326,1468 +557,39 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
     </EuiTableHeader>
     <EuiTableBody>
       <EuiTableRow
+        data-test-subj="tableRow-0"
         isSelected={false}
-        key="row_1_0"
+        key="row_0_0"
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
         <EuiTableRowCellCheckbox
-          key="_selection_column_1"
+          key="_selection_column_0"
         >
           <EuiCheckbox
             checked={false}
             disabled={false}
-            id="_selection_column_1-checkbox"
+            id="_selection_column_0-checkbox"
             onChange={[Function]}
             type="inList"
           />
         </EuiTableRowCellCheckbox>
         <EuiTableRowCell
           align="left"
-          key="_data_column_name_1_0"
+          key="_data_column_name_0_0"
           textOnly={true}
         >
-          name1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
+          name0
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
   </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
 </div>
 `;
 
-exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
+exports[`EuiTableOfRecords sorting is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={true}
-        >
-          name1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-            "sortable": true,
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination, selection, sorting and a single record action 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-      <EuiTableHeaderCell
-        align="right"
-        key="_actions_h_1"
-        scope="col"
-      />
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={true}
-        >
-          name1
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_1_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "description": "edit",
-                  "name": "Edit",
-                  "onClick": [Function],
-                  "type": "button",
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "1",
-                "name": "name1",
-              }
-            }
-            recordId="1"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_2_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "description": "edit",
-                  "name": "Edit",
-                  "onClick": [Function],
-                  "type": "button",
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "2",
-                "name": "name2",
-              }
-            }
-            recordId="2"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_3_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "description": "edit",
-                  "name": "Edit",
-                  "onClick": [Function],
-                  "type": "button",
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "3",
-                "name": "name3",
-              }
-            }
-            recordId="3"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-            "sortable": true,
-          },
-          Object {
-            "actions": Array [
-              Object {
-                "description": "edit",
-                "name": "Edit",
-                "onClick": [Function],
-                "type": "button",
-              },
-            ],
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination, selection, sorting and column dataType 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="right"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_count_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Count
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_1_0"
-          textOnly={true}
-        >
-          1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_2_0"
-          textOnly={true}
-        >
-          2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_3_0"
-          textOnly={true}
-        >
-          3
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "dataType": "number",
-            "description": "description",
-            "field": "count",
-            "name": "Count",
-            "sortable": true,
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "count": 1,
-              "id": "1",
-            },
-            Object {
-              "count": 2,
-              "id": "2",
-            },
-            Object {
-              "count": 3,
-              "id": "3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination, selection, sorting and column renderer 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={false}
-        >
-          NAME1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={false}
-        >
-          NAME2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={false}
-        >
-          NAME3
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-            "render": [Function],
-            "sortable": true,
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination, selection, sorting and multiple record actions 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-      <EuiTableHeaderCell
-        align="right"
-        key="_actions_h_1"
-        scope="col"
-      />
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={true}
-        >
-          name1
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_1_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "name": "Actions",
-                  "render": [Function],
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "1",
-                "name": "name1",
-              }
-            }
-            recordId="1"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_2_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "name": "Actions",
-                  "render": [Function],
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "2",
-                "name": "name2",
-              }
-            }
-            recordId="2"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
-        </EuiTableRowCell>
-        <EuiTableRowCell
-          align="right"
-          key="record_actions_3_1"
-          textOnly={false}
-        >
-          <ExpandedRecordActions
-            actionEnabled={[Function]}
-            actions={
-              Array [
-                Object {
-                  "name": "Actions",
-                  "render": [Function],
-                },
-              ]
-            }
-            model={
-              Object {
-                "criteria": Object {
-                  "page": Object {
-                    "index": 0,
-                    "size": 3,
-                  },
-                },
-                "data": Object {
-                  "records": Array [
-                    Object {
-                      "id": "1",
-                      "name": "name1",
-                    },
-                    Object {
-                      "id": "2",
-                      "name": "name2",
-                    },
-                    Object {
-                      "id": "3",
-                      "name": "name3",
-                    },
-                  ],
-                  "totalRecordCount": 5,
-                },
-              }
-            }
-            record={
-              Object {
-                "id": "3",
-                "name": "name3",
-              }
-            }
-            recordId="3"
-            visible={false}
-          />
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "description": "description",
-            "field": "name",
-            "name": "Name",
-            "sortable": true,
-          },
-          Object {
-            "actions": Array [
-              Object {
-                "description": "edit",
-                "name": "Edit",
-                "onClick": [Function],
-                "type": "button",
-              },
-              Object {
-                "description": "delete",
-                "name": "Delete",
-                "onClick": [Function],
-                "type": "button",
-              },
-            ],
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "id": "1",
-              "name": "name1",
-            },
-            Object {
-              "id": "2",
-              "name": "name2",
-            },
-            Object {
-              "id": "3",
-              "name": "name3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer and column dataType 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="right"
-        isSortAscending={false}
-        isSorted={false}
-        key="_data_h_count_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Count
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_1"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_1-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_1_0"
-          textOnly={false}
-        >
-          x
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_2"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_2-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_2_0"
-          textOnly={false}
-        >
-          xx
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCellCheckbox
-          key="_selection_column_3"
-        >
-          <EuiCheckbox
-            checked={false}
-            disabled={false}
-            id="_selection_column_3-checkbox"
-            onChange={[Function]}
-            type="inList"
-          />
-        </EuiTableRowCellCheckbox>
-        <EuiTableRowCell
-          align="right"
-          key="_data_column_count_3_0"
-          textOnly={false}
-        >
-          xxx
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
-  <PaginationBar
-    config={
-      Object {
-        "columns": Array [
-          Object {
-            "dataType": "number",
-            "description": "description",
-            "field": "count",
-            "name": "Count",
-            "render": [Function],
-            "sortable": true,
-          },
-        ],
-        "onDataCriteriaChange": [Function],
-        "pagination": Object {},
-        "recordId": "id",
-        "selection": Object {
-          "onSelectionChanged": [Function],
-        },
-      }
-    }
-    model={
-      Object {
-        "criteria": Object {
-          "page": Object {
-            "index": 0,
-            "size": 3,
-          },
-        },
-        "data": Object {
-          "records": Array [
-            Object {
-              "count": 1,
-              "id": "1",
-            },
-            Object {
-              "count": 2,
-              "id": "2",
-            },
-            Object {
-              "count": 3,
-              "id": "3",
-            },
-          ],
-          "totalRecordCount": 5,
-        },
-      }
-    }
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-  />
-</div>
-`;
-
-exports[`EuiTableOfRecords with sorting 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiRecordsTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiRecordsTable"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -1802,50 +604,7 @@ exports[`EuiTableOfRecords with sorting 1`] = `
         Name
       </EuiTableHeaderCell>
     </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow
-        isSelected={false}
-        key="row_1_0"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_1_0"
-          textOnly={true}
-        >
-          name1
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_2_1"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_2_0"
-          textOnly={true}
-        >
-          name2
-        </EuiTableRowCell>
-      </EuiTableRow>
-      <EuiTableRow
-        isSelected={false}
-        key="row_3_2"
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-      >
-        <EuiTableRowCell
-          align="left"
-          key="_data_column_name_3_0"
-          textOnly={true}
-        >
-          name3
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
+    <EuiTableBody />
   </EuiTable>
 </div>
 `;
