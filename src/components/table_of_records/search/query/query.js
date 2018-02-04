@@ -1,6 +1,7 @@
 import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil } from '../../../../services/predicate';
+import { astToES } from './ast_to_es';
 
 /**
  * This is the consumer interface for the query - it's effectively a wrapper construct around
@@ -74,21 +75,55 @@ export class Query {
    * an new array of all items that matched this query. Options:
    *
    * defaultFields: string[]
-   * An array of field names to match the default clauses against. When not specified, the query
-   * will pick up all the string fields of each record and try to match against those.
    *
-   * isClauseMatcher: (record: any, flag: string, applied: boolean, explain?: []) => boolean
-   * By default the 'is' clauses will try to match against boolean fields - where the flag of the clause
-   * indicates the field name. You can change this behaviour by providing this matcher function for the
-   * is clause. For example, if the object has a `tags` field, one can create a matcher that checks if
-   * an object has a specific tag (e.g. "is:marketing", "is:kitchen", etc..)
+   *    An array of field names to match the default clauses against. When not specified, the query
+   *    will pick up all the string fields of each record and try to match against those.
    *
-   * explain: boolean
-   * When set to `true`, each item in the returns array will have an `__explain` field that will hold
-   * information about why the objects matched the query (default to `false`, mainly/only useful for debugging)
+   * isClauseMatcher?: (record: any, flag: string, applied: boolean, explain?: []) => boolean
+   *
+   *    By default the 'is' clauses will try to match against boolean fields - where the flag of the clause
+   *    indicates the field name. You can change this behaviour by providing this matcher function for the
+   *    is clause. For example, if the object has a `tags` field, one can create a matcher that checks if
+   *    an object has a specific tag (e.g. "is:marketing", "is:kitchen", etc..)
+   *
+   * explain?: boolean
+   *
+   *    When set to `true`, each item in the returns array will have an `__explain` field that will hold
+   *    information about why the objects matched the query (default to `false`, mainly/only useful for
+   *    debugging)
    */
   execute(items, options = {}) {
     return executeAst(this.ast, items, options);
+  }
+
+  /**
+   * Builds and returns an Elasticsearch query out this query. Options:
+   *
+   * defaultFields?: string[]
+   *
+   *    An array of field names to match the default clauses against. When not specified, the query
+   *    will pick up all the string fields of each record and try to match against those.
+   *
+   * isToQuery?: (flag: string, on: boolean) => Object (elasticsearch query object)
+   *
+   *    By default, "is" clauses will be translated to a term query where the flag is the field
+   *    and the "on" value will be the value of the field. This function lets you change this default
+   *    translation and provide your own custom one.
+   *
+   * defaultValuesToQuery?: (values: string[]) => Object (elasticsearch query object)
+   *
+   *    By default, "default" clauses will be translated to a "simple_query_string" query where all
+   *    the values serve as terms in the query string. This function lets you change this default
+   *    translation and provide your own custom one.
+   *
+   * fieldValuesToAndQuery?: (field: string, values: string[]) => Object (elasticsearch query object)
+   *
+   *    By default, "field" clauses will be translated to a match query where all the values serve as
+   *    terms in the query(the operator is AND). This function lets you change this default translation
+   *    and provide your own custom one.
+   */
+  toESQuery(options = {}) {
+    return astToES(this.ast, options);
   }
 
 }

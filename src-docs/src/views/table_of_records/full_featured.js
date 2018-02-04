@@ -24,6 +24,7 @@ import {
 } from '../../../../src/services';
 import { Query } from '../../../../src/components/table_of_records/search/query';
 import { EuiBadge } from '../../../../src/components/badge';
+import { executeCriteria } from '../../../../src/components/table_of_records';
 
 const random = new Random();
 
@@ -78,32 +79,6 @@ const people = times(20, (index) => {
   };
 });
 
-function loadPage(query, pageIndex, pageSize, sort) {
-  let list = people;
-  if (query) {
-    list = query.execute(list, { defaultFields: [ 'firstName', 'lastName', 'nickname' ] });
-  }
-  if (sort) {
-    list = list.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
-  }
-  if (!pageIndex && !pageSize) {
-    return {
-      index: 0,
-      size: list.length,
-      items: list,
-      totalRecordCount: list.length
-    };
-  }
-  const from = pageIndex * pageSize;
-  const items = list.slice(from, Math.min(from + pageSize, list.length));
-  return {
-    index: pageIndex,
-    size: pageSize,
-    items,
-    totalRecordCount: list.length
-  };
-}
-
 export default class PeopleTable extends Component {
   constructor(props) {
     super(props);
@@ -128,24 +103,14 @@ export default class PeopleTable extends Component {
   }
 
   computeTableState(criteria) {
-    const query = criteria.search ? criteria.search.query : undefined;
-    const pageIndex = criteria.page ? criteria.page.index : undefined;
-    const pageSize = criteria.page ? criteria.page.size : undefined;
-    const sort = criteria.sort;
-    const page = loadPage(query, pageIndex, pageSize, sort);
+    console.debug(JSON.stringify(criteria.search.query.ast));
+    const result = executeCriteria(people, criteria);
     return {
       data: {
-        records: page.items,
-        totalRecordCount: page.totalRecordCount
+        records: result.hits,
+        totalRecordCount: result.total
       },
-      criteria: {
-        page: {
-          index: page.index,
-          size: page.size
-        },
-        search: criteria.search,
-        sort
-      }
+      criteria
     };
   }
 

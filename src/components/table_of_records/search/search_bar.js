@@ -13,15 +13,8 @@ export const SearchConfigType = PropTypes.shape({
   filters: FilterBarConfigType
 });
 
-const resolveQuery = (query) => {
-  if (!query) {
-    return Query.parse('');
-  }
-  return isString(query) ? Query.parse(query) : query;
-};
-
-export const SearchBar = ({ config, query, onChange }) => {
-  query = resolveQuery(query);
+export const SearchBar = ({ config, query = '', onChange }) => {
+  query = isString(query) ? Query.parse(query) : query;
   const filters = !config.filters ? undefined : (
     <EuiFlexItem grow={false}>
       <EuiFilterGroup>

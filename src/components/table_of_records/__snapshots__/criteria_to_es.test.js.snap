@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`criteriaToESRequestBody empty criteria 1`] = `
+Object {
+  "from": 0,
+  "query": Object {
+    "match_all": Object {},
+  },
+  "size": 10,
+}
+`;
+
+exports[`criteriaToESRequestBody pagination 1`] = `
+Object {
+  "from": 15,
+  "query": Object {
+    "match_all": Object {},
+  },
+  "size": 5,
+}
+`;
+
+exports[`criteriaToESRequestBody pagination, sorting and query 1`] = `
+Object {
+  "from": 16,
+  "query": Object {
+    "query": "this is a query",
+  },
+  "size": 8,
+  "sort": Array [
+    Object {
+      "foo": "desc",
+    },
+    "_score",
+  ],
+}
+`;
+
+exports[`criteriaToESRequestBody search query 1`] = `
+Object {
+  "from": 0,
+  "query": Object {
+    "query": "this is a query",
+  },
+  "size": 10,
+}
+`;
+
+exports[`criteriaToESRequestBody sorting - asc 1`] = `
+Object {
+  "from": 0,
+  "query": Object {
+    "match_all": Object {},
+  },
+  "size": 10,
+  "sort": Array [
+    Object {
+      "foo": "asc",
+    },
+    "_score",
+  ],
+}
+`;
+
+exports[`criteriaToESRequestBody sorting - desc 1`] = `
+Object {
+  "from": 0,
+  "query": Object {
+    "match_all": Object {},
+  },
+  "size": 10,
+  "sort": Array [
+    Object {
+      "foo": "desc",
+    },
+    "_score",
+  ],
+}
+`;
