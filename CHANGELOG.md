@@ -8,7 +8,7 @@
 
 **Breaking changes**
 
-- Changed `<EuiGlobalToastList>` to be responsible for instantiating toasts, tracking their lifetimes, and dismissing them. It now acepts `toasts`, `dismissToast`, and `toastLifeTimeMs` props. It no longer accepts `children`. ([]())
+- Changed `<EuiGlobalToastList>` to be responsible for instantiating toasts, tracking their lifetimes, and dismissing them. It now acepts `toasts`, `dismissToast`, and `toastLifeTimeMs` props. It no longer accepts `children`. ([#370](https://github.com/elastic/eui/pull/370))
 
 # [`0.0.18`](https://github.com/elastic/eui/tree/v0.0.18)
 
