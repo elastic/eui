@@ -1,0 +1,37 @@
+SearchQuery {
+
+  Expr = Clause*
+
+  Clause
+    = IsClause
+    | FieldClause
+    | DefaultClause
+
+  DefaultClause
+    = "-" term -- mustNot
+    | term -- must
+
+  IsClause
+    = "-" IsTerm -- off
+    | IsTerm -- on
+
+  IsTerm = caseInsensitive<"is:"> term
+
+  FieldClause
+    = "-" FieldTerm -- mustNot
+    | FieldTerm -- must
+
+  FieldTerm = field ":" term
+
+  field = fieldChar+
+
+  fieldChar = (alnum | escapedChar)
+
+  term = termChar+
+
+  termChar = (alnum | escapedChar)
+
+  escapedChar = "\\"reservedChar
+
+  reservedChar = ":"
+}
