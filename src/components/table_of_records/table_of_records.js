@@ -237,7 +237,8 @@ export class EuiTableOfRecords extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Don't call changeSelection here or else we can get into an infinite loop:
-    // changeSelection calls owner -> owner sets its state -> we receive new props -> ad infinitum
+    // changeSelection calls props.onSelectionChanged on owner ->
+    // owner sets its state -> we receive new props, calling componentWillReceiveProps -> ad infinitum
     if (!this.props.config.selection) {
       return;
     }
