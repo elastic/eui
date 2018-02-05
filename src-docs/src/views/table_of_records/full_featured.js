@@ -5,6 +5,7 @@ import uuid from 'uuid/v1';
 import { times } from 'lodash';
 
 import {
+  EuiButton,
   EuiTableOfRecords,
   EuiHealth,
   EuiSwitch,
@@ -62,6 +63,7 @@ export default class PeopleTable extends Component {
     super(props);
 
     this.state = {
+      selectedIds: [],
       features: {
         pagination: true,
         sorting: true,
@@ -96,17 +98,34 @@ export default class PeopleTable extends Component {
     };
   }
 
+  onSelectionChanged = selection => {
+    const selectedIds = selection.map(item => item.id);
+    this.setState({
+      selectedIds,
+    });
+  };
+
   onDataCriteriaChange(criteria) {
     this.setState(this.computeTableState(criteria));
   }
 
   deletePerson(personToDelete) {
     const i = people.findIndex((person) => person.id === personToDelete.id);
-    if (i >= 0) {
+    if (i !== -1) {
       people.splice(i, 1);
     }
     this.onDataCriteriaChange(this.state.criteria);
   }
+
+  deleteSelectedPeople = () => {
+    this.state.selectedIds.forEach(id => {
+      const i = people.findIndex((person) => person.id === id);
+      if (i !== -1) {
+        people.splice(i, 1);
+      }
+    });
+    this.onDataCriteriaChange(this.state.criteria);
+  };
 
   clonePerson(personToClone) {
     const i = people.findIndex((person) => person.id === personToClone.id);
@@ -235,13 +254,15 @@ export default class PeopleTable extends Component {
 
       selection: features.selection ? {
         selectable: (record) => record.online,
-        selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined
+        selectableMessage: person => !person.online ? `${person.firstName} is offline` : undefined,
+        onSelectionChanged: this.onSelectionChanged,
       } : undefined,
 
       onDataCriteriaChange: (criteria) => this.onDataCriteriaChange(criteria)
     };
 
     const {
+      selectedIds,
       data,
       criteria: {
         page,
@@ -257,9 +278,23 @@ export default class PeopleTable extends Component {
       },
     };
 
+    let deleteButton;
+
+    if (selectedIds.length) {
+      const label = selectedIds.length > 1 ? `Delete ${selectedIds.length} people` : `Delete 1 person`;
+      deleteButton = (
+        <EuiFlexItem grow={false}>
+          <EuiButton color="danger" onClick={this.deleteSelectedPeople}>
+            {label}
+          </EuiButton>
+        </EuiFlexItem>
+      );
+    }
+
     return (
       <div>
-        <EuiFlexGroup>
+        <EuiFlexGroup alignItems="center">
+          { deleteButton }
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Pagination"

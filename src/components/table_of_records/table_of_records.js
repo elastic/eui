@@ -235,6 +235,26 @@ export class EuiTableOfRecords extends React.Component {
     this.setState({ hoverRecordId: null });
   }
 
+  componentWillReceiveProps(nextProps) {
+    // Don't call changeSelection here or else we can get into an infinite loop:
+    // changeSelection calls props.onSelectionChanged on owner ->
+    // owner sets its state -> we receive new props, calling componentWillReceiveProps -> ad infinitum
+    if (!this.props.config.selection) {
+      return;
+    }
+
+    this.setState(prevState => {
+      // Remove any records which don't exist any more.
+      const newSelection = prevState.selection.filter(selectedRecord => (
+        nextProps.model.data.records.findIndex(record => record.id === selectedRecord.id) !== -1
+      ));
+
+      return {
+        selection: newSelection,
+      };
+    });
+  }
+
   render() {
     const { className, config, model, ...rest } = this.props;
 
@@ -261,20 +281,25 @@ export class EuiTableOfRecords extends React.Component {
   }
 
   renderTableHead(config, model) {
-
     const headers = [];
 
     if (config.selection) {
-      const checked = this.state.selection && this.state.selection.length > 0;
+      const selectableRecords = model.data.records.filter((record) =>
+        !config.selection.selectable || config.selection.selectable(record, model));
+
+      const checked =
+        this.state.selection
+        && (selectableRecords.length !== 0)
+        && (this.state.selection.length === selectableRecords.length);
+
       const onChange = (event) => {
         if (event.target.checked) {
-          const selectableRecords = model.data.records.filter((record) =>
-            !config.selection.selectable || config.selection.selectable(record, model));
           this.changeSelection(selectableRecords);
         } else {
           this.changeSelection([]);
         }
       };
+
       headers.push(
         <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
           <EuiCheckbox
@@ -282,13 +307,13 @@ export class EuiTableOfRecords extends React.Component {
             type="inList"
             checked={checked}
             onChange={onChange}
+            data-test-subj="checkboxSelectAll"
           />
         </EuiTableHeaderCellCheckbox>
       );
     }
 
     config.columns.forEach((column, index) => {
-
       // actions column
       if (column.actions) {
         headers.push(
@@ -479,13 +504,13 @@ export class EuiTableOfRecords extends React.Component {
           checked={checked}
           onChange={onChange}
           title={title}
+          data-test-subj={`checkboxSelectRow-${recordId}`}
         />
       </EuiTableRowCellCheckbox>
     );
   }
 
   renderTableRecordActionsCell(recordId, record, actions, config, model, columnIndex) {
-
     const visible = this.state.hoverRecordId === recordId;
 
     const actionEnabled = (action) =>

@@ -308,6 +308,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -336,6 +337,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -361,6 +363,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -386,6 +389,7 @@ exports[`EuiTableOfRecords with pagination and selection 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -468,6 +472,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -497,6 +502,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -522,6 +528,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -547,6 +554,7 @@ exports[`EuiTableOfRecords with pagination, selection and sorting 1`] = `
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -630,6 +638,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -664,6 +673,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -743,6 +753,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -822,6 +833,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and a single reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -969,6 +981,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -998,6 +1011,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -1023,6 +1037,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -1048,6 +1063,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column dataTy
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -1132,6 +1148,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -1161,6 +1178,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -1186,6 +1204,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -1211,6 +1230,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and column render
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -1295,6 +1315,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -1329,6 +1350,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -1406,6 +1428,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -1483,6 +1506,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting and multiple reco
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}
@@ -1634,6 +1658,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
       >
         <EuiCheckbox
           checked={false}
+          data-test-subj="checkboxSelectAll"
           disabled={false}
           id="_selection_column-checkbox"
           onChange={[Function]}
@@ -1663,6 +1688,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-1"
             disabled={false}
             id="_selection_column_1-checkbox"
             onChange={[Function]}
@@ -1688,6 +1714,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-2"
             disabled={false}
             id="_selection_column_2-checkbox"
             onChange={[Function]}
@@ -1713,6 +1740,7 @@ exports[`EuiTableOfRecords with pagination, selection, sorting, column renderer 
         >
           <EuiCheckbox
             checked={false}
+            data-test-subj="checkboxSelectRow-3"
             disabled={false}
             id="_selection_column_3-checkbox"
             onChange={[Function]}

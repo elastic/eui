@@ -1,6 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.18`.
+**Bug fixes**
+
+- `EuiTableOfRecords` selection bugs ([#365](https://github.com/elastic/eui/pull/365))
+  - Deleting selected items now resets the select all checkbox to an unchecked state
+  - The select all checkbox only becomes checked when all selectable rows are checked, not just some of them
 
 # [`0.0.18`](https://github.com/elastic/eui/tree/v0.0.18)
 
@@ -12,7 +16,7 @@ No public interface changes since `0.0.18`.
 
 **Bug fixes**
 
-- Downgraded `lodash` version to `3.10.0` to align it with Kibana. ([#359]()https://github.com/elastic/eui/pull/359)
+- Downgraded `lodash` version to `3.10.0` to align it with Kibana. ([#359](https://github.com/elastic/eui/pull/359))
 
 # [`0.0.16`](https://github.com/elastic/eui/tree/v0.0.16)
 
