@@ -103,7 +103,6 @@ export default class PeopleTable extends Component {
   }
 
   computeTableState(criteria) {
-    console.debug(JSON.stringify(criteria.search.query.ast));
     const result = executeCriteria(people, criteria);
     return {
       data: {
@@ -270,10 +269,18 @@ export default class PeopleTable extends Component {
             name: 'Online'
           },
           {
-            type: 'field_value_toggle',
+            type: 'field_value_toggle_group',
             field: 'group',
-            value: 'kibana',
-            name: 'Kibana'
+            items: [
+              {
+                value: 'kibana',
+                name: 'Kibana'
+              },
+              {
+                value: 'es',
+                name: 'ES'
+              }
+            ]
           },
           {
             type: 'field_value_selection',

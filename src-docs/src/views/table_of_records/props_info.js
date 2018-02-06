@@ -171,8 +171,17 @@ export const propsInfo = {
         filters: {
           description: 'Configuring the search filters',
           required: false,
-          type: { name: '( #FieldValueSelectionFilter | #FieldValueToggleFilter | #IsFilter )[]' }
+          type: { name: '#SearchFilter[]' }
         }
+      }
+    }
+  },
+
+  SearchFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      description: '#FieldValueSelectionFilter | #FieldValueToggleFilter | #IsFilter | #FieldValueToggleGroupFilter',
+      props: {
       }
     }
   },
@@ -322,6 +331,59 @@ export const propsInfo = {
           required: false,
           type: { name: '() => boolean' }
         }
+      }
+    }
+  },
+
+  FieldValueToggleGroupFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description: 'Defines the type of the filter (must be set to `field_value_toggle_group`)',
+          required: true,
+          type: { name: '"field_value_toggle_group"' }
+        },
+        field: {
+          description: 'The name of the field to filter by',
+          required: true,
+          type: { name: 'string' }
+        },
+        items: {
+          description: 'A list of field value filters that are part of this group',
+          required: true,
+          type: { name: '#FieldValueToggleGroupItem[]' }
+        },
+        available: {
+          description: 'Called to check whether this filter is currently available. If not, it will not be shown',
+          required: false,
+          type: { name: '() => boolean' }
+        }
+      }
+    }
+  },
+
+  FieldValueToggleGroupItem: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        value: {
+          description: 'The field value to filter by',
+          required: true,
+          type: { name: 'string' }
+        },
+        name: {
+          description: 'The name of the filter item (will be used as a caption of this item button)',
+          required: true,
+          type: { name: 'string' }
+        },
+        negatedName: {
+          description: 'The name that will be used when the value of this item is active yet negated ' +
+                       '(e.g. `-tag:bug`)',
+          required: false,
+          defaultValue: { value: 'Not {name}', comment: 'where `{name}` is the configured name' },
+          type: { name: 'string' }
+        },
       }
     }
   },

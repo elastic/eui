@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFilter, FilterConfigType } from './filters';
 import { Query } from './query';
+import { EuiFilterGroup } from '../../filter_group';
 
 export const FilterBarConfigType = PropTypes.arrayOf(FilterConfigType);
 
@@ -19,7 +20,7 @@ export class FilterBar extends React.Component {
 
   render() {
     const { config = [], query, onChange } = this.props;
-    return config.reduce((controls, filterConfig, index) => {
+    const items = config.reduce((controls, filterConfig, index) => {
       if (filterConfig.available && !filterConfig.available()) {
         return controls;
       }
@@ -32,5 +33,6 @@ export class FilterBar extends React.Component {
       );
       return controls;
     }, []);
+    return <EuiFilterGroup>{items}</EuiFilterGroup>;
   }
 }

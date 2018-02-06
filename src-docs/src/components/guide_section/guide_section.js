@@ -25,7 +25,31 @@ import {
   EuiLink
 } from '../../../../src/components';
 
-const humanizeType = type => {
+const markup = (text) => {
+  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
+  return text.split(regex).reduce((elements, token, index) => {
+    if (!token) {
+      return elements;
+    }
+    if (token.startsWith('#')) {
+      const id = token.substring(1);
+      const onClick = () => {
+        document.getElementById(id).scrollIntoView();
+      };
+      elements.push(<EuiLink key={index} onClick={onClick}>{id}</EuiLink>);
+      return elements;
+    }
+    if (token.startsWith('`')) {
+      const code = token.substring(1, token.length - 1);
+      elements.push(<EuiCode key={index}>{code}</EuiCode>);
+      return elements;
+    }
+    elements.push(<span key={index}>{token}</span>);
+    return elements;
+  }, []);
+};
+
+const humanizeType = (type) => {
   if (!type) {
     return '';
   }
@@ -98,7 +122,7 @@ export class GuideSection extends Component {
     this.setState({
       selectedTab,
     });
-  }
+  };
 
   onToggleSandboxChrome = () => {
     this.setState({
@@ -106,7 +130,7 @@ export class GuideSection extends Component {
         isChromeVisible: !this.state.sandbox.isChromeVisible,
       },
     });
-  }
+  };
 
   renderTabs() {
     return this.tabs.map(tab => (
@@ -169,30 +193,6 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
-      function markup(text) {
-        const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-        return text.split(regex).reduce((elements, token, index) => {
-          if (!token) {
-            return elements;
-          }
-          if (token.startsWith('#')) {
-            const id = token.substring(1);
-            const onClick = () => {
-              document.getElementById(id).scrollIntoView();
-            };
-            elements.push(<EuiLink key={index} onClick={onClick}>{id}</EuiLink>);
-            return elements;
-          }
-          if (token.startsWith('`')) {
-            const code = token.substring(1, token.length - 1);
-            elements.push(<EuiCode key={index}>{code}</EuiCode>);
-            return elements;
-          }
-          elements.push(<span key={index}>{token}</span>);
-          return elements;
-        }, []);
-      }
-
       const typeMarkup = markup(humanizedType);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
@@ -239,7 +239,7 @@ export class GuideSection extends Component {
       descriptionElement = (
         <div key={`${componentName}_description`}>
           <EuiText>
-            <p>{description}</p>
+            <p>{markup(description)}</p>
           </EuiText>
           <EuiSpacer size="m" key={`propsSpacer-${componentName}`} />
         </div>
