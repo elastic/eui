@@ -16,11 +16,14 @@ import {
 
 // Guidelines
 
-import WritingGuidelines
-  from './views/guidelines/writing';
+import ButtonGuidelines
+  from './views/guidelines/button';
 
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
+
+import WritingGuidelines
+  from './views/guidelines/writing';
 
 // Services
 
@@ -211,6 +214,9 @@ const createExample = ({ title, intro, sections }) => {
 
 const navigation = [{
   name: 'Guidelines',
+  items: [{
+    name: 'Buttons',
+    component: ButtonGuidelines,
   items: [{
     name: 'Writing',
     component: WritingGuidelines,
