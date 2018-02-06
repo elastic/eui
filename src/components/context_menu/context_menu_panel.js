@@ -88,6 +88,8 @@ export class EuiContextMenuPanel extends Component {
     ) {
       if (e.keyCode === cascadingMenuKeyCodes.LEFT) {
         if (this.props.showPreviousPanel) {
+          e.preventDefault();
+          e.stopPropagation();
           this.props.showPreviousPanel();
 
           if (this.props.onUseKeyboardToNavigate) {

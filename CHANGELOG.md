@@ -28,6 +28,10 @@
 
 - Added `react-color` as a dependency (was previously a devDependency) ([#354](https://github.com/elastic/eui/pull/354))
 
+**Bug fixes**
+
+- Stop propagation and prevent default when closing components. Otherwise the same Escape keypress could close the parent component(s) as well as the one you intend to close. [(#344)](https://github.com/elastic/eui/pull/344)
+
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
 - Added `EuiColorPicker`. ([#328](https://github.com/elastic/eui/pull/328))

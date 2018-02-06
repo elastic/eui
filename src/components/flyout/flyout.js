@@ -22,6 +22,8 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 export class EuiFlyout extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
       this.props.onClose();
     }
   };
