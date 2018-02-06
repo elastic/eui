@@ -5,7 +5,6 @@ exports[`FilterBar render - no filters 1`] = `Array []`;
 exports[`FilterBar render - with filters 1`] = `
 Array [
   <div
-    grow={false}
     key="filter_0"
     style={
       Object {
@@ -14,7 +13,6 @@ Array [
     }
   />,
   <div
-    grow={false}
     key="filter_1"
     style={
       Object {

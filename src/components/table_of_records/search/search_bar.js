@@ -30,7 +30,7 @@ export const SearchBar = ({ config, query, onChange }) => {
     </EuiFlexItem>
   );
   return (
-    <EuiFlexGroup gutterSize="xs" alignItems="center">
+    <EuiFlexGroup gutterSize="m" alignItems="center">
       <EuiFlexItem grow={true}>
         <SearchBox config={config.box} query={query} onChange={onChange}/>
       </EuiFlexItem>

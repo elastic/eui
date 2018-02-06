@@ -19,6 +19,7 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
+  panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
 >
@@ -62,6 +63,7 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
+  panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
 >
@@ -105,6 +107,7 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
+  panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
 >

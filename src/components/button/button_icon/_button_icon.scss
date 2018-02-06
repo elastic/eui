@@ -16,7 +16,7 @@
 
   &:disabled {
     color: $euiButtonColorDisabled;
-    pointer-events: none;
+    cursor: not-allowed;
 
     &:hover, &:focus {
       background-color: $euiColorEmptyShade;

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isArray, isNil } from '../../../../services/predicate';
 
+import { keyCodes } from '../../../../services';
+
 import { Occur } from '../query';
 import { EuiPropTypes } from '../../../../utils/prop_types';
 import { EuiPopover } from '../../../popover/popover';
@@ -148,6 +150,13 @@ export class FieldValueSelectionFilter extends React.Component {
     }
   }
 
+  onKeyDown(index, event) {
+    if (event.keyCode === keyCodes.DOWN) {
+      this.refs[index + 1].focus();
+    } else if (event.keyCode === keyCodes.UP) {
+      this.refs[index - 1].focus();
+    }
+  }
 
   render() {
     const { index, query, config } = this.props;
@@ -199,6 +208,7 @@ export class FieldValueSelectionFilter extends React.Component {
             disabled={disabled}
             incremental={true}
             onSearch={(query) => this.filterOptions(query)}
+            onKeyDown={this.onKeyDown.bind(this, 1)}
           />
         </EuiPopoverTitle>
       );
@@ -227,6 +237,8 @@ export class FieldValueSelectionFilter extends React.Component {
           key={index}
           checked={checked}
           onClick={onClick}
+          ref={(ref) => this.refs[index] = ref}
+          onKeyDown={this.onKeyDown.bind(this, index)}
         >
           {option.view ? option.view : this.resolveOptionName(option) }
         </EuiFilterSelectItem>

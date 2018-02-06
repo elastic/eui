@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiPaginationButton } from './pagination_button';
+import { EuiButtonIcon } from '../button';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -33,18 +34,16 @@ export const EuiPagination = ({
     );
   }
 
-  let previousButton;
 
-  if (activePage !== 0) {
-    previousButton = (
-      <EuiPaginationButton
-        onClick={onPageClick.bind(null, activePage - 1)}
-        iconType="arrowLeft"
-      >
-        Previous
-      </EuiPaginationButton>
-    );
-  }
+  const previousButton = (
+    <EuiButtonIcon
+      onClick={onPageClick.bind(null, activePage - 1)}
+      iconType="arrowLeft"
+      disabled={activePage === 0}
+      color="text"
+      aria-label="Previous"
+    />
+  );
 
   const firstPageButtons = [];
 
@@ -65,7 +64,9 @@ export const EuiPagination = ({
           key="beginningEllipsis"
           isPlaceholder
           hideOnMobile
-        />
+        >
+          <span>&hellip;</span>
+        </EuiPaginationButton>
       );
     }
   }
@@ -79,7 +80,9 @@ export const EuiPagination = ({
           key="endingEllipsis"
           isPlaceholder
           hideOnMobile
-        />
+        >
+          <span>&hellip;</span>
+        </EuiPaginationButton>
       );
     }
 
@@ -94,37 +97,33 @@ export const EuiPagination = ({
     );
   }
 
-  let nextButton;
-
-  if (activePage !== pageCount - 1) {
-    nextButton = (
-      <EuiPaginationButton
-        onClick={onPageClick.bind(null, activePage + 1)}
-        iconType="arrowRight"
-        iconSide="right"
-      >
-        Next
-      </EuiPaginationButton>
-    );
-  }
-
-  let selectablePages;
-  if (pages.length > 1) {
-    selectablePages = pages;
-  }
-
-  return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      {previousButton}
-      {firstPageButtons}
-      {selectablePages}
-      {lastPageButtons}
-      {nextButton}
-    </div>
+  const nextButton = (
+    <EuiButtonIcon
+      onClick={onPageClick.bind(null, activePage + 1)}
+      iconType="arrowRight"
+      aria-label="Previous"
+      disabled={activePage === pageCount - 1}
+      color="text"
+    />
   );
+
+  if (pages.length > 1) {
+    const selectablePages = pages;
+    return (
+      <div
+        className={classes}
+        {...rest}
+      >
+        {previousButton}
+        {firstPageButtons}
+        {selectablePages}
+        {lastPageButtons}
+        {nextButton}
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 EuiPagination.propTypes = {

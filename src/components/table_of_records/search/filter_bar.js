@@ -26,7 +26,7 @@ export class FilterBar extends React.Component {
       const key = `filter_${index}`;
       const control = createFilter(index, filterConfig, query, onChange);
       controls.push(
-        <div key={key} grow={false} style={{ display: 'inline-block' }}>
+        <div key={key} style={{ display: 'inline-block' }}>
           {control}
         </div>
       );
