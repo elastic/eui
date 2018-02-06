@@ -181,6 +181,7 @@ export class FieldValueSelectionFilter extends React.Component {
         panelPaddingSize="none"
         withTitle={withTitle}
         anchorPosition="downRight"
+        panelClassName="euiFilterGroup__popoverPanel"
       >
         {searchBox}
         {content}

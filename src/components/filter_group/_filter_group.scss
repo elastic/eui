@@ -9,3 +9,7 @@
     border-left: $euiBorderThin;
   }
 }
+
+.euiFilterGroup__popoverPanel {
+  width: $euiSize * 20;
+}

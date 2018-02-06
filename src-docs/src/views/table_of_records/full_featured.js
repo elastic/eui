@@ -237,7 +237,7 @@ export default class PeopleTable extends Component {
           width: '200px',
           render: code => {
             const country = countries.find(country => country.code === code);
-            return country ? <span>{country.flag} {country.name}</span> : '';
+            return country ? <span>{country.flag}&nbsp;{country.name}</span> : '';
           }
         },
         {
@@ -316,7 +316,7 @@ export default class PeopleTable extends Component {
                 return countries.map(country => ({
                   value: country.code,
                   name: country.name,
-                  view: <span>{country.flag} {country.name}</span>
+                  view: <span>{country.flag}&nbsp;{country.name}</span>
                 }));
               });
             }
