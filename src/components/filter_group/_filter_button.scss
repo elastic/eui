@@ -25,7 +25,7 @@
 
     &::after {
       display: block;
-      content: attr(dataText);
+      content: attr(data-text);
       font-weight: $euiFontWeightBold;
       height: 0;
       overflow: hidden;
