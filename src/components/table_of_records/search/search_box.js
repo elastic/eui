@@ -26,21 +26,36 @@ export class SearchBox extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      error: null
+    };
   }
 
-  componentWillUpdate(nextProps) {
-    this.inputElement.value = nextProps.query.text;
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.error) {
+      this.inputElement.value = nextState.error.query;
+    } else {
+      this.inputElement.value = nextProps.query.text;
+    }
   }
 
   onSearch(queryText) {
-    this.props.onChange(Query.parse(queryText));
+    try {
+      const query = Query.parse(queryText);
+      this.setState({ error: null });
+      this.props.onChange(query);
+    } catch (e) {
+      this.setState({ error: { query: queryText, message: e.message } });
+    }
+
   }
 
   render() {
     const { config, query } = this.props;
     const placeholder = config.placeholder || defaults.config.placeholder;
     const incremental = !isNil(config.incremental) ? config.incremental : defaults.config.incremental;
-    const value = query.text;
+    const value = this.state.error ? this.state.error.query : query.text;
+    const isInvalid = !isNil(this.state.error);
     return (
       <EuiFieldSearch
         inputRef={input => this.inputElement = input}
@@ -49,6 +64,7 @@ export class SearchBox extends React.Component {
         defaultValue={value}
         incremental={incremental}
         onSearch={this.onSearch.bind(this)}
+        isInvalid={isInvalid}
       />
     );
   }

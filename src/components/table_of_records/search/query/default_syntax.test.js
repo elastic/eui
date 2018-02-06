@@ -2,6 +2,48 @@ import { defaultSyntax } from './default_syntax';
 
 describe('defaultSyntax', () => {
 
+  test('empty query', () => {
+    const query = '';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toBeDefined();
+    expect(ast.clauses).toHaveLength(0);
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
+  });
+
+  test('escaped chars as default clauses', () => {
+    const query = '\\- -\\: \\\\';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toBeDefined();
+    expect(ast.clauses).toHaveLength(3);
+
+    let clause = ast.getDefaultClause('-');
+    expect(clause).toBeDefined();
+    expect(clause.type).toBe('default');
+    expect(clause.value).toBe('-');
+    expect(clause.occur).toBe('must');
+
+    clause = ast.getDefaultClause(':');
+    expect(clause).toBeDefined();
+    expect(clause.type).toBe('default');
+    expect(clause.value).toBe(':');
+    expect(clause.occur).toBe('must_not');
+
+    clause = ast.getDefaultClause('\\');
+    expect(clause).toBeDefined();
+    expect(clause.type).toBe('default');
+    expect(clause.value).toBe('\\');
+    expect(clause.occur).toBe('must');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
+  });
+
   test('single field clause', () => {
 
     const query = `name:john`;
@@ -13,6 +55,23 @@ describe('defaultSyntax', () => {
     expect(clause).toBeDefined();
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
+    expect(clause.occur).toBe('must');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
+  });
+
+  test('single field clause - escaped', () => {
+
+    const query = `n\\:ame:jo\\:hn`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+    const clause = ast.getFieldClause('n:ame', 'jo:hn');
+    expect(clause).toBeDefined();
+    expect(clause.field).toBe('n:ame');
+    expect(clause.value).toBe('jo:hn');
     expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);

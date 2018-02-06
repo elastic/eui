@@ -1,44 +1,91 @@
 import { ast, Occur } from './ast';
+import peg from 'pegjs';
 
-const splitByFieldClauseRegex = /(-?(?:[a-zA-Z_\-@#$]+[a-zA-Z0-9_\-@#$]*):(?:\S+))/;
-const splitByDefaultClausesRegex = /(-?\S+)/;
-const termQueryRegex = /(-?)([a-zA-Z_\-@#$]+[a-zA-Z0-9_\-@#$]*):(\S+)/;
+const escapeValue = (value) => {
+  return value.replace(/([:\-\\])/, '\\$1');
+};
+
+const grammar = `
+{
+  const unescape = (value) => {
+    return value.replace(/\\\\([:\\-\\\\])/, '$1');
+  };
+}
+
+Query
+  = clauses:Clauses { return clauses; }
+  / space? { return []; }
+
+Clauses
+  = space? head:Clause tail:(
+  	space clause:Clause { return clause }
+  )* space? {
+  	return [ head, ...tail]
+  }
+
+Clause
+  = IsClause
+  / FieldClause
+  / DefaultClause
+        
+DefaultClause
+  = space? "-" value:defaultValue { return { type: 'default', value: value, occur: 'must_not' }; }
+  / space? value:defaultValue { return { type: 'default', value: value, occur: 'must' }; }
+    
+IsClause
+  = space? "-" value:IsTerm { return { type: 'is', flag: value, applied: false }; }
+  / space? value:IsTerm { return { type: 'is', flag: value, applied: true }; }
+        
+IsTerm
+  = "is:" value:term { return value; }
+    
+FieldClause
+  = space? "-" ft:FieldTerm { return { type: 'field', field: ft.field, value: ft.value, occur: 'must_not'}; }
+  / space? ft:FieldTerm { return { type: 'field', field: ft.field, value: ft.value, occur: 'must'}; }
+    
+FieldTerm
+  = field:field ":" value:fieldValue { return {field, value}; }
+
+field "field name"
+  = fieldChar+ { return unescape(text()); }
+        
+fieldChar
+  = alnum
+  / escapedChar
+
+fieldValue "field value"
+  = term
+
+defaultValue "default term"
+  = term
+
+term
+  = termChar+ { return unescape(text()); }
+
+termChar
+  = alnum
+  / escapedChar
+
+escapedChar
+  = "\\\\" reservedChar
+
+reservedChar
+  = [:\\-\\\\]
+
+alnum "alpha numeric"
+  = [a-zA-Z0-9]+
+
+space "whitespace"
+  = [ \\t\\n\\r]*
+`;
+
+const parser = peg.buildParser(grammar);
 
 export const defaultSyntax = Object.freeze({
 
   parse: (query) => {
-    const tokens = query.split(splitByFieldClauseRegex);
-
-    return tokens.reduce((ast, token) => {
-      if (token === '') {
-        return ast;
-      }
-
-      // handling term query tokens
-      const match = token.match(termQueryRegex);
-      if (match) {
-        const occur = match[1] === '-' ? Occur.MUST_NOT : Occur.MUST;
-        const field = match[2];
-        const value = match[3];
-        if (field === 'is') {
-          return ast.setIsClause(value, occur === Occur.MUST);
-        }
-        return ast.addFieldClause(field, value, occur);
-      }
-
-      const defaultTokens = token.split(splitByDefaultClausesRegex);
-      return defaultTokens.reduce((ast, token) => {
-        token = token.trim();
-        if (token === '') {
-          return ast;
-        }
-        if (token.startsWith('-')) {
-          return ast.addDefaultClause(token.substring(1), Occur.MUST_NOT);
-        }
-        return ast.addDefaultClause(token, Occur.MUST);
-      }, ast);
-
-    }, ast());
+    const clauses = parser.parse(query);
+    return ast(clauses);
   },
 
   print: (ast) => {
@@ -46,13 +93,13 @@ export const defaultSyntax = Object.freeze({
       switch (clause.type) {
         case 'field':
           let prefix = clause.occur === Occur.MUST_NOT ? '-' : '';
-          return `${text} ${prefix}${clause.field}:${clause.value}`;
+          return `${text} ${prefix}${escapeValue(clause.field)}:${escapeValue(clause.value)}`;
         case 'is':
           prefix = clause.applied ? '' : '-';
-          return `${text} ${prefix}is:${clause.flag}`;
+          return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
         case 'default':
           prefix = clause.occur === Occur.MUST_NOT ? '-' : '';
-          return `${text} ${prefix}${clause.value}`;
+          return `${text} ${prefix}${escapeValue(clause.value)}`;
         default:
           return text;
       }
@@ -60,3 +107,5 @@ export const defaultSyntax = Object.freeze({
   }
 
 });
+
+
