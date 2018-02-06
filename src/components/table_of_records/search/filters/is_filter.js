@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EuiButtonEmpty } from '../../../button/button_empty';
+import { EuiFilterButton } from '../../../filter_group';
 import { isNil, isUndefined } from '../../../../services/predicate';
 import { EuiPropTypes } from '../../../../utils/prop_types';
 
@@ -28,9 +28,9 @@ export class IsFilter extends React.Component {
 
   resolveIconAndColor(clause) {
     if (isNil(clause)) {
-      return { icon: 'empty', color: 'text' };
+      return { hasActiveFilters: false };
     }
-    return  clause.applied ? { icon: 'check', color: 'primary' } : { icon: 'cross', color: 'danger' };
+    return  clause.applied ? { hasActiveFilters: true, prefix: null } : { hasActiveFilters: true, prefix: 'Not ' };
   }
 
   valueChanged(field, value) {
@@ -44,19 +44,19 @@ export class IsFilter extends React.Component {
     const { query, config } = this.props;
     const clause = query.getIsClause(config.field);
     const checked = !isNil(clause);
-    const { icon, color } = this.resolveIconAndColor(clause);
+    const { hasActiveFilters, prefix } = this.resolveIconAndColor(clause);
     const onClick = () => {
       const value = checked ? undefined : true;
       this.valueChanged(config.field, value);
     };
     return (
-      <EuiButtonEmpty
+      <EuiFilterButton
         onClick={onClick}
-        iconType={icon}
-        color={color}
+        hasActiveFilters={hasActiveFilters}
       >
+        {prefix}
         {config.name}
-      </EuiButtonEmpty>
+      </EuiFilterButton>
     );
   }
 }

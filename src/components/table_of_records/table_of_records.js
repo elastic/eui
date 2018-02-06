@@ -8,6 +8,7 @@ import {
   EuiTableRow, EuiTableRowCell, EuiTableRowCellCheckbox
 } from '../table';
 import { EuiCheckbox } from '../form/checkbox';
+import { EuiSpacer } from '../spacer';
 import { ICON_TYPES } from '../icon';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
 import {
@@ -303,11 +304,14 @@ export class EuiTableOfRecords extends React.Component {
     if (config.search) {
       const query = model.criteria.search && model.criteria.search.query;
       return (
-        <SearchBar
-          config={config.search}
-          query={query}
-          onChange={this.onSearchQueryChange.bind(this)}
-        />
+        <div>
+          <SearchBar
+            config={config.search}
+            query={query}
+            onChange={this.onSearchQueryChange.bind(this)}
+          />
+          <EuiSpacer size="l" />
+        </div>
       );
     }
   }

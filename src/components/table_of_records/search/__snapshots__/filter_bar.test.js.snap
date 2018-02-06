@@ -4,15 +4,23 @@ exports[`FilterBar render - no filters 1`] = `Array []`;
 
 exports[`FilterBar render - with filters 1`] = `
 Array [
-  <EuiFlexItem
-    component="div"
+  <div
     grow={false}
     key="filter_0"
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
   />,
-  <EuiFlexItem
-    component="div"
+  <div
     grow={false}
     key="filter_1"
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
   />,
 ]
 `;

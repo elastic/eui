@@ -13,6 +13,8 @@ import {
   EuiFlexItem,
   EuiLink,
   EuiSpacer,
+  EuiHorizontalRule,
+  EuiTitle,
 } from '../../../../src/components';
 
 import {
@@ -375,6 +377,10 @@ export default class PeopleTable extends Component {
 
     return (
       <div>
+        <EuiTitle size="s">
+          <p>Toggle demo functionality</p>
+        </EuiTitle>
+        <EuiSpacer size="m" />
         <EuiFlexGroup alignItems="center">
 
           { deleteButton }
@@ -418,6 +424,12 @@ export default class PeopleTable extends Component {
             />
           </EuiFlexItem>
         </EuiFlexGroup>
+
+        <EuiHorizontalRule />
+        <EuiSpacer size="m" />
+        <EuiTitle>
+          <p>List of people</p>
+        </EuiTitle>
         <EuiSpacer size="m" />
         <EuiTableOfRecords config={config} model={model} />
       </div>

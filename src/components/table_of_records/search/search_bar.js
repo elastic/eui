@@ -6,6 +6,7 @@ import { FilterBar, FilterBarConfigType } from './filter_bar';
 import PropTypes from 'prop-types';
 import { Query } from './query';
 import { EuiFlexItem } from '../../flex/flex_item';
+import { EuiFilterGroup } from '../../filter_group';
 
 export const SearchConfigType = PropTypes.shape({
   box: SearchBoxConfigType,
@@ -22,10 +23,14 @@ const resolveQuery = (query) => {
 export const SearchBar = ({ config, query, onChange }) => {
   query = resolveQuery(query);
   const filters = !config.filters ? undefined : (
-    <FilterBar config={config.filters} query={query} onChange={onChange}/>
+    <EuiFlexItem grow={false}>
+      <EuiFilterGroup>
+        <FilterBar config={config.filters} query={query} onChange={onChange}/>
+      </EuiFilterGroup>
+    </EuiFlexItem>
   );
   return (
-    <EuiFlexGroup gutterSize="m" alignItems="center">
+    <EuiFlexGroup gutterSize="xs" alignItems="center">
       <EuiFlexItem grow={true}>
         <SearchBox config={config.box} query={query} onChange={onChange}/>
       </EuiFlexItem>

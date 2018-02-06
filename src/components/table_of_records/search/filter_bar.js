@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EuiFlexItem } from '../../flex/flex_item';
 import { createFilter, FilterConfigType } from './filters';
 import { Query } from './query';
 
@@ -27,9 +26,9 @@ export class FilterBar extends React.Component {
       const key = `filter_${index}`;
       const control = createFilter(index, filterConfig, query, onChange);
       controls.push(
-        <EuiFlexItem key={key} grow={false}>
+        <div key={key} grow={false} style={{ display: 'inline-block' }}>
           {control}
-        </EuiFlexItem>
+        </div>
       );
       return controls;
     }, []);

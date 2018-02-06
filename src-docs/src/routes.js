@@ -70,8 +70,8 @@ import { ErrorBoundaryExample }
 import { ExpressionExample }
   from './views/expression/expression_example';
 
-import { FilterSelectExample }
-  from './views/filter_select/filter_select_example';
+import { FilterGroupExample }
+  from './views/filter_group/filter_group_example';
 
 import { FlexExample }
   from './views/flex/flex_example';
@@ -222,7 +222,7 @@ const components = [
   DescriptionListExample,
   ErrorBoundaryExample,
   ExpressionExample,
-  FilterSelectExample,
+  FilterGroupExample,
   FlexExample,
   FlyoutExample,
   FormExample,

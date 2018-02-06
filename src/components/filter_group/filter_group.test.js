@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiFilterSelect } from './filter_select';
+import { EuiFilterGroup } from './filter_group';
 
-describe('EuiFilterSelect', () => {
+describe('EuiFilterGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFilterSelect {...requiredProps} />
+      <EuiFilterGroup {...requiredProps} />
     );
 
     expect(component)

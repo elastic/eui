@@ -2,24 +2,25 @@
 
 exports[`FieldValueSelectionFilter render - all configurations 1`] = `
 <EuiPopover
-  anchorPosition="downCenter"
+  anchorPosition="downRight"
   button={
-    <EuiButtonEmpty
+    <EuiFilterButton
       color="text"
+      hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
       type="button"
     >
       Tag
-    </EuiButtonEmpty>
+    </EuiFilterButton>
   }
   closePopover={[Function]}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
   panelPaddingSize="none"
-  withTitle={true}
+  withTitle={null}
 >
   <div
     className="euiFilterSelect__note"
@@ -44,24 +45,25 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
 
 exports[`FieldValueSelectionFilter render - options as a function 1`] = `
 <EuiPopover
-  anchorPosition="downCenter"
+  anchorPosition="downRight"
   button={
-    <EuiButtonEmpty
+    <EuiFilterButton
       color="text"
+      hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
       type="button"
     >
       Tag
-    </EuiButtonEmpty>
+    </EuiFilterButton>
   }
   closePopover={[Function]}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
   panelPaddingSize="none"
-  withTitle={true}
+  withTitle={null}
 >
   <div
     className="euiFilterSelect__note"
@@ -86,24 +88,25 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
 
 exports[`FieldValueSelectionFilter render - options as an array 1`] = `
 <EuiPopover
-  anchorPosition="downCenter"
+  anchorPosition="downRight"
   button={
-    <EuiButtonEmpty
+    <EuiFilterButton
       color="text"
+      hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
       type="button"
     >
       Tag
-    </EuiButtonEmpty>
+    </EuiFilterButton>
   }
   closePopover={[Function]}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
   panelPaddingSize="none"
-  withTitle={true}
+  withTitle={null}
 >
   <div
     className="euiFilterSelect__note"

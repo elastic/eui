@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiFilterSelect = ({
+export const EuiFilterGroup = ({
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('euiFilterSelect', className);
+  const classes = classNames('euiFilterGroup', className);
 
   return (
     <div
@@ -19,7 +19,7 @@ export const EuiFilterSelect = ({
   );
 };
 
-EuiFilterSelect.propTypes = {
+EuiFilterGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

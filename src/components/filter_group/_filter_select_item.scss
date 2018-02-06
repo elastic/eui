@@ -25,3 +25,26 @@
     }
   }
 }
+
+
+.euiFilterSelect__items {
+  @include euiScrollBar;
+
+  overflow-y: auto;
+  width: $euiSize * 20;
+  max-height: $euiSize * 30;
+}
+
+.euiFilterSelect__note {
+  width: $euiSize * 20;
+  height: $euiSize * 4;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.euiFilterSelect__noteContent {
+  color: $euiColorDarkShade;
+  font-size: $euiFontSizeS;
+}

@@ -4,11 +4,10 @@ import { isArray, isNil } from '../../../../services/predicate';
 
 import { Occur } from '../query';
 import { EuiPropTypes } from '../../../../utils/prop_types';
-import { EuiButtonEmpty } from '../../../button/button_empty';
 import { EuiPopover } from '../../../popover/popover';
 import { EuiPopoverTitle } from '../../../popover/popover_title';
 import { EuiFieldSearch } from '../../../form/field_search/field_search';
-import { EuiFilterSelectItem } from '../../../filter_select';
+import { EuiFilterSelectItem, EuiFilterButton } from '../../../filter_group';
 import { EuiLoadingChart } from '../../../loading/loading_chart';
 import { EuiSpacer } from '../../../spacer/spacer';
 import { EuiIcon } from '../../../icon/icon';
@@ -149,25 +148,28 @@ export class FieldValueSelectionFilter extends React.Component {
     }
   }
 
+
   render() {
     const { index, query, config } = this.props;
     const active = query.hasFieldClause(config.field);
-    const buttonColor = active ? 'primary' : 'text';
+    const hasActiveFilters = active ? true : false;
 
     const button = (
-      <EuiButtonEmpty
+      <EuiFilterButton
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
-        color={buttonColor}
+        hasActiveFilters={hasActiveFilters}
       >
         {config.name}
-      </EuiButtonEmpty>
+      </EuiFilterButton>
     );
 
 
     const searchBox = this.renderSearchBox();
     const content = this.renderContent(config.field, query);
+    const threshold = this.props.config.searchThreshold || defaults.config.searchThreshold;
+    const withTitle = this.state.options && this.state.options.all.length >= threshold;
 
     return (
       <EuiPopover
@@ -177,7 +179,8 @@ export class FieldValueSelectionFilter extends React.Component {
         isOpen={this.state.popoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
-        withTitle
+        withTitle={withTitle}
+        anchorPosition="downRight"
       >
         {searchBox}
         {content}

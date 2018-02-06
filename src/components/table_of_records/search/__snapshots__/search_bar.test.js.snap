@@ -4,7 +4,7 @@ exports[`SearchBar render - no config, no query 1`] = `
 <EuiFlexGroup
   alignItems="center"
   component="div"
-  gutterSize="m"
+  gutterSize="xs"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
@@ -50,7 +50,7 @@ exports[`SearchBar render - no query, custom box placeholder and incremental 1`]
 <EuiFlexGroup
   alignItems="center"
   component="div"
-  gutterSize="m"
+  gutterSize="xs"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
@@ -102,7 +102,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
 <EuiFlexGroup
   alignItems="center"
   component="div"
-  gutterSize="m"
+  gutterSize="xs"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
@@ -162,70 +162,77 @@ exports[`SearchBar render - provided query, filters 1`] = `
       }
     />
   </EuiFlexItem>
-  <FilterBar
-    config={
-      Array [
-        Object {
-          "field": "open",
-          "name": "Open",
-          "type": "is",
-        },
-        Object {
-          "field": "tag",
-          "name": "Tag",
-          "options": [Function],
-          "type": "field_value_selection",
-        },
-      ]
-    }
-    onChange={[Function]}
-    query={
-      Query {
-        "ast": Object {
-          "addDefaultClause": [Function],
-          "addFieldClause": [Function],
-          "clauses": Array [
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <EuiFilterGroup>
+      <FilterBar
+        config={
+          Array [
             Object {
-              "occur": "must",
-              "type": "default",
-              "value": "this",
+              "field": "open",
+              "name": "Open",
+              "type": "is",
             },
             Object {
-              "occur": "must",
-              "type": "default",
-              "value": "is",
+              "field": "tag",
+              "name": "Tag",
+              "options": [Function],
+              "type": "field_value_selection",
             },
-            Object {
-              "occur": "must",
-              "type": "default",
-              "value": "a",
+          ]
+        }
+        onChange={[Function]}
+        query={
+          Query {
+            "ast": Object {
+              "addDefaultClause": [Function],
+              "addFieldClause": [Function],
+              "clauses": Array [
+                Object {
+                  "occur": "must",
+                  "type": "default",
+                  "value": "this",
+                },
+                Object {
+                  "occur": "must",
+                  "type": "default",
+                  "value": "is",
+                },
+                Object {
+                  "occur": "must",
+                  "type": "default",
+                  "value": "a",
+                },
+                Object {
+                  "occur": "must",
+                  "type": "default",
+                  "value": "query",
+                },
+              ],
+              "clearFieldClauses": [Function],
+              "clearIsClause": [Function],
+              "getDefaultClause": [Function],
+              "getDefaultClauses": [Function],
+              "getFieldClause": [Function],
+              "getFieldClauses": [Function],
+              "getFields": [Function],
+              "getIsClause": [Function],
+              "getIsClauses": [Function],
+              "removeFieldClause": [Function],
+              "setFieldClauses": [Function],
+              "setIsClause": [Function],
             },
-            Object {
-              "occur": "must",
-              "type": "default",
-              "value": "query",
+            "syntax": Object {
+              "parse": [Function],
+              "print": [Function],
             },
-          ],
-          "clearFieldClauses": [Function],
-          "clearIsClause": [Function],
-          "getDefaultClause": [Function],
-          "getDefaultClauses": [Function],
-          "getFieldClause": [Function],
-          "getFieldClauses": [Function],
-          "getFields": [Function],
-          "getIsClause": [Function],
-          "getIsClauses": [Function],
-          "removeFieldClause": [Function],
-          "setFieldClauses": [Function],
-          "setIsClause": [Function],
-        },
-        "syntax": Object {
-          "parse": [Function],
-          "print": [Function],
-        },
-        "text": "this is a query",
-      }
-    }
-  />
+            "text": "this is a query",
+          }
+        }
+      />
+    </EuiFilterGroup>
+  </EuiFlexItem>
 </EuiFlexGroup>
 `;

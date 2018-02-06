@@ -19,8 +19,8 @@ const resolveIconAndColor = (checked) => {
     return { icon: 'empty' };
   }
   return checked === CHECKED_ON ?
-    { icon: 'check', color: 'success' } :
-    { icon: 'cross', color: 'danger' };
+    { icon: 'check', color: 'text' } :
+    { icon: 'cross', color: 'text' };
 };
 
 export const EuiFilterSelectItem = ({
