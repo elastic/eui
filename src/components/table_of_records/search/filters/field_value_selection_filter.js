@@ -30,6 +30,7 @@ export const FieldValueSelectionFilterConfigType = PropTypes.shape({
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   options: FieldValueOptionsType.isRequired,
+  cacheOptions: PropTypes.number,
   multiSelect: PropTypes.bool,
   loadingMessage: PropTypes.string,
   noOptionsMessage: PropTypes.string,
@@ -126,7 +127,28 @@ export class FieldValueSelectionFilter extends React.Component {
     if (isArray(options)) {
       return () => Promise.resolve(options);
     }
-    return options;
+    if (isNil(this.props.config.cacheOptions) || this.props.config.cacheOptions <= 0) {
+      return options;
+    }
+    return () => {
+      const cachedOptions = this.state.cachedOptions;
+      if (cachedOptions) {
+        return Promise.resolve(cachedOptions);
+      }
+      if (this.props.config.cacheOptions > 0) {
+        return new Promise((resolve, reject) => {
+          return options().then((opts) => {
+            this.setState({ cachedOptions: opts });
+            this.timeoutId = setTimeout(() => {
+              this.setState({ cachedOptions: null });
+            }, this.props.config.cacheOptions);
+            resolve(opts);
+          }).catch((error) => {
+            reject(error);
+          });
+        });
+      }
+    };
   }
 
   resolveOptionName(option) {

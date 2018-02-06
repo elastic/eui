@@ -47,7 +47,6 @@ export class SearchBox extends React.Component {
     } catch (e) {
       this.setState({ error: { query: queryText, message: e.message } });
     }
-
   }
 
   render() {
@@ -56,6 +55,7 @@ export class SearchBox extends React.Component {
     const incremental = !isNil(config.incremental) ? config.incremental : defaults.config.incremental;
     const value = this.state.error ? this.state.error.query : query.text;
     const isInvalid = !isNil(this.state.error);
+    const title = !isNil(this.state.error) ? this.state.error.message : undefined;
     return (
       <EuiFieldSearch
         inputRef={input => this.inputElement = input}
@@ -65,6 +65,7 @@ export class SearchBox extends React.Component {
         incremental={incremental}
         onSearch={this.onSearch.bind(this)}
         isInvalid={isInvalid}
+        title={title}
       />
     );
   }

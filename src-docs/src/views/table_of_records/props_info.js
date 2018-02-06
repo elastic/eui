@@ -223,6 +223,12 @@ export const propsInfo = {
           required: true,
           type: { name: '#FieldValueOption[] | () => #FieldValueOption[]' }
         },
+        cacheOptions: {
+          description: 'When set to a positive number, if `options` is a loading function, the loaded' +
+                       'options will be cached for the set timeout (in milliseconds)',
+          required: false,
+          type: { name: 'number (milliseconds)' }
+        },
         multiSelect: {
           description: 'Indicates whether the user can filter by multiple values or by only a single one',
           required: false,

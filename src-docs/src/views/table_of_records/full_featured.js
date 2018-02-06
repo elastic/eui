@@ -284,7 +284,8 @@ export default class PeopleTable extends Component {
                   view: <span>{country.flag}&nbsp;{country.name}</span>
                 }));
               });
-            }
+            },
+            cacheOptions: 20000 // caching the fetched options for 20 seconds
           },
           {
             type: 'field_value_selection',
