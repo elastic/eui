@@ -23,37 +23,63 @@ const resolveIconAndColor = (checked) => {
     { icon: 'cross', color: 'text' };
 };
 
-export const EuiFilterSelectItem = ({
-  children,
-  className,
-  disabled,
-  checked,
-  ...rest,
-}) => {
-  const classes = classNames('euiFilterSelectItem', className);
-  const { icon, color } = resolveIconAndColor(checked);
-  return (
-    <button
-      className={classes}
-      type="button"
-      disabled={disabled}
-      {...rest}
-    >
-      <EuiFlexGroup
-        alignItems="center"
-        gutterSize="s"
-        component="span"
+export class EuiFilterSelectItem extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { hasFocus: false };
+  }
+
+  focus() {
+    if (this.buttonRef) {
+      this.buttonRef.focus();
+    }
+  }
+
+  onFocus = () => {
+    if (this.mounted) {
+      this.setState({ hasFocus: true });
+    }
+  };
+
+  onBlur = () => {
+    if (this.mounted) {
+      this.setState({ hasFocus: false });
+    }
+  };
+
+  hasFocus = () => {
+    return this.state.hasFocus;
+  };
+
+  render() {
+    const { children, className, disabled, checked, ...rest } = this.props;
+    const classes = classNames('euiFilterSelectItem', className);
+    const { icon, color } = resolveIconAndColor(checked);
+    return (
+      <button
+        ref={(ref) => this.buttonRef = ref}
+        className={classes}
+        type="button"
+        disabled={disabled}
+        {...rest}
       >
-        <EuiFlexItem grow={false}>
-          <EuiIcon color={color} type={icon} />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          {children}
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </button>
-  );
-};
+        <EuiFlexGroup
+          alignItems="center"
+          gutterSize="s"
+          component="span"
+        >
+          <EuiFlexItem grow={false}>
+            <EuiIcon color={color} type={icon}/>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            {children}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </button>
+    );
+  }
+}
 
 EuiFilterSelectItem.propTypes = {
   children: PropTypes.node,

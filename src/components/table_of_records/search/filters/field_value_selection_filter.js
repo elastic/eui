@@ -59,6 +59,7 @@ export class FieldValueSelectionFilter extends React.Component {
 
   constructor(props) {
     super(props);
+    this.selectItems = [];
     this.state = {
       popoverOpen: false,
       options: null,
@@ -151,10 +152,26 @@ export class FieldValueSelectionFilter extends React.Component {
   }
 
   onKeyDown(index, event) {
-    if (event.keyCode === keyCodes.DOWN) {
-      this.refs[index + 1].focus();
-    } else if (event.keyCode === keyCodes.UP) {
-      this.refs[index - 1].focus();
+    switch (event.keyCode) {
+
+      case keyCodes.DOWN:
+        if (index < this.selectItems.length - 1) {
+          event.preventDefault();
+          this.selectItems[index + 1].focus();
+        }
+        break;
+
+      case keyCodes.UP:
+        if (index < 0) {
+          return; // it's coming from the search box... nothing to do... nowhere to go
+        }
+        if (index === 0 && this.searchInput) {
+          event.preventDefault();
+          this.searchInput.focus();
+        } else if (index > 0) {
+          event.preventDefault();
+          this.selectItems[index - 1].focus();
+        }
     }
   }
 
@@ -205,10 +222,11 @@ export class FieldValueSelectionFilter extends React.Component {
       return (
         <EuiPopoverTitle>
           <EuiFieldSearch
+            inputRef={(ref) => this.searchInput = ref}
             disabled={disabled}
             incremental={true}
             onSearch={(query) => this.filterOptions(query)}
-            onKeyDown={this.onKeyDown.bind(this, 1)}
+            onKeyDown={this.onKeyDown.bind(this, -1)}
           />
         </EuiPopoverTitle>
       );
@@ -237,7 +255,7 @@ export class FieldValueSelectionFilter extends React.Component {
           key={index}
           checked={checked}
           onClick={onClick}
-          ref={(ref) => this.refs[index] = ref}
+          ref={(ref) => this.selectItems[index] = ref}
           onKeyDown={this.onKeyDown.bind(this, index)}
         >
           {option.view ? option.view : this.resolveOptionName(option) }
