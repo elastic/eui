@@ -22,14 +22,6 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
-const sizeToClassNameMap = {
-  xs: 'euiFilterButton--xSmall',
-  s: 'euiFilterButton--small',
-  l: 'euiFilterButton--large',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
-
 const iconSideToClassNameMap = {
   left: '',
   right: 'euiFilterButton--iconRight',
@@ -37,21 +29,12 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-const flushTypeToClassNameMap = {
-  'left': 'euiFilterButton--flushLeft',
-  'right': 'euiFilterButton--flushRight',
-};
-
-export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
-
 export const EuiFilterButton = ({
   children,
   className,
   iconType,
   iconSide,
   color,
-  size,
-  flush,
   hasActiveFilters,
   isDisabled,
   isSelected,
@@ -66,9 +49,7 @@ export const EuiFilterButton = ({
   const classes = classNames(
     'euiFilterButton',
     colorToClassNameMap[color],
-    sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
-    flushTypeToClassNameMap[flush],
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
@@ -131,8 +112,6 @@ EuiFilterButton.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-  flush: PropTypes.oneOf(FLUSH_TYPES),
   isDisabled: PropTypes.bool,
   href: checkHrefAndOnClick,
   target: PropTypes.string,
