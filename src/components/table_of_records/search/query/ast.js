@@ -80,6 +80,19 @@ export const ast = (clauses = []) => {
       return ast([ ...clauses, { type: 'field', field, occur, value }]);
     },
 
+    setFieldClause(field, value, occur) {
+      const existingClause = this.getFieldClause(field, value);
+      if (!existingClause) {
+        return this.addFieldClause(field, value, occur);
+      }
+      return ast(clauses.map(clause => {
+        if (clause.type !== 'field' || clause.field !== field || clause.value !== value) {
+          return clause;
+        }
+        return { type: 'field', field, value, occur };
+      }));
+    },
+
     removeFieldClause(field, value) {
       return ast(clauses.filter(clause => clause.type !== 'field' || clause.field !== field || clause.value !== value));
     },

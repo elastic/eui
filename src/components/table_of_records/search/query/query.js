@@ -47,6 +47,11 @@ export class Query {
     return new Query(ast, this.syntax);
   }
 
+  setFieldClause(field, value, occur) {
+    const ast = this.ast.setFieldClause(field, value, occur);
+    return new Query(ast, this.syntax);
+  }
+
   removeFieldClause(field, value) {
     const ast = this.ast.removeFieldClause(field, value);
     return new Query(ast, this.syntax);

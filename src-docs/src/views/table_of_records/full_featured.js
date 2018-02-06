@@ -270,6 +270,12 @@ export default class PeopleTable extends Component {
             name: 'Online'
           },
           {
+            type: 'field_value_toggle',
+            field: 'group',
+            value: 'kibana',
+            name: 'Kibana'
+          },
+          {
             type: 'field_value_selection',
             field: 'nationality',
             name: 'Nationality',

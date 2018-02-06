@@ -171,7 +171,7 @@ export const propsInfo = {
         filters: {
           description: 'Configuring the search filters',
           required: false,
-          type: { name: '( #FieldValueSelectionFilter | #IsFilter )[]' }
+          type: { name: '( #FieldValueSelectionFilter | #FieldValueToggleFilter | #IsFilter )[]' }
         }
       }
     }
@@ -282,6 +282,45 @@ export const propsInfo = {
           description: 'Enables to fully customize how an option is presented',
           required: false,
           type: { name: 'PropTypes.node' }
+        }
+      }
+    }
+  },
+
+  FieldValueToggleFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description: 'Defines the type of the filter (must be set to `field_value_toggle`)',
+          required: true,
+          type: { name: '"field_value_toggle"' }
+        },
+        field: {
+          description: 'The name of the field to filter by',
+          required: true,
+          type: { name: 'string' }
+        },
+        value: {
+          description: 'The field value to filter by',
+          required: true,
+          type: { name: 'string' }
+        },
+        name: {
+          description: 'The name of the filter (will be used as a caption of the filter button)',
+          required: true,
+          type: { name: 'string' }
+        },
+        negatedName: {
+          description: 'The name that will be used when the filter is active yet negated (e.g. `-tag:bug`)',
+          required: false,
+          defaultValue: { value: 'Not {name}', comment: 'where `{name}` is the configured name' },
+          type: { name: 'string' }
+        },
+        available: {
+          description: 'Called to check whether this filter is currently available. If not, it will not be shown',
+          required: false,
+          type: { name: '() => boolean' }
         }
       }
     }
