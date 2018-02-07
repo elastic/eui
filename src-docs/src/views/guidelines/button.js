@@ -26,31 +26,12 @@ import {
   EuiTableRowCell
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
-
-const GuideRuleWriting = ({
-  children,
-  className,
-  ...rest,
-}) => {
-  const classes = classNames(className);
-
-  return (
-    <EuiText
-      className={classes}
-      {...rest}
-    >
-      <p>{children}</p>
-    </EuiText>
-  );
-};
-
 export default () => (
   <GuidePage title="Button">
     <EuiText>
       <h1>Button</h1>
       <p>
-      Choosing a button style and type depends on the prominence of the action it performs and the context in which the button appears.
+      Determining a button type, style, and placement depends on the prominence of the action it performs and the context in which the button appears.
       </p>
       <EuiLink
         href="https://elastic.github.io/eui/#/button"
@@ -180,8 +161,6 @@ export default () => (
       >
         <EuiImage
           size="l"
-          allowFullScreen
-          fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/0jZMx6B.jpg"
         />
@@ -195,16 +174,11 @@ export default () => (
       >
         <EuiImage
           size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
           alt="page without primary button"
-          url="https://imgur.com/FCVuZbP.jpg"
+          url="https://imgur.com/otiQ8RY.jpg"
         />
       </GuideRuleExample>
     </GuideRule>
-
-    <EuiSpacer />
 
     <GuideRule
       heading="Forms"
@@ -223,7 +197,6 @@ export default () => (
           fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/90QdVT9.jpg"
-          caption="Caption"
         />
       </GuideRuleExample>
 
@@ -232,6 +205,7 @@ export default () => (
           size="l"
           hasShadow
           allowFullScreen
+          fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/aiPlqks.jpg"
         />
@@ -262,6 +236,7 @@ export default () => (
           size="l"
           hasShadow
           allowFullScreen
+          fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/eVIWhUN.jpg"
         />
@@ -287,6 +262,7 @@ export default () => (
           size="l"
           hasShadow
           allowFullScreen
+          fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/5diUfSX.jpg"
         />
@@ -301,6 +277,7 @@ export default () => (
           size="l"
           hasShadow
           allowFullScreen
+          fullScreenIconColor="dark"
           alt="page without primary button"
           url="https://imgur.com/Vkrj67k.jpg"
         />
@@ -474,7 +451,6 @@ export default () => (
         <EuiImage
           size="l"
           hasShadow
-          allowFullScreen
           alt="Next"
           url="https://imgur.com/54NmOzh.jpg"
         />
