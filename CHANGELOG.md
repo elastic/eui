@@ -1,5 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiGlobalToastList` now prevents toasts from disappearing while the user's mouse is over the list. Added `timer/Timer` service ([#370](https://github.com/elastic/eui/pull/370))
+
 **Bug fixes**
 
 - `EuiTableOfRecords` selection bugs ([#365](https://github.com/elastic/eui/pull/365))
@@ -8,7 +10,7 @@
 
 **Breaking changes**
 
-- Changed `<EuiGlobalToastList>` to be responsible for instantiating toasts, tracking their lifetimes, and dismissing them. It now acepts `toasts`, `dismissToast`, and `toastLifeTimeMs` props. It no longer accepts `children`. ([#370](https://github.com/elastic/eui/pull/370))
+- Changed `EuiGlobalToastList` to be responsible for instantiating toasts, tracking their lifetimes, and dismissing them. It now acepts `toasts`, `dismissToast`, and `toastLifeTimeMs` props. It no longer accepts `children`. ([#370](https://github.com/elastic/eui/pull/370))
 
 # [`0.0.18`](https://github.com/elastic/eui/tree/v0.0.18)
 

@@ -97,7 +97,7 @@ describe('EuiGlobalToastList', () => {
         setTimeout(() => {
           expect(dismissToastSpy.called).toBe(true);
           done();
-        }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS);
+        }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS + 10);
       });
     });
   });

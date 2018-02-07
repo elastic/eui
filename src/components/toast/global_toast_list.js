@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
 
@@ -17,8 +18,8 @@ export class EuiGlobalToastList extends Component {
       toastIdToDismissedMap: {},
     };
 
-    this.timeoutIds = [];
-    this.toastIdToScheduledForDismissalMap = {};
+    this.dismissTimeoutIds = [];
+    this.toastIdToTimerMap = {};
 
     this.isScrollingToBottom = false;
     this.isScrolledToBottom = true;
@@ -65,10 +66,24 @@ export class EuiGlobalToastList extends Component {
     // the list.
     this.isScrollingToBottom = false;
     this.isUserInteracting = true;
+
+    // Don't let toasts dismiss themselves while the user is interacting with them.
+    for (const toastId in this.toastIdToTimerMap) {
+      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
+        const timer = this.toastIdToTimerMap[toastId];
+        timer.pause();
+      }
+    }
   };
 
   onMouseLeave = () => {
     this.isUserInteracting = false;
+    for (const toastId in this.toastIdToTimerMap) {
+      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
+        const timer = this.toastIdToTimerMap[toastId];
+        timer.resume();
+      }
+    }
   };
 
   onScroll = () => {
@@ -78,37 +93,35 @@ export class EuiGlobalToastList extends Component {
 
   scheduleAllToastsForDismissal = () => {
     this.props.toasts.forEach(toast => {
-      if (!this.toastIdToScheduledForDismissalMap[toast.id]) {
+      if (!this.toastIdToTimerMap[toast.id]) {
         this.scheduleToastForDismissal(toast);
       }
     });
   };
 
-  scheduleToastForDismissal = (toast, isImmediate = false) => {
-    this.toastIdToScheduledForDismissalMap[toast.id] = true;
-    const toastLifeTimeMs = isImmediate ? 0 : this.props.toastLifeTimeMs;
-
+  scheduleToastForDismissal = (toast) => {
     // Start fading the toast out once its lifetime elapses.
-    this.timeoutIds.push(setTimeout(() => {
-      this.startDismissingToast(toast);
-    }, toastLifeTimeMs));
+    this.toastIdToTimerMap[toast.id] =
+      new Timer(this.dismissToast.bind(this, toast), this.props.toastLifeTimeMs);
+  };
 
+  dismissToast = (toast) => {
     // Remove the toast after it's done fading out.
-    this.timeoutIds.push(setTimeout(() => {
+    this.dismissTimeoutIds.push(setTimeout(() => {
       this.props.dismissToast(toast);
+      this.toastIdToTimerMap[toast.id].clear();
+      delete this.toastIdToTimerMap[toast.id];
+
       this.setState(prevState => {
         const toastIdToDismissedMap = { ...prevState.toastIdToDismissedMap };
         delete toastIdToDismissedMap[toast.id];
-        delete this.toastIdToScheduledForDismissalMap[toast.id];
 
         return {
           toastIdToDismissedMap,
         };
       });
-    }, toastLifeTimeMs + TOAST_FADE_OUT_MS));
-  };
+    }, TOAST_FADE_OUT_MS));
 
-  startDismissingToast(toast) {
     this.setState(prevState => {
       const toastIdToDismissedMap = {
         ...prevState.toastIdToDismissedMap,
@@ -119,7 +132,7 @@ export class EuiGlobalToastList extends Component {
         toastIdToDismissedMap,
       };
     });
-  }
+  };
 
   componentDidMount() {
     this.listElement.addEventListener('scroll', this.onScroll);
@@ -146,7 +159,13 @@ export class EuiGlobalToastList extends Component {
     this.listElement.removeEventListener('scroll', this.onScroll);
     this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
     this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
-    this.timeoutIds.forEach(clearTimeout);
+    this.dismissTimeoutIds.forEach(clearTimeout);
+    for (const toastId in this.toastIdToTimerMap) {
+      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
+        const timer = this.toastIdToTimerMap[toastId];
+        timer.clear();
+      }
+    }
   }
 
   render() {
@@ -170,7 +189,7 @@ export class EuiGlobalToastList extends Component {
           isDismissed={this.state.toastIdToDismissedMap[toast.id]}
         >
           <EuiToast
-            onClose={this.scheduleToastForDismissal.bind(toast, true)}
+            onClose={this.dismissToast.bind(this, toast)}
             {...rest}
           >
             {text}

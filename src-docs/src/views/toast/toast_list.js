@@ -40,11 +40,11 @@ export default class extends Component {
     });
   };
 
-  removeToast(toastId) {
-    this.setState({
-      toasts: this.state.toasts.filter(toast => toast.key !== toastId),
-    });
-  }
+  removeToast = (removedToast) => {
+    this.setState(prevState => ({
+      toasts: prevState.toasts.filter(toast => toast.id !== removedToast.id),
+    }));
+  };
 
   removeAllToasts = () => {
     this.setState({
