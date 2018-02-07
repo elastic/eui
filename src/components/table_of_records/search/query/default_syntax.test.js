@@ -1,4 +1,5 @@
 import { defaultSyntax } from './default_syntax';
+import { AST } from './ast';
 
 describe('defaultSyntax', () => {
 
@@ -22,23 +23,23 @@ describe('defaultSyntax', () => {
     expect(ast.clauses).toBeDefined();
     expect(ast.clauses).toHaveLength(3);
 
-    let clause = ast.getDefaultClause('-');
+    let clause = ast.getTermClause('-');
     expect(clause).toBeDefined();
-    expect(clause.type).toBe('default');
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('-');
-    expect(clause.occur).toBe('must');
 
-    clause = ast.getDefaultClause(':');
+    clause = ast.getTermClause(':');
     expect(clause).toBeDefined();
-    expect(clause.type).toBe('default');
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe(':');
-    expect(clause.occur).toBe('must_not');
 
-    clause = ast.getDefaultClause('\\');
+    clause = ast.getTermClause('\\');
     expect(clause).toBeDefined();
-    expect(clause.type).toBe('default');
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('\\');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -51,11 +52,13 @@ describe('defaultSyntax', () => {
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(1);
+
     const clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -68,11 +71,13 @@ describe('defaultSyntax', () => {
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(1);
+
     const clause = ast.getFieldClause('n:ame', 'jo:hn');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('n:ame');
     expect(clause.value).toBe('jo:hn');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -85,17 +90,20 @@ describe('defaultSyntax', () => {
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(2);
+
     let clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('age', '6');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('6');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -111,21 +119,24 @@ describe('defaultSyntax', () => {
 
     let clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('age', '6');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('6');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('age', '5');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('5');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -141,21 +152,24 @@ describe('defaultSyntax', () => {
 
     let clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('age', '6');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('6');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('age', '5');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('5');
-    expect(clause.occur).toBe('must_not');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -169,15 +183,17 @@ describe('defaultSyntax', () => {
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(2);
 
-    let clause = ast.getDefaultClause('foo');
+    let clause = ast.getTermClause('foo');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
-    expect(clause.occur).toBe('must');
 
-    clause = ast.getDefaultClause('bar');
+    clause = ast.getTermClause('bar');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('bar');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -191,15 +207,17 @@ describe('defaultSyntax', () => {
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(2);
 
-    let clause = ast.getDefaultClause('foo');
+    let clause = ast.getTermClause('foo');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
-    expect(clause.occur).toBe('must');
 
-    clause = ast.getDefaultClause('bar');
+    clause = ast.getTermClause('bar');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe('bar');
-    expect(clause.occur).toBe('must_not');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -213,33 +231,38 @@ describe('defaultSyntax', () => {
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(5);
 
-    let clause = ast.getDefaultClause('foo');
+    let clause = ast.getTermClause('foo');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must_not');
 
-    clause = ast.getDefaultClause('bar');
+    clause = ast.getTermClause('bar');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe('bar');
-    expect(clause.occur).toBe('must_not');
 
     clause = ast.getFieldClause('age', '5');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('5');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('name', 'joe');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('joe');
-    expect(clause.occur).toBe('must');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
@@ -253,41 +276,50 @@ describe('defaultSyntax', () => {
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(7);
 
-    let clause = ast.getDefaultClause('foo');
+    let clause = ast.getTermClause('foo');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.value).toBe('foo');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('name', 'john');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('john');
-    expect(clause.occur).toBe('must_not');
 
-    clause = ast.getDefaultClause('bar');
+    clause = ast.getTermClause('bar');
     expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
     expect(clause.value).toBe('bar');
-    expect(clause.occur).toBe('must_not');
 
     clause = ast.getFieldClause('age', '5');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('age');
     expect(clause.value).toBe('5');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getFieldClause('name', 'joe');
     expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('joe');
-    expect(clause.occur).toBe('must');
 
     clause = ast.getIsClause('open');
     expect(clause).toBeDefined();
-    expect(clause.applied).toBe(true);
+    expect(AST.Is.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.flag).toBe('open');
 
     clause = ast.getIsClause('liberal');
     expect(clause).toBeDefined();
-    expect(clause.applied).toBe(false);
+    expect(AST.Is.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
+    expect(clause.flag).toBe('liberal');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);

@@ -24,23 +24,13 @@ exports[`FilterBar render - with filters 1`] = `
       onChange={[Function]}
       query={
         Query {
-          "ast": Object {
-            "addDefaultClause": [Function],
-            "addFieldClause": [Function],
-            "clauses": Array [],
-            "clearFieldClauses": [Function],
-            "clearIsClause": [Function],
-            "getDefaultClause": [Function],
-            "getDefaultClauses": [Function],
-            "getFieldClause": [Function],
-            "getFieldClauses": [Function],
-            "getFields": [Function],
-            "getIsClause": [Function],
-            "getIsClauses": [Function],
-            "removeFieldClause": [Function],
-            "setFieldClause": [Function],
-            "setFieldClauses": [Function],
-            "setIsClause": [Function],
+          "ast": _AST {
+            "_clauses": Array [],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [],
+            },
           },
           "syntax": Object {
             "parse": [Function],
@@ -72,23 +62,13 @@ exports[`FilterBar render - with filters 1`] = `
       onChange={[Function]}
       query={
         Query {
-          "ast": Object {
-            "addDefaultClause": [Function],
-            "addFieldClause": [Function],
-            "clauses": Array [],
-            "clearFieldClauses": [Function],
-            "clearIsClause": [Function],
-            "getDefaultClause": [Function],
-            "getDefaultClauses": [Function],
-            "getFieldClause": [Function],
-            "getFieldClauses": [Function],
-            "getFields": [Function],
-            "getIsClause": [Function],
-            "getIsClauses": [Function],
-            "removeFieldClause": [Function],
-            "setFieldClause": [Function],
-            "setFieldClauses": [Function],
-            "setIsClause": [Function],
+          "ast": _AST {
+            "_clauses": Array [],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [],
+            },
           },
           "syntax": Object {
             "parse": [Function],

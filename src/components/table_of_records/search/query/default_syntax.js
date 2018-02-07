@@ -1,4 +1,4 @@
-import { ast, Occur } from './ast';
+import { AST } from './ast';
 import peg from 'pegjs';
 
 const escapeValue = (value) => {
@@ -26,27 +26,27 @@ Clauses
 Clause
   = IsClause
   / FieldClause
-  / DefaultClause
+  / TermClause
         
-DefaultClause
-  = space? "-" value:defaultValue { return { type: 'default', value: value, occur: 'must_not' }; }
-  / space? value:defaultValue { return { type: 'default', value: value, occur: 'must' }; }
+TermClause
+  = space? "-" value:termValue { return { type: 'term', value: value, match: 'must_not' }; }
+  / space? value:termValue { return { type: 'term', value: value, match: 'must' }; }
     
 IsClause
-  = space? "-" value:IsTerm { return { type: 'is', flag: value, applied: false }; }
-  / space? value:IsTerm { return { type: 'is', flag: value, applied: true }; }
+  = space? "-" value:IsValue { return { type: 'is', flag: value, match: 'must_not' }; }
+  / space? value:IsValue { return { type: 'is', flag: value, match: 'must' }; }
         
-IsTerm
-  = "is:" value:term { return value; }
+IsValue
+  = "is:" value:value { return value; }
     
 FieldClause
-  = space? "-" ft:FieldTerm { return { type: 'field', field: ft.field, value: ft.value, occur: 'must_not'}; }
-  / space? ft:FieldTerm { return { type: 'field', field: ft.field, value: ft.value, occur: 'must'}; }
+  = space? "-" fv:FieldAndValue { return { type: 'field', field: fv.field, value: fv.value, match: 'must_not'}; }
+  / space? fv:FieldAndValue { return { type: 'field', field: fv.field, value: fv.value, match: 'must'}; }
     
-FieldTerm
-  = field:field ":" value:fieldValue { return {field, value}; }
+FieldAndValue
+  = field:fieldName ":" value:fieldValue { return {field, value}; }
 
-field "field name"
+fieldName "field name"
   = fieldChar+ { return unescape(text()); }
         
 fieldChar
@@ -54,15 +54,15 @@ fieldChar
   / escapedChar
 
 fieldValue "field value"
-  = term
+  = value
 
-defaultValue "default term"
-  = term
+termValue "term"
+  = value
 
-term
-  = termChar+ { return unescape(text()); }
+value
+  = valueChar+ { return unescape(text()); }
 
-termChar
+valueChar
   = alnum
   / escapedChar
 
@@ -85,20 +85,18 @@ export const defaultSyntax = Object.freeze({
 
   parse: (query) => {
     const clauses = parser.parse(query);
-    return ast(clauses);
+    return AST.create(clauses);
   },
 
   print: (ast) => {
     return ast.clauses.reduce((text, clause) => {
+      const prefix = AST.Match.isMustClause(clause) ? '' : '-';
       switch (clause.type) {
-        case 'field':
-          let prefix = clause.occur === Occur.MUST_NOT ? '-' : '';
+        case AST.Field.TYPE:
           return `${text} ${prefix}${escapeValue(clause.field)}:${escapeValue(clause.value)}`;
-        case 'is':
-          prefix = clause.applied ? '' : '-';
+        case AST.Is.TYPE:
           return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
-        case 'default':
-          prefix = clause.occur === Occur.MUST_NOT ? '-' : '';
+        case AST.Term.TYPE:
           return `${text} ${prefix}${escapeValue(clause.value)}`;
         default:
           return text;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../../filter_group';
 import { isNil } from '../../../../services/predicate';
 import { EuiPropTypes } from '../../../../utils/prop_types';
-import { Occur } from '../query';
+import { Query } from '../query';
 
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
   value: PropTypes.string.isRequired,
@@ -38,7 +38,7 @@ export class FieldValueToggleGroupFilter extends React.Component {
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
-    return  clause.occur === Occur.MUST ?
+    return  Query.isMust(clause) ?
       { hasActiveFilters: true, name } :
       { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
   }
@@ -47,8 +47,8 @@ export class FieldValueToggleGroupFilter extends React.Component {
     const { field } = this.props.config;
     const { value } = item;
     const query = checked ?
-      this.props.query.clearFieldClauses(field) :
-      this.props.query.setFieldClauses(field, [ { value, occur: Occur.MUST }]);
+      this.props.query.removeFieldClauses(field) :
+      this.props.query.removeFieldClauses(field).addMustFieldClause(field, value);
     this.props.onChange(query);
   }
 

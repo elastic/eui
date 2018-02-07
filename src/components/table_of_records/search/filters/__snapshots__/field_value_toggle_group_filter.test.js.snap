@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FieldValueToggleGroupFilter render - active 1`] = `
+exports[`TermToggleGroupFilter render - active 1`] = `
 Array [
   <EuiFilterButton
     color="text"
@@ -21,7 +21,7 @@ Array [
 ]
 `;
 
-exports[`FieldValueToggleGroupFilter render - active negated - custom negated name 1`] = `
+exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
 Array [
   <EuiFilterButton
     color="text"
@@ -42,7 +42,7 @@ Array [
 ]
 `;
 
-exports[`FieldValueToggleGroupFilter render - active negated 1`] = `
+exports[`TermToggleGroupFilter render - active negated 1`] = `
 Array [
   <EuiFilterButton
     color="text"
@@ -63,7 +63,7 @@ Array [
 ]
 `;
 
-exports[`FieldValueToggleGroupFilter render 1`] = `
+exports[`TermToggleGroupFilter render 1`] = `
 Array [
   <EuiFilterButton
     color="text"

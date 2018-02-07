@@ -4,7 +4,7 @@ import { shallow } from 'enzyme/build/index';
 import { Query } from '../query';
 import { FieldValueToggleGroupFilter } from './field_value_toggle_group_filter';
 
-describe('FieldValueToggleGroupFilter', () => {
+describe('TermToggleGroupFilter', () => {
 
   test('render', () => {
 

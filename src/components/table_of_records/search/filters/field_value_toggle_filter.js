@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../../filter_group';
 import { isNil } from '../../../../services/predicate';
 import { EuiPropTypes } from '../../../../utils/prop_types';
-import { Occur } from '../query';
+import { Query } from '../query';
 
 export const FieldValueToggleFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('field_value_toggle').isRequired,
@@ -34,7 +34,7 @@ export class FieldValueToggleFilter extends React.Component {
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
-    return  clause.occur === Occur.MUST ?
+    return  Query.isMust(clause) ?
       { hasActiveFilters: true, name } :
       { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
   }
@@ -43,7 +43,7 @@ export class FieldValueToggleFilter extends React.Component {
     const { field, value } = this.props.config;
     const query = checked ?
       this.props.query.removeFieldClause(field, value) :
-      this.props.query.setFieldClause(field, value, Occur.MUST);
+      this.props.query.addMustFieldClause(field, value);
     this.props.onChange(query);
   }
 

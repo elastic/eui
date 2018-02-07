@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../../filter_group';
-import { isNil, isUndefined } from '../../../../services/predicate';
+import { isNil } from '../../../../services/predicate';
 import { EuiPropTypes } from '../../../../utils/prop_types';
+import { Query } from '../query';
 
 export const IsFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('is').isRequired,
@@ -26,17 +27,20 @@ export class IsFilter extends React.Component {
     super(props);
   }
 
-  resolveIconAndColor(clause) {
+  resolveDisplay(clause) {
+    const { name, negatedName } = this.props.config;
     if (isNil(clause)) {
-      return { hasActiveFilters: false };
+      return { hasActiveFilters: false, name };
     }
-    return  clause.applied ? { hasActiveFilters: true, prefix: null } : { hasActiveFilters: true, prefix: 'Not ' };
+    return  Query.isMust(clause) ?
+      { hasActiveFilters: true, name } :
+      { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
   }
 
-  valueChanged(field, value) {
-    const query = isUndefined(value) ?
-      this.props.query.clearIsClause(field) :
-      this.props.query.setIsClause(field, value);
+  valueChanged(field, checked) {
+    const query = checked ?
+      this.props.query.removeIsClause(field) :
+      this.props.query.addMustIsClause(field);
     this.props.onChange(query);
   }
 
@@ -44,18 +48,16 @@ export class IsFilter extends React.Component {
     const { query, config } = this.props;
     const clause = query.getIsClause(config.field);
     const checked = !isNil(clause);
-    const { hasActiveFilters, prefix } = this.resolveIconAndColor(clause);
+    const { hasActiveFilters, name } = this.resolveDisplay(clause);
     const onClick = () => {
-      const value = checked ? undefined : true;
-      this.valueChanged(config.field, value);
+      this.valueChanged(config.field, checked);
     };
     return (
       <EuiFilterButton
         onClick={onClick}
         hasActiveFilters={hasActiveFilters}
       >
-        {prefix}
-        {config.name}
+        {name}
       </EuiFilterButton>
     );
   }

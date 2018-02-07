@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isArray, isNil } from '../../../../services/predicate';
-
 import { keyCodes } from '../../../../services';
-
-import { Occur } from '../query';
 import { EuiPropTypes } from '../../../../utils/prop_types';
 import { EuiPopover } from '../../../popover/popover';
 import { EuiPopoverTitle } from '../../../popover/popover_title';
@@ -13,6 +10,7 @@ import { EuiFilterSelectItem, EuiFilterButton } from '../../../filter_group';
 import { EuiLoadingChart } from '../../../loading/loading_chart';
 import { EuiSpacer } from '../../../spacer/spacer';
 import { EuiIcon } from '../../../icon/icon';
+import { Query } from '../query';
 
 const FieldValueOptionType = PropTypes.shape({
   value: PropTypes.any.isRequired,
@@ -162,13 +160,13 @@ export class FieldValueSelectionFilter extends React.Component {
       // user can select more, we'll leave it open so she can continue selecting
       this.closePopover();
       const query = checked ?
-        this.props.query.clearFieldClauses(field) :
-        this.props.query.setFieldClauses(field, [{ value, occur: Occur.MUST }]);
+        this.props.query.removeFieldClauses(field) :
+        this.props.query.removeFieldClauses(field).addMustFieldClause(field, value);
       this.props.onChange(query);
     } else {
       const query = checked ?
         this.props.query.removeFieldClause(field, value) :
-        this.props.query.addFieldClause(field, value, Occur.MUST);
+        this.props.query.addMustFieldClause(field, value);
       this.props.onChange(query);
     }
   }
@@ -301,7 +299,7 @@ export class FieldValueSelectionFilter extends React.Component {
 
   resolveChecked(clause) {
     if (clause) {
-      return clause.occur === Occur.MUST ? 'on' : 'off';
+      return Query.isMust(clause) ? 'on' : 'off';
     }
   }
 

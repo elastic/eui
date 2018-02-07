@@ -2,6 +2,7 @@ import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil } from '../../../../services/predicate';
 import { astToES } from './ast_to_es';
+import { AST } from './ast';
 
 /**
  * This is the consumer interface for the query - it's effectively a wrapper construct around
@@ -12,6 +13,22 @@ export class Query {
 
   static parse(text, syntax = defaultSyntax) {
     return new Query(syntax.parse(text), syntax, text);
+  }
+
+  static isMust(clause) {
+    return AST.Match.isMustClause(clause);
+  }
+
+  static isTerm(clause) {
+    return AST.Term.isInstance(clause);
+  }
+
+  static isIs(clause) {
+    return AST.Is.isInstance(clause);
+  }
+
+  static isField(clause) {
+    return AST.Field.isInstance(clause);
   }
 
   constructor(ast, syntax = defaultSyntax, text = undefined) {
@@ -32,23 +49,18 @@ export class Query {
     return this.ast.getFieldClause(field, value);
   }
 
-  setFieldClauses(field, clauses) {
-    const ast = this.ast.setFieldClauses(field, clauses);
+  removeFieldClauses(field) {
+    const ast = this.ast.removeFieldClauses(field);
     return new Query(ast, this.syntax);
   }
 
-  clearFieldClauses(field) {
-    const ast = this.ast.clearFieldClauses(field);
+  addMustFieldClause(field, value) {
+    const ast = this.ast.addClause(AST.Field.must(field, value));
     return new Query(ast, this.syntax);
   }
 
-  addFieldClause(field, value, occur) {
-    const ast = this.ast.addFieldClause(field, value, occur);
-    return new Query(ast, this.syntax);
-  }
-
-  setFieldClause(field, value, occur) {
-    const ast = this.ast.setFieldClause(field, value, occur);
+  addMustNotFieldClause(field, value) {
+    const ast = this.ast.addClause(AST.Field.mustNot(field, value));
     return new Query(ast, this.syntax);
   }
 
@@ -65,13 +77,18 @@ export class Query {
     return this.ast.getIsClause(flag);
   }
 
-  setIsClause(flag, applied) {
-    const ast = this.ast.setIsClause(flag, applied);
+  addMustIsClause(flag) {
+    const ast = this.ast.addClause(AST.Is.must(flag));
     return new Query(ast, this.syntax);
   }
 
-  clearIsClause(flag) {
-    const ast = this.ast.clearIsClause(flag);
+  addMustNotIsClause(flag) {
+    const ast = this.ast.addClause(AST.Is.mustNot(flag));
+    return new Query(ast, this.syntax);
+  }
+
+  removeIsClause(flag) {
+    const ast = this.ast.removeIsClause(flag);
     return new Query(ast, this.syntax);
   }
 
@@ -115,9 +132,9 @@ export class Query {
    *    and the "on" value will be the value of the field. This function lets you change this default
    *    translation and provide your own custom one.
    *
-   * defaultValuesToQuery?: (values: string[]) => Object (elasticsearch query object)
+   * termValuesToQuery?: (values: string[]) => Object (elasticsearch query object)
    *
-   *    By default, "default" clauses will be translated to a "simple_query_string" query where all
+   *    By default, "term" clauses will be translated to a "simple_query_string" query where all
    *    the values serve as terms in the query string. This function lets you change this default
    *    translation and provide your own custom one.
    *

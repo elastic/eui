@@ -1,7 +1,7 @@
-import { Occur } from './ast';
+import { AST } from './ast';
 
 
-export const _defaultValuesToQuery = (values, options) => {
+export const _termValuesToQuery = (values, options) => {
   const body = {
     query: values.join(' ')
   };
@@ -27,26 +27,26 @@ export const _fieldValuesToAndQuery = (field, values) => {
   };
 };
 
-export const _isToQuery = (flag, on) => {
+export const _isFlagToQuery = (flag, on) => {
   return {
     term: { [flag]: on }
   };
 };
 
-const collectDefaultValues = (ast) => {
-  return ast.getDefaultClauses().reduce((values, clause) => {
-    if (clause.occur === Occur.MUST) {
+const collectTerms = (ast) => {
+  return ast.getTermClauses().reduce((values, clause) => {
+    if (AST.Match.isMustClause(clause)) {
       values.must.push(clause.value);
     } else {
-      values.must.push(clause.value);
+      values.mustNot.push(clause.value);
     }
     return values;
   }, { must: [], mustNot: [] });
 };
 
-const collectFieldValues = (ast) => {
+const collectFields = (ast) => {
   return ast.getFieldClauses().reduce((values, clause) => {
-    if (clause.occur === Occur.MUST) {
+    if (AST.Match.isMustClause(clause)) {
       if (!values.must[clause.field]) {
         values.must[clause.field] = [];
       }
@@ -69,34 +69,34 @@ export const astToES = (ast, options = {}) => {
 
   const extraMustQueries = options.extraMustQueries || [];
   const extraMustNotQueries = options.extraMustNotQueries || [];
-  const defaultValuesToQuery = options.defaultValuesToQuery || _defaultValuesToQuery;
+  const termValuesToQuery = options.termValuesToQuery || _termValuesToQuery;
   const fieldValuesToAndQuery = options.fieldValuesToAndQuery || _fieldValuesToAndQuery;
-  const isToQuery = options.isToQuery || _isToQuery;
+  const isFlagToQuery = options.isFlagToQuery || _isFlagToQuery;
 
-  const defaultValues = collectDefaultValues(ast);
-  const fieldValues = collectFieldValues(ast);
+  const terms = collectTerms(ast);
+  const fields = collectFields(ast);
 
   const must = [];
   must.push(...extraMustQueries);
-  const defaultMustQuery = defaultValuesToQuery(defaultValues.must, options);
-  if (defaultMustQuery) {
-    must.push(defaultMustQuery);
+  const termMustQuery = termValuesToQuery(terms.must, options);
+  if (termMustQuery) {
+    must.push(termMustQuery);
   }
-  must.push(...Object.keys(fieldValues.must).map(field => {
-    return fieldValuesToAndQuery(field, fieldValues.must[field]);
+  must.push(...Object.keys(fields.must).map(field => {
+    return fieldValuesToAndQuery(field, fields.must[field]);
   }));
   must.push(...ast.getIsClauses().map(clause => {
-    return isToQuery(clause.flag, clause.applied);
+    return isFlagToQuery(clause.flag, AST.Match.isMustClause(clause));
   }));
 
   const mustNot = [];
   mustNot.push(...extraMustNotQueries);
-  const defaultMustNotQuery = defaultValuesToQuery(defaultValues.mustNot, options);
-  if (defaultMustNotQuery) {
-    mustNot.push(defaultMustNotQuery);
+  const termMustNotQuery = termValuesToQuery(terms.mustNot, options);
+  if (termMustNotQuery) {
+    mustNot.push(termMustNotQuery);
   }
-  mustNot.push(...Object.keys(fieldValues.mustNot).map(field => {
-    return fieldValuesToAndQuery(field, fieldValues.mustNot[field]);
+  mustNot.push(...Object.keys(fields.mustNot).map(field => {
+    return fieldValuesToAndQuery(field, fields.mustNot[field]);
   }));
 
   const bool = {};

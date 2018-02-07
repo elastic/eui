@@ -11,7 +11,9 @@ const defaultOptions = {
 export const must = (value, token, options = {}) => {
   options = { ...defaultOptions, ...options };
   if (isString(value)) {
-    return value.toLowerCase().includes(token.toLowerCase());
+    return options.ignoreCase ?
+      value.toLowerCase().includes(token.toLowerCase()) :
+      value.includes(token);
   }
   if (isNumber(value)) {
     token = Number(token);
