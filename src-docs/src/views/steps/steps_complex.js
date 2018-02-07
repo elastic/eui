@@ -24,11 +24,13 @@ const steps = [
     children: (
       <EuiText>
         <p>In order to complete this step, do the following things <strong>in order</strong>.</p>
-        <ol>
-          <li>Do thing 1</li>
-          <li>Do thing 2</li>
-          <li>Do thing 3</li>
-        </ol>
+        <div className="euiStep__subSteps">
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </div>
         <p>Here are some bullet point reminders.</p>
         <ul>
           <li>Reminder 1</li>
@@ -43,7 +45,7 @@ const steps = [
     children: (
       <EuiText>
         <p>Now that you&apos;ve completed step 2, go find the <EuiCode>thing</EuiCode>.</p>
-        <p>
+        <p className="euiStep__subSteps">
           Go to <strong>Overview &gt;&gt; Endpoints</strong> note
           <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
         </p>
@@ -55,17 +57,21 @@ const steps = [
     children: (
       <EuiText>
         <h3><strong>Option 1:</strong> If you have this type of instance</h3>
-        <ol>
-          <li>Do thing 1</li>
-          <li>Do thing 2</li>
-          <li>Do thing 3</li>
-        </ol>
+        <div className="euiStep__subSteps">
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </div>
         <h3><strong>Option 2:</strong> If you have the other type of instance</h3>
-        <ol>
-          <li>Do thing 1</li>
-          <li>Do thing 2</li>
-          <li>Do thing 3</li>
-        </ol>
+        <div className="euiStep__subSteps">
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </div>
       </EuiText>
     )
   },

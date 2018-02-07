@@ -24,7 +24,7 @@ $euiStepNumberMargin: $euiSize !default;
     border-radius: $euiStepNumberSize;
     margin-right: $euiStepNumberMargin;
     text-align: center;
-    
+
     color: $euiColorEmptyShade;
     background-color: $euiColorPrimary;
 
@@ -37,10 +37,28 @@ $euiStepNumberMargin: $euiSize !default;
     border-left: $euiBorderThick;
     padding: $euiSize;
     margin: $euiSizeS 0;
-    
+
     // Align the content's contents with the title
     padding-left: ($euiStepNumberSize/2) - 1px + $euiStepNumberMargin;
 
     // Align content border to horizontal center of step number
     margin-left: ($euiStepNumberSize/2) - 1px;
   }
+
+  // add shading to callout substeps within the content
+  .euiStep__subSteps {
+    padding: $euiSize;
+    background-color: tint($euiColorPrimary, 93%);
+    margin-bottom: $euiSize;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    // change ordered list from numbers to lowercase letters
+    .euiText & ol {
+      list-style-type: lower-alpha;
+    }
+  }
+
+
