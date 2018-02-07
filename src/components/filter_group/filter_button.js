@@ -109,14 +109,40 @@ export const EuiFilterButton = ({
 EuiFilterButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Use any one of our icons
+   */
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
+  /**
+   * Bolds the button if true
+   */
+  hasActiveFilters: PropTypes.bool,
+  /**
+   * Applies a visual state to the button useful when using with a popover.
+   */
+  isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  /**
+   * If passed, changes the button to an anchor tag
+   */
   href: checkHrefAndOnClick,
+  /**
+   * Used along with href
+   */
   target: PropTypes.string,
+  /**
+   * Used along with href
+   */
   rel: PropTypes.string,
+  /**
+   * Onclick should not be comibned with href
+   */
   onClick: PropTypes.func,
+  /**
+   * Defines html button input type
+   */
   type: PropTypes.string,
 };
 

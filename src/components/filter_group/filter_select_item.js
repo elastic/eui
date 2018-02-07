@@ -84,5 +84,8 @@ export class EuiFilterSelectItem extends React.Component {
 EuiFilterSelectItem.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Applies an icon and visual styling to activated items
+   */
   checked: PropTypes.oneOf([ CHECKED_ON, CHECKED_OFF ]),
 };

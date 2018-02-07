@@ -74,7 +74,10 @@ export default class extends Component {
     return (
       <EuiFilterGroup>
         <EuiFilterButton>
-          Online
+          Filter on
+        </EuiFilterButton>
+        <EuiFilterButton>
+          Filter off
         </EuiFilterButton>
         <EuiPopover
           id="popover"

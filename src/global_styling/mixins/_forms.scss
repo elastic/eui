@@ -72,7 +72,6 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
   background: $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
   border-radius: 0;
-  height: 40px;
 
   &--fullWidth {
     max-width: 100%;
