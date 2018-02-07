@@ -1,6 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiGlobalToastList` now prevents toasts from disappearing while the user's mouse is over the list. Added `timer/Timer` service ([#370](https://github.com/elastic/eui/pull/370))
+No public interface changes since `0.0.19`.
+
+# [`0.0.19`](https://github.com/elastic/eui/tree/v0.0.19)
+
+- `EuiGlobalToastList` now prevents toasts from disappearing while the user's mouse is over the list. Added `timer/Timer` service. ([#370](https://github.com/elastic/eui/pull/370))
 
 **Bug fixes**
 
