@@ -5,33 +5,18 @@ import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
-  GuideRuleTitle,
 } from '../../components';
 
 import {
   EuiText,
-  EuiTitle,
   EuiButton,
   EuiButtonIcon,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPanel,
-  EuiFieldSearch,
-  EuiFieldText,
   EuiButtonEmpty,
-  EuiFieldPassword,
-  EuiCheckbox,
-  EuiFormRow,
-  EuiConfirmModal,
-  EuiModal,
-  EuiModalBody,
-  EuiModalFooter,
-  EuiModalHeader,
-  EuiModalHeaderTitle,
   EuiIcon,
   EuiImage,
-  EuiFieldNumber,
   EuiLink,
   EuiTable,
   EuiTableHeader,
@@ -82,7 +67,7 @@ export default () => (
     <EuiSpacer size="l" />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ maxWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
         <div>
           <EuiButton fill>
           Filled
@@ -102,7 +87,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ maxWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
         <div>
           <EuiButton>
             Standard
@@ -123,7 +108,7 @@ export default () => (
 
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ maxWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
         <div>
 
           <EuiButtonEmpty>
@@ -146,7 +131,7 @@ export default () => (
 
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ maxWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
         <div>
 
           <EuiButtonIcon
@@ -163,7 +148,8 @@ export default () => (
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiText>
           <h4><strong>Icon buttons are for saving space</strong></h4>
-          <p>The icon must be immediately understood, for example, a trash can for delete. Use these buttons sparingly, and never for the primary action.
+          <p>The icon must be immediately understood, for example, a trash can for delete. Use these buttons sparingly,
+            and never for the primary action.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -183,69 +169,53 @@ export default () => (
 
     <GuideRule
       heading="Modals"
-      description="In modals, the user path is top to bottom, left to right, in a Z-shaped pattern.  Placing the primary action on the bottom right puts it right where users finish scanning."
+      description="In modals, the user path is top to bottom, left to right, in a Z-shaped pattern.
+      Placing the primary action on the bottom right puts it right where users finish scanning."
     >
 
-      <GuideRuleExample  type="do" text="Do. The primary action is on the right with the secondary action on its left. Cancel is always an empty button.">
-        <EuiModal style={{ width: '400px' }} onClose={() => {}}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>
-              Save dashboard
-            </EuiModalHeaderTitle>
-          </EuiModalHeader>
-          <EuiModalBody>
-            <EuiFormRow
-              label="Title"
-            >
-              <EuiFieldText />
-            </EuiFormRow>
-            <EuiFormRow
-              label="Description"
-            >
-              <EuiFieldText />
-            </EuiFormRow>
-            <EuiFormRow>
-              <EuiCheckbox
-                onChange={() => {}}
-                id={makeId()}
-                label="Save as new dashboard"
-              />
-            </EuiFormRow>
-            <EuiModalFooter>
-              <EuiButtonEmpty>
-              Cancel
-              </EuiButtonEmpty>
-
-              <EuiButton
-                fill
-              >
-                Save
-              </EuiButton>
-
-            </EuiModalFooter>
-
-          </EuiModalBody>
-        </EuiModal>
+      <GuideRuleExample
+        type="do"
+        text="Do. The primary action is on the right with the secondary action on its left.
+        Cancel is always an empty button."
+      >
+        <EuiImage
+          size="l"
+          allowFullScreen
+          fullScreenIconColor="dark"
+          alt="page without primary button"
+          url="https://imgur.com/0jZMx6B.jpg"
+        />
 
       </GuideRuleExample>
 
-      <GuideRuleExample type="do" text="Do. Confirmation modals are opinionated&mdash;button placement, order, and type are built-in so you don't have to worry about them.">
-        <EuiConfirmModal
-          title="Delete this report?"
-          confirmButtonText="Delete"
-          cancelButtonText="Cancel"
-          onClose={() => {}}
-          style={{ width: '350px' }}
-        >
-          <p>You cannot recover a deleted report.</p>
-        </EuiConfirmModal>
+      <GuideRuleExample
+        type="do"
+        text="Do. Confirmation modals are opinionated&mdash;button placement, order,
+        and type are built-in so you don't have to worry about them."
+      >
+        <EuiImage
+          size="l"
+          hasShadow
+          allowFullScreen
+          fullScreenIconColor="dark"
+          alt="page without primary button"
+          url="https://imgur.com/FCVuZbP.jpg"
+        />
       </GuideRuleExample>
     </GuideRule>
 
     <EuiSpacer />
 
-    <GuideRule heading="Forms" description="In forms, content is typically concentrated on the top and left.  The user path is top to bottom, in an F-shaped pattern. A primary action on the bottom left is easiest for users to reach.">
-      <GuideRuleExample type="do" text="Do. Because the users' eye never leaves the left side, put the primary action on the bottom left.  If present, a secondary action is on its right.">
+    <GuideRule
+      heading="Forms"
+      description="In forms, content is typically concentrated on the top and left.  The user path is top to bottom,
+      in an F-shaped pattern. A primary action on the bottom left is easiest for users to reach."
+    >
+      <GuideRuleExample
+        type="do"
+        text="Do. Because the users' eye never leaves the left side,
+        put the primary action on the bottom left.  If present, a secondary action is on its right."
+      >
         <EuiImage
           size="l"
           hasShadow
@@ -270,7 +240,11 @@ export default () => (
     </GuideRule>
 
 
-    <GuideRule heading="Elsewhere in the UI" description="Button placement in other containers should fit the content and context, while staying consistent with the application. ">
+    <GuideRule
+      heading="Elsewhere in the UI"
+      description="Button placement in other containers should fit the content and context,
+      while staying consistent with the application. "
+    >
 
       <GuideRuleExample type="do" text="Do. If the action is against the title of the page, place the primary button in the upper right.">
         <EuiImage
@@ -304,7 +278,11 @@ export default () => (
     <EuiSpacer />
 
     <GuideRule>
-      <GuideRuleExample type="do" text="&quot;Create index pattern&quot; is the primary action. &quot;All index patterns&quot; is also a button, but its an empty button. It controls the UI and doesn't save any data.">
+      <GuideRuleExample
+        type="do"
+        text="&quot;Create index pattern&quot; is the primary action. &quot;All index patterns&quot; is
+        also a button, but its an empty button. It controls the UI and doesn't save any data."
+      >
         <EuiImage
           size="l"
           hasShadow
@@ -313,7 +291,12 @@ export default () => (
           url="https://imgur.com/5diUfSX.jpg"
         />
       </GuideRuleExample>
-      <GuideRuleExample type="do" text="Some pages don&apos;t need a primary action to draw user attention. The &quot;Make default index&quot; button is an action that the user doesn't click often, but it's still a prmary action for this page. It's just not filled in.">
+      <GuideRuleExample
+        type="do"
+        text="Some pages don&apos;t need a primary action to draw user attention.
+        The &quot;Make default index&quot; button is an action that the user doesn't click often,
+        but it's still a prmary action for this page. It's just not filled in."
+      >
         <EuiImage
           size="l"
           hasShadow
@@ -331,13 +314,13 @@ export default () => (
 
     <EuiText>
       <h2>Icons: Must be recognized at a glance</h2>
-      <p>Icon buttons can save space.  Limit icon buttons to groups of two&mdash;otherwise they lose meaning. See the&nbsp;
+      <p>Icon buttons can save space.  Limit icon buttons to groups of two&mdash;otherwise they lose meaning. See the
         <EuiLink
           href="https://elastic.github.io/eui/#/icon"
           target="_blank"
         >
             &nbsp;&nbsp;icon respository
-        </EuiLink>
+        </EuiLink>&nbsp;
 
         for icons with common meanings.
       </p>
@@ -377,7 +360,8 @@ export default () => (
 
     <GuideRule
       heading=""
-      description="Icons can serve as a scanning aid in a text label, but keep to a minimum. Icons work best on labels for binary actions (for example, Create and Delete) and final actions (Save)."
+      description="Icons can serve as a scanning aid in a text label, but keep to a minimum.
+      Icons work best on labels for binary actions (for example, Create and Delete) and final actions (Save)."
     >
       <GuideRuleExample type="do" text="Do. Icons on the left of a label facilitate scanning">
 
@@ -435,7 +419,9 @@ export default () => (
     <EuiSpacer size="l"/>
     <EuiText>
       <h2>Color: Use sparingly</h2>
-      <p>The button color defaults to blue.  Limit color changes to well-established use cases&mdash;green for final save actions and red for delete. </p>
+      <p>The button color defaults to blue.  Limit color changes to well-established use cases&mdash;green for final
+        save actions and red for delete.
+      </p>
 
     </EuiText>
     <EuiSpacer />
@@ -482,28 +468,45 @@ export default () => (
 
     <EuiSpacer size="l"/>
 
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ maxWidth: 300 }}>
-        <GuideRule>
-          <GuideRuleExample type="do" text="Do. This example puts multiple actions in one button rather than splitting them out">
-            <EuiImage
-              size="l"
-              hasShadow
-              alt="Accessible image alt goes here"
-              url="https://imgur.com/54NmOzh.jpg"
-            />
-          </GuideRuleExample>
-        </GuideRule>
-      </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }} />
-    </EuiFlexGroup>
+    <GuideRule>
+      <GuideRuleExample type="do" text="Do. This example puts multiple actions in one button rather than splitting them out">
+        <EuiImage
+          size="l"
+          hasShadow
+          allowFullScreen
+          alt="Next"
+          url="https://imgur.com/54NmOzh.jpg"
+        />
+      </GuideRuleExample>
+
+      <GuideRuleExample type="dont" text="Don't. When you have too many buttons, none matter.">
+        <EuiButton
+          size="s"
+        >
+              Close index
+        </EuiButton>&nbsp;
+        <EuiButton size="s">
+                Refresh index
+        </EuiButton>&nbsp;
+        <EuiButton size="s">
+                Clear index cache
+        </EuiButton>&nbsp;
+        <EuiButton size="s">
+                Delete index
+        </EuiButton>
+      </GuideRuleExample>
+    </GuideRule>
+
 
 
     <EuiSpacer size="l"/>
     <EuiText>
       <h2>Label: Say what it does</h2>
-      <p>Labels should provide a clear indication of what happens when the user clicks the button. Prefer action words and use in a consistent manner.</p>
+      <p>Labels should provide a clear indication of what happens when the user clicks the button.
+        Prefer action words and use in a consistent manner.
+      </p>
+      <p>Button text should be three words or less.   If your label has more words, consider a text link instead.</p>
 
     </EuiText>
     <EuiSpacer size="l"/>
@@ -528,7 +531,8 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-        Adds an object to a list or database.   Always followed by a noun, for example, Add visualization.  Do not use &quot;Add new.&quot; Remove is the correct opposite.
+        Adds an object to a list or database.   Always followed by a noun, for example, Add visualization.
+        Do not use &quot;Add new.&quot; Remove is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -539,7 +543,7 @@ export default () => (
             </EuiButtonEmpty>
           </EuiTableRowCell>
           <EuiTableRowCell>
-        Stops an action without saving pending changes.  Never make Cancel red&mdash;it's not a destructive action.
+        Stops an action without saving pending changes.  Never make Cancel red&mdash;it&apos;s not a destructive action.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -554,7 +558,8 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-        Creates a new object from scratch.  Always followed by a noun, for example, “Create pipeline.” Do not use &quot;Create new.&quot; Exception: “Add user” is more intuitive that “Create user.”  Delete is the correct opposite
+        Creates a new object from scratch.  Always followed by a noun, for example, “Create pipeline.” Do not use &quot;Create new.&quot;
+        Exception: “Add user” is more intuitive that “Create user.”  Delete is the correct opposite
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -629,7 +634,8 @@ export default () => (
             </EuiButton>
           </EuiTableRowCell>
           <EuiTableRowCell>
-        Remove an item not related to a database, such as a row from a table.  Do not confuse with Delete, which permanenty removes data from a database.
+        Remove an item not related to a database, such as a row from a table.
+        Do not confuse with Delete, which permanenty removes data from a database.
           </EuiTableRowCell>
         </EuiTableRow>
 
