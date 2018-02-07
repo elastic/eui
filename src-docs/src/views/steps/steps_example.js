@@ -23,6 +23,10 @@ import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
 const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
 
+import StepsHorizontal from './steps_horizontal';
+const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
+const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
+
 export const StepsExample = {
   title: 'Steps',
   sections: [{
@@ -81,5 +85,19 @@ export const StepsExample = {
       </div>
     ),
     demo: <HeadingElementSteps />,
+  },
+  {
+    title: 'Horizontal',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: stepsHorizontalSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: stepsHorizontalHtml,
+    }],
+    text: (
+      <p>Description needed: how to use the StepsHorizontal component.</p>
+    ),
+    demo: <StepsHorizontal />
   }],
 };
