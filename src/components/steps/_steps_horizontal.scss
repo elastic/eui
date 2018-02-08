@@ -25,7 +25,19 @@
   // focus state
   &:focus {
     .euiStepHorizontal__number {
-      //box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
+      background: $euiColorPrimary;
+      color: $euiColorEmptyShade;
+      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+    }
+
+    .euiStepHorizontal__title {
+      text-decoration: underline;
+    }
+  }
+
+  &:hover:not(:disabled) {
+
+    .euiStepHorizontal__number {
       animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
     }
 
@@ -74,12 +86,19 @@
   @include createStepsNumber;
   position: relative; /* 2 */
   z-index: $euiZLevel1; /* 2 */
+  transition: background-color $euiAnimSpeedSlow $euiAnimSlightResistance,
+              color $euiAnimSpeedSlow $euiAnimSlightResistance;
 
   // if it contains an icon, it needs to shift up a couple px
   > .euiIcon {
     position: relative;
     top: -2px;
   }
+}
+
+
+.euiStepHorizontal__disabledIcon {
+  fill: $euiColorDarkShade;
 }
 
 .euiStepHorizontal__title {
@@ -98,10 +117,19 @@
 .euiStepHorizontal-isIncomplete {
   .euiStepHorizontal__number {
     background-color: $euiColorLightShade;
+    color: $euiColorDarkShade;
   }
 
   .euiStepHorizontal__title {
     color: $euiColorDarkShade;
+  }
+
+  &:hover:not(:disabled) {
+
+    .euiStepHorizontal__number {
+      background-color: $euiColorPrimary;
+      color: $euiColorEmptyShade;
+    }
   }
 }
 
@@ -147,6 +175,6 @@
     box-shadow: 0 0 0 10px rgba($euiColorPrimary, 0);
   }
   100% {
-    box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
+    box-shadow: 0 0 0 4px rgba($euiColorPrimary, .2);
   }
 }
