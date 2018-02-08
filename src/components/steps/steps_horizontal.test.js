@@ -8,6 +8,7 @@ const steps = [
   {
     title: 'Completed Step 1',
     isComplete: true,
+    onClick: () => window.alert('Step 1 clicked'),
   },
   {
     title: 'Selected Step 2',

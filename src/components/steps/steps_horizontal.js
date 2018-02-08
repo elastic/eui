@@ -13,6 +13,7 @@ function renderHorizontalSteps(steps) {
       className,
       disabled,
       isSelected,
+      onClick,
       ...rest
     } = step;
 
@@ -23,6 +24,7 @@ function renderHorizontalSteps(steps) {
         step={index + 1}
         disabled={disabled}
         isSelected={isSelected}
+        onClick={onClick}
         {...rest}
       >
         {children}

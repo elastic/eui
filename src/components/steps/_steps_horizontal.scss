@@ -34,6 +34,11 @@
     }
   }
 
+  // disabled state
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
   // create the connecting lines
   position: relative;
   &::before,

@@ -14,6 +14,7 @@ export const EuiStepHorizontal = ({
   title,
   isSelected,
   isComplete,
+  onClick,
   disabled,
   ...rest
 }) => {
@@ -49,6 +50,7 @@ export const EuiStepHorizontal = ({
       aria-selected={!!isSelected}
       type="button"
       className={classes}
+      onClick={onClick}
       disabled={disabled}
       title={buttonTitle}
       {...rest}
