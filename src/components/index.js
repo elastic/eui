@@ -26,6 +26,10 @@ export {
 } from './badge';
 
 export {
+  EuiBasicTable,
+} from './basic_table';
+
+export {
   EuiCallOut,
 } from './call_out';
 

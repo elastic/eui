@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandedRowActions render 1`] = `
+Array [
+  <DefaultRowAction
+    action={
+      Object {
+        "description": "default 1",
+        "name": "default1",
+        "onClick": [Function],
+      }
+    }
+    enabled={true}
+    index={0}
+    key="row_action_id_0"
+    row={
+      Object {
+        "id": "xyz",
+      }
+    }
+    rowId="id"
+    visible={true}
+  />,
+  <CustomRowAction
+    action={
+      Object {
+        "description": "custom 1",
+        "name": "custom1",
+        "render": [Function],
+      }
+    }
+    enabled={true}
+    index={1}
+    key="row_action_id_1"
+    row={
+      Object {
+        "id": "xyz",
+      }
+    }
+    rowId="id"
+    visible={true}
+  />,
+]
+`;
