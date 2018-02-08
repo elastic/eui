@@ -57,7 +57,9 @@ export const StepsExample = {
     }],
     text: (
       <p>
-        Here&apos;s how to handle complex content within steps.
+        If you need to call out a set of substeps that are not lines of code,
+        most likely a <EuiCode>&lt;ol/&gt;</EuiCode>, wrap
+        the block in a <EuiCode>&lt;EuiSubSteps/&gt;</EuiCode>.
       </p>
     ),
     demo: <StepsComplex />,
@@ -96,7 +98,7 @@ export const StepsExample = {
       code: stepsHorizontalHtml,
     }],
     text: (
-      <p>Description needed: how to use the StepsHorizontal component.</p>
+      <p>For use when forms/setup instructions can and should be split into multiple pages.</p>
     ),
     demo: <StepsHorizontal />
   }],

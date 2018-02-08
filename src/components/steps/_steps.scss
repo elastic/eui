@@ -33,20 +33,4 @@
     margin-left: ($euiStepNumberSize/2) - 1px;
   }
 
-  // add shading to callout substeps within the content
-  .euiStep__subSteps {
-    padding: $euiSize;
-    background-color: tint($euiColorPrimary, 93%);
-    margin-bottom: $euiSize;
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
-
-    // change ordered list from numbers to lowercase letters
-    .euiText & ol {
-      list-style-type: lower-alpha;
-    }
-  }
-
 

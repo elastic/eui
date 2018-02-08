@@ -5,6 +5,7 @@ import {
   EuiSteps,
   EuiText,
   EuiCodeBlock,
+  EuiSubSteps,
 } from '../../../../src/components';
 
 const steps = [
@@ -24,13 +25,13 @@ const steps = [
     children: (
       <EuiText>
         <p>In order to complete this step, do the following things <strong>in order</strong>.</p>
-        <div className="euiStep__subSteps">
+        <EuiSubSteps>
           <ol>
             <li>Do thing 1</li>
             <li>Do thing 2</li>
             <li>Do thing 3</li>
           </ol>
-        </div>
+        </EuiSubSteps>
         <p>Here are some bullet point reminders.</p>
         <ul>
           <li>Reminder 1</li>
@@ -57,21 +58,21 @@ const steps = [
     children: (
       <EuiText>
         <h3><strong>Option 1:</strong> If you have this type of instance</h3>
-        <div className="euiStep__subSteps">
+        <EuiSubSteps>
           <ol>
             <li>Do thing 1</li>
             <li>Do thing 2</li>
             <li>Do thing 3</li>
           </ol>
-        </div>
+        </EuiSubSteps>
         <h3><strong>Option 2:</strong> If you have the other type of instance</h3>
-        <div className="euiStep__subSteps">
+        <EuiSubSteps>
           <ol>
             <li>Do thing 1</li>
             <li>Do thing 2</li>
             <li>Do thing 3</li>
           </ol>
-        </div>
+        </EuiSubSteps>
       </EuiText>
     )
   },

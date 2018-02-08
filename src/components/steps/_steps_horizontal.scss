@@ -26,7 +26,7 @@
   &:focus {
     .euiStepHorizontal__number {
       //box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
-      animation: .3s $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
     }
 
     .euiStepHorizontal__title {
