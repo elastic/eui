@@ -8,6 +8,7 @@ import {
   EuiForm,
   EuiRange,
   EuiFormRow,
+  EuiSelect,
   EuiSwitch,
   EuiFieldText,
 } from '../../../../src/components';
@@ -70,6 +71,17 @@ export default class extends Component {
           label="A text field"
         >
           <EuiFieldText name="popfirst" />
+        </EuiFormRow>
+        <EuiFormRow
+          label="Select"
+        >
+          <EuiSelect
+            options={[
+              { value: 'option_one', text: 'Option one' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+          />
         </EuiFormRow>
 
         <EuiFormRow

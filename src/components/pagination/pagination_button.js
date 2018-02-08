@@ -23,7 +23,7 @@ export const EuiPaginationButton = ({
   return (
     <EuiButtonEmpty
       className={classes}
-      size="s"
+      size="xs"
       color="text"
       {...rest}
     >
@@ -38,8 +38,4 @@ EuiPaginationButton.propTypes = {
   isActive: PropTypes.bool,
   isPlaceholder: PropTypes.bool,
   hideOnMobile: PropTypes.bool,
-};
-
-EuiPaginationButton.defaultProps = {
-  children: <span>&hellip;</span>,
 };

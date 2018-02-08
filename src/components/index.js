@@ -65,6 +65,12 @@ export {
 } from './expression';
 
 export {
+  EuiFilterButton,
+  EuiFilterGroup,
+  EuiFilterSelectItem
+} from './filter_group';
+
+export {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,

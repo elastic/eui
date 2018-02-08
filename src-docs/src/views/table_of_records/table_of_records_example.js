@@ -88,16 +88,24 @@ export const TableOfRecordsExample = {
           </p>
           <ul>
             <li>
-              <strong>Pagination</strong> - enabled when the provided model specifies the pagination criteria (i.e.
-              <EuiCode>model.criteria.page.index</EuiCode> and <EuiCode>model.criteria.page.size</EuiCode>)
+              <strong>Search</strong> - enabled when <EuiCode>config.search</EuiCode> is defined. It is also expected
+              that <EuiCode>model.criteria.search.query</EuiCode> will be specified (this describes the query to which
+              all records in <EuiCode>model.data.records</EuiCode> match.
+            </li>
+            <li>
+              <strong>Pagination</strong> - enabled when <EuiCode>config.pagination</EuiCode> is defined. It is also
+              expected that <EuiCode>model.criteria.page.index</EuiCode> and <EuiCode>model.criteria.page.size</EuiCode>
+              are set, both describing the page all records in <EuiCode>model.data.records</EuiCode> belong to.
             </li>
             <li>
               <strong>Sorting</strong> - enabled when any of the columns is configured to be <EuiCode>sortable: true</EuiCode>
             </li>
             <li>
-              <strong>Selection</strong> - enabled when the selection is configured on the <EuiCode>config</EuiCode> (i.e.
-              <EuiCode>config.selection.onSelectionChanged?</EuiCode>, <EuiCode>selectable?</EuiCode> and
-              <EuiCode>config.selection.selectableMessage?</EuiCode>)
+              <strong>Selection</strong> - enabled when <EuiCode>config.selection</EuiCode> is defined. You can &quot;listen&quot;
+              to selection changes by setting the <EuiCode>config.selection.onSelectionChanged</EuiCode> callback. It is
+              also possible to define what records are selectable and the reason for their &quot;selectability&quot; using
+              <EuiCode>config.selection.selectable</EuiCode> and <EuiCode>config.selection.selectableMessage</EuiCode>
+              callbacks.
             </li>
             <li>
               <strong>Custom Column Rendering</strong> - You can customize how the data is displayed in each column by
