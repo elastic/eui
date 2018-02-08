@@ -1,0 +1,94 @@
+
+$euiFormMaxWidth: 400px;
+$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
+
+@mixin euiFormDefaultBoxShadow {
+  box-shadow:
+    0 2px 2px -1px rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .92),
+    inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
+}
+
+@mixin euiFormActiveBoxShadow {
+  box-shadow:
+    0 4px 4px -2px rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
+    inset 0 -2px 0 0 $euiColorPrimary;
+}
+
+@mixin euiFormInvalidBoxShadow {
+  box-shadow:
+    0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 0 $euiColorEmptyShade,
+    inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
+}
+
+@mixin euiFormControlSize {
+  max-width: $euiFormMaxWidth;
+  width: 100%;
+}
+
+@mixin euiFormControlWithIcon($isIconOptional: false) {
+  $iconPadding: $euiSizeXXL;
+
+  @if ($isIconOptional) {
+    @at-root {
+      #{&}--withIcon {
+        padding-left: $iconPadding;
+      }
+    }
+  } @else {
+    padding-left: $iconPadding;
+  }
+}
+
+@mixin euiFormControlIsLoading($isNextToIcon: false) {
+
+  @at-root {
+    #{&}-isLoading {
+      @if ($isNextToIcon) {
+        padding-right: $euiSizeXXL + $euiSize;
+      } @else {
+        padding-right: $euiSizeXXL;
+      }
+    }
+  }
+}
+
+/**
+ * 1. Override invalid state with focus state.
+ */
+@mixin euiFormControlStyle {
+  @include euiFormControlSize;
+  @include euiFormDefaultBoxShadow;
+
+  border: none;
+  font-size: $euiFontSizeS;
+  font-family: $euiFontFamily;
+  padding: $euiSizeM;
+  color: $euiTextColor;
+  background: $euiFormBackgroundColor;
+  transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
+  border-radius: 0;
+
+  &--fullWidth {
+    max-width: 100%;
+  }
+
+  &:invalid { /* 1 */
+    @include euiFormInvalidBoxShadow;
+  }
+
+  &:focus { /* 1 */
+    @include euiFormActiveBoxShadow;
+    background: tintOrShade($euiColorEmptyShade, 0%, 20%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: darken($euiColorLightestShade, 2%);
+    box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
+  }
+}

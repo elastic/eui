@@ -1,0 +1,15 @@
+.euiFilterGroup {
+  @include euiFormControlStyle;
+  height: 40px;
+  padding: 0px;
+  width: auto;
+  display: inline-block;
+
+  > * + * {
+    border-left: $euiBorderThin;
+  }
+}
+
+.euiFilterGroup__popoverPanel {
+  width: $euiSize * 20;
+}

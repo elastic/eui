@@ -1,0 +1,48 @@
+.euiFilterSelectItem {
+  @include euiFontSizeS;
+
+  padding: $euiSizeXS $euiSizeM;
+  width: 100%;
+  text-align: left;
+  color: $euiTextColor;
+  border-bottom: $euiBorderThin;
+  border-color: darken($euiColorLightestShade, 2%);
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    background-color: $euiFocusBackgroundColor;
+  }
+
+  &.euiContextMenuItem-isDisabled {
+    color: $euiButtonColorDisabled;
+    cursor: default;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.euiFilterSelect__items {
+  @include euiScrollBar;
+
+  overflow-y: auto;
+  max-height: $euiSize * 30;
+}
+
+.euiFilterSelect__note {
+  height: $euiSize * 4;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.euiFilterSelect__noteContent {
+  color: $euiColorDarkShade;
+  font-size: $euiFontSizeS;
+}

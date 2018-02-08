@@ -1,0 +1,96 @@
+/**
+ * 1. We don't want any of the animations that come inherited from the mixin.
+ *    These should act like normal links instead.
+ */
+.euiFilterButton {
+  @include euiButton;
+
+  height: 40px;
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  transform: none !important; // 1
+  animation: none !important; // 1
+
+  .euiFilterButton__content {
+    @include euiButtonContent;
+
+    padding: 0 $euiSizeS;
+
+  }
+
+  .euiFilterButton__textShift {
+    text-align: center;
+    display: inline-block;
+
+    &::after {
+      display: block;
+      content: attr(data-text);
+      font-weight: $euiFontWeightBold;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+
+  &.euiFilterButton--iconRight {
+    .euiFilterButton__content {
+      @include euiButtonContent($isReverse: true);
+    }
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiFilterButton__content {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    .euiFilterButton__icon {
+      fill: $euiButtonColorDisabled;
+    }
+
+    &:hover, &:focus {
+      background-color: $euiColorEmptyShade;
+      text-decoration: none;
+    }
+  }
+
+  &.euiFilterButton-isSelected {
+    text-decoration: underline;
+  }
+
+  &.euiFilterButton-hasActiveFilters {
+    font-weight: $euiFontWeightBold;
+  }
+}
+
+// Modifier naming and colors.
+$buttonTypes: (
+  primary: $euiColorPrimary,
+  danger: $euiColorDanger,
+  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  ghost: $euiColorGhost,
+  text: $euiTextColor,
+);
+
+// Create button modifiders based upon the map.
+@each $name, $color in $buttonTypes {
+  .euiFilterButton--#{$name} {
+    color: $color;
+
+    .euiFilterButton__icon {
+      fill: $color;
+    }
+
+    &:hover {
+      background-color: transparent;
+
+      @if ($name == 'disabled') {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

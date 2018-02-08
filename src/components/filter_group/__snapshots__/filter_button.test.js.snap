@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFilterButton is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiFilterButton euiFilterButton--text euiFilterButton--iconRight testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiFilterButton__content"
+  >
+    <span
+      class="euiFilterButton__textShift"
+    />
+  </span>
+</button>
+`;

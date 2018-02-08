@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`astToES ast - '' 1`] = `
+Object {
+  "match_all": Object {},
+}
+`;
+
+exports[`astToES ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana logstash",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "es beats",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToES ast - 'is:online group:kibana john' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+      Object {
+        "term": Object {
+          "online": true,
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToES ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "eng es",
+          },
+        },
+      },
+      Object {
+        "term": Object {
+          "online": true,
+        },
+      },
+      Object {
+        "term": Object {
+          "active": false,
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "doe",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToES ast - 'john -sales' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "sales",
+        },
+      },
+    ],
+  },
+}
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
+<EuiFieldSearch
+  defaultValue=""
+  fullWidth={true}
+  incremental={true}
+  inputRef={[Function]}
+  isInvalid={false}
+  isLoading={false}
+  onSearch={[Function]}
+  placeholder="..."
+/>
+`;
+
+exports[`EuiSearchBox render - no config 1`] = `
+<EuiFieldSearch
+  defaultValue=""
+  fullWidth={true}
+  incremental={false}
+  inputRef={[Function]}
+  isInvalid={false}
+  isLoading={false}
+  onSearch={[Function]}
+  placeholder="Search..."
+/>
+`;
