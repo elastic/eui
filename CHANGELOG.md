@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- No public interface changes since `0.0.20`.
+- Added component to wrap blocks of substeps `EuiSubSteps` in a shaded container. ([#375](https://github.com/elastic/eui/pull/375))
+- Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
