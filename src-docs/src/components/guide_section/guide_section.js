@@ -230,7 +230,7 @@ export class GuideSection extends Component {
 
     const title = _euiObjectType === 'type' ?
       <EuiCode id={componentName}>{componentName}</EuiCode> :
-      <EuiText color="accent">{componentName}</EuiText>;
+      <EuiText>{componentName}</EuiText>;
 
     let descriptionElement;
 

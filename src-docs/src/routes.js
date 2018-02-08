@@ -40,6 +40,9 @@ import { AvatarExample }
 import { BadgeExample }
   from './views/badge/badge_example';
 
+import { BasicTableExample }
+  from './views/basic_table/basic_table_example';
+
 import { BottomBarExample }
   from './views/bottom_bar/bottom_bar_example';
 
@@ -250,6 +253,7 @@ const components = [
 ].map(example => createExample(example));
 
 const patterns = [
+  BasicTableExample,
 ].map(example => createExample(example));
 
 const sandboxes = [{
