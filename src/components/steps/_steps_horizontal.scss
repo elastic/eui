@@ -119,10 +119,28 @@
   }
 }
 
+// RESPONSIVE
+@include screenXSmall {
+  .euiStepHorizontal {
+    // reduce top padding and shift lines
+    padding-top: $euiSize;
+
+    &:before,
+    &:after {
+      top: $euiSize + $euiStepNumberSize/2;
+    }
+  }
+
+  // hide titles
+  .euiStepHorizontal__title {
+    display: none;
+  }
+}
+
 @keyframes focusRingAnimate {
   0% {
     box-shadow: 0 0 0 10px rgba($euiColorPrimary, 0);
-  },
+  }
   100% {
     box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
   }
