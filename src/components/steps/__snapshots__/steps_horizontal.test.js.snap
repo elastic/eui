@@ -6,5 +6,134 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   class="euiStepsHorizontal testClass1 testClass2"
   data-test-subj="test subject string"
   role="tablist"
-/>
+>
+  <button
+    aria-selected="false"
+    class="euiStepHorizontal euiStepHorizontal-isComplete"
+    role="tab"
+    title="Step 1: Completed Step 1 is complete"
+    type="button"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <div
+      class="euiStepHorizontal__number"
+    >
+      <svg
+        class="euiIcon euiIcon--medium euiIcon--ghost"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+            id="check-a"
+          />
+        </defs>
+        <use
+          href="#check-a"
+        />
+      </svg>
+    </div>
+    <span
+      class="euiStepHorizontal__title"
+    >
+      Completed Step 1
+    </span>
+  </button>
+  <button
+    aria-selected="true"
+    class="euiStepHorizontal euiStepHorizontal-isSelected"
+    role="tab"
+    title="Step 2: Selected Step 2"
+    type="button"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <div
+      class="euiStepHorizontal__number"
+    >
+      2
+    </div>
+    <span
+      class="euiStepHorizontal__title"
+    >
+      Selected Step 2
+    </span>
+  </button>
+  <button
+    aria-selected="false"
+    class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+    role="tab"
+    title="Step 3: Incomplete Step 3"
+    type="button"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <div
+      class="euiStepHorizontal__number"
+    >
+      3
+    </div>
+    <span
+      class="euiStepHorizontal__title"
+    >
+      Incomplete Step 3
+    </span>
+  </button>
+  <button
+    aria-selected="false"
+    class="euiStepHorizontal euiStepHorizontal-isIncomplete euiStepHorizontal-isDisabled"
+    disabled=""
+    role="tab"
+    title="Step 4: Disabled Step 4 is disabled"
+    type="button"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step
+    </span>
+    <div
+      class="euiStepHorizontal__number"
+    >
+      <svg
+        class="euiIcon euiIcon--medium euiIcon--ghost"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M3 5a5 5 0 0 1 10 0h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1zm6.33 6.493L10 13H6l.67-1.507a2 2 0 1 1 2.66 0zM2 15h12V6H2v9zM8 1C5.794 1 4 2.794 4 5h8c0-2.206-1.794-4-4-4z"
+            id="lock-a"
+          />
+        </defs>
+        <use
+          fill-rule="evenodd"
+          href="#lock-a"
+        />
+      </svg>
+    </div>
+    <span
+      class="euiStepHorizontal__title"
+    >
+      Disabled Step 4
+    </span>
+  </button>
+</div>
 `;

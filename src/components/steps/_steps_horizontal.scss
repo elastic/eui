@@ -1,3 +1,129 @@
-.euiStepsHorizontal {
+@mixin makeLineProgress(){
+  height: 2px;
+  background-color: $euiColorPrimary;
+}
 
+/**
+ * 1. Ensure the title truncates instead of wraps
+ * 2. Ensure the connecting lines stays behind the number
+ */
+
+ .euiStepsHorizontal {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+  background: rgba($euiColorLightestShade, .5);
+}
+
+// Button containing item
+.euiStepHorizontal {
+  flex-grow: 1;
+  flex-basis: 0%;
+  padding: $euiSizeL $euiSize $euiSize;
+  overflow: hidden; /* 1 */
+
+  // focus state
+  &:focus {
+    .euiStepHorizontal__number {
+      //box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
+      animation: .3s $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+    }
+
+    .euiStepHorizontal__title {
+      text-decoration: underline;
+    }
+  }
+
+  // create the connecting lines
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 1px;
+    top: $euiSizeL + $euiStepNumberSize/2;
+    background-color: $euiColorLightShade;
+    z-index: $euiZLevel0; /* 2 */
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  // Remove the respective lines if the first or last child
+  &:first-of-type::before {
+    display: none;
+  }
+
+  &:last-of-type::after {
+    display: none;
+  }
+}
+
+.euiStepHorizontal__number {
+  @include createStepsNumber;
+  position: relative; /* 2 */
+  z-index: $euiZLevel1; /* 2 */
+
+  // if it contains an icon, it needs to shift up a couple px
+  > .euiIcon {
+    position: relative;
+    top: -2px;
+  }
+}
+
+.euiStepHorizontal__title {
+  display: block;
+  @include euiTitle;
+  @include euiFontSize;
+  margin-top: $euiSizeS;
+
+  // truncate
+  white-space: nowrap;  /* 1 */
+  overflow: hidden;  /* 1 */
+  text-overflow: ellipsis;  /* 1 */
+}
+
+// Incomplete state
+.euiStepHorizontal-isIncomplete {
+  .euiStepHorizontal__number {
+    background-color: $euiColorLightShade;
+  }
+
+  .euiStepHorizontal__title {
+    color: $euiColorDarkShade;
+  }
+}
+
+// Complete state
+.euiStepHorizontal-isComplete {
+  &::before,
+  &::after {
+    @include makeLineProgress;
+  }
+}
+
+// Selected state
+.euiStepHorizontal-isSelected {
+  .euiStepHorizontal__number {
+    @include euiBottomShadowMedium;
+  }
+
+  &::before {
+    @include makeLineProgress;
+  }
+}
+
+@keyframes focusRingAnimate {
+  0% {
+    box-shadow: 0 0 0 10px rgba($euiColorPrimary, 0);
+  },
+  100% {
+    box-shadow: 0 0 0 2px rgba($euiColorPrimary, .2);
+  }
 }

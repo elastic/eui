@@ -4,10 +4,28 @@ import { requiredProps } from '../../test';
 
 import { EuiStepsHorizontal } from './steps_horizontal';
 
+const steps = [
+  {
+    title: 'Completed Step 1',
+    isComplete: true,
+  },
+  {
+    title: 'Selected Step 2',
+    isSelected: true,
+  },
+  {
+    title: 'Incomplete Step 3',
+  },
+  {
+    title: 'Disabled Step 4',
+    disabled: true,
+  },
+];
+
 describe('EuiStepsHorizontal', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiStepsHorizontal {...requiredProps} />
+      <EuiStepsHorizontal {...requiredProps} steps={steps} />
     );
 
     expect(component)

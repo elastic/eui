@@ -1,10 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import {
+  EuiStepHorizontal,
+} from './step_horizontal';
+
+
+function renderHorizontalSteps(steps) {
+  return steps.map((step, index) => {
+    const {
+      children,
+      className,
+      disabled,
+      isSelected,
+      ...rest
+    } = step;
+
+    return (
+      <EuiStepHorizontal
+        className={className}
+        key={index}
+        step={index + 1}
+        disabled={disabled}
+        isSelected={isSelected}
+        {...rest}
+      >
+        {children}
+      </EuiStepHorizontal>
+    );
+  });
+}
+
 
 export const EuiStepsHorizontal = ({
-  children,
   className,
+  steps,
   ...rest
 }) => {
   const classes = classNames(
@@ -18,12 +48,18 @@ export const EuiStepsHorizontal = ({
       className={classes}
       {...rest}
     >
-      {children}
+      {renderHorizontalSteps(steps)}
     </div>
   );
 };
 
+const stepPropType = PropTypes.shape({
+  isSelected: PropTypes.bool,
+  disabled: PropTypes.bool,
+  children: PropTypes.node
+});
+
 EuiStepsHorizontal.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
+  steps: PropTypes.arrayOf(stepPropType).isRequired,
 };
