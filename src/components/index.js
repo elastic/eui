@@ -218,6 +218,10 @@ export {
 } from './table_of_records';
 
 export {
+  EuiBasicTable
+} from './basic_table';
+
+export {
   EuiTab,
   EuiTabs,
 } from './tabs';

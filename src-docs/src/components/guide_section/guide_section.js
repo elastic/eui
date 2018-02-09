@@ -172,7 +172,7 @@ export class GuideSection extends Component {
 
       function markup(text) {
         const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-        return text.split(regex).map(token => {
+        return text.split(regex).map((token, index) => {
           if (!token) {
             return '';
           }
@@ -181,11 +181,11 @@ export class GuideSection extends Component {
             const onClick = () => {
               document.getElementById(id).scrollIntoView();
             };
-            return <EuiLink onClick={onClick}>{id}</EuiLink>;
+            return <EuiLink key={`markup-${index}`} onClick={onClick}>{id}</EuiLink>;
           }
           if (token.startsWith('`')) {
             const code = token.substring(1, token.length - 1);
-            return <EuiCode>{code}</EuiCode>;
+            return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
           }
           return token;
 
@@ -196,7 +196,7 @@ export class GuideSection extends Component {
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
-        defaultValueMarkup = [ <EuiCode>{defaultValue.value}</EuiCode> ];
+        defaultValueMarkup = [ <EuiCode key={`defaultValue-${propName}`}>{defaultValue.value}</EuiCode> ];
         if (defaultValue.comment) {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
         }
@@ -236,7 +236,7 @@ export class GuideSection extends Component {
 
     if (description) {
       descriptionElement = (
-        <div key="description">
+        <div key={`description-${componentName}`}>
           <EuiText>
             <p>{description}</p>
           </EuiText>
