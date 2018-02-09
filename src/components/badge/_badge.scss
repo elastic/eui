@@ -39,11 +39,11 @@
 // Modifier naming and colors.
 $badgeTypes: (
   default: $euiColorLightShade,
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  accent: $euiColorAccent,
+  primary: lighten(desaturate($euiColorPrimary, 30%), 30%),
+  secondary: lighten(desaturate($euiColorSecondary, 30%), 30%),
+  warning: lighten(desaturate($euiColorWarning, 30%), 30%),
+  danger: lighten(desaturate($euiColorDanger, 30%), 30%),
+  accent: lighten(desaturate($euiColorAccent, 30%), 30%),
   vis0: $euiColorVis0,
   vis1: $euiColorVis1,
   vis2: $euiColorVis2,
