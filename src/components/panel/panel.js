@@ -18,6 +18,7 @@ export const EuiPanel = ({
   hasShadow,
   grow,
   panelRef,
+  isHoverable,
   ...rest
 }) => {
 
@@ -27,6 +28,7 @@ export const EuiPanel = ({
     {
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,
+      'euiPanel--isHoverable': isHoverable,
     },
     className
   );
@@ -50,10 +52,12 @@ EuiPanel.propTypes = {
   paddingSize: PropTypes.oneOf(SIZES),
   grow: PropTypes.bool,
   panelRef: PropTypes.func,
+  isHoverable: PropTypes.bool,
 };
 
 EuiPanel.defaultProps = {
   paddingSize: 'm',
   hasShadow: false,
   grow: true,
+  isHoverable: false,
 };

@@ -1,3 +1,40 @@
-.euiCard {
+@import "../panel/variables";
 
+$euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
+
+.euiCard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.euiCard__content {
+  flex-grow: 1;
+
+  .euiCard__description {
+    margin-top: $euiCardSpacing/2;
+  }
+}
+
+.euiCard__image,
+.euiCard__footer {
+  flex-grow: 0;
+}
+
+.euiCard__image {
+  .euiIcon {
+    margin-bottom: $euiCardSpacing;
+  }
+
+  .euiImage {
+    max-width: none;
+    width: calc(100% + #{$euiCardSpacing}*2);
+    left: $euiCardSpacing * -1;
+    top: $euiCardSpacing * -1;
+  }
+}
+
+.euiCard__footer:not(:empty) {
+  margin-top: $euiCardSpacing;
 }

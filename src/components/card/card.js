@@ -5,45 +5,68 @@ import classNames from 'classnames';
 import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
+import { EuiImage } from '../image';
 
 export const EuiCard = ({
-  children,
   className,
+  description,
   title,
+  icon,
   image,
   footer,
+  onClick,
   ...rest,
 }) => {
-  const classes = classNames('euiCard', className);
+  const classes = classNames(
+    'euiCard',
+    className,
+  );
+
+  const cardPanelCanHover = onClick ? true : false;
+
+  let imageNode;
+  if (image) {
+    imageNode = (
+      <EuiImage url={image} alt="" />
+    );
+  }
 
   return (
     <EuiPanel
+      onClick={onClick}
+      isHoverable={cardPanelCanHover}
       className={classes}
       {...rest}
     >
       <div className="euiCard__image">
-        {image}
+        {imageNode}
+        {icon}
       </div>
 
-      <EuiTitle className="euiCard__title">
-        <span>{title}</span>
-      </EuiTitle>
+      <div className="euiCard__content">
+        <EuiTitle size="s" className="euiCard__title">
+          <span>{title}</span>
+        </EuiTitle>
 
-      <EuiText className="euiCard__content">
-        {children}
-      </EuiText>
+        <EuiText size="s" className="euiCard__description">
+          <p>{description}</p>
+        </EuiText>
+      </div>
 
       <div className="euiCard__footer">
         {footer}
       </div>
+
     </EuiPanel>
   );
 };
 
 EuiCard.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
-  title: PropTypes.string,
-  icon: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.node,
+  image: PropTypes.string,
   footer: PropTypes.node,
+  onClick: PropTypes.func,
 };

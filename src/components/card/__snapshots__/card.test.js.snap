@@ -9,12 +9,22 @@ exports[`EuiCard is rendered 1`] = `
   <div
     class="euiCard__image"
   />
-  <span
-    class="euiTitle euiCard__title"
-  />
   <div
-    class="euiText euiCard__content"
-  />
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
   <div
     class="euiCard__footer"
   />

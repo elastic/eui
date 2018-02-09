@@ -19,4 +19,15 @@
   &.euiPanel--flexGrowZero {
     flex-grow: 0;
   }
+
+  &.euiPanel--isHoverable {
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-2px);
+      @include euiSlightShadowHover;
+      cursor: pointer;
+    }
+  }
 }

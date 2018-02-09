@@ -1,22 +1,22 @@
 import React from 'react';
 
 import {
+  EuiButton,
   EuiCard,
-  EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
-const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
+const images = ['Nature', 'Water', 'City'];
 
-const cardNodes = icons.map(function (item) {
+const cardNodes = images.map(function (item) {
   return (
     <EuiFlexItem>
       <EuiCard
-        icon={<EuiIcon size="xxl" type={`logo${item}`} />}
-        title={`Elastic ${item}`}
+        image={`https://source.unsplash.com/400x200/?${item}`}
+        title={`Elastic in ${item}`}
         description="Example of a card's description. Stick to one or two sentences."
-        onClick={() => window.alert('Card clicked')}
+        footer={<EuiButton>Go for it</EuiButton>}
       />
     </EuiFlexItem>
   );

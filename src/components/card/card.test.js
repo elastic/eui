@@ -7,7 +7,7 @@ import { EuiCard } from './card';
 describe('EuiCard', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCard {...requiredProps} />
+      <EuiCard title="Card title" description="Card description" {...requiredProps} />
     );
 
     expect(component)
