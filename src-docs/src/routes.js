@@ -46,6 +46,9 @@ import { BottomBarExample }
 import { ButtonExample }
   from './views/button/button_example';
 
+import { CardExample }
+  from './views/card/card_example';
+
 import { CallOutExample }
   from './views/call_out/call_out_example';
 
@@ -211,6 +214,7 @@ const components = [
   BadgeExample,
   BottomBarExample,
   ButtonExample,
+  CardExample,
   CallOutExample,
   CodeEditorExample,
   CodeExample,
