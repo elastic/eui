@@ -30,7 +30,7 @@ export const EuiStepHorizontal = ({
 
   if (disabled) {
     numberNode = (
-      <EuiIcon type="lock" color="ghost" />
+      <EuiIcon type="lock" className="euiStepHorizontal__disabledIcon" />
     );
     titleAppendix = ' is disabled';
   } else if (isComplete) {
