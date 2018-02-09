@@ -14,6 +14,16 @@ const colorToClassNameMap = {
   accent: 'euiBadge--accent',
   warning: 'euiBadge--warning',
   danger: 'euiBadge--danger',
+  vis0: 'euiBadge--vis0',
+  vis1: 'euiBadge--vis1',
+  vis2: 'euiBadge--vis2',
+  vis3: 'euiBadge--vis3',
+  vis4: 'euiBadge--vis4',
+  vis5: 'euiBadge--vis5',
+  vis6: 'euiBadge--vis6',
+  vis7: 'euiBadge--vis7',
+  vis8: 'euiBadge--vis8',
+  vis9: 'euiBadge--vis9',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -43,7 +53,7 @@ export const EuiBadge = ({
   let optionalIcon = null;
   if (iconType) {
     optionalIcon = (
-      <EuiIcon type={iconType} size="m" className="euiBadge__icon" />
+      <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
     );
   }
 

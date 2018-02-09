@@ -1,14 +1,20 @@
 .euiBadge {
   font-size: $euiSizeM;
-  line-height: $euiSizeL;
+  font-weight: $euiFontWeightBold;
+  line-height: $euiSize + $euiSizeXS;
   display: inline-block;
   text-decoration: none;
-  border: solid 1px transparent;
-  border-radius: $euiSizeL;
-  padding: 0 $euiSizeS;
+  box-sizing: content-box;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0 $euiSizeXS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
+  text-align: center;
+
+  + .euiBadge {
+    margin-left: $euiSizeXS;
+  }
 
   .euiBadge__content {
     display: flex;
@@ -37,12 +43,26 @@ $badgeTypes: (
   secondary: $euiColorSecondary,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
-  accent: $euiColorAccent
+  accent: $euiColorAccent,
+  vis0: $euiColorVis0,
+  vis1: $euiColorVis1,
+  vis2: $euiColorVis2,
+  vis3: $euiColorVis3,
+  vis4: $euiColorVis4,
+  vis5: $euiColorVis5,
+  vis6: $euiColorVis6,
+  vis7: $euiColorVis7,
+  vis8: $euiColorVis8,
+  vis9: $euiColorVis9
 );
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
-    border-color: $color;
-    background-color: transparentize($color, .9);
+    background-color: $color;
+    @if (lightness($color) > 50) {
+      color: #000;
+    } @else {
+      color: #FFF;
+    }
   }
 }

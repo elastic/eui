@@ -86,6 +86,146 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiBadge props color vis0 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis0"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis1 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis1"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis2 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis2"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis3 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis3"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis4 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis4"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis5 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis5"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis6 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis6"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis7 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis7"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis8 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis8"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiBadge props color vis9 is rendered 1`] = `
+<div
+  class="euiBadge euiBadge--vis9"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
 exports[`EuiBadge props color warning is rendered 1`] = `
 <div
   class="euiBadge euiBadge--warning"
@@ -108,7 +248,7 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--medium"
+      class="euiIcon euiBadge__icon euiIcon--small"
       height="18"
       viewBox="0 0 18 18"
       width="18"
@@ -140,7 +280,7 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--medium"
+      class="euiIcon euiBadge__icon euiIcon--small"
       height="18"
       viewBox="0 0 18 18"
       width="18"
@@ -172,7 +312,7 @@ exports[`EuiBadge props iconType is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--medium"
+      class="euiIcon euiBadge__icon euiIcon--small"
       height="18"
       viewBox="0 0 18 18"
       width="18"

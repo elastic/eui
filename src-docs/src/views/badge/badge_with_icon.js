@@ -6,13 +6,11 @@ import {
 
 export default () => (
   <div>
-    <EuiBadge iconType="help">
+    <EuiBadge iconType="check">
       Primary
     </EuiBadge>
 
-    &nbsp;&nbsp;
-
-    <EuiBadge color="primary" iconType="user" iconSide="right">
+    <EuiBadge color="primary" iconType="cross" iconSide="right">
       Secondary
     </EuiBadge>
   </div>
