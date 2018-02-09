@@ -48,6 +48,8 @@ exports[`EuiTablePagination is rendered 1`] = `
   </div>
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
-  />
+  >
+    <span />
+  </div>
 </div>
 `;

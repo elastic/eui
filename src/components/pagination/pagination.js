@@ -13,6 +13,7 @@ export const EuiPagination = ({
   pageCount,
   activePage,
   onPageClick,
+  compressed,
   ...rest
 }) => {
   const classes = classNames('euiPagination', className);
@@ -109,26 +110,48 @@ export const EuiPagination = ({
 
   if (pages.length > 1) {
     const selectablePages = pages;
-    return (
-      <div
-        className={classes}
-        {...rest}
-      >
-        {previousButton}
-        {firstPageButtons}
-        {selectablePages}
-        {lastPageButtons}
-        {nextButton}
-      </div>
-    );
+    if (compressed) {
+      return (
+        <div
+          className={classes}
+          {...rest}
+        >
+          {previousButton}
+          {nextButton}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={classes}
+          {...rest}
+        >
+          {previousButton}
+          {firstPageButtons}
+          {selectablePages}
+          {lastPageButtons}
+          {nextButton}
+        </div>
+      );
+    }
   } else {
-    return null;
+    // Don't render pagination if it isn't needed. Then span is here for a docs bug.
+    return <span/>;
   }
 };
 
 EuiPagination.propTypes = {
   className: PropTypes.string,
+
+  /**
+   * The total number of pages
+   */
   pageCount: PropTypes.number,
   activePage: PropTypes.number,
   onPageClick: PropTypes.func,
+
+  /**
+   * If true, will only show next/prev arrows instead of page numbers.
+   */
+  compressed: PropTypes.bool,
 };

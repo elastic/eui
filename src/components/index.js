@@ -177,6 +177,7 @@ export {
 
 export {
   EuiPagination,
+  EuiPaginationButton,
 } from './pagination';
 
 export {

@@ -36,6 +36,10 @@ EuiPaginationButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isActive: PropTypes.bool,
+
+  /**
+   * For ellipsis or other non-clickable buttons.
+   */
   isPlaceholder: PropTypes.bool,
   hideOnMobile: PropTypes.bool,
 };
