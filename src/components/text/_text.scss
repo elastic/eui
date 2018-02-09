@@ -19,6 +19,7 @@
   p,
   ul,
   ol,
+  blockquote,
   img {
     margin-bottom: $euiSizeL;
   }
@@ -31,6 +32,40 @@
   ol {
     list-style: decimal;
     margin-left: $euiSizeL;
+  }
+
+  blockquote {
+    position: relative;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $euiSizeL;
+    max-width: 36rem;
+    font-family: Georgia,Times,Times New Roman,serif;
+    font-size: 112.5%;
+    line-height: 1.5;
+    font-style: italic;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      content: "";
+      height: 2px;
+      width: 50%;
+      transform: translateX(-50%);
+      background: $euiColorDarkShade;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
   }
 
   * + h1,
@@ -102,6 +137,7 @@
     p,
     ul,
     ol,
+    blockquote,
     h1,
     h2,
     h3,
