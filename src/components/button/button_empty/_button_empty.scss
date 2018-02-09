@@ -71,11 +71,7 @@ $buttonTypes: (
     }
 
     &:focus {
-      @if ($name == 'text') {
-        background-color: transparentize($euiColorPrimary, .9);
-      } @else {
-        background-color: transparentize($color, .9);
-      }
+      background-color: transparentize($color, .9);
     }
 
     &:hover {

@@ -1,21 +1,15 @@
 .euiPaginationButton {
   font-size: $euiFontSizeS;
   padding: 0;
-  height: $euiSizeL;
-  min-width: $euiSizeXL;
   text-align: center;
+  border-radius: $euiBorderRadius;
 }
 
 .euiPaginationButton-isActive {
   pointer-events: none;
-  background-color: $euiColorPrimary;
-  color: $euiColorEmptyShade;
-  border-radius: $euiBorderRadius;
-
-  &:focus {
-    background-color: $euiColorPrimary;
-    color: $euiColorEmptyShade;
-  }
+  color: $euiColorPrimary;
+  text-decoration: underline;
+  font-weight: $euiFontWeightBold;
 }
 
 .euiPaginationButton-isPlaceholder {
