@@ -1,0 +1,33 @@
+// Colors
+$euiFocusRingColor: rgba($euiColorPrimary, .2);
+$euiFocusRingAnimStartColor: rgba($euiColorPrimary, 0);
+
+// Sizing
+$euiFocusRingSize: 2px;
+$euiFocusRingSizeLarge: 4px;
+
+@mixin euiFocusRing($size) {
+  @if $size = "large" {
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge;
+  } @else {
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+  }
+}
+
+@keyframes focusRingAnimate {
+  0% {
+    box-shadow: 0 0 0 6px $euiFocusRingAnimStartColor;
+  }
+  100% {
+    box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
+  }
+}
+
+@keyframes focusRingAnimateLarge {
+  0% {
+    box-shadow: 0 0 0 10px $euiFocusRingAnimStartColor;
+  }
+  100% {
+    box-shadow: 0 0 0 $euiFocusRingSizeLarge $euiFocusRingColor;
+  }
+}

@@ -198,6 +198,8 @@ export {
 
 export {
   EuiSteps,
+  EuiSubSteps,
+  EuiStepsHorizontal,
 } from './steps';
 
 export {
