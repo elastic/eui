@@ -1,6 +1,6 @@
 .euiBadge {
   font-size: $euiSizeM;
-  font-weight: $euiFontWeightBold;
+  font-weight: $euiFontWeightMedium;
   line-height: $euiSize + $euiSizeXS;
   display: inline-block;
   text-decoration: none;
@@ -39,11 +39,11 @@
 // Modifier naming and colors.
 $badgeTypes: (
   default: $euiColorLightShade,
-  primary: lighten(desaturate($euiColorPrimary, 30%), 30%),
-  secondary: lighten(desaturate($euiColorSecondary, 30%), 30%),
-  warning: lighten(desaturate($euiColorWarning, 30%), 30%),
-  danger: lighten(desaturate($euiColorDanger, 30%), 30%),
-  accent: lighten(desaturate($euiColorAccent, 30%), 30%),
+  primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
+  secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
+  warning: lighten(desaturate($euiColorWarning, 40%), 40%),
+  danger: lighten(desaturate($euiColorDanger, 40%), 40%),
+  accent: lighten(desaturate($euiColorAccent, 40%), 40%),
   vis0: $euiColorVis0,
   vis1: $euiColorVis1,
   vis2: $euiColorVis2,
