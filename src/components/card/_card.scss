@@ -24,6 +24,7 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 
 .euiCard__image {
   .euiIcon {
+    margin-top: $euiCardSpacing/2;
     margin-bottom: $euiCardSpacing;
   }
 
