@@ -2,13 +2,13 @@
   font-size: $euiFontSizeS;
   padding: 0;
   text-align: center;
+  border-radius: $euiBorderRadius;
 }
 
 .euiPaginationButton-isActive {
   pointer-events: none;
   color: $euiColorPrimary;
   text-decoration: underline;
-  border-radius: $euiBorderRadius;
   font-weight: $euiFontWeightBold;
 }
 
