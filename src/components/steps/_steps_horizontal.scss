@@ -22,23 +22,15 @@
   padding: $euiSizeL $euiSize $euiSize;
   overflow: hidden; /* 1 */
 
-  // focus state
-  &:focus {
+  // focus & hover state
+  &:focus,
+  &:hover:not(:disabled) {
     .euiStepHorizontal__number {
       background: $euiColorPrimary;
       color: $euiColorEmptyShade;
-      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
-    }
-
-    .euiStepHorizontal__title {
-      text-decoration: underline;
-    }
-  }
-
-  &:hover:not(:disabled) {
-
-    .euiStepHorizontal__number {
-      animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+      transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
+                  color $euiAnimSpeedNormal $euiAnimSlightResistance;
+      @include euiFocusRing(large);
     }
 
     .euiStepHorizontal__title {
@@ -86,19 +78,12 @@
   @include createStepsNumber;
   position: relative; /* 2 */
   z-index: $euiZLevel1; /* 2 */
-  transition: background-color $euiAnimSpeedSlow $euiAnimSlightResistance,
-              color $euiAnimSpeedSlow $euiAnimSlightResistance;
 
   // if it contains an icon, it needs to shift up a couple px
   > .euiIcon {
     position: relative;
     top: -2px;
   }
-}
-
-
-.euiStepHorizontal__disabledIcon {
-  fill: $euiColorDarkShade;
 }
 
 .euiStepHorizontal__title {
@@ -111,6 +96,10 @@
   white-space: nowrap;  /* 1 */
   overflow: hidden;  /* 1 */
   text-overflow: ellipsis;  /* 1 */
+
+  .euiStepHorizontal:disabled & {
+    color: $euiColorDarkShade;
+  }
 }
 
 // Incomplete state
@@ -118,18 +107,6 @@
   .euiStepHorizontal__number {
     background-color: $euiColorLightShade;
     color: $euiColorDarkShade;
-  }
-
-  .euiStepHorizontal__title {
-    color: $euiColorDarkShade;
-  }
-
-  &:hover:not(:disabled) {
-
-    .euiStepHorizontal__number {
-      background-color: $euiColorPrimary;
-      color: $euiColorEmptyShade;
-    }
   }
 }
 
@@ -167,14 +144,5 @@
   // hide titles
   .euiStepHorizontal__title {
     display: none;
-  }
-}
-
-@keyframes focusRingAnimate {
-  0% {
-    box-shadow: 0 0 0 10px rgba($euiColorPrimary, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 4px rgba($euiColorPrimary, .2);
   }
 }

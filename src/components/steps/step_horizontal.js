@@ -29,9 +29,7 @@ export const EuiStepHorizontal = ({
   let titleAppendix = '';
 
   if (disabled) {
-    numberNode = (
-      <EuiIcon type="lock" className="euiStepHorizontal__disabledIcon" />
-    );
+    numberNode = step;
     titleAppendix = ' is disabled';
   } else if (isComplete) {
     numberNode = (
