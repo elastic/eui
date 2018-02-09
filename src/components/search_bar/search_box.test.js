@@ -2,7 +2,6 @@ import React from 'react';
 import { requiredProps } from '../../test';
 import { shallow } from 'enzyme/build/index';
 import { EuiSearchBox } from './search_box';
-import { Query } from './query';
 
 describe('EuiSearchBox', () => {
 
@@ -10,8 +9,8 @@ describe('EuiSearchBox', () => {
 
     const props = {
       ...requiredProps,
-      query: Query.parse(''),
-      onChange: () => {},
+      query: '',
+      onSearch: () => {},
     };
 
     const component = shallow(
@@ -26,8 +25,8 @@ describe('EuiSearchBox', () => {
 
     const props = {
       ...requiredProps,
-      query: Query.parse(''),
-      onChange: () => {},
+      query: '',
+      onSearch: () => {},
       placeholder: '...',
       incremental: true
     };

@@ -8,8 +8,12 @@ import {
 
 import {
   EuiCode,
-  EuiSearchBar,
+  // EuiSearchBar,
 } from '../../../../src/components';
+
+import {
+  EuiSearchBar,
+} from '../../../../src/components/search_bar';
 
 import { SearchBar } from './search_bar';
 
@@ -85,8 +89,8 @@ export const SearchBarExample = {
           </ul>
         </div>
       ),
-      components: { EuiSearchBar },
-      demo: <SearchBar/>,
+      props: { EuiSearchBar },
+      demo: <SearchBar/>
     }
   ],
 };

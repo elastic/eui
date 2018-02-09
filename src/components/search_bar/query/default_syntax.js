@@ -10,6 +10,8 @@ const grammar = `
   const unescape = (value) => {
     return value.replace(/\\\\([:\\-\\\\])/, '$1');
   };
+  
+  const { AST } = options;
 }
 
 Query
@@ -29,19 +31,19 @@ Clause
   / TermClause
         
 TermClause
-  = space? "-" value:termValue { return { type: 'term', value: value, match: 'must_not' }; }
-  / space? value:termValue { return { type: 'term', value: value, match: 'must' }; }
+  = space? "-" value:termValue { return AST.Term.mustNot(value); }
+  / space? value:termValue { return AST.Term.must(value); }
     
 IsClause
-  = space? "-" value:IsValue { return { type: 'is', flag: value, match: 'must_not' }; }
-  / space? value:IsValue { return { type: 'is', flag: value, match: 'must' }; }
+  = space? "-" value:IsValue { return AST.Is.mustNot(value); }
+  / space? value:IsValue { return AST.Is.must(value); }
         
 IsValue
   = "is:" value:value { return value; }
     
 FieldClause
-  = space? "-" fv:FieldAndValue { return { type: 'field', field: fv.field, value: fv.value, match: 'must_not'}; }
-  / space? fv:FieldAndValue { return { type: 'field', field: fv.field, value: fv.value, match: 'must'}; }
+  = space? "-" fv:FieldAndValue { return AST.Field.mustNot(fv.field, fv.value); }
+  / space? fv:FieldAndValue { return AST.Field.must(fv.field, fv.value); }
     
 FieldAndValue
   = field:fieldName ":" value:fieldValue { return {field, value}; }
@@ -84,7 +86,7 @@ const parser = peg.buildParser(grammar);
 export const defaultSyntax = Object.freeze({
 
   parse: (query) => {
-    const clauses = parser.parse(query);
+    const clauses = parser.parse(query, { AST });
     return AST.create(clauses);
   },
 

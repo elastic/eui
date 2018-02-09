@@ -19,6 +19,8 @@ export class Query {
     return AST.Match.isMustClause(clause);
   }
 
+  static MATCH_ALL = Query.parse('');
+
   static isTerm(clause) {
     return AST.Term.isInstance(clause);
   }

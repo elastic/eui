@@ -154,7 +154,7 @@ export class _AST {
   }
 
   removeIsClause(flag) {
-    return new _AST(this._clauses.filter(clause => Is.isInstance(clause) && clause.flag !== flag));
+    return new _AST(this._clauses.filter(clause => !Is.isInstance(clause) || clause.flag !== flag));
   }
 
   /**

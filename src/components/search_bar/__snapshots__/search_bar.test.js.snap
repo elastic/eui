@@ -15,25 +15,10 @@ exports[`SearchBar render - no config, no query 1`] = `
   >
     <EuiSearchBox
       incremental={false}
-      onChange={[Function]}
+      isInvalid={false}
+      onSearch={[Function]}
       placeholder="Search..."
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "is": Object {},
-              "term": Array [],
-            },
-          },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-          },
-          "text": "",
-        }
-      }
+      query=""
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -54,25 +39,10 @@ exports[`SearchBar render - no query, custom box placeholder and incremental 1`]
   >
     <EuiSearchBox
       incremental={false}
-      onChange={[Function]}
+      isInvalid={false}
+      onSearch={[Function]}
       placeholder="Search..."
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "is": Object {},
-              "term": Array [],
-            },
-          },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-          },
-          "text": "",
-        }
-      }
+      query=""
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -93,67 +63,10 @@ exports[`SearchBar render - provided query, filters 1`] = `
   >
     <EuiSearchBox
       incremental={false}
-      onChange={[Function]}
+      isInvalid={false}
+      onSearch={[Function]}
       placeholder="Search..."
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "this",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "is",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "a",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "query",
-              },
-            ],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "is": Object {},
-              "term": Array [
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "this",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "is",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "a",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "query",
-                },
-              ],
-            },
-          },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-          },
-          "text": "this is a query",
-        }
-      }
+      query="this is a query"
     />
   </EuiFlexItem>
   <EuiFlexItem

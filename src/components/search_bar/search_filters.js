@@ -16,7 +16,7 @@ export class EuiSearchFilters extends React.Component {
 
   static defaultProps = {
     filters: []
-  }
+  };
 
   constructor(props) {
     super(props);
