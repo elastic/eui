@@ -6,7 +6,7 @@
 
 **Breaking changes**
 
-- Adds `EuiBasicTable`, an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
+- Adds `EuiBasicTable` as an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but now marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
