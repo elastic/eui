@@ -6,12 +6,12 @@ import {
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
-import { Table } from './paginated';
-const source = require('!!raw-loader!./paginated');
+import { Table } from './selection';
+const source = require('!!raw-loader!./selection');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Pagination',
+  title: 'Adding selection to a BasicTable',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -23,7 +23,7 @@ export const section = {
   ],
   text: (
     <p>
-      The following example shows how to configure pagination via the <EuiCode>pagination</EuiCode>
+      The following example shows how to configure selection via the <EuiCode>selection</EuiCode>
       property.
     </p>
   ),

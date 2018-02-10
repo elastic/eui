@@ -9,7 +9,7 @@ const source = require('!!raw-loader!./actions');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Actions',
+  title: 'Adding actions to BasicTable',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -22,21 +22,21 @@ export const section = {
   text: (
     <div>
       <p>
-        The following example demonstrates &quot;actions&quot; columns. This is a special column
-        where you can define item level actions on. The most basic action you can define is a button
-        (maybe be of type <EuiCode>`button`</EuiCode> or <EuiCode>`icon`</EuiCode>) and it is also
-        possible to define a custom action.
+        The following example demonstrates &quot;actions&quot; columns. These are special columns
+        where you define per-row, item level actions. The most basic action you might define is a
+        type <EuiCode>button</EuiCode> or <EuiCode>icon</EuiCode> though you can always make your own
+        custom actions as well.
       </p>
       <p>
-        The implementation enforces some of the UI/UX guidelines:
+        Actions enforce some strict UI/UX guidelines:
       </p>
       <ul>
         <li>
           There can only be a single action tool visible per row. When more than one action is defined,
-          they will all be collapsed under a single popover &quot;gear&quot; button.
+          they will collapse under a single popover represented by the gear icon.
         </li>
         <li>
-          The actions are only visible when the user hovers over the row with the mouse.
+          Actions are only visible when the user hovers over the row with the mouse.
         </li>
       </ul>
     </div>
