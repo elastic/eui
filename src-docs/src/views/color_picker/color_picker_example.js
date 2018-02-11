@@ -41,7 +41,7 @@ export const ColorPickerExample = {
     }],
     demo: <ColorPickerLabelAndClear />,
   }, {
-    title: 'Color Picker without a color labe',
+    title: 'Color Picker without a color label',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPickerNoColorLabelSource,
