@@ -9,6 +9,7 @@ export const IsFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('is').isRequired,
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  negatedName: PropTypes.string,
   available: PropTypes.func, // () => boolean
 });
 

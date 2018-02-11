@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { renderToHtml } from '../../services';
+import { propsInfo } from './props_info';
 
 import {
   GuideSectionTypes,
@@ -10,10 +11,6 @@ import {
   EuiCode,
   // EuiSearchBar,
 } from '../../../../src/components';
-
-import {
-  EuiSearchBar,
-} from '../../../../src/components/search_bar';
 
 import { SearchBar } from './search_bar';
 
@@ -89,7 +86,7 @@ export const SearchBarExample = {
           </ul>
         </div>
       ),
-      props: { EuiSearchBar },
+      props: propsInfo,
       demo: <SearchBar/>
     }
   ],

@@ -66,6 +66,7 @@ export class EuiSearchBar extends React.Component {
       queryText: query.text,
       error: null
     });
+    this.props.onChange(query);
   };
 
   render() {
