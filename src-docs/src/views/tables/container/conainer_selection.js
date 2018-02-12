@@ -3,14 +3,16 @@ import React, {
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-
-import {
-  EuiBasicTable,
-  EuiLink,
-  EuiHealth,
-  EuiButton,
-} from '../../../../../src/components';
-
+import { EuiBasicTableContainer } from '../../../../../src/components/basic_table';
+import { EuiLink } from '../../../../../src/components/link/link';
+import { EuiHealth } from '../../../../../src/components/health';
+import { EuiButton } from '../../../../../src/components/button/button';
+import { Random } from '../../../../../src/services/random';
+import { browserTick } from '../../../../../src/services/utils';
+import { EuiFlexGroup } from '../../../../../src/components/flex/flex_group';
+import { EuiFlexItem } from '../../../../../src/components/flex/flex_item';
+import { EuiSwitch } from '../../../../../src/components/form/switch/switch';
+import { EuiSpacer } from '../../../../../src/components/spacer/spacer';
 /*
 Example user object:
 
@@ -33,23 +35,43 @@ Example country object:
 }
 */
 
+const random = new Random();
+
 const store = createDataStore();
+
+const loadItems = (criteria) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const { page, sort } = criteria;
+      const { items, totalCount } = store.findUsers(page.index, page.size, sort);
+      resolve({ items, totalCount });
+    }, random.number({ min: 0, max: 3000 }));
+  });
+};
+
+const loadItemsError = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('ouch! that hurt!!!'));
+    }, random.number({ min: 0, max: 3000 }));
+  });
+};
+
+const loadItemsZeroResults = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ items: [], totalCount: 0 });
+    }, random.number({ min: 0, max: 3000 }));
+  });
+};
 
 export class Table extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      ...this.buildState({ page: { index: 0, size: 5 } }),
-      selection: []
-    };
-  }
-
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size, criteria.sort)
+      selection: [],
+      loader: loadItems
     };
   }
 
@@ -60,10 +82,8 @@ export class Table extends Component {
     }
     const onClick = () => {
       store.deleteUsers(...selection.map(user => user.id));
-      this.setState(prevState => ({
-        ...this.buildState(prevState.criteria),
-        selection: []
-      }));
+      this.setState({ selection: [] });
+      this.table.refresh();
     };
     return (
       <EuiButton
@@ -76,15 +96,43 @@ export class Table extends Component {
     );
   }
 
+  updateLoader(loader) {
+    this.setState({ loader });
+    browserTick(() => this.table.refresh());
+  }
+
   render() {
-    const { page, sort } = this.state.criteria;
-    const data = this.state.data;
     const deleteButton = this.renderDeleteButton();
     return (
       <div>
-        {deleteButton}
-        <EuiBasicTable
-          items={data.items}
+        <EuiFlexGroup alignItems="center">
+          { deleteButton ? <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem> : undefined }
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Normal Loader"
+              checked={this.state.loader === loadItems}
+              onChange={this.updateLoader.bind(this, loadItems)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Error Loader"
+              checked={this.state.loader === loadItemsError}
+              onChange={this.updateLoader.bind(this, loadItemsError)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="No Items Loader"
+              checked={this.state.loader === loadItemsZeroResults}
+              onChange={this.updateLoader.bind(this, loadItemsZeroResults)}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="l"/>
+        <EuiBasicTableContainer
+          ref={(table) => this.table = table}
+          items={this.state.loader}
           columns={[
             {
               field: 'firstName',
@@ -130,19 +178,15 @@ export class Table extends Component {
             }
           ]}
           pagination={{
-            pageIndex: page.index,
-            pageSize: page.size,
-            totalItemCount: data.totalCount,
             pageSizeOptions: [3, 5, 8]
           }}
-          sorting={{ sort }}
+          sorting={true}
           selection={{
             itemId: 'id',
             selectable: (user) => user.online,
             selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
             onSelectionChange: (selection) => this.setState({ selection })
           }}
-          onChange={(criteria) => this.setState(this.buildState(criteria))}
         />
       </div>
     );

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const EuiTableBody = ({ children, className, ...rest }) => {
+export const EuiTableBody = ({ children, className, bodyRef, ...rest }) => {
   return (
-    <tbody className={className} {...rest}>
+    <tbody className={className} ref={bodyRef} {...rest}>
       { children }
     </tbody>
   );

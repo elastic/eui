@@ -9,11 +9,13 @@ import {
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
+  CENTER_ALIGNMENT
 } from '../../services';
 
 const ALIGNMENT = [
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
+  CENTER_ALIGNMENT
 ];
 
 export const EuiTableHeaderCell = ({
@@ -31,6 +33,7 @@ export const EuiTableHeaderCell = ({
 
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
+    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
   });
 
   if (onSort) {

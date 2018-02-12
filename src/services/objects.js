@@ -1,3 +1,4 @@
 export {
-  get
+  get,
+  omit
 } from 'lodash';

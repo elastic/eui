@@ -23,6 +23,8 @@ import { ExpandedItemActions } from './expanded_item_actions';
 import { EuiTableRowCell } from '../table/table_row_cell';
 import { EuiTableRow } from '../table/table_row';
 import { PaginationBar, PaginationType } from './pagination_bar';
+import { EuiIcon } from '../icon/icon';
+import { LoadingTableBody } from './loading_table_body';
 
 const dataTypesProfiles = {
   auto: {
@@ -111,7 +113,7 @@ const ItemIdType = PropTypes.oneOfType([
   PropTypes.func    // (item) => string
 ]);
 
-const SelectionType = PropTypes.shape({
+export const SelectionType = PropTypes.shape({
   itemId: ItemIdType.isRequired,
   onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
@@ -129,12 +131,18 @@ const BasicTablePropTypes = {
   sorting: SortingType,
   selection: SelectionType,
   onChange: PropTypes.func,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
+  noItemsMessage: PropTypes.string,
   className: PropTypes.string
 };
 
 export class EuiBasicTable extends Component {
 
   static propTypes = BasicTablePropTypes;
+  static defaultProps = {
+    noItemsMessage: 'No items found'
+  };
 
   constructor(props) {
     super(props);
@@ -262,10 +270,13 @@ export class EuiBasicTable extends Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, loading } = this.props;
 
     const classes = classNames(
-      'euiRecordsTable',
+      'euiBasicTable',
+      {
+        'euiBasicTable-loading': loading
+      },
       className
     );
 
@@ -379,11 +390,46 @@ export class EuiBasicTable extends Component {
   }
 
   renderTableBody() {
+    if (this.props.error) {
+      return this.renderErrorBody(this.props.error);
+    }
     const { items } = this.props;
+    if (items.length === 0) {
+      return this.renderEmptyBody();
+    }
     const rows = items.map((item, index) => {
       return this.renderItemRow(item, index);
     });
+    if (this.props.loading) {
+      return <LoadingTableBody>{rows}</LoadingTableBody>;
+    }
     return <EuiTableBody>{rows}</EuiTableBody>;
+  }
+
+  renderErrorBody(error) {
+    const colSpan = this.props.columns.length + (this.props.selection ? 1 : 0);
+    return (
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell align="center" colSpan={colSpan}>
+            <EuiIcon type="minusInCircle" color="danger"/> {error}
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    );
+  }
+
+  renderEmptyBody() {
+    const colSpan = this.props.columns.length + (this.props.selection ? 1 : 0);
+    return (
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell align="center" colSpan={colSpan}>
+            <div>{ this.props.noItemsMessage }</div>
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    );
   }
 
   renderItemRow(item, rowIndex) {
@@ -579,8 +625,8 @@ export class EuiBasicTable extends Component {
   }
 
   renderPaginationBar() {
-    const { pagination, onChange } = this.props;
-    if (pagination) {
+    const { error, pagination, onChange } = this.props;
+    if (!error && pagination) {
       if (!onChange) {
         throw new Error(`The Basic Table is configured with pagination but [onChange] is
         not configured. This callback must be implemented to handle pagination changes`);

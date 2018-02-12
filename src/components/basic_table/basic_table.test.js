@@ -26,7 +26,28 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('basic - with records', () => {
+  test('basic - empty - custom message', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      noItemsMessage: 'where my items at?'
+    };
+    const component = shallow(
+      <EuiBasicTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('basic - with items', () => {
 
     const props = {
       ...requiredProps,
@@ -101,6 +122,37 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       onChange: () => {}
+    };
+    const component = shallow(
+      <EuiBasicTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination and error', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      pagination: {
+        pageIndex: 0,
+        pageSize: 3,
+        totalItemCount: 5
+      },
+      onChange: () => {},
+      error: 'no can do'
     };
     const component = shallow(
       <EuiBasicTable {...props} />

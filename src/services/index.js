@@ -12,6 +12,7 @@ export {
 export {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
+  CENTER_ALIGNMENT
 } from './alignment';
 
 export {

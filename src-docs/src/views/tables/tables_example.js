@@ -13,6 +13,10 @@ import { section as paginatedSection } from './paginated';
 import { section as sortingSection } from './sorting';
 import { section as selectionSection } from './selection';
 import { section as actionsSection } from './actions';
+import {
+  section as containerSection,
+  selectionSection as containerSelectionSection
+} from './container';
 import { section as customSection } from './custom';
 
 export const TableExample = {
@@ -45,6 +49,8 @@ export const TableExample = {
     sortingSection,
     selectionSection,
     actionsSection,
+    containerSection,
+    containerSelectionSection,
     customSection,
   ],
 };

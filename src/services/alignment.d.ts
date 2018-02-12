@@ -1,3 +1,3 @@
 declare module '@elastic/eui' {
-  export type HorizontalAlignment = 'left' | 'right';
+  export type HorizontalAlignment = 'left' | 'right' | 'center';
 }

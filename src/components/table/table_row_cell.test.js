@@ -8,7 +8,8 @@ import {
 
 import {
   RIGHT_ALIGNMENT,
-} from '../../services';
+  CENTER_ALIGNMENT
+} from '../../services/alignment';
 
 test('renders EuiTableRowCell', () => {
   const component = (
@@ -32,6 +33,14 @@ describe('align', () => {
   test('renders right when specified', () => {
     const component = (
       <EuiTableRowCell align={RIGHT_ALIGNMENT} />
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('renders center when specified', () => {
+    const component = (
+      <EuiTableRowCell align={CENTER_ALIGNMENT} />
     );
 
     expect(render(component)).toMatchSnapshot();
