@@ -17,6 +17,10 @@ import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
 const panelHtml = renderToHtml(Panel);
 
+import PanelHover from './panel_hover';
+const panelHoverSource = require('!!raw-loader!./panel_hover');
+const panelHoverHtml = renderToHtml(PanelHover);
+
 export const PanelExample = {
   title: 'Panel',
   sections: [{
@@ -37,5 +41,22 @@ export const PanelExample = {
     ),
     props: { EuiPanel },
     demo: <Panel />,
+  }, {
+    title: 'Panel can be hoverable',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: panelHoverSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: panelHoverHtml,
+    }],
+    text: (
+      <p>
+        If you know the panel will be clickable or selectable is any way,
+        add <EuiCode>isHoverable</EuiCode> as a prop.
+      </p>
+    ),
+    props: { EuiPanel },
+    demo: <PanelHover />,
   }],
 };
