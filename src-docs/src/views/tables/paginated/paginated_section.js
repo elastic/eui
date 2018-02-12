@@ -6,12 +6,12 @@ import {
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
-import { Table } from './sorting';
-const source = require('!!raw-loader!./sorting');
+import { Table } from './paginated';
+const source = require('!!raw-loader!./paginated');
 const html = renderToHtml(Table);
 
 export const section = {
-  title: 'Sorting',
+  title: 'Adding pagination to a BasicTable',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -23,8 +23,8 @@ export const section = {
   ],
   text: (
     <p>
-      The following example shows how to configure column sorting via the <EuiCode>sorting</EuiCode>
-      property and flagging the sortable columns as <EuiCode>sortable: true</EuiCode>
+      The following example shows how to configure pagination via the <EuiCode>pagination</EuiCode>
+      property.
     </p>
   ),
   components: { EuiBasicTable },

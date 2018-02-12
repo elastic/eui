@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -27,6 +28,11 @@ export const TableOfRecordsExample = {
   title: 'TableOfRecords',
   intro: (
     <EuiText>
+      <EuiCallOut color="danger" iconType="alert" title="Do not use. This is a depricated feature.">
+        <EuiCode>EuiTableOfRecords</EuiCode> should no longer be used. Instead, use
+        the <EuiCode>EuiBasicTable</EuiCode> as <Link to="/tables">documented here</Link>. We plan
+        to remove this component from EUI fairly soon.
+      </EuiCallOut>
       <EuiTitle>
         <h2>TableOfRecords</h2>
       </EuiTitle>

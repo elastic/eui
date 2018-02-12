@@ -134,10 +134,7 @@ import { StepsExample }
   from './views/steps/steps_example';
 
 import { TableExample }
-  from './views/table/table_example';
-
-import { BasicTableExample }
-  from './views/basic_table/basic_table_example';
+  from './views/tables/tables_example';
 
 import { TableOfRecordsExample }
   from './views/table_of_records/table_of_records_example';
@@ -245,7 +242,6 @@ const components = [
   StepsExample,
   TableExample,
   TableOfRecordsExample,
-  BasicTableExample,
   TabsExample,
   TextExample,
   TitleExample,
