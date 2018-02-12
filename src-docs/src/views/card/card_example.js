@@ -36,7 +36,9 @@ export const CardExample = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>EuiCard</EuiCode> component.
+        At it&apos;s core an <EuiCode>EuiCard</EuiCode> should contain a <EuiCode>title</EuiCode>,
+        <EuiCode>description</EuiCode>, and an <EuiCode>icon</EuiCode>. You can make the whole card
+        clickable by giving it an <EuiCode>onClick</EuiCode> handler.
       </p>
     ),
     props: { EuiCard },
@@ -52,9 +54,15 @@ export const CardExample = {
       code: cardImageHtml,
     }],
     text: (
-      <p>
-        Description needed: how to use the <EuiCode>EuiCard</EuiCode> component.
-      </p>
+      <div>
+        <p>
+          Images can be added in place of, or in conjuction with, icons.
+          Just pass a url into the <EuiCode>image</EuiCode> prop and it will expand to to edges of the card.
+        </p>
+        <p>
+          Make sure that all images are the <strong>same proportions</strong> when used in a singular row.
+        </p>
+      </div>
     ),
     components: { EuiCard },
     demo: <CardImage />,
@@ -70,7 +78,9 @@ export const CardExample = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>EuiCard</EuiCode> component.
+        Footers can contain any number of elements and will always align to the bottom of the card.
+        However, if you supply a footer containing a <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also
+        give it an <EuiCode>onClick</EuiCode>.
       </p>
     ),
     components: { EuiCard },

@@ -9,9 +9,9 @@ import {
 
 const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
 
-const cardNodes = icons.map(function (item) {
+const cardNodes = icons.map(function (item, index) {
   return (
-    <EuiFlexItem>
+    <EuiFlexItem key={index}>
       <EuiCard
         icon={<EuiIcon size="xxl" type={`logo${item}`} />}
         title={`Elastic ${item}`}
