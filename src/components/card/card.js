@@ -6,6 +6,7 @@ import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiImage } from '../image';
+import { EuiKeyboardAccessible } from '../accessibility';
 
 export const EuiCard = ({
   className,
@@ -19,6 +20,9 @@ export const EuiCard = ({
 }) => {
   const classes = classNames(
     'euiCard',
+    {
+      'euiCard--isClickable': onClick
+    },
     className,
   );
 
@@ -31,7 +35,7 @@ export const EuiCard = ({
     );
   }
 
-  return (
+  const panelNode = (
     <EuiPanel
       onClick={onClick}
       isHoverable={cardPanelCanHover}
@@ -56,9 +60,18 @@ export const EuiCard = ({
       <div className="euiCard__footer">
         {footer}
       </div>
-
     </EuiPanel>
   );
+
+  if (onClick) {
+    return (
+      <EuiKeyboardAccessible>
+        {panelNode}
+      </EuiKeyboardAccessible>
+    );
+  } else {
+    return (panelNode);
+  }
 };
 
 EuiCard.propTypes = {
