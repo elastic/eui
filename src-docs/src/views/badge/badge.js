@@ -13,16 +13,8 @@ const badges = [
   'accent',
   'warning',
   'danger',
-  // 'vis0',
-  // 'vis1',
-  // 'vis2',
-  // 'vis3',
-  // 'vis4',
-  // 'vis5',
-  // 'vis6',
-  // 'vis7',
-  // 'vis8',
-  // 'vis9',
+  '#fea27f',
+  '#000'
 ];
 
 export default () => (

@@ -23,6 +23,12 @@
 
   .euiBadge__icon {
     margin-right: $euiSizeXS;
+
+    &:focus {
+      background-color: $euiColorPrimary;
+      color: #FFF;
+      border-radius: 2px;
+    }
   }
 
   &.euiBadge--iconRight .euiBadge__content {

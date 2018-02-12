@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { isColorDark, hexToRgb } from '../../services/color';
+import { EuiKeyboardAccessible } from '../accessibility';
+
 import {
   ICON_TYPES,
   EuiIcon,
@@ -14,16 +17,6 @@ const colorToClassNameMap = {
   accent: 'euiBadge--accent',
   warning: 'euiBadge--warning',
   danger: 'euiBadge--danger',
-  vis0: 'euiBadge--vis0',
-  vis1: 'euiBadge--vis1',
-  vis2: 'euiBadge--vis2',
-  vis3: 'euiBadge--vis3',
-  vis4: 'euiBadge--vis4',
-  vis5: 'euiBadge--vis5',
-  vis6: 'euiBadge--vis6',
-  vis7: 'euiBadge--vis7',
-  vis8: 'euiBadge--vis8',
-  vis9: 'euiBadge--vis9',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -41,35 +34,84 @@ export const EuiBadge = ({
   iconType,
   iconSide,
   className,
+  onClick,
+  iconOnClick,
   ...rest
 }) => {
+
+  let optionalColorClass = null;
+  let optionalCustomStyles = null;
+  let textColor = null;
+
+  if (COLORS.indexOf(color) > -1) {
+    optionalColorClass = colorToClassNameMap[color];
+  } else {
+
+    if (isColorDark(...hexToRgb(color))) {
+      textColor = '#FFFFFF';
+    } else {
+      textColor = '#000000';
+    }
+
+    optionalCustomStyles = { backgroundColor: color, color: textColor };
+  }
+
+
   const classes = classNames(
     'euiBadge',
-    colorToClassNameMap[color],
     iconSideToClassNameMap[iconSide],
+    optionalColorClass,
     className
   );
 
   let optionalIcon = null;
   if (iconType) {
-    optionalIcon = (
-      <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
-    );
+    if (iconOnClick) {
+      optionalIcon = (
+        <EuiKeyboardAccessible>
+          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" />
+        </EuiKeyboardAccessible>
+      );
+
+    } else {
+      optionalIcon = (
+        <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
+      );
+    }
   }
 
-  return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      <span className="euiBadge__content">
-        {optionalIcon}
-        <span>
-          {children}
+  if (onClick) {
+    return (
+      <button
+        className={classes}
+        style={optionalCustomStyles}
+        onClick={onClick}
+        {...rest}
+      >
+        <span className="euiBadge__content">
+          {optionalIcon}
+          <span>
+            {children}
+          </span>
         </span>
-      </span>
-    </div>
-  );
+      </button>
+    );
+  } else {
+    return (
+      <div
+        className={classes}
+        style={optionalCustomStyles}
+        {...rest}
+      >
+        <span className="euiBadge__content">
+          {optionalIcon}
+          <span>
+            {children}
+          </span>
+        </span>
+      </div>
+    );
+  }
 };
 
 EuiBadge.propTypes = {
@@ -77,6 +119,10 @@ EuiBadge.propTypes = {
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
   iconSide: PropTypes.string,
+
+  /**
+   * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
+   */
   color: PropTypes.string,
 };
 

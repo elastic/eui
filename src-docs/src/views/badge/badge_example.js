@@ -18,6 +18,10 @@ import BadgeWithIcon from './badge_with_icon';
 const badgeWithIconSource = require('!!raw-loader!./badge_with_icon');
 const badgeWithIconHtml = renderToHtml(BadgeWithIcon);
 
+import BadgeButton from './badge_button';
+const badgeButtonSource = require('!!raw-loader!./badge_button');
+const badgeButtonHtml = renderToHtml(BadgeButton);
+
 export const BadgeExample = {
   title: 'Badge',
   sections: [{
@@ -51,5 +55,20 @@ export const BadgeExample = {
       </p>
     ),
     demo: <BadgeWithIcon />,
+  }, {
+    title: 'Badge with onClick events',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: badgeButtonSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: badgeButtonHtml,
+    }],
+    text: (
+      <p>
+        Badges can have onClick events.
+      </p>
+    ),
+    demo: <BadgeButton />,
   }],
 };
