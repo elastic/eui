@@ -25,8 +25,8 @@
     margin-right: $euiSizeXS;
 
     &:focus {
-      background-color: $euiColorPrimary;
-      color: #FFF;
+      background-color: rgba(255,255,255,.8);
+      color: #000;
       border-radius: 2px;
     }
   }

@@ -1,4 +1,4 @@
-// Conversion modified from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+// Modified from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 
 function hexToRgb(hex) {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")

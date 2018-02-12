@@ -117,8 +117,25 @@ export const EuiBadge = ({
 EuiBadge.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * Accepts any string from our icon library
+   */
   iconType: PropTypes.oneOf(ICON_TYPES),
+
+  /**
+   * The side of the badge the icon should sit
+   */
   iconSide: PropTypes.string,
+  /**
+   * Will apply an onclick to icon within the badge
+   */
+  iconOnClick: PropTypes.func,
+
+  /**
+   * Will apply an onclick to the badge itself
+   */
+  onClick: PropTypes.func,
 
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
