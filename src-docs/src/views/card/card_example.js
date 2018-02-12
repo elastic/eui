@@ -39,7 +39,7 @@ export const CardExample = {
         Description needed: how to use the <EuiCode>EuiCard</EuiCode> component.
       </p>
     ),
-    components: { EuiCard },
+    props: { EuiCard },
     demo: <Card />,
   },
   {

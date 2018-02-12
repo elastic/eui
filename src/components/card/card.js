@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiImage } from '../image';
 import { EuiKeyboardAccessible } from '../accessibility';
 
 export const EuiCard = ({
@@ -31,7 +30,15 @@ export const EuiCard = ({
   let imageNode;
   if (image) {
     imageNode = (
-      <EuiImage url={image} alt="" />
+      <img className="euiCard__image" src={image} alt="" />
+    );
+  }
+
+  let iconNode;
+  if (icon) {
+    iconNode = React.cloneElement(
+      icon,
+      { className: 'euiCard__icon' }
     );
   }
 
@@ -42,9 +49,9 @@ export const EuiCard = ({
       className={classes}
       {...rest}
     >
-      <div className="euiCard__image">
+      <div className="euiCard__top">
         {imageNode}
-        {icon}
+        {iconNode}
       </div>
 
       <div className="euiCard__content">

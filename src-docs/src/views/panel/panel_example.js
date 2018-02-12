@@ -56,7 +56,6 @@ export const PanelExample = {
         add <EuiCode>isHoverable</EuiCode> as a prop.
       </p>
     ),
-    props: { EuiPanel },
     demo: <PanelHover />,
   }],
 };

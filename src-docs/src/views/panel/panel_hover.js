@@ -6,6 +6,6 @@ import {
 
 export default () => (
   <EuiPanel isHoverable>
-    <p>Hover or focus on me to see my hover state.</p>
+    <p>Hover me to see my hover state.</p>
   </EuiPanel>
 );

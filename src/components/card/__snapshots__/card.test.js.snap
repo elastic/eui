@@ -7,7 +7,7 @@ exports[`EuiCard is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiCard__image"
+    class="euiCard__top"
   />
   <div
     class="euiCard__content"
