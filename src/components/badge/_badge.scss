@@ -41,19 +41,9 @@ $badgeTypes: (
   default: $euiColorLightShade,
   primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
   secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
-  warning: lighten(desaturate($euiColorWarning, 40%), 40%),
+  warning: lighten(desaturate($euiColorWarning, 30%), 20%),
   danger: lighten(desaturate($euiColorDanger, 40%), 40%),
   accent: lighten(desaturate($euiColorAccent, 40%), 40%),
-  vis0: $euiColorVis0,
-  vis1: $euiColorVis1,
-  vis2: $euiColorVis2,
-  vis3: $euiColorVis3,
-  vis4: $euiColorVis4,
-  vis5: $euiColorVis5,
-  vis6: $euiColorVis6,
-  vis7: $euiColorVis7,
-  vis8: $euiColorVis8,
-  vis9: $euiColorVis9
 );
 
 @each $name, $color in $badgeTypes {
