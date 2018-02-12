@@ -3,6 +3,7 @@
 - Added component to wrap blocks of substeps `EuiSubSteps` in a shaded container. ([#375](https://github.com/elastic/eui/pull/375))
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 - Changed look and feel of pagination. Added compressed prop for smaller footprint pagination. ([#380](https://github.com/elastic/eui/pull/380))
+- Add styles for `readOnly` states of form controls. ([#391](https://github.com/elastic/eui/pull/391))
 
 **Breaking changes**
 
