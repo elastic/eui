@@ -13,6 +13,7 @@ const cardNodes = icons.map(function (item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
+        isCentered={true}
         icon={<EuiIcon size="xxl" type={`logo${item}`} />}
         title={`Elastic ${item}`}
         description="Example of a card's description. Stick to one or two sentences."

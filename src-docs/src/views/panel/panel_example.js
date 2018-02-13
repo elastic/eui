@@ -52,8 +52,8 @@ export const PanelExample = {
     }],
     text: (
       <p>
-        If you know the panel will be clickable or selectable is any way,
-        add <EuiCode>isHoverable</EuiCode> as a prop.
+        Adding an <EuiCode>onClick</EuiCode> handler to the <EuiCode>EuiPanel</EuiCode> will
+        turn the wrapping element into a button to allow for interaction.
       </p>
     ),
     demo: <PanelHover />,

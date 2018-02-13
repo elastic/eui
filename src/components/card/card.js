@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiKeyboardAccessible } from '../accessibility';
 
 export const EuiCard = ({
   className,
@@ -15,17 +14,17 @@ export const EuiCard = ({
   image,
   footer,
   onClick,
+  isCentered,
   ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
     {
-      'euiCard--isClickable': onClick
+      'euiCard--isClickable': onClick,
+      'euiCard--isCentered': isCentered,
     },
     className,
   );
-
-  const cardPanelCanHover = onClick ? true : false;
 
   let imageNode;
   if (image) {
@@ -42,10 +41,9 @@ export const EuiCard = ({
     );
   }
 
-  const panelNode = (
+  return (
     <EuiPanel
       onClick={onClick}
-      isHoverable={cardPanelCanHover}
       className={classes}
       {...rest}
     >
@@ -69,16 +67,6 @@ export const EuiCard = ({
       </div>
     </EuiPanel>
   );
-
-  if (onClick) {
-    return (
-      <EuiKeyboardAccessible>
-        {panelNode}
-      </EuiKeyboardAccessible>
-    );
-  } else {
-    return (panelNode);
-  }
 };
 
 EuiCard.propTypes = {
@@ -89,4 +77,9 @@ EuiCard.propTypes = {
   image: PropTypes.string,
   footer: PropTypes.node,
   onClick: PropTypes.func,
+  isCentered: PropTypes.bool,
+};
+
+EuiCard.defaultProps = {
+  isCentered: false,
 };

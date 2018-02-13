@@ -3,10 +3,14 @@
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 
 .euiCard {
-  text-align: center;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  &.euiCard--isCentered,
+  &.euiCard--isClickable.euiCard--isCentered {
+    text-align: center;
+  }
 
   &.euiCard--isClickable {
     &:focus,

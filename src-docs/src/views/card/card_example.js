@@ -26,7 +26,7 @@ const cardFooterHtml = renderToHtml(CardFooter);
 export const CardExample = {
   title: 'Card',
   sections: [{
-    title: 'Card',
+    title: 'Basic Card',
     source: [{
       type: GuideSectionTypes.JS,
       code: cardSource,
@@ -35,11 +35,17 @@ export const CardExample = {
       code: cardHtml,
     }],
     text: (
-      <p>
-        At it&apos;s core an <EuiCode>EuiCard</EuiCode> should contain a <EuiCode>title</EuiCode>,
-        <EuiCode>description</EuiCode>, and an <EuiCode>icon</EuiCode>. You can make the whole card
-        clickable by giving it an <EuiCode>onClick</EuiCode> handler.
-      </p>
+      <div>
+        <p>
+          At it&apos;s core an <EuiCode>EuiCard</EuiCode> should contain a <EuiCode>title</EuiCode>,
+          <EuiCode>description</EuiCode>, and an <EuiCode>icon</EuiCode>. You can make the whole card
+          clickable by giving it an <EuiCode>onClick</EuiCode> handler.
+        </p>
+        <p>
+          By default a card&apos;s content is left aligned. To center the content
+          set <EuiCode>isCentered</EuiCode> to true.
+        </p>
+      </div>
     ),
     props: { EuiCard },
     demo: <Card />,

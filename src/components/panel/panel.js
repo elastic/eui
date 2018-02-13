@@ -18,7 +18,7 @@ export const EuiPanel = ({
   hasShadow,
   grow,
   panelRef,
-  isHoverable,
+  onClick,
   ...rest
 }) => {
 
@@ -28,19 +28,22 @@ export const EuiPanel = ({
     {
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,
-      'euiPanel--isHoverable': isHoverable,
+      'euiPanel--isClickable': onClick,
     },
     className
   );
 
+  const PanelTag = onClick ? 'button' : 'div';
+
   return (
-    <div
+    <PanelTag
+      onClick={onClick}
       ref={panelRef}
       className={classes}
       {...rest}
     >
       {children}
-    </div>
+    </PanelTag>
   );
 
 };
@@ -52,12 +55,11 @@ EuiPanel.propTypes = {
   paddingSize: PropTypes.oneOf(SIZES),
   grow: PropTypes.bool,
   panelRef: PropTypes.func,
-  isHoverable: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 EuiPanel.defaultProps = {
   paddingSize: 'm',
   hasShadow: false,
   grow: true,
-  isHoverable: false,
 };
