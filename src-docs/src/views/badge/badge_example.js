@@ -8,6 +8,7 @@ import {
 
 import {
   EuiBadge,
+  EuiCode,
 } from '../../../../src/components';
 
 import Badge from './badge';
@@ -35,7 +36,11 @@ export const BadgeExample = {
     }],
     text: (
       <p>
-        Badges are used to focus on important bits of information.
+        Badges are used to focus on important bits of information. Although they
+        will automatically space themselves if you use them in a repetitive fashion
+        it is good form to wrap them using a <EuiCode>FlexGroup</EuiCode> so
+        that they will wrap when width is constrained (as is done artificially in
+        the example below).
       </p>
     ),
     props: { EuiBadge },
