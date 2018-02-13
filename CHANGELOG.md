@@ -12,6 +12,7 @@
 **Bug fixes**
 
 - Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
+- Fix dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
