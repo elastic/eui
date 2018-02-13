@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingTableBody render 1`] = `
+<table>
+  <LoadingTableBody
+    aria-label="aria-label"
+    className="testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <EuiTableBody
+      bodyRef={[Function]}
+    >
+      <tbody />
+    </EuiTableBody>
+  </LoadingTableBody>
+</table>
+`;
