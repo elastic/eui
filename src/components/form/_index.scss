@@ -78,6 +78,13 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
     background: darken($euiColorLightestShade, 2%);
     box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
   }
+
+  &[readOnly] {
+    cursor: default;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
 }
 
 @import 'checkbox/index';
