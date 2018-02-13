@@ -29,7 +29,7 @@ export const FieldValueSelectionFilterConfigType = PropTypes.shape({
   name: PropTypes.string.isRequired,
   options: FieldValueOptionsType.isRequired,
   cache: PropTypes.number,
-  multiSelect: PropTypes.bool,
+  multiSelect: PropTypes.oneOfType([ PropTypes.bool, PropTypes.oneOf([ 'and', 'or' ]) ]),
   loadingMessage: PropTypes.string,
   noOptionsMessage: PropTypes.string,
   searchThreshold: PropTypes.number,
@@ -154,20 +154,27 @@ export class FieldValueSelectionFilter extends React.Component {
   }
 
   onOptionClick(field, value, checked) {
-    const multiSelect = !isNil(this.props.config.multiSelect) ? this.props.config.multiSelect : defaults.config.multiSelect;
+    const multiSelect = this.resolveMultiSelect();
     if (!multiSelect) {
       // we're closing popover only if the user can only select one item... if the
       // user can select more, we'll leave it open so she can continue selecting
       this.closePopover();
       const query = checked ?
-        this.props.query.removeFieldClauses(field) :
-        this.props.query.removeFieldClauses(field).addMustFieldClause(field, value);
+        this.props.query.removeSimpleFieldClauses(field) :
+        this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
       this.props.onChange(query);
     } else {
-      const query = checked ?
-        this.props.query.removeFieldClause(field, value) :
-        this.props.query.addMustFieldClause(field, value);
-      this.props.onChange(query);
+      if (multiSelect === 'or') {
+        const query = checked ?
+          this.props.query.removeOrFieldValue(field, value) :
+          this.props.query.addOrFieldValue(field, value);
+        this.props.onChange(query);
+      } else {
+        const query = checked ?
+          this.props.query.removeSimpleFieldValue(field, value) :
+          this.props.query.addSimpleFieldValue(field, value);
+        this.props.onChange(query);
+      }
     }
   }
 
@@ -195,17 +202,23 @@ export class FieldValueSelectionFilter extends React.Component {
     }
   }
 
+  resolveMultiSelect() {
+    const { config } = this.props;
+    return !isNil(config.multiSelect) ? config.multiSelect : defaults.config.multiSelect;
+  }
+
   render() {
     const { index, query, config } = this.props;
-    const active = query.hasFieldClause(config.field);
-    const hasActiveFilters = active ? true : false;
-
+    const multiSelect = this.resolveMultiSelect();
+    const active = multiSelect === 'or' ?
+      query.hasOrFieldClause(config.field) :
+      query.hasSimpleFieldClause(config.field);
     const button = (
       <EuiFilterButton
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
-        hasActiveFilters={hasActiveFilters}
+        hasActiveFilters={active}
       >
         {config.name}
       </EuiFilterButton>
@@ -213,7 +226,7 @@ export class FieldValueSelectionFilter extends React.Component {
 
 
     const searchBox = this.renderSearchBox();
-    const content = this.renderContent(config.field, query);
+    const content = this.renderContent(config.field, query, config, multiSelect);
     const threshold = this.props.config.searchThreshold || defaults.config.searchThreshold;
     const withTitle = this.state.options && this.state.options.all.length >= threshold;
 
@@ -253,7 +266,7 @@ export class FieldValueSelectionFilter extends React.Component {
     }
   }
 
-  renderContent(field, query) {
+  renderContent(field, query, config, multiSelect) {
     if (this.state.error) {
       return this.renderError(this.state.error);
     }
@@ -264,7 +277,9 @@ export class FieldValueSelectionFilter extends React.Component {
       return this.renderNoOptions();
     }
     const items = this.state.options.shown.reduce((items, option, index) => {
-      const clause = query.getFieldClause(field, option.value);
+      const clause = multiSelect === 'or' ?
+        query.getOrFieldClause(field, option.value) :
+        query.getSimpleFieldClause(field, option.value);
       const checked = this.resolveChecked(clause);
       const onClick = () => {
         // clicking a checked item will uncheck it and effective remove the filter (value = undefined)

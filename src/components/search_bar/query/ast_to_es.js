@@ -1,5 +1,5 @@
 import { AST } from './ast';
-
+import { isArray } from '../../../services/predicate';
 
 export const _termValuesToQuery = (values, options) => {
   const body = {
@@ -16,15 +16,54 @@ export const _termValuesToQuery = (values, options) => {
   };
 };
 
-export const _fieldValuesToAndQuery = (field, values) => {
-  return {
+export const _fieldValuesToQuery = (field, values, operator) => {
+
+  const { terms, phrases } = values.reduce((split, value) => {
+    if (value.match(/\s/)) {
+      split.phrases.push(value);
+    } else {
+      split.terms.push(value);
+    }
+    return split;
+  }, { terms: [], phrases: [] });
+
+  const termsQuery = terms.length === 0 ? undefined : {
     match: {
       [field]: {
-        query: values.join(' '),
-        operator: 'and'
+        query: terms.join(' '),
+        operator
       }
     }
   };
+
+  const phraseQueries = phrases.length === 0 ? undefined : phrases.map(phrase => ({
+    match_phrase: {
+      [field]: phrase
+    }
+  }));
+
+  const key = operator === 'and' ? 'must' : 'should';
+
+  if (termsQuery && phraseQueries) {
+    return {
+      bool: {
+        [key]: [ termsQuery, ...phraseQueries ]
+      }
+    };
+  }
+  if (termsQuery) {
+    return termsQuery;
+  }
+  if (phraseQueries) {
+    if (phraseQueries.length === 1) {
+      return phraseQueries[0];
+    }
+    return {
+      bool: {
+        [key]: phraseQueries
+      }
+    };
+  }
 };
 
 export const _isFlagToQuery = (flag, on) => {
@@ -45,20 +84,33 @@ const collectTerms = (ast) => {
 };
 
 const collectFields = (ast) => {
-  return ast.getFieldClauses().reduce((values, clause) => {
-    if (AST.Match.isMustClause(clause)) {
-      if (!values.must[clause.field]) {
-        values.must[clause.field] = [];
-      }
-      values.must[clause.field].push(clause.value);
-    } else {
-      if (!values.mustNot[clause.field]) {
-        values.mustNot[clause.field] = [];
-      }
-      values.mustNot[clause.field].push(clause.value);
+
+  const fieldArray = (obj, field) => {
+    if (!obj[field]) {
+      obj[field] = [];
     }
-    return values;
-  }, { must: {}, mustNot: {} });
+    return obj[field];
+  };
+
+  return ast.getFieldClauses().reduce((fields, clause) => {
+    if (AST.Match.isMustClause(clause)) {
+      if (isArray(clause.value)) {
+        fieldArray(fields.must.or, clause.field).push(...clause.value);
+      } else {
+        fieldArray(fields.must.and, clause.field).push(clause.value);
+      }
+    } else {
+      if (isArray(clause.value)) {
+        fieldArray(fields.mustNot.or, clause.field).push(...clause.value);
+      } else {
+        fieldArray(fields.mustNot.and, clause.field).push(clause.value);
+      }
+    }
+    return fields;
+  }, {
+    must: { and: {}, or: {} },
+    mustNot: { and: {}, or: {} }
+  });
 };
 
 export const astToES = (ast, options = {}) => {
@@ -70,7 +122,7 @@ export const astToES = (ast, options = {}) => {
   const extraMustQueries = options.extraMustQueries || [];
   const extraMustNotQueries = options.extraMustNotQueries || [];
   const termValuesToQuery = options.termValuesToQuery || _termValuesToQuery;
-  const fieldValuesToAndQuery = options.fieldValuesToAndQuery || _fieldValuesToAndQuery;
+  const fieldValuesToQuery = options.fieldValuesToQuery || _fieldValuesToQuery;
   const isFlagToQuery = options.isFlagToQuery || _isFlagToQuery;
 
   const terms = collectTerms(ast);
@@ -82,8 +134,11 @@ export const astToES = (ast, options = {}) => {
   if (termMustQuery) {
     must.push(termMustQuery);
   }
-  must.push(...Object.keys(fields.must).map(field => {
-    return fieldValuesToAndQuery(field, fields.must[field]);
+  must.push(...Object.keys(fields.must.and).map(field => {
+    return fieldValuesToQuery(field, fields.must.and[field], 'and');
+  }));
+  must.push(...Object.keys(fields.must.or).map(field => {
+    return fieldValuesToQuery(field, fields.must.or[field], 'or');
   }));
   must.push(...ast.getIsClauses().map(clause => {
     return isFlagToQuery(clause.flag, AST.Match.isMustClause(clause));
@@ -95,8 +150,11 @@ export const astToES = (ast, options = {}) => {
   if (termMustNotQuery) {
     mustNot.push(termMustNotQuery);
   }
-  mustNot.push(...Object.keys(fields.mustNot).map(field => {
-    return fieldValuesToAndQuery(field, fields.mustNot[field]);
+  mustNot.push(...Object.keys(fields.mustNot.and).map(field => {
+    return fieldValuesToQuery(field, fields.mustNot.and[field], 'and');
+  }));
+  mustNot.push(...Object.keys(fields.mustNot.or).map(field => {
+    return fieldValuesToQuery(field, fields.mustNot.or[field], 'or');
   }));
 
   const bool = {};

@@ -39,35 +39,49 @@ export class Query {
     this.syntax = syntax;
   }
 
-  hasFieldClause(field, value = undefined) {
-    const clauses = this.ast.getFieldClauses(field);
-    if (!clauses) {
-      return false;
-    }
-    return isNil(value) || clauses.some(clause => clause.value === value);
+  hasSimpleFieldClause(field, value = undefined) {
+    return this.ast.hasSimpleFieldClause(field, value);
   }
 
-  getFieldClause(field, value) {
-    return this.ast.getFieldClause(field, value);
+  getSimpleFieldClause(field, value) {
+    return this.ast.getSimpleFieldClause(field, value);
   }
 
-  removeFieldClauses(field) {
-    const ast = this.ast.removeFieldClauses(field);
+  removeSimpleFieldClauses(field) {
+    const ast = this.ast.removeSimpleFieldClauses(field);
     return new Query(ast, this.syntax);
   }
 
-  addMustFieldClause(field, value) {
-    const ast = this.ast.addClause(AST.Field.must(field, value));
+  addSimpleFieldValue(field, value, must = true) {
+    const ast = this.ast.addSimpleFieldValue(field, value, must);
     return new Query(ast, this.syntax);
   }
 
-  addMustNotFieldClause(field, value) {
-    const ast = this.ast.addClause(AST.Field.mustNot(field, value));
+  removeSimpleFieldValue(field, value) {
+    const ast = this.ast.removeSimpleFieldValue(field, value);
     return new Query(ast, this.syntax);
   }
 
-  removeFieldClause(field, value) {
-    const ast = this.ast.removeFieldClause(field, value);
+  hasOrFieldClause(field, value = undefined) {
+    return this.ast.hasOrFieldClause(field, value);
+  }
+
+  getOrFieldClause(field, value) {
+    return this.ast.getOrFieldClause(field, value);
+  }
+
+  addOrFieldValue(field, value, must = true) {
+    const ast = this.ast.addOrFieldValue(field, value, must);
+    return new Query(ast, this.syntax);
+  }
+
+  removeOrFieldValue(field, value) {
+    const ast = this.ast.removeOrFieldValue(field, value);
+    return new Query(ast, this.syntax);
+  }
+
+  removeOrFieldClauses(field) {
+    const ast = this.ast.removeOrFieldClauses(field);
     return new Query(ast, this.syntax);
   }
 

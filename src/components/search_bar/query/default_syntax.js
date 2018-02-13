@@ -1,17 +1,18 @@
 import { AST } from './ast';
+import { isArray } from '../../../services/predicate';
 import peg from 'pegjs';
+
+const unescapeValue = (value) => {
+  return value.replace(/\\([:\-\\])/, '$1');
+};
 
 const escapeValue = (value) => {
   return value.replace(/([:\-\\])/, '\\$1');
 };
 
 const grammar = `
-{
-  const unescape = (value) => {
-    return value.replace(/\\\\([:\\-\\\\])/, '$1');
-  };
-  
-  const { AST } = options;
+{  
+  const { AST, unescapeValue } = options;
 }
 
 Query
@@ -49,20 +50,33 @@ FieldAndValue
   = field:fieldName ":" value:fieldValue { return {field, value}; }
 
 fieldName "field name"
-  = fieldChar+ { return unescape(text()); }
+  = fieldChar+ { return unescapeValue(text()); }
         
 fieldChar
   = alnum
   / escapedChar
 
 fieldValue "field value"
-  = value
+  = fieldValues
+  / value
 
+fieldValues
+  = "(" space? head:value tail:(
+  	space ([oO][rR]) space value:value space	{ return value; }
+  )+ space? ")" { return [ head, ...tail ] }
+  
 termValue "term"
   = value
 
 value
-  = valueChar+ { return unescape(text()); }
+  = word
+  / '"' phrase:phrase '"' { return phrase; }
+
+phrase
+  = word (space word)* { return unescapeValue(text()); }
+
+word
+  = valueChar+ { return unescapeValue(text()); }
 
 valueChar
   = alnum
@@ -83,10 +97,17 @@ space "whitespace"
 
 const parser = peg.buildParser(grammar);
 
+const printValue = (value) => {
+  if (value.match(/\s/)) {
+    return `"${escapeValue(value)}"`;
+  }
+  return escapeValue(value);
+};
+
 export const defaultSyntax = Object.freeze({
 
   parse: (query) => {
-    const clauses = parser.parse(query, { AST });
+    const clauses = parser.parse(query, { AST, unescapeValue });
     return AST.create(clauses);
   },
 
@@ -95,11 +116,14 @@ export const defaultSyntax = Object.freeze({
       const prefix = AST.Match.isMustClause(clause) ? '' : '-';
       switch (clause.type) {
         case AST.Field.TYPE:
-          return `${text} ${prefix}${escapeValue(clause.field)}:${escapeValue(clause.value)}`;
+          if (isArray(clause.value)) {
+            return `${text} ${prefix}${escapeValue(clause.field)}:(${clause.value.map(val => printValue(val)).join(' or ')})`;
+          }
+          return `${text} ${prefix}${escapeValue(clause.field)}:${printValue(clause.value)}`;
         case AST.Is.TYPE:
           return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
         case AST.Term.TYPE:
-          return `${text} ${prefix}${escapeValue(clause.value)}`;
+          return `${text} ${prefix}${printValue(clause.value)}`;
         default:
           return text;
       }

@@ -42,14 +42,14 @@ export class FieldValueToggleFilter extends React.Component {
   valueChanged(checked) {
     const { field, value } = this.props.config;
     const query = checked ?
-      this.props.query.removeFieldClause(field, value) :
-      this.props.query.addMustFieldClause(field, value);
+      this.props.query.removeSimpleFieldValue(field, value) :
+      this.props.query.addSimpleFieldValue(field, value);
     this.props.onChange(query);
   }
 
   render() {
     const { query, config } = this.props;
-    const clause = query.getFieldClause(config.field, config.value);
+    const clause = query.getSimpleFieldClause(config.field, config.value);
     const checked = !isNil(clause);
     const { hasActiveFilters, name } = this.resolveDisplay(clause);
     const onClick = () => {

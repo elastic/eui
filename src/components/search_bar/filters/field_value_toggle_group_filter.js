@@ -33,7 +33,7 @@ export class FieldValueToggleGroupFilter extends React.Component {
   }
 
   resolveDisplay(config, query, item) {
-    const clause = query.getFieldClause(config.field, item.value);
+    const clause = query.getSimpleFieldClause(config.field, item.value);
     if (clause) {
       if (Query.isMust(clause)) {
         return { active: true, name: item.name };
@@ -47,8 +47,8 @@ export class FieldValueToggleGroupFilter extends React.Component {
     const { field } = this.props.config;
     const { value } = item;
     const query = active ?
-      this.props.query.removeFieldClauses(field) :
-      this.props.query.removeFieldClauses(field).addMustFieldClause(field, value);
+      this.props.query.removeSimpleFieldClauses(field) :
+      this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
     this.props.onChange(query);
   }
 

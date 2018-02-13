@@ -1,3 +1,5 @@
+import { isArray, isNil } from '../../../services/predicate';
+
 export const Match = Object.freeze({
   MUST: 'must',
   MUST_NOT: 'must_not',
@@ -114,35 +116,101 @@ export class _AST {
   getFieldClauses(field = undefined) {
     return field ?
       this._indexedClauses.field[field] :
-      this._clauses.filter(clause => Field.isInstance(clause));
+      this._clauses.filter(Field.isInstance);
   }
 
-  getFieldClause(field, value) {
+  getFieldClause(field, predicate) {
     const clauses = this.getFieldClauses(field);
     if (clauses) {
-      return clauses.find(clause => clause.value === value);
+      return clauses.find(predicate);
     }
   }
 
-  /**
-   * Returns a new AST with all the current clauses excluding a field clause that is associated
-   * with the given field and value. If no such field clause exists, the returns AST will essentially
-   * be a new copy of this one.
-   */
-  removeFieldClause(field, value) {
-    return new _AST(this._clauses.filter(clause => {
-      return !Field.isInstance(clause) || clause.field !== field || clause.value !== value;
-    }));
+  hasOrFieldClause(field, value = undefined) {
+    const clauses = this.getFieldClause(field, clause => isArray(clause.value));
+    if (!clauses) {
+      return false;
+    }
+    return isNil(value) || clauses.some(clause => clause.value.includes(value));
   }
 
-  /**
-   * Creates and returns a new AST with all the current clauses excluding the field clauses that are
-   * associated with the given field. If no field is provided, all field clauses will be excluded.
-   */
-  removeFieldClauses(field = undefined) {
-    return new _AST(this._clauses.filter(clause => {
-      return !Field.isInstance(clause) || (field && clause.field !== field);
-    }));
+  getOrFieldClause(field, value = undefined) {
+    return this.getFieldClause(field, clause => isArray(clause.value) && (!value || clause.value.includes(value)));
+  }
+
+  addOrFieldValue(field, value, must = true) {
+    const existingClause = this.getOrFieldClause(field);
+    if (!existingClause) {
+      const newClause = must ? Field.must(field, [ value ]) : Field.mustNot(field, [ value ]);
+      return new _AST([ ...this._clauses, newClause ]);
+    }
+    const clauses = this._clauses.map(clause => {
+      if (clause === existingClause) {
+        clause.value.push(value);
+      }
+      return clause;
+    });
+    return new _AST(clauses);
+  }
+
+  removeOrFieldValue(field, value) {
+    const existingClause = this.getOrFieldClause(field, value);
+    if (!existingClause) {
+      return new _AST([ ...this._clauses ]);
+    }
+    const clauses = this._clauses.reduce((clauses, clause) => {
+      if (clause !== existingClause) {
+        clauses.push(clause);
+        return clauses;
+      }
+      const filteredValue = clause.value.filter(val => val !== value);
+      if (filteredValue.length === 0) {
+        return clauses;
+      }
+      clauses.push({ ...clause, value: filteredValue });
+      return clauses;
+    }, []);
+    return new _AST(clauses);
+  }
+
+  removeOrFieldClauses(field) {
+    const clauses = this._clauses.filter(clause => {
+      return !Field.isInstance(clause) || clause.field !== field || !isArray(clause.value);
+    });
+    return new _AST(clauses);
+  }
+
+  hasSimpleFieldClause(field, value = undefined) {
+    const clauses = this.getFieldClause(field, clause => !isArray(clause.value));
+    if (!clauses) {
+      return false;
+    }
+    return isNil(value) || clauses.some(clause => clause.value === value);
+  }
+
+  getSimpleFieldClause(field, value = undefined) {
+    return this.getFieldClause(field, clause => !isArray(clause.value) && (!value || clause.value === value));
+  }
+
+  addSimpleFieldValue(field, value, must = true) {
+    const clause = must ? Field.must(field, value) : Field.mustNot(field, value);
+    return this.addClause(clause);
+  }
+
+  removeSimpleFieldValue(field, value) {
+    const existingClause = this.getSimpleFieldClause(field, value);
+    if (!existingClause) {
+      return new _AST([ ...this._clauses ]);
+    }
+    const clauses = this._clauses.filter(clause => clause !== existingClause);
+    return new _AST(clauses);
+  }
+
+  removeSimpleFieldClauses(field) {
+    const clauses = this._clauses.filter(clause => {
+      return !Field.isInstance(clause) || clause.field !== field || isArray(clause.value);
+    });
+    return new _AST(clauses);
   }
 
   getIsClauses() {

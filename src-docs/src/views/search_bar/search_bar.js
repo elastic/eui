@@ -132,6 +132,7 @@ export class SearchBar extends React.Component {
                     type: 'field_value_selection',
                     field: 'tag',
                     name: 'Tag',
+                    multiSelect: 'or',
                     cache: 10000, // will cache the loaded tags for 10 sec
                     options: () => loadTags()
                   }

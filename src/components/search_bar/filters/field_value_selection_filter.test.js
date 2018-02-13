@@ -93,4 +93,32 @@ describe('FieldValueSelectionFilter', () => {
 
   });
 
+  test('render - multi-select OR', () => {
+
+    const props = {
+      ...requiredProps,
+      index: 0,
+      onChange: () => {},
+      query: Query.parse(''),
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        multiSelect: 'or',
+        available: () => {},
+        loadingMessage: 'loading...',
+        noOptionsMessage: 'oops...',
+        searchThreshold: 5,
+        options: () => {}
+      }
+    };
+
+    const component = shallow(
+      <FieldValueSelectionFilter {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+
+  });
+
 });

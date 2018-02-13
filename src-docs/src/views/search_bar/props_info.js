@@ -154,10 +154,12 @@ export const propsInfo = {
           type: { name: 'number (milliseconds)' }
         },
         multiSelect: {
-          description: 'Indicates whether the user can filter by multiple values or by only a single one',
+          description: 'Indicates whether the user can filter by multiple values or by only a single one. ' +
+                       'When set to "and" the filter will create queries by `and`ing the selected values. ' +
+                       'When set to "or" the filter will create quries by `or`ing the selected values',
           required: false,
-          defaultValue: { value: 'true' },
-          type: { name: 'boolean' }
+          defaultValue: { value: 'true ("and")' },
+          type: { name: 'boolean | "or" | "and"' }
         },
         loadingMessage: {
           description: 'The message that will be shown while loading the options',

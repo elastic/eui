@@ -127,3 +127,75 @@ Object {
   },
 }
 `;
+
+exports[`astToES ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "bool": Object {
+          "should": Array [
+            Object {
+              "match": Object {
+                "group": Object {
+                  "operator": "or",
+                  "query": "eng",
+                },
+              },
+            },
+            Object {
+              "match_phrase": Object {
+                "group": "marketing org",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match_phrase": Object {
+          "group": "kibana team",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToES ast - 'john group:(eng or es) -group:kibana' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "or",
+            "query": "eng es",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+    ],
+  },
+}
+`;

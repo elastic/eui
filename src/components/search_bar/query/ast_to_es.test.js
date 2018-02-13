@@ -48,4 +48,22 @@ describe('astToES', () => {
     expect(query).toMatchSnapshot();
   });
 
+  test(`ast - 'john group:(eng or es) -group:kibana'`, () => {
+    const query = astToES(AST.create([
+      AST.Term.must('john'),
+      AST.Field.must('group', ['eng', 'es']),
+      AST.Field.mustNot('group', 'kibana')
+    ]));
+    expect(query).toMatchSnapshot();
+  });
+
+  test(`ast - 'john group:(eng or "marketing org") -group:"kibana team"`, () => {
+    const query = astToES(AST.create([
+      AST.Term.must('john'),
+      AST.Field.must('group', ['eng', 'marketing org']),
+      AST.Field.mustNot('group', 'kibana team')
+    ]));
+    expect(query).toMatchSnapshot();
+  });
+
 });

@@ -30,6 +30,29 @@ describe('execute ast', () => {
     expect(result[0].name).toBe('joe');
   });
 
+  test('single matching multi-valued field clause', () => {
+    const items = [
+      { name: 'john' },
+      { name: 'joe' }
+    ];
+    let result = executeAst(AST.create([
+      AST.Field.must('name', ['john', 'doe'])
+    ]), items);
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('john');
+
+    result = executeAst(AST.create([
+      AST.Field.must('name', ['joe', 'doe'])
+    ]), items);
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('joe');
+
+    result = executeAst(AST.create([
+      AST.Field.must('name', ['foo', 'bar'])
+    ]), items);
+    expect(result).toHaveLength(0);
+  });
+
   test('single non-matching field clause', () => {
     const items = [
       { name: 'john' },
@@ -198,6 +221,37 @@ describe('execute ast', () => {
     expect(result).toHaveLength(1);
     expect(result[0].text).toBe('bar');
     expect(result[0].age).toBe(7);
+  });
+
+  test('phrases', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { description: 'foo', age: 6, open: false },
+      { text: 'foo bar', age: 7 },
+      { text: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'John Doe'),
+    ]), items);
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('john doe');
+  });
+
+  test('or fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must('name', [ 'john', 'bar' ]),
+    ]), items);
+    expect(result).toHaveLength(3);
+    const names = result.map(item => item.name);
+    expect(names).toContain('john doe');
+    expect(names).toContain('bar');
+    expect(names).toContain('foo bar');
   });
 
 });
