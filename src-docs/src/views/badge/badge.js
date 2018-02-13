@@ -2,43 +2,32 @@ import React from 'react';
 
 import {
   EuiBadge,
+  EuiFlexItem,
+  EuiFlexGroup,
 } from '../../../../src/components';
 
+const badges = [
+  'default',
+  'primary',
+  'secondary',
+  'accent',
+  'warning',
+  'danger',
+  '#fea27f',
+  '#000'
+];
+
 export default () => (
-  <div>
-    <EuiBadge color="default">
-      Default
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="primary">
-      Primary
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="secondary">
-      Secondary
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="accent">
-      Accent
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="warning">
-      Warning
-    </EuiBadge>
-
-    &nbsp;&nbsp;
-
-    <EuiBadge color="danger">
-      Danger
-    </EuiBadge>
-  </div>
+  <EuiFlexGroup wrap responsive={false} gutterSize="xs" style={{ width: 300 }}>
+    {
+      badges.map(badge => (
+        <EuiFlexItem grow={false} key={badge}>
+          <EuiBadge color={badge}>
+            {badge}
+          </EuiBadge>
+        </EuiFlexItem>
+      ))
+    }
+  </EuiFlexGroup>
 
 );
