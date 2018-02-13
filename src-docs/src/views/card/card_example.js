@@ -42,8 +42,8 @@ export const CardExample = {
           clickable by giving it an <EuiCode>onClick</EuiCode> handler.
         </p>
         <p>
-          By default a card&apos;s content is left aligned. To center the content
-          set <EuiCode>isCentered</EuiCode> to true.
+          By default a card&apos;s content is center aligned. To change the alignment
+          set <EuiCode>textAlign</EuiCode> to <EuiCode>left</EuiCode> or <EuiCode>right</EuiCode>.
         </p>
       </div>
     ),

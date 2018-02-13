@@ -20,7 +20,7 @@ export default () => (
   <EuiFlexGroup gutterSize="l">
     <EuiFlexItem>
       <EuiCard
-        alignment="left"
+        textAlign="left"
         image="https://source.unsplash.com/400x200/?Nature"
         title="Elastic in Nature"
         description="Example of a card's description. Stick to one or two sentences."
@@ -29,7 +29,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiCard
-        alignment="left"
+        textAlign="left"
         image="https://source.unsplash.com/400x200/?Water"
         title="Elastic in Water"
         description="Example of a card's description. Stick to one or two sentences."
@@ -38,7 +38,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiCard
-        alignment="left"
+        textAlign="left"
         image="https://source.unsplash.com/400x200/?City"
         icon={<EuiIcon size="xxl" type="logoBeats" />}
         title={`Beats in the City`}
