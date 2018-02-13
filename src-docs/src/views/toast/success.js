@@ -1,14 +1,16 @@
 import React from 'react';
 
 import {
+  EuiButton,
+  EuiLink,
   EuiToast,
 } from '../../../../src/components';
 
 export default () => (
   <EuiToast
-    title="This is an example of a poor toast title. It's way too long."
+    title="Created report for dashboard 'Tuba Sales by Region'"
     color="success"
-    iconType="user"
+    iconType="check"
   >
     <p>
       While the layout will adjust properly for wrapping titles, they do not look particularly good.
@@ -17,7 +19,11 @@ export default () => (
     </p>
 
     <p>
-      You should not even need a second paragraph. Again, we are getting long winded here.
+      And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
     </p>
+
+    <EuiButton>
+      Download report
+    </EuiButton>
   </EuiToast>
 );
