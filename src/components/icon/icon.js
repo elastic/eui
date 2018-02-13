@@ -84,6 +84,11 @@ import logoRedis from './assets/logo_redis.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
 import logoXpack from './assets/logo_xpack.svg';
+import logstashFilter from './assets/logstash_filter.svg';
+import logstashIf from './assets/logstash_if.svg';
+import logstashInput from './assets/logstash_input.svg';
+import logstashQueue from './assets/logstash_queue.svg';
+import logstashOutput from './assets/logstash_output.svg';
 import machineLearningApp from './assets/app_ml.svg';
 import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
@@ -211,6 +216,11 @@ const typeToIconMap = {
   logoSlack,
   logoWebhook,
   logoXpack,
+  logstashFilter,
+  logstashIf,
+  logstashInput,
+  logstashQueue,
+  logstashOutput,
   machineLearningApp,
   managementApp,
   mapMarker,
