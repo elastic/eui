@@ -60,6 +60,10 @@ import Loading from './form_controls_loading';
 const loadingSource = require('!!raw-loader!./form_controls_loading');
 const loadingHtml = renderToHtml(Loading);
 
+import ReadOnly from './form_controls_readonly';
+const readOnlySource = require('!!raw-loader!./form_controls_readonly');
+const readOnlyHtml = renderToHtml(ReadOnly);
+
 export const FormExample = {
   title: 'Form',
   sections: [{
@@ -252,6 +256,24 @@ export const FormExample = {
       </p>
     ),
     demo: <InlineFormPopover />,
+  }, {
+    title: 'Fields can be in a readonly state',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: readOnlySource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: readOnlyHtml,
+    }],
+    text: (
+      <p>
+        Add <EuiCode>readOnly</EuiCode> to almost any field level (text, number)
+        component to put it in a readonly state. This will just display the content of the
+        control and remove any interactions. It is especially handy when using inline forms
+        with non-editable fields.
+      </p>
+    ),
+    demo: <ReadOnly />,
   }],
 };
 

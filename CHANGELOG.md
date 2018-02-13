@@ -4,6 +4,7 @@
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 - Changed look and feel of pagination. Added compressed prop for smaller footprint pagination. ([#380](https://github.com/elastic/eui/pull/380))
 - Added `EuiBasicTable` as an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but now marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
+- Add styles for `readOnly` states of form controls. ([#391](https://github.com/elastic/eui/pull/391))
 
 **Bug fixes**
 
