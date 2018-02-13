@@ -26,6 +26,10 @@ export {
 } from './badge';
 
 export {
+  EuiCard,
+} from './card';
+
+export {
   EuiCallOut,
 } from './call_out';
 

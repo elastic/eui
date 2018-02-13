@@ -1,0 +1,80 @@
+@import "../panel/variables";
+
+$euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
+
+.euiCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.euiCard--leftAligned,
+  &.euiCard--isClickable.euiCard--leftAligned {
+    text-align: left;
+  }
+
+  &.euiCard--centerAligned,
+  &.euiCard--isClickable.euiCard--centerAligned {
+    text-align: center;
+  }
+
+  &.euiCard--rightAligned,
+  &.euiCard--isClickable.euiCard--rightAligned {
+    text-align: right;
+  }
+
+  &.euiCard--isClickable {
+    &:focus,
+    &:hover {
+      .euiCard__title {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/**
+ * 1. Footer is always at the bottom.
+ */
+
+.euiCard__content {
+  flex-grow: 1; /* 1 */
+
+  .euiCard__title {
+    display: block;
+    margin-top: $euiCardSpacing;
+  }
+
+  .euiCard__description {
+    margin-top: $euiCardSpacing/2;
+  }
+}
+
+.euiCard__top {
+  flex-grow: 0; /* 1 */
+  position: relative;
+
+  .euiCard__icon {
+    margin-top: $euiCardSpacing/2;
+  }
+
+  .euiCard__image {
+    position: relative;
+    width: calc(100% + #{$euiCardSpacing}*2);
+    left: $euiCardSpacing * -1;
+    top: $euiCardSpacing * -1;
+    margin-bottom: $euiCardSpacing * -1; // ensure the parent is only as tall as the image
+
+    // IF both exist, position the icon centered on top of image
+    + .euiCard__icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
+    }
+  }
+}
+
+.euiCard__footer:not(:empty) {
+  flex-grow: 0; /* 1 */
+  margin-top: $euiCardSpacing;
+}
