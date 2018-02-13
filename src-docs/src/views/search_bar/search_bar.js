@@ -19,7 +19,7 @@ import { EuiBasicTable } from '../../../../src/components/basic_table';
 const random = new Random();
 
 const tags = [
-  { value: 'marketings', view: (<EuiHealth color="danger">marketing</EuiHealth>) },
+  { value: 'marketing', view: (<EuiHealth color="danger">marketing</EuiHealth>) },
   { value: 'finance', view: (<EuiHealth color="success">finance</EuiHealth>) },
   { value: 'eng', view: (<EuiHealth color="success">eng</EuiHealth>) },
   { value: 'sales', view: (<EuiHealth color="success">sales</EuiHealth>) },
@@ -43,6 +43,7 @@ const users = [
 const items = times(10, (id) => {
   return {
     id,
+    status: random.oneOf('open', 'closed'),
     type: random.oneOf(...types.map(type => type.value)),
     tag: random.setOf(tags.map(tag => tag.value), { min: 0, max: 3 }),
     active: random.boolean(),
@@ -102,10 +103,30 @@ export class SearchBar extends React.Component {
                 }}
                 filters={[
                   {
+                    type: 'field_value_toggle_group',
+                    field: 'status',
+                    items: [
+                      {
+                        value: 'open',
+                        name: 'Open'
+                      },
+                      {
+                        value: 'closed',
+                        name: 'Closed'
+                      }
+                    ]
+                  },
+                  {
                     type: 'is',
                     field: 'active',
                     name: 'Active',
                     negatedName: 'Inactive'
+                  },
+                  {
+                    type: 'field_value_toggle',
+                    name: 'Mine',
+                    field: 'owner',
+                    value: 'dewey'
                   },
                   {
                     type: 'field_value_selection',
@@ -152,6 +173,11 @@ export class SearchBar extends React.Component {
                 {
                   name: 'Type',
                   field: 'type'
+                },
+                {
+                  name: 'Open',
+                  field: 'status',
+                  render: (status) => status === 'open' ? 'Yes' : 'No'
                 },
                 {
                   name: 'Active',

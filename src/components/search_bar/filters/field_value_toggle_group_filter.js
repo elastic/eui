@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../filter_group';
-import { isNil } from '../../../services/predicate';
 import { EuiPropTypes } from '../../../utils/prop_types';
 import { Query } from '../query';
 
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
   value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  negatedName: PropTypes.string,
+  negatedName: PropTypes.string
 });
 
 export const FieldValueToggleGroupFilterConfigType = PropTypes.shape({
@@ -33,41 +32,39 @@ export class FieldValueToggleGroupFilter extends React.Component {
     super(props);
   }
 
-  resolveDisplay(clause, item) {
-    const { name, negatedName } = item;
-    if (isNil(clause)) {
-      return { hasActiveFilters: false, name };
+  resolveDisplay(config, query, item) {
+    const clause = query.getFieldClause(config.field, item.value);
+    if (clause) {
+      if (Query.isMust(clause)) {
+        return { active: true, name: item.name };
+      }
+      return { active: true, name: item.negatedName ? item.negatedName : `Not ${item.name}` };
     }
-    return  Query.isMust(clause) ?
-      { hasActiveFilters: true, name } :
-      { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
+    return { active: false, name: item.name };
   }
 
-  valueChanged(item, checked) {
+  valueChanged(item, active) {
     const { field } = this.props.config;
     const { value } = item;
-    const query = checked ?
+    const query = active ?
       this.props.query.removeFieldClauses(field) :
       this.props.query.removeFieldClauses(field).addMustFieldClause(field, value);
     this.props.onChange(query);
   }
 
   render() {
-    const { query, config } = this.props;
+    const { config, query } = this.props;
     return config.items.map((item, index) => {
-
-      const clause = query.getFieldClause(config.field, item.value);
-      const checked = !isNil(clause);
-      const { hasActiveFilters, name } = this.resolveDisplay(clause, item);
+      const { active, name } = this.resolveDisplay(config, query, item);
       const onClick = () => {
-        this.valueChanged(item, checked);
+        this.valueChanged(item, active);
       };
       const key = `field_value_toggle_filter_item_${index}`;
       return (
         <EuiFilterButton
           key={key}
           onClick={onClick}
-          hasActiveFilters={hasActiveFilters}
+          hasActiveFilters={active}
         >
           {name}
         </EuiFilterButton>

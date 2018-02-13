@@ -9,7 +9,6 @@ import {
 
 import {
   EuiCode,
-  // EuiSearchBar,
 } from '../../../../src/components';
 
 import { SearchBar } from './search_bar';
