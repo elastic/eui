@@ -42,6 +42,7 @@ import dot from './assets/dot.svg';
 import empty from './assets/empty.svg';
 import exit from './assets/exit.svg';
 import expand from './assets/expand.svg';
+import exportAction from './assets/export.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
@@ -51,6 +52,7 @@ import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
 import help from './assets/help.svg';
+import importAction from './assets/import.svg';
 import iInCircle from './assets/iInCircle.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexClose from './assets/index_close.svg';
@@ -167,6 +169,7 @@ const typeToIconMap = {
   empty,
   exit,
   expand,
+  exportAction,
   faceHappy,
   faceNeutral,
   faceSad,
@@ -176,6 +179,7 @@ const typeToIconMap = {
   grid,
   grokApp,
   help,
+  importAction,
   iInCircle,
   indexClose,
   indexEdit,
