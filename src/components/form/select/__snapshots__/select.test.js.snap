@@ -19,6 +19,33 @@ exports[`EuiSelect is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
+exports[`EuiSelect props disabled options are rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect"
+    >
+      <option
+        value="1"
+      >
+        Option #1
+      </option>
+      <option
+        disabled=""
+        value="2"
+      >
+        Option #2
+      </option>
+    </select>
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
 exports[`EuiSelect props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="true"

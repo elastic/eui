@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for `disabled` options in `EuiSelect`. [#324](https://github.com/elastic/eui/pull/324)
 - Badges can now accept onClicks and custom colors. They were changed stylistically to be bolder and smaller by default. ([#381](https://github.com/elastic/eui/pull/381))
 - Added component to wrap blocks of substeps `EuiSubSteps` in a shaded container. ([#375](https://github.com/elastic/eui/pull/375))
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))

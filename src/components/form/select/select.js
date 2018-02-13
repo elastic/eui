@@ -45,9 +45,13 @@ export const EuiSelect = ({
           ref={inputRef}
           {...rest}
         >
-          {options.map((option, index) => (
-            <option value={option.value} key={index}>{option.text}</option>
-          ))}
+          {options.map((option, index) => {
+            const {
+              text,
+              ...rest
+            } = option;
+            return <option {...rest} key={index}>{text}</option>;
+          })}
         </select>
       </EuiValidatableControl>
     </EuiFormControlLayout>
@@ -58,8 +62,7 @@ EuiSelect.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
   })).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,

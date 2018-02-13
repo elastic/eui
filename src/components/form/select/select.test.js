@@ -62,5 +62,19 @@ describe('EuiSelect', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('disabled options are rendered', () => {
+      const component = render(
+        <EuiSelect
+          options={[
+            { value: '1', text: 'Option #1', disabled: false },
+            { value: '2', text: 'Option #2', disabled: true }
+          ]}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });
