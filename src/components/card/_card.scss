@@ -7,9 +7,19 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   flex-direction: column;
   overflow: hidden;
 
-  &.euiCard--isCentered,
-  &.euiCard--isClickable.euiCard--isCentered {
+  &.euiCard--leftAligned,
+  &.euiCard--isClickable.euiCard--leftAligned {
+    text-align: left;
+  }
+
+  &.euiCard--centerAligned,
+  &.euiCard--isClickable.euiCard--centerAligned {
     text-align: center;
+  }
+
+  &.euiCard--rightAligned,
+  &.euiCard--isClickable.euiCard--rightAligned {
+    text-align: right;
   }
 
   &.euiCard--isClickable {

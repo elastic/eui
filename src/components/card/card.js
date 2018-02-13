@@ -6,6 +6,14 @@ import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 
+const alignmentToClassNameMap = {
+  left: 'euiCard--leftAligned',
+  center: 'euiCard--centerAligned',
+  right: 'euiCard--rightAligned',
+};
+
+export const ALIGNMENTS = Object.keys(alignmentToClassNameMap);
+
 export const EuiCard = ({
   className,
   description,
@@ -14,14 +22,15 @@ export const EuiCard = ({
   image,
   footer,
   onClick,
-  isCentered,
+  alignment,
   ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
+    alignmentToClassNameMap[alignment],
     {
       'euiCard--isClickable': onClick,
-      'euiCard--isCentered': isCentered,
+      'euiCard--alignment': alignment,
     },
     className,
   );
@@ -77,9 +86,9 @@ EuiCard.propTypes = {
   image: PropTypes.string,
   footer: PropTypes.node,
   onClick: PropTypes.func,
-  isCentered: PropTypes.bool,
+  alignment: PropTypes.oneOf(ALIGNMENTS),
 };
 
 EuiCard.defaultProps = {
-  isCentered: false,
+  alignment: 'center',
 };

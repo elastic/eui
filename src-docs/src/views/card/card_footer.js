@@ -25,7 +25,6 @@ export default () => (
   <EuiFlexGroup gutterSize="l">
     <EuiFlexItem>
       <EuiCard
-        isCentered={true}
         icon={<EuiIcon size="xxl" type="devToolsApp" />}
         title="Developers Tools"
         description="Example of a short card description."
@@ -34,7 +33,6 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiCard
-        isCentered={true}
         icon={<EuiIcon size="xxl" type="dashboardApp" />}
         title="Dashboards"
         description="Example of a short longer card description. See how the footers stay lined up."
@@ -43,7 +41,6 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiCard
-        isCentered={true}
         icon={<EuiIcon size="xxl" type="savedObjectsApp" />}
         title="Save Objects"
         description="Example of a short card description."
