@@ -1,22 +1,38 @@
 .euiBadge {
   font-size: $euiSizeM;
-  line-height: $euiSizeL;
+  font-weight: $euiFontWeightMedium;
+  line-height: $euiSize + $euiSizeXS;
   display: inline-block;
   text-decoration: none;
-  border: solid 1px transparent;
-  border-radius: $euiSizeL;
-  padding: 0 $euiSizeS;
+  box-sizing: content-box;
+  border-radius: $euiBorderRadius / 2;
+  padding: 0 $euiSizeXS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
+  text-align: center;
+
+  + .euiBadge {
+    margin-left: $euiSizeXS;
+  }
 
   .euiBadge__content {
     display: flex;
     align-items: center;
   }
 
+  &:focus {
+    @include euiFocusRing("small");
+  }
+
   .euiBadge__icon {
     margin-right: $euiSizeXS;
+
+    &:focus {
+      background-color: rgba(255,255,255,.8);
+      color: #000;
+      border-radius: 2px;
+    }
   }
 
   &.euiBadge--iconRight .euiBadge__content {
@@ -33,16 +49,20 @@
 // Modifier naming and colors.
 $badgeTypes: (
   default: $euiColorLightShade,
-  primary: $euiColorPrimary,
-  secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  accent: $euiColorAccent
+  primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
+  secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
+  warning: lighten(desaturate($euiColorWarning, 30%), 20%),
+  danger: lighten(desaturate($euiColorDanger, 40%), 40%),
+  accent: lighten(desaturate($euiColorAccent, 40%), 40%),
 );
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
-    border-color: $color;
-    background-color: transparentize($color, .9);
+    background-color: $color;
+    @if (lightness($color) > 50) {
+      color: #000;
+    } @else {
+      color: #FFF;
+    }
   }
 }

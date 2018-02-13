@@ -7,6 +7,7 @@ export const EuiRadioGroup = ({
   options,
   idSelected,
   onChange,
+  name,
   className,
   disabled,
   ...rest
@@ -18,6 +19,7 @@ export const EuiRadioGroup = ({
           className="euiRadioGroup__item"
           key={index}
           id={option.id}
+          name={name}
           checked={option.id === idSelected}
           label={option.label}
           disabled={disabled}

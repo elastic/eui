@@ -26,14 +26,14 @@ import {
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   Pager,
   SortableProperties,
-} from '../../../../src/services';
+} from '../../../../../src/services';
 
 export default class extends Component {
   constructor(props) {

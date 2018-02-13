@@ -42,6 +42,8 @@ export class EuiImage extends Component {
 
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
       this.closeFullScreen();
     }
   };

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandedItemActions render 1`] = `
+Array [
+  <DefaultItemAction
+    action={
+      Object {
+        "description": "default 1",
+        "name": "default1",
+        "onClick": [Function],
+      }
+    }
+    enabled={true}
+    index={0}
+    item={
+      Object {
+        "id": "xyz",
+      }
+    }
+    itemId="xyz"
+    key="item_action_xyz_0"
+    visible={true}
+  />,
+  <CustomItemAction
+    action={
+      Object {
+        "description": "custom 1",
+        "name": "custom1",
+        "render": [Function],
+      }
+    }
+    enabled={true}
+    index={1}
+    item={
+      Object {
+        "id": "xyz",
+      }
+    }
+    itemId="xyz"
+    key="item_action_xyz_1"
+    visible={true}
+  />,
+]
+`;

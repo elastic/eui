@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import {
+  checkHrefAndOnClick,
+  getSecureRelForTarget,
+} from '../../services';
+
 const colorsToClassNameMap = {
   'primary': 'euiLink--primary',
   'subdued': 'euiLink--subdued',
@@ -16,10 +21,13 @@ export const COLORS = Object.keys(colorsToClassNameMap);
 
 export const EuiLink = ({
   children,
-  type,
   color,
   className,
+  href,
+  target,
+  rel,
   onClick,
+  type,
   ...rest
 }) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
@@ -27,9 +35,9 @@ export const EuiLink = ({
   if (onClick) {
     return (
       <button
-        type={type}
         className={classes}
         onClick={onClick}
+        type={type}
         {...rest}
       >
         {children}
@@ -37,9 +45,14 @@ export const EuiLink = ({
     );
   }
 
+  const secureRel = getSecureRelForTarget(target, rel);
+
   return (
     <a
       className={classes}
+      href={href}
+      target={target}
+      rel={secureRel}
       {...rest}
     >
       {children}
@@ -50,9 +63,12 @@ export const EuiLink = ({
 EuiLink.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  href: checkHrefAndOnClick,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   onClick: PropTypes.func,
-  color: PropTypes.oneOf(COLORS),
   type: PropTypes.string,
+  color: PropTypes.oneOf(COLORS),
 };
 
 EuiLink.defaultProps = {

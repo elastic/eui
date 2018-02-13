@@ -28,8 +28,13 @@ import controlsHorizontal from './assets/controls_horizontal.svg';
 import controlsVertical from './assets/controls_vertical.svg';
 import copy from './assets/copy.svg';
 import copyClipboard from './assets/copy_clipboard.svg';
+import createAdvancedJob from './assets/ml_create_advanced_job.svg';
+import createMultiMetricJob from './assets/ml_create_multi_metric_job.svg';
+import createPopulationJob from './assets/ml_create_population_job.svg';
+import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import dashboardApp from './assets/app_dashboard.svg';
+import dataVisualizer from './assets/ml_data_visualizer.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
@@ -37,6 +42,7 @@ import dot from './assets/dot.svg';
 import empty from './assets/empty.svg';
 import exit from './assets/exit.svg';
 import expand from './assets/expand.svg';
+import exportAction from './assets/export.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
@@ -46,6 +52,7 @@ import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
 import help from './assets/help.svg';
+import importAction from './assets/import.svg';
 import iInCircle from './assets/iInCircle.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexClose from './assets/index_close.svg';
@@ -63,14 +70,17 @@ import loggingApp from './assets/app_logging.svg';
 import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCloud from './assets/logo_cloud.svg';
+import logoDocker from './assets/logo_docker.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticSearch from './assets/logo_elastic_search.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoKibana from './assets/logo_kibana.svg';
+import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
+import logoRedis from './assets/logo_redis.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
 import logoXpack from './assets/logo_xpack.svg';
@@ -145,8 +155,13 @@ const typeToIconMap = {
   controlsVertical,
   copy,
   copyClipboard,
+  createAdvancedJob,
+  createMultiMetricJob,
+  createPopulationJob,
+  createSingleMetricJob,
   cross,
   dashboardApp,
+  dataVisualizer,
   devToolsApp,
   discoverApp,
   document,
@@ -154,6 +169,7 @@ const typeToIconMap = {
   empty,
   exit,
   expand,
+  exportAction,
   faceHappy,
   faceNeutral,
   faceSad,
@@ -163,6 +179,7 @@ const typeToIconMap = {
   grid,
   grokApp,
   help,
+  importAction,
   iInCircle,
   indexClose,
   indexEdit,
@@ -180,14 +197,17 @@ const typeToIconMap = {
   logoApache,
   logoBeats,
   logoCloud,
+  logoDocker,
   logoElastic,
   logoElasticSearch,
   logoElasticStack,
   logoGmail,
   logoKibana,
+  logoKubernetes,
   logoLogstash,
   logoMySQL,
   logoNginx,
+  logoRedis,
   logoSlack,
   logoWebhook,
   logoXpack,

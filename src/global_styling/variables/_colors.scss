@@ -55,6 +55,19 @@ $euiTitleColor: $euiColorFullShade !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 
+// Visualization colors
+
+$euiColorVis0: #00B3A4 !default;
+$euiColorVis1: #3185FC !default;
+$euiColorVis2: #DB1374 !default;
+$euiColorVis3: #490092 !default;
+$euiColorVis4: #FEB6DB !default;
+$euiColorVis5: #E6C220 !default;
+$euiColorVis6: #BFA180 !default;
+$euiColorVis7: #F98510 !default;
+$euiColorVis8: #461A0A !default;
+$euiColorVis9: #920000 !default;
+
 // Code
 
 $euiCodeBlockBackgroundColor: $euiColorLightestShade !default;

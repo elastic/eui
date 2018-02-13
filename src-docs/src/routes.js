@@ -46,6 +46,9 @@ import { BottomBarExample }
 import { ButtonExample }
   from './views/button/button_example';
 
+import { CardExample }
+  from './views/card/card_example';
+
 import { CallOutExample }
   from './views/call_out/call_out_example';
 
@@ -134,7 +137,10 @@ import { StepsExample }
   from './views/steps/steps_example';
 
 import { TableExample }
-  from './views/table/table_example';
+  from './views/tables/tables_example';
+
+import { TableOfRecordsExample }
+  from './views/table_of_records/table_of_records_example';
 
 import { TabsExample }
   from './views/tabs/tabs_example';
@@ -208,6 +214,7 @@ const components = [
   BadgeExample,
   BottomBarExample,
   ButtonExample,
+  CardExample,
   CallOutExample,
   CodeEditorExample,
   CodeExample,
@@ -238,6 +245,7 @@ const components = [
   SpacerExample,
   StepsExample,
   TableExample,
+  TableOfRecordsExample,
   TabsExample,
   TextExample,
   TitleExample,

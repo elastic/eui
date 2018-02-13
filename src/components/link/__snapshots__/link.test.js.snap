@@ -6,6 +6,7 @@ exports[`EuiLink is rendered 1`] = `
   class="euiLink euiLink--primary testClass1 testClass2"
   data-test-subj="test subject string"
   href="#"
+  rel="noopener noreferrer"
   target="_blank"
 />
 `;

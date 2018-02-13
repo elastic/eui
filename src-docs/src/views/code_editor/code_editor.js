@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import 'brace/mode/less';
 import 'brace/theme/github';
+import 'brace/mode/javascript';
+import 'brace/snippets/javascript';
+import 'brace/ext/language_tools';
 
 import {
   EuiCodeEditor,
@@ -19,12 +21,17 @@ export default class extends Component {
   render() {
     return (
       <EuiCodeEditor
-        mode="less"
+        mode="javascript"
         theme="github"
         width="100%"
         value={this.state.value}
         onChange={this.onChange}
-        setOptions={{ fontSize: '14px' }}
+        setOptions={{
+          fontSize: '14px',
+          enableBasicAutocompletion: true,
+          enableSnippets: true,
+          enableLiveAutocompletion: true,
+        }}
         onBlur={() => { console.log('blur'); }}
       />
     );

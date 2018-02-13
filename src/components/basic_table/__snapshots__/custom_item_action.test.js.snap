@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomItemAction render 1`] = `
+<div
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+/>
+`;

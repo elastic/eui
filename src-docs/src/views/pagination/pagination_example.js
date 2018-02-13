@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiPagination,
+  EuiPaginationButton,
 } from '../../../../src/components';
 
 import ManyPages from './many_pages';
@@ -27,6 +28,10 @@ import CustomizablePagination from './customizable_pagination';
 const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
 const customizablePaginationHtml = renderToHtml(CustomizablePagination);
 
+import Compressed from './compressed';
+const compressedSource = require('!!raw-loader!./compressed');
+const compressedHtml = renderToHtml(Compressed);
+
 export const PaginationExample = {
   title: 'Pagination',
   sections: [{
@@ -43,7 +48,7 @@ export const PaginationExample = {
         We only show at most 5 consecutive pages, with shortcuts to the first and/or last page.
       </p>
     ),
-    props: { EuiPagination },
+    props: { EuiPagination, EuiPaginationButton },
     demo: <ManyPages />,
   }, {
     title: 'Few pages',
@@ -75,6 +80,21 @@ export const PaginationExample = {
       </p>
     ),
     demo: <CenteredPagination />,
+  }, {
+    title: 'Compressed display',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: compressedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: compressedHtml,
+    }],
+    text: (
+      <p>
+        Use the <EuiCode>compressed</EuiCode> prop to minimize the horizontal footprint.
+      </p>
+    ),
+    demo: <Compressed />,
   }, {
     title: 'Customizable pagination',
     source: [{

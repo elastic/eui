@@ -15,9 +15,17 @@ import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 
+import StepsComplex from './steps_complex';
+const stepsComplexSource = require('!!raw-loader!./steps_complex');
+const stepsComplexHtml = renderToHtml(StepsComplex);
+
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
 const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
+
+import StepsHorizontal from './steps_horizontal';
+const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
+const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
 
 export const StepsExample = {
   title: 'Steps',
@@ -37,6 +45,24 @@ export const StepsExample = {
     ),
     props: { EuiSteps },
     demo: <Steps />,
+  },
+  {
+    title: 'Complex steps',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: stepsComplexSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: stepsComplexHtml,
+    }],
+    text: (
+      <p>
+        If you need to call out a set of substeps that are not lines of code,
+        most likely a <EuiCode>&lt;ol/&gt;</EuiCode>, wrap
+        the block in a <EuiCode>&lt;EuiSubSteps/&gt;</EuiCode>.
+      </p>
+    ),
+    demo: <StepsComplex />,
   },
   {
     title: 'Heading elements',
@@ -61,5 +87,19 @@ export const StepsExample = {
       </div>
     ),
     demo: <HeadingElementSteps />,
+  },
+  {
+    title: 'Horizontal',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: stepsHorizontalSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: stepsHorizontalHtml,
+    }],
+    text: (
+      <p>For use when forms/setup instructions can and should be split into multiple pages.</p>
+    ),
+    demo: <StepsHorizontal />
   }],
 };

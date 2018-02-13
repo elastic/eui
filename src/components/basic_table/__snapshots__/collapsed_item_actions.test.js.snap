@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsedItemActions render 1`] = `
+<EuiPopover
+  anchorPosition="leftCenter"
+  button={
+    <EuiButtonIcon
+      aria-label="actions"
+      color="text"
+      iconType="gear"
+      isDisabled={false}
+      onClick={[Function]}
+      onFocus={[Function]}
+      type="button"
+    />
+  }
+  closePopover={[Function]}
+  id="id-actions"
+  isOpen={false}
+  ownFocus={false}
+  panelPaddingSize="none"
+  popoverRef={[Function]}
+>
+  <EuiContextMenuPanel
+    hasFocus={true}
+    items={
+      Array [
+        <EuiContextMenuItem
+          disabled={false}
+          icon={undefined}
+          onClick={[Function]}
+        >
+          default1
+        </EuiContextMenuItem>,
+        <EuiContextMenuItem />,
+      ]
+    }
+  />
+</EuiPopover>
+`;

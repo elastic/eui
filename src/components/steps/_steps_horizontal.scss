@@ -1,0 +1,148 @@
+@mixin makeLineProgress(){
+  height: 2px;
+  background-color: $euiColorPrimary;
+}
+
+/**
+ * 1. Ensure the title truncates instead of wraps
+ * 2. Ensure the connecting lines stays behind the number
+ */
+
+.euiStepsHorizontal {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+  background: rgba($euiColorLightestShade, .5);
+}
+
+// Button containing item
+.euiStepHorizontal {
+  flex-grow: 1;
+  flex-basis: 0%;
+  padding: $euiSizeL $euiSize $euiSize;
+  overflow: hidden; /* 1 */
+
+  // focus & hover state
+  &:focus,
+  &:hover:not(:disabled) {
+    .euiStepHorizontal__number {
+      background: $euiColorPrimary;
+      color: $euiColorEmptyShade;
+      transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
+                  color $euiAnimSpeedNormal $euiAnimSlightResistance;
+      @include euiFocusRing(large);
+    }
+
+    .euiStepHorizontal__title {
+      text-decoration: underline;
+    }
+  }
+
+  // disabled state
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  // create the connecting lines
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 1px;
+    top: $euiSizeL + $euiStepNumberSize/2;
+    background-color: $euiColorLightShade;
+    z-index: $euiZLevel0; /* 2 */
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  // Remove the respective lines if the first or last child
+  &:first-of-type::before {
+    display: none;
+  }
+
+  &:last-of-type::after {
+    display: none;
+  }
+}
+
+.euiStepHorizontal__number {
+  @include createStepsNumber;
+  position: relative; /* 2 */
+  z-index: $euiZLevel1; /* 2 */
+
+  // if it contains an icon, it needs to shift up a couple px
+  > .euiIcon {
+    position: relative;
+    top: -2px;
+  }
+}
+
+.euiStepHorizontal__title {
+  display: block;
+  @include euiTitle;
+  @include euiFontSize;
+  margin-top: $euiSizeS;
+
+  // truncate
+  white-space: nowrap;  /* 1 */
+  overflow: hidden;  /* 1 */
+  text-overflow: ellipsis;  /* 1 */
+
+  .euiStepHorizontal:disabled & {
+    color: $euiColorDarkShade;
+  }
+}
+
+// Incomplete state
+.euiStepHorizontal-isIncomplete {
+  .euiStepHorizontal__number {
+    background-color: $euiColorLightShade;
+    color: $euiColorDarkShade;
+  }
+}
+
+// Complete state
+.euiStepHorizontal-isComplete {
+  &::before,
+  &::after {
+    @include makeLineProgress;
+  }
+}
+
+// Selected state
+.euiStepHorizontal-isSelected {
+  .euiStepHorizontal__number {
+    @include euiBottomShadowMedium;
+  }
+
+  &::before {
+    @include makeLineProgress;
+  }
+}
+
+// RESPONSIVE
+@include screenXSmall {
+  .euiStepHorizontal {
+    // reduce top padding and shift lines
+    padding-top: $euiSize;
+
+    &:before,
+    &:after {
+      top: $euiSize + $euiStepNumberSize/2;
+    }
+  }
+
+  // hide titles
+  .euiStepHorizontal__title {
+    display: none;
+  }
+}

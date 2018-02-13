@@ -16,10 +16,6 @@ const firstSetOfSteps = [
     title: 'Step 2',
     children: <p>Then this</p>
   },
-  {
-    title: 'Step 3',
-    children: <p>And finally, do this</p>
-  },
 ];
 
 const nextSetOfSteps = [
@@ -30,10 +26,6 @@ const nextSetOfSteps = [
   {
     title: 'Better step',
     children: <p>Then this</p>
-  },
-  {
-    title: 'Best step',
-    children: <p>And finally, do this</p>
   },
 ];
 

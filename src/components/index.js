@@ -26,6 +26,10 @@ export {
 } from './badge';
 
 export {
+  EuiCard,
+} from './card';
+
+export {
   EuiCallOut,
 } from './call_out';
 
@@ -177,6 +181,7 @@ export {
 
 export {
   EuiPagination,
+  EuiPaginationButton,
 } from './pagination';
 
 export {
@@ -198,6 +203,8 @@ export {
 
 export {
   EuiSteps,
+  EuiSubSteps,
+  EuiStepsHorizontal,
 } from './steps';
 
 export {
@@ -212,6 +219,14 @@ export {
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
 } from './table';
+
+export {
+  EuiTableOfRecords
+} from './table_of_records';
+
+export {
+  EuiBasicTable
+} from './basic_table';
 
 export {
   EuiTab,
