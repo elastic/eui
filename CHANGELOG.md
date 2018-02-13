@@ -3,14 +3,15 @@
 - Added component to wrap blocks of substeps `EuiSubSteps` in a shaded container. ([#375](https://github.com/elastic/eui/pull/375))
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 - Changed look and feel of pagination. Added compressed prop for smaller footprint pagination. ([#380](https://github.com/elastic/eui/pull/380))
+- Added `EuiBasicTable` as an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but now marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
 
-**Breaking changes**
+**Bug fixes**
 
-- Adds `EuiBasicTable` as an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but now marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
+- Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
-- Rename class from `euiFlexGroup--alignItemsStart` to `euiFlexGroup--alignItemsFlexStart`
+- Rename class from `euiFlexGroup--alignItemsStart` to `euiFlexGroup--alignItemsFlexStart` ([#378](https://github.com/elastic/eui/pull/378))
 
 # [`0.0.19`](https://github.com/elastic/eui/tree/v0.0.19)
 

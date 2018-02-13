@@ -63,7 +63,7 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
 
   if (children) {
     optionalBody = (
-      <EuiText size="s">
+      <EuiText size="s" className="euiToastBody">
         {children}
       </EuiText>
     );
