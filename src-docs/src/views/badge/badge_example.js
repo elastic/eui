@@ -66,7 +66,9 @@ export const BadgeExample = {
     }],
     text: (
       <p>
-        Badges can have onClick events.
+        Badges can have onClick events applied to the badge itself or the icon within the tab.
+        The later option is useful for when you might use badges in other components (like a tag
+        system with autocomplete where you need close events).
       </p>
     ),
     demo: <BadgeButton />,

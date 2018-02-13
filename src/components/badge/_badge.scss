@@ -21,6 +21,10 @@
     align-items: center;
   }
 
+  &:focus {
+    @include euiFocusRing("small");
+  }
+
   .euiBadge__icon {
     margin-right: $euiSizeXS;
 

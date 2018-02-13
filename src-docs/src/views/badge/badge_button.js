@@ -7,6 +7,7 @@ import {
 export default () => (
   <div>
     <EuiBadge
+      color="primary"
       onClick={() => window.alert('Badge clicked')}
     >
       onClick on badge itself
