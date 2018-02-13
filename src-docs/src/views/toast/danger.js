@@ -1,21 +1,21 @@
 import React from 'react';
 
 import {
-  EuiLink,
   EuiToast,
 } from '../../../../src/components';
 
+const esError = 'Error: expected _scroll_id in the folling Elasticsearch response: ' +
+  '{"took":0,"timed_out":false,"_shards":{"total":0,"successful":0,"skipped":0,"failed":0},' +
+  '"hits":{"total":0,"max_score":0,"hits":[]}}';
+
 export default () => (
   <EuiToast
-    title="Save failed"
+    title="Couldn't complete the search"
     color="danger"
+    iconType="alert"
   >
     <p>
-      Check your form for validation errors.
-    </p>
-
-    <p>
-      And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+      {esError}
     </p>
   </EuiToast>
 );

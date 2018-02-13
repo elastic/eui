@@ -94,3 +94,10 @@ $toastTypes: (
 .euiToastHeader--withBody {
   margin-bottom: $euiSizeM;
 }
+
+/**
+ * 1. Prevent long lines from overflowing.
+ */
+.euiToastBody {
+  word-wrap: break-word; /* 1 */
+}
