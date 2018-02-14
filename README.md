@@ -37,6 +37,12 @@ You can find documentation around creating and submitting new components in [CON
 
 ## Wiki
 
+### Consumption
+
+* [Consuming EUI][consuming]
+
+### Maintenance
+
 * [Component design][component-design]
 * [Component development][component-development]
   * [Creating components manually][creating-components-manually]
@@ -51,6 +57,7 @@ You can find documentation around creating and submitting new components in [CON
 
 [license]: LICENSE.md
 [faq]: FAQ.md
+[consuming]: wiki/consuming.md
 [component-design]: wiki/component-design.md
 [component-development]: wiki/component-development.md
 [creating-components-manually]: wiki/creating-components-manually.md
