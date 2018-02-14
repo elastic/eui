@@ -37,16 +37,19 @@ You can find documentation around creating and submitting new components in [CON
 
 ## Wiki
 
-* Consumption
-  * [Consuming EUI][consuming]
-* Maintenance
-  * [Component design][component-design]
-  * [Component development][component-development]
-    * [Creating components manually][creating-components-manually]
-    * [Creating components with Yeoman][creating-components-yeoman]
-    * [Testing][testing]
-  * [Theming][theming]
-  * [Releasing versions][releasing-versions]
+### Consumption
+
+* [Consuming EUI][consuming]
+
+### Maintenance
+
+* [Component design][component-design]
+* [Component development][component-development]
+  * [Creating components manually][creating-components-manually]
+  * [Creating components with Yeoman][creating-components-yeoman]
+  * [Testing][testing]
+* [Theming][theming]
+* [Releasing versions][releasing-versions]
 
 ## License
 
