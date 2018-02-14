@@ -1,6 +1,7 @@
 $euiFormMaxWidth: 400px;
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 
+
 @mixin euiFormControlSize {
   max-width: $euiFormMaxWidth;
   width: 100%;
@@ -86,6 +87,49 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
     box-shadow: none;
   }
 }
+
+// CUSTOM STYLES & STATES
+@mixin euiCustomControl($type: null, $size: $euiSize){
+  $size: $size - 2px; // subtract 2px from size to account for border size
+
+  border: 1px solid darken($euiColorLightestShade, 18);
+  background: $euiColorEmptyShade no-repeat center;
+  box-shadow: 0 2px 2px -1px transparentize($euiColorFullShade, 0.9);
+  padding: $size/2;
+
+  @if $type == 'round' {
+    border-radius: $size;
+  } @else if $type == 'square' {
+    border-radius: $euiBorderRadius;
+  }
+
+  transition: background-color $euiAnimSpeedFast ease-in,
+              border-color $euiAnimSpeedFast ease-in,
+              background-image 0s ease-out $euiAnimSpeedFast;
+}
+
+@mixin euiCustomControl--selected($type: null){
+  border-color: $euiColorPrimary;
+  background-color: $euiColorPrimary;
+
+  @if $type == 'check' {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M.375 2.625L3.375 5.625M3.375 5.625L8.625.375' fill='none' fill-rule='evenodd' stroke='#FFF' stroke-linecap='round' stroke-width='1.5' transform='translate(.5 1)'/%3E%3C/svg%3E");
+  } @else if $type == 'dot' {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'%3E%3Ccircle cx='8' cy='11' r='3' fill='#FFF' fill-rule='evenodd' transform='translate(-5 -8)'/%3E%3C/svg%3E");
+  }
+}
+
+@mixin euiCustomControl--disabled(){
+  border-color: $euiColorLightShade;
+  background-color: $euiColorLightShade;
+  box-shadow: none;
+}
+
+@mixin euiCustomControl--focused(){
+  border-color: $euiColorPrimary;
+  @include euiFocusRing;
+}
+
 
 @import 'checkbox/index';
 @import 'field_number/index';
