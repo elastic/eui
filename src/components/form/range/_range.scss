@@ -22,15 +22,15 @@
     cursor: not-allowed;
 
     &::-webkit-slider-thumb {
-      border-color: $euiColorLightShade;
+      @include euiCustomControl--disabled;
     }
 
     &::-moz-range-thumb {
-      border-color: $euiColorLightShade;
+      @include euiCustomControl--disabled;
     }
 
     &::-ms-thumb {
-      border-color: $euiColorLightShade;
+      @include euiCustomControl--disabled;
     }
     &::-webkit-slider-runnable-track {
       background-color: $euiColorLightShade;
@@ -40,15 +40,15 @@
   &:focus {
 
     &::-webkit-slider-thumb {
-      border: $euiRangeBorderWidth solid $euiColorPrimary;
+      @include euiCustomControl--focused;
     }
 
     &::-moz-range-thumb {
-      border: $euiRangeBorderWidth solid $euiColorPrimary;
+      @include euiCustomControl--focused;
     }
 
     &::-ms-thumb {
-      border: $euiRangeBorderWidth solid $euiColorPrimary;
+      @include euiCustomControl--focused;
     }
     &::-webkit-slider-runnable-track {
       background-color: $euiColorPrimary;
