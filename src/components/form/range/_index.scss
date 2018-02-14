@@ -20,6 +20,7 @@ $euiRangeTrackRadius: $euiBorderRadius;
 @mixin thumb {
   cursor: pointer;
   @include euiCustomControl($type: 'round');
+  padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
 }
