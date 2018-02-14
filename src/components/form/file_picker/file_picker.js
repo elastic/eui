@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button';
 import { EuiIcon } from '../../icon';
+import { EuiText } from '../../text';
 
 export class EuiFilePicker extends Component {
   static propTypes = {
@@ -58,7 +59,7 @@ export class EuiFilePicker extends Component {
 
     let clearButton;
     if (this.state.buttonText !== initialButtonText) {
-      clearButton = <EuiButtonEmpty onClick={this.removeFiles}>Clear</EuiButtonEmpty>;
+      clearButton = <EuiButtonEmpty size="s" onClick={this.removeFiles}>Clear</EuiButtonEmpty>;
     } else {
       clearButton = null;
     }
@@ -67,26 +68,28 @@ export class EuiFilePicker extends Component {
       <div
         className={classes}
       >
-        <input
-          type="file"
-          id={id}
-          name={name}
-          className="euiFilePicker__input"
-          onChange={this.handleChange}
-          ref={(input) => { this.fileInput = input; }}
-          {...rest}
-        />
-        <label htmlFor={id} className="euiFilePicker__label euiButton euiButton--primary">
-          <span className="euiButton__content">
+        <div className="euiFilePicker__wrap">
+          <div htmlFor={id} className="euiFilePicker__dropzone">
             <EuiIcon
-              className="euiButton__icon"
-              type="exportAction"
-              size="m"
+              className="euiFilePicker__icon"
+              type="importAction"
+              size="l"
               aria-hidden="true"
             />
-            <span>{this.state.buttonText}</span>
-          </span>
-        </label>
+            <EuiText size="s">
+              <p>{this.state.buttonText}</p>
+            </EuiText>
+          </div>
+          <input
+            type="file"
+            id={id}
+            name={name}
+            className="euiFilePicker__input"
+            onChange={this.handleChange}
+            ref={(input) => { this.fileInput = input; }}
+            {...rest}
+          />
+        </div>
         {clearButton}
       </div>
     );
@@ -95,5 +98,5 @@ export class EuiFilePicker extends Component {
 
 
 EuiFilePicker.defaultProps = {
-  initialButtonText: 'Choose a file',
+  initialButtonText: 'Select or drag and drop a file',
 };
