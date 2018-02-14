@@ -90,12 +90,15 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 
 // CUSTOM STYLES & STATES
 @mixin euiCustomControl($type: null, $size: $euiSize){
-  $size: $size - 2px; // subtract 2px from size to account for border size
+
+  @if $size {
+    $size: $size - 2px; // subtract 2px from size to account for border size
+    padding: $size/2;
+  }
 
   border: 1px solid darken($euiColorLightestShade, 18);
   background: $euiColorEmptyShade no-repeat center;
   box-shadow: 0 2px 2px -1px transparentize($euiColorFullShade, 0.9);
-  padding: $size/2;
 
   @if $type == 'round' {
     border-radius: $size;

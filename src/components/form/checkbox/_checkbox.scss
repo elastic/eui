@@ -1,5 +1,3 @@
-$euiCheckBoxSize: $euiSize;
-
 .euiCheckbox {
   position: relative;
 
@@ -20,7 +18,7 @@ $euiCheckBoxSize: $euiSize;
       display: inline-block;
       position: absolute;
       left: 0;
-      top: ($euiSizeL - $euiCheckBoxSize)/2 - 1px;
+      top: ($euiSizeL - $euiCheckBoxSize)/2;
       @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
     }
 

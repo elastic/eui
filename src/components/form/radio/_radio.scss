@@ -1,5 +1,3 @@
-$euiRadioSize: $euiSize;
-
 .euiRadio {
   position: relative;
 
@@ -20,7 +18,7 @@ $euiRadioSize: $euiSize;
       display: inline-block;
       position: absolute;
       left: 0;
-      top: ($euiSizeL - $euiRadioSize)/2 - 1px;
+      top: ($euiSizeL - $euiRadioSize)/2;
       @include euiCustomControl($type: 'round', $size: $euiRadioSize);
     }
 
