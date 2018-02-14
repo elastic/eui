@@ -1,9 +1,12 @@
 import React from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-import { EuiBasicTable } from '../../../../../src/components/basic_table';
-import { EuiHealth } from '../../../../../src/components/health';
-import { EuiLink } from '../../../../../src/components/link/link';
+
+import {
+  EuiBasicTable,
+  EuiLink,
+  EuiHealth,
+} from '../../../../../src/components';
 
 /*
 Example user object:

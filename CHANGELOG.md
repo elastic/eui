@@ -27,7 +27,7 @@
 
 **Bug fixes**
 
-- `EuiTableOfRecords` selection bugs ([#365](https://github.com/elastic/eui/pull/365))
+- **Note: This is deprecated in 0.0.21.** `EuiTableOfRecords` selection bugs ([#365](https://github.com/elastic/eui/pull/365))
   - Deleting selected items now resets the select all checkbox to an unchecked state
   - The select all checkbox only becomes checked when all selectable rows are checked, not just some of them
 
@@ -51,7 +51,7 @@
 
 - `EuiRadio` now supports the `input` tag's `name` attribute. `EuiRadioGroup` accepts a `name` prop that will propagate to its `EuiRadio`s. ([#348](https://github.com/elastic/eui/pull/348))
 - Added Machine Learning create jobs icon set. ([#338](https://github.com/elastic/eui/pull/338))
-- Added `EuiTableOfRecords`, a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
+- **Note: This is deprecated in 0.0.21.** Added `EuiTableOfRecords`, a higher level table component to take away all your table listings frustrations. ([#250](https://github.com/elastic/eui/pull/250))
 
 **Bug fixes**
 

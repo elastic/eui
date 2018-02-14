@@ -3,9 +3,12 @@ import React, {
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-import { EuiBasicTable } from '../../../../../src/components/basic_table';
-import { EuiLink } from '../../../../../src/components/link/link';
-import { EuiHealth } from '../../../../../src/components/health';
+
+import {
+  EuiBasicTable,
+  EuiLink,
+  EuiHealth,
+} from '../../../../../src/components';
 
 /*
 Example user object:

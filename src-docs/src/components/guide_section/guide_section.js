@@ -230,7 +230,7 @@ export class GuideSection extends Component {
 
     const title = _euiObjectType === 'type' ?
       <EuiCode id={componentName}>{componentName}</EuiCode> :
-      <EuiText color="accent">{componentName}</EuiText>;
+      <EuiText>{componentName}</EuiText>;
 
     let descriptionElement;
 
@@ -336,7 +336,10 @@ export class GuideSection extends Component {
     };
 
     const codeClass = nameToCodeClassMap[name];
-    const source = this.props.source.find(sourceObject => sourceObject.type === name);
+    const { code } = this.props.source.find(sourceObject => sourceObject.type === name);
+    const npmImports = code
+      .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
+      .replace(/(from )'(..\/)+src\/services(\/?';)/, `from '@elastic/eui/services';`);
 
     return (
       <div key={name} ref={name}>
@@ -344,7 +347,7 @@ export class GuideSection extends Component {
           language={codeClass}
           overflowHeight={400}
         >
-          {source.code}
+          {npmImports}
         </EuiCodeBlock>
       </div>
     );
