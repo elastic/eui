@@ -26,21 +26,25 @@
       @include euiCustomControl--selected($type: 'check');
     }
 
-    &[disabled],
-    &:checked[disabled] {
+    &[disabled] {
       ~ label {
         color: $euiColorDarkShade;
         cursor: default !important;
       }
 
       + .euiCheckbox__square {
-        @include euiCustomControl--disabled;
+        @include euiCustomControl--disabled();
+      }
+    }
+
+    &:checked[disabled] {
+      + .euiCheckbox__square {
+        @include euiCustomControl--disabled($type: 'check');
       }
     }
 
     &:focus,
     &:active:not(:disabled) {
-
       + .euiCheckbox__square {
         @include euiCustomControl--focused;
       }

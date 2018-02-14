@@ -26,8 +26,7 @@
       @include euiCustomControl--selected($type: 'dot');
     }
 
-    &[disabled],
-    &:checked[disabled] {
+    &[disabled] {
       ~ label {
         color: $euiColorDarkShade;
         cursor: default !important;
@@ -38,9 +37,14 @@
       }
     }
 
+    &:checked[disabled] {
+      + .euiRadio__circle {
+        @include euiCustomControl--disabled($type: 'dot');
+      }
+    }
+
     &:focus,
     &:active:not(:disabled) {
-
       + .euiRadio__circle {
         @include euiCustomControl--focused;
       }

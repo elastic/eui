@@ -140,7 +140,6 @@ export default class extends Component {
         <EuiSwitch
           label="Switch control"
           onChange={this.onSwitchChange}
-          checked
           disabled
         />
 

@@ -103,7 +103,7 @@
     }
 
     .euiSwitch__icon {
-      fill: darken($euiColorDarkShade, 3);
+      fill: $euiFormCustomControlDisabledIconColor;
     }
 
     + label {
