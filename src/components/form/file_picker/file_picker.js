@@ -20,10 +20,13 @@ export class EuiFilePicker extends Component {
     super(props);
     this.state = {
       buttonText: this.props.initialButtonText,
+      isHoveringDrop: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.removeFiles = this.removeFiles.bind(this);
+    this.showDrop = this.showDrop.bind(this);
+    this.hideDrop = this.hideDrop.bind(this);
   }
 
   handleChange() {
@@ -42,6 +45,14 @@ export class EuiFilePicker extends Component {
     this.handleChange();
   }
 
+  showDrop() {
+    this.setState({ isHoveringDrop: true });
+  }
+
+  hideDrop() {
+    this.setState({ isHoveringDrop: false });
+  }
+
   render() {
 
     const {
@@ -54,6 +65,10 @@ export class EuiFilePicker extends Component {
 
     const classes = classNames(
       'euiFilePicker',
+      {
+        'euiFilePicker__showDrop': this.state.isHoveringDrop,
+        'euiFilePicker-hasFiles': this.state.buttonText !== initialButtonText,
+      },
       className
     );
 
@@ -69,17 +84,6 @@ export class EuiFilePicker extends Component {
         className={classes}
       >
         <div className="euiFilePicker__wrap">
-          <div htmlFor={id} className="euiFilePicker__dropzone">
-            <EuiIcon
-              className="euiFilePicker__icon"
-              type="importAction"
-              size="l"
-              aria-hidden="true"
-            />
-            <EuiText size="s">
-              <p>{this.state.buttonText}</p>
-            </EuiText>
-          </div>
           <input
             type="file"
             id={id}
@@ -87,8 +91,22 @@ export class EuiFilePicker extends Component {
             className="euiFilePicker__input"
             onChange={this.handleChange}
             ref={(input) => { this.fileInput = input; }}
+            onDragOver={ this.showDrop }
+            onDragLeave={ this.hideDrop }
+            onDrop={ this.hideDrop }
             {...rest}
           />
+          <label htmlFor={id} className="euiFilePicker__label">
+            <EuiIcon
+              className="euiFilePicker__icon"
+              type="importAction"
+              size="l"
+              aria-hidden="true"
+            />
+            <EuiText size="s" className="euiFilePicker__text">
+              <span>{this.state.buttonText}</span>
+            </EuiText>
+          </label>
         </div>
         {clearButton}
       </div>

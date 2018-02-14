@@ -13,13 +13,17 @@
   	height: 100%;
   	opacity: 0;
   	overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .euiFilePicker__icon {
     margin-bottom: $euiSize;
   }
 
-  .euiFilePicker__dropzone {
+  .euiFilePicker__label {
     display: block;
     background: $euiColorLightestShade;
     padding: $euiSizeL;
@@ -29,11 +33,33 @@
     min-width: 400px;
   }
 
-  .euiFilePicker__input:hover + .euiFilePicker__dropzone {
+  .euiFilePicker__text {}
+
+  &.euiFilePicker-hasFiles .euiFilePicker__text {
+    font-weight: $euiFontWeightBold;
+  }
+
+  &.euiFilePicker__showDrop .euiFilePicker__label {
+    border: solid 1px $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+    text-decoration: underline;
+  }
+
+  .euiFilePicker__input:hover + .euiFilePicker__label,
+  .euiFilePicker__input:focus + .euiFilePicker__label {
+    border: solid 1px $euiBorderColor;
+    text-decoration: underline;
+  }
+
+  .euiFilePicker__input:focus + .euiFilePicker__label {
+    .euiFilePicker__text {
+      background-color: $euiFocusBackgroundColor;
+      outline: solid 3px $euiFocusBackgroundColor;
+    }
   }
 
 
   // Mimics a label to act like a focused button
-  .euiFilePicker__dropzone:focus + .euiFilePicker__dropzone {
+  .euiFilePicker__input:focus + .euiFilePicker__label {
   }
 }
