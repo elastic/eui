@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-import { EuiBasicTable } from '../../../../../src/components/basic_table';
-import { EuiLink } from '../../../../../src/components/link/link';
-import { EuiHealth } from '../../../../../src/components/health';
-import { EuiButton } from '../../../../../src/components/button/button';
-import { EuiFlexGroup } from '../../../../../src/components/flex/flex_group';
-import { EuiFlexItem } from '../../../../../src/components/flex/flex_item';
-import { EuiSwitch } from '../../../../../src/components/form/switch/switch';
-import { EuiSpacer } from '../../../../../src/components/spacer/spacer';
+
+import {
+  EuiBasicTable,
+  EuiLink,
+  EuiHealth,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+} from '../../../../../src/components';
 
 /*
 Example user object:
