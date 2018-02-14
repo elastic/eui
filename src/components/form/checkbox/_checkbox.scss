@@ -22,8 +22,16 @@
       @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
     }
 
-    &:checked + .euiCheckbox__square {
-      @include euiCustomControl--selected($type: 'check');
+    &:checked {
+      + .euiCheckbox__square {
+        @include euiCustomControl--selected($type: 'check');
+      }
+    }
+
+    &:indeterminate {
+      + .euiCheckbox__square {
+        @include euiCustomControl--selected($type: 'dot');
+      }
     }
 
     &[disabled] {
@@ -40,6 +48,12 @@
     &:checked[disabled] {
       + .euiCheckbox__square {
         @include euiCustomControl--disabled($type: 'check');
+      }
+    }
+
+    &:indeterminate[disabled] {
+      + .euiCheckbox__square {
+        @include euiCustomControl--disabled($type: 'dot');
       }
     }
 
