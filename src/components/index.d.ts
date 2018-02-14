@@ -2,6 +2,7 @@
 /// <reference path="./button/index.d.ts" />
 /// <reference path="./context_menu/index.d.ts" />
 /// <reference path="./flex/index.d.ts" />
+/// <reference path="./health/index.d.ts" />
 /// <reference path="./icon/index.d.ts" />
 /// <reference path="./panel/index.d.ts" />
 /// <reference path="./popover/index.d.ts" />
