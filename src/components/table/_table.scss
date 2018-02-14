@@ -6,6 +6,7 @@
   @include euiFontSizeS;
 
   width: 100%;
+  table-layout: fixed;
   border: none;
   border-collapse: collapse;
   background-color: $euiColorEmptyShade;

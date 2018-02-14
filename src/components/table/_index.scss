@@ -1,8 +1,4 @@
-/**
- * 1. Prevent cells from expanding based on content size. This substitutes for table-layout: fixed.
- */
 @mixin euiTableCell {
-  max-width: 20px; /* 1 */
   vertical-align: middle;
 }
 
