@@ -23,11 +23,14 @@ const propTypes = {
   isLoading: PropTypes.bool,
   inputRef: PropTypes.func,
   onSearch: PropTypes.func,
+  /**
+   * when `true` the search will be executed (that is, the `onSearch` will be called) as the
+   * user types.
+   */
   incremental: PropTypes.bool
 };
 
 const defaultProps = {
-  value: undefined,
   fullWidth: false,
   isLoading: false,
   incremental: false

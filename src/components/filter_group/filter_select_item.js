@@ -30,11 +30,11 @@ export class EuiFilterSelectItem extends React.Component {
     this.state = { hasFocus: false };
   }
 
-  focus() {
+  focus = () => {
     if (this.buttonRef) {
       this.buttonRef.focus();
     }
-  }
+  };
 
   onFocus = () => {
     if (this.mounted) {

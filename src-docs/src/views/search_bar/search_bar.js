@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Random } from '../../../../src/services/random';
 import {
   EuiSearchBar,
@@ -91,7 +91,7 @@ export class SearchBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <div>
           <EuiFlexGroup alignItems="center">
             <EuiFlexItem>
@@ -201,7 +201,7 @@ export class SearchBar extends React.Component {
             />
           </EuiFlexItem>
         </EuiFlexGroup>
-      </div>
+      </Fragment>
     );
   }
 }
