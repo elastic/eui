@@ -4,7 +4,7 @@
   .euiRadio__input {
     @include euiScreenReaderOnly;
 
-    ~ label {
+    ~ .euiRadio__label {
       display: block;
       padding-left: ($euiRadioSize * 1.5);
       line-height: $euiSizeL;
@@ -27,7 +27,7 @@
     }
 
     &[disabled] {
-      ~ label {
+      ~ .euiRadio__label {
         color: $euiColorDarkShade;
         cursor: default !important;
       }

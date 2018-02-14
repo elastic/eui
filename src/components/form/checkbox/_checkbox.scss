@@ -4,7 +4,7 @@
   .euiCheckbox__input {
     @include euiScreenReaderOnly;
 
-    ~ label {
+    ~ .euiCheckbox__label {
       display: block;
       padding-left: ($euiCheckBoxSize * 1.5);
       line-height: $euiSizeL;
@@ -35,7 +35,7 @@
     }
 
     &[disabled] {
-      ~ label {
+      ~ .euiCheckbox__label {
         color: $euiColorDarkShade;
         cursor: default !important;
       }
