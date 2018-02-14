@@ -76,6 +76,9 @@ import { ExpressionExample }
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
 
+import { FilePickerExample }
+  from './views/file_picker/file_picker_example';
+
 import { FlexExample }
   from './views/flex/flex_example';
 
@@ -230,6 +233,7 @@ const components = [
   ErrorBoundaryExample,
   ExpressionExample,
   FilterGroupExample,
+  FilePickerExample,
   FlexExample,
   FlyoutExample,
   FormExample,

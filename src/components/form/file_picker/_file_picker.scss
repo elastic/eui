@@ -1,0 +1,18 @@
+.euiFilePicker {
+
+  .euiFilePicker__input {
+  	width: 1px;
+  	height: 1px;
+  	opacity: 0;
+  	overflow: hidden;
+  	position: absolute;
+  	z-index: -1;
+  }
+
+  // Mimics a label to act like a focused button
+  .euiFilePicker__input:focus + .euiFilePicker__label {
+    animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
+    text-decoration: underline;
+    background-color: transparentize($euiColorPrimary, .9);
+  }
+}
