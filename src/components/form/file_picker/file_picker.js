@@ -9,8 +9,10 @@ import { EuiIcon } from '../../icon';
 
 export class EuiFilePicker extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    id: PropTypes.string,
+    name: PropTypes.string,
     className: PropTypes.string,
+    initialButtonText: PropTypes.string,
   }
 
   constructor(props) {
@@ -24,6 +26,7 @@ export class EuiFilePicker extends Component {
   }
 
   handleChange() {
+    // event.target
     if (this.fileInput.files && this.fileInput.files.length > 1) {
       this.setState({ buttonText: this.fileInput.files.length + ' files selected' });
     } else if (this.fileInput.files.length === 0) {
@@ -41,6 +44,8 @@ export class EuiFilePicker extends Component {
   render() {
 
     const {
+      id,
+      name,
       initialButtonText,
       className,
       ...rest
@@ -64,14 +69,14 @@ export class EuiFilePicker extends Component {
       >
         <input
           type="file"
-          name="file"
-          id="file"
+          id={id}
+          name={name}
           className="euiFilePicker__input"
           onChange={this.handleChange}
-          ref={ref => { this.fileInput = ref; }}
+          ref={(input) => { this.fileInput = input; }}
           {...rest}
         />
-        <label htmlFor="file" className="euiFilePicker__label euiButton euiButton--primary">
+        <label htmlFor={id} className="euiFilePicker__label euiButton euiButton--primary">
           <span className="euiButton__content">
             <EuiIcon
               className="euiButton__icon"
@@ -88,12 +93,6 @@ export class EuiFilePicker extends Component {
   }
 }
 
-EuiFilePicker.propTypes = {
-  /**
-   * The text that shows in the button if no files are selected
-   */
-  initialButtonText: PropTypes.string,
-};
 
 EuiFilePicker.defaultProps = {
   initialButtonText: 'Choose a file',
