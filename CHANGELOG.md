@@ -10,6 +10,7 @@
 - Add styles for `readOnly` states of form controls. ([#391](https://github.com/elastic/eui/pull/391))
 - Added importAction and exportAction icons ([#394](https://github.com/elastic/eui/pull/394))
 - Added `EuiCard` for UI patterns that need an icon/image, title and description with some sort of action. ([#380](https://github.com/elastic/eui/pull/380))
+- Add TypeScript definitions for the `<EuiHealth>` component. ([#403](https://github.com/elastic/eui/pull/403))
 
 **Bug fixes**
 
