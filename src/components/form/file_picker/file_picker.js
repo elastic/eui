@@ -6,7 +6,6 @@ import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button';
 import { EuiIcon } from '../../icon';
-import { EuiText } from '../../text';
 
 export class EuiFilePicker extends Component {
   static propTypes = {
@@ -91,9 +90,9 @@ export class EuiFilePicker extends Component {
             className="euiFilePicker__input"
             onChange={this.handleChange}
             ref={(input) => { this.fileInput = input; }}
-            onDragOver={ this.showDrop }
-            onDragLeave={ this.hideDrop }
-            onDrop={ this.hideDrop }
+            onDragOver={this.showDrop}
+            onDragLeave={this.hideDrop}
+            onDrop={this.hideDrop}
             {...rest}
           />
           <label htmlFor={id} className="euiFilePicker__label">
@@ -103,9 +102,7 @@ export class EuiFilePicker extends Component {
               size="l"
               aria-hidden="true"
             />
-            <EuiText size="s" className="euiFilePicker__text">
-              <span>{this.state.buttonText}</span>
-            </EuiText>
+            <div className="euiFilePicker__text">{this.state.buttonText}</div>
           </label>
         </div>
         {clearButton}

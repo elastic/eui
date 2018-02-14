@@ -7,8 +7,14 @@ exports[`EuiFilePicker is rendered 1`] = `
   <div
     class="euiFilePicker__wrap"
   >
-    <div
-      class="euiFilePicker__dropzone"
+    <input
+      aria-label="aria-label"
+      class="euiFilePicker__input"
+      data-test-subj="test subject string"
+      type="file"
+    />
+    <label
+      class="euiFilePicker__label"
     >
       <svg
         aria-hidden="true"
@@ -23,19 +29,11 @@ exports[`EuiFilePicker is rendered 1`] = `
         />
       </svg>
       <div
-        class="euiText euiText--small"
+        class="euiFilePicker__text"
       >
-        <p>
-          Select or drag and drop a file
-        </p>
+        Select or drag and drop a file
       </div>
-    </div>
-    <input
-      aria-label="aria-label"
-      class="euiFilePicker__input"
-      data-test-subj="test subject string"
-      type="file"
-    />
+    </label>
   </div>
 </div>
 `;

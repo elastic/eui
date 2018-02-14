@@ -21,6 +21,7 @@
 
   .euiFilePicker__icon {
     margin-bottom: $euiSize;
+    transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 
   .euiFilePicker__label {
@@ -33,7 +34,9 @@
     min-width: 400px;
   }
 
-  .euiFilePicker__text {}
+  .euiFilePicker__text {
+    @include euiFontSizeS;
+  }
 
   &.euiFilePicker-hasFiles .euiFilePicker__text {
     font-weight: $euiFontWeightBold;
@@ -43,19 +46,24 @@
     border: solid 1px $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
+
+    .euiFilePicker__icon {
+      transform: scale(1.1);
+    }
   }
 
   .euiFilePicker__input:hover + .euiFilePicker__label,
   .euiFilePicker__input:focus + .euiFilePicker__label {
     border: solid 1px $euiBorderColor;
     text-decoration: underline;
+
+    .euiFilePicker__icon {
+      transform: scale(1.1);
+    }
   }
 
   .euiFilePicker__input:focus + .euiFilePicker__label {
-    .euiFilePicker__text {
-      background-color: $euiFocusBackgroundColor;
-      outline: solid 3px $euiFocusBackgroundColor;
-    }
+    color: $euiColorPrimary;
   }
 
 
