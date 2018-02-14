@@ -111,12 +111,14 @@
     }
   }
 
+  .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
+    background-color: darken($euiFormBackgroundColor, 3);
+  }
+
   /**
    * When input is not checked, we shift around the positioning of sibling/child selectors.
    */
   .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
-    background-color: darken($euiFormBackgroundColor, 3);
-
     .euiSwitch__thumb {
       left: 0;
     }
