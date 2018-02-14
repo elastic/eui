@@ -14,6 +14,7 @@
 
 **Bug fixes**
 
+- Tables now default to `table-layout: fixed` to avoid some collapsing cell problems. [#398](https://github.com/elastic/eui/pull/398)
 - Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
 - Fix dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
 - Reorder selectors to fix fixed progress bar in Firefox ([#404](https://github.com/elastic/eui/pull/404))
