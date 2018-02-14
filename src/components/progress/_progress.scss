@@ -58,6 +58,33 @@ $euiProgressSizes: (
   }
 }
 
+// Progress bars can be set to fixed or absolute.
+.euiProgress--fixed {
+  position: fixed;
+}
+
+.euiProgress--absolute {
+  position: absolute;
+}
+
+.euiProgress--fixed,
+.euiProgress--absolute {
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+
+  &.euiProgress--native {
+    &::-webkit-progress-bar {
+      background-color: transparent;
+    }
+
+    &::-moz-progress-bar {
+      background-color: transparent;
+    }
+  }
+}
+
 // Progress bars come in different colors.
 $euiProgressColors: (
   primary: $euiColorPrimary,
@@ -83,33 +110,6 @@ $euiProgressColors: (
       &:before {
         background-color: $color;
       }
-    }
-  }
-}
-
-// Progress bars can be set to fixed or absolute.
-.euiProgress--fixed {
-  position: fixed;
-}
-
-.euiProgress--absolute {
-  position: absolute;
-}
-
-.euiProgress--fixed,
-.euiProgress--absolute {
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: transparent;
-
-  &.euiProgress--native {
-    &::-webkit-progress-bar {
-      background-color: transparent;
-    }
-
-    &::-moz-progress-bar {
-      background-color: transparent;
     }
   }
 }
