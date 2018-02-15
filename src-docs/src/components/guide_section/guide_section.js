@@ -25,6 +25,27 @@ import {
   EuiLink
 } from '../../../../src/components';
 
+function markup(text) {
+  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
+  return text.split(regex).map((token, index) => {
+    if (!token) {
+      return '';
+    }
+    if (token.startsWith('#')) {
+      const id = token.substring(1);
+      const onClick = () => {
+        document.getElementById(id).scrollIntoView();
+      };
+      return <EuiLink key={`markup-${index}`} onClick={onClick}>{id}</EuiLink>;
+    }
+    if (token.startsWith('`')) {
+      const code = token.substring(1, token.length - 1);
+      return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
+    }
+    return token;
+
+  });
+}
 
 const humanizeType = type => {
   if (!type) {
@@ -170,28 +191,6 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
-      function markup(text) {
-        const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-        return text.split(regex).map((token, index) => {
-          if (!token) {
-            return '';
-          }
-          if (token.startsWith('#')) {
-            const id = token.substring(1);
-            const onClick = () => {
-              document.getElementById(id).scrollIntoView();
-            };
-            return <EuiLink key={`markup-${index}`} onClick={onClick}>{id}</EuiLink>;
-          }
-          if (token.startsWith('`')) {
-            const code = token.substring(1, token.length - 1);
-            return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-          }
-          return token;
-
-        });
-      }
-
       const typeMarkup = markup(humanizedType);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
@@ -230,7 +229,7 @@ export class GuideSection extends Component {
 
     const title = _euiObjectType === 'type' ?
       <EuiCode id={componentName}>{componentName}</EuiCode> :
-      <EuiText color="accent">{componentName}</EuiText>;
+      <EuiText>{componentName}</EuiText>;
 
     let descriptionElement;
 
@@ -238,7 +237,7 @@ export class GuideSection extends Component {
       descriptionElement = (
         <div key={`description-${componentName}`}>
           <EuiText>
-            <p>{description}</p>
+            <p>{markup(description)}</p>
           </EuiText>
           <EuiSpacer size="m" key={`propsSpacer-${componentName}`} />
         </div>
@@ -336,7 +335,10 @@ export class GuideSection extends Component {
     };
 
     const codeClass = nameToCodeClassMap[name];
-    const source = this.props.source.find(sourceObject => sourceObject.type === name);
+    const { code } = this.props.source.find(sourceObject => sourceObject.type === name);
+    const npmImports = code
+      .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
+      .replace(/(from )'(..\/)+src\/services(\/?';)/, `from '@elastic/eui/services';`);
 
     return (
       <div key={name} ref={name}>
@@ -344,7 +346,7 @@ export class GuideSection extends Component {
           language={codeClass}
           overflowHeight={400}
         >
-          {source.code}
+          {npmImports}
         </EuiCodeBlock>
       </div>
     );

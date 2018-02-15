@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar render - no config, no query 1`] = `
+<EuiFlexGroup
+  alignItems="center"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+  >
+    <EuiSearchBox
+      incremental={false}
+      isInvalid={false}
+      onSearch={[Function]}
+      placeholder="Search..."
+      query=""
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`SearchBar render - no query, custom box placeholder and incremental 1`] = `
+<EuiFlexGroup
+  alignItems="center"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+  >
+    <EuiSearchBox
+      incremental={false}
+      isInvalid={false}
+      onSearch={[Function]}
+      placeholder="Search..."
+      query=""
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`SearchBar render - provided query, filters 1`] = `
+<EuiFlexGroup
+  alignItems="center"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+  >
+    <EuiSearchBox
+      incremental={false}
+      isInvalid={false}
+      onSearch={[Function]}
+      placeholder="Search..."
+      query="this is a query"
+    />
+  </EuiFlexItem>
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <EuiSearchFilters
+      filters={
+        Array [
+          Object {
+            "field": "open",
+            "name": "Open",
+            "type": "is",
+          },
+          Object {
+            "field": "tag",
+            "name": "Tag",
+            "options": [Function],
+            "type": "field_value_selection",
+          },
+        ]
+      }
+      onChange={[Function]}
+      query={
+        Query {
+          "ast": _AST {
+            "_clauses": Array [
+              Object {
+                "match": "must",
+                "type": "term",
+                "value": "this",
+              },
+              Object {
+                "match": "must",
+                "type": "term",
+                "value": "is",
+              },
+              Object {
+                "match": "must",
+                "type": "term",
+                "value": "a",
+              },
+              Object {
+                "match": "must",
+                "type": "term",
+                "value": "query",
+              },
+            ],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [
+                Object {
+                  "match": "must",
+                  "type": "term",
+                  "value": "this",
+                },
+                Object {
+                  "match": "must",
+                  "type": "term",
+                  "value": "is",
+                },
+                Object {
+                  "match": "must",
+                  "type": "term",
+                  "value": "a",
+                },
+                Object {
+                  "match": "must",
+                  "type": "term",
+                  "value": "query",
+                },
+              ],
+            },
+          },
+          "syntax": Object {
+            "parse": [Function],
+            "print": [Function],
+          },
+          "text": "this is a query",
+        }
+      }
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
