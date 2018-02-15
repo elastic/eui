@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsFilter render 1`] = `
+<EuiFilterButton
+  color="text"
+  hasActiveFilters={false}
+  iconSide="right"
+  onClick={[Function]}
+  type="button"
+>
+  Open
+</EuiFilterButton>
+`;

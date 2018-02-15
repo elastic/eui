@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSearchFilters render - no filters 1`] = `<EuiFilterGroup />`;
+
+exports[`EuiSearchFilters render - with filters 1`] = `
+<EuiFilterGroup>
+  <div
+    key="filter_0"
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <IsFilter
+      config={
+        Object {
+          "field": "open",
+          "name": "Open",
+          "type": "is",
+        }
+      }
+      index={0}
+      onChange={[Function]}
+      query={
+        Query {
+          "ast": _AST {
+            "_clauses": Array [],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [],
+            },
+          },
+          "syntax": Object {
+            "parse": [Function],
+            "print": [Function],
+          },
+          "text": "",
+        }
+      }
+    />
+  </div>
+  <div
+    key="filter_1"
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <FieldValueSelectionFilter
+      config={
+        Object {
+          "field": "tag",
+          "name": "Tag",
+          "options": [Function],
+          "type": "field_value_selection",
+        }
+      }
+      index={1}
+      onChange={[Function]}
+      query={
+        Query {
+          "ast": _AST {
+            "_clauses": Array [],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [],
+            },
+          },
+          "syntax": Object {
+            "parse": [Function],
+            "print": [Function],
+          },
+          "text": "",
+        }
+      }
+    />
+  </div>
+</EuiFilterGroup>
+`;

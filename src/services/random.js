@@ -1,4 +1,5 @@
 import { isNil } from './predicate';
+import { times } from './utils';
 
 const defaultRand = Math.random;
 
@@ -26,8 +27,18 @@ export class Random {
     return min + delta;
   }
 
-  oneOf(...options) {
-    return options[Math.floor(this._rand() * options.length)];
+  oneOf(...values) {
+    return values[Math.floor(this._rand() * values.length)];
+  }
+
+  setOf(values, options) {
+    const count = this.integer({ min: 0, max: values.length, ...options });
+    const copy = [...values];
+    return times(count, () => {
+      const value = this.oneOf(...copy);
+      copy.splice(copy.indexOf(value), 1);
+      return value;
+    });
   }
 
   date(options = {}) {
