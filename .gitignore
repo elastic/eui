@@ -4,6 +4,7 @@ reports/
 tmp/
 dist/
 lib/
+.vscode/
 .DS_Store
 .eslintcache
 .yo-rc.json
