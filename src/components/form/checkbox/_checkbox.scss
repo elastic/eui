@@ -35,9 +35,11 @@
     }
 
     &[disabled] {
+      cursor: not-allowed !important;
+
       ~ .euiCheckbox__label {
         color: $euiColorDarkShade;
-        cursor: default !important;
+        cursor: not-allowed !important;
       }
 
       + .euiCheckbox__square {

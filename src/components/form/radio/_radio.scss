@@ -22,14 +22,18 @@
       @include euiCustomControl($type: 'round', $size: $euiRadioSize);
     }
 
-    &:checked + .euiRadio__circle {
-      @include euiCustomControl--selected($type: 'dot');
+    &:checked {
+      + .euiRadio__circle {
+        @include euiCustomControl--selected($type: 'dot');
+      }
     }
 
     &[disabled] {
+      cursor: not-allowed !important;
+
       ~ .euiRadio__label {
         color: $euiColorDarkShade;
-        cursor: default !important;
+        cursor: not-allowed !important;
       }
 
       + .euiRadio__circle {
