@@ -23,7 +23,7 @@
 
   /**
    * 1. Don't block the user from dropping files onto the filepicker.
-   * 2. Put label on top of input, so the clear button can intercept the click.
+   * 2. Put prompt on top of input, so the clear button can intercept the click.
    */
   .euiFilePicker__prompt {
     pointer-events: none; /* 1 */
@@ -76,7 +76,7 @@
   }
 
   /**
-   * 1. Undo the pointer-events: none applied to the enclosing label.
+   * 1. Undo the pointer-events: none applied to the enclosing prompt.
    */
   .euiFilePicker__clearButton {
     pointer-events: auto; /* 1 */
