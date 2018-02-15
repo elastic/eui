@@ -21,11 +21,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="1"
@@ -43,11 +39,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="2"
@@ -71,11 +63,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="1"
@@ -94,11 +82,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="2"
@@ -121,11 +105,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="1"
@@ -143,11 +123,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
     />
     <div
       class="euiRadio__circle"
-    >
-      <div
-        class="euiRadio__check"
-      />
-    </div>
+    />
     <label
       class="euiRadio__label"
       for="2"

@@ -51,9 +51,7 @@ export const EuiCheckbox = ({
         {...rest}
       />
 
-      <div className="euiCheckbox__square">
-        <div className="euiCheckbox__check" />
-      </div>
+      <div className="euiCheckbox__square" />
 
       {optionalLabel}
     </div>

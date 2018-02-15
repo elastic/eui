@@ -1,11 +1,8 @@
 $euiRangeTrackColor: $euiColorLightShade;
-$euiRangeThumbColor: $euiColorEmptyShade;
 
 $euiRangeThumbRadius: 50%;
 $euiRangeThumbHeight: $euiSize;
 $euiRangeThumbWidth: $euiSize;
-$euiRangeBorderWidth: 2px;
-$euiRangeBorderColor: $euiTextColor;
 
 $euiRangeTrackWidth: 100%;
 $euiRangeTrackHeight: 2px;
@@ -21,10 +18,9 @@ $euiRangeTrackRadius: $euiBorderRadius;
 }
 
 @mixin thumb {
-  background: $euiRangeThumbColor;
-  border: $euiRangeBorderWidth solid $euiRangeBorderColor;
-  border-radius: $euiRangeThumbRadius;
   cursor: pointer;
+  @include euiCustomControl($type: 'round');
+  padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
 }

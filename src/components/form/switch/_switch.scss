@@ -23,8 +23,7 @@
   .euiSwitch__input:focus + .euiSwitch__body {
 
     .euiSwitch__thumb {
-      border-color: $euiColorPrimary;
-      border-width: $euiSizeXS / 2;
+      @include euiCustomControl--focused;
     }
   }
 
@@ -33,7 +32,6 @@
     width: $euiSwitchWidth;
     height: $euiSwitchHeight;
     background-color: $euiColorPrimary;
-    box-shadow: none;
     display: inline-block;
     position: relative;
     border-radius: $euiSwitchHeight;
@@ -42,13 +40,9 @@
 
   .euiSwitch__thumb {
     position: absolute;
-    width: $euiSwitchHeight;
-    height: $euiSwitchHeight;
+    @include euiCustomControl($type: 'round', $size: $euiSwitchThumbSize);
     display: inline-block;
-    background-color: $euiColorEmptyShade;
     left: $euiSwitchWidth - $euiSwitchThumbSize;
-    border-radius: 50%;
-    border: $euiBorderThin;
     transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
@@ -99,26 +93,32 @@
     cursor: not-allowed;
   }
 
+  .euiSwitch__input:disabled ~ .euiSwitch__body,
   .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
     background: $euiColorLightShade;
+
+    .euiSwitch__thumb {
+      @include euiCustomControl--disabled;
+      background-color: $euiColorLightestShade;
+    }
+
+    .euiSwitch__icon {
+      fill: $euiFormCustomControlDisabledIconColor;
+    }
+
+    + label {
+      color: $euiColorDarkShade;
+    }
   }
 
-  .euiSwitch__input:disabled ~ .euiSwitch__body {
-    background: $euiColorLightestShade;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
-  }
-
-  .euiSwitch__input:checked:focus + .euiSwitch__body .euiSwitch__thumb {
-    border-color: darken($euiColorPrimary, 10%)
+  .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
+    background-color: darken($euiFormBackgroundColor, 3);
   }
 
   /**
    * When input is not checked, we shift around the positioning of sibling/child selectors.
    */
   .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
-    background-color: $euiFormBackgroundColor;
-    box-shadow: inset 0 0 0 1px $euiBorderColor;
-
     .euiSwitch__thumb {
       left: 0;
     }

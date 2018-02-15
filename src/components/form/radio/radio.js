@@ -45,9 +45,7 @@ export const EuiRadio = ({
         disabled={disabled}
       />
 
-      <div className="euiRadio__circle">
-        <div className="euiRadio__check" />
-      </div>
+      <div className="euiRadio__circle" />
 
       {optionalLabel}
     </div>

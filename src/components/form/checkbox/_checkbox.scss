@@ -1,96 +1,93 @@
 .euiCheckbox {
   position: relative;
-  min-height: $euiSizeL;
 
-  /**
-   * 1. Float above the visual checkbox and match its dimension, so that when users try to click it
-   *    they actually click this input.
-   */
   .euiCheckbox__input {
-    position: absolute; /* 1 */
-    opacity: 0; /* 1 */
-    height: $euiSizeL; /* 1 */
-    width: $euiSizeL; /* 1 */
-    z-index: 1; /* 1 */
-    margin: 0; /* 1 */
-    cursor: pointer;
+    @include euiScreenReaderOnly;
 
-    &:checked ~ .euiCheckbox__square {
-      background: $euiColorPrimary;
-      border-color: $euiColorPrimary;
+    ~ .euiCheckbox__label {
+      display: block;
+      padding-left: ($euiCheckBoxSize * 1.5);
+      line-height: $euiSizeL;
+      font-size: $euiFontSizeS;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+    }
 
-      .euiCheckbox__check {
-        border-color: $euiColorPrimary;
-        background-color: $euiColorEmptyShade;
-        // This path is relative to ~/src-docs/postcss.config.js, which uses
-        // the postcss-line-svg plugin.
-        mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
+    + .euiCheckbox__square {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: ($euiSizeL - $euiCheckBoxSize)/2;
+      @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
+    }
+
+    &:checked {
+      + .euiCheckbox__square {
+        @include euiCustomControl--selected($type: 'check');
       }
     }
 
-    &:focus ~ .euiCheckbox__square,
-    &:active:not(:disabled) ~ .euiCheckbox__square {
-      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
-      border-color: $euiColorPrimary;
-      border-width: $euiSizeXS / 2;
+    &:indeterminate {
+      + .euiCheckbox__square {
+        @include euiCustomControl--selected($type: 'dot');
+      }
     }
 
-    &:focus:checked ~.euiCheckbox__square {
-      border-color: darken($euiColorPrimary, 10%);
+    &[disabled] {
+      cursor: not-allowed !important;
+
+      ~ .euiCheckbox__label {
+        color: $euiColorDarkShade;
+        cursor: not-allowed !important;
+      }
+
+      + .euiCheckbox__square {
+        @include euiCustomControl--disabled();
+      }
     }
 
-    &:disabled,
-    &:disabled ~ .euiCheckbox__label {
-      cursor: not-allowed;
+    &:checked[disabled] {
+      + .euiCheckbox__square {
+        @include euiCustomControl--disabled($type: 'check');
+      }
     }
 
-    &:disabled:checked ~ .euiCheckbox__square {
-      background-color: $euiColorLightShade;
-      border-color: $euiColorLightShade;
+    &:indeterminate[disabled] {
+      + .euiCheckbox__square {
+        @include euiCustomControl--disabled($type: 'dot');
+      }
     }
 
-    &:disabled:not(:checked) ~ .euiCheckbox__square {
-      background-color: $euiColorLightestShade;
+    &:focus,
+    &:active:not(:disabled) {
+      + .euiCheckbox__square {
+        @include euiCustomControl--focused;
+      }
     }
   }
 
-  .euiCheckbox__square {
-    position: absolute;
-    height: $euiSizeL;
-    width: $euiSizeL;
-    border-radius: $euiBorderRadius;
-    border: $euiBorderThin;
-    background: $euiFormBackgroundColor;
-    z-index: 0;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
-  }
-
-    .euiCheckbox__check {
-      height: 100%;
-      width: 100%;
-    }
-
-  .euiCheckbox__label {
-    padding-left: $euiSizeXL;
-    line-height: $euiSizeL;
-    display: block;
-    font-weight: $euiFontWeightRegular;
-    z-index: 2;
-    font-size: $euiFontSizeS;
-    cursor: pointer;
-  }
+  /**
+   * 1. Float above the visual radio and match its dimension, so that when users try to click it
+   *    they actually click this input.
+   */
 
   &.euiCheckbox--inList {
-    min-height: $euiSize;
+    min-height: $euiCheckBoxSize;
+    min-width: $euiCheckBoxSize;
 
     .euiCheckbox__square {
-      height: $euiSize;
-      width: $euiSize;
+      top: 0;
     }
 
     .euiCheckbox__input {
-      height: $euiSize;
-      width: $euiSize;
+      position: absolute; /* 1 */
+      opacity: 0; /* 1 */
+      @include size($euiCheckBoxSize); /* 1 */
+      z-index: 1; /* 1 */
+      margin: 0; /* 1 */
+      left: 0; /* 1 */
+      cursor: pointer;
     }
   }
 }

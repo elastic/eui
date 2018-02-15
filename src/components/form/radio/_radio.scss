@@ -1,97 +1,81 @@
 .euiRadio {
   position: relative;
-  min-height: $euiSizeL;
+
+  .euiRadio__input {
+    @include euiScreenReaderOnly;
+
+    ~ .euiRadio__label {
+      display: block;
+      padding-left: ($euiRadioSize * 1.5);
+      line-height: $euiSizeL;
+      font-size: $euiFontSizeS;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    + .euiRadio__circle {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: ($euiSizeL - $euiRadioSize)/2;
+      @include euiCustomControl($type: 'round', $size: $euiRadioSize);
+    }
+
+    &:checked {
+      + .euiRadio__circle {
+        @include euiCustomControl--selected($type: 'dot');
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed !important;
+
+      ~ .euiRadio__label {
+        color: $euiColorDarkShade;
+        cursor: not-allowed !important;
+      }
+
+      + .euiRadio__circle {
+        @include euiCustomControl--disabled;
+      }
+    }
+
+    &:checked[disabled] {
+      + .euiRadio__circle {
+        @include euiCustomControl--disabled($type: 'dot');
+      }
+    }
+
+    &:focus,
+    &:active:not(:disabled) {
+      + .euiRadio__circle {
+        @include euiCustomControl--focused;
+      }
+    }
+  }
 
   /**
    * 1. Float above the visual radio and match its dimension, so that when users try to click it
    *    they actually click this input.
    */
-  .euiRadio__input {
-    position: absolute; /* 1 */
-    opacity: 0; /* 1 */
-    height: $euiSizeL; /* 1 */
-    width: $euiSizeL; /* 1 */
-    z-index: 1; /* 1 */
-    margin: 0; /* 1 */
-    cursor: pointer;
-
-    &:checked ~ .euiRadio__circle {
-      background: $euiColorPrimary;
-      border-color: $euiColorPrimary;
-
-      .euiRadio__check {
-        border-color: $euiColorPrimary;
-        background-color: $euiColorEmptyShade;
-        // This path is relative to ~/src-docs/postcss.config.js, which uses
-        // the postcss-line-svg plugin.
-        mask: svg-load('../src/components/icon/assets/check.svg') center center no-repeat;
-      }
-    }
-
-    &:focus ~ .euiRadio__circle,
-    &:active:not(:disabled) ~ .euiRadio__circle {
-      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
-      border-color: $euiColorPrimary;
-      border-width: $euiSizeXS / 2;
-    }
-
-    &:focus:checked ~.euiRadio__circle {
-      border-color: darken($euiColorPrimary, 10%);
-    }
-
-    &:disabled,
-    &:disabled ~ .euiRadio__label {
-      cursor: not-allowed;
-    }
-
-    &:disabled:checked ~ .euiRadio__circle {
-      background-color: $euiColorLightShade;
-      border-color: $euiColorLightShade;
-    }
-
-    &:disabled:not(:checked) ~ .euiRadio__circle {
-      background-color: $euiColorLightestShade;
-
-    }
-  }
-
-  .euiRadio__circle {
-    position: absolute;
-    height: $euiSizeL;
-    width: $euiSizeL;
-    border-radius: $euiSizeL;
-    border: $euiBorderThin;
-    background: $euiFormBackgroundColor;
-    z-index: 0;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
-  }
-
-    .euiRadio__check {
-      height: 100%;
-      width: 100%;
-    }
-
-  .euiRadio__label {
-    padding-left: $euiSizeXL;
-    line-height: $euiSizeL;
-    display: block;
-    font-weight: $euiFontWeightRegular;
-    z-index: 2;
-    font-size: $euiFontSizeS;
-    cursor: pointer;
-  }
 
   &.euiRadio--inList {
-    min-height: $euiSize;
+    min-height: $euiRadioSize;
+    min-width: $euiRadioSize;
 
     .euiRadio__circle {
-      height: $euiSize;
-      width: $euiSize;
+      top: 0;
     }
 
     .euiRadio__input {
-      height: $euiSize;
-      width: $euiSize;
+      position: absolute; /* 1 */
+      opacity: 0; /* 1 */
+      @include size($euiRadioSize); /* 1 */
+      z-index: 1; /* 1 */
+      margin: 0; /* 1 */
+      left: 0; /* 1 */
+      cursor: pointer;
     }
   }
 }

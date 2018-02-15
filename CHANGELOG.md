@@ -1,6 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.21.0`.
+- Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
+
+**Bug fixes**
+
+- Fix appearance of checked checkeboxes and radios in IE ([#407](https://github.com/elastic/eui/pull/407))
+- Fix disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
+- Fix disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 
 # [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
 

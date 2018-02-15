@@ -1,5 +1,6 @@
 $euiFormMaxWidth: 400px;
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
+$euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%); // exact 508c foreground for $euiColorLightShade
 
 @mixin euiFormControlSize {
   max-width: $euiFormMaxWidth;
@@ -86,6 +87,48 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
     box-shadow: none;
   }
 }
+
+// CUSTOM STYLES & STATES
+@mixin euiCustomControl($type: null, $size: $euiSize){
+
+  @if $size {
+    $size: $size - 2px; // subtract 2px from size to account for border size
+    padding: $size/2;
+  }
+
+  border: 1px solid shadeOrTint($euiColorLightestShade, 18%, 30%);
+  background: $euiColorEmptyShade no-repeat center;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+
+  @if $type == 'round' {
+    border-radius: $size;
+  } @else if $type == 'square' {
+    border-radius: $euiBorderRadius;
+  }
+
+  transition: background-color $euiAnimSpeedFast ease-in,
+              border-color $euiAnimSpeedFast ease-in,
+              background-image 0s ease-out $euiAnimSpeedFast;
+}
+
+@mixin euiCustomControl--selected($type: null){
+  border-color: $euiColorPrimary;
+  background-color: $euiColorPrimary;
+  @include euiIconBackground($type, $euiColorEmptyShade);
+}
+
+@mixin euiCustomControl--disabled($type: null){
+  border-color: $euiColorLightShade;
+  background-color: $euiColorLightShade;
+  @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
+  box-shadow: none;
+}
+
+@mixin euiCustomControl--focused(){
+  border-color: $euiColorPrimary;
+  @include euiFocusRing;
+}
+
 
 @import 'checkbox/index';
 @import 'field_number/index';
