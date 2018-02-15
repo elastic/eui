@@ -1,6 +1,6 @@
 import { AST } from './ast';
 import { isArray } from '../../../services/predicate';
-import peg from 'pegjs';
+import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unresolved
 
 const unescapeValue = (value) => {
   return value.replace(/\\([:\-\\])/, '$1');
@@ -10,8 +10,8 @@ const escapeValue = (value) => {
   return value.replace(/([:\-\\])/, '\\$1');
 };
 
-const grammar = `
-{  
+const parser = peg`
+{
   const { AST, unescapeValue } = options;
 }
 
@@ -30,28 +30,28 @@ Clause
   = IsClause
   / FieldClause
   / TermClause
-        
+
 TermClause
   = space? "-" value:termValue { return AST.Term.mustNot(value); }
   / space? value:termValue { return AST.Term.must(value); }
-    
+
 IsClause
   = space? "-" value:IsValue { return AST.Is.mustNot(value); }
   / space? value:IsValue { return AST.Is.must(value); }
-        
+
 IsValue
   = "is:" value:value { return value; }
-    
+
 FieldClause
   = space? "-" fv:FieldAndValue { return AST.Field.mustNot(fv.field, fv.value); }
   / space? fv:FieldAndValue { return AST.Field.must(fv.field, fv.value); }
-    
+
 FieldAndValue
   = field:fieldName ":" value:fieldValue { return {field, value}; }
 
 fieldName "field name"
   = fieldChar+ { return unescapeValue(text()); }
-        
+
 fieldChar
   = alnum
   / escapedChar
@@ -64,7 +64,7 @@ fieldValues
   = "(" space? head:value tail:(
   	space ([oO][rR]) space value:value space	{ return value; }
   )+ space? ")" { return [ head, ...tail ] }
-  
+
 termValue "term"
   = value
 
@@ -94,8 +94,6 @@ alnum "alpha numeric"
 space "whitespace"
   = [ \\t\\n\\r]*
 `;
-
-const parser = peg.buildParser(grammar);
 
 const printValue = (value) => {
   if (value.match(/\s/)) {
