@@ -45,6 +45,10 @@ export class EuiDelayHide extends Component {
     return this.shouldRender;
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
   render() {
     if (this.state.hide) {
       return null;
