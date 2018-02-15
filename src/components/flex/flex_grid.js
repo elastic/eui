@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const gutterSizeToClassNameMap = {
-  none: null,
+  none: 'euiFlexGrid--gutterNone',
   s: 'euiFlexGrid--gutterSmall',
   m: 'euiFlexGrid--gutterMedium',
   l: 'euiFlexGrid--gutterLarge',
@@ -50,4 +50,3 @@ EuiFlexGrid.defaultProps = {
   gutterSize: 'l',
   columns: 0,
 };
-

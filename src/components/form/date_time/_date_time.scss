@@ -1,0 +1,37 @@
+.euiDateTime {
+  max-width: $euiFormMaxWidth;
+  position: relative;
+
+  .euiDateTime__dateColumn {
+    padding: $euiSize;
+  }
+
+  .euiDateTime__timeColumn {
+    background: $euiColorLightestShade;
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+    border-left: $euiBorderThin;
+    padding: $euiSize 0 $euiSize $euiSizeS;
+  }
+
+  .euiDateTime__panel {
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    z-index: $euiZContentMenu;
+    transition:
+      transition $euiAnimSpeedNormal $euiAnimSlightResistance,
+      opacity $euiAnimSpeedNormal $euiAnimSlightResistance
+    ;
+  }
+
+  &.euiDateTime-isOpen {
+    .euiDateTime__panel {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

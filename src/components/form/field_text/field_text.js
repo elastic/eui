@@ -17,6 +17,7 @@ export const EuiFieldText = ({
   value,
   className,
   icon,
+  iconSide,
   isInvalid,
   inputRef,
   fullWidth,
@@ -34,6 +35,7 @@ export const EuiFieldText = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      iconSide={iconSide}
     >
       <EuiValidatableControl
         isInvalid={isInvalid}
@@ -59,6 +61,7 @@ EuiFieldText.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   icon: PropTypes.string,
+  iconSide: PropTypes.string,
   isInvalid: PropTypes.bool,
   inputRef: PropTypes.func,
   fullWidth: PropTypes.bool,
@@ -69,4 +72,5 @@ EuiFieldText.defaultProps = {
   value: undefined,
   fullWidth: false,
   isLoading: false,
+  iconSide: 'left',
 };

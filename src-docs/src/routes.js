@@ -64,6 +64,9 @@ import { ColorPickerExample }
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
+import { DateTimeExample }
+  from './views/date_time/date_time_example';
+
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
 
@@ -226,6 +229,7 @@ const components = [
   CodeExample,
   ColorPickerExample,
   ContextMenuExample,
+  DateTimeExample,
   DescriptionListExample,
   ErrorBoundaryExample,
   ExpressionExample,

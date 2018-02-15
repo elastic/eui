@@ -88,8 +88,13 @@ export {
 } from './flyout';
 
 export {
+  EuiCalendar,
+  EuiCalendarGrid,
+  EuiCalendarGridItem,
+  EuiCalendarMonthYearSelector,
   EuiCheckbox,
   EuiCheckboxGroup,
+  EuiDateTime,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
@@ -106,6 +111,7 @@ export {
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
+  EuiTimeSelector,
   EuiValidatableControl,
 } from './form';
 

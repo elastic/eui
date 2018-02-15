@@ -2,6 +2,16 @@ export {
   EuiCheckbox,
   EuiCheckboxGroup,
 } from './checkbox';
+
+export {
+  EuiDateTime,
+  EuiCalendar,
+  EuiCalendarGrid,
+  EuiCalendarGridItem,
+  EuiCalendarMonthYearSelector,
+  EuiTimeSelector,
+} from './date_time';
+
 export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
 export { EuiFieldSearch } from './field_search';

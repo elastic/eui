@@ -1,0 +1,34 @@
+.euiTimeSelector {
+  @include euiScrollBar;
+  max-height: 256px;
+  overflow-y: auto;
+
+  .euiTimeSelector__button {
+    display: block;
+    font-size: $euiFontSizeXS;
+    color: $euiColorDarkShade;
+    padding: $euiSizeXS / 2 $euiSizeXS;
+    text-align: right;
+    width: 100%;
+    border: $euiBorderThin;
+    border-color: transparent;
+    border-radius: $euiBorderRadius;
+
+    &.euiTimeSelector__button-isSelected {
+      background: $euiColorPrimary;
+      color: $euiColorEmptyShade;
+
+      &:focus {
+        background: $euiColorPrimary;
+        color: $euiColorEmptyShade;
+        border-color: darken($euiColorPrimary, 10%);
+      }
+    }
+
+    &:focus {
+      background: $euiColorEmptyShade;
+      border-color: $euiColorPrimary;
+      color: $euiColorPrimary;
+    }
+  }
+}

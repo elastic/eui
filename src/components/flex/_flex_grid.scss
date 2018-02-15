@@ -5,6 +5,7 @@
 
   > .euiFlexItem {
     flex-grow: 0;
+    align-items: stretch;
 
     &.euiFlexItem--flexGrowZero {
       flex-grow: 0 !important;
@@ -14,6 +15,7 @@
 }
 
 $gutterTypes: (
+  gutterNone: 0px,
   gutterSmall: $euiSizeS,
   gutterMedium: $euiSize,
   gutterLarge: $euiSizeL,
@@ -42,7 +44,6 @@ $fractions: (
   @each $fraction, $percentage in $fractions {
     .euiFlexGrid--#{$gutterName} {
       margin: -$halfGutterSize;
-      align-items: stretch;
 
       &.euiFlexGrid--#{$fraction} {
         > .euiFlexItem {

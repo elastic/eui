@@ -88,6 +88,7 @@ $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 }
 
 @import 'checkbox/index';
+@import 'date_time/index';
 @import 'field_number/index';
 @import 'field_password/index';
 @import 'field_search/index';
