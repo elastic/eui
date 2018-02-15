@@ -702,6 +702,13 @@ babel-plugin-jest-hoist@^22.1.0:
   version "22.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.1.0.tgz#c1281dd7887d77a1711dc760468c3b8285dde9ee"
 
+babel-plugin-pegjs-inline-precompile@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-pegjs-inline-precompile/-/babel-plugin-pegjs-inline-precompile-0.1.0.tgz#3307f2b373a844296385311a7c528c53414dc57e"
+  dependencies:
+    babylon "^6.18.0"
+    pegjs "^0.10.0"
+
 babel-plugin-react-docgen@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-docgen/-/babel-plugin-react-docgen-1.8.2.tgz#4615da43588c8cf5bdcae028f217954c70e6770b"
@@ -6426,9 +6433,9 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pegjs@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.9.0.tgz#f6aefa2e3ce56169208e52179dfe41f89141a369"
+pegjs@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
 
 performance-now@^0.2.0:
   version "0.2.0"
