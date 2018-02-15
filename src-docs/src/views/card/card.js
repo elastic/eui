@@ -15,7 +15,7 @@ const cardNodes = icons.map(function (item, index) {
       <EuiCard
         icon={<EuiIcon size="xxl" type={`logo${item}`} />}
         title={`Elastic ${item}`}
-        description="Example of a card's description. Stick to one or two sentences."
+        description="Example of a card."
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>
