@@ -1,28 +1,44 @@
 @import "../panel/variables";
+@import "../panel/mixins";
 
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 
+// Start with a base of EuiPanel styles
+@include euiPanel($selector: 'euiCard');
+
+// EuiCard specific
 .euiCard {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: $euiCardSpacing;
+
+  > * {
+    display: block;
+    width: 100%;
+  }
 
   &.euiCard--leftAligned,
   &.euiCard--isClickable.euiCard--leftAligned {
     text-align: left;
+    align-items: flex-start;
   }
 
   &.euiCard--centerAligned,
   &.euiCard--isClickable.euiCard--centerAligned {
     text-align: center;
+    align-items: center;
   }
 
   &.euiCard--rightAligned,
   &.euiCard--isClickable.euiCard--rightAligned {
     text-align: right;
+    align-items: flex-end;
   }
 
   &.euiCard--isClickable {
+    display: flex;
+
     &:focus,
     &:hover {
       .euiCard__title {
