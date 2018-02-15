@@ -4,7 +4,7 @@
 */
 @mixin euiPanel($selector){
   @if variable-exists(selector) == false {
-    @error "A $selector must be provided.";
+    @error "A $selector must be provided to @mixin euiPanel().";
   }
   @else {
     .#{$selector} {
