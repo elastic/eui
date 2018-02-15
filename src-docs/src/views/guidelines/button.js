@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 
 import {
   GuidePage,
@@ -31,7 +30,7 @@ export default () => (
     <EuiText>
       <h1>Button</h1>
       <p>
-      Determining a button type, style, and placement depends on the prominence of the action it performs and the context in which the button appears.
+      Choosing a button type, style, and placement depends on the prominence of its action and the context in which the button appears.
       </p>
       <EuiLink
         href="https://elastic.github.io/eui/#/button"
@@ -49,7 +48,7 @@ export default () => (
 
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
-        <div>
+        <div style={{ textAlign: 'center' }}>
           <EuiButton fill>
           Filled
           </EuiButton>
@@ -69,7 +68,7 @@ export default () => (
 
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
-        <div>
+        <div style={{ textAlign: 'center' }}>
           <EuiButton>
             Standard
           </EuiButton>
@@ -90,8 +89,7 @@ export default () => (
 
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
-        <div>
-
+        <div style={{ textAlign: 'center' }}>
           <EuiButtonEmpty>
           Empty
           </EuiButtonEmpty>
@@ -113,7 +111,7 @@ export default () => (
 
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
-        <div>
+        <div style={{ textAlign: 'center' }}>
 
           <EuiButtonIcon
             size="s"
@@ -145,8 +143,11 @@ export default () => (
     <EuiSpacer size="xxl"/>
     <EuiText>
       <h2>Placement and order</h2>
-      <p>Button placement and order should follow the users path through the content.</p>
     </EuiText>
+
+    <GuideRule
+      description="Button placement and order should follow the users path through the content."
+    />
 
     <GuideRule
       heading="Modals"
@@ -155,28 +156,35 @@ export default () => (
     >
 
       <GuideRuleExample
+        panel={false}
         type="do"
-        text="Do. The primary action is on the right with the secondary action on its left.
-        Cancel is always an empty button."
+        text="Do. The primary action is on the right with the secondary action on its left."
       >
-        <EuiImage
-          size="l"
-          alt="page without primary button"
-          url="https://imgur.com/0jZMx6B.jpg"
-        />
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            alt="button placement in an input modal"
+            url="https://imgur.com/6FnlGuJ.jpg"
+            style={{ textAlign: 'center' }}
+
+          />
+        </div>
 
       </GuideRuleExample>
 
       <GuideRuleExample
+        panel={false}
         type="do"
         text="Do. Confirmation modals are opinionated&mdash;button placement, order,
         and type are built-in so you don't have to worry about them."
       >
-        <EuiImage
-          size="l"
-          alt="page without primary button"
-          url="https://imgur.com/otiQ8RY.jpg"
-        />
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            alt="button placement in confirmation modal"
+            url="https://imgur.com/LChHuSz.jpg"
+          />
+        </div>
       </GuideRuleExample>
     </GuideRule>
 
@@ -186,101 +194,133 @@ export default () => (
       in an F-shaped pattern. A primary action on the bottom left is easiest for users to reach."
     >
       <GuideRuleExample
+        panel={false}
         type="do"
-        text="Do. Because the users' eye never leaves the left side,
-        put the primary action on the bottom left.  If present, a secondary action is on its right."
+        text="Do. Because the user's eye never leaves the left side,
+        the primary action goes on the bottom left.  If present, a secondary action is on its right."
       >
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/90QdVT9.jpg"
-        />
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            allowFullScreen
+            fullScreenIconColor="dark"
+            alt="button placement in form"
+            url="https://imgur.com/tOxPj5h.jpg"
+          />
+        </div>
       </GuideRuleExample>
 
-      <GuideRuleExample type="dont" text="Don't force users to move to right to get to the primary action.">
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/aiPlqks.jpg"
-        />
+      <GuideRuleExample
+        panel={false}
+        type="dont"
+        text="Don't force users to move to right to get to the primary action."
+      >
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            allowFullScreen
+            fullScreenIconColor="dark"
+            alt="form buttons go on the left, not right"
+            url="https://imgur.com/YmyrIur.jpg"
+          />
+        </div>
       </GuideRuleExample>
 
     </GuideRule>
 
 
     <GuideRule
-      heading="Elsewhere in the UI"
-      description="Button placement in other containers should fit the content and context,
-      while staying consistent with the application. "
+      heading="Other containers"
+      description="Button placement in other containers should fit the context surrounding it
+      and stay consistent with the application. "
     >
 
-      <GuideRuleExample type="do" text="Do. If the action is against the title of the page, place the primary button in the upper right.">
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/XK9Ei8A.jpg"
-        />
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        text="Do. If the action is against the page title, place the primary button in the upper right,
+        as shown in this page of visualizations with a Create button.  If at the bottom,
+        the action might be hidden under a table with numerous rows."
+      >
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            allowFullScreen
+            fullScreenIconColor="dark"
+            alt="button placement in upper right"
+            url="https://imgur.com/GybMNXW.jpg"
+          />
+        </div>
       </GuideRuleExample>
 
-      <GuideRuleExample type="do" text="Do. Center-aligned is becoming more popular, as in an empty state.">
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/eVIWhUN.jpg"
-        />
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        text="Do.
+        If the header is center-aligned and the panel has one primary button, center-align the button.
+        This format is common in empty states.
+
+"
+      >
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            allowFullScreen
+            fullScreenIconColor="dark"
+            alt="center-aligned button"
+            url="https://imgur.com/YDy9LxJ.jpg"
+          />
+        </div>
       </GuideRuleExample>
 
     </GuideRule>
 
     <EuiSpacer size="xxl"/>
     <EuiText>
-      <h2>Primary button: One per container</h2>
-      <p>The primary action should not have to compete for attention. Use only one primary button per page, form, or modal.</p>
+      <h2>One primary button per container</h2>
 
     </EuiText>
-    <EuiSpacer />
 
-    <GuideRule>
+    <GuideRule
+      description="The primary action should not have to compete for attention.
+      Use only one primary button per page, modal, form, or other container."
+    >
       <GuideRuleExample
+        panel={false}
         type="do"
         text="&quot;Create index pattern&quot; is the primary action. &quot;All index patterns&quot; is
         also a button, but its an empty button. It controls the UI and doesn't save any data."
       >
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/5diUfSX.jpg"
-        />
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            alt="one primary button per page"
+            url="https://imgur.com/5diUfSX.jpg"
+          />
+        </div>
       </GuideRuleExample>
       <GuideRuleExample
+        panel={false}
         type="do"
         text="Some pages don&apos;t need a primary action to draw user attention.
         The &quot;Make default index&quot; button is an action that the user doesn't click often,
         but it's still a prmary action for this page. It's just not filled in."
       >
-        <EuiImage
-          size="l"
-          hasShadow
-          allowFullScreen
-          fullScreenIconColor="dark"
-          alt="page without primary button"
-          url="https://imgur.com/Vkrj67k.jpg"
-        />
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="l"
+            hasShadow
+            allowFullScreen
+            fullScreenIconColor="dark"
+            alt="page without primary button"
+            url="https://imgur.com/er5vU54.jpg"
+          />
+        </div>
         <EuiSpacer />
       </GuideRuleExample>
     </GuideRule>
@@ -290,26 +330,15 @@ export default () => (
 
 
     <EuiText>
-      <h2>Icons: Must be recognized at a glance</h2>
-      <p>Icon buttons can save space.  Limit icon buttons to groups of two&mdash;otherwise they lose meaning. See the
-        <EuiLink
-          href="https://elastic.github.io/eui/#/icon"
-          target="_blank"
-        >
-            &nbsp;&nbsp;icon respository
-        </EuiLink>&nbsp;
-
-        for icons with common meanings.
-      </p>
+      <h2>Easily recognized icons</h2>
 
     </EuiText>
-    <EuiSpacer />
 
     <GuideRule
       heading=""
-      description=""
+      description="Icon buttons can save space.  Limit icon buttons to groups of two&mdash;otherwise they lose meaning."
     >
-      <GuideRuleExample type="do" text="Do. These icons for edit and expand from the EUI repository are easily recognizable">
+      <GuideRuleExample type="do" text="Do. These icons for edit and expand are in the EUI repository.">
         <EuiButtonIcon
           size="s"
           iconType="pencil"
@@ -340,7 +369,7 @@ export default () => (
       description="Icons can serve as a scanning aid in a text label, but keep to a minimum.
       Icons work best on labels for binary actions (for example, Create and Delete) and final actions (Save)."
     >
-      <GuideRuleExample type="do" text="Do. Icons on the left of a label facilitate scanning">
+      <GuideRuleExample type="do" text="Do. Icons on the left of a label facilitate scanning.">
 
         <EuiButton >
           <EuiIcon
@@ -364,7 +393,7 @@ export default () => (
         </EuiButton>&nbsp;&nbsp;&nbsp;
 
       </GuideRuleExample>
-      <GuideRuleExample type="dont" text="Don't. Icons on the right of the label serve only as decoration">
+      <GuideRuleExample type="dont" text="Don't. Icons on the right serve only as decoration.">
 
 
         <EuiButton >&nbsp;&nbsp;
@@ -395,16 +424,15 @@ export default () => (
 
     <EuiSpacer size="l"/>
     <EuiText>
-      <h2>Color: Use sparingly</h2>
-      <p>The button color defaults to blue.  Limit color changes to well-established use cases&mdash;green for final
-        save actions and red for delete.
-      </p>
+      <h2>Minimal color changes</h2>
 
     </EuiText>
-    <EuiSpacer />
 
-    <GuideRule>
-      <GuideRuleExample type="do" text="Do. Green is an appropriate color for a final save action">
+    <GuideRule
+      description="The button color defaults to blue.  Limit color changes to well-established use cases&mdash;green for final
+        save actions and red for delete."
+    >
+      <GuideRuleExample type="do" text="Do. Green is an appropriate color for a final save action.">
         <EuiButtonEmpty
           size="s"
         >
@@ -417,7 +445,7 @@ export default () => (
         </EuiButton>
         <EuiSpacer />
       </GuideRuleExample>
-      <GuideRuleExample type="dont" text="Don't. Readability suffers with more than two colors">
+      <GuideRuleExample type="dont" text="Don't. Readability suffers when more than two colors are used.">
         <EuiButtonEmpty >
           Cancel
         </EuiButtonEmpty>
@@ -437,23 +465,27 @@ export default () => (
 
     <EuiSpacer size="l"/>
     <EuiText>
-      <h2>Multiple buttons</h2>
-      <p>When using multiple buttons, two is optimal, three is rare. For more buttons, use a dropdown or context menu.</p>
+      <h2>Using multiple buttons</h2>
 
     </EuiText>
-    <EuiSpacer />
-
-    <EuiSpacer size="l"/>
 
 
-    <GuideRule>
-      <GuideRuleExample type="do" text="Do. This example puts multiple actions in one button rather than splitting them out">
-        <EuiImage
-          size="l"
-          hasShadow
-          alt="Next"
-          url="https://imgur.com/54NmOzh.jpg"
-        />
+    <GuideRule
+      description="Two buttons is optimal, three is rare. For more buttons, use a dropdown or context menu."
+    >
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        text="Do. This example puts multiple actions in one button rather than showing them separately."
+      >
+        <div style={{ textAlign: 'center' }}>
+          <EuiImage
+            size="m"
+            hasShadow
+            alt="multiple actions in one button"
+            url="https://imgur.com/xClPKbH.jpg"
+          />
+        </div>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="Don't. When you have too many buttons, none matter.">
@@ -461,13 +493,24 @@ export default () => (
           size="s"
         >
               Close index
-        </EuiButton>&nbsp;
+        </EuiButton>&nbsp;&nbsp;
+        <EuiButton
+          size="s"
+        >
+              Force merge index
+        </EuiButton>&nbsp;&nbsp;
         <EuiButton size="s">
                 Refresh index
-        </EuiButton>&nbsp;
+        </EuiButton>&nbsp;&nbsp;
+        <EuiSpacer />
         <EuiButton size="s">
                 Clear index cache
-        </EuiButton>&nbsp;
+        </EuiButton>&nbsp;&nbsp;
+        <EuiButton
+          size="s"
+        >
+              Flush index
+        </EuiButton>&nbsp;&nbsp;
         <EuiButton size="s">
                 Delete index
         </EuiButton>
@@ -478,19 +521,32 @@ export default () => (
 
     <EuiSpacer size="l"/>
     <EuiText>
-      <h2>Label: Say what it does</h2>
-      <p>Labels should provide a clear indication of what happens when the user clicks the button.
-        Prefer action words and use in a consistent manner.
-      </p>
-      <p>Button text should be three words or less.   If your label has more words, consider a text link instead.</p>
+      <h2>Action labels</h2>
+
+      <GuideRule
+        heading=""
+        description="Labels should provide a clear indication of
+          what happens when the user clicks the button.
+            Prefer action words, and include an object when it's not clear from the context,
+            for example, Add dashboard."
+      />
+      <GuideRule
+        heading=""
+        description="Button should be three words or less. If your label requries more words, consider a text link instead."
+      />
+
+      <EuiText />
+
+      <h3>Text for buttons</h3>
+      <EuiSpacer />
 
     </EuiText>
-    <EuiSpacer size="l"/>
+
 
     <EuiTable>
       <EuiTableHeader>
         <EuiTableHeaderCell>
-        Label
+        Text
         </EuiTableHeaderCell>
 
         <EuiTableHeaderCell>
@@ -507,7 +563,7 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-        Adds an object to a list or database.   Always followed by a noun, for example, Add visualization.
+        Adds an object to a list or database.   Always followed by an object, for example, Add visualization.
         Do not use &quot;Add new.&quot; Remove is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
@@ -520,6 +576,7 @@ export default () => (
           </EuiTableRowCell>
           <EuiTableRowCell>
         Stops an action without saving pending changes.  Never make Cancel red&mdash;it&apos;s not a destructive action.
+        Cancel is always an empty button.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -534,8 +591,8 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-        Creates a new object from scratch.  Always followed by a noun, for example, “Create pipeline.” Do not use &quot;Create new.&quot;
-        Exception: “Add user” is more intuitive that “Create user.”  Delete is the correct opposite
+        Creates a new object from scratch.  Always followed by an object, for example, “Create pipeline.” Do not use &quot;Create new.&quot;
+        Exception: “Add user” is more intuitive than “Create user.”  Delete is the correct opposite
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -562,16 +619,6 @@ export default () => (
 
         <EuiTableRow>
           <EuiTableRowCell>
-        &nbsp;&nbsp;Discard
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>
-        Avoid.  Use Remove or Delete.
-          </EuiTableRowCell>
-        </EuiTableRow>
-
-        <EuiTableRow>
-          <EuiTableRowCell>
             <EuiButtonEmpty>
             Learn more
             </EuiButtonEmpty>
@@ -582,27 +629,6 @@ export default () => (
           </EuiTableRowCell>
         </EuiTableRow>
 
-
-        <EuiTableRow>
-          <EuiTableRowCell>
-        &nbsp;&nbsp;New
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>
-        Avoid.  Prefer the action words Add or Create.
-          </EuiTableRowCell>
-        </EuiTableRow>
-
-        <EuiTableRow>
-          <EuiTableRowCell>
-        &nbsp;&nbsp;OK
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>
-        Avoid.  Use words that explain the action.
-          </EuiTableRowCell>
-        </EuiTableRow>
-
         <EuiTableRow>
           <EuiTableRowCell>
             <EuiButton size="s" >
@@ -610,7 +636,7 @@ export default () => (
             </EuiButton>
           </EuiTableRowCell>
           <EuiTableRowCell>
-        Remove an item not related to a database, such as a row from a table.
+        Removes an item not related to a database, such as a row from a table.
         Do not confuse with Delete, which permanenty removes data from a database.
           </EuiTableRowCell>
         </EuiTableRow>
@@ -620,20 +646,76 @@ export default () => (
             <EuiButton size="s">
             Save
             </EuiButton>&nbsp;&nbsp;
+            <EuiButton size="s" color="secondary">
+            Save
+            </EuiButton>&nbsp;&nbsp;
           </EuiTableRowCell>
           <EuiTableRowCell>
-        Carry out pending changes, for example, Save edits.  Do not confuse with Add. Can use green for the final save action.
+        Carries out pending changes, for example, Save edits.
+        Do not confuse with Add. Can use green if this button is the final save action.
           </EuiTableRowCell>
 
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+    <EuiSpacer />
+
+    <EuiText>
+      <h3>Words to Avoid</h3>
+    </EuiText>
+    <EuiSpacer />
+
+
+    <EuiTable>
+      <EuiTableHeader>
+        <EuiTableHeaderCell>
+          Text
+        </EuiTableHeaderCell>
+
+        <EuiTableHeaderCell>
+          Use this instead
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+
+        <EuiTableRow>
+          <EuiTableRowCell>
+              Discard
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+              Remove or Delete
+          </EuiTableRowCell>
+        </EuiTableRow>
+
+
+        <EuiTableRow>
+          <EuiTableRowCell>
+          &nbsp;&nbsp;New
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+          Add or Create
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-        &nbsp;&nbsp;Yes/No
+          &nbsp;&nbsp;OK
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-        Avoid.  Use action words instead.
+          Words that explain the action
+          </EuiTableRowCell>
+        </EuiTableRow>
+
+        <EuiTableRow>
+          <EuiTableRowCell>
+          &nbsp;&nbsp;Yes/No
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+          Action words
           </EuiTableRowCell>
 
         </EuiTableRow>
