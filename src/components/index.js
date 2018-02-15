@@ -54,6 +54,10 @@ export {
 } from './context_menu';
 
 export {
+  EuiDelayHide
+} from './delay_hide';
+
+export {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,

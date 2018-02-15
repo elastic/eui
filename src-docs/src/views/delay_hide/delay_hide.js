@@ -1,0 +1,52 @@
+import React, { Component } from 'react';
+import { EuiDelayHide } from '../../../../src/components/delay_hide';
+import { EuiFlexItem } from '../../../../src/components/flex/flex_item';
+import { EuiCheckbox } from '../../../../src/components/form/checkbox/checkbox';
+import { EuiFormRow } from '../../../../src/components/form/form_row/form_row';
+import { EuiFieldNumber } from '../../../../src/components/form/field_number';
+
+export default class extends Component {
+  state = {
+    minimumDuration: 1000,
+    hide: false
+  };
+
+  onChangeMinimumDuration = event => {
+    this.setState({ minimumDuration: parseInt(event.target.value, 10) });
+  };
+
+  onChangeHide = event => {
+    this.setState({ hide: event.target.checked });
+  };
+
+  render() {
+    return (
+      <div>
+        <EuiFlexItem>
+          <EuiFormRow>
+            <EuiCheckbox
+              id="dummy-id"
+              checked={this.state.hide}
+              onChange={this.onChangeHide}
+              label="Hide child"
+            />
+          </EuiFormRow>
+          <EuiFormRow label="Minimum duration">
+            <EuiFieldNumber
+              value={this.state.minimumDuration}
+              onChange={this.onChangeMinimumDuration}
+            />
+          </EuiFormRow>
+
+          <EuiFormRow label="Child to render">
+            <EuiDelayHide
+              hide={this.state.hide}
+              minimumDuration={this.state.minimumDuration}
+              render={() => <div>Hello world</div>}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </div>
+    );
+  }
+}
