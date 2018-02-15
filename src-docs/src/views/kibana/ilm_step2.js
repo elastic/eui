@@ -9,6 +9,7 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiFieldNumber,
+  EuiFieldText,
   EuiText,
   EuiTextColor,
   EuiCallOut,
@@ -89,7 +90,7 @@ export const Step2 = ({
               <EuiFormRow label="Store on these nodes">
                 <EuiSelect
                   options={[
-                    { value: 'option_one', text: 'Magnolia Electric Company' },
+                    { value: 'option_one', text: 'box_type: warm' },
                   ]}
                 />
               </EuiFormRow>
@@ -139,12 +140,8 @@ export const Step2 = ({
               </EuiFormRow>
             </EuiFlexItem>
             <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
-              <EuiFormRow label="Store on these nodes">
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'Magnolia Electric Company' },
-                  ]}
-                />
+              <EuiFormRow isInvalid error={['No node.attr.* could be found. Use node name instead.']} label="Match nodes with this name">
+                <EuiFieldText />
               </EuiFormRow>
             </EuiFlexItem>
           </EuiFlexGroup>
