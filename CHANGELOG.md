@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.21.0`.
+
+# [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
+
 - Logstash icon set. [#399](https://github.com/elastic/eui/pull/399)
 - Added support for `disabled` options in `EuiSelect`. [#324](https://github.com/elastic/eui/pull/324)
 - Badges can now accept onClicks and custom colors. They were changed stylistically to be bolder and smaller by default. ([#381](https://github.com/elastic/eui/pull/381))
