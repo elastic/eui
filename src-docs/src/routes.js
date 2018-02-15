@@ -170,6 +170,9 @@ import { TooltipExample }
 import AdvancedSettingsSandbox
   from './views/kibana/advanced_settings_sandbox';
 
+import LifeCycleSandbox
+  from './views/kibana/ilm_sandbox';
+
 import WatchesSandbox
   from './views/kibana/watches_sandbox';
 
@@ -267,6 +270,10 @@ const patterns = [
 const sandboxes = [{
   name: 'Advanced Settings',
   component: AdvancedSettingsSandbox,
+}, {
+  name: 'LifeCycle',
+  component: LifeCycleSandbox,
+  hidden: true,
 }, {
   name: 'Watches',
   component: WatchesSandbox,

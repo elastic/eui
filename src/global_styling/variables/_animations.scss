@@ -9,6 +9,21 @@ $euiAnimSpeedNormal: 250ms;
 $euiAnimSpeedSlow: 350ms;
 $euiAnimSpeedExtraSlow: 500ms;
 
+.euiAnimateContentLoad {
+  animation: euiAnimContentLoad $euiAnimSpeedExtraSlow $euiAnimSlightResistance;
+}
+
+@keyframes euiAnimContentLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes euiAnimFadeIn {
   0% {
     opacity: 0;
