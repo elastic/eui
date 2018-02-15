@@ -19,8 +19,7 @@ export class EuiDelayHide extends Component {
     this.shouldRender = false;
   }
 
-  componentWillReceiveProps(props) {
-    const { hide, minimumDuration = 1000 } = props;
+  componentWillReceiveProps({ hide, minimumDuration = 1000 }) {
     clearTimeout(this.timeout);
 
     const visibleDuration = Date.now() - this.lastRenderedTime;
