@@ -62,15 +62,15 @@ fieldValue "field value"
 
 fieldValues
   = "(" space? head:value tail:(
-  	space ([oO][rR]) space value:value space	{ return value; }
-  )+ space? ")" { return [ head, ...tail ] }
+  	space ([oO][rR]) space value:value { return value; }
+  )* space? ")" { return [ head, ...tail ] }
 
 termValue "term"
   = value
 
 value
   = word
-  / '"' phrase:phrase '"' { return phrase; }
+  / '"' space? phrase:phrase space?'"' { return phrase; }
 
 phrase
   = word (space word)* { return unescapeValue(text()); }
@@ -89,10 +89,10 @@ reservedChar
   = [:\\-\\\\]
 
 alnum "alpha numeric"
-  = [a-zA-Z0-9]+
+  = [a-zA-Z0-9]
 
 space "whitespace"
-  = [ \\t\\n\\r]*
+  = [ \\t\\n\\r]+
 `;
 
 const printValue = (value) => {

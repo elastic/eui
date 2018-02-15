@@ -411,4 +411,43 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  test('relaxed phrases with spaces', () => {
+
+    const query = `f:" this is a relaxed phrase \t"`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('f');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('f');
+    expect(clause.value).toBe('this is a relaxed phrase');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(`f:"this is a relaxed phrase"`);
+  });
+
+  test('single term or expression', () => {
+
+    const query = `f:(foo)`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getOrFieldClause('f');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('f');
+    expect(clause.value).toHaveLength(1);
+    expect(clause.value).toContain('foo');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
+  });
+
 });
