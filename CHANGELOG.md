@@ -11,11 +11,15 @@
 - Added importAction and exportAction icons ([#394](https://github.com/elastic/eui/pull/394))
 - Added `EuiCard` for UI patterns that need an icon/image, title and description with some sort of action. ([#380](https://github.com/elastic/eui/pull/380))
 - Add TypeScript definitions for the `<EuiHealth>` component. ([#403](https://github.com/elastic/eui/pull/403))
+- Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
 
 **Bug fixes**
 
 - Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
 - Fix dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
+- Fix appearance of checked checkeboxes and radios in IE ([#407](https://github.com/elastic/eui/pull/407))
+- Fix disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
+- Fix disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
