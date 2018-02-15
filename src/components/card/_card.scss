@@ -6,7 +6,6 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: $euiCardSpacing;
 
   &.euiCard--leftAligned,
   &.euiCard--isClickable.euiCard--leftAligned {
@@ -24,8 +23,6 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   }
 
   &.euiCard--isClickable {
-    display: flex; // override panel
-
     &:focus,
     &:hover {
       .euiCard__title {

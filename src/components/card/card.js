@@ -30,6 +30,7 @@ export const EuiCard = ({
     textAlignToClassNameMap[textAlign],
     {
       'euiCard--isClickable': onClick,
+      'euiCard--textAlign': textAlign,
     },
     className,
   );
@@ -49,36 +50,30 @@ export const EuiCard = ({
     );
   }
 
-  const InnerElement = onClick ? 'span' : 'div';
-
   return (
     <EuiPanel
       onClick={onClick}
-      paddingSize="none"
+      className={classes}
+      {...rest}
     >
-      <InnerElement
-        className={classes}
-        {...rest}
-      >
-        <InnerElement className="euiCard__top">
-          {imageNode}
-          {iconNode}
-        </InnerElement>
+      <div className="euiCard__top">
+        {imageNode}
+        {iconNode}
+      </div>
 
-        <InnerElement className="euiCard__content">
-          <EuiTitle size="s" className="euiCard__title">
-            <span>{title}</span>
-          </EuiTitle>
+      <div className="euiCard__content">
+        <EuiTitle size="s" className="euiCard__title">
+          <span>{title}</span>
+        </EuiTitle>
 
-          <EuiText size="s" className="euiCard__description">
-            <p>{description}</p>
-          </EuiText>
-        </InnerElement>
+        <EuiText size="s" className="euiCard__description">
+          <p>{description}</p>
+        </EuiText>
+      </div>
 
-        <InnerElement className="euiCard__footer">
-          {footer}
-        </InnerElement>
-      </InnerElement>
+      <div className="euiCard__footer">
+        {footer}
+      </div>
     </EuiPanel>
   );
 };
