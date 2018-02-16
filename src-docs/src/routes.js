@@ -64,6 +64,9 @@ import { ColorPickerExample }
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
+import { DelayHideExample }
+  from './views/delay_hide/delay_hide_example';
+
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
 
@@ -226,6 +229,7 @@ const components = [
   CodeExample,
   ColorPickerExample,
   ContextMenuExample,
+  DelayHideExample,
   DescriptionListExample,
   ErrorBoundaryExample,
   ExpressionExample,
