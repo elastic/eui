@@ -1,13 +1,58 @@
 import { isArray, isNil } from '../../../services/predicate';
+import { isDateValue, dateValuesEqual } from './date_value';
 
 export const Match = Object.freeze({
   MUST: 'must',
   MUST_NOT: 'must_not',
   isMust(match) {
-    return match === this.MUST;
+    return match === Match.MUST;
   },
   isMustClause(clause) {
     return Match.isMust(clause.match);
+  }
+});
+
+export const Operator = Object.freeze({
+  EQ: 'eq',
+  GT: 'gt',
+  GTE: 'gte',
+  LT: 'lt',
+  LTE: 'lte',
+  isEQ(match) {
+    return match === Operator.EQ;
+  },
+  isEQClause(clause) {
+    return Operator.isEQ(clause.operator);
+  },
+  isRange(match) {
+    return Operator.isGT(match) || Operator.isGTE(match) || Operator.isLT(match) || Operator.isLTE(match);
+  },
+  isRangeClause(clause) {
+    return Operator.isRange(clause.operator);
+  },
+  isGT(match) {
+    return match === Operator.GT;
+  },
+  isGTClause(clause) {
+    return Operator.isGT(clause.operator);
+  },
+  isGTE(match) {
+    return match === Operator.GTE;
+  },
+  isGTEClause(clause) {
+    return Operator.isGTE(clause.operator);
+  },
+  isLT(match) {
+    return match === Operator.LT;
+  },
+  isLTClause(clause) {
+    return Operator.isLT(clause.operator);
+  },
+  isLTE(match) {
+    return match === Operator.LTE;
+  },
+  isLTEClause(clause) {
+    return Operator.isLTE(clause.operator);
   }
 });
 
@@ -29,11 +74,19 @@ const Field = Object.freeze({
   isInstance: (clause) => {
     return clause.type === Field.TYPE;
   },
-  must: (field, value) => {
-    return { type: Field.TYPE, field, value, match: Match.MUST };
+  must: {
+    eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.EQ }),
+    gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GT }),
+    gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GTE }),
+    lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.LT }),
+    lte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.LTE })
   },
-  mustNot: (field, value) => {
-    return { type: Field.TYPE, field, value, match: Match.MUST_NOT };
+  mustNot: {
+    eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.EQ }),
+    gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GT }),
+    gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GTE }),
+    lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.LT }),
+    lte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.LTE })
   }
 });
 
@@ -49,6 +102,17 @@ const Is = Object.freeze({
     return { type: Is.TYPE, flag, match: Match.MUST_NOT };
   }
 });
+
+const valuesEqual = (v1, v2) => {
+  if (isDateValue(v1)) {
+    return dateValuesEqual(v1, v2);
+  }
+  return v1 === v2;
+};
+
+const arrayIncludesValue = (array, value) => {
+  return array.some(item => valuesEqual(item, value));
+};
 
 /**
  * The AST structure is an array of clauses. There are 3 types of clauses that are supported:
@@ -106,7 +170,7 @@ export class _AST {
 
   getTermClause(value) {
     const clauses = this.getTermClauses();
-    return clauses.find(clause => clause.value === value);
+    return clauses.find(clause => valuesEqual(clause.value, value));
   }
 
   getFieldNames() {
@@ -131,18 +195,18 @@ export class _AST {
     if (!clauses) {
       return false;
     }
-    return isNil(value) || clauses.some(clause => clause.value.includes(value));
+    return isNil(value) || clauses.some(clause => arrayIncludesValue(clause.value, value));
   }
 
   getOrFieldClause(field, value = undefined) {
-    return this.getFieldClause(field, clause => isArray(clause.value) && (!value || clause.value.includes(value)));
+    return this.getFieldClause(field, clause => isArray(clause.value) && (isNil(value) || arrayIncludesValue(clause.value, value)));
   }
 
-  addOrFieldValue(field, value, must = true) {
+  addOrFieldValue(field, value, must = true, operator = Operator.EQ) {
     const existingClause = this.getOrFieldClause(field);
     if (!existingClause) {
-      const newClause = must ? Field.must(field, [ value ]) : Field.mustNot(field, [ value ]);
-      return new _AST([ ...this._clauses, newClause ]);
+      const newClause = must ? Field.must[operator](field, [value]) : Field.mustNot[operator](field, [value]);
+      return new _AST([...this._clauses, newClause]);
     }
     const clauses = this._clauses.map(clause => {
       if (clause === existingClause) {
@@ -156,14 +220,14 @@ export class _AST {
   removeOrFieldValue(field, value) {
     const existingClause = this.getOrFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([ ...this._clauses ]);
+      return new _AST([...this._clauses]);
     }
     const clauses = this._clauses.reduce((clauses, clause) => {
       if (clause !== existingClause) {
         clauses.push(clause);
         return clauses;
       }
-      const filteredValue = clause.value.filter(val => val !== value);
+      const filteredValue = clause.value.filter(val => !valuesEqual(val, value));
       if (filteredValue.length === 0) {
         return clauses;
       }
@@ -185,22 +249,22 @@ export class _AST {
     if (!clauses) {
       return false;
     }
-    return isNil(value) || clauses.some(clause => clause.value === value);
+    return isNil(value) || clauses.some(clause => valuesEqual(clause.value, value));
   }
 
   getSimpleFieldClause(field, value = undefined) {
-    return this.getFieldClause(field, clause => !isArray(clause.value) && (!value || clause.value === value));
+    return this.getFieldClause(field, clause => !isArray(clause.value) && (isNil(value) || valuesEqual(clause.value, value)));
   }
 
-  addSimpleFieldValue(field, value, must = true) {
-    const clause = must ? Field.must(field, value) : Field.mustNot(field, value);
+  addSimpleFieldValue(field, value, must = true, operator = Operator.EQ) {
+    const clause = must ? Field.must[operator](field, value) : Field.mustNot[operator](field, value);
     return this.addClause(clause);
   }
 
   removeSimpleFieldValue(field, value) {
     const existingClause = this.getSimpleFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([ ...this._clauses ]);
+      return new _AST([...this._clauses]);
     }
     const clauses = this._clauses.filter(clause => clause !== existingClause);
     return new _AST(clauses);
@@ -286,6 +350,7 @@ export class _AST {
 
 export const AST = Object.freeze({
   Match,
+  Operator,
   Term,
   Field,
   Is,

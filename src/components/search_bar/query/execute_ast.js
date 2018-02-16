@@ -1,14 +1,16 @@
 import { get } from 'lodash';
 import { isString, isArray } from '../../../services/predicate';
-import { must } from './must';
-import { mustNot } from './must_not';
+import { eq, gt, gte, lt, lte } from './operators';
 import { AST } from './ast';
 
 const EXPLAIN_FIELD = '__explain';
 
-const matchers = {
-  [AST.Match.MUST]: must,
-  [AST.Match.MUST_NOT]: mustNot
+const operators = {
+  [AST.Operator.EQ]: eq,
+  [AST.Operator.GT]: gt,
+  [AST.Operator.GTE]: gte,
+  [AST.Operator.LT]: lt,
+  [AST.Operator.LTE]: lte
 };
 
 const defaultIsClauseMatcher = (record, clause, explain) => {
@@ -25,16 +27,19 @@ const defaultIsClauseMatcher = (record, clause, explain) => {
 const fieldClauseMatcher = (record, field, clauses = [], explain) => {
   return clauses.every(clause => {
     const { type, value, match } = clause;
-    const matcher = matchers[match];
-    if (!matcher) { // unknown matcher
+    let operator = operators[clause.operator];
+    if (!operator) { // unknown matcher
       return true;
+    }
+    if (!AST.Match.isMust(match)) {
+      operator = (value, token) => !operators[clause.operator](value, token);
     }
     const recordValue = get(record, field);
     const hit = isArray(value) ?
-      value.some(v => matcher(recordValue, v)) :
-      matcher(recordValue, value);
+      value.some(v => operator(recordValue, v)) :
+      operator(recordValue, value);
     if (explain && hit) {
-      explain.push({ hit, type, field, value, match });
+      explain.push({ hit, type, field, value, match, operator });
     }
     return hit;
   });
@@ -53,25 +58,23 @@ const termClauseMatcher = (record, fields, clauses = [], explain) => {
   fields = fields || resolveStringFields(record);
   return clauses.every(clause => {
     const { type, value, match } = clause;
-    const matcher = matchers[match];
-    if (!matcher) { // unknown matcher
-      return true;
-    }
+    const operator = operators[AST.Operator.EQ];
     if (AST.Match.isMustClause(clause)) {
       return fields.some(field => {
         const recordValue = get(record, field);
-        const hit = matcher(recordValue, value);
+        const hit = operator(recordValue, value);
         if (explain && hit) {
           explain.push({ hit, type, field, match, value });
         }
         return hit;
       });
     } else {
+      const notMatcher = (value, token) => !operator(value, token);
       return fields.every(field => {
         const recordValue = get(record, field);
-        const hit = matcher(recordValue, value);
+        const hit = notMatcher(recordValue, value);
         if (explain && hit) {
-          explain.push({ hit, type, field, match, value });
+          explain.push({ hit, type, field, value, match });
         }
         return hit;
       });

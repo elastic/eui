@@ -12,7 +12,7 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'john')
+      AST.Field.must.eq('name', 'john')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john doe');
@@ -24,7 +24,7 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.mustNot('name', 'john')
+      AST.Field.mustNot.eq('name', 'john')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
@@ -36,19 +36,19 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     let result = executeAst(AST.create([
-      AST.Field.must('name', ['john', 'doe'])
+      AST.Field.must.eq('name', ['john', 'doe'])
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john');
 
     result = executeAst(AST.create([
-      AST.Field.must('name', ['joe', 'doe'])
+      AST.Field.must.eq('name', ['joe', 'doe'])
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
 
     result = executeAst(AST.create([
-      AST.Field.must('name', ['foo', 'bar'])
+      AST.Field.must.eq('name', ['foo', 'bar'])
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -59,7 +59,7 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'foo')
+      AST.Field.must.eq('name', 'foo')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -70,8 +70,8 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'john'),
-      AST.Field.must('name', 'joe')
+      AST.Field.must.eq('name', 'john'),
+      AST.Field.must.eq('name', 'joe')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -82,8 +82,8 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'foo'),
-      AST.Field.must('age', '7')
+      AST.Field.must.eq('name', 'foo'),
+      AST.Field.must.eq('age', '7')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -94,8 +94,8 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'john'),
-      AST.Field.must('age', '5')
+      AST.Field.must.eq('name', 'john'),
+      AST.Field.must.eq('age', '5')
     ]), items);
     expect(result).toHaveLength(1);
   });
@@ -214,7 +214,7 @@ describe('execute ast', () => {
     ];
     const result = executeAst(AST.create([
       AST.Is.mustNot('open'),
-      AST.Field.must('age', '7'),
+      AST.Field.must.eq('age', '7'),
       AST.Term.must('bar'),
       AST.Term.mustNot('foo')
     ]), items);
@@ -231,7 +231,7 @@ describe('execute ast', () => {
       { text: 'bar', age: 7 },
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', 'John Doe'),
+      AST.Field.must.eq('name', 'John Doe'),
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john doe');
@@ -245,13 +245,113 @@ describe('execute ast', () => {
       { name: 'bar', age: 7 },
     ];
     const result = executeAst(AST.create([
-      AST.Field.must('name', [ 'john', 'bar' ]),
+      AST.Field.must.eq('name', [ 'john', 'bar' ]),
     ]), items);
     expect(result).toHaveLength(3);
     const names = result.map(item => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('bar');
     expect(names).toContain('foo bar');
+  });
+
+  test('gt fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must.gt('age', 5),
+    ]), items);
+    expect(result).toHaveLength(3);
+    const names = result.map(item => item.name);
+    expect(names).toContain('foo');
+    expect(names).toContain('bar');
+    expect(names).toContain('foo bar');
+  });
+
+  test('gte fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must.gte('age', 5),
+    ]), items);
+    expect(result).toHaveLength(4);
+    const names = result.map(item => item.name);
+    expect(names).toContain('john doe');
+    expect(names).toContain('foo');
+    expect(names).toContain('bar');
+    expect(names).toContain('foo bar');
+  });
+
+  test('lt fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must.lt('age', 7),
+    ]), items);
+    expect(result).toHaveLength(2);
+    const names = result.map(item => item.name);
+    expect(names).toContain('john doe');
+    expect(names).toContain('foo');
+  });
+
+  test('lte fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 7 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must.lte('age', 6),
+    ]), items);
+    expect(result).toHaveLength(2);
+    const names = result.map(item => item.name);
+    expect(names).toContain('john doe');
+    expect(names).toContain('foo');
+  });
+
+  test('gt and lte fields', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 8 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.must.gt('age', 5),
+      AST.Field.must.lte('age', 7),
+    ]), items);
+    expect(result).toHaveLength(2);
+    const names = result.map(item => item.name);
+    expect(names).toContain('foo');
+    expect(names).toContain('foo bar');
+  });
+
+  test('negated range queries', () => {
+    const items = [
+      { name: 'john doe', age: 5, open: true },
+      { name: 'foo', age: 6, open: false },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 8 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Field.mustNot.lt('age', 6),
+      AST.Field.mustNot.gte('age', 7),
+    ]), items);
+    expect(result).toHaveLength(1);
+    const names = result.map(item => item.name);
+    expect(names).toContain('foo');
   });
 
 });

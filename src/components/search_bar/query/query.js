@@ -2,6 +2,7 @@ import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil, isString } from '../../../services/predicate';
 import { astToEs } from './ast_to_es';
+import { dateValueParser } from './date_value';
 import { AST } from './ast';
 
 /**
@@ -11,8 +12,12 @@ import { AST } from './ast';
  */
 export class Query {
 
-  static parse(text, syntax = defaultSyntax) {
-    return new Query(syntax.parse(text), syntax, text);
+  static parse(text, options, syntax = defaultSyntax) {
+    return new Query(syntax.parse(text, options), syntax, text);
+  }
+
+  static parseDateValue(value, format = undefined) {
+    return dateValueParser(format)(value);
   }
 
   static isMust(clause) {

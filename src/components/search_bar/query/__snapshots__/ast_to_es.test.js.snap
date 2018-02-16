@@ -199,3 +199,122 @@ Object {
   },
 }
 `;
+
+exports[`astToEs ast - -count<=4 size<5 age>=3 -number>9 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "size": Object {
+            "lt": 5,
+          },
+        },
+      },
+      Object {
+        "range": Object {
+          "age": Object {
+            "gte": 3,
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "count": Object {
+            "lte": 4,
+          },
+        },
+      },
+      Object {
+        "range": Object {
+          "number": Object {
+            "gt": 9,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEs ast - count>3 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "count": Object {
+            "gt": 3,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEs ast - date:'2004-03' -date<'2004-03-10' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "match": Object {
+          "date": "2004-03-01T00:00:00Z||/M",
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "lt": "2004-03-10T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEs ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-02-01T00:00:00Z||+1M/M",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-03-10T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEs ast - date>='2004-03-22' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-03-22T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;

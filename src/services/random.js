@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { isNil } from './predicate';
 import { times } from './utils';
 
@@ -43,11 +44,20 @@ export class Random {
 
   date(options = {}) {
     const min = isNil(options.min) ? new Date(0) : options.min;
-    const max = isNil(options.max) ? Date.now() : options.max;
+    const max = isNil(options.max) ? new Date(Date.now()) : options.max;
     const minMls = min.getTime();
     const maxMls = max.getTime();
     const time = this.integer({ min: minMls, max: maxMls });
     return new Date(time);
+  }
+
+  moment(options = {}) {
+    const min = isNil(options.min) ? moment(0) : options.min;
+    const max = isNil(options.max) ? moment() : options.max;
+    const minMls = +min;
+    const maxMls = +max;
+    const time = this.integer({ min: minMls, max: maxMls });
+    return moment(time);
   }
 
 }
