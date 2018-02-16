@@ -1,28 +1,46 @@
 @import "../panel/variables";
+@import "../panel/mixins";
 
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 
+// Start with a base of EuiPanel styles
+@include euiPanel($selector: 'euiCard');
+
+// EuiCard specific
 .euiCard {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: $euiCardSpacing;
+
+  .euiCard__top,
+  .euiCard__content,
+  .euiCard__footer {
+    display: block;
+    width: 100%;
+  }
 
   &.euiCard--leftAligned,
   &.euiCard--isClickable.euiCard--leftAligned {
     text-align: left;
+    align-items: flex-start;
   }
 
   &.euiCard--centerAligned,
   &.euiCard--isClickable.euiCard--centerAligned {
     text-align: center;
+    align-items: center;
   }
 
   &.euiCard--rightAligned,
   &.euiCard--isClickable.euiCard--rightAligned {
     text-align: right;
+    align-items: flex-end;
   }
 
   &.euiCard--isClickable {
+    display: flex;
+
     &:focus,
     &:hover {
       .euiCard__title {
@@ -35,19 +53,6 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 /**
  * 1. Footer is always at the bottom.
  */
-
-.euiCard__content {
-  flex-grow: 1; /* 1 */
-
-  .euiCard__title {
-    display: block;
-    margin-top: $euiCardSpacing;
-  }
-
-  .euiCard__description {
-    margin-top: $euiCardSpacing/2;
-  }
-}
 
 .euiCard__top {
   flex-grow: 0; /* 1 */
@@ -71,6 +76,19 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
       left: 50%;
       transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
     }
+  }
+}
+
+.euiCard__content {
+  flex-grow: 1; /* 1 */
+
+  .euiCard__title {
+    display: block;
+    margin-top: $euiCardSpacing;
+  }
+
+  .euiCard__description {
+    margin-top: $euiCardSpacing/2;
   }
 }
 

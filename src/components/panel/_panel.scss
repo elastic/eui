@@ -1,39 +1,9 @@
-.euiPanel {
-  @include euiBottomShadowSmall;
-  background-color: $euiColorEmptyShade;
-  border: $euiBorderThin;
-  border-radius: $euiBorderRadius;
-  flex-grow: 1;
+// Export basic class & modifiers
+@include euiPanel($selector: 'euiPanel');
 
-  @each $modifier, $amount in $euiPanelPaddingModifiers {
-    &.euiPanel--#{$modifier} {
-      padding: $amount;
-    }
-  }
-
-  &.euiPanel--shadow {
-    @include euiBottomShadow;
-  }
-
-  &.euiPanel--flexGrowZero {
-    flex-grow: 0;
-  }
-
-  &.euiPanel--isClickable {
-    // in case of button wrapper which inherently is inline-block and no width
-    display: block;
-    width: 100%;
-    text-align: left;
-
-    // transition the shadow
-    @include euiSlightShadow;
-    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
-
-    &:hover,
-    &:focus {
-      @include euiSlightShadowHover;
-      transform: translateY(-2px);
-      cursor: pointer;
-    }
+// Specific
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPanel.euiPanel--#{$modifier} {
+    padding: $amount;
   }
 }

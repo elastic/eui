@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 
@@ -30,7 +29,6 @@ export const EuiCard = ({
     textAlignToClassNameMap[textAlign],
     {
       'euiCard--isClickable': onClick,
-      'euiCard--textAlign': textAlign,
     },
     className,
   );
@@ -50,18 +48,20 @@ export const EuiCard = ({
     );
   }
 
+  const OuterElement = onClick ? 'button' : 'div';
+
   return (
-    <EuiPanel
+    <OuterElement
       onClick={onClick}
       className={classes}
       {...rest}
     >
-      <div className="euiCard__top">
+      <span className="euiCard__top">
         {imageNode}
         {iconNode}
-      </div>
+      </span>
 
-      <div className="euiCard__content">
+      <span className="euiCard__content">
         <EuiTitle size="s" className="euiCard__title">
           <span>{title}</span>
         </EuiTitle>
@@ -69,22 +69,38 @@ export const EuiCard = ({
         <EuiText size="s" className="euiCard__description">
           <p>{description}</p>
         </EuiText>
-      </div>
+      </span>
 
-      <div className="euiCard__footer">
+      <span className="euiCard__footer">
         {footer}
-      </div>
-    </EuiPanel>
+      </span>
+    </OuterElement>
   );
 };
 
 EuiCard.propTypes = {
   className: PropTypes.string,
-  description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+
+  /**
+   * Requires a <EuiIcon> node
+   */
   icon: PropTypes.node,
+
+  /**
+   * Accepts a url in string form
+   */
   image: PropTypes.string,
+
+  /**
+   * Accepts any combination of elements
+   */
   footer: PropTypes.node,
+
+  /**
+   * Use only if you want to forego a button in the footer and make the whole card clickable
+   */
   onClick: PropTypes.func,
   textAlign: PropTypes.oneOf(ALIGNMENTS),
 };

@@ -3,13 +3,13 @@
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--textAlign testClass1 testClass2"
+  class="euiCard euiCard--centerAligned testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     class="euiCard__top"
   />
-  <div
+  <span
     class="euiCard__content"
   >
     <span
@@ -24,8 +24,8 @@ exports[`EuiCard is rendered 1`] = `
         Card description
       </p>
     </div>
-  </div>
-  <div
+  </span>
+  <span
     class="euiCard__footer"
   />
 </div>

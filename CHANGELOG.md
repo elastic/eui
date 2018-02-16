@@ -8,6 +8,7 @@
 - Fix appearance of checked checkeboxes and radios in IE ([#407](https://github.com/elastic/eui/pull/407))
 - Fix disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
 - Fix disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
+- Fix EuiCard content alignment when content is short. ([#415](https://github.com/elastic/eui/pull/415))
 
 # [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
 
