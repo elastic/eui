@@ -3,5 +3,5 @@ export {
 } from 'lodash';
 
 export const browserTick = (callback) => {
-  setTimeout(callback, 0);
+  requestAnimationFrame(callback);
 };

@@ -5,8 +5,8 @@ import {
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
-import { Table } from './conainer_selection';
-const source = require('!!raw-loader!./conainer_selection');
+import { Table } from './container_selection';
+const source = require('!!raw-loader!./container_selection');
 const html = renderToHtml(Table);
 
 export const selectionSection = {
@@ -22,7 +22,7 @@ export const selectionSection = {
   ],
   text: (
     <p>
-      The following example shows to use <EuiCode>EuiBasicTableContainer</EuiCode> along with item selection.
+      The following example shows how to use <EuiCode>EuiBasicTableContainer</EuiCode> along with item selection.
       It also shows how you can request the table to refresh its data by keeping a reference to the container.
     </p>
   ),

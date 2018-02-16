@@ -3,16 +3,19 @@ import React, {
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-import { EuiBasicTableContainer } from '../../../../../src/components/basic_table';
-import { EuiLink } from '../../../../../src/components/link/link';
-import { EuiHealth } from '../../../../../src/components/health';
-import { EuiButton } from '../../../../../src/components/button/button';
+import {
+  EuiBasicTableContainer,
+  EuiLink,
+  EuiHealth,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer
+} from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
 import { browserTick } from '../../../../../src/services/utils';
-import { EuiFlexGroup } from '../../../../../src/components/flex/flex_group';
-import { EuiFlexItem } from '../../../../../src/components/flex/flex_item';
-import { EuiSwitch } from '../../../../../src/components/form/switch/switch';
-import { EuiSpacer } from '../../../../../src/components/spacer/spacer';
+
 /*
 Example user object:
 
