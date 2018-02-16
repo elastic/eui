@@ -15,9 +15,11 @@ import {
   EuiCallOut,
   EuiAccordion,
   EuiHorizontalRule,
+  EuiButton,
 } from '../../../../src/components';
 
 export const Step2 = ({
+  onSelection,
 }) => {
   return (
     <div className="euiAnimateContentLoad">
@@ -356,6 +358,12 @@ export const Step2 = ({
 
         </EuiFlexItem>
       </EuiFlexGroup>
+
+      <EuiHorizontalRule className="ilmHrule" />
+
+      <EuiButton fill iconSide="right" iconType="sortRight" onClick={onSelection}>
+        Save and continue
+      </EuiButton>
     </div>
   );
 };
