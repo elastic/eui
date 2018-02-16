@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
+- `EuiFilePicker` added for `input type="file"` needs. ([#402](https://github.com/elastic/eui/pull/402))
 
 **Bug fixes**
 
