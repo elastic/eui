@@ -29,7 +29,7 @@ exports[`EuiFilePicker is rendered 1`] = `
         />
       </svg>
       <div
-        class="euiFilePicker__label"
+        class="euiFilePicker__promptText"
       >
         Select or drag and drop a file
       </div>

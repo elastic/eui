@@ -131,8 +131,7 @@ export class EuiFilePicker extends Component {
               aria-hidden="true"
             />
             <div
-              className="euiFilePicker__label"
-              htmlFor={id}
+              className="euiFilePicker__promptText"
             >
               {this.state.promptText}
             </div>
