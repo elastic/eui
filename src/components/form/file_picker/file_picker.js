@@ -12,29 +12,35 @@ export class EuiFilePicker extends Component {
     id: PropTypes.string,
     name: PropTypes.string,
     className: PropTypes.string,
-    initialLabelText: PropTypes.string,
+    /**
+     * The content that appears in the dropzone if no file is attached
+     */
+    initialPromptText: PropTypes.node,
+    /**
+     * Use as a callback to access the HTML FileList API
+     */
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    initialLabelText: 'Select or drag and drop a file',
+    initialPromptText: 'Select or drag and drop a file',
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      buttonText: this.props.initialLabelText,
+      promptText: this.props.initialPromptText,
       isHoveringDrop: false,
     };
   }
 
   handleChange = () => {
     if (this.fileInput.files && this.fileInput.files.length > 1) {
-      this.setState({ buttonText: `${this.fileInput.files.length} files selected` });
+      this.setState({ promptText: `${this.fileInput.files.length} files selected` });
     } else if (this.fileInput.files.length === 0) {
-      this.setState({ buttonText: this.props.initialLabelText });
+      this.setState({ promptText: this.props.initialPromptText });
     } else {
-      this.setState({ buttonText: this.fileInput.value.split('\\').pop() });
+      this.setState({ promptText: this.fileInput.value.split('\\').pop() });
     }
 
     const { onChange } = this.props;
@@ -65,7 +71,7 @@ export class EuiFilePicker extends Component {
     const {
       id,
       name,
-      initialLabelText,
+      initialPromptText,
       className,
       disabled,
       onChange, // eslint-disable-line no-unused-vars
@@ -76,13 +82,13 @@ export class EuiFilePicker extends Component {
       'euiFilePicker',
       {
         'euiFilePicker__showDrop': this.state.isHoveringDrop,
-        'euiFilePicker-hasFiles': this.state.buttonText !== initialLabelText,
+        'euiFilePicker-hasFiles': this.state.promptText !== initialPromptText,
       },
       className
     );
 
     let clearButton;
-    if (this.state.buttonText !== initialLabelText) {
+    if (this.state.promptText !== initialPromptText) {
       // The clear button needs its own aria-label, otherwise the enclosing label is read
       // by the screen reader.
       clearButton = (
@@ -128,7 +134,7 @@ export class EuiFilePicker extends Component {
               className="euiFilePicker__label"
               htmlFor={id}
             >
-              {this.state.buttonText}
+              {this.state.promptText}
             </div>
             {clearButton}
           </div>

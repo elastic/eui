@@ -45,7 +45,7 @@ export class FilePicker extends React.Component {
           <EuiFilePicker
             id="asdf2"
             multiple
-            initialLabelText="Select or drag and drop multiple files"
+            initialPromptText="Select or drag and drop multiple files"
             onChange={files => { this.onChange(files); }}
           />
         </EuiFlexItem>

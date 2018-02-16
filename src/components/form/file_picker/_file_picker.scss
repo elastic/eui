@@ -54,7 +54,7 @@
       color $euiAnimSpeedSlow ease-in;
   }
 
-  .euiFilePicker__label {
+  .euiFilePicker__promptText {
     @include euiFontSizeS;
     display: block;
     white-space: nowrap;
@@ -62,7 +62,7 @@
     text-overflow: ellipsis;
   }
 
-  &.euiFilePicker-hasFiles .euiFilePicker__label {
+  &.euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
   }
 
@@ -72,7 +72,7 @@
       0 0 0 1px transparentize($euiColorFullShade, .84),
       inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
 
-    .euiFilePicker__label {
+    .euiFilePicker__promptText {
       text-decoration: underline;
     }
 
