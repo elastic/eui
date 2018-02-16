@@ -13,6 +13,8 @@ import {
   EuiText,
   EuiTextColor,
   EuiCallOut,
+  EuiAccordion,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export const Step2 = ({
@@ -23,13 +25,13 @@ export const Step2 = ({
         <h4>When should an index be moved to each phase?</h4>
       </EuiTitle>
       <EuiSpacer />
-      <EuiFlexGroup alignItems="center">
+      <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <div style={{ background: '#00A69B', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
             <EuiIcon type="indexFlush" size="xl" />
           </div>
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
+        <EuiFlexItem>
           <EuiTitle size="s">
             <h4>Live and hot</h4>
           </EuiTitle>
@@ -38,10 +40,55 @@ export const Step2 = ({
               <p>By default your indices operate at full speed and can be searched with no delay</p>
             </EuiText>
           </EuiTextColor>
+          <EuiSpacer size="m" />
+          <EuiAccordion
+            id="hot"
+            buttonContent="Tweak advanced settings"
+            buttonClassName="ilmAccordion__button"
+            buttonContentClassName="ilmAccordion__buttonContent"
+          >
+            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow label="Maximum size stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'gigabytes' },
+                        { value: 'option_two', text: 'terabyes' },
+                        { value: 'option_one', text: 'megabytes' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
+                  <EuiFormRow label="Maximum age of data stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'minutes' },
+                        { value: 'option_two', text: 'hours' },
+                        { value: 'option_three', text: 'days' },
+                        { value: 'option_four', text: 'months' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </div>
+          </EuiAccordion>
         </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer size="xxl" />
+      <EuiHorizontalRule className="ilmHrule" />
 
       <EuiCallOut
         size="s"
@@ -96,10 +143,69 @@ export const Step2 = ({
               </EuiFormRow>
             </EuiFlexItem>
           </EuiFlexGroup>
+
+          <EuiSpacer size="m" />
+          <EuiAccordion
+            id="warm"
+            buttonContent="Tweak advanced settings"
+            buttonClassName="ilmAccordion__button"
+            buttonContentClassName="ilmAccordion__buttonContent"
+          >
+            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow label="Maximum size stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'gigabytes' },
+                        { value: 'option_two', text: 'terabyes' },
+                        { value: 'option_one', text: 'megabytes' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+              <EuiSpacer />
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow label="Maximum age of data stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'minutes' },
+                        { value: 'option_two', text: 'hours' },
+                        { value: 'option_three', text: 'days' },
+                        { value: 'option_four', text: 'months' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+              <EuiSpacer />
+              <EuiFormRow label="Shrink to this number of shards">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+              <EuiFormRow label="Compress into this many segments">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+              <EuiFormRow label="Number of replicas allowed">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+            </div>
+          </EuiAccordion>
         </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer size="xxl" />
+      <EuiHorizontalRule className="ilmHrule" />
 
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
@@ -141,14 +247,72 @@ export const Step2 = ({
             </EuiFlexItem>
             <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
               <EuiFormRow isInvalid error={['No node.attr.* could be found. Use node name instead.']} label="Match nodes with this name">
-                <EuiFieldText />
+                <EuiFieldText placeholder="dave.sleepy.*"/>
               </EuiFormRow>
             </EuiFlexItem>
           </EuiFlexGroup>
+
+          <EuiAccordion
+            id="cold"
+            buttonContent="Tweak advanced settings"
+            buttonClassName="ilmAccordion__button"
+            buttonContentClassName="ilmAccordion__buttonContent"
+          >
+            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow label="Maximum size stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'gigabytes' },
+                        { value: 'option_two', text: 'terabyes' },
+                        { value: 'option_one', text: 'megabytes' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+              <EuiSpacer />
+              <EuiFlexGroup gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow label="Maximum age of data stored">
+                    <EuiFieldNumber />
+                  </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiFormRow hasEmptyLabelSpace>
+                    <EuiSelect
+                      options={[
+                        { value: 'option_one', text: 'minutes' },
+                        { value: 'option_two', text: 'hours' },
+                        { value: 'option_three', text: 'days' },
+                        { value: 'option_four', text: 'months' },
+                      ]}
+                    />
+                  </EuiFormRow>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+              <EuiSpacer />
+              <EuiFormRow label="Shrink to this number of shards">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+              <EuiFormRow label="Compress into this many segments">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+              <EuiFormRow label="Number of replicas allowed">
+                <EuiFieldNumber style={{ width: 100 }}/>
+              </EuiFormRow>
+            </div>
+          </EuiAccordion>
         </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer size="xxl" />
+      <EuiHorizontalRule className="ilmHrule" />
 
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>

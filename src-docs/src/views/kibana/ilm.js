@@ -20,6 +20,7 @@ import {
 
 import { Step1 } from './ilm_step1';
 import { Step2 } from './ilm_step2';
+import { Step3 } from './ilm_step3';
 
 import {
   KibanaChrome,
@@ -59,7 +60,7 @@ export default class extends Component {
 
     if (this.state.selectedStep === 3) {
       return (
-        <div>3</div>
+        <Step3 onSelection={() => this.onSelectedStepChanged(3)} />
       );
     }
 
@@ -87,13 +88,13 @@ export default class extends Component {
         onClick: () => this.onSelectedStepChanged(2)
       },
       {
-        title: 'Edit policy',
+        title: 'Review policy',
         isSelected: this.state.selectedStep === 3,
         isComplete: this.state.selectedStep > 3,
         onClick: () => this.onSelectedStepChanged(3)
       },
       {
-        title: 'Review and save',
+        title: 'Attach and save',
         isSelected: this.state.selectedStep === 4,
         onClick: () => this.onSelectedStepChanged(4)
       },
