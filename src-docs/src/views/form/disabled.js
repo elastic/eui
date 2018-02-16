@@ -13,6 +13,7 @@ import {
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
+  EuiFilePicker,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -128,6 +129,11 @@ export default class extends Component {
           ]}
           disabled
         />
+
+        <br />
+        <br />
+
+        <EuiFilePicker disabled />
 
         <br />
         <br />

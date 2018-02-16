@@ -10,6 +10,7 @@ import {
   EuiFieldText,
   EuiForm,
   EuiFormRow,
+  EuiFilePicker,
   EuiRange,
   EuiRadioGroup,
   EuiSelect,
@@ -134,6 +135,12 @@ export default class extends Component {
               { value: 'option_three', text: 'Option three' },
             ]}
           />
+        </EuiFormRow>
+
+        <EuiFormRow
+          label="File picker"
+        >
+          <EuiFilePicker />
         </EuiFormRow>
 
         <EuiFormRow

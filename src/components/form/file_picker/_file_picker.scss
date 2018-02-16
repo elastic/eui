@@ -1,0 +1,110 @@
+.euiFilePicker {
+  .euiFilePicker__wrap {
+    @include euiFormControlSize;
+
+    position: relative;
+    display: inline-block;
+  }
+
+  // The input is an invisiable dropzone / button
+  .euiFilePicker__input {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+  	width: 100%;
+  	height: 100%;
+  	opacity: 0;
+  	overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .euiFilePicker__icon {
+    margin-bottom: $euiSize;
+    transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+
+  /**
+   * 1. Don't block the user from dropping files onto the filepicker.
+   * 2. Put prompt on top of input, so the clear button can intercept the click.
+   */
+  .euiFilePicker__prompt {
+    @include euiFormControlDefaultShadow;
+
+    pointer-events: none; /* 1 */
+    position: relative; /* 2 */
+    z-index: 1; /* 2 */
+    display: block;
+    background: $euiColorLightestShade;
+    padding: $euiSizeL;
+    border-radius: $euiBorderRadius / 2;
+    background: $euiFormBackgroundColor;
+    text-align: center;
+    transition:
+      box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in,
+      background-color $euiAnimSpeedSlow ease-in,
+      border-color $euiAnimSpeedSlow ease-in,
+      color $euiAnimSpeedSlow ease-in;
+  }
+
+  .euiFilePicker__promptText {
+    @include euiFontSizeS;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /**
+   * 1. Undo the pointer-events: none applied to the enclosing prompt.
+   */
+  .euiFilePicker__clearButton {
+    pointer-events: auto; /* 1 */
+  }
+
+  // Hover and focus
+  .euiFilePicker__input:hover:not(:disabled) + .euiFilePicker__prompt,
+  .euiFilePicker__input:focus + .euiFilePicker__prompt {
+    text-decoration: underline;
+
+    .euiFilePicker__icon {
+      transform: scale(1.1);
+    }
+  }
+
+  // Focus
+  .euiFilePicker__input:focus + .euiFilePicker__prompt {
+    @include euiFormControlFocusStyle;
+  }
+
+  // Disabled
+  .euiFilePicker__input:disabled + .euiFilePicker__prompt {
+    @include euiFormControlDisabledStyle;
+  }
+
+
+  // When the filepicker has files in it
+  &.euiFilePicker-hasFiles .euiFilePicker__promptText {
+    font-weight: $euiFontWeightBold;
+  }
+
+  // When you are dragging files over the dropzone
+  &.euiFilePicker__showDrop .euiFilePicker__prompt {
+    @include euiFormControlFocusStyle;
+
+    .euiFilePicker__promptText {
+      text-decoration: underline;
+    }
+
+    .euiFilePicker__icon {
+      transform: scale(1.1);
+      color: $euiColorPrimary;
+    }
+  }
+}

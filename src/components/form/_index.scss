@@ -34,11 +34,42 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
   }
 }
 
+@mixin euiFormControlDefaultShadow {
+  box-shadow:
+    0 2px 2px -1px rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .92),
+    inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
+}
+
+@mixin euiFormControlInvalidStyle {
+  box-shadow:
+    0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 0 $euiColorEmptyShade,
+    inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
+}
+
+@mixin euiFormControlFocusStyle {
+  background: tintOrShade($euiColorEmptyShade, 0%, 20%);
+  box-shadow:
+    0 4px 4px -2px rgba(0, 0, 0, 0.1),
+    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
+    inset 0 -2px 0 0 $euiColorPrimary;
+}
+
+@mixin euiFormControlDisabledStyle {
+  cursor: not-allowed;
+  background: darken($euiColorLightestShade, 2%);
+  box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
+}
+
 /**
  * 1. Override invalid state with focus state.
  */
 @mixin euiFormControlStyle {
   @include euiFormControlSize;
+  @include euiFormControlDefaultShadow;
 
   border: none;
   font-size: $euiFontSizeS;
@@ -46,10 +77,6 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
   padding: $euiSizeM;
   color: $euiTextColor;
   background: $euiFormBackgroundColor;
-  box-shadow:
-    0 2px 2px -1px rgba(0, 0, 0, 0.1),
-    0 0 0 1px transparentize($euiColorFullShade, .92),
-    inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
   border-radius: 0;
 
@@ -58,26 +85,15 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
   }
 
   &:invalid { /* 1 */
-    box-shadow:
-      0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
-      0 0 0 1px transparentize($euiColorFullShade, .84),
-      inset 0 0 0 0 $euiColorEmptyShade,
-      inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
+    @include euiFormControlInvalidStyle;
   }
 
   &:focus { /* 1 */
-    background: tintOrShade($euiColorEmptyShade, 0%, 20%);
-    box-shadow:
-      0 4px 4px -2px rgba(0, 0, 0, 0.1),
-      0 0 0 1px transparentize($euiColorFullShade, .84),
-      inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
-      inset 0 -2px 0 0 $euiColorPrimary;
+    @include euiFormControlFocusStyle;
   }
 
   &:disabled {
-    cursor: not-allowed;
-    background: darken($euiColorLightestShade, 2%);
-    box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
+    @include euiFormControlDisabledStyle;
   }
 
   &[readOnly] {
@@ -135,6 +151,7 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 @import 'field_password/index';
 @import 'field_search/index';
 @import 'field_text/index';
+@import 'file_picker/index';
 @import 'form';
 @import 'form_control_layout/index';
 @import 'form_error_text/index';
