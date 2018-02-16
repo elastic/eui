@@ -21,6 +21,7 @@ import {
 import { Step1 } from './ilm_step1';
 import { Step2 } from './ilm_step2';
 import Step3 from './ilm_step3';
+import { Step4 } from './ilm_step4';
 
 import {
   KibanaChrome,
@@ -66,7 +67,7 @@ export default class extends Component {
 
     if (this.state.selectedStep === 4) {
       return (
-        <div>4</div>
+        <Step4 />
       );
     }
 
