@@ -24,7 +24,7 @@ export const DelayHideExample = {
       ],
       text: (
         <p>
-          <EuiCode>DelayHide</EuiCode> is a component for conditionally toggling
+          <EuiCode>EuiDelayHide</EuiCode> is a component for conditionally toggling
           the visibility of a child component. It will ensure that the child is
           visible for at least 1000ms (default). This avoids UI glitches that
           are common with loading spinners and other elements that are rendered

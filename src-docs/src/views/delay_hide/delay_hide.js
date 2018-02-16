@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import { EuiDelayHide } from '../../../../src/components/delay_hide';
-import { EuiFlexItem } from '../../../../src/components/flex/flex_item';
-import { EuiCheckbox } from '../../../../src/components/form/checkbox/checkbox';
-import { EuiFormRow } from '../../../../src/components/form/form_row/form_row';
-import { EuiFieldNumber } from '../../../../src/components/form/field_number';
+import React, { Component, Fragment } from 'react';
+import {
+  EuiDelayHide,
+  EuiFlexItem,
+  EuiCheckbox,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiLoadingSpinner
+} from '../../../../src/components';
 
 export default class extends Component {
   state = {
@@ -21,7 +24,7 @@ export default class extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <EuiFlexItem>
           <EuiFormRow>
             <EuiCheckbox
@@ -42,11 +45,11 @@ export default class extends Component {
             <EuiDelayHide
               hide={this.state.hide}
               minimumDuration={this.state.minimumDuration}
-              render={() => <div>Hello world</div>}
+              render={() => <EuiLoadingSpinner size="m"/>}
             />
           </EuiFormRow>
         </EuiFlexItem>
-      </div>
+      </Fragment>
     );
   }
 }

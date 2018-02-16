@@ -8,6 +8,11 @@ export class EuiDelayHide extends Component {
     render: PropTypes.func.isRequired
   };
 
+  static defaultProps = {
+    hide: false,
+    minimumDuration: 1000
+  };
+
   constructor(props) {
     super(props);
 
@@ -16,34 +21,33 @@ export class EuiDelayHide extends Component {
     };
 
     this.lastRenderedTime = this.props.hide ? 0 : Date.now();
-    this.shouldRender = false;
   }
 
-  componentWillReceiveProps({ hide, minimumDuration = 1000 }) {
-    clearTimeout(this.timeout);
-
+  getTimeRemaining(minimumDuration) {
     const visibleDuration = Date.now() - this.lastRenderedTime;
-    const timeRemaining = minimumDuration - visibleDuration;
-    if (hide && timeRemaining > 0) {
-      this.shouldRender = false;
+    return minimumDuration - visibleDuration;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    clearTimeout(this.timeout);
+    const timeRemaining = this.getTimeRemaining(nextProps.minimumDuration);
+
+    if (nextProps.hide && timeRemaining > 0) {
       this.setStateDelayed(timeRemaining);
     } else {
-      this.shouldRender = true;
-      this.lastRenderedTime = Date.now();
-      this.setState({ hide });
+      if (this.state.hide && !nextProps.hide) {
+        this.lastRenderedTime = Date.now();
+      }
+
+      this.setState({ hide: nextProps.hide });
     }
   }
 
   setStateDelayed = timeRemaining => {
     this.timeout = setTimeout(() => {
-      this.shouldRender = true;
       this.setState({ hide: true });
     }, timeRemaining);
   };
-
-  shouldComponentUpdate() {
-    return this.shouldRender;
-  }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
