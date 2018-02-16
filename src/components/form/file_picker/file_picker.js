@@ -89,8 +89,6 @@ export class EuiFilePicker extends Component {
 
     let clearButton;
     if (this.state.promptText !== initialPromptText) {
-      // The clear button needs its own aria-label, otherwise the enclosing label is read
-      // by the screen reader.
       clearButton = (
         <EuiButtonEmpty
           aria-label="Clear selected files"
