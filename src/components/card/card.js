@@ -49,7 +49,6 @@ export const EuiCard = ({
   }
 
   const OuterElement = onClick ? 'button' : 'div';
-  const InnerElement = onClick ? 'span' : 'div';
 
   return (
     <OuterElement
@@ -57,12 +56,12 @@ export const EuiCard = ({
       className={classes}
       {...rest}
     >
-      <InnerElement className="euiCard__top">
+      <span className="euiCard__top">
         {imageNode}
         {iconNode}
-      </InnerElement>
+      </span>
 
-      <InnerElement className="euiCard__content">
+      <span className="euiCard__content">
         <EuiTitle size="s" className="euiCard__title">
           <span>{title}</span>
         </EuiTitle>
@@ -70,11 +69,11 @@ export const EuiCard = ({
         <EuiText size="s" className="euiCard__description">
           <p>{description}</p>
         </EuiText>
-      </InnerElement>
+      </span>
 
-      <InnerElement className="euiCard__footer">
+      <span className="euiCard__footer">
         {footer}
-      </InnerElement>
+      </span>
     </OuterElement>
   );
 };

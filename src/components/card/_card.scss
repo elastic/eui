@@ -13,7 +13,9 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   overflow: hidden;
   padding: $euiCardSpacing;
 
-  > * {
+  .euiCard__top,
+  .euiCard__content,
+  .euiCard__footer {
     display: block;
     width: 100%;
   }
@@ -52,19 +54,6 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
  * 1. Footer is always at the bottom.
  */
 
-.euiCard__content {
-  flex-grow: 1; /* 1 */
-
-  .euiCard__title {
-    display: block;
-    margin-top: $euiCardSpacing;
-  }
-
-  .euiCard__description {
-    margin-top: $euiCardSpacing/2;
-  }
-}
-
 .euiCard__top {
   flex-grow: 0; /* 1 */
   position: relative;
@@ -87,6 +76,19 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
       left: 50%;
       transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
     }
+  }
+}
+
+.euiCard__content {
+  flex-grow: 1; /* 1 */
+
+  .euiCard__title {
+    display: block;
+    margin-top: $euiCardSpacing;
+  }
+
+  .euiCard__description {
+    margin-top: $euiCardSpacing/2;
   }
 }
 
