@@ -10,7 +10,7 @@ import {
 
 export default class extends Component {
   state = {
-    minimumDuration: 1000,
+    minimumDuration: 3000,
     hide: false
   };
 
