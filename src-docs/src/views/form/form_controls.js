@@ -13,6 +13,7 @@ import {
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
+  EuiFilePicker,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -139,6 +140,11 @@ export default class extends Component {
             { value: 'option_three', text: 'Option three' },
           ]}
         />
+
+        <br />
+        <br />
+
+        <EuiFilePicker />
 
         <br />
         <br />

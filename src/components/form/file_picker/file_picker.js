@@ -12,18 +12,18 @@ export class EuiFilePicker extends Component {
     id: PropTypes.string,
     name: PropTypes.string,
     className: PropTypes.string,
-    initialButtonText: PropTypes.string,
+    initialLabelText: PropTypes.string,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    initialButtonText: 'Select or drag and drop a file',
+    initialLabelText: 'Select or drag and drop a file',
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      buttonText: this.props.initialButtonText,
+      buttonText: this.props.initialLabelText,
       isHoveringDrop: false,
     };
   }
@@ -32,9 +32,9 @@ export class EuiFilePicker extends Component {
     if (this.fileInput.files && this.fileInput.files.length > 1) {
       this.setState({ buttonText: `${this.fileInput.files.length} files selected` });
     } else if (this.fileInput.files.length === 0) {
-      this.setState({ buttonText: this.props.initialButtonText });
+      this.setState({ buttonText: this.props.initialLabelText });
     } else {
-      this.setState({ buttonText: `Selected file ${this.fileInput.value.split('\\').pop()}` });
+      this.setState({ buttonText: this.fileInput.value.split('\\').pop() });
     }
 
     const { onChange } = this.props;
@@ -52,7 +52,9 @@ export class EuiFilePicker extends Component {
   };
 
   showDrop = () => {
-    this.setState({ isHoveringDrop: true });
+    if (!this.props.disabled) {
+      this.setState({ isHoveringDrop: true });
+    }
   };
 
   hideDrop = () => {
@@ -63,8 +65,9 @@ export class EuiFilePicker extends Component {
     const {
       id,
       name,
-      initialButtonText,
+      initialLabelText,
       className,
+      disabled,
       onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -73,23 +76,23 @@ export class EuiFilePicker extends Component {
       'euiFilePicker',
       {
         'euiFilePicker__showDrop': this.state.isHoveringDrop,
-        'euiFilePicker-hasFiles': this.state.buttonText !== initialButtonText,
+        'euiFilePicker-hasFiles': this.state.buttonText !== initialLabelText,
       },
       className
     );
 
     let clearButton;
-    if (this.state.buttonText !== initialButtonText) {
+    if (this.state.buttonText !== initialLabelText) {
       // The clear button needs its own aria-label, otherwise the enclosing label is read
       // by the screen reader.
       clearButton = (
         <EuiButtonEmpty
           aria-label="Clear selected files"
           className="euiFilePicker__clearButton"
-          size="s"
+          size="xs"
           onClick={this.removeFiles}
         >
-          Clear
+          Remove
         </EuiButtonEmpty>
       );
     } else {
@@ -111,6 +114,7 @@ export class EuiFilePicker extends Component {
             onDragOver={this.showDrop}
             onDragLeave={this.hideDrop}
             onDrop={this.hideDrop}
+            disabled={disabled}
             {...rest}
           />
           <div className="euiFilePicker__prompt">
@@ -120,12 +124,12 @@ export class EuiFilePicker extends Component {
               size="l"
               aria-hidden="true"
             />
-            <label
+            <div
               className="euiFilePicker__label"
               htmlFor={id}
             >
               {this.state.buttonText}
-            </label>
+            </div>
             {clearButton}
           </div>
         </div>

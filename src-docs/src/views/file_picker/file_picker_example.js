@@ -11,7 +11,7 @@ import {
   EuiFilePicker,
 } from '../../../../src/components';
 
-import FilePicker from './file_picker';
+import { FilePicker } from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 
