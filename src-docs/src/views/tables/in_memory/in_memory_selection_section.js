@@ -5,12 +5,12 @@ import {
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
-import { Table } from './container_selection';
-const source = require('!!raw-loader!./container_selection');
+import { Table } from './in_memory_selection';
+const source = require('!!raw-loader!./in_memory_selection');
 const html = renderToHtml(Table);
 
 export const selectionSection = {
-  title: 'Container - Selection',
+  title: 'In-Memory Table - Selection',
   source: [
     {
       type: GuideSectionTypes.JS,
@@ -22,8 +22,8 @@ export const selectionSection = {
   ],
   text: (
     <p>
-      The following example shows how to use <EuiCode>EuiBasicTableContainer</EuiCode> along with item selection.
-      It also shows how you can request the table to refresh its data by keeping a reference to the container.
+      The following example shows how to use <EuiCode>EuiInMemoryTable</EuiCode> along with item selection.
+      It also shows how you can display messages, errors and show loading indication.
     </p>
   ),
   demo: <Table/>,

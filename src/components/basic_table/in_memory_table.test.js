@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTableContainer } from './basic_table_container';
+import { EuiInMemoryTable } from './in_memory_table';
 
-describe('EuiBasicTableContainer', () => {
+describe('EuiInMemoryTable', () => {
 
-  test('basic - empty array', () => {
+  test('empty array', () => {
 
     const props = {
       ...requiredProps,
@@ -20,54 +20,13 @@ describe('EuiBasicTableContainer', () => {
       ]
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('basic - empty simple loader', () => {
-
-    const props = {
-      ...requiredProps,
-      items: () => [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTableContainer {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('basic - empty promise loader', () => {
-
-    const props = {
-      ...requiredProps,
-      items: () => Promise.resolve([]),
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTableContainer {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-
-  test('basic - empty - custom message', () => {
+  test('with message', () => {
 
     const props = {
       ...requiredProps,
@@ -79,20 +38,42 @@ describe('EuiBasicTableContainer', () => {
           description: 'description'
         }
       ],
-      noItemsMessage: 'where my items at?'
+      message: 'where my items at?'
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('basic - with items', () => {
+  test('with message and loading', () => {
 
     const props = {
       ...requiredProps,
-      items: () => [
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      message: 'Loading items....',
+      loading: true
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with items', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
@@ -106,7 +87,32 @@ describe('EuiBasicTableContainer', () => {
       ]
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with items and message - expecting to show the message and not the items', () => {
+
+    const props = {
+      ...requiredProps,
+      message: 'show me!',
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ]
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -116,14 +122,11 @@ describe('EuiBasicTableContainer', () => {
 
     const props = {
       ...requiredProps,
-      items: () => ({
-        items: [
-          { id: '1', name: 'name1' },
-          { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' }
-        ],
-        totalCount: 5
-      }),
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
       columns: [
         {
           field: 'name',
@@ -136,7 +139,7 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -146,9 +149,10 @@ describe('EuiBasicTableContainer', () => {
 
     const props = {
       ...requiredProps,
-      items: () => {
-        throw new Error('no can do');
-      },
+      items: [
+        { id: '1', name: 'name1' }
+      ],
+      error: 'ouch!',
       columns: [
         {
           field: 'name',
@@ -161,7 +165,7 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -187,7 +191,7 @@ describe('EuiBasicTableContainer', () => {
       sorting: true
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -216,7 +220,7 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -247,7 +251,7 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -281,7 +285,7 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -323,7 +327,107 @@ describe('EuiBasicTableContainer', () => {
       }
     };
     const component = shallow(
-      <EuiBasicTableContainer {...props} />
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination, selection, sorting  and simple search', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+          sortable: true
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              type: 'button',
+              name: 'Edit',
+              description: 'edit',
+              onClick: () => undefined
+            }
+          ]
+        }
+      ],
+      pagination: true,
+      sorting: true,
+      search: true,
+      selection: {
+        itemId: 'id',
+        onSelectionChanged: () => undefined
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination, selection, sorting and configured search', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+          sortable: true
+        },
+        {
+          name: 'Actions',
+          actions: [
+            {
+              type: 'button',
+              name: 'Edit',
+              description: 'edit',
+              onClick: () => undefined
+            }
+          ]
+        }
+      ],
+      pagination: true,
+      sorting: true,
+      search: {
+        defaultQuery: 'name:name1',
+        box: {
+          incremental: true
+        },
+        filters: [
+          {
+            type: 'field_value_toggle',
+            field: 'name',
+            value: 'name1',
+            name: 'Name1',
+            negatedName: 'Not Name1'
+          }
+        ]
+      },
+      selection: {
+        itemId: 'id',
+        onSelectionChanged: () => undefined
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();

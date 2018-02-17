@@ -2,7 +2,7 @@ import React from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
-  EuiBasicTableContainer,
+  EuiInMemoryTable,
   EuiLink,
   EuiHealth
 } from '../../../../../src/components';
@@ -31,16 +31,10 @@ Example country object:
 
 const store = createDataStore();
 
-const loadItems = (criteria) => {
-  const { page, sort } = criteria;
-  const { items, totalCount } = store.findUsers(page.index, page.size, sort);
-  return Promise.resolve({ items, totalCount });
-};
-
 export const Table = () => {
   return (
-    <EuiBasicTableContainer
-      items={loadItems}
+    <EuiInMemoryTable
+      items={store.users}
       columns={[
         {
           field: 'firstName',

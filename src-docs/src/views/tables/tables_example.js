@@ -14,9 +14,10 @@ import { section as sortingSection } from './sorting';
 import { section as selectionSection } from './selection';
 import { section as actionsSection } from './actions';
 import {
-  section as containerSection,
-  selectionSection as containerSelectionSection
-} from './container';
+  section as inMemorySection,
+  selectionSection as inMemorySelectionSection,
+  searchSection as inMemorySearchSection
+} from './in_memory';
 import { section as customSection } from './custom';
 
 export const TableExample = {
@@ -49,8 +50,9 @@ export const TableExample = {
     sortingSection,
     selectionSection,
     actionsSection,
-    containerSection,
-    containerSelectionSection,
+    inMemorySection,
+    inMemorySelectionSection,
+    inMemorySearchSection,
     customSection,
   ],
 };

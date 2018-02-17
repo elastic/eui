@@ -241,7 +241,7 @@ export {
 
 export {
   EuiBasicTable,
-  EuiBasicTableContainer
+  EuiInMemoryTable
 } from './basic_table';
 
 export {

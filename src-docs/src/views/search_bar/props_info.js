@@ -1,6 +1,6 @@
 export const propsInfo = {
 
-  EuiBasicTable: {
+  EuiSearchBar: {
     __docgenInfo: {
       props: {
         onChange: {

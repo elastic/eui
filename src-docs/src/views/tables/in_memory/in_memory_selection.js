@@ -4,17 +4,15 @@ import React, {
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
-  EuiBasicTableContainer,
   EuiLink,
   EuiHealth,
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
-  EuiSpacer
+  EuiSpacer,
+  EuiInMemoryTable
 } from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
-import { browserTick } from '../../../../../src/services/utils';
 
 /*
 Example user object:
@@ -42,40 +40,50 @@ const random = new Random();
 
 const store = createDataStore();
 
-const loadItems = (criteria) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const { page, sort } = criteria;
-      const { items, totalCount } = store.findUsers(page.index, page.size, sort);
-      resolve({ items, totalCount });
-    }, random.number({ min: 0, max: 3000 }));
-  });
-};
-
-const loadItemsError = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error('ouch! that hurt!!!'));
-    }, random.number({ min: 0, max: 3000 }));
-  });
-};
-
-const loadItemsZeroResults = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ items: [], totalCount: 0 });
-    }, random.number({ min: 0, max: 3000 }));
-  });
-};
-
 export class Table extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selection: [],
-      loader: loadItems
+      loading: false,
+      users: [],
+      message: 'No users',
+      selection: []
     };
+  }
+
+  loadUsers() {
+    this.setState({
+      message: 'Loading users...',
+      loading: true,
+      users: undefined,
+      error: undefined
+    });
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        message: undefined,
+        error: undefined,
+        users: store.users
+      });
+    }, random.number({ min: 0, max: 3000 }));
+  }
+
+  loadUsersWithError() {
+    this.setState({
+      message: 'Loading users...',
+      loading: true,
+      users: undefined,
+      error: undefined
+    });
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        error: 'ouch!... again... ',
+        users: undefined,
+        message: undefined
+      });
+    }, random.number({ min: 0, max: 3000 }));
   }
 
   renderDeleteButton() {
@@ -86,7 +94,6 @@ export class Table extends Component {
     const onClick = () => {
       store.deleteUsers(...selection.map(user => user.id));
       this.setState({ selection: [] });
-      this.table.refresh();
     };
     return (
       <EuiButton
@@ -99,11 +106,6 @@ export class Table extends Component {
     );
   }
 
-  updateLoader(loader) {
-    this.setState({ loader });
-    browserTick(() => this.table.refresh());
-  }
-
   render() {
     const deleteButton = this.renderDeleteButton();
     return (
@@ -111,31 +113,22 @@ export class Table extends Component {
         <EuiFlexGroup alignItems="center">
           { deleteButton ? <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem> : undefined }
           <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Normal Loader"
-              checked={this.state.loader === loadItems}
-              onChange={this.updateLoader.bind(this, loadItems)}
-            />
+            <EuiButton onClick={this.loadUsers.bind(this)} isDisabled={this.state.loading}>
+              Load Users
+            </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Error Loader"
-              checked={this.state.loader === loadItemsError}
-              onChange={this.updateLoader.bind(this, loadItemsError)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="No Items Loader"
-              checked={this.state.loader === loadItemsZeroResults}
-              onChange={this.updateLoader.bind(this, loadItemsZeroResults)}
-            />
+            <EuiButton onClick={this.loadUsersWithError.bind(this)} isDisabled={this.state.loading}>
+              Load Users (Error)
+            </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="l"/>
-        <EuiBasicTableContainer
-          ref={(table) => this.table = table}
-          items={this.state.loader}
+        <EuiInMemoryTable
+          items={this.state.users}
+          error={this.state.error}
+          loading={this.state.loading}
+          message={this.state.message}
           columns={[
             {
               field: 'firstName',

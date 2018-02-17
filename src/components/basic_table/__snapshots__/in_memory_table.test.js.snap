@@ -1,0 +1,577 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiInMemoryTable empty array 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={Array []}
+  noItemsMessage="No items found"
+  onChange={[Function]}
+/>
+`;
+
+exports[`EuiInMemoryTable with items 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+/>
+`;
+
+exports[`EuiInMemoryTable with items and message - expecting to show the message and not the items 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={Array []}
+  noItemsMessage="show me!"
+  onChange={[Function]}
+/>
+`;
+
+exports[`EuiInMemoryTable with message 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={Array []}
+  noItemsMessage="where my items at?"
+  onChange={[Function]}
+/>
+`;
+
+exports[`EuiInMemoryTable with message and loading 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={Array []}
+  loading={true}
+  noItemsMessage="Loading items...."
+  onChange={[Function]}
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination and error 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  error="ouch!"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 1,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination and selection 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 10,
+      "totalItemCount": 3,
+    }
+  }
+  selection={
+    Object {
+      "itemId": "id",
+      "onSelectionChanged": [Function],
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 10,
+      "totalItemCount": 3,
+    }
+  }
+  selection={
+    Object {
+      "itemId": "id",
+      "onSelectionChanged": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search 1`] = `
+<div>
+  <EuiSearchBar
+    onChange={[Function]}
+  />
+  <EuiSpacer
+    size="l"
+  />
+  <EuiBasicTable
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+          "sortable": true,
+        },
+        Object {
+          "actions": Array [
+            Object {
+              "description": "edit",
+              "name": "Edit",
+              "onClick": [Function],
+              "type": "button",
+            },
+          ],
+          "name": "Actions",
+        },
+      ]
+    }
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+        Object {
+          "id": "2",
+          "name": "name2",
+        },
+        Object {
+          "id": "3",
+          "name": "name3",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    pagination={
+      Object {
+        "pageIndex": 0,
+        "pageSize": 10,
+        "totalItemCount": 3,
+      }
+    }
+    selection={
+      Object {
+        "itemId": "id",
+        "onSelectionChanged": [Function],
+      }
+    }
+    sorting={
+      Object {
+        "sort": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and a single record action 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+      Object {
+        "actions": Array [
+          Object {
+            "description": "edit",
+            "name": "Edit",
+            "onClick": [Function],
+            "type": "button",
+          },
+        ],
+        "name": "Actions",
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 10,
+      "totalItemCount": 3,
+    }
+  }
+  selection={
+    Object {
+      "itemId": "id",
+      "onSelectionChanged": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and column renderer 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "render": [Function],
+        "sortable": true,
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 2,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  selection={
+    Object {
+      "itemId": "id",
+      "onSelectionChanged": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, selection, sorting and configured search 1`] = `
+<div>
+  <EuiSearchBar
+    box={
+      Object {
+        "incremental": true,
+      }
+    }
+    defaultQuery="name:name1"
+    filters={
+      Array [
+        Object {
+          "field": "name",
+          "name": "Name1",
+          "negatedName": "Not Name1",
+          "type": "field_value_toggle",
+          "value": "name1",
+        },
+      ]
+    }
+    onChange={[Function]}
+  />
+  <EuiSpacer
+    size="l"
+  />
+  <EuiBasicTable
+    columns={
+      Array [
+        Object {
+          "description": "description",
+          "field": "name",
+          "name": "Name",
+          "sortable": true,
+        },
+        Object {
+          "actions": Array [
+            Object {
+              "description": "edit",
+              "name": "Edit",
+              "onClick": [Function],
+              "type": "button",
+            },
+          ],
+          "name": "Actions",
+        },
+      ]
+    }
+    items={
+      Array [
+        Object {
+          "id": "1",
+          "name": "name1",
+        },
+      ]
+    }
+    noItemsMessage="No items found"
+    onChange={[Function]}
+    pagination={
+      Object {
+        "pageIndex": 0,
+        "pageSize": 10,
+        "totalItemCount": 1,
+      }
+    }
+    selection={
+      Object {
+        "itemId": "id",
+        "onSelectionChanged": [Function],
+      }
+    }
+    sorting={
+      Object {
+        "sort": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`EuiInMemoryTable with sorting 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
+/>
+`;
