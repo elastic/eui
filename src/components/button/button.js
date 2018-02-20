@@ -77,7 +77,10 @@ export const EuiButton = ({
 
   if (isLoading) {
     buttonIcon = (
-      <EuiLoadingSpinner size="m"/>
+      <EuiLoadingSpinner
+        className="euiButton__spinner"
+        size="m"
+      />
     );
   } else if (iconType) {
     buttonIcon = (
