@@ -22,7 +22,6 @@
         // in case of button wrapper which inherently is inline-block and no width
         display: block;
         width: 100%;
-        text-align: left;
 
         // transition the shadow
         @include euiSlightShadow;

@@ -99,6 +99,7 @@ button {
   color: inherit;
   font-size: inherit;
   border-radius: 0;
+  text-align: left;
 
   &:hover {
     cursor: pointer;
@@ -122,4 +123,8 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+hr {
+  margin: 0;
 }
