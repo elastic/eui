@@ -248,6 +248,25 @@ exports[`EuiButton props isDisabled is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props isLoading is rendered 1`] = `
+<button
+  class="euiButton euiButton--primary"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiButton__content"
+  >
+    <div
+      class="euiLoadingSpinner euiLoadingSpinner--medium"
+    />
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButton props size l is rendered 1`] = `
 <button
   class="euiButton euiButton--primary euiButton--large"
