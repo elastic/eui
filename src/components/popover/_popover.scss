@@ -8,6 +8,7 @@
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  max-width: 100%;
 
   // Open state happens on the wrapper and applies to the panel.
   &.euiPopover-isOpen {

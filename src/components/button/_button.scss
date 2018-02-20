@@ -12,6 +12,11 @@
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
+  .euiButton__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   &.euiButton--small {
     height: $euiButtonHeightSmall;
   }

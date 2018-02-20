@@ -91,7 +91,7 @@ export const EuiButton = ({
       >
         <span className="euiButton__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButton__text">{children}</span>
         </span>
       </a>
     );
@@ -106,7 +106,7 @@ export const EuiButton = ({
       >
         <span className="euiButton__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButton__text">{children}</span>
         </span>
       </button>
     );
