@@ -18,8 +18,7 @@
 
 **Breaking changes**
 
-- Default `<button />` is now `text-align: left` ([#427](https://github.com/elastic/eui/pull/427))
-- Changed `EuiAccordion`’s `onToggleOpen` to `onToggle` ([#427](https://github.com/elastic/eui/pull/427))
+- Changed `EuiAccordion`’s method of `onToggleOpen` to `onToggle` ([#427](https://github.com/elastic/eui/pull/427))
 
 # [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
 
