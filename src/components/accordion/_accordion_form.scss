@@ -16,7 +16,7 @@
 }
 
 .euiAccordionForm__button {
-  padding: $euiSize;
+  padding: $euiSize $euiSize $euiSize 0;
 
   &:hover {
     text-decoration: none;

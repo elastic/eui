@@ -43,7 +43,7 @@ const repeatableForm = (
 
 const buttonContent = (
   <div>
-    <EuiFlexGroup gutterSize="s">
+    <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiIcon type="logoWebhook" size="m" />
       </EuiFlexItem>
