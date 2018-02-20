@@ -93,7 +93,11 @@
   }
 
   .hljs > *::selection {
-    background-color: $euiCodeBlockSelectedBackgroundColor;
+    // Only change the color if the variable IS a color
+    // or else no highlight color shows up at all
+    @if type-of($euiCodeBlockSelectedBackgroundColor) == color {
+      background-color: $euiCodeBlockSelectedBackgroundColor;
+    }
   }
 
   .hljs-comment,
