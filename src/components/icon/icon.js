@@ -43,23 +43,27 @@ import empty from './assets/empty.svg';
 import exit from './assets/exit.svg';
 import expand from './assets/expand.svg';
 import exportAction from './assets/export.svg';
+import eye from './assets/eye.svg';
+import eyeClosed from './assets/eye_closed.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
+import grab from './assets/grab.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
+import heatmap from './assets/heatmap.svg';
 import help from './assets/help.svg';
-import importAction from './assets/import.svg';
 import iInCircle from './assets/iInCircle.svg';
-import indexPatternApp from './assets/app_index_pattern.svg';
+import importAction from './assets/import.svg';
 import indexClose from './assets/index_close.svg';
 import indexEdit from './assets/index_edit.svg';
 import indexFlush from './assets/index_flush.svg';
 import indexMapping from './assets/index_mapping.svg';
 import indexOpen from './assets/index_open.svg';
+import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
 import invert from './assets/invert.svg';
 import link from './assets/link.svg';
@@ -87,8 +91,8 @@ import logoXpack from './assets/logo_xpack.svg';
 import logstashFilter from './assets/logstash_filter.svg';
 import logstashIf from './assets/logstash_if.svg';
 import logstashInput from './assets/logstash_input.svg';
-import logstashQueue from './assets/logstash_queue.svg';
 import logstashOutput from './assets/logstash_output.svg';
+import logstashQueue from './assets/logstash_queue.svg';
 import machineLearningApp from './assets/app_ml.svg';
 import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
@@ -129,6 +133,7 @@ import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
+import vector from './assets/vector.svg';
 import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
@@ -175,24 +180,28 @@ const typeToIconMap = {
   exit,
   expand,
   exportAction,
+  eyeClosed,
+  eye,
   faceHappy,
   faceNeutral,
   faceSad,
   fullScreen,
   gear,
+  grab,
   graphApp,
   grid,
   grokApp,
+  heatmap,
   help,
-  importAction,
   iInCircle,
+  importAction,
   indexClose,
   indexEdit,
   indexFlush,
   indexMapping,
   indexOpen,
-  indexSettings,
   indexPatternApp,
+  indexSettings,
   invert,
   link,
   list,
@@ -219,8 +228,8 @@ const typeToIconMap = {
   logstashFilter,
   logstashIf,
   logstashInput,
-  logstashQueue,
   logstashOutput,
+  logstashQueue,
   machineLearningApp,
   managementApp,
   mapMarker,
@@ -261,6 +270,7 @@ const typeToIconMap = {
   upgradeAssistantApp,
   user,
   usersRolesApp,
+  vector,
   visualizeApp,
   watchesApp,
   wrench,
