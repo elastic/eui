@@ -18,7 +18,7 @@ import {
 } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
 
-const BasicTableSyncPropTypes = {
+const InMemoryTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   items: PropTypes.array,
   loading: PropTypes.bool,
@@ -60,7 +60,7 @@ const initialCriteria = (props) => {
 
 export class EuiInMemoryTable extends React.Component {
 
-  static propTypes = BasicTableSyncPropTypes;
+  static propTypes = InMemoryTablePropTypes;
   static defaultProps = {
     pagination: false,
     sorting: false
