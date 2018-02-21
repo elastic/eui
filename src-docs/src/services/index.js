@@ -4,5 +4,3 @@ export {
   registerTheme,
   applyTheme,
 } from './theme/theme';
-
-export { default as Slugify } from './string/slugify';
