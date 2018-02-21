@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiToggle is rendered 1`] = `
+<div
+  class="euiToggle testClass1 testClass2"
+>
+  <input
+    class="euiToggle__input"
+    type="checkbox"
+  />
+</div>
+`;
