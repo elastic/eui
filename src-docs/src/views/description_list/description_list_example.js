@@ -28,7 +28,7 @@ const descriptionListInlineSource = require('!!raw-loader!./description_list_inl
 const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
 
 export const DescriptionListExample = {
-  title: 'DescriptionList',
+  title: 'Description List',
   sections: [{
     title: 'DescriptionList',
     source: [{

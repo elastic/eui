@@ -20,7 +20,7 @@ const filterGroupSource = require('!!raw-loader!./filter_group');
 const filterGroupHtml = renderToHtml(FilterGroup);
 
 export const FilterGroupExample = {
-  title: 'FilterGroup',
+  title: 'Filter Group',
   intro: (
     <div>
       <EuiCallOut

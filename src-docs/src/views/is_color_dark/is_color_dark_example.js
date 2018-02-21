@@ -15,7 +15,7 @@ const isColorDarkSource = require('!!raw-loader!./is_color_dark');
 const isColorDarkHtml = renderToHtml(IsColorDark);
 
 export const IsColorDarkExample = {
-  title: 'IsColorDark',
+  title: 'Is Color Dark',
   sections: [{
     title: 'IsColorDark',
     source: [{

@@ -20,7 +20,7 @@ const sideNavComplexSource = require('!!raw-loader!./side_nav_complex');
 const sideNavComplexHtml = renderToHtml(SideNavComplex);
 
 export const SideNavExample = {
-  title: 'SideNav',
+  title: 'Side Nav',
   sections: [{
     title: 'SideNav',
     source: [{

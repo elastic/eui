@@ -16,7 +16,7 @@ const bottomBarSource = require('!!raw-loader!./bottom_bar');
 const bottomBarHtml = renderToHtml(BottomBar);
 
 export const BottomBarExample = {
-  title: 'BottomBar',
+  title: 'Bottom Bar',
   sections: [{
     title: 'BottomBar',
     source: [{
