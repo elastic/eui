@@ -50,5 +50,25 @@ export default () => (
         aria-label="Your account"
       />
     </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButton
+        color="ghost"
+        isLoading
+        fill
+        size="s"
+      >
+        Loading&hellip;
+      </EuiButton>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButton
+        color="ghost"
+        isLoading
+      >
+        Loading&hellip;
+      </EuiButton>
+    </EuiFlexItem>
   </EuiFlexGroup>
 );

@@ -44,6 +44,17 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiButton isLoading />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
     describe('iconType', () => {
       it('is rendered', () => {
         const component = render(

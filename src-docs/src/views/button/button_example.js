@@ -41,6 +41,10 @@ import ButtonAsLink from './button_as_link';
 const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
 const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
 
+import ButtonLoading from './button_loading';
+const buttonLoadingSource = require('!!raw-loader!./button_loading');
+const buttonLoadingHtml = renderToHtml(ButtonLoading);
+
 export const ButtonExample = {
   title: 'Button',
   sections: [{
@@ -87,6 +91,23 @@ export const ButtonExample = {
       </p>
     ),
     demo: <ButtonWithIcon />,
+  }, {
+    title: 'Loading state',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: buttonLoadingSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: buttonLoadingHtml,
+    }],
+    text: (
+      <p>
+        Setting the <EuiCode>isLoading</EuiCode> prop to true will add the loading spinner or
+        swap the existing icon for the loading spinner and set the button to disabled. It is good
+        practice to also rename the button to &quot;Loading&hellip;&quot;.
+      </p>
+    ),
+    demo: <ButtonLoading />,
   }, {
     title: 'ButtonEmpty',
     source: [{

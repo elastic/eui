@@ -54,7 +54,9 @@ exports[`renders EuiConfirmModal 1`] = `
         <span
           class="euiButton__content"
         >
-          <span>
+          <span
+            class="euiButton__text"
+          >
             Confirm Button Text
           </span>
         </span>

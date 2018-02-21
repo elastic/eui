@@ -1,3 +1,5 @@
+@import '../loading/mixins';
+
 // Our base button
 .euiButton {
   @include euiButton;
@@ -8,8 +10,12 @@
 
   .euiButton__content {
     @include euiButtonContent;
-
     padding: 0 ($euiSize - $euiSizeXS);
+  }
+
+  .euiButton__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &.euiButton--small {
@@ -80,18 +86,23 @@ $buttonTypes: (
       background-color: $color;
       border-color: $color;
 
+      $textColor: #FFF;
+
       @if ($name == 'ghost') {
-        color: #000;
+        $textColor: #000;
       } @elseif (lightness($euiTextColor) > 50) {
-        color: $euiTextColor;
-      } @else {
-        color: #FFF;
+        $textColor: $euiTextColor;
       }
 
+      color: $textColor;
 
       &:hover, &:focus {
         background-color: darken($color, 5%);
         border-color: darken($color, 5%);
+      }
+
+      &:disabled .euiButton__spinner {
+        border-color: euiLoadingSpinnerBorderColors(transparentize($textColor, .3));
       }
     }
 

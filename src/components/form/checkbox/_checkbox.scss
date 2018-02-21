@@ -30,7 +30,7 @@
 
     &:indeterminate {
       + .euiCheckbox__square {
-        @include euiCustomControl--selected($type: 'dot');
+        @include euiCustomControl--selected($type: 'square');
       }
     }
 

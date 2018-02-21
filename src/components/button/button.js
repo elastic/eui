@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
+  EuiLoadingSpinner
+} from '../loading';
+
+import {
   checkHrefAndOnClick,
   getSecureRelForTarget,
 } from '../../services';
@@ -45,6 +49,7 @@ export const EuiButton = ({
   size,
   fill,
   isDisabled,
+  isLoading,
   href,
   target,
   rel,
@@ -52,6 +57,9 @@ export const EuiButton = ({
   type,
   ...rest
 }) => {
+
+  // If in the loading state, force disabled to true
+  isDisabled = isLoading ? true : isDisabled;
 
   const classes = classNames(
     'euiButton',
@@ -67,7 +75,14 @@ export const EuiButton = ({
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (iconType) {
+  if (isLoading) {
+    buttonIcon = (
+      <EuiLoadingSpinner
+        className="euiButton__spinner"
+        size="m"
+      />
+    );
+  } else if (iconType) {
     buttonIcon = (
       <EuiIcon
         className="euiButton__icon"
@@ -91,7 +106,7 @@ export const EuiButton = ({
       >
         <span className="euiButton__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButton__text">{children}</span>
         </span>
       </a>
     );
@@ -106,7 +121,7 @@ export const EuiButton = ({
       >
         <span className="euiButton__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButton__text">{children}</span>
         </span>
       </button>
     );
@@ -138,6 +153,11 @@ EuiButton.propTypes = {
   target: PropTypes.string,
   rel: PropTypes.string,
   onClick: PropTypes.func,
+
+  /**
+   * Adds/swaps for loading spinner & disables
+   */
+  isLoading: PropTypes.bool,
 
   /**
    * Standard HTML attribute
