@@ -1,14 +1,14 @@
-import React, {
-  Component
-} from 'react';
+import React, { Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-
 import {
-  EuiBasicTable,
+  EuiInMemoryTable,
   EuiLink,
   EuiHealth,
-  EuiButton,
+  EuiSpacer,
+  EuiSwitch,
+  EuiFlexGroup,
+  EuiFlexItem
 } from '../../../../../src/components';
 
 /*
@@ -35,56 +35,64 @@ Example country object:
 
 const store = createDataStore();
 
-export class Table extends Component {
+export class Table extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      ...this.buildState({ page: { index: 0, size: 5 } }),
-      selection: []
+      incremental: false,
+      filters: false
     };
-  }
-
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size, criteria.sort)
-    };
-  }
-
-  renderDeleteButton() {
-    const selection = this.state.selection;
-    if (selection.length === 0) {
-      return;
-    }
-    const onClick = () => {
-      store.deleteUsers(...selection.map(user => user.id));
-      this.setState(prevState => ({
-        ...this.buildState(prevState.criteria),
-        selection: []
-      }));
-    };
-    return (
-      <EuiButton
-        color="danger"
-        iconType="trash"
-        onClick={onClick}
-      >
-        Delete {selection.length} Users
-      </EuiButton>
-    );
   }
 
   render() {
-    const { page, sort } = this.state.criteria;
-    const data = this.state.data;
-    const deleteButton = this.renderDeleteButton();
+
+    const search = {
+      box: {
+        incremental: this.state.incremental
+      },
+      filters: !this.state.filters ? undefined : [
+        {
+          type: 'is',
+          field: 'online',
+          name: 'Online',
+          negatedName: 'Offline'
+        },
+        {
+          type: 'field_value_selection',
+          field: 'nationality',
+          name: 'Nationality',
+          multiSelect: false,
+          options: store.countries.map(country => ({
+            value: country.code,
+            name: country.name,
+            view: `${country.flag} ${country.name}`
+          }))
+        }
+      ]
+    };
+
     return (
-      <div>
-        {deleteButton}
-        <EuiBasicTable
-          items={data.items}
+      <Fragment>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Incremental"
+              checked={this.state.incremental}
+              onChange={() => this.setState(prevState => ({ incremental: !prevState.incremental }))}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="With Filters"
+              checked={this.state.filters}
+              onChange={() => this.setState(prevState => ({ filters: !prevState.filters }))}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="l"/>
+        <EuiInMemoryTable
+          items={store.users}
           columns={[
             {
               field: 'firstName',
@@ -129,22 +137,11 @@ export class Table extends Component {
               sortable: true
             }
           ]}
-          pagination={{
-            pageIndex: page.index,
-            pageSize: page.size,
-            totalItemCount: data.totalCount,
-            pageSizeOptions: [3, 5, 8]
-          }}
-          sorting={{ sort }}
-          selection={{
-            itemId: 'id',
-            selectable: (user) => user.online,
-            selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-            onSelectionChange: (selection) => this.setState({ selection })
-          }}
-          onChange={(criteria) => this.setState(this.buildState(criteria))}
+          search={search}
+          pagination={true}
+          sorting={true}
         />
-      </div>
+      </Fragment>
     );
   }
 }

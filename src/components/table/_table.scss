@@ -113,6 +113,10 @@
   justify-content: flex-end;
 }
 
+.euiTableCellContent--alignCenter {
+  justify-content: center;
+}
+
 .euiTableCellContent--truncateText {
   white-space: nowrap; /* 3 */
 

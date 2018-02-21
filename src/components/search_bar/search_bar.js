@@ -13,6 +13,43 @@ import PropTypes from 'prop-types';
 import { Query } from './query';
 import { EuiFlexItem } from '../flex/flex_item';
 
+export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
+
+export const SearchBarPropTypes = {
+
+  /**
+   * (query: Query) => void
+   */
+  onChange: PropTypes.func.isRequired,
+
+  /**
+   (query?: Query, queryText: string, error?: string) => void
+   */
+  onParse: PropTypes.func,
+
+  /**
+   The initial query the bar will hold when first mounted
+   */
+  defaultQuery: QueryType,
+
+  /**
+   If you wish to use the search bar as a controlled component, continuously pass the query
+   via this prop
+   */
+  query: QueryType,
+
+  /**
+   Configures the search box. Set `placeholder` to change the placeholder text in the box and
+   `incremental` to support incremental (as you type) search.
+   */
+  box: PropTypes.shape(SearchBoxConfigPropTypes),
+
+  /**
+   An array of search filters.
+   */
+  filters: SearchFiltersFiltersType,
+};
+
 const resolveQuery = (query) => {
   if (!query) {
     return Query.parse('');
@@ -21,6 +58,8 @@ const resolveQuery = (query) => {
 };
 
 export class EuiSearchBar extends React.Component {
+
+  static propTypes = SearchBoxConfigPropTypes;
 
   constructor(props) {
     super(props);
@@ -94,39 +133,4 @@ export class EuiSearchBar extends React.Component {
   }
 }
 
-const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
 
-EuiSearchBar.propTypes = {
-
-  /**
-   * (query: Query) => void
-   */
-  onChange: PropTypes.func.isRequired,
-
-  /**
-    (query?: Query, queryText: string, error?: string) => void
-   */
-  onParse: PropTypes.func,
-
-  /**
-    The initial query the bar will hold when first mounted
-   */
-  defaultQuery: QueryType,
-
-  /**
-    If you wish to use the search bar as a controlled component, continuously pass the query
-    via this prop
-   */
-  query: QueryType,
-
-  /**
-    Configures the search box. Set `placeholder` to change the placeholder text in the box and
-    `incremental` to support incremental (as you type) search.
-   */
-  box: PropTypes.shape(SearchBoxConfigPropTypes),
-
-  /**
-    An array of search filters.
-   */
-  filters: SearchFiltersFiltersType,
-};

@@ -3,13 +3,16 @@ import React, {
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
-
 import {
-  EuiBasicTable,
   EuiLink,
   EuiHealth,
   EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiInMemoryTable
 } from '../../../../../src/components';
+import { Random } from '../../../../../src/services/random';
 
 /*
 Example user object:
@@ -33,6 +36,8 @@ Example country object:
 }
 */
 
+const random = new Random();
+
 const store = createDataStore();
 
 export class Table extends Component {
@@ -40,17 +45,45 @@ export class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.buildState({ page: { index: 0, size: 5 } }),
+      loading: false,
+      users: [],
+      message: 'No users',
       selection: []
     };
   }
 
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size, criteria.sort)
-    };
+  loadUsers() {
+    this.setState({
+      message: 'Loading users...',
+      loading: true,
+      users: undefined,
+      error: undefined
+    });
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        message: undefined,
+        error: undefined,
+        users: store.users
+      });
+    }, random.number({ min: 0, max: 3000 }));
+  }
+
+  loadUsersWithError() {
+    this.setState({
+      message: 'Loading users...',
+      loading: true,
+      users: undefined,
+      error: undefined
+    });
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        error: 'ouch!... again... ',
+        users: undefined,
+        message: undefined
+      });
+    }, random.number({ min: 0, max: 3000 }));
   }
 
   renderDeleteButton() {
@@ -60,10 +93,7 @@ export class Table extends Component {
     }
     const onClick = () => {
       store.deleteUsers(...selection.map(user => user.id));
-      this.setState(prevState => ({
-        ...this.buildState(prevState.criteria),
-        selection: []
-      }));
+      this.setState({ selection: [] });
     };
     return (
       <EuiButton
@@ -77,14 +107,28 @@ export class Table extends Component {
   }
 
   render() {
-    const { page, sort } = this.state.criteria;
-    const data = this.state.data;
     const deleteButton = this.renderDeleteButton();
     return (
       <div>
-        {deleteButton}
-        <EuiBasicTable
-          items={data.items}
+        <EuiFlexGroup alignItems="center">
+          { deleteButton ? <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem> : undefined }
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.loadUsers.bind(this)} isDisabled={this.state.loading}>
+              Load Users
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton onClick={this.loadUsersWithError.bind(this)} isDisabled={this.state.loading}>
+              Load Users (Error)
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="l"/>
+        <EuiInMemoryTable
+          items={this.state.users}
+          error={this.state.error}
+          loading={this.state.loading}
+          message={this.state.message}
           columns={[
             {
               field: 'firstName',
@@ -130,19 +174,15 @@ export class Table extends Component {
             }
           ]}
           pagination={{
-            pageIndex: page.index,
-            pageSize: page.size,
-            totalItemCount: data.totalCount,
             pageSizeOptions: [3, 5, 8]
           }}
-          sorting={{ sort }}
+          sorting={true}
           selection={{
             itemId: 'id',
             selectable: (user) => user.online,
             selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
             onSelectionChange: (selection) => this.setState({ selection })
           }}
-          onChange={(criteria) => this.setState(this.buildState(criteria))}
         />
       </div>
     );

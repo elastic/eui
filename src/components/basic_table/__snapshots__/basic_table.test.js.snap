@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiBasicTable basic - empty 1`] = `
+exports[`EuiBasicTable basic - empty - custom message 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -16,14 +16,59 @@ exports[`EuiBasicTable basic - empty 1`] = `
         Name
       </EuiTableHeaderCell>
     </EuiTableHeader>
-    <EuiTableBody />
+    <EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={1}
+          textOnly={true}
+        >
+          <div>
+            where my items at?
+          </div>
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
   </EuiTable>
 </div>
 `;
 
-exports[`EuiBasicTable basic - with records 1`] = `
+exports[`EuiBasicTable basic - empty 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={1}
+          textOnly={true}
+        >
+          <div>
+            No items found
+          </div>
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+</div>
+`;
+
+exports[`EuiBasicTable basic - with items 1`] = `
+<div
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -87,7 +132,7 @@ exports[`EuiBasicTable basic - with records 1`] = `
 
 exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -148,7 +193,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 
 exports[`EuiBasicTable with pagination 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -221,9 +266,46 @@ exports[`EuiBasicTable with pagination 1`] = `
 </div>
 `;
 
+exports[`EuiBasicTable with pagination and error 1`] = `
+<div
+  className="euiBasicTable testClass1 testClass2"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={1}
+          textOnly={true}
+        >
+          <EuiIcon
+            color="danger"
+            size="m"
+            type="minusInCircle"
+          />
+           
+          no can do
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+</div>
+`;
+
 exports[`EuiBasicTable with pagination and selection 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -348,7 +430,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
 
 exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -474,7 +556,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 
 exports[`EuiBasicTable with pagination, selection, sorting and a single record action 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -688,7 +770,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 
 exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -814,7 +896,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -940,7 +1022,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and multiple record actions 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -1148,7 +1230,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 
 exports[`EuiBasicTable with pagination, selection, sorting, column renderer and column dataType 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>
@@ -1274,7 +1356,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 
 exports[`EuiBasicTable with sorting 1`] = `
 <div
-  className="euiRecordsTable testClass1 testClass2"
+  className="euiBasicTable testClass1 testClass2"
 >
   <EuiTable>
     <EuiTableHeader>

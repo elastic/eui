@@ -240,7 +240,8 @@ export {
 } from './table_of_records';
 
 export {
-  EuiBasicTable
+  EuiBasicTable,
+  EuiInMemoryTable
 } from './basic_table';
 
 export {

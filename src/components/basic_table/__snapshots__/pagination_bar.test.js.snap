@@ -32,9 +32,9 @@ exports[`PaginationBar render 1`] = `
     itemsPerPage={5}
     itemsPerPageOptions={
       Array [
-        5,
         10,
-        20,
+        25,
+        50,
       ]
     }
     onChangeItemsPerPage={[Function]}

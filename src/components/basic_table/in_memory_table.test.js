@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTable } from './basic_table';
+import { EuiInMemoryTable } from './in_memory_table';
 
-describe('EuiBasicTable', () => {
+describe('EuiInMemoryTable', () => {
 
-  test('basic - empty', () => {
+  test('empty array', () => {
 
     const props = {
       ...requiredProps,
@@ -20,13 +20,13 @@ describe('EuiBasicTable', () => {
       ]
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('basic - empty - custom message', () => {
+  test('with message', () => {
 
     const props = {
       ...requiredProps,
@@ -38,16 +38,38 @@ describe('EuiBasicTable', () => {
           description: 'description'
         }
       ],
-      noItemsMessage: 'where my items at?'
+      message: 'where my items at?'
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('basic - with items', () => {
+  test('with message and loading', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      message: 'Loading items....',
+      loading: true
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with items', () => {
 
     const props = {
       ...requiredProps,
@@ -65,7 +87,32 @@ describe('EuiBasicTable', () => {
       ]
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with items and message - expecting to show the message and not the items', () => {
+
+    const props = {
+      ...requiredProps,
+      message: 'show me!',
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ]
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -88,43 +135,11 @@ describe('EuiBasicTable', () => {
         }
       ],
       pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
-      onChange: () => {}
+        pageSizeOptions: [2, 4, 6]
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination - 2nd page', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ],
-      pagination: {
-        pageIndex: 1,
-        pageSize: 3,
-        totalItemCount: 5
-      },
-      onChange: () => {}
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -135,10 +150,9 @@ describe('EuiBasicTable', () => {
     const props = {
       ...requiredProps,
       items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '1', name: 'name1' }
       ],
+      error: 'ouch!',
       columns: [
         {
           field: 'name',
@@ -147,15 +161,11 @@ describe('EuiBasicTable', () => {
         }
       ],
       pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
-      onChange: () => {},
-      error: 'no can do'
+        pageSizeOptions: [2, 4, 6]
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -178,13 +188,10 @@ describe('EuiBasicTable', () => {
           sortable: true
         }
       ],
-      sorting: {
-        sort: { field: 'name', direction: 'asc' }
-      },
-      onChange: () => {}
+      sorting: true
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -206,19 +213,14 @@ describe('EuiBasicTable', () => {
           description: 'description'
         }
       ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
+      pagination: true,
       selection: {
         itemId: 'id',
         onSelectionChanged: () => undefined
-      },
-      onChange: () => {}
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -241,22 +243,15 @@ describe('EuiBasicTable', () => {
           sortable: true
         }
       ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
+      pagination: true,
+      sorting: true,
       selection: {
         itemId: 'id',
         onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'name', direction: 'asc' }
-      },
-      onChange: () => {}
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -281,101 +276,16 @@ describe('EuiBasicTable', () => {
         }
       ],
       pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
+        pageSizeOptions: [2, 4, 6]
       },
+      sorting: true,
       selection: {
         itemId: 'id',
         onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'name', direction: 'asc' }
-      },
-      onChange: () => {}
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection, sorting and column dataType', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [
-        { id: '1', count: 1 },
-        { id: '2', count: 2 },
-        { id: '3', count: 3 }
-      ],
-      columns: [
-        {
-          field: 'count',
-          name: 'Count',
-          description: 'description of count',
-          sortable: true,
-          dataType: 'number'
-        }
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
-      selection: {
-        itemId: 'id',
-        onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'count', direction: 'asc' }
-      },
-      onChange: () => {}
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  // here we want to verify that the column renderer takes precedence over the column data type
-  test('with pagination, selection, sorting, column renderer and column dataType', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [
-        { id: '1', count: 1 },
-        { id: '2', count: 2 },
-        { id: '3', count: 3 }
-      ],
-      columns: [
-        {
-          field: 'count',
-          name: 'Count',
-          description: 'description of count',
-          sortable: true,
-          dataType: 'number',
-          render: (count) => 'x'.repeat(count)
-        }
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
-      selection: {
-        itemId: 'id',
-        onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'count', direction: 'asc' }
-      },
-      onChange: () => {}
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -409,28 +319,21 @@ describe('EuiBasicTable', () => {
           ]
         }
       ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
-      },
+      pagination: true,
+      sorting: true,
       selection: {
         itemId: 'id',
         onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'name', direction: 'asc' }
-      },
-      onChange: () => {}
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination, selection, sorting and multiple record actions', () => {
+  test('with pagination, selection, sorting  and simple search', () => {
 
     const props = {
       ...requiredProps,
@@ -454,32 +357,77 @@ describe('EuiBasicTable', () => {
               name: 'Edit',
               description: 'edit',
               onClick: () => undefined
-            },
+            }
+          ]
+        }
+      ],
+      pagination: true,
+      sorting: true,
+      search: true,
+      selection: {
+        itemId: 'id',
+        onSelectionChanged: () => undefined
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination, selection, sorting and configured search', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+          sortable: true
+        },
+        {
+          name: 'Actions',
+          actions: [
             {
               type: 'button',
-              name: 'Delete',
-              description: 'delete',
+              name: 'Edit',
+              description: 'edit',
               onClick: () => undefined
             }
           ]
         }
       ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5
+      pagination: true,
+      sorting: true,
+      search: {
+        defaultQuery: 'name:name1',
+        box: {
+          incremental: true
+        },
+        filters: [
+          {
+            type: 'field_value_toggle',
+            field: 'name',
+            value: 'name1',
+            name: 'Name1',
+            negatedName: 'Not Name1'
+          }
+        ]
       },
       selection: {
         itemId: 'id',
         onSelectionChanged: () => undefined
-      },
-      sorting: {
-        sort: { field: 'name', direction: 'asc' }
-      },
-      onChange: () => {}
+      }
     };
     const component = shallow(
-      <EuiBasicTable {...props} />
+      <EuiInMemoryTable {...props} />
     );
 
     expect(component).toMatchSnapshot();

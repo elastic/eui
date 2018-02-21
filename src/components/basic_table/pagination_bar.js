@@ -10,8 +10,8 @@ export const PaginationType = PropTypes.shape({
   pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
 });
 
-const defaults = {
-  pageSizeOptions: [5, 10, 20]
+export const defaults = {
+  pageSizeOptions: [10, 25, 50]
 };
 
 export const PaginationBar = ({ pagination, onPageSizeChange, onPageChange }) => {
