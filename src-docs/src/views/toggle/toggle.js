@@ -4,6 +4,7 @@ import React, {
 
 import {
   EuiToggle,
+  EuiIcon,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -12,6 +13,7 @@ export default class extends Component {
 
     this.state = {
       toggleOn: false,
+      toggleOn2: false,
     };
   }
 
@@ -19,11 +21,27 @@ export default class extends Component {
     this.setState({ toggleOn: e.target.checked });
   }
 
+  onToggleChange2 = (e) => {
+    this.setState({ toggleOn2: e.target.checked });
+  }
+
   render() {
     return (
-      <EuiToggle onChange={this.onToggleChange}>
-        {this.state.toggleOn ? 'On' : 'Off'}
-      </EuiToggle>
+      <div>
+        <EuiToggle onChange={this.onToggleChange}>
+          {this.state.toggleOn ? 'On' : 'Off'}
+        </EuiToggle>
+
+        &nbsp;
+
+        <EuiToggle onChange={this.onToggleChange2}>
+          {this.state.toggleOn2 ? (
+            <EuiIcon type="eye" />
+          ) : (
+            <EuiIcon type="eyeClosed" />
+          )}
+        </EuiToggle>
+      </div>
     );
   }
 }
