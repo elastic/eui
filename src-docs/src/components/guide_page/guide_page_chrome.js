@@ -221,7 +221,7 @@ export class GuidePageChrome extends Component {
 
   renderSandboxNavItems() {
     const matchingItems = this.props.sandboxes.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && item.hidden !== true
     ));
 
     const items = matchingItems.map(item => {

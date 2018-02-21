@@ -1,0 +1,17 @@
+.ilmAccordion__buttonContent {
+  @include euiFontSizeS;
+  color: $euiColorPrimary;
+}
+
+.ilmAccordion__button:hover {
+  .ilmAccordion__buttonContent {
+    color: $euiColorPrimary;
+    text-decoration: underline;
+  }
+}
+
+.ilmHrule {
+  width: calc(100% + 48px) !important;
+  margin-left: -24px;
+  margin-right: -24px;
+}
