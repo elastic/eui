@@ -23,7 +23,7 @@ and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Fixed disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
 - Fixed disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 - Fixed `EuiCard` content alignment when content is short. ([#415](https://github.com/elastic/eui/pull/415))
-- Only apply the `$euiCodeBlockSelectedBackgroundColor` variable  if it is a color ([#427](https://github.com/elastic/eui/pull/427))
+- Only apply the `$euiCodeBlockSelectedBackgroundColor` variable if it is a color ([#427](https://github.com/elastic/eui/pull/427))
 - No margins for `<hr>` ([#427](https://github.com/elastic/eui/pull/427))
 - Fixed `EuiButton` truncation ([#427](https://github.com/elastic/eui/pull/427))
 
@@ -223,13 +223,13 @@ and logic ([#390](https://github.com/elastic/eui/pull/390))
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
 - `justify` prop of `EuiFlexGroup` now accepts `spaceEvenly` [(#205)](https://github.com/elastic/eui/pull/205)
-- Increase size of  `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
+- Increase size of `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
 
 # [`0.0.5`](https://github.com/elastic/eui/tree/v0.0.5)
 
 **Bug fixes**
 
-- Fixed import paths for `EuiTable`, `EuiHealth`, and `EuiPopover` which prevented dependents of EUI from being able to compile when importing components from the `lib` directory  [(#203)](https://github.com/elastic/eui/pull/203)
+- Fixed import paths for `EuiTable`, `EuiHealth`, and `EuiPopover` which prevented dependents of EUI from being able to compile when importing components from the `lib` directory [(#203)](https://github.com/elastic/eui/pull/203)
 
 # [`0.0.4`](https://github.com/elastic/eui/tree/v0.0.4)
 
@@ -240,9 +240,8 @@ and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Table spacing is now smaller [(#158)](https://github.com/elastic/eui/pull/158)
 - Dark theme forms now have better contrast with their borders [(#158)](https://github.com/elastic/eui/pull/158)
 - Added icons to match Kibana's app directory [(#162)](https://github.com/elastic/eui/pull/162)
-- Convert icons from SVG to React component during the build and stop using
-  sprites [(#160)](https://github.com/elastic/eui/pull/160)
-- Add `isReadOnly`, `setOptions`, and `cursorStart` props to  `EuiCodeEditor` ([#169](https://github.com/elastic/eui/pull/169))
+- Convert icons from SVG to React component during the build and stop using sprites [(#160)](https://github.com/elastic/eui/pull/160)
+- Add `isReadOnly`, `setOptions`, and `cursorStart` props to `EuiCodeEditor` ([#169](https://github.com/elastic/eui/pull/169))
 - Add `wrap` prop to `EuiFlexGroup` ([#170](https://github.com/elastic/eui/pull/170))
 - Add `scope` prop to `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` ([#171](https://github.com/elastic/eui/pull/171))
 - Add `disabled` prop to `EuiContextMenuItem` ([#172](https://github.com/elastic/eui/pull/172))
