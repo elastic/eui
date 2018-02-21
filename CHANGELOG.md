@@ -3,6 +3,8 @@
 - Added `EuiDelayHide` component. [#412](https://github.com/elastic/eui/pull/412)
 - Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
 - `EuiFilePicker` added for `input type="file"` needs. ([#402](https://github.com/elastic/eui/pull/402))
+-  Add `isLoading` prop to `EuiButton` ([#427](https://github.com/elastic/eui/pull/427))
+-  Added icons: `eye`, `eyeClosed`, `grab`, `heatmap`, `vector` ([#427](https://github.com/elastic/eui/pull/427))
 
 **Bug fixes**
 
@@ -10,6 +12,13 @@
 - Fix disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
 - Fix disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 - Fix EuiCard content alignment when content is short. ([#415](https://github.com/elastic/eui/pull/415))
+- Only apply the `$euiCodeBlockSelectedBackgroundColor` variable  if it is a color ([#427](https://github.com/elastic/eui/pull/427))
+- No margins for `<hr>` ([#427](https://github.com/elastic/eui/pull/427))
+- Fixed `<EuiButton>` truncation ([#427](https://github.com/elastic/eui/pull/427))
+
+**Breaking changes**
+
+- Changed `EuiAccordion`’s method of `onToggleOpen` to `onToggle` ([#427](https://github.com/elastic/eui/pull/427))
 
 # [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
 

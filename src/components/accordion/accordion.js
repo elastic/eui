@@ -21,10 +21,10 @@ export class EuiAccordion extends Component {
       isOpen: props.initialIsOpen,
     };
 
-    this.onToggleOpen = this.onToggleOpen.bind(this);
+    this.onToggle = this.onToggle.bind(this);
   }
 
-  onToggleOpen() {
+  onToggle() {
     const currentState = this.state.isOpen;
     const height = this.childContent.clientHeight;
     this.setState({
@@ -93,7 +93,7 @@ export class EuiAccordion extends Component {
             <button
               aria-controls={id}
               aria-expanded={!!this.state.isOpen}
-              onClick={this.onToggleOpen}
+              onClick={this.onToggle}
               className={buttonClasses}
             >
               <EuiFlexGroup gutterSize="s" alignItems="center">

@@ -130,14 +130,19 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 @mixin euiCustomControl--selected($type: null){
   border-color: $euiColorPrimary;
   background-color: $euiColorPrimary;
-  @include euiIconBackground($type, $euiColorEmptyShade);
+
+  @if $type != null {
+    @include euiIconBackground($type, $euiColorEmptyShade);
+  }
 }
 
 @mixin euiCustomControl--disabled($type: null){
   border-color: $euiColorLightShade;
   background-color: $euiColorLightShade;
-  @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
   box-shadow: none;
+  @if $type != null {
+    @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
+  }
 }
 
 @mixin euiCustomControl--focused(){

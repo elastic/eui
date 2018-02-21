@@ -14,8 +14,6 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 80%);
   transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   white-space: nowrap;
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
   vertical-align: middle;
 
   &:hover:not(:disabled) {

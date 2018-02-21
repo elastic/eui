@@ -10,7 +10,9 @@ exports[`EuiButton is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span>
+    <span
+      class="euiButton__text"
+    >
       Content
     </span>
   </span>
@@ -25,7 +27,9 @@ exports[`EuiButton props color danger is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -38,7 +42,9 @@ exports[`EuiButton props color ghost is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -51,7 +57,9 @@ exports[`EuiButton props color primary is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -64,7 +72,9 @@ exports[`EuiButton props color secondary is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -77,7 +87,9 @@ exports[`EuiButton props color warning is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -90,7 +102,9 @@ exports[`EuiButton props fill is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -105,7 +119,9 @@ exports[`EuiButton props href secures the rel attribute when the target is _blan
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </a>
 `;
@@ -137,7 +153,9 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
         />
       </g>
     </svg>
-    <span>
+    <span
+      class="euiButton__text"
+    >
       Content
     </span>
   </span>
@@ -171,7 +189,9 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
         />
       </g>
     </svg>
-    <span>
+    <span
+      class="euiButton__text"
+    >
       Content
     </span>
   </span>
@@ -205,7 +225,9 @@ exports[`EuiButton props iconType is rendered 1`] = `
         />
       </g>
     </svg>
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -219,7 +241,28 @@ exports[`EuiButton props isDisabled is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButton props isLoading is rendered 1`] = `
+<button
+  class="euiButton euiButton--primary"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiButton__content"
+  >
+    <div
+      class="euiLoadingSpinner euiLoadingSpinner--medium euiButton__spinner"
+    />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -232,7 +275,9 @@ exports[`EuiButton props size l is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
@@ -245,7 +290,9 @@ exports[`EuiButton props size s is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <span />
+    <span
+      class="euiButton__text"
+    />
   </span>
 </button>
 `;
