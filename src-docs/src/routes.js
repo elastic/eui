@@ -223,7 +223,6 @@ const navigation = [{
   items: [
     AccordionExample,
     BottomBarExample,
-    CardExample,
     FlexExample,
     FlyoutExample,
     HeaderExample,
@@ -252,6 +251,7 @@ const navigation = [{
     AvatarExample,
     BadgeExample,
     CallOutExample,
+    CardExample,
     CodeExample,
     DescriptionListExample,
     HealthExample,
