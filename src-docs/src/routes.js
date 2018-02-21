@@ -19,6 +19,9 @@ import {
 import WritingGuidelines
   from './views/guidelines/writing';
 
+import TextScales
+  from './views/text_scaling/text_scaling_sandbox';
+
 // Services
 
 import { IsColorDarkExample }
@@ -167,17 +170,6 @@ import { ToastExample }
 import { TooltipExample }
   from './views/tooltip/tooltip_example';
 
-// Sandboxes
-
-import AdvancedSettingsSandbox
-  from './views/kibana/advanced_settings_sandbox';
-
-import WatchesSandbox
-  from './views/kibana/watches_sandbox';
-
-import TextScalingSandbox
-  from './views/text_scaling/text_scaling_sandbox';
-
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -222,6 +214,9 @@ const navigation = [{
   items: [{
     name: 'Writing',
     component: WritingGuidelines,
+  }, {
+    name: 'Text scales',
+    component: TextScales,
   }],
 }, {
   name: 'Layout',
@@ -238,13 +233,21 @@ const navigation = [{
     PanelExample,
     PopoverExample,
     SpacerExample,
+  ].map(example => createExample(example)),
+}, {
+  name: 'Navigation',
+  items: [
+    ButtonExample,
+    ContextMenuExample,
+    KeyPadMenuExample,
+    LinkExample,
+    PaginationExample,
+    SideNavExample,
     StepsExample,
-    TableExample,
-    TableOfRecordsExample,
     TabsExample,
   ].map(example => createExample(example)),
 }, {
-  name: 'Content',
+  name: 'Display',
   items: [
     AvatarExample,
     BadgeExample,
@@ -256,27 +259,23 @@ const navigation = [{
     ImageExample,
     LoadingExample,
     ProgressExample,
+    TableExample,
+    TableOfRecordsExample,
     TextExample,
     TitleExample,
     ToastExample,
     TooltipExample,
   ].map(example => createExample(example)),
 }, {
-  name: 'Data controls',
+  name: 'Forms',
   items: [
-    ButtonExample,
     CodeEditorExample,
     ColorPickerExample,
-    ContextMenuExample,
     ExpressionExample,
     FilePickerExample,
     FilterGroupExample,
     FormExample,
-    KeyPadMenuExample,
-    LinkExample,
-    PaginationExample,
     SearchBarExample,
-    SideNavExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Utilities',
@@ -287,21 +286,6 @@ const navigation = [{
     IsColorDarkExample,
     OutsideClickDetectorExample,
   ].map(example => createExample(example)),
-}, {
-  name: 'Sandboxes',
-  items: [{
-    name: 'Advanced Settings',
-    component: AdvancedSettingsSandbox,
-    isSandbox: true,
-  }, {
-    name: 'Watches',
-    component: WatchesSandbox,
-    isSandbox: true,
-  }, {
-    name: 'Text scales',
-    component: TextScalingSandbox,
-    isSandbox: true,
-  }],
 }].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
