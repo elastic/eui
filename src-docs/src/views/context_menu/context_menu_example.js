@@ -20,7 +20,7 @@ const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
 
 export const ContextMenuExample = {
-  title: 'ContextMenu',
+  title: 'Context Menu',
   sections: [{
     title: 'ContextMenu',
     source: [{

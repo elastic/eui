@@ -1,32 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiErrorBoundary is rendered with an error 1`] = `
-<div
-  aria-label="aria-label"
-  class="testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiErrorBoundary__text"
-  >
-    <div
-      class="euiText euiText--extraSmall"
-    >
-      <h1>
-        Error
-      </h1>
-      <pre>
-        <p>
-          Error: I'm here to kick butt and chew bubblegum.
-
-And I'm all out of gum.
-        </p>
-      </pre>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`EuiErrorBoundary is rendered without an error 1`] = `
 <div>
   No error

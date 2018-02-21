@@ -28,7 +28,7 @@ const dangerSource = require('!!raw-loader!./danger');
 const dangerHtml = renderToHtml(Danger);
 
 export const CallOutExample = {
-  title: 'CallOut',
+  title: 'Call Out',
   sections: [{
     title: 'Info',
     source: [{

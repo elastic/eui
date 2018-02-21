@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { flatten } from 'lodash';
 
 import {
-  GuideSandboxChrome,
-} from '../guide_sandbox';
-
-import {
   EuiCode,
   EuiCodeBlock,
   EuiErrorBoundary,
@@ -110,23 +106,12 @@ export class GuideSection extends Component {
 
     this.state = {
       selectedTab: this.tabs[0],
-      sandbox: {
-        isChromeVisible: props.isSandbox ? false : undefined,
-      },
     };
   }
 
   onSelectedTabChanged = selectedTab => {
     this.setState({
       selectedTab,
-    });
-  }
-
-  onToggleSandboxChrome = () => {
-    this.setState({
-      sandbox: {
-        isChromeVisible: !this.state.sandbox.isChromeVisible,
-      },
     });
   }
 
@@ -291,27 +276,8 @@ export class GuideSection extends Component {
   }
 
   renderChrome() {
-    let header;
-
-    if (this.props.isSandbox) {
-      header = (
-        <GuideSandboxChrome
-          routes={this.props.routes.getAppRoutes()}
-          onToggleTheme={this.props.toggleTheme}
-          onToggleSandboxChrome={this.onToggleSandboxChrome}
-          selectedTheme={this.props.theme}
-          isVisible={this.state.sandbox.isChromeVisible}
-        />
-      );
-    }
-
-    if (this.props.isSandbox && !this.state.sandbox.isChromeVisible) {
-      return header;
-    }
-
     return (
       <div>
-        {header}
         <div className="guideSection__text">
           <EuiTitle>
             <h2>{this.props.title}</h2>
@@ -396,7 +362,6 @@ GuideSection.propTypes = {
   id: PropTypes.string,
   source: PropTypes.array,
   children: PropTypes.any,
-  isSandbox: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,

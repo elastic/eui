@@ -16,7 +16,7 @@ const errorBoundarySource = require('!!raw-loader!./error_boundary');
 const errorBoundaryHtml = renderToHtml(ErrorBoundary);
 
 export const ErrorBoundaryExample = {
-  title: 'ErrorBoundary',
+  title: 'Error Boundary',
   sections: [{
     title: 'ErrorBoundary',
     source: [{

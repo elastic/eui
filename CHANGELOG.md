@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state
+and logic ([#390](https://github.com/elastic/eui/pull/390))
+- Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
+
 **Bug fixes**
 
 - Fixed `EuiContextMenu` bug when using the keyboard to navigate up, which was caused by unnecessarily re-rendering the items, thus losing references to them ([#431](https://github.com/elastic/eui/pull/431))
@@ -9,7 +13,7 @@
 - Added `EuiDelayHide` component. ([#412](https://github.com/elastic/eui/pull/412))
 - Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
 - Added `EuiFilePicker` component for `input type="file"` needs. ([#402](https://github.com/elastic/eui/pedull/402))
-- Add `isLoading` prop to `EuiButton` ([#427](https://github.com/elastic/eui/pull/427))
+- Added `isLoading` prop to `EuiButton` ([#427](https://github.com/elastic/eui/pull/427))
 - Added icons: `eye`, `eyeClosed`, `grab`, `heatmap`, `vector` ([#427](https://github.com/elastic/eui/pull/427))
 - Added `hasNoInitialSelection` option to `EuiSelect`. ([#422](https://github.com/elastic/eui/pull/422))
 
@@ -19,7 +23,7 @@
 - Fixed disabled vs enabled appearance of checked checkeboxes and radios ([#407](https://github.com/elastic/eui/pull/407))
 - Fixed disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 - Fixed `EuiCard` content alignment when content is short. ([#415](https://github.com/elastic/eui/pull/415))
-- Only apply the `$euiCodeBlockSelectedBackgroundColor` variable  if it is a color ([#427](https://github.com/elastic/eui/pull/427))
+- Only apply the `$euiCodeBlockSelectedBackgroundColor` variable if it is a color ([#427](https://github.com/elastic/eui/pull/427))
 - No margins for `<hr>` ([#427](https://github.com/elastic/eui/pull/427))
 - Fixed `EuiButton` truncation ([#427](https://github.com/elastic/eui/pull/427))
 
@@ -36,17 +40,17 @@
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 - Changed look and feel of pagination. Added `compressed` prop for smaller footprint pagination. ([#380](https://github.com/elastic/eui/pull/380))
 - Added `EuiBasicTable` as an opinionated, high level component for constructing tables. Its addition deprecates `EuiTableOfRecords` which is still avaiable, but now marked for removal. ([#377](https://github.com/elastic/eui/pull/377))
-- Add styles for `readOnly` states of form controls. ([#391](https://github.com/elastic/eui/pull/391))
+- Added styles for `readOnly` states of form controls. ([#391](https://github.com/elastic/eui/pull/391))
 - Added importAction and exportAction icons ([#394](https://github.com/elastic/eui/pull/394))
 - Added `EuiCard` for UI patterns that need an icon/image, title and description with some sort of action. ([#380](https://github.com/elastic/eui/pull/380))
-- Add TypeScript definitions for the `EuiHealth` component. ([#403](https://github.com/elastic/eui/pull/403))
+- Added TypeScript definitions for the `EuiHealth` component. ([#403](https://github.com/elastic/eui/pull/403))
 - Added `SearchBar` component - introduces a simple yet rich query language to search for objects + search box and filter controls to construct/manipulate it. ([#379](https://github.com/elastic/eui/pull/379))
 
 **Bug fixes**
 
 - Tables now default to `table-layout: fixed` to avoid some collapsing cell problems. [#398](https://github.com/elastic/eui/pull/398)
 - Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
-- Fix dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
+- Fixed dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
 - Reorder selectors to fix fixed progress bar in Firefox ([#404](https://github.com/elastic/eui/pull/404))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
@@ -184,8 +188,8 @@
 
 **Bug fixes**
 
-- Fix bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
-- Add `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. [(#242)[https://github.com/elastic/eui/pull/242]]
+- Fixed bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
+- Added `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. [(#242)[https://github.com/elastic/eui/pull/242]]
 
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 
@@ -219,13 +223,13 @@
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
 - `justify` prop of `EuiFlexGroup` now accepts `spaceEvenly` [(#205)](https://github.com/elastic/eui/pull/205)
-- Increase size of  `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
+- Increased size of `<EuiTitle size="s">` so that it's distinguishable as a title [(#204)](https://github.com/elastic/eui/pull/204)
 
 # [`0.0.5`](https://github.com/elastic/eui/tree/v0.0.5)
 
 **Bug fixes**
 
-- Fixed import paths for `EuiTable`, `EuiHealth`, and `EuiPopover` which prevented dependents of EUI from being able to compile when importing components from the `lib` directory  [(#203)](https://github.com/elastic/eui/pull/203)
+- Fixed import paths for `EuiTable`, `EuiHealth`, and `EuiPopover` which prevented dependents of EUI from being able to compile when importing components from the `lib` directory [(#203)](https://github.com/elastic/eui/pull/203)
 
 # [`0.0.4`](https://github.com/elastic/eui/tree/v0.0.4)
 
@@ -236,18 +240,17 @@
 - Table spacing is now smaller [(#158)](https://github.com/elastic/eui/pull/158)
 - Dark theme forms now have better contrast with their borders [(#158)](https://github.com/elastic/eui/pull/158)
 - Added icons to match Kibana's app directory [(#162)](https://github.com/elastic/eui/pull/162)
-- Convert icons from SVG to React component during the build and stop using
-  sprites [(#160)](https://github.com/elastic/eui/pull/160)
-- Add `isReadOnly`, `setOptions`, and `cursorStart` props to  `EuiCodeEditor` ([#169](https://github.com/elastic/eui/pull/169))
-- Add `wrap` prop to `EuiFlexGroup` ([#170](https://github.com/elastic/eui/pull/170))
-- Add `scope` prop to `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` ([#171](https://github.com/elastic/eui/pull/171))
-- Add `disabled` prop to `EuiContextMenuItem` ([#172](https://github.com/elastic/eui/pull/172))
-- Add `EuiTablePagination` component and `Pager` service ([#178](https://github.com/elastic/eui/pull/178))
-- Add `EuiTooltip` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
-- Add a bold weight of 700 and apply it to `<strong>` elements by default ([#193](https://github.com/elastic/eui/pull/193))
+- Converted icons from SVG to React component during the build and stop using sprites [(#160)](https://github.com/elastic/eui/pull/160)
+- Added `isReadOnly`, `setOptions`, and `cursorStart` props to `EuiCodeEditor` ([#169](https://github.com/elastic/eui/pull/169))
+- Added `wrap` prop to `EuiFlexGroup` ([#170](https://github.com/elastic/eui/pull/170))
+- Added `scope` prop to `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` ([#171](https://github.com/elastic/eui/pull/171))
+- Added `disabled` prop to `EuiContextMenuItem` ([#172](https://github.com/elastic/eui/pull/172))
+- Added `EuiTablePagination` component and `Pager` service ([#178](https://github.com/elastic/eui/pull/178))
+- Added `EuiTooltip` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
+- Added a bold weight of 700 and apply it to `<strong>` elements by default ([#193](https://github.com/elastic/eui/pull/193))
 - Icon size prop now accepts `s`. Adjusted coloring of sidenav arrows ([#178](https://github.com/elastic/eui/pull/197))
-- Add `EuiErrorBoundary` ([#198](https://github.com/elastic/eui/pull/198))
-- Export `test` module, which includes `findTestSubject`, `startThrowingReactWarnings`, `stopThrowingReactWarnings`, `requiredProps`, and `takeMountedSnapshot` helpers ([#198](https://github.com/elastic/eui/pull/198))
+- Added `EuiErrorBoundary` ([#198](https://github.com/elastic/eui/pull/198))
+- Exported `test` module, which includes `findTestSubject`, `startThrowingReactWarnings`, `stopThrowingReactWarnings`, `requiredProps`, and `takeMountedSnapshot` helpers ([#198](https://github.com/elastic/eui/pull/198))
 - Added a more systematic way to add themes; includes a new K6 theme for Kibana. [(#191)](https://github.com/elastic/eui/pull/191)
 
 **Bug fixes**
@@ -265,7 +268,7 @@
 
 - `EuiFlexItem` now accepts integers between 1 and 10 for the `grow` prop. [(#144)](https://github.com/elastic/eui/pull/144)
 - `EuiFlexItem` and `EuiFlexGrow` now accept a `component` prop which you can set to `span` or `div` (default). [(#141)](https://github.com/elastic/eui/pull/141)
-- Add `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
+- Added `isLoading` prop to form inputs to allow for a loading state [(#150)](https://github.com/elastic/eui/pull/150)
 
 **Breaking changes**
 

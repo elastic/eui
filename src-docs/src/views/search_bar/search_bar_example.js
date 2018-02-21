@@ -17,7 +17,7 @@ const searchBarSource = require('!!raw-loader!./search_bar');
 const searchBarHtml = renderToHtml(SearchBar);
 
 export const SearchBarExample = {
-  title: 'SearchBar',
+  title: 'Search Bar',
   sections: [
     {
       title: 'SearchBar',

@@ -25,7 +25,7 @@ const columnRenderersSource = require('!!raw-loader!./column_data_types');
 const columnRenderersHtml = renderToHtml(ColumnDataTypes);
 
 export const TableOfRecordsExample = {
-  title: 'TableOfRecords',
+  title: 'Table Of Records',
   intro: (
     <EuiText>
       <EuiCallOut color="danger" iconType="alert" title="Do not use. This is a depricated feature.">

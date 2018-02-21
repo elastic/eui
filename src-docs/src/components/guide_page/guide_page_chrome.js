@@ -91,172 +91,47 @@ export class GuidePageChrome extends Component {
     }));
   }
 
-  renderGuidelineNavItems() {
-    const matchingItems = this.props.guidelines.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    ));
+  renderSideNav = sideNav => {
+    // TODO: Add contents pages
+    const sideNavSections = [];
 
-    const items = matchingItems.map(item => {
-      const {
-        name,
-        path,
-        sections,
-      } = item;
+    sideNav.forEach(section => {
+      const matchingItems = section.items.filter(item => (
+        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      ));
 
-      return {
-        id: `guideline-${path}`,
-        name,
-        href: `#/${path}`,
-        items: this.renderSubSections(sections),
-        isSelected: name === this.props.currentRouteName,
-      };
+      const items = matchingItems.map(item => {
+        const {
+          name,
+          path,
+          sections,
+        } = item;
+
+        return {
+          id: `${section.type}-${path}`,
+          name,
+          href: `#/${path}`,
+          items: this.renderSubSections(sections),
+          isSelected: name === this.props.currentRouteName,
+        };
+      });
+
+      if (!items.length) {
+        return;
+      }
+
+      sideNavSections.push({
+        name: section.name,
+        id: section.type,
+        items,
+      });
     });
 
-    if (!items.length) {
-      return;
-    }
-
-    return {
-      name: 'Guidelines',
-      id: 'guidelines',
-      items,
-    };
-  }
-
-  renderServiceNavItems() {
-    const matchingItems = this.props.services.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    ));
-
-    const items = matchingItems.map(item => {
-      const {
-        name,
-        path,
-        sections,
-      } = item;
-
-      return {
-        id: `service-${path}`,
-        name,
-        href: `#/${path}`,
-        items: this.renderSubSections(sections),
-        isSelected: name === this.props.currentRouteName,
-      };
-    });
-
-    if (!items.length) {
-      return;
-    }
-
-    return {
-      name: 'Services',
-      id: 'services',
-      items,
-    };
-  }
-
-  renderComponentNavItems() {
-    const matchingItems = this.props.components.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    ));
-
-    const items = matchingItems.map(item => {
-      const {
-        name,
-        path,
-        sections,
-      } = item;
-
-      return {
-        id: `component-${path}`,
-        name,
-        href: `#/${path}`,
-        items: this.renderSubSections(sections),
-        isSelected: name === this.props.currentRouteName,
-      };
-    });
-
-    if (!items.length) {
-      return;
-    }
-
-    return {
-      name: 'Components',
-      id: 'components',
-      items,
-    };
-  }
-
-  rendePatternNavItems() {
-    const matchingItems = this.props.patterns.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    ));
-
-    const items = matchingItems.map(item => {
-      const {
-        name,
-        path,
-        sections,
-      } = item;
-
-      return {
-        id: `pattern-${path}`,
-        name,
-        href: `#/${path}`,
-        items: this.renderSubSections(sections),
-        isSelected: name === this.props.currentRouteName,
-      };
-    });
-
-    if (!items.length) {
-      return;
-    }
-
-    return {
-      name: 'Patterns',
-      id: 'patterns',
-      items,
-    };
-  }
-
-  renderSandboxNavItems() {
-    const matchingItems = this.props.sandboxes.filter(item => (
-      item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    ));
-
-    const items = matchingItems.map(item => {
-      const {
-        name,
-        path,
-      } = item;
-
-      return {
-        id: `sandbox-${path}`,
-        name,
-        href: `#/${path}`,
-        isSelected: name === this.props.currentRouteName,
-      };
-    });
-
-    if (!items.length) {
-      return;
-    }
-
-    return {
-      name: 'Sandboxes',
-      id: 'sandboxes',
-      items,
-    };
-  }
+    return sideNavSections;
+  };
 
   render() {
-    const sideNav = [
-      this.renderGuidelineNavItems(),
-      this.renderServiceNavItems(),
-      this.renderComponentNavItems(),
-      this.rendePatternNavItems(),
-      this.renderSandboxNavItems(),
-    ].filter(section => section);
+    const sideNav = this.renderSideNav(this.props.navigation);
 
     let sideNavContent;
 
@@ -301,9 +176,5 @@ GuidePageChrome.propTypes = {
   currentRouteName: PropTypes.string.isRequired,
   onToggleTheme: PropTypes.func.isRequired,
   selectedTheme: PropTypes.string.isRequired,
-  guidelines: PropTypes.array.isRequired,
-  services: PropTypes.array.isRequired,
-  components: PropTypes.array.isRequired,
-  patterns: PropTypes.array.isRequired,
-  sandboxes: PropTypes.array.isRequired,
+  navigation: PropTypes.array.isRequired,
 };

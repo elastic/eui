@@ -8,7 +8,7 @@ const delayHideSource = require('!!raw-loader!./delay_hide');
 const delayHideHtml = renderToHtml(DelayHide);
 
 export const DelayHideExample = {
-  title: 'DelayHide',
+  title: 'Delay Hide',
   sections: [
     {
       title: 'DelayHide',

@@ -20,7 +20,7 @@ const horizontalRuleMarginSource = require('!!raw-loader!./horizontal_rule_margi
 const horizontalRuleMarginHtml = renderToHtml(HorizontalRuleMargin);
 
 export const HorizontalRuleExample = {
-  title: 'HorizontalRule',
+  title: 'Horizontal Rule',
   sections: [{
     title: 'HorizontalRule',
     source: [{

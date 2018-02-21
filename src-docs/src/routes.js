@@ -14,12 +14,13 @@ import {
   EuiErrorBoundary,
 } from '../../src/components';
 
-import { Slugify } from './services';
-
 // Guidelines
 
 import WritingGuidelines
   from './views/guidelines/writing';
+
+import TextScales
+  from './views/text_scaling/text_scaling_sandbox';
 
 // Services
 
@@ -169,27 +170,22 @@ import { ToastExample }
 import { TooltipExample }
   from './views/tooltip/tooltip_example';
 
-// Patterns
-
-// Sandboxes
-
-import AdvancedSettingsSandbox
-  from './views/kibana/advanced_settings_sandbox';
-
-import WatchesSandbox
-  from './views/kibana/watches_sandbox';
-
-import TextScalingSandbox
-  from './views/text_scaling/text_scaling_sandbox';
-
-const guidelines = [{
-  name: 'Writing',
-  component: WritingGuidelines,
-}];
+/**
+ * Lowercases input and replaces spaces with hyphens:
+ * e.g. 'GridView Example' -> 'gridview-example'
+ */
+const slugify = str => {
+  const parts = str
+    .toLowerCase()
+    .replace(/[-]+/g, ' ')
+    .replace(/[^\w^\s]+/g, '')
+    .replace(/ +/g, ' ').split(' ');
+  return parts.join('-');
+};
 
 const createExample = ({ title, intro, sections }) => {
   sections.forEach(section => {
-    section.id = Slugify.one(section.title);
+    section.id = slugify(section.title);
   });
 
   const renderedSections = sections.map(section => createElement(GuideSection, {
@@ -213,93 +209,102 @@ const createExample = ({ title, intro, sections }) => {
   };
 };
 
-// Component route names should match the component name exactly.
-const services = [
-  IsColorDarkExample,
-].map(example => createExample(example));
-
-// Component route names should match the component name exactly.
-const components = [
-  AccessibilityExample,
-  AccordionExample,
-  AvatarExample,
-  BadgeExample,
-  BottomBarExample,
-  ButtonExample,
-  CardExample,
-  CallOutExample,
-  CodeEditorExample,
-  CodeExample,
-  ColorPickerExample,
-  ContextMenuExample,
-  DelayHideExample,
-  DescriptionListExample,
-  ErrorBoundaryExample,
-  ExpressionExample,
-  FilterGroupExample,
-  FilePickerExample,
-  FlexExample,
-  FlyoutExample,
-  FormExample,
-  HeaderExample,
-  HealthExample,
-  HorizontalRuleExample,
-  IconExample,
-  ImageExample,
-  KeyPadMenuExample,
-  LinkExample,
-  LoadingExample,
-  ModalExample,
-  OutsideClickDetectorExample,
-  PageExample,
-  PaginationExample,
-  PanelExample,
-  PopoverExample,
-  ProgressExample,
-  SearchBarExample,
-  SideNavExample,
-  SpacerExample,
-  StepsExample,
-  TableExample,
-  TableOfRecordsExample,
-  TabsExample,
-  TextExample,
-  TitleExample,
-  ToastExample,
-  TooltipExample,
-].map(example => createExample(example));
-
-const patterns = [
-].map(example => createExample(example));
-
-const sandboxes = [{
-  name: 'Advanced Settings',
-  component: AdvancedSettingsSandbox,
+const navigation = [{
+  name: 'Guidelines',
+  items: [{
+    name: 'Writing',
+    component: WritingGuidelines,
+  }, {
+    name: 'Text scales',
+    component: TextScales,
+  }],
 }, {
-  name: 'Watches',
-  component: WatchesSandbox,
+  name: 'Layout',
+  items: [
+    AccordionExample,
+    BottomBarExample,
+    FlexExample,
+    FlyoutExample,
+    HeaderExample,
+    HorizontalRuleExample,
+    ModalExample,
+    PageExample,
+    PanelExample,
+    PopoverExample,
+    SpacerExample,
+  ].map(example => createExample(example)),
 }, {
-  name: 'Text scales',
-  component: TextScalingSandbox,
-}];
+  name: 'Navigation',
+  items: [
+    ButtonExample,
+    ContextMenuExample,
+    KeyPadMenuExample,
+    LinkExample,
+    PaginationExample,
+    SideNavExample,
+    StepsExample,
+    TabsExample,
+  ].map(example => createExample(example)),
+}, {
+  name: 'Display',
+  items: [
+    AvatarExample,
+    BadgeExample,
+    CallOutExample,
+    CardExample,
+    CodeExample,
+    DescriptionListExample,
+    HealthExample,
+    IconExample,
+    ImageExample,
+    LoadingExample,
+    ProgressExample,
+    TableExample,
+    TableOfRecordsExample,
+    TextExample,
+    TitleExample,
+    ToastExample,
+    TooltipExample,
+  ].map(example => createExample(example)),
+}, {
+  name: 'Forms',
+  items: [
+    CodeEditorExample,
+    ColorPickerExample,
+    ExpressionExample,
+    FilePickerExample,
+    FilterGroupExample,
+    FormExample,
+    SearchBarExample,
+  ].map(example => createExample(example)),
+}, {
+  name: 'Utilities',
+  items: [
+    AccessibilityExample,
+    DelayHideExample,
+    ErrorBoundaryExample,
+    IsColorDarkExample,
+    OutsideClickDetectorExample,
+  ].map(example => createExample(example)),
+}].map(({ name, items, ...rest }) => ({
+  name,
+  type: slugify(name),
+  items: items.map(({ name: itemName, ...rest }) => ({
+    name: itemName,
+    path: `${slugify(name)}/${slugify(itemName)}`,
+    ...rest,
+  })),
+  ...rest
+}));
 
-sandboxes.forEach(sandbox => { sandbox.isSandbox = true; });
-
-const allRoutes = [
-  ...guidelines,
-  ...services,
-  ...components,
-  ...sandboxes,
-  ...patterns,
-];
+const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
+  accummulatedRoutes.push(...section.items);
+  return accummulatedRoutes;
+}, []);
 
 export default {
   history: useRouterHistory(createHashHistory)(),
-  guidelines: Slugify.each(guidelines, 'name', 'path'),
-  services: Slugify.each(services, 'name', 'path'),
-  components: Slugify.each(components, 'name', 'path'),
-  patterns: Slugify.each(patterns, 'name', 'path'),
-  sandboxes: Slugify.each(sandboxes, 'name', 'path'),
+  navigation,
 
   getRouteForPath: path => {
     // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.

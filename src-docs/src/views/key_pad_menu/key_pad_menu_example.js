@@ -21,7 +21,7 @@ const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_but
 const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
 
 export const KeyPadMenuExample = {
-  title: 'KeyPadMenu',
+  title: 'Key Pad Menu',
   sections: [{
     title: 'KeyPadMenu',
     source: [{

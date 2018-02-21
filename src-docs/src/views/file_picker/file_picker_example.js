@@ -17,7 +17,7 @@ const filePickerSource = require('!!raw-loader!./file_picker');
 const filePickerHtml = renderToHtml(FilePicker);
 
 export const FilePickerExample = {
-  title: 'FilePicker',
+  title: 'File Picker',
   sections: [{
     title: 'FilePicker',
     source: [{
