@@ -4,7 +4,7 @@ import React, {
 
 import {
   EuiToggle,
-  EuiIcon,
+  EuiButtonIcon,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -36,9 +36,9 @@ export default class extends Component {
 
         <EuiToggle onChange={this.onToggleChange2}>
           {this.state.toggleOn2 ? (
-            <EuiIcon type="eye" />
+            <EuiButtonIcon iconType="eye" aria-label="s"/>
           ) : (
-            <EuiIcon type="eyeClosed" />
+            <EuiButtonIcon iconType="eyeClosed" aria-label="s"/>
           )}
         </EuiToggle>
       </div>

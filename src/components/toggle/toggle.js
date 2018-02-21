@@ -21,7 +21,7 @@ export const EuiToggle = ({
   );
 
   return (
-    <div className={classes}>
+    <span className={classes}>
       <input
         className="euiToggle__input"
         name={name}
@@ -33,7 +33,7 @@ export const EuiToggle = ({
       />
 
       {children}
-    </div>
+    </span>
   );
 };
 
