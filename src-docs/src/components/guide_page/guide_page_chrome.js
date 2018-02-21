@@ -93,7 +93,9 @@ export class GuidePageChrome extends Component {
 
   renderSideNav = sideNav => {
     // TODO: Add contents pages
-    return sideNav.map(section => {
+    const sideNavSections = [];
+
+    sideNav.forEach(section => {
       const matchingItems = section.items.filter(item => (
         item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       ));
@@ -118,12 +120,14 @@ export class GuidePageChrome extends Component {
         return;
       }
 
-      return {
+      sideNavSections.push({
         name: section.name,
         id: section.type,
         items,
-      };
+      });
     });
+
+    return sideNavSections;
   };
 
   render() {
