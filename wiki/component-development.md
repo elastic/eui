@@ -9,7 +9,7 @@ Before working with EUI components or creating new ones, you may want to run a l
 To view interactive documentation, start the development server using the command below.
 
 ```shell
-yarn install
+yarn
 yarn start
 ```
 
