@@ -1,10 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.22`.
+**Bug fixes**
+
+- Fixed `EuiContextMenu` bug when using the keyboard to navigate up, which was caused by unnecessarily re-rendering the items, thus losing references to them ([#431](https://github.com/elastic/eui/pull/431))
 
 # [`0.0.22`](https://github.com/elastic/eui/tree/v0.0.22)
 
-- Added `EuiDelayHide` component. [#412](https://github.com/elastic/eui/pull/412)
+- Added `EuiDelayHide` component. ([#412](https://github.com/elastic/eui/pull/412))
 - Decreased overall size of checkbox, radio, and switches as well as better styles for the different states. ([#407](https://github.com/elastic/eui/pull/407))
 - Added `EuiFilePicker` component for `input type="file"` needs. ([#402](https://github.com/elastic/eui/pedull/402))
 - Add `isLoading` prop to `EuiButton` ([#427](https://github.com/elastic/eui/pull/427))

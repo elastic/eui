@@ -69,6 +69,7 @@ export class EuiContextMenu extends Component {
     this.idToPanelMap = {};
     this.idToPreviousPanelIdMap = {};
     this.idAndItemIndexToPanelIdMap = {};
+    this.idToRenderedItemsMap = {};
 
     this.state = {
       height: undefined,
@@ -153,6 +154,7 @@ export class EuiContextMenu extends Component {
     this.idToPanelMap = mapIdsToPanels(panels);
     this.idToPreviousPanelIdMap = mapIdsToPreviousPanels(panels);
     this.idAndItemIndexToPanelIdMap = mapPanelItemsToPanels(panels);
+    this.mapIdsToRenderedItems(panels);
   }
 
   componentWillMount() {
@@ -164,6 +166,15 @@ export class EuiContextMenu extends Component {
       this.updatePanelMaps(nextProps.panels);
     }
   }
+
+  mapIdsToRenderedItems = panels => {
+    this.idToRenderedItemsMap = {};
+
+    // Pre-rendering the items lets us check reference equality inside of EuiContextMenuPanel.
+    panels.forEach(panel => {
+      this.idToRenderedItemsMap[panel.id] = this.renderItems(panel.items);
+    });
+  };
 
   renderItems(items = []) {
     return items.map((item, index) => {
@@ -227,7 +238,7 @@ export class EuiContextMenu extends Component {
         transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
         transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
         hasFocus={transitionType === 'in'}
-        items={this.renderItems(panel.items)}
+        items={this.idToRenderedItemsMap[panelId]}
         initialFocusedItemIndex={this.state.isUsingKeyboardToNavigate ? this.state.focusedItemIndex : undefined}
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}
