@@ -126,9 +126,10 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          label="Select"
+          label="Select (with no initial selection)"
         >
           <EuiSelect
+            hasNoInitialSelection={true}
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },

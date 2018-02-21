@@ -19,6 +19,7 @@ export const EuiSelect = ({
   isInvalid,
   fullWidth,
   isLoading,
+  hasNoInitialSelection,
   ...rest
 }) => {
   const classes = classNames(
@@ -29,6 +30,13 @@ export const EuiSelect = ({
     },
     className
   );
+
+  let emtpyOptionNode;
+  if (hasNoInitialSelection) {
+    emtpyOptionNode = (
+      <option selected disabled hidden style={{ display: 'none' }}>&nbsp;</option>
+    );
+  }
 
   return (
     <EuiFormControlLayout
@@ -45,6 +53,7 @@ export const EuiSelect = ({
           ref={inputRef}
           {...rest}
         >
+          {emtpyOptionNode}
           {options.map((option, index) => {
             const {
               text,
@@ -67,6 +76,11 @@ EuiSelect.propTypes = {
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
+
+  /**
+   * Simulates no selection by creating an empty, selected, hidden first option
+   */
+  hasNoInitialSelection: PropTypes.bool,
   inputRef: PropTypes.func,
 };
 
@@ -74,4 +88,5 @@ EuiSelect.defaultProps = {
   options: [],
   fullWidth: false,
   isLoading: false,
+  hasNoInitialSelection: false,
 };
