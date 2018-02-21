@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state
+and logic ([#390](https://github.com/elastic/eui/pull/390))
+- Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
+
 **Bug fixes**
 
 - Fixed `EuiContextMenu` bug when using the keyboard to navigate up, which was caused by unnecessarily re-rendering the items, thus losing references to them ([#431](https://github.com/elastic/eui/pull/431))

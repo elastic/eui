@@ -17,3 +17,7 @@
     background-color: $euiColorEmptyShade;
     padding: $euiSizeS;
   }
+
+  .euiErrorBoundary__stack {
+    white-space: pre-wrap;
+  }

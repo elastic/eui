@@ -42,9 +42,9 @@ export class EuiErrorBoundary extends Component {
           <div className="euiErrorBoundary__text">
             <EuiText size="xs">
               <h1>Error</h1>
-              <pre>
+              <pre className="euiErrorBoundary__stack">
                 <p>
-                  {this.state.error && this.state.error.toString()}
+                  {this.state.error && this.state.error.stack}
                 </p>
               </pre>
             </EuiText>
