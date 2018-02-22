@@ -153,7 +153,7 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <div>
+      <div className="guideSideNav">
         {this.renderIdentity()}
 
         <EuiSpacer size="m" />

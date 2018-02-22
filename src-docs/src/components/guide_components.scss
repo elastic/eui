@@ -1,3 +1,4 @@
+$guideSideNavWidth: 200px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
 @mixin whenNarrowerThan($browserWidth) {
@@ -27,6 +28,30 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
+}
+
+.guidePage {
+  padding: 0;
+}
+
+.guideSideNav {
+  @include scrollbar;
+  width: $guideSideNavWidth;
+  padding: $euiSize $euiSizeS $euiSize $euiSize;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.guidePageContent {
+  flex: 1 1 auto;
+  margin-left: $guideSideNavWidth;
+  padding: $euiSize $euiSizeXL;
+  min-height: 100vh;
+  background-color: $euiColorEmptyShade;
+  border-left: $euiBorderThin;
 }
 
 .guideLogo {
