@@ -13,9 +13,6 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageSideBar,
 } from '../../../src/components';
 
 import { keyCodes } from '../../../src/services';
@@ -76,24 +73,20 @@ export class AppView extends Component {
     const { navigation } = routes;
 
     return (
-      <EuiPage>
+      <EuiPage className="guidePage">
         <EuiPageBody>
           <EuiErrorBoundary>
-            <EuiPageSideBar>
-              <GuidePageChrome
-                currentRouteName={currentRoute.name}
-                onToggleTheme={toggleTheme}
-                selectedTheme={theme}
-                navigation={navigation}
-              />
-            </EuiPageSideBar>
+            <GuidePageChrome
+              currentRouteName={currentRoute.name}
+              onToggleTheme={toggleTheme}
+              selectedTheme={theme}
+              navigation={navigation}
+            />
           </EuiErrorBoundary>
 
-          <EuiPageContent>
-            <EuiPageContentBody>
-              {children}
-            </EuiPageContentBody>
-          </EuiPageContent>
+          <div className="guidePageContent">
+            {children}
+          </div>
         </EuiPageBody>
       </EuiPage>
     );
