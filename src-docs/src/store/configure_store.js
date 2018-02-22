@@ -12,7 +12,6 @@ import {
 
 import Routes from '../routes';
 
-import sandboxReducer from './reducers/sandbox_reducer';
 import themeReducer from './reducers/theme_reducer';
 
 /**
@@ -23,7 +22,6 @@ export default function configureStore(initialState) {
   function rootReducer(state = {}, action) {
     return {
       routing: routerReducer(state.routing, action),
-      sandbox: sandboxReducer(state.sandbox, action),
       theme: themeReducer(state.theme, action),
       routes: Routes,
     };

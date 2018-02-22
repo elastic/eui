@@ -64,44 +64,35 @@ export class AppView extends Component {
     const {
       children,
       currentRoute,
-      isSandbox,
       toggleTheme,
       theme,
       routes,
     } = this.props;
 
-    if (isSandbox) {
-      return (
-        <div className="guideSandbox">
-          {children}
-        </div>
-      );
-    } else {
-      const { navigation } = routes;
+    const { navigation } = routes;
 
-      return (
-        <EuiPage>
-          <EuiPageBody>
-            <EuiErrorBoundary>
-              <EuiPageSideBar>
-                <GuidePageChrome
-                  currentRouteName={currentRoute.name}
-                  onToggleTheme={toggleTheme}
-                  selectedTheme={theme}
-                  navigation={navigation}
-                />
-              </EuiPageSideBar>
-            </EuiErrorBoundary>
+    return (
+      <EuiPage>
+        <EuiPageBody>
+          <EuiErrorBoundary>
+            <EuiPageSideBar>
+              <GuidePageChrome
+                currentRouteName={currentRoute.name}
+                onToggleTheme={toggleTheme}
+                selectedTheme={theme}
+                navigation={navigation}
+              />
+            </EuiPageSideBar>
+          </EuiErrorBoundary>
 
-            <EuiPageContent>
-              <EuiPageContentBody>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      );
-    }
+          <EuiPageContent>
+            <EuiPageContentBody>
+              {children}
+            </EuiPageContentBody>
+          </EuiPageContent>
+        </EuiPageBody>
+      </EuiPage>
+    );
   }
 
   render() {
@@ -116,7 +107,6 @@ export class AppView extends Component {
 AppView.propTypes = {
   children: PropTypes.any,
   currentRoute: PropTypes.object.isRequired,
-  isSandbox: PropTypes.bool,
   theme: PropTypes.string.isRequired,
   toggleTheme: PropTypes.func.isRequired,
   routes: PropTypes.object.isRequired,
