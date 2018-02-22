@@ -9,6 +9,7 @@ export const EuiToggle = ({
   disabled,
   onChange,
   children,
+  containsButton,
   className,
   ...rest,
 }) => {
@@ -17,9 +18,12 @@ export const EuiToggle = ({
     {
       'euiToggle--disabled': disabled,
       'euiToggle--checked': checked,
+      'euiToggle--containsButton': containsButton,
     },
     className
   );
+
+  const childrenNode = containsButton ? React.cloneElement(children, { tabIndex: -1 }) : children;
 
   return (
     <span
@@ -36,7 +40,7 @@ export const EuiToggle = ({
         aria-label={label}
       />
 
-      {children}
+      {childrenNode}
 
     </span>
   );
@@ -53,6 +57,12 @@ EuiToggle.propTypes = {
    * the checked state of your component.
    */
   children: PropTypes.node,
+
+  /**
+   * Use your own logic to pass the child you want according to
+   * the checked state of your component.
+   */
+  containsButton: PropTypes.bool,
 
   /**
    * Required for accessibility.
