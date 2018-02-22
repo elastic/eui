@@ -7,7 +7,7 @@ import { EuiToggle } from './toggle';
 describe('EuiToggle', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiToggle {...requiredProps} />
+      <EuiToggle label="Is toggle on?" {...requiredProps} />
     );
 
     expect(component)

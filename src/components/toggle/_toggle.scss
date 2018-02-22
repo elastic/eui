@@ -6,9 +6,5 @@
 
   .euiToggle__input {
     @include euiHiddenSelectableInput;
-
-    + * {
-      pointer-events: none;
-    }
   }
 }

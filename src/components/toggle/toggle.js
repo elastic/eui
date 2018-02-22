@@ -4,12 +4,13 @@ import classNames from 'classnames';
 
 export const EuiToggle = ({
   id,
-  name,
+  label,
   checked,
   disabled,
   onChange,
   children,
-  className
+  className,
+  ...rest,
 }) => {
   const classes = classNames(
     'euiToggle',
@@ -21,27 +22,40 @@ export const EuiToggle = ({
   );
 
   return (
-    <span className={classes}>
+    <span
+      className={classes}
+      {...rest}
+    >
       <input
         className="euiToggle__input"
-        name={name}
         id={id}
         type="checkbox"
         checked={checked}
         disabled={disabled}
         onChange={onChange}
+        aria-label={label}
       />
 
       {children}
+
     </span>
   );
 };
 
 EuiToggle.propTypes = {
-  name: PropTypes.string,
   id: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
+
+  /**
+   * Use your own logic to pass the child you want according to
+   * the checked state of your component.
+   */
   children: PropTypes.node,
+
+  /**
+   * Required for accessibility.
+   */
+  label: PropTypes.string.isRequired,
 };

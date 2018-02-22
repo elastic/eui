@@ -28,17 +28,17 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <EuiToggle onChange={this.onToggleChange}>
+        <EuiToggle onChange={this.onToggleChange} label="Is toggle on?">
           {this.state.toggleOn ? 'On' : 'Off'}
         </EuiToggle>
 
         &nbsp;
 
-        <EuiToggle onChange={this.onToggleChange2}>
+        <EuiToggle onChange={this.onToggleChange2} label="Visibility">
           {this.state.toggleOn2 ? (
-            <EuiButtonIcon iconType="eye" aria-label="s"/>
+            <EuiButtonIcon iconType="eye" aria-label="visible"/>
           ) : (
-            <EuiButtonIcon iconType="eyeClosed" aria-label="s"/>
+            <EuiButtonIcon iconType="eyeClosed" aria-label="not visible"/>
           )}
         </EuiToggle>
       </div>
