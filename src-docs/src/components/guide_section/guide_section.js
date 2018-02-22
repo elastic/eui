@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { flatten } from 'lodash';
 
@@ -135,7 +135,6 @@ export class GuideSection extends Component {
     }
 
     return [
-      <EuiSpacer size="m" key="textSpacer" />,
       <EuiText key="text">{text}</EuiText>,
     ];
   }
@@ -276,12 +275,22 @@ export class GuideSection extends Component {
   }
 
   renderChrome() {
-    return (
-      <div>
-        <div className="guideSection__text">
+    let title;
+
+    if (this.props.title) {
+      title = (
+        <Fragment>
           <EuiTitle>
             <h2>{this.props.title}</h2>
           </EuiTitle>
+          <EuiSpacer size="m" key="textSpacer" />
+        </Fragment>
+      );
+    }
+    return (
+      <div>
+        <div className="guideSection__text">
+          {title}
           {this.renderText()}
         </div>
 

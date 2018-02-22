@@ -140,5 +140,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.guideSection__text {
+  max-width: 800px;
+}
+
 @import "guide_section/index";
 @import "guide_rule/index";
