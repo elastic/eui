@@ -1,0 +1,10 @@
+.euiToolTip {
+  @include euiBottomShadow;
+  @include euiFontSizeS();
+
+  position: fixed;
+  border-radius: $euiBorderRadius;
+  padding: $euiSizeM;
+  background-color: $euiColorDarkestShade;
+  color: $euiColorGhost;
+}
