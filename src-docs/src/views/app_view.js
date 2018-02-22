@@ -25,8 +25,12 @@ export class AppView extends Component {
     applyTheme(this.props.theme);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.updateTheme();
+
+    if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
+      window.scrollTo(0, 0);
+    }
   }
 
   componentDidMount() {
