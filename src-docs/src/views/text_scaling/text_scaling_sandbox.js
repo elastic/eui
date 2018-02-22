@@ -19,7 +19,6 @@ const textScalingHtml = renderToHtml(TextScaling);
 export default props => (
   <GuidePage title={props.route.name}>
     <GuideSection
-      title={props.route.name}
       source={[{
         type: GuideSectionTypes.JS,
         code: textScalingSource,

@@ -3,14 +3,20 @@ import React, { Fragment } from 'react';
 
 import {
   EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 
-export const GuidePage = ({ children, title }) => {
+export const GuidePage = ({ children, title, intro }) => {
   return (
     <Fragment>
-      <EuiTitle size="l">
-        <h1>{title}</h1>
-      </EuiTitle>
+      <div className="guideSection__text">
+        <EuiTitle size="l">
+          <h1>{title}</h1>
+        </EuiTitle>
+
+        <EuiSpacer />
+        {intro}
+      </div>
 
       {children}
     </Fragment>
@@ -18,6 +24,7 @@ export const GuidePage = ({ children, title }) => {
 };
 
 GuidePage.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.node,
   title: PropTypes.string,
+  intro: PropTypes.node,
 };

@@ -207,8 +207,7 @@ const createExample = ({ title, intro, sections }) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title}>
-        {intro}
+      <GuidePage title={title} intro={intro}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
