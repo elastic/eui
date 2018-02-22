@@ -12,6 +12,9 @@ import {
   EuiHorizontalRule,
   EuiButton,
   EuiCallOut,
+  EuiFlexItem,
+  EuiFlexGrid,
+  EuiCard,
 } from '../../../../src/components';
 
 const template = `PUT _template/logs-apache
@@ -57,8 +60,29 @@ export default class extends Component {
     return (
       <div className="euiAnimateContentLoad">
         <EuiTitle>
-          <h4>Review and edit your generated template</h4>
+          <h4>Review and save</h4>
         </EuiTitle>
+        <EuiSpacer />
+        <EuiFlexGrid columns="3">
+          <EuiFlexItem>
+            <EuiCard
+              title="2"
+              description="Index templates will be effected by this change"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiCard
+              title="2"
+              description="Index templates will be effected by this change"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiCard
+              title="2"
+              description="Index templates will be effected by this change"
+            />
+          </EuiFlexItem>
+        </EuiFlexGrid>
         <EuiSpacer />
         <EuiCallOut
           size="s"
@@ -83,8 +107,8 @@ export default class extends Component {
 
         <EuiHorizontalRule className="ilmHrule" />
 
-        <EuiButton fill iconSide="right" iconType="sortRight" onClick={onSelection}>
-          Save and continue
+        <EuiButton fill color="secondary" iconType="check" onClick={onSelection}>
+          Save and finish
         </EuiButton>
       </div>
     );

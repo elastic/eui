@@ -77,27 +77,22 @@ export default class extends Component {
 
     const steps = [
       {
-        title: 'Select data source',
+        title: 'Select a template',
         isSelected: this.state.selectedStep === 1,
         isComplete: this.state.selectedStep > 1,
         onClick: () => this.onSelectedStepChanged(1)
       },
       {
-        title: 'Lifecycle phases',
+        title: 'Edit policy',
         isSelected: this.state.selectedStep === 2,
         isComplete: this.state.selectedStep > 2,
         onClick: () => this.onSelectedStepChanged(2)
       },
       {
-        title: 'Review template',
+        title: 'Review and save',
         isSelected: this.state.selectedStep === 3,
         isComplete: this.state.selectedStep > 3,
         onClick: () => this.onSelectedStepChanged(3)
-      },
-      {
-        title: 'Apply and save',
-        isSelected: this.state.selectedStep === 4,
-        onClick: () => this.onSelectedStepChanged(4)
       },
     ];
 
@@ -118,9 +113,9 @@ export default class extends Component {
           <EuiPageContent>
             <EuiPageContentHeader>
               <EuiPageContentHeaderSection>
-                <EuiText>
-                  <h2>Create a policy</h2>
-                </EuiText>
+                <EuiTitle size="l">
+                  <h2>Index lifecycle management</h2>
+                </EuiTitle>
               </EuiPageContentHeaderSection>
             </EuiPageContentHeader>
 

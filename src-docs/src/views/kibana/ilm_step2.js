@@ -23,10 +23,34 @@ export const Step2 = ({
 }) => {
   return (
     <div className="euiAnimateContentLoad">
+
       <EuiTitle>
-        <h4>When should an index be moved to each phase?</h4>
+        <h4>Edit policy</h4>
       </EuiTitle>
-      <EuiSpacer />
+      <EuiSpacer/>
+      <EuiFlexGroup alignItems="flexEnd">
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Select an existing policy">
+            <EuiSelect
+              options={[
+                { value: 'logstash_template', text: 'Big cluster cooldown' },
+                { value: 'option_two', text: 'Small cluster always hot' },
+              ]}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiTextColor color="subdued">
+            <EuiTitle size="s">
+              <p>OR</p>
+            </EuiTitle>
+          </EuiTextColor>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton>Create a new policy</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiHorizontalRule className="ilmHrule" />
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <div style={{ background: '#00A69B', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
