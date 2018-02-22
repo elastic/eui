@@ -8,6 +8,7 @@
   "jsnext:main": "src",
   "scripts": {
     "start": "./scripts/docs-dev.sh",
+    "test-docker": "docker run --rm -i --user=$UID -e HOME=/tmp -v $(pwd):/app -w /app node:8 bash -c 'npm config set spin false && yarn && npm run test'",
     "sync-docs": "./scripts/docs-sync.sh",
     "build-docs": "./scripts/docs-build.sh",
     "build": "./scripts/compile.sh",
