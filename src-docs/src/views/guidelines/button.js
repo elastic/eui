@@ -3,6 +3,7 @@ import React from 'react';
 import {
   GuidePage,
   GuideRule,
+  GuideRuleTitle,
   GuideRuleExample,
 } from '../../components';
 
@@ -33,18 +34,17 @@ export default () => (
       Choosing a button type, style, and placement depends on the prominence of its action and the context in which the button appears.
       </p>
       <EuiLink
-        href="https://elastic.github.io/eui/#/button"
+        href="https://elastic.github.io/eui/#/navigation/button"
         target="_blank"
       >
-          Go to code example
+          Go to code
       </EuiLink>
     </EuiText>
 
-    <EuiSpacer size="xxl"/>
-    <EuiText>
-      <h2>Button types</h2>
-    </EuiText>
-    <EuiSpacer size="l" />
+    <EuiSpacer size="s"/>
+    <GuideRuleTitle>Button types</GuideRuleTitle>
+    <EuiSpacer size="xl"/>
+
 
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 150 }} grow={false}>
@@ -135,15 +135,11 @@ export default () => (
     </EuiFlexGroup>
 
 
+    <EuiSpacer />
 
 
+    <GuideRuleTitle>Placement and order</GuideRuleTitle>
 
-
-
-    <EuiSpacer size="xxl"/>
-    <EuiText>
-      <h2>Placement and order</h2>
-    </EuiText>
 
     <GuideRule
       description="Button placement and order should follow the users path through the content."
@@ -158,7 +154,7 @@ export default () => (
       <GuideRuleExample
         panel={false}
         type="do"
-        text="Do. The primary action is on the right with the secondary action on its left."
+        text="Do. In modals, the primary action is on the right with the secondary action on its left."
       >
         <div style={{ textAlign: 'center' }}>
           <EuiImage
@@ -279,11 +275,7 @@ export default () => (
 
     </GuideRule>
 
-    <EuiSpacer size="xxl"/>
-    <EuiText>
-      <h2>One primary button per container</h2>
-
-    </EuiText>
+    <GuideRuleTitle>One primary button per container</GuideRuleTitle>
 
     <GuideRule
       description="The primary action should not have to compete for attention.
@@ -325,14 +317,9 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="xxl"/>
 
+    <GuideRuleTitle>Easily recognized icons</GuideRuleTitle>
 
-
-    <EuiText>
-      <h2>Easily recognized icons</h2>
-
-    </EuiText>
 
     <GuideRule
       heading=""
@@ -421,12 +408,7 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-
-    <EuiSpacer size="l"/>
-    <EuiText>
-      <h2>Minimal color changes</h2>
-
-    </EuiText>
+    <GuideRuleTitle>Minimal color changes</GuideRuleTitle>
 
     <GuideRule
       description="The button color defaults to blue.  Limit color changes to well-established use cases&mdash;green for final
@@ -463,11 +445,8 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="l"/>
-    <EuiText>
-      <h2>Using multiple buttons</h2>
+    <GuideRuleTitle>Using multiple buttons</GuideRuleTitle>
 
-    </EuiText>
 
 
     <GuideRule
@@ -519,23 +498,18 @@ export default () => (
 
 
 
-    <EuiSpacer size="l"/>
-    <EuiText>
-      <h2>Action labels</h2>
+    <GuideRuleTitle>Action labels</GuideRuleTitle>
 
-      <GuideRule
-        heading=""
-        description="Labels should provide a clear indication of
+    <GuideRule
+      heading=""
+      description="Labels should provide a clear indication of
           what happens when the user clicks the button.
             Prefer action words, and include an object when it's not clear from the context,
-            for example, Add dashboard."
-      />
-      <GuideRule
-        heading=""
-        description="Button should be three words or less. If your label requries more words, consider a text link instead."
-      />
+            for example, Add dashboard. Keep labels to three words or less.
+            If your label requries more words, consider a text link instead."
+    />
 
-      <EuiText />
+    <EuiText >
 
       <h3>Text for buttons</h3>
       <EuiSpacer />
@@ -658,7 +632,7 @@ export default () => (
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
-    <EuiSpacer />
+    <EuiSpacer size="l"/>
 
     <EuiText>
       <h3>Words to Avoid</h3>

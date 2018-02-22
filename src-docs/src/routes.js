@@ -19,8 +19,14 @@ import {
 import ButtonGuidelines
   from './views/guidelines/button';
 
+import ModalGuidelines
+  from './views/guidelines/modals';
+
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
+
+import ToastGuidelines
+  from './views/guidelines/toasts';
 
 import WritingGuidelines
   from './views/guidelines/writing';
@@ -217,12 +223,18 @@ const navigation = [{
   items: [{
     name: 'Buttons',
     component: ButtonGuidelines,
-  items: [{
-    name: 'Writing',
-    component: WritingGuidelines,
+  }, {
+    name: 'Modals',
+    component: ModalGuidelines,
   }, {
     name: 'Text scales',
     component: TextScales,
+  }, {
+    name: 'Toasts',
+    component: ToastGuidelines,
+  }, {
+    name: 'Writing',
+    component: WritingGuidelines,
   }],
 }, {
   name: 'Layout',
