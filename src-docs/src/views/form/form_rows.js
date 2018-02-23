@@ -129,7 +129,7 @@ export default class extends Component {
           label="Select (with no initial selection)"
         >
           <EuiSelect
-            hasNoInitialSelection={true}
+            hasNoInitialSelection
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },

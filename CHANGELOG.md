@@ -12,6 +12,7 @@ and logic ([#390](https://github.com/elastic/eui/pull/390))
 **Bug fixes**
 
 - Fixed `EuiContextMenu` bug when using the keyboard to navigate up, which was caused by unnecessarily re-rendering the items, thus losing references to them ([#431](https://github.com/elastic/eui/pull/431))
+- Fix error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
 
 # [`0.0.22`](https://github.com/elastic/eui/tree/v0.0.22)
 

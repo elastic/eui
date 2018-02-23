@@ -20,6 +20,7 @@ export const EuiSelect = ({
   fullWidth,
   isLoading,
   hasNoInitialSelection,
+  defaultValue,
   ...rest
 }) => {
   const classes = classNames(
@@ -31,10 +32,10 @@ export const EuiSelect = ({
     className
   );
 
-  let emtpyOptionNode;
+  let emptyOptionNode;
   if (hasNoInitialSelection) {
-    emtpyOptionNode = (
-      <option selected disabled hidden style={{ display: 'none' }}>&nbsp;</option>
+    emptyOptionNode = (
+      <option value="" disabled hidden style={{ display: 'none' }}>&nbsp;</option>
     );
   }
 
@@ -51,9 +52,10 @@ export const EuiSelect = ({
           name={name}
           className={classes}
           ref={inputRef}
+          defaultValue={defaultValue || ''}
           {...rest}
         >
-          {emtpyOptionNode}
+          {emptyOptionNode}
           {options.map((option, index) => {
             const {
               text,
