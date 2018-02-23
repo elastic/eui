@@ -20,8 +20,8 @@ import {
 
 import { Step1 } from './ilm_step1';
 import { Step2 } from './ilm_step2';
-import Step3 from './ilm_step3';
-import { Step4 } from './ilm_step4';
+import { Step3 } from './ilm_step3';
+import Step4 from './ilm_step4';
 
 import {
   KibanaChrome,
@@ -83,16 +83,22 @@ export default class extends Component {
         onClick: () => this.onSelectedStepChanged(1)
       },
       {
-        title: 'Edit policy',
+        title: 'Select or create policy',
         isSelected: this.state.selectedStep === 2,
         isComplete: this.state.selectedStep > 2,
         onClick: () => this.onSelectedStepChanged(2)
       },
       {
-        title: 'Review and save',
+        title: 'Configure policy',
         isSelected: this.state.selectedStep === 3,
         isComplete: this.state.selectedStep > 3,
         onClick: () => this.onSelectedStepChanged(3)
+      },
+      {
+        title: 'Review and save',
+        isSelected: this.state.selectedStep === 4,
+        isComplete: this.state.selectedStep > 4,
+        onClick: () => this.onSelectedStepChanged(4)
       },
     ];
 

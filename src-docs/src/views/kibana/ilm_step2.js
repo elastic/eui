@@ -1,393 +1,127 @@
-import React from 'react';
+import React, {
+  Component,
+} from 'react';
+import PropTypes from 'prop-types';
 
 import {
+  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
+  EuiCard,
   EuiTitle,
   EuiSpacer,
-  EuiFormRow,
-  EuiSelect,
-  EuiFieldNumber,
-  EuiFieldText,
+  EuiPanel,
   EuiText,
   EuiTextColor,
+  EuiHealth,
   EuiCallOut,
-  EuiAccordion,
   EuiHorizontalRule,
+  EuiAccordion,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiFieldText,
+  EuiSelect,
+  EuiSwitch,
   EuiButton,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
-export const Step2 = ({
-  onSelection,
-}) => {
-  return (
-    <div className="euiAnimateContentLoad">
+const policies = [
+  { name: 'Running hot', hot: true, warm: true },
+  { name: 'On call', hot: true, warm: true, cold: true, remove: true},
+  { name: 'Archives', hot: true, cold: true},
+  { name: 'Deep storage', hot: true, cold: true, remove: true},
+  { name: 'Dailies', hot: true},
+  { name: 'Dailies archive', hot: true, cold: true, remove: true},
+  { name: 'Weeklies', hot: true},
+];
 
-      <EuiTitle>
-        <h4>Edit policy</h4>
-      </EuiTitle>
-      <EuiSpacer/>
-      <EuiFlexGroup alignItems="flexEnd">
-        <EuiFlexItem grow={false}>
-          <EuiFormRow label="Select an existing policy">
-            <EuiSelect
-              options={[
-                { value: 'logstash_template', text: 'Big cluster cooldown' },
-                { value: 'option_two', text: 'Small cluster always hot' },
-              ]}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiTextColor color="subdued">
-            <EuiTitle size="s">
-              <p>OR</p>
+export class Step2 extends Component {
+
+  constructor(props) {
+    super(props);
+
+  }
+
+  renderPolicies () {
+    return (
+      <div className="euiAnimateContentLoad">
+        <EuiFlexGroup justifyContent="spaceBetween" alignItems="flexEnd">
+          <EuiFlexItem grow={false}>
+            <EuiTitle>
+              <h4>Select a policy to start from</h4>
             </EuiTitle>
-          </EuiTextColor>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButton>Create a new policy</EuiButton>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-      <EuiHorizontalRule className="ilmHrule" />
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <div style={{ background: '#00A69B', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
-            <EuiIcon type="indexFlush" size="xl" />
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiTitle size="s">
-            <h4>Live and hot</h4>
-          </EuiTitle>
-          <EuiTextColor color="subdued">
-            <EuiText size="s">
-              <p>By default your indices operate at full speed and can be searched with no delay</p>
+            <EuiText>
+              <p>You can edit existing policies and save them under a new name later</p>
             </EuiText>
-          </EuiTextColor>
-          <EuiSpacer size="m" />
-          <EuiAccordion
-            id="hot"
-            buttonContent="Tweak advanced settings"
-            buttonClassName="ilmAccordion__button"
-            buttonContentClassName="ilmAccordion__buttonContent"
-          >
-            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
-              <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow label="Maximum size stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'gigabytes' },
-                        { value: 'option_two', text: 'terabyes' },
-                        { value: 'option_one', text: 'megabytes' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
-                  <EuiFormRow label="Maximum age of data stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'minutes' },
-                        { value: 'option_two', text: 'hours' },
-                        { value: 'option_three', text: 'days' },
-                        { value: 'option_four', text: 'months' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>
-          </EuiAccordion>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiHorizontalRule className="ilmHrule" />
-
-      <EuiCallOut
-        size="s"
-        title="These steps are optional. Leaving them empty will keep your indices hot at all times."
-      />
-      <EuiSpacer size="m" />
-
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <div style={{ background: '#00a69b7d', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
-            <EuiIcon type="sortDown" size="xl" />
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSpacer size="s" />
-          <EuiTitle size="s">
-            <h4>Keep warm phase</h4>
-          </EuiTitle>
-          <EuiTextColor color="subdued">
-            <EuiText size="s">
-              <p>While in the warm phase your indices can be searched at a reduced speed?</p>
-            </EuiText>
-          </EuiTextColor>
-
-          <EuiSpacer />
-
-          <EuiFlexGroup gutterSize="s">
-            <EuiFlexItem grow={false}>
-              <EuiFormRow label="Move to cold after">
-                <EuiFieldNumber id="cold" placeholder="30" />
-              </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false}>
+                <EuiHealth color="danger">
+                  Hot
+                </EuiHealth>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiHealth color="accent">
+                  Warm
+                </EuiHealth>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiHealth color="primary">
+                  Cold
+                </EuiHealth>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiHealth color="text">
+                  Delete
+                </EuiHealth>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiFlexGrid columns={4}>
+          <EuiFlexItem>
+            <EuiPanel style={{ textAlign: "center" }} onClick={this.props.onSelection}>
+              <EuiIcon type="plusInCircle" />
+              <EuiTitle size="s">
+                <p>New policy</p>
+              </EuiTitle>
+            </EuiPanel>
+          </EuiFlexItem>
+          {policies.map(item => (
+            <EuiFlexItem
+              key={item.name}
+            >
+              <EuiPanel style={{ textAlign: "center" }} onClick={this.props.onSelection}>
+                <EuiTitle size="s">
+                  <p>{item.name}</p>
+                </EuiTitle>
+                {item.hot ? <EuiIcon type="dot" color="danger" /> : null}
+                {item.warm ? <EuiIcon type="dot" color="accent" /> : null}
+                {item.cold ? <EuiIcon type="dot" color="primary" /> : null}
+                {item.remove ? <EuiIcon type="dot" color="text" /> : null}
+              </EuiPanel>
             </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiFormRow hasEmptyLabelSpace>
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'minutes' },
-                    { value: 'option_two', text: 'hours' },
-                    { value: 'option_three', text: 'days' },
-                    { value: 'option_four', text: 'months' },
-                  ]}
-                />
-              </EuiFormRow>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
-              <EuiFormRow label="Store on these nodes">
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'box_type: warm' },
-                  ]}
-                />
-              </EuiFormRow>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          ))}
+        </EuiFlexGrid>
+      </div>
+    );
+  }
 
-          <EuiSpacer size="m" />
-          <EuiAccordion
-            id="warm"
-            buttonContent="Tweak advanced settings"
-            buttonClassName="ilmAccordion__button"
-            buttonContentClassName="ilmAccordion__buttonContent"
-          >
-            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
-              <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow label="Maximum size stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'gigabytes' },
-                        { value: 'option_two', text: 'terabyes' },
-                        { value: 'option_one', text: 'megabytes' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              <EuiSpacer />
-              <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow label="Maximum age of data stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'minutes' },
-                        { value: 'option_two', text: 'hours' },
-                        { value: 'option_three', text: 'days' },
-                        { value: 'option_four', text: 'months' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              <EuiSpacer />
-              <EuiFormRow label="Shrink to this number of shards">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-              <EuiFormRow label="Compress into this many segments">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-              <EuiFormRow label="Number of replicas allowed">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-            </div>
-          </EuiAccordion>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+  render() {
+    const {
+      onSelection,
+      ...rest
+    } = this.props;
 
-      <EuiHorizontalRule className="ilmHrule" />
 
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <div style={{ background: '#dd0a7373', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
-            <EuiIcon type="sortDown" size="xl" />
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSpacer size="s" />
-          <EuiTitle size="s">
-            <h4>Cold storage phase</h4>
-          </EuiTitle>
-
-          <EuiTextColor color="subdued">
-            <EuiText size="s">
-              <p>Indices are archived during the cold phase and must be warmed up before searching.</p>
-            </EuiText>
-          </EuiTextColor>
-
-          <EuiSpacer />
-
-          <EuiFlexGroup gutterSize="s">
-            <EuiFlexItem grow={false}>
-              <EuiFormRow label="Move to cold after">
-                <EuiFieldNumber id="cold" placeholder="30" />
-              </EuiFormRow>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiFormRow hasEmptyLabelSpace>
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'minutes' },
-                    { value: 'option_two', text: 'hours' },
-                    { value: 'option_three', text: 'days' },
-                    { value: 'option_four', text: 'months' },
-                  ]}
-                />
-              </EuiFormRow>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false} style={{ paddingLeft: 16 }}>
-              <EuiFormRow isInvalid error={['No node.attr.* could be found. Use node name instead.']} label="Match nodes with this name">
-                <EuiFieldText placeholder="dave.sleepy.*"/>
-              </EuiFormRow>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-
-          <EuiAccordion
-            id="cold"
-            buttonContent="Tweak advanced settings"
-            buttonClassName="ilmAccordion__button"
-            buttonContentClassName="ilmAccordion__buttonContent"
-          >
-            <div style={{ padding: '16px 16px 16px 17px', marginLeft: '-16px' }}>
-              <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow label="Maximum size stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'gigabytes' },
-                        { value: 'option_two', text: 'terabyes' },
-                        { value: 'option_one', text: 'megabytes' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              <EuiSpacer />
-              <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow label="Maximum age of data stored">
-                    <EuiFieldNumber />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiFormRow hasEmptyLabelSpace>
-                    <EuiSelect
-                      options={[
-                        { value: 'option_one', text: 'minutes' },
-                        { value: 'option_two', text: 'hours' },
-                        { value: 'option_three', text: 'days' },
-                        { value: 'option_four', text: 'months' },
-                      ]}
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-              <EuiSpacer />
-              <EuiFormRow label="Shrink to this number of shards">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-              <EuiFormRow label="Compress into this many segments">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-              <EuiFormRow label="Number of replicas allowed">
-                <EuiFieldNumber style={{ width: 100 }}/>
-              </EuiFormRow>
-            </div>
-          </EuiAccordion>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiHorizontalRule className="ilmHrule" />
-
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <div style={{ background: '#DD0A73', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
-            <EuiIcon type="indexClose" size="xl" />
-          </div>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSpacer size="s" />
-          <EuiTitle size="s">
-            <h4>No longer useful, delete phase</h4>
-          </EuiTitle>
-
-          <EuiTextColor color="subdued">
-            <EuiText size="s">
-              <p>You will not be able to retrive your index beyond this point and must rely on your own backups</p>
-            </EuiText>
-          </EuiTextColor>
-
-          <EuiSpacer size="m" />
-
-          <EuiFlexGroup gutterSize="s">
-            <EuiFlexItem grow={false}>
-              <EuiFormRow label="Delete my indices after">
-                <EuiFieldNumber id="cold" placeholder="30" />
-              </EuiFormRow>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiFormRow hasEmptyLabelSpace>
-                <EuiSelect
-                  options={[
-                    { value: 'option_one', text: 'minutes' },
-                    { value: 'option_two', text: 'hours' },
-                    { value: 'option_three', text: 'days' },
-                    { value: 'option_four', text: 'months' },
-                  ]}
-                />
-              </EuiFormRow>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiHorizontalRule className="ilmHrule" />
-
-      <EuiButton fill iconSide="right" iconType="sortRight" onClick={onSelection}>
-        Save and continue
-      </EuiButton>
-    </div>
-  );
+    return (
+      <div>
+        {this.renderPolicies()}
+      </div>
+    );
+  }
 };

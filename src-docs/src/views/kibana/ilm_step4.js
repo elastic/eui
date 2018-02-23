@@ -1,73 +1,137 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import 'brace/theme/github';
+import 'brace/mode/javascript';
+import 'brace/snippets/javascript';
+import 'brace/ext/language_tools';
 
 import {
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiIcon,
-  EuiCard,
+  EuiCodeEditor,
   EuiTitle,
   EuiSpacer,
-  EuiFormRow,
-  EuiFieldText,
-  EuiButton,
   EuiHorizontalRule,
+  EuiButton,
+  EuiCallOut,
+  EuiFlexItem,
+  EuiFlexGrid,
+  EuiCard,
+  EuiPanel,
   EuiText,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
-const dataSources = [
-  { name: 'Apache logs', icon: 'logoApache' },
-  { name: 'Apache metrics', icon: 'logoApache' },
-  { name: 'Redis', icon: 'logoRedis' },
-  { name: 'Nginx logs', icon: 'logoNginx' },
-  { name: 'Nginx metrics', icon: 'logoNginx' },
-  { name: 'Kubernetes', icon: 'logoKubernetes' },
-  { name: 'MySQL', icon: 'logoMySQL' },
-  { name: 'Docker', icon: 'logoDocker' }
-];
+const template = `PUT _template/logs-apache
+{
+  "index_patterns": [
+    "logs-apache-*”
+  ],
+  "settings": {
+    "index.nulmber_of_shards": 5,
+    "index.number_of_replicas": 1,
+    "index.routing.allocation.include.box_type": "hot",
+    "index.lifecycle.name": "logs-apache"
+  },
+  "aliases": {
+    "logs-apache-read": { “type”: “read_rollover” },
+    "logs-apache-write": { “type”: “write_rollover” },
+  },
+  "mappings": {
+    ...
+  }
+}
+`;
 
-export const Step4 = ({
-  onSelection,
-}) => {
-  return (
-    <div className="euiAnimateContentLoad">
-      <EuiTitle>
-        <h4>Apply and name this lifecycle template</h4>
-      </EuiTitle>
-      <EuiSpacer />
+export default class extends Component {
+  constructor(props) {
+    super(props);
 
-      <EuiFormRow label="Template name">
-        <EuiFieldText value="Dave is getting sleepy" />
-      </EuiFormRow>
+    this.state = {
+      value: template
+    };
+  }
 
-      <EuiFormRow label="Apply against these indices">
-        <EuiFieldText value="dave.is.sleepy.*" />
-      </EuiFormRow>
+  onChange = (value) => {
+    this.setState({ value });
+  };
 
-      <EuiFlexGroup alignItems="center" gutterSize="s">
-        <EuiFlexItem grow={false}>
-          <EuiIcon type="checkInCircleFilled" color="secondary" />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>4 matching indices will use this template</h3>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-      <EuiSpacer size="m" />
-      <EuiText size="s">
-        <ul>
-          <li>dave.is.sleepy.onStep1</li>
-          <li>dave.is.sleepy.onStep2</li>
-          <li>dave.is.sleepy.onStep4</li>
-          <li>dave.is.sleepy.onStep4</li>
-        </ul>
-      </EuiText>
+  render() {
+    const {
+      onSelection,
+      ...rest
+    } = this.props;
 
-      <EuiHorizontalRule className="ilmHrule" />
+    return (
+      <div className="euiAnimateContentLoad">
+        <EuiTitle>
+          <h4>Changes that will occur</h4>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiFlexGrid columns="3">
+          <EuiFlexItem>
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>4</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p><strong>Index templates</strong> affected by this change:</p>
+                <ul>
+                  <li>Log americas</li>
+                  <li>Log APAC</li>
+                  <li>Log Europe</li>
+                  <li>Log Africa</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>1,856</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p><strong>Indices</strong> affected by this change:</p>
+                <ul>
+                  <li>log_west_001</li>
+                  <li>log_west_002</li>
+                  <li>log_west_001</li>
+                  <li>log_west_002</li>
+                  <li>+ 1,852 more</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>New aliases</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p>Point to these new aliases going forward:</p>
+                <ul>
+                  <li><strong>READ</strong>: logstash_template_read</li>
+                  <li><strong>WRITE</strong>: logstash_template_write</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiTitle>
+          <h4>Verify your template looks OK</h4>
+        </EuiTitle>
+        <EuiSpacer size="m" />
+        <EuiCodeBlock
+          language="json"
+        >
+          {this.state.value}
+        </EuiCodeBlock>
 
-      <EuiButton fill color="secondary" iconType="check">
-        Apply and save this template
-      </EuiButton>
-    </div>
-  );
-};
+        <EuiHorizontalRule className="ilmHrule" />
+
+        <EuiButton fill color="secondary" iconType="check" onClick={onSelection}>
+          Looks good, make these changes
+        </EuiButton>
+      </div>
+    );
+  }
+}

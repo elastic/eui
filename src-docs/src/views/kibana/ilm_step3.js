@@ -1,57 +1,387 @@
-import React, { Component } from 'react';
-
-import 'brace/theme/github';
-import 'brace/mode/javascript';
-import 'brace/snippets/javascript';
-import 'brace/ext/language_tools';
+import React, {
+  Component,
+} from 'react';
+import PropTypes from 'prop-types';
 
 import {
-  EuiCodeEditor,
+  EuiFlexGrid,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiCard,
   EuiTitle,
   EuiSpacer,
-  EuiHorizontalRule,
-  EuiButton,
-  EuiCallOut,
-  EuiFlexItem,
-  EuiFlexGrid,
-  EuiCard,
   EuiPanel,
   EuiText,
+  EuiTextColor,
+  EuiHealth,
+  EuiCallOut,
+  EuiHorizontalRule,
+  EuiAccordion,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiFieldText,
+  EuiSelect,
+  EuiSwitch,
+  EuiButton,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
-const template = `PUT _template/logs-apache
-{
-  "index_patterns": [
-    "logs-apache-*”
-  ],
-  "settings": {
-    "index.nulmber_of_shards": 5,
-    "index.number_of_replicas": 1,
-    "index.routing.allocation.include.box_type": "hot",
-    "index.lifecycle.name": "logs-apache"
-  },
-  "aliases": {
-    "logs-apache-read": { “type”: “read_rollover” },
-    "logs-apache-write": { “type”: “write_rollover” },
-  },
-  "mappings": {
-    ...
-  }
-}
-`;
+const policies = [
+  { name: 'Running hot', hot: true, warm: true },
+  { name: 'On call', hot: true, warm: true, cold: true, remove: true},
+  { name: 'Archives', hot: true, cold: true},
+  { name: 'Deep storage', hot: true, cold: true, remove: true},
+  { name: 'Dailies', hot: true},
+  { name: 'Dailies archive', hot: true, cold: true, remove: true},
+  { name: 'Weeklies', hot: true},
+];
 
-export default class extends Component {
+export class Step3 extends Component {
+
   constructor(props) {
     super(props);
 
-    this.state = {
-      value: template
-    };
   }
 
-  onChange = (value) => {
-    this.setState({ value });
-  };
+  renderPhases() {
+    return (
+      <div className="euiAnimateContentLoad">
+        <EuiTitle>
+          <h4>Edit policy: On call</h4>
+        </EuiTitle>
+        <EuiSpacer size="m" />
+        <EuiCallOut
+          size="s"
+          color="warning"
+          title={<span><strong>Only the hot phase is required.</strong> This policy is attached to <strong>3 other templates</strong> besides <strong>logstash_template</strong>.</span>}
+        />
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiAccordion
+          id="cold"
+          buttonContent={
+            <EuiFlexGroup alignItems="center">
+              <EuiFlexItem grow={false}>
+                <div style={{ background: '#A30000', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
+                  <EuiIcon type="indexFlush" size="xl" />
+                </div>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiTitle size="s">
+                  <h4>Hot phase</h4>
+                </EuiTitle>
+                <EuiTextColor color="subdued">
+                  <EuiText>
+                    <p>This phase is required</p>
+                  </EuiText>
+                </EuiTextColor>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          }
+          buttonClassName="ilmAccordion__button"
+          buttonContentClassName="ilmAccordion__buttonContent"
+        >
+          <div style={{ padding: '16px 16px 16px 40px', marginLeft: '-16px' }}>
+            <EuiTitle size="s">
+              <p>Configuration</p>
+            </EuiTitle>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Maximum size stored">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiSelect
+                    options={[
+                      { value: 'option_one', text: 'gigabytes' },
+                      { value: 'option_two', text: 'terabyes' },
+                      { value: 'option_one', text: 'megabytes' },
+                    ]}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            <EuiSpacer />
+            <EuiFlexGroup>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Maximum age">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem  style={{ maxWidth: 188 }}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiSelect
+                    options={[
+                      { value: 'option_one', text: 'minutes' },
+                      { value: 'option_two', text: 'days' },
+                      { value: 'option_one', text: 'hours' },
+                      { value: 'option_one', text: 'weeks' },
+                      { value: 'option_one', text: 'months' },
+                    ]}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        </EuiAccordion>
+
+
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiAccordion
+          id="warm"
+          buttonContent={
+            <EuiFlexGroup alignItems="center">
+              <EuiFlexItem grow={false}>
+                <div style={{ background: '#DD0A73', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
+                  <EuiIcon type="sortDown" size="xl" />
+                </div>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiTitle size="s">
+                  <h4>Warm phase</h4>
+                </EuiTitle>
+                <EuiTextColor color="subdued">
+                  <EuiText>
+                    <p>This phase is optional</p>
+                  </EuiText>
+                </EuiTextColor>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          }
+          buttonClassName="ilmAccordion__button"
+          buttonContentClassName="ilmAccordion__buttonContent"
+          extraAction={<EuiSwitch label="Enable this phase" />}
+        >
+          <div style={{ padding: '16px 16px 16px 40px', marginLeft: '-16px' }}>
+            <EuiTitle size="s">
+              <p>Configuration</p>
+            </EuiTitle>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Move to warm phase after">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiSelect
+                    options={[
+                      { value: 'option_one', text: 'minutes' },
+                      { value: 'option_two', text: 'days' },
+                      { value: 'option_one', text: 'hours' },
+                      { value: 'option_one', text: 'weeks' },
+                      { value: 'option_one', text: 'months' },
+                    ]}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            <EuiSpacer />
+            <EuiFormRow label="Where would you like to allocate these indices?">
+              <EuiSelect
+                options={[
+                  { value: 'option_one', text: 'box_type:warm' },
+                  { value: 'option_two', text: 'box_type:hot' },
+                  { value: 'option_one', text: 'box_type:cold' },
+                ]}
+              />
+            </EuiFormRow>
+
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false} style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Number of active shards">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiButtonEmpty flush="left">
+                    Set to same as hot phase
+                  </EuiButtonEmpty>
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false} style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Number of replicas">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiButtonEmpty flush="left">
+                    Set to same as hot phase
+                  </EuiButtonEmpty>
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+
+            <EuiSpacer />
+
+            <EuiTitle size="s">
+              <p>Optional compression</p>
+            </EuiTitle>
+
+            <EuiSpacer size="m" />
+            <EuiSwitch label="Should we attempt to further compress your data?" />
+
+            <EuiSpacer />
+
+            <EuiFormRow label="How many segments should we compress down to?">
+              <EuiFieldNumber />
+            </EuiFormRow>
+
+          </div>
+        </EuiAccordion>
+
+
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiAccordion
+          id="cold"
+          buttonContent={
+            <EuiFlexGroup alignItems="center">
+              <EuiFlexItem grow={false}>
+                <div style={{ background: '#0079a5', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
+                  <EuiIcon type="sortDown" size="xl" />
+                </div>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiTitle size="s">
+                  <h4>Cold phase</h4>
+                </EuiTitle>
+                <EuiTextColor color="subdued">
+                  <EuiText>
+                    <p>This phase is optional. Most choose not to use it.</p>
+                  </EuiText>
+                </EuiTextColor>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          }
+          buttonClassName="ilmAccordion__button"
+          buttonContentClassName="ilmAccordion__buttonContent"
+          extraAction={<EuiSwitch label="Enable this phase" />}
+        >
+          <div style={{ padding: '16px 16px 16px 40px', marginLeft: '-16px' }}>
+            <EuiTitle size="s">
+              <p>Configuration</p>
+            </EuiTitle>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Move to cold phase after">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiSelect
+                    options={[
+                      { value: 'option_one', text: 'minutes' },
+                      { value: 'option_two', text: 'days' },
+                      { value: 'option_one', text: 'hours' },
+                      { value: 'option_one', text: 'weeks' },
+                      { value: 'option_one', text: 'months' },
+                    ]}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            <EuiSpacer />
+            <EuiFormRow label="Where would you like to allocate these indices?">
+              <EuiSelect
+                options={[
+                  { value: 'option_one', text: 'box_type:warm' },
+                  { value: 'option_two', text: 'box_type:hot' },
+                  { value: 'option_one', text: 'box_type:cold' },
+                ]}
+              />
+            </EuiFormRow>
+
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false} style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Number of replicas">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiButtonEmpty flush="left">
+                    Set to same as hot phase
+                  </EuiButtonEmpty>
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+
+          </div>
+        </EuiAccordion>
+
+
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiAccordion
+          id="delete"
+          buttonContent={
+            <EuiFlexGroup alignItems="center">
+              <EuiFlexItem grow={false}>
+                <div style={{ background: '#333', borderRadius: 4, height: 64, width: 64, lineHeight: '64px', textAlign: 'center', color: 'white' }}>
+                  <EuiIcon type="indexClose" size="xl" />
+                </div>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiTitle size="s">
+                  <h4>Delete phase</h4>
+                </EuiTitle>
+                <EuiTextColor color="subdued">
+                  <EuiText>
+                    <p>This phase is optional. Use it carefully since it deletes data.</p>
+                  </EuiText>
+                </EuiTextColor>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          }
+          buttonClassName="ilmAccordion__button"
+          buttonContentClassName="ilmAccordion__buttonContent"
+          extraAction={<EuiSwitch label="Enable this phase" />}
+        >
+          <div style={{ padding: '16px 16px 16px 40px', marginLeft: '-16px' }}>
+            <EuiTitle size="s">
+              <p>Configuration</p>
+            </EuiTitle>
+            <EuiSpacer size="m" />
+            <EuiFlexGroup>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow label="Delete indices after">
+                  <EuiFieldNumber />
+                </EuiFormRow>
+              </EuiFlexItem>
+              <EuiFlexItem style={{ maxWidth: 188 }}>
+                <EuiFormRow hasEmptyLabelSpace>
+                  <EuiSelect
+                    options={[
+                      { value: 'option_one', text: 'minutes' },
+                      { value: 'option_two', text: 'days' },
+                      { value: 'option_one', text: 'hours' },
+                      { value: 'option_one', text: 'weeks' },
+                      { value: 'option_one', text: 'months' },
+                    ]}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        </EuiAccordion>
+
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiButton fill iconSide="right" iconType="sortRight" onClick={this.props.onSelection}>
+          Save and continue
+        </EuiButton>
+      </div>
+    );
+  }
 
   render() {
     const {
@@ -59,93 +389,11 @@ export default class extends Component {
       ...rest
     } = this.props;
 
+
     return (
-      <div className="euiAnimateContentLoad">
-        <EuiTitle>
-          <h4>Changes that will occur</h4>
-        </EuiTitle>
-        <EuiSpacer />
-        <EuiFlexGrid columns="3">
-          <EuiFlexItem>
-            <EuiPanel>
-              <EuiTitle size="l" style={{ textAlign: 'center' }}>
-                <p>4</p>
-              </EuiTitle>
-              <EuiText size="s">
-                <p><strong>Index templates</strong> affected by this change:</p>
-                <ul>
-                  <li>Log americas</li>
-                  <li>Log APAC</li>
-                  <li>Log Europe</li>
-                  <li>Log Africa</li>
-                </ul>
-              </EuiText>
-            </EuiPanel>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiPanel>
-              <EuiTitle size="l" style={{ textAlign: 'center' }}>
-                <p>1,856</p>
-              </EuiTitle>
-              <EuiText size="s">
-                <p><strong>Indices</strong> affected by this change:</p>
-                <ul>
-                  <li>log_west_001</li>
-                  <li>log_west_002</li>
-                  <li>log_west_001</li>
-                  <li>log_west_002</li>
-                  <li>+ 1,852 more</li>
-                </ul>
-              </EuiText>
-            </EuiPanel>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiPanel>
-              <EuiTitle size="l" style={{ textAlign: 'center' }}>
-                <p>New aliases</p>
-              </EuiTitle>
-              <EuiText size="s">
-                <p>Point to these new aliases going forward:</p>
-                <ul>
-                  <li><strong>READ</strong>: logstash_template_read</li>
-                  <li><strong>WRITE</strong>: logstash_template_write</li>
-                </ul>
-              </EuiText>
-            </EuiPanel>
-          </EuiFlexItem>
-        </EuiFlexGrid>
-        <EuiHorizontalRule className="ilmHrule" />
-        <EuiTitle>
-          <h4>Verify your template looks OK</h4>
-        </EuiTitle>
-        <EuiSpacer size="m" />
-        <EuiCallOut
-          size="s"
-          title="Changing the values in your template may invalidate decisions made in previous steps"
-          color="warning"
-        />
-        <EuiSpacer size="m" />
-        <EuiCodeEditor
-          mode="json"
-          theme="github"
-          width="100%"
-          value={this.state.value}
-          onChange={this.onChange}
-          setOptions={{
-            fontSize: '12px',
-            enableBasicAutocompletion: true,
-            enableSnippets: true,
-            enableLiveAutocompletion: true,
-          }}
-          onBlur={() => { console.log('blur'); }}
-        />
-
-        <EuiHorizontalRule className="ilmHrule" />
-
-        <EuiButton fill color="secondary" iconType="check" onClick={onSelection}>
-          Looks good, make these changes
-        </EuiButton>
+      <div>
+        {this.renderPhases()}
       </div>
     );
   }
-}
+};
