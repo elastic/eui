@@ -125,6 +125,7 @@ export class Step1 extends Component {
           <EuiSelect
             onChange={this.onChange}
             options={[
+              { value: 'blargh', text: '' },
               { value: 'logstash_template', text: 'Logstash template' },
               { value: 'option_two', text: 'Filebeat template' },
               { value: 'option_three', text: 'Metricbeat template' },

@@ -86,18 +86,21 @@ export default class extends Component {
         title: 'Select or create policy',
         isSelected: this.state.selectedStep === 2,
         isComplete: this.state.selectedStep > 2,
+        disabled: this.state.selectedStep < 2,
         onClick: () => this.onSelectedStepChanged(2)
       },
       {
         title: 'Configure policy',
         isSelected: this.state.selectedStep === 3,
         isComplete: this.state.selectedStep > 3,
+        disabled: this.state.selectedStep < 3,
         onClick: () => this.onSelectedStepChanged(3)
       },
       {
         title: 'Review and save',
         isSelected: this.state.selectedStep === 4,
         isComplete: this.state.selectedStep > 4,
+        disabled: this.state.selectedStep < 4,
         onClick: () => this.onSelectedStepChanged(4)
       },
     ];
