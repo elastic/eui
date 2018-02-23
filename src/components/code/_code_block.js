@@ -162,7 +162,7 @@ export class EuiCodeBlockImpl extends Component {
       */}
       const fullScreenClasses = classNames(
         'euiCodeBlock',
-        'euiCodeBlock--fontLarge',
+        fontSizeToClassNameMap[fontSize],
         'euiCodeBlock-paddingLarge',
         'euiCodeBlock-isFullScreen',
       );
