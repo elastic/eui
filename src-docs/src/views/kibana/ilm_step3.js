@@ -15,6 +15,8 @@ import {
   EuiFlexItem,
   EuiFlexGrid,
   EuiCard,
+  EuiPanel,
+  EuiText,
 } from '../../../../src/components';
 
 const template = `PUT _template/logs-apache
@@ -60,30 +62,63 @@ export default class extends Component {
     return (
       <div className="euiAnimateContentLoad">
         <EuiTitle>
-          <h4>Review and save</h4>
+          <h4>Changes that will occur</h4>
         </EuiTitle>
         <EuiSpacer />
         <EuiFlexGrid columns="3">
           <EuiFlexItem>
-            <EuiCard
-              title="2"
-              description="Index templates will be effected by this change"
-            />
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>4</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p><strong>Index templates</strong> affected by this change:</p>
+                <ul>
+                  <li>Log americas</li>
+                  <li>Log APAC</li>
+                  <li>Log Europe</li>
+                  <li>Log Africa</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiCard
-              title="2"
-              description="Index templates will be effected by this change"
-            />
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>1,856</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p><strong>Indices</strong> affected by this change:</p>
+                <ul>
+                  <li>log_west_001</li>
+                  <li>log_west_002</li>
+                  <li>log_west_001</li>
+                  <li>log_west_002</li>
+                  <li>+ 1,852 more</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiCard
-              title="2"
-              description="Index templates will be effected by this change"
-            />
+            <EuiPanel>
+              <EuiTitle size="l" style={{ textAlign: 'center' }}>
+                <p>New aliases</p>
+              </EuiTitle>
+              <EuiText size="s">
+                <p>Point to these new aliases going forward:</p>
+                <ul>
+                  <li><strong>READ</strong>: logstash_template_read</li>
+                  <li><strong>WRITE</strong>: logstash_template_write</li>
+                </ul>
+              </EuiText>
+            </EuiPanel>
           </EuiFlexItem>
         </EuiFlexGrid>
-        <EuiSpacer />
+        <EuiHorizontalRule className="ilmHrule" />
+        <EuiTitle>
+          <h4>Verify your template looks OK</h4>
+        </EuiTitle>
+        <EuiSpacer size="m" />
         <EuiCallOut
           size="s"
           title="Changing the values in your template may invalidate decisions made in previous steps"
@@ -108,7 +143,7 @@ export default class extends Component {
         <EuiHorizontalRule className="ilmHrule" />
 
         <EuiButton fill color="secondary" iconType="check" onClick={onSelection}>
-          Save and finish
+          Looks good, make these changes
         </EuiButton>
       </div>
     );
