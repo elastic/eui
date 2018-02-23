@@ -10,14 +10,16 @@
   padding: $euiSizeXS / 2 0;
   color: $euiColorFullShade; /* 2 */
 
-  &:hover {
-    text-decoration: underline;
-  }
+  &.euiSideNavItemButton--isClickable {
+    &:hover {
+      text-decoration: underline;
+    }
 
-  // Focus state background regardless of index/selected state.
-  &:focus {
-    background-color: $euiFocusBackgroundColor !important;
-    color: $euiColorPrimary !important;
+    // Focus state background regardless of index/selected state.
+    &:focus {
+      background-color: $euiFocusBackgroundColor !important;
+      color: $euiColorPrimary !important;
+    }
   }
 
   &.euiSideNavItemButton-isOpen {

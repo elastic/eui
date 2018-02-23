@@ -166,7 +166,7 @@ exports[`EuiSideNav items is rendered 1`] = `
     <div
       class="euiSideNavItem euiSideNavItem--root"
     >
-      <button
+      <div
         class="euiSideNavItemButton"
       >
         <span
@@ -178,14 +178,14 @@ exports[`EuiSideNav items is rendered 1`] = `
             A
           </span>
         </span>
-      </button>
+      </div>
       <div
         class="euiSideNavItem__items"
       >
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton"
           >
             <span
@@ -197,12 +197,12 @@ exports[`EuiSideNav items is rendered 1`] = `
                 B
               </span>
             </span>
-          </button>
+          </div>
         </div>
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton"
           >
             <span
@@ -233,7 +233,7 @@ exports[`EuiSideNav items is rendered 1`] = `
                 />
               </svg>
             </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -283,7 +283,7 @@ exports[`EuiSideNav items renders items using a specified callback 1`] = `
       class="euiSideNavItem euiSideNavItem--root"
     >
       <a
-        class="euiSideNavItemButton"
+        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
         data-test-id="my-custom-element"
         href="http://www.elastic.co"
       >
@@ -366,7 +366,7 @@ exports[`EuiSideNav items renders items which are links 1`] = `
       class="euiSideNavItem euiSideNavItem--root"
     >
       <a
-        class="euiSideNavItemButton"
+        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
         href="http://www.elastic.co"
       >
         <span
@@ -385,7 +385,7 @@ exports[`EuiSideNav items renders items which are links 1`] = `
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton"
           >
             <span
@@ -397,12 +397,12 @@ exports[`EuiSideNav items renders items which are links 1`] = `
                 B
               </span>
             </span>
-          </button>
+          </div>
         </div>
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton"
           >
             <span
@@ -433,7 +433,7 @@ exports[`EuiSideNav items renders items which are links 1`] = `
                 />
               </svg>
             </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -482,7 +482,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
     <div
       class="euiSideNavItem euiSideNavItem--root"
     >
-      <button
+      <div
         class="euiSideNavItemButton"
       >
         <span
@@ -494,14 +494,14 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
             A
           </span>
         </span>
-      </button>
+      </div>
       <div
         class="euiSideNavItem__items"
       >
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton"
           >
             <span
@@ -513,12 +513,12 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
                 B
               </span>
             </span>
-          </button>
+          </div>
         </div>
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <button
+          <div
             class="euiSideNavItemButton euiSideNavItemButton-isOpen"
           >
             <span
@@ -530,14 +530,14 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
                 C
               </span>
             </span>
-          </button>
+          </div>
           <div
             class="euiSideNavItem__items"
           >
             <div
               class="euiSideNavItem euiSideNavItem--branch"
             >
-              <button
+              <div
                 class="euiSideNavItemButton euiSideNavItemButton-isSelected"
               >
                 <span
@@ -549,7 +549,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
                     D
                   </span>
                 </span>
-              </button>
+              </div>
               <div
                 class="euiSideNavItem__items"
               />
@@ -557,7 +557,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
             <div
               class="euiSideNavItem euiSideNavItem--branch"
             >
-              <button
+              <div
                 class="euiSideNavItemButton"
               >
                 <span
@@ -569,7 +569,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
                     E
                   </span>
                 </span>
-              </button>
+              </div>
             </div>
           </div>
         </div>

@@ -21,14 +21,25 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
     );
   }
 
+  else if (onClick) {
+    return (
+      <button
+        className={className}
+        onClick={onClick}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <button
+    <div
       className={className}
-      onClick={onClick}
       {...rest}
     >
       {children}
-    </button>
+    </div>
   );
 };
 
@@ -71,6 +82,7 @@ export const EuiSideNavItem = ({
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {
+    'euiSideNavItemButton--isClickable': onClick || href,
     'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
     'euiSideNavItemButton-isSelected': isSelected,
   });

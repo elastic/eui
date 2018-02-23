@@ -7,6 +7,7 @@ No public interface changes since `0.0.23`.
 - Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state
 and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
+- Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
 
 **Bug fixes**
 
