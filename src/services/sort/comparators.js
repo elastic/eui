@@ -1,4 +1,5 @@
 import { SortDirection } from './sort_direction';
+import { get } from '../objects';
 
 export const Comparators = Object.freeze({
 
@@ -26,7 +27,7 @@ export const Comparators = Object.freeze({
   },
 
   property(prop, comparator = undefined) {
-    return this.value(value => value[prop], comparator);
+    return this.value(value => get(value, prop), comparator);
   },
 
 });

@@ -27,12 +27,22 @@ describe('comparators - reverse', () => {
 });
 
 describe('comparators - property', () => {
-  const comparator = jest.fn();
   test('proper delegation to provided comparator', () => {
+    const comparator = jest.fn();
     const propComparator = Comparators.property('name', comparator);
     propComparator({ name: 'n1' }, { name: 'n2' });
     expect(comparator.mock.calls.length).toBe(1);
     expect(comparator.mock.calls[0][0]).toBe('n1');
     expect(comparator.mock.calls[0][1]).toBe('n2');
   });
+
+  test('resolving nested props', () => {
+    const comparator = jest.fn();
+    const propComparator = Comparators.property('person.name', comparator);
+    propComparator({ person: { name: 'n1' } }, { person: { name: 'n2' } });
+    expect(comparator.mock.calls.length).toBe(1);
+    expect(comparator.mock.calls[0][0]).toBe('n1');
+    expect(comparator.mock.calls[0][1]).toBe('n2');
+  });
 });
+
