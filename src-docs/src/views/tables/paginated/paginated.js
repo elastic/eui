@@ -35,31 +35,48 @@ Example country object:
 const store = createDataStore();
 
 export class Table extends Component {
-
   constructor(props) {
     super(props);
-    this.state = this.buildState({
-      page: {
-        index: 0,
-        size: 5
-      }
-    });
-  }
 
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size)
+    this.state = {
+      pageIndex: 0,
+      pageSize: 5,
     };
   }
 
+  onTableChange = ({ page = {} }) => {
+    const {
+      index: pageIndex,
+      size: pageSize,
+    } = page;
+
+    this.setState({
+      pageIndex,
+      pageSize,
+    });
+  };
+
   render() {
-    const page = this.state.criteria.page;
-    const data = this.state.data;
+    const {
+      pageIndex,
+      pageSize,
+    } = this.state;
+
+    const {
+      pageOfItems,
+      totalItemCount,
+    } = store.findUsers(pageIndex, pageSize);
+
+    const pagination = {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      totalItemCount: totalItemCount,
+      pageSizeOptions: [3, 5, 8]
+    };
+
     return (
       <EuiBasicTable
-        items={data.items}
+        items={pageOfItems}
         columns={[
           {
             field: 'firstName',
@@ -73,7 +90,9 @@ export class Table extends Component {
             field: 'github',
             name: 'Github',
             render: (username) => (
-              <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+              <EuiLink href={`https://github.com/${username}`} target="_blank">
+                {username}
+              </EuiLink>
             )
           },
           {
@@ -101,13 +120,8 @@ export class Table extends Component {
             }
           }
         ]}
-        pagination={{
-          pageIndex: page.index,
-          pageSize: page.size,
-          totalItemCount: data.totalCount,
-          pageSizeOptions: [3, 5, 8]
-        }}
-        onChange={(criteria) => this.setState(this.buildState(criteria))}
+        pagination={pagination}
+        onChange={this.onTableChange}
       />
     );
   }

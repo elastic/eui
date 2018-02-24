@@ -1,5 +1,6 @@
 import React, {
-  Component
+  Component,
+  Fragment,
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
@@ -36,55 +37,109 @@ Example country object:
 const store = createDataStore();
 
 export class Table extends Component {
-
   constructor(props) {
     super(props);
+
     this.state = {
-      ...this.buildState({ page: { index: 0, size: 5 } }),
-      selection: []
+      pageIndex: 0,
+      pageSize: 5,
+      sortField: 'firstName',
+      sortDirection: 'asc',
+      selectedItems: [],
     };
   }
 
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size, criteria.sort)
-    };
-  }
+  onTableChange = ({ page = {}, sort = {} }) => {
+    const {
+      index: pageIndex,
+      size: pageSize,
+    } = page;
+
+    const {
+      field: sortField,
+      direction: sortDirection,
+    } = sort;
+
+    this.setState({
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection,
+    });
+  };
+
+  onSelectionChange = (selectedItems) => {
+    this.setState({ selectedItems });
+  };
+
+  onClickDelete = () => {
+    const { selectedItems } = this.state;
+    store.deleteUsers(...selectedItems.map(user => user.id));
+
+    this.setState({
+      selectedItems: []
+    });
+  };
 
   renderDeleteButton() {
-    const selection = this.state.selection;
-    if (selection.length === 0) {
+    const { selectedItems } = this.state;
+
+    if (selectedItems.length === 0) {
       return;
     }
-    const onClick = () => {
-      store.deleteUsers(...selection.map(user => user.id));
-      this.setState(prevState => ({
-        ...this.buildState(prevState.criteria),
-        selection: []
-      }));
-    };
+
     return (
       <EuiButton
         color="danger"
         iconType="trash"
-        onClick={onClick}
+        onClick={this.onClickDelete}
       >
-        Delete {selection.length} Users
+        Delete {selectedItems.length} Users
       </EuiButton>
     );
   }
 
   render() {
-    const { page, sort } = this.state.criteria;
-    const data = this.state.data;
+    const {
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection,
+    } = this.state;
+
+    const {
+      pageOfItems,
+      totalItemCount,
+    } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
+
     const deleteButton = this.renderDeleteButton();
+
+    const pagination = {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      totalItemCount: totalItemCount,
+      pageSizeOptions: [3, 5, 8]
+    };
+
+    const sorting = {
+      sort: {
+        field: sortField,
+        direction: sortDirection,
+      },
+    };
+
+    const selection = {
+      itemId: 'id',
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: this.onSelectionChange
+    };
+
     return (
-      <div>
+      <Fragment>
         {deleteButton}
         <EuiBasicTable
-          items={data.items}
+          items={pageOfItems}
           columns={[
             {
               field: 'firstName',
@@ -99,7 +154,9 @@ export class Table extends Component {
               field: 'github',
               name: 'Github',
               render: (username) => (
-                <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+                <EuiLink href={`https://github.com/${username}`} target="_blank">
+                  {username}
+                </EuiLink>
               )
             },
             {
@@ -129,22 +186,12 @@ export class Table extends Component {
               sortable: true
             }
           ]}
-          pagination={{
-            pageIndex: page.index,
-            pageSize: page.size,
-            totalItemCount: data.totalCount,
-            pageSizeOptions: [3, 5, 8]
-          }}
-          sorting={{ sort }}
-          selection={{
-            itemId: 'id',
-            selectable: (user) => user.online,
-            selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-            onSelectionChange: (selection) => this.setState({ selection })
-          }}
-          onChange={(criteria) => this.setState(this.buildState(criteria))}
+          pagination={pagination}
+          sorting={sorting}
+          selection={selection}
+          onChange={this.onTableChange}
         />
-      </div>
+      </Fragment>
     );
   }
 }

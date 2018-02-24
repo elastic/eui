@@ -48,7 +48,9 @@ export const Table = () => (
         field: 'github',
         name: 'Github',
         render: (username) => (
-          <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+          <EuiLink href={`https://github.com/${username}`} target="_blank">
+            {username}
+          </EuiLink>
         )
       },
       {

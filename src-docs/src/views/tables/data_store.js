@@ -48,30 +48,32 @@ const createUsers = (countries) => {
 export const createDataStore = () => {
   const countries = createCountries();
   const users = createUsers(countries);
+
   return {
     countries,
     users,
 
-    findUsers: (pageIndex, pageSize, sort) => {
-      let list = users;
-      if (sort) {
-        list = users.sort(Comparators.property(sort.field, Comparators.default(sort.direction)));
+    findUsers: (pageIndex, pageSize, sortField, sortDirection) => {
+      let items;
+
+      if (sortField) {
+        items = users.slice(0).sort(Comparators.property(sortField, Comparators.default(sortDirection)));
+      } else {
+        items = users;
       }
-      if (!pageIndex && !pageSize) {
-        return {
-          index: 0,
-          size: list.length,
-          items: list,
-          totalRecordCount: list.length
-        };
+
+      let pageOfItems;
+
+      if (!pageIndex) {
+        pageOfItems = items;
+      } else {
+        const startIndex = pageIndex * pageSize;
+        pageOfItems = items.slice(startIndex, Math.min(startIndex + pageSize, items.length));
       }
-      const from = pageIndex * pageSize;
-      const items = list.slice(from, Math.min(from + pageSize, list.length));
+
       return {
-        index: pageIndex,
-        size: pageSize,
-        items,
-        totalCount: list.length
+        pageOfItems,
+        totalItemCount: items.length
       };
     },
 
