@@ -22,12 +22,16 @@ export const GuideRuleExample = ({
   type,
   text,
   panel,
+  frame,
   ...rest,
 }) => {
 
   const classes = classNames(
     'guideRule__example',
     typeToClassNameMap[type],
+    {
+      'guideRule__example--frame': frame,
+    },
     className
   );
 
