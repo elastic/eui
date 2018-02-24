@@ -226,12 +226,14 @@ const navigation = [{
   }, {
     name: 'Modals',
     component: ModalGuidelines,
+    hidden: true,
   }, {
     name: 'Text scales',
     component: TextScales,
   }, {
     name: 'Toasts',
     component: ToastGuidelines,
+    hidden: true,
   }, {
     name: 'Writing',
     component: WritingGuidelines,

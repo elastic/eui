@@ -486,7 +486,7 @@ export default() => (
         <EuiTableRow>
           <EuiTableRowCell>
             <EuiButton>
-              Add noun
+              Add thing
             </EuiButton>
           </EuiTableRowCell>
 
@@ -511,7 +511,7 @@ export default() => (
         <EuiTableRow>
           <EuiTableRowCell>
             <EuiButton fill="fill">
-              Create noun
+              Create thing
             </EuiButton>
           </EuiTableRowCell>
 
