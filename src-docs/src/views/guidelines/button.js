@@ -17,7 +17,6 @@ import {
   EuiButtonEmpty,
   EuiIcon,
   EuiImage,
-  EuiLink,
   EuiTable,
   EuiTableHeader,
   EuiTableHeaderCell,
@@ -34,12 +33,11 @@ export default() => (
     <EuiText>
       <h1>Button guidelines</h1>
       <p>
-        Choosing a button type, style, and placement depends on the prominence
-        of its action and the context in which the button appears.
+        This page documents patterns for button usage only. It does not give code examples
       </p>
-      <EuiLink href="https://elastic.github.io/eui/#/navigation/button" target="_blank">
-        Go to code
-      </EuiLink>
+      <EuiButton href="/#/navigation/button">
+        Go to component code instead
+      </EuiButton>
     </EuiText>
 
     <EuiHorizontalRule/>
@@ -143,7 +141,7 @@ export default() => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
+    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Placement and order</GuideRuleTitle>
 
@@ -251,6 +249,8 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
+    <EuiHorizontalRule />
+
     <GuideRuleTitle>One primary button per container</GuideRuleTitle>
 
     <GuideRule
@@ -279,6 +279,8 @@ export default() => (
         <EuiSpacer/>
       </GuideRuleExample>
     </GuideRule>
+
+    <EuiHorizontalRule />
 
     <GuideRuleTitle>Icons in buttons either stand on their own or add context</GuideRuleTitle>
 
@@ -358,6 +360,8 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
+    <EuiHorizontalRule />
+
     <GuideRuleTitle>Minimize mixing color, size, and type</GuideRuleTitle>
 
     <GuideRule description="When in doubt use blue in the default sizes. Never put more than two
@@ -413,6 +417,8 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
+    <EuiHorizontalRule />
+
     <GuideRuleTitle>Stack action sets into one button</GuideRuleTitle>
 
     <GuideRule
@@ -454,6 +460,8 @@ export default() => (
         </div>
       </GuideRuleExample>
     </GuideRule>
+
+    <EuiHorizontalRule />
 
     <GuideRuleTitle>Action labels</GuideRuleTitle>
 
