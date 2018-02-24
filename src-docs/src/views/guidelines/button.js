@@ -33,7 +33,7 @@ export default() => (
     <EuiText>
       <h1>Button guidelines</h1>
       <p>
-        This page documents patterns for button usage only. It does not give code examples
+        This page documents patterns for button usage only. It does not give code examples.
       </p>
       <EuiButton href="/#/navigation/button">
         Go to component code instead
