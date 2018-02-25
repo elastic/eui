@@ -1,18 +1,24 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.23`.
+No public interface changes since `0.0.24`.
+
+# [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
+
+- Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
+
+**Bug fixes**
+
+- Fix error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
 
 # [`0.0.23`](https://github.com/elastic/eui/tree/v0.0.23)
 
 - Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state
 and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
-- Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
 
 **Bug fixes**
 
 - Fixed `EuiContextMenu` bug when using the keyboard to navigate up, which was caused by unnecessarily re-rendering the items, thus losing references to them ([#431](https://github.com/elastic/eui/pull/431))
-- Fix error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
 
 # [`0.0.22`](https://github.com/elastic/eui/tree/v0.0.22)
 
