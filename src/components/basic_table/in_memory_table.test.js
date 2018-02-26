@@ -216,7 +216,7 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(
@@ -247,7 +247,7 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(
@@ -281,7 +281,7 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(
@@ -323,7 +323,7 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(
@@ -363,10 +363,12 @@ describe('EuiInMemoryTable', () => {
       ],
       pagination: true,
       sorting: true,
-      search: true,
+      toolbar: {
+        search: true
+      },
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(
@@ -406,24 +408,26 @@ describe('EuiInMemoryTable', () => {
       ],
       pagination: true,
       sorting: true,
-      search: {
-        defaultQuery: 'name:name1',
-        box: {
-          incremental: true
+      toolbar: {
+        search: {
+          defaultQuery: 'name:name1',
+          box: {
+            incremental: true
+          },
+          filters: [
+            {
+              type: 'field_value_toggle',
+              field: 'name',
+              value: 'name1',
+              name: 'Name1',
+              negatedName: 'Not Name1'
+            }
+          ]
         },
-        filters: [
-          {
-            type: 'field_value_toggle',
-            field: 'name',
-            value: 'name1',
-            name: 'Name1',
-            negatedName: 'Not Name1'
-          }
-        ]
       },
       selection: {
         itemId: 'id',
-        onSelectionChanged: () => undefined
+        onSelectionChange: () => undefined
       }
     };
     const component = shallow(

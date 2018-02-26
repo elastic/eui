@@ -1,6 +1,25 @@
 import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
 
-export class CustomItemAction extends React.Component {
+export const CustomContextualActionType = PropTypes.shape({
+  render: PropTypes.func.isRequired,  // (ctx, enabled) => PropTypes.node;
+  available: PropTypes.func, // (ctx) => boolean;
+  enabled: PropTypes.func // (ctx) => boolean;
+});
+
+export class CustomContextualAction extends React.Component {
+
+  static propTypes = {
+    action: CustomContextualActionType.isRequired,
+    actionContext: PropTypes.any.isRequired,
+    enabled: PropTypes.bool,
+    visible: PropTypes.bool
+  };
+
+  static defaultProps = {
+    enabled: true,
+    visible: true
+  };
 
   constructor(props) {
     super(props);
@@ -41,8 +60,8 @@ export class CustomItemAction extends React.Component {
   };
 
   render() {
-    const { action, enabled, visible, item } = this.props;
-    const tool = action.render(item, enabled);
+    const { action, enabled, visible, actionContext } = this.props;
+    const tool = action.render(actionContext, enabled);
     const clonedTool = cloneElement(tool, { onFocus: this.onFocus, onBlur: this.onBlur });
     const style = this.hasFocus() || visible ? { opacity: 1 } : { opacity: 0 };
     return (

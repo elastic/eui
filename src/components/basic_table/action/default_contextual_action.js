@@ -1,12 +1,48 @@
 import React from 'react';
-import { isString } from '../../services/predicate';
-import { EuiButton, EuiButtonIcon } from '../button';
+import { isString } from '../../../services/predicate';
+import { EuiButton, EuiButtonIcon } from '../../button';
+import { SIZES } from '../../button/button';
+import { ICON_TYPES } from '../../icon';
+import PropTypes from 'prop-types';
+import { COLORS as BUTTON_ICON_COLORS } from '../../button/button_icon/button_icon';
 
-const defaults = {
-  color: 'primary'
+export const DefaultContextualActionType = PropTypes.shape({
+  type: PropTypes.oneOf(['icon', 'button']),
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  onClick: PropTypes.func.isRequired, // (ctx) => void,
+  available: PropTypes.func, // (ctx) => boolean;
+  enabled: PropTypes.func, // (ctx) => boolean;
+  size: PropTypes.arrayOf(SIZES),
+  icon: PropTypes.oneOfType([ // required when type is 'icon'
+    PropTypes.oneOf(ICON_TYPES),
+    PropTypes.func // (ctx) => oneOf(ICON_TYPES)
+  ]),
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf(BUTTON_ICON_COLORS),
+    PropTypes.func // (ctx) => oneOf(ICON_BUTTON_COLORS)
+  ])
+});
+
+const actionDefaults = {
+  type: 'button',
+  color: 'primary',
+  size: 's'
 };
 
-export class DefaultItemAction extends React.Component {
+export class DefaultContextualAction extends React.Component {
+
+  static propTypes = {
+    action: DefaultContextualActionType.isRequired,
+    actionContext: PropTypes.any.isRequired,
+    enabled: PropTypes.bool,
+    visible: PropTypes.bool
+  };
+
+  static defaultProps = {
+    enabled: true,
+    visible: true
+  };
 
   constructor(props) {
     super(props);
@@ -47,18 +83,18 @@ export class DefaultItemAction extends React.Component {
   };
 
   render() {
-    const { action, enabled, visible, item } = this.props;
+    const { action, enabled, visible, actionContext } = this.props;
     if (!action.onClick) {
       throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback. If you want
       to provide a custom action control, make sure to define the 'render' callback`);
     }
-    const onClick = () => action.onClick(item);
-    const color = this.resolveActionColor();
-    const icon = this.resolveActionIcon();
+    const onClick = () => action.onClick(actionContext);
+    const color = this.resolveActionColor(action, actionContext);
+    const icon = this.resolveActionIcon(action, actionContext);
     const style = this.hasFocus() || visible ? { opacity: 1 } : { opacity: 0 };
     if (action.type === 'icon') {
       if (!icon) {
-        throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
+        throw new Error(`Cannot render action [${action.name}]. It is configured to render as an icon but no
         icon is provided. Make sure to set the 'icon' property of the action`);
       }
       return (
@@ -78,7 +114,7 @@ export class DefaultItemAction extends React.Component {
 
     return (
       <EuiButton
-        size="s"
+        size={action.size}
         isDisabled={!enabled}
         color={color}
         iconType={icon}
@@ -94,18 +130,16 @@ export class DefaultItemAction extends React.Component {
     );
   }
 
-  resolveActionIcon() {
-    const { action, item } = this.props;
+  resolveActionIcon(action, actionContext) {
     if (action.icon) {
-      return isString(action.icon) ? action.icon : action.icon(item);
+      return isString(action.icon) ? action.icon : action.icon(actionContext);
     }
   }
 
-  resolveActionColor() {
-    const { action, item } = this.props;
+  resolveActionColor(action, actionContext) {
     if (action.color) {
-      return isString(action.color) ? action.color : action.color(item);
+      return isString(action.color) ? action.color : action.color(actionContext);
     }
-    return defaults.color;
+    return actionDefaults.color;
   }
 }

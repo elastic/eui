@@ -2,7 +2,7 @@
 
 exports[`ExpandedItemActions render 1`] = `
 Array [
-  <DefaultItemAction
+  <DefaultContextualAction
     action={
       Object {
         "description": "default 1",
@@ -10,18 +10,18 @@ Array [
         "onClick": [Function],
       }
     }
-    enabled={true}
-    index={0}
-    item={
+    actionContext={
       Object {
         "id": "xyz",
       }
     }
-    itemId="xyz"
+    enabled={true}
+    index={0}
     key="item_action_xyz_0"
+    size="s"
     visible={true}
   />,
-  <CustomItemAction
+  <CustomContextualAction
     action={
       Object {
         "description": "custom 1",
@@ -29,14 +29,13 @@ Array [
         "render": [Function],
       }
     }
-    enabled={true}
-    index={1}
-    item={
+    actionContext={
       Object {
         "id": "xyz",
       }
     }
-    itemId="xyz"
+    enabled={true}
+    index={1}
     key="item_action_xyz_1"
     visible={true}
   />,

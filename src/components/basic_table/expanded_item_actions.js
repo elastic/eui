@@ -1,6 +1,8 @@
 import React from 'react';
-import { DefaultItemAction } from './default_item_action';
-import { CustomItemAction } from './custom_item_action';
+import {
+  DefaultContextualAction,
+  CustomContextualAction
+} from './action';
 
 export const ExpandedItemActions = ({ actions, visible, itemId, item, actionEnabled }) => {
 
@@ -14,26 +16,25 @@ export const ExpandedItemActions = ({ actions, visible, itemId, item, actionEnab
     if (action.render) {
       // custom action has a render function
       tools.push(
-        <CustomItemAction
+        <CustomContextualAction
           key={key}
           index={index}
           action={action}
+          actionContext={item}
           enabled={enabled}
           visible={visible}
-          itemId={itemId}
-          item={item}
         />
       );
     } else {
       tools.push(
-        <DefaultItemAction
+        <DefaultContextualAction
           key={key}
           index={index}
           action={action}
+          actionContext={item}
           enabled={enabled}
           visible={visible}
-          itemId={itemId}
-          item={item}
+          size="s"
         />
       );
     }

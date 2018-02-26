@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme/build/index';
-import { CustomItemAction } from './custom_item_action';
+import { CustomContextualAction } from './custom_contextual_action';
 
 describe('CustomItemAction', () => {
 
@@ -12,13 +12,13 @@ describe('CustomItemAction', () => {
         description: 'custom 1',
         render: () => 'test'
       },
+      actionContext: { id: 'xyz' },
       enabled: true,
-      visible: true,
-      item: { id: 'xyz' }
+      visible: true
     };
 
     const component = shallow(
-      <CustomItemAction {...props} />
+      <CustomContextualAction {...props} />
     );
 
     expect(component).toMatchSnapshot();

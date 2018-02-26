@@ -9,14 +9,17 @@ import {
   defaults as paginationBarDefaults
 } from './pagination_bar';
 import { isBoolean, isString } from '../../services/predicate';
+import { get } from '../../services/objects';
 import { Comparators } from '../../services/sort';
 import {
   Query,
   QueryType,
-  SearchFiltersFiltersType,
-  SearchBoxConfigPropTypes, EuiSearchBar
+  SearchBoxConfigPropTypes,
+  SearchFiltersFiltersType
 } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
+import { Toolbar } from './toolbar';
+import {  } from '../search_bar/search_bar';
 
 const InMemoryTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
@@ -24,11 +27,17 @@ const InMemoryTablePropTypes = {
   loading: PropTypes.bool,
   message: PropTypes.string,
   error: PropTypes.string,
-  search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
-    defaultQuery: QueryType,
-    box: PropTypes.shape(SearchBoxConfigPropTypes),
-    filters: SearchFiltersFiltersType,
-  })]),
+  toolbar: PropTypes.shape({
+    ...Toolbar.propTypes,
+    search: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        defaultQuery: QueryType,
+        box: PropTypes.shape(SearchBoxConfigPropTypes),
+        filters: SearchFiltersFiltersType
+      })
+    ])
+  }),
   pagination: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
@@ -40,11 +49,11 @@ const InMemoryTablePropTypes = {
 };
 
 const initialQuery = (props) => {
-  const { search } = props;
-  if (!search) {
+  const { toolbar } = props;
+  if (!toolbar || !toolbar.search) {
     return undefined;
   }
-  const query = search.defaultQuery || '';
+  const query = toolbar.search.defaultQuery || '';
   return isString(query) ? Query.parse(query) : query;
 };
 
@@ -77,13 +86,6 @@ export class EuiInMemoryTable extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(prevState => {
-      const data = this.computeData(nextProps.items, prevState.criteria);
-      return { data };
-    });
-  }
-
   computeData(items, criteria, query) {
     if (!items) {
       return { items: [], totalCount: 0 };
@@ -103,23 +105,43 @@ export class EuiInMemoryTable extends React.Component {
     return { items, totalCount };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.refresh(nextProps);
+  }
+
   onCriteriaChange(criteria) {
-    this.setState(prevState => ({
-      criteria,
-      data: this.computeData(this.props.items, criteria, prevState.query)
-    }));
+    this.refresh(this.props, { criteria });
   }
 
   onQueryChange(query) {
-    this.setState(prevState => ({
-      query,
-      data: this.computeData(this.props.items, prevState.criteria, query)
-    }));
+    this.refresh(this.props, { query, selection: [] });
+  }
+
+  onSelectionChange(selection) {
+    this.setState({ selection });
+  }
+
+  refresh(props, overrideState = {}) {
+    const itemId = props.selection && !isString(props.selection.itemId) ?
+      props.selection.itemId :
+      (item) => get(item, props.selection.itemId);
+    this.setState(prevState => {
+      const selection = !props.selection || !prevState.selection ? undefined : prevState.selection.filter(selectedItem => {
+        return props.items.findIndex(item => itemId(item) === itemId(selectedItem)) >= 0;
+      });
+      const criteria = overrideState.criteria || prevState.criteria;
+      const query = overrideState.query || prevState.query;
+      return {
+        data: this.computeData(props.items, criteria, query),
+        selection,
+        ...overrideState,
+      };
+    });
   }
 
   render() {
     const { criteria, data } = this.state;
-    const { loading, message, error, selection } = this.props;
+    const { loading, message, error } = this.props;
     const { items, totalCount } = data;
     const pagination = !this.props.pagination ? undefined : {
       pageIndex: criteria.page.index,
@@ -130,9 +152,19 @@ export class EuiInMemoryTable extends React.Component {
     const sorting = !this.props.sorting ? undefined : {
       sort: criteria.sort
     };
-    const searchBar = this.resolveSearchBar();
+    const selection = !this.props.selection ? undefined : {
+      ...this.props.selection,
+      onSelectionChange: (selection) => {
+        this.onSelectionChange(selection);
+        if (this.props.selection.onSelectionChange) {
+          this.props.selection.onSelectionChange(selection);
+        }
+      }
+    };
+    const toolbar = this.resolveToolbar();
     const table = (
       <EuiBasicTable
+        ref={table => this.table = table}
         items={message ? [] : items} // if message is configured, we force showing it instead of the items
         columns={this.props.columns}
         pagination={pagination}
@@ -145,29 +177,37 @@ export class EuiInMemoryTable extends React.Component {
       />
     );
 
-    if (!searchBar) {
+    if (!toolbar) {
       return table;
     }
 
     return (
       <div>
-        {searchBar}
+        {toolbar}
         <EuiSpacer size="l"/>
         {table}
       </div>
     );
   }
 
-  resolveSearchBar() {
-    const { search } = this.props;
-    if (search) {
-      const searchBarProps = isBoolean(search) ? {} : search;
-      return (
-        <EuiSearchBar
-          onChange={this.onQueryChange.bind(this)}
-          {...searchBarProps}
-        />
-      );
+  resolveToolbar() {
+    const toolbar =  this.props.toolbar && { ...this.props.toolbar };
+    if (!toolbar) {
+      return;
     }
+    if (toolbar.search) {
+      if (isBoolean(toolbar.search)) {
+        toolbar.search = {};
+      }
+      toolbar.search.onChange = (query) => {
+        this.onQueryChange(query);
+      };
+    }
+    const table = {
+      ...this.state,
+      refresh: () => this.refresh(this.props)
+    };
+    return <Toolbar table={table} {...toolbar}/>;
   }
+
 }
