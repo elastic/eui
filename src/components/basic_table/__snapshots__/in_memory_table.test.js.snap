@@ -217,7 +217,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
   selection={
     Object {
       "itemId": "id",
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
 />
@@ -263,7 +263,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   selection={
     Object {
       "itemId": "id",
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -276,8 +276,55 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
 
 exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search 1`] = `
 <div>
-  <EuiSearchBar
-    onChange={[Function]}
+  <Toolbar
+    search={
+      Object {
+        "onChange": [Function],
+      }
+    }
+    table={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 10,
+          },
+        },
+        "data": Object {
+          "items": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+            Object {
+              "id": "2",
+              "name": "name2",
+            },
+            Object {
+              "id": "3",
+              "name": "name3",
+            },
+          ],
+          "totalCount": 3,
+        },
+        "query": Query {
+          "ast": _AST {
+            "_clauses": Array [],
+            "_indexedClauses": Object {
+              "field": Object {},
+              "is": Object {},
+              "term": Array [],
+            },
+          },
+          "syntax": Object {
+            "parse": [Function],
+            "print": [Function],
+          },
+          "text": "",
+        },
+        "refresh": [Function],
+      }
+    }
   />
   <EuiSpacer
     size="l"
@@ -332,7 +379,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     selection={
       Object {
         "itemId": "id",
-        "onSelectionChanged": [Function],
+        "onSelectionChange": [Function],
       }
     }
     sorting={
@@ -395,7 +442,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   selection={
     Object {
       "itemId": "id",
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -448,7 +495,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   selection={
     Object {
       "itemId": "id",
-      "onSelectionChanged": [Function],
+      "onSelectionChange": [Function],
     }
   }
   sorting={
@@ -461,25 +508,76 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
 
 exports[`EuiInMemoryTable with pagination, selection, sorting and configured search 1`] = `
 <div>
-  <EuiSearchBar
-    box={
+  <Toolbar
+    search={
       Object {
-        "incremental": true,
+        "box": Object {
+          "incremental": true,
+        },
+        "defaultQuery": "name:name1",
+        "filters": Array [
+          Object {
+            "field": "name",
+            "name": "Name1",
+            "negatedName": "Not Name1",
+            "type": "field_value_toggle",
+            "value": "name1",
+          },
+        ],
+        "onChange": [Function],
       }
     }
-    defaultQuery="name:name1"
-    filters={
-      Array [
-        Object {
-          "field": "name",
-          "name": "Name1",
-          "negatedName": "Not Name1",
-          "type": "field_value_toggle",
-          "value": "name1",
+    table={
+      Object {
+        "criteria": Object {
+          "page": Object {
+            "index": 0,
+            "size": 10,
+          },
         },
-      ]
+        "data": Object {
+          "items": Array [
+            Object {
+              "id": "1",
+              "name": "name1",
+            },
+          ],
+          "totalCount": 1,
+        },
+        "query": Query {
+          "ast": _AST {
+            "_clauses": Array [
+              Object {
+                "field": "name",
+                "match": "must",
+                "type": "field",
+                "value": "name1",
+              },
+            ],
+            "_indexedClauses": Object {
+              "field": Object {
+                "name": Array [
+                  Object {
+                    "field": "name",
+                    "match": "must",
+                    "type": "field",
+                    "value": "name1",
+                  },
+                ],
+              },
+              "is": Object {},
+              "term": Array [],
+            },
+          },
+          "syntax": Object {
+            "parse": [Function],
+            "print": [Function],
+          },
+          "text": "name:name1",
+        },
+        "refresh": [Function],
+      }
     }
-    onChange={[Function]}
   />
   <EuiSpacer
     size="l"
@@ -526,7 +624,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     selection={
       Object {
         "itemId": "id",
-        "onSelectionChanged": [Function],
+        "onSelectionChange": [Function],
       }
     }
     sorting={

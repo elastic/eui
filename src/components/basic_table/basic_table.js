@@ -16,8 +16,6 @@ import { EuiTableHeaderCell } from '../table/table_header_cell';
 import { EuiTableHeader } from '../table/table_header';
 import { EuiTableBody } from '../table/table_body';
 import { EuiTableRowCellCheckbox } from '../table/table_row_cell_checkbox';
-import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
-import { ICON_TYPES } from '../icon';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 import { EuiTableRowCell } from '../table/table_row_cell';
@@ -25,6 +23,7 @@ import { EuiTableRow } from '../table/table_row';
 import { PaginationBar, PaginationType } from './pagination_bar';
 import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
+import { ContextualActionType } from './action';
 
 const dataTypesProfiles = {
   auto: {
@@ -51,36 +50,8 @@ const dataTypesProfiles = {
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
-const DefaultItemActionType = PropTypes.shape({
-  type: PropTypes.oneOf([ 'icon', 'button' ]), // default is 'button'
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired, // (item) => void,
-  available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func, // (item) => boolean;
-  icon: PropTypes.oneOfType([ // required when type is 'icon'
-    PropTypes.oneOf(ICON_TYPES),
-    PropTypes.func // (item) => oneOf(ICON_TYPES)
-  ]),
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf(BUTTON_ICON_COLORS),
-    PropTypes.func // (item) => oneOf(ICON_BUTTON_COLORS)
-  ])
-});
-
-const CustomItemActionType = PropTypes.shape({
-  render: PropTypes.func.isRequired,  // (item, enabled) => PropTypes.node;
-  available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func // (item) => boolean;
-});
-
-const SupportedItemActionType = PropTypes.oneOfType([
-  DefaultItemActionType,
-  CustomItemActionType
-]);
-
 const ActionsColumnType = PropTypes.shape({
-  actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
+  actions: PropTypes.arrayOf(ContextualActionType).isRequired, // action context => item
   name: PropTypes.string,
   description: PropTypes.string,
   width: PropTypes.string
@@ -113,12 +84,14 @@ const ItemIdType = PropTypes.oneOfType([
   PropTypes.func    // (item) => string
 ]);
 
-export const SelectionType = PropTypes.shape({
+export const SelectionPropTypes = {
   itemId: ItemIdType.isRequired,
   onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
   selectableMessage: PropTypes.func // (selectable, item) => boolean;
-});
+};
+
+export const SelectionType = PropTypes.shape(SelectionPropTypes);
 
 const SortingType = PropTypes.shape({
   sort: PropertySortType
@@ -165,6 +138,10 @@ export class EuiBasicTable extends Component {
     }
     return criteria;
   }
+
+  getSelection = () => {
+    return this.state.selection;
+  };
 
   itemId(item) {
     const { selection } = this.props;

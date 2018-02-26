@@ -9,7 +9,6 @@ exports[`DefaultItemAction render - button 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  size="s"
   style={
     Object {
       "opacity": 1,

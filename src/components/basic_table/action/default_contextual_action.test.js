@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme/build/index';
-import { DefaultItemAction } from './default_item_action';
-import { Random } from '../../services/random';
+import { DefaultContextualAction } from './default_contextual_action';
+import { Random } from '../../../services/random';
 
 const random = new Random();
 
@@ -13,16 +13,16 @@ describe('DefaultItemAction', () => {
       action: {
         name: 'action1',
         description: 'action 1',
-        type: random.oneOf(undefined, 'button', 'foobar'),
+        type: random.oneOf(undefined, 'button'),
         onClick: () => {}
       },
+      actionContext: { id: 'xyz' },
       enabled: true,
-      visible: true,
-      item: { id: 'xyz' }
+      visible: true
     };
 
     const component = shallow(
-      <DefaultItemAction {...props} />
+      <DefaultContextualAction {...props} />
     );
 
     expect(component).toMatchSnapshot();
@@ -39,13 +39,13 @@ describe('DefaultItemAction', () => {
         icon: 'trash',
         onClick: () => {}
       },
+      actionContext: { id: 'xyz' },
       enabled: true,
-      visible: true,
-      item: { id: 'xyz' }
+      visible: true
     };
 
     const component = shallow(
-      <DefaultItemAction {...props} />
+      <DefaultContextualAction {...props} />
     );
 
     expect(component).toMatchSnapshot();

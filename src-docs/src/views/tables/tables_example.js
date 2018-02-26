@@ -16,7 +16,7 @@ import { section as actionsSection } from './actions';
 import {
   section as inMemorySection,
   selectionSection as inMemorySelectionSection,
-  searchSection as inMemorySearchSection
+  toolbarSection as inMemoryToolbarSection
 } from './in_memory';
 import { section as customSection } from './custom';
 
@@ -52,7 +52,7 @@ export const TableExample = {
     actionsSection,
     inMemorySection,
     inMemorySelectionSection,
-    inMemorySearchSection,
+    inMemoryToolbarSection,
     customSection,
   ],
 };

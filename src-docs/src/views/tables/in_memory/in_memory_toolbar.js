@@ -41,35 +41,55 @@ export class Table extends React.Component {
     super(props);
     this.state = {
       incremental: false,
-      filters: false
+      filters: false,
+      items: store.users
     };
   }
 
   render() {
 
-    const search = {
-      box: {
-        incremental: this.state.incremental
-      },
-      filters: !this.state.filters ? undefined : [
+    const toolbar = {
+      leftTools: [
         {
-          type: 'is',
-          field: 'online',
-          name: 'Online',
-          negatedName: 'Offline'
-        },
-        {
-          type: 'field_value_selection',
-          field: 'nationality',
-          name: 'Nationality',
-          multiSelect: false,
-          options: store.countries.map(country => ({
-            value: country.code,
-            name: country.name,
-            view: `${country.flag} ${country.name}`
-          }))
+          type: 'button',
+          name: 'Delete Items',
+          icon: 'trash',
+          color: 'danger',
+          available: (table) => table.selection && table.selection.length > 0,
+          onClick: (table) => {
+            store.deleteUsers(...table.selection.map(user => user.id));
+            table.refresh();
+          }
         }
-      ]
+      ],
+      search: {
+        box: {
+          incremental: this.state.incremental
+        },
+        filters: !this.state.filters ? undefined : [
+          {
+            type: 'is',
+            field: 'online',
+            name: 'Online',
+            negatedName: 'Offline'
+          },
+          {
+            type: 'field_value_selection',
+            field: 'nationality',
+            name: 'Nationality',
+            multiSelect: false,
+            options: store.countries.map(country => ({
+              value: country.code,
+              name: country.name,
+              view: `${country.flag} ${country.name}`
+            }))
+          }
+        ]
+      }
+    };
+
+    const selection = {
+      itemId: 'id'
     };
 
     return (
@@ -92,7 +112,7 @@ export class Table extends React.Component {
         </EuiFlexGroup>
         <EuiSpacer size="l"/>
         <EuiInMemoryTable
-          items={store.users}
+          items={this.state.items}
           columns={[
             {
               field: 'firstName',
@@ -137,9 +157,10 @@ export class Table extends React.Component {
               sortable: true
             }
           ]}
-          search={search}
+          toolbar={toolbar}
           pagination={true}
           sorting={true}
+          selection={selection}
         />
       </Fragment>
     );
