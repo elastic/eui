@@ -53,35 +53,15 @@ export class Step1 extends Component {
               ]}
             />
           </EuiFormRow>
-          <EuiTitle size="s">
-            <p>How many nodes to you want to use for indexing?</p>
-          </EuiTitle>
-          <EuiSpacer size="m" />
-          <EuiFlexGroup>
-            <EuiFlexItem style={{ maxWidth: 188 }}>
-              <EuiFormRow label="Minimum">
-                <EuiFieldNumber value={1} />
-              </EuiFormRow>
-            </EuiFlexItem>
-            <EuiFlexItem style={{ maxWidth: 188 }}>
-              <EuiFormRow label="Maximum">
-                <EuiFieldNumber value={5} />
-              </EuiFormRow>
-            </EuiFlexItem>
-          </EuiFlexGroup>
           <EuiSpacer />
-          <EuiTitle size="s">
-            <p>How many replicas would you like to have?</p>
-          </EuiTitle>
-          <EuiSpacer size="m" />
           <EuiFlexGroup>
             <EuiFlexItem style={{ maxWidth: 188 }}>
-              <EuiFormRow label="Minimum">
+              <EuiFormRow label="Primary nodes">
                 <EuiFieldNumber value={1} />
               </EuiFormRow>
             </EuiFlexItem>
             <EuiFlexItem style={{ maxWidth: 188 }}>
-              <EuiFormRow label="Maximum">
+              <EuiFormRow label="Replicas">
                 <EuiFieldNumber value={5} />
               </EuiFormRow>
             </EuiFlexItem>
