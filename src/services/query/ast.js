@@ -1,4 +1,4 @@
-import { isArray, isNil } from '../../../services/predicate';
+import { isArray, isNil } from '../predicate';
 
 export const Match = Object.freeze({
   MUST: 'must',
@@ -68,10 +68,9 @@ const Is = Object.freeze({
  *
  * This AST is immutable - every "mutating" operation returns a newly mutated AST.
  */
-export class _AST {
-
+export class _Ast {
   static create(clauses) {
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   constructor(clauses = []) {
@@ -142,7 +141,7 @@ export class _AST {
     const existingClause = this.getOrFieldClause(field);
     if (!existingClause) {
       const newClause = must ? Field.must(field, [ value ]) : Field.mustNot(field, [ value ]);
-      return new _AST([ ...this._clauses, newClause ]);
+      return new _Ast([ ...this._clauses, newClause ]);
     }
     const clauses = this._clauses.map(clause => {
       if (clause === existingClause) {
@@ -150,13 +149,13 @@ export class _AST {
       }
       return clause;
     });
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   removeOrFieldValue(field, value) {
     const existingClause = this.getOrFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([ ...this._clauses ]);
+      return new _Ast([ ...this._clauses ]);
     }
     const clauses = this._clauses.reduce((clauses, clause) => {
       if (clause !== existingClause) {
@@ -170,14 +169,14 @@ export class _AST {
       clauses.push({ ...clause, value: filteredValue });
       return clauses;
     }, []);
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   removeOrFieldClauses(field) {
     const clauses = this._clauses.filter(clause => {
       return !Field.isInstance(clause) || clause.field !== field || !isArray(clause.value);
     });
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   hasSimpleFieldClause(field, value = undefined) {
@@ -200,17 +199,17 @@ export class _AST {
   removeSimpleFieldValue(field, value) {
     const existingClause = this.getSimpleFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([ ...this._clauses ]);
+      return new _Ast([ ...this._clauses ]);
     }
     const clauses = this._clauses.filter(clause => clause !== existingClause);
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   removeSimpleFieldClauses(field) {
     const clauses = this._clauses.filter(clause => {
       return !Field.isInstance(clause) || clause.field !== field || isArray(clause.value);
     });
-    return new _AST(clauses);
+    return new _Ast(clauses);
   }
 
   getIsClauses() {
@@ -222,7 +221,7 @@ export class _AST {
   }
 
   removeIsClause(flag) {
-    return new _AST(this._clauses.filter(clause => !Is.isInstance(clause) || clause.flag !== flag));
+    return new _Ast(this._clauses.filter(clause => !Is.isInstance(clause) || clause.flag !== flag));
   }
 
   /**
@@ -280,14 +279,14 @@ export class _AST {
     if (!added) {
       newClauses.push(newClause);
     }
-    return new _AST(newClauses);
+    return new _Ast(newClauses);
   }
 }
 
-export const AST = Object.freeze({
+export const Ast = Object.freeze({
   Match,
   Term,
   Field,
   Is,
-  create: (clauses) => new _AST(clauses)
+  create: (clauses) => new _Ast(clauses)
 });

@@ -1,7 +1,7 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme/build/index';
-import { Query } from '../query';
+import { Query } from '../../../services/query';
 import { FieldValueToggleGroupFilter } from './field_value_toggle_group_filter';
 
 describe('TermToggleGroupFilter', () => {

@@ -1,2 +1,2 @@
 export { Query } from './query';
-export { AST } from './ast';
+export { Ast } from './ast';

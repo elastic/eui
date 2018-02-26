@@ -1,14 +1,13 @@
-import React from 'react';
-import { EuiFieldSearch } from '../form/field_search/field_search';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { EuiFieldSearch } from '../form/field_search/field_search';
 
 export const SearchBoxConfigPropTypes = {
   placeholder: PropTypes.string,
   incremental: PropTypes.bool
 };
 
-export class EuiSearchBox extends React.Component {
-
+export class EuiSearchBox extends Component {
   static propTypes = {
     query: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired, // (queryText) => void

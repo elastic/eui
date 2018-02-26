@@ -35,11 +35,11 @@ const createUsers = (countries) => {
   return times(20, (index) => {
     return {
       id: index,
-      firstName: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
-      lastName: random.oneOf('van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel'),
-      github: random.oneOf('martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel'),
+      firstName: random.oneOf(['Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan']),
+      lastName: random.oneOf(['van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel']),
+      github: random.oneOf(['martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel']),
       dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
-      nationality: random.oneOf(...countries.map(country => country.code)),
+      nationality: random.oneOf(countries.map(country => country.code)),
       online: random.boolean()
     };
   });

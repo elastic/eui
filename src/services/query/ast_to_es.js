@@ -1,5 +1,5 @@
-import { AST } from './ast';
-import { isArray } from '../../../services/predicate';
+import { Ast } from './ast';
+import { isArray } from '../predicate';
 
 export const _termValuesToQuery = (values, options) => {
   const body = {
@@ -74,7 +74,7 @@ export const _isFlagToQuery = (flag, on) => {
 
 const collectTerms = (ast) => {
   return ast.getTermClauses().reduce((values, clause) => {
-    if (AST.Match.isMustClause(clause)) {
+    if (Ast.Match.isMustClause(clause)) {
       values.must.push(clause.value);
     } else {
       values.mustNot.push(clause.value);
@@ -93,7 +93,7 @@ const collectFields = (ast) => {
   };
 
   return ast.getFieldClauses().reduce((fields, clause) => {
-    if (AST.Match.isMustClause(clause)) {
+    if (Ast.Match.isMustClause(clause)) {
       if (isArray(clause.value)) {
         fieldArray(fields.must.or, clause.field).push(...clause.value);
       } else {
@@ -113,7 +113,7 @@ const collectFields = (ast) => {
   });
 };
 
-export const astToES = (ast, options = {}) => {
+export const astToEs = (ast, options = {}) => {
 
   if (ast.clauses.length === 0) {
     return { match_all: {} };
@@ -141,7 +141,7 @@ export const astToES = (ast, options = {}) => {
     return fieldValuesToQuery(field, fields.must.or[field], 'or');
   }));
   must.push(...ast.getIsClauses().map(clause => {
-    return isFlagToQuery(clause.flag, AST.Match.isMustClause(clause));
+    return isFlagToQuery(clause.flag, Ast.Match.isMustClause(clause));
   }));
 
   const mustNot = [];

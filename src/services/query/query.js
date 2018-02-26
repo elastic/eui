@@ -1,8 +1,8 @@
 import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
-import { isNil, isString } from '../../../services/predicate';
-import { astToES } from './ast_to_es';
-import { AST } from './ast';
+import { isNil, isString } from '../predicate';
+import { astToEs } from './ast_to_es';
+import { Ast } from './ast';
 
 /**
  * This is the consumer interface for the query - it's effectively a wrapper construct around
@@ -10,27 +10,26 @@ import { AST } from './ast';
  * It is immutable - all mutating operations return a new (mutated) query instance.
  */
 export class Query {
-
   static parse(text, syntax = defaultSyntax) {
     return new Query(syntax.parse(text), syntax, text);
   }
 
   static isMust(clause) {
-    return AST.Match.isMustClause(clause);
+    return Ast.Match.isMustClause(clause);
   }
 
   static MATCH_ALL = Query.parse('');
 
   static isTerm(clause) {
-    return AST.Term.isInstance(clause);
+    return Ast.Term.isInstance(clause);
   }
 
   static isIs(clause) {
-    return AST.Is.isInstance(clause);
+    return Ast.Is.isInstance(clause);
   }
 
   static isField(clause) {
-    return AST.Field.isInstance(clause);
+    return Ast.Field.isInstance(clause);
   }
 
   constructor(ast, syntax = defaultSyntax, text = undefined) {
@@ -94,12 +93,12 @@ export class Query {
   }
 
   addMustIsClause(flag) {
-    const ast = this.ast.addClause(AST.Is.must(flag));
+    const ast = this.ast.addClause(Ast.Is.must(flag));
     return new Query(ast, this.syntax);
   }
 
   addMustNotIsClause(flag) {
-    const ast = this.ast.addClause(AST.Is.mustNot(flag));
+    const ast = this.ast.addClause(Ast.Is.mustNot(flag));
     return new Query(ast, this.syntax);
   }
 
@@ -163,7 +162,6 @@ export class Query {
    */
   static toESQuery(query, options = {}) {
     const q = isString(query) ? Query.parse(query) : query;
-    return astToES(q.ast, options);
+    return astToEs(q.ast, options);
   }
-
 }

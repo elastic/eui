@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`astToES ast - '' 1`] = `
+exports[`astToEs ast - '' 1`] = `
 Object {
   "match_all": Object {},
 }
 `;
 
-exports[`astToES ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
+exports[`astToEs ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -33,7 +33,7 @@ Object {
 }
 `;
 
-exports[`astToES ast - 'is:online group:kibana john' 1`] = `
+exports[`astToEs ast - 'is:online group:kibana john' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -60,7 +60,7 @@ Object {
 }
 `;
 
-exports[`astToES ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
+exports[`astToEs ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -107,7 +107,7 @@ Object {
 }
 `;
 
-exports[`astToES ast - 'john -sales' 1`] = `
+exports[`astToEs ast - 'john -sales' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -128,7 +128,7 @@ Object {
 }
 `;
 
-exports[`astToES ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
+exports[`astToEs ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -168,7 +168,7 @@ Object {
 }
 `;
 
-exports[`astToES ast - 'john group:(eng or es) -group:kibana' 1`] = `
+exports[`astToEs ast - 'john group:(eng or es) -group:kibana' 1`] = `
 Object {
   "bool": Object {
     "must": Array [

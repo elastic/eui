@@ -10,7 +10,7 @@ import { EuiFilterSelectItem, EuiFilterButton } from '../../filter_group';
 import { EuiLoadingChart } from '../../loading/loading_chart';
 import { EuiSpacer } from '../../spacer/spacer';
 import { EuiIcon } from '../../icon/icon';
-import { Query } from '../query';
+import { Query } from '../../../services/query';
 
 const FieldValueOptionType = PropTypes.shape({
   value: PropTypes.any.isRequired,

@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createFilter, FilterConfigType } from './filters';
-import { Query } from './query';
+import { Query } from '../../services/query';
 import { EuiFilterGroup } from '../../components/filter_group';
 
 export const SearchFiltersFiltersType = PropTypes.arrayOf(FilterConfigType);
 
-export class EuiSearchFilters extends React.Component {
-
+export class EuiSearchFilters extends Component {
   static propTypes = {
     query: PropTypes.instanceOf(Query).isRequired,
     onChange: PropTypes.func.isRequired,

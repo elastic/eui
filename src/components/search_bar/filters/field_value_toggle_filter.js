@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { EuiPropTypes } from '../../../utils/prop_types';
-import { Query } from '../query';
+import { Query } from '../../../services/query';
 
 export const FieldValueToggleFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('field_value_toggle').isRequired,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
 
 describe('SearchBar', () => {

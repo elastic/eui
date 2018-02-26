@@ -1,20 +1,20 @@
 import { get } from 'lodash';
-import { isString, isArray } from '../../../services/predicate';
+import { isString, isArray } from '../predicate';
 import { must } from './must';
 import { mustNot } from './must_not';
-import { AST } from './ast';
+import { Ast } from './ast';
 
 const EXPLAIN_FIELD = '__explain';
 
 const matchers = {
-  [AST.Match.MUST]: must,
-  [AST.Match.MUST_NOT]: mustNot
+  [Ast.Match.MUST]: must,
+  [Ast.Match.MUST_NOT]: mustNot
 };
 
 const defaultIsClauseMatcher = (record, clause, explain) => {
   const { type, flag, match } = clause;
   const value = get(record, clause.flag);
-  const must = AST.Match.isMustClause(clause);
+  const must = Ast.Match.isMustClause(clause);
   const hit = !!value === must;
   if (explain && hit) {
     explain.push({ hit, type, flag, match });
@@ -57,7 +57,7 @@ const termClauseMatcher = (record, fields, clauses = [], explain) => {
     if (!matcher) { // unknown matcher
       return true;
     }
-    if (AST.Match.isMustClause(clause)) {
+    if (Ast.Match.isMustClause(clause)) {
       return fields.some(field => {
         const recordValue = get(record, field);
         const hit = matcher(recordValue, value);
