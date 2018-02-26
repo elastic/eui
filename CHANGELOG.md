@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
+- Icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
 
 **Breaking changes**
 

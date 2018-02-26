@@ -66,6 +66,11 @@ import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
 import invert from './assets/invert.svg';
+import kqlField from './assets/kql_field.svg';
+import kqlOperand from './assets/kql_operand.svg';
+import kqlValue from './assets/kql_value.svg';
+import kqlFunction from './assets/kql_function.svg';
+import kqlSelector from './assets/kql_selector.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
@@ -203,6 +208,11 @@ const typeToIconMap = {
   indexPatternApp,
   indexSettings,
   invert,
+  kqlField,
+  kqlOperand,
+  kqlValue,
+  kqlFunction,
+  kqlSelector,
   link,
   list,
   listAdd,
