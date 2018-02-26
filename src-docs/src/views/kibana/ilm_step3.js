@@ -25,6 +25,7 @@ import {
   EuiSwitch,
   EuiButton,
   EuiButtonEmpty,
+  EuiLink,
 } from '../../../../src/components';
 
 const policies = [
@@ -48,7 +49,7 @@ export class Step3 extends Component {
     return (
       <div className="euiAnimateContentLoad">
         <EuiTitle>
-          <h4>Edit policy: On call</h4>
+          <h4>Edit policy: {'{Policy Name}'}</h4>
         </EuiTitle>
         <EuiSpacer size="m" />
         <EuiCallOut
@@ -72,7 +73,7 @@ export class Step3 extends Component {
                 </EuiTitle>
                 <EuiTextColor color="subdued">
                   <EuiText>
-                    <p>This phase is required</p>
+                    <p>This phase is required. Rollover data by time and size.</p>
                   </EuiText>
                 </EuiTextColor>
               </EuiFlexItem>
@@ -145,7 +146,7 @@ export class Step3 extends Component {
                 </EuiTitle>
                 <EuiTextColor color="subdued">
                   <EuiText>
-                    <p>This phase is optional</p>
+                    <p>This phase is optional. Re-allocate indices, redefine number of active shards, replicas, and compress even further.</p>
                   </EuiText>
                 </EuiTextColor>
               </EuiFlexItem>
@@ -162,7 +163,12 @@ export class Step3 extends Component {
             <EuiSpacer size="m" />
             <EuiFlexGroup>
               <EuiFlexItem style={{ maxWidth: 188 }}>
-                <EuiFormRow label="Move to warm phase after">
+                <EuiFormRow
+                  label="Move to warm phase after"
+                  helpText={
+                    <span>Or <EuiLink>apply on rollover</EuiLink> instead.</span>
+                  }
+                >
                   <EuiFieldNumber />
                 </EuiFormRow>
               </EuiFlexItem>
@@ -256,7 +262,7 @@ export class Step3 extends Component {
                 </EuiTitle>
                 <EuiTextColor color="subdued">
                   <EuiText>
-                    <p>This phase is optional. Most choose not to use it.</p>
+                    <p>This phase is optional. Re-allocate your indices again and modify the number of replicas.</p>
                   </EuiText>
                 </EuiTextColor>
               </EuiFlexItem>
@@ -337,7 +343,7 @@ export class Step3 extends Component {
                 </EuiTitle>
                 <EuiTextColor color="subdued">
                   <EuiText>
-                    <p>This phase is optional. Use it carefully since it deletes data.</p>
+                    <p>This phase is optional. Delete your indices after a configured amount of time.</p>
                   </EuiText>
                 </EuiTextColor>
               </EuiFlexItem>
@@ -374,6 +380,20 @@ export class Step3 extends Component {
             </EuiFlexGroup>
           </div>
         </EuiAccordion>
+        <EuiHorizontalRule className="ilmHrule" />
+
+        <EuiFormRow label="Policy name">
+          <EuiFieldText value="stag-metrics-lifecycle" />
+        </EuiFormRow>
+        <EuiFormRow
+          label="Policy options"
+          style={{ maxWidth: '100%' }}
+        >
+          <EuiSwitch
+            style={{ maxWidth: '100%' }}
+            label={<span>Save this <strong>as a new policy</strong> so it does not effect other templates.</span>}
+          />
+        </EuiFormRow>
 
         <EuiHorizontalRule className="ilmHrule" />
         <EuiButton fill iconSide="right" iconType="sortRight" onClick={this.props.onSelection}>

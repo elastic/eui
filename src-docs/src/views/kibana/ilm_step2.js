@@ -28,13 +28,12 @@ import {
 } from '../../../../src/components';
 
 const policies = [
-  { name: 'Running hot', hot: true, warm: true },
-  { name: 'On call', hot: true, warm: true, cold: true, remove: true},
-  { name: 'Archives', hot: true, cold: true},
-  { name: 'Deep storage', hot: true, cold: true, remove: true},
-  { name: 'Dailies', hot: true},
-  { name: 'Dailies archive', hot: true, cold: true, remove: true},
-  { name: 'Weeklies', hot: true},
+  { name: 'prod-logs-lifecycle', hot: true, warm: true },
+  { name: 'stag-logs-lifecycle', hot: true, warm: true, cold: true, remove: true},
+  { name: 'dev-logs-lifecycle', hot: true, cold: true},
+  { name: 'prod-metrics-lifecycle', hot: true, cold: true, remove: true},
+  { name: 'stag-metrics-lifecycle', hot: true},
+  { name: 'dev-metrics-lifecycle', hot: true, cold: true, remove: true},
 ];
 
 export class Step2 extends Component {
