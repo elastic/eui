@@ -27,7 +27,7 @@ export class Random {
     return min + delta;
   }
 
-  oneOf(...values) {
+  oneOf(values) {
     return values[Math.floor(this._rand() * values.length)];
   }
 
@@ -35,7 +35,7 @@ export class Random {
     const count = this.integer({ min: 0, max: values.length, ...options });
     const copy = [...values];
     return times(count, () => {
-      const value = this.oneOf(...copy);
+      const value = this.oneOf(copy);
       copy.splice(copy.indexOf(value), 1);
       return value;
     });

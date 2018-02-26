@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { DefaultRecordAction } from './default_record_action';
 import { Random } from '../../services/random';
 
@@ -13,7 +13,7 @@ describe('DefaultRecordAction', () => {
       action: {
         name: 'action1',
         description: 'action 1',
-        type: random.oneOf(undefined, 'button', 'foobar'),
+        type: random.oneOf([undefined, 'button', 'foobar']),
         onClick: () => {}
       },
       enabled: true,

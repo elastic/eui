@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup } from '../flex/flex_group';
 import {
@@ -9,8 +10,7 @@ import {
   EuiSearchFilters,
   SearchFiltersFiltersType
 } from './search_filters';
-import PropTypes from 'prop-types';
-import { Query } from './query';
+import { Query } from '../../services/query';
 import { EuiFlexItem } from '../flex/flex_item';
 
 export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
@@ -57,8 +57,7 @@ const resolveQuery = (query) => {
   return isString(query) ? Query.parse(query) : query;
 };
 
-export class EuiSearchBar extends React.Component {
-
+export class EuiSearchBar extends Component {
   static propTypes = SearchBoxConfigPropTypes;
 
   constructor(props) {

@@ -8,13 +8,14 @@ import {
 import {
   defaults as paginationBarDefaults
 } from './pagination_bar';
+import { Query } from '../../services/query';
 import { isBoolean, isString } from '../../services/predicate';
 import { Comparators } from '../../services/sort';
 import {
-  Query,
   QueryType,
   SearchFiltersFiltersType,
-  SearchBoxConfigPropTypes, EuiSearchBar
+  SearchBoxConfigPropTypes,
+  EuiSearchBar,
 } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
 

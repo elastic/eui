@@ -14,7 +14,7 @@ const random = new Random();
 const records = times(5, (index) => {
   return {
     id: index,
-    string: random.oneOf('Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan'),
+    string: random.oneOf(['Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan']),
     number: random.integer({ min: 0, max: 2000000 }),
     boolean: random.boolean(),
     date: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) })

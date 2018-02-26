@@ -37,6 +37,15 @@ export {
 } from './prop_types';
 
 export {
+  Ast,
+  Query,
+} from './query';
+
+export {
+  Random
+} from './random';
+
+export {
   getSecureRelForTarget,
 } from './security';
 
@@ -52,6 +61,3 @@ export {
   noOverflowPlacement,
 } from './overflow';
 
-export {
-  Random
-} from './random';

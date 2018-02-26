@@ -1,6 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.24`.
+- Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
+
+**Breaking changes**
+
+- The `Random` service's `oneOf` method now only accepts an array ([#454](https://github.com/elastic/eui/pull/454))
 
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 
@@ -12,8 +16,7 @@ No public interface changes since `0.0.24`.
 
 # [`0.0.23`](https://github.com/elastic/eui/tree/v0.0.23)
 
-- Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state
-and logic ([#390](https://github.com/elastic/eui/pull/390))
+- Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
 
 **Bug fixes**
