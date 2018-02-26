@@ -368,18 +368,19 @@ export class EuiBasicTable extends Component {
       }
 
       // field data column
-      const sortDirection = this.resolveColumnSortDirection(column);
-      const onSort = this.resolveColumnOnSort(column);
-      const isSorted = !!sortDirection;
-      const isSortAscending = SortDirection.isAsc(sortDirection);
+      const sorting = {};
+      if (this.props.sorting && column.sortable) {
+        const sortDirection = this.resolveColumnSortDirection(column);
+        sorting.isSorted = !!sortDirection;
+        sorting.isSortAscending = sortDirection ? SortDirection.isAsc(sortDirection) : undefined;
+        sorting.onSort = this.resolveColumnOnSort(column);
+      }
       headers.push(
         <EuiTableHeaderCell
           key={`_data_h_${column.field}_${index}`}
           align={align}
-          isSorted={isSorted}
-          isSortAscending={isSortAscending}
-          onSort={onSort}
           width={column.width}
+          {...sorting}
         >
           {column.name}
         </EuiTableHeaderCell>
@@ -604,13 +605,15 @@ export class EuiBasicTable extends Component {
   }
 
   resolveColumnOnSort(column) {
-    if (column.sortable) {
-      if (!this.props.onChange) {
-        throw new Error(`BasicTable is configured to be sortable on column [${column.field}] but
-          [onChange] is not configured. This callback must be implemented to handle the sort requests`);
-      }
-      return () => this.onColumnSortChange(column);
+    const { sorting } = this.props;
+    if (!sorting || !column.sortable) {
+      return;
     }
+    if (!this.props.onChange) {
+      throw new Error(`BasicTable is configured to be sortable on column [${column.field}] but
+          [onChange] is not configured. This callback must be implemented to handle the sort requests`);
+    }
+    return () => this.onColumnSortChange(column);
   }
 
   resolveContentRenderer(column) {
