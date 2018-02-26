@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.25`.
+
+# [`0.0.25`](https://github.com/elastic/eui/tree/v0.0.25)
+
 - Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
 - Icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
 
