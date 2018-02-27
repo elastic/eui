@@ -2,22 +2,19 @@
 
 No public interface changes since `0.0.25`.
 
-# [`0.0.25`](https://github.com/elastic/eui/tree/v0.0.25)
-
-- Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
-- Icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
-
-**Breaking changes**
-
-- The `Random` service's `oneOf` method now only accepts an array ([#454](https://github.com/elastic/eui/pull/454))
-
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 
 - Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
+- Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
+- Icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
 
 **Bug fixes**
 
 - Fix error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
+
+**Breaking changes**
+
+- The `Random` service's `oneOf` method now only accepts an array ([#454](https://github.com/elastic/eui/pull/454))
 
 # [`0.0.23`](https://github.com/elastic/eui/tree/v0.0.23)
 
