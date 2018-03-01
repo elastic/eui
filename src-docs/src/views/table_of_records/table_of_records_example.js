@@ -30,7 +30,7 @@ export const TableOfRecordsExample = {
     <EuiText>
       <EuiCallOut color="danger" iconType="alert" title="Do not use. This is a depricated feature.">
         <EuiCode>EuiTableOfRecords</EuiCode> should no longer be used. Instead, use
-        the <EuiCode>EuiBasicTable</EuiCode> as <Link to="/tables">documented here</Link>. We plan
+        the <EuiCode>EuiBasicTable</EuiCode> as <Link to="/display/tables">documented here</Link>. We plan
         to remove this component from EUI fairly soon.
       </EuiCallOut>
       <EuiTitle>
