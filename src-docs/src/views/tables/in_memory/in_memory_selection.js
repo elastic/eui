@@ -85,15 +85,18 @@ export class Table extends Component {
     }, random.number({ min: 0, max: 3000 }));
   }
 
-  renderDeleteButton() {
+  renderToolsLeft() {
     const selection = this.state.selection;
+
     if (selection.length === 0) {
       return;
     }
+
     const onClick = () => {
       store.deleteUsers(...selection.map(user => user.id));
       this.setState({ selection: [] });
     };
+
     return (
       <EuiButton
         color="danger"
@@ -105,8 +108,27 @@ export class Table extends Component {
     );
   }
 
+  renderToolsRight() {
+    return [(
+      <EuiButton
+        key="loadUsers"
+        onClick={this.loadUsers.bind(this)}
+        isDisabled={this.state.loading}
+      >
+        Load Users
+      </EuiButton>
+    ), (
+      <EuiButton
+        key="loadUsersError"
+        onClick={this.loadUsersWithError.bind(this)}
+        isDisabled={this.state.loading}
+      >
+        Load Users (Error)
+      </EuiButton>
+    )];
+  }
+
   render() {
-    const deleteButton = this.renderDeleteButton();
     const columns = [{
       field: 'firstName',
       name: 'First Name',
@@ -145,6 +167,33 @@ export class Table extends Component {
       sortable: true
     }];
 
+    const search = {
+      toolsLeft: this.renderToolsLeft(),
+      toolsRight: this.renderToolsRight(),
+      box: {
+        incremental: true,
+      },
+      filters: [
+        {
+          type: 'is',
+          field: 'online',
+          name: 'Online',
+          negatedName: 'Offline'
+        },
+        {
+          type: 'field_value_selection',
+          field: 'nationality',
+          name: 'Nationality',
+          multiSelect: false,
+          options: store.countries.map(country => ({
+            value: country.code,
+            name: country.name,
+            view: `${country.flag} ${country.name}`
+          }))
+        }
+      ]
+    };
+
     const pagination = {
       initialPageSize: 5,
       pageSizeOptions: [3, 5, 8]
@@ -159,28 +208,13 @@ export class Table extends Component {
 
     return (
       <div>
-        <EuiFlexGroup alignItems="center">
-          { deleteButton ? <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem> : undefined }
-          <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.loadUsers.bind(this)} isDisabled={this.state.loading}>
-              Load Users
-            </EuiButton>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton onClick={this.loadUsersWithError.bind(this)} isDisabled={this.state.loading}>
-              Load Users (Error)
-            </EuiButton>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-
-        <EuiSpacer size="l"/>
-
         <EuiInMemoryTable
           items={this.state.users}
           error={this.state.error}
           loading={this.state.loading}
           message={this.state.message}
           columns={columns}
+          search={search}
           pagination={pagination}
           sorting={true}
           selection={selection}
