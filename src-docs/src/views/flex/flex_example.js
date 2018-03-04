@@ -167,7 +167,7 @@ export const FlexExample = {
     }],
     text: (
       <p>
-        The <Link to="/panel">Panel</Link> component will naturally grow to fill the
+        The <Link to="/layout/panel">Panel</Link> component will naturally grow to fill the
         <EuiCode>FlexItem</EuiCode> which contains it.
       </p>
     ),
