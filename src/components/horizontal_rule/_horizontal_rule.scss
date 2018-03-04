@@ -1,6 +1,8 @@
 .euiHorizontalRule {
   border: none;
-  height: 1px;
+  // Sometimes Chrome "calculates" an element height of e.g. 0.990px, which it
+  // rounds down, thereby hiding the element.
+  height: 1.1px;
   background-color: $euiBorderColor;
 
   &.euiHorizontalRule--full {
