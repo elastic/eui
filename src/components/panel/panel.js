@@ -35,13 +35,19 @@ export const EuiPanel = ({
 
   const PanelTag = onClick ? 'button' : 'div';
 
+  const props = {
+    ref: panelRef,
+    className: classes
+  }
+
+  // Avoid passing down this props if is hasn't been supplied, in order to
+  // avoid noise in snapshots.
+  if (onClick != null) {
+    props.onClick = onClick
+  }
+
   return (
-    <PanelTag
-      onClick={onClick}
-      ref={panelRef}
-      className={classes}
-      {...rest}
-    >
+    <PanelTag {...props} {...rest}>
       {children}
     </PanelTag>
   );
