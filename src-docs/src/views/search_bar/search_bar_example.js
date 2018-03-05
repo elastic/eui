@@ -57,7 +57,7 @@ export const SearchBarExample = {
             </li>
           </ul>
           <p>
-            While the user can us the syntax described above to enter queries in the search box, it is possible
+            While the user can use the syntax described above to enter queries in the search box, it is possible
             provide the user help with the syntax using filters. The filters are UI controls that can manipulate
             the query. The available filters are:
           </p>
