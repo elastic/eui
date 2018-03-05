@@ -1,5 +1,5 @@
-import { Ast } from './ast';
-import { isArray } from '../predicate';
+import { AST } from './ast';
+import { isArray } from '../../../services/predicate';
 import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unresolved
 
 const unescapeValue = (value) => {
@@ -12,7 +12,7 @@ const escapeValue = (value) => {
 
 const parser = peg`
 {
-  const { Ast, unescapeValue } = options;
+  const { AST, unescapeValue } = options;
 }
 
 Query
@@ -32,19 +32,19 @@ Clause
   / TermClause
 
 TermClause
-  = space? "-" value:termValue { return Ast.Term.mustNot(value); }
-  / space? value:termValue { return Ast.Term.must(value); }
+  = space? "-" value:termValue { return AST.Term.mustNot(value); }
+  / space? value:termValue { return AST.Term.must(value); }
 
 IsClause
-  = space? "-" value:IsValue { return Ast.Is.mustNot(value); }
-  / space? value:IsValue { return Ast.Is.must(value); }
+  = space? "-" value:IsValue { return AST.Is.mustNot(value); }
+  / space? value:IsValue { return AST.Is.must(value); }
 
 IsValue
   = "is:" value:value { return value; }
 
 FieldClause
-  = space? "-" fv:FieldAndValue { return Ast.Field.mustNot(fv.field, fv.value); }
-  / space? fv:FieldAndValue { return Ast.Field.must(fv.field, fv.value); }
+  = space? "-" fv:FieldAndValue { return AST.Field.mustNot(fv.field, fv.value); }
+  / space? fv:FieldAndValue { return AST.Field.must(fv.field, fv.value); }
 
 FieldAndValue
   = field:fieldName ":" value:fieldValue { return {field, value}; }
@@ -105,22 +105,22 @@ const printValue = (value) => {
 export const defaultSyntax = Object.freeze({
 
   parse: (query) => {
-    const clauses = parser.parse(query, { Ast, unescapeValue });
-    return Ast.create(clauses);
+    const clauses = parser.parse(query, { AST, unescapeValue });
+    return AST.create(clauses);
   },
 
   print: (ast) => {
     return ast.clauses.reduce((text, clause) => {
-      const prefix = Ast.Match.isMustClause(clause) ? '' : '-';
+      const prefix = AST.Match.isMustClause(clause) ? '' : '-';
       switch (clause.type) {
-        case Ast.Field.TYPE:
+        case AST.Field.TYPE:
           if (isArray(clause.value)) {
             return `${text} ${prefix}${escapeValue(clause.field)}:(${clause.value.map(val => printValue(val)).join(' or ')})`;
           }
           return `${text} ${prefix}${escapeValue(clause.field)}:${printValue(clause.value)}`;
-        case Ast.Is.TYPE:
+        case AST.Is.TYPE:
           return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
-        case Ast.Term.TYPE:
+        case AST.Term.TYPE:
           return `${text} ${prefix}${printValue(clause.value)}`;
         default:
           return text;

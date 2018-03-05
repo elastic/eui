@@ -1,8 +1,8 @@
 import React from 'react';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build/index';
 import { EuiSearchFilters } from './search_filters';
-import { Query } from '../../services/query';
+import { Query } from './query';
 
 describe('EuiSearchFilters', () => {
 

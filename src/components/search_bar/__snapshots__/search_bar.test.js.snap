@@ -92,7 +92,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
       onChange={[Function]}
       query={
         Query {
-          "ast": _Ast {
+          "ast": _AST {
             "_clauses": Array [
               Object {
                 "match": "must",

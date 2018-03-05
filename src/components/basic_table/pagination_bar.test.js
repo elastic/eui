@@ -1,6 +1,6 @@
 import React from 'react';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build/index';
 import { PaginationBar } from './pagination_bar';
 
 describe('PaginationBar', () => {

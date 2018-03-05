@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build/index';
 import { ExpandedRecordActions } from './expanded_record_actions';
 
 describe('ExpandedRecordActions', () => {

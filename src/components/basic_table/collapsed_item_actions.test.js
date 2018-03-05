@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build/index';
 import { CollapsedItemActions } from './collapsed_item_actions';
 
 describe('CollapsedItemActions', () => {
