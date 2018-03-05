@@ -36,6 +36,16 @@ export {
   checkHrefAndOnClick,
 } from './prop_types';
 
+// TODO: Migrate these services into the services directory.
+export {
+  Query,
+  AST as Ast,
+} from '../components/search_bar/query';
+
+export {
+  Random
+} from './random';
+
 export {
   getSecureRelForTarget,
 } from './security';
@@ -51,7 +61,3 @@ export {
 export {
   noOverflowPlacement,
 } from './overflow';
-
-export {
-  Random
-} from './random';

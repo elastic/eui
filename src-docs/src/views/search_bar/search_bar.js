@@ -1,20 +1,24 @@
 import React, { Fragment } from 'react';
-import { Random } from '../../../../src/services/random';
-import {
-  EuiSearchBar,
-  Query
-} from '../../../../src/components/search_bar';
-import { EuiHealth } from '../../../../src/components/health';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { EuiSpacer } from '../../../../src/components/spacer/spacer';
-import { EuiFlexGroup } from '../../../../src/components/flex/flex_group';
-import { EuiFlexItem } from '../../../../src/components/flex/flex_item';
-import { EuiCodeBlock } from '../../../../src/components/code';
 import { times } from 'lodash';
-import { EuiIcon } from '../../../../src/components/icon/icon';
-import { EuiTitle } from '../../../../src/components/title';
-import { EuiSwitch } from '../../../../src/components/form/switch/switch';
-import { EuiBasicTable } from '../../../../src/components/basic_table';
+
+import {
+  EuiHealth,
+  EuiCallOut,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiCodeBlock,
+  EuiIcon,
+  EuiTitle,
+  EuiSwitch,
+  EuiBasicTable,
+  EuiSearchBar,
+} from '../../../../src/components';
+
+import {
+  Query,
+  Random,
+} from '../../../../src/services';
 
 const random = new Random();
 
