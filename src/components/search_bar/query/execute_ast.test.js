@@ -105,7 +105,7 @@ describe('execute ast', () => {
       { name: 'john', description: 'doe', age: 5 },
       { name: 'joe' }
     ];
-    const value = random.oneOf('john', 'doe');
+    const value = random.oneOf(['john', 'doe']);
     const result = executeAst(AST.create([
       AST.Term.must(value)
     ]), items);

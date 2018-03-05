@@ -43,11 +43,11 @@ const users = [
 const items = times(10, (id) => {
   return {
     id,
-    status: random.oneOf('open', 'closed'),
-    type: random.oneOf(...types.map(type => type.value)),
+    status: random.oneOf(['open', 'closed']),
+    type: random.oneOf(types.map(type => type.value)),
     tag: random.setOf(tags.map(tag => tag.value), { min: 0, max: 3 }),
     active: random.boolean(),
-    owner: random.oneOf(...users.map(user => user.value))
+    owner: random.oneOf(users.map(user => user.value))
   };
 });
 

@@ -13,7 +13,7 @@ describe('DefaultItemAction', () => {
       action: {
         name: 'action1',
         description: 'action 1',
-        type: random.oneOf(undefined, 'button', 'foobar'),
+        type: random.oneOf([undefined, 'button', 'foobar']),
         onClick: () => {}
       },
       enabled: true,
