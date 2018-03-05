@@ -1,6 +1,6 @@
 import React from 'react';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { EuiSearchFilters } from './search_filters';
 import { Query } from './query';
 

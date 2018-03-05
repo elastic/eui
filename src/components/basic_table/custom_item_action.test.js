@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { CustomItemAction } from './custom_item_action';
 
 describe('CustomItemAction', () => {

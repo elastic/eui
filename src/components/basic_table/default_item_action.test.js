@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { DefaultItemAction } from './default_item_action';
 import { Random } from '../../services/random';
 

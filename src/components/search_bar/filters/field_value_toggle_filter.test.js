@@ -1,6 +1,6 @@
 import React from 'react';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme/build/index';
+import { shallow } from 'enzyme';
 import { Query } from '../query';
 import { FieldValueToggleFilter } from './field_value_toggle_filter';
 
