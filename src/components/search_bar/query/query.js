@@ -1,7 +1,7 @@
 import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil, isString } from '../../../services/predicate';
-import { astToES } from './ast_to_es';
+import { astToEs } from './ast_to_es';
 import { AST } from './ast';
 
 /**
@@ -163,7 +163,7 @@ export class Query {
    */
   static toESQuery(query, options = {}) {
     const q = isString(query) ? Query.parse(query) : query;
-    return astToES(q.ast, options);
+    return astToEs(q.ast, options);
   }
 
 }

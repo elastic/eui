@@ -113,7 +113,7 @@ const collectFields = (ast) => {
   });
 };
 
-export const astToES = (ast, options = {}) => {
+export const astToEs = (ast, options = {}) => {
 
   if (ast.clauses.length === 0) {
     return { match_all: {} };

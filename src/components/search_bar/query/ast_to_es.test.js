@@ -1,15 +1,15 @@
-import { astToES } from './ast_to_es';
+import { astToEs } from './ast_to_es';
 import { AST } from './ast';
 
-describe('astToES', () => {
+describe('astToEs', () => {
 
   test(`ast - ''`, () => {
-    const query = astToES(AST.create([]));
+    const query = astToEs(AST.create([]));
     expect(query).toMatchSnapshot();
   });
 
   test(`ast - 'john -sales'`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Term.must('john'),
       AST.Term.mustNot('sales'),
     ]));
@@ -17,7 +17,7 @@ describe('astToES', () => {
   });
 
   test(`ast - '-group:es group:kibana -group:beats group:logstash'`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Field.mustNot('group', 'es'),
       AST.Field.must('group', 'kibana'),
       AST.Field.mustNot('group', 'beats'),
@@ -27,7 +27,7 @@ describe('astToES', () => {
   });
 
   test(`ast - 'is:online group:kibana john'`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Is.must('online'),
       AST.Field.must('group', 'kibana'),
       AST.Term.must('john')
@@ -36,7 +36,7 @@ describe('astToES', () => {
   });
 
   test(`ast - 'john -doe is:online group:eng group:es -group:kibana -is:active'`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Term.must('john'),
       AST.Term.mustNot('doe'),
       AST.Is.must('online'),
@@ -49,7 +49,7 @@ describe('astToES', () => {
   });
 
   test(`ast - 'john group:(eng or es) -group:kibana'`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Term.must('john'),
       AST.Field.must('group', ['eng', 'es']),
       AST.Field.mustNot('group', 'kibana')
@@ -58,7 +58,7 @@ describe('astToES', () => {
   });
 
   test(`ast - 'john group:(eng or "marketing org") -group:"kibana team"`, () => {
-    const query = astToES(AST.create([
+    const query = astToEs(AST.create([
       AST.Term.must('john'),
       AST.Field.must('group', ['eng', 'marketing org']),
       AST.Field.mustNot('group', 'kibana team')
