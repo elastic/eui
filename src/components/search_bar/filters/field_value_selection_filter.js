@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isArray, isNil } from '../../../services/predicate';
 import { keyCodes } from '../../../services';
@@ -52,7 +52,7 @@ const defaults = {
   }
 };
 
-export class FieldValueSelectionFilter extends React.Component {
+export class FieldValueSelectionFilter extends Component {
 
   static propTypes = FieldValueSelectionFilterPropTypes;
 

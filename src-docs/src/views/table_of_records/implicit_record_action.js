@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { times } from 'lodash';
 
 import {
@@ -43,7 +43,7 @@ function loadPage(pageIndex, pageSize, sort) {
   };
 }
 
-export default class PeopleTable extends React.Component {
+export default class PeopleTable extends Component {
 
   constructor(props) {
     super(props);

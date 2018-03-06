@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup } from '../flex/flex_group';
 import {
@@ -57,7 +57,7 @@ const resolveQuery = (query) => {
   return isString(query) ? Query.parse(query) : query;
 };
 
-export class EuiSearchBar extends React.Component {
+export class EuiSearchBar extends Component {
 
   static propTypes = SearchBoxConfigPropTypes;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { EuiFieldSearch } from '../form/field_search/field_search';
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,7 @@ export const SearchBoxConfigPropTypes = {
   incremental: PropTypes.bool
 };
 
-export class EuiSearchBox extends React.Component {
+export class EuiSearchBox extends Component {
 
   static propTypes = {
     query: PropTypes.string.isRequired,

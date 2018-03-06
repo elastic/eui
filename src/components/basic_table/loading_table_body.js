@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   EuiTableBody
 } from '../table/table_body';
 
-export class LoadingTableBody extends React.Component {
+export class LoadingTableBody extends Component {
 
   constructor(props) {
     super(props);

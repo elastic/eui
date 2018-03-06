@@ -1,6 +1,6 @@
-import React, { cloneElement } from 'react';
+import React, { Component, cloneElement } from 'react';
 
-export class CustomItemAction extends React.Component {
+export class CustomItemAction extends Component {
 
   constructor(props) {
     super(props);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   EuiBasicTable,
@@ -59,7 +59,7 @@ const initialCriteria = (props) => {
   };
 };
 
-export class EuiInMemoryTable extends React.Component {
+export class EuiInMemoryTable extends Component {
 
   static propTypes = InMemoryTablePropTypes;
   static defaultProps = {

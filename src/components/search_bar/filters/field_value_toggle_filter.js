@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
@@ -21,7 +21,7 @@ const FieldValueToggleFilterPropTypes = {
   onChange: PropTypes.func.isRequired, // (value: boolean) => void
 };
 
-export class FieldValueToggleFilter extends React.Component {
+export class FieldValueToggleFilter extends Component {
 
   static propTypes = FieldValueToggleFilterPropTypes;
 

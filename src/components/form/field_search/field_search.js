@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
@@ -36,7 +36,7 @@ const defaultProps = {
   incremental: false
 };
 
-export class EuiFieldSearch extends React.Component {
+export class EuiFieldSearch extends Component {
 
   static propTypes = propTypes;
   static defaultProps = defaultProps;
