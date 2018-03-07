@@ -114,7 +114,9 @@ export class EuiInMemoryTable extends React.Component {
 
   onQueryChange(query) {
     if (this.props.search.onChange) {
-      return this.props.search.onChange(query);
+      const shouldQueryInMemory = this.props.search.onChange(query);
+
+      if (!shouldQueryInMemory) return;
     }
 
     this.setState(prevState => ({
