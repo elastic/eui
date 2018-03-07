@@ -41,7 +41,6 @@ const random = new Random();
 const store = createDataStore();
 
 export class Table extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -108,6 +107,55 @@ export class Table extends Component {
 
   render() {
     const deleteButton = this.renderDeleteButton();
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true
+    }, {
+      field: 'lastName',
+      name: 'Last Name'
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true
+    }];
+
+    const pagination = {
+      pageSizeOptions: [3, 5, 8]
+    };
+
+    const selection = {
+      itemId: 'id',
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: (selection) => this.setState({ selection })
+    };
+
     return (
       <div>
         <EuiFlexGroup alignItems="center">
@@ -123,66 +171,18 @@ export class Table extends Component {
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
+
         <EuiSpacer size="l"/>
+
         <EuiInMemoryTable
           items={this.state.users}
           error={this.state.error}
           loading={this.state.loading}
           message={this.state.message}
-          columns={[
-            {
-              field: 'firstName',
-              name: 'First Name',
-              sortable: true
-            },
-            {
-              field: 'lastName',
-              name: 'Last Name'
-            },
-            {
-              field: 'github',
-              name: 'Github',
-              render: (username) => (
-                <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
-              )
-            },
-            {
-              field: 'dateOfBirth',
-              name: 'Date of Birth',
-              dataType: 'date',
-              render: (date) => formatDate(date, 'dobLong'),
-              sortable: true
-            },
-            {
-              field: 'nationality',
-              name: 'Nationality',
-              render: (countryCode) => {
-                const country = store.getCountry(countryCode);
-                return `${country.flag} ${country.name}`;
-              }
-            },
-            {
-              field: 'online',
-              name: 'Online',
-              dataType: 'boolean',
-              render: (online) => {
-                const color = online ? 'success' : 'danger';
-                const label = online ? 'Online' : 'Offline';
-                return <EuiHealth color={color}>{label}</EuiHealth>;
-              },
-              sortable: true
-            }
-          ]}
-          pagination={{
-            pageSizeOptions: [3, 5, 8]
-          }}
+          columns={columns}
+          pagination={pagination}
           sorting={true}
-          selection={{
-            itemId: 'id',
-            selectable: (user) => user.online,
-            selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-            onSelectionChange: (selection) => this.setState({ selection })
-          }}
+          selection={selection}
         />
       </div>
     );
