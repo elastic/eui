@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { times } from 'lodash';
 
 import {
-  EuiButton,
   EuiHealth,
   EuiCallOut,
   EuiSpacer,
@@ -105,22 +104,6 @@ export class SearchBar extends Component {
     this.setState(prevState => ({ incremental: !prevState.incremental }));
   };
 
-  renderToolsLeft() {
-    return null;
-    return [
-      <EuiButton
-        key="deleteButton"
-        iconType="trash"
-        color="danger"
-        onClick={()=> {
-          store.deleteUsers(this.state.selection.map(user => user.id));
-        }}
-      >
-        Delete items
-      </EuiButton>
-    ];
-  }
-
   renderSearch() {
     const {
       incremental,
@@ -157,7 +140,6 @@ export class SearchBar extends Component {
 
     return (
       <EuiSearchBar
-        toolsLeft={this.renderToolsLeft()}
         defaultQuery={initialQuery}
         box={{
           placeholder: 'e.g. type:visualization -is:active joe',
