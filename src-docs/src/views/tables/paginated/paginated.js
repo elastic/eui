@@ -35,79 +35,88 @@ Example country object:
 const store = createDataStore();
 
 export class Table extends Component {
-
   constructor(props) {
     super(props);
-    this.state = this.buildState({
-      page: {
-        index: 0,
-        size: 5
-      }
-    });
-  }
 
-  buildState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size)
+    this.state = {
+      pageIndex: 0,
+      pageSize: 5,
     };
   }
 
+  onTableChange = ({ page = {} }) => {
+    const {
+      index: pageIndex,
+      size: pageSize,
+    } = page;
+
+    this.setState({
+      pageIndex,
+      pageSize,
+    });
+  };
+
   render() {
-    const page = this.state.criteria.page;
-    const data = this.state.data;
+    const {
+      pageIndex,
+      pageSize,
+    } = this.state;
+
+    const {
+      pageOfItems,
+      totalItemCount,
+    } = store.findUsers(pageIndex, pageSize);
+
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name'
+    }, {
+      field: 'lastName',
+      name: 'Last Name'
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">
+          {username}
+        </EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong')
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      }
+    }];
+
+    const pagination = {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      totalItemCount: totalItemCount,
+      pageSizeOptions: [3, 5, 8]
+    };
+
     return (
       <EuiBasicTable
-        items={data.items}
-        columns={[
-          {
-            field: 'firstName',
-            name: 'First Name'
-          },
-          {
-            field: 'lastName',
-            name: 'Last Name'
-          },
-          {
-            field: 'github',
-            name: 'Github',
-            render: (username) => (
-              <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
-            )
-          },
-          {
-            field: 'dateOfBirth',
-            name: 'Date of Birth',
-            dataType: 'date',
-            render: (date) => formatDate(date, 'dobLong')
-          },
-          {
-            field: 'nationality',
-            name: 'Nationality',
-            render: (countryCode) => {
-              const country = store.getCountry(countryCode);
-              return `${country.flag} ${country.name}`;
-            }
-          },
-          {
-            field: 'online',
-            name: 'Online',
-            dataType: 'boolean',
-            render: (online) => {
-              const color = online ? 'success' : 'danger';
-              const label = online ? 'Online' : 'Offline';
-              return <EuiHealth color={color}>{label}</EuiHealth>;
-            }
-          }
-        ]}
-        pagination={{
-          pageIndex: page.index,
-          pageSize: page.size,
-          totalItemCount: data.totalCount,
-          pageSizeOptions: [3, 5, 8]
-        }}
-        onChange={(criteria) => this.setState(this.buildState(criteria))}
+        items={pageOfItems}
+        columns={columns}
+        pagination={pagination}
+        onChange={this.onTableChange}
       />
     );
   }

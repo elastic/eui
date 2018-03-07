@@ -46,6 +46,43 @@ export class Table extends React.Component {
   }
 
   render() {
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true
+    }, {
+      field: 'lastName',
+      name: 'Last Name'
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true
+    }];
 
     const search = {
       box: {
@@ -93,50 +130,7 @@ export class Table extends React.Component {
         <EuiSpacer size="l"/>
         <EuiInMemoryTable
           items={store.users}
-          columns={[
-            {
-              field: 'firstName',
-              name: 'First Name',
-              sortable: true
-            },
-            {
-              field: 'lastName',
-              name: 'Last Name'
-            },
-            {
-              field: 'github',
-              name: 'Github',
-              render: (username) => (
-                <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
-              )
-            },
-            {
-              field: 'dateOfBirth',
-              name: 'Date of Birth',
-              dataType: 'date',
-              render: (date) => formatDate(date, 'dobLong'),
-              sortable: true
-            },
-            {
-              field: 'nationality',
-              name: 'Nationality',
-              render: (countryCode) => {
-                const country = store.getCountry(countryCode);
-                return `${country.flag} ${country.name}`;
-              }
-            },
-            {
-              field: 'online',
-              name: 'Online',
-              dataType: 'boolean',
-              render: (online) => {
-                const color = online ? 'success' : 'danger';
-                const label = online ? 'Online' : 'Offline';
-                return <EuiHealth color={color}>{label}</EuiHealth>;
-              },
-              sortable: true
-            }
-          ]}
+          columns={columns}
           search={search}
           pagination={true}
           sorting={true}

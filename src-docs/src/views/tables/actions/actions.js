@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -38,173 +38,198 @@ Example country object:
 const store = createDataStore();
 
 export class Table extends Component {
-
   constructor(props) {
     super(props);
+
     this.state = {
-      ...this.buildTableState({ page: { index: 0, size: 5 } }),
-      selection: [],
+      pageIndex: 0,
+      pageSize: 5,
+      sortField: 'firstName',
+      sortDirection: 'asc',
+      selectedItems: [],
       multiAction: false
     };
   }
 
-  buildTableState(criteria) {
-    const { page } = criteria;
-    return {
-      criteria,
-      data: store.findUsers(page.index, page.size, criteria.sort)
-    };
-  }
+  onTableChange = ({ page = {}, sort = {} }) => {
+    const {
+      index: pageIndex,
+      size: pageSize,
+    } = page;
 
-  reloadData(selection) {
-    this.setState(prevState => ({
-      ...this.buildTableState(prevState.criteria),
-      selection
-    }));
-  }
+    const {
+      field: sortField,
+      direction: sortDirection,
+    } = sort;
+
+    this.setState({
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection,
+    });
+  };
+
+  onClickDelete = () => {
+    const { selectedItems } = this.state;
+    store.deleteUsers(...selectedItems.map(user => user.id));
+
+    this.setState({
+      selectedItems: []
+    });
+  };
 
   renderDeleteButton() {
-    const selection = this.state.selection;
-    if (selection.length === 0) {
+    const { selectedItems } = this.state;
+
+    if (selectedItems.length === 0) {
       return;
     }
-    const onClick = () => {
-      store.deleteUsers(...selection.map(user => user.id));
-      this.reloadData([]);
-    };
+
     return (
       <EuiButton
         color="danger"
         iconType="trash"
-        onClick={onClick}
+        onClick={this.onClickDelete}
       >
-        Delete {selection.length} Users
+        Delete {selectedItems.length} Users
       </EuiButton>
     );
   }
 
-  toggleMultiAction() {
+  toggleMultiAction = () => {
     this.setState(prevState => ({ multiAction: !prevState.multiAction }));
-  }
+  };
 
-  deleteUser(user) {
+  deleteUser = user => {
     store.deleteUsers(user.id);
-    this.reloadData([]);
-  }
+    this.setState({ selectedItems: [] });
+  };
 
-  cloneUser(user) {
+  cloneUser = user => {
     store.cloneUser(user.id);
-    this.reloadData([]);
-  }
+    this.setState({ selectedItems: [] });
+  };
 
   render() {
-    const { page, sort } = this.state.criteria;
-    const data = this.state.data;
+    const {
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection,
+    } = this.state;
+
+    const {
+      pageOfItems,
+      totalItemCount,
+    } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
+
     const deleteButton = this.renderDeleteButton();
+
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true
+    }, {
+      field: 'lastName',
+      name: 'Last Name'
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true
+    }, {
+      name: 'Actions',
+      actions: this.state.multiAction ? [{
+        name: 'Clone',
+        description: 'Clone this person',
+        icon: 'copy',
+        onClick: this.cloneUser
+      }, {
+        name: 'Delete',
+        description: 'Delete this person',
+        icon: 'trash',
+        color: 'danger',
+        onClick: this.deleteUser
+      }] : [{
+        name: 'Delete',
+        type: 'icon',
+        description: 'Delete this person',
+        icon: 'trash',
+        color: 'danger',
+        onClick: this.deleteUser
+      }]
+    }];
+
+    const pagination = {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      totalItemCount: totalItemCount,
+      pageSizeOptions: [3, 5, 8]
+    };
+
+    const sorting = {
+      sort: {
+        field: sortField,
+        direction: sortDirection,
+      },
+    };
+
+    const selection = {
+      itemId: 'id',
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: this.onSelectionChange
+    };
+
     return (
-      <div>
-        <div>
-          <EuiFlexGroup alignItems="center">
-            {deleteButton}
-            <EuiFlexItem grow={false}>
-              <EuiSwitch
-                label="Multiple Actions"
-                checked={this.state.multiAction}
-                onChange={this.toggleMultiAction.bind(this)}
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </div>
+      <Fragment>
+        <EuiFlexGroup alignItems="center">
+          {deleteButton}
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Multiple Actions"
+              checked={this.state.multiAction}
+              onChange={this.toggleMultiAction}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
         <EuiSpacer size="l" />
+
         <EuiBasicTable
-          items={data.items}
-          columns={[
-            {
-              field: 'firstName',
-              name: 'First Name',
-              sortable: true
-            },
-            {
-              field: 'lastName',
-              name: 'Last Name'
-            },
-            {
-              field: 'github',
-              name: 'Github',
-              render: (username) => (
-                <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
-              )
-            },
-            {
-              field: 'dateOfBirth',
-              name: 'Date of Birth',
-              dataType: 'date',
-              render: (date) => formatDate(date, 'dobLong'),
-              sortable: true
-            },
-            {
-              field: 'nationality',
-              name: 'Nationality',
-              render: (countryCode) => {
-                const country = store.getCountry(countryCode);
-                return `${country.flag} ${country.name}`;
-              }
-            },
-            {
-              field: 'online',
-              name: 'Online',
-              dataType: 'boolean',
-              render: (online) => {
-                const color = online ? 'success' : 'danger';
-                const label = online ? 'Online' : 'Offline';
-                return <EuiHealth color={color}>{label}</EuiHealth>;
-              },
-              sortable: true
-            },
-            {
-              name: 'Actions',
-              actions: this.state.multiAction ? [
-                {
-                  name: 'Clone',
-                  description: 'Clone this person',
-                  icon: 'copy',
-                  onClick: (user) => this.cloneUser(user)
-                },
-                {
-                  name: 'Delete',
-                  description: 'Delete this person',
-                  icon: 'trash',
-                  color: 'danger',
-                  onClick: (user) => this.deleteUser(user)
-                }
-              ] : [
-                {
-                  name: 'Delete',
-                  type: 'icon',
-                  description: 'Delete this person',
-                  icon: 'trash',
-                  color: 'danger',
-                  onClick: (person) => this.deleteUser(person)
-                }
-              ]
-            }
-          ]}
-          pagination={{
-            pageIndex: page.index,
-            pageSize: page.size,
-            totalItemCount: data.totalCount,
-            pageSizeOptions: [3, 5, 8]
-          }}
-          sorting={{ sort }}
-          selection={{
-            itemId: 'id',
-            selectable: (user) => user.online,
-            selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-            onSelectionChange: (selection) => this.setState({ selection })
-          }}
-          onChange={(criteria) => this.setState(this.buildTableState(criteria))}
+          items={pageOfItems}
+          columns={columns}
+          pagination={pagination}
+          sorting={sorting}
+          selection={selection}
+          onChange={this.onTableChange}
         />
-      </div>
+      </Fragment>
     );
   }
 }
