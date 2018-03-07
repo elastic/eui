@@ -29,6 +29,7 @@ const InMemoryTablePropTypes = {
     defaultQuery: QueryType,
     box: PropTypes.shape(SearchBoxConfigPropTypes),
     filters: SearchFiltersFiltersType,
+    onChange: PropTypes.func,
   })]),
   pagination: PropTypes.oneOfType([
     PropTypes.bool,
@@ -112,6 +113,12 @@ export class EuiInMemoryTable extends React.Component {
   }
 
   onQueryChange(query) {
+    if (this.props.search.onChange) {
+      const shouldQueryInMemory = this.props.search.onChange(query);
+
+      if (!shouldQueryInMemory) return;
+    }
+
     this.setState(prevState => ({
       query,
       data: this.computeData(this.props.items, prevState.criteria, query)
@@ -162,7 +169,11 @@ export class EuiInMemoryTable extends React.Component {
   resolveSearchBar() {
     const { search } = this.props;
     if (search) {
-      const searchBarProps = isBoolean(search) ? {} : search;
+      const {
+        onChange, // eslint-disable-line no-unused-vars
+        ...searchBarProps
+      } = isBoolean(search) ? {} : search;
+
       return (
         <EuiSearchBar
           onChange={this.onQueryChange.bind(this)}
