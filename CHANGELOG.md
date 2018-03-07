@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.25`.
+- Added `search.onChange` callback to `EuiInMemoryTable` ([#469](https://github.com/elastic/eui/pull/469))
 
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 
