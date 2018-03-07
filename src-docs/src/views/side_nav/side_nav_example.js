@@ -22,7 +22,6 @@ const sideNavComplexHtml = renderToHtml(SideNavComplex);
 export const SideNavExample = {
   title: 'Side Nav',
   sections: [{
-    title: 'SideNav',
     source: [{
       type: GuideSectionTypes.JS,
       code: sideNavSource,

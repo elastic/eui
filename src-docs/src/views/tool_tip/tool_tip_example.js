@@ -18,7 +18,6 @@ const toolTipHtml = renderToHtml(ToolTip);
 export const ToolTipExample = {
   title: 'ToolTip',
   sections: [{
-    title: 'ToolTip',
     source: [{
       type: GuideSectionTypes.JS,
       code: toolTipSource,

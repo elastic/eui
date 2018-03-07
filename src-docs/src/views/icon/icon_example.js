@@ -42,7 +42,6 @@ const accessibilityHtml = renderToHtml(Accessibility);
 export const IconExample = {
   title: 'Icons',
   sections: [{
-    title: 'Icons',
     source: [{
       type: GuideSectionTypes.JS,
       code: iconsSource,

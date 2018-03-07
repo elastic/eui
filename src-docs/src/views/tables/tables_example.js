@@ -3,7 +3,6 @@ import React from 'react';
 import {
   EuiCode,
   EuiText,
-  EuiTitle,
   EuiSpacer,
   EuiCallOut,
 } from '../../../../src/components';
@@ -25,9 +24,6 @@ export const TableExample = {
   title: 'Tables',
   intro: (
     <EuiText>
-      <EuiTitle>
-        <h2>Tables</h2>
-      </EuiTitle>
       <EuiCallOut title="EUI provides opinionated and non-opinionated ways to build tables">
         <p>
           Tables can get complicated very fast. If you&apos;re just looking for a basic table

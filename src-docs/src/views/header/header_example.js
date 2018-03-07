@@ -24,7 +24,6 @@ const headerHtml = renderToHtml(Header);
 export const HeaderExample = {
   title: 'Header',
   sections: [{
-    title: 'Header',
     source: [{
       type: GuideSectionTypes.JS,
       code: headerSource,

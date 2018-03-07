@@ -18,7 +18,6 @@ const expressionHtml = renderToHtml(Expression);
 export const ExpressionExample = {
   title: 'Expression',
   sections: [{
-    title: 'Expression',
     source: [{
       type: GuideSectionTypes.JS,
       code: expressionSource,

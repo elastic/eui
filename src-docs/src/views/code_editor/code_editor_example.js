@@ -22,7 +22,6 @@ const readOnlyrHtml = renderToHtml(ReadOnly);
 export const CodeEditorExample = {
   title: 'Code Editor',
   sections: [{
-    title: 'Code Editor',
     source: [{
       type: GuideSectionTypes.JS,
       code: codeEditorSource,

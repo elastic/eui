@@ -48,7 +48,6 @@ const buttonLoadingHtml = renderToHtml(ButtonLoading);
 export const ButtonExample = {
   title: 'Button',
   sections: [{
-    title: 'Button',
     source: [{
       type: GuideSectionTypes.JS,
       code: buttonSource,
