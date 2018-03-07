@@ -6,7 +6,7 @@
 
 - Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
 - Added `Ast` and `Query` services ([#454](https://github.com/elastic/eui/pull/454))
-- Icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
+- Added icons for Kibana query language ([#455](https://github.com/elastic/eui/pull/455))
 
 **Bug fixes**
 
@@ -252,7 +252,7 @@
 
 - Added `EuiHealth` components for status checks [(#158)](https://github.com/elastic/eui/pull/158)
 - Cleaned up styling for checkboxes, switches, and radios [(#158)](https://github.com/elastic/eui/pull/158)
-- Form `disabled` states are now more consistant [(#158)](https://github.com/elastic/eui/pull/158)
+- Form `disabled` states are now more consistent [(#158)](https://github.com/elastic/eui/pull/158)
 - Page and title padding adjusted to be more compact [(#158)](https://github.com/elastic/eui/pull/158)
 - Table spacing is now smaller [(#158)](https://github.com/elastic/eui/pull/158)
 - Dark theme forms now have better contrast with their borders [(#158)](https://github.com/elastic/eui/pull/158)
