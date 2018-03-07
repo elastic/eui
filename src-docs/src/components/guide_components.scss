@@ -43,6 +43,12 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   bottom: 0;
   left: 0;
   overflow: auto;
+
+  @include screenXSmall {
+    position: relative;
+    width: auto;
+    overflow: hidden;
+  }
 }
 
 .guidePageContent {
@@ -52,6 +58,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
   border-left: $euiBorderThin;
+
+  @include screenXSmall {
+    margin-left: 0;
+  }
 }
 
 .guideLogo {
