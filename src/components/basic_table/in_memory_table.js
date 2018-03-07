@@ -34,6 +34,10 @@ const InMemoryTablePropTypes = {
     PropTypes.bool,
     PropTypes.shape({
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
+    }),
+    PropTypes.shape({
+      defaultPageSize: PropTypes.number,
+      pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     })
   ]),
   sorting: PropTypes.bool,
@@ -54,7 +58,10 @@ const initialCriteria = (props) => {
   return {
     page: !pagination ? undefined : {
       index: 0,
-      size: pagination.pageSizeOptions ? pagination.pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0]
+      size: pagination.pageSizeOptions ? (
+        pagination.defaultPageSize && pagination.pageSizeOptions.includes(pagination.defaultPageSize) ?
+          pagination.defaultPageSize : pagination.pageSizeOptions[0]
+      ) : paginationBarDefaults.pageSizeOptions[0]
     }
   };
 };
@@ -126,7 +133,9 @@ export class EuiInMemoryTable extends React.Component {
       pageIndex: criteria.page.index,
       pageSize: criteria.page.size,
       totalItemCount: totalCount,
-      ...(isBoolean(this.props.pagination) ? {} : this.props.pagination)
+      ...(isBoolean(this.props.pagination) ? {} : {
+        pageSizeOptions: this.props.pagination.pageSizeOptions
+      })
     };
     const sorting = !this.props.sorting ? undefined : {
       sort: criteria.sort
