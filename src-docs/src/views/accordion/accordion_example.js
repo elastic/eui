@@ -30,7 +30,7 @@ const accordionOpenHtml = renderToHtml(AccordionOpen);
 export const AccordionExample = {
   title: 'Accordion',
   sections: [{
-    title: 'Accordion (unstyled)',
+    title: 'Unstyled',
     source: [{
       type: GuideSectionTypes.JS,
       code: accordionSource,

@@ -18,7 +18,6 @@ const avatarHtml = renderToHtml(Avatar);
 export const AvatarExample = {
   title: 'Avatar',
   sections: [{
-    title: 'Avatar',
     source: [{
       type: GuideSectionTypes.JS,
       code: avatarSource,

@@ -18,7 +18,6 @@ const bottomBarHtml = renderToHtml(BottomBar);
 export const BottomBarExample = {
   title: 'Bottom Bar',
   sections: [{
-    title: 'BottomBar',
     source: [{
       type: GuideSectionTypes.JS,
       code: bottomBarSource,

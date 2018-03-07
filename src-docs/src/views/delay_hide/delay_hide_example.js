@@ -11,7 +11,6 @@ export const DelayHideExample = {
   title: 'Delay Hide',
   sections: [
     {
-      title: 'DelayHide',
       source: [
         {
           type: GuideSectionTypes.JS,

@@ -40,7 +40,6 @@ export const FilterGroupExample = {
     </div>
   ),
   sections: [{
-    title: 'FilterGroup',
     source: [{
       type: GuideSectionTypes.JS,
       code: filterGroupSource,

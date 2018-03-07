@@ -30,7 +30,6 @@ const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
 export const DescriptionListExample = {
   title: 'Description List',
   sections: [{
-    title: 'DescriptionList',
     source: [{
       type: GuideSectionTypes.JS,
       code: descriptionListSource,
@@ -50,7 +49,7 @@ export const DescriptionListExample = {
     props: { EuiDescriptionList },
     demo: <DescriptionList />,
   }, {
-    title: 'DescriptionList as columns',
+    title: 'As columns',
     source: [{
       type: GuideSectionTypes.JS,
       code: descriptionListColumnSource,
@@ -66,7 +65,7 @@ export const DescriptionListExample = {
     ),
     demo: <DescriptionListColumn />,
   }, {
-    title: 'Description lists can be inline',
+    title: 'Inline',
     source: [{
       type: GuideSectionTypes.JS,
       code: descriptionListInlineSource,
@@ -83,7 +82,7 @@ export const DescriptionListExample = {
     ),
     demo: <DescriptionListInline />,
   }, {
-    title: 'DescriptionLists can be centered and compressed',
+    title: 'Centered and compressed',
     source: [{
       type: GuideSectionTypes.JS,
       code: descriptionListStylingSource,

@@ -23,7 +23,6 @@ const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
 export const KeyPadMenuExample = {
   title: 'Key Pad Menu',
   sections: [{
-    title: 'KeyPadMenu',
     source: [{
       type: GuideSectionTypes.JS,
       code: keyPadMenuSource,
@@ -40,7 +39,7 @@ export const KeyPadMenuExample = {
     props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
     demo: <KeyPadMenu />,
   }, {
-    title: 'KeyPadMenuItemButton',
+    title: 'Item Button',
     source: [{
       type: GuideSectionTypes.JS,
       code: keyPadMenuItemButtonSource,

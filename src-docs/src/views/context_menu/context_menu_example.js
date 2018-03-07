@@ -22,7 +22,6 @@ const singlePanelHtml = renderToHtml(SinglePanel);
 export const ContextMenuExample = {
   title: 'Context Menu',
   sections: [{
-    title: 'ContextMenu',
     source: [{
       type: GuideSectionTypes.JS,
       code: contextMenuSource,
@@ -40,7 +39,7 @@ export const ContextMenuExample = {
     props: { EuiContextMenu },
     demo: <ContextMenu />,
   }, {
-    title: `ContextMenu can have a single panel`,
+    title: `With single panel`,
     source: [{
       type: GuideSectionTypes.JS,
       code: singlePanelSource,

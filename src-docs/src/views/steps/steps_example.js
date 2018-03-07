@@ -30,7 +30,6 @@ const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
 export const StepsExample = {
   title: 'Steps',
   sections: [{
-    title: 'Steps',
     source: [{
       type: GuideSectionTypes.JS,
       code: stepsSource,

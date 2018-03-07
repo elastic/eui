@@ -20,7 +20,6 @@ export const SearchBarExample = {
   title: 'Search Bar',
   sections: [
     {
-      title: 'SearchBar',
       source: [
         {
           type: GuideSectionTypes.JS,

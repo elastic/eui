@@ -17,7 +17,6 @@ const tabsHtml = renderToHtml(Tabs);
 export const TabsExample = {
   title: 'Tabs',
   sections: [{
-    title: 'Tabs',
     source: [{
       type: GuideSectionTypes.JS,
       code: tabsSource,
