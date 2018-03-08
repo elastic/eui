@@ -33,10 +33,10 @@ export default() => (
     <EuiText>
       <h1>Button guidelines</h1>
       <p>
-        This page documents patterns for button usage only. It does not give code examples.
+        This page documents patterns for button design, including types, placement, color, and size.
       </p>
       <EuiButton href="/#/navigation/button">
-        Go to component code instead
+        View component code
       </EuiButton>
     </EuiText>
 
@@ -146,19 +146,19 @@ export default() => (
     <GuideRuleTitle>Placement and order</GuideRuleTitle>
 
     <GuideRule
-      description="Button placement and order should follow the users path through the content."
+      description="Button placement and order should follow the user path."
     />
 
     <GuideRule
-      heading="Put buttons to the right when the container's width is restricted"
-      description="In contained spaces like modals, popovers, bottom bards and flyouts the user path
+      heading="Put buttons on the right in containers with a restricted width"
+      description="In contained spaces like modals, popovers, bottom bars, and flyouts, the user path
         is top to bottom, left to right, in a Z-shaped pattern.
-        Placing the primary action on the bottom right puts it right where users finish scanning."
+        Placing buttons on the bottom right puts them right where users finish scanning."
     >
       <GuideRuleExample
         panel={false}
         type="do"
-        text="Do. In modals, the primary action is on the right with the
+        text="Do. In modals, the primary action is on the bottom right with the
           secondary action on its left."
         frame="frame"
       >
@@ -183,16 +183,17 @@ export default() => (
     </GuideRule>
 
     <GuideRule
-      heading="Everywhere else should put buttons to the left"
-      description="With large page forms, content is typically concentrated on the top and
-        left with lots of open space to the right. The user path is top to bottom, in an F-shaped pattern."
+      heading="Put buttons on the left in unrestricted containers"
+      description="
+      With large page forms, content is typically concentrated on the top and
+        left with a lot of open space to the right. The user path is top to bottom, in an F-shaped pattern."
     >
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="do"
         text="Do. Because the user's eye never leaves the left side,
-          the primary action goes on the bottom left.  If present, a secondary action is on its right."
+          the buttons are on the bottom left. The primary action is in the leftmost position."
       >
         <EuiImage
           alt="button placement in form"
@@ -216,16 +217,16 @@ export default() => (
 
     <GuideRule
       heading="Other patterns"
-      description="Button placement in other containers should fit the context surrounding it
-        and stay consistent with the application."
+      description="Button should always fit the surrounding context
+      and stay consistent with the app."
     >
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="do"
         text="Do. If the action is against the page title, place the primary button in the upper right.
-          A common pattern for this is a create button that adds a new item to a list. Creation starts
-          at the top and ends up in the bottom. Think of it as adding to a pile."
+          A common pattern is a create button that adds an item to a list. Creation starts
+          at the top and ends at the bottom. Think of it as adding to a pile."
       >
         <EuiImage
           alt="button placement in upper right"
@@ -239,8 +240,8 @@ export default() => (
         type="do"
         text="Do.
           Empty states are unique because they focus first on information and then try to sell
-          you on creation. In these special cases when both the container is constrained
-          and the content is fairly short you should center align the title and the button."
+          the user on creation. In these special cases, where the container is constrained
+          and the content is fairly short, the title and the button should be center aligned."
       >
         <EuiImage
           alt="center-aligned button"
@@ -251,17 +252,17 @@ export default() => (
 
     <EuiHorizontalRule />
 
-    <GuideRuleTitle>One primary button per container</GuideRuleTitle>
+    <GuideRuleTitle>One primary button per layout</GuideRuleTitle>
 
     <GuideRule
       description="The primary action should not have to compete for attention.
-        Use only one primary button per page, modal, form, or other container."
+        Use only one filled button per page, modal, form, or other layout."
     >
       <GuideRuleExample
         panel={false}
         frame="frame"
         type="do"
-        text="Do. Only use one filled button per layout. The primary action is
+        text="Do. Use only one filled button per layout. The primary action is
           the one you want the user to eventually complete."
       >
         <EuiImage alt="one primary button per page" url="https://i.imgur.com/QdTkIt6.png"/>
@@ -291,7 +292,7 @@ export default() => (
     >
       <GuideRuleExample
         type="do"
-        text="Do. Use button icons for universal actions that are easy to understand."
+        text="Do. Use icon buttons for universal actions that are easy to understand."
         panel={false}
         frame="frame"
       >
@@ -321,13 +322,13 @@ export default() => (
 
     <GuideRule
       description="Icons can serve as a scanning aid in a text label, but keep to a minimum.
-        Icons work best on labels for binary actions (for example, Create and Delete) and final actions (Save)."
+        Icons work best on labels for binary actions, for example, Create and Delete, and final actions, such as Save."
     >
       <GuideRuleExample
         type="do"
-        text="Do. Use icons to really emphasize actions. The arrow on continue
-          lets us know we still have items to fill out. Using words like complete
-          and utilizing a rare check icon help the user understand this is the
+        text="Do. Use icons to emphasize actions. The arrow on the Continue
+          button lets users know they still have items to fill out. Using the word &quot;Complete&quot;
+          with a rare check icon helps users understand that this is the
           final action."
         panel={false}
         frame="frame"
@@ -336,7 +337,6 @@ export default() => (
         <EuiButton iconType="arrowRight" iconSide="right" fill="fill">
           Continue
         </EuiButton>
-
         <EuiButton iconType="check" color="secondary" fill="fill">
           Save and complete
         </EuiButton>
@@ -347,7 +347,7 @@ export default() => (
         frame="frame"
         type="dont"
         text="Don't. Icons often distract from the text.
-          This is especially true when it is positioned to the right
+          This is especially true when the icon is positioned on the right,
           with a hard to grok icon."
       >
         <EuiButton
@@ -362,15 +362,15 @@ export default() => (
 
     <EuiHorizontalRule />
 
-    <GuideRuleTitle>Minimize mixing color, size, and type</GuideRuleTitle>
+    <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 
-    <GuideRule description="When in doubt use blue in the default sizes. Never put more than two
+    <GuideRule description="When in doubt, use a blue button in the default size. Never put more than two
       visual styles next to each other."
     >
       <GuideRuleExample
         type="do"
-        text="Do. Stick to the default pattern: a blue, primary action paired with
-          an empty, but same-colored one."
+        text="Do. Stick to the default pattern: a filled, blue primary button paired with
+          an empty, but same-colored button."
         panel={false}
         frame="frame"
       >
@@ -391,7 +391,7 @@ export default() => (
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
-        text="Don't. Readability suffers when more than two colors are used."
+        text="Don't. Readability suffers when mutliple colors and sizes are used."
         panel={false}
         frame="frame"
       >
@@ -422,7 +422,8 @@ export default() => (
     <GuideRuleTitle>Stack action sets into one button</GuideRuleTitle>
 
     <GuideRule
-      description="Two buttons is optimal, three is rare. For more buttons, use a dropdown or context menu."
+      description="Two buttons are optimal for a side-by-side layout, three is rare.
+      For more buttons, use a dropdown or context menu."
     >
       <GuideRuleExample
         panel={false}
@@ -463,19 +464,19 @@ export default() => (
 
     <EuiHorizontalRule />
 
-    <GuideRuleTitle>Action labels</GuideRuleTitle>
+    <GuideRuleTitle>Labels that say what the button does</GuideRuleTitle>
 
     <GuideRule
       heading=""
       description="Labels should provide a clear indication of
-        what happens when the user clicks the button.
+        that action that occurs when the user clicks the button.
         Prefer action words, and include an object when it's not clear from the context,
-        for example, Add dashboard. Keep labels to three words or less.
-        If your label requries more words, consider a text link instead."
+        for example, Add dashboard. Labels should be three words or less.
+        If your label requries more words, consider using a text link instead."
     />
 
     <EuiText >
-      <h3>Preffered words in buttons</h3>
+      <h3>Preferred words in buttons</h3>
       <EuiSpacer/>
     </EuiText>
 
@@ -536,7 +537,7 @@ export default() => (
               Delete
             </EuiButton>&nbsp;&nbsp;
             <EuiButton color="danger" fill="fill">
-              Delete 6 nouns
+              Delete 6 things
             </EuiButton>&nbsp;&nbsp;
             <EuiButtonIcon size="s" color="danger" iconType="trash" aria-label="delete"/>
           </EuiTableRowCell>
@@ -643,7 +644,7 @@ export default() => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Action words
+            Words that explain the action
           </EuiTableRowCell>
 
         </EuiTableRow>

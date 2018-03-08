@@ -10,116 +10,185 @@ import {
 import {
   EuiText,
   EuiButton,
+  EuiHorizontalRule,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiToast,
-  EuiPanel
+  EuiToast
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="">
-
+  <GuidePage title="Button">
     <EuiText>
-      <h1>Toasts</h1>
+      <h1>Toast guidelines</h1>
       <p>
-A toast is a short, timely message related to a user action.  It appears on the bottom right and times out after a few seconds.
+        This page documents patterns for using toasts, short messages that
+        appears on the lower right corner and time out after a few seconds.
+        They are a popular design choice because they don&apos;t need to
+        fit in a layout and don&apos;t disrupt the user.
       </p>
+      <EuiButton href="/#/display/toast">
+        View component code
+      </EuiButton>
     </EuiText>
 
-    <GuideRuleTitle>Use for brief feedback</GuideRuleTitle>
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Toast types</GuideRuleTitle>
+
+    <EuiSpacer size="xl"/>
+
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+        <EuiToast
+          style={{ width: 300 }}
+          title="Your report is complete"
+          color="success"
+        />
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiText>
+          <h4>
+            <strong>Success toasts indicate that everything worked out</strong>
+          </h4>
+          <p>
+            They are the most-commonly used toasts.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer/>
+
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+        <EuiToast
+          style={{ width: 300 }}
+          title="Node 726 is having trouble"
+          color="warning"
+        />
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiText>
+          <h4>
+            <strong>Warning toasts direct user attention to a potential problem</strong>
+          </h4>
+          <p>
+            These toasts work well in monitoring apps when something
+            significant requires action.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer/>
+
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+        <EuiToast
+          style={{ width: 300 }}
+          title="Search failed.  Check your Elasticsearch connection."
+          color="danger"
+        />
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiText>
+          <h4>
+            <strong>Error toasts report a problem</strong>
+          </h4>
+          <p>
+            An error toast might let users know an action didn&apos;t complete or that a form has errors.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer/>
+
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+        <div>
+          <EuiToast
+            style={{ width: 300 }}
+            title="Please wait while your report is created"
+            color="primary"
+          />
+        </div>
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiText>
+          <h4>
+            <strong>Info toasts relay neutral information</strong>
+          </h4>
+          <p>
+            The default toast, an info toast might notify users about an ongoing action.
+          </p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer/>
+
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Use a toast for a timely message</GuideRuleTitle>
 
 
     <GuideRule
-      description="
-    A toast is like a push notification&mdash;it provides feedback that something failed, succeeded, or needs attention.
-    Toasts are short-lived&mdash;users can't retrieve the messages by refreshing the page."
+      description="Toasts are appropriate for short feedback related to a user action.
+      A toast should contain a message about a current action, not a historical action."
     >
 
       <GuideRuleExample
         type="do"
         panel={false}
         frame
-        text="The default info toast is appropriate for relaying important, but neutral information.
-  This example let users know that the process they initiated might take a while.
-  Always follow up with a second toast when the process completes."
+        text="Do. Use a toast for a brief message about the current action."
       >
         <EuiToast
           style={{ maxWidth: 300 }}
-          title="Please wait while your report is created."
-          color="primary"
+          title="Your folder was moved"
+          color="success"
         />
       </GuideRuleExample>
 
       <GuideRuleExample
         panel={false}
-        type="do"
+        type="dont"
         frame
-        text="A success message indicates that everything worked out, similar to a high-five. Optionally, this message can include
-  a checkmark because its the universally recognized icon for success."
+        text="Don't greet users with a toast when they open a page."
       >
         <div style={{ textAlign: 'center' }}>
           <EuiToast
             style={{ maxWidth: 300 }}
-            title="Your report is complete"
-            iconType="check"
-            color="success"
+            title="Haven't seen you in a while"
+            color="primary"
           />
         </div>
       </GuideRuleExample>
 
     </GuideRule>
-    <EuiSpacer />
 
+    <EuiHorizontalRule/>
 
-    <GuideRule
-      description=""
-    >
-      <GuideRuleExample
-        panel={false}
-        type="do"
-        frame
-        text="A warning toast directs users' attention to a potential problem, such as this message
-  from a monitoring application."
-      >
-        <div>
-          <EuiToast
-            style={{ maxWidth: 300 }}
-            title="Node 726 is having trouble"
-            color="warning"
-          />
-        </div>
-      </GuideRuleExample>
-
-      <GuideRuleExample
-        type="do"
-        panel={false}
-        frame
-        text="An error toast reports a problem that prevents the action from completing&mdash;and a solution on how to fix it.
-  Error toasts can optionally include the alert icon."
-      >
-        <EuiToast
-          style={{ maxWidth: 300 }}
-          title="Search failed.  Check your Elasticsearch connection."
-          color="danger"
-          iconType="alert"
-        />
-
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRuleTitle>Most often, it is just a title</GuideRuleTitle>
+    <GuideRuleTitle>Most often, it&apos;s a single line of text</GuideRuleTitle>
 
     <GuideRule
-      description="By default, a toast times out after 10 seconds.
-  This means, users should be able read the message in 6 to 7 seconds.
-  A single line of title text is readable at a glance."
+      description="By default, a toast stays on the screen 10 seconds.
+      Users should be able read the message in 6 to 7 seconds.
+      The message should get straight to the point and rarely include more than one line.
+
+      "
     >
       <GuideRuleExample
         panel={false}
         frame
         type="do"
-        text="Do. Use a toast to let users know that a form has errors that are outside the users' viewport."
+        text="Do. A single line of text is reable at a glance."
       >
         <div style={{ textAlign: 'center' }}>
 
@@ -135,8 +204,9 @@ A toast is a short, timely message related to a user action.  It appears on the 
         type="dont"
         panel={false}
         frame
-        text="Don't list the actual errors in the toast.
-  The error messages persist in callouts and valdiations on the form itself."
+        text="Don't cram a lot of detail into a toast.
+        These errors should persist in callouts and valdiations on the form.
+        They don't need to be spelled out in the toast."
       >
 
         <div>
@@ -165,17 +235,20 @@ A toast is a short, timely message related to a user action.  It appears on the 
 
     </GuideRule>
 
-    <GuideRuleTitle>At most, one action</GuideRuleTitle>
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Toasts can have one action</GuideRuleTitle>
 
     <GuideRule
-      description="A toast can contain a single action, styled as a small, standard button.
-   For more actions, or if the action is important enough to interrupt the user, use a modal."
+      description="A toast can have a single action, styled as a standard button.
+      If more actions are needed, or if the action is important enough to
+      interrupt the user, use a modal instead."
     >
       <GuideRuleExample
         panel={false}
         type="do"
         frame
-        text="Do. Use a single action word for the button label."
+        text="Do. Use only one action per toast and favor a one-word label."
       >
         <EuiToast
           style={{ maxWidth: 300 }}
@@ -190,47 +263,55 @@ A toast is a short, timely message related to a user action.  It appears on the 
       </GuideRuleExample>
 
       <GuideRuleExample
-        type="do"
+        type="dont"
         panel={false}
         frame
-        text="Do.  Use &quot;Learn more&quot; when linking to documentation."
+        text="Dont use multiple actions. This message is better in a confirmation modal."
       >
         <EuiToast
           style={{ maxWidth: 300 }}
-          title="There was a problem with your dashboard."
+          title="All messages will be deleted"
           color="danger"
         >
           <EuiButton size="s">
-    Learn more
+            Cancel
+          </EuiButton>&nbsp;&nbsp;
+          <EuiButton size="s" color="danger">
+            Delete
           </EuiButton>
         </EuiToast>
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRuleTitle>Minimal text</GuideRuleTitle>
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Icons should emphasize actions</GuideRuleTitle>
 
     <GuideRule
-      description="For standard actions, such as create, add, delete, remove, and save, include the
-    object type, the object name if available, and the past tense of the action."
+      description="An icon on the left of the messge can help define the message type."
     >
       <GuideRuleExample
         panel={false}
         type="do"
         frame
-        text="Do. Keep the text short. Use single quotation marks around object names if it helps clarify meaning."
+        text="Do. The check icon reinforces that the action succeeded.
+            The alert icon helps users understand the message is an error."
       >
         <div>
           <EuiToast
-            color="success"
             style={{ maxWidth: 300 }}
-            title="User 'John Smith' was added."
+            title="Your dashboard was updated"
+            iconType="check"
+            color="success"
           />
+
           <EuiSpacer />
 
           <EuiToast
-            color="success"
             style={{ maxWidth: 300 }}
-            title="Your index pattern was removed."
+            title="A dashboard named &apos;MyDashboard&apos; already exists"
+            iconType="alert"
+            color="danger"
           />
         </div>
 
@@ -240,18 +321,111 @@ A toast is a short, timely message related to a user action.  It appears on the 
         type="dont"
         panel={false}
         frame
-        text="Dont use a generic object name or the verbiage &quot;has been.&quot;"
+        text="Don't use icons that are hard to understand. They distract from the message."
+      >
+
+        <EuiToast
+          color="primary"
+          style={{ maxWidth: 300 }}
+          title="Message sent"
+          iconType="help"
+        />
+
+      </GuideRuleExample>
+
+    </GuideRule>
+
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Display one toast at a time</GuideRuleTitle>
+
+    <GuideRule
+      description="Users should be able to take
+      in all the details from one toast before the next one arrives."
+    >
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        frame
+        text="Do. Display one toast at a time."
+      >
+        <EuiToast
+          style={{ maxWidth: 300 }}
+          color="primary"
+          title="3 new messages"
+        />
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="dont"
+        panel={false}
+        frame
+        text="Don't stack toasts."
+      >
+        <div>
+          <EuiToast
+            style={{ maxWidth: 300 }}
+            color="danger"
+            title="There was a problem with your node"
+          >
+            <EuiButton size="s">
+              Learn more
+            </EuiButton>
+          </EuiToast>
+          <EuiSpacer />
+
+          <EuiToast
+            color="primary"
+            style={{ maxWidth: 300 }}
+            title="3 new messages"
+          />
+        </div>
+
+      </GuideRuleExample>
+    </GuideRule>
+
+    <EuiHorizontalRule/>
+
+    <GuideRuleTitle>Writing minimal messages</GuideRuleTitle>
+
+    <GuideRule
+      description="For common actions such as create, add, delete, remove, and save,
+      include the object type, the object name if available, and the past tense of the action.
+      "
+    >
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        frame
+        text="Do. Include the object name if it&apos;s not too long.
+        Use single quotation marks around the object name if it helps clarify meaning."
+      >
+        <div>
+          <EuiToast
+            color="success"
+            style={{ maxWidth: 300 }}
+            title="User 'Casey Smith' was added"
+          />
+        </div>
+
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="dont"
+        panel={false}
+        frame
+        text="Dont use the generic &quot;Your object.&quot;"
       >
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="Your object has been saved."
+          title="Your object has been saved"
         />
       </GuideRuleExample>
     </GuideRule>
 
     <GuideRule
-      description="Don't include the word &quot;successfully&quot;&mdash;its implied."
+      description="Don't include the word &quot;successfully.&quot; It's implied."
     >
       <GuideRuleExample
         panel={false}
@@ -262,7 +436,7 @@ A toast is a short, timely message related to a user action.  It appears on the 
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="Dashboard 'My_dashboard' was saved."
+          title="Dashboard 'My_dashboard' was saved"
         />
 
       </GuideRuleExample>
@@ -276,13 +450,13 @@ A toast is a short, timely message related to a user action.  It appears on the 
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="Dashboard 'My_dashboard' was successfully saved."
+          title="Dashboard 'My_dashboard' was successfully saved"
         />
       </GuideRuleExample>
     </GuideRule>
 
     <GuideRule
-      description="For a message about multiple objects, start with the object count."
+      description="For a message about multiple objects, include the object count, but not the names of the objects."
     >
       <GuideRuleExample
         panel={false}
@@ -293,68 +467,28 @@ A toast is a short, timely message related to a user action.  It appears on the 
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="4 visualizations were deleted."
+          title="4 visualizations were deleted"
         />
 
       </GuideRuleExample>
-
       <GuideRuleExample
-        type="dont"
         panel={false}
+        type="dont"
         frame
-        text="Don't overwhelm the user with a complete list of objects."
+        text="Don't overwhelm the user by listing the names of all the objects."
       >
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="Visualization 1, Visualization 2, Visualization 3, and Visualization 4 were deleted."
+          title="Visualization 1, Visualation 2, Visualization 3, and Visualization 4 were deleted"
         />
+
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRuleTitle>Things to avoid</GuideRuleTitle>
 
-    <EuiSpacer size="xxl" />
 
-    <EuiFlexGroup wrap={true}>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText>
-            <h3>Too much detail</h3>
-            <p>If you are trying to cram a lot of detail into your toast,
-          then its probably not right design solution.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-      <EuiFlexItem style={{ minWidth: 300 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText>
-            <h3>Too often</h3>
-            <p>Toasts are a popular design choice because they need not
-          fit in a layout and they don&apos;t disrupt the user.  As such, they
-          are also commonly misued.  Don&apos;t use toasts
-        for historical actions or show a toast when the user opens a page.
-        A toast message should not be a required read before leaving a page.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-      <EuiFlexItem style={{ minWidth: 300 }}>
-
-        <EuiPanel paddingSize="l">
-          <EuiText>
-            <h3>Stacking toasts</h3>
-            <p>Open one toast at a time so users can take
-            in all the details before the next toast arrives.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-    </EuiFlexGroup>
 
   </GuidePage>
 );
