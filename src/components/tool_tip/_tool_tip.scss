@@ -17,6 +17,7 @@
   max-width: 256px;
   opacity: 0;
   animation: euiToolTipTop $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
+  z-index: $euiZLevel9;
 
   &::before {
     content: "";
