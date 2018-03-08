@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
-import { EuiKeyboardAccessible } from '../accessibility';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
 
@@ -36,10 +35,10 @@ export class EuiToolTip extends Component {
 
     this.showToolTip = this.showToolTip.bind(this);
     this.hideToolTip = this.hideToolTip.bind(this);
+    this.toggleToolTipVisibility = this.toggleToolTipVisibility.bind(this);
   }
 
   showToolTip(toolTipRect) {
-
     const wrapperRect = this.wrapper.getBoundingClientRect();
     const userPosition = this.props.position;
 
@@ -57,6 +56,20 @@ export class EuiToolTip extends Component {
     this.setState({ visible: false });
   }
 
+  toggleToolTipVisibility() {
+    this.setState(prevState => ({
+      visible: !prevState.visible
+    }));
+  }
+
+  componentDidMount() {
+    document.body.classList.add('euiBody-hasToolTip');
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('euiBody-hasToolTip');
+  }
+
   render() {
 
     const {
@@ -64,6 +77,7 @@ export class EuiToolTip extends Component {
       className,
       content,
       title,
+      clickOnly,
       ...rest
     } = this.props;
 
@@ -92,21 +106,30 @@ export class EuiToolTip extends Component {
       );
     }
 
+    let toolTipProps;
+    if (clickOnly) {
+      toolTipProps = {
+        onClick: this.toggleToolTipVisibility
+      };
+    } else {
+      toolTipProps = {
+        onMouseOver: this.showToolTip,
+        onMouseOut: this.hideToolTip
+      };
+    }
+
     return (
-      <EuiKeyboardAccessible>
-        <span
-          onClick={this.showToolTip}
-          onMouseOver={this.showToolTip}
-          onMouseOut={this.hideToolTip}
-          onFocus={this.showToolTip}
-          onBlur={this.hideToolTip}
-          ref={wrapper => this.wrapper = wrapper}
-          aria-describedby={this.state.id}
-        >
-          {children}
-          {tooltip}
-        </span>
-      </EuiKeyboardAccessible>
+      <span
+        onFocus={this.showToolTip}
+        onBlur={this.hideToolTip}
+        ref={wrapper => this.wrapper = wrapper}
+        aria-describedby={this.state.id}
+        tabIndex={0}
+        {...toolTipProps}
+      >
+        {children}
+        {tooltip}
+      </span>
     );
   }
 }

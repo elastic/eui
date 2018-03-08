@@ -9,6 +9,7 @@ export class EuiToolTipPopover extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     title: PropTypes.node,
+    showToolTip: PropTypes.func,
   }
 
   constructor(props) {
@@ -26,6 +27,9 @@ export class EuiToolTipPopover extends Component {
       children,
       title,
       className,
+      /* eslint-disable */
+      showToolTip,
+      /* eslint-enable */
       ...rest
     } = this.props;
 

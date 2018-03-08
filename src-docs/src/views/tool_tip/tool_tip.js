@@ -28,7 +28,7 @@ export default () => (
     </p>
     <p style={{ overflow: 'hidden' }}>
       This tooltip appears on the{' '}
-      <EuiToolTip position="bottom" content="Here is some tooltip text">
+      <EuiToolTip position="bottom" clickOnly content="Here is some tooltip text">
         <EuiLink>bottom</EuiLink>
       </EuiToolTip>
     </p>

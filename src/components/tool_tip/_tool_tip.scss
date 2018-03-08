@@ -1,8 +1,12 @@
+.euiBody-hasToolTip {
+  position: relative;
+}
+
 .euiToolTip {
   @include euiBottomShadow;
   @include euiFontSizeS();
 
-  position: fixed;
+  position: absolute;
   border-radius: $euiBorderRadius;
   padding: $euiSizeM;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
