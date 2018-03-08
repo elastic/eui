@@ -233,7 +233,6 @@ const navigation = [{
   }, {
     name: 'Toasts',
     component: ToastGuidelines,
-    hidden: true,
   }, {
     name: 'Writing',
     component: WritingGuidelines,

@@ -197,7 +197,7 @@ export default() => (
       >
         <EuiImage
           alt="button placement in form"
-          url="https://i.imgur.com/m4vtsdx.png"
+          url="https://i.imgur.com/2nvcgEU.png"
         />
       </GuideRuleExample>
 
@@ -209,7 +209,7 @@ export default() => (
       >
         <EuiImage
           alt="form buttons go on the left, not right"
-          url="https://i.imgur.com/6XCOBPH.png"
+          url="https://i.imgur.com/Y1rOaoN.png"
         />
       </GuideRuleExample>
 

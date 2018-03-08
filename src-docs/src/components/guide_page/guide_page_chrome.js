@@ -159,7 +159,7 @@ export class GuidePageChrome extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          placeholder="Search..."
+          placeholder="Search"
           value={this.state.search}
           onChange={this.onSearchChange}
         />

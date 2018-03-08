@@ -237,7 +237,7 @@ export default () => (
 
     <EuiHorizontalRule/>
 
-    <GuideRuleTitle>Toasts can have one action</GuideRuleTitle>
+    <GuideRuleTitle>Toasts should only contain a single action</GuideRuleTitle>
 
     <GuideRule
       description="A toast can have a single action, styled as a standard button.
@@ -248,16 +248,20 @@ export default () => (
         panel={false}
         type="do"
         frame
-        text="Do. Use only one action per toast and favor a one-word label."
+        text="Do. Use only one action per toast and favor a one-word label.
+          Align actions to the right, which follows our button guidelines for
+          usage within restricted width containers."
       >
         <EuiToast
           style={{ maxWidth: 300 }}
           color="success"
           title="Your report is complete"
         >
-          <EuiButton size="s">
-            Download
-          </EuiButton>
+          <div style={{ textAlign: 'right' }}>
+            <EuiButton size="s">
+              Download
+            </EuiButton>
+          </div>
 
         </EuiToast>
       </GuideRuleExample>
@@ -266,19 +270,26 @@ export default () => (
         type="dont"
         panel={false}
         frame
-        text="Dont use multiple actions. This message is better in a confirmation modal."
+        text="Don&apos;t use multiple actions. Don&apos;t align buttons in toasts to the left.
+          This message is better in a confirmation modal."
       >
         <EuiToast
           style={{ maxWidth: 300 }}
           title="All messages will be deleted"
           color="danger"
         >
-          <EuiButton size="s">
-            Cancel
-          </EuiButton>&nbsp;&nbsp;
-          <EuiButton size="s" color="danger">
-            Delete
-          </EuiButton>
+          <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiButton size="s">
+                Cancel
+              </EuiButton>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton size="s" color="danger">
+                Delete
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </EuiToast>
       </GuideRuleExample>
     </GuideRule>
@@ -368,9 +379,11 @@ export default () => (
             color="danger"
             title="There was a problem with your node"
           >
-            <EuiButton size="s">
-              Learn more
-            </EuiButton>
+            <div style={{ textAlign: 'right' }}>
+              <EuiButton size="s">
+                Learn more
+              </EuiButton>
+            </div>
           </EuiToast>
           <EuiSpacer />
 
@@ -386,7 +399,7 @@ export default () => (
 
     <EuiHorizontalRule/>
 
-    <GuideRuleTitle>Writing minimal messages</GuideRuleTitle>
+    <GuideRuleTitle>Keep messages as short as possible</GuideRuleTitle>
 
     <GuideRule
       description="For common actions such as create, add, delete, remove, and save,
@@ -414,7 +427,7 @@ export default () => (
         type="dont"
         panel={false}
         frame
-        text="Dont use the generic &quot;Your object.&quot;"
+        text="Don&apos;t use the generic &quot;Your object.&quot;"
       >
         <EuiToast
           color="success"
@@ -445,7 +458,7 @@ export default () => (
         type="dont"
         panel={false}
         frame
-        text="Dont include &quot;successfully.&quot;"
+        text="Don&apos;t include &quot;successfully.&quot;"
       >
         <EuiToast
           color="success"
