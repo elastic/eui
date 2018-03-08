@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiTabs,
@@ -6,7 +6,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-class EuiTabsExample extends React.Component {
+class EuiTabsExample extends Component {
   constructor(props) {
     super(props);
 

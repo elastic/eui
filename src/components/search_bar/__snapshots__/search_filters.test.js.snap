@@ -24,7 +24,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
       onChange={[Function]}
       query={
         Query {
-          "ast": _Ast {
+          "ast": _AST {
             "_clauses": Array [],
             "_indexedClauses": Object {
               "field": Object {},
@@ -62,7 +62,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
       onChange={[Function]}
       query={
         Query {
-          "ast": _Ast {
+          "ast": _AST {
             "_clauses": Array [],
             "_indexedClauses": Object {
               "field": Object {},

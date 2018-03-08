@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import { isString } from '../../services/predicate';
 import classNames from 'classnames';
@@ -149,7 +149,7 @@ const EuiTableOfRecordsPropTypes = {
   className: PropTypes.string
 };
 
-export class EuiTableOfRecords extends React.Component {
+export class EuiTableOfRecords extends Component {
 
   static propTypes = EuiTableOfRecordsPropTypes;
 

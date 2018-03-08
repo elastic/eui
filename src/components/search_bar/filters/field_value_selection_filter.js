@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isArray, isNil } from '../../../services/predicate';
 import { keyCodes } from '../../../services';
@@ -10,7 +10,7 @@ import { EuiFilterSelectItem, EuiFilterButton } from '../../filter_group';
 import { EuiLoadingChart } from '../../loading/loading_chart';
 import { EuiSpacer } from '../../spacer/spacer';
 import { EuiIcon } from '../../icon/icon';
-import { Query } from '../../../services/query';
+import { Query } from '../query';
 
 const FieldValueOptionType = PropTypes.shape({
   value: PropTypes.any.isRequired,
@@ -52,7 +52,7 @@ const defaults = {
   }
 };
 
-export class FieldValueSelectionFilter extends React.Component {
+export class FieldValueSelectionFilter extends Component {
 
   static propTypes = FieldValueSelectionFilterPropTypes;
 

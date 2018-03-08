@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiButton, EuiButtonIcon } from '../button';
 
@@ -6,7 +6,7 @@ const defaults = {
   color: 'primary'
 };
 
-export class DefaultRecordAction extends React.Component {
+export class DefaultRecordAction extends Component {
 
   constructor(props) {
     super(props);

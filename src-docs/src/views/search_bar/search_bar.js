@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { times } from 'lodash';
 
 import {
   EuiHealth,
@@ -18,8 +19,6 @@ import {
   Query,
   Random,
 } from '../../../../src/services';
-
-import { times } from 'lodash';
 
 const random = new Random();
 
@@ -215,10 +214,34 @@ export class SearchBar extends Component {
 
     const esQuery = Query.toESQuery(query);
 
+    const content = this.renderError() || (
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h3>Elasticsearch query</h3>
+          </EuiTitle>
+
+          <EuiSpacer size="s" />
+
+          <EuiCodeBlock language="js">
+            {esQuery ? JSON.stringify(esQuery, null, 2) : ''}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h3>JS execution</h3>
+          </EuiTitle>
+
+          <EuiSpacer size="s" />
+
+          {this.renderTable()}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+
     return (
       <Fragment>
-        {this.renderError()}
-
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem>
             {this.renderSearch()}
@@ -235,29 +258,7 @@ export class SearchBar extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <EuiTitle size="s">
-              <h3>Elasticsearch query</h3>
-            </EuiTitle>
-
-            <EuiSpacer size="s" />
-
-            <EuiCodeBlock language="js">
-              {esQuery ? JSON.stringify(esQuery, null, 2) : ''}
-            </EuiCodeBlock>
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiTitle size="s">
-              <h3>JS execution</h3>
-            </EuiTitle>
-
-            <EuiSpacer size="s" />
-
-            {this.renderTable()}
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        {content}
       </Fragment>
     );
   }

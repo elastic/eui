@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -6,7 +6,7 @@ import { Tooltip } from './tooltip';
 import { SIZE } from './tooltip_constants';
 import { noOverflowPlacement } from '../../services';
 
-export class TooltipTrigger extends React.Component {
+export class TooltipTrigger extends Component {
   static propTypes = {
     display: PropTypes.bool,
     title: PropTypes.string,

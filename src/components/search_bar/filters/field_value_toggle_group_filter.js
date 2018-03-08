@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../filter_group';
 import { EuiPropTypes } from '../../../utils/prop_types';
-import { Query } from '../../../services/query';
+import { Query } from '../query';
 
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
   value: PropTypes.string.isRequired,
@@ -24,7 +24,7 @@ const FieldValueToggleGroupFilterPropTypes = {
   onChange: PropTypes.func.isRequired, // (value: boolean) => void
 };
 
-export class FieldValueToggleGroupFilter extends React.Component {
+export class FieldValueToggleGroupFilter extends Component {
 
   static propTypes = FieldValueToggleGroupFilterPropTypes;
 

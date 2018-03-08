@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { requiredProps } from '../../../test';
-import { Query } from '../../../services/query';
+import { shallow } from 'enzyme';
+import { Query } from '../query';
 import { FieldValueToggleFilter } from './field_value_toggle_filter';
 
 describe('FieldValueToggleFilter', () => {

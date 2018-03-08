@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -23,7 +23,7 @@ const resolveIconAndColor = (checked) => {
     { icon: 'cross', color: 'text' };
 };
 
-export class EuiFilterSelectItem extends React.Component {
+export class EuiFilterSelectItem extends Component {
 
   constructor(props) {
     super(props);

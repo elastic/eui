@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { EuiFieldSearch } from '../form/field_search/field_search';
+import PropTypes from 'prop-types';
 
 export const SearchBoxConfigPropTypes = {
   placeholder: PropTypes.string,
@@ -8,6 +8,7 @@ export const SearchBoxConfigPropTypes = {
 };
 
 export class EuiSearchBox extends Component {
+
   static propTypes = {
     query: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired, // (queryText) => void

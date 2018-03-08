@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
@@ -35,7 +35,7 @@ Example country object:
 
 const store = createDataStore();
 
-export class Table extends React.Component {
+export class Table extends Component {
 
   constructor(props) {
     super(props);

@@ -1,6 +1,6 @@
-import { Ast } from './ast';
+import { AST } from './ast';
 import { executeAst } from './execute_ast';
-import { Random } from '../random';
+import { Random } from '../../../services/random';
 
 const random = new Random();
 
@@ -11,8 +11,8 @@ describe('execute ast', () => {
       { name: 'john doe' },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'john')
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'john')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john doe');
@@ -23,8 +23,8 @@ describe('execute ast', () => {
       { name: 'john' },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.mustNot('name', 'john')
+    const result = executeAst(AST.create([
+      AST.Field.mustNot('name', 'john')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
@@ -35,20 +35,20 @@ describe('execute ast', () => {
       { name: 'john' },
       { name: 'joe' }
     ];
-    let result = executeAst(Ast.create([
-      Ast.Field.must('name', ['john', 'doe'])
+    let result = executeAst(AST.create([
+      AST.Field.must('name', ['john', 'doe'])
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john');
 
-    result = executeAst(Ast.create([
-      Ast.Field.must('name', ['joe', 'doe'])
+    result = executeAst(AST.create([
+      AST.Field.must('name', ['joe', 'doe'])
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
 
-    result = executeAst(Ast.create([
-      Ast.Field.must('name', ['foo', 'bar'])
+    result = executeAst(AST.create([
+      AST.Field.must('name', ['foo', 'bar'])
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -58,8 +58,8 @@ describe('execute ast', () => {
       { name: 'john' },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'foo')
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'foo')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -69,9 +69,9 @@ describe('execute ast', () => {
       { name: 'john' },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'john'),
-      Ast.Field.must('name', 'joe')
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'john'),
+      AST.Field.must('name', 'joe')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -81,9 +81,9 @@ describe('execute ast', () => {
       { name: 'john', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'foo'),
-      Ast.Field.must('age', '7')
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'foo'),
+      AST.Field.must('age', '7')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -93,9 +93,9 @@ describe('execute ast', () => {
       { name: 'john', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'john'),
-      Ast.Field.must('age', '5')
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'john'),
+      AST.Field.must('age', '5')
     ]), items);
     expect(result).toHaveLength(1);
   });
@@ -106,8 +106,8 @@ describe('execute ast', () => {
       { name: 'joe' }
     ];
     const value = random.oneOf(['john', 'doe']);
-    const result = executeAst(Ast.create([
-      Ast.Term.must(value)
+    const result = executeAst(AST.create([
+      AST.Term.must(value)
     ]), items);
     expect(result).toHaveLength(1);
   });
@@ -119,8 +119,8 @@ describe('execute ast', () => {
       { name: 'john', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Term.must('5')
+    const result = executeAst(AST.create([
+      AST.Term.must('5')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -130,8 +130,8 @@ describe('execute ast', () => {
       { name: 'john', description: 'doe', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Term.must('john')
+    const result = executeAst(AST.create([
+      AST.Term.must('john')
     ]), items, { defaultFields: [ 'name' ] });
     expect(result).toHaveLength(1);
   });
@@ -141,8 +141,8 @@ describe('execute ast', () => {
       { name: 'john', description: 'doe', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Term.must('doe')
+    const result = executeAst(AST.create([
+      AST.Term.must('doe')
     ]), items, { defaultFields: [ 'name' ] });
     expect(result).toHaveLength(0);
   });
@@ -152,8 +152,8 @@ describe('execute ast', () => {
       { name: 'john', description: 'doe', age: 5 },
       { name: 'joe' }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Term.mustNot('john')
+    const result = executeAst(AST.create([
+      AST.Term.mustNot('john')
     ]), items, { defaultFields: [ 'name' ] });
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
@@ -164,8 +164,8 @@ describe('execute ast', () => {
       { name: 'john', open: true },
       { name: 'joe', open: false }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Is.must('open')
+    const result = executeAst(AST.create([
+      AST.Is.must('open')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john');
@@ -176,8 +176,8 @@ describe('execute ast', () => {
       { name: 'john', open: true },
       { name: 'joe', open: false }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Is.mustNot('open')
+    const result = executeAst(AST.create([
+      AST.Is.mustNot('open')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('joe');
@@ -188,8 +188,8 @@ describe('execute ast', () => {
       { name: 'john', open: true },
       { name: 'joe', open: false }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Is.must('closed')
+    const result = executeAst(AST.create([
+      AST.Is.must('closed')
     ]), items);
     expect(result).toHaveLength(0);
   });
@@ -199,8 +199,8 @@ describe('execute ast', () => {
       { name: 'john', open: true },
       { name: 'joe', open: false }
     ];
-    const result = executeAst(Ast.create([
-      Ast.Is.mustNot('closed')
+    const result = executeAst(AST.create([
+      AST.Is.mustNot('closed')
     ]), items);
     expect(result).toHaveLength(2);
   });
@@ -212,11 +212,11 @@ describe('execute ast', () => {
       { text: 'foo bar', age: 7 },
       { text: 'bar', age: 7 },
     ];
-    const result = executeAst(Ast.create([
-      Ast.Is.mustNot('open'),
-      Ast.Field.must('age', '7'),
-      Ast.Term.must('bar'),
-      Ast.Term.mustNot('foo')
+    const result = executeAst(AST.create([
+      AST.Is.mustNot('open'),
+      AST.Field.must('age', '7'),
+      AST.Term.must('bar'),
+      AST.Term.mustNot('foo')
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].text).toBe('bar');
@@ -230,8 +230,8 @@ describe('execute ast', () => {
       { text: 'foo bar', age: 7 },
       { text: 'bar', age: 7 },
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', 'John Doe'),
+    const result = executeAst(AST.create([
+      AST.Field.must('name', 'John Doe'),
     ]), items);
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('john doe');
@@ -244,8 +244,8 @@ describe('execute ast', () => {
       { name: 'foo bar', age: 7 },
       { name: 'bar', age: 7 },
     ];
-    const result = executeAst(Ast.create([
-      Ast.Field.must('name', [ 'john', 'bar' ]),
+    const result = executeAst(AST.create([
+      AST.Field.must('name', [ 'john', 'bar' ]),
     ]), items);
     expect(result).toHaveLength(3);
     const names = result.map(item => item.name);

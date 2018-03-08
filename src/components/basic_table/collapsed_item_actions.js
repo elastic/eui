@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 
-export class CollapsedItemActions extends React.Component {
+export class CollapsedItemActions extends Component {
 
   constructor(props) {
     super(props);

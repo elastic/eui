@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { requiredProps } from '../../../test';
-import { Query } from '../../../services/query';
+import { shallow } from 'enzyme';
 import { IsFilter } from './is_filter';
+import { Query } from '../query';
 
 describe('IsFilter', () => {
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EuiFilterButton } from '../../filter_group';
 import { isNil } from '../../../services/predicate';
 import { EuiPropTypes } from '../../../utils/prop_types';
-import { Query } from '../../../services/query';
+import { Query } from '../query';
 
 export const IsFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('is').isRequired,
@@ -20,7 +20,7 @@ const IsFilterPropTypes = {
   onChange: PropTypes.func.isRequired, // (value: boolean) => void
 };
 
-export class IsFilter extends React.Component {
+export class IsFilter extends Component {
 
   static propTypes = IsFilterPropTypes;
 

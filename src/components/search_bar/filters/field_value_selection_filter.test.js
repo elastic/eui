@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { shallow } from 'enzyme';
 import { FieldValueSelectionFilter } from './field_value_selection_filter';
-import { Query } from '../../../services/query';
+import { Query } from '../query';
 
 describe('FieldValueSelectionFilter', () => {
 

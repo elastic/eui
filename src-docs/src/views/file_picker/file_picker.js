@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFilePicker,
@@ -7,7 +7,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export class FilePicker extends React.Component {
+export class FilePicker extends Component {
 
   constructor(props) {
     super(props);
