@@ -7,7 +7,7 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 describe('EuiToolTipPopover', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiToolTipPopover {...requiredProps} />
+      <EuiToolTipPopover positionToolTip={() => {}} {...requiredProps} />
     );
 
     expect(component)

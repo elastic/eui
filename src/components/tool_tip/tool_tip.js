@@ -31,8 +31,6 @@ export class EuiToolTip extends Component {
       id: this.props.id || makeId(),
     };
 
-    this.space = props.space || 16;
-
     this.showToolTip = this.showToolTip.bind(this);
     this.positionToolTip = this.positionToolTip.bind(this);
     this.hideToolTip = this.hideToolTip.bind(this);
