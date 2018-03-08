@@ -145,7 +145,35 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination and error', () => {
+  test('with pagination and default page size', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      pagination: {
+        initialPageSize: 4,
+        pageSizeOptions: [2, 4, 6]
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination, default page size and error', () => {
 
     const props = {
       ...requiredProps,
@@ -161,6 +189,7 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
+        initialPageSize: 4,
         pageSizeOptions: [2, 4, 6]
       }
     };

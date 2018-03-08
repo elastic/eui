@@ -57,6 +57,11 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
+        initialPageSize: {
+          description: 'Configures the default page size to show, must be one of "pageSizeOptions"',
+          required: false,
+          type: { name: 'number' }
+        },
         pageSizeOptions: basicPropsInfo.Pagination.__docgenInfo.props.pageSizeOptions
       }
     }

@@ -34,6 +34,10 @@ const InMemoryTablePropTypes = {
     PropTypes.bool,
     PropTypes.shape({
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
+    }),
+    PropTypes.shape({
+      initialPageSize: PropTypes.number,
+      pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     })
   ]),
   sorting: PropTypes.bool,
@@ -50,11 +54,29 @@ const initialQuery = (props) => {
 };
 
 const initialCriteria = (props) => {
-  const { pagination } = props;
+  if (!props.pagination) {
+    return {
+      page: undefined,
+    };
+  }
+
+  const {
+    pagination: {
+      pageSizeOptions,
+      initialPageSize,
+    }
+  } = props;
+
+  if (initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
+    throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
+  }
+
+  const defaultPageSize = pageSizeOptions ? pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0];
+
   return {
-    page: !pagination ? undefined : {
+    page: {
       index: 0,
-      size: pagination.pageSizeOptions ? pagination.pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0]
+      size: initialPageSize || defaultPageSize,
     }
   };
 };
@@ -132,7 +154,9 @@ export class EuiInMemoryTable extends Component {
       pageIndex: criteria.page.index,
       pageSize: criteria.page.size,
       totalItemCount: totalCount,
-      ...(isBoolean(this.props.pagination) ? {} : this.props.pagination)
+      ...(isBoolean(this.props.pagination) ? {} : {
+        pageSizeOptions: this.props.pagination.pageSizeOptions
+      })
     };
     const sorting = !this.props.sorting ? undefined : {
       sort: criteria.sort

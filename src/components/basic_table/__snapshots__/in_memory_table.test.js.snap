@@ -141,7 +141,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
 />
 `;
 
-exports[`EuiInMemoryTable with pagination and error 1`] = `
+exports[`EuiInMemoryTable with pagination and default page size 1`] = `
 <EuiBasicTable
   columns={
     Array [
@@ -152,12 +152,19 @@ exports[`EuiInMemoryTable with pagination and error 1`] = `
       },
     ]
   }
-  error="ouch!"
   items={
     Array [
       Object {
         "id": "1",
         "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
       },
     ]
   }
@@ -166,13 +173,13 @@ exports[`EuiInMemoryTable with pagination and error 1`] = `
   pagination={
     Object {
       "pageIndex": 0,
-      "pageSize": 2,
+      "pageSize": 4,
       "pageSizeOptions": Array [
         2,
         4,
         6,
       ],
-      "totalItemCount": 1,
+      "totalItemCount": 3,
     }
   }
 />
@@ -218,6 +225,43 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
     Object {
       "itemId": "id",
       "onSelectionChanged": [Function],
+    }
+  }
+/>
+`;
+
+exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  error="ouch!"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 4,
+      "pageSizeOptions": Array [
+        2,
+        4,
+        6,
+      ],
+      "totalItemCount": 1,
     }
   }
 />
