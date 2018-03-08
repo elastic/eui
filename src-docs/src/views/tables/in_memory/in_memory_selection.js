@@ -146,7 +146,7 @@ export class Table extends Component {
     }];
 
     const pagination = {
-      defaultPageSize: 5,
+      initialPageSize: 5,
       pageSizeOptions: [3, 5, 8]
     };
 

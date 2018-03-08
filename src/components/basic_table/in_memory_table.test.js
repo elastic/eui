@@ -162,7 +162,7 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
-        defaultPageSize: 4,
+        initialPageSize: 4,
         pageSizeOptions: [2, 4, 6]
       }
     };
@@ -189,7 +189,7 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
-        defaultPageSize: 4,
+        initialPageSize: 4,
         pageSizeOptions: [2, 4, 6]
       }
     };

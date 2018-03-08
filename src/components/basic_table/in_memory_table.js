@@ -36,7 +36,7 @@ const InMemoryTablePropTypes = {
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     }),
     PropTypes.shape({
-      defaultPageSize: PropTypes.number,
+      initialPageSize: PropTypes.number,
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     })
   ]),
@@ -54,14 +54,29 @@ const initialQuery = (props) => {
 };
 
 const initialCriteria = (props) => {
-  const { pagination } = props;
+  if (!props.pagination) {
+    return {
+      page: undefined,
+    };
+  }
+
+  const {
+    pagination: {
+      pageSizeOptions,
+      initialPageSize,
+    }
+  } = props;
+
+  if (initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
+    throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
+  }
+
+  const defaultPageSize = pageSizeOptions ? pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0];
+
   return {
-    page: !pagination ? undefined : {
+    page: {
       index: 0,
-      size: pagination.pageSizeOptions ? (
-        pagination.defaultPageSize && pagination.pageSizeOptions.includes(pagination.defaultPageSize) ?
-          pagination.defaultPageSize : pagination.pageSizeOptions[0]
-      ) : paginationBarDefaults.pageSizeOptions[0]
+      size: initialPageSize || defaultPageSize,
     }
   };
 };
