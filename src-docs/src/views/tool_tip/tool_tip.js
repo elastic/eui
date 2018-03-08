@@ -12,11 +12,12 @@ export default () => (
       This tooltip appears on the{' '}
       <EuiToolTip
         position="left"
-        title="I am a tooltip title"
+        title="Tooltip titles are optional"
         content="Here is some tooltip text. Lets add some more content to see how it wraps."
       >
         <EuiLink>left</EuiLink>
       </EuiToolTip>
+      {' '} and includes the optional title.
     </p>
     <p style={{ overflow: 'hidden' }}>
       This tooltip appears on the{' '}
@@ -32,9 +33,10 @@ export default () => (
     </p>
     <p style={{ overflow: 'hidden' }}>
       This tooltip appears on the{' '}
-      <EuiToolTip position="bottom" clickOnly content="Here is some tooltip text">
+      <EuiToolTip position="bottom" clickOnly content="You need to click or leave focus to dismiss this one.">
         <EuiLink>bottom</EuiLink>
       </EuiToolTip>
+      {' '} and requires a <strong>click to activate</strong>.
     </p>
   </EuiText>
 );

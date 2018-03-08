@@ -149,9 +149,9 @@ EuiToolTip.propTypes = {
   title: PropTypes.node,
 
   /**
-   * Suggested position. If not enough room this might be changed.
+   * Suggested position. If there is not enough room for it this will be changed.
    */
-  position: PropTypes.string,
+  position: PropTypes.oneOf(POSITIONS),
 
   /**
    * Passes onto the tooltip itself, not the trigger.
@@ -162,4 +162,8 @@ EuiToolTip.propTypes = {
    * Unless you provide one, this will be randomly generated.
    */
   id: PropTypes.string,
+};
+
+EuiToolTip.defaultProps = {
+  position: 'top',
 };
