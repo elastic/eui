@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiToolTip,
+  EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import ToolTip from './tool_tip';
@@ -17,6 +19,25 @@ const toolTipHtml = renderToHtml(ToolTip);
 
 export const ToolTipExample = {
   title: 'ToolTip',
+  intro: (
+    <div>
+      <EuiCallOut
+        title="Be careful when using tool tips on clickable objects"
+        color="warning"
+      >
+        <p>
+          <strong>Do not use the <EuiCode>clickOnly</EuiCode> prop if you are wrapping
+          a tooltip around an element that is itself clickable</strong>. Also, because
+          our tool tips are accessible through tabbing and focus events this means
+          that any tabbable elements (like buttons or inputs) you nest inside will
+          require two tabs (one for the tool tip and one for the nested item) to
+          cycle through. Usually this isn&apos;t a problem, but keep it in mind.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </div>
+  ),
   sections: [{
     title: 'ToolTip',
     source: [{
