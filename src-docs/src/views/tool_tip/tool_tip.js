@@ -3,15 +3,34 @@ import React from 'react';
 import {
   EuiToolTip,
   EuiLink,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
-  <div style={{ overflow: 'hidden' }}>
-    <p>
-      Look a fancy{' '}
-      <EuiToolTip text="Here is some tooltip text">
-        <EuiLink>tooltip</EuiLink>
-      </EuiToolTip>.
+  <EuiText>
+    <p style={{ overflow: 'hidden' }}>
+      This tooltip appears on the{' '}
+      <EuiToolTip position="left" title="I am a tooltip title" content="Here is some tooltip text">
+        <EuiLink>left</EuiLink>
+      </EuiToolTip>
     </p>
-  </div>
+    <p style={{ overflow: 'hidden' }}>
+      This tooltip appears on the{' '}
+      <EuiToolTip position="right" content="Here is some tooltip text">
+        <EuiLink>right</EuiLink>
+      </EuiToolTip>
+    </p>
+    <p style={{ overflow: 'hidden' }}>
+      This tooltip appears on the{' '}
+      <EuiToolTip position="top" content="Here is some tooltip text">
+        <EuiLink>top</EuiLink>
+      </EuiToolTip>
+    </p>
+    <p style={{ overflow: 'hidden' }}>
+      This tooltip appears on the{' '}
+      <EuiToolTip position="bottom" content="Here is some tooltip text">
+        <EuiLink>bottom</EuiLink>
+      </EuiToolTip>
+    </p>
+  </EuiText>
 );

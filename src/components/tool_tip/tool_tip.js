@@ -4,72 +4,57 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiPortal } from '../portal'
-import { EuiToolTipPopover } from './tool_tip_popover'
-import { noOverflowPlacement } from '../../services';
+import { EuiPortal } from '../portal';
+import { EuiKeyboardAccessible } from '../accessibility';
+import { EuiToolTipPopover } from './tool_tip_popover';
+import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
 
+import makeId from '../form/form_row/make_id';
+
+const positionsToClassNameMap = {
+  top: 'euiToolTip--top',
+  right: 'euiToolTip--right',
+  bottom: 'euiToolTip--bottom',
+  left: 'euiToolTip--left',
+};
+
+export const POSITIONS = Object.keys(positionsToClassNameMap);
 
 export class EuiToolTip extends Component {
-
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
 
   constructor(props) {
     super(props);
 
     this.state = {
       visible: false,
+      calculatedPosition: this.props.position,
+      toolTipStyles: {},
+      id: this.props.id || makeId(),
     };
 
-    this.width = props.width || 256;
     this.space = props.space || 16;
 
-    this.showTooltip = this.showTooltip.bind(this);
-    this.hideTooltip = this.hideTooltip.bind(this);
-    this.getRef = this.getRef.bind(this);
+    this.showToolTip = this.showToolTip.bind(this);
+    this.hideToolTip = this.hideToolTip.bind(this);
   }
 
-  getPlacement() {
-    const wrapperDOM = this.wrapper;
-    const tipDOM = this.tip;
-    const userPlacement = this.props.placement;
-    const WINDOW_BUFFER = 16;
-    return noOverflowPlacement(wrapperDOM, tipDOM, userPlacement, WINDOW_BUFFER);
-  }
+  showToolTip(toolTipRect) {
 
-  getRef(ref) {
-    console.log(ref)
-  }
+    const wrapperRect = this.wrapper.getBoundingClientRect();
+    const userPosition = this.props.position;
 
-  showTooltip() {
-    // some maths to align the tooltip with whatever you just hovered over (the 'target')
-    // or maybe it's 'math' in your weird country
-    const style = { width: this.width }; // this style object will be passed as the tooltip's 'style' prop
-    const dimensions = this.wrapper.getBoundingClientRect(); // where on the screen is the target
-
-    // center align the tooltip by taking both the target and tooltip widths into account
-    style.left = (dimensions.left + (dimensions.width / 2)) - (this.width / 2);
-    style.left = Math.max(this.space, style.left); // make sure it doesn't poke off the left side of the page
-    style.left = Math.min(style.left, document.body.clientWidth - this.width - this.space); // or off the right
-
-    if (dimensions.top < window.innerHeight / 2) { // the top half of the page
-      // when on the top half of the page, position the top of the tooltip just below the target (it will stretch downwards)
-      style.top = dimensions.top + dimensions.height + this.space;
-    } else {
-      // when on the bottom half, set the bottom of the tooltip just above the top of the target (it will stretch upwards)
-      style.bottom = (window.innerHeight - dimensions.top) + this.space;
-    }
+    const calculatedPosition = calculatePopoverPosition(wrapperRect, toolTipRect, userPosition);
+    const toolTipStyles = calculatePopoverStyles(wrapperRect, toolTipRect, calculatedPosition);
 
     this.setState({
       visible: true,
-      style,
+      calculatedPosition,
+      toolTipStyles,
     });
   }
 
-  hideTooltip() {
-    this.setState({visible: false});
+  hideToolTip() {
+    this.setState({ visible: false });
   }
 
   render() {
@@ -77,11 +62,14 @@ export class EuiToolTip extends Component {
     const {
       children,
       className,
-      ...rest,
+      content,
+      title,
+      ...rest
     } = this.props;
 
     const classes = classNames(
       'euiToolTip',
+      positionsToClassNameMap[this.state.calculatedPosition],
       className
     );
 
@@ -91,25 +79,65 @@ export class EuiToolTip extends Component {
         <EuiPortal>
           <EuiToolTipPopover
             className={classes}
-            style={this.state.style}
-            getRef={this.getRef}
+            style={this.state.toolTipStyles}
+            showToolTip={this.showToolTip}
+            title={title}
+            id={this.state.id}
+            role="tooltip"
             {...rest}
           >
-            {this.props.text}
+            {content}
           </EuiToolTipPopover>
         </EuiPortal>
       );
     }
 
     return (
-      <span
-        onMouseOver={this.showTooltip}
-        onMouseOut={this.hideTooltip}
-        ref={wrapper => this.wrapper = wrapper}
-      >
-        {children}
-        {tooltip}
-      </span>
+      <EuiKeyboardAccessible>
+        <span
+          onClick={this.showToolTip}
+          onMouseOver={this.showToolTip}
+          onMouseOut={this.hideToolTip}
+          onFocus={this.showToolTip}
+          onBlur={this.hideToolTip}
+          ref={wrapper => this.wrapper = wrapper}
+          aria-describedby={this.state.id}
+        >
+          {children}
+          {tooltip}
+        </span>
+      </EuiKeyboardAccessible>
     );
   }
 }
+
+EuiToolTip.propTypes = {
+  /**
+   * The in-view trigger for your tooltip.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * The main content of your tooltip.
+   */
+  content: PropTypes.node.isRequired,
+
+  /**
+   * An optional title for your tooltip.
+   */
+  title: PropTypes.node,
+
+  /**
+   * Suggested position. If not enough room this might be changed.
+   */
+  position: PropTypes.string,
+
+  /**
+   * Passes onto the tooltip itself, not the trigger.
+   */
+  className: PropTypes.string,
+
+  /**
+   * Unless you provide one, this will be randomly generated.
+   */
+  id: PropTypes.string,
+};

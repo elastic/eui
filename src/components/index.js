@@ -265,7 +265,6 @@ export {
 
 export {
   EuiToolTip,
-  EuiToolTipPopover,
 } from './tool_tip';
 
 export {

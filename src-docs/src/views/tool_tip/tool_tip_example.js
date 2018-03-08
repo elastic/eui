@@ -31,7 +31,7 @@ export const ToolTipExample = {
         Description needed: how to use the <EuiCode>EuiToolTip</EuiCode> component.
       </p>
     ),
-    components: { EuiToolTip },
+    props: { EuiToolTip },
     demo: <ToolTip />,
   }],
 };

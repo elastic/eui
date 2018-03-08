@@ -59,5 +59,6 @@ export {
 } from './sort';
 
 export {
-  noOverflowPlacement,
-} from './overflow';
+  calculatePopoverPosition,
+  calculatePopoverStyles,
+} from './popover';
