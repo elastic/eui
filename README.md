@@ -20,7 +20,8 @@ npm install @elastic/eui
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running.
 
 ```
-npm start
+yarn
+yarn start
 ```
 
 ## Goals

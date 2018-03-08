@@ -9,7 +9,8 @@ Before working with EUI components or creating new ones, you may want to run a l
 To view interactive documentation, start the development server using the command below.
 
 ```shell
-npm start
+yarn
+yarn start
 ```
 
 Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
@@ -30,18 +31,18 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 ## Testing the component
 
-`npm run test-unit` runs the Jest unit tests once.
+`yarn run test-unit` runs the Jest unit tests once.
 
-`npm run test-unit button` will run tests with "button" in the spec name. You can pass other
+`yarn run test-unit button` will run tests with "button" in the spec name. You can pass other
 [Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html) by just adding them to the
 end of the command like this:
 
-`npm run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need 
-to follow the format of `npm run test-unit -- [arguments]`.
+`yarn run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need
+to follow the format of `yarn run test-unit -- [arguments]`.
 
-`npm run test-unit -- --watch` watches for changes and runs the tests as you code.
+`yarn run test-unit -- --watch` watches for changes and runs the tests as you code.
 
-`npm run test-unit -- --coverage` generates a code coverage report showing you how
+`yarn run test-unit -- --coverage` generates a code coverage report showing you how
 fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
