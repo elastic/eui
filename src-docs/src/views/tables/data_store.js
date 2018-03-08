@@ -64,7 +64,7 @@ export const createDataStore = () => {
 
       let pageOfItems;
 
-      if (!pageIndex) {
+      if (!pageIndex && !pageSize) {
         pageOfItems = items;
       } else {
         const startIndex = pageIndex * pageSize;
