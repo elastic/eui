@@ -9,7 +9,7 @@ export class EuiToolTipPopover extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     title: PropTypes.node,
-    showToolTip: PropTypes.func,
+    positionToolTip: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -20,7 +20,7 @@ export class EuiToolTipPopover extends Component {
     document.body.classList.add('euiBody-hasToolTip');
 
     requestAnimationFrame(() => {
-      this.props.showToolTip(this.popover.getBoundingClientRect());
+      this.props.positionToolTip(this.popover.getBoundingClientRect());
     });
   }
 
@@ -34,7 +34,7 @@ export class EuiToolTipPopover extends Component {
       title,
       className,
       /* eslint-disable */
-      showToolTip,
+      positionToolTip,
       /* eslint-enable */
       ...rest
     } = this.props;

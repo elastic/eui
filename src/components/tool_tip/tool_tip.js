@@ -34,11 +34,16 @@ export class EuiToolTip extends Component {
     this.space = props.space || 16;
 
     this.showToolTip = this.showToolTip.bind(this);
+    this.positionToolTip = this.positionToolTip.bind(this);
     this.hideToolTip = this.hideToolTip.bind(this);
     this.toggleToolTipVisibility = this.toggleToolTipVisibility.bind(this);
   }
 
-  showToolTip(toolTipRect) {
+  showToolTip() {
+    this.setState({ visible: true });
+  }
+
+  positionToolTip(toolTipRect) {
     const wrapperRect = this.wrapper.getBoundingClientRect();
     const userPosition = this.props.position;
 
@@ -56,7 +61,8 @@ export class EuiToolTip extends Component {
     this.setState({ visible: false });
   }
 
-  toggleToolTipVisibility() {
+  toggleToolTipVisibility(event) {
+    event.preventDefault();
     this.setState(prevState => ({
       visible: !prevState.visible
     }));
@@ -86,7 +92,7 @@ export class EuiToolTip extends Component {
           <EuiToolTipPopover
             className={classes}
             style={this.state.toolTipStyles}
-            showToolTip={this.showToolTip}
+            positionToolTip={this.positionToolTip}
             title={title}
             id={this.state.id}
             role="tooltip"
@@ -100,8 +106,11 @@ export class EuiToolTip extends Component {
 
     let toolTipProps;
     if (clickOnly) {
+      // react fires onFocus before onClick, but onMouseDown gets called before onFocus
+      // using onMouseDown so handler gets called before onFocus
+      // https://stackoverflow.com/a/28963938/890809
       toolTipProps = {
-        onClick: this.toggleToolTipVisibility
+        onMouseDown: this.toggleToolTipVisibility
       };
     } else {
       toolTipProps = {
