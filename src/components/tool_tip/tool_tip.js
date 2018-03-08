@@ -62,14 +62,6 @@ export class EuiToolTip extends Component {
     }));
   }
 
-  componentDidMount() {
-    document.body.classList.add('euiBody-hasToolTip');
-  }
-
-  componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasToolTip');
-  }
-
   render() {
 
     const {

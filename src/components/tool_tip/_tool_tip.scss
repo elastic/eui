@@ -1,17 +1,20 @@
+/**
+ * 1. Relative / absolute positioning so they still work during scrolling.
+ */
 .euiBody-hasToolTip {
-  position: relative;
+  position: relative; /* 1 */
 }
 
 .euiToolTip {
   @include euiBottomShadow;
   @include euiFontSizeS();
 
-  position: absolute;
+  position: absolute; /* 1 */
   border-radius: $euiBorderRadius;
   padding: $euiSizeM;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorGhost;
-  width: 256px;
+  max-width: 256px;
   opacity: 0;
   animation: euiToolTipTop $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
 
@@ -68,7 +71,6 @@
 
 
 // Keyframes to animate in the tooltip.
-
 @keyframes euiToolTipTop {
   0% {
     opacity: 0;

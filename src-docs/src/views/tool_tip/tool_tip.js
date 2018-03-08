@@ -10,7 +10,11 @@ export default () => (
   <EuiText>
     <p style={{ overflow: 'hidden' }}>
       This tooltip appears on the{' '}
-      <EuiToolTip position="left" title="I am a tooltip title" content="Here is some tooltip text">
+      <EuiToolTip
+        position="left"
+        title="I am a tooltip title"
+        content="Here is some tooltip text. Lets add some more content to see how it wraps."
+      >
         <EuiLink>left</EuiLink>
       </EuiToolTip>
     </p>

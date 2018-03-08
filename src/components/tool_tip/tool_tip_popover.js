@@ -17,9 +17,15 @@ export class EuiToolTipPopover extends Component {
   }
 
   componentDidMount() {
+    document.body.classList.add('euiBody-hasToolTip');
+
     requestAnimationFrame(() => {
       this.props.showToolTip(this.popover.getBoundingClientRect());
     });
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('euiBody-hasToolTip');
   }
 
   render() {
