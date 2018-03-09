@@ -4,6 +4,10 @@
 - Added `initialPageSize` option to `EuiInMemoryTable` ([#477](https://github.com/elastic/eui/pull/477))
 - Added design guidelines for button and toast usage ([#371](https://github.com/elastic/eui/pull/371))
 
+**Breaking changes**
+
+- Complete refactor of `EuiToolTip`. They now work. Only a breaking change if you were using them. ([#484](https://github.com/elastic/eui/pull/484))
+
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 
 - Removed hover and focus states from non-selectable `EuiSideNavItem`s ([#434](https://github.com/elastic/eui/pull/434))
