@@ -163,7 +163,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     position: relative;
     width: auto;
 
-    // This is a hac
+    // This is a temporary hack till we fix how classes pass into form controls
     .euiFormControlLayout, input[type=search] {
       max-width: 100%;
     }
