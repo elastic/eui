@@ -80,7 +80,7 @@ const getInitialPagination = (pagination) => {
   };
 };
 
-const getInitialSorting = (sorting, defaultSortField) => {
+const getInitialSorting = (sorting) => {
   if (!sorting) {
     return {
       sortField: undefined,
@@ -112,7 +112,7 @@ export class EuiInMemoryTable extends Component {
 
     const { search, pagination, sorting, columns } = props;
     const { pageIndex, pageSize, pageSizeOptions } = getInitialPagination(pagination);
-    const { sortField, sortDirection } = getInitialSorting(sorting, columns[0].field);
+    const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
       query: getInitialQuery(search),
