@@ -108,16 +108,39 @@ export class EuiSearchBar extends Component {
     this.props.onChange(query);
   };
 
+  renderTools(tools) {
+    if (!tools) {
+      return undefined;
+    }
+
+    if (Array.isArray(tools)) {
+      return tools.map(tool => (
+        <EuiFlexItem grow={false} key={tool.key}>
+          {tool}
+        </EuiFlexItem>
+      ));
+    }
+
+    return <EuiFlexItem grow={false}>{tools}</EuiFlexItem>;
+  }
+
   render() {
     const { query, queryText, error } = this.state;
-    const { box, filters } = this.props;
+    const { box, filters, toolsLeft, toolsRight } = this.props;
+
+    const toolsLeftEl = this.renderTools(toolsLeft);
+
     const filtersBar = !filters ? undefined : (
       <EuiFlexItem grow={false}>
-        <EuiSearchFilters filters={filters} query={query} onChange={this.onFiltersChange}/>
+        <EuiSearchFilters filters={filters} query={query} onChange={this.onFiltersChange} />
       </EuiFlexItem>
     );
+
+    const toolsRightEl = this.renderTools(toolsRight);
+
     return (
       <EuiFlexGroup gutterSize="m" alignItems="center">
+        {toolsLeftEl}
         <EuiFlexItem grow={true}>
           <EuiSearchBox
             {...box}
@@ -128,6 +151,7 @@ export class EuiSearchBar extends Component {
           />
         </EuiFlexItem>
         {filtersBar}
+        {toolsRightEl}
       </EuiFlexGroup>
     );
   }

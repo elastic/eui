@@ -4,9 +4,7 @@ import { shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
 
 describe('SearchBar', () => {
-
   test('render - no config, no query', () => {
-
     const props = {
       ...requiredProps,
       onChange: () => {}
@@ -17,11 +15,24 @@ describe('SearchBar', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
 
+  test('render - tools', () => {
+    const props = {
+      ...requiredProps,
+      onChange: () => {},
+      toolsLeft: <div>Left</div>,
+      toolsRight: <div>Right</div>,
+    };
+
+    const component = shallow(
+      <EuiSearchBar {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
   });
 
   test('render - no query, custom box placeholder and incremental', () => {
-
     const props = {
       ...requiredProps,
       config: {
@@ -41,7 +52,6 @@ describe('SearchBar', () => {
   });
 
   test('render - provided query, filters', () => {
-
     const props = {
       ...requiredProps,
       filters: [
@@ -67,5 +77,4 @@ describe('SearchBar', () => {
 
     expect(component).toMatchSnapshot();
   });
-
 });
