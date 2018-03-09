@@ -25,10 +25,12 @@ export default () => (
     </EuiFlexItem>
 
     <EuiFlexItem>
-      <EuiPanel grow={false}>
-        Another <EuiCode>EuiPanel</EuiCode>,
-        with <EuiCode>grow=&#123;false&#125;</EuiCode>.
-      </EuiPanel>
+      <div>
+        <EuiPanel grow={false}>
+          Another <EuiCode>EuiPanel</EuiCode>,
+          with <EuiCode>grow=&#123;false&#125;</EuiCode>.
+        </EuiPanel>
+      </div>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

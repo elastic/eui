@@ -2,9 +2,6 @@
  * 1. Allow EuiPanels to expand to fill the item.
  */
 .euiFlexItem {
-  display: flex; /* 1 */
-  flex-direction: column; /* 1 */
-
   /*
    * 1. We need the extra specificity here to override the FlexGroup > FlexItem styles.
    * 2. FlexItem can be manually set to not grow if needed.

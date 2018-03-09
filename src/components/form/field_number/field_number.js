@@ -24,7 +24,7 @@ export const EuiFieldNumber = ({
   isLoading,
   ...rest
 }) => {
-  const classes = classNames('euiFieldNumber', className, {
+  const classes = classNames('euiFieldNumber', {
     'euiFieldNumber--withIcon': icon,
     'euiFieldNumber--fullWidth': fullWidth,
     'euiFieldNumber-isLoading': isLoading,
@@ -35,6 +35,7 @@ export const EuiFieldNumber = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      className={className}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input

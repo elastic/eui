@@ -3,14 +3,12 @@
 exports[`SearchBar render - no config, no query 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
   gutterSize="m"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -27,14 +25,12 @@ exports[`SearchBar render - no config, no query 1`] = `
 exports[`SearchBar render - no query, custom box placeholder and incremental 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
   gutterSize="m"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -51,14 +47,12 @@ exports[`SearchBar render - no query, custom box placeholder and incremental 1`]
 exports[`SearchBar render - provided query, filters 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
   gutterSize="m"
   justifyContent="flexStart"
   responsive={true}
   wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -70,7 +64,6 @@ exports[`SearchBar render - provided query, filters 1`] = `
     />
   </EuiFlexItem>
   <EuiFlexItem
-    component="div"
     grow={false}
   >
     <EuiSearchFilters

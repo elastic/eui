@@ -7,13 +7,17 @@ import {
 
 export default () => (
   <button onClick={() => { window.alert('click'); }}>
-    <EuiFlexGroup component="span">
-      <EuiFlexItem component="span">
-        These items are within a button
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <span>
+          These items are within a button
+        </span>
       </EuiFlexItem>
 
-      <EuiFlexItem component="span">
-        So they all specify component=&ldquo;span&rdquo;
+      <EuiFlexItem>
+        <span>
+          So they are both wrapped in &lt;span&gt; elements
+        </span>
       </EuiFlexItem>
     </EuiFlexGroup>
   </button>

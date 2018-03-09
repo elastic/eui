@@ -19,7 +19,7 @@ import {
 
 const repeatableForm = (
   <EuiForm>
-    <EuiFlexGroup>
+    <EuiFlexGroup alignItems="center">
       <EuiFlexItem>
         <EuiFormRow label="Username">
           <EuiFieldText icon="user" placeholder="John" />

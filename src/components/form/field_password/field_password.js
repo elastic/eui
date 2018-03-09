@@ -27,7 +27,6 @@ export const EuiFieldPassword = ({
       'euiFieldPassword--fullWidth': fullWidth,
       'euiFieldPassword-isLoading': isLoading,
     },
-    className
   );
 
   return (
@@ -35,6 +34,7 @@ export const EuiFieldPassword = ({
       icon="lock"
       fullWidth={fullWidth}
       isLoading={isLoading}
+      className={className}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input

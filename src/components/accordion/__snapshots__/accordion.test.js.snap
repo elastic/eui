@@ -10,7 +10,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
       gutterSize="none"
       justifyContent="flexStart"
       responsive={true}
@@ -20,85 +19,74 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
         <EuiFlexItem
-          component="div"
           grow={true}
         >
-          <div
-            className="euiFlexItem"
+          <button
+            aria-controls="6"
+            aria-expanded={false}
+            className="euiFlexItem euiAccordion__button"
+            onClick={[Function]}
           >
-            <button
-              aria-controls="6"
-              aria-expanded={false}
-              className="euiAccordion__button"
-              onClick={[Function]}
+            <EuiFlexGroup
+              alignItems="center"
+              gutterSize="s"
+              justifyContent="flexStart"
+              responsive={true}
+              wrap={false}
             >
-              <EuiFlexGroup
-                alignItems="center"
-                component="div"
-                gutterSize="s"
-                justifyContent="flexStart"
-                responsive={true}
-                wrap={false}
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
               >
-                <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+                <EuiFlexItem
+                  grow={false}
                 >
-                  <EuiFlexItem
-                    component="div"
-                    grow={false}
+                  <EuiIcon
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    size="m"
+                    type="arrowRight"
                   >
-                    <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero"
+                    <arrowRight
+                      className="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
                     >
-                      <EuiIcon
-                        size="m"
-                        type="arrowRight"
+                      <svg
+                        className="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
                       >
-                        <arrowRight
-                          className="euiIcon euiIcon--medium"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          width="16"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
-                        >
-                          <svg
-                            className="euiIcon euiIcon--medium"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                          >
-                            <defs>
-                              <path
-                                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                                id="arrow_right-a"
-                              />
-                            </defs>
-                            <use
-                              fillRule="nonzero"
-                              transform="matrix(0 1 1 0 0 0)"
-                              xlinkHref="#arrow_right-a"
-                            />
-                          </svg>
-                        </arrowRight>
-                      </EuiIcon>
-                    </div>
-                  </EuiFlexItem>
-                  <EuiFlexItem
-                    className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
-                  >
-                    <div
-                      className="euiFlexItem euiAccordion__buttonContent"
-                    />
-                  </EuiFlexItem>
-                </div>
-              </EuiFlexGroup>
-            </button>
-          </div>
+                        <defs>
+                          <path
+                            d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                            id="arrow_right-a"
+                          />
+                        </defs>
+                        <use
+                          fillRule="nonzero"
+                          transform="matrix(0 1 1 0 0 0)"
+                          xlinkHref="#arrow_right-a"
+                        />
+                      </svg>
+                    </arrowRight>
+                  </EuiIcon>
+                </EuiFlexItem>
+                <EuiFlexItem
+                  className="euiAccordion__buttonContent"
+                  grow={true}
+                >
+                  <div
+                    className="euiFlexItem euiAccordion__buttonContent"
+                  />
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </button>
         </EuiFlexItem>
       </div>
     </EuiFlexGroup>
@@ -122,7 +110,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
       gutterSize="none"
       justifyContent="flexStart"
       responsive={true}
@@ -132,84 +119,73 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
         <EuiFlexItem
-          component="div"
           grow={true}
         >
-          <div
-            className="euiFlexItem"
+          <button
+            aria-controls="5"
+            aria-expanded={true}
+            className="euiFlexItem euiAccordion__button"
+            onClick={[Function]}
           >
-            <button
-              aria-controls="5"
-              aria-expanded={true}
-              className="euiAccordion__button"
-              onClick={[Function]}
+            <EuiFlexGroup
+              alignItems="center"
+              gutterSize="s"
+              justifyContent="flexStart"
+              responsive={true}
+              wrap={false}
             >
-              <EuiFlexGroup
-                alignItems="center"
-                component="div"
-                gutterSize="s"
-                justifyContent="flexStart"
-                responsive={true}
-                wrap={false}
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
               >
-                <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+                <EuiFlexItem
+                  grow={false}
                 >
-                  <EuiFlexItem
-                    component="div"
-                    grow={false}
+                  <EuiIcon
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                    size="m"
+                    type="arrowDown"
                   >
-                    <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero"
+                    <arrowDown
+                      className="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlnsXlink="http://www.w3.org/1999/xlink"
                     >
-                      <EuiIcon
-                        size="m"
-                        type="arrowDown"
+                      <svg
+                        className="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
                       >
-                        <arrowDown
-                          className="euiIcon euiIcon--medium"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          width="16"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
-                        >
-                          <svg
-                            className="euiIcon euiIcon--medium"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                          >
-                            <defs>
-                              <path
-                                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                                id="arrow_down-a"
-                              />
-                            </defs>
-                            <use
-                              fillRule="nonzero"
-                              xlinkHref="#arrow_down-a"
-                            />
-                          </svg>
-                        </arrowDown>
-                      </EuiIcon>
-                    </div>
-                  </EuiFlexItem>
-                  <EuiFlexItem
-                    className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
-                  >
-                    <div
-                      className="euiFlexItem euiAccordion__buttonContent"
-                    />
-                  </EuiFlexItem>
-                </div>
-              </EuiFlexGroup>
-            </button>
-          </div>
+                        <defs>
+                          <path
+                            d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                            id="arrow_down-a"
+                          />
+                        </defs>
+                        <use
+                          fillRule="nonzero"
+                          xlinkHref="#arrow_down-a"
+                        />
+                      </svg>
+                    </arrowDown>
+                  </EuiIcon>
+                </EuiFlexItem>
+                <EuiFlexItem
+                  className="euiAccordion__buttonContent"
+                  grow={true}
+                >
+                  <div
+                    className="euiFlexItem euiAccordion__buttonContent"
+                  />
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </button>
         </EuiFlexItem>
       </div>
     </EuiFlexGroup>
@@ -232,47 +208,39 @@ exports[`EuiAccordion is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem"
+    <button
+      aria-controls="0"
+      aria-expanded="false"
+      class="euiFlexItem euiAccordion__button"
     >
-      <button
-        aria-controls="0"
-        aria-expanded="false"
-        class="euiAccordion__button"
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        <svg
+          class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <svg
-              class="euiIcon euiIcon--medium"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xlink="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <defs>
+            <path
+              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+              id="arrow_right-a"
+            />
+          </defs>
+          <use
+            fill-rule="nonzero"
+            href="#arrow_right-a"
+            transform="matrix(0 1 1 0 0 0)"
           />
-        </div>
-      </button>
-    </div>
+        </svg>
+        <div
+          class="euiFlexItem euiAccordion__buttonContent"
+        />
+      </div>
+    </button>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -290,51 +258,41 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem"
+    <button
+      aria-controls="2"
+      aria-expanded="false"
+      class="euiFlexItem euiAccordion__button"
     >
-      <button
-        aria-controls="2"
-        aria-expanded="false"
-        class="euiAccordion__button"
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        <svg
+          class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <svg
-              class="euiIcon euiIcon--medium"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xlink="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
-          >
-            <div>
-              Button content
-            </div>
-          </div>
+          <defs>
+            <path
+              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+              id="arrow_right-a"
+            />
+          </defs>
+          <use
+            fill-rule="nonzero"
+            href="#arrow_right-a"
+            transform="matrix(0 1 1 0 0 0)"
+          />
+        </svg>
+        <div
+          class="euiFlexItem euiAccordion__buttonContent"
+        >
+          Button content
         </div>
-      </button>
-    </div>
+      </div>
+    </button>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -352,47 +310,39 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem"
+    <button
+      aria-controls="1"
+      aria-expanded="false"
+      class="euiFlexItem euiAccordion__button"
     >
-      <button
-        aria-controls="1"
-        aria-expanded="false"
-        class="euiAccordion__button"
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        <svg
+          class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <svg
-              class="euiIcon euiIcon--medium"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xlink="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent button content class name"
+          <defs>
+            <path
+              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+              id="arrow_right-a"
+            />
+          </defs>
+          <use
+            fill-rule="nonzero"
+            href="#arrow_right-a"
+            transform="matrix(0 1 1 0 0 0)"
           />
-        </div>
-      </button>
-    </div>
+        </svg>
+        <div
+          class="euiFlexItem euiAccordion__buttonContent button content class name"
+        />
+      </div>
+    </button>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -410,54 +360,44 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem"
+    <button
+      aria-controls="3"
+      aria-expanded="false"
+      class="euiFlexItem euiAccordion__button"
     >
-      <button
-        aria-controls="3"
-        aria-expanded="false"
-        class="euiAccordion__button"
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        <svg
+          class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <svg
-              class="euiIcon euiIcon--medium"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xlink="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <defs>
+            <path
+              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+              id="arrow_right-a"
+            />
+          </defs>
+          <use
+            fill-rule="nonzero"
+            href="#arrow_right-a"
+            transform="matrix(0 1 1 0 0 0)"
           />
-        </div>
-      </button>
-    </div>
-    <div
+        </svg>
+        <div
+          class="euiFlexItem euiAccordion__buttonContent"
+        />
+      </div>
+    </button>
+    <button
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
-      <button>
-        Extra action
-      </button>
-    </div>
+      Extra action
+    </button>
   </div>
   <div
     class="euiAccordion__childWrapper"
@@ -475,46 +415,38 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   <div
     class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
   >
-    <div
-      class="euiFlexItem"
+    <button
+      aria-controls="4"
+      aria-expanded="true"
+      class="euiFlexItem euiAccordion__button"
     >
-      <button
-        aria-controls="4"
-        aria-expanded="true"
-        class="euiAccordion__button"
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        <svg
+          class="euiIcon euiFlexItem euiFlexItem--flexGrowZero euiIcon--medium"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
-          >
-            <svg
-              class="euiIcon euiIcon--medium"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xlink="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <defs>
+            <path
+              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+              id="arrow_down-a"
+            />
+          </defs>
+          <use
+            fill-rule="nonzero"
+            href="#arrow_down-a"
           />
-        </div>
-      </button>
-    </div>
+        </svg>
+        <div
+          class="euiFlexItem euiAccordion__buttonContent"
+        />
+      </div>
+    </button>
   </div>
   <div
     class="euiAccordion__childWrapper"

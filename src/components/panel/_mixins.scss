@@ -8,12 +8,11 @@
   }
   @else {
     .#{$selector} {
-
       @include euiBottomShadowSmall;
       background-color: $euiColorEmptyShade;
       border: $euiBorderThin;
       border-radius: $euiBorderRadius;
-      flex-grow: 1;
+
       &.#{$selector}--flexGrowZero {
         flex-grow: 0;
       }

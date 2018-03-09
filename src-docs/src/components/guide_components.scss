@@ -57,18 +57,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guideDemo__highlightGrid {
-  .euiFlexItem {
-    background: transparentize(#0096CC, .9);
-    padding: 16px;
-  }
-}
-
-.guideDemo__highlightGridWrap {
-  .euiFlexItem div {
-    background: transparentize(#0096CC, .9);
-    padding: 16px;
-  }
+.guideDemo__highlightGrid .euiFlexItem,
+.guideDemo__highlightGridWrap .euiFlexItem {
+  background: transparentize(#0096CC, .9);
+  padding: 16px;
 }
 
 .guideDemo__textLines {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,7 +8,6 @@ export const EuiFlexItem = ({
   children,
   className,
   grow,
-  component: Component,
   ...rest,
 }) => {
   const classes = classNames(
@@ -20,20 +19,20 @@ export const EuiFlexItem = ({
     className
   );
 
-  return (
-    <Component
-      className={classes}
-      {...rest}
-    >
-      {children}
-    </Component>
-  );
-};
+  let originalChildren;
 
-EuiFlexItem.propTypes = {
-  children: PropTypes.node,
-  grow: growPropType,
-  component: PropTypes.oneOf(['div', 'span']),
+  if (typeof children === 'string' || Array.isArray(children) || typeof children === 'undefined') {
+    originalChildren = (
+      <div>{children}</div>
+    );
+  } else {
+    originalChildren = children;
+  }
+
+  return cloneElement(originalChildren, {
+    className: classNames(classes, originalChildren.props.className),
+    ...rest
+  });
 };
 
 function growPropType(props, propName, componentName) {
@@ -52,7 +51,12 @@ function growPropType(props, propName, componentName) {
   }
 }
 
+EuiFlexItem.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  grow: growPropType,
+};
+
 EuiFlexItem.defaultProps = {
   grow: true,
-  component: 'div',
 };
