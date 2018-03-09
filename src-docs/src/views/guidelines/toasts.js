@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+  Link,
+} from 'react-router';
+
+import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
@@ -27,9 +31,11 @@ export default () => (
         They are a popular design choice because they don&apos;t need to
         fit in a layout and don&apos;t disrupt the user.
       </p>
-      <EuiButton href="/#/display/toast">
-        View component code
-      </EuiButton>
+      <Link to="/display/toast">
+        <EuiButton>
+          View component code
+        </EuiButton>
+      </Link>
     </EuiText>
 
     <EuiHorizontalRule/>

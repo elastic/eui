@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+  Link,
+} from 'react-router';
+
+import {
   GuidePage,
   GuideRule,
   GuideRuleTitle,
@@ -35,9 +39,11 @@ export default() => (
       <p>
         This page documents patterns for button design, including types, placement, color, and size.
       </p>
-      <EuiButton href="/#/navigation/button">
-        View component code
-      </EuiButton>
+      <Link to="/navigation/button">
+        <EuiButton>
+          View component code
+        </EuiButton>
+      </Link>
     </EuiText>
 
     <EuiHorizontalRule/>
@@ -51,7 +57,7 @@ export default() => (
         grow={false}
         style={{ minWidth: 120 }}
       >
-        <EuiButton fill="fill">
+        <EuiButton fill>
           Filled
         </EuiButton>
       </EuiFlexItem>
@@ -334,10 +340,10 @@ export default() => (
         frame="frame"
       >
 
-        <EuiButton iconType="arrowRight" iconSide="right" fill="fill">
+        <EuiButton iconType="arrowRight" iconSide="right" fill>
           Continue
         </EuiButton>
-        <EuiButton iconType="check" color="secondary" fill="fill">
+        <EuiButton iconType="check" color="secondary" fill>
           Save and complete
         </EuiButton>
 
@@ -353,7 +359,7 @@ export default() => (
         <EuiButton
           iconType="indexOpen"
           iconSide="right"
-          fill="fill"
+          fill
         >
           Create index pattern
         </EuiButton>
@@ -377,7 +383,7 @@ export default() => (
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton fill="fill">
+              <EuiButton fill>
                 Save
               </EuiButton>
             </EuiFlexItem>
@@ -398,7 +404,7 @@ export default() => (
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton fill="fill">
+              <EuiButton fill>
                 Save
               </EuiButton>
             </EuiFlexItem>
@@ -408,7 +414,7 @@ export default() => (
               </EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton color="danger" fill="fill" size="s">
+              <EuiButton color="danger" fill size="s">
                 Delete
               </EuiButton>
             </EuiFlexItem>
@@ -519,7 +525,7 @@ export default() => (
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton fill="fill">
+            <EuiButton fill>
               Create thing
             </EuiButton>
           </EuiTableRowCell>
@@ -533,10 +539,10 @@ export default() => (
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton color="danger" fill="fill">
+            <EuiButton color="danger" fill>
               Delete
             </EuiButton>&nbsp;&nbsp;
-            <EuiButton color="danger" fill="fill">
+            <EuiButton color="danger" fill>
               Delete 6 things
             </EuiButton>&nbsp;&nbsp;
             <EuiButtonIcon size="s" color="danger" iconType="trash" aria-label="delete"/>
@@ -563,10 +569,10 @@ export default() => (
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton fill="fill">
+            <EuiButton fill>
               Save
             </EuiButton>&nbsp;&nbsp;
-            <EuiButton fill="fill" color="secondary" iconType="check">
+            <EuiButton fill color="secondary" iconType="check">
               Save and complete
             </EuiButton>
           </EuiTableRowCell>

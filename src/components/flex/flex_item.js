@@ -33,7 +33,7 @@ export const EuiFlexItem = ({
 EuiFlexItem.propTypes = {
   children: PropTypes.node,
   grow: growPropType,
-  component: PropTypes.oneOf(['div', 'span']),
+  component: PropTypes.oneOf(['div', 'span', 'figure']),
 };
 
 function growPropType(props, propName, componentName) {
