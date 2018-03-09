@@ -506,8 +506,9 @@ export default() => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Adds an object to a list or database. Always followed by an object,
-            for example, Add visualization. Do not use &quot;Add new.&quot; Remove is the correct opposite.
+            Establishes a new relationship.  Often used in a create-then-add scenario.  
+            You create a dashboard, then add a visualization.  Always followed by an object. 
+            Do not use &quot;Add new.&quot; Remove is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -533,7 +534,7 @@ export default() => (
           <EuiTableRowCell>
             Creates a new object from scratch. Always followed by an object,
             for example, “Create pipeline.” Do not use &quot;Create new.&quot;
-            Exception: “Add user” is more intuitive than “Create user.” Delete is the correct opposite
+            Exception: “Add user” is more intuitive than “Create user.” Delete is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -562,8 +563,8 @@ export default() => (
             <EuiButtonIcon size="s" color="danger" iconType="cross" aria-label="Remove"/>
           </EuiTableRowCell>
           <EuiTableRowCell>
-            Removes an item not related to a database, such as a row from a table.
-            Do not confuse with Delete, which permanenty removes data from a database.
+            Removes a relationship, but doesn&apos;t permanently delete data.  
+            For example, you remove a visualization from a dashboard. Add is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
