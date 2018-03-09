@@ -153,3 +153,43 @@ exports[`SearchBar render - provided query, filters 1`] = `
   </EuiFlexItem>
 </EuiFlexGroup>
 `;
+
+exports[`SearchBar render - tools 1`] = `
+<EuiFlexGroup
+  alignItems="center"
+  component="div"
+  gutterSize="m"
+  justifyContent="flexStart"
+  responsive={true}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <div>
+      Left
+    </div>
+  </EuiFlexItem>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+  >
+    <EuiSearchBox
+      incremental={false}
+      isInvalid={false}
+      onSearch={[Function]}
+      placeholder="Search..."
+      query=""
+    />
+  </EuiFlexItem>
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <div>
+      Right
+    </div>
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
