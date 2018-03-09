@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+  Link,
+} from 'react-router';
+
+import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
@@ -8,6 +12,7 @@ import {
 } from '../../components';
 
 import {
+  EuiButton,
   EuiText,
   EuiSpacer,
   EuiFlexGroup,
@@ -27,12 +32,11 @@ export default () => (
         amount of content and getting them to make a decision.
       </p>
 
-      <EuiLink
-        href="https://elastic.github.io/eui/#/layout/modal"
-        target="_blank"
-      >
-          Go to code
-      </EuiLink>
+      <Link to="/layout/modal">
+        <EuiButton>
+          View component code
+        </EuiButton>
+      </Link>
     </EuiText>
 
     <EuiSpacer />
