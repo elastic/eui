@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip is rendered 1`] = `
-<span
-  aria-describedby="id"
-  tabindex="0"
->
-  trigger
+<span>
+  <button
+    aria-describedby="id"
+  >
+    Trigger
+  </button>
 </span>
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  EuiIcon,
   EuiToolTip,
   EuiLink,
   EuiText,
@@ -12,35 +13,37 @@ import {
 export default () => (
   <div>
     <EuiText>
-      <p style={{ overflow: 'hidden' }}>
+      <p>
+        This tooltip appears on the{' '}
+        <EuiToolTip position="top" content="Here is some tooltip text">
+          <EuiLink href="#">top</EuiLink>
+        </EuiToolTip>
+      </p>
+
+      <p>
         This tooltip appears on the{' '}
         <EuiToolTip
           position="left"
           title="Tooltip titles are optional"
           content="Here is some tooltip text. Lets add some more content to see how it wraps."
         >
-          <EuiLink>left</EuiLink>
+          <EuiLink href="#">left</EuiLink>
         </EuiToolTip>
         {' '} and includes the optional title.
       </p>
-      <p style={{ overflow: 'hidden' }}>
+
+      <p>
         This tooltip appears on the{' '}
         <EuiToolTip position="right" content="Here is some tooltip text">
-          <EuiLink>right</EuiLink>
+          <EuiLink href="#">right</EuiLink>
         </EuiToolTip>
       </p>
-      <p style={{ overflow: 'hidden' }}>
-        This tooltip appears on the{' '}
-        <EuiToolTip position="top" content="Here is some tooltip text">
-          <EuiLink>top</EuiLink>
+
+      <p>
+        This tooltip appears on the bottom of this icon:{' '}
+        <EuiToolTip position="bottom" content="Here is some tooltip text">
+          <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
         </EuiToolTip>
-      </p>
-      <p style={{ overflow: 'hidden' }}>
-        This tooltip appears on the{' '}
-        <EuiToolTip position="bottom" clickOnly content="You need to click or leave focus to dismiss this one.">
-          <EuiLink>bottom</EuiLink>
-        </EuiToolTip>
-        {' '} and requires a <strong>click to activate</strong>.
       </p>
     </EuiText>
 

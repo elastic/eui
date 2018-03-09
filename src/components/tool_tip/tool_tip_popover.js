@@ -27,7 +27,10 @@ export class EuiToolTipPopover extends Component {
 
   updateDimensions() {
     requestAnimationFrame(() => {
-      this.props.positionToolTip(this.popover.getBoundingClientRect());
+      // Because of this delay, sometimes `positionToolTip` becomes unavailable.
+      if (this.popover) {
+        this.props.positionToolTip(this.popover.getBoundingClientRect());
+      }
     });
   }
 
@@ -41,9 +44,7 @@ export class EuiToolTipPopover extends Component {
       children,
       title,
       className,
-      /* eslint-disable */
-      positionToolTip,
-      /* eslint-enable */
+      positionToolTip, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
