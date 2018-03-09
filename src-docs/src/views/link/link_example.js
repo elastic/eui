@@ -18,7 +18,6 @@ const linkHtml = renderToHtml(Link);
 export const LinkExample = {
   title: 'Link',
   sections: [{
-    title: 'Link',
     source: [{
       type: GuideSectionTypes.JS,
       code: linkSource,

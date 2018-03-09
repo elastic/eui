@@ -27,7 +27,7 @@ const loadingSpinnerHtml = renderToHtml(LoadingSpinner);
 export const LoadingExample = {
   title: 'Loading',
   sections: [{
-    title: 'Loading Kibana',
+    title: 'Kibana',
     source: [{
       type: GuideSectionTypes.JS,
       code: loadingKibanaSource,
@@ -43,7 +43,7 @@ export const LoadingExample = {
     props: { EuiLoadingKibana },
     demo: <LoadingKibana />,
   }, {
-    title: 'Loading chart',
+    title: 'Chart',
     source: [{
       type: GuideSectionTypes.JS,
       code: loadingChartSource,
@@ -62,7 +62,7 @@ export const LoadingExample = {
     props: { EuiLoadingChart },
     demo: <LoadingChart />,
   }, {
-    title: 'Loading spinner',
+    title: 'Spinner',
     source: [{
       type: GuideSectionTypes.JS,
       code: loadingSpinnerSource,

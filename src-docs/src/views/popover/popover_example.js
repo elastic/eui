@@ -39,7 +39,6 @@ const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
 export const PopoverExample = {
   title: 'Popover',
   sections: [{
-    title: 'Popover',
     source: [{
       type: GuideSectionTypes.JS,
       code: popoverSource,

@@ -49,7 +49,6 @@ const GuideRuleWriting = ({
 export default () => (
   <GuidePage title="Writing">
     <EuiText>
-      <h1>Writing</h1>
       <p>
         You can have the most beautiful UI,
         but without <b>consistent, easy-to-understand text</b>,

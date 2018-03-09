@@ -17,7 +17,6 @@ const isColorDarkHtml = renderToHtml(IsColorDark);
 export const IsColorDarkExample = {
   title: 'Is Color Dark',
   sections: [{
-    title: 'IsColorDark',
     source: [{
       type: GuideSectionTypes.JS,
       code: isColorDarkSource,

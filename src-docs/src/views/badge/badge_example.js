@@ -26,7 +26,6 @@ const badgeButtonHtml = renderToHtml(BadgeButton);
 export const BadgeExample = {
   title: 'Badge',
   sections: [{
-    title: 'Badge',
     source: [{
       type: GuideSectionTypes.JS,
       code: badgeSource,

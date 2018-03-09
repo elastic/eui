@@ -39,6 +39,7 @@ export class GuidePageChrome extends Component {
   onSearchChange = event => {
     this.setState({
       search: event.target.value,
+      isSideNavOpenOnMobile: event.target.value !== '',
     });
   };
 
@@ -51,6 +52,11 @@ export class GuidePageChrome extends Component {
   onClickLink = id => {
     // Scroll to element.
     this.scrollTo($(`#${id}`).offset().top - 20);
+
+    this.setState({
+      search: '',
+      isSideNavOpenOnMobile: false,
+    });
   };
 
   renderIdentity() {
@@ -153,20 +159,24 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <div>
-        {this.renderIdentity()}
+      <div className="guideSideNav">
+        <div className="guideSideNav__identity">
+          {this.renderIdentity()}
 
-        <EuiSpacer size="m" />
+          <EuiSpacer size="m" />
 
-        <EuiFieldSearch
-          placeholder="Search"
-          value={this.state.search}
-          onChange={this.onSearchChange}
-        />
+          <div className="guideSideNav__search">
+            <EuiFieldSearch
+              placeholder="Search"
+              value={this.state.search}
+              onChange={this.onSearchChange}
+            />
+          </div>
+        </div>
 
-        <EuiSpacer size="m" />
-
-        {sideNavContent}
+        <div className="guideSideNav__content">
+          {sideNavContent}
+        </div>
       </div>
     );
   }

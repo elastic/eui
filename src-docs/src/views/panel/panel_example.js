@@ -24,7 +24,6 @@ const panelHoverHtml = renderToHtml(PanelHover);
 export const PanelExample = {
   title: 'Panel',
   sections: [{
-    title: 'Panel',
     source: [{
       type: GuideSectionTypes.JS,
       code: panelSource,

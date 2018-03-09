@@ -19,7 +19,6 @@ const filePickerHtml = renderToHtml(FilePicker);
 export const FilePickerExample = {
   title: 'File Picker',
   sections: [{
-    title: 'FilePicker',
     source: [{
       type: GuideSectionTypes.JS,
       code: filePickerSource,

@@ -18,7 +18,6 @@ const errorBoundaryHtml = renderToHtml(ErrorBoundary);
 export const ErrorBoundaryExample = {
   title: 'Error Boundary',
   sections: [{
-    title: 'ErrorBoundary',
     source: [{
       type: GuideSectionTypes.JS,
       code: errorBoundarySource,

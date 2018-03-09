@@ -18,7 +18,6 @@ const healthHtml = renderToHtml(Health);
 export const HealthExample = {
   title: 'Health',
   sections: [{
-    title: 'Health',
     source: [{
       type: GuideSectionTypes.JS,
       code: healthSource,

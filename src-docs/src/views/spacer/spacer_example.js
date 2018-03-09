@@ -40,7 +40,6 @@ export const SpacerExample = {
     </div>
   ),
   sections: [{
-    title: 'Spacer',
     source: [{
       type: GuideSectionTypes.JS,
       code: spacerSource,

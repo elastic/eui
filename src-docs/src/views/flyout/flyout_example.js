@@ -27,7 +27,6 @@ export const FlyoutExample = {
   title: 'Flyout',
   sections: [
     {
-      title: 'Flyout',
       source: [{
         type: GuideSectionTypes.JS,
         code: flyoutSource,

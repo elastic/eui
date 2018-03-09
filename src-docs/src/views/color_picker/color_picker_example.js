@@ -21,7 +21,6 @@ const colorPickerNoColorLabelHtml = renderToHtml(ColorPickerNoColorLabel);
 export const ColorPickerExample = {
   title: 'Color Picker',
   sections: [{
-    title: 'Color Picker',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPickerSource,
@@ -31,7 +30,7 @@ export const ColorPickerExample = {
     }],
     demo: <ColorPicker />,
   }, {
-    title: 'Color Picker with label and reset link',
+    title: 'With label and reset link',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPickerClearSource,
@@ -41,7 +40,7 @@ export const ColorPickerExample = {
     }],
     demo: <ColorPickerLabelAndClear />,
   }, {
-    title: 'Color Picker without a color label',
+    title: 'Without a color label',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPickerNoColorLabelSource,

@@ -30,7 +30,6 @@ const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
 export const ProgressExample = {
   title: 'Progress',
   sections: [{
-    title: 'Progress',
     source: [{
       type: GuideSectionTypes.JS,
       code: progressSource,

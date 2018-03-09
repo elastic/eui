@@ -27,7 +27,6 @@ const textColorHtml = renderToHtml(TextColor);
 export const TextExample = {
   title: 'Text',
   sections: [{
-    title: 'Text',
     source: [{
       type: GuideSectionTypes.JS,
       code: textSource,

@@ -22,7 +22,7 @@ const codeBlockHtml = renderToHtml(CodeBlock);
 export const CodeExample = {
   title: 'Code',
   sections: [{
-    title: 'Code',
+    title: 'Inline',
     source: [{
       type: GuideSectionTypes.JS,
       code: codeSource,

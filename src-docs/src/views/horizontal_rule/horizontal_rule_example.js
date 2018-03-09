@@ -22,7 +22,6 @@ const horizontalRuleMarginHtml = renderToHtml(HorizontalRuleMargin);
 export const HorizontalRuleExample = {
   title: 'Horizontal Rule',
   sections: [{
-    title: 'HorizontalRule',
     source: [{
       type: GuideSectionTypes.JS,
       code: horizontalRuleSource,
@@ -38,7 +37,7 @@ export const HorizontalRuleExample = {
     props: { EuiHorizontalRule },
     demo: <HorizontalRule />,
   }, {
-    title: 'HorizontalRule margins',
+    title: 'Margins',
     source: [{
       type: GuideSectionTypes.JS,
       code: horizontalRuleMarginSource,

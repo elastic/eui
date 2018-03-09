@@ -18,7 +18,6 @@ const outsideClickDetectorHtml = renderToHtml(OutsideClickDetector);
 export const OutsideClickDetectorExample = {
   title: 'Outside Click Detector',
   sections: [{
-    title: 'OutsideClickDetector',
     source: [{
       type: GuideSectionTypes.JS,
       code: outsideClickDetectorSource,

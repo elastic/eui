@@ -27,7 +27,6 @@ export const ImageExample = {
   title: 'Image',
   sections: [
     {
-      title: 'Image',
       source: [{
         type: GuideSectionTypes.JS,
         code: imageSource,

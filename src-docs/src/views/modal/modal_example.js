@@ -24,7 +24,6 @@ const confirmModalHtml = renderToHtml(ConfirmModal);
 export const ModalExample = {
   title: 'Modal',
   sections: [{
-    title: 'Modal',
     source: [{
       type: GuideSectionTypes.JS,
       code: modalSource,
@@ -41,7 +40,7 @@ export const ModalExample = {
     props: { EuiModal, EuiOverlayMask },
     demo: <Modal />,
   }, {
-    title: 'ConfirmModal',
+    title: 'Confirm Modal',
     source: [{
       type: GuideSectionTypes.JS,
       code: confirmModalSource,

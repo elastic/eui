@@ -197,18 +197,17 @@ const slugify = str => {
 
 const createExample = ({ title, intro, sections }) => {
   sections.forEach(section => {
-    section.id = slugify(section.title);
+    section.id = slugify(section.title || title);
   });
 
   const renderedSections = sections.map(section => createElement(GuideSection, {
-    key: section.title,
+    key: section.title || title,
     ...section
   }));
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title}>
-        {intro}
+      <GuidePage title={title} intro={intro}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>

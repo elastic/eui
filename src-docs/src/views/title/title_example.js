@@ -18,7 +18,6 @@ const titleHtml = renderToHtml(Title);
 export const TitleExample = {
   title: 'Title',
   sections: [{
-    title: 'Title',
     source: [{
       type: GuideSectionTypes.JS,
       code: titleSource,

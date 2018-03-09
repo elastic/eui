@@ -1,3 +1,4 @@
+$guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
 @mixin whenNarrowerThan($browserWidth) {
@@ -29,22 +30,56 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
-.guideLogo {
-  width: 40px;
-  height: 40px;
-  background: $euiColorEmptyShade;
-  border-radius: 40px;
-  margin: auto;
-  border: $euiBorderThin;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+.guideBody {
+  background: linear-gradient(90deg, $euiColorLightestShade 50%, $euiColorEmptyShade 50%);
+}
 
-  &:hover {
-    border-color: $euiColorMediumShade;
+#guide {
+  margin: auto;
+  max-width: 1240px;
+}
+
+.guidePage {
+  padding: 0;
+}
+
+.guideSideNav {
+  width: $guideSideNavWidth;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  .guideSideNav__identity {
+    border-bottom: $euiBorderThin;
+    padding: $euiSize;
+  }
+
+  .guideSideNav__theme {
+    font-size: $euiFontSizeS;
+    color: $euiColorDarkShade;
+  }
+
+  .guideSideNav__content {
+    width: $guideSideNavWidth;
+    padding: $euiSize;
+    position: absolute;
+    bottom: 0;
+    top: 132px;
+    @include scrollbar;
+    overflow-y: auto;
   }
 }
+
+.guidePageContent {
+  flex: 1 1 auto;
+  padding: $euiSize $euiSizeXL;
+  min-height: 100vh;
+  background-color: $euiColorEmptyShade;
+  border-left: $euiBorderThin;
+  max-width: 1000px;
+  margin-left: 240px;
+}
+
 
 .guideDemo__highlightLayout {
   div {
@@ -117,3 +152,43 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 @import "guide_section/index";
 @import "guide_rule/index";
+
+@include screenXSmall {
+
+  .guideBody {
+    background: none;
+  }
+
+  .guideSideNav {
+    position: relative;
+    width: auto;
+
+    // This is a temporary hack till we fix how classes pass into form controls
+    .euiFormControlLayout, input[type=search] {
+      max-width: 100%;
+    }
+
+    .guideSideNav__content {
+      position: relative;
+      width: auto;
+      top: auto;
+      bottom: auto;
+      padding: 0;
+      overflow-y: hidden;
+    }
+
+    .guideSideNav__identity {
+      position: relative;
+      width: auto;
+    }
+
+    .guideSideNav__mobileToggle {
+      background: $euiColorPrimary;
+      color: $euiColorEmptyShade !important;
+    }
+  }
+
+  .guidePageContent {
+    margin-left: 0;
+  }
+}

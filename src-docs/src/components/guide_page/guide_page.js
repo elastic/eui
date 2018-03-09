@@ -1,15 +1,30 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
-export function GuidePage({ children }) {
+import {
+  EuiTitle,
+  EuiSpacer,
+} from '../../../../src/components';
+
+export const GuidePage = ({ children, title, intro }) => {
   return (
-    <div>
+    <Fragment>
+      <div className="guideSection__text">
+        <EuiTitle size="l">
+          <h1>{title}</h1>
+        </EuiTitle>
+
+        <EuiSpacer />
+        {intro}
+      </div>
+
       {children}
-    </div>
+    </Fragment>
   );
-}
+};
 
 GuidePage.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.node,
   title: PropTypes.string,
+  intro: PropTypes.node,
 };
