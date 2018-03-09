@@ -97,7 +97,7 @@ export class GuidePageChrome extends Component {
 
     sideNav.forEach(section => {
       const matchingItems = section.items.filter(item => (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && item.hidden !== true
       ));
 
       const items = matchingItems.map(item => {
@@ -159,7 +159,7 @@ export class GuidePageChrome extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          placeholder="Search..."
+          placeholder="Search"
           value={this.state.search}
           onChange={this.onSearchChange}
         />

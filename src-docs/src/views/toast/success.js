@@ -4,6 +4,8 @@ import {
   EuiButton,
   EuiLink,
   EuiToast,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
@@ -22,8 +24,12 @@ export default () => (
       And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
     </p>
 
-    <EuiButton>
-      Download report
-    </EuiButton>
+    <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+      <EuiFlexItem grow={false}>
+        <EuiButton size="s">
+          Download report
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </EuiToast>
 );

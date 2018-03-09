@@ -2,6 +2,7 @@
 
 - Added `search.onChange` callback to `EuiInMemoryTable` ([#469](https://github.com/elastic/eui/pull/469))
 - Added `initialPageSize` option to `EuiInMemoryTable` ([#477](https://github.com/elastic/eui/pull/477))
+- Added design guidelines for button and toast usage ([#371](https://github.com/elastic/eui/pull/371))
 
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 

@@ -562,6 +562,10 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
+
+
+
+
     <GuideRuleTitle>Verifying your text</GuideRuleTitle>
 
     <EuiSpacer size="xxl" />
@@ -595,6 +599,15 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+
+
+
+
+
+
+
+
 
   </GuidePage>
 );

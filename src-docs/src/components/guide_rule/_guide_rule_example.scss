@@ -40,4 +40,14 @@
       color: $euiColorDanger;
     }
   }
+
+  &.guideRule__example--frame {
+    .guideRule__example__panel {
+      padding: $euiSizeL;
+      background-color: $euiColorLightestShade;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
 }
