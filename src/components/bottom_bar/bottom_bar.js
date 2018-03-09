@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiPortal } from '../portal'
+
 const paddingSizeToClassNameMap = {
   none: null,
   s: 'euiBottomBar--paddingSmall',
@@ -24,12 +26,14 @@ export const EuiBottomBar = ({
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      {children}
-    </div>
+    <EuiPortal>
+      <div
+        className={classes}
+        {...rest}
+      >
+        {children}
+      </div>
+    </EuiPortal>
   );
 };
 

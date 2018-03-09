@@ -1,6 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.25`.
+**Bug fixes**
+
+- `EuiBottomBar` now uses `EuiPortal` to avoid zindex conflicts ([#487](https://github.com/elastic/eui/pull/487))
+- Upped dark theme contrast on disabled buttons  ([#487](https://github.com/elastic/eui/pull/487))
 
 # [`0.0.25`](https://github.com/elastic/eui/tree/v0.0.25)
 
