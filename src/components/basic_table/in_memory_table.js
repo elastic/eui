@@ -44,28 +44,28 @@ const InMemoryTablePropTypes = {
   selection: SelectionType
 };
 
-const initialQuery = (props) => {
-  const { search } = props;
+const getInitialQuery = (search) => {
   if (!search) {
-    return undefined;
+    return;
   }
+
   const query = search.defaultQuery || '';
   return isString(query) ? Query.parse(query) : query;
 };
 
-const initialCriteria = (props) => {
-  if (!props.pagination) {
+const getInitialPagination = (pagination) => {
+  if (!pagination) {
     return {
-      page: undefined,
+      pageIndex: undefined,
+      pageSize: undefined,
     };
   }
 
   const {
-    pagination: {
-      pageSizeOptions,
-      initialPageSize,
-    }
-  } = props;
+    initialPageSize,
+    pageSizeOptions = paginationBarDefaults.pageSizeOptions,
+  } = pagination;
+
 
   if (initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
     throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
@@ -74,64 +74,74 @@ const initialCriteria = (props) => {
   const defaultPageSize = pageSizeOptions ? pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0];
 
   return {
-    page: {
-      index: 0,
-      size: initialPageSize || defaultPageSize,
-    }
+    pageIndex: 0,
+    pageSize: initialPageSize || defaultPageSize,
+    pageSizeOptions,
+  };
+};
+
+const getInitialSorting = (sorting) => {
+  if (!sorting) {
+    return {
+      sortField: undefined,
+      sortDirection: undefined,
+    };
+  }
+
+  const {
+    field: sortField,
+    direction: sortDirection,
+  } = sorting;
+
+  return {
+    sortField,
+    sortDirection,
   };
 };
 
 export class EuiInMemoryTable extends Component {
-
   static propTypes = InMemoryTablePropTypes;
   static defaultProps = {
+    items: [],
     pagination: false,
     sorting: false
   };
 
   constructor(props) {
     super(props);
-    const criteria = initialCriteria(props);
-    const query = initialQuery(props);
+
+    const { search, pagination, sorting, columns } = props;
+    const { pageIndex, pageSize, pageSizeOptions } = getInitialPagination(pagination);
+    const { sortField, sortDirection } = getInitialSorting(sorting);
+
     this.state = {
-      data: this.computeData(props.items, criteria, query),
-      query,
-      criteria,
+      query: getInitialQuery(search),
+      pageIndex,
+      pageSize,
+      pageSizeOptions,
+      sortField,
+      sortDirection,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(prevState => {
-      const data = this.computeData(nextProps.items, prevState.criteria);
-      return { data };
+  onTableChange = ({ page = {}, sort = {} }) => {
+    const {
+      index: pageIndex,
+      size: pageSize,
+    } = page;
+
+    const {
+      field: sortField,
+      direction: sortDirection,
+    } = sort;
+
+    this.setState({
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection,
     });
-  }
-
-  computeData(items, criteria, query) {
-    if (!items) {
-      return { items: [], totalCount: 0 };
-    }
-    if (query) {
-      items = Query.execute(query, items);
-    }
-    if (criteria.sort) {
-      items = items.sort(Comparators.property(criteria.sort.field, Comparators.default(criteria.sort.direction)));
-    }
-    const totalCount = items.length;
-    if (criteria.page) {
-      const { index, size } = criteria.page;
-      const from = index * size;
-      items = items.slice(from, Math.min(from + size, items.length));
-    }
-    return { items, totalCount };
-  }
-
-  onCriteriaChange(criteria) {
-    this.setState(prevState => ({
-      criteria,
-      data: this.computeData(this.props.items, criteria, prevState.query)
-    }));
-  }
+  };
 
   onQueryChange(query) {
     if (this.props.search.onChange) {
@@ -140,36 +150,111 @@ export class EuiInMemoryTable extends Component {
       if (!shouldQueryInMemory) return;
     }
 
-    this.setState(prevState => ({
+    this.setState({
       query,
-      data: this.computeData(this.props.items, prevState.criteria, query)
-    }));
+    });
+  }
+
+  renderSearchBar() {
+    const { search } = this.props;
+    if (search) {
+      const {
+        onChange, // eslint-disable-line no-unused-vars
+        ...searchBarProps
+      } = isBoolean(search) ? {} : search;
+
+      return (
+        <EuiSearchBar
+          onChange={this.onQueryChange.bind(this)}
+          {...searchBarProps}
+        />
+      );
+    }
+  }
+
+  getItems() {
+    const { items } = this.props;
+
+    if (!items.length) {
+      return {
+        items: [],
+        totalItemCount: 0,
+      };
+    }
+
+    const {
+      query,
+      sortField,
+      sortDirection,
+      pageIndex,
+      pageSize,
+    } = this.state;
+
+    const matchingItems = query ? Query.execute(query, items) : items;
+
+    const sortedItems =
+      sortField ? matchingItems.sort(Comparators.property(sortField, Comparators.default(sortDirection))) : matchingItems;
+
+    const visibleItems = pageSize ? (() => {
+      const startIndex = pageIndex * pageSize;
+      return sortedItems.slice(startIndex, Math.min(startIndex + pageSize, sortedItems.length));
+    })() : sortedItems;
+
+    return {
+      items: visibleItems,
+      totalItemCount: matchingItems.length,
+    };
   }
 
   render() {
-    const { criteria, data } = this.state;
-    const { loading, message, error, selection } = this.props;
-    const { items, totalCount } = data;
-    const pagination = !this.props.pagination ? undefined : {
-      pageIndex: criteria.page.index,
-      pageSize: criteria.page.size,
-      totalItemCount: totalCount,
-      ...(isBoolean(this.props.pagination) ? {} : {
-        pageSizeOptions: this.props.pagination.pageSizeOptions
-      })
+    const {
+      columns,
+      loading,
+      message,
+      error,
+      selection,
+      pagination: hasPagination,
+      sorting: hasSorting,
+    } = this.props;
+
+    const {
+      pageIndex,
+      pageSize,
+      pageSizeOptions,
+      sortField,
+      sortDirection,
+    } = this.state;
+
+    const { items, totalItemCount } = this.getItems();
+
+    const pagination = !hasPagination ? undefined : {
+      pageIndex,
+      pageSize,
+      pageSizeOptions,
+      totalItemCount,
     };
-    const sorting = !this.props.sorting ? undefined : {
-      sort: criteria.sort
+
+    // Data loaded from a server can have a default sort order which is meaningful to the
+    // user, but can't be reproduced with client-side sort logic. So we allow the table to display
+    // rows in the order in which they're initially loaded by providing an undefined sorting prop.
+    // Once a user sorts a column, this will become a fully-defined sorting prop.
+    const sorting = !hasSorting || (!sortField && !sortDirection) ? undefined : {
+      sort: {
+        field: sortField,
+        direction: sortDirection,
+      },
     };
-    const searchBar = this.resolveSearchBar();
+
+    const searchBar = this.renderSearchBar();
+
     const table = (
       <EuiBasicTable
-        items={message ? [] : items} // if message is configured, we force showing it instead of the items
-        columns={this.props.columns}
+        items={message ? [] : items} // If message is configured, we force showing it instead of the items
+        columns={columns}
         pagination={pagination}
         sorting={sorting}
         selection={selection}
-        onChange={this.onCriteriaChange.bind(this)}
+        onChange={this.onTableChange}
         error={error}
         loading={loading}
         noItemsMessage={message}
@@ -187,22 +272,5 @@ export class EuiInMemoryTable extends Component {
         {table}
       </div>
     );
-  }
-
-  resolveSearchBar() {
-    const { search } = this.props;
-    if (search) {
-      const {
-        onChange, // eslint-disable-line no-unused-vars
-        ...searchBarProps
-      } = isBoolean(search) ? {} : search;
-
-      return (
-        <EuiSearchBar
-          onChange={this.onQueryChange.bind(this)}
-          {...searchBarProps}
-        />
-      );
-    }
   }
 }
