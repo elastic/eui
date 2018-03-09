@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import makeId from '../form/form_row/make_id';
 
@@ -118,17 +119,19 @@ export class EuiToolTip extends Component {
     }
 
     return (
-      <span
-        onFocus={this.showToolTip}
-        onBlur={this.hideToolTip}
-        ref={wrapper => this.wrapper = wrapper}
-        aria-describedby={this.state.id}
-        tabIndex={0}
-        {...toolTipProps}
-      >
-        {children}
-        {tooltip}
-      </span>
+      <EuiOutsideClickDetector onOutsideClick={this.hideToolTip}>
+        <span
+          onFocus={this.showToolTip}
+          onBlur={this.hideToolTip}
+          ref={wrapper => this.wrapper = wrapper}
+          aria-describedby={this.state.id}
+          tabIndex={0}
+          {...toolTipProps}
+        >
+          {children}
+          {tooltip}
+        </span>
+      </EuiOutsideClickDetector>
     );
   }
 }
