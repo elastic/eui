@@ -1,5 +1,7 @@
 import React, {
   Component,
+  cloneElement,
+  Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -7,7 +9,6 @@ import classNames from 'classnames';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
-import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import makeId from '../form/form_row/make_id';
 
@@ -21,28 +22,23 @@ const positionsToClassNameMap = {
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
 export class EuiToolTip extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       visible: false,
+      hasFocus: false,
       calculatedPosition: this.props.position,
       toolTipStyles: {},
       id: this.props.id || makeId(),
     };
-
-    this.showToolTip = this.showToolTip.bind(this);
-    this.positionToolTip = this.positionToolTip.bind(this);
-    this.hideToolTip = this.hideToolTip.bind(this);
-    this.toggleToolTipVisibility = this.toggleToolTipVisibility.bind(this);
   }
 
-  showToolTip() {
+  showToolTip = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  positionToolTip(toolTipRect) {
+  positionToolTip = (toolTipRect) => {
     const wrapperRect = this.wrapper.getBoundingClientRect();
     const userPosition = this.props.position;
 
@@ -54,27 +50,38 @@ export class EuiToolTip extends Component {
       calculatedPosition,
       toolTipStyles,
     });
-  }
+  };
 
-  hideToolTip() {
+  hideToolTip = () => {
     this.setState({ visible: false });
-  }
+  };
 
-  toggleToolTipVisibility(event) {
-    event.preventDefault();
-    this.setState(prevState => ({
-      visible: !prevState.visible
-    }));
-  }
+  onFocus = () => {
+    this.setState({
+      hasFocus: true,
+    });
+    this.showToolTip();
+  };
+
+  onBlur = () => {
+    this.setState({
+      hasFocus: false,
+    });
+    this.hideToolTip();
+  };
+
+  onMouseOut = () => {
+    if (!this.state.hasFocus) {
+      this.hideToolTip();
+    }
+  };
 
   render() {
-
     const {
       children,
       className,
       content,
       title,
-      clickOnly,
       ...rest
     } = this.props;
 
@@ -103,35 +110,23 @@ export class EuiToolTip extends Component {
       );
     }
 
-    let toolTipProps;
-    if (clickOnly) {
-      // react fires onFocus before onClick, but onMouseDown gets called before onFocus
-      // using onMouseDown so handler gets called before onFocus
-      // https://stackoverflow.com/a/28963938/890809
-      toolTipProps = {
-        onMouseDown: this.toggleToolTipVisibility
-      };
-    } else {
-      toolTipProps = {
-        onMouseOver: this.showToolTip,
-        onMouseOut: this.hideToolTip
-      };
-    }
+    const trigger = (
+      <span ref={wrapper => this.wrapper = wrapper}>
+        {cloneElement(children, {
+          onFocus: this.showToolTip,
+          onBlur: this.hideToolTip,
+          'aria-describedby': this.state.id,
+          onMouseOver: this.showToolTip,
+          onMouseOut: this.onMouseOut
+        })}
+      </span>
+    );
 
     return (
-      <EuiOutsideClickDetector onOutsideClick={this.hideToolTip}>
-        <span
-          onFocus={this.showToolTip}
-          onBlur={this.hideToolTip}
-          ref={wrapper => this.wrapper = wrapper}
-          aria-describedby={this.state.id}
-          tabIndex={0}
-          {...toolTipProps}
-        >
-          {children}
-          {tooltip}
-        </span>
-      </EuiOutsideClickDetector>
+      <Fragment>
+        {trigger}
+        {tooltip}
+      </Fragment>
     );
   }
 }
@@ -140,7 +135,7 @@ EuiToolTip.propTypes = {
   /**
    * The in-view trigger for your tooltip.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
   /**
    * The main content of your tooltip.
    */

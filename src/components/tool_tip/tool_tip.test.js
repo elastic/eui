@@ -7,7 +7,9 @@ import { EuiToolTip } from './tool_tip';
 describe('EuiToolTip', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiToolTip children="trigger" title="title" id="id" content="content" {...requiredProps} />
+      <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
+        <button>Trigger</button>
+      </EuiToolTip>
     );
 
     expect(component)
