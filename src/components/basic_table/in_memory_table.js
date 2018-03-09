@@ -107,7 +107,7 @@ export class EuiInMemoryTable extends Component {
     });
   }
 
-  computeData(items, criteria, query) {
+  computeData(items, criteria, query = (this.state && this.state.query)) {
     if (!items) {
       return { items: [], totalCount: 0 };
     }
