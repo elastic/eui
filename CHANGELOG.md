@@ -1,5 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.25`.
+
+# [`0.0.25`](https://github.com/elastic/eui/tree/v0.0.25)
+
+- `EuiSearchBar` accepts `toolsLeft` and `toolsRight` props ([#458](https://github.com/elastic/eui/pull/458))
 - Added `search.onChange` callback to `EuiInMemoryTable` ([#469](https://github.com/elastic/eui/pull/469))
 - Added `initialPageSize` option to `EuiInMemoryTable` ([#477](https://github.com/elastic/eui/pull/477))
 - Added design guidelines for button and toast usage ([#371](https://github.com/elastic/eui/pull/371))
@@ -26,6 +31,7 @@
 
 - Added `EuiInMemoryTable`, which encapsulates sorting, searching, selection, and pagination state and logic ([#390](https://github.com/elastic/eui/pull/390))
 - Added stack trace information to `EuiErrorBoundary` ([#428](https://github.com/elastic/eui/pull/428))
+- Make full screen code block use the same font-size on the original code block. ([#447](https://github.com/elastic/eui/pull/447))
 
 **Bug fixes**
 
@@ -269,7 +275,7 @@
 - Added `scope` prop to `EuiTableHeaderCell` and `EuiTableHeaderCellCheckbox` ([#171](https://github.com/elastic/eui/pull/171))
 - Added `disabled` prop to `EuiContextMenuItem` ([#172](https://github.com/elastic/eui/pull/172))
 - Added `EuiTablePagination` component and `Pager` service ([#178](https://github.com/elastic/eui/pull/178))
-- Added `EuiTooltip` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
+- **Note: This is broken until 0.0.25.** Added `EuiTooltip` component ([#174](https://github.com/elastic/eui/pull/174), [#193](https://github.com/elastic/eui/pull/193))
 - Added a bold weight of 700 and apply it to `<strong>` elements by default ([#193](https://github.com/elastic/eui/pull/193))
 - Icon size prop now accepts `s`. Adjusted coloring of sidenav arrows ([#178](https://github.com/elastic/eui/pull/197))
 - Added `EuiErrorBoundary` ([#198](https://github.com/elastic/eui/pull/198))

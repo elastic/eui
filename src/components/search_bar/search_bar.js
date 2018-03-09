@@ -16,7 +16,6 @@ import { EuiFlexItem } from '../flex/flex_item';
 export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
 
 export const SearchBarPropTypes = {
-
   /**
    * (query: Query) => void
    */
@@ -48,6 +47,16 @@ export const SearchBarPropTypes = {
    An array of search filters.
    */
   filters: SearchFiltersFiltersType,
+
+  /**
+   * Tools which go to the left of the search bar.
+   */
+  toolsLeft: PropTypes.node,
+
+  /**
+   * Tools which go to the right of the search bar.
+   */
+  toolsRight: PropTypes.node,
 };
 
 const resolveQuery = (query) => {
