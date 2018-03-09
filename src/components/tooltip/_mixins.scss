@@ -1,7 +1,0 @@
-@mixin euiTooltipSize($multiplier){
-  max-width: $euiSize * $multiplier;
-
-  .euiTooltip__content {
-    white-space: inherit; // allow text wrapping of content
-  }
-}

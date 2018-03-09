@@ -1,0 +1,3 @@
+export {
+  EuiPortal,
+} from './portal';

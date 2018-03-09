@@ -205,6 +205,10 @@ export {
 } from './popover';
 
 export {
+  EuiPortal,
+} from './portal';
+
+export {
   EuiProgress,
 } from './progress';
 
@@ -260,9 +264,8 @@ export {
 } from './toast';
 
 export {
-  Tooltip,
-  TooltipTrigger
-} from './tooltip';
+  EuiToolTip,
+} from './tool_tip';
 
 export {
   EuiTitle,
