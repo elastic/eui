@@ -240,10 +240,6 @@ export {
 } from './table';
 
 export {
-  EuiTableOfRecords
-} from './table_of_records';
-
-export {
   EuiBasicTable,
   EuiInMemoryTable
 } from './basic_table';
