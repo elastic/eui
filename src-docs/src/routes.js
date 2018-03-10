@@ -164,9 +164,6 @@ import { StepsExample }
 import { TableExample }
   from './views/tables/tables_example';
 
-import { TableOfRecordsExample }
-  from './views/table_of_records/table_of_records_example';
-
 import { TabsExample }
   from './views/tabs/tabs_example';
 
@@ -281,7 +278,6 @@ const navigation = [{
     LoadingExample,
     ProgressExample,
     TableExample,
-    TableOfRecordsExample,
     TextExample,
     TitleExample,
     ToastExample,
