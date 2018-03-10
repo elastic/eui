@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
+import {hashHistory} from 'react-router';
 
 import {
   Link,
@@ -57,6 +58,16 @@ export class GuidePageChrome extends Component {
       search: '',
       isSideNavOpenOnMobile: false,
     });
+  };
+
+  onClickRoute = path => {
+
+    this.setState({
+      search: '',
+      isSideNavOpenOnMobile: false,
+    });
+
+    hashHistory.push(path);
   };
 
   renderIdentity() {
@@ -116,7 +127,7 @@ export class GuidePageChrome extends Component {
         return {
           id: `${section.type}-${path}`,
           name,
-          href: `#/${path}`,
+          onClick: this.onClickRoute.bind(this, path),
           items: this.renderSubSections(sections),
           isSelected: name === this.props.currentRouteName,
         };
