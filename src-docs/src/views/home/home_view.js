@@ -1,4 +1,9 @@
 import React from 'react';
+import {hashHistory} from 'react-router';
+
+import {
+  Link,
+} from 'react-router';
 
 import {
   EuiText,
@@ -8,6 +13,11 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiHorizontalRule,
+  EuiCard,
+  EuiIcon,
+  EuiButton,
+  EuiTitle,
+  EuiLink,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
@@ -129,17 +139,142 @@ const fontSizes = [
 
 export const HomeView = () => (
   <div className="guideSection__text">
-    <EuiText>
-      <h1>Elastic UI Framework</h1>
-      <p>Version: <strong>{ pkg.version }</strong></p>
-      <p>
-        Elastic UI teams use the UI Framework to build Kibana&rsquo;s user interface. Please see
-        the <a href="https://www.elastic.co/guide/en/kibana/current/index.html">general Kibana docs</a> for information on how to use Kibana, and
-        the <a href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">plugin-specific section</a> for
-        help developing Kibana plugins. You can find the source for the <a href="https://github.com/elastic/eui">Elastic UI Framework on GitHub</a>.
-      </p>
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem>
+        <EuiTitle size="l">
+          <h1>Elastic UI framework</h1>
+        </EuiTitle>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
 
-      <h2>Goals</h2>
+        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <p>
+              Version:{' '}
+              <EuiLink href="https://github.com/elastic/eui">
+                <strong>{ pkg.version }</strong>
+              </EuiLink>
+            </p>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="logoGithub" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.25/eui_sketch_0.0.25.zip">
+              <strong>Sketch libraries</strong>
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="logoSketch" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+
+    </EuiFlexGroup>
+    <EuiSpacer />
+    <EuiText>
+      <p>
+        The Elastic UI Framework (EUI) is a design library in use at Elastic to
+        build internal products that need to share our branding and look and
+        feel. It distributes UI React components and static assets for use
+        in building web layouts. Alongside the React components is a SASS/CSS
+        layer that can be used independently on its own.
+        If this is your first time using EUI you might want to read up on{' '}
+        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">how to consume EUI</EuiLink>{' '}
+        and <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">Kibana plugin development</EuiLink>{' '}
+        in general.
+      </p>
+    </EuiText>
+    <EuiSpacer />
+    <EuiFlexGrid gutterSize="l" columns={3}>
+      <EuiFlexItem>
+        <Link to="/display/icons">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/uPtnXbv.png"
+            isClickable
+            icon={
+              <EuiFlexGroup style={{ marginLeft: 0 }}>
+                <EuiFlexItem>
+                  <EuiIcon size="xxl" type="check" color="ghost" />
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiIcon size="xxl" type="cross" color="ghost" />
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiIcon size="xxl" type="alert" color="ghost" />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            }
+            title="Icons"
+            description="Our SVG icon library gives you full control over size and color"
+          />
+        </Link>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <Link to="/navigation/button">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/hPl2fQn.png"
+            title="Buttons"
+            isClickable
+            description="Buttons for every usage you might need."
+          />
+        </Link>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <Link to="/layout/flex">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/M8N4Ms9.png"
+            title="Flexible layouts"
+            description="Create layouts by using flex groups, grids and items"
+            isClickable
+          />
+        </Link>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <Link to="/display/tables">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/UfigGiQ.png"
+            title="Tables"
+            isClickable
+            description="Example of a card's description. Stick to one or two sentences."
+          />
+        </Link>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <Link to="/display/card">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/PDVnOED.png"
+            title="Cards"
+            description="Cards like these help you make repeatable content more presentable"
+            isClickable
+          />
+        </Link>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <Link to="/forms/form">
+          <EuiCard
+            textAlign="left"
+            image="https://i.imgur.com/aSuom2R.png"
+            title="Forms"
+            isClickable
+            description="Input tags, layouts and validation for your forms"
+          />
+        </Link>
+      </EuiFlexItem>
+    </EuiFlexGrid>
+    <EuiSpacer />
+    <EuiText>
+      <h2>Design goals</h2>
       <p>EUI has the following primary goals..</p>
       <ul>
         <li><EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast,
