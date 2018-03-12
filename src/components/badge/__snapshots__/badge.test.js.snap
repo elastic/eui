@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiBadge is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiBadge euiBadge--default testClass1 testClass2"
   data-test-subj="test subject string"
@@ -13,11 +13,11 @@ exports[`EuiBadge is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color accent is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--accent"
 >
   <span
@@ -27,11 +27,11 @@ exports[`EuiBadge props color accent is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color danger is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--danger"
 >
   <span
@@ -41,11 +41,11 @@ exports[`EuiBadge props color danger is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color default is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--default"
 >
   <span
@@ -55,11 +55,11 @@ exports[`EuiBadge props color default is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color primary is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--primary"
 >
   <span
@@ -69,11 +69,11 @@ exports[`EuiBadge props color primary is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color secondary is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--secondary"
 >
   <span
@@ -83,11 +83,11 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props color warning is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--warning"
 >
   <span
@@ -97,11 +97,11 @@ exports[`EuiBadge props color warning is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props iconSide left is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--default"
 >
   <span
@@ -129,11 +129,11 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props iconSide right is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--iconRight euiBadge--default"
 >
   <span
@@ -161,11 +161,11 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;
 
 exports[`EuiBadge props iconType is rendered 1`] = `
-<div
+<span
   class="euiBadge euiBadge--default"
 >
   <span
@@ -193,5 +193,5 @@ exports[`EuiBadge props iconType is rendered 1`] = `
       Content
     </span>
   </span>
-</div>
+</span>
 `;

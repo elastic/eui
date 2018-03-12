@@ -45,21 +45,6 @@ const allowedColors = [
   'euiColorAccent',
 ]
 
-function renderPaletteColor(color) {
-  return (
-    <EuiFlexItem>
-      <div style={{ background: lightColors[color].rgba, height: 32 }} />
-      <div style={{ padding: '16px 16px 32px 16px' }}>
-        <p><strong>{color}</strong></p>
-        <EuiSpacer size="s" />
-        <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
-        <EuiSpacer size="xs" />
-        <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
-      </div>
-    </EuiFlexItem>
-  );
-}
-
 export default() => (
   <GuidePage title="Color guidelines">
     <EuiText>
@@ -76,7 +61,16 @@ export default() => (
 
     <EuiFlexGrid columns={3}>
       {allowedColors.map(function(color, index) {
-        return renderPaletteColor(color);
+        <EuiFlexItem key={index}>
+          <div style={{ background: lightColors[color].rgba, height: 32 }} />
+          <div style={{ padding: '16px 16px 32px 16px' }}>
+            <p><strong>{color}</strong></p>
+            <EuiSpacer size="s" />
+            <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
+            <EuiSpacer size="xs" />
+            <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
+          </div>
+        </EuiFlexItem>
       })}
     </EuiFlexGrid>
 
@@ -115,7 +109,7 @@ export default() => (
     <div>
       {allowedColors.map(function(color, index) {
          return (
-           <Fragment>
+           <Fragment key={index}>
              <EuiFlexGroup gutterSize="none">
               {allowedColors.map(function(color2, index) {
                 const contrast = (
@@ -133,14 +127,14 @@ export default() => (
                       <EuiBadge color="#000">AAA</EuiBadge>
                     </div>
                   );
-                } else if (contrast > 4.5) {
+                } else if (contrast > 4.4) {
                   contrastRating = (
                     <div>
                       <EuiSpacer size="xs" />
                       <EuiBadge color="#333">AA</EuiBadge>
                     </div>
                   );
-                } else if (contrast > 3) {
+                } else if (contrast >= 2.9) {
                   contrastRating = (
                     <div>
                       <EuiSpacer size="xs" />

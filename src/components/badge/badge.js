@@ -98,7 +98,7 @@ export const EuiBadge = ({
     );
   } else {
     return (
-      <div
+      <span
         className={classes}
         style={optionalCustomStyles}
         {...rest}
@@ -109,7 +109,7 @@ export const EuiBadge = ({
             {children}
           </span>
         </span>
-      </div>
+      </span>
     );
   }
 };
