@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- `EuiSelect` do not set `defaultValue` property when `value` property is provided ([#504](https://github.com/elastic/eui/pull/504)).
 - `EuiBottomBar` now uses `EuiPortal` to avoid zindex conflicts ([#487](https://github.com/elastic/eui/pull/487))
 - Upped dark theme contrast on disabled buttons  ([#487](https://github.com/elastic/eui/pull/487))
 

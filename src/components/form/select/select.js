@@ -21,6 +21,7 @@ export const EuiSelect = ({
   isLoading,
   hasNoInitialSelection,
   defaultValue,
+  value,
   ...rest
 }) => {
   const classes = classNames(
@@ -39,6 +40,13 @@ export const EuiSelect = ({
     );
   }
 
+  // React HTML input can not have both value and defaultValue properties.
+  // https://reactjs.org/docs/uncontrolled-components.html#default-values
+  let selectDefaultValue;
+  if (!value) {
+    selectDefaultValue = defaultValue || '';
+  }
+
   return (
     <EuiFormControlLayout
       icon="arrowDown"
@@ -52,7 +60,8 @@ export const EuiSelect = ({
           name={name}
           className={classes}
           ref={inputRef}
-          defaultValue={defaultValue || ''}
+          defaultValue={selectDefaultValue}
+          value={value}
           {...rest}
         >
           {emptyOptionNode}

@@ -118,3 +118,30 @@ exports[`EuiSelect props options are rendered 1`] = `
   </eui-validatable-control>
 </eui-form-control-layout>
 `;
+
+exports[`EuiSelect props value option is rendered 1`] = `
+<eui-form-control-layout
+  fullwidth="false"
+  icon="arrowDown"
+  iconside="right"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect"
+    >
+      <option
+        selected=""
+        value="1"
+      >
+        Option #1
+      </option>
+      <option
+        value="2"
+      >
+        Option #2
+      </option>
+    </select>
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
