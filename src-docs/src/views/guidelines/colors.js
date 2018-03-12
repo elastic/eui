@@ -45,6 +45,27 @@ const allowedColors = [
   'euiColorAccent',
 ]
 
+const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
+
+const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
+
+const ratingAA18 = <EuiBadge color="#666">AA18</EuiBadge>;
+
+function renderPaletteColor(color, index) {
+  return (
+    <EuiFlexItem key={index}>
+      <div style={{ background: lightColors[color].rgba, height: 24 }} />
+      <div className="guidelineColor__palette">
+        <p><strong>{color}</strong></p>
+        <EuiSpacer size="s" />
+        <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
+        <EuiSpacer size="xs" />
+        <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
+      </div>
+    </EuiFlexItem>
+  );
+}
+
 export default() => (
   <GuidePage title="Color guidelines">
     <EuiText>
@@ -61,16 +82,7 @@ export default() => (
 
     <EuiFlexGrid columns={3}>
       {allowedColors.map(function(color, index) {
-        <EuiFlexItem key={index}>
-          <div style={{ background: lightColors[color].rgba, height: 32 }} />
-          <div style={{ padding: '16px 16px 32px 16px' }}>
-            <p><strong>{color}</strong></p>
-            <EuiSpacer size="s" />
-            <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
-            <EuiSpacer size="xs" />
-            <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
-          </div>
-        </EuiFlexItem>
+        return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
 
@@ -90,16 +102,15 @@ export default() => (
       <h3>Rating definitions</h3>
       <ul>
         <li>
-          <EuiBadge color="#000">AAA</EuiBadge>{' '}
-          Passes with a contrast of 7+
+          {ratingAAA} Passes with a contrast of 7+
         </li>
         <li>
           <EuiBadge color="#333">AA</EuiBadge>{' '}
-          Passes with a contrast of 4.5+
+          {ratingAA} Passes with a contrast of 4.5+
         </li>
         <li>
           <EuiBadge color="#666">AA18</EuiBadge>{' '}
-          Passes with a contrast of 3+, but only if the text displayed is 18px or larger
+          {ratingAA18} Passes with a contrast of 3+, but only if the text displayed is 18px or larger
         </li>
       </ul>
     </EuiText>
@@ -124,21 +135,21 @@ export default() => (
                   contrastRating = (
                     <div>
                       <EuiSpacer size="xs" />
-                      <EuiBadge color="#000">AAA</EuiBadge>
+                      {ratingAAA}
                     </div>
                   );
                 } else if (contrast > 4.4) {
                   contrastRating = (
                     <div>
                       <EuiSpacer size="xs" />
-                      <EuiBadge color="#333">AA</EuiBadge>
+                      {ratingAA}
                     </div>
                   );
                 } else if (contrast >= 2.9) {
                   contrastRating = (
                     <div>
                       <EuiSpacer size="xs" />
-                      <EuiBadge color="#666">AA18</EuiBadge>
+                      {ratingAA18}
                     </div>
                   );
                 }
@@ -155,7 +166,7 @@ export default() => (
                           <EuiDescriptionListDescription>
                             <EuiFlexGroup alignItems="center" gutterSize="s">
                               <EuiFlexItem grow={false}>
-                                <div style={{ height: 12, width: 12, borderRadius: '50%', background: lightColors[color2].rgba }} />
+                                <div className="guidelineColor__swatch" style={{ background: lightColors[color2].rgba }} />
                               </EuiFlexItem>
                               <EuiFlexItem grow={false} style={{ color: 'white' }}>
                                 {color2}
@@ -168,7 +179,7 @@ export default() => (
                           <EuiDescriptionListDescription>
                             <EuiFlexGroup alignItems="center" gutterSize="s">
                               <EuiFlexItem grow={false}>
-                                <div style={{ height: 12, width: 12, borderRadius: '50%', background: lightColors[color].rgba }} />
+                                <div className="guidelineColor__swatch" style={{ background: lightColors[color].rgba }} />
                               </EuiFlexItem>
                               <EuiFlexItem grow={false} style={{ color: 'white' }}>
                                 {color}
@@ -179,7 +190,7 @@ export default() => (
                       }
                     >
                       <div>
-                        <div style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba, height: 32, lineHeight: '32px' }}>
+                        <div className="guidelineColor__stripe" style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba }}>
                           <div>Text</div>
                         </div>
                         {contrastRating}
