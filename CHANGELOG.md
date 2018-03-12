@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.26`.
+
+# [`0.0.26`](https://github.com/elastic/eui/tree/v0.0.26)
+
 **Bug fixes**
 
 - `EuiSelect` do not set `defaultValue` property when `value` property is provided ([#504](https://github.com/elastic/eui/pull/504)).
