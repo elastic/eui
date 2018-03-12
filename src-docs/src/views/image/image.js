@@ -8,8 +8,8 @@ export default () => (
   <EuiImage
     size="l"
     hasShadow
-    caption="I am a starship. Zooom!"
-    alt="Accessible image alt goes here"
-    url="https://i.imgur.com/4qx7HhE.jpg"
+    caption="Random nature image"
+    alt="Random nature image"
+    url="https://source.unsplash.com/300x300/?Nature"
   />
 );

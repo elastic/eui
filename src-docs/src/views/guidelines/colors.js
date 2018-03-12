@@ -95,44 +95,16 @@ export default() => (
 
     <EuiSpacer size="xl" />
 
-    <EuiText>
-      <h2>Core</h2>
-    </EuiText>
-    <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {mainColors.map(function(color, index) {
+      {allowedColors.map(function(color, index) {
         return renderPaletteColor(color);
       })}
     </EuiFlexGrid>
 
-    <EuiSpacer size="xl" />
 
-    <EuiText>
-      <h2>Qualitative scale</h2>
-    </EuiText>
-    <EuiSpacer />
+    <EuiSpacer size="xxl" />
 
-    <EuiFlexGrid columns={3}>
-      {qualitativeColors.map(function(color, index) {
-        return renderPaletteColor(color);
-      })}
-    </EuiFlexGrid>
-
-    <EuiSpacer size="xl" />
-
-    <EuiText>
-      <h2>Gray scale</h2>
-    </EuiText>
-    <EuiSpacer />
-
-    <EuiFlexGrid columns={3}>
-      {grayColors.map(function(color, index) {
-        return renderPaletteColor(color);
-      })}
-    </EuiFlexGrid>
-
-    <EuiHorizontalRule />
     <EuiText>
       <h2>Accessible text contrast</h2>
       <p>
