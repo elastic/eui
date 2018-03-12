@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss'
-import { calculateContrast } from '../../../../src/services/color/luminance_and_contrast'
+import { calculateContrast, rgbToHex } from '../../../../src/services'
+
 
 import {
   Link,
@@ -17,6 +18,7 @@ import {
   EuiText,
   EuiSpacer,
   EuiFlexGroup,
+  EuiFlexGrid,
   EuiFlexItem,
   EuiIcon,
   EuiHorizontalRule,
@@ -43,8 +45,94 @@ const allowedColors = [
   'euiColorAccent',
 ]
 
+const mainColors = [
+  'euiColorPrimary',
+  'euiColorSecondary',
+  'euiColorAccent',
+]
+
+const qualitativeColors = [
+  'euiColorSuccess',
+  'euiColorWarning',
+  'euiColorDanger',
+]
+
+const grayColors = [
+  'euiColorEmptyShade',
+  'euiColorLightestShade',
+  'euiColorLightShade',
+  'euiColorMediumShade',
+  'euiColorDarkShade',
+  'euiColorDarkestShade',
+  'euiColorFullShade',
+]
+
+function renderPaletteColor(color) {
+  return (
+    <EuiFlexItem>
+      <div style={{ background: lightColors[color].rgba, height: 32 }} />
+      <div style={{ padding: '16px 16px 32px 16px' }}>
+        <p><strong>{color}</strong></p>
+        <EuiSpacer size="s" />
+        <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
+        <EuiSpacer size="xs" />
+        <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
+      </div>
+    </EuiFlexItem>
+  );
+}
+
 export default() => (
   <GuidePage title="Color guidelines">
+    <EuiText>
+      <p>
+        Elastic UI builds with a very limited palette. We use a core set of three colors,
+        combined with a green / orange / red qualitative set of three, and finally combine
+        those against a six-color grayscale. Variation behond these colors is minimal and
+        always dont with math manipulation against the original set.
+      </p>
+    </EuiText>
+
+    <EuiSpacer size="xl" />
+
+    <EuiText>
+      <h2>Core</h2>
+    </EuiText>
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      {mainColors.map(function(color, index) {
+        return renderPaletteColor(color);
+      })}
+    </EuiFlexGrid>
+
+    <EuiSpacer size="xl" />
+
+    <EuiText>
+      <h2>Qualitative scale</h2>
+    </EuiText>
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      {qualitativeColors.map(function(color, index) {
+        return renderPaletteColor(color);
+      })}
+    </EuiFlexGrid>
+
+    <EuiSpacer size="xl" />
+
+    <EuiText>
+      <h2>Gray scale</h2>
+    </EuiText>
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      {grayColors.map(function(color, index) {
+        return renderPaletteColor(color);
+      })}
+    </EuiFlexGrid>
+
+    <EuiHorizontalRule />
     <EuiText>
       <h2>Accessible text contrast</h2>
       <p>
@@ -147,7 +235,7 @@ export default() => (
                       }
                     >
                       <div>
-                        <div style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba, padding: 4 }}>
+                        <div style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba, height: 32, lineHeight: '32px' }}>
                           <div>Text</div>
                         </div>
                         {contrastRating}
