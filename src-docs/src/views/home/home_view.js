@@ -24,60 +24,6 @@ import {
 
 const pkg = require('../../../../package.json');
 
-const sizes = [
-  {
-    name: 'Extra small',
-    size: 4,
-  },
-  {
-    name: 'Small',
-    size: 8,
-  },
-  {
-    name: 'Medium',
-    size: 12,
-  },
-  {
-    name: 'default',
-    size: 16,
-  },
-  {
-    name: 'Large',
-    size: 24,
-  },
-  {
-    name: 'Extra large',
-    size: 32,
-  },
-  {
-    name: 'Extra extra large',
-    size: 40,
-  },
-];
-
-const fontSizes = [
-  {
-    name: 'Extra small',
-    size: 12,
-  },
-  {
-    name: 'Small',
-    size: 14,
-  },
-  {
-    name: 'Default',
-    size: 16,
-  },
-  {
-    name: 'Large',
-    size: 24,
-  },
-  {
-    name: 'Extra extra large',
-    size: 32,
-  },
-];
-
 export const HomeView = () => (
   <div className="guideSection__text">
     <EuiFlexGroup alignItems="center">
@@ -128,7 +74,7 @@ export const HomeView = () => (
     <EuiSpacer />
     <EuiText>
       <p>
-        The Elastic UI Framework (EUI) is a design library in use at Elastic to
+        The Elastic UI framework (EUI) is a design library in use at Elastic to
         build internal products that need to share our branding and look and
         feel. It distributes UI React components and static assets for use
         in building web layouts. Alongside the React components is a SASS/CSS
@@ -243,59 +189,5 @@ export const HomeView = () => (
         </li>
       </ul>
     </EuiText>
-
-    <EuiHorizontalRule />
-
-    <EuiText>
-      <h2>Spacing and sizing</h2>
-      <p>
-        <EuiCode>EUI</EuiCode> is a minimalist design and as such needs to be very precise
-        with the spacing and padding between and around items. <EuiCode>16px</EuiCode> is our
-        magic number. It is our default font-size and our default spacing size.
-        Larger numbers can be used, but must always be
-        a <EuiCode>multiple of 16px</EuiCode> beyond these sizes below.
-      </p>
-
-      <p>Sizing when passed as values to props should always be <EuiCode>xs / s / m / l / xl ...etc</EuiCode></p>
-
-    </EuiText>
-
-    <EuiSpacer size="l" />
-
-    <EuiFlexGroup gutterSize="s" className="guideDemo__sizeGrid">
-      <EuiFlexItem>
-        <EuiText><h3>Element sizes / paddings / margins</h3></EuiText>
-        {sizes.map((item, index) => {
-          return (
-            <div key={index}>
-              <EuiSpacer size="m" />
-              <EuiFlexGroup key={index} alignItems="center">
-                <EuiFlexItem grow={false} style={{ width: 40, textAlign: 'right' }}>
-                  <div className="guideDemo__size" style={{ height: item.size, width: item.size }} />
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <p className="guideDemo__sizeText">
-                    {item.size}px - {item.name}
-                  </p>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>
-          );
-        })}
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiText><h3>Font sizes</h3></EuiText>
-        {fontSizes.map((item, index) => {
-          return (
-            <div style={{ fontSize: item.size, marginTop: 24 }} key={index}>
-              {item.name} is {item.size}: Something about a lazy fox?
-            </div>
-          );
-        })}
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
-
   </div>
 );
