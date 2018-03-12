@@ -17,6 +17,8 @@ export {
 
 export {
   isColorDark,
+  calculateContrast,
+  calculateLuminance,
   VISUALIZATION_COLORS,
 } from './color';
 

@@ -96,6 +96,7 @@
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
+    "sass-vars-to-js-loader": "^2.0.2",
     "shelljs": "^0.8.1",
     "sinon": "^4.0.1",
     "style-loader": "^0.19.0",

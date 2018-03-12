@@ -1,5 +1,6 @@
 import React from 'react';
 import {hashHistory} from 'react-router';
+import sassColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
 
 import {
   Link,
@@ -18,70 +19,10 @@ import {
   EuiButton,
   EuiTitle,
   EuiLink,
+  EuiToolTip,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
-
-const colors = [
-  {
-    color: 'euiColorPrimary',
-    hex: '#0079a5',
-  },
-  {
-    color: 'euiColorSecondary',
-    hex: '#00A69B',
-  },
-  {
-    color: 'euiColorAccent',
-    hex: '#DD0A73',
-  },
-  {
-    color: 'euiColorDanger',
-    hex: '#A30000',
-  },
-  {
-    color: 'euiColorWarning',
-    hex: '#E5830E',
-  },
-];
-
-const grays = [
-  {
-    color: 'euiColorEmptyShade',
-    hex: '#FFF',
-    textColor: '#222'
-  },
-  {
-    color: 'euiColorLightestShade',
-    hex: '#F5F5F5',
-    textColor: '#222'
-  },
-  {
-    color: 'euiColorLightShade',
-    hex: '#D9D9D9',
-    textColor: '#222'
-  },
-  {
-    color: 'euiColorMediumShade',
-    hex: '#999999',
-    textColor: '#FFF'
-  },
-  {
-    color: 'euiColorDarkShade',
-    hex: '#666666',
-    textColor: '#FFF'
-  },
-  {
-    color: 'euiColorDarkestShade',
-    hex: '#3F3F3F',
-    textColor: '#FFF'
-  },
-  {
-    color: 'euiColorFullShade',
-    hex: '#000000',
-    textColor: '#FFF'
-  },
-];
 
 const sizes = [
   {
@@ -165,9 +106,17 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
-            <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.25/eui_sketch_0.0.25.zip">
-              <strong>Sketch libraries</strong>
-            </EuiLink>
+            <EuiToolTip
+              title="Download zip"
+              postiion="down"
+              content="Import these sketch files into a new project as libraries.
+                This will provide symbols that match against their EUI component
+                counterparts."
+            >
+              <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.25/eui_sketch_0.0.25.zip">
+                <strong>Sketch libraries</strong>
+              </EuiLink>
+            </EuiToolTip>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiIcon type="logoSketch" />
@@ -294,52 +243,6 @@ export const HomeView = () => (
         </li>
       </ul>
     </EuiText>
-
-    <EuiHorizontalRule />
-
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <EuiText>
-          <h2>Colors</h2>
-          <p>
-            The UI Framework uses a very limited palette. Every color is
-            calculated using Sass color from one of the below.
-          </p>
-          <h3>Theming</h3>
-          <p>
-            Theming is achieved by overwriting these twelve colors with
-            a different set. This is why it is very important <EuiCode>never to use hex colors</EuiCode> in
-            EUI outside of the global variable files.
-          </p>
-          <h3>Accessibility</h3>
-          <p>
-            We aim to be at least AA compliant in our design. That means that only some of the colors
-            to the right should be used for text.
-          </p>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiFlexGrid columns={2} gutterSize="s">
-          {colors.map((item, index) => {
-            return (
-              <EuiFlexItem className="guideDemo__color" style={{ background: item.hex }} key={index}>
-                <p>${item.color}</p>
-                <p className="guideDemo__colorHex">{item.hex}</p>
-              </EuiFlexItem>
-            );
-          })}
-
-          {grays.map((item, index) => {
-            return (
-              <EuiFlexItem className="guideDemo__color" style={{ background: item.hex, color: item.textColor }} key={index}>
-                <p>${item.color}</p>
-                <p className="guideDemo__colorHex">{item.hex}</p>
-              </EuiFlexItem>
-            );
-          })}
-        </EuiFlexGrid>
-      </EuiFlexItem>
-    </EuiFlexGroup>
 
     <EuiHorizontalRule />
 
