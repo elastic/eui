@@ -1,0 +1,20 @@
+.guidelineColor__palette {
+  padding: $euiSize;
+  padding-bottom: $euiSizeXL;
+}
+
+.guidelineColor__swatch {
+  height: $euiSizeM;
+  width: $euiSizeM;
+  border-radius: 50%;
+}
+
+.guidelineColor__stripe {
+  height: $euiSizeL;
+  line-height: $euiSizeL;
+}
+
+.guidelineColor__test {
+  text-align: center;
+  font-size: $euiFontSizeS;
+}

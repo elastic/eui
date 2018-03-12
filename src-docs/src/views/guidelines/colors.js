@@ -45,6 +45,19 @@ const allowedColors = [
   'euiColorAccent',
 ]
 
+const visColors = [
+  'euiColorVis0',
+  'euiColorVis1',
+  'euiColorVis2',
+  'euiColorVis3',
+  'euiColorVis4',
+  'euiColorVis5',
+  'euiColorVis6',
+  'euiColorVis7',
+  'euiColorVis8',
+  'euiColorVis9',
+]
+
 const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
 
 const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
@@ -56,11 +69,12 @@ function renderPaletteColor(color, index) {
     <EuiFlexItem key={index}>
       <div style={{ background: lightColors[color].rgba, height: 24 }} />
       <div className="guidelineColor__palette">
-        <p><strong>{color}</strong></p>
-        <EuiSpacer size="s" />
-        <p>RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}</p>
-        <EuiSpacer size="xs" />
-        <p>HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}</p>
+        <EuiText size="s">
+          <strong>{color}</strong>
+          <EuiSpacer size="s" />
+          RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}<br/>
+          HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}
+        </EuiText>
       </div>
     </EuiFlexItem>
   );
@@ -68,7 +82,11 @@ function renderPaletteColor(color, index) {
 
 export default() => (
   <GuidePage title="Color guidelines">
+
+    <EuiSpacer size="xl" />
+
     <EuiText>
+      <h2>Core palette</h2>
       <p>
         Elastic UI builds with a very limited palette. We use a core set of three colors,
         combined with a green / orange / red qualitative set of three, and finally combine
@@ -77,11 +95,29 @@ export default() => (
       </p>
     </EuiText>
 
-    <EuiSpacer size="xl" />
-
+    <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
       {allowedColors.map(function(color, index) {
+        return renderPaletteColor(color, index);
+      })}
+    </EuiFlexGrid>
+
+    <EuiSpacer size="xxl" />
+
+    <EuiText>
+      <h2>Qualitative visualization palette</h2>
+      <p>
+        The following colors are color-blind safe and should be used in
+        qualitative visualizations.
+      </p>
+    </EuiText>
+
+
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      {visColors.map(function(color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
@@ -115,7 +151,7 @@ export default() => (
       </ul>
     </EuiText>
 
-    <EuiHorizontalRule />
+    <EuiSpacer size="xxl" />
 
     <div>
       {allowedColors.map(function(color, index) {
@@ -155,7 +191,7 @@ export default() => (
                 }
 
                 return (
-                  <EuiFlexItem key={index} style={{ minHeight: 64, textAlign: 'center' }}>
+                  <EuiFlexItem className="guidelineColor__test" key={index}>
                     <EuiToolTip
                       title={`Contrast is ${contrast.toFixed(1)}`}
                       content={
