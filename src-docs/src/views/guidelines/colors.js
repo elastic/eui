@@ -11,30 +11,16 @@ import {
 
 import {
   GuidePage,
-  GuideRule,
-  GuideRuleTitle,
-  GuideRuleExample
 } from '../../components';
 
 import {
   EuiText,
-  EuiButton,
-  EuiButtonIcon,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonEmpty,
   EuiIcon,
-  EuiImage,
-  EuiTable,
-  EuiTableHeader,
-  EuiTableHeaderCell,
-  EuiTableBody,
-  EuiTableRow,
-  EuiTableRowCell,
   EuiHorizontalRule,
   EuiBadge,
-  EuiPanel,
   EuiToolTip,
   EuiDescriptionList,
   EuiDescriptionListTitle,
