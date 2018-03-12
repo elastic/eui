@@ -45,28 +45,6 @@ const allowedColors = [
   'euiColorAccent',
 ]
 
-const mainColors = [
-  'euiColorPrimary',
-  'euiColorSecondary',
-  'euiColorAccent',
-]
-
-const qualitativeColors = [
-  'euiColorSuccess',
-  'euiColorWarning',
-  'euiColorDanger',
-]
-
-const grayColors = [
-  'euiColorEmptyShade',
-  'euiColorLightestShade',
-  'euiColorLightShade',
-  'euiColorMediumShade',
-  'euiColorDarkShade',
-  'euiColorDarkestShade',
-  'euiColorFullShade',
-]
-
 function renderPaletteColor(color) {
   return (
     <EuiFlexItem>
