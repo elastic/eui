@@ -76,5 +76,21 @@ describe('EuiSelect', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('value option is rendered', () => {
+      const component = render(
+        <EuiSelect
+          options={[
+            { value: '1', text: 'Option #1' },
+            { value: '2', text: 'Option #2' }
+          ]}
+          value={'1'}
+          onChange={() => {}}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });
