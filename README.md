@@ -15,7 +15,21 @@ To install the Elastic UI Framework, use the `npm` CLI.
 npm install @elastic/eui
 ```
 
-## Running locally
+## Running Locally
+
+### Node
+
+We depend upon the version of node defined in [.nvmrc](.nvmrc).
+
+You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
+
+To install and use the correct node version with `nvm`:
+
+```
+nvm install
+```
+
+### Documentation
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running.
 
