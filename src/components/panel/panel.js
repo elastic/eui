@@ -40,8 +40,8 @@ export const EuiPanel = ({
     className: classes
   }
 
-  // Avoid passing down this props if is hasn't been supplied, in order to
-  // avoid noise in snapshots.
+  // Avoid passing down this prop if it hasn't been supplied, in order to
+  // avoid noise in react-test-renderer snapshots.
   if (onClick != null) {
     props.onClick = onClick
   }
