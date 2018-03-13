@@ -75,8 +75,8 @@ export const HomeView = () => (
     <EuiText>
       <p>
         The Elastic UI framework (EUI) is a design library in use at Elastic to
-        build internal products that need to share our branding and look and
-        feel. It distributes UI React components and static assets for use
+        build internal products that need to share our aesthetics.
+        It distributes UI React components and static assets for use
         in building web layouts. Alongside the React components is a SASS/CSS
         layer that can be used independently on its own.
         If this is your first time using EUI you might want to read up on{' '}
