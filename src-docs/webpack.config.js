@@ -30,9 +30,16 @@ module.exports = {
       loaders: ['style-loader/useable', 'css-loader'],
       exclude: /node_modules/
     }, {
-      test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
+      test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
       loader: 'file-loader',
-    }]
+    }, {
+      test: /\.(png|jp(e*)g|svg)$/,
+      loader: 'url-loader',
+      options: {
+        limit: 8000, // Convert images < 8kb to base64 strings
+        name: 'images/[hash]-[name].[ext]'
+      },
+    }],
   },
 
   plugins: [

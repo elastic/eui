@@ -32,6 +32,8 @@ import {
 
 import ContextMenu from '../context_menu/context_menu';
 
+import imageButtonPlacement from '../../images/button_placement.png';
+
 export default() => (
   <GuidePage title="Button guidelines">
     <EuiText>
@@ -168,7 +170,7 @@ export default() => (
         frame="frame"
       >
         <div style={{ textAlign: 'center' }}>
-          <EuiImage alt="button placement in an input modal" url="https://i.imgur.com/Rijl9D4.png"/>
+          <EuiImage alt="button placement in an input modal" url={imageButtonPlacement} />
         </div>
       </GuideRuleExample>
 
@@ -505,8 +507,8 @@ export default() => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Establishes a new relationship.  Often used in a create-then-add scenario.  
-            You create a dashboard, then add a visualization.  Always followed by an object. 
+            Establishes a new relationship.  Often used in a create-then-add scenario.
+            You create a dashboard, then add a visualization.  Always followed by an object.
             Do not use &quot;Add new.&quot; Remove is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
@@ -562,7 +564,7 @@ export default() => (
             <EuiButtonIcon size="s" color="danger" iconType="cross" aria-label="Remove"/>
           </EuiTableRowCell>
           <EuiTableRowCell>
-            Removes a relationship, but doesn&apos;t permanently delete data.  
+            Removes a relationship, but doesn&apos;t permanently delete data.
             For example, you remove a visualization from a dashboard. Add is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
