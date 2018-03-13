@@ -140,7 +140,7 @@ export const HomeView = () => (
             image="https://i.imgur.com/UfigGiQ.png"
             title="Tables"
             isClickable
-            description="Example of a card's description. Stick to one or two sentences."
+            description="Build tables from individual components or high level wrappers"
           />
         </Link>
       </EuiFlexItem>
