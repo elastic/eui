@@ -24,10 +24,9 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="">
+  <GuidePage title="Modals">
 
     <EuiText>
-      <h1>Modal guidelines</h1>
       <p>
         A modal says “pay attention to me and nothing else.”  They work best for focusing users&apos; attention on a short
         amount of content and getting them to make a decision.
@@ -74,16 +73,16 @@ export default () => (
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
-    
+
     <EuiSpacer />
-    
+
     <EuiHorizontalRule/>
 
 
     <GuideRuleTitle>Input</GuideRuleTitle>
 
-    
-    
+
+
     <GuideRule
       heading=""
       description="An input modal (EuiModal) is for a simple task that doesn't require a lot of explanatory information or user interaction."
@@ -133,20 +132,20 @@ export default () => (
 
       </GuideRuleExample>
     </GuideRule>
-    
+
     <GuideRule
       heading="Content should fit in a single screen"
-      description="If your modal has numerous options or a long list of items, 
+      description="If your modal has numerous options or a long list of items,
       use scrolling only if it&apso;s better than other design solutions, such as keeping the content on the page."
       />
-      
+
       <GuideRule
         heading="Don't launch a modal from a modal"
-        description="Using a modal on top of a modal typically means your workflow is too complex—users shouldn't 
+        description="Using a modal on top of a modal typically means your workflow is too complex—users shouldn't
         have to remember which modal they are in. Instead, use a component that supports multiple steps, such as a form or steps"
         />
-    
-    
+
+
     <EuiSpacer />
 
     <EuiHorizontalRule/>
@@ -155,8 +154,8 @@ export default () => (
 
     <GuideRule
       heading=""
-      description="The most common use of a modal in the EUI Framework is to 
-      ask the user to confirm an action. It starts with a question and gives 
+      description="The most common use of a modal in the EUI Framework is to
+      ask the user to confirm an action. It starts with a question and gives
       users enough information to make a decision."
     >
 
@@ -191,7 +190,7 @@ export default () => (
             url="https://imgur.com/cZXGOtz.jpg"
           />
         </div>
-        
+
         </GuideRuleExample>
 
       </GuideRule>
@@ -234,7 +233,7 @@ export default () => (
         </div>
       </GuideRuleExample>
     </GuideRule>
-    
+
     <GuideRule
       heading="Create separate confirmations for single and bulk actions"
       description="
@@ -305,7 +304,7 @@ export default () => (
         </div>
       </GuideRuleExample>
     </GuideRule>
-    
+
 
     <GuideRuleTitle>Things to avoid</GuideRuleTitle>
 
@@ -352,7 +351,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup>
-    
+
     <EuiFlexGroup wrap={true}>
       <EuiFlexItem style={{ minWidth: 300 }}>
         <EuiPanel paddingSize="l">
@@ -394,6 +393,6 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    
+
   </GuidePage>
 );

@@ -22,9 +22,8 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Button">
+  <GuidePage title="Toast guidelines">
     <EuiText>
-      <h1>Toast guidelines</h1>
       <p>
         This page documents patterns for using toasts, short messages that
         appears on the lower right corner and time out after a few seconds.

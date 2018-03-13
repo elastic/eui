@@ -2,6 +2,14 @@
 
 - Don't propagate a null `onClick` on EuiPanels ([#473](https://github.com/elastic/eui/pull/473))
 - Use 1.1px for the `EuiHorizontalRule` height, in order to work around strange Chrome height calculations ([#473](https://github.com/elastic/eui/pull/473))
+- New icons for `logoGithub` and `logoSketch` ([#494](https://github.com/elastic/eui/pull/494))
+- `EuiCard` now has an `href` and `isClickable` prop for better handling hover animations. ([#494](https://github.com/elastic/eui/pull/494))
+- Added `calculateContrast` and `rgbToHex` to services ([#494](https://github.com/elastic/eui/pull/494))
+
+**Bug fixes**
+
+- Fix `reponsive={false}` prop not working when flex groups were nested. ([#494](https://github.com/elastic/eui/pull/494))
+- `EuiBadge` wrapping element changed from a `div` to `span` so it can be nested in text blocks ([#494](https://github.com/elastic/eui/pull/494))
 
 # [`0.0.26`](https://github.com/elastic/eui/tree/v0.0.26)
 

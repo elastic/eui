@@ -33,9 +33,8 @@ import {
 import ContextMenu from '../context_menu/context_menu';
 
 export default() => (
-  <GuidePage title="Button">
+  <GuidePage title="Button guidelines">
     <EuiText>
-      <h1>Button guidelines</h1>
       <p>
         This page documents patterns for button design, including types, placement, color, and size.
       </p>

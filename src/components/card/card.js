@@ -5,6 +5,10 @@ import classNames from 'classnames';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 
+import {
+  checkHrefAndOnClick,
+} from '../../services';
+
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
   center: 'euiCard--centerAligned',
@@ -21,14 +25,16 @@ export const EuiCard = ({
   image,
   footer,
   onClick,
+  href,
   textAlign,
+  isClickable,
   ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
     textAlignToClassNameMap[textAlign],
     {
-      'euiCard--isClickable': onClick,
+      'euiCard--isClickable': onClick || href || isClickable,
     },
     className,
   );
@@ -48,12 +54,18 @@ export const EuiCard = ({
     );
   }
 
-  const OuterElement = onClick ? 'button' : 'div';
+  let OuterElement = 'div';
+  if (onClick) {
+    OuterElement = 'button';
+  } else if (href) {
+    OuterElement = 'a';
+  }
 
   return (
     <OuterElement
       onClick={onClick}
       className={classes}
+      href={href}
       {...rest}
     >
       <span className="euiCard__top">
@@ -102,6 +114,7 @@ EuiCard.propTypes = {
    * Use only if you want to forego a button in the footer and make the whole card clickable
    */
   onClick: PropTypes.func,
+  href: checkHrefAndOnClick,
   textAlign: PropTypes.oneOf(ALIGNMENTS),
 };
 

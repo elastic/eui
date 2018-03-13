@@ -19,6 +19,9 @@ import {
 import ButtonGuidelines
   from './views/guidelines/button';
 
+import ColorGuidelines
+  from './views/guidelines/colors';
+
 import ModalGuidelines
   from './views/guidelines/modals';
 
@@ -222,6 +225,9 @@ const navigation = [{
   items: [{
     name: 'Buttons',
     component: ButtonGuidelines,
+  }, {
+    name: 'Colors',
+    component: ColorGuidelines,
   }, {
     name: 'Modals',
     component: ModalGuidelines,

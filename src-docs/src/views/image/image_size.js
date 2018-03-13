@@ -13,7 +13,7 @@ export default () => (
       allowFullScreen
       caption="Small"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
     <EuiSpacer />
     <EuiImage
@@ -22,7 +22,7 @@ export default () => (
       allowFullScreen
       caption="Medium"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
     <EuiSpacer />
     <EuiImage
@@ -31,7 +31,7 @@ export default () => (
       allowFullScreen
       caption="Large"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
     <EuiSpacer />
     <EuiImage
@@ -40,7 +40,7 @@ export default () => (
       allowFullScreen
       caption="Extra large"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
     <EuiSpacer />
     <EuiImage
@@ -48,7 +48,7 @@ export default () => (
       allowFullScreen
       caption="Original"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
     <EuiSpacer />
     <EuiImage
@@ -57,7 +57,7 @@ export default () => (
       size="fullWidth"
       caption="Full width"
       alt="Accessible image alt goes here"
-      url="https://i.imgur.com/4qx7HhE.jpg"
+      url="https://source.unsplash.com/1000x1000/?Nature"
     />
   </div>
 );

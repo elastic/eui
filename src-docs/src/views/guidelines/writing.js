@@ -47,7 +47,7 @@ const GuideRuleWriting = ({
 };
 
 export default () => (
-  <GuidePage title="Writing">
+  <GuidePage title="Writing guidelines">
     <EuiText>
       <p>
         You can have the most beautiful UI,
