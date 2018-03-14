@@ -92,8 +92,8 @@ export const EuiCard = ({
 
 EuiCard.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
+  description: PropTypes.node.isRequired,
 
   /**
    * Requires a <EuiIcon> node
