@@ -7,6 +7,8 @@ import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
+import { EuiButtonIcon } from '../button'
+
 export class EuiModal extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
@@ -43,6 +45,13 @@ export class EuiModal extends Component {
           tabIndex={0}
           {...rest}
         >
+          <EuiButtonIcon
+            iconType="cross"
+            onClick={onClose}
+            className="euiModal__closeIcon"
+            color="text"
+            aria-label="Closes this modal window"
+          />
           {children}
         </div>
       </FocusTrap>
