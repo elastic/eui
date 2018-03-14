@@ -22,12 +22,6 @@
     }
   }
 
-  &.euiSideNavItemButton-isOpen {
-    .euiSideNavItemButton__label {
-      color: $euiColorFullShade;
-    }
-  }
-
   &.euiSideNavItemButton-isSelected {
     .euiSideNavItemButton__label {
       color: $euiColorPrimary;
@@ -159,5 +153,13 @@
 
   & > .euiSideNavItem__items {
     margin-left: $euiSize;
+  }
+}
+
+.euiSideNavItem--hasChildItems {
+  & > .euiSideNavItemButton-isOpen {
+    .euiSideNavItemButton__label {
+      color: $euiColorFullShade;
+    }
   }
 }
