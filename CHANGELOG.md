@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.27`.
+
+# [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
+
 - Don't propagate a null `onClick` on EuiPanels ([#473](https://github.com/elastic/eui/pull/473))
 - Use 1.1px for the `EuiHorizontalRule` height, in order to work around strange Chrome height calculations ([#473](https://github.com/elastic/eui/pull/473))
 - New icons for `logoGithub` and `logoSketch` ([#494](https://github.com/elastic/eui/pull/494))
