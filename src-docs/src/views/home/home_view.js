@@ -94,7 +94,7 @@ export const HomeView = () => (
             image="https://i.imgur.com/uPtnXbv.png"
             isClickable
             icon={
-              <EuiFlexGroup style={{ marginLeft: 0 }}>
+              <EuiFlexGroup style={{ marginLeft: 0 }} responsive={false}>
                 <EuiFlexItem>
                   <EuiIcon size="xxl" type="check" color="ghost" />
                 </EuiFlexItem>
