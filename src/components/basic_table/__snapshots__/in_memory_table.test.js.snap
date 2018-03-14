@@ -523,6 +523,9 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
   <EuiSearchBar
     box={
       Object {
+        "aria-label": "aria-label",
+        "className": "testClass1 testClass2",
+        "data-test-subj": "test subject string",
         "incremental": true,
       }
     }

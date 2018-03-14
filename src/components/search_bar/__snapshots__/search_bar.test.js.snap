@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchBar render - no config, no query 1`] = `
+exports[`SearchBar render - box 1`] = `
 <EuiFlexGroup
   alignItems="center"
   component="div"
@@ -14,17 +14,20 @@ exports[`SearchBar render - no config, no query 1`] = `
     grow={true}
   >
     <EuiSearchBox
+      aria-label="aria-label"
+      className="testClass1 testClass2"
+      data-test-subj="test subject string"
       incremental={false}
       isInvalid={false}
       onSearch={[Function]}
-      placeholder="Search..."
+      placeholder="find something..."
       query=""
     />
   </EuiFlexItem>
 </EuiFlexGroup>
 `;
 
-exports[`SearchBar render - no query, custom box placeholder and incremental 1`] = `
+exports[`SearchBar render - no config, no query 1`] = `
 <EuiFlexGroup
   alignItems="center"
   component="div"
