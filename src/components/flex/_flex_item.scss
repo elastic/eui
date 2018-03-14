@@ -23,7 +23,8 @@
 
 // On mobile we force them to stack and act the same.
 @include screenXSmall {
-  .euiFlexGroup--responsive > .euiFlexItem {
+  .euiFlexGroup--responsive > .euiFlexItem,
+  .euiFlexGrid > .euiFlexItem {
     width: 100% !important;
     flex-basis: 100% !important;
     margin-left: 0 !important;
