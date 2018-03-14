@@ -31,6 +31,16 @@ export class EuiSearchBox extends Component {
   }
 
   render() {
+    const {
+      placeholder,
+      query,
+      incremental,
+      onSearch,
+      isInvalid,
+      title,
+      ...rest
+    } = this.props;
+
     return (
       <EuiFieldSearch
         inputRef={input => this.inputElement = input}
@@ -41,6 +51,7 @@ export class EuiSearchBox extends Component {
         onSearch={(query) => this.props.onSearch(query)}
         isInvalid={this.props.isInvalid}
         title={this.props.title}
+        {...rest}
       />
     );
   }
