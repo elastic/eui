@@ -47,6 +47,27 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('basic - empty - custom message as node', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
+    };
+    const component = shallow(
+      <EuiBasicTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('basic - with items', () => {
 
     const props = {
