@@ -249,7 +249,7 @@ export class EuiInMemoryTable extends Component {
 
     const table = (
       <EuiBasicTable
-        items={message ? [] : items} // If message is configured, we force showing it instead of the items
+        items={items}
         columns={columns}
         pagination={pagination}
         sorting={sorting}
