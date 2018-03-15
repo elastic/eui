@@ -8,7 +8,7 @@
   &.euiPageContent--horizontalCenter {
     width: auto;
     margin: auto;
-    flex-grow: 0; // Offsets the properties of .euiPanel
+    flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
   }
 }
 

@@ -1,6 +1,8 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.28`.
+**Bug fixes**
+
+- Fix `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
 
 # [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
 
