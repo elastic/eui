@@ -23,9 +23,7 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
           colSpan={1}
           textOnly={true}
         >
-          <div>
-            where my items at?
-          </div>
+          where my items at?
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
@@ -95,9 +93,7 @@ exports[`EuiBasicTable basic - empty 1`] = `
           colSpan={1}
           textOnly={true}
         >
-          <div>
-            No items found
-          </div>
+          No items found
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>

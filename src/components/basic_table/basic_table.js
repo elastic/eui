@@ -120,8 +120,6 @@ export const SelectionType = PropTypes.shape({
   selectableMessage: PropTypes.func // (selectable, item) => boolean;
 });
 
-export const NoItemsMessageType = PropTypes.oneOfType([PropTypes.string, PropTypes.node]);
-
 const SortingType = PropTypes.shape({
   sort: PropertySortType
 });
@@ -135,7 +133,7 @@ const BasicTablePropTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
-  noItemsMessage: NoItemsMessageType,
+  noItemsMessage: PropTypes.node,
   className: PropTypes.string
 };
 
@@ -422,18 +420,13 @@ export class EuiBasicTable extends Component {
   }
 
   renderEmptyBody() {
-    const colSpan = this.props.columns.length + (this.props.selection ? 1 : 0);
-    let message;
-    if (typeof this.props.noItemsMessage === 'string') {
-      message = (<div>{ this.props.noItemsMessage }</div>);
-    } else {
-      message = this.props.noItemsMessage;
-    }
+    const { columns, selection, noItemsMessage } = this.props;
+    const colSpan = columns.length + (selection ? 1 : 0);
     return (
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell align="center" colSpan={colSpan}>
-            {message}
+            {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
