@@ -48,7 +48,17 @@ export class Table extends Component {
     this.state = {
       loading: false,
       users: [],
-      message: 'No users, click "Load Users" to load some',
+      message: (
+        <div>
+          <span>Looks like you don't have any users. Let's create some!</span>
+          <EuiButton
+            key="loadUsers"
+            onClick={this.loadUsers.bind(this)}
+          >
+            Load Users
+          </EuiButton>
+        </div>
+      ),
       selection: []
     };
   }
