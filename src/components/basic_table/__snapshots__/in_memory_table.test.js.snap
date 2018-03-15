@@ -49,7 +49,7 @@ exports[`EuiInMemoryTable with items 1`] = `
 />
 `;
 
-exports[`EuiInMemoryTable with items and message - expecting to show the message and not the items 1`] = `
+exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
 <EuiBasicTable
   columns={
     Array [
@@ -60,7 +60,22 @@ exports[`EuiInMemoryTable with items and message - expecting to show the message
       },
     ]
   }
-  items={Array []}
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
   noItemsMessage="show me!"
   onChange={[Function]}
 />
