@@ -12,6 +12,7 @@ No public interface changes since `0.0.27`.
 
 **Bug fixes**
 
+- `EuiModal` is now responsive on mobile screens ([#512](https://github.com/elastic/eui/pull/512))
 - `EuiFlexGrid` now collapses down in mobile layouts properly. ([#515](https://github.com/elastic/eui/pull/515))
 - Made `EuiCard` proptypes more permission by changing strings to nodes. ([#515](https://github.com/elastic/eui/pull/515))
 - Fix `reponsive={false}` prop not working when flex groups were nested. ([#494](https://github.com/elastic/eui/pull/494))

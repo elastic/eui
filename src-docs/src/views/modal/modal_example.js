@@ -21,6 +21,10 @@ import { ConfirmModal } from './confirm_modal';
 const confirmModalSource = require('!!raw-loader!./confirm_modal');
 const confirmModalHtml = renderToHtml(ConfirmModal);
 
+import { OverflowTest } from './overflow_test';
+const overflowTestSource = require('!!raw-loader!./overflow_test');
+const overflowTestHtml = renderToHtml(OverflowTest);
+
 export const ModalExample = {
   title: 'Modal',
   sections: [{
@@ -56,5 +60,21 @@ export const ModalExample = {
     ),
     props: { EuiConfirmModal },
     demo: <ConfirmModal />,
+    }, {
+      title: 'Overflow overflow test',
+      source: [{
+        type: GuideSectionTypes.JS,
+        code: overflowTestSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: overflowTestHtml,
+      }],
+      text: (
+        <p>
+          This demo is to test long overflowing body content.
+        </p>
+      ),
+      props: { EuiConfirmModal },
+      demo: <OverflowTest />,
   }],
 };
