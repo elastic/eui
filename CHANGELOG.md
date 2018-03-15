@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.28`.
+
+# [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
+
 - `EuiInMemoryTable` pass items to BasicTable when message is provided ([#517](https://github.com/elastic/eui/pull/517)).
 - `EuiSearchBox` now passes unused props through to `EuiFieldSearch` ([#514](https://github.com/elastic/eui/pull/514))
 - Change `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `messgae` propType to node
