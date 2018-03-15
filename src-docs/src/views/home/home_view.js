@@ -2,6 +2,14 @@ import React from 'react';
 import {hashHistory} from 'react-router';
 import sassColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
 
+import imageIcons from '../../images/icons.jpg';
+import imageButtons from '../../images/buttons.svg';
+import imageTables from '../../images/tables.svg';
+import imageForms from '../../images/forms.svg';
+import imageFlexgrid from '../../images/flexgrid.svg';
+import imageCards from '../../images/cards.svg';
+
+
 import {
   Link,
 } from 'react-router';
@@ -91,21 +99,8 @@ export const HomeView = () => (
         <Link to="/display/icons">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/uPtnXbv.png"
+            image={imageIcons}
             isClickable
-            icon={
-              <EuiFlexGroup style={{ marginLeft: 0 }} responsive={false}>
-                <EuiFlexItem>
-                  <EuiIcon size="xxl" type="check" color="ghost" />
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiIcon size="xxl" type="cross" color="ghost" />
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiIcon size="xxl" type="alert" color="ghost" />
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            }
             title="Icons"
             description="Our SVG icon library gives you full control over size and color"
           />
@@ -115,7 +110,7 @@ export const HomeView = () => (
         <Link to="/navigation/button">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/hPl2fQn.png"
+            image={imageButtons}
             title="Buttons"
             isClickable
             description="Buttons for every usage you might need."
@@ -126,7 +121,7 @@ export const HomeView = () => (
         <Link to="/layout/flex">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/M8N4Ms9.png"
+            image={imageFlexgrid}
             title="Flexible layouts"
             description="Create layouts by using flex groups, grids and items"
             isClickable
@@ -137,7 +132,7 @@ export const HomeView = () => (
         <Link to="/display/tables">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/UfigGiQ.png"
+            image={imageTables}
             title="Tables"
             isClickable
             description="Build tables from individual components or high level wrappers"
@@ -148,7 +143,7 @@ export const HomeView = () => (
         <Link to="/display/card">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/PDVnOED.png"
+            image={imageCards}
             title="Cards"
             description="Cards like these help you make repeatable content more presentable"
             isClickable
@@ -159,7 +154,7 @@ export const HomeView = () => (
         <Link to="/forms/form">
           <EuiCard
             textAlign="left"
-            image="https://i.imgur.com/aSuom2R.png"
+            image={imageForms}
             title="Forms"
             isClickable
             description="Input tags, layouts and validation for your forms"
