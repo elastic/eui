@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   EuiBasicTable,
   ColumnType,
-  SelectionType
+  SelectionType,
 } from './basic_table';
 import {
   defaults as paginationBarDefaults
@@ -22,7 +22,7 @@ const InMemoryTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   items: PropTypes.array,
   loading: PropTypes.bool,
-  message: PropTypes.string,
+  message: PropTypes.node,
   error: PropTypes.string,
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
     defaultQuery: QueryType,

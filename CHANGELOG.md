@@ -2,6 +2,8 @@
 
 - `EuiInMemoryTable` pass items to BasicTable when message is provided ([#517](https://github.com/elastic/eui/pull/517)).
 - `EuiSearchBox` now passes unused props through to `EuiFieldSearch` ([#514](https://github.com/elastic/eui/pull/514))
+- Change `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `messgae` propType to node
+instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 # [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
 
