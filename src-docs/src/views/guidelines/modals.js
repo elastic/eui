@@ -24,7 +24,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Modals">
+  <GuidePage title="Modal guidelines">
 
     <Link to="/layout/modal">
       <EuiButton className="guideRule__goToButton">
@@ -39,7 +39,7 @@ export default () => (
         amount of content and getting them to make a decision.
       </p>
 
-      <Link to="/layout/modals">
+      <Link to="/layout/modal">
         <EuiButton>
           View component code
         </EuiButton>
@@ -139,7 +139,7 @@ export default () => (
     <GuideRule
       heading="Open a modal on a user action"
       description="Let a user action, such as a button click,
-      launch a modal. Don&apos;t trigger a modal from a toolbar action&mdash;users don&apos;t expect it.
+      open a modal. Don&apos;t open a modal from a toolbar action&mdash;users don&apos;t expect it.
       "
       />
 
@@ -302,7 +302,8 @@ export default () => (
         panel={false}
         type="do"
         text="Do. Here the header and body are enough.
-        The modal asks about removing a relationship, and not about deleting data."
+        The modal asks the user whether to remove an index pattern&mdash;
+        data won&apos;t be lost."
         >
         <div style={{ textAlign: 'center' }}>
           <EuiImage
