@@ -29,6 +29,7 @@
     [
       "inline-react-svg",
       {
+        "ignorePattern": "images/*",
         "svgo": {
           "plugins": [
             { "cleanupIDs": false },
