@@ -438,7 +438,8 @@ describe('EuiInMemoryTable', () => {
       search: {
         defaultQuery: 'name:name1',
         box: {
-          incremental: true
+          incremental: true,
+          ...requiredProps
         },
         filters: [
           {
