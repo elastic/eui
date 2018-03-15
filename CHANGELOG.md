@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.27`.
+- Make `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))
 
 # [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
 
