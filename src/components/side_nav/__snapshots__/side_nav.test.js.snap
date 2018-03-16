@@ -43,7 +43,7 @@ exports[`EuiSideNav is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
+exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -84,7 +84,7 @@ exports[`EuiSideNav isOpenOnMobile defaults to false 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
+exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] = `
 <nav
   class="euiSideNav euiSideNav-isOpenMobile"
 >
@@ -125,7 +125,7 @@ exports[`EuiSideNav isOpenOnMobile is rendered when specified as true 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items is rendered 1`] = `
+exports[`EuiSideNav props items is rendered 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -164,7 +164,7 @@ exports[`EuiSideNav items is rendered 1`] = `
     class="euiSideNav__content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
     >
       <div
         class="euiSideNavItemButton"
@@ -241,7 +241,7 @@ exports[`EuiSideNav items is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items renders items using a specified callback 1`] = `
+exports[`EuiSideNav props items renders items having { forceOpen: true } in open state, and automatically opens parent items 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -280,7 +280,146 @@ exports[`EuiSideNav items renders items using a specified callback 1`] = `
     class="euiSideNav__content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+    >
+      <div
+        class="euiSideNavItemButton"
+      >
+        <span
+          class="euiSideNavItemButton__content"
+        >
+          <span
+            class="euiSideNavItemButton__label"
+          >
+            A
+          </span>
+        </span>
+      </div>
+      <div
+        class="euiSideNavItem__items"
+      >
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk"
+        >
+          <div
+            class="euiSideNavItemButton"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                B
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
+        >
+          <div
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+          >
+            <span
+              class="euiSideNavItemButton__content"
+            >
+              <span
+                class="euiSideNavItemButton__label"
+              >
+                C
+              </span>
+            </span>
+          </div>
+          <div
+            class="euiSideNavItem__items"
+          >
+            <div
+              class="euiSideNavItem euiSideNavItem--branch euiSideNavItem--hasChildItems"
+            >
+              <div
+                class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+              >
+                <span
+                  class="euiSideNavItemButton__content"
+                >
+                  <span
+                    class="euiSideNavItemButton__label"
+                  >
+                    D
+                  </span>
+                </span>
+              </div>
+              <div
+                class="euiSideNavItem__items"
+              >
+                <div
+                  class="euiSideNavItem euiSideNavItem--branch"
+                >
+                  <div
+                    class="euiSideNavItemButton"
+                  >
+                    <span
+                      class="euiSideNavItemButton__content"
+                    >
+                      <span
+                        class="euiSideNavItemButton__label"
+                      >
+                        E
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`EuiSideNav props items renders items using a specified callback 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    class="euiSideNav__mobileToggle euiLink"
+    type="button"
+  >
+    <span
+      class="euiSideNav__mobileWrap"
+    >
+      <span
+        class="euiSideNav__mobileTitle"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiSideNav__mobileIcon euiIcon--medium"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+            id="apps-a"
+          />
+        </defs>
+        <use
+          href="#apps-a"
+        />
+      </svg>
+    </span>
+  </button>
+  <div
+    class="euiSideNav__content"
+  >
+    <div
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
     >
       <a
         class="euiSideNavItemButton euiSideNavItemButton--isClickable"
@@ -324,7 +463,7 @@ exports[`EuiSideNav items renders items using a specified callback 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items renders items which are links 1`] = `
+exports[`EuiSideNav props items renders items which are links 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -363,7 +502,7 @@ exports[`EuiSideNav items renders items which are links 1`] = `
     class="euiSideNav__content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
     >
       <a
         class="euiSideNavItemButton euiSideNavItemButton--isClickable"
@@ -441,7 +580,7 @@ exports[`EuiSideNav items renders items which are links 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav items renders selected item and automatically opens parent items 1`] = `
+exports[`EuiSideNav props items renders selected item and automatically opens parent items 1`] = `
 <nav
   class="euiSideNav"
 >
@@ -480,7 +619,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
     class="euiSideNav__content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
     >
       <div
         class="euiSideNavItemButton"
@@ -516,7 +655,7 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
         >
           <div
             class="euiSideNavItemButton euiSideNavItemButton-isOpen"
@@ -550,9 +689,6 @@ exports[`EuiSideNav items renders selected item and automatically opens parent i
                   </span>
                 </span>
               </div>
-              <div
-                class="euiSideNavItem__items"
-              />
             </div>
             <div
               class="euiSideNavItem euiSideNavItem--branch"

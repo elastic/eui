@@ -58,7 +58,7 @@ export const EuiSideNavItem = ({
 }) => {
   let childItems;
 
-  if (isOpen) {
+  if (items && isOpen) {
     childItems = (
       <div className="euiSideNavItem__items">
         {items}
@@ -79,6 +79,7 @@ export const EuiSideNavItem = ({
     'euiSideNavItem--rootIcon': depth === 0 && icon,
     'euiSideNavItem--trunk': depth === 1,
     'euiSideNavItem--branch': depth > 1,
+    'euiSideNavItem--hasChildItems': !!childItems
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {

@@ -14,6 +14,11 @@ import {
 
 export class EuiSideNav extends Component {
   isItemOpen = item => {
+    // The developer can force the item to be open.
+    if (item.forceOpen) {
+      return true;
+    }
+
     // Of course a selected item is open.
     if (item.isSelected) {
       return true;
@@ -37,6 +42,7 @@ export class EuiSideNav extends Component {
         icon,
         onClick,
         href,
+        forceOpen, // eslint-disable-line no-unused-vars
         ...rest
       } = item;
 
@@ -126,12 +132,42 @@ export class EuiSideNav extends Component {
 }
 
 EuiSideNav.propTypes = {
+  /**
+   * `children` are not rendered. Use `items` to specify navigation items instead.
+   */
   children: PropTypes.node,
+  /**
+   * Class names to be merged into the final `className` property.
+   */
   className: PropTypes.string,
+  /**
+   * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
+   */
   toggleOpenOnMobile: PropTypes.func,
+  /**
+   * If `true`, the navigation menu will be open at mobile device widths. Use in conjunction with the `toggleOpenOnMobile` prop.
+   */
   isOpenOnMobile: PropTypes.bool,
+  /**
+   * A React node to render at mobile responsive widths, representing the title of this navigation menu.
+   */
   mobileTitle: PropTypes.node,
+  /**
+   * `items` is an array of objects (navigation menu `item`s).
+   * Each `item` may contain the following properties (this is an incomplete list):
+   * `item.forceOpen` is an optional boolean; if set to true it will force the item to display in an "open" state at all times.
+   * `item.href` is an optional string to be passed as the navigaiton item's `href` prop, and by default it will force rendering of the item as an `<a>`.
+   * `item.icon` is an optional React node which will be rendered as a small icon to the left of the navigation item text.
+   * `item.isSelected` is an optional boolean; if set to true it will render the item in a visible "selected" state, and will force all ancestor navigation items to render in an "open" state.
+   * `item.items` is an optional array containing additional item objects, representing nested children of this navigation item.
+   * `item.name` is a required React node representing the text to render for this item (usually a string will suffice).
+   * `item.onClick` is an optional callback function to be passed as the navigaiton item's `onClick` prop, and by default it will force rendering of the item as a `<button>` instead of a link.
+   * `item.renderItem` is an optional function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
+   */
   items: PropTypes.array,
+  /**
+   * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
+   */
   renderItem: PropTypes.func,
 };
 
