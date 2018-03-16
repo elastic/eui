@@ -20,7 +20,10 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiIconTip content="Source maps allow browser dev tools to map minified code to the original source code" />
+        <EuiIconTip
+          content="Source maps allow browser dev tools to map minified code to the original source code"
+          position="right"
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
 

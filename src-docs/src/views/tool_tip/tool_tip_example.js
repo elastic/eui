@@ -58,7 +58,8 @@ export const ToolTipExample = {
           and only hide them behind a <EuiCode>EuiIconTip</EuiCode> as a last resort.
         </p>
         <p>
-          For convenience, you can also specify an icon <EuiCode>type</EuiCode>.
+          It accepts all the same props as <EuiCode>EuiToolTip</EuiCode>.
+          For convenience, you can also specify an optional icon <EuiCode>type</EuiCode> prop.
         </p>
       </Fragment>
     ),
