@@ -55,6 +55,7 @@ export const EuiButton = ({
   rel,
   onClick,
   type,
+  buttonRef,
   ...rest
 }) => {
 
@@ -102,6 +103,7 @@ export const EuiButton = ({
         href={href}
         target={target}
         rel={secureRel}
+        ref={buttonRef}
         {...rest}
       >
         <span className="euiButton__content">
@@ -117,6 +119,7 @@ export const EuiButton = ({
         className={classes}
         onClick={onClick}
         type={type}
+        ref={buttonRef}
         {...rest}
       >
         <span className="euiButton__content">
@@ -163,6 +166,7 @@ EuiButton.propTypes = {
    * Standard HTML attribute
    */
   type: PropTypes.string,
+  buttonRef: PropTypes.func,
 };
 
 EuiButton.defaultProps = {

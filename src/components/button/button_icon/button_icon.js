@@ -47,6 +47,7 @@ export const EuiButtonIcon = ({
   type,
   target,
   rel,
+  buttonRef,
   ...rest
 }) => {
 
@@ -79,6 +80,7 @@ export const EuiButtonIcon = ({
         href={href}
         target={target}
         rel={secureRel}
+        ref={buttonRef}
         {...rest}
       >
         {buttonIcon}
@@ -91,6 +93,7 @@ export const EuiButtonIcon = ({
         className={classes}
         onClick={onClick}
         type={type}
+        ref={buttonRef}
         {...rest}
       >
         {buttonIcon}
@@ -111,6 +114,7 @@ EuiButtonIcon.propTypes = {
   rel: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
+  buttonRef: PropTypes.func,
 };
 
 EuiButtonIcon.defaultProps = {
