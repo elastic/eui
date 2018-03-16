@@ -260,6 +260,7 @@ export {
 } from './toast';
 
 export {
+  EuiIconTip,
   EuiToolTip,
 } from './tool_tip';
 
