@@ -9,6 +9,7 @@ No public interface changes since `0.0.29`.
 
 **Bug fixes**
 
+- `EuiHealth` no longer stacks flex items on small screens ([#530](https://github.com/elastic/eui/pull/530))
 - Fix `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
 - `EuiConfirmModal` will now correctly auto-focus on its confirm and cancel buttons (#529[](https://github.com/elastic/eui/pull/529))
 
