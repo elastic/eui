@@ -30,6 +30,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiIconTip
+      aria-label="Warning"
       type="alert"
       content="I do not think it means what you think it means"
     />

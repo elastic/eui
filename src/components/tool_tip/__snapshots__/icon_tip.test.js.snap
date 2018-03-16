@@ -4,8 +4,10 @@ exports[`EuiIconTip is rendered 1`] = `
 <span>
   <svg
     aria-describedby="id"
+    aria-label="aria-label"
     class="euiIcon euiIcon--medium"
     height="16"
+    tabindex="0"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +26,10 @@ exports[`EuiIconTip props type is rendered as the icon 1`] = `
 <span>
   <svg
     aria-describedby="id"
+    aria-label="Info"
     class="euiIcon euiIcon--medium"
     height="16"
+    tabindex="0"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
