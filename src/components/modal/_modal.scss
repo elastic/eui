@@ -22,10 +22,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $euiSizeL;
-  padding-bottom: 0;
+  padding: $euiSizeL $euiSizeXXL $euiSizeM $euiSizeL;
   flex-grow: 0;
-  padding-bottom: $euiSizeL;
+  flex-shrink: 0;
+  @include euiOverflowShadowBottom;
 }
 
   .euiModalHeader__title {
@@ -43,8 +43,10 @@
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
-  padding: $euiSizeL;
+  padding: $euiSizeM $euiSizeL;
   flex-grow: 0;
+  flex-shrink: 0; // ensure the height of the footer is based off it's contents and doesn't squish
+  @include euiOverflowShadowTop;
 
   > * + * {
     margin-left: $euiSize;
@@ -54,13 +56,15 @@
 // When both a header and body exist, drop the top padding so the overflow on
 // the body is spaced correctly.
 .euiModalHeader + .euiModalBody {
-  padding-top: 0;
+  padding-top: $euiSizeM;
 }
 
 .euiModal__closeIcon {
+  background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
-  right: $euiSizeL;
-  top: $euiSizeL;
+  right: $euiSizeM;
+  top: $euiSizeL + 4px;
+  z-index: 3;
 }
 
 @keyframes euiModal {
@@ -78,13 +82,14 @@
 @include screenXSmall {
   .euiModal {
     position: fixed;
-    width: 100vw;
+    width: calc(100vw + 2px);
     max-height: 100vh;
     left: 0;
     right: 0;
-    top: 0;
     bottom: 0;
-    box-shadow: none;
+    top: 0;
+    border-radius: 0;
+    box-shadow: 0 -8px 16px -8px rgba(0, 0, 0, 0.1);
     border: none;
   }
 
@@ -95,6 +100,15 @@
   .euiModalFooter {
     background: $euiColorLightestShade;
     width: 100vw;
+    justify-content: stretch;
+
+    > * {
+      flex: 1;
+
+      + * {
+        margin-left: 0;
+      }
+    }
   }
 
   .euiModal__closeIcon {

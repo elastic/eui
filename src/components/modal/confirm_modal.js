@@ -98,7 +98,6 @@ export class EuiConfirmModal extends Component {
           <EuiButtonEmpty
             data-test-subj="confirmModalCancelButton"
             onClick={onCancel}
-            size="s"
             buttonRef={this.cancelRef}
           >
             {cancelButtonText}
@@ -107,7 +106,6 @@ export class EuiConfirmModal extends Component {
           <EuiButton
             data-test-subj="confirmModalConfirmButton"
             onClick={onConfirm}
-            size="s"
             fill
             buttonRef={this.confirmRef}
           >
