@@ -1,10 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiIconTip` to make it easier to display icons with tooltips ([#528](https://github.com/elastic/eui/pull/528))
+- Added `buttonRef` prop to `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` ([#529](https://github.com/elastic/eui/pull/529))
 
 **Bug fixes**
 
 - Fix `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
+- `EuiConfirmModal` will now correctly auto-focus on its confirm and cancel buttons (#529[](https://github.com/elastic/eui/pull/529))
 
 # [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
 

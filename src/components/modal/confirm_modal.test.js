@@ -82,7 +82,7 @@ describe('onCancel', () => {
 });
 
 describe('defaultFocusedButton', () => {
-  test('is cancel', () => {
+  test('is cancel', done => {
     const component = mount(
       <EuiConfirmModal
         onCancel={onCancel}
@@ -93,11 +93,15 @@ describe('defaultFocusedButton', () => {
       />
     );
 
-    const button = findTestSubject(component, 'confirmModalCancelButton').getDOMNode();
-    expect(document.activeElement).toEqual(button);
+    // The auto-focus implementation waits a frame before focusing.
+    requestAnimationFrame(() => {
+      const button = findTestSubject(component, 'confirmModalCancelButton').getDOMNode();
+      expect(document.activeElement).toEqual(button);
+      done();
+    });
   });
 
-  test('is confirm', () => {
+  test('is confirm', done => {
     const component = mount(
       <EuiConfirmModal
         onCancel={onCancel}
@@ -108,11 +112,15 @@ describe('defaultFocusedButton', () => {
       />
     );
 
-    const button = findTestSubject(component, 'confirmModalConfirmButton').getDOMNode();
-    expect(document.activeElement).toEqual(button);
+    // The auto-focus implementation waits a frame before focusing.
+    requestAnimationFrame(() => {
+      const button = findTestSubject(component, 'confirmModalConfirmButton').getDOMNode();
+      expect(document.activeElement).toEqual(button);
+      done();
+    });
   });
 
-  test('when not given gives focus to the modal', () => {
+  test('when not given gives focus to the modal', done => {
     const component = mount(
       <EuiConfirmModal
         onCancel={onCancel}
@@ -121,6 +129,11 @@ describe('defaultFocusedButton', () => {
         confirmButtonText="Confirm Button Text"
       />
     );
-    expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
+
+    // The auto-focus implementation waits a frame before focusing.
+    requestAnimationFrame(() => {
+      expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
+      done();
+    });
   });
 });

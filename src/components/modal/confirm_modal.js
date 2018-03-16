@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -25,75 +25,97 @@ const CONFIRM_MODAL_BUTTONS = [
   CANCEL_BUTTON,
 ];
 
-export function EuiConfirmModal({
-  children,
-  title,
-  onCancel,
-  onConfirm,
-  cancelButtonText,
-  confirmButtonText,
-  className,
-  defaultFocusedButton,
-  ...rest
-}) {
-  const classes = classnames('euiModal--confirmation', className);
+export class EuiConfirmModal extends Component {
+  componentDidMount() {
+    // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
+    // elements conflicts with the focus-trap logic we have on EuiModal.
+    const { defaultFocusedButton } = this.props;
 
-  let modalTitle;
+    // Wait a beat for the focus-trap to complete, and then set focus to the right button.
+    requestAnimationFrame(() => {
+      if (defaultFocusedButton === CANCEL_BUTTON) {
+        this.cancelButton.focus();
+      } else if (defaultFocusedButton === CONFIRM_BUTTON) {
+        this.confirmButton.focus();
+      }
+    });
+  }
 
-  if (title) {
-    modalTitle = (
-      <EuiModalHeader>
-        <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">
-          {title}
-        </EuiModalHeaderTitle>
-      </EuiModalHeader>
+  confirmRef = node => this.confirmButton = node;
+  cancelRef = node => this.cancelButton = node;
+
+  render() {
+    const {
+      children,
+      title,
+      onCancel,
+      onConfirm,
+      cancelButtonText,
+      confirmButtonText,
+      className,
+      defaultFocusedButton, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
+
+    const classes = classnames('euiModal--confirmation', className);
+
+    let modalTitle;
+
+    if (title) {
+      modalTitle = (
+        <EuiModalHeader>
+          <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">
+            {title}
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
+      );
+    }
+
+    let message;
+
+    if (typeof children === 'string') {
+      message = <p>{children}</p>;
+    } else {
+      message = children;
+    }
+
+    return (
+      <EuiModal
+        className={classes}
+        onClose={onCancel}
+        {...rest}
+      >
+        {modalTitle}
+
+        <EuiModalBody>
+          <EuiText data-test-subj="confirmModalBodyText">
+            {message}
+          </EuiText>
+        </EuiModalBody>
+
+        <EuiModalFooter>
+          <EuiButtonEmpty
+            data-test-subj="confirmModalCancelButton"
+            onClick={onCancel}
+            size="s"
+            buttonRef={this.cancelRef}
+          >
+            {cancelButtonText}
+          </EuiButtonEmpty>
+
+          <EuiButton
+            data-test-subj="confirmModalConfirmButton"
+            onClick={onConfirm}
+            size="s"
+            fill
+            buttonRef={this.confirmRef}
+          >
+            {confirmButtonText}
+          </EuiButton>
+        </EuiModalFooter>
+      </EuiModal>
     );
   }
-
-  let message;
-
-  if (typeof children === 'string') {
-    message = <p>{children}</p>;
-  } else {
-    message = children;
-  }
-
-  return (
-    <EuiModal
-      className={classes}
-      onClose={onCancel}
-      {...rest}
-    >
-      {modalTitle}
-
-      <EuiModalBody>
-        <EuiText data-test-subj="confirmModalBodyText">
-          {message}
-        </EuiText>
-      </EuiModalBody>
-
-      <EuiModalFooter>
-        <EuiButtonEmpty
-          autoFocus={defaultFocusedButton === CANCEL_BUTTON}
-          data-test-subj="confirmModalCancelButton"
-          onClick={onCancel}
-          size="s"
-        >
-          {cancelButtonText}
-        </EuiButtonEmpty>
-
-        <EuiButton
-          autoFocus={defaultFocusedButton === CONFIRM_BUTTON}
-          data-test-subj="confirmModalConfirmButton"
-          onClick={onConfirm}
-          size="s"
-          fill
-        >
-          {confirmButtonText}
-        </EuiButton>
-      </EuiModalFooter>
-    </EuiModal>
-  );
 }
 
 EuiConfirmModal.propTypes = {
