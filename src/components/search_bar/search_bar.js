@@ -99,16 +99,16 @@ export class EuiSearchBar extends Component {
     try {
       const query = Query.parse(this.state.queryText);
       if (this.props.onParse) {
-        this.props.onParse({ query, queryText: this.state.queryText });
+        this.props.onParse({ query });
       }
-      this.setState({ query, queryText: this.state.queryText, error: null });
+      this.setState({ query, error: null });
       this.props.onChange(query);
     } catch (e) {
       const error = { message: e.message };
       if (this.props.onParse) {
-        this.props.onParse({ queryText: this.state.queryText, error });
+        this.props.onParse({ error });
       }
-      this.setState({ queryText: this.state.queryText, error });
+      this.setState({ error });
     }
   }
 
