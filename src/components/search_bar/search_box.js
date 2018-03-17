@@ -26,10 +26,6 @@ export class EuiSearchBox extends Component {
     super(props);
   }
 
-  componentWillUpdate(nextProps) {
-    this.inputElement.value = nextProps.query;
-  }
-
   render() {
     const {
       placeholder,
@@ -38,12 +34,12 @@ export class EuiSearchBox extends Component {
       onSearch,
       isInvalid,
       title,
+      value,
       ...rest
     } = this.props;
 
     return (
       <EuiFieldSearch
-        inputRef={input => this.inputElement = input}
         fullWidth
         placeholder={placeholder}
         defaultValue={query}
@@ -51,6 +47,7 @@ export class EuiSearchBox extends Component {
         onSearch={(query) => onSearch(query)}
         isInvalid={isInvalid}
         title={title}
+        value={value}
         {...rest}
       />
     );

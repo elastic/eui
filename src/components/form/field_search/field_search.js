@@ -62,9 +62,11 @@ export class EuiFieldSearch extends Component {
     this.cleanups.forEach(cleanup => cleanup());
   }
 
-  onKeyUp = (incremental, onSearch, event) => {
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(event);
+  onKeyUp = (event) => {
+    const { onKeyUp, onSearch, incremental } = this.props;
+
+    if (onKeyUp) {
+      onKeyUp(event);
       if (event.defaultPrevented) {
         return;
       }
@@ -120,7 +122,7 @@ export class EuiFieldSearch extends Component {
             placeholder={placeholder}
             className={classes}
             value={value}
-            onKeyUp={this.onKeyUp.bind(this, incremental, onSearch)}
+            onKeyUp={this.onKeyUp}
             ref={ref}
             {...rest}
           />
