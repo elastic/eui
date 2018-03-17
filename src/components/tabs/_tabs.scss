@@ -1,6 +1,9 @@
 .euiTabs {
   display: flex;
   border-bottom: $euiBorderThin;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden; // don't scroll vertically when scrolling horizontally
 
   &.euiTabs--small {
     .euiTab {
