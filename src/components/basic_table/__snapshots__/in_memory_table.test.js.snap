@@ -335,6 +335,11 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       "onSelectionChanged": [Function],
     }
   }
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
 />
 `;
 
@@ -404,6 +409,11 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         "onSelectionChanged": [Function],
       }
     }
+    sorting={
+      Object {
+        "sort": undefined,
+      }
+    }
   />
 </div>
 `;
@@ -467,6 +477,11 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       "onSelectionChanged": [Function],
     }
   }
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
 />
 `;
 
@@ -513,6 +528,11 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
     Object {
       "itemId": "id",
       "onSelectionChanged": [Function],
+    }
+  }
+  sorting={
+    Object {
+      "sort": undefined,
     }
   }
 />
@@ -596,6 +616,11 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         "onSelectionChanged": [Function],
       }
     }
+    sorting={
+      Object {
+        "sort": undefined,
+      }
+    }
   />
 </div>
 `;
@@ -630,5 +655,10 @@ exports[`EuiInMemoryTable with sorting 1`] = `
   }
   noItemsMessage="No items found"
   onChange={[Function]}
+  sorting={
+    Object {
+      "sort": undefined,
+    }
+  }
 />
 `;

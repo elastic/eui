@@ -8,8 +8,6 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -39,8 +37,6 @@ exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -78,8 +74,6 @@ exports[`EuiBasicTable basic - empty 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -109,8 +103,6 @@ exports[`EuiBasicTable basic - with items 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -173,8 +165,6 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -234,8 +224,6 @@ exports[`EuiBasicTable with pagination 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -309,8 +297,6 @@ exports[`EuiBasicTable with pagination and error 1`] = `
     <EuiTableHeader>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -360,8 +346,6 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       </EuiTableHeaderCellCheckbox>
       <EuiTableHeaderCell
         align="left"
-        isSortAscending={false}
-        isSorted={false}
         key="_data_h_name_0"
         scope="col"
       >
@@ -1386,6 +1370,68 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       }
     }
   />
+</div>
+`;
+
+exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
+<div
+  className="euiBasicTable testClass1 testClass2"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow
+        isSelected={false}
+        key="row_0_0"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_0_0"
+          textOnly={true}
+        >
+          name1
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        isSelected={false}
+        key="row_1_1"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_1_0"
+          textOnly={true}
+        >
+          name2
+        </EuiTableRowCell>
+      </EuiTableRow>
+      <EuiTableRow
+        isSelected={false}
+        key="row_2_2"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <EuiTableRowCell
+          align="left"
+          key="_data_column_name_2_0"
+          textOnly={true}
+        >
+          name3
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
 </div>
 `;
 

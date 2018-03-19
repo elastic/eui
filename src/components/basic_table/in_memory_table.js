@@ -110,7 +110,7 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting, columns } = props;
+    const { search, pagination, sorting } = props;
     const { pageIndex, pageSize, pageSizeOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
@@ -238,8 +238,8 @@ export class EuiInMemoryTable extends Component {
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
     // Once a user sorts a column, this will become a fully-defined sorting prop.
-    const sorting = !hasSorting || (!sortField && !sortDirection) ? undefined : {
-      sort: {
+    const sorting = !hasSorting ? undefined : {
+      sort: (!sortField && !sortDirection) ? undefined : {
         field: sortField,
         direction: sortDirection,
       },
