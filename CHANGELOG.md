@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Make `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))
+- Remove `font-smoothing` from our reset css for better text legibility ([#539](https://github.com/elastic/eui/pull/539))
 
 **Bug fixes**
 
