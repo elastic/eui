@@ -92,6 +92,13 @@ export class EuiSearchBar extends Component {
   }
 
   onSearch = (queryText) => {
+    /**
+     * Set `queryText` in one phase in this callback and then set subsequent derived state in a
+     * second phase in `handleQueryTextChange`. This ensures the UI updates with all of the user's
+     * input. Otherwise we could get into a race condition in which the parsing logic is still executing
+     * while the user types rapidly, resulting in a UI which doesn't contain characters that the user
+     * has typed.
+     */
     this.setState({ queryText }, this.handleQueryTextChange);
   };
 

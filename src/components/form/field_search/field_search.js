@@ -124,6 +124,8 @@ export class EuiFieldSearch extends Component {
       }
     };
 
+    // Avoid making input both controlled/uncontrolled by only setting searchValue when consumer
+    // has specified that input is controlled.
     let searchValue;
     if (value || value === '') {
       searchValue = this.state.unsubmittedSearch;
