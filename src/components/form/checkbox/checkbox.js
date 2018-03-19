@@ -20,6 +20,9 @@ export const EuiCheckbox = ({
 }) => {
   const classes = classNames(
     'euiCheckbox',
+    {
+      'euiCheckbox--withLabel': !!label
+    },
     typeToClassNameMap[type],
     className
   );

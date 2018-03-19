@@ -51,7 +51,7 @@ exports[`EuiCheckbox props disabled disabled is rendered 1`] = `
 
 exports[`EuiCheckbox props label is rendered 1`] = `
 <div
-  class="euiCheckbox"
+  class="euiCheckbox euiCheckbox--withLabel"
 >
   <input
     class="euiCheckbox__input"

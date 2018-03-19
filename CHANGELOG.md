@@ -4,6 +4,7 @@
 
 **Bug fixes**
 
+- Fix checkbox click for `EuiCheckbox` without a label ([#540](https://github.com/elastic/eui/pull/540))
 - Made `EuiIconTip` screen reader accessible ([#534](https://github.com/elastic/eui/pull/534))
 - Fixed a sorting issue in `EuiInMemoryTable` ([#453](https://github.com/elastic/eui/pull/453))
 
