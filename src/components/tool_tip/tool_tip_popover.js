@@ -19,8 +19,6 @@ export class EuiToolTipPopover extends Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('euiBody-hasToolTip');
-
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
   }
@@ -35,7 +33,6 @@ export class EuiToolTipPopover extends Component {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasToolTip');
     window.removeEventListener('resize', this.updateDimensions);
   }
 
