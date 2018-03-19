@@ -1,8 +1,17 @@
 .euiCheckbox {
   position: relative;
+  min-width: $euiCheckBoxSize;
+  min-height: $euiCheckBoxSize;
 
   .euiCheckbox__input {
-    @include euiScreenReaderOnly;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: $euiCheckBoxSize;
+    height: $euiCheckBoxSize;
+    cursor: pointer;
 
     ~ .euiCheckbox__label {
       display: block;
@@ -17,8 +26,9 @@
     + .euiCheckbox__square {
       display: inline-block;
       position: absolute;
+      z-index: 0;
       left: 0;
-      top: ($euiSizeL - $euiCheckBoxSize)/2;
+      top: 0;
       @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
     }
 
@@ -88,6 +98,16 @@
       margin: 0; /* 1 */
       left: 0; /* 1 */
       cursor: pointer;
+    }
+  }
+
+  &.euiCheckbox--withLabel {
+    .euiCheckbox__input {
+      top: ($euiSizeL - $euiCheckBoxSize)/2;
+
+      + .euiCheckbox__square {
+        top: ($euiSizeL - $euiCheckBoxSize)/2;
+      }
     }
   }
 }
