@@ -133,7 +133,7 @@ const BasicTablePropTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
-  noItemsMessage: PropTypes.string,
+  noItemsMessage: PropTypes.node,
   className: PropTypes.string
 };
 
@@ -420,12 +420,13 @@ export class EuiBasicTable extends Component {
   }
 
   renderEmptyBody() {
-    const colSpan = this.props.columns.length + (this.props.selection ? 1 : 0);
+    const { columns, selection, noItemsMessage } = this.props;
+    const colSpan = columns.length + (selection ? 1 : 0);
     return (
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell align="center" colSpan={colSpan}>
-            <div>{ this.props.noItemsMessage }</div>
+            {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>

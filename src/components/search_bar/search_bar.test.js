@@ -32,14 +32,12 @@ describe('SearchBar', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('render - no query, custom box placeholder and incremental', () => {
+  test('render - box', () => {
     const props = {
-      ...requiredProps,
-      config: {
-        box: {
-          placeholder: 'find something...',
-          incremental: false
-        }
+      box: {
+        placeholder: 'find something...',
+        incremental: false,
+        ...requiredProps
       },
       onChange: () => {}
     };

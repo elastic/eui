@@ -2,6 +2,32 @@
 
 - Make `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))
 
+**Bug fixes**
+
+- Made `EuiIconTip` screen reader accessible ([#534](https://github.com/elastic/eui/pull/534))
+
+# [`0.0.30`](https://github.com/elastic/eui/tree/v0.0.30)
+
+- Add ability to force `EuiSideNav` items open by setting `item.forceOpen`. ([#515](https://github.com/elastic/eui/pull/515))
+
+# [`0.0.29`](https://github.com/elastic/eui/tree/v0.0.29)
+
+- Added `EuiIconTip` to make it easier to display icons with tooltips ([#528](https://github.com/elastic/eui/pull/528))
+- Added `buttonRef` prop to `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` ([#529](https://github.com/elastic/eui/pull/529))
+
+**Bug fixes**
+
+- `EuiHealth` no longer stacks flex items on small screens ([#530](https://github.com/elastic/eui/pull/530))
+- Fix `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
+- `EuiConfirmModal` will now correctly auto-focus on its confirm and cancel buttons (#529[](https://github.com/elastic/eui/pull/529))
+
+# [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
+
+- `EuiInMemoryTable` pass items to BasicTable when message is provided ([#517](https://github.com/elastic/eui/pull/517)).
+- `EuiSearchBox` now passes unused props through to `EuiFieldSearch` ([#514](https://github.com/elastic/eui/pull/514))
+- Change `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `messgae` propType to node
+instead of just string ([#516](https://github.com/elastic/eui/pull/516))
+
 # [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
 
 - Don't propagate a null `onClick` on EuiPanels ([#473](https://github.com/elastic/eui/pull/473))
@@ -12,6 +38,7 @@
 
 **Bug fixes**
 
+- `EuiModal` is now responsive on mobile screens ([#512](https://github.com/elastic/eui/pull/512))
 - `EuiFlexGrid` now collapses down in mobile layouts properly. ([#515](https://github.com/elastic/eui/pull/515))
 - Made `EuiCard` proptypes more permission by changing strings to nodes. ([#515](https://github.com/elastic/eui/pull/515))
 - Fix `reponsive={false}` prop not working when flex groups were nested. ([#494](https://github.com/elastic/eui/pull/494))

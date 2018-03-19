@@ -1,11 +1,14 @@
 .euiModal {
   @include euiBottomShadow;
 
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh; // We overflow the modal body based off this
+  position: relative;
   background-color: $euiColorEmptyShade;
   border: $euiBorderThin;
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
-  padding: $euiSizeXL;
   min-width: 50%;
   animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 }
@@ -19,26 +22,45 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: $euiSizeL;
+  padding-bottom: 0;
+  flex-grow: 0;
+  padding-bottom: $euiSizeL;
 }
 
   .euiModalHeader__title {
     @include euiFontSizeL;
   }
 
-.euiModalHeaderCloseButton {
-}
-
 .euiModalBody {
-  padding: $euiSizeXL 0;
+  @include euiScrollBar;
+
+  padding: $euiSizeL;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
+  padding: $euiSizeL;
+  flex-grow: 0;
 
   > * + * {
     margin-left: $euiSize;
   }
+}
+
+// When both a header and body exist, drop the top padding so the overflow on
+// the body is spaced correctly.
+.euiModalHeader + .euiModalBody {
+  padding-top: 0;
+}
+
+.euiModal__closeIcon {
+  position: absolute;
+  right: $euiSizeL;
+  top: $euiSizeL;
 }
 
 @keyframes euiModal {
@@ -49,5 +71,37 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+// On mobile we fix modals as a takeover.
+@include screenXSmall {
+  .euiModal {
+    position: fixed;
+    width: 100vw;
+    max-height: 100vh;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  .euiModalHeader {
+    width: 100vw;
+  }
+
+  .euiModalFooter {
+    background: $euiColorLightestShade;
+    width: 100vw;
+  }
+
+  .euiModal__closeIcon {
+    position: fixed;
+  }
+
+  .euiModalBody {
+    width: 100vw;
   }
 }

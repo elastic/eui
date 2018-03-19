@@ -40,13 +40,25 @@ const random = new Random();
 
 const store = createDataStore();
 
+const noItemsFoundMsg = 'No users match search criteria';
+
 export class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       users: [],
-      message: 'No users',
+      message: (
+        <div>
+          <span>Looks like you don't have any users. Let's create some!</span>
+          <EuiButton
+            key="loadUsers"
+            onClick={this.loadUsers.bind(this)}
+          >
+            Load Users
+          </EuiButton>
+        </div>
+      ),
       selection: []
     };
   }
@@ -61,7 +73,7 @@ export class Table extends Component {
     setTimeout(() => {
       this.setState({
         loading: false,
-        message: undefined,
+        message: noItemsFoundMsg,
         error: undefined,
         users: store.users
       });
@@ -80,7 +92,7 @@ export class Table extends Component {
         loading: false,
         error: 'ouch!... again... ',
         users: undefined,
-        message: undefined
+        message: noItemsFoundMsg
       });
     }, random.number({ min: 0, max: 3000 }));
   }

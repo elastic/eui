@@ -93,7 +93,7 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with items and message - expecting to show the message and not the items', () => {
+  test('with items and message - expecting to show the items', () => {
 
     const props = {
       ...requiredProps,
@@ -438,7 +438,8 @@ describe('EuiInMemoryTable', () => {
       search: {
         defaultQuery: 'name:name1',
         box: {
-          incremental: true
+          incremental: true,
+          ...requiredProps
         },
         filters: [
           {

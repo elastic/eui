@@ -19,6 +19,10 @@ import SideNavComplex from './side_nav_complex';
 const sideNavComplexSource = require('!!raw-loader!./side_nav_complex');
 const sideNavComplexHtml = renderToHtml(SideNavComplex);
 
+import SideNavForceOpen from './side_nav_force_open';
+const sideNavForceOpenSource = require('!!raw-loader!./side_nav_force_open');
+const sideNavForceOpenHtml = renderToHtml(SideNavForceOpen);
+
 export const SideNavExample = {
   title: 'Side Nav',
   sections: [{
@@ -33,13 +37,13 @@ export const SideNavExample = {
       <div>
         <p>
           <EuiCode>SideNav</EuiCode> is a responsive menu system that usually sits on the left side of a page layout.
-          It will exapand to the width of its container. This is the menu that is used on the left side of the
-          page you are looking at.
+          It will expand to the width of its container. This is the menu that is used on the left side of the
+          page you are currently looking at.
         </p>
 
         <p>
           Configure the content of a <EuiCode>SideNav</EuiCode> by passing in an <EuiCode>items</EuiCode> prop.
-          Referring to the source code for an example of this data structure&rsquo;s anatomy.
+          Refer to the source code for an example of this data structure&rsquo;s anatomy.
         </p>
       </div>
     ),
@@ -60,5 +64,20 @@ export const SideNavExample = {
       </p>
     ),
     demo: <SideNavComplex />,
+  }, {
+    title: 'Forced open side nav',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: sideNavForceOpenSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: sideNavForceOpenHtml,
+    }],
+    text: (
+      <p>
+        <EuiCode>SideNav</EuiCode> items can be forced open by setting <EuiCode>items[n].forceOpen = true</EuiCode>
+      </p>
+    ),
+    demo: <SideNavForceOpen />,
   }],
 };

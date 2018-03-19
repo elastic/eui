@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   EuiBasicTable,
   ColumnType,
-  SelectionType
+  SelectionType,
 } from './basic_table';
 import {
   defaults as paginationBarDefaults
@@ -22,7 +22,7 @@ const InMemoryTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   items: PropTypes.array,
   loading: PropTypes.bool,
-  message: PropTypes.string,
+  message: PropTypes.node,
   error: PropTypes.string,
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
     defaultQuery: QueryType,
@@ -249,7 +249,7 @@ export class EuiInMemoryTable extends Component {
 
     const table = (
       <EuiBasicTable
-        items={message ? [] : items} // If message is configured, we force showing it instead of the items
+        items={items}
         columns={columns}
         pagination={pagination}
         sorting={sorting}

@@ -23,9 +23,46 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
           colSpan={1}
           textOnly={true}
         >
-          <div>
-            where my items at?
-          </div>
+          where my items at?
+        </EuiTableRowCell>
+      </EuiTableRow>
+    </EuiTableBody>
+  </EuiTable>
+</div>
+`;
+
+exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
+<div
+  className="euiBasicTable testClass1 testClass2"
+>
+  <EuiTable>
+    <EuiTableHeader>
+      <EuiTableHeaderCell
+        align="left"
+        isSortAscending={false}
+        isSorted={false}
+        key="_data_h_name_0"
+        scope="col"
+      >
+        Name
+      </EuiTableHeaderCell>
+    </EuiTableHeader>
+    <EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={1}
+          textOnly={true}
+        >
+          <p>
+            no items, click 
+            <a
+              href={true}
+            >
+              here
+            </a>
+             to make some
+          </p>
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
@@ -56,9 +93,7 @@ exports[`EuiBasicTable basic - empty 1`] = `
           colSpan={1}
           textOnly={true}
         >
-          <div>
-            No items found
-          </div>
+          No items found
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
