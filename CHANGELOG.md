@@ -1,5 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Make `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))
+
 **Bug fixes**
 
 - Made `EuiIconTip` screen reader accessible ([#534](https://github.com/elastic/eui/pull/534))
