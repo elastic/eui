@@ -24,14 +24,6 @@ export class EuiSearchBox extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      initialQuery: this.props.query
-    }
-  }
-
-  componentWillUpdate(nextProps) {
-    this.inputElement.value = nextProps.query;
   }
 
   render() {
@@ -47,10 +39,9 @@ export class EuiSearchBox extends Component {
 
     return (
       <EuiFieldSearch
-        inputRef={input => this.inputElement = input}
         fullWidth
         placeholder={placeholder}
-        defaultValue={this.state.initialQuery}
+        value={query ? query : ''}
         incremental={incremental}
         onSearch={(query) => onSearch(query)}
         isInvalid={isInvalid}

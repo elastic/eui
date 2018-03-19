@@ -44,6 +44,9 @@ export class EuiFieldSearch extends Component {
   constructor(props) {
     super(props);
     this.cleanups = [];
+    this.state = {
+      unsubmittedSearch: this.props.value
+    }
   }
 
   componentDidMount() {
@@ -62,6 +65,10 @@ export class EuiFieldSearch extends Component {
     this.cleanups.forEach(cleanup => cleanup());
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ unsubmittedSearch: nextProps.value });
+  }
+
   onKeyUp = (event) => {
     const { onKeyUp, onSearch, incremental } = this.props;
 
@@ -72,9 +79,19 @@ export class EuiFieldSearch extends Component {
       }
     }
     if (onSearch && (incremental || event.keyCode === ENTER)) {
-      onSearch(event.target.value);
+      onSearch(this.state.unsubmittedSearch);
     }
   };
+
+  onChange = (event) => {
+    if (this.props.onChange) {
+      this.props.onChange(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+    }
+    this.setState({ unsubmittedSearch: event.target.value });
+  }
 
   render() {
 
@@ -107,6 +124,11 @@ export class EuiFieldSearch extends Component {
       }
     };
 
+    let searchValue;
+    if (value || value === '') {
+      searchValue = this.state.unsubmittedSearch;
+    }
+
     return (
 
       <EuiFormControlLayout
@@ -121,7 +143,8 @@ export class EuiFieldSearch extends Component {
             name={name}
             placeholder={placeholder}
             className={classes}
-            value={value}
+            value={searchValue}
+            onChange={this.onChange}
             onKeyUp={this.onKeyUp}
             ref={ref}
             {...rest}
