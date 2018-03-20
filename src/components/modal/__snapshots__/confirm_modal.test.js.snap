@@ -60,9 +60,9 @@ exports[`renders EuiConfirmModal 1`] = `
       class="euiModalFooter"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary"
+        class="euiButtonEmpty"
         data-test-subj="confirmModalCancelButton"
-        type="button"
+        type="confirm"
       >
         <span
           class="euiButtonEmpty__content"
