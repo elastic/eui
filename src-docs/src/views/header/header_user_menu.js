@@ -8,6 +8,7 @@ import {
   EuiFlexItem,
   EuiHeaderAlert,
   EuiHeaderSectionItemButton,
+  EuiHeaderNotification,
   EuiIcon,
   EuiLink,
   EuiText,
@@ -44,9 +45,7 @@ export default class extends Component {
           size="m"
         />
 
-        <span className="euiHeader__notification">
-          3
-        </span>
+        <EuiHeaderNotification>3</EuiHeaderNotification>
       </EuiHeaderSectionItemButton>
     );
 

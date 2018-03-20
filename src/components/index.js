@@ -121,6 +121,7 @@ export {
   EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
   EuiHeaderLogo,
+  EuiHeaderNotification,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
