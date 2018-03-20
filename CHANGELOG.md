@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.31`.
+
+# [`0.0.31`](https://github.com/elastic/eui/tree/v0.0.31)
+
 - Make `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))
 - Remove `font-smoothing` from our reset css for better text legibility ([#539](https://github.com/elastic/eui/pull/539))
 
