@@ -72,7 +72,8 @@
    *    they actually click this input.
    */
 
-  &.euiCheckbox--inList {
+  &.euiCheckbox--inList,
+  &.euiCheckbox--noLabel {
     min-height: $euiCheckBoxSize;
     min-width: $euiCheckBoxSize;
 

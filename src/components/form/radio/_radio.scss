@@ -60,7 +60,8 @@
    *    they actually click this input.
    */
 
-  &.euiRadio--inList {
+  &.euiRadio--inList,
+  &.euiRadio--noLabel {
     min-height: $euiRadioSize;
     min-width: $euiRadioSize;
 

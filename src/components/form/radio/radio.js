@@ -14,6 +14,9 @@ export const EuiRadio = ({
 }) => {
   const classes = classNames(
     'euiRadio',
+    {
+      'euiRadio--noLabel': !label
+    },
     className
   );
 

@@ -28,10 +28,8 @@ export default class extends Component {
       isSwitchChecked: false,
       checkboxes: [{
         id: `${idPrefix}0`,
-        label: 'Option one',
       }, {
         id: `${idPrefix}1`,
-        label: 'Option two is checked by default',
       }, {
         id: `${idPrefix}2`,
         label: 'Option three',
@@ -41,10 +39,8 @@ export default class extends Component {
       },
       radios: [{
         id: `${idPrefix}4`,
-        label: 'Option one',
       }, {
         id: `${idPrefix}5`,
-        label: 'Option two is selected by default',
       }, {
         id: `${idPrefix}6`,
         label: 'Option three',

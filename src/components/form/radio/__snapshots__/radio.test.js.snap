@@ -3,7 +3,7 @@
 exports[`EuiRadio is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRadio testClass1 testClass2"
+  class="euiRadio euiRadio--noLabel testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <input
@@ -19,7 +19,7 @@ exports[`EuiRadio is rendered 1`] = `
 
 exports[`EuiRadio props checked is rendered 1`] = `
 <div
-  class="euiRadio"
+  class="euiRadio euiRadio--noLabel"
 >
   <input
     checked=""
@@ -35,7 +35,7 @@ exports[`EuiRadio props checked is rendered 1`] = `
 
 exports[`EuiRadio props disabled is rendered 1`] = `
 <div
-  class="euiRadio"
+  class="euiRadio euiRadio--noLabel"
 >
   <input
     class="euiRadio__input"
