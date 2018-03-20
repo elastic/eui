@@ -114,6 +114,8 @@ declare module '@elastic/eui' {
     | 'starEmpty'
     | 'starPlusFilled'
     | 'stats'
+    | 'stop'
+    | 'stopFilled'
     | 'string'
     | 'tableOfContents'
     | 'tear'

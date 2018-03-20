@@ -96,6 +96,8 @@ const iconTypes = [
   'starEmpty',
   'starPlusFilled',
   'stats',
+  'stop',
+  'stopFilled',
   'string',
   'tableOfContents',
   'tear',
