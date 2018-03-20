@@ -17,6 +17,47 @@ exports[`EuiInMemoryTable empty array 1`] = `
 />
 `;
 
+exports[`EuiInMemoryTable with initial sorting 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": true,
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  sorting={
+    Object {
+      "sort": Object {
+        "direction": "desc",
+        "field": "name",
+      },
+    }
+  }
+/>
+`;
+
 exports[`EuiInMemoryTable with items 1`] = `
 <EuiBasicTable
   columns={
