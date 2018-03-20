@@ -132,6 +132,8 @@ import sortUp from './assets/sort_up.svg';
 import starEmpty from './assets/star_empty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
+import stop from './assets/stop.svg';
+import stopFilled from './assets/stop_filled.svg';
 import string from './assets/string.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tear from './assets/tear.svg';
@@ -276,6 +278,8 @@ const typeToIconMap = {
   starEmpty,
   starPlusFilled,
   stats,
+  stop,
+  stopFilled,
   string,
   tableOfContents,
   tear,
