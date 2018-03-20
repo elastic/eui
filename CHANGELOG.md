@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Made `EuiIconTip` screen reader accessible ([#534](https://github.com/elastic/eui/pull/534))
+- Fix checkbox click for `EuiCheckbox` and `EuiRadio` without a label ([#541](https://github.com/elastic/eui/pull/541))
 
 # [`0.0.30`](https://github.com/elastic/eui/tree/v0.0.30)
 
