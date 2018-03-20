@@ -3338,17 +3338,11 @@ exports[`EuiIcon renders type stop 1`] = `
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <defs>
-    <path
-      d="M0 1.994C0 .893.895 0 1.994 0h12.012C15.107 0 16 .895 16 1.994v12.012A1.995 1.995 0 0 1 14.006 16H1.994A1.995 1.995 0 0 1 0 14.006V1.994zm1 0v12.012c0 .548.446.994.994.994h12.012a.995.995 0 0 0 .994-.994V1.994A.995.995 0 0 0 14.006 1H1.994A.995.995 0 0 0 1 1.994z"
-      id="stop-a"
-    />
-  </defs>
-  <use
-    href="#stop-a"
+  <path
+    d="M4 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -3359,18 +3353,15 @@ exports[`EuiIcon renders type stopFilled 1`] = `
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <defs>
-    <path
-      d="M0 1.994C0 .893.895 0 1.994 0h12.012C15.107 0 16 .895 16 1.994v12.012A1.995 1.995 0 0 1 14.006 16H1.994A1.995 1.995 0 0 1 0 14.006V1.994zm1 0v12.012c0 .548.446.994.994.994h12.012a.995.995 0 0 0 .994-.994V1.994A.995.995 0 0 0 14.006 1H1.994A.995.995 0 0 0 1 1.994z"
-      id="stop-a"
-    />
-  </defs>
-  <use
+  <rect
     fill-rule="evenodd"
-    href="#stop-a"
+    height="12"
+    rx="2"
+    width="12"
+    x="2"
+    y="2"
   />
 </svg>
 `;
