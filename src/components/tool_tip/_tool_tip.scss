@@ -1,10 +1,3 @@
-/**
- * 1. Relative / absolute positioning so they still work during scrolling.
- */
-.euiBody-hasToolTip {
-  position: relative; /* 1 */
-}
-
 .euiToolTip {
   @include euiBottomShadow;
   @include euiFontSizeS();
