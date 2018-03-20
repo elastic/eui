@@ -1,6 +1,6 @@
 /// <reference path="../common.d.ts" />
 
-import { SFC, HTMLAttributes } from 'react';
+import { SFC, ProgressHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -18,7 +18,7 @@ declare module '@elastic/eui' {
   export type EuiProgressPosition = 'fixed' | 'absolute' | 'static';
 
   export type EuiProgressProps = CommonProps &
-    HTMLAttributes<HTMLProgressElement> & {
+    ProgressHTMLAttributes<HTMLProgressElement> & {
       size?: EuiProgressSize;
       color?: EuiProgressColor;
       position?: EuiProgressPosition;
