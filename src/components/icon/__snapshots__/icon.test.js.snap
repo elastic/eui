@@ -3332,6 +3332,40 @@ exports[`EuiIcon renders type stats 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type stop 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type stopFilled 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    fill-rule="evenodd"
+    height="12"
+    rx="2"
+    width="12"
+    x="2"
+    y="2"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type string 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
