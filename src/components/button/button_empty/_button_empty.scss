@@ -85,15 +85,21 @@ $buttonTypes: (
 }
 
 .euiButtonEmpty--flushLeft {
+  margin-right: $euiSizeS;
+
   .euiButtonEmpty__content {
     border-left: none;
     padding-left: 0;
+    padding-right: 0;
   }
 }
 
 .euiButtonEmpty--flushRight {
+  margin-left: $euiSizeS;
+
   .euiButtonEmpty__content {
     border-right: none;
+    padding-left: 0;
     padding-right: 0;
   }
 }
