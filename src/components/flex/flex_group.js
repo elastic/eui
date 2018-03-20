@@ -18,6 +18,7 @@ const alignItemsToClassNameMap = {
   flexStart: 'euiFlexGroup--alignItemsFlexStart',
   flexEnd: 'euiFlexGroup--alignItemsFlexEnd',
   center: 'euiFlexGroup--alignItemsCenter',
+  baseline: 'euiFlexGroup--alignItemsBaseline',
 };
 
 export const ALIGN_ITEMS = Object.keys(alignItemsToClassNameMap);
