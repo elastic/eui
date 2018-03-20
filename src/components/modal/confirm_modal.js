@@ -138,6 +138,6 @@ EuiConfirmModal.propTypes = {
   type: PropTypes.oneOf(MODAL_TYPES),
 };
 
-EuiButtonEmpty.defaultProps = {
+EuiConfirmModal.defaultProps = {
   type: 'confirm',
 };
