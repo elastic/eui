@@ -1,110 +1,94 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { requiredProps, validateSnapshot } from '../../test';
+import { requiredProps } from '../../test';
 import { EuiLink, COLORS } from './link';
 
-const defaultProps = {...requiredProps, href: '#', target: '_blank'};
-
 describe('EuiLink', () => {
-  test('errors if an invalid color is provided', () => {
+  test('it errors if an invalid color is provided', () => {
     expect(() => render(
-      <EuiLink
-        {...defaultProps}
-        color="phooey"
-      />
+      <EuiLink href="#" color="phooey" />
     )).toThrow(/phooey/);
   });
 
-  test('supports the official color palette', () => {
-    COLORS.forEach((color) => {
-      const component = render(
-        <EuiLink
-          {...defaultProps}
-          color={color}
-        />
-      );
-  
-      expect(component[0].attribs.class).toMatch(color);
-    });
+  test('it does not error if passed a supported color', () => {
+    expect(() => {
+      COLORS.forEach((color) => {
+        const component = render(
+          <EuiLink href="#" color={color} />
+        );
+      });
+    }).not.toThrowError();
   });
 
-  test('cannot specify both href and onclick', () => {
+  test('it does not support both href and onClick', () => {
     expect(() => render(
-      <EuiLink
-        {...defaultProps}
-        href="/cant/have/this/and/onclick"
-        onClick={() => null}
+      <EuiLink href="/no/can/do" onClick={() => null}
       />
     )).toThrow(/href/);
   });
 
-  test('is rendered', () => validateSnapshot(
-    <EuiLink {...defaultProps} />
-  ));
+  test('it passes the default props through', () => {
+    const component = render(
+      <EuiLink {...requiredProps} />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports children', () => validateSnapshot(
-    <EuiLink {...defaultProps}>
-      <span>Hiya!!!</span>
-    </EuiLink>
-  ));
+  test('supports children', () => {
+    const component = render(
+      <EuiLink href="#">
+        <span>Hiya!!!</span>
+      </EuiLink>
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports className', () => validateSnapshot(
-    <EuiLink
-      {...defaultProps}
-      className="bazinga"
-    />
-  ));
+  test('supports href', () => {
+    const component = render(
+      <EuiLink href="/baz/bing" />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports href', () => validateSnapshot(
-    <EuiLink
-      {...defaultProps}
-      href="/baz/bing"
-    />
-  ));
+  test('supports target', () => {
+    const component = render(
+      <EuiLink href="#" target="_parent" />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports target', () => validateSnapshot(
-    <EuiLink
-      {...defaultProps}
-      target="_parent"
-    />
-  ));
+  test('supports rel', () => {
+    const component = render(
+      <EuiLink rel="stylesheet" />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports rel', () => validateSnapshot(
-    <EuiLink
-      {...defaultProps}
-      rel="stylesheet"
-    />
-  ));
+  test('if onClick specified, it renders a button of type=button', () => {
+    const component = render(
+      <EuiLink onClick={() => 'hello, world!'} />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
-  test('supports aria-label', () => validateSnapshot(
-    <EuiLink
-      {...defaultProps}
-      aria-label="Shazm!"
-    />
-  ));
-
-  test('if onClick specified, it renders a button of type=button', () => validateSnapshot(
-    <EuiLink
-      {...requiredProps}
-      onClick={() => 'hello, world!'}
-    />
-  ));
-
-  test('button respects the type property', () => validateSnapshot(
-    <EuiLink
-      {...requiredProps}
-      type="submit"
-      onClick={() => 'hello, world!'}
-    />
-  ));
+  test('button respects the type property', () => {
+    const component = render(
+      <EuiLink type="submit" onClick={() => 'hello, world!'} />
+    );
+    expect(component)
+      .toMatchSnapshot();
+  });
 
   test('onClick actually fires', () => {
     const handler = jest.fn();
     const component = mount(
-      <EuiLink
-        {...requiredProps}
-        onClick={handler}
-      />
+      <EuiLink onClick={handler} />
     );
     component.find('button').simulate('click');
     expect(handler.mock.calls.length).toEqual(1);
