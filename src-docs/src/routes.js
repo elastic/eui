@@ -89,6 +89,12 @@ import { ErrorBoundaryExample }
 import { ExpressionExample }
   from './views/expression/expression_example';
 
+import { FieldControlsExample }
+  from './views/field_controls/field_controls_example';
+
+import { FieldSelectionExample }
+  from './views/field_selection/field_selection_example';
+
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
 
@@ -101,8 +107,11 @@ import { FlexExample }
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
-import { FormExample }
-  from './views/form/form_example';
+import { FormLayoutsExample }
+  from './views/form_layouts/form_layouts_example';
+
+import { FormStatesExample }
+  from './views/form_states/form_states_example';
 
 import { HeaderExample }
   from './views/header/header_example';
@@ -292,12 +301,15 @@ const navigation = [{
 }, {
   name: 'Forms',
   items: [
-    CodeEditorExample,
-    ColorPickerExample,
-    ExpressionExample,
+    FormLayoutsExample,
+    FormStatesExample,
+    FieldControlsExample,
+    FieldSelectionExample,
     FilePickerExample,
+    ColorPickerExample,
+    CodeEditorExample,
+    ExpressionExample,
     FilterGroupExample,
-    FormExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 }, {

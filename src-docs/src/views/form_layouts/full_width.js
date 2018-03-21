@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   EuiFieldSearch,
@@ -12,7 +12,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <div>
+  <Fragment>
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiFieldSearch placeholder="Search..." fullWidth />
@@ -48,10 +48,5 @@ export default () => (
           lines get this long? It is much more readable when contained to a scannable max-width."
       />
     </EuiFormRow>
-
-
-    <br />
-    <br />
-
-  </div>
+  </Fragment>
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   EuiFieldNumber,
@@ -6,17 +6,17 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiSelect,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
-  <div>
+  <Fragment>
     <EuiFieldText
       placeholder="Placeholder text"
       isLoading
     />
 
-    <br />
-    <br />
+    <EuiSpacer size="s" />
 
     <EuiFieldText
       defaultValue="Text field with customizable icon"
@@ -25,32 +25,28 @@ export default () => (
       disabled
     />
 
-    <br />
-    <br />
+    <EuiSpacer size="s" />
 
     <EuiFieldNumber
       defaultValue="23"
       isLoading
     />
 
-    <br />
-    <br />
+    <EuiSpacer size="s" />
 
     <EuiFieldPassword
       defaultValue="password"
       isLoading
     />
 
-    <br />
-    <br />
+    <EuiSpacer size="s" />
 
     <EuiFieldSearch
       defaultValue="Search field"
       isLoading
     />
 
-    <br />
-    <br />
+    <EuiSpacer size="s" />
 
     <EuiSelect
       isLoading
@@ -60,6 +56,5 @@ export default () => (
         { value: 'option_three', text: 'Option three' },
       ]}
     />
-
-  </div>
+  </Fragment>
 );

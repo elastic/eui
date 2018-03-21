@@ -1,5 +1,6 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
@@ -14,6 +15,7 @@ import {
   EuiSwitch,
   EuiTextArea,
   EuiFilePicker,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -50,7 +52,6 @@ export default class extends Component {
         label: 'Option three',
       }],
       radioIdSelected: `${idPrefix}5`,
-      numberInputValue: '',
     };
   }
 
@@ -76,62 +77,42 @@ export default class extends Component {
     });
   }
 
-  onNumberInputChange = (evt) => {
-    let value = parseFloat(evt.target.value);
-    if (isNaN(value)) {
-      value = '';
-    }
-    this.setState({
-      numberInputValue: value,
-    });
-  }
-
   render() {
     return (
-      <div>
+      <Fragment>
         <EuiFieldText placeholder="Placeholder text" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldText
           defaultValue="Text field with customizable icon"
           icon="user"
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
-        <EuiFieldNumber
-          value={this.state.numberInputValue}
-          onChange={this.onNumberInputChange}
-        />
+        <EuiFieldNumber defaultValue="23" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldNumber
           defaultValue="23"
           icon="user"
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldPassword defaultValue="password" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldSearch defaultValue="Search field" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiTextArea />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiSelect
           options={[
@@ -139,29 +120,26 @@ export default class extends Component {
             { value: 'option_two', text: 'Option two' },
             { value: 'option_three', text: 'Option three' },
           ]}
+
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFilePicker />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiRange />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiSwitch
           label="Switch control"
-          checked={this.state.isSwitchChecked}
           onChange={this.onSwitchChange}
+          checked
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiCheckboxGroup
           options={this.state.checkboxes}
@@ -169,15 +147,14 @@ export default class extends Component {
           onChange={this.onCheckboxChange}
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiRadioGroup
           options={this.state.radios}
           idSelected={this.state.radioIdSelected}
           onChange={this.onRadioChange}
         />
-      </div>
+      </Fragment>
     );
   }
 }

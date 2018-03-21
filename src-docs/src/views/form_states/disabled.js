@@ -1,5 +1,6 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
@@ -14,6 +15,7 @@ import {
   EuiSwitch,
   EuiTextArea,
   EuiFilePicker,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -77,11 +79,10 @@ export default class extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <EuiFieldText disabled placeholder="Placeholder text" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldText
           disabled
@@ -89,13 +90,11 @@ export default class extends Component {
           icon="user"
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldNumber disabled defaultValue="23" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldNumber
           defaultValue="23"
@@ -103,23 +102,19 @@ export default class extends Component {
           disabled
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldPassword disabled defaultValue="password" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFieldSearch disabled defaultValue="Search field" />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiTextArea disabled />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiSelect
           options={[
@@ -130,18 +125,15 @@ export default class extends Component {
           disabled
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiFilePicker disabled />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiRange disabled />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiSwitch
           label="Switch control"
@@ -150,8 +142,7 @@ export default class extends Component {
           disabled
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiCheckboxGroup
           options={this.state.checkboxes}
@@ -160,8 +151,7 @@ export default class extends Component {
           disabled
         />
 
-        <br />
-        <br />
+        <EuiSpacer size="s" />
 
         <EuiRadioGroup
           options={this.state.radios}
@@ -169,7 +159,7 @@ export default class extends Component {
           onChange={this.onRadioChange}
           disabled
         />
-      </div>
+      </Fragment>
     );
   }
 }
