@@ -2,6 +2,10 @@
 
 - Added initial sorting option to `EuiInMemoryTable` ([#547](https://github.com/elastic/eui/pull/547))
 
+**Bug fixes**
+
+- `EuiConfirmModal` will now check for the presence of confirm and cancel buttons before trying to focus them ([#555](https://github.com/elastic/eui/pull/555))
+
 # [`0.0.32`](https://github.com/elastic/eui/tree/v0.0.32)
 
 - Updated `EuiDescriptionList` to accept nodes for the titles and descriptions ([#552](https://github.com/elastic/eui/pull/552))

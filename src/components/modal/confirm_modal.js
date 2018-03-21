@@ -31,11 +31,12 @@ export class EuiConfirmModal extends Component {
     // elements conflicts with the focus-trap logic we have on EuiModal.
     const { defaultFocusedButton } = this.props;
 
-    // Wait a beat for the focus-trap to complete, and then set focus to the right button.
+    // Wait a beat for the focus-trap to complete, and then set focus to the right button. Check that
+    // the buttons exist first, because it's possible the modal has been closed already.
     requestAnimationFrame(() => {
-      if (defaultFocusedButton === CANCEL_BUTTON) {
+      if (defaultFocusedButton === CANCEL_BUTTON && this.cancelButton) {
         this.cancelButton.focus();
-      } else if (defaultFocusedButton === CONFIRM_BUTTON) {
+      } else if (defaultFocusedButton === CONFIRM_BUTTON && this.confirmButton) {
         this.confirmButton.focus();
       }
     });
