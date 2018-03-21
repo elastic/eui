@@ -10,20 +10,19 @@ describe('EuiLink', () => {
     )).toThrow(/phooey/);
   });
 
-  test('it does not error if passed a supported color', () => {
-    expect(() => {
-      COLORS.forEach((color) => {
-        const component = render(
-          <EuiLink href="#" color={color} />
-        );
-      });
-    }).not.toThrowError();
+  COLORS.forEach(color => {
+    test(`${color} is rendered`, () => {
+      const component = render(
+        <EuiLink color={color} />
+      );
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 
   test('it does not support both href and onClick', () => {
     expect(() => render(
-      <EuiLink href="/no/can/do" onClick={() => null}
-      />
+      <EuiLink href="/no/can/do" onClick={() => null} />
     )).toThrow(/href/);
   });
 
