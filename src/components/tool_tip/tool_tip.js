@@ -38,12 +38,12 @@ export class EuiToolTip extends Component {
     this.setState({ visible: true });
   };
 
-  positionToolTip = (toolTipRect) => {
-    const wrapperRect = this.wrapper.getBoundingClientRect();
-    const userPosition = this.props.position;
+  positionToolTip = (toolTipBounds) => {
+    const anchorBounds = this.anchor.getBoundingClientRect();
+    const requestedPosition = this.props.position;
 
-    const calculatedPosition = calculatePopoverPosition(wrapperRect, toolTipRect, userPosition);
-    const toolTipStyles = calculatePopoverStyles(wrapperRect, toolTipRect, calculatedPosition);
+    const calculatedPosition = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
+    const toolTipStyles = calculatePopoverStyles(anchorBounds, toolTipBounds, calculatedPosition);
 
     this.setState({
       visible: true,
@@ -111,7 +111,7 @@ export class EuiToolTip extends Component {
     }
 
     const trigger = (
-      <span ref={wrapper => this.wrapper = wrapper}>
+      <span ref={anchor => this.anchor = anchor}>
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,

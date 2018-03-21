@@ -12,26 +12,20 @@ export class EuiToolTipPopover extends Component {
     positionToolTip: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.updateDimensions = this.updateDimensions.bind(this);
-  }
-
-  componentDidMount() {
-    document.body.classList.add('euiBody-hasToolTip');
-
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
-  }
-
-  updateDimensions() {
+  updateDimensions = () => {
     requestAnimationFrame(() => {
       // Because of this delay, sometimes `positionToolTip` becomes unavailable.
       if (this.popover) {
         this.props.positionToolTip(this.popover.getBoundingClientRect());
       }
     });
+  };
+
+  componentDidMount() {
+    document.body.classList.add('euiBody-hasToolTip');
+
+    this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
