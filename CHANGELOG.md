@@ -1,5 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `EuiDescriptionList` to accept nodes for the titles and descriptions ([#552](https://github.com/elastic/eui/pull/552))
 - Added `stop` and `stopFilled` icons ([#543](https://github.com/elastic/eui/pull/543))
 
 **Bug fixes**

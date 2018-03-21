@@ -77,8 +77,8 @@ EuiDescriptionList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   listItems: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
+    title: PropTypes.node,
+    description: PropTypes.node,
   })),
   compressed: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),

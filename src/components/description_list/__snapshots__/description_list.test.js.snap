@@ -28,7 +28,7 @@ exports[`EuiDescriptionList props compressed is rendered 1`] = `
 />
 `;
 
-exports[`EuiDescriptionList props listItems is rendered 1`] = `
+exports[`EuiDescriptionList props listItems is rendered as strings and elements 1`] = `
 <dl
   class="euiDescriptionList euiDescriptionList--row"
 >
@@ -45,12 +45,16 @@ exports[`EuiDescriptionList props listItems is rendered 1`] = `
   <dt
     class="euiDescriptionList__title"
   >
-    Title 2
+    <em>
+      Title 2
+    </em>
   </dt>
   <dd
     class="euiDescriptionList__description"
   >
-    Description 2
+    <code>
+      Description 2
+    </code>
   </dd>
   <dt
     class="euiDescriptionList__title"
