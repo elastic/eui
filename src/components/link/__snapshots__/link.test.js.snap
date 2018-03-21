@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiLink button respects the type property 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="submit"
+/>
+`;
+
+exports[`EuiLink if onClick specified, it renders a button of type=button 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+/>
+`;
+
 exports[`EuiLink is rendered 1`] = `
 <a
   aria-label="aria-label"
@@ -8,5 +26,74 @@ exports[`EuiLink is rendered 1`] = `
   href="#"
   rel="noopener noreferrer"
   target="_blank"
+/>
+`;
+
+exports[`EuiLink supports aria-label 1`] = `
+<a
+  aria-label="Shazm!"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;
+
+exports[`EuiLink supports children 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span>
+    Hiya!!!
+  </span>
+</a>
+`;
+
+exports[`EuiLink supports className 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiLink--primary bazinga"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;
+
+exports[`EuiLink supports href 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="/baz/bing"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;
+
+exports[`EuiLink supports rel 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="#"
+  rel="stylesheet noopener noreferrer"
+  target="_blank"
+/>
+`;
+
+exports[`EuiLink supports target 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiLink--primary testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="#"
+  target="_parent"
 />
 `;
