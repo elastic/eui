@@ -19,29 +19,29 @@ const getVisibleArea = (bounds, windowWidth, windowHeight) => {
 
 const positionAtTop = (anchorBounds, width, height, buffer) => {
   const widthDifference = width - anchorBounds.width;
-  const left = (anchorBounds.left - widthDifference) * 0.5;
+  const left = anchorBounds.left - widthDifference * 0.5;
   const top = anchorBounds.top - height - buffer;
   return { left, top, width, height };
 };
 
 const positionAtRight = (anchorBounds, width, height, buffer) => {
   const left = anchorBounds.right + buffer;
-  const heightDifference = (height - anchorBounds.height) * 0.5;
-  const top = anchorBounds.top - heightDifference;
+  const heightDifference = height - anchorBounds.height;
+  const top = anchorBounds.top - heightDifference * 0.5;
   return { left, top, width, height };
 };
 
 const positionAtBottom = (anchorBounds, width, height, buffer) => {
   const widthDifference = width - anchorBounds.width;
-  const left = (anchorBounds.left - widthDifference) * 0.5;
+  const left = anchorBounds.left - widthDifference * 0.5;
   const top = anchorBounds.bottom + buffer;
   return { left, top, width, height };
 };
 
 const positionAtLeft = (anchorBounds, width, height, buffer) => {
   const left = anchorBounds.left - width - buffer;
-  const heightDifference = (height - anchorBounds.height) * 0.5;
-  const top = anchorBounds.top - heightDifference;
+  const heightDifference = height - anchorBounds.height;
+  const top = anchorBounds.top - heightDifference * 0.5;
   return { left, top, width, height };
 };
 
@@ -50,23 +50,34 @@ export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedP
   const windowHeight = window.innerHeight;
   const { width: popoverWidth, height: popoverHeight } = popoverBounds;
 
-  // Calculate how much area of the popover is visible at each position.
-  const positionToVisibleAreaMap = {
-    top: getVisibleArea(positionAtTop(anchorBounds, popoverWidth, popoverHeight, buffer), windowWidth, windowHeight),
-    right: getVisibleArea(positionAtRight(anchorBounds, popoverWidth, popoverHeight, buffer), windowWidth, windowHeight),
-    bottom: getVisibleArea(positionAtBottom(anchorBounds, popoverWidth, popoverHeight, buffer), windowWidth, windowHeight),
-    left: getVisibleArea(positionAtLeft(anchorBounds, popoverWidth, popoverHeight, buffer), windowWidth, windowHeight),
+  const positionToBoundsMap = {
+    top: positionAtTop(anchorBounds, popoverWidth, popoverHeight, buffer),
+    right: positionAtRight(anchorBounds, popoverWidth, popoverHeight, buffer),
+    bottom: positionAtBottom(anchorBounds, popoverWidth, popoverHeight, buffer),
+    left: positionAtLeft(anchorBounds, popoverWidth, popoverHeight, buffer),
   };
+
+  const positions = Object.keys(positionToBoundsMap);
+
+  // Calculate how much area of the popover is visible at each position.
+  const positionToVisibleAreaMap = {};
+
+  positions.forEach((position) => {
+    positionToVisibleAreaMap[position] = getVisibleArea(positionToBoundsMap[position], windowWidth, windowHeight);
+  });
 
   // Default to use the requested position.
   let calculatedPopoverPosition = requestedPosition;
 
   // If the requested position clips the popover, find the position which clips the popover the least.
-  Object.keys(positionToVisibleAreaMap).forEach((position) => {
+  positions.forEach((position) => {
     if (positionToVisibleAreaMap[position] > positionToVisibleAreaMap[calculatedPopoverPosition]) {
       calculatedPopoverPosition = position;
     }
   });
 
-  return calculatedPopoverPosition;
+  return {
+    position: calculatedPopoverPosition,
+    ...positionToBoundsMap[calculatedPopoverPosition],
+  };
 }

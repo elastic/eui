@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
+import { calculatePopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
 
@@ -42,12 +42,16 @@ export class EuiToolTip extends Component {
     const anchorBounds = this.anchor.getBoundingClientRect();
     const requestedPosition = this.props.position;
 
-    const calculatedPosition = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
-    const toolTipStyles = calculatePopoverStyles(anchorBounds, toolTipBounds, calculatedPosition);
+    const { position, left, top } = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
+
+    const toolTipStyles = {
+      top: top + window.scrollY,
+      left,
+    };
 
     this.setState({
       visible: true,
-      calculatedPosition,
+      calculatedPosition: position,
       toolTipStyles,
     });
   };
