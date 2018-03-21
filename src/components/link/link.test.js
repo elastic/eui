@@ -20,10 +20,12 @@ describe('EuiLink', () => {
     });
   });
 
-  test('it does not support both href and onClick', () => {
-    expect(() => render(
-      <EuiLink href="/no/can/do" onClick={() => null} />
-    )).toThrow(/href/);
+  test('it supports both href and onClick', () => {
+    const component = render(
+      <EuiLink href="/imalink" onClick={() => null} />
+    );
+    expect(component)
+      .toMatchSnapshot();
   });
 
   test('it passes the default props through', () => {
@@ -62,15 +64,15 @@ describe('EuiLink', () => {
 
   test('supports rel', () => {
     const component = render(
-      <EuiLink rel="stylesheet" />
+      <EuiLink href="hoi" rel="stylesheet" />
     );
     expect(component)
       .toMatchSnapshot();
   });
 
-  test('if onClick specified, it renders a button of type=button', () => {
+  test('if href is not specified, it renders a button of type=button', () => {
     const component = render(
-      <EuiLink onClick={() => 'hello, world!'} />
+      <EuiLink />
     );
     expect(component)
       .toMatchSnapshot();
@@ -84,12 +86,21 @@ describe('EuiLink', () => {
       .toMatchSnapshot();
   });
 
-  test('onClick actually fires', () => {
+  test('onClick fires for buttons', () => {
     const handler = jest.fn();
     const component = mount(
       <EuiLink onClick={handler} />
     );
     component.find('button').simulate('click');
+    expect(handler.mock.calls.length).toEqual(1);
+  });
+
+  test('onClick fires for links', () => {
+    const handler = jest.fn();
+    const component = mount(
+      <EuiLink href="#" onClick={handler} />
+    );
+    component.find('a').simulate('click');
     expect(handler.mock.calls.length).toEqual(1);
   });
 });
