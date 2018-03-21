@@ -1,1 +1,1 @@
-export { calculatePopoverPosition } from './popover_calculate_position';
+export { calculatePopoverPosition } from './calculate_popover_position';
