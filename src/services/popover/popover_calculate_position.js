@@ -1,14 +1,3 @@
-/**
- * Determine the best position for a popover that avoids clipping by the window view port.
- *
- * @param {native DOM Element} anchorBounds - getBoundingClientRect() of the node the popover is tethered to (e.g. a button).
- * @param {native DOM Element} popoverBounds - getBoundingClientRect() of the popover node (e.g. the tooltip).
- * @param {string} requestedPosition - Position the user wants. One of ["top", "right", "bottom", "left"]
- * @param {number} buffer - The space between the wrapper and the popover. Also the minimum space between the popover and the window.
- *
- * @returns {string} One of ["top", "right", "bottom", "left"] that ensures the least amount of window overflow.
- */
-
 const getVisibleArea = (bounds, windowWidth, windowHeight) => {
   const { left, top, width, height } = bounds;
   // This is a common algorithm for finding the intersected area among two rectangles.
@@ -45,6 +34,16 @@ const positionAtLeft = (anchorBounds, width, height, buffer) => {
   return { left, top, width, height };
 };
 
+/**
+ * Determine the best position for a popover that avoids clipping by the window view port.
+ *
+ * @param {native DOM Element} anchorBounds - getBoundingClientRect() of the node the popover is tethered to (e.g. a button).
+ * @param {native DOM Element} popoverBounds - getBoundingClientRect() of the popover node (e.g. the tooltip).
+ * @param {string} requestedPosition - Position the user wants. One of ["top", "right", "bottom", "left"]
+ * @param {number} buffer - The space between the wrapper and the popover. Also the minimum space between the popover and the window.
+ *
+ * @returns {string} One of ["top", "right", "bottom", "left"] that ensures the least amount of window overflow.
+ */
 export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition, buffer = 16) {
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
