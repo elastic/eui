@@ -1,11 +1,15 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.32`.
+
+# [`0.0.32`](https://github.com/elastic/eui/tree/v0.0.32)
+
 - Updated `EuiDescriptionList` to accept nodes for the titles and descriptions ([#552](https://github.com/elastic/eui/pull/552))
 - Added `stop` and `stopFilled` icons ([#543](https://github.com/elastic/eui/pull/543))
 
 **Bug fixes**
 
-- Fix `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550]https://github.com/elastic/eui/pull/550)
+- Fixed `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550]https://github.com/elastic/eui/pull/550)
 
 # [`0.0.31`](https://github.com/elastic/eui/tree/v0.0.31)
 
@@ -16,7 +20,7 @@
 
 - Made `EuiIconTip` screen reader accessible ([#534](https://github.com/elastic/eui/pull/534))
 - Fixed a sorting issue in `EuiInMemoryTable` ([#453](https://github.com/elastic/eui/pull/453))
-- Fix checkbox click for `EuiCheckbox` and `EuiRadio` without a label ([#541](https://github.com/elastic/eui/pull/541))
+- Fixed checkbox click for `EuiCheckbox` and `EuiRadio` without a label ([#541](https://github.com/elastic/eui/pull/541))
 
 # [`0.0.30`](https://github.com/elastic/eui/tree/v0.0.30)
 
@@ -30,7 +34,7 @@
 **Bug fixes**
 
 - `EuiHealth` no longer stacks flex items on small screens ([#530](https://github.com/elastic/eui/pull/530))
-- Fix `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
+- Fixed `EuiPageContent` centering within `EuiPage` issue ([#527](https://github.com/elastic/eui/pull/527))
 - `EuiConfirmModal` will now correctly auto-focus on its confirm and cancel buttons (#529[](https://github.com/elastic/eui/pull/529))
 
 # [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
@@ -53,7 +57,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 - `EuiModal` is now responsive on mobile screens ([#512](https://github.com/elastic/eui/pull/512))
 - `EuiFlexGrid` now collapses down in mobile layouts properly. ([#515](https://github.com/elastic/eui/pull/515))
 - Made `EuiCard` proptypes more permission by changing strings to nodes. ([#515](https://github.com/elastic/eui/pull/515))
-- Fix `reponsive={false}` prop not working when flex groups were nested. ([#494](https://github.com/elastic/eui/pull/494))
+- Fixed `reponsive={false}` prop not working when flex groups were nested. ([#494](https://github.com/elastic/eui/pull/494))
 - `EuiBadge` wrapping element changed from a `div` to `span` so it can be nested in text blocks ([#494](https://github.com/elastic/eui/pull/494))
 
 # [`0.0.26`](https://github.com/elastic/eui/tree/v0.0.26)
