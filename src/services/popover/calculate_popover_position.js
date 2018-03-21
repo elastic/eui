@@ -37,12 +37,12 @@ const positionAtLeft = (anchorBounds, width, height, buffer) => {
 /**
  * Determine the best position for a popover that avoids clipping by the window view port.
  *
- * @param {native DOM Element} anchorBounds - getBoundingClientRect() of the node the popover is tethered to (e.g. a button).
- * @param {native DOM Element} popoverBounds - getBoundingClientRect() of the popover node (e.g. the tooltip).
+ * @param {Object} anchorBounds - getBoundingClientRect() of the node the popover is tethered to (e.g. a button).
+ * @param {Object} popoverBounds - getBoundingClientRect() of the popover node (e.g. the tooltip).
  * @param {string} requestedPosition - Position the user wants. One of ["top", "right", "bottom", "left"]
  * @param {number} buffer - The space between the wrapper and the popover. Also the minimum space between the popover and the window.
  *
- * @returns {string} One of ["top", "right", "bottom", "left"] that ensures the least amount of window overflow.
+ * @returns {Object} With properties position (one of ["top", "right", "bottom", "left"]), left, top, width, and height.
  */
 export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition, buffer = 16) {
   const windowWidth = window.innerWidth;
@@ -60,20 +60,18 @@ export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedP
 
   // Calculate how much area of the popover is visible at each position.
   const positionToVisibleAreaMap = {};
-
   positions.forEach((position) => {
     positionToVisibleAreaMap[position] = getVisibleArea(positionToBoundsMap[position], windowWidth, windowHeight);
   });
 
-  // Default to use the requested position.
-  let calculatedPopoverPosition = requestedPosition;
-
   // If the requested position clips the popover, find the position which clips the popover the least.
-  positions.forEach((position) => {
-    if (positionToVisibleAreaMap[position] > positionToVisibleAreaMap[calculatedPopoverPosition]) {
-      calculatedPopoverPosition = position;
+  // Default to use the requested position.
+  let calculatedPopoverPosition = positions.reduce((mostVisiblePosition, position) => {
+    if (positionToVisibleAreaMap[position] > positionToVisibleAreaMap[mostVisiblePosition]) {
+      return position;
     }
-  });
+    return mostVisiblePosition;
+  }, requestedPosition);
 
   return {
     position: calculatedPopoverPosition,
