@@ -9,7 +9,7 @@ import {
   defaults as paginationBarDefaults
 } from './pagination_bar';
 import { isBoolean, isString } from '../../services/predicate';
-import { Comparators } from '../../services/sort';
+import { Comparators, PropertySortType } from '../../services/sort';
 import {
   Query,
   QueryType,
@@ -40,7 +40,12 @@ const InMemoryTablePropTypes = {
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     })
   ]),
-  sorting: PropTypes.bool,
+  sorting: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      sort: PropertySortType
+    })
+  ]),
   selection: SelectionType
 };
 
@@ -81,7 +86,7 @@ const getInitialPagination = (pagination) => {
 };
 
 const getInitialSorting = (sorting) => {
-  if (!sorting) {
+  if (!sorting || !sorting.sort) {
     return {
       sortField: undefined,
       sortDirection: undefined,
@@ -91,7 +96,7 @@ const getInitialSorting = (sorting) => {
   const {
     field: sortField,
     direction: sortDirection,
-  } = sorting;
+  } = sorting.sort;
 
   return {
     sortField,

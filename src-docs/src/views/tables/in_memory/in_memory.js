@@ -70,12 +70,19 @@ export const Table = () => {
     sortable: true
   }];
 
+  const sorting = {
+    sort: {
+      field: 'dateOfBirth',
+      direction: 'desc',
+    }
+  };
+
   return (
     <EuiInMemoryTable
       items={store.users}
       columns={columns}
       pagination={true}
-      sorting={true}
+      sorting={sorting}
     />
   );
 };

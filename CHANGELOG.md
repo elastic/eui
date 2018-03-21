@@ -1,6 +1,6 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.32`.
+- Added initial sorting option to `EuiInMemoryTable` ([#547](https://github.com/elastic/eui/pull/547))
 
 # [`0.0.32`](https://github.com/elastic/eui/tree/v0.0.32)
 
