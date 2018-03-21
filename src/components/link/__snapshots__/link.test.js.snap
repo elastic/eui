@@ -1,12 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiLink is rendered 1`] = `
+exports[`EuiLink accent is rendered 1`] = `
+<a
+  class="euiLink euiLink--accent"
+/>
+`;
+
+exports[`EuiLink button respects the type property 1`] = `
+<button
+  class="euiLink euiLink--primary"
+  type="submit"
+/>
+`;
+
+exports[`EuiLink danger is rendered 1`] = `
+<a
+  class="euiLink euiLink--danger"
+/>
+`;
+
+exports[`EuiLink ghost is rendered 1`] = `
+<a
+  class="euiLink euiLink--ghost"
+/>
+`;
+
+exports[`EuiLink if onClick specified, it renders a button of type=button 1`] = `
+<button
+  class="euiLink euiLink--primary"
+  type="button"
+/>
+`;
+
+exports[`EuiLink it passes the default props through 1`] = `
 <a
   aria-label="aria-label"
   class="euiLink euiLink--primary testClass1 testClass2"
   data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiLink primary is rendered 1`] = `
+<a
+  class="euiLink euiLink--primary"
+/>
+`;
+
+exports[`EuiLink secondary is rendered 1`] = `
+<a
+  class="euiLink euiLink--secondary"
+/>
+`;
+
+exports[`EuiLink subdued is rendered 1`] = `
+<a
+  class="euiLink euiLink--subdued"
+/>
+`;
+
+exports[`EuiLink supports children 1`] = `
+<a
+  class="euiLink euiLink--primary"
   href="#"
-  rel="noopener noreferrer"
-  target="_blank"
+>
+  <span>
+    Hiya!!!
+  </span>
+</a>
+`;
+
+exports[`EuiLink supports href 1`] = `
+<a
+  class="euiLink euiLink--primary"
+  href="/baz/bing"
+/>
+`;
+
+exports[`EuiLink supports rel 1`] = `
+<a
+  class="euiLink euiLink--primary"
+  rel="stylesheet"
+/>
+`;
+
+exports[`EuiLink supports target 1`] = `
+<a
+  class="euiLink euiLink--primary"
+  href="#"
+  target="_parent"
+/>
+`;
+
+exports[`EuiLink warning is rendered 1`] = `
+<a
+  class="euiLink euiLink--warning"
 />
 `;
