@@ -74,7 +74,12 @@ export class EuiToolTip extends Component {
     this.hideToolTip();
   };
 
-  onMouseOut = () => {
+  onMouseOut = (e) => {
+    if (e.target !== e.currentTarget) {
+      // We've moused out of a child element, but we haven't yet left the root trigger element.
+      return;
+    }
+
     if (!this.state.hasFocus) {
       this.hideToolTip();
     }

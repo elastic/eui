@@ -1,6 +1,8 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.33`.
+**Bug fixes**
+
+- Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557))
 
 # [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)
 
