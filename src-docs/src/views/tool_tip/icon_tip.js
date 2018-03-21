@@ -10,7 +10,7 @@ import {
 
 export default () => (
   <Fragment>
-    <EuiFlexGroup alignItems="center" gutterSize="s">
+    <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
       <EuiFlexItem grow={false}>
         <EuiCheckbox
           id="explainedCheckbox"

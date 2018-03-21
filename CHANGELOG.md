@@ -2,6 +2,10 @@
 
 - Added `stop` and `stopFilled` icons ([#543](https://github.com/elastic/eui/pull/543))
 
+**Bug fixes**
+
+- Fix `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550]https://github.com/elastic/eui/pull/550)
+
 # [`0.0.31`](https://github.com/elastic/eui/tree/v0.0.31)
 
 - Made `<EuiProgress>` TypeScript types more specific ([#518](https://github.com/elastic/eui/pull/518))

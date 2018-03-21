@@ -55,8 +55,8 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiToolTip position="top" content="Works on anything">
-      <EuiButton onClick={() => alert('Buttons are still clickable within tooltips.')}>Hover over me</EuiButton>
+    <EuiToolTip position="top" content={<p>Works on any kind of element &mdash; buttons, inputs, you name it!</p>}>
+      <EuiButton onClick={() => alert('Buttons are still clickable within tooltips.')}>Hover me</EuiButton>
     </EuiToolTip>
   </div>
 );

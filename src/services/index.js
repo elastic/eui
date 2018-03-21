@@ -64,5 +64,4 @@ export {
 
 export {
   calculatePopoverPosition,
-  calculatePopoverStyles,
 } from './popover';
