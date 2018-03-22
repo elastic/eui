@@ -55,8 +55,8 @@ export const ModalExample = {
     text: (
       <p>
         Use the <EuiCode>EuiConfirmModal</EuiCode> to ask the user to confirm a decision.
-        The default type is a positive or neutral confirmation. To change the main button color
-        change the the <EuiCode>buttonColor</EuiCode> property to any of the button color options.
+        The default type is a positive or neutral confirmation. Change the <EuiCode>type</EuiCode>
+        property to <EuiCode>&quot;destroy&quot;</EuiCode> for those that are destructive and potentially regrettable.
       </p>
     ),
     props: { EuiConfirmModal },
