@@ -35,18 +35,19 @@ const store = createDataStore();
 export const Table = () => {
   const columns = [{
     field: 'firstName',
-    name: 'First Name'
+    name: 'First Name',
+    sortable: true,
+    'data-test-subj': 'firstNameCell',
   }, {
     field: 'lastName',
-    name: 'Last Name'
+    name: 'Last Name',
+    truncateText: true,
+    render: (name) => (
+      <EuiLink href="#" target="_blank">{name}</EuiLink>
+    )
   }, {
     field: 'github',
     name: 'Github',
-    render: (username) => (
-      <EuiLink href={`https://github.com/${username}`} target="_blank">
-        {username}
-      </EuiLink>
-    )
   }, {
     field: 'dateOfBirth',
     name: 'Date of Birth',

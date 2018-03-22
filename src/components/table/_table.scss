@@ -104,9 +104,14 @@
   padding: $euiSizeS; /* 2 */
 }
 
+  /**
+   * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
+   *    the cell.
+   */
   .euiTableCellContent__text {
     min-width: 0;
     text-overflow: ellipsis;
+    word-break: break-word; /* 1 */
   }
 
 .euiTableCellContent--alignRight {
@@ -128,8 +133,13 @@
 .euiTableCellContent--overflowingContent {
   overflow: visible;
   white-space: normal;
+  word-break: break-word;
 
+  /**
+   * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
+   *    the cell.
+   */
   .euiTableCellContent__text {
-    overflow: visible;
+    overflow: visible; /* 1 */
   }
 }

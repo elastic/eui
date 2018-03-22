@@ -1,13 +1,16 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Adjust `EuiCallOut` and dark theme warning coloring ([#563](https://github.com/elastic/eui/pull/563))
+- Added a `buttonColor` prop to `EuiConfirmModal` ([#546](https://github.com/elastic/eui/pull/546))
+- Added 'baseline' as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
 
 **Bug fixes**
 
 - Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
-- Added a `buttonColor` prop to `EuiConfirmModal` ([#546](https://github.com/elastic/eui/pull/546))
-- Added 'baseline' as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
 - Fixed a bug where `EuiButtonEmpty` would offer a white background on hover when it was disabled, even when there was no such background transition on hover when the buttons are not disabled ([#561](https://github.com/elastic/eui/pull/561))
+- Fixed table cell bugs ([#565](https://github.com/elastic/eui/pull/565))
+  - `EuiBasicTable`  now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
+  - Updated table cell CSS so that long single-word cell content will break and wrap mid-word.
 
 # [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)
 
