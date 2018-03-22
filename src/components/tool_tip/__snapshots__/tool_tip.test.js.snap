@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip is rendered 1`] = `
-<div
+<span
   class="euiToolTipAnchor"
 >
   <button
@@ -9,5 +9,5 @@ exports[`EuiToolTip is rendered 1`] = `
   >
     Trigger
   </button>
-</div>
+</span>
 `;

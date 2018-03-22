@@ -90,7 +90,6 @@ export class EuiToolTip extends Component {
       className,
       content,
       title,
-      inline,
       ...rest
     } = this.props;
 
@@ -119,10 +118,8 @@ export class EuiToolTip extends Component {
       );
     }
 
-    const AnchorElement = inline ? 'span' : 'div';
-
     const anchor = (
-      <AnchorElement
+      <span
         ref={anchor => this.anchor = anchor}
         className="euiToolTipAnchor"
       >
@@ -133,7 +130,7 @@ export class EuiToolTip extends Component {
           onMouseOver: this.showToolTip,
           onMouseOut: this.onMouseOut
         })}
-      </AnchorElement>
+      </span>
     );
 
     return (
@@ -174,11 +171,6 @@ EuiToolTip.propTypes = {
    * Unless you provide one, this will be randomly generated.
    */
   id: PropTypes.string,
-
-  /**
-   * Use span instead of div.
-   */
-  inline: PropTypes.bool,
 };
 
 EuiToolTip.defaultProps = {

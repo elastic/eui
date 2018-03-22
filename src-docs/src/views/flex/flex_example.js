@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -72,7 +72,7 @@ const flexGroupResonsiveHtml = renderToHtml(FlexGroupResponsive);
 export const FlexExample = {
   title: 'Flex',
   intro: (
-    <div>
+    <Fragment>
       <EuiCallOut
         title="Coloring and padding exist for examples only"
         color="warning"
@@ -85,7 +85,7 @@ export const FlexExample = {
       </EuiCallOut>
 
       <EuiSpacer size="l" />
-    </div>
+    </Fragment>
   ),
   sections: [{
     title: 'FlexGroup is for a single row layout',

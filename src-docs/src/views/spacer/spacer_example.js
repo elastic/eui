@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -20,7 +20,7 @@ const spacerHtml = renderToHtml(Spacer);
 export const SpacerExample = {
   title: 'Spacer',
   intro: (
-    <div>
+    <Fragment>
       <EuiCallOut
         title="Try not to stuff these in loops"
         color="warning"
@@ -37,7 +37,7 @@ export const SpacerExample = {
       </EuiCallOut>
 
       <EuiSpacer size="l" />
-    </div>
+    </Fragment>
   ),
   sections: [{
     source: [{

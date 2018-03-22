@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -22,7 +22,7 @@ const filterGroupHtml = renderToHtml(FilterGroup);
 export const FilterGroupExample = {
   title: 'Filter Group',
   intro: (
-    <div>
+    <Fragment>
       <EuiCallOut
         title="Demo of visual pattern only"
         color="warning"
@@ -37,7 +37,7 @@ export const FilterGroupExample = {
       </EuiCallOut>
 
       <EuiSpacer size="l" />
-    </div>
+    </Fragment>
   ),
   sections: [{
     source: [{
