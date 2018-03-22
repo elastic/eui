@@ -25,13 +25,6 @@ const CONFIRM_MODAL_BUTTONS = [
   CANCEL_BUTTON,
 ];
 
-const typeToButtonColorMap = {
-  'confirm': 'primary',
-  'destroy': 'danger',
-};
-
-export const MODAL_TYPES = Object.keys(typeToButtonColorMap);
-
 export class EuiConfirmModal extends Component {
   componentDidMount() {
     // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
@@ -61,7 +54,7 @@ export class EuiConfirmModal extends Component {
       cancelButtonText,
       confirmButtonText,
       className,
-      type,
+      buttonColor,
       defaultFocusedButton, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -116,7 +109,7 @@ export class EuiConfirmModal extends Component {
             onClick={onConfirm}
             fill
             buttonRef={this.confirmRef}
-            color={typeToButtonColorMap[type]}
+            color={buttonColor}
           >
             {confirmButtonText}
           </EuiButton>
@@ -135,9 +128,9 @@ EuiConfirmModal.propTypes = {
   onConfirm: PropTypes.func,
   className: PropTypes.string,
   defaultFocusedButton: PropTypes.oneOf(CONFIRM_MODAL_BUTTONS),
-  type: PropTypes.oneOf(MODAL_TYPES),
+  buttonColor: PropTypes.string,
 };
 
 EuiConfirmModal.defaultProps = {
-  type: 'confirm',
+  buttonColor: 'primary',
 };

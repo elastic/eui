@@ -73,7 +73,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeDestroyModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            type="destroy"
+            buttonColor="danger"
             defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
           >
             <p>You&rsquo;re about to destroy something.</p>
@@ -92,7 +92,7 @@ export class ConfirmModal extends Component {
         &nbsp;
 
         <EuiButton onClick={this.showDestroyModal}>
-          Show destroy type of ConfirmModal
+          Show dangerous ConfirmModal
         </EuiButton>
 
         {modal}
