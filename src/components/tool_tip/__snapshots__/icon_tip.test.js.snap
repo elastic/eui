@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiIconTip is rendered 1`] = `
-<span>
+<span
+  class="euiToolTipAnchor"
+>
   <svg
     aria-describedby="id"
     aria-label="aria-label"
@@ -23,7 +25,9 @@ exports[`EuiIconTip is rendered 1`] = `
 `;
 
 exports[`EuiIconTip props type is rendered as the icon 1`] = `
-<span>
+<span
+  class="euiToolTipAnchor"
+>
   <svg
     aria-describedby="id"
     aria-label="Info"

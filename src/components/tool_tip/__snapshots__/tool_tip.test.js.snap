@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip is rendered 1`] = `
-<span>
+<span
+  class="euiToolTipAnchor"
+>
   <button
     aria-describedby="id"
   >

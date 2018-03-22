@@ -75,13 +75,12 @@ export class EuiToolTip extends Component {
   };
 
   onMouseOut = (e) => {
-    if (e.target !== e.currentTarget) {
-      // We've moused out of a child element, but we haven't yet left the root trigger element.
-      return;
-    }
-
-    if (!this.state.hasFocus) {
-      this.hideToolTip();
+    // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
+    // left the anchor for a non-child.
+    if (this.anchor === e.relatedTarget || !this.anchor.contains(e.relatedTarget)) {
+      if (!this.state.hasFocus) {
+        this.hideToolTip();
+      }
     }
   };
 
@@ -119,8 +118,11 @@ export class EuiToolTip extends Component {
       );
     }
 
-    const trigger = (
-      <span ref={anchor => this.anchor = anchor}>
+    const anchor = (
+      <span
+        ref={anchor => this.anchor = anchor}
+        className="euiToolTipAnchor"
+      >
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
@@ -133,7 +135,7 @@ export class EuiToolTip extends Component {
 
     return (
       <Fragment>
-        {trigger}
+        {anchor}
         {tooltip}
       </Fragment>
     );

@@ -15,7 +15,10 @@ export default () => (
     <EuiText>
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip position="top" content="Here is some tooltip text">
+        <EuiToolTip
+          position="top"
+          content="Here is some tooltip text"
+        >
           <EuiLink href="#">top</EuiLink>
         </EuiToolTip>
       </p>
@@ -34,14 +37,20 @@ export default () => (
 
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip position="right" content="Here is some tooltip text">
+        <EuiToolTip
+          position="right"
+          content="Here is some tooltip text"
+        >
           <EuiLink href="#">right</EuiLink>
         </EuiToolTip>
       </p>
 
       <p>
         This tooltip appears on the bottom of this icon:{' '}
-        <EuiToolTip position="bottom" content="Here is some tooltip text">
+        <EuiToolTip
+          position="bottom"
+          content="Here is some tooltip text"
+        >
           <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
         </EuiToolTip>
       </p>

@@ -4,9 +4,9 @@
 
 **Bug fixes**
 
-- Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557))
+- Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
 - Added a `buttonColor` prop to `EuiConfirmModal` ([#546](https://github.com/elastic/eui/pull/546))
-- Added ‘baseline’ as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
+- Added 'baseline' as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
 - Fixed a bug where `EuiButtonEmpty` would offer a white background on hover when it was disabled, even when there was no such background transition on hover when the buttons are not disabled ([#561](https://github.com/elastic/eui/pull/561))
 
 # [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)

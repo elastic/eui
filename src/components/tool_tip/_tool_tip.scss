@@ -70,6 +70,9 @@
   }
 }
 
+.euiToolTipAnchor {
+  display: inline-block;
+}
 
 // Keyframes to animate in the tooltip.
 @keyframes euiToolTipTop {
