@@ -65,10 +65,7 @@ export default class extends Component {
       health: <EuiHealth color="success">Healthy</EuiHealth>,
     }, {
       id: 2,
-      title: {
-        value: 'Boomerang',
-        isLink: true,
-      },
+      title: <span>A very long line in an ELEMENT which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis</span>,
       type: 'user',
       dateCreated: <span>Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge></span>,
       magnitude: 10,
@@ -76,8 +73,8 @@ export default class extends Component {
     }, {
       id: 3,
       title: {
-        value: 'Celebration',
-        isLink: true,
+        value: <span>A very long line in an ELEMENT which will not wrap on narrower screens and instead will become truncated and replaced by an ellipsis</span>,
+        truncateText: true,
       },
       type: 'user',
       dateCreated: 'Tue Dec 16 2016',

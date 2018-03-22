@@ -557,26 +557,56 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemFieldDataCell(itemId, item, column, columnIndex) {
-    const key = `_data_column_${column.field}_${itemId}_${columnIndex}`;
+    const {
+      field,
+      render,
+      textOnly,
+      name, // eslint-ignore-line no-unused-vars
+      description, // eslint-ignore-line no-unused-vars
+      dataType, // eslint-ignore-line no-unused-vars
+      sortable, // eslint-ignore-line no-unused-vars
+      ...rest
+    } = column;
+
+    const key = `_data_column_${field}_${itemId}_${columnIndex}`;
     const align = this.resolveColumnAlign(column);
-    const textOnly = !column.render;
-    const value = get(item, column.field);
+    const value = get(item, field);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(value, item);
     return (
-      <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={textOnly}>
+      <EuiTableRowCell
+        key={key}
+        align={align}
+        // If there's no render function defined then we're only going to render text.
+        textOnly={textOnly || !render}
+        {...rest}
+      >
         {content}
       </EuiTableRowCell>
     );
   }
 
   renderItemComputedCell(itemId, item, column, columnIndex) {
+    const {
+      field, // eslint-ignore-line no-unused-vars
+      render, // eslint-ignore-line no-unused-vars
+      name, // eslint-ignore-line no-unused-vars
+      description, // eslint-ignore-line no-unused-vars
+      dataType, // eslint-ignore-line no-unused-vars
+      sortable, // eslint-ignore-line no-unused-vars
+      ...rest
+    } = column;
+
     const key = `_computed_column_${itemId}_${columnIndex}`;
     const align = this.resolveColumnAlign(column);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(item);
     return (
-      <EuiTableRowCell key={key} align={align} truncateText={column.truncateText} textOnly={false}>
+      <EuiTableRowCell
+        key={key}
+        align={align}
+        {...rest}
+      >
         {content}
       </EuiTableRowCell>
     );
