@@ -45,8 +45,11 @@
       fill: $euiButtonColorDisabled;
     }
 
+    &:focus {
+      background-color: transparent;
+    }
+
     &:hover, &:focus {
-      background-color: $euiColorEmptyShade;
       text-decoration: none;
     }
   }
@@ -75,8 +78,6 @@ $buttonTypes: (
     }
 
     &:hover {
-      background-color: transparent;
-
       @if ($name == 'disabled') {
         cursor: not-allowed;
       }
