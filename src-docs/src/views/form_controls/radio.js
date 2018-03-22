@@ -1,9 +1,11 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
   EuiRadio,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -25,12 +27,24 @@ export default class extends Component {
 
   render() {
     return (
-      <EuiRadio
-        id={makeId()}
-        label="I am a radio"
-        checked={this.state.checked}
-        onChange={this.onChange}
-      />
+      <Fragment>
+        <EuiRadio
+          id={makeId()}
+          label="I am a radio"
+          checked={this.state.checked}
+          onChange={this.onChange}
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiRadio
+          id={makeId()}
+          label="I am a disabled radio"
+          checked={this.state.checked}
+          onChange={this.onChange}
+          disabled
+        />
+      </Fragment>
     );
   }
 }

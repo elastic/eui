@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiFilePicker,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export class FilePicker extends Component {
@@ -40,22 +41,31 @@ export class FilePicker extends Component {
 
   render() {
     return (
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiFilePicker
-            id="asdf2"
-            multiple
-            initialPromptText="Select or drag and drop multiple files"
-            onChange={files => { this.onChange(files); }}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiText>
-            <h3>Files attached</h3>
-            {this.renderFiles()}
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <Fragment>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiFilePicker
+              id="asdf2"
+              multiple
+              initialPromptText="Select or drag and drop multiple files"
+              onChange={files => { this.onChange(files); }}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiText>
+              <h3>Files attached</h3>
+              {this.renderFiles()}
+            </EuiText>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="m" />
+
+        <EuiFilePicker
+          disabled
+          initialPromptText="Disabled"
+        />
+      </Fragment>
     );
   }
 }

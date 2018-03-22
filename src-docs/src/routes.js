@@ -89,17 +89,8 @@ import { ErrorBoundaryExample }
 import { ExpressionExample }
   from './views/expression/expression_example';
 
-import { FieldControlsExample }
-  from './views/field_controls/field_controls_example';
-
-import { FieldSelectionExample }
-  from './views/field_selection/field_selection_example';
-
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
-
-import { FilePickerExample }
-  from './views/file_picker/file_picker_example';
 
 import { FlexExample }
   from './views/flex/flex_example';
@@ -107,11 +98,14 @@ import { FlexExample }
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
+import { FormControlsExample }
+  from './views/form_controls/form_controls_example';
+
 import { FormLayoutsExample }
   from './views/form_layouts/form_layouts_example';
 
-import { FormStatesExample }
-  from './views/form_states/form_states_example';
+import { FormValidationExample }
+  from './views/form_validation/form_validation_example';
 
 import { HeaderExample }
   from './views/header/header_example';
@@ -204,7 +198,12 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = ({ title, intro, sections }) => {
+const createExample = (example) => {
+  if (!example) {
+    throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
+  }
+
+  const { title, intro, sections } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -302,10 +301,8 @@ const navigation = [{
   name: 'Forms',
   items: [
     FormLayoutsExample,
-    FormStatesExample,
-    FieldControlsExample,
-    FieldSelectionExample,
-    FilePickerExample,
+    FormControlsExample,
+    FormValidationExample,
     ColorPickerExample,
     CodeEditorExample,
     ExpressionExample,

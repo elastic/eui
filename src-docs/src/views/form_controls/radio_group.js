@@ -1,9 +1,11 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
-  EuiCheckboxGroup,
+  EuiRadioGroup,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -14,7 +16,7 @@ export default class extends Component {
 
     const idPrefix = makeId();
 
-    this.checkboxes = [{
+    this.radios = [{
       id: `${idPrefix}0`,
       label: 'Option one',
     }, {
@@ -26,29 +28,34 @@ export default class extends Component {
     }];
 
     this.state = {
-      checkboxIdToSelectedMap: {
-        [`${idPrefix}1`]: true,
-      },
+      radioIdSelected: `${idPrefix}1`,
     };
   }
 
   onChange = optionId => {
-    const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
-      [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-    } });
-
     this.setState({
-      checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
+      radioIdSelected: optionId,
     });
   };
 
   render() {
     return (
-      <EuiCheckboxGroup
-        options={this.checkboxes}
-        idToSelectedMap={this.state.checkboxIdToSelectedMap}
-        onChange={this.onChange}
-      />
+      <Fragment>
+        <EuiRadioGroup
+          options={this.radios}
+          idSelected={this.state.radioIdSelected}
+          onChange={this.onChange}
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiRadioGroup
+          options={this.radios}
+          idSelected={this.state.radioIdSelected}
+          onChange={this.onChange}
+          disabled
+        />
+      </Fragment>
     );
   }
 }
