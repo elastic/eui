@@ -69,6 +69,11 @@ $gutterTypes: (
   align-items: flex-end;
 }
 
+.euiFlexGroup--alignItemsBaseline {
+  align-items: baseline;
+}
+
+// Wrap
 .euiFlexGroup--wrap {
   flex-wrap: wrap;
 }

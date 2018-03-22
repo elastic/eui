@@ -25,6 +25,7 @@ export const EuiPaginationButton = ({
       className={classes}
       size="xs"
       color="text"
+      disabled={isPlaceholder}
       {...rest}
     >
       {children}

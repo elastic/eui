@@ -12,9 +12,9 @@
   font-weight: $euiFontWeightBold;
 }
 
-.euiPaginationButton-isPlaceholder {
-  pointer-events: none;
-  color: $euiColorMediumShade;
+.euiPaginationButton-isPlaceholder:disabled .euiButtonEmpty__content {
+  // needs specifity to override regular disabled button
+  cursor: default;
 }
 
 @include screenXSmall {

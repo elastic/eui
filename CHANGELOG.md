@@ -3,10 +3,16 @@
 **Bug fixes**
 
 - Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557))
+- Added a `buttonColor` prop to `EuiConfirmModal` ([#546](https://github.com/elastic/eui/pull/546))
+- Added ‘baseline’ as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
 
 # [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)
 
 - Added initial sorting option to `EuiInMemoryTable` ([#547](https://github.com/elastic/eui/pull/547))
+- Horizontally scrolling `EuiTabs` ([#546](https://github.com/elastic/eui/pull/546))
+- Remove padding from both sides of `EuiEmptyButton` ([#546](https://github.com/elastic/eui/pull/546))
+- Added `disabled` prop to placeholder (ellipses) button in pagination ([#546](https://github.com/elastic/eui/pull/546))
+- Converted `.euiHeader__notification` into `EuiHeaderNotification` ([#546](https://github.com/elastic/eui/pull/546))
 
 **Bug fixes**
 

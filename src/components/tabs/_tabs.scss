@@ -1,6 +1,15 @@
 .euiTabs {
   display: flex;
   border-bottom: $euiBorderThin;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden; // don't scroll vertically when scrolling horizontally
+  @include euiScrollBar;
+
+  // Changing height of scrollbar so it sits flush with border
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
 
   &.euiTabs--small {
     .euiTab {
@@ -62,6 +71,9 @@
 
   .euiTab__content {
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
     transform: translateY(0);
   }

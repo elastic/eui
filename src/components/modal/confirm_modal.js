@@ -54,6 +54,7 @@ export class EuiConfirmModal extends Component {
       cancelButtonText,
       confirmButtonText,
       className,
+      buttonColor,
       defaultFocusedButton, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -98,7 +99,6 @@ export class EuiConfirmModal extends Component {
           <EuiButtonEmpty
             data-test-subj="confirmModalCancelButton"
             onClick={onCancel}
-            size="s"
             buttonRef={this.cancelRef}
           >
             {cancelButtonText}
@@ -107,9 +107,9 @@ export class EuiConfirmModal extends Component {
           <EuiButton
             data-test-subj="confirmModalConfirmButton"
             onClick={onConfirm}
-            size="s"
             fill
             buttonRef={this.confirmRef}
+            color={buttonColor}
           >
             {confirmButtonText}
           </EuiButton>
@@ -127,5 +127,10 @@ EuiConfirmModal.propTypes = {
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
   className: PropTypes.string,
-  defaultFocusedButton: PropTypes.oneOf(CONFIRM_MODAL_BUTTONS)
+  defaultFocusedButton: PropTypes.oneOf(CONFIRM_MODAL_BUTTONS),
+  buttonColor: PropTypes.string,
+};
+
+EuiConfirmModal.defaultProps = {
+  buttonColor: 'primary',
 };
