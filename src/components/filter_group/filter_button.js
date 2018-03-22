@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  checkHrefAndOnClick,
-  getSecureRelForTarget,
-} from '../../services';
+import { getSecureRelForTarget } from '../../services';
 
 import {
   ICON_TYPES,
@@ -41,7 +38,6 @@ export const EuiFilterButton = ({
   href,
   target,
   rel,
-  onClick,
   type,
   ...rest
 }) => {
@@ -93,7 +89,6 @@ export const EuiFilterButton = ({
       <button
         disabled={isDisabled}
         className={classes}
-        onClick={onClick}
         type={type}
         {...rest}
       >
@@ -109,6 +104,7 @@ export const EuiFilterButton = ({
 EuiFilterButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  onClick: PropTypes.func,
   /**
    * Use any one of our icons
    */
@@ -127,7 +123,7 @@ EuiFilterButton.propTypes = {
   /**
    * If passed, changes the button to an anchor tag
    */
-  href: checkHrefAndOnClick,
+  href: PropTypes.string,
   /**
    * Used along with href
    */
@@ -136,10 +132,6 @@ EuiFilterButton.propTypes = {
    * Used along with href
    */
   rel: PropTypes.string,
-  /**
-   * Onclick should not be comibned with href
-   */
-  onClick: PropTypes.func,
   /**
    * Defines html button input type
    */

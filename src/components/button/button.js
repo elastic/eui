@@ -6,10 +6,7 @@ import {
   EuiLoadingSpinner
 } from '../loading';
 
-import {
-  checkHrefAndOnClick,
-  getSecureRelForTarget,
-} from '../../services';
+import { getSecureRelForTarget } from '../../services';
 
 import {
   ICON_TYPES,
@@ -53,7 +50,6 @@ export const EuiButton = ({
   href,
   target,
   rel,
-  onClick,
   type,
   buttonRef,
   ...rest
@@ -117,7 +113,6 @@ export const EuiButton = ({
       <button
         disabled={isDisabled}
         className={classes}
-        onClick={onClick}
         type={type}
         ref={buttonRef}
         {...rest}
@@ -152,7 +147,7 @@ EuiButton.propTypes = {
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
   isDisabled: PropTypes.bool,
-  href: checkHrefAndOnClick,
+  href: PropTypes.string,
   target: PropTypes.string,
   rel: PropTypes.string,
   onClick: PropTypes.func,

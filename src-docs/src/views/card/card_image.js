@@ -39,11 +39,11 @@ export default () => (
     <EuiFlexItem>
       <EuiCard
         textAlign="left"
+        href="https://elastic.github.io/eui/"
         image="https://source.unsplash.com/400x200/?City"
         icon={<EuiIcon size="xxl" type="logoBeats" />}
         title={`Beats in the City`}
-        description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent}
+        description="This card has an href and should be a link."
       />
     </EuiFlexItem>
   </EuiFlexGroup>

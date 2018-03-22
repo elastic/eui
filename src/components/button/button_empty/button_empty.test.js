@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import {
@@ -107,6 +107,26 @@ describe('EuiButtonEmpty', () => {
 
         expect(component)
           .toMatchSnapshot();
+      });
+    });
+
+    describe('onClick', () => {
+      it('supports onClick and href', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiButtonEmpty href="#" onClick={handler} />
+        );
+        component.find('a').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
+      });
+
+      it('supports onClick as a button', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiButtonEmpty onClick={handler} />
+        );
+        component.find('button').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
       });
     });
   });
