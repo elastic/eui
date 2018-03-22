@@ -15,7 +15,11 @@ export default () => (
     <EuiText>
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip position="top" content="Here is some tooltip text">
+        <EuiToolTip
+          inline
+          position="top"
+          content="Here is some tooltip text"
+        >
           <EuiLink href="#">top</EuiLink>
         </EuiToolTip>
       </p>
@@ -23,6 +27,7 @@ export default () => (
       <p>
         This tooltip appears on the{' '}
         <EuiToolTip
+          inline
           position="left"
           title="Tooltip titles are optional"
           content="Here is some tooltip text. Lets add some more content to see how it wraps."
@@ -34,14 +39,22 @@ export default () => (
 
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip position="right" content="Here is some tooltip text">
+        <EuiToolTip
+          inline
+          position="right"
+          content="Here is some tooltip text"
+        >
           <EuiLink href="#">right</EuiLink>
         </EuiToolTip>
       </p>
 
       <p>
         This tooltip appears on the bottom of this icon:{' '}
-        <EuiToolTip position="bottom" content="Here is some tooltip text">
+        <EuiToolTip
+          inline
+          position="bottom"
+          content="Here is some tooltip text"
+        >
           <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
         </EuiToolTip>
       </p>

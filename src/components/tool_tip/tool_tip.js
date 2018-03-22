@@ -75,13 +75,12 @@ export class EuiToolTip extends Component {
   };
 
   onMouseOut = (e) => {
-    if (e.target !== e.currentTarget) {
-      // We've moused out of a child element, but we haven't yet left the root trigger element.
-      return;
-    }
-
-    if (!this.state.hasFocus) {
-      this.hideToolTip();
+    // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
+    // left the anchor for a non-child.
+    if (this.anchor === e.relatedTarget || !this.anchor.contains(e.relatedTarget)) {
+      if (!this.state.hasFocus) {
+        this.hideToolTip();
+      }
     }
   };
 
@@ -91,6 +90,7 @@ export class EuiToolTip extends Component {
       className,
       content,
       title,
+      inline,
       ...rest
     } = this.props;
 
@@ -119,8 +119,13 @@ export class EuiToolTip extends Component {
       );
     }
 
-    const trigger = (
-      <span ref={anchor => this.anchor = anchor}>
+    const AnchorElement = inline ? 'span' : 'div';
+
+    const anchor = (
+      <AnchorElement
+        ref={anchor => this.anchor = anchor}
+        className="euiToolTipAnchor"
+      >
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
@@ -128,12 +133,12 @@ export class EuiToolTip extends Component {
           onMouseOver: this.showToolTip,
           onMouseOut: this.onMouseOut
         })}
-      </span>
+      </AnchorElement>
     );
 
     return (
       <Fragment>
-        {trigger}
+        {anchor}
         {tooltip}
       </Fragment>
     );
@@ -169,6 +174,11 @@ EuiToolTip.propTypes = {
    * Unless you provide one, this will be randomly generated.
    */
   id: PropTypes.string,
+
+  /**
+   * Use span instead of div.
+   */
+  inline: PropTypes.bool,
 };
 
 EuiToolTip.defaultProps = {
