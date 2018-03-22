@@ -31,9 +31,8 @@ export default () => (
         <EuiLink
           href="https://github.com/elastic/eui"
           onClick={(e) => {
-            e.preventDefault();
-            if (confirm('Are you sure you want to see the eui repo?')) {
-              document.location = e.target.href;
+            if (!confirm('Are you sure you want to see the eui repo?')) {
+              e.preventDefault();
             }
           }}
         >
