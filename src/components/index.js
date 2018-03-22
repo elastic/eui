@@ -48,6 +48,10 @@ export {
 } from './color_picker';
 
 export {
+  EuiComboBox,
+} from './combo_box';
+
+export {
   EuiContextMenu,
   EuiContextMenuPanel,
   EuiContextMenuItem,
