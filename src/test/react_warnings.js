@@ -9,14 +9,14 @@
   afterAll(stopThrowingReactWarnings);
 */
 
-const consoleWarn = console.warn;
-const consoleError = console.error;
+const consoleWarn = console.warn; // eslint-disable-line no-console
+const consoleError = console.error; // eslint-disable-line no-console
 
 export const startThrowingReactWarnings = () => {
-  console.warn = console.error = (msg) => { throw msg; };
+  console.warn = console.error = (msg) => { throw msg; }; // eslint-disable-line no-console
 };
 
 export const stopThrowingReactWarnings = () => {
-  console.warn = consoleWarn;
-  console.error = consoleError;
+  console.warn = consoleWarn; // eslint-disable-line no-console
+  console.error = consoleError; // eslint-disable-line no-console
 };

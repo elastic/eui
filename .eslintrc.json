@@ -12,5 +12,8 @@
   "extends": "@elastic/eslint-config-kibana",
   "env": {
     "jest": true
+  },
+  "rules": {
+    "no-console": "error"
   }
 }
