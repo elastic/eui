@@ -1,15 +1,31 @@
 .guideRule {
-  margin-bottom: $euiSizeXXL * 2;
+  margin-top: $euiSizeXXL;
 
-  &.guideRule--hasHeading {
-    margin-top: $euiSizeXXL * 2;
+  + .guideRule {
+    margin-top: $euiSizeL;
+
+    &.guideRule--hasDescription {
+      margin-top: $euiSizeXXL*1.5;
+    }
+
+    &.guideRule--hasHeading {
+      margin-top: $euiSizeXXL*2;
+    }
   }
 
-  & + .guideRule:not(.guideRule--hasHeading) {
-    margin-top: $euiSizeXXL * -2;
-  }
-
-  .guideRule__title + &.guideRule--hasHeading {
-    margin-top: $euiSizeXXL;
+  .guideRule__title + &:not(.guideRule--hasHeading) {
+    margin-top: 0;
   }
 }
+
+.guideRule__goToButton {
+  margin-bottom: $euiSizeM;
+
+  @include screenSmallMediumLarge {
+    position: absolute;
+    margin-top: -$euiSizeXL*2 - 6px;
+    right: $euiSizeL;
+  }
+}
+
+

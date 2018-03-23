@@ -1,5 +1,5 @@
 .guideRule__description {
-  margin-top: $euiSizeXL;
   margin-bottom: $euiSizeXL;
-  max-width: 36rem;
+
+  @extend .guideSection__text;
 }
