@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -6,27 +6,41 @@ import {
   EuiIcon,
 } from '../icon';
 
-export const EuiComboBoxPill = ({
-  children,
-  className,
-  ...rest,
-}) => {
-  const classes = classNames('euiComboBoxPill', className);
+export class EuiComboBoxPill extends Component {
+  static propTypes = {
+    option: PropTypes.object.isRequired,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    onClose: PropTypes.func.isRequired,
+  }
 
-  return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      {children}
-      <button className="euiComboBoxPill__close">
-        <EuiIcon type="cross" className="euiComboBoxPill__closeIcon" />
-      </button>
-    </div>
-  );
-};
+  onClickClose = () => {
+    const { onClose, option } = this.props;
+    onClose(option);
+  }
 
-EuiComboBoxPill.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
+  render() {
+    const {
+      children,
+      className,
+      option, // eslint-diable-line no-unused-vars
+      onClose, // eslint-diable-line no-unused-vars
+      ...rest,
+    } = this.props;
+
+    const classes = classNames('euiComboBoxPill', className);
+
+    return (
+      <div
+        className={classes}
+        {...rest}
+      >
+
+        {children}
+        <button className="euiComboBoxPill__close" onClick={this.onClickClose}>
+          <EuiIcon type="cross" className="euiComboBoxPill__closeIcon" />
+        </button>
+      </div>
+    );
+  }
+}

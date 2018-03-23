@@ -4,21 +4,26 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export class EuiComboBoxRow extends Component {
+export class EuiComboBoxOption extends Component {
   static propTypes = {
+    option: PropTypes.object.isRequired,
     children: PropTypes.node,
     className: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-  }
+  onClick = () => {
+    const { onClick, option } = this.props;
+    onClick(option);
+  };
 
   render() {
     const {
       children,
       className,
-      ...rest,
+      option, // eslint-diable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      ...rest
     } = this.props;
 
     const classes = classNames(
@@ -29,6 +34,7 @@ export class EuiComboBoxRow extends Component {
     return (
       <button
         className={classes}
+        onClick={this.onClick}
         {...rest}
       >
         {children}
