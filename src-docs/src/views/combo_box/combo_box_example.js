@@ -16,9 +16,8 @@ const comboBoxSource = require('!!raw-loader!./combo_box');
 const comboBoxHtml = renderToHtml(ComboBox);
 
 export const ComboBoxExample = {
-  title: 'ComboBox',
+  title: 'Combo Box',
   sections: [{
-    title: 'ComboBox',
     source: [{
       type: GuideSectionTypes.JS,
       code: comboBoxSource,

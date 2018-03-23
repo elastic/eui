@@ -8,40 +8,56 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
+    this.options = [{
+      value: 'titan',
+      label: 'Titan',
+    }, {
+      value: 'enceladus',
+      label: 'Enceladus',
+    }, {
+      value: 'mimas',
+      label: 'Mimas',
+    }, {
+      value: 'dione',
+      label: 'Dione',
+    }, {
+      value: 'iapetus',
+      label: 'Iapetus',
+    }, {
+      value: 'phoebe',
+      label: 'Phoebe',
+    }, {
+      value: 'rhea',
+      label: 'Rhea',
+    }, {
+      value: 'pandora',
+      label: 'Pandora',
+    }, {
+      value: 'tethys',
+      label: 'Tethys',
+    }, {
+      value: 'hyperion',
+      label: 'Hyperion',
+    }];
+
     this.state = {
       isPopoverOpen: false,
+      selectedOptions: [this.options[2], this.options[4]],
     };
   }
 
-  closePopover() {
+  onChange = (selectedOptions) => {
     this.setState({
-      isPopoverOpen: false,
+      selectedOptions,
     });
-  }
+  };
 
   render() {
     return (
       <EuiComboBox
-        optionTypeName="Dota 2 character"
-        options={[
-          { value: 'Ancient Apparition', text: 'Ancient Apparition' },
-          { value: 'Dazzle', text: 'Dazzle' },
-          { value: 'Disruptor', text: 'Disruptor' },
-          { value: 'Doom', text: 'Doom' },
-          { value: 'Dragon Knight', text: 'Dragon Knight' },
-          { value: 'Drow', text: 'Drow' },
-          { value: 'Earthshaker', text: 'Earthshaker' },
-          { value: 'Ember Spirit', text: 'Ember Spirit' },
-          { value: 'Juggernaut', text: 'Juggernaut' },
-          { value: 'Lion', text: 'Lion' },
-          { value: 'Skywrath Mage', text: 'Skywrath Mage' },
-        ]}
-        selectedOptions={[
-          { value: 'option_one', text: 'Tidehunter' },
-          { value: 'option_two', text: 'Wisp' },
-        ]}
-        isPopoverOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
+        options={this.options}
+        selectedOptions={this.state.selectedOptions}
+        onChange={this.onChange}
       />
     );
   }
