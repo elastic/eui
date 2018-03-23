@@ -31,7 +31,7 @@ export default class extends Component {
       label: 'Rhea',
     }, {
       value: 'pandora',
-      label: 'Pandora',
+      label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
     }, {
       value: 'tethys',
       label: 'Tethys',

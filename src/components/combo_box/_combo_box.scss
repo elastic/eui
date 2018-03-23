@@ -2,9 +2,14 @@
   @include euiFormControlSize;
   position: relative;
 
+  /**
+   * 1. Allow pills to truncate their text with an ellipsis.
+   */
   .euiComboBox__inputWrap {
     @include euiFormControlStyle;
     @include euiFormControlWithIcon($isIconOptional: true);
+    display: flex; /* 1 */
+    flex-wrap: wrap; /* 1 */
     padding: $euiSizeXS;
 
     &:hover {

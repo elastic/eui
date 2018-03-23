@@ -1,7 +1,9 @@
 .euiComboBoxPill {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
   font-size: $euiSizeM;
   line-height: $euiSizeL;
-  display: inline-block;
   text-decoration: none;
   border: solid 1px transparent;
   border-radius: $euiSizeL;
@@ -11,10 +13,16 @@
   vertical-align: middle;
   border-color: $euiColorLightShade;
   background-color: $euiColorEmptyShade;
-  margin: $euiSizeXS;
-  margin-right: 0;
+  margin: $euiSizeXS * 0.5;
+
+  .euiComboBoxPill__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+  }
 
   .euiComboBoxPill__close {
+    flex: 0 0 auto;
     width: $euiSizeM;
     height: $euiSizeM;
     margin-left: $euiSizeXS;
