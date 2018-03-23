@@ -4,13 +4,14 @@
 
   /**
    * 1. Allow pills to truncate their text with an ellipsis.
+   * 2. Don't allow pills to overlap with the caret.
    */
   .euiComboBox__inputWrap {
     @include euiFormControlStyle;
     @include euiFormControlWithIcon($isIconOptional: true);
     display: flex; /* 1 */
     flex-wrap: wrap; /* 1 */
-    padding: $euiSizeXS;
+    padding: $euiSizeXS $euiSizeXXL $euiSizeXS $euiSizeXS; /* 2 */
 
     &:hover {
       cursor: text;
