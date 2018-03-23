@@ -24,10 +24,9 @@ export const FormValidationExample = {
   sections: [{
     text: (
       <p>
-        Form elements will automatically flex to a max-width of <EuiCode>400px</EuiCode>.
-        You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to both individual field
-        and row components to expand to their container. This should be done rarely and usually
-        you will only need it for isolated controls like search bars and sliders.
+        Validation is achieved by applying <EuiCode>isInvalid</EuiCode> and optionally error props
+        onto the <EuiCode>EuiForm</EuiCode> or <EuiCode>EuiFormRow</EuiCode> components. Errors are
+        optional and are passed as an array in case you need to list many errors.
       </p>
     ),
     source: [{
