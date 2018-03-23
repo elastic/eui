@@ -39,7 +39,11 @@ export class EuiComboBoxPill extends Component {
           {children}
         </div>
 
-        <button className="euiComboBoxPill__close" onClick={this.onClickClose}>
+        <button
+          className="euiComboBoxPill__close"
+          onClick={this.onClickClose}
+          tabIndex="-1"
+        >
           <EuiIcon type="cross" className="euiComboBoxPill__closeIcon" />
         </button>
       </div>

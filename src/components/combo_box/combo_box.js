@@ -1,15 +1,21 @@
+/**
+ * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
+ * from the tab order with tabindex="-1" so that we can control the keyboard navigation interface.
+ */
+
 import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { comboBoxKeyCodes } from '../../services';
+import { BACKSPACE, LEFT, RIGHT } from '../../services/key_codes';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel } from '../panel';
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
-import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import { EuiComboBoxPill } from './combo_box_pill';
 import { EuiComboBoxOption } from './combo_box_option';
@@ -31,24 +37,15 @@ export class EuiComboBox extends Component {
     super(props);
 
     this.state = {
+      hasFocus: false,
       isListOpen: this.props.isListOpen,
       value: '',
     };
   }
 
-  onSearchInputFocus = () => {
-    this.searchInput.focus();
-  };
-
   openList = () => {
     this.setState({
       isListOpen: true,
-    });
-  };
-
-  onInputChange = (event) => {
-    this.setState({
-      value: event.target.value,
     });
   };
 
@@ -58,17 +55,38 @@ export class EuiComboBox extends Component {
     });
   };
 
+  onComboBoxClick = () => {
+    // When the user clicks anywhere on the box, enter the interaction state.
+    this.searchInput.focus();
+  };
+
+  onInputChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+
   onKeyDown = (e) => {
     switch (e.keyCode) {
-      case 40: // Down
+      case comboBoxKeyCodes.DOWN:
         break;
-      case 38: // Up
+      case comboBoxKeyCodes.UP:
         break;
-      case 8: // Backspace
+      case BACKSPACE:
         break;
-      case 13: // Enter
+      case comboBoxKeyCodes.ENTER:
         break;
     }
+  };
+
+  onAddOption = (addedOption) => {
+    const { onChange, selectedOptions } = this.props;
+    onChange(selectedOptions.concat(addedOption));
+  };
+
+  onRemoveOption = (removedOption) => {
+    const { onChange, selectedOptions } = this.props;
+    onChange(selectedOptions.filter(option => option !== removedOption));
   };
 
   getMatchingOptions() {
@@ -84,14 +102,37 @@ export class EuiComboBox extends Component {
     });
   }
 
-  onAddOption = (addedOption) => {
-    const { onChange, selectedOptions } = this.props;
-    onChange(selectedOptions.concat(addedOption));
+  onComboBoxFocus = (e) => {
+    // If the user has tabbed to the combo box, open it.
+    if (e.target === this.comboBox) {
+      this.searchInput.focus();
+      this.setState({
+        hasFocus: true,
+      });
+    }
   };
 
-  onRemoveOption = (removedOption) => {
-    const { onChange, selectedOptions } = this.props;
-    onChange(selectedOptions.filter(option => option !== removedOption));
+  onComboBoxBlur = () => {
+    // Wait for the DOM to update.
+    requestAnimationFrame(() => {
+      // If the user has tabbed away, close the combo box.
+      const hasFocus = this.comboBox.contains(document.activeElement);
+      if (!hasFocus) {
+        this.closeList();
+
+        this.setState({
+          hasFocus: false,
+        });
+      }
+    });
+  };
+
+  comboBoxRef = node => {
+    this.comboBox = node;
+  };
+
+  searchInputRef = node => {
+    this.searchInput = node;
   };
 
   renderPills() {
@@ -150,39 +191,46 @@ export class EuiComboBox extends Component {
       'euiComboBox-isOpen': this.state.isListOpen,
     });
 
+    // If we already have focus, then allow the user to shift-tab out of the combo box.
+    const isFocusable = this.state.hasFocus ? '-1' : '0';
+
     return (
-      <EuiOutsideClickDetector onOutsideClick={this.closeList}>
-        <div
-          className={classes}
-          {...rest}
+      <div
+        className={classes}
+        onBlur={this.onComboBoxBlur}
+        onFocus={this.onComboBoxFocus}
+        ref={this.comboBoxRef}
+        tabIndex={isFocusable}
+        role="button"
+        {...rest}
+      >
+        <EuiFormControlLayout
+          icon="arrowDown"
+          iconSide="right"
         >
-          <EuiFormControlLayout
-            icon="arrowDown"
-            iconSide="right"
+          <div
+            className="euiComboBox__inputWrap"
+            onClick={this.onComboBoxClick}
           >
-            <div
-              className="euiComboBox__inputWrap"
-              onClick={this.onSearchInputFocus}
-            >
-              {this.renderPills()}
+            {this.renderPills()}
 
-              <EuiValidatableControl isInvalid={false}>
-                <input
-                  type="search"
-                  className="euiComboBox__input"
-                  onFocus={this.openList}
-                  value={this.state.value}
-                  onChange={this.onInputChange}
-                  onKeyDown={this.onKeyDown}
-                  ref={(input) => { this.searchInput = input; }}
-                />
-              </EuiValidatableControl>
-            </div>
-          </EuiFormControlLayout>
+            <EuiValidatableControl isInvalid={false}>
+              <input
+                type="search"
+                className="euiComboBox__input"
+                onFocus={this.openList}
+                value={this.state.value}
+                onChange={this.onInputChange}
+                onKeyDown={this.onKeyDown}
+                ref={this.searchInputRef}
+                tabIndex="-1"
+              />
+            </EuiValidatableControl>
+          </div>
+        </EuiFormControlLayout>
 
-          {this.renderList()}
-        </div>
-      </EuiOutsideClickDetector>
+        {this.renderList()}
+      </div>
     );
   }
 }
