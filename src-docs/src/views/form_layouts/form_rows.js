@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 
 import {
+  EuiButton,
   EuiCheckboxGroup,
   EuiFieldNumber,
   EuiFieldPassword,
@@ -88,44 +89,6 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          label="Text field with icon"
-        >
-          <EuiFieldText
-            defaultValue="Text field with customizable icon"
-            icon="user"
-          />
-        </EuiFormRow>
-
-        <EuiFormRow
-          label="Number field"
-          helpText="Any number between 1 and 5"
-        >
-          <EuiFieldNumber
-            name="number"
-            min={1}
-            max={5}
-          />
-        </EuiFormRow>
-
-        <EuiFormRow
-          label="Password"
-        >
-          <EuiFieldPassword defaultValue="password" />
-        </EuiFormRow>
-
-        <EuiFormRow
-          label="Search"
-        >
-          <EuiFieldSearch />
-        </EuiFormRow>
-
-        <EuiFormRow
-          label="Text area"
-        >
-          <EuiTextArea name="textarea"/>
-        </EuiFormRow>
-
-        <EuiFormRow
           label="Select (with no initial selection)"
         >
           <EuiSelect
@@ -177,16 +140,9 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          id={makeId()}
-          label="Radio"
-        >
-          <EuiRadioGroup
-            options={this.state.radios}
-            idSelected={this.state.radioIdSelected}
-            onChange={this.onRadioChange}
-          />
-        </EuiFormRow>
+        <EuiButton type="submit" fill>
+          Save form
+        </EuiButton>
       </EuiForm>
     );
   }

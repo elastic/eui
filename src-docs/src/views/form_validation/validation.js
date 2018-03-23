@@ -1,5 +1,6 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
@@ -43,7 +44,7 @@ export default class extends Component {
     }
 
     return (
-      <div>
+      <Fragment>
         <EuiForm
           isInvalid={this.state.showErrors}
           error={errors}
@@ -96,7 +97,7 @@ export default class extends Component {
 
           {button}
         </EuiForm>
-      </div>
+      </Fragment>
     );
   }
 }

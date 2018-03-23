@@ -92,17 +92,20 @@ import { ExpressionExample }
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
 
-import { FilePickerExample }
-  from './views/file_picker/file_picker_example';
-
 import { FlexExample }
   from './views/flex/flex_example';
 
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
-import { FormExample }
-  from './views/form/form_example';
+import { FormControlsExample }
+  from './views/form_controls/form_controls_example';
+
+import { FormLayoutsExample }
+  from './views/form_layouts/form_layouts_example';
+
+import { FormValidationExample }
+  from './views/form_validation/form_validation_example';
 
 import { HeaderExample }
   from './views/header/header_example';
@@ -195,7 +198,12 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = ({ title, intro, sections }) => {
+const createExample = (example) => {
+  if (!example) {
+    throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
+  }
+
+  const { title, intro, sections } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -292,12 +300,13 @@ const navigation = [{
 }, {
   name: 'Forms',
   items: [
-    CodeEditorExample,
+    FormLayoutsExample,
+    FormControlsExample,
+    FormValidationExample,
     ColorPickerExample,
+    CodeEditorExample,
     ExpressionExample,
-    FilePickerExample,
     FilterGroupExample,
-    FormExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 }, {
