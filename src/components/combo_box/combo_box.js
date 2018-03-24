@@ -28,6 +28,7 @@ export class EuiComboBox extends Component {
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func.isRequired,
     onSearchChange: PropTypes.func.isRequired,
+    onCreateOption: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -130,10 +131,17 @@ export class EuiComboBox extends Component {
 
       case ESCAPE:
         // Move focus from options list to input
+        if (this.state.focusedItemIndex !== undefined) {
+          this.setState({
+            focusedItemIndex: undefined,
+          });
+          this.searchInput.focus();
+        }
         break;
 
       case comboBoxKeyCodes.ENTER:
-        // Select option or add new custom pill
+        // Add new custom pill.
+        this.props.onCreateOption();
         break;
 
       case TAB:
@@ -208,6 +216,10 @@ export class EuiComboBox extends Component {
     this.comboBox = node;
   };
 
+  autoSizeInputRef = node => {
+    this.autoSizeInput = node;
+  };
+
   searchInputRef = node => {
     this.searchInput = node;
   };
@@ -223,7 +235,7 @@ export class EuiComboBox extends Component {
   componentDidMount() {
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
-      this.searchInput.copyInputStyles();
+      this.autoSizeInput.copyInputStyles();
     }, 100);
 
     const { options, selectedOptions, searchValue } = this.props;
@@ -359,10 +371,11 @@ export class EuiComboBox extends Component {
   render() {
     const {
       className,
+      searchValue,
       options, // eslint-disable-line no-unused-vars
       selectedOptions, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
-      searchValue,
+      onCreateOption, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       ...rest,
     } = this.props;
@@ -399,7 +412,8 @@ export class EuiComboBox extends Component {
                 onFocus={this.openList}
                 onChange={this.onSearchChange}
                 value={searchValue}
-                ref={this.searchInputRef}
+                ref={this.autoSizeInputRef}
+                inputRef={this.searchInputRef}
               />
             </EuiValidatableControl>
           </div>

@@ -11,6 +11,7 @@ describe('EuiComboBox', () => {
         {...requiredProps}
         onChange={() => {}}
         onSearchChange={() => {}}
+        onCreateOption={() => {}}
       />
     );
 
