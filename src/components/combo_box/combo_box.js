@@ -42,7 +42,7 @@ export class EuiComboBox extends Component {
     this.options = [];
     this.state = {
       isListOpen: this.props.isListOpen,
-      focusedItemIndex: undefined,
+      focusedOptionIndex: undefined,
       matchingOptions: [],
     };
   }
@@ -56,7 +56,7 @@ export class EuiComboBox extends Component {
   closeList = callback => {
     this.setState({
       isListOpen: false,
-      focusedItemIndex: undefined,
+      focusedOptionIndex: undefined,
     }, callback);
   };
 
@@ -83,33 +83,33 @@ export class EuiComboBox extends Component {
     tabbableItems[comboBoxIndex + amount].focus();
   }
 
-  incrementFocusedItemIndex = amount => {
+  incrementFocusedOptionIndex = amount => {
     // If there are no options available, reset the focus.
     if (!this.state.matchingOptions.length) {
       this.setState({
-        focusedItemIndex: undefined,
+        focusedOptionIndex: undefined,
       });
       return;
     }
 
-    let nextFocusedItemIndex;
+    let nextFocusedOptionIndex;
 
-    if (this.state.focusedItemIndex === undefined) {
+    if (this.state.focusedOptionIndex === undefined) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextFocusedItemIndex = amount < 0 ? this.options.length - 1 : 0;
+      nextFocusedOptionIndex = amount < 0 ? this.options.length - 1 : 0;
     } else {
-      nextFocusedItemIndex = this.state.focusedItemIndex + amount;
+      nextFocusedOptionIndex = this.state.focusedOptionIndex + amount;
 
-      if (nextFocusedItemIndex < 0) {
-        nextFocusedItemIndex = this.options.length - 1;
-      } else if (nextFocusedItemIndex === this.options.length) {
-        nextFocusedItemIndex = 0;
+      if (nextFocusedOptionIndex < 0) {
+        nextFocusedOptionIndex = this.options.length - 1;
+      } else if (nextFocusedOptionIndex === this.options.length) {
+        nextFocusedOptionIndex = 0;
       }
     }
 
     this.setState({
-      focusedItemIndex: nextFocusedItemIndex,
+      focusedOptionIndex: nextFocusedOptionIndex,
     });
   };
 
@@ -117,12 +117,12 @@ export class EuiComboBox extends Component {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
         e.preventDefault();
-        this.incrementFocusedItemIndex(-1);
+        this.incrementFocusedOptionIndex(-1);
         break;
 
       case comboBoxKeyCodes.DOWN:
         e.preventDefault();
-        this.incrementFocusedItemIndex(1);
+        this.incrementFocusedOptionIndex(1);
         break;
 
       case BACKSPACE:
@@ -131,9 +131,9 @@ export class EuiComboBox extends Component {
 
       case ESCAPE:
         // Move focus from options list to input
-        if (this.state.focusedItemIndex !== undefined) {
+        if (this.state.focusedOptionIndex !== undefined) {
           this.setState({
-            focusedItemIndex: undefined,
+            focusedOptionIndex: undefined,
           });
           this.searchInput.focus();
         }
@@ -164,6 +164,12 @@ export class EuiComboBox extends Component {
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
+
+    // The option will take focus if you click it, so make sure we remove focus.
+    this.setState({
+      focusedOptionIndex: undefined,
+    });
+    this.searchInput.focus();
   };
 
   onRemoveOption = (removedOption) => {
@@ -191,6 +197,16 @@ export class EuiComboBox extends Component {
     // If the user has tabbed to the combo box, open it.
     if (e.target === this.searchInputRef) {
       this.searchInput.focus();
+      return;
+    }
+
+    // If a user clicks on an option without selecting it, then it will take focus
+    // and we need to update the index.
+    const optionIndex = this.options.indexOf(e.target);
+    if (optionIndex !== -1) {
+      this.setState({
+        focusedOptionIndex: optionIndex,
+      });
     }
   };
 
@@ -264,12 +280,12 @@ export class EuiComboBox extends Component {
 
       if (!matchingOptions.length) {
         this.setState({
-          focusedItemIndex: undefined,
+          focusedOptionIndex: undefined,
         });
-      } else if (this.state.focusedItemIndex >= matchingOptions.length) {
-        // Clip focusedItemIndex if it's now out of bounds.
+      } else if (this.state.focusedOptionIndex >= matchingOptions.length) {
+        // Clip focusedOptionIndex if it's now out of bounds.
         this.setState({
-          focusedItemIndex: matchingOptions.length - 1,
+          focusedOptionIndex: matchingOptions.length - 1,
         });
       }
     }
@@ -284,8 +300,8 @@ export class EuiComboBox extends Component {
 
   componentDidUpdate() {
     // If an item is focused, focus it.
-    if (this.state.focusedItemIndex !== undefined) {
-      this.options[this.state.focusedItemIndex].focus();
+    if (this.state.focusedOptionIndex !== undefined) {
+      this.options[this.state.focusedOptionIndex].focus();
     }
   }
 
