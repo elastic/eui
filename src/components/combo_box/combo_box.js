@@ -8,9 +8,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 
 import { comboBoxKeyCodes } from '../../services';
-import { BACKSPACE, LEFT, RIGHT } from '../../services/key_codes';
+import { BACKSPACE, LEFT, RIGHT, TAB } from '../../services/key_codes';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiText, EuiTextColor } from '../text';
@@ -36,10 +37,11 @@ export class EuiComboBox extends Component {
   constructor(props) {
     super(props);
 
+    this.options = [];
     this.state = {
-      hasFocus: false,
       isListOpen: this.props.isListOpen,
       value: '',
+      focusedItemIndex: undefined,
     };
   }
 
@@ -49,10 +51,88 @@ export class EuiComboBox extends Component {
     });
   };
 
-  closeList = () => {
+  closeList = callback => {
     this.setState({
       isListOpen: false,
+      focusedItemIndex: undefined,
+    }, callback);
+  };
+
+  tabAway = amount => {
+    const tabbableItems = tabbable(document);
+    const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
+
+    // Wrap to last tabbable if tabbing backwards.
+    if (amount < 0) {
+      if (comboBoxIndex === 0) {
+        tabbableItems[tabbableItems.length - 1].focus();
+        return;
+      }
+    }
+
+    // Wrap to first tabbable if tabbing forwards.
+    if (amount > 0) {
+      if (comboBoxIndex === tabbableItems.length - 1) {
+        tabbableItems[0].focus();
+        return;
+      }
+    }
+
+    tabbableItems[comboBoxIndex + amount].focus();
+  }
+
+  incrementFocusedItemIndex = amount => {
+    let nextFocusedItemIndex;
+
+    if (this.state.focusedItemIndex === undefined) {
+      // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
+      // either the first or last item.
+      nextFocusedItemIndex = amount < 0 ? this.options.length - 1 : 0;
+    } else {
+      nextFocusedItemIndex = this.state.focusedItemIndex + amount;
+
+      if (nextFocusedItemIndex < 0) {
+        nextFocusedItemIndex = this.options.length - 1;
+      } else if (nextFocusedItemIndex === this.options.length) {
+        nextFocusedItemIndex = 0;
+      }
+    }
+
+    this.setState({
+      focusedItemIndex: nextFocusedItemIndex,
     });
+  };
+
+  onKeyDown = (e) => {
+    switch (e.keyCode) {
+      case comboBoxKeyCodes.UP:
+        e.preventDefault();
+        this.incrementFocusedItemIndex(-1);
+        break;
+
+      case comboBoxKeyCodes.DOWN:
+        e.preventDefault();
+        this.incrementFocusedItemIndex(1);
+        break;
+
+      case BACKSPACE:
+        // Delete pill
+        break;
+
+      case comboBoxKeyCodes.ENTER:
+        // Select option or add new custom pill
+        break;
+
+      case TAB:
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.shiftKey) {
+          this.tabAway(-1);
+        } else {
+          this.tabAway(1);
+        }
+        break;
+    }
   };
 
   onComboBoxClick = () => {
@@ -64,19 +144,6 @@ export class EuiComboBox extends Component {
     this.setState({
       value: event.target.value,
     });
-  };
-
-  onKeyDown = (e) => {
-    switch (e.keyCode) {
-      case comboBoxKeyCodes.DOWN:
-        break;
-      case comboBoxKeyCodes.UP:
-        break;
-      case BACKSPACE:
-        break;
-      case comboBoxKeyCodes.ENTER:
-        break;
-    }
   };
 
   onAddOption = (addedOption) => {
@@ -104,25 +171,21 @@ export class EuiComboBox extends Component {
 
   onComboBoxFocus = (e) => {
     // If the user has tabbed to the combo box, open it.
-    if (e.target === this.comboBox) {
+    if (e.target === this.searchInputRef) {
       this.searchInput.focus();
-      this.setState({
-        hasFocus: true,
-      });
     }
   };
 
   onComboBoxBlur = () => {
+    // This callback generally handles cases when the user has taken focus away by clicking outside
+    // of the combo box.
+
     // Wait for the DOM to update.
     requestAnimationFrame(() => {
-      // If the user has tabbed away, close the combo box.
+      // If the user has placed focus somewhere outside of the combo box, close it.
       const hasFocus = this.comboBox.contains(document.activeElement);
       if (!hasFocus) {
         this.closeList();
-
-        this.setState({
-          hasFocus: false,
-        });
       }
     });
   };
@@ -134,6 +197,28 @@ export class EuiComboBox extends Component {
   searchInputRef = node => {
     this.searchInput = node;
   };
+
+  optionRef = (index, node) => {
+    // Sometimes the node is null.
+    if (node) {
+      // Store all options.
+      this.options[index] = node;
+    }
+  };
+
+  componentWillReceiveProps(nextProps) {
+    // Clear refs to options if the ones we can display changes.
+    if (nextProps.options !== this.props.options || nextProps.selectedOptions !== this.props.selectedOptions) {
+      this.options = [];
+    }
+  }
+
+  componentDidUpdate() {
+    // If an item is focused, focus it.
+    if (this.state.focusedItemIndex !== undefined) {
+      this.options[this.state.focusedItemIndex].focus();
+    }
+  }
 
   renderPills() {
     return this.props.selectedOptions.map((option, index) => (
@@ -163,6 +248,7 @@ export class EuiComboBox extends Component {
           option={option}
           key={index}
           onClick={this.onAddOption}
+          optionRef={this.optionRef.bind(this, index)}
         >
           {option.label}
         </EuiComboBoxOption>
@@ -191,17 +277,13 @@ export class EuiComboBox extends Component {
       'euiComboBox-isOpen': this.state.isListOpen,
     });
 
-    // If we already have focus, then allow the user to shift-tab out of the combo box.
-    const isFocusable = this.state.hasFocus ? '-1' : '0';
-
     return (
       <div
         className={classes}
         onBlur={this.onComboBoxBlur}
         onFocus={this.onComboBoxFocus}
+        onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
-        tabIndex={isFocusable}
-        role="button"
         {...rest}
       >
         <EuiFormControlLayout
@@ -219,11 +301,9 @@ export class EuiComboBox extends Component {
                 type="search"
                 className="euiComboBox__input"
                 onFocus={this.openList}
-                value={this.state.value}
                 onChange={this.onInputChange}
-                onKeyDown={this.onKeyDown}
+                value={this.state.value}
                 ref={this.searchInputRef}
-                tabIndex="-1"
               />
             </EuiValidatableControl>
           </div>

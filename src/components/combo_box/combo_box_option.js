@@ -9,6 +9,7 @@ export class EuiComboBoxOption extends Component {
     option: PropTypes.object.isRequired,
     children: PropTypes.node,
     className: PropTypes.string,
+    optionRef: PropTypes.func,
     onClick: PropTypes.func.isRequired,
   }
 
@@ -21,13 +22,14 @@ export class EuiComboBoxOption extends Component {
     const {
       children,
       className,
+      optionRef,
       option, // eslint-diable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
     const classes = classNames(
-      'euiComboBoxRow',
+      'euiComboBoxOption',
       className
     );
 
@@ -35,6 +37,8 @@ export class EuiComboBoxOption extends Component {
       <button
         className={classes}
         onClick={this.onClick}
+        ref={optionRef}
+        tabIndex="-1"
         {...rest}
       >
         {children}

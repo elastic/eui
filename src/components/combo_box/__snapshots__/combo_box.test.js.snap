@@ -5,8 +5,6 @@ exports[`EuiComboBox is rendered 1`] = `
   aria-label="aria-label"
   class="euiComboBox testClass1 testClass2"
   data-test-subj="test subject string"
-  role="button"
-  tabindex="0"
 >
   <div
     class="euiFormControlLayout"
@@ -16,7 +14,6 @@ exports[`EuiComboBox is rendered 1`] = `
     >
       <input
         class="euiComboBox__input"
-        tabindex="-1"
         type="search"
         value=""
       />
