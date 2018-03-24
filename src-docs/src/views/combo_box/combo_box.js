@@ -11,6 +11,7 @@ export default class extends Component {
     this.options = [{
       value: 'titan',
       label: 'Titan',
+      'data-test-subj': 'titanOption',
     }, {
       value: 'enceladus',
       label: 'Enceladus',
@@ -41,6 +42,7 @@ export default class extends Component {
     }];
 
     this.state = {
+      searchValue: '',
       isPopoverOpen: false,
       selectedOptions: [this.options[2], this.options[4]],
     };
@@ -52,12 +54,21 @@ export default class extends Component {
     });
   };
 
+  onSearchChange = (searchValue) => {
+    this.setState({
+      searchValue,
+    });
+  }
+
   render() {
+    const { searchValue, selectedOptions } = this.state;
     return (
       <EuiComboBox
         options={this.options}
-        selectedOptions={this.state.selectedOptions}
+        selectedOptions={selectedOptions}
         onChange={this.onChange}
+        onSearchChange={this.onSearchChange}
+        searchValue={searchValue}
       />
     );
   }

@@ -7,7 +7,11 @@ import { EuiComboBox } from './combo_box';
 describe('EuiComboBox', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiComboBox {...requiredProps} onChange={() => {}} />
+      <EuiComboBox
+        {...requiredProps}
+        onChange={() => {}}
+        onSearchChange={() => {}}
+      />
     );
 
     expect(component)

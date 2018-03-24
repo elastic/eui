@@ -23,16 +23,16 @@
    * 2. Resize input to fill remaining width without spilling onto a newline.
    */
   .euiComboBox__input {
-    appearance: none; /* 1 */
-    min-width: $euiSizeS; /* 2 */
-    flex: 1 1 0; /* 2 */
-    padding: 0;
-    border: none;
-    background: transparent;
-    font-size: $euiFontSizeS;
-    font-family: $euiFontFamily;
-    color: $euiTextColor;
-    margin: $euiSizeXS;
+    > input {
+      appearance: none; /* 1 */
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: $euiFontSizeS;
+      font-family: $euiFontFamily;
+      color: $euiTextColor;
+      margin: $euiSizeXS;
+    }
   }
 
   .euiComboBox__panel {

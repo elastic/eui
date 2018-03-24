@@ -9,9 +9,10 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
+import AutosizeInput from 'react-input-autosize';
 
 import { comboBoxKeyCodes } from '../../services';
-import { BACKSPACE, LEFT, RIGHT, TAB } from '../../services/key_codes';
+import { BACKSPACE, LEFT, RIGHT, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiText, EuiTextColor } from '../text';
@@ -27,6 +28,7 @@ export class EuiComboBox extends Component {
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -40,8 +42,8 @@ export class EuiComboBox extends Component {
     this.options = [];
     this.state = {
       isListOpen: this.props.isListOpen,
-      value: '',
       focusedItemIndex: undefined,
+      matchingOptions: [],
     };
   }
 
@@ -119,6 +121,10 @@ export class EuiComboBox extends Component {
         // Delete pill
         break;
 
+      case ESCAPE:
+        // Move focus from options list to input
+        break;
+
       case comboBoxKeyCodes.ENTER:
         // Select option or add new custom pill
         break;
@@ -140,12 +146,6 @@ export class EuiComboBox extends Component {
     this.searchInput.focus();
   };
 
-  onInputChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  };
-
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
@@ -156,9 +156,8 @@ export class EuiComboBox extends Component {
     onChange(selectedOptions.filter(option => option !== removedOption));
   };
 
-  getMatchingOptions() {
-    const { options, selectedOptions } = this.props;
-    const normalizedSearchValue = this.state.value.trim().toLowerCase();
+  getMatchingOptions(options, selectedOptions, searchValue) {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
     return options.filter(option => {
       // Only show options which haven't yet been selected
       if (selectedOptions.includes(option)) {
@@ -190,6 +189,10 @@ export class EuiComboBox extends Component {
     });
   };
 
+  onSearchChange = (e) => {
+    this.props.onSearchChange(e.target.value);
+  };
+
   comboBoxRef = node => {
     this.comboBox = node;
   };
@@ -206,10 +209,46 @@ export class EuiComboBox extends Component {
     }
   };
 
+  componentDidMount() {
+    // TODO: This will need to be called once the actual stylesheet loads.
+    setTimeout(() => {
+      this.searchInput.copyInputStyles();
+    }, 100);
+
+    const { options, selectedOptions, searchValue } = this.props;
+    const matchingOptions = this.getMatchingOptions(options, selectedOptions, searchValue);
+
+    this.setState({
+      matchingOptions,
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
-    // Clear refs to options if the ones we can display changes.
-    if (nextProps.options !== this.props.options || nextProps.selectedOptions !== this.props.selectedOptions) {
+    const { options, selectedOptions, searchValue } = nextProps;
+
+    if (
+      options !== this.props.options
+      || selectedOptions !== this.props.selectedOptions
+      || searchValue !== this.props.searchValue
+    ) {
+      // Clear refs to options if the ones we can display changes.
       this.options = [];
+      const matchingOptions = this.getMatchingOptions(options, selectedOptions, searchValue);
+
+      this.setState({
+        matchingOptions,
+      });
+
+      if (!matchingOptions.length) {
+        this.setState({
+          focusedItemIndex: undefined,
+        });
+      } else if (this.state.focusedItemIndex >= matchingOptions.length) {
+        // Clip focusedItemIndex if it's now out of bounds.
+        this.setState({
+          focusedItemIndex: matchingOptions.length - 1,
+        });
+      }
     }
   }
 
@@ -221,20 +260,29 @@ export class EuiComboBox extends Component {
   }
 
   renderPills() {
-    return this.props.selectedOptions.map((option, index) => (
-      <EuiComboBoxPill
-        option={option}
-        onClose={this.onRemoveOption}
-        key={option.value}
-      >
-        {option.label}
-      </EuiComboBoxPill>
-    ));
+    return this.props.selectedOptions.map((option, index) => {
+      const {
+        value,
+        label,
+        ...rest
+      } = option;
+
+      return (
+        <EuiComboBoxPill
+          option={option}
+          onClose={this.onRemoveOption}
+          key={value}
+          {...rest}
+        >
+          {label}
+        </EuiComboBoxPill>
+      )
+    });
   }
 
   renderList() {
     let listContent;
-    const matchingOptions = this.getMatchingOptions();
+    const { matchingOptions } = this.state;
 
     if (matchingOptions.length === 0) {
       listContent = (
@@ -243,20 +291,33 @@ export class EuiComboBox extends Component {
         </div>
       );
     } else {
-      listContent = matchingOptions.map((option, index) => (
-        <EuiComboBoxOption
-          option={option}
-          key={index}
-          onClick={this.onAddOption}
-          optionRef={this.optionRef.bind(this, index)}
-        >
-          {option.label}
-        </EuiComboBoxOption>
-      ));
+      listContent = matchingOptions.map((option, index) => {
+        const {
+          value, // eslint-disable-line no-unused-vars
+          label,
+          ...rest
+        } = option;
+
+        return (
+          <EuiComboBoxOption
+            option={option}
+            key={index}
+            onClick={this.onAddOption}
+            optionRef={this.optionRef.bind(this, index)}
+            {...rest}
+          >
+            {label}
+          </EuiComboBoxOption>
+        )
+      });
     }
 
     return (
-      <EuiPanel paddingSize="none" className="euiComboBox__panel">
+      <EuiPanel
+        paddingSize="none"
+        className="euiComboBox__panel"
+        data-test-subj="comboBoxOptionsList"
+      >
         <div className="euiComboBox__rowWrap">
           {listContent}
         </div>
@@ -270,6 +331,8 @@ export class EuiComboBox extends Component {
       options, // eslint-disable-line no-unused-vars
       selectedOptions, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      searchValue,
+      onSearchChange, // eslint-disable-line no-unused-vars
       ...rest,
     } = this.props;
 
@@ -293,16 +356,18 @@ export class EuiComboBox extends Component {
           <div
             className="euiComboBox__inputWrap"
             onClick={this.onComboBoxClick}
+            data-test-subj="comboBoxInput"
           >
             {this.renderPills()}
 
             <EuiValidatableControl isInvalid={false}>
-              <input
-                type="search"
+              <AutosizeInput
+                role="combobox"
+                style={{ fontSize: 14 }}
                 className="euiComboBox__input"
                 onFocus={this.openList}
-                onChange={this.onInputChange}
-                value={this.state.value}
+                onChange={this.onSearchChange}
+                value={searchValue}
                 ref={this.searchInputRef}
               />
             </EuiValidatableControl>

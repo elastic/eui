@@ -11,12 +11,20 @@ exports[`EuiComboBox is rendered 1`] = `
   >
     <div
       class="euiComboBox__inputWrap"
+      data-test-subj="comboBoxInput"
     >
-      <input
+      <div
         class="euiComboBox__input"
-        type="search"
-        value=""
-      />
+        style="font-size:14px;display:inline-block"
+      >
+        <input
+          role="combobox"
+          style="box-sizing:content-box;width:1px"
+        />
+        <div
+          style="position:absolute;top:0;left:0;visibility:hidden;height:0;overflow:scroll;white-space:pre"
+        />
+      </div>
     </div>
     <svg
       class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium"
@@ -40,6 +48,7 @@ exports[`EuiComboBox is rendered 1`] = `
   </div>
   <div
     class="euiPanel euiComboBox__panel"
+    data-test-subj="comboBoxOptionsList"
   >
     <div
       class="euiComboBox__rowWrap"
