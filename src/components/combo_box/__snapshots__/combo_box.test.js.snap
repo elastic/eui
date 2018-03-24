@@ -56,7 +56,7 @@ exports[`EuiComboBox is rendered 1`] = `
       <div
         class="euiComoboBox__empty"
       >
-        Nothing matches your search.
+        There aren’t any options available.
       </div>
     </div>
   </div>

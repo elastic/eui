@@ -18,7 +18,6 @@ import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel } from '../panel';
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
-
 import { EuiComboBoxPill } from './combo_box_pill';
 import { EuiComboBoxOption } from './combo_box_option';
 
@@ -84,6 +83,14 @@ export class EuiComboBox extends Component {
   }
 
   incrementFocusedItemIndex = amount => {
+    // If there are no options available, reset the focus.
+    if (!this.state.matchingOptions.length) {
+      this.setState({
+        focusedItemIndex: undefined,
+      });
+      return;
+    }
+
     let nextFocusedItemIndex;
 
     if (this.state.focusedItemIndex === undefined) {
@@ -166,6 +173,10 @@ export class EuiComboBox extends Component {
       const normalizedOption = option.label.trim().toLowerCase();
       return normalizedOption.includes(normalizedSearchValue);
     });
+  }
+
+  areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
+    return options.length === selectedOptions.length;
   }
 
   onComboBoxFocus = (e) => {
@@ -252,6 +263,13 @@ export class EuiComboBox extends Component {
     }
   }
 
+  componentWillUpdate(nextProps) {
+    // If the user has just selected the last option, then focus the input.
+    if (!this.areAllOptionsSelected() && this.areAllOptionsSelected(nextProps)) {
+      this.searchInput.focus();
+    }
+  }
+
   componentDidUpdate() {
     // If an item is focused, focus it.
     if (this.state.focusedItemIndex !== undefined) {
@@ -282,9 +300,22 @@ export class EuiComboBox extends Component {
 
   renderList() {
     let listContent;
+    const { options } = this.props;
     const { matchingOptions } = this.state;
 
-    if (matchingOptions.length === 0) {
+    if (!options.length) {
+      listContent = (
+        <div className="euiComoboBox__empty">
+          There aren&rsquo;t any options available.
+        </div>
+      );
+    } else if (this.areAllOptionsSelected()) {
+      listContent = (
+        <div className="euiComoboBox__empty">
+          You&rsquo;ve selected all available options.
+        </div>
+      );
+    } else if (matchingOptions.length === 0) {
       listContent = (
         <div className="euiComoboBox__empty">
           Nothing matches your search.
