@@ -348,19 +348,19 @@ export class EuiComboBox extends Component {
     if (!options.length) {
       listContent = (
         <div className="euiComoboBox__empty">
-          There aren&rsquo;t any options available.
+          There aren&rsquo;t any options available
         </div>
       );
     } else if (this.areAllOptionsSelected()) {
       listContent = (
         <div className="euiComoboBox__empty">
-          You&rsquo;ve selected all available options.
+          You&rsquo;ve selected all available options
         </div>
       );
     } else if (matchingOptions.length === 0) {
       listContent = (
         <div className="euiComoboBox__empty">
-          Nothing matches your search.
+          Nothing matches your search
         </div>
       );
     } else {
