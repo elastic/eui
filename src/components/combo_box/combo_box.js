@@ -140,8 +140,10 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
-        // Add new custom pill.
-        this.props.onCreateOption();
+        if (this.state.focusedOptionIndex !== undefined) {
+          // Add new custom pill.
+          this.props.onCreateOption();
+        }
         break;
 
       case TAB:
@@ -161,11 +163,17 @@ export class EuiComboBox extends Component {
     this.searchInput.focus();
   };
 
+  onOptionEnterKey = (option) => {
+    this.onAddOption(option);
+  }
+
+  onOptionClick = (option) => {
+    this.onAddOption(option);
+  }
+
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
-
-    // The option will take focus if you click it, so make sure we remove focus.
     this.setState({
       focusedOptionIndex: undefined,
     });
@@ -282,10 +290,16 @@ export class EuiComboBox extends Component {
         this.setState({
           focusedOptionIndex: undefined,
         });
-      } else if (this.state.focusedOptionIndex >= matchingOptions.length) {
-        // Clip focusedOptionIndex if it's now out of bounds.
-        this.setState({
-          focusedOptionIndex: matchingOptions.length - 1,
+      } else {
+        // Use prevState because using the ENTER key to select an ption will set focusedOptionIndex
+        // to undefined, and we want to avoid clobbering it here.
+        this.setState(prevState => {
+          if (prevState.focusedOptionIndex >= matchingOptions.length) {
+            // Clip focusedOptionIndex if it's now out of bounds.
+            return {
+              focusedOptionIndex: matchingOptions.length - 1,
+            };
+          }
         });
       }
     }
@@ -361,7 +375,8 @@ export class EuiComboBox extends Component {
           <EuiComboBoxOption
             option={option}
             key={index}
-            onClick={this.onAddOption}
+            onClick={this.onOptionClick}
+            onEnterKey={this.onOptionEnterKey}
             optionRef={this.optionRef.bind(this, index)}
             {...rest}
           >
