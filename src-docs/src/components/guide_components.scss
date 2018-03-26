@@ -83,11 +83,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideSection__text.euiText,
 .guideSection__text .euiText {
   @include euiFontSizeS;
-  font-weight: $euiFontWeightLight;
+  //font-weight: $euiFontWeightLight;
   color: shadeOrTint($euiTextColor, .3, .1);
 
   p, ul, ol {
-    // max-width: 36rem;
+    max-width: 36rem;
   }
 }
 
