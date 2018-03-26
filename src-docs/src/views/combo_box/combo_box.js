@@ -67,14 +67,7 @@ export default class extends Component {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
-      return false;
-    }
-
-    // Don't do anything if the option already exists.
-    if (this.options.findIndex(option =>
-      option.value.trim().toLowerCase() === normalizedSearchValue
-    ) !== -1) {
-      return false;
+      return;
     }
 
     const newOption = {
@@ -82,14 +75,18 @@ export default class extends Component {
       label: searchValue,
     };
 
-    this.options.push(newOption);
+    // Create the option if it doesn't exist.
+    if (this.options.findIndex(option =>
+      option.value.trim().toLowerCase() === normalizedSearchValue
+    ) === -1) {
+      this.options.push(newOption);
+    }
 
+    // Select the option.
     this.setState(prevState => ({
       searchValue: '',
       selectedOptions: prevState.selectedOptions.concat(newOption),
     }));
-
-    return true;
   };
 
   render() {

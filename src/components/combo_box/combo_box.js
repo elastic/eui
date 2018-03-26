@@ -117,6 +117,38 @@ export class EuiComboBox extends Component {
     });
   };
 
+  getMatchingOptions = (options, selectedOptions, searchValue) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+    const matchingOptions = options.filter(option => {
+      // Only show options which haven't yet been selected.
+      const selectedOption = this.getSelectedOptionForSearchValue(option.label, selectedOptions);
+      if (selectedOption) {
+        return false;
+      }
+      const normalizedOption = option.label.trim().toLowerCase();
+      return normalizedOption.includes(normalizedSearchValue);
+    });
+    return matchingOptions;
+  };
+
+  getSelectedOptionForSearchValue = (searchValue, selectedOptions = this.props.selectedOptions) => {
+    const normalizedSearchValue = searchValue.toLowerCase();
+    return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
+  };
+
+  doesSearchMatchOnlyOption = () => {
+    const { searchValue } = this.props;
+    const { matchingOptions } = this.state;
+    if (matchingOptions.length !== 1) {
+      return false;
+    }
+    return matchingOptions[0].value.toLowerCase() === searchValue.toLowerCase();
+  };
+
+  areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
+    return options.length === selectedOptions.length;
+  };
+
   onKeyDown = (e) => {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
@@ -130,11 +162,17 @@ export class EuiComboBox extends Component {
         break;
 
       case BACKSPACE:
-        // Delete pill
+        // Delete last pill.
+        if (this.props.selectedOptions.length) {
+          // Backspace will be used to delete the input, not a pill.
+          if (!this.props.searchValue.length) {
+            this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
+          }
+        }
         break;
 
       case ESCAPE:
-        // Move focus from options list to input
+        // Move focus from options list to input.
         if (this.state.focusedOptionIndex !== undefined) {
           this.setState({
             focusedOptionIndex: undefined,
@@ -144,8 +182,16 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
-        if (this.state.focusedOptionIndex === undefined) {
-          // Add new custom pill.
+        // Don't create the value if it's already been selected.
+        if (this.getSelectedOptionForSearchValue(this.props.searchValue)) {
+          return;
+        }
+
+        // Add new custom pill.
+        if (
+          this.state.focusedOptionIndex === undefined
+          || this.doesSearchMatchOnlyOption()
+        ) {
           this.props.onCreateOption();
         }
         break;
@@ -188,22 +234,6 @@ export class EuiComboBox extends Component {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.filter(option => option !== removedOption));
   };
-
-  getMatchingOptions(options, selectedOptions, searchValue) {
-    const normalizedSearchValue = searchValue.trim().toLowerCase();
-    return options.filter(option => {
-      // Only show options which haven't yet been selected
-      if (selectedOptions.includes(option)) {
-        return false;
-      }
-      const normalizedOption = option.label.trim().toLowerCase();
-      return normalizedOption.includes(normalizedSearchValue);
-    });
-  }
-
-  areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
-    return options.length === selectedOptions.length;
-  }
 
   onComboBoxFocus = (e) => {
     // If the user has tabbed to the combo box, open it.
@@ -345,7 +375,7 @@ export class EuiComboBox extends Component {
   }
 
   renderList() {
-    const { options, searchValue } = this.props;
+    const { options, searchValue, selectedOptions } = this.props;
     const { matchingOptions } = this.state;
 
     let emptyStateContent;
@@ -355,9 +385,17 @@ export class EuiComboBox extends Component {
     } else if (this.areAllOptionsSelected()) {
       emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
     } else if (matchingOptions.length === 0) {
-      emptyStateContent = (
-        <p>Hit <EuiCode>ENTER</EuiCode> to add &lsquo;{searchValue}&rsquo; as a custom option</p>
-      );
+      const selectedOptionForValue = this.getSelectedOptionForSearchValue(searchValue);
+      if (selectedOptionForValue) {
+        // Disallow duplicate custom options.
+        emptyStateContent = (
+          <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+        );
+      } else {
+        emptyStateContent = (
+          <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+        );
+      }
     }
 
     const emptyState = emptyStateContent ? (
