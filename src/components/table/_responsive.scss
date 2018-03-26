@@ -1,0 +1,101 @@
+@include screenXSmall(){
+
+  .euiTable {
+    thead { display: none; }
+  }
+
+  .euiTable--compressed {
+    .euiTableRowCellCheckbox::before,
+    .euiTableRowCell::before {
+      padding: $euiSizeXS;
+      padding-bottom: 0;
+      margin-bottom: -$euiSizeXS;
+    }
+  }
+
+  .euiTableHeaderCell {
+    .euiTableHeaderButton {
+    }
+  }
+
+  .euiTableHeaderCellCheckbox {
+  }
+
+  .euiTableHeaderButton {
+  }
+
+  .euiTableRow {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: $euiBorderThin;
+    padding-top: $euiSize;
+    padding-bottom: $euiSize;
+
+    &:last-of-type {
+      border-bottom: $euiBorderThin;
+    }
+
+    overflow: hidden; // hide content that doesn't wrap
+
+    &.euiTableRow-isSelected {
+    }
+  }
+
+  .euiTableRowCell {
+    min-width: 50%;
+    border: none;
+
+    // Prepend the data attribute "data-header" to each cell
+    &::before {
+      content: attr(data-header);
+      display: block;
+      @include euiFontSizeXS;
+      color: $euiColorDarkShade;
+      padding: $euiSizeS;
+      padding-bottom: 0;
+      margin-bottom: -$euiSizeS; // pull up cell content closer
+
+      min-height: 26px;
+
+      // Always truncate
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .euiTableRowCellCheckbox {
+    border: none;
+
+    &::before {
+      content: '';
+      display: block;
+      padding: $euiSizeS;
+      padding-bottom: 0;
+      margin-bottom: -$euiSizeS; // pull up cell content closer
+    }
+  }
+
+  .euiTableCellContent {
+  }
+
+    .euiTableCellContent__text {
+    }
+
+  .euiTableCellContent--alignRight {
+  }
+
+  .euiTableCellContent--alignCenter {
+  }
+
+  .euiTableCellContent--truncateText {
+
+    .euiTableCellContent__text {
+    }
+  }
+
+  .euiTableCellContent--overflowingContent {
+    .euiTableCellContent__text {
+    }
+  }
+}

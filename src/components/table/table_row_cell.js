@@ -22,6 +22,7 @@ export const EuiTableRowCell = ({
   showOnHover,
   textOnly,
   colSpan,
+  header,
   ...rest
 }) => {
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -48,7 +49,7 @@ export const EuiTableRowCell = ({
   }
 
   return (
-    <td className="euiTableRowCell" colSpan={colSpan}>
+    <td className="euiTableRowCell" colSpan={colSpan} data-header={header}>
       <div className={contentClasses} {...rest}>
         {modifiedChildren}
       </div>
@@ -63,7 +64,8 @@ EuiTableRowCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   textOnly: PropTypes.bool,
-  colSpan: PropTypes.number
+  colSpan: PropTypes.number,
+  header: PropTypes.string,
 };
 
 EuiTableRowCell.defaultProps = {

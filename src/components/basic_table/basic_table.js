@@ -577,6 +577,7 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={align}
+        header={column.name}
         // If there's no render function defined then we're only going to render text.
         textOnly={textOnly || !render}
         {...rest}
@@ -605,6 +606,7 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={align}
+        header={column.name}
         {...rest}
       >
         {content}
