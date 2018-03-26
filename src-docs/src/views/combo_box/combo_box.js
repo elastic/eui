@@ -58,7 +58,7 @@ export default class extends Component {
 
   onSearchChange = (searchValue) => {
     this.setState({
-      searchValue: searchValue.trim(),
+      searchValue,
     });
   };
 
