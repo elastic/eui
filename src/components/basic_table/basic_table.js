@@ -373,6 +373,7 @@ export class EuiBasicTable extends Component {
           key={`_data_h_${column.field}_${index}`}
           align={align}
           width={column.width}
+          isMobileHeader={column.isMobileHeader}
           {...sorting}
         >
           {column.name}

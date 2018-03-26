@@ -14,7 +14,8 @@
   }
 
   .euiTableHeaderCell {
-    .euiTableHeaderButton {
+    &.euiTableHeaderCell--isMobileHeader {
+      display: block;
     }
   }
 
@@ -49,7 +50,7 @@
     &::before {
       content: attr(data-header);
       display: block;
-      @include euiFontSizeXS;
+      @include fontSize($euiFontSize * .6875);
       color: $euiColorDarkShade;
       padding: $euiSizeS;
       padding-bottom: 0;
@@ -61,6 +62,20 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    &.euiTableRowCell--hideforMobile {
+      display: none;
+    }
+
+    &.euiTableRowCell--isMobileHeader {
+      display: block;
+      width: 100%;
+      @include euiFontSize();
+
+      &::before {
+        display: none;
+      }
     }
   }
 

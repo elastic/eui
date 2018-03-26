@@ -27,9 +27,12 @@ export const EuiTableHeaderCell = ({
   className,
   ariaLabel,
   scope,
+  isMobileHeader,
   ...rest
 }) => {
-  const classes = classNames('euiTableHeaderCell', className);
+  const classes = classNames('euiTableHeaderCell', className, {
+    'euiTableHeaderCell--isMobileHeader': isMobileHeader,
+  });
 
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
@@ -98,6 +101,7 @@ EuiTableHeaderCell.propTypes = {
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
+  isMobileHeader: PropTypes.bool,
 };
 
 EuiTableHeaderCell.defaultProps = {
