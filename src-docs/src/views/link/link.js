@@ -25,7 +25,20 @@ export default () => (
           button
         </EuiLink>
       )} with an onClick handler.
-
+    </p>
+    <p>
+      Here is an example of a {(
+        <EuiLink
+          href="https://github.com/elastic/eui"
+          onClick={(e) => {
+            if (!confirm('Are you sure you want to see the eui repo?')) {
+              e.preventDefault();
+            }
+          }}
+        >
+          link
+        </EuiLink>
+      )} with both an href and an onClick handler.
     </p>
     <p>Links can be colored as well.</p>
     <ul>
