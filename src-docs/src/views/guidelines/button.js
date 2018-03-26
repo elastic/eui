@@ -361,6 +361,8 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
+    <EuiSpacer size="l" />
+
     <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 
     <GuideRule description="When in doubt, use a blue button in the default size. Never put more than two

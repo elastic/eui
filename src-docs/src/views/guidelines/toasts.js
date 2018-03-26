@@ -292,6 +292,8 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
+    <EuiSpacer size="l" />
+
     <GuideRuleTitle>Icons should emphasize actions</GuideRuleTitle>
 
     <GuideRule
