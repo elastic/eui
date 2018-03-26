@@ -38,6 +38,18 @@
 
     overflow: hidden; // hide content that doesn't wrap
 
+    &.euiTableRow-isSelectable {
+      padding-left: $euiSizeXL;
+      position: relative;
+
+      .euiTableRowCellCheckbox {
+        position: absolute;
+        left: 0;
+        top: $euiSize; // same as row padding-top
+        bottom: $euiSize;
+      }
+    }
+
     &.euiTableRow-isSelected {
     }
   }
@@ -64,7 +76,7 @@
       text-overflow: ellipsis;
     }
 
-    &.euiTableRowCell--hideforMobile {
+    &.euiTableRowCell--hideForMobile {
       display: none;
     }
 
@@ -75,6 +87,10 @@
 
       &::before {
         display: none;
+      }
+
+      .euiTableCellContent {
+        padding-top: $euiSizeXS;
       }
     }
   }

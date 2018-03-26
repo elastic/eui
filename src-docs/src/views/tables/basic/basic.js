@@ -37,13 +37,13 @@ export const Table = () => {
     field: 'firstName',
     name: 'First Name',
     sortable: true,
-    hideforMobile: true,
+    hideForMobile: true,
     'data-test-subj': 'firstNameCell',
   }, {
     field: 'lastName',
     name: 'Last Name',
     truncateText: true,
-    hideforMobile: true,
+    hideForMobile: true,
     render: (name) => (
       <EuiLink href="#" target="_blank">{name}</EuiLink>
     ),
