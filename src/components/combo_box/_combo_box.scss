@@ -5,13 +5,15 @@
   /**
    * 1. Allow pills to truncate their text with an ellipsis.
    * 2. Don't allow pills to overlap with the caret.
+   * 3.
    */
   .euiComboBox__inputWrap {
     @include euiFormControlStyle;
     @include euiFormControlWithIcon($isIconOptional: true);
+    $padding: $euiSizeXS;
     display: flex; /* 1 */
     flex-wrap: wrap; /* 1 */
-    padding: $euiSizeXS $euiSizeXXL $euiSizeXS $euiSizeXS; /* 2 */
+    padding: $padding $euiSizeXXL $padding $padding; /* 2 */
 
     &:hover {
       cursor: text;
@@ -19,12 +21,17 @@
   }
 
   /**
-   * 1. Reset appearance on Safari.
-   * 2. Resize input to fill remaining width without spilling onto a newline.
+   * 1. Force field height to match other field heights.
+   * 2. Force input height to expand tp fill this element.
+   * 3. Reset appearance on Safari.
+   * 4. Fix react-input-autosize appearance.
    */
   .euiComboBox__input {
+    display: inline-flex !important; /* 1 */
+    height: 33px; /* 2 */
+
     > input {
-      appearance: none; /* 1 */
+      appearance: none; /* 3 */
       padding: 0;
       border: none;
       background: transparent;
@@ -32,6 +39,7 @@
       font-family: $euiFontFamily;
       color: $euiTextColor;
       margin: $euiSizeXS;
+      line-height: $euiLineHeight; /* 4 */
     }
   }
 
