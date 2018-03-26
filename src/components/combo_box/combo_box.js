@@ -15,9 +15,10 @@ import { comboBoxKeyCodes } from '../../services';
 import { BACKSPACE, LEFT, RIGHT, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiButton } from '../button';
 import { EuiFlexGroup, EuiFlexOption } from '../flex';
-import { EuiText, EuiTextColor } from '../text';
-import { EuiPanel } from '../panel';
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
+import { EuiHighlight } from '../highlight';
+import { EuiPanel } from '../panel';
+import { EuiText, EuiTextColor } from '../text';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { EuiComboBoxOption } from './combo_box_option';
 
@@ -26,6 +27,7 @@ export class EuiComboBox extends Component {
     className: PropTypes.string,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
+    searchValue: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onSearchChange: PropTypes.func.isRequired,
     onCreateOption: PropTypes.func.isRequired,
@@ -342,7 +344,7 @@ export class EuiComboBox extends Component {
 
   renderList() {
     let listContent;
-    const { options } = this.props;
+    const { options, searchValue } = this.props;
     const { matchingOptions } = this.state;
 
     if (!options.length) {
@@ -380,7 +382,7 @@ export class EuiComboBox extends Component {
             optionRef={this.optionRef.bind(this, index)}
             {...rest}
           >
-            {label}
+            <EuiHighlight search={searchValue}>{label}</EuiHighlight>
           </EuiComboBoxOption>
         )
       });

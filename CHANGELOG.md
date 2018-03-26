@@ -8,7 +8,8 @@ No public interface changes since `0.0.36`.
 - Added support for range queries in `EuiSearchBar` (works for numeric and date values) ([#485](https://github.com/elastic/eui/pull/485))
 - Added support for emitting a `EuiSearchBar` query to an Elasticsearch query string ([#598](https://github.com/elastic/eui/pull/598))
 - Add support for expandable rows to `EuiBasicTable` ([#585](https://github.com/elastic/eui/pull/585))
-- Added `EuiComboBox` ([567](https://github.com/elastic/eui/pull/567))
+- Added `EuiComboBox` for selecting many options from a list of options ([567](https://github.com/elastic/eui/pull/567))
+- Added `EuiHighlight` for highlighting a substring within text ([567](https://github.com/elastic/eui/pull/567))
 
 **Bug fixes**
 

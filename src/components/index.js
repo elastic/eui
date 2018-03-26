@@ -136,6 +136,10 @@ export {
 } from './health';
 
 export {
+  EuiHighlight,
+} from './highlight';
+
+export {
   EuiHorizontalRule,
 } from './horizontal_rule';
 

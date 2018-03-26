@@ -116,6 +116,9 @@ import { HeaderExample }
 import { HealthExample }
   from './views/health/health_example';
 
+import { HighlightExample }
+  from './views/highlight/highlight_example';
+
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
 
@@ -318,6 +321,7 @@ const navigation = [{
     AccessibilityExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    HighlightExample,
     IsColorDarkExample,
     OutsideClickDetectorExample,
     PortalExample,

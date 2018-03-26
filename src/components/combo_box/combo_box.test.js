@@ -9,6 +9,7 @@ describe('EuiComboBox', () => {
     const component = render(
       <EuiComboBox
         {...requiredProps}
+        searchValue=""
         onChange={() => {}}
         onSearchChange={() => {}}
         onCreateOption={() => {}}
