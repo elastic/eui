@@ -55,9 +55,11 @@ exports[`EuiComboBox is rendered 1`] = `
       class="euiComboBox__rowWrap"
     >
       <div
-        class="euiComoboBox__empty"
+        class="euiText euiText--extraSmall euiComoboBox__empty"
       >
-        There aren’t any options available
+        <p>
+          There aren’t any options available
+        </p>
       </div>
     </div>
   </div>

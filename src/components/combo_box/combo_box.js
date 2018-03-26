@@ -5,6 +5,7 @@
 
 import React, {
   Component,
+  Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -14,6 +15,7 @@ import AutosizeInput from 'react-input-autosize';
 import { comboBoxKeyCodes } from '../../services';
 import { BACKSPACE, LEFT, RIGHT, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiButton } from '../button';
+import { EuiCode } from '../code';
 import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
 import { EuiHighlight } from '../highlight';
@@ -142,7 +144,7 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
-        if (this.state.focusedOptionIndex !== undefined) {
+        if (this.state.focusedOptionIndex === undefined) {
           // Add new custom pill.
           this.props.onCreateOption();
         }
@@ -343,50 +345,47 @@ export class EuiComboBox extends Component {
   }
 
   renderList() {
-    let listContent;
     const { options, searchValue } = this.props;
     const { matchingOptions } = this.state;
 
-    if (!options.length) {
-      listContent = (
-        <div className="euiComoboBox__empty">
-          There aren&rsquo;t any options available
-        </div>
-      );
-    } else if (this.areAllOptionsSelected()) {
-      listContent = (
-        <div className="euiComoboBox__empty">
-          You&rsquo;ve selected all available options
-        </div>
-      );
-    } else if (matchingOptions.length === 0) {
-      listContent = (
-        <div className="euiComoboBox__empty">
-          Nothing matches your search
-        </div>
-      );
-    } else {
-      listContent = matchingOptions.map((option, index) => {
-        const {
-          value, // eslint-disable-line no-unused-vars
-          label,
-          ...rest
-        } = option;
+    let emptyStateContent;
 
-        return (
-          <EuiComboBoxOption
-            option={option}
-            key={index}
-            onClick={this.onOptionClick}
-            onEnterKey={this.onOptionEnterKey}
-            optionRef={this.optionRef.bind(this, index)}
-            {...rest}
-          >
-            <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-          </EuiComboBoxOption>
-        )
-      });
+    if (!options.length) {
+      emptyStateContent = <p>There aren&rsquo;t any options available</p>;
+    } else if (this.areAllOptionsSelected()) {
+      emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
+    } else if (matchingOptions.length === 0) {
+      emptyStateContent = (
+        <p>Hit <EuiCode>ENTER</EuiCode> to add &lsquo;{searchValue}&rsquo; as a custom option</p>
+      );
     }
+
+    const emptyState = emptyStateContent ? (
+      <EuiText size="xs" className="euiComoboBox__empty">
+        {emptyStateContent}
+      </EuiText>
+    ) : undefined;
+
+    const optionsList = matchingOptions.map((option, index) => {
+      const {
+        value, // eslint-disable-line no-unused-vars
+        label,
+        ...rest
+      } = option;
+
+      return (
+        <EuiComboBoxOption
+          option={option}
+          key={index}
+          onClick={this.onOptionClick}
+          onEnterKey={this.onOptionEnterKey}
+          optionRef={this.optionRef.bind(this, index)}
+          {...rest}
+        >
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+        </EuiComboBoxOption>
+      )
+    });
 
     return (
       <EuiPanel
@@ -395,7 +394,7 @@ export class EuiComboBox extends Component {
         data-test-subj="comboBoxOptionsList"
       >
         <div className="euiComboBox__rowWrap">
-          {listContent}
+          {emptyState || optionsList}
         </div>
       </EuiPanel>
     );

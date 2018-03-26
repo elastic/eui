@@ -50,7 +50,6 @@
   }
 
   .euiComoboBox__empty {
-    @include euiFontSizeS;
     padding: $euiSizeS;
     text-align: center;
     color: $euiColorDarkShade;
