@@ -97,8 +97,7 @@ export class FieldValueSelectionFilter extends Component {
           shown: options
         }
       });
-    }).catch((error) => {
-      console.error(error);
+    }).catch(() => {
       this.setState({ options: null, error: `Could not load options` });
     });
   }

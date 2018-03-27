@@ -1,14 +1,8 @@
 import React, {
   Fragment,
 } from 'react';
-import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
-import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss'
-import { calculateContrast, rgbToHex } from '../../../../src/services'
-
-
-import {
-  Link,
-} from 'react-router';
+import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
+import { calculateContrast, rgbToHex } from '../../../../src/services';
 
 import {
   GuidePage,
@@ -20,8 +14,6 @@ import {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiIcon,
-  EuiHorizontalRule,
   EuiBadge,
   EuiToolTip,
   EuiDescriptionList,
@@ -43,7 +35,7 @@ const allowedColors = [
   'euiColorWarning',
   'euiColorDanger',
   'euiColorAccent',
-]
+];
 
 const visColors = [
   'euiColorVis0',
@@ -56,7 +48,7 @@ const visColors = [
   'euiColorVis7',
   'euiColorVis8',
   'euiColorVis9',
-]
+];
 
 const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
 
@@ -98,7 +90,7 @@ export default() => (
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {allowedColors.map(function(color, index) {
+      {allowedColors.map(function (color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
@@ -117,7 +109,7 @@ export default() => (
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {visColors.map(function(color, index) {
+      {visColors.map(function (color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
@@ -154,11 +146,11 @@ export default() => (
     <EuiSpacer size="xxl" />
 
     <div>
-      {allowedColors.map(function(color, index) {
-         return (
-           <Fragment key={index}>
-             <EuiFlexGroup gutterSize="none">
-              {allowedColors.map(function(color2, index) {
+      {allowedColors.map(function (color, index) {
+        return (
+          <Fragment key={index}>
+            <EuiFlexGroup gutterSize="none">
+              {allowedColors.map(function (color2, index) {
                 const contrast = (
                   calculateContrast(
                     [lightColors[color].r, lightColors[color].g, lightColors[color].b],
@@ -226,7 +218,12 @@ export default() => (
                       }
                     >
                       <div>
-                        <div className="guidelineColor__stripe" style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba }}>
+                        <div
+                          className="guidelineColor__stripe"
+                          style={{
+                            color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba
+                          }}
+                        >
                           <div>Text</div>
                         </div>
                         {contrastRating}
@@ -235,11 +232,11 @@ export default() => (
                   </EuiFlexItem>
                 );
               })}
-             </EuiFlexGroup>
-             <EuiSpacer />
-           </Fragment>
-         );
-       })}
+            </EuiFlexGroup>
+            <EuiSpacer />
+          </Fragment>
+        );
+      })}
     </div>
   </GuidePage>
 );

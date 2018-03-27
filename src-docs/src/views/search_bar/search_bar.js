@@ -8,7 +8,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiCodeBlock,
-  EuiIcon,
   EuiTitle,
   EuiSwitch,
   EuiBasicTable,
@@ -198,7 +197,7 @@ export class SearchBar extends Component {
     });
 
     return (
-     <EuiBasicTable
+      <EuiBasicTable
         items={queriedItems}
         columns={columns}
       />
@@ -208,7 +207,6 @@ export class SearchBar extends Component {
   render() {
     const {
       incremental,
-      error,
       query,
     } = this.state;
 

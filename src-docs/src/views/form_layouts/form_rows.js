@@ -5,18 +5,13 @@ import React, {
 import {
   EuiButton,
   EuiCheckboxGroup,
-  EuiFieldNumber,
-  EuiFieldPassword,
-  EuiFieldSearch,
   EuiFieldText,
   EuiForm,
   EuiFormRow,
   EuiFilePicker,
   EuiRange,
-  EuiRadioGroup,
   EuiSelect,
   EuiSwitch,
-  EuiTextArea,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';

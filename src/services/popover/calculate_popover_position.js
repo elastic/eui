@@ -66,7 +66,7 @@ export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedP
 
   // If the requested position clips the popover, find the position which clips the popover the least.
   // Default to use the requested position.
-  let calculatedPopoverPosition = positions.reduce((mostVisiblePosition, position) => {
+  const calculatedPopoverPosition = positions.reduce((mostVisiblePosition, position) => {
     if (positionToVisibleAreaMap[position] > positionToVisibleAreaMap[mostVisiblePosition]) {
       return position;
     }

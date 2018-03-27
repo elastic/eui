@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -10,17 +10,14 @@ import {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
-  EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
   EuiFilePicker,
   EuiLink,
   EuiRadio,
-  EuiRadioGroup,
   EuiRange,
   EuiSelect,
-  EuiSpacer,
   EuiSwitch,
   EuiTextArea,
 } from '../../../../src/components';

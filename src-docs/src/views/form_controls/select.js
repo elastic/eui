@@ -8,8 +8,6 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
-
 export default class extends Component {
   constructor(props) {
     super(props);

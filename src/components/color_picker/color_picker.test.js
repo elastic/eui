@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  console.error.restore();
+  console.error.restore(); // eslint-disable-line no-console
 });
 
 test('renders EuiColorPicker', () => {

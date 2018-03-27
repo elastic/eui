@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import {hashHistory} from 'react-router';
 
 import {
+  hashHistory,
   Link,
 } from 'react-router';
 
