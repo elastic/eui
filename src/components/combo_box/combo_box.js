@@ -75,6 +75,12 @@ const getMatchingOptions = (options, selectedOptions, searchValue = '') => {
   return { optionToGroupMap, matchingOptions };
 };
 
+
+
+
+
+
+
 export class EuiComboBox extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -113,11 +119,11 @@ export class EuiComboBox extends Component {
     });
   };
 
-  closeList = callback => {
+  closeList = () => {
     this.setState({
       isListOpen: false,
       focusedOptionIndex: undefined,
-    }, callback);
+    });
   };
 
   tabAway = amount => {
@@ -185,6 +191,18 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
+  /**
+   * This method needs to be invoked directly any time we update state.searchValue. We use it
+   * to precalculate the options which match our searchValue and update the focusedOptionIndex based
+   * on the matchingOptions state.
+   *
+   * We have to precalculate matchingOptions instead of just derive it within render() because
+   * we store focusedOptionIndex in the state.
+   *
+   * We can't put this logic in componentWillReceiveProps, because that isn't called when the state
+   * updates. We also can't put it inside of componentWillUpdate, because you can't call setState
+   * within that method.
+   */
   updateOptionsState = (options, selectedOptions, searchValue) => {
     // Clear refs to options if the ones we can display changes.
     this.options = [];
