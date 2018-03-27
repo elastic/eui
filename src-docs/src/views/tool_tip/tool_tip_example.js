@@ -75,7 +75,8 @@ export const ToolTipExample = {
         </p>
         <p>
           It accepts all the same props as <EuiCode>EuiToolTip</EuiCode>.
-          For convenience, you can also specify an optional icon <EuiCode>type</EuiCode> prop.
+          For convenience, you can also specify optional icon <EuiCode>type</EuiCode> and
+          <EuiCode>color</EuiCode> props.
         </p>
       </Fragment>
     ),

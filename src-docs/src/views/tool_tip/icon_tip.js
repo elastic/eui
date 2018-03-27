@@ -32,6 +32,7 @@ export default () => (
     <EuiIconTip
       aria-label="Warning"
       type="alert"
+      color="warning"
       content="I do not think it means what you think it means"
     />
   </Fragment>

@@ -25,5 +25,16 @@ describe('EuiIconTip', () => {
           .toMatchSnapshot();
       });
     });
+
+    describe('color', () => {
+      test('is rendered as the icon color', () => {
+        const component = render(
+          <EuiIconTip color="warning" id="id" content="content" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });
