@@ -43,7 +43,7 @@
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
-  padding: $euiSizeM $euiSizeL;
+  padding: $euiSizeL $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0; // ensure the height of the footer is based off it's contents and doesn't squish
   @include euiOverflowShadowTop;
@@ -59,11 +59,13 @@
   padding-top: $euiSizeM;
 }
 
+// The actual size of the X button in pixels is a bit fuzzy because of all the
+// button padding so there is some pixel pushing here.
 .euiModal__closeIcon {
   background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
-  right: $euiSizeM;
-  top: $euiSizeL + 4px;
+  right: $euiSizeL - 7px;
+  top: $euiSizeL - 7px;
   z-index: 3;
 }
 
@@ -99,6 +101,7 @@
 
   .euiModalFooter {
     background: $euiColorLightestShade;
+    padding: $euiSizeM $euiSizeL;
     width: 100vw;
     justify-content: stretch;
 
@@ -113,6 +116,7 @@
 
   .euiModal__closeIcon {
     position: fixed;
+    top: $euiSizeL + $euiSizeXS;
   }
 
   .euiModalBody {
