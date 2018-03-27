@@ -26,7 +26,7 @@ exports.config = {
   sync: true,
   port: '4444',
   coloredLogs: true,
-  logLevel: 'error',
+  logLevel: 'verbose',
   deprecationWarnings: true,
   bail: 0,
   screenshotPath: 'test/failure-screenshots',
@@ -67,10 +67,17 @@ exports.config = {
       // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
       // args: ['-headless']
     }
-  }, {
-    browserName: 'internet explorer',
-    killInstances: true
   }],
+  onPrepare: function (config, capabilities) {
+    console.log(process.platform)
+    if ((ci) || process.platform === 'win32') {
+      capabilities.push({
+        browserName: 'internet explorer',
+        killInstances: true
+      });
+    }
+    console.log(capabilities);
+  },
   before: function (capabilities, specs) {
     var sinon = require('sinon');
     // http://sinonjs.org/
