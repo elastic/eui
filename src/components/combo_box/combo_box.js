@@ -163,13 +163,21 @@ export class EuiComboBox extends Component {
         break;
 
       case BACKSPACE:
-        // Delete last pill.
-        if (this.props.selectedOptions.length) {
-          // Backspace will be used to delete the input, not a pill.
-          if (!this.state.searchValue.length) {
-            this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
-          }
+        if (this.hasActiveOption()) {
+          return;
         }
+
+        if (!this.props.selectedOptions.length) {
+          return;
+        }
+
+        // Backspace will be used to delete the input, not a pill.
+        if (this.state.searchValue.length) {
+          return;
+        }
+
+        // Delete last pill.
+        this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
         break;
 
       case ESCAPE:
