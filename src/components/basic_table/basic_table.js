@@ -26,6 +26,8 @@ import { EuiTableRow } from '../table/table_row';
 import { PaginationBar, PaginationType } from './pagination_bar';
 import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
+import { EuiTableSortMobile } from '../table/table_sort_mobile';
+import { EuiTableSortMobileItem } from '../table/table_sort_mobile_item';
 
 const dataTypesProfiles = {
   auto: {
@@ -285,9 +287,44 @@ export class EuiBasicTable extends Component {
   }
 
   renderTable() {
+    const mobileSort = this.renderTableMobileSort();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
-    return <EuiTable>{head}{body}</EuiTable>;
+    return (
+      <div>
+        {mobileSort}
+        <EuiTable>{head}{body}</EuiTable>
+      </div>
+    );
+  }
+
+  renderTableMobileSort() {
+
+    const { columns } = this.props;
+
+    const sorts = [];
+
+    columns.forEach((column, index) => {
+      const sorting = {};
+      if (this.props.sorting && column.sortable) {
+        const sortDirection = this.resolveColumnSortDirection(column);
+        sorting.isSorted = !!sortDirection;
+        sorting.isSortAscending = sortDirection ? SortDirection.isAsc(sortDirection) : undefined;
+        sorting.onSort = this.resolveColumnOnSort(column);
+
+        sorts.push(
+          <EuiTableSortMobileItem
+            key={`_data_s_${column.field}_${index}`}
+            {...sorting}
+            hideForMobile={column.hideForMobile}
+          >
+            {column.name}
+          </EuiTableSortMobileItem>
+        );
+      }
+    });
+
+    return sorts.length ? <EuiTableSortMobile>{sorts}</EuiTableSortMobile> : null;
   }
 
   renderTableHead() {
@@ -374,6 +411,7 @@ export class EuiBasicTable extends Component {
           align={align}
           width={column.width}
           isMobileHeader={column.isMobileHeader}
+          hideForMobile={column.hideForMobile}
           {...sorting}
         >
           {column.name}

@@ -28,10 +28,12 @@ export const EuiTableHeaderCell = ({
   ariaLabel,
   scope,
   isMobileHeader,
+  hideForMobile,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
     'euiTableHeaderCell--isMobileHeader': isMobileHeader,
+    'euiTableHeaderCell--hideForMobile': hideForMobile,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -102,6 +104,7 @@ EuiTableHeaderCell.propTypes = {
   isSortAscending: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   isMobileHeader: PropTypes.bool,
+  hideForMobile: PropTypes.bool,
 };
 
 EuiTableHeaderCell.defaultProps = {
