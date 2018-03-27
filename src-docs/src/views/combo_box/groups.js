@@ -52,7 +52,6 @@ export default class extends Component {
   }
 
   onChange = (selectedOptions) => {
-    // TODO: Encapsulate searchValue within the combo box.
     this.setState({
       searchValue: '',
       selectedOptions,

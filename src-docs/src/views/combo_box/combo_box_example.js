@@ -19,6 +19,10 @@ import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
 const groupsHtml = renderToHtml(Groups);
 
+import DisallowCustomOptions from './disallow_custom_options';
+const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
+const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   sections: [{
@@ -37,7 +41,7 @@ export const ComboBoxExample = {
         a custom value in addition to selecting from a predetermined list.
       </p>
     ),
-    components: { EuiComboBox },
+    props: { EuiComboBox },
     demo: <ComboBox />,
   }, {
     title: 'Groups',
@@ -53,7 +57,23 @@ export const ComboBoxExample = {
         You can group options together. The groups <em>won&rsquo;t</em> match against the search value.
       </p>
     ),
-    components: { EuiComboBox },
+    props: { EuiComboBox },
     demo: <Groups />,
+  }, {
+    title: 'Disallowing custom options',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: disallowCustomOptionsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: disallowCustomOptionsHtml,
+    }],
+    text: (
+      <p>
+        Leave out the <EuiCode>onCreateOption</EuiCode> prop to disallow the creation of custom options.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <DisallowCustomOptions />,
   }],
 };

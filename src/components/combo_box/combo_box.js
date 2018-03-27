@@ -78,7 +78,7 @@ export class EuiComboBox extends Component {
     searchValue: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onSearchChange: PropTypes.func.isRequired,
-    onCreateOption: PropTypes.func.isRequired,
+    onCreateOption: PropTypes.func,
   }
 
   static defaultProps = {
@@ -214,6 +214,10 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
+        if (!this.props.onCreateOption) {
+          return;
+        }
+
         // Don't create the value if it's already been selected.
         if (getSelectedOptionForSearchValue(this.props.searchValue, this.props.selectedOptions)) {
           return;
@@ -401,7 +405,7 @@ export class EuiComboBox extends Component {
   }
 
   renderList() {
-    const { options, searchValue } = this.props;
+    const { options, searchValue, onCreateOption } = this.props;
     const { matchingOptions, optionToGroupMap } = this.state;
 
     let emptyStateContent;
@@ -411,15 +415,21 @@ export class EuiComboBox extends Component {
     } else if (this.areAllOptionsSelected()) {
       emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
     } else if (matchingOptions.length === 0) {
-      const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
-      if (selectedOptionForValue) {
-        // Disallow duplicate custom options.
-        emptyStateContent = (
-          <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
-        );
+      if (onCreateOption) {
+        const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
+        if (selectedOptionForValue) {
+          // Disallow duplicate custom options.
+          emptyStateContent = (
+            <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+          );
+        } else {
+          emptyStateContent = (
+            <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+          );
+        }
       } else {
         emptyStateContent = (
-          <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+          <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
         );
       }
     }
