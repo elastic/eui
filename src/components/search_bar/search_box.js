@@ -4,21 +4,22 @@ import PropTypes from 'prop-types';
 
 export const SearchBoxConfigPropTypes = {
   placeholder: PropTypes.string,
-  incremental: PropTypes.bool,
+  incremental: PropTypes.bool
 };
 
 export class EuiSearchBox extends Component {
+
   static propTypes = {
     query: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired, // (queryText) => void
     isInvalid: PropTypes.bool,
     title: PropTypes.string,
-    ...SearchBoxConfigPropTypes,
+    ...SearchBoxConfigPropTypes
   };
 
   static defaultProps = {
     placeholder: 'Search...',
-    incremental: false,
+    incremental: false
   };
 
   constructor(props) {
@@ -30,20 +31,29 @@ export class EuiSearchBox extends Component {
   }
 
   render() {
-    const { placeholder, query, incremental, onSearch, isInvalid, title, ...rest } = this.props;
+    const {
+      placeholder,
+      query,
+      incremental,
+      onSearch,
+      isInvalid,
+      title,
+      ...rest
+    } = this.props;
 
     return (
       <EuiFieldSearch
-        inputRef={input => (this.inputElement = input)}
+        inputRef={input => this.inputElement = input}
         fullWidth
         placeholder={placeholder}
         defaultValue={query}
         incremental={incremental}
-        onSearch={query => onSearch(query)}
+        onSearch={(query) => onSearch(query)}
         isInvalid={isInvalid}
         title={title}
         {...rest}
       />
     );
   }
+
 }

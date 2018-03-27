@@ -11,10 +11,13 @@ describe('EuiPortal', () => {
   test('is rendered', () => {
     const component = render(
       <div>
-        <EuiPortal>Content</EuiPortal>
+        <EuiPortal>
+          Content
+        </EuiPortal>
       </div>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

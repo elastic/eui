@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 
-import { EuiOverlayMask } from '../overlay_mask';
+import {
+  EuiOverlayMask,
+} from '../overlay_mask';
 
-import { EuiIcon } from '../icon';
+import {
+  EuiIcon,
+} from '../icon';
 
 import { keyCodes } from '../../services';
 
@@ -79,19 +85,17 @@ export class EuiImage extends Component {
 
     let optionalCaption;
     if (caption) {
-      optionalCaption = <figcaption className="euiImage__caption">{caption}</figcaption>;
+      optionalCaption = (
+        <figcaption className="euiImage__caption">
+          {caption}
+        </figcaption>
+      );
     }
 
     let optionalIcon;
 
     if (allowFullScreen) {
-      optionalIcon = (
-        <EuiIcon
-          type="fullScreen"
-          color={fullScreenIconColorMap[fullScreenIconColor]}
-          className="euiImage__icon"
-        />
-      );
+      optionalIcon = <EuiIcon type="fullScreen" color={fullScreenIconColorMap[fullScreenIconColor]} className="euiImage__icon" />;
     }
 
     let fullScreenDisplay;
@@ -106,9 +110,7 @@ export class EuiImage extends Component {
         >
           <EuiOverlayMask onClick={this.closeFullScreen}>
             <figure
-              ref={node => {
-                this.figure = node;
-              }}
+              ref={node => { this.figure = node; }}
               className="euiImageFullScreen"
               onClick={this.closeFullScreen}
               tabIndex={0}

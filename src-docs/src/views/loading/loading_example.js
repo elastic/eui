@@ -2,9 +2,15 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import { GuideSectionTypes } from '../../components';
+import {
+  GuideSectionTypes,
+} from '../../components';
 
-import { EuiLoadingKibana, EuiLoadingSpinner, EuiLoadingChart } from '../../../../src/components';
+import {
+  EuiLoadingKibana,
+  EuiLoadingSpinner,
+  EuiLoadingChart,
+} from '../../../../src/components';
 
 import LoadingKibana from './loading_kibana';
 const loadingKibanaSource = require('!!raw-loader!./loading_kibana');
@@ -20,60 +26,56 @@ const loadingSpinnerHtml = renderToHtml(LoadingSpinner);
 
 export const LoadingExample = {
   title: 'Loading',
-  sections: [
-    {
-      title: 'Kibana',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingKibanaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingKibanaHtml,
-        },
-      ],
-      text: <p>Logo based load. Should only be used in very large panels, like bootup screens.</p>,
-      props: { EuiLoadingKibana },
-      demo: <LoadingKibana />,
-    },
-    {
-      title: 'Chart',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingChartSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingChartHtml,
-        },
-      ],
-      text: (
-        <p>
-          Loader for the loading of chart or dashboard and visualization elements. The colored
-          versions should be used sparingly, only when a single large visualization is loaded. When
-          loading smaller groups of panels, the smaller, mono versions should be used.
-        </p>
-      ),
-      props: { EuiLoadingChart },
-      demo: <LoadingChart />,
-    },
-    {
-      title: 'Spinner',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingSpinnerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingSpinnerHtml,
-        },
-      ],
-      text: <p>A simple spinner for most loading applications.</p>,
-      props: { EuiLoadingSpinner },
-      demo: <LoadingSpinner />,
-    },
-  ],
+  sections: [{
+    title: 'Kibana',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: loadingKibanaSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: loadingKibanaHtml,
+    }],
+    text: (
+      <p>
+        Logo based load. Should only be used in very large panels, like bootup screens.
+      </p>
+    ),
+    props: { EuiLoadingKibana },
+    demo: <LoadingKibana />,
+  }, {
+    title: 'Chart',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: loadingChartSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: loadingChartHtml,
+    }],
+    text: (
+      <p>
+        Loader for the loading of chart or dashboard and visualization elements.
+        The colored versions should be used sparingly, only when a single large
+        visualization is loaded. When loading smaller groups of panels, the smaller,
+        mono versions should be used.
+      </p>
+    ),
+    props: { EuiLoadingChart },
+    demo: <LoadingChart />,
+  }, {
+    title: 'Spinner',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: loadingSpinnerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: loadingSpinnerHtml,
+    }],
+    text: (
+      <p>
+        A simple spinner for most loading applications.
+      </p>
+    ),
+    props: { EuiLoadingSpinner },
+    demo: <LoadingSpinner />,
+  }],
 };

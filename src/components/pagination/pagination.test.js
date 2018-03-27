@@ -6,8 +6,14 @@ import { EuiPagination } from './pagination';
 
 describe('EuiPagination', () => {
   test('is rendered', () => {
-    const component = render(<EuiPagination onPageClick={() => {}} {...requiredProps} />);
+    const component = render(
+      <EuiPagination
+        onPageClick={() => {}}
+        {...requiredProps}
+      />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

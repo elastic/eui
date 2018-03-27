@@ -1,4 +1,6 @@
-import { cloneElement } from 'react';
+import {
+  cloneElement,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,12 +9,9 @@ export const EuiGlobalToastListItem = ({ isDismissed, children }) => {
     'euiGlobalToastListItem-isDismissed': isDismissed,
   });
 
-  return cloneElement(children, {
-    ...children.props,
-    ...{
-      className: classes,
-    },
-  });
+  return cloneElement(children, ({ ...children.props, ...{
+    className: classes,
+  } }));
 };
 
 EuiGlobalToastListItem.propTypes = {

@@ -12,10 +12,17 @@ const sizeToClassNameMap = {
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 export const EuiLoadingSpinner = ({ children, size, className, ...rest }) => {
-  const classes = classNames('euiLoadingSpinner', sizeToClassNameMap[size], className);
+  const classes = classNames(
+    'euiLoadingSpinner',
+    sizeToClassNameMap[size],
+    className
+  );
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       {children}
     </div>
   );

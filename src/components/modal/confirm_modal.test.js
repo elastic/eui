@@ -5,7 +5,9 @@ import { mount, render } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
 import { keyCodes } from '../../services';
 
-import { CANCEL_BUTTON, CONFIRM_BUTTON, EuiConfirmModal } from './confirm_modal';
+import {
+  CANCEL_BUTTON, CONFIRM_BUTTON, EuiConfirmModal,
+} from './confirm_modal';
 
 let onConfirm;
 let onCancel;

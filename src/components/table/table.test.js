@@ -13,8 +13,12 @@ test('renders EuiTable', () => {
   const component = (
     <EuiTable {...requiredProps}>
       <EuiTableHeader>
-        <EuiTableHeaderCell>Hi Title</EuiTableHeaderCell>
-        <EuiTableHeaderCell>Bye Title</EuiTableHeaderCell>
+        <EuiTableHeaderCell>
+          Hi Title
+        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>
+          Bye Title
+        </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
         <EuiTableRow>

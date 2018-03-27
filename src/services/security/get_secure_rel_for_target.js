@@ -21,6 +21,7 @@ export const getSecureRelForTarget = (target, rel) => {
     secureRel = `${secureRel} noopener`;
   }
 
+
   if (!secureRel.includes('noreferrer')) {
     secureRel = `${secureRel} noreferrer`;
   }

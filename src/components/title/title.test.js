@@ -12,6 +12,7 @@ describe('EuiTitle', () => {
       </EuiTitle>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

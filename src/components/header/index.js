@@ -1,6 +1,10 @@
-export { EuiHeader } from './header';
+export {
+  EuiHeader,
+} from './header';
 
-export { EuiHeaderAlert } from './header_alert';
+export {
+  EuiHeaderAlert,
+} from './header_alert';
 
 export {
   EuiHeaderBreadcrumb,
@@ -8,9 +12,13 @@ export {
   EuiHeaderBreadcrumbCollapsed,
 } from './header_breadcrumbs';
 
-export { EuiHeaderLogo } from './header_logo';
+export {
+  EuiHeaderLogo,
+} from './header_logo';
 
-export { EuiHeaderNotification } from './header_notification';
+export {
+  EuiHeaderNotification,
+} from './header_notification';
 
 export {
   EuiHeaderSection,

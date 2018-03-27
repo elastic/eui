@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
-import { EuiFlyout, EuiFlyoutBody, EuiButton, EuiText } from '../../../../src/components';
+import {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiText,
+} from '../../../../src/components';
 
 export class FlyoutSize extends Component {
   constructor(props) {
@@ -19,7 +26,7 @@ export class FlyoutSize extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  };
+  }
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
@@ -30,18 +37,23 @@ export class FlyoutSize extends Component {
   }
 
   render() {
+
     let flyout;
     if (this.state.isFlyoutVisible) {
       flyout = (
-        <EuiFlyout ownFocus onClose={this.closeFlyout} size="s">
+        <EuiFlyout
+          ownFocus
+          onClose={this.closeFlyout}
+          size="s"
+        >
           <EuiFlyoutBody>
             <EuiText>
-              <p>
-                You can use ESC to close this panel, but we could also pass in a close button like
-                so.
-              </p>
+              <p>You can use ESC to close this panel, but we could also pass in a close button like so.</p>
 
-              <EuiButton iconType="cross" onClick={this.closeFlyout}>
+              <EuiButton
+                iconType="cross"
+                onClick={this.closeFlyout}
+              >
                 Close me
               </EuiButton>
             </EuiText>
@@ -51,7 +63,9 @@ export class FlyoutSize extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>Show Flyout</EuiButton>
+        <EuiButton onClick={this.showFlyout}>
+          Show Flyout
+        </EuiButton>
 
         {flyout}
       </div>

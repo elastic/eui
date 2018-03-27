@@ -4,7 +4,10 @@ import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { ICON_TYPES, EuiIcon } from '../../icon';
+import {
+  ICON_TYPES,
+  EuiIcon,
+} from '../../icon';
 
 const accessibleButtonIcon = (props, propName, componentName) => {
   if (props['aria-label']) {
@@ -43,14 +46,24 @@ export const EuiButtonIcon = ({
   buttonRef,
   ...rest
 }) => {
-  const classes = classNames('euiButtonIcon', colorToClassNameMap[color], className);
+
+  const classes = classNames(
+    'euiButtonIcon',
+    colorToClassNameMap[color],
+    className,
+  );
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
   if (iconType) {
     buttonIcon = (
-      <EuiIcon className="euiButtonIcon__icon" type={iconType} size="m" aria-hidden="true" />
+      <EuiIcon
+        className="euiButtonIcon__icon"
+        type={iconType}
+        size="m"
+        aria-hidden="true"
+      />
     );
   }
 
@@ -58,13 +71,26 @@ export const EuiButtonIcon = ({
     const secureRel = getSecureRelForTarget(target, rel);
 
     return (
-      <a className={classes} href={href} target={target} rel={secureRel} ref={buttonRef} {...rest}>
+      <a
+        className={classes}
+        href={href}
+        target={target}
+        rel={secureRel}
+        ref={buttonRef}
+        {...rest}
+      >
         {buttonIcon}
       </a>
     );
   } else {
     return (
-      <button disabled={isDisabled} className={classes} type={type} ref={buttonRef} {...rest}>
+      <button
+        disabled={isDisabled}
+        className={classes}
+        type={type}
+        ref={buttonRef}
+        {...rest}
+      >
         {buttonIcon}
       </button>
     );

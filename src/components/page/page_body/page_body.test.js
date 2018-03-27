@@ -6,8 +6,11 @@ import { EuiPageBody } from './page_body';
 
 describe('EuiPageBody', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageBody {...requiredProps} />);
+    const component = render(
+      <EuiPageBody {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

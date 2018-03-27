@@ -18,8 +18,5 @@
   ],
   "env": {
     "jest": true
-  },
-  "rules": {
-    "prettier/prettier": 2
   }
 }

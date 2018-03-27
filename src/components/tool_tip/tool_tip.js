@@ -1,4 +1,8 @@
-import React, { Component, cloneElement, Fragment } from 'react';
+import React, {
+  Component,
+  cloneElement,
+  Fragment,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -34,15 +38,11 @@ export class EuiToolTip extends Component {
     this.setState({ visible: true });
   };
 
-  positionToolTip = toolTipBounds => {
+  positionToolTip = (toolTipBounds) => {
     const anchorBounds = this.anchor.getBoundingClientRect();
     const requestedPosition = this.props.position;
 
-    const { position, left, top } = calculatePopoverPosition(
-      anchorBounds,
-      toolTipBounds,
-      requestedPosition
-    );
+    const { position, left, top } = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
 
     const toolTipStyles = {
       top: top + window.scrollY,
@@ -74,7 +74,7 @@ export class EuiToolTip extends Component {
     this.hideToolTip();
   };
 
-  onMouseOut = e => {
+  onMouseOut = (e) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (this.anchor === e.relatedTarget || !this.anchor.contains(e.relatedTarget)) {
@@ -85,7 +85,13 @@ export class EuiToolTip extends Component {
   };
 
   render() {
-    const { children, className, content, title, ...rest } = this.props;
+    const {
+      children,
+      className,
+      content,
+      title,
+      ...rest
+    } = this.props;
 
     const classes = classNames(
       'euiToolTip',
@@ -113,13 +119,16 @@ export class EuiToolTip extends Component {
     }
 
     const anchor = (
-      <span ref={anchor => (this.anchor = anchor)} className="euiToolTipAnchor">
+      <span
+        ref={anchor => this.anchor = anchor}
+        className="euiToolTipAnchor"
+      >
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
           'aria-describedby': this.state.id,
           onMouseOver: this.showToolTip,
-          onMouseOut: this.onMouseOut,
+          onMouseOut: this.onMouseOut
         })}
       </span>
     );

@@ -6,8 +6,11 @@ import { EuiFilterSelectItem } from './filter_select_item';
 
 describe('EuiFilterSelectItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiFilterSelectItem {...requiredProps} />);
+    const component = render(
+      <EuiFilterSelectItem {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

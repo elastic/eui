@@ -1,6 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 
-import { EuiSelect, EuiSpacer } from '../../../../src/components';
+import {
+  EuiSelect,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -26,7 +32,11 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <EuiSelect options={this.options} value={this.state.value} onChange={this.onChange} />
+        <EuiSelect
+          options={this.options}
+          value={this.state.value}
+          onChange={this.onChange}
+        />
 
         <EuiSpacer size="m" />
 

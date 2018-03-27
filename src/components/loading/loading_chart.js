@@ -15,11 +15,14 @@ export const EuiLoadingChart = ({ size, mono, className, ...rest }) => {
     'euiLoadingChart',
     mono === true ? 'euiLoadingChart--mono' : '',
     className,
-    sizeToClassNameMap[size]
+    sizeToClassNameMap[size],
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       <div className="euiLoadingChart__bar" />
       <div className="euiLoadingChart__bar" />
       <div className="euiLoadingChart__bar" />
@@ -30,9 +33,9 @@ export const EuiLoadingChart = ({ size, mono, className, ...rest }) => {
 
 EuiLoadingChart.propTypes = {
   mono: PropTypes.bool,
-  size: PropTypes.oneOf(SIZES),
+  size: PropTypes.oneOf(SIZES)
 };
 
 EuiLoadingChart.defaultProps = {
-  mono: false,
+  mono: false
 };

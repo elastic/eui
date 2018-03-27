@@ -2,9 +2,15 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import { GuideSectionTypes } from '../../components';
+import {
+  GuideSectionTypes,
+} from '../../components';
 
-import { EuiCode, EuiPopover, EuiPopoverTitle } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiPopover,
+  EuiPopoverTitle,
+} from '../../../../src/components';
 
 import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
@@ -32,148 +38,125 @@ const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
 
 export const PopoverExample = {
   title: 'Popover',
-  sections: [
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverHtml,
-        },
-      ],
-      text: (
-        <p>Use the Popover component to hide controls or options behind a clickable element.</p>
-      ),
-      props: { EuiPopover },
-      demo: <Popover />,
-    },
-    {
-      title: 'Trap focus',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: trapFocusSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: trapFocusHtml,
-        },
-      ],
-      text: (
+  sections: [{
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverHtml,
+    }],
+    text: (
+      <p>
+        Use the Popover component to hide controls or options behind a clickable element.
+      </p>
+    ),
+    props: { EuiPopover },
+    demo: <Popover />,
+  }, {
+    title: 'Trap focus',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: trapFocusSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: trapFocusHtml,
+    }],
+    text: (
+      <p>
+        If the Popover should be responsible for trapping the focus within itself (as opposed
+        to a child component), then you should set <EuiCode>ownFocus</EuiCode>.
+      </p>
+    ),
+    demo: <TrapFocus />,
+  }, {
+    title: 'Anchor position',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverAnchorPositionSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverAnchorPositionHtml,
+    }],
+    text: (
+      <div>
         <p>
-          If the Popover should be responsible for trapping the focus within itself (as opposed to a
-          child component), then you should set <EuiCode>ownFocus</EuiCode>.
+          The alignment and arrow on your popover can be set with
+          the <EuiCode>anchorPostion</EuiCode> prop. These positions will not
+          update based upon screen real estate and will stick to the positions
+          you declare. Because of this,
+          <strong>be careful when using left or right positioning</strong>.
         </p>
-      ),
-      demo: <TrapFocus />,
-    },
-    {
-      title: 'Anchor position',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverAnchorPositionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverAnchorPositionHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            The alignment and arrow on your popover can be set with the{' '}
-            <EuiCode>anchorPostion</EuiCode> prop. These positions will not update based upon screen
-            real estate and will stick to the positions you declare. Because of this,
-            <strong>be careful when using left or right positioning</strong>.
-          </p>
-          <p>
-            <strong>Some tips:</strong>
-          </p>
-          <ul>
-            <li>
-              The first word in the <EuiCode>anchorPosition</EuiCode> denotes where the popover will
-              appear relative to the button.
-            </li>
-            <li>
-              The second word in the <EuiCode>anchorPosition</EuiCode> denotes where the gravity /
-              pin position will appear relative to the popover.
-            </li>
-          </ul>
-        </div>
-      ),
-      demo: <PopoverAnchorPosition />,
-    },
-    {
-      title: 'Popover with title',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverWithTitleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverWithTitleHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            Popovers often have need for titling. This can be applied through a prop or used
-            separately as its own component
-            <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child prop.
-          </p>
-        </div>
-      ),
-      props: { EuiPopoverTitle },
-      demo: <PopoverWithTitle />,
-    },
-    {
-      title: 'Panel class name and padding size',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverPanelClassNameSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverPanelClassNameHtml,
-        },
-      ],
-      text: (
+        <p><strong>Some tips:</strong></p>
+        <ul>
+          <li>
+            The first word in the <EuiCode>anchorPosition</EuiCode> denotes
+            where the popover will appear relative to the button.
+          </li>
+          <li>
+            The second word in the <EuiCode>anchorPosition</EuiCode> denotes
+            where the gravity / pin position will appear relative to the popover.
+          </li>
+        </ul>
+      </div>
+    ),
+    demo: <PopoverAnchorPosition />,
+  }, {
+    title: 'Popover with title',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverWithTitleSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverWithTitleHtml,
+    }],
+    text: (
+      <div>
         <p>
-          Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding on the panel within
-          the panel. Use the <EuiCode>panelClassName</EuiCode> prop to pass a custom class to the
-          panel. inside a popover.
+          Popovers often have need for titling. This can be applied through
+          a prop or used separately as its own component
+          <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child
+          prop.
         </p>
-      ),
-      demo: <PopoverPanelClassName />,
-    },
-    {
-      title: 'Popover with title and padding size',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: popoverWithTitlePaddingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverWithTitlePaddingHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            When using popover titles, you can still propogate the padding size by using{' '}
-            <EuiCode>panelPaddingSize</EuiCode>. This will only affect the horizontal padding of the
-            title and the overall padding of the content.
-          </p>
-        </div>
-      ),
-      demo: <PopoverWithTitlePadding />,
-    },
-  ],
+      </div>
+    ),
+    props: { EuiPopoverTitle },
+    demo: <PopoverWithTitle />,
+  }, {
+    title: 'Panel class name and padding size',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverPanelClassNameSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverPanelClassNameHtml,
+    }],
+    text: (
+      <p>
+        Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
+        on the panel within the panel. Use the <EuiCode>panelClassName</EuiCode> prop
+        to pass a custom class to the panel. inside a popover.
+      </p>
+    ),
+    demo: <PopoverPanelClassName />,
+  }, {
+    title: 'Popover with title and padding size',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverWithTitlePaddingSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverWithTitlePaddingHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          When using popover titles, you can still propogate the padding size
+          by using <EuiCode>panelPaddingSize</EuiCode>. This will only affect
+          the horizontal padding of the title and the overall padding of the content.
+        </p>
+      </div>
+    ),
+    demo: <PopoverWithTitlePadding />,
+  }],
 };

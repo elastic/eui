@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../icon';
+import {
+  EuiIcon,
+} from '../icon';
 
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../flex';
 
 export class EuiAccordion extends Component {
   constructor(props) {
@@ -52,20 +59,35 @@ export class EuiAccordion extends Component {
       className
     );
 
-    const buttonClasses = classNames('euiAccordion__button', buttonClassName);
+    const buttonClasses = classNames(
+      'euiAccordion__button',
+      buttonClassName,
+    );
 
-    const buttonContentClasses = classNames('euiAccordion__buttonContent', buttonContentClassName);
+    const buttonContentClasses = classNames(
+      'euiAccordion__buttonContent',
+      buttonContentClassName,
+    );
 
-    const icon = <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="m" />;
+    const icon = (
+      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="m" />
+    );
 
     let optionalAction = null;
 
     if (extraAction) {
-      optionalAction = <EuiFlexItem grow={false}>{extraAction}</EuiFlexItem>;
+      optionalAction = (
+        <EuiFlexItem grow={false}>
+          {extraAction}
+        </EuiFlexItem>
+      );
     }
 
     return (
-      <div className={classes} {...rest}>
+      <div
+        className={classes}
+        {...rest}
+      >
         <EuiFlexGroup gutterSize="none" alignItems="center">
           <EuiFlexItem>
             <button
@@ -75,9 +97,13 @@ export class EuiAccordion extends Component {
               className={buttonClasses}
             >
               <EuiFlexGroup gutterSize="s" alignItems="center">
-                <EuiFlexItem grow={false}>{icon}</EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  {icon}
+                </EuiFlexItem>
 
-                <EuiFlexItem className={buttonContentClasses}>{buttonContent}</EuiFlexItem>
+                <EuiFlexItem className={buttonContentClasses}>
+                  {buttonContent}
+                </EuiFlexItem>
               </EuiFlexGroup>
             </button>
           </EuiFlexItem>
@@ -87,16 +113,10 @@ export class EuiAccordion extends Component {
 
         <div
           className="euiAccordion__childWrapper"
-          ref={node => {
-            this.childWrapper = node;
-          }}
+          ref={node => { this.childWrapper = node; }}
           id={id}
         >
-          <div
-            ref={node => {
-              this.childContent = node;
-            }}
-          >
+          <div ref={node => { this.childContent = node; }}>
             {children}
           </div>
         </div>

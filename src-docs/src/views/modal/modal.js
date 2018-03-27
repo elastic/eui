@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiButton,
@@ -35,7 +37,7 @@ export class Modal extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  };
+  }
 
   closeModal() {
     this.setState({ isModalVisible: false });
@@ -58,32 +60,56 @@ export class Modal extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="A text field">
+        <EuiFormRow
+          label="A text field"
+        >
           <EuiFieldText name="popfirst" />
         </EuiFormRow>
 
-        <EuiFormRow label="Range" helpText="Some help text for the range">
-          <EuiRange min={0} max={100} name="poprange" />
+        <EuiFormRow
+          label="Range"
+          helpText="Some help text for the range"
+        >
+          <EuiRange
+            min={0}
+            max={100}
+            name="poprange"
+          />
         </EuiFormRow>
       </EuiForm>
     );
+
 
     let modal;
 
     if (this.state.isModalVisible) {
       modal = (
         <EuiOverlayMask>
-          <EuiModal onClose={this.closeModal} style={{ width: '800px' }}>
+          <EuiModal
+            onClose={this.closeModal}
+            style={{ width: '800px' }}
+          >
             <EuiModalHeader>
-              <EuiModalHeaderTitle>Form in a modal</EuiModalHeaderTitle>
+              <EuiModalHeaderTitle >
+                Form in a modal
+              </EuiModalHeaderTitle>
             </EuiModalHeader>
 
-            <EuiModalBody>{formSample}</EuiModalBody>
+            <EuiModalBody>
+              {formSample}
+            </EuiModalBody>
 
             <EuiModalFooter>
-              <EuiButtonEmpty onClick={this.closeModal}>Cancel</EuiButtonEmpty>
+              <EuiButtonEmpty
+                onClick={this.closeModal}
+              >
+                Cancel
+              </EuiButtonEmpty>
 
-              <EuiButton onClick={this.closeModal} fill>
+              <EuiButton
+                onClick={this.closeModal}
+                fill
+              >
                 Save
               </EuiButton>
             </EuiModalFooter>
@@ -93,7 +119,9 @@ export class Modal extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.showModal}>Show Modal</EuiButton>
+        <EuiButton onClick={this.showModal}>
+          Show Modal
+        </EuiButton>
 
         {modal}
       </div>

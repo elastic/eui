@@ -1,6 +1,7 @@
 import React, { Component, cloneElement } from 'react';
 
 export class CustomItemAction extends Component {
+
   constructor(props) {
     super(props);
     this.state = { hasFocus: false };
@@ -44,6 +45,10 @@ export class CustomItemAction extends Component {
     const tool = action.render(item, enabled);
     const clonedTool = cloneElement(tool, { onFocus: this.onFocus, onBlur: this.onBlur });
     const style = this.hasFocus() || visible ? { opacity: 1 } : { opacity: 0 };
-    return <div style={style}>{clonedTool}</div>;
+    return (
+      <div style={style}>
+        {clonedTool}
+      </div>
+    );
   }
 }

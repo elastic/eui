@@ -1,4 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment
+} from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
@@ -6,7 +9,7 @@ import {
   EuiHealth,
   EuiButton,
   EuiSpacer,
-  EuiInMemoryTable,
+  EuiInMemoryTable
 } from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
 
@@ -48,12 +51,16 @@ export class Table extends Component {
         <Fragment>
           <span>Looks like you don&rsquo;t have any users. Let&rsquo;s create some!</span>
           <EuiSpacer size="s" />
-          <EuiButton size="s" key="loadUsers" onClick={this.loadUsers.bind(this)}>
+          <EuiButton
+            size="s"
+            key="loadUsers"
+            onClick={this.loadUsers.bind(this)}
+          >
             Load Users
           </EuiButton>
         </Fragment>
       ),
-      selection: [],
+      selection: []
     };
   }
 
@@ -62,14 +69,14 @@ export class Table extends Component {
       message: 'Loading users...',
       loading: true,
       users: undefined,
-      error: undefined,
+      error: undefined
     });
     setTimeout(() => {
       this.setState({
         loading: false,
         message: noItemsFoundMsg,
         error: undefined,
-        users: store.users,
+        users: store.users
       });
     }, random.number({ min: 0, max: 3000 }));
   }
@@ -79,14 +86,14 @@ export class Table extends Component {
       message: 'Loading users...',
       loading: true,
       users: undefined,
-      error: undefined,
+      error: undefined
     });
     setTimeout(() => {
       this.setState({
         loading: false,
         error: 'ouch!... again... ',
         users: undefined,
-        message: noItemsFoundMsg,
+        message: noItemsFoundMsg
       });
     }, random.number({ min: 0, max: 3000 }));
   }
@@ -104,80 +111,76 @@ export class Table extends Component {
     };
 
     return (
-      <EuiButton color="danger" iconType="trash" onClick={onClick}>
+      <EuiButton
+        color="danger"
+        iconType="trash"
+        onClick={onClick}
+      >
         Delete {selection.length} Users
       </EuiButton>
     );
   }
 
   renderToolsRight() {
-    return [
+    return [(
       <EuiButton
         key="loadUsers"
         onClick={this.loadUsers.bind(this)}
         isDisabled={this.state.loading}
       >
         Load Users
-      </EuiButton>,
+      </EuiButton>
+    ), (
       <EuiButton
         key="loadUsersError"
         onClick={this.loadUsersWithError.bind(this)}
         isDisabled={this.state.loading}
       >
         Load Users (Error)
-      </EuiButton>,
-    ];
+      </EuiButton>
+      )];
   }
 
   render() {
-    const columns = [
-      {
-        field: 'firstName',
-        name: 'First Name',
-        sortable: true,
-        truncateText: true,
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true,
+      truncateText: true,
+    }, {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
-      {
-        field: 'lastName',
-        name: 'Last Name',
-        truncateText: true,
-      },
-      {
-        field: 'github',
-        name: 'Github',
-        render: username => (
-          <EuiLink href={`https://github.com/${username}`} target="_blank">
-            {username}
-          </EuiLink>
-        ),
-      },
-      {
-        field: 'dateOfBirth',
-        name: 'Date of Birth',
-        dataType: 'date',
-        render: date => formatDate(date, 'dobLong'),
-        sortable: true,
-      },
-      {
-        field: 'nationality',
-        name: 'Nationality',
-        render: countryCode => {
-          const country = store.getCountry(countryCode);
-          return `${country.flag} ${country.name}`;
-        },
-      },
-      {
-        field: 'online',
-        name: 'Online',
-        dataType: 'boolean',
-        render: online => {
-          const color = online ? 'success' : 'danger';
-          const label = online ? 'Online' : 'Offline';
-          return <EuiHealth color={color}>{label}</EuiHealth>;
-        },
-        sortable: true,
-      },
-    ];
+      sortable: true
+    }];
 
     const search = {
       toolsLeft: this.renderToolsLeft(),
@@ -190,7 +193,7 @@ export class Table extends Component {
           type: 'is',
           field: 'online',
           name: 'Online',
-          negatedName: 'Offline',
+          negatedName: 'Offline'
         },
         {
           type: 'field_value_selection',
@@ -200,22 +203,22 @@ export class Table extends Component {
           options: store.countries.map(country => ({
             value: country.code,
             name: country.name,
-            view: `${country.flag} ${country.name}`,
-          })),
-        },
-      ],
+            view: `${country.flag} ${country.name}`
+          }))
+        }
+      ]
     };
 
     const pagination = {
       initialPageSize: 5,
-      pageSizeOptions: [3, 5, 8],
+      pageSizeOptions: [3, 5, 8]
     };
 
     const selection = {
       itemId: 'id',
-      selectable: user => user.online,
-      selectableMessage: selectable => (!selectable ? 'User is currently offline' : undefined),
-      onSelectionChange: selection => this.setState({ selection }),
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: (selection) => this.setState({ selection })
     };
 
     return (

@@ -2,7 +2,9 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import { GuideSectionTypes } from '../../components';
+import {
+  GuideSectionTypes,
+} from '../../components';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -18,47 +20,34 @@ const colorPickerNoColorLabelHtml = renderToHtml(ColorPickerNoColorLabel);
 
 export const ColorPickerExample = {
   title: 'Color Picker',
-  sections: [
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorPickerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPickerHtml,
-        },
-      ],
-      demo: <ColorPicker />,
-    },
-    {
-      title: 'With label and reset link',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorPickerClearSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPickerClearHtml,
-        },
-      ],
-      demo: <ColorPickerLabelAndClear />,
-    },
-    {
-      title: 'Without a color label',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorPickerNoColorLabelSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPickerNoColorLabelHtml,
-        },
-      ],
-      demo: <ColorPickerNoColorLabel />,
-    },
-  ],
+  sections: [{
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: colorPickerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: colorPickerHtml,
+    }],
+    demo: <ColorPicker />,
+  }, {
+    title: 'With label and reset link',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: colorPickerClearSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: colorPickerClearHtml,
+    }],
+    demo: <ColorPickerLabelAndClear />,
+  }, {
+    title: 'Without a color label',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: colorPickerNoColorLabelSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: colorPickerNoColorLabelHtml,
+    }],
+    demo: <ColorPickerNoColorLabel />,
+  }],
 };

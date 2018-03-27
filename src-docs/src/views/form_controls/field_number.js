@@ -1,6 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 
-import { EuiFieldNumber, EuiSpacer } from '../../../../src/components';
+import {
+  EuiFieldNumber,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {

@@ -12,10 +12,17 @@ const sizeToClassNameMap = {
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
-  const classes = classNames('euiLoadingKibana', sizeToClassNameMap[size], className);
+  const classes = classNames(
+    'euiLoadingKibana',
+    sizeToClassNameMap[size],
+    className,
+  );
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       <div className="euiLoadingKibana__icon">
         <EuiIcon type="logoKibana" size={size} />
       </div>

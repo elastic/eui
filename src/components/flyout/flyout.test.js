@@ -6,8 +6,14 @@ import { EuiFlyout } from './flyout';
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlyout {...requiredProps} onClose={() => {}} />);
+    const component = render(
+      <EuiFlyout
+        {...requiredProps}
+        onClose={() => {}}
+      />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

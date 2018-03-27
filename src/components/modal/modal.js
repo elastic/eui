@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
@@ -37,9 +39,7 @@ export class EuiModal extends Component {
           // fallbackFocus won't work.
         }
         <div
-          ref={node => {
-            this.modal = node;
-          }}
+          ref={node => { this.modal = node; }}
           className={classes}
           onKeyDown={this.onKeyDown}
           tabIndex={0}

@@ -1,7 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { GuidePage, GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
+import {
+  GuidePage,
+  GuideRule,
+  GuideRuleExample,
+  GuideRuleTitle,
+} from '../../components';
 
 import {
   EuiText,
@@ -24,11 +29,18 @@ import {
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
-const GuideRuleWriting = ({ children, className, ...rest }) => {
+const GuideRuleWriting = ({
+  children,
+  className,
+  ...rest,
+}) => {
   const classes = classNames(className);
 
   return (
-    <EuiText className={classes} {...rest}>
+    <EuiText
+      className={classes}
+      {...rest}
+    >
       <p>{children}</p>
     </EuiText>
   );
@@ -38,7 +50,8 @@ export default () => (
   <GuidePage title="Writing guidelines">
     <EuiText>
       <p>
-        You can have the most beautiful UI, but without <b>consistent, easy-to-understand text</b>,
+        You can have the most beautiful UI,
+        but without <b>consistent, easy-to-understand text</b>,
         you haven’t built the best user experience.
       </p>
     </EuiText>
@@ -52,20 +65,17 @@ export default () => (
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Clear and concise</h3>
-            <p>
-              Get straight to the point&mdash;in a way that your users understand. Make every word
-              contribute to meaning.
-            </p>
+            <p>Get straight to the point&mdash;in a way that your users understand.  Make every word contribute to meaning.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
       <EuiFlexItem style={{ minWidth: 300 }}>
+
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Consistent</h3>
-            <p>
-              Use the same terminology to mean the same thing. Make sure spelling, capitalization,
+            <p>Use the same terminology to mean the same thing. Make sure spelling, capitalization,
               punctuation, labels, and use of abbreviations are all consistent.
             </p>
           </EuiText>
@@ -76,9 +86,8 @@ export default () => (
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Conversational</h3>
-            <p>
-              Write as a professional in the field would talk&mdash;not as a professor lecturing
-              students. Use words that the user would use.
+            <p>Write as a professional in the field would talk&mdash;not as
+            a professor lecturing students. Use words that the user would use.
             </p>
           </EuiText>
         </EuiPanel>
@@ -91,14 +100,13 @@ export default () => (
       heading="Address users as &quot;you.&quot;"
       description="It&apos;s friendly and engages the user directly."
     >
+
       <GuideRuleExample type="do">
         <GuideRuleWriting>You must configure TLS to apply a Platinum License.</GuideRuleWriting>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
-        <GuideRuleWriting>
-          Configuring TLS will be required to apply a Platinum License.
-        </GuideRuleWriting>
+        <GuideRuleWriting>Configuring TLS will be required to apply a Platinum License.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
 
@@ -106,6 +114,7 @@ export default () => (
       heading="Write in active voice"
       description="Active voice puts the focus on who or what is performing the action and makes the sentence easier to understand."
     >
+
       <GuideRuleExample type="do">
         <GuideRuleWriting>The Elasticsearch Query DSL builds filters.</GuideRuleWriting>
       </GuideRuleExample>
@@ -120,10 +129,9 @@ export default () => (
         Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
         Omit common introductory phrases."
     >
+
       <GuideRuleExample type="do">
-        <EuiText>
-          <h2>Edit saved objects</h2>
-        </EuiText>
+        <EuiText><h2>Edit saved objects</h2></EuiText>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
@@ -134,25 +142,27 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do">
         <GuideRuleWriting>Configure at least one index pattern.</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
-        <GuideRuleWriting>
-          In order to use Kibana, you must configure at least one index pattern.
-        </GuideRuleWriting>
+        <GuideRuleWriting>In order to use Kibana, you must configure at least one index pattern.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do">
         <GuideRuleWriting>No active shard records for this cluster.</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
-        <GuideRuleWriting>
-          There are currently no active shard records for this cluster.
-        </GuideRuleWriting>
+        <GuideRuleWriting>There are currently no active shard records for this cluster.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
 
@@ -165,22 +175,19 @@ export default () => (
         <GuideRuleWriting>Your index has a date field.</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
-        <GuideRuleWriting>
-          I see that you are looking at an index with a date field.
-        </GuideRuleWriting>
+        <GuideRuleWriting>I see that you are looking at an index with a date field.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do">
-        <GuideRuleWriting>
-          For maximum compatibility, share the short URL of the snapshot.
-        </GuideRuleWriting>
+        <GuideRuleWriting>For maximum compatibility, share the short URL of the snapshot.</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
-        <GuideRuleWriting>
-          We recommend sharing shortened snapshot URLs for maximum compatibility.
-        </GuideRuleWriting>
+        <GuideRuleWriting>We recommend sharing shortened snapshot URLs for maximum compatibility.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
 
@@ -191,6 +198,7 @@ export default () => (
       description="This includes buttons, menus, and titles.
         In sentence case, only the first word and proper names are capped."
     >
+
       <GuideRuleExample type="do">
         <EuiTitle>
           <span>Create index patterns</span>
@@ -204,7 +212,10 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do" text="">
         <EuiButton>Set up index pattern</EuiButton>
       </GuideRuleExample>
@@ -220,26 +231,36 @@ export default () => (
       description="Although punctuation can help clarify meaning, it can also clutter the UI.
         Don&apos;t add a colon after a label, an ellipsis at the end of an action, or an (s) at the end of a noun."
     >
+
       <GuideRuleExample type="do">
-        <EuiFormRow label="Airports" helpText="Separate multiple names with a comma">
+        <EuiFormRow
+          label="Airports"
+          helpText="Separate multiple names with a comma"
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
-        <EuiFormRow label="Airport(s):" helpText="Separate multiple names with a comma.">
+        <EuiFormRow
+          label="Airport(s):"
+          helpText="Separate multiple names with a comma."
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do" text="">
-        <EuiFieldSearch defaultValue="Search" />
+        <EuiFieldSearch defaultValue="Search"/>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
-        <EuiFieldSearch defaultValue="Search..." />
+        <EuiFieldSearch defaultValue="Search..."/>
       </GuideRuleExample>
     </GuideRule>
 
@@ -249,27 +270,32 @@ export default () => (
         typically require a full stop. Always use periods on multiple sentences."
     >
       <GuideRuleExample type="do" text="">
-        <EuiFormRow label="Number" helpText="Number must be between 1 and 5">
+        <EuiFormRow
+          label="Number"
+          helpText="Number must be between 1 and 5"
+        >
           <EuiFieldNumber min={1} max={5} step={1} />
         </EuiFormRow>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="">
-        <EuiFormRow label="Number" helpText="Number must be between 1 and 5.">
+        <EuiFormRow
+          label="Number"
+          helpText="Number must be between 1 and 5."
+        >
           <EuiFieldNumber min={1} max={5} step={1} />
         </EuiFormRow>
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule heading="" description="">
+    <GuideRule
+      heading=""
+      description=""
+    >
       <GuideRuleExample type="do" text="">
         <EuiFormRow
           label="Number"
-          helpText={
-            <span>
-              Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink>
-            </span>
-          }
+          helpText={<span>Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink></span>}
         >
           <EuiFieldNumber min={1} max={5} step={1} />
         </EuiFormRow>
@@ -277,6 +303,7 @@ export default () => (
 
       <EuiFlexItem />
     </GuideRule>
+
 
     <GuideRule
       heading="Use contractions"
@@ -297,7 +324,7 @@ export default () => (
         Don&apos;t use more than one exclamation point per page."
     >
       <GuideRuleExample type="do">
-        <GuideRuleWriting>This dashboard is empty. Let&apos;s fill it up!</GuideRuleWriting>
+        <GuideRuleWriting>This dashboard is empty.  Let&apos;s fill it up!</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
         <GuideRuleWriting>Couldn&apos;t find any Elasticsearch data!</GuideRuleWriting>
@@ -313,27 +340,23 @@ export default () => (
         A title-only message is ok."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s">
-          <span>This dashboard is empty. Let&apos;s fill it up!</span>
-        </EuiTitle>
-        <EuiSpacer />
+        <EuiTitle size="s"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
+        <EuiSpacer/>
         <EuiText>
           <p>
-            To add a visualization, click Add in the menu bar. No visualizations yet? Go to the
-            Visualize app to create one.
+            To add a visualization, click Add in the menu bar. No visualizations yet?
+            Go to the Visualize app to create one.
           </p>
         </EuiText>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s">
-          <span>Uh-oh!</span>
-        </EuiTitle>
-        <EuiSpacer />
+        <EuiTitle size="s"><span>Uh-oh!</span></EuiTitle>
+        <EuiSpacer/>
         <EuiText>
           <p>
-            This dashboard is empty. To add a visualization, click Add in the menu bar. No
-            visualizations yet? Go to the Visualize app to create one.
+            This dashboard is empty.  To add a visualization, click Add in the menu bar. No visualizations yet?
+            Go to the Visualize app to create one.
           </p>
         </EuiText>
       </GuideRuleExample>
@@ -344,9 +367,7 @@ export default () => (
       description="Tell the user what to do next, if applicable."
     >
       <GuideRuleExample type="do">
-        <GuideRuleWriting>
-          No data sources. Go to the Management app to define an index pattern.
-        </GuideRuleWriting>
+        <GuideRuleWriting>No data sources. Go to the Management app to define an index pattern.</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="dont">
         <GuideRuleWriting>Oops, no data sources.</GuideRuleWriting>
@@ -359,34 +380,22 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s">
-            <span>Delete this report?</span>
-          </EuiTitle>
+          <EuiTitle size="s"><span>Delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
-            <EuiButtonEmpty color="text" size="s">
-              Cancel
-            </EuiButtonEmpty>
-            <EuiButton color="danger" size="s">
-              Delete
-            </EuiButton>
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Delete</EuiButton>
           </EuiFlexGroup>
         </EuiPanel>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s">
-            <span>Are you sure you want to delete this report?</span>
-          </EuiTitle>
+          <EuiTitle size="s"><span>Are you sure you want to delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
-            <EuiButtonEmpty color="text" size="s">
-              Cancel
-            </EuiButtonEmpty>
-            <EuiButton color="danger" size="s">
-              Delete Report
-            </EuiButton>
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Delete Report</EuiButton>
           </EuiFlexGroup>
         </EuiPanel>
       </GuideRuleExample>
@@ -436,13 +445,18 @@ export default () => (
       description="Not every task requires an explanation nor every field requires placeholder text."
     >
       <GuideRuleExample type="do" text="">
-        <EuiFormRow label="Email">
+        <EuiFormRow
+          label="Email"
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="">
-        <EuiFormRow label="Email" helpText="Please enter your email address.">
+        <EuiFormRow
+          label="Email"
+          helpText="Please enter your email address."
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
@@ -457,17 +471,29 @@ export default () => (
     >
       <GuideRuleExample type="do" text="">
         <EuiFormRow>
-          <EuiCheckbox onChange={() => {}} id={makeId()} label="Combine values in other bucket" />
+          <EuiCheckbox
+            onChange={() => {}}
+            id={makeId()}
+            label="Combine values in other bucket"
+          />
         </EuiFormRow>
-        <EuiFormRow label="Bucket label">
+        <EuiFormRow
+          label="Bucket label"
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="">
         <EuiFormRow>
-          <EuiCheckbox onChange={() => {}} id={makeId()} label="Combine other" />
+          <EuiCheckbox
+            onChange={() => {}}
+            id={makeId()}
+            label="Combine other"
+          />
         </EuiFormRow>
-        <EuiFormRow label="Custom bucket label">
+        <EuiFormRow
+          label="Custom bucket label"
+        >
           <EuiFieldText />
         </EuiFormRow>
       </GuideRuleExample>
@@ -479,33 +505,21 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s">
-            <span>Remove this index pattern?</span>
-          </EuiTitle>
+          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
-            <EuiButtonEmpty color="text" size="s">
-              Cancel
-            </EuiButtonEmpty>
-            <EuiButton color="danger" size="s">
-              Remove
-            </EuiButton>
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Remove</EuiButton>
           </EuiFlexGroup>
         </EuiPanel>
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s">
-            <span>Remove this index pattern?</span>
-          </EuiTitle>
+          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
-            <EuiButtonEmpty color="text" size="s">
-              Cancel
-            </EuiButtonEmpty>
-            <EuiButton color="danger" size="s">
-              Ok
-            </EuiButton>
+            <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
+            <EuiButton color="danger" size="s">Ok</EuiButton>
           </EuiFlexGroup>
         </EuiPanel>
       </GuideRuleExample>
@@ -520,9 +534,7 @@ export default () => (
         when used for frequently performed tasks."
     >
       <GuideRuleExample type="do">
-        <GuideRuleWriting>
-          Odd, exciting, and scary trends and anomalies in your Elasticsearch data
-        </GuideRuleWriting>
+        <GuideRuleWriting>Odd, exciting, and scary trends and anomalies in your Elasticsearch data</GuideRuleWriting>
       </GuideRuleExample>
       <GuideRuleExample type="do">
         <GuideRuleWriting>Some cool stuff you can do</GuideRuleWriting>
@@ -534,26 +546,24 @@ export default () => (
       description="Losing data and other situations that might frustrate the user are not a time for humor."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s">
-          <span>No results matched your search</span>
-        </EuiTitle>
+        <EuiTitle size="s"><span>No results matched your search</span></EuiTitle>
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s">
-          <span>
-            <EuiIcon type="faceSad" /> No results found
-          </span>
-        </EuiTitle>
+        <EuiTitle size="s"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
         <EuiSpacer />
         <EuiText>
           <p>
-            Unfortunately, I could not find any results matching your search. I tried really hard. I
-            looked all over the place and frankly, I just couldn&apos;t find anything good. Help me,
-            help you.
+            Unfortunately, I could not find any results matching your search.
+            I tried really hard.  I looked all over the place and frankly, I just couldn&apos;t find anything good.
+            Help me, help you.
           </p>
         </EuiText>
       </GuideRuleExample>
     </GuideRule>
+
+
+
+
 
     <GuideRuleTitle>Verifying your text</GuideRuleTitle>
 
@@ -570,13 +580,11 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem style={{ minWidth: 300 }}>
+
         <EuiPanel paddingSize="l">
           <EuiText>
             <h3>Word flow has a natural feel to it</h3>
-            <p>
-              Read your text out loud, make changes, and then repeat until the flow of your text
-              feels just right.
-            </p>
+            <p>Read your text out loud, make changes, and then repeat until the flow of your text feels just right.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -590,5 +598,15 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+
+
+
+
+
+
+
+
+
   </GuidePage>
 );

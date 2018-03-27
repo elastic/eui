@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiButton,
@@ -83,9 +85,16 @@ export class ConfirmModal extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
+        <EuiButton onClick={this.showModal}>
+          Show ConfirmModal
+        </EuiButton>
+
         &nbsp;
-        <EuiButton onClick={this.showDestroyModal}>Show dangerous ConfirmModal</EuiButton>
+
+        <EuiButton onClick={this.showDestroyModal}>
+          Show dangerous ConfirmModal
+        </EuiButton>
+
         {modal}
         {destroyModal}
       </div>

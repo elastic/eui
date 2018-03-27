@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiButtonEmpty,
@@ -42,46 +44,39 @@ export default class extends Component {
     );
 
     const items = [
-      <EuiContextMenuItem
-        key="10 rows"
-        icon="empty"
-        onClick={() => {
-          this.closePopover();
-          window.alert('10 rows');
-        }}
-      >
-        10 rows
-      </EuiContextMenuItem>,
-      <EuiContextMenuItem
-        key="20 rows"
-        icon="empty"
-        onClick={() => {
-          this.closePopover();
-          window.alert('20 rows');
-        }}
-      >
-        20 rows
-      </EuiContextMenuItem>,
-      <EuiContextMenuItem
-        key="50 rows"
-        icon="check"
-        onClick={() => {
-          this.closePopover();
-          window.alert('50 rows');
-        }}
-      >
+      (
+        <EuiContextMenuItem
+          key="10 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('10 rows'); }}
+        >
+          10 rows
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key="20 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('20 rows'); }}
+        >
+          20 rows
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key="50 rows"
+          icon="check"
+          onClick={() => { this.closePopover(); window.alert('50 rows'); }}
+        >
         50 rows
-      </EuiContextMenuItem>,
-      <EuiContextMenuItem
-        key="100 rows"
-        icon="empty"
-        onClick={() => {
-          this.closePopover();
-          window.alert('100 rows');
-        }}
-      >
+        </EuiContextMenuItem>
+      ), (
+        <EuiContextMenuItem
+          key="100 rows"
+          icon="empty"
+          onClick={() => { this.closePopover(); window.alert('100 rows'); }}
+        >
         100 rows
-      </EuiContextMenuItem>,
+        </EuiContextMenuItem>
+      )
     ];
 
     return (
@@ -93,7 +88,9 @@ export default class extends Component {
         panelPaddingSize="none"
         anchorPosition="downLeft"
       >
-        <EuiContextMenuPanel items={items} />
+        <EuiContextMenuPanel
+          items={items}
+        />
       </EuiPopover>
     );
   }

@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
-import { EuiColorPicker, EuiFlexGroup, EuiFlexItem } from '../../../../src/components';
+import {
+  EuiColorPicker,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components';
 
 export class ColorPickerNoColorLabel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '#00FFFF',
+      color: '#00FFFF'
     };
   }
 
-  handleChange = value => {
+  handleChange = (value) => {
     this.setState({ color: value });
   };
 
@@ -18,7 +24,9 @@ export class ColorPickerNoColorLabel extends Component {
     return (
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <label className="kuiLabel">Foreground color</label>
+          <label className="kuiLabel">
+            Foreground color
+          </label>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>

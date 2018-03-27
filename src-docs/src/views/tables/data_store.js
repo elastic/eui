@@ -31,46 +31,16 @@ const createCountries = () => [
   { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
 ];
 
-const createUsers = countries => {
-  return times(20, index => {
+const createUsers = (countries) => {
+  return times(20, (index) => {
     return {
       id: index,
-      firstName: random.oneOf([
-        'Very long first name that will wrap or be truncated',
-        'Another very long first name which will wrap or be truncated',
-        'Clinton',
-        'Igor',
-        'Karl',
-        'Drew',
-        'Honza',
-        'Rashid',
-        'Jordan',
-      ]),
-      lastName: random.oneOf([
-        'Very long last name that will wrap or be truncated',
-        'Another very long last name which will wrap or be truncated',
-        'Gormley',
-        'Motov',
-        'Minarik',
-        'Raines',
-        'Král',
-        'Khan',
-        'Sissel',
-      ]),
-      github: random.oneOf([
-        'martijnvg',
-        'elissaw',
-        'clintongormley',
-        'imotov',
-        'karmi',
-        'drewr',
-        'HonzaKral',
-        'rashidkpc',
-        'jordansissel',
-      ]),
+      firstName: random.oneOf(['Very long first name that will wrap or be truncated', 'Another very long first name which will wrap or be truncated', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan']),
+      lastName: random.oneOf(['Very long last name that will wrap or be truncated', 'Another very long last name which will wrap or be truncated', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel']),
+      github: random.oneOf(['martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel']),
       dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
       nationality: random.oneOf(countries.map(country => country.code)),
-      online: random.boolean(),
+      online: random.boolean()
     };
   });
 };
@@ -87,9 +57,7 @@ export const createDataStore = () => {
       let items;
 
       if (sortField) {
-        items = users
-          .slice(0)
-          .sort(Comparators.property(sortField, Comparators.default(sortDirection)));
+        items = users.slice(0).sort(Comparators.property(sortField, Comparators.default(sortDirection)));
       } else {
         items = users;
       }
@@ -105,7 +73,7 @@ export const createDataStore = () => {
 
       return {
         pageOfItems,
-        totalItemCount: items.length,
+        totalItemCount: items.length
       };
     },
 
@@ -118,7 +86,7 @@ export const createDataStore = () => {
       });
     },
 
-    cloneUser: id => {
+    cloneUser: (id) => {
       const index = users.findIndex(user => user.id === id);
       if (index >= 0) {
         const user = users[index];
@@ -126,6 +94,6 @@ export const createDataStore = () => {
       }
     },
 
-    getCountry: code => countries.find(country => country.code === code),
+    getCountry: (code) => countries.find(country => country.code === code)
   };
 };

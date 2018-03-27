@@ -6,9 +6,14 @@ import { EuiDescriptionList, TYPES, ALIGNMENTS } from './description_list';
 
 describe('EuiDescriptionList', () => {
   test('is rendered', () => {
-    const component = render(<EuiDescriptionList {...requiredProps}>Content</EuiDescriptionList>);
+    const component = render(
+      <EuiDescriptionList {...requiredProps}>
+        Content
+      </EuiDescriptionList>
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -35,24 +40,31 @@ describe('EuiDescriptionList', () => {
           </EuiDescriptionList>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
 
     describe('compressed', () => {
       test('is rendered', () => {
-        const component = render(<EuiDescriptionList compressed />);
+        const component = render(
+          <EuiDescriptionList compressed />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
 
     describe('type', () => {
       TYPES.forEach(type => {
         test(`${type} is rendered`, () => {
-          const component = render(<EuiDescriptionList type={type} />);
+          const component = render(
+            <EuiDescriptionList type={type} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -60,9 +72,12 @@ describe('EuiDescriptionList', () => {
     describe('align', () => {
       ALIGNMENTS.forEach(alignment => {
         test(`${alignment} is rendered`, () => {
-          const component = render(<EuiDescriptionList align={alignment} />);
+          const component = render(
+            <EuiDescriptionList align={alignment} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });

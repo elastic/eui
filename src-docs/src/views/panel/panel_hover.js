@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { EuiPanel } from '../../../../src/components';
+import {
+  EuiPanel,
+} from '../../../../src/components';
 
 export default () => (
   <EuiPanel onClick={() => window.alert('Panel clicked')}>

@@ -6,8 +6,11 @@ import { EuiLoadingSpinner } from './loading_spinner';
 
 describe('EuiLoadingSpinner', () => {
   test('is rendered', () => {
-    const component = render(<EuiLoadingSpinner {...requiredProps} />);
+    const component = render(
+      <EuiLoadingSpinner {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

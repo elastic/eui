@@ -1,17 +1,27 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps, startThrowingReactWarnings, stopThrowingReactWarnings } from '../../test';
+import {
+  requiredProps,
+  startThrowingReactWarnings,
+  stopThrowingReactWarnings,
+} from '../../test';
 
-import { EuiFlexItem, GROW_SIZES } from './flex_item';
+import {
+  EuiFlexItem,
+  GROW_SIZES,
+} from './flex_item';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
 
 describe('EuiFlexItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlexItem {...requiredProps} />);
+    const component = render(
+      <EuiFlexItem {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   test('tests the grow prop correctly', () => {
@@ -20,7 +30,9 @@ describe('EuiFlexItem', () => {
     const validValues = GROW_SIZES;
     const invalidValues = ['true', 'false', '1', 0];
 
-    validValues.forEach(value => expect(propType({ grow: value }, `grow`)).toBe(undefined));
+    validValues.forEach(value =>
+      expect(propType({ grow: value }, `grow`)).toBe(undefined)
+    );
     invalidValues.forEach(value =>
       expect(propType({ grow: value }, `grow`) instanceof Error).toBe(true)
     );
@@ -29,9 +41,12 @@ describe('EuiFlexItem', () => {
   describe('grow', () => {
     GROW_SIZES.concat([true, false]).forEach(value => {
       test(`${value} is rendered`, () => {
-        const component = render(<EuiFlexItem grow={value} />);
+        const component = render(
+          <EuiFlexItem grow={value} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
   });
@@ -39,15 +54,20 @@ describe('EuiFlexItem', () => {
   describe('component', () => {
     ['div', 'span'].forEach(value => {
       test(`${value} is rendered`, () => {
-        const component = render(<EuiFlexItem component={value} />);
+        const component = render(
+          <EuiFlexItem component={value} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
 
     ['h2'].forEach(value => {
       test(`${value} is not rendered`, () => {
-        expect(() => render(<EuiFlexItem component={value} />)).toThrow();
+        expect(() => render(
+          <EuiFlexItem component={value} />
+        )).toThrow();
       });
     });
   });

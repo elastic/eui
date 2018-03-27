@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiTab = ({ isSelected, onClick, children, className, disabled, ...rest }) => {
+export const EuiTab = ({
+  isSelected,
+  onClick,
+  children,
+  className,
+  disabled,
+  ...rest
+}) => {
   const classes = classNames('euiTab', className, {
     'euiTab-isSelected': isSelected,
     'euiTab-isDisabled': disabled,
@@ -18,7 +25,9 @@ export const EuiTab = ({ isSelected, onClick, children, className, disabled, ...
       disabled={disabled}
       {...rest}
     >
-      <span className="euiTab__content">{children}</span>
+      <span className="euiTab__content">
+        {children}
+      </span>
     </button>
   );
 };

@@ -6,10 +6,14 @@ export {
   accessibleClickKeys,
   cascadingMenuKeyCodes,
   comboBoxKeyCodes,
-  htmlIdGenerator,
+  htmlIdGenerator
 } from './accessibility';
 
-export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
+export {
+  LEFT_ALIGNMENT,
+  RIGHT_ALIGNMENT,
+  CENTER_ALIGNMENT
+} from './alignment';
 
 export {
   isColorDark,
@@ -20,16 +24,31 @@ export {
   VISUALIZATION_COLORS,
 } from './color';
 
-export { formatAuto, formatBoolean, formatDate, formatNumber, formatText } from './format';
+export {
+  formatAuto,
+  formatBoolean,
+  formatDate,
+  formatNumber,
+  formatText,
+} from './format';
 
-export { Pager } from './paging';
+export {
+  Pager
+} from './paging';
 
 // TODO: Migrate these services into the services directory.
-export { Query, AST as Ast } from '../components/search_bar/query';
+export {
+  Query,
+  AST as Ast,
+} from '../components/search_bar/query';
 
-export { Random } from './random';
+export {
+  Random
+} from './random';
 
-export { getSecureRelForTarget } from './security';
+export {
+  getSecureRelForTarget,
+} from './security';
 
 export {
   PropertySortType,
@@ -39,4 +58,6 @@ export {
   Comparators,
 } from './sort';
 
-export { calculatePopoverPosition } from './popover';
+export {
+  calculatePopoverPosition,
+} from './popover';

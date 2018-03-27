@@ -1,1 +1,4 @@
-export { createFilter, FilterConfigType } from './filters';
+export {
+  createFilter,
+  FilterConfigType
+} from './filters';

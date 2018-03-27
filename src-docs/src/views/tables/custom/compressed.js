@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiCheckbox,
@@ -14,7 +16,9 @@ import {
   EuiTableRowCellCheckbox,
 } from '../../../../../src/components';
 
-import { LEFT_ALIGNMENT } from '../../../../../src/services';
+import {
+  LEFT_ALIGNMENT,
+} from '../../../../../src/services';
 
 export default class extends Component {
   constructor(props) {
@@ -26,116 +30,104 @@ export default class extends Component {
       },
     };
 
-    this.items = [
-      {
-        id: 0,
-        title:
-          'A very long line which will wrap on narrower screens and NOT become truncated using an ellipsis',
-        type: 'user',
-        dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
+    this.items = [{
+      id: 0,
+      title: 'A very long line which will wrap on narrower screens and NOT become truncated using an ellipsis',
+      type: 'user',
+      dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
+    }, {
+      id: 1,
+      title: {
+        value: 'A very long line which will not wrap on narrower screens and instead will become truncated using an ellipsis',
+        truncateText: true,
       },
-      {
-        id: 1,
-        title: {
-          value:
-            'A very long line which will not wrap on narrower screens and instead will become truncated using an ellipsis',
-          truncateText: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
+      type: 'user',
+      dateCreated: 'Tue Dec 01 2016 12:56:15 GMT-0800 (PST)',
+    }, {
+      id: 2,
+      title: {
+        value: 'Boomerang',
+        isLink: true,
       },
-      {
-        id: 2,
-        title: {
-          value: 'Boomerang',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 28 2016 12:56:15 GMT-0800 (PST)',
+      type: 'user',
+      dateCreated: 'Tue Dec 28 2016 12:56:15 GMT-0800 (PST)',
+    }, {
+      id: 3,
+      title: {
+        value: 'Celebration',
+        isLink: true,
       },
-      {
-        id: 3,
-        title: {
-          value: 'Celebration',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 16 2016 12:56:15 GMT-0800 (PST)',
+      type: 'user',
+      dateCreated: 'Tue Dec 16 2016 12:56:15 GMT-0800 (PST)',
+    }, {
+      id: 4,
+      title: {
+        value: 'Dog',
+        isLink: true,
       },
-      {
-        id: 4,
-        title: {
-          value: 'Dog',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 13 2016 12:56:15 GMT-0800 (PST)',
-      },
-    ];
+      type: 'user',
+      dateCreated: 'Tue Dec 13 2016 12:56:15 GMT-0800 (PST)',
+    }];
 
-    this.columns = [
-      {
-        id: 'checkbox',
-        isCheckbox: true,
-        width: '20px',
-      },
-      {
-        id: 'title',
-        label: 'Title',
-        alignment: LEFT_ALIGNMENT,
-      },
-      {
-        id: 'type',
-        label: 'Type',
-        alignment: LEFT_ALIGNMENT,
-        width: '60px',
-        cellProvider: cell => <EuiIcon type={cell} size="m" />,
-      },
-      {
-        id: 'dateCreated',
-        label: 'Date created',
-        alignment: LEFT_ALIGNMENT,
-      },
-    ];
+    this.columns = [{
+      id: 'checkbox',
+      isCheckbox: true,
+      width: '20px',
+    }, {
+      id: 'title',
+      label: 'Title',
+      alignment: LEFT_ALIGNMENT,
+    }, {
+      id: 'type',
+      label: 'Type',
+      alignment: LEFT_ALIGNMENT,
+      width: '60px',
+      cellProvider: cell => <EuiIcon type={cell} size="m" />,
+    }, {
+      id: 'dateCreated',
+      label: 'Date created',
+      alignment: LEFT_ALIGNMENT,
+    }];
   }
 
   toggleItem = itemId => {
-    const newItemIdToSelectedMap = {
-      ...this.state.itemIdToSelectedMap,
-      ...{
-        [itemId]: !this.state.itemIdToSelectedMap[itemId],
-      },
-    };
+    const newItemIdToSelectedMap = ({ ...this.state.itemIdToSelectedMap, ...{
+      [itemId]: !this.state.itemIdToSelectedMap[itemId],
+    } });
 
     this.setState({
       itemIdToSelectedMap: newItemIdToSelectedMap,
     });
-  };
+  }
 
   toggleAll = () => {
     const allSelected = this.areAllItemsSelected();
     const newItemIdToSelectedMap = {};
-    this.items.forEach(item => (newItemIdToSelectedMap[item.id] = !allSelected));
+    this.items.forEach(item => newItemIdToSelectedMap[item.id] = !allSelected);
+
 
     this.setState({
       itemIdToSelectedMap: newItemIdToSelectedMap,
     });
-  };
+  }
 
   isItemSelected = itemId => {
     return this.state.itemIdToSelectedMap[itemId];
-  };
+  }
 
   areAllItemsSelected = () => {
     const indexOfUnselectedItem = this.items.findIndex(item => !this.isItemSelected(item.id));
     return indexOfUnselectedItem === -1;
-  };
+  }
 
   renderHeaderCells() {
     return this.columns.map((column, columnIndex) => {
       if (column.isCheckbox) {
         return (
-          <EuiTableHeaderCellCheckbox key={column.id} width={column.width}>
+          <EuiTableHeaderCellCheckbox
+            key={column.id}
+            width={column.width}
+          >
             <EuiCheckbox
               id="selectAllCheckbox"
               checked={this.areAllItemsSelected()}
@@ -198,7 +190,10 @@ export default class extends Component {
       });
 
       return (
-        <EuiTableRow key={item.id} isSelected={this.isItemSelected(item.id)}>
+        <EuiTableRow
+          key={item.id}
+          isSelected={this.isItemSelected(item.id)}
+        >
           {cells}
         </EuiTableRow>
       );
@@ -208,9 +203,13 @@ export default class extends Component {
   render() {
     return (
       <EuiTable compressed>
-        <EuiTableHeader>{this.renderHeaderCells()}</EuiTableHeader>
+        <EuiTableHeader>
+          {this.renderHeaderCells()}
+        </EuiTableHeader>
 
-        <EuiTableBody>{this.renderRows()}</EuiTableBody>
+        <EuiTableBody>
+          {this.renderRows()}
+        </EuiTableBody>
       </EuiTable>
     );
   }

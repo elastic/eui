@@ -1,5 +1,9 @@
 export { EuiButton } from './button';
 
-export { EuiButtonEmpty } from './button_empty';
+export {
+  EuiButtonEmpty,
+} from './button_empty';
 
-export { EuiButtonIcon } from './button_icon';
+export {
+  EuiButtonIcon,
+} from './button_icon';

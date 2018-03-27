@@ -20,26 +20,42 @@ describe('EuiFieldSearch', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
     test(`isInvalid is rendered`, () => {
-      const component = render(<EuiFieldSearch isInvalid />);
+      const component = render(
+        <EuiFieldSearch
+          isInvalid
+        />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(component)
+        .toMatchSnapshot();
     });
 
     test(`fullWidth is rendered`, () => {
-      const component = render(<EuiFieldSearch fullWidth />);
+      const component = render(
+        <EuiFieldSearch
+          fullWidth
+        />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(component)
+        .toMatchSnapshot();
     });
 
     test(`isLoading is rendered`, () => {
-      const component = render(<EuiFieldSearch isLoading />);
+      const component = render(
+        <EuiFieldSearch
+          isLoading
+        />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

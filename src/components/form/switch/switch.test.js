@@ -6,8 +6,11 @@ import { EuiSwitch } from './switch';
 
 describe('EuiSwitch', () => {
   test('is rendered', () => {
-    const component = render(<EuiSwitch {...requiredProps} />);
+    const component = render(
+      <EuiSwitch {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

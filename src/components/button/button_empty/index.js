@@ -1,1 +1,3 @@
-export { EuiButtonEmpty } from './button_empty';
+export {
+  EuiButtonEmpty,
+} from './button_empty';

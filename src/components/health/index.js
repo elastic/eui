@@ -1,1 +1,3 @@
-export { EuiHealth } from './health';
+export {
+  EuiHealth,
+} from './health';

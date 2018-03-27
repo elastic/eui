@@ -22,7 +22,12 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule = ({ className, size, margin, ...rest }) => {
+export const EuiHorizontalRule = ({
+  className,
+  size,
+  margin,
+  ...rest
+}) => {
   const classes = classNames(
     'euiHorizontalRule',
     sizeToClassNameMap[size],
@@ -30,7 +35,12 @@ export const EuiHorizontalRule = ({ className, size, margin, ...rest }) => {
     className
   );
 
-  return <hr className={classes} {...rest} />;
+  return (
+    <hr
+      className={classes}
+      {...rest}
+    />
+  );
 };
 
 EuiHorizontalRule.propTypes = {

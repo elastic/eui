@@ -1,5 +1,7 @@
 import React from 'react';
-import { EuiCode } from '../../../../../src/components';
+import {
+  EuiCode
+} from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -15,20 +17,18 @@ export const searchSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
+    }, {
       type: GuideSectionTypes.HTML,
       code: html,
-    },
+    }
   ],
   text: (
     <div>
       <p>
-        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode> to display a search
-        bar
+        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode> to display a search bar
       </p>
     </div>
   ),
   props: propsInfo,
-  demo: <Table />,
+  demo: <Table/>
 };

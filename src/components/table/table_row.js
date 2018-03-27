@@ -8,7 +8,10 @@ export const EuiTableRow = ({ children, className, isSelected, ...rest }) => {
   });
 
   return (
-    <tr className={classes} {...rest}>
+    <tr
+      className={classes}
+      {...rest}
+    >
       {children}
     </tr>
   );

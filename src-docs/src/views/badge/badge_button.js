@@ -1,10 +1,15 @@
 import React from 'react';
 
-import { EuiBadge } from '../../../../src/components';
+import {
+  EuiBadge,
+} from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiBadge color="#333" onClick={() => window.alert('Badge clicked')}>
+    <EuiBadge
+      color="#333"
+      onClick={() => window.alert('Badge clicked')}
+    >
       onClick on badge itself
     </EuiBadge>
 

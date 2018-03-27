@@ -8,25 +8,25 @@ export const Match = Object.freeze({
   },
   isMustClause(clause) {
     return Match.isMust(clause.match);
-  },
+  }
 });
 
 const Term = Object.freeze({
   TYPE: 'term',
-  isInstance: clause => {
+  isInstance: (clause) => {
     return clause.type === Term.TYPE;
   },
-  must: value => {
+  must: (value) => {
     return { type: Term.TYPE, value, match: Match.MUST };
   },
-  mustNot: value => {
+  mustNot: (value) => {
     return { type: Term.TYPE, value, match: Match.MUST_NOT };
-  },
+  }
 });
 
 const Field = Object.freeze({
   TYPE: 'field',
-  isInstance: clause => {
+  isInstance: (clause) => {
     return clause.type === Field.TYPE;
   },
   must: (field, value) => {
@@ -34,20 +34,20 @@ const Field = Object.freeze({
   },
   mustNot: (field, value) => {
     return { type: Field.TYPE, field, value, match: Match.MUST_NOT };
-  },
+  }
 });
 
 const Is = Object.freeze({
   TYPE: 'is',
-  isInstance: clause => {
+  isInstance: (clause) => {
     return clause.type === Is.TYPE;
   },
-  must: flag => {
+  must: (flag) => {
     return { type: Is.TYPE, flag, match: Match.MUST };
   },
-  mustNot: flag => {
+  mustNot: (flag) => {
     return { type: Is.TYPE, flag, match: Match.MUST_NOT };
-  },
+  }
 });
 
 /**
@@ -69,33 +69,31 @@ const Is = Object.freeze({
  * This AST is immutable - every "mutating" operation returns a newly mutated AST.
  */
 export class _AST {
+
   static create(clauses) {
     return new _AST(clauses);
   }
 
   constructor(clauses = []) {
     this._clauses = clauses;
-    this._indexedClauses = clauses.reduce(
-      (map, clause) => {
-        switch (clause.type) {
-          case Field.TYPE:
-            if (!map.field[clause.field]) {
-              map.field[clause.field] = [];
-            }
-            map.field[clause.field].push(clause);
-            return map;
-          case Is.TYPE:
-            map.is[clause.flag] = clause;
-            return map;
-          case Term.TYPE:
-            map.term.push(clause);
-            return map;
-          default:
-            throw new Error(`Unknown query clause type [${clause.type}]`);
-        }
-      },
-      { field: {}, is: {}, term: [] }
-    );
+    this._indexedClauses = clauses.reduce((map, clause) => {
+      switch (clause.type) {
+        case Field.TYPE:
+          if (!map.field[clause.field]) {
+            map.field[clause.field] = [];
+          }
+          map.field[clause.field].push(clause);
+          return map;
+        case Is.TYPE:
+          map.is[clause.flag] = clause;
+          return map;
+        case Term.TYPE:
+          map.term.push(clause);
+          return map;
+        default:
+          throw new Error(`Unknown query clause type [${clause.type}]`);
+      }
+    }, { field: {}, is: {}, term: [] });
   }
 
   get clauses() {
@@ -116,7 +114,9 @@ export class _AST {
   }
 
   getFieldClauses(field = undefined) {
-    return field ? this._indexedClauses.field[field] : this._clauses.filter(Field.isInstance);
+    return field ?
+      this._indexedClauses.field[field] :
+      this._clauses.filter(Field.isInstance);
   }
 
   getFieldClause(field, predicate) {
@@ -135,17 +135,14 @@ export class _AST {
   }
 
   getOrFieldClause(field, value = undefined) {
-    return this.getFieldClause(
-      field,
-      clause => isArray(clause.value) && (!value || clause.value.includes(value))
-    );
+    return this.getFieldClause(field, clause => isArray(clause.value) && (!value || clause.value.includes(value)));
   }
 
   addOrFieldValue(field, value, must = true) {
     const existingClause = this.getOrFieldClause(field);
     if (!existingClause) {
-      const newClause = must ? Field.must(field, [value]) : Field.mustNot(field, [value]);
-      return new _AST([...this._clauses, newClause]);
+      const newClause = must ? Field.must(field, [ value ]) : Field.mustNot(field, [ value ]);
+      return new _AST([ ...this._clauses, newClause ]);
     }
     const clauses = this._clauses.map(clause => {
       if (clause === existingClause) {
@@ -159,7 +156,7 @@ export class _AST {
   removeOrFieldValue(field, value) {
     const existingClause = this.getOrFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([...this._clauses]);
+      return new _AST([ ...this._clauses ]);
     }
     const clauses = this._clauses.reduce((clauses, clause) => {
       if (clause !== existingClause) {
@@ -192,10 +189,7 @@ export class _AST {
   }
 
   getSimpleFieldClause(field, value = undefined) {
-    return this.getFieldClause(
-      field,
-      clause => !isArray(clause.value) && (!value || clause.value === value)
-    );
+    return this.getFieldClause(field, clause => !isArray(clause.value) && (!value || clause.value === value));
   }
 
   addSimpleFieldValue(field, value, must = true) {
@@ -206,7 +200,7 @@ export class _AST {
   removeSimpleFieldValue(field, value) {
     const existingClause = this.getSimpleFieldClause(field, value);
     if (!existingClause) {
-      return new _AST([...this._clauses]);
+      return new _AST([ ...this._clauses ]);
     }
     const clauses = this._clauses.filter(clause => clause !== existingClause);
     return new _AST(clauses);
@@ -295,5 +289,5 @@ export const AST = Object.freeze({
   Term,
   Field,
   Is,
-  create: clauses => new _AST(clauses),
+  create: (clauses) => new _AST(clauses)
 });

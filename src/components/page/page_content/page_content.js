@@ -21,8 +21,8 @@ export const EuiPageContent = ({
   panelPaddingSize,
   children,
   className,
-  ...rest
-}) => {
+  ...rest }) => {
+
   const classes = classNames(
     'euiPageContent',
     className,
@@ -31,7 +31,11 @@ export const EuiPageContent = ({
   );
 
   return (
-    <EuiPanel className={classes} paddingSize={panelPaddingSize} {...rest}>
+    <EuiPanel
+      className={classes}
+      paddingSize={panelPaddingSize}
+      {...rest}
+    >
       {children}
     </EuiPanel>
   );

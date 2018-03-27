@@ -24,7 +24,7 @@ export const EuiCard = ({
   href,
   textAlign,
   isClickable,
-  ...rest
+  ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
@@ -32,17 +32,22 @@ export const EuiCard = ({
     {
       'euiCard--isClickable': onClick || href || isClickable,
     },
-    className
+    className,
   );
 
   let imageNode;
   if (image) {
-    imageNode = <img className="euiCard__image" src={image} alt="" />;
+    imageNode = (
+      <img className="euiCard__image" src={image} alt="" />
+    );
   }
 
   let iconNode;
   if (icon) {
-    iconNode = React.cloneElement(icon, { className: 'euiCard__icon' });
+    iconNode = React.cloneElement(
+      icon,
+      { className: 'euiCard__icon' }
+    );
   }
 
   let OuterElement = 'div';
@@ -53,7 +58,12 @@ export const EuiCard = ({
   }
 
   return (
-    <OuterElement onClick={onClick} className={classes} href={href} {...rest}>
+    <OuterElement
+      onClick={onClick}
+      className={classes}
+      href={href}
+      {...rest}
+    >
       <span className="euiCard__top">
         {imageNode}
         {iconNode}
@@ -69,7 +79,9 @@ export const EuiCard = ({
         </EuiText>
       </span>
 
-      <span className="euiCard__footer">{footer}</span>
+      <span className="euiCard__footer">
+        {footer}
+      </span>
     </OuterElement>
   );
 };

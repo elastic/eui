@@ -8,14 +8,22 @@ import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 
-import { EuiButton, EuiButtonEmpty } from '../button';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+} from '../button';
 
-import { EuiText } from '../text';
+import {
+  EuiText,
+} from '../text';
 
 export const CONFIRM_BUTTON = 'confirm';
 export const CANCEL_BUTTON = 'cancel';
 
-const CONFIRM_MODAL_BUTTONS = [CONFIRM_BUTTON, CANCEL_BUTTON];
+const CONFIRM_MODAL_BUTTONS = [
+  CONFIRM_BUTTON,
+  CANCEL_BUTTON,
+];
 
 export class EuiConfirmModal extends Component {
   componentDidMount() {
@@ -34,8 +42,8 @@ export class EuiConfirmModal extends Component {
     });
   }
 
-  confirmRef = node => (this.confirmButton = node);
-  cancelRef = node => (this.cancelButton = node);
+  confirmRef = node => this.confirmButton = node;
+  cancelRef = node => this.cancelButton = node;
 
   render() {
     const {
@@ -58,7 +66,9 @@ export class EuiConfirmModal extends Component {
     if (title) {
       modalTitle = (
         <EuiModalHeader>
-          <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">{title}</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">
+            {title}
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
       );
     }
@@ -72,11 +82,17 @@ export class EuiConfirmModal extends Component {
     }
 
     return (
-      <EuiModal className={classes} onClose={onCancel} {...rest}>
+      <EuiModal
+        className={classes}
+        onClose={onCancel}
+        {...rest}
+      >
         {modalTitle}
 
         <EuiModalBody>
-          <EuiText data-test-subj="confirmModalBodyText">{message}</EuiText>
+          <EuiText data-test-subj="confirmModalBodyText">
+            {message}
+          </EuiText>
         </EuiModalBody>
 
         <EuiModalFooter>

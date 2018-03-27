@@ -2,23 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../flex';
 
-import { EuiIcon } from '../icon';
+import {
+  EuiIcon,
+} from '../icon';
 
 const CHECKED_ON = 'on';
 const CHECKED_OFF = 'off';
 
-const resolveIconAndColor = checked => {
+const resolveIconAndColor = (checked) => {
   if (!checked) {
     return { icon: 'empty' };
   }
-  return checked === CHECKED_ON
-    ? { icon: 'check', color: 'text' }
-    : { icon: 'cross', color: 'text' };
+  return checked === CHECKED_ON ?
+    { icon: 'check', color: 'text' } :
+    { icon: 'cross', color: 'text' };
 };
 
 export class EuiFilterSelectItem extends Component {
+
   constructor(props) {
     super(props);
     this.state = { hasFocus: false };
@@ -52,17 +58,23 @@ export class EuiFilterSelectItem extends Component {
     const { icon, color } = resolveIconAndColor(checked);
     return (
       <button
-        ref={ref => (this.buttonRef = ref)}
+        ref={(ref) => this.buttonRef = ref}
         className={classes}
         type="button"
         disabled={disabled}
         {...rest}
       >
-        <EuiFlexGroup alignItems="center" gutterSize="s" component="span">
+        <EuiFlexGroup
+          alignItems="center"
+          gutterSize="s"
+          component="span"
+        >
           <EuiFlexItem grow={false}>
-            <EuiIcon color={color} type={icon} />
+            <EuiIcon color={color} type={icon}/>
           </EuiFlexItem>
-          <EuiFlexItem>{children}</EuiFlexItem>
+          <EuiFlexItem>
+            {children}
+          </EuiFlexItem>
         </EuiFlexGroup>
       </button>
     );
@@ -75,5 +87,5 @@ EuiFilterSelectItem.propTypes = {
   /**
    * Applies an icon and visual styling to activated items
    */
-  checked: PropTypes.oneOf([CHECKED_ON, CHECKED_OFF]),
+  checked: PropTypes.oneOf([ CHECKED_ON, CHECKED_OFF ]),
 };

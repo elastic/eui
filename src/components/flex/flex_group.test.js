@@ -1,8 +1,17 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps, startThrowingReactWarnings, stopThrowingReactWarnings } from '../../test';
+import {
+  requiredProps,
+  startThrowingReactWarnings,
+  stopThrowingReactWarnings,
+} from '../../test';
 
-import { EuiFlexGroup, GUTTER_SIZES, ALIGN_ITEMS, JUSTIFY_CONTENTS } from './flex_group';
+import {
+  EuiFlexGroup,
+  GUTTER_SIZES,
+  ALIGN_ITEMS,
+  JUSTIFY_CONTENTS,
+} from './flex_group';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
@@ -15,16 +24,20 @@ describe('EuiFlexGroup', () => {
       </EuiFlexGroup>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('responsive', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup responsive={value} />);
+          const component = render(
+            <EuiFlexGroup responsive={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -32,9 +45,12 @@ describe('EuiFlexGroup', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup gutterSize={value} />);
+          const component = render(
+            <EuiFlexGroup gutterSize={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -42,9 +58,12 @@ describe('EuiFlexGroup', () => {
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup alignItems={value} />);
+          const component = render(
+            <EuiFlexGroup alignItems={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -52,9 +71,12 @@ describe('EuiFlexGroup', () => {
     describe('justifyContent', () => {
       JUSTIFY_CONTENTS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup justifyContent={value} />);
+          const component = render(
+            <EuiFlexGroup justifyContent={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -62,15 +84,20 @@ describe('EuiFlexGroup', () => {
     describe('component', () => {
       ['div', 'span'].forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup component={value} />);
+          const component = render(
+            <EuiFlexGroup component={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
 
       ['h2'].forEach(value => {
         test(`${value} is not rendered`, () => {
-          expect(() => render(<EuiFlexGroup component={value} />)).toThrow();
+          expect(() => render(
+            <EuiFlexGroup component={value} />
+          )).toThrow();
         });
       });
     });
@@ -78,9 +105,12 @@ describe('EuiFlexGroup', () => {
     describe('wrap', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup wrap={value} />);
+          const component = render(
+            <EuiFlexGroup wrap={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });

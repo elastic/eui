@@ -14,30 +14,33 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
+    }, {
       type: GuideSectionTypes.HTML,
       code: html,
-    },
+    }
   ],
   text: (
     <div>
       <p>
         The following example demonstrates &quot;actions&quot; columns. These are special columns
         where you define per-row, item level actions. The most basic action you might define is a
-        type <EuiCode>button</EuiCode> or <EuiCode>icon</EuiCode> though you can always make your
-        own custom actions as well.
+        type <EuiCode>button</EuiCode> or <EuiCode>icon</EuiCode> though you can always make your own
+        custom actions as well.
       </p>
-      <p>Actions enforce some strict UI/UX guidelines:</p>
+      <p>
+        Actions enforce some strict UI/UX guidelines:
+      </p>
       <ul>
         <li>
-          There can only be a single action tool visible per row. When more than one action is
-          defined, they will collapse under a single popover represented by the gear icon.
+          There can only be a single action tool visible per row. When more than one action is defined,
+          they will collapse under a single popover represented by the gear icon.
         </li>
-        <li>Actions are only visible when the user hovers over the row with the mouse.</li>
+        <li>
+          Actions are only visible when the user hovers over the row with the mouse.
+        </li>
       </ul>
     </div>
   ),
   components: { EuiBasicTable },
-  demo: <Table />,
+  demo: <Table/>,
 };

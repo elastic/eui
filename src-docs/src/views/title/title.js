@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { EuiTitle, EuiHorizontalRule } from '../../../../src/components';
+import {
+  EuiTitle,
+  EuiHorizontalRule,
+} from '../../../../src/components';
 
 export default () => (
   <div>

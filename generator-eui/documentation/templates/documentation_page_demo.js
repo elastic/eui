@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { <%= componentName %> } from '../../../../src/components';
+import {
+  <%= componentName %>,
+} from '../../../../src/components';
 
 export default () => (
   <<%= componentName %>>

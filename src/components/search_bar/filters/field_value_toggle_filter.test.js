@@ -5,7 +5,9 @@ import { Query } from '../query';
 import { FieldValueToggleFilter } from './field_value_toggle_filter';
 
 describe('FieldValueToggleFilter', () => {
+
   test('render', () => {
+
     const props = {
       ...requiredProps,
       index: 0,
@@ -15,15 +17,18 @@ describe('FieldValueToggleFilter', () => {
         type: 'field_value_toggle',
         field: 'group',
         value: 'kibana',
-        name: 'Kibana',
-      },
+        name: 'Kibana'
+      }
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
+    const component = shallow(
+      <FieldValueToggleFilter {...props} />
+    );
     expect(component).toMatchSnapshot();
   });
 
   test('render - active', () => {
+
     const props = {
       ...requiredProps,
       index: 0,
@@ -33,15 +38,18 @@ describe('FieldValueToggleFilter', () => {
         type: 'field_value_toggle',
         field: 'group',
         value: 'kibana',
-        name: 'Kibana',
-      },
+        name: 'Kibana'
+      }
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
+    const component = shallow(
+      <FieldValueToggleFilter {...props} />
+    );
     expect(component).toMatchSnapshot();
   });
 
   test('render - active negated', () => {
+
     const props = {
       ...requiredProps,
       index: 0,
@@ -51,15 +59,18 @@ describe('FieldValueToggleFilter', () => {
         type: 'field_value_toggle',
         field: 'group',
         value: 'kibana',
-        name: 'Kibana',
-      },
+        name: 'Kibana'
+      }
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
+    const component = shallow(
+      <FieldValueToggleFilter {...props} />
+    );
     expect(component).toMatchSnapshot();
   });
 
   test('render - active negated - custom negated name', () => {
+
     const props = {
       ...requiredProps,
       index: 0,
@@ -70,11 +81,14 @@ describe('FieldValueToggleFilter', () => {
         field: 'group',
         value: 'kibana',
         name: 'Kibana',
-        negatedName: 'Others',
-      },
+        negatedName: 'Others'
+      }
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
+    const component = shallow(
+      <FieldValueToggleFilter {...props} />
+    );
     expect(component).toMatchSnapshot();
   });
+
 });

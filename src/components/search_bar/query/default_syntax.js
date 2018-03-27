@@ -2,11 +2,11 @@ import { AST } from './ast';
 import { isArray } from '../../../services/predicate';
 import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unresolved
 
-const unescapeValue = value => {
+const unescapeValue = (value) => {
   return value.replace(/\\([:\-\\])/, '$1');
 };
 
-const escapeValue = value => {
+const escapeValue = (value) => {
   return value.replace(/([:\-\\])/, '\\$1');
 };
 
@@ -95,7 +95,7 @@ space "whitespace"
   = [ \\t\\n\\r]+
 `;
 
-const printValue = value => {
+const printValue = (value) => {
   if (value.match(/\s/)) {
     return `"${escapeValue(value)}"`;
   }
@@ -103,31 +103,31 @@ const printValue = value => {
 };
 
 export const defaultSyntax = Object.freeze({
-  parse: query => {
+
+  parse: (query) => {
     const clauses = parser.parse(query, { AST, unescapeValue });
     return AST.create(clauses);
   },
 
-  print: ast => {
-    return ast.clauses
-      .reduce((text, clause) => {
-        const prefix = AST.Match.isMustClause(clause) ? '' : '-';
-        switch (clause.type) {
-          case AST.Field.TYPE:
-            if (isArray(clause.value)) {
-              return `${text} ${prefix}${escapeValue(clause.field)}:(${clause.value
-                .map(val => printValue(val))
-                .join(' or ')})`;
-            }
-            return `${text} ${prefix}${escapeValue(clause.field)}:${printValue(clause.value)}`;
-          case AST.Is.TYPE:
-            return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
-          case AST.Term.TYPE:
-            return `${text} ${prefix}${printValue(clause.value)}`;
-          default:
-            return text;
-        }
-      }, '')
-      .trim();
-  },
+  print: (ast) => {
+    return ast.clauses.reduce((text, clause) => {
+      const prefix = AST.Match.isMustClause(clause) ? '' : '-';
+      switch (clause.type) {
+        case AST.Field.TYPE:
+          if (isArray(clause.value)) {
+            return `${text} ${prefix}${escapeValue(clause.field)}:(${clause.value.map(val => printValue(val)).join(' or ')})`;
+          }
+          return `${text} ${prefix}${escapeValue(clause.field)}:${printValue(clause.value)}`;
+        case AST.Is.TYPE:
+          return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
+        case AST.Term.TYPE:
+          return `${text} ${prefix}${printValue(clause.value)}`;
+        default:
+          return text;
+      }
+    }, '').trim();
+  }
+
 });
+
+

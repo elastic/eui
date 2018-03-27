@@ -4,38 +4,48 @@ import { shallow } from 'enzyme';
 import { PaginationBar } from './pagination_bar';
 
 describe('PaginationBar', () => {
+
   test('render', () => {
+
     const props = {
       ...requiredProps,
       pagination: {
         pageIndex: 0,
         pageSize: 5,
-        totalItemCount: 0,
+        totalItemCount: 0
       },
       onPageSizeChange: () => {},
-      onPageChange: () => {},
+      onPageChange: () => {}
     };
 
-    const component = shallow(<PaginationBar {...props} />);
+    const component = shallow(
+      <PaginationBar {...props} />
+    );
 
     expect(component).toMatchSnapshot();
+
   });
 
   test('render - custom page size options', () => {
+
     const props = {
       ...requiredProps,
       pagination: {
         pageIndex: 0,
         pageSize: 5,
         totalItemCount: 0,
-        pageSizeOptions: [1, 2, 3],
+        pageSizeOptions: [1, 2, 3]
       },
       onPageSizeChange: () => {},
-      onPageChange: () => {},
+      onPageChange: () => {}
     };
 
-    const component = shallow(<PaginationBar {...props} />);
+    const component = shallow(
+      <PaginationBar {...props} />
+    );
 
     expect(component).toMatchSnapshot();
+
   });
+
 });

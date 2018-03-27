@@ -1,7 +1,15 @@
-export { GuideRule } from './guide_rule';
+export {
+  GuideRule,
+} from './guide_rule';
 
-export { GuideRuleExample } from './guide_rule_example';
+export {
+  GuideRuleExample,
+} from './guide_rule_example';
 
-export { GuideRuleTitle } from './guide_rule_title';
+export {
+  GuideRuleTitle,
+} from './guide_rule_title';
 
-export { GuideRuleDescription } from './guide_rule_description';
+export {
+  GuideRuleDescription,
+} from './guide_rule_description';

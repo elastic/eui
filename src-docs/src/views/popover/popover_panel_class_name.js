@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
-import { EuiPopover, EuiButton } from '../../../../src/components';
+import {
+  EuiPopover,
+  EuiButton,
+} from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -28,11 +33,11 @@ export default class extends Component {
       <EuiPopover
         id="popoverPanelClassName"
         ownFocus
-        button={
+        button={(
           <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
             Turn padding off and apply a custom class
           </EuiButton>
-        }
+        )}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
         panelClassName="yourClassNameHere"

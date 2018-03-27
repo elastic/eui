@@ -6,8 +6,11 @@ import { EuiFilePicker } from './file_picker';
 
 describe('EuiFilePicker', () => {
   test('is rendered', () => {
-    const component = render(<EuiFilePicker {...requiredProps} />);
+    const component = render(
+      <EuiFilePicker {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

@@ -1,6 +1,8 @@
 import sinon from 'sinon';
 
-import { Timer } from './timer';
+import {
+  Timer,
+} from './timer';
 
 describe('Timer', () => {
   describe('constructor', () => {

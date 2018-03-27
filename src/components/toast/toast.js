@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import {
+  ICON_TYPES,
+  EuiIcon,
+} from '../icon';
 
-import { EuiText } from '../text';
+import {
+  EuiText,
+} from '../text';
 
 const colorToClassNameMap = {
   primary: 'euiToast--primary',
@@ -25,7 +30,12 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
 
   if (iconType) {
     headerIcon = (
-      <EuiIcon className="euiToastHeader__icon" type={iconType} size="m" aria-hidden="true" />
+      <EuiIcon
+        className="euiToastHeader__icon"
+        type={iconType}
+        size="m"
+        aria-hidden="true"
+      />
     );
   }
 
@@ -40,7 +50,11 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
         onClick={onClose}
         data-test-subj="toastCloseButton"
       >
-        <EuiIcon type="cross" size="m" aria-hidden="true" />
+        <EuiIcon
+          type="cross"
+          size="m"
+          aria-hidden="true"
+        />
       </button>
     );
   }
@@ -56,11 +70,16 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       <div className={headerClasses}>
         {headerIcon}
 
-        <span className="euiToastHeader__title">{title}</span>
+        <span className="euiToastHeader__title">
+          {title}
+        </span>
       </div>
 
       {closeButton}

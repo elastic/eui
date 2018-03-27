@@ -6,7 +6,10 @@ export const EuiPageHeader = ({ children, className, ...rest }) => {
   const classes = classNames('euiPageHeader', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       {children}
     </div>
   );

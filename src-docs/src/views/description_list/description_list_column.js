@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { EuiDescriptionList } from '../../../../src/components';
+import {
+  EuiDescriptionList,
+} from '../../../../src/components';
 
 const favoriteVideoGames = [
   {
@@ -17,5 +19,9 @@ const favoriteVideoGames = [
   },
 ];
 export default () => (
-  <EuiDescriptionList type="column" listItems={favoriteVideoGames} style={{ maxWidth: '400px' }} />
+  <EuiDescriptionList
+    type="column"
+    listItems={favoriteVideoGames}
+    style={{ maxWidth: '400px' }}
+  />
 );

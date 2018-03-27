@@ -6,8 +6,11 @@ import { EuiFlyoutFooter } from './flyout_footer';
 
 describe('EuiFlyoutFooter', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlyoutFooter {...requiredProps} />);
+    const component = render(
+      <EuiFlyoutFooter {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

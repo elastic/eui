@@ -1,20 +1,32 @@
 import React from 'react';
 
-import { EuiLoadingChart } from '../../../../src/components';
+import {
+  EuiLoadingChart,
+} from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiLoadingChart size="m" />
+    <EuiLoadingChart size="m"/>
+
     &nbsp;&nbsp;
-    <EuiLoadingChart size="l" />
+
+    <EuiLoadingChart size="l"/>
+
     &nbsp;&nbsp;
-    <EuiLoadingChart size="xl" />
-    <br />
-    <br />
-    <EuiLoadingChart size="m" mono />
+
+    <EuiLoadingChart size="xl"/>
+
+    <br/><br/>
+
+    <EuiLoadingChart size="m" mono/>
+
     &nbsp;&nbsp;
-    <EuiLoadingChart size="l" mono />
+
+    <EuiLoadingChart size="l" mono/>
+
     &nbsp;&nbsp;
-    <EuiLoadingChart size="xl" mono />
+
+    <EuiLoadingChart size="xl" mono/>
   </div>
 );
+

@@ -6,8 +6,11 @@ import { EuiPageContentHeader } from './page_content_header';
 
 describe('EuiPageContentHeader', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageContentHeader {...requiredProps} />);
+    const component = render(
+      <EuiPageContentHeader {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

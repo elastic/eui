@@ -6,8 +6,11 @@ import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 describe('EuiHeaderBreadcrumbs', () => {
   test('is rendered', () => {
-    const component = render(<EuiHeaderBreadcrumbs {...requiredProps} />);
+    const component = render(
+      <EuiHeaderBreadcrumbs {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

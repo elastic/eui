@@ -6,7 +6,7 @@ import { EuiStep } from './step';
 
 describe('EuiStep', () => {
   test('is rendered', () => {
-    const stepContent = <p>Do this</p>;
+    const stepContent = (<p>Do this</p>);
     const component = render(
       <EuiStep
         {...requiredProps}
@@ -17,6 +17,7 @@ describe('EuiStep', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

@@ -6,8 +6,11 @@ import { EuiImage } from './image';
 
 describe('EuiImage', () => {
   test('is rendered', () => {
-    const component = render(<EuiImage alt="alt" size="l" {...requiredProps} />);
+    const component = render(
+      <EuiImage alt="alt" size="l" {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

@@ -1,1 +1,3 @@
-export { EuiImage } from './image';
+export {
+  EuiImage,
+} from './image';

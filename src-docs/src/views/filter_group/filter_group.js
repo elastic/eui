@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiPopover,
@@ -34,6 +37,7 @@ export default class extends Component {
   }
 
   render() {
+
     const items = [
       { name: 'Johann Sebastian Bach', checked: 'on' },
       { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
@@ -69,8 +73,12 @@ export default class extends Component {
 
     return (
       <EuiFilterGroup>
-        <EuiFilterButton>Filter on</EuiFilterButton>
-        <EuiFilterButton>Filter off</EuiFilterButton>
+        <EuiFilterButton>
+          Filter on
+        </EuiFilterButton>
+        <EuiFilterButton>
+          Filter off
+        </EuiFilterButton>
         <EuiPopover
           id="popover"
           ownFocus
@@ -86,7 +94,10 @@ export default class extends Component {
           </EuiPopoverTitle>
           <div className="euiFilterSelect__items">
             {items.map((item, index) => (
-              <EuiFilterSelectItem checked={item.checked} key={index}>
+              <EuiFilterSelectItem
+                checked={item.checked}
+                key={index}
+              >
                 {item.name}
               </EuiFilterSelectItem>
             ))}

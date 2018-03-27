@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import { EuiTitle, EuiSpacer } from '../../../../src/components';
+import {
+  EuiTitle,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export const GuidePage = ({ children, title, intro }) => {
   return (

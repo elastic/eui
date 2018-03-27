@@ -30,7 +30,10 @@ export const EuiFlexGrid = ({ children, className, gutterSize, columns, ...rest 
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       {children}
     </div>
   );
@@ -47,3 +50,4 @@ EuiFlexGrid.defaultProps = {
   gutterSize: 'l',
   columns: 0,
 };
+

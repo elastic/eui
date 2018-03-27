@@ -13,9 +13,7 @@ const consoleWarn = console.warn; // eslint-disable-line no-console
 const consoleError = console.error; // eslint-disable-line no-console
 
 export const startThrowingReactWarnings = () => {
-  console.warn = console.error = msg => {
-    throw msg;
-  }; // eslint-disable-line no-console
+  console.warn = console.error = (msg) => { throw msg; }; // eslint-disable-line no-console
 };
 
 export const stopThrowingReactWarnings = () => {

@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
-import { EuiButton, EuiOutsideClickDetector, EuiSpacer } from '../../../../src/components';
+import {
+  EuiButton,
+  EuiOutsideClickDetector,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -15,7 +21,7 @@ export default class extends Component {
     this.setState(prevState => ({
       isDisabled: !prevState.isDisabled,
     }));
-  };
+  }
 
   render() {
     const { isDisabled } = this.state;
@@ -23,15 +29,14 @@ export default class extends Component {
     return (
       <div>
         <EuiOutsideClickDetector
-          onOutsideClick={() => {
-            window.alert('Clicked outside');
-          }}
+          onOutsideClick={() => { window.alert('Clicked outside'); }}
           isDisabled={isDisabled}
         >
           <div style={{ width: '300px' }}>
             {isDisabled
               ? 'This detector is disabled, so clicking outside will do nothing.'
-              : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'}
+              : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'
+            }
           </div>
         </EuiOutsideClickDetector>
 

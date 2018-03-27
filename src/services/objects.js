@@ -1,1 +1,4 @@
-export { get, omit } from 'lodash';
+export {
+  get,
+  omit
+} from 'lodash';

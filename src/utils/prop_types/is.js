@@ -1,6 +1,7 @@
 import { isNil } from '../../services/predicate';
 
-export const is = expectedValue => {
+export const is = (expectedValue) => {
+
   const validator = (props, propName, componentName) => {
     const compName = componentName || 'ANONYMOUS';
     const value = props[propName];
@@ -15,9 +16,7 @@ export const is = expectedValue => {
     const compName = componentName || 'ANONYMOUS';
     const value = props[propName];
     if (isNil(value)) {
-      return new Error(
-        `[${propName}] property in [${compName}] component is required but seems to be missing`
-      );
+      return new Error(`[${propName}] property in [${compName}] component is required but seems to be missing`);
     }
     return validator(props, propName, componentName);
   };

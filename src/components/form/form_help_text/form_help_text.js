@@ -6,7 +6,10 @@ export const EuiFormHelpText = ({ children, className, ...rest }) => {
   const classes = classNames('euiFormHelpText', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       {children}
     </div>
   );

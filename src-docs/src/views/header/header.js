@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiHeader,
@@ -37,19 +39,27 @@ export default class extends Component {
   }
 
   renderLogo() {
-    return <EuiHeaderLogo href="#" />;
+    return (
+      <EuiHeaderLogo href="#" />
+    );
   }
 
   renderBreadcrumbs() {
     return (
       <EuiHeaderBreadcrumbs>
-        <EuiHeaderBreadcrumb href="#">Management</EuiHeaderBreadcrumb>
+        <EuiHeaderBreadcrumb href="#">
+          Management
+        </EuiHeaderBreadcrumb>
 
-        <EuiHeaderBreadcrumb href="#">Truncation test is here</EuiHeaderBreadcrumb>
+        <EuiHeaderBreadcrumb href="#">
+          Truncation test is here
+        </EuiHeaderBreadcrumb>
 
         <EuiHeaderBreadcrumbCollapsed />
 
-        <EuiHeaderBreadcrumb href="#">Users</EuiHeaderBreadcrumb>
+        <EuiHeaderBreadcrumb href="#">
+          Users
+        </EuiHeaderBreadcrumb>
 
         <EuiHeaderBreadcrumb href="#" isActive>
           Create
@@ -61,7 +71,10 @@ export default class extends Component {
   renderSearch() {
     return (
       <EuiHeaderSectionItemButton>
-        <EuiIcon type="search" size="m" />
+        <EuiIcon
+          type="search"
+          size="m"
+        />
       </EuiHeaderSectionItemButton>
     );
   }
@@ -70,13 +83,17 @@ export default class extends Component {
     return (
       <EuiHeader>
         <EuiHeaderSection>
-          <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+          <EuiHeaderSectionItem border="right">
+            {this.renderLogo()}
+          </EuiHeaderSectionItem>
 
           {this.renderBreadcrumbs()}
         </EuiHeaderSection>
 
         <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>{this.renderSearch()}</EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+            {this.renderSearch()}
+          </EuiHeaderSectionItem>
 
           <EuiHeaderSectionItem>
             <HeaderUserMenu />

@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiLoadingSpinner } from '../loading';
+import {
+  EuiLoadingSpinner
+} from '../loading';
 
 import { getSecureRelForTarget } from '../../services';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import {
+  ICON_TYPES,
+  EuiIcon,
+} from '../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButton--primary',
@@ -49,6 +54,7 @@ export const EuiButton = ({
   buttonRef,
   ...rest
 }) => {
+
   // If in the loading state, force disabled to true
   isDisabled = isLoading ? true : isDisabled;
 
@@ -60,17 +66,27 @@ export const EuiButton = ({
     className,
     {
       'euiButton--fill': fill,
-    }
+    },
   );
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
   if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
+    buttonIcon = (
+      <EuiLoadingSpinner
+        className="euiButton__spinner"
+        size="m"
+      />
+    );
   } else if (iconType) {
     buttonIcon = (
-      <EuiIcon className="euiButton__icon" type={iconType} size="m" aria-hidden="true" />
+      <EuiIcon
+        className="euiButton__icon"
+        type={iconType}
+        size="m"
+        aria-hidden="true"
+      />
     );
   }
 
@@ -78,7 +94,14 @@ export const EuiButton = ({
     const secureRel = getSecureRelForTarget(target, rel);
 
     return (
-      <a className={classes} href={href} target={target} rel={secureRel} ref={buttonRef} {...rest}>
+      <a
+        className={classes}
+        href={href}
+        target={target}
+        rel={secureRel}
+        ref={buttonRef}
+        {...rest}
+      >
         <span className="euiButton__content">
           {buttonIcon}
           <span className="euiButton__text">{children}</span>
@@ -87,7 +110,13 @@ export const EuiButton = ({
     );
   } else {
     return (
-      <button disabled={isDisabled} className={classes} type={type} ref={buttonRef} {...rest}>
+      <button
+        disabled={isDisabled}
+        className={classes}
+        type={type}
+        ref={buttonRef}
+        {...rest}
+      >
         <span className="euiButton__content">
           {buttonIcon}
           <span className="euiButton__text">{children}</span>

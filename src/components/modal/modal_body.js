@@ -6,12 +6,12 @@ export function EuiModalBody({ className, children, ...rest }) {
   const classes = classnames('euiModalBody', className);
   return (
     <div className={classes} {...rest}>
-      {children}
+      { children }
     </div>
   );
 }
 
 EuiModalBody.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 };

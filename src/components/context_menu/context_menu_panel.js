@@ -1,4 +1,7 @@
-import React, { cloneElement, Component } from 'react';
+import React, {
+  cloneElement,
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -33,7 +36,7 @@ export class EuiContextMenuPanel extends Component {
     items: PropTypes.array,
     showNextPanel: PropTypes.func,
     showPreviousPanel: PropTypes.func,
-    initialFocusedItemIndex: PropTypes.number,
+    initialFocusedItemIndex: PropTypes.number
   };
 
   static defaultProps = {
@@ -79,9 +82,9 @@ export class EuiContextMenuPanel extends Component {
     // since there could be content inside the panel which requires use of the left arrow key,
     // e.g. text inputs.
     if (
-      this.props.items.length ||
-      document.activeElement === this.backButton ||
-      document.activeElement === this.panel
+      this.props.items.length
+      || document.activeElement === this.backButton
+      || document.activeElement === this.panel
     ) {
       if (e.keyCode === cascadingMenuKeyCodes.LEFT) {
         if (this.props.showPreviousPanel) {
@@ -104,7 +107,7 @@ export class EuiContextMenuPanel extends Component {
 
           this.setState({
             focusedItemIndex:
-              focusedItemIndex >= 0 && focusedItemIndex < this.menuItems.length
+              (focusedItemIndex >= 0 && focusedItemIndex < this.menuItems.length)
                 ? focusedItemIndex
                 : undefined,
           });
@@ -197,7 +200,7 @@ export class EuiContextMenuPanel extends Component {
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
     }
-  };
+  }
 
   componentDidMount() {
     this.updateFocus();
@@ -287,41 +290,43 @@ export class EuiContextMenuPanel extends Component {
             className="euiContextMenuPanelTitle"
             type="button"
             onClick={onClose}
-            ref={node => {
-              this.backButton = node;
-            }}
+            ref={node => { this.backButton = node; }}
             data-test-subj="contextMenuPanelTitleButton"
           >
             <span className="euiContextMenu__itemLayout">
-              <EuiIcon type="arrowLeft" size="m" className="euiContextMenu__icon" />
+              <EuiIcon
+                type="arrowLeft"
+                size="m"
+                className="euiContextMenu__icon"
+              />
 
-              <span className="euiContextMenu__text">{title}</span>
+              <span className="euiContextMenu__text">
+                {title}
+              </span>
             </span>
           </button>
         );
       } else {
         panelTitle = (
           <EuiPopoverTitle>
-            <span className="euiContextMenu__itemLayout">{title}</span>
+            <span className="euiContextMenu__itemLayout">
+              {title}
+            </span>
           </EuiPopoverTitle>
         );
       }
     }
 
-    const classes = classNames(
-      'euiContextMenuPanel',
-      className,
+    const classes = classNames('euiContextMenuPanel', className, (
       this.state.isTransitioning && transitionDirectionAndTypeToClassNameMap[transitionDirection]
         ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType]
         : undefined
-    );
+    ));
 
     const content = items.length
-      ? items.map((MenuItem, index) =>
-          cloneElement(MenuItem, {
-            buttonRef: this.menuItemRef.bind(this, index),
-          })
-        )
+      ? items.map((MenuItem, index) => cloneElement(MenuItem, {
+        buttonRef: this.menuItemRef.bind(this, index),
+      }))
       : children;
 
     return (
@@ -335,7 +340,9 @@ export class EuiContextMenuPanel extends Component {
       >
         {panelTitle}
 
-        <div ref={this.contentRef}>{content}</div>
+        <div ref={this.contentRef}>
+          {content}
+        </div>
       </div>
     );
   }

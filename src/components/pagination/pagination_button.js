@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiButtonEmpty } from '../button';
+import {
+  EuiButtonEmpty,
+} from '../button';
 
 export const EuiPaginationButton = ({
   children,
@@ -19,7 +21,13 @@ export const EuiPaginationButton = ({
   });
 
   return (
-    <EuiButtonEmpty className={classes} size="xs" color="text" disabled={isPlaceholder} {...rest}>
+    <EuiButtonEmpty
+      className={classes}
+      size="xs"
+      color="text"
+      disabled={isPlaceholder}
+      {...rest}
+    >
       {children}
     </EuiButtonEmpty>
   );

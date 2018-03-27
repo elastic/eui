@@ -21,10 +21,14 @@ export default () => (
           <h1>Page title</h1>
         </EuiTitle>
       </EuiPageHeaderSection>
-      <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+      <EuiPageHeaderSection>
+        Page abilities
+      </EuiPageHeaderSection>
     </EuiPageHeader>
     <EuiPageBody>
-      <EuiPageSideBar>SideBar nav</EuiPageSideBar>
+      <EuiPageSideBar>
+        SideBar nav
+      </EuiPageSideBar>
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
@@ -32,9 +36,13 @@ export default () => (
               <h2>Content title</h2>
             </EuiTitle>
           </EuiPageContentHeaderSection>
-          <EuiPageContentHeaderSection>Content abilities</EuiPageContentHeaderSection>
+          <EuiPageContentHeaderSection>
+            Content abilities
+          </EuiPageContentHeaderSection>
         </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
+        <EuiPageContentBody>
+          Content body
+        </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

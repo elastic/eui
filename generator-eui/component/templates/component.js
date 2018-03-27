@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -13,12 +15,24 @@ export class <%= componentName %> extends Component {
   }
 
   render() {
-    const { children, className, ...rest } = this.props;
+    const {
+      children,
+      className,
+      ...rest,
+    } = this.props;
 
-    const classes = classNames('<%= cssClassName %>', className);
+    const classes = classNames(
+      '<%= cssClassName %>',
+      className
+    );
 
     return (
-      <div className={classes} {...rest}>{children}</div>
+      <div
+        className={classes}
+        {...rest}
+      >
+        {children}
+      </div>
     );
   }
 }

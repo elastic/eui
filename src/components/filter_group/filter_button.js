@@ -4,7 +4,10 @@ import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../services';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import {
+  ICON_TYPES,
+  EuiIcon,
+} from '../icon';
 
 const colorToClassNameMap = {
   primary: 'euiFilterButton--primary',
@@ -38,6 +41,7 @@ export const EuiFilterButton = ({
   type,
   ...rest
 }) => {
+
   const classes = classNames(
     'euiFilterButton',
     colorToClassNameMap[color],
@@ -46,7 +50,7 @@ export const EuiFilterButton = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
     },
-    className
+    className,
   );
 
   // Add an icon to the button if one exists.
@@ -54,7 +58,12 @@ export const EuiFilterButton = ({
 
   if (iconType) {
     buttonIcon = (
-      <EuiIcon className="euiFilterButton__icon" type={iconType} size="m" aria-hidden="true" />
+      <EuiIcon
+        className="euiFilterButton__icon"
+        type={iconType}
+        size="m"
+        aria-hidden="true"
+      />
     );
   }
 
@@ -62,23 +71,30 @@ export const EuiFilterButton = ({
     const secureRel = getSecureRelForTarget(target, rel);
 
     return (
-      <a className={classes} href={href} target={target} rel={secureRel} {...rest}>
+      <a
+        className={classes}
+        href={href}
+        target={target}
+        rel={secureRel}
+        {...rest}
+      >
         <span className="euiFilterButton__content">
           {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>
-            {children}
-          </span>
+          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
         </span>
       </a>
     );
   } else {
     return (
-      <button disabled={isDisabled} className={classes} type={type} {...rest}>
+      <button
+        disabled={isDisabled}
+        className={classes}
+        type={type}
+        {...rest}
+      >
         <span className="euiFilterButton__content">
           {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>
-            {children}
-          </span>
+          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
         </span>
       </button>
     );

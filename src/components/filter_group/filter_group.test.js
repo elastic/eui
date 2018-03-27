@@ -6,8 +6,11 @@ import { EuiFilterGroup } from './filter_group';
 
 describe('EuiFilterGroup', () => {
   test('is rendered', () => {
-    const component = render(<EuiFilterGroup {...requiredProps} />);
+    const component = render(
+      <EuiFilterGroup {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

@@ -1,6 +1,7 @@
 import { htmlIdGenerator } from './html_id_generator';
 
 describe('htmlIdGenerator', () => {
+
   it('should return a function', () => {
     const fn = htmlIdGenerator();
     expect(typeof fn).toBe('function');
@@ -34,4 +35,5 @@ describe('htmlIdGenerator', () => {
     const generator = htmlIdGenerator();
     expect(generator()).not.toBe(generator());
   });
+
 });

@@ -1,16 +1,19 @@
-import { isArray, isBoolean, isNumber, isString } from '../../../services/predicate';
+import {
+  isArray, isBoolean,
+  isNumber, isString
+} from '../../../services/predicate';
 import moment from 'moment/moment';
 
 const defaultOptions = {
-  ignoreCase: true,
+  ignoreCase: true
 };
 
 export const mustNot = (value, token, options = {}) => {
   options = { ...defaultOptions, ...options };
   if (isString(value)) {
-    return options.ignoreCase
-      ? !value.toLowerCase().includes(token.toLowerCase())
-      : !value.includes(token);
+    return options.ignoreCase ?
+      !value.toLowerCase().includes(token.toLowerCase()) :
+      !value.includes(token);
   }
   if (isNumber(value)) {
     token = Number(token);

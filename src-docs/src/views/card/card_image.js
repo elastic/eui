@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { EuiButton, EuiCard, EuiFlexGroup, EuiFlexItem, EuiIcon } from '../../../../src/components';
+import {
+  EuiButton,
+  EuiCard,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+} from '../../../../src/components';
 
 const cardFooterContent = (
   <EuiFlexGroup justifyContent="flexEnd">

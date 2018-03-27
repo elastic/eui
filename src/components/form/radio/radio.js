@@ -2,11 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiRadio = ({ className, id, name, checked, label, onChange, disabled, ...rest }) => {
+export const EuiRadio = ({
+  className,
+  id,
+  name,
+  checked,
+  label,
+  onChange,
+  disabled,
+  ...rest
+}) => {
   const classes = classNames(
     'euiRadio',
     {
-      'euiRadio--noLabel': !label,
+      'euiRadio--noLabel': !label
     },
     className
   );
@@ -15,14 +24,20 @@ export const EuiRadio = ({ className, id, name, checked, label, onChange, disabl
 
   if (label) {
     optionalLabel = (
-      <label className="euiRadio__label" htmlFor={id}>
+      <label
+        className="euiRadio__label"
+        htmlFor={id}
+      >
         {label}
       </label>
     );
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       <input
         className="euiRadio__input"
         type="radio"

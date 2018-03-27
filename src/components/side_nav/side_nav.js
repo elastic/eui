@@ -1,10 +1,16 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../icon';
+import {
+  EuiIcon,
+} from '../icon';
 
-import { EuiSideNavItem } from './side_nav_item';
+import {
+  EuiSideNavItem,
+} from './side_nav_item';
 
 export class EuiSideNav extends Component {
   isItemOpen = item => {
@@ -27,7 +33,7 @@ export class EuiSideNav extends Component {
   renderTree = (items, depth = 0) => {
     const { renderItem } = this.props;
 
-    return items.map(item => {
+    return items.map((item) => {
       const {
         id,
         name,
@@ -81,14 +87,21 @@ export class EuiSideNav extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames('euiSideNav', className, {
-      'euiSideNav-isOpenMobile': isOpenOnMobile,
-    });
+    const classes = classNames(
+      'euiSideNav',
+      className,
+      {
+        'euiSideNav-isOpenMobile': isOpenOnMobile,
+      },
+    );
 
     const nav = this.renderTree(items);
 
     return (
-      <nav className={classes} {...rest}>
+      <nav
+        className={classes}
+        {...rest}
+      >
         {/* Hidden from view, except in mobile */}
         <button
           type="button"
@@ -96,14 +109,23 @@ export class EuiSideNav extends Component {
           onClick={toggleOpenOnMobile}
         >
           <span className="euiSideNav__mobileWrap">
-            <span className="euiSideNav__mobileTitle">{mobileTitle}</span>
+            <span className="euiSideNav__mobileTitle">
+              {mobileTitle}
+            </span>
 
-            <EuiIcon className="euiSideNav__mobileIcon" type="apps" size="m" aria-hidden="true" />
+            <EuiIcon
+              className="euiSideNav__mobileIcon"
+              type="apps"
+              size="m"
+              aria-hidden="true"
+            />
           </span>
         </button>
 
         {/* Hidden from view in mobile, but toggled from the button above */}
-        <div className="euiSideNav__content">{nav}</div>
+        <div className="euiSideNav__content">
+          {nav}
+        </div>
       </nav>
     );
   }

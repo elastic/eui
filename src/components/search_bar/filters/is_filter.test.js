@@ -5,7 +5,9 @@ import { IsFilter } from './is_filter';
 import { Query } from '../query';
 
 describe('IsFilter', () => {
+
   test('render', () => {
+
     const props = {
       ...requiredProps,
       index: 0,
@@ -14,12 +16,16 @@ describe('IsFilter', () => {
       config: {
         type: 'is',
         field: 'open',
-        name: 'Open',
-      },
+        name: 'Open'
+      }
     };
 
-    const component = shallow(<IsFilter {...props} />);
+    const component = shallow(
+      <IsFilter {...props} />
+    );
 
     expect(component).toMatchSnapshot();
+
   });
+
 });

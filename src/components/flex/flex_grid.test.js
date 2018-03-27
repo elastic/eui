@@ -2,7 +2,11 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiFlexGrid, GUTTER_SIZES, COLUMNS } from './flex_grid';
+import {
+  EuiFlexGrid,
+  GUTTER_SIZES,
+  COLUMNS,
+} from './flex_grid';
 
 describe('EuiFlexGrid', () => {
   test('is rendered', () => {
@@ -12,16 +16,20 @@ describe('EuiFlexGrid', () => {
       </EuiFlexGrid>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid gutterSize={value} />);
+          const component = render(
+            <EuiFlexGrid gutterSize={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });
@@ -29,9 +37,12 @@ describe('EuiFlexGrid', () => {
     describe('columns', () => {
       COLUMNS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid columns={value} />);
+          const component = render(
+            <EuiFlexGrid columns={value} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(component)
+            .toMatchSnapshot();
         });
       });
     });

@@ -25,8 +25,11 @@ const steps = [
 
 describe('EuiStepsHorizontal', () => {
   test('is rendered', () => {
-    const component = render(<EuiStepsHorizontal {...requiredProps} steps={steps} />);
+    const component = render(
+      <EuiStepsHorizontal {...requiredProps} steps={steps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

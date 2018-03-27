@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  formatAuto,
-  formatBoolean,
-  formatDate,
-  formatNumber,
-  formatText,
-  LEFT_ALIGNMENT,
-  PropertySortType,
-  RIGHT_ALIGNMENT,
-  SortDirection,
+  formatAuto, formatBoolean, formatDate, formatNumber, formatText, LEFT_ALIGNMENT, PropertySortType,
+  RIGHT_ALIGNMENT, SortDirection
 } from '../../services';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
@@ -34,11 +29,11 @@ import { LoadingTableBody } from './loading_table_body';
 const dataTypesProfiles = {
   auto: {
     align: LEFT_ALIGNMENT,
-    render: value => formatAuto(value),
+    render: value => formatAuto(value)
   },
   string: {
     align: LEFT_ALIGNMENT,
-    render: value => formatText(value),
+    render: value => formatText(value)
   },
   number: {
     align: RIGHT_ALIGNMENT,
@@ -51,42 +46,44 @@ const dataTypesProfiles = {
   date: {
     align: LEFT_ALIGNMENT,
     render: value => formatDate(value),
-  },
+  }
 };
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
 const DefaultItemActionType = PropTypes.shape({
-  type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
+  type: PropTypes.oneOf([ 'icon', 'button' ]), // default is 'button'
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired, // (item) => void,
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
-  icon: PropTypes.oneOfType([
-    // required when type is 'icon'
+  icon: PropTypes.oneOfType([ // required when type is 'icon'
     PropTypes.oneOf(ICON_TYPES),
-    PropTypes.func, // (item) => oneOf(ICON_TYPES)
+    PropTypes.func // (item) => oneOf(ICON_TYPES)
   ]),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
-    PropTypes.func, // (item) => oneOf(ICON_BUTTON_COLORS)
-  ]),
+    PropTypes.func // (item) => oneOf(ICON_BUTTON_COLORS)
+  ])
 });
 
 const CustomItemActionType = PropTypes.shape({
-  render: PropTypes.func.isRequired, // (item, enabled) => PropTypes.node;
+  render: PropTypes.func.isRequired,  // (item, enabled) => PropTypes.node;
   available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func, // (item) => boolean;
+  enabled: PropTypes.func // (item) => boolean;
 });
 
-const SupportedItemActionType = PropTypes.oneOfType([DefaultItemActionType, CustomItemActionType]);
+const SupportedItemActionType = PropTypes.oneOfType([
+  DefaultItemActionType,
+  CustomItemActionType
+]);
 
 const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
   name: PropTypes.string,
   description: PropTypes.string,
-  width: PropTypes.string,
+  width: PropTypes.string
 });
 
 export const FieldDataColumnType = PropTypes.shape({
@@ -98,7 +95,7 @@ export const FieldDataColumnType = PropTypes.shape({
   sortable: PropTypes.bool,
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
-  render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  render: PropTypes.func // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
 });
 
 export const ComputedColumnType = PropTypes.shape({
@@ -106,29 +103,25 @@ export const ComputedColumnType = PropTypes.shape({
   name: PropTypes.string,
   description: PropTypes.string,
   width: PropTypes.string,
-  truncateText: PropTypes.bool,
+  truncateText: PropTypes.bool
 });
 
-export const ColumnType = PropTypes.oneOfType([
-  FieldDataColumnType,
-  ComputedColumnType,
-  ActionsColumnType,
-]);
+export const ColumnType = PropTypes.oneOfType([FieldDataColumnType, ComputedColumnType, ActionsColumnType]);
 
 const ItemIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the item id property
-  PropTypes.func, // (item) => string
+  PropTypes.func    // (item) => string
 ]);
 
 export const SelectionType = PropTypes.shape({
   itemId: ItemIdType.isRequired,
   onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
-  selectableMessage: PropTypes.func, // (selectable, item) => boolean;
+  selectableMessage: PropTypes.func // (selectable, item) => boolean;
 });
 
 const SortingType = PropTypes.shape({
-  sort: PropertySortType,
+  sort: PropertySortType
 });
 
 const BasicTablePropTypes = {
@@ -141,20 +134,21 @@ const BasicTablePropTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export class EuiBasicTable extends Component {
+
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
-    noItemsMessage: 'No items found',
+    noItemsMessage: 'No items found'
   };
 
   constructor(props) {
     super(props);
     this.state = {
       hoverRow: null,
-      selection: [],
+      selection: []
     };
   }
 
@@ -163,7 +157,7 @@ export class EuiBasicTable extends Component {
     if (props.pagination) {
       criteria.page = {
         index: props.pagination.pageIndex,
-        size: props.pagination.pageSize,
+        size: props.pagination.pageSize
       };
     }
     if (props.sorting) {
@@ -203,8 +197,8 @@ export class EuiBasicTable extends Component {
       ...currentCriteria,
       page: {
         index: 0, // when page size changes, we take the user back to the first page
-        size,
-      },
+        size
+      }
     };
     this.props.onChange(criteria);
   }
@@ -216,8 +210,8 @@ export class EuiBasicTable extends Component {
       ...currentCriteria,
       page: {
         ...currentCriteria.page,
-        index,
-      },
+        index
+      }
     };
     this.props.onChange(criteria);
   }
@@ -232,16 +226,14 @@ export class EuiBasicTable extends Component {
     const criteria = {
       ...currentCriteria,
       // resetting the page if the criteria has one
-      page: !currentCriteria.page
-        ? undefined
-        : {
-            index: 0,
-            size: currentCriteria.page.size,
-          },
+      page: !currentCriteria.page ? undefined : {
+        index: 0,
+        size: currentCriteria.page.size
+      },
       sort: {
         field: column.field,
-        direction,
-      },
+        direction
+      }
     };
     this.props.onChange(criteria);
   }
@@ -270,10 +262,9 @@ export class EuiBasicTable extends Component {
     }
 
     this.setState(prevState => {
-      const selection = prevState.selection.filter(
-        selectedItem =>
-          nextProps.items.findIndex(item => this.itemId(item) === this.itemId(selectedItem)) !== -1
-      );
+      const selection = prevState.selection.filter(selectedItem => (
+        nextProps.items.findIndex(item => this.itemId(item) === this.itemId(selectedItem)) !== -1
+      ));
       return { selection };
     });
   }
@@ -284,7 +275,7 @@ export class EuiBasicTable extends Component {
     const classes = classNames(
       'euiBasicTable',
       {
-        'euiBasicTable-loading': loading,
+        'euiBasicTable-loading': loading
       },
       className
     );
@@ -303,32 +294,27 @@ export class EuiBasicTable extends Component {
   renderTable() {
     const head = this.renderTableHead();
     const body = this.renderTableBody();
-    return (
-      <EuiTable>
-        {head}
-        {body}
-      </EuiTable>
-    );
+    return <EuiTable>{head}{body}</EuiTable>;
   }
 
   renderTableHead() {
+
     const { items, columns, selection } = this.props;
 
     const headers = [];
 
     if (selection) {
-      const selectableItems = items.filter(
-        item => !selection.selectable || selection.selectable(item)
-      );
+      const selectableItems = items.filter(item => (
+        !selection.selectable || selection.selectable(item)
+      ));
 
-      const checked =
-        this.state.selection &&
+      const checked = this.state.selection &&
         selectableItems.length > 0 &&
         this.state.selection.length === selectableItems.length;
 
       const disabled = selectableItems.length === 0;
 
-      const onChange = event => {
+      const onChange = (event) => {
         if (event.target.checked) {
           this.changeSelection(selectableItems);
         } else {
@@ -354,7 +340,11 @@ export class EuiBasicTable extends Component {
       // actions column
       if (column.actions) {
         headers.push(
-          <EuiTableHeaderCell key={`_actions_h_${index}`} align="right" width={column.width}>
+          <EuiTableHeaderCell
+            key={`_actions_h_${index}`}
+            align="right"
+            width={column.width}
+          >
             {column.name}
           </EuiTableHeaderCell>
         );
@@ -423,7 +413,7 @@ export class EuiBasicTable extends Component {
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell align="center" colSpan={colSpan}>
-            <EuiIcon type="minusInCircle" color="danger" /> {error}
+            <EuiIcon type="minusInCircle" color="danger"/> {error}
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
@@ -450,10 +440,9 @@ export class EuiBasicTable extends Component {
     const cells = [];
 
     const itemId = selection ? this.itemId(item) : rowIndex;
-    const selected = !selection
-      ? false
-      : this.state.selection &&
-        !!this.state.selection.find(selectedRecord => this.itemId(selectedRecord) === itemId);
+    const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedRecord => (
+      this.itemId(selectedRecord) === itemId
+    ));
 
     if (selection) {
       cells.push(this.renderItemSelectionCell(itemId, item, selected));
@@ -489,18 +478,16 @@ export class EuiBasicTable extends Component {
     const checked = selected;
     const disabled = selection.selectable && !selection.selectable(item);
     const title = selection.selectableMessage && selection.selectableMessage(!disabled, item);
-    const onChange = event => {
+    const onChange = (event) => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
       } else {
-        this.changeSelection(
-          this.state.selection.reduce((selection, selectedItem) => {
-            if (this.itemId(selectedItem) !== itemId) {
-              selection.push(selectedItem);
-            }
-            return selection;
-          }, [])
-        );
+        this.changeSelection(this.state.selection.reduce((selection, selectedItem) => {
+          if (this.itemId(selectedItem) !== itemId) {
+            selection.push(selectedItem);
+          }
+          return selection;
+        }, []));
       }
     };
     return (
@@ -521,11 +508,12 @@ export class EuiBasicTable extends Component {
   renderItemActionsCell(itemId, item, column, columnIndex, rowIndex) {
     const visible = this.state.hoverRow === rowIndex;
 
-    const actionEnabled = action =>
+    const actionEnabled = (action) =>
       this.state.selection.length === 0 && (!action.enabled || action.enabled(item));
 
     let actualActions = column.actions;
     if (column.actions.length > 1) {
+
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum
       // of one tool per row (it's either and normal action, or it's a popover that shows multiple actions)
@@ -535,7 +523,7 @@ export class EuiBasicTable extends Component {
       actualActions = [
         {
           name: 'Actions',
-          render: item => {
+          render: (item) => {
             return (
               <CollapsedItemActions
                 actions={column.actions}
@@ -545,8 +533,8 @@ export class EuiBasicTable extends Component {
                 actionEnabled={actionEnabled}
               />
             );
-          },
-        },
+          }
+        }
       ];
     }
 
@@ -614,7 +602,11 @@ export class EuiBasicTable extends Component {
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(item);
     return (
-      <EuiTableRowCell key={key} align={align} {...rest}>
+      <EuiTableRowCell
+        key={key}
+        align={align}
+        {...rest}
+      >
         {content}
       </EuiTableRowCell>
     );
@@ -627,9 +619,7 @@ export class EuiBasicTable extends Component {
     const dataType = column.dataType || 'auto';
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
-      throw new Error(
-        `Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`
-      );
+      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
     }
     return profile.align;
   }
@@ -663,9 +653,7 @@ export class EuiBasicTable extends Component {
     const dataType = column.dataType || 'auto';
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
-      throw new Error(
-        `Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`
-      );
+      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
     }
     return profile.render;
   }

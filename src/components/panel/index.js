@@ -1,1 +1,4 @@
-export { EuiPanel, SIZES } from './panel';
+export {
+  EuiPanel,
+  SIZES,
+} from './panel';

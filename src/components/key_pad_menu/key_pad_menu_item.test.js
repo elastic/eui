@@ -3,7 +3,10 @@ import { render, shallow } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiKeyPadMenuItem, EuiKeyPadMenuItemButton } from './key_pad_menu_item';
+import {
+  EuiKeyPadMenuItem,
+  EuiKeyPadMenuItemButton,
+} from './key_pad_menu_item';
 
 describe('EuiKeyPadMenuItem', () => {
   test('is rendered', () => {
@@ -13,7 +16,8 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   test('renders href', () => {
@@ -23,7 +27,8 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });
 
@@ -35,7 +40,8 @@ describe('EuiKeyPadMenuItemButton', () => {
       </EuiKeyPadMenuItemButton>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('onClick', () => {

@@ -11,6 +11,7 @@ describe('EuiGlobalToastListItem', () => {
       </EuiGlobalToastListItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

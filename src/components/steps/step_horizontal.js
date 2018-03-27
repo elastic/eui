@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiScreenReaderOnly } from '../accessibility';
+import {
+  EuiScreenReaderOnly,
+} from '../accessibility';
 
 import { EuiIcon } from '../icon';
 
@@ -30,7 +32,9 @@ export const EuiStepHorizontal = ({
     numberNode = step;
     titleAppendix = ' is disabled';
   } else if (isComplete) {
-    numberNode = <EuiIcon type="check" color="ghost" />;
+    numberNode = (
+      <EuiIcon type="check" color="ghost" />
+    );
     titleAppendix = ' is complete';
   } else {
     numberNode = step;
@@ -49,13 +53,17 @@ export const EuiStepHorizontal = ({
       title={buttonTitle}
       {...rest}
     >
-      <EuiScreenReaderOnly>
-        <span>Step</span>
-      </EuiScreenReaderOnly>
 
-      <div className="euiStepHorizontal__number">{numberNode}</div>
+      <EuiScreenReaderOnly><span>Step</span></EuiScreenReaderOnly>
 
-      <span className="euiStepHorizontal__title">{title}</span>
+      <div className="euiStepHorizontal__number">
+        {numberNode}
+      </div>
+
+      <span className="euiStepHorizontal__title">
+        {title}
+      </span>
+
     </button>
   );
 };

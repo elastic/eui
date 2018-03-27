@@ -1,6 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 
-import { EuiRadio, EuiSpacer } from '../../../../src/components';
+import {
+  EuiRadio,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 

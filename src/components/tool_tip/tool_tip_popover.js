@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,7 +10,7 @@ export class EuiToolTipPopover extends Component {
     className: PropTypes.string,
     title: PropTypes.node,
     positionToolTip: PropTypes.func.isRequired,
-  };
+  }
 
   updateDimensions = () => {
     requestAnimationFrame(() => {
@@ -40,15 +42,24 @@ export class EuiToolTipPopover extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames('euiToolTipPopover', className);
+    const classes = classNames(
+      'euiToolTipPopover',
+      className
+    );
 
     let optionalTitle;
     if (title) {
-      optionalTitle = <div className="euiToolTip__title">{title}</div>;
+      optionalTitle = (
+        <div className="euiToolTip__title">{title}</div>
+      );
     }
 
     return (
-      <div className={classes} ref={popover => (this.popover = popover)} {...rest}>
+      <div
+        className={classes}
+        ref={popover => this.popover = popover}
+        {...rest}
+      >
         {optionalTitle}
         {children}
       </div>

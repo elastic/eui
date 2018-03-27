@@ -1,5 +1,11 @@
-export { EuiFlexGroup } from './flex_group';
+export {
+  EuiFlexGroup,
+} from './flex_group';
 
-export { EuiFlexGrid } from './flex_grid';
+export {
+  EuiFlexGrid,
+} from './flex_grid';
 
-export { EuiFlexItem } from './flex_item';
+export {
+  EuiFlexItem,
+} from './flex_item';

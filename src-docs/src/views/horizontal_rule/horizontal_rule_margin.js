@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { EuiHorizontalRule } from '../../../../src/components';
+import {
+  EuiHorizontalRule,
+} from '../../../../src/components';
 
 export default () => (
   <div>

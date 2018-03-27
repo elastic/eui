@@ -22,7 +22,7 @@ export const EuiCheckbox = ({
     'euiCheckbox',
     typeToClassNameMap[type],
     {
-      'euiCheckbox--noLabel': !label,
+      'euiCheckbox--noLabel': !label
     },
     className
   );
@@ -31,14 +31,19 @@ export const EuiCheckbox = ({
 
   if (label) {
     optionalLabel = (
-      <label className="euiCheckbox__label" htmlFor={id}>
+      <label
+        className="euiCheckbox__label"
+        htmlFor={id}
+      >
         {label}
       </label>
     );
   }
 
   return (
-    <div className={classes}>
+    <div
+      className={classes}
+    >
       <input
         className="euiCheckbox__input"
         type="checkbox"

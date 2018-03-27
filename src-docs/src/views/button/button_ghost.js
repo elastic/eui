@@ -11,7 +11,10 @@ import {
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center" className="guideDemo__ghostBackground">
     <EuiFlexItem grow={false}>
-      <EuiButton color="ghost" onClick={() => window.alert('Button clicked')}>
+      <EuiButton
+        color="ghost"
+        onClick={() => window.alert('Button clicked')}
+      >
         Primary
       </EuiButton>
     </EuiFlexItem>
@@ -29,7 +32,11 @@ export default () => (
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButtonEmpty size="s" color="ghost" onClick={() => window.alert('Button clicked')}>
+      <EuiButtonEmpty
+        size="s"
+        color="ghost"
+        onClick={() => window.alert('Button clicked')}
+      >
         small
       </EuiButtonEmpty>
     </EuiFlexItem>
@@ -45,13 +52,21 @@ export default () => (
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButton color="ghost" isLoading fill size="s">
+      <EuiButton
+        color="ghost"
+        isLoading
+        fill
+        size="s"
+      >
         Loading&hellip;
       </EuiButton>
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButton color="ghost" isLoading>
+      <EuiButton
+        color="ghost"
+        isLoading
+      >
         Loading&hellip;
       </EuiButton>
     </EuiFlexItem>

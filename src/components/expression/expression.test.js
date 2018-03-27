@@ -2,11 +2,15 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiExpression } from './expression';
+import {
+  EuiExpression,
+} from './expression';
 
 describe('EuiExpression', () => {
   test('renders', () => {
-    const component = <EuiExpression {...requiredProps} />;
+    const component = (
+      <EuiExpression {...requiredProps} />
+    );
 
     expect(render(component)).toMatchSnapshot();
   });
@@ -14,9 +18,14 @@ describe('EuiExpression', () => {
   describe('Props', () => {
     describe('children', () => {
       test('is rendered', () => {
-        const component = render(<EuiExpression>some expression</EuiExpression>);
+        const component = render(
+          <EuiExpression>
+            some expression
+          </EuiExpression>
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
   });

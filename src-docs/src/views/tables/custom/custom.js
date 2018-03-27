@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiBadge,
@@ -44,239 +46,193 @@ export default class extends Component {
       itemsPerPage: 20,
     };
 
-    this.items = [
-      {
-        id: 0,
-        title:
-          'A very long line which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis',
-        type: 'user',
-        dateCreated: 'Tue Dec 28 2016',
-        magnitude: 1,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+    this.items = [{
+      id: 0,
+      title: 'A very long line which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis',
+      type: 'user',
+      dateCreated: 'Tue Dec 28 2016',
+      magnitude: 1,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 1,
+      title: {
+        value: 'A very long line which will not wrap on narrower screens and instead will become truncated and replaced by an ellipsis',
+        truncateText: true,
       },
-      {
-        id: 1,
-        title: {
-          value:
-            'A very long line which will not wrap on narrower screens and instead will become truncated and replaced by an ellipsis',
-          truncateText: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 01 2016',
-        magnitude: 1,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 01 2016',
+      magnitude: 1,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 2,
+      title: <span>A very long line in an ELEMENT which will wrap on narrower screens and NOT become truncated and replaced by an ellipsis</span>,
+      type: 'user',
+      dateCreated: <span>Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge></span>,
+      magnitude: 10,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
+    }, {
+      id: 3,
+      title: {
+        value: <span>A very long line in an ELEMENT which will not wrap on narrower screens and instead will become truncated and replaced by an ellipsis</span>,
+        truncateText: true,
       },
-      {
-        id: 2,
-        title: (
-          <span>
-            A very long line in an ELEMENT which will wrap on narrower screens and NOT become
-            truncated and replaced by an ellipsis
-          </span>
-        ),
-        type: 'user',
-        dateCreated: (
-          <span>
-            Tue Dec 01 2016 &nbsp; <EuiBadge color="secondary">New!</EuiBadge>
-          </span>
-        ),
-        magnitude: 10,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 16 2016',
+      magnitude: 100,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 4,
+      title: {
+        value: 'Dog',
+        isLink: true,
       },
-      {
-        id: 3,
-        title: {
-          value: (
-            <span>
-              A very long line in an ELEMENT which will not wrap on narrower screens and instead
-              will become truncated and replaced by an ellipsis
-            </span>
-          ),
-          truncateText: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 16 2016',
-        magnitude: 100,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 13 2016',
+      magnitude: 1000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
+    }, {
+      id: 5,
+      title: {
+        value: 'Dragon',
+        isLink: true,
       },
-      {
-        id: 4,
-        title: {
-          value: 'Dog',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 13 2016',
-        magnitude: 1000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 6,
+      title: {
+        value: 'Bear',
+        isLink: true,
       },
-      {
-        id: 5,
-        title: {
-          value: 'Dragon',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
+    }, {
+      id: 7,
+      title: {
+        value: 'Dinosaur',
+        isLink: true,
       },
-      {
-        id: 6,
-        title: {
-          value: 'Bear',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
+    }, {
+      id: 8,
+      title: {
+        value: 'Spider',
+        isLink: true,
       },
-      {
-        id: 7,
-        title: {
-          value: 'Dinosaur',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
+    }, {
+      id: 9,
+      title: {
+        value: 'Bugbear',
+        isLink: true,
       },
-      {
-        id: 8,
-        title: {
-          value: 'Spider',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 10,
+      title: {
+        value: 'Bear',
+        isLink: true,
       },
-      {
-        id: 9,
-        title: {
-          value: 'Bugbear',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
+    }, {
+      id: 11,
+      title: {
+        value: 'Dinosaur',
+        isLink: true,
       },
-      {
-        id: 10,
-        title: {
-          value: 'Bear',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="warning">Warning</EuiHealth>,
+    }, {
+      id: 12,
+      title: {
+        value: 'Spider',
+        isLink: true,
       },
-      {
-        id: 11,
-        title: {
-          value: 'Dinosaur',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="warning">Warning</EuiHealth>,
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="success">Healthy</EuiHealth>,
+    }, {
+      id: 13,
+      title: {
+        value: 'Bugbear',
+        isLink: true,
       },
-      {
-        id: 12,
-        title: {
-          value: 'Spider',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="success">Healthy</EuiHealth>,
-      },
-      {
-        id: 13,
-        title: {
-          value: 'Bugbear',
-          isLink: true,
-        },
-        type: 'user',
-        dateCreated: 'Tue Dec 11 2016',
-        magnitude: 10000,
-        health: <EuiHealth color="danger">Danger</EuiHealth>,
-      },
-    ];
+      type: 'user',
+      dateCreated: 'Tue Dec 11 2016',
+      magnitude: 10000,
+      health: <EuiHealth color="danger">Danger</EuiHealth>,
+    }];
 
-    this.sortableProperties = new SortableProperties(
-      [
-        {
-          name: 'title',
-          getValue: item => item.title.toLowerCase(),
-          isAscending: true,
-        },
-        {
-          name: 'dateCreated',
-          getValue: item => item.dateCreated.toLowerCase(),
-          isAscending: true,
-        },
-        {
-          name: 'magnitude',
-          getValue: item => item.magnitude.toLowerCase(),
-          isAscending: true,
-        },
-      ],
-      this.state.sortedColumn
-    );
+    this.sortableProperties = new SortableProperties([{
+      name: 'title',
+      getValue: item => item.title.toLowerCase(),
+      isAscending: true,
+    }, {
+      name: 'dateCreated',
+      getValue: item => item.dateCreated.toLowerCase(),
+      isAscending: true,
+    }, {
+      name: 'magnitude',
+      getValue: item => item.magnitude.toLowerCase(),
+      isAscending: true,
+    }], this.state.sortedColumn);
 
-    this.columns = [
-      {
-        id: 'checkbox',
-        isCheckbox: true,
-        textOnly: false,
-        width: '24px',
-      },
-      {
-        id: 'type',
-        label: '',
-        alignment: LEFT_ALIGNMENT,
-        width: '24px',
-        cellProvider: cell => <EuiIcon type={cell} size="m" />,
-      },
-      {
-        id: 'title',
-        label: 'Title',
-        alignment: LEFT_ALIGNMENT,
-        isSortable: true,
-      },
-      {
-        id: 'health',
-        label: 'Health',
-        alignment: LEFT_ALIGNMENT,
-      },
-      {
-        id: 'dateCreated',
-        label: 'Date created',
-        alignment: LEFT_ALIGNMENT,
-        isSortable: true,
-      },
-      {
-        id: 'magnitude',
-        label: 'Orders of magnitude',
-        alignment: RIGHT_ALIGNMENT,
-        isSortable: true,
-      },
-      {
-        id: 'actions',
-        label: '',
-        alignment: RIGHT_ALIGNMENT,
-        isActionsPopover: true,
-        width: '32px',
-      },
-    ];
+    this.columns = [{
+      id: 'checkbox',
+      isCheckbox: true,
+      textOnly: false,
+      width: '24px',
+    }, {
+      id: 'type',
+      label: '',
+      alignment: LEFT_ALIGNMENT,
+      width: '24px',
+      cellProvider: cell => <EuiIcon type={cell} size="m" />,
+    }, {
+      id: 'title',
+      label: 'Title',
+      alignment: LEFT_ALIGNMENT,
+      isSortable: true,
+    }, {
+      id: 'health',
+      label: 'Health',
+      alignment: LEFT_ALIGNMENT,
+    }, {
+      id: 'dateCreated',
+      label: 'Date created',
+      alignment: LEFT_ALIGNMENT,
+      isSortable: true,
+    }, {
+      id: 'magnitude',
+      label: 'Orders of magnitude',
+      alignment: RIGHT_ALIGNMENT,
+      isSortable: true,
+    }, {
+      id: 'actions',
+      label: '',
+      alignment: RIGHT_ALIGNMENT,
+      isActionsPopover: true,
+      width: '32px',
+    }];
 
     this.pager = new Pager(this.items.length, this.state.itemsPerPage);
     this.state.firstItemIndex = this.pager.getFirstItemIndex();
@@ -290,7 +246,7 @@ export default class extends Component {
       firstItemIndex: this.pager.getFirstItemIndex(),
       lastItemIndex: this.pager.getLastItemIndex(),
     });
-  };
+  }
 
   onChangePage = pageIndex => {
     this.pager.goToPageIndex(pageIndex);
@@ -306,7 +262,7 @@ export default class extends Component {
     this.setState({
       sortedColumn: prop,
     });
-  };
+  }
 
   toggleItem = itemId => {
     this.setState(previousState => {
@@ -319,34 +275,32 @@ export default class extends Component {
         itemIdToSelectedMap: newItemIdToSelectedMap,
       };
     });
-  };
+  }
 
   toggleAll = () => {
     const allSelected = this.areAllItemsSelected();
     const newItemIdToSelectedMap = {};
-    this.items.forEach(item => (newItemIdToSelectedMap[item.id] = !allSelected));
+    this.items.forEach(item => newItemIdToSelectedMap[item.id] = !allSelected);
 
     this.setState({
       itemIdToSelectedMap: newItemIdToSelectedMap,
     });
-  };
+  }
 
   isItemSelected = itemId => {
     return this.state.itemIdToSelectedMap[itemId];
-  };
+  }
 
   areAllItemsSelected = () => {
     const indexOfUnselectedItem = this.items.findIndex(item => !this.isItemSelected(item.id));
     return indexOfUnselectedItem === -1;
-  };
+  }
 
   areAnyRowsSelected = () => {
-    return (
-      Object.keys(this.state.itemIdToSelectedMap).findIndex(id => {
-        return this.state.itemIdToSelectedMap[id];
-      }) !== -1
-    );
-  };
+    return Object.keys(this.state.itemIdToSelectedMap).findIndex(id => {
+      return this.state.itemIdToSelectedMap[id];
+    }) !== -1;
+  }
 
   togglePopover = itemId => {
     this.setState(previousState => {
@@ -382,7 +336,10 @@ export default class extends Component {
     return this.columns.map((column, columnIndex) => {
       if (column.isCheckbox) {
         return (
-          <EuiTableHeaderCellCheckbox key={column.id} width={column.width}>
+          <EuiTableHeaderCellCheckbox
+            key={column.id}
+            width={column.width}
+          >
             <EuiCheckbox
               id="selectAllCheckbox"
               checked={this.areAllItemsSelected()}
@@ -430,10 +387,14 @@ export default class extends Component {
 
         if (column.isActionsPopover) {
           return (
-            <EuiTableRowCell key={column.id} textOnly={false} align="right">
+            <EuiTableRowCell
+              key={column.id}
+              textOnly={false}
+              align="right"
+            >
               <EuiPopover
                 id={`${item.id}-actions`}
-                button={
+                button={(
                   <EuiButtonIcon
                     aria-label="Actions"
                     iconType="gear"
@@ -441,7 +402,7 @@ export default class extends Component {
                     color="text"
                     onClick={() => this.togglePopover(item.id)}
                   />
-                }
+                )}
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}
                 panelPaddingSize="none"
@@ -449,33 +410,31 @@ export default class extends Component {
               >
                 <EuiContextMenuPanel
                   items={[
-                    <EuiContextMenuItem
-                      key="A"
-                      icon="pencil"
-                      onClick={() => {
-                        this.closePopover(item.id);
-                      }}
-                    >
-                      Edit
-                    </EuiContextMenuItem>,
-                    <EuiContextMenuItem
-                      key="B"
-                      icon="share"
-                      onClick={() => {
-                        this.closePopover(item.id);
-                      }}
-                    >
-                      Share
-                    </EuiContextMenuItem>,
-                    <EuiContextMenuItem
-                      key="C"
-                      icon="trash"
-                      onClick={() => {
-                        this.closePopover(item.id);
-                      }}
-                    >
-                      Delete
-                    </EuiContextMenuItem>,
+                    (
+                      <EuiContextMenuItem
+                        key="A"
+                        icon="pencil"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
+                        Edit
+                      </EuiContextMenuItem>
+                    ), (
+                      <EuiContextMenuItem
+                        key="B"
+                        icon="share"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
+                        Share
+                      </EuiContextMenuItem>
+                    ), (
+                      <EuiContextMenuItem
+                        key="C"
+                        icon="trash"
+                        onClick={() => { this.closePopover(item.id); }}
+                      >
+                        Delete
+                      </EuiContextMenuItem>
+                    ),
                   ]}
                 />
               </EuiPopover>
@@ -506,7 +465,10 @@ export default class extends Component {
       });
 
       return (
-        <EuiTableRow key={item.id} isSelected={this.isItemSelected(item.id)}>
+        <EuiTableRow
+          key={item.id}
+          isSelected={this.isItemSelected(item.id)}
+        >
           {cells}
         </EuiTableRow>
       );
@@ -514,11 +476,7 @@ export default class extends Component {
 
     const rows = [];
 
-    for (
-      let itemIndex = this.state.firstItemIndex;
-      itemIndex <= this.state.lastItemIndex;
-      itemIndex++
-    ) {
+    for (let itemIndex = this.state.firstItemIndex; itemIndex <= this.state.lastItemIndex; itemIndex++) {
       const item = this.items[itemIndex];
       rows.push(renderRow(item));
     }
@@ -550,9 +508,13 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTable>
-          <EuiTableHeader>{this.renderHeaderCells()}</EuiTableHeader>
+          <EuiTableHeader>
+            {this.renderHeaderCells()}
+          </EuiTableHeader>
 
-          <EuiTableBody>{this.renderRows()}</EuiTableBody>
+          <EuiTableBody>
+            {this.renderRows()}
+          </EuiTableBody>
         </EuiTable>
 
         <EuiSpacer size="m" />

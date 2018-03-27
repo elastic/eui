@@ -6,8 +6,11 @@ import { <%= componentName %> } from './<%= fileName %>';
 
 describe('<%= componentName %>', () => {
   test('is rendered', () => {
-    const component = render(<<%= componentName %> {...requiredProps} />);
+    const component = render(
+      <<%= componentName %> {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

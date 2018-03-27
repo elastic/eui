@@ -1,1 +1,3 @@
-export { EuiFilePicker } from './file_picker';
+export {
+  EuiFilePicker,
+} from './file_picker';

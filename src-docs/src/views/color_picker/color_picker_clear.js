@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import {
   EuiColorPicker,
@@ -11,11 +13,11 @@ export class ColorPickerLabelAndClear extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: null,
+      color: null
     };
   }
 
-  handleChange = value => {
+  handleChange = (value) => {
     this.setState({ color: value });
   };
 
@@ -27,11 +29,16 @@ export class ColorPickerLabelAndClear extends Component {
     return (
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <label className="kuiLabel">Background color</label>
+          <label className="kuiLabel">
+            Background color
+          </label>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiColorPicker onChange={this.handleChange} color={this.state.color} />
+          <EuiColorPicker
+            onChange={this.handleChange}
+            color={this.state.color}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>

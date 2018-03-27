@@ -8,7 +8,7 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiFlexGroup,
-  EuiFlexItem,
+  EuiFlexItem
 } from '../../../../../src/components';
 
 /*
@@ -36,89 +36,79 @@ Example country object:
 const store = createDataStore();
 
 export class Table extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       incremental: false,
-      filters: false,
+      filters: false
     };
   }
 
   render() {
-    const columns = [
-      {
-        field: 'firstName',
-        name: 'First Name',
-        sortable: true,
-        truncateText: true,
+    const columns = [{
+      field: 'firstName',
+      name: 'First Name',
+      sortable: true,
+      truncateText: true,
+    }, {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+    }, {
+      field: 'github',
+      name: 'Github',
+      render: (username) => (
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+      )
+    }, {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (date) => formatDate(date, 'dobLong'),
+      sortable: true
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
-      {
-        field: 'lastName',
-        name: 'Last Name',
-        truncateText: true,
-      },
-      {
-        field: 'github',
-        name: 'Github',
-        render: username => (
-          <EuiLink href={`https://github.com/${username}`} target="_blank">
-            {username}
-          </EuiLink>
-        ),
-      },
-      {
-        field: 'dateOfBirth',
-        name: 'Date of Birth',
-        dataType: 'date',
-        render: date => formatDate(date, 'dobLong'),
-        sortable: true,
-      },
-      {
-        field: 'nationality',
-        name: 'Nationality',
-        render: countryCode => {
-          const country = store.getCountry(countryCode);
-          return `${country.flag} ${country.name}`;
-        },
-      },
-      {
-        field: 'online',
-        name: 'Online',
-        dataType: 'boolean',
-        render: online => {
-          const color = online ? 'success' : 'danger';
-          const label = online ? 'Online' : 'Offline';
-          return <EuiHealth color={color}>{label}</EuiHealth>;
-        },
-        sortable: true,
-      },
-    ];
+      sortable: true
+    }];
 
     const search = {
       box: {
-        incremental: this.state.incremental,
+        incremental: this.state.incremental
       },
-      filters: !this.state.filters
-        ? undefined
-        : [
-            {
-              type: 'is',
-              field: 'online',
-              name: 'Online',
-              negatedName: 'Offline',
-            },
-            {
-              type: 'field_value_selection',
-              field: 'nationality',
-              name: 'Nationality',
-              multiSelect: false,
-              options: store.countries.map(country => ({
-                value: country.code,
-                name: country.name,
-                view: `${country.flag} ${country.name}`,
-              })),
-            },
-          ],
+      filters: !this.state.filters ? undefined : [
+        {
+          type: 'is',
+          field: 'online',
+          name: 'Online',
+          negatedName: 'Offline'
+        },
+        {
+          type: 'field_value_selection',
+          field: 'nationality',
+          name: 'Nationality',
+          multiSelect: false,
+          options: store.countries.map(country => ({
+            value: country.code,
+            name: country.name,
+            view: `${country.flag} ${country.name}`
+          }))
+        }
+      ]
     };
 
     return (
@@ -139,7 +129,7 @@ export class Table extends Component {
             />
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="l" />
+        <EuiSpacer size="l"/>
         <EuiInMemoryTable
           items={store.users}
           columns={columns}

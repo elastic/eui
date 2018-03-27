@@ -9,7 +9,11 @@ console.log(some);`;
 
 describe('EuiCode', () => {
   test('renders a code snippet', () => {
-    const component = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
+    const component = render(
+      <EuiCode {...requiredProps}>
+        {code}
+      </EuiCode>
+    );
 
     expect(component).toMatchSnapshot();
   });

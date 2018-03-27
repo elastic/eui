@@ -1,5 +1,8 @@
 import React from 'react';
-import { EuiBasicTable, EuiCode } from '../../../../../src/components';
+import {
+  EuiBasicTable,
+  EuiCode
+} from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -13,11 +16,10 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
+    }, {
       type: GuideSectionTypes.HTML,
       code: html,
-    },
+    }
   ],
   text: (
     <p>
@@ -26,5 +28,5 @@ export const section = {
     </p>
   ),
   components: { EuiBasicTable },
-  demo: <Table />,
+  demo: <Table/>,
 };

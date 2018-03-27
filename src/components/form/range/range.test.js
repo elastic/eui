@@ -18,14 +18,18 @@ describe('EuiRange', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
     test('fullWidth should render', () => {
-      const component = render(<EuiRange fullWidth />);
+      const component = render(
+        <EuiRange fullWidth/>
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

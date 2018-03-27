@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiDescriptionListTitle } from './description_list_title';
+import {
+  EuiDescriptionListTitle,
+} from './description_list_title';
 
-import { EuiDescriptionListDescription } from './description_list_description';
+import {
+  EuiDescriptionListDescription,
+} from './description_list_description';
 
 const typesToClassNameMap = {
   row: 'euiDescriptionList--row',
@@ -42,21 +46,28 @@ export const EuiDescriptionList = ({
 
   let childrenOrListItems = null;
   if (listItems) {
-    childrenOrListItems = listItems.map((item, index) => {
-      return [
-        <EuiDescriptionListTitle key={`title-${index}`}>{item.title}</EuiDescriptionListTitle>,
+    childrenOrListItems = (
+      listItems.map((item, index) => {
+        return [
+          <EuiDescriptionListTitle key={`title-${index}`}>
+            {item.title}
+          </EuiDescriptionListTitle>,
 
-        <EuiDescriptionListDescription key={`description-${index}`}>
-          {item.description}
-        </EuiDescriptionListDescription>,
-      ];
-    });
+          <EuiDescriptionListDescription key={`description-${index}`}>
+            {item.description}
+          </EuiDescriptionListDescription>
+        ];
+      })
+    );
   } else {
     childrenOrListItems = children;
   }
 
   return (
-    <dl className={classes} {...rest}>
+    <dl
+      className={classes}
+      {...rest}
+    >
       {childrenOrListItems}
     </dl>
   );
@@ -65,12 +76,10 @@ export const EuiDescriptionList = ({
 EuiDescriptionList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  listItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.node,
-      description: PropTypes.node,
-    })
-  ),
+  listItems: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.node,
+    description: PropTypes.node,
+  })),
   compressed: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),
   align: PropTypes.oneOf(ALIGNMENTS),

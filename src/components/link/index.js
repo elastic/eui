@@ -1,1 +1,3 @@
-export { EuiLink } from './link';
+export {
+  EuiLink,
+} from './link';

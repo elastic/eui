@@ -6,12 +6,12 @@ export function EuiModalHeader({ className, children, ...rest }) {
   const classes = classnames('euiModalHeader', className);
   return (
     <div className={classes} {...rest}>
-      {children}
+      { children }
     </div>
   );
 }
 
 EuiModalHeader.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 };

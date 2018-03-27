@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiFlyoutBody = ({ children, className, ...rest }) => {
+export const EuiFlyoutBody = ({
+  children,
+  className,
+  ...rest,
+}) => {
   const classes = classNames('euiFlyoutBody', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      {...rest}
+    >
       {children}
     </div>
   );

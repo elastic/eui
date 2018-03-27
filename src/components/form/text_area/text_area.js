@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiValidatableControl } from '../validatable_control';
+import {
+  EuiValidatableControl,
+} from '../validatable_control';
 
 export const EuiTextArea = ({
   children,

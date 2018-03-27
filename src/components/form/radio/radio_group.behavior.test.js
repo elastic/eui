@@ -12,7 +12,9 @@ describe('EuiRadioGroup behavior', () => {
     const onChangeHandler = sinon.stub();
     const component = mount(
       <EuiRadioGroup
-        options={[{ id: '1', label: 'Option #1' }]}
+        options={[
+          { id: '1', label: 'Option #1' },
+        ]}
         idSelected="1"
         onChange={onChangeHandler}
       />

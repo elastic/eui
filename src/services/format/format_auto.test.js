@@ -20,7 +20,7 @@ describe('formatAuto', () => {
   });
 
   test('array of dates', () => {
-    const dates = [new Date(1999, 0, 1, 2, 3, 4, 5)];
+    const dates = [ new Date(1999, 0, 1, 2, 3, 4, 5) ];
     expect(formatAuto(dates)).toBe('1 Jan 1999 02:03');
   });
 

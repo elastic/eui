@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { EuiAccordion, EuiButton } from '../../../../src/components';
+import {
+  EuiAccordion,
+  EuiButton,
+} from '../../../../src/components';
 
 export default () => (
   <EuiAccordion

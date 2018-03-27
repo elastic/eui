@@ -1,1 +1,3 @@
-export { EuiCard } from './card';
+export {
+  EuiCard,
+} from './card';

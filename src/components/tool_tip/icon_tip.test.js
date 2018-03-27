@@ -10,15 +10,19 @@ describe('EuiIconTip', () => {
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('type', () => {
       test('is rendered as the icon', () => {
-        const component = render(<EuiIconTip type="alert" id="id" content="content" />);
+        const component = render(
+          <EuiIconTip type="alert" id="id" content="content" />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(component)
+          .toMatchSnapshot();
       });
     });
   });

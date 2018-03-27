@@ -21,8 +21,13 @@ export default () => (
             </EuiTitle>
           </EuiPageContentHeaderSection>
         </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
+        <EuiPageContentBody>
+          Content body
+        </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
 );
+
+
+

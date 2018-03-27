@@ -12,14 +12,8 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({
-  children,
-  icon,
-  fullWidth,
-  iconSide,
-  isLoading,
-  className,
-}) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLoading, className }) => {
+
   const classes = classNames(
     'euiFormControlLayout',
     {
@@ -30,14 +24,22 @@ export const EuiFormControlLayout = ({
 
   let optionalLoader;
   if (isLoading) {
-    optionalLoader = <EuiLoadingSpinner size="m" className="euiFormControlLayout__loading" />;
+    optionalLoader = (
+      <EuiLoadingSpinner size="m" className="euiFormControlLayout__loading" />
+    );
   }
 
   let optionalIcon;
   if (icon) {
     const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
 
-    optionalIcon = <EuiIcon className={iconClasses} type={icon} size="m" />;
+    optionalIcon = (
+      <EuiIcon
+        className={iconClasses}
+        type={icon}
+        size="m"
+      />
+    );
   }
 
   return (

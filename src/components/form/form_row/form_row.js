@@ -1,4 +1,7 @@
-import React, { cloneElement, Component } from 'react';
+import React, {
+  cloneElement,
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { get } from 'lodash';
@@ -15,7 +18,7 @@ export class EuiFormRow extends Component {
 
     this.state = {
       isFocused: false,
-      id: props.id || makeId(),
+      id: props.id || makeId()
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -27,6 +30,7 @@ export class EuiFormRow extends Component {
     const onChildFocus = get(this.props, 'children.props.onFocus');
     if (onChildFocus) {
       onChildFocus(...args);
+
     }
 
     this.setState({
@@ -39,6 +43,7 @@ export class EuiFormRow extends Component {
     const onChildBlur = get(this.props, 'children.props.onBlur');
     if (onChildBlur) {
       onChildBlur(...args);
+
     }
 
     this.setState({
@@ -94,7 +99,11 @@ export class EuiFormRow extends Component {
 
     if (label) {
       optionalLabel = (
-        <EuiFormLabel isFocused={this.state.isFocused} isInvalid={isInvalid} htmlFor={id}>
+        <EuiFormLabel
+          isFocused={this.state.isFocused}
+          isInvalid={isInvalid}
+          htmlFor={id}
+        >
           {label}
         </EuiFormLabel>
       );
@@ -117,11 +126,15 @@ export class EuiFormRow extends Component {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      ...optionalProps,
+      ...optionalProps
     });
 
     return (
-      <div className={classes} {...rest} id={`${id}-row`}>
+      <div
+        className={classes}
+        {...rest}
+        id={`${id}-row`}
+      >
         {optionalLabel}
         {field}
         {optionalErrors}

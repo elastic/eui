@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { EuiDescriptionList, EuiSpacer } from '../../../../src/components';
+import {
+  EuiDescriptionList,
+  EuiSpacer,
+} from '../../../../src/components';
 
 const favoriteVideoGames = [
   {
@@ -18,14 +21,28 @@ const favoriteVideoGames = [
 ];
 export default () => (
   <div style={{ maxWidth: '400px' }}>
-    <EuiDescriptionList listItems={favoriteVideoGames} align="center" compressed />
+    <EuiDescriptionList
+      listItems={favoriteVideoGames}
+      align="center"
+      compressed
+    />
 
     <EuiSpacer size="l" />
 
-    <EuiDescriptionList listItems={favoriteVideoGames} type="column" align="center" compressed />
+    <EuiDescriptionList
+      listItems={favoriteVideoGames}
+      type="column"
+      align="center"
+      compressed
+    />
 
     <EuiSpacer size="l" />
 
-    <EuiDescriptionList listItems={favoriteVideoGames} type="inline" align="center" compressed />
+    <EuiDescriptionList
+      listItems={favoriteVideoGames}
+      type="inline"
+      align="center"
+      compressed
+    />
   </div>
 );

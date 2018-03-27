@@ -6,8 +6,11 @@ import { EuiHealth } from './health';
 
 describe('EuiHealth', () => {
   test('is rendered', () => {
-    const component = render(<EuiHealth {...requiredProps} />);
+    const component = render(
+      <EuiHealth {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(component)
+      .toMatchSnapshot();
   });
 });

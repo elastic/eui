@@ -1,3 +1,4 @@
+
 // Array of color-blind safe colors to use in visualizations or other
 // spots that need a large range of varied, qualitative colors.
 

@@ -7,7 +7,9 @@ import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
 
-import { Link } from 'react-router';
+import {
+  Link,
+} from 'react-router';
 
 import {
   EuiCard,
@@ -34,12 +36,13 @@ export const HomeView = () => (
         </EuiTitle>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
+
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
               <EuiLink href="https://github.com/elastic/eui">
-                <strong>{pkg.version}</strong>
+                <strong>{ pkg.version }</strong>
               </EuiLink>
             </p>
           </EuiFlexItem>
@@ -69,22 +72,19 @@ export const HomeView = () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
+
     </EuiFlexGroup>
     <EuiSpacer />
     <EuiText>
       <p>
-        The Elastic UI framework (EUI) is a design library in use at Elastic to build internal
-        products that need to share our aesthetics. It distributes UI React components and static
-        assets for use in building web layouts. Alongside the React components is a SASS/CSS layer
-        that can be used independently on its own. If this is your first time using EUI you might
-        want to read up on{' '}
-        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
-          how to consume EUI
-        </EuiLink>{' '}
-        and{' '}
-        <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">
-          Kibana plugin development
-        </EuiLink>{' '}
+        The Elastic UI framework (EUI) is a design library in use at Elastic to
+        build internal products that need to share our aesthetics.
+        It distributes UI React components and static assets for use
+        in building web layouts. Alongside the React components is a SASS/CSS
+        layer that can be used independently on its own.
+        If this is your first time using EUI you might want to read up on{' '}
+        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">how to consume EUI</EuiLink>{' '}
+        and <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">Kibana plugin development</EuiLink>{' '}
         in general.
       </p>
     </EuiText>
@@ -162,25 +162,20 @@ export const HomeView = () => (
       <h2>Design goals</h2>
       <p>EUI has the following primary goals..</p>
       <ul>
-        <li>
-          <EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast, color-blind safe
-          palettes and proper aria labels.
+        <li><EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast,
+          color-blind safe palettes and proper aria labels.
         </li>
-        <li>
-          <EuiCode>EUI is themable</EuiCode>. Theming should involve changing less than a dozen
-          lines of code. This means strict variable usage.
+        <li><EuiCode>EUI is themable</EuiCode>. Theming should involve changing
+          less than a dozen lines of code. This means strict variable usage.
         </li>
-        <li>
-          <EuiCode>EUI is responsive</EuiCode>. Currently we target mobile, laptop, desktop and wide
-          desktop breakpoints.
+        <li><EuiCode>EUI is responsive</EuiCode>. Currently we target
+          mobile, laptop, desktop and wide desktop breakpoints.
         </li>
-        <li>
-          <EuiCode>EUI is playful</EuiCode>. Consistent use of animation can bring life to our
-          design.
+        <li><EuiCode>EUI is playful</EuiCode>. Consistent use of animation can
+          bring life to our design.
         </li>
-        <li>
-          <EuiCode>EUI is documented and has tests</EuiCode>. Make sure the code is friendly to the
-          novice and expert alike.
+        <li><EuiCode>EUI is documented and has tests</EuiCode>. Make sure
+          the code is friendly to the novice and expert alike.
         </li>
       </ul>
     </EuiText>

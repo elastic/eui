@@ -19,12 +19,12 @@ export class Pager {
     this.update();
   }
 
-  setTotalItems = totalItems => {
+  setTotalItems = (totalItems) => {
     this.totalItems = totalItems;
     this.update();
   };
 
-  setItemsPerPage = itemsPerPage => {
+  setItemsPerPage = (itemsPerPage) => {
     this.itemsPerPage = itemsPerPage;
     this.update();
   };
@@ -51,10 +51,10 @@ export class Pager {
     this.goToPageIndex(this.currentPageIndex - 1);
   };
 
-  goToPageIndex = pageIndex => {
+  goToPageIndex = (pageIndex) => {
     this.currentPageIndex = pageIndex;
     this.update();
-  };
+  }
 
   update = () => {
     if (this.totalItems <= 0) {
