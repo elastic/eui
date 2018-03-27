@@ -63,7 +63,7 @@ export class EuiTablePagination extends Component {
     ));
 
     return (
-      <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+      <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
           <EuiPopover
             id="customizablePagination"
