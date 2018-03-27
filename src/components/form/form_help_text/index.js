@@ -1,3 +1,1 @@
-export {
-  EuiFormHelpText,
-} from './form_help_text';
+export { EuiFormHelpText } from './form_help_text';

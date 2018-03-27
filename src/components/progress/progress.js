@@ -29,26 +29,18 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
-export const EuiProgress = ({
-  className,
-  color,
-  value,
-  max,
-  size,
-  position,
-  ...rest
-}) => {
+export const EuiProgress = ({ className, color, value, max, size, position, ...rest }) => {
   const indeterminate = max === null;
   const classes = classNames(
     'euiProgress',
     {
       'euiProgress--indeterminate': indeterminate,
-      'euiProgress--native': !indeterminate
+      'euiProgress--native': !indeterminate,
     },
     sizeToClassNameMap[size],
     colorToClassNameMap[color],
     positionsToClassNameMap[position],
-    className,
+    className
   );
 
   // Because of a Firefox animation issue, indeterminate progress needs to use a <div>.
@@ -57,14 +49,7 @@ export const EuiProgress = ({
     return <div className={classes} {...rest} />;
   }
 
-  return (
-    <progress
-      className={classes}
-      value={value}
-      max={max}
-      {...rest}
-    />
-  );
+  return <progress className={classes} value={value} max={max} {...rest} />;
 };
 
 EuiProgress.propTypes = {

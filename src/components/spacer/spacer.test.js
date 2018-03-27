@@ -6,11 +6,8 @@ import { EuiSpacer } from './spacer';
 
 describe('EuiSpacer', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiSpacer {...requiredProps} />
-    );
+    const component = render(<EuiSpacer {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  EuiCallOut,
-  EuiLink,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiCallOut, EuiLink, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
@@ -17,7 +13,8 @@ export default () => (
         when viewed within a browser that&rsquo;s fairly narrow, it will wrap, too.
       </p>
       <p>
-        And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+        And some other stuff on another line, just for kicks. And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
       </p>
     </EuiCallOut>
 
@@ -35,6 +32,5 @@ export default () => (
       title="This is a small callout for more unintrusive but constant messages."
       iconType="pin"
     />
-
   </div>
 );

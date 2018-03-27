@@ -1,3 +1,1 @@
-export {
-  EuiTitle,
-} from './title';
+export { EuiTitle } from './title';

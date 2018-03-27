@@ -2,7 +2,6 @@ import { defaultSyntax } from './default_syntax';
 import { AST } from './ast';
 
 describe('defaultSyntax', () => {
-
   test('empty query', () => {
     const query = '';
     const ast = defaultSyntax.parse(query);
@@ -46,7 +45,6 @@ describe('defaultSyntax', () => {
   });
 
   test('single field clause', () => {
-
     const query = `name:john`;
     const ast = defaultSyntax.parse(query);
 
@@ -65,7 +63,6 @@ describe('defaultSyntax', () => {
   });
 
   test('single field clause - escaped', () => {
-
     const query = `n\\:ame:jo\\:hn`;
     const ast = defaultSyntax.parse(query);
 
@@ -84,7 +81,6 @@ describe('defaultSyntax', () => {
   });
 
   test('multiple field clauses', () => {
-
     const query = `name:john age:6`;
     const ast = defaultSyntax.parse(query);
 
@@ -110,7 +106,6 @@ describe('defaultSyntax', () => {
   });
 
   test('multiple field clauses of the same field', () => {
-
     const query = `name:john age:6 age:5`;
     const ast = defaultSyntax.parse(query);
 
@@ -143,7 +138,6 @@ describe('defaultSyntax', () => {
   });
 
   test('multiple field clauses of the same field with negations', () => {
-
     const query = `name:john age:6 -age:5`;
     const ast = defaultSyntax.parse(query);
 
@@ -176,7 +170,6 @@ describe('defaultSyntax', () => {
   });
 
   test('default clauses', () => {
-
     const query = `foo bar`;
     const ast = defaultSyntax.parse(query);
 
@@ -200,7 +193,6 @@ describe('defaultSyntax', () => {
   });
 
   test('default clauses with negation', () => {
-
     const query = `foo -bar`;
     const ast = defaultSyntax.parse(query);
 
@@ -224,7 +216,6 @@ describe('defaultSyntax', () => {
   });
 
   test('default clauses with field clauses and negations', () => {
-
     const query = `foo -name:john -bar age:5 name:joe`;
     const ast = defaultSyntax.parse(query);
 
@@ -269,7 +260,6 @@ describe('defaultSyntax', () => {
   });
 
   test('default clauses, field clauses, is clauses and negations', () => {
-
     const query = `foo -name:john -bar age:5 name:joe is:open -is:liberal`;
     const ast = defaultSyntax.parse(query);
 
@@ -326,7 +316,6 @@ describe('defaultSyntax', () => {
   });
 
   test('term phrases', () => {
-
     const query = `"foo bar"`;
     const ast = defaultSyntax.parse(query);
 
@@ -344,7 +333,6 @@ describe('defaultSyntax', () => {
   });
 
   test('field phrases', () => {
-
     const query = `field:"foo bar"`;
     const ast = defaultSyntax.parse(query);
 
@@ -363,7 +351,6 @@ describe('defaultSyntax', () => {
   });
 
   test('field or clause', () => {
-
     const query = `field:(foo or bar)`;
     const ast = defaultSyntax.parse(query);
 
@@ -384,7 +371,6 @@ describe('defaultSyntax', () => {
   });
 
   test('field or & and clause & phrases', () => {
-
     const query = `field1:(foo or "bar baz") -field2:baz`;
     const ast = defaultSyntax.parse(query);
 
@@ -412,7 +398,6 @@ describe('defaultSyntax', () => {
   });
 
   test('relaxed phrases with spaces', () => {
-
     const query = `f:" this is a relaxed phrase \t"`;
     const ast = defaultSyntax.parse(query);
 
@@ -431,7 +416,6 @@ describe('defaultSyntax', () => {
   });
 
   test('single term or expression', () => {
-
     const query = `f:(foo)`;
     const ast = defaultSyntax.parse(query);
 
@@ -449,5 +433,4 @@ describe('defaultSyntax', () => {
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
   });
-
 });

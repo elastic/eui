@@ -1,46 +1,28 @@
 import React from 'react';
 
-import {
-  EuiButton,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components/';
+import { EuiButton, EuiFlexGroup, EuiFlexItem } from '../../../../src/components/';
 
 export default () => (
   <div>
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          onClick={() => window.alert('Button clicked')}
-        >
-          Primary
-        </EuiButton>
+        <EuiButton onClick={() => window.alert('Button clicked')}>Primary</EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton fill onClick={() => window.alert('Button clicked')}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton size="s" fill onClick={() => window.alert('Button clicked')}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -48,41 +30,25 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="secondary"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="secondary" onClick={() => window.alert('Button clicked')}>
           Secondary
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="secondary"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="secondary" fill onClick={() => window.alert('Button clicked')}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="secondary"
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="secondary" size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="secondary"
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="secondary" size="s" fill onClick={() => window.alert('Button clicked')}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -90,41 +56,25 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="warning"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="warning" onClick={() => window.alert('Button clicked')}>
           Warning
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="warning"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="warning" fill onClick={() => window.alert('Button clicked')}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="warning"
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="warning" size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="warning"
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="warning" size="s" fill onClick={() => window.alert('Button clicked')}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -132,41 +82,25 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="danger"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="danger" onClick={() => window.alert('Button clicked')}>
           Danger
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="danger"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="danger" fill onClick={() => window.alert('Button clicked')}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="danger"
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="danger" size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          color="danger"
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton color="danger" size="s" fill onClick={() => window.alert('Button clicked')}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -174,41 +108,25 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton
-          isDisabled
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton isDisabled onClick={() => window.alert('Button clicked')}>
           Disabled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          isDisabled
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton isDisabled fill onClick={() => window.alert('Button clicked')}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          isDisabled
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton isDisabled size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          isDisabled
-          size="s"
-          fill
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButton isDisabled size="s" fill onClick={() => window.alert('Button clicked')}>
           small and filled
         </EuiButton>
       </EuiFlexItem>

@@ -6,11 +6,8 @@ import { EuiFilterButton } from './filter_button';
 
 describe('EuiFilterButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFilterButton {...requiredProps} />
-    );
+    const component = render(<EuiFilterButton {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

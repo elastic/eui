@@ -9,11 +9,7 @@ console.log(some);`;
 
 describe('EuiCodeBlock', () => {
   test('renders a code block', () => {
-    const component = render(
-      <EuiCodeBlock {...requiredProps}>
-        {code}
-      </EuiCodeBlock>
-    );
+    const component = render(<EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>);
 
     expect(component).toMatchSnapshot();
   });

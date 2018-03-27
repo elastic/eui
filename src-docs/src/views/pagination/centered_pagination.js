@@ -1,12 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiPagination,
-} from '../../../../src/components';
+import { EuiFlexGroup, EuiFlexItem, EuiPagination } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -23,7 +17,7 @@ export default class extends Component {
     this.setState({
       activePage: pageNumber,
     });
-  }
+  };
 
   render() {
     return (

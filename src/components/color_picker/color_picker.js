@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ChromePicker } from 'react-color';
@@ -25,7 +23,7 @@ export class EuiColorPicker extends Component {
     this.setState({ showColorSelector: !this.state.showColorSelector });
   };
 
-  handleColorSelection = (color) => {
+  handleColorSelection = color => {
     this.props.onChange(color.hex);
   };
 
@@ -33,11 +31,8 @@ export class EuiColorPicker extends Component {
     const { color } = this.props;
     const colorValue = color === null ? '(transparent)' : color;
     return (
-      <div
-        className="euiColorPicker__label"
-        aria-label={`Color selection is ${ colorValue }`}
-      >
-        { colorValue }
+      <div className="euiColorPicker__label" aria-label={`Color selection is ${colorValue}`}>
+        {colorValue}
       </div>
     );
   }
@@ -47,28 +42,20 @@ export class EuiColorPicker extends Component {
     const classes = classNames('euiColorPicker', className);
     return (
       <EuiOutsideClickDetector onOutsideClick={this.closeColorSelector}>
-        <div
-          className={classes}
-          data-test-subj={this.props['data-test-subj']}
-        >
-          <div
-            className="euiColorPicker__preview"
-            onClick={this.toggleColorSelector}
-          >
+        <div className={classes} data-test-subj={this.props['data-test-subj']}>
+          <div className="euiColorPicker__preview" onClick={this.toggleColorSelector}>
             <EuiColorPickerSwatch color={color} aria-label={this.props['aria-label']} />
-            { showColorLabel ? this.getColorLabel() : null }
+            {showColorLabel ? this.getColorLabel() : null}
           </div>
-          {
-            this.state.showColorSelector ?
-              <div className="euiColorPickerPopUp" data-test-subj="colorPickerPopup">
-                <ChromePicker
-                  color={color ? color : '#ffffff'}
-                  disableAlpha={true}
-                  onChange={this.handleColorSelection}
-                />
-              </div>
-              : null
-          }
+          {this.state.showColorSelector ? (
+            <div className="euiColorPickerPopUp" data-test-subj="colorPickerPopup">
+              <ChromePicker
+                color={color ? color : '#ffffff'}
+                disableAlpha={true}
+                onChange={this.handleColorSelection}
+              />
+            </div>
+          ) : null}
         </div>
       </EuiOutsideClickDetector>
     );

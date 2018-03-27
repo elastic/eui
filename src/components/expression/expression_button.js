@@ -11,15 +11,11 @@ export const EuiExpressionButton = ({
   ...rest
 }) => {
   const classes = classNames('euiExpressionButton', className, {
-    'euiExpressionButton-isActive': isActive
+    'euiExpressionButton-isActive': isActive,
   });
 
   return (
-    <button
-      className={classes}
-      onClick={onClick}
-      {...rest}
-    >
+    <button className={classes} onClick={onClick} {...rest}>
       <span className="euiExpressionButton__description">{description}</span>{' '}
       <span className="euiExpressionButton__value">{buttonValue}</span>
     </button>

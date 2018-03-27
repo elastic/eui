@@ -35,7 +35,7 @@ EuiRadioGroup.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.node,
-    }),
+    })
   ).isRequired,
   idSelected: PropTypes.string,
   onChange: PropTypes.func.isRequired,

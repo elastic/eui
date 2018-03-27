@@ -4,7 +4,6 @@ import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 
 export class CollapsedItemActions extends Component {
-
   constructor(props) {
     super(props);
     this.state = { popoverOpen: false };
@@ -30,7 +29,7 @@ export class CollapsedItemActions extends Component {
     });
   };
 
-  registerPopoverDiv = (popoverDiv) => {
+  registerPopoverDiv = popoverDiv => {
     if (!this.popoverDiv) {
       this.popoverDiv = popoverDiv;
       this.popoverDiv.addEventListener('focusout', this.onPopoverBlur);
@@ -44,7 +43,6 @@ export class CollapsedItemActions extends Component {
   }
 
   render() {
-
     const { actions, itemId, item, actionEnabled, onFocus } = this.props;
 
     const isOpen = this.state.popoverOpen;
@@ -60,11 +58,7 @@ export class CollapsedItemActions extends Component {
       allDisabled = allDisabled && !enabled;
       if (action.render) {
         const actionControl = action.render(item, enabled);
-        controls.push(
-          <EuiContextMenuItem key={key}>
-            {actionControl}
-          </EuiContextMenuItem>
-        );
+        controls.push(<EuiContextMenuItem key={key}>{actionControl}</EuiContextMenuItem>);
       } else {
         controls.push(
           <EuiContextMenuItem
@@ -101,7 +95,7 @@ export class CollapsedItemActions extends Component {
         panelPaddingSize="none"
         anchorPosition="leftCenter"
       >
-        <EuiContextMenuPanel items={controls}/>
+        <EuiContextMenuPanel items={controls} />
       </EuiPopover>
     );
   }

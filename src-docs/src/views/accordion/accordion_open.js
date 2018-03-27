@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiAccordion,
-  EuiText,
-  EuiCode,
-} from '../../../../src/components';
-
+import { EuiAccordion, EuiText, EuiCode } from '../../../../src/components';
 
 export default () => (
   <div>
@@ -15,7 +10,9 @@ export default () => (
       initialIsOpen={true}
     >
       <EuiText>
-        <p>Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear here.</p>
+        <p>
+          Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear here.
+        </p>
       </EuiText>
     </EuiAccordion>
   </div>

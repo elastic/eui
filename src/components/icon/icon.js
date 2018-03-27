@@ -322,14 +322,13 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiIcon = ({
-  type,
-  size,
-  color,
-  className,
-  ...rest
-}) => {
-  const classes = classNames('euiIcon', className, sizeToClassNameMap[size], colorToClassMap[color]);
+export const EuiIcon = ({ type, size, color, className, ...rest }) => {
+  const classes = classNames(
+    'euiIcon',
+    className,
+    sizeToClassNameMap[size],
+    colorToClassMap[color]
+  );
 
   const Svg = typeToIconMap[type] || empty;
 
@@ -339,7 +338,7 @@ export const EuiIcon = ({
 EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
   color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES)
+  size: PropTypes.oneOf(SIZES),
 };
 
 EuiIcon.defaultProps = {

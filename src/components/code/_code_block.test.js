@@ -20,17 +20,13 @@ describe('EuiCodeBlockImpl', () => {
     });
 
     test('highlights javascript code, adding "js" class', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={true} language="js" />
-      );
+      const component = render(<EuiCodeBlockImpl inline={true} language="js" />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('renders with transparent background', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={true} transparentBackground={true} />
-      );
+      const component = render(<EuiCodeBlockImpl inline={true} transparentBackground={true} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -48,17 +44,13 @@ describe('EuiCodeBlockImpl', () => {
     });
 
     test('highlights javascript code, adding "js" class', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={false} language="js" />
-      );
+      const component = render(<EuiCodeBlockImpl inline={false} language="js" />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('renders with transparent background', () => {
-      const component = render(
-        <EuiCodeBlockImpl inline={false} transparentBackground={true} />
-      );
+      const component = render(<EuiCodeBlockImpl inline={false} transparentBackground={true} />);
 
       expect(component).toMatchSnapshot();
     });

@@ -5,10 +5,7 @@ import classNames from 'classnames';
 import { isColorDark, hexToRgb } from '../../services/color';
 import { EuiKeyboardAccessible } from '../accessibility';
 
-import {
-  ICON_TYPES,
-  EuiIcon,
-} from '../icon';
+import { ICON_TYPES, EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   default: 'euiBadge--default',
@@ -38,7 +35,6 @@ export const EuiBadge = ({
   iconOnClick,
   ...rest
 }) => {
-
   let optionalColorClass = null;
   let optionalCustomStyles = null;
   let textColor = null;
@@ -46,7 +42,6 @@ export const EuiBadge = ({
   if (COLORS.indexOf(color) > -1) {
     optionalColorClass = colorToClassNameMap[color];
   } else {
-
     if (isColorDark(...hexToRgb(color))) {
       textColor = '#FFFFFF';
     } else {
@@ -55,7 +50,6 @@ export const EuiBadge = ({
 
     optionalCustomStyles = { backgroundColor: color, color: textColor };
   }
-
 
   const classes = classNames(
     'euiBadge',
@@ -72,42 +66,26 @@ export const EuiBadge = ({
           <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" />
         </EuiKeyboardAccessible>
       );
-
     } else {
-      optionalIcon = (
-        <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
-      );
+      optionalIcon = <EuiIcon type={iconType} size="s" className="euiBadge__icon" />;
     }
   }
 
   if (onClick) {
     return (
-      <button
-        className={classes}
-        style={optionalCustomStyles}
-        onClick={onClick}
-        {...rest}
-      >
+      <button className={classes} style={optionalCustomStyles} onClick={onClick} {...rest}>
         <span className="euiBadge__content">
           {optionalIcon}
-          <span>
-            {children}
-          </span>
+          <span>{children}</span>
         </span>
       </button>
     );
   } else {
     return (
-      <span
-        className={classes}
-        style={optionalCustomStyles}
-        {...rest}
-      >
+      <span className={classes} style={optionalCustomStyles} {...rest}>
         <span className="euiBadge__content">
           {optionalIcon}
-          <span>
-            {children}
-          </span>
+          <span>{children}</span>
         </span>
       </span>
     );

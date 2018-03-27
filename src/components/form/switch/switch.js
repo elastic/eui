@@ -4,16 +4,7 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../../icon';
 
-export const EuiSwitch = ({
-  label,
-  id,
-  name,
-  checked,
-  disabled,
-  onChange,
-  className,
-  ...rest
-}) => {
+export const EuiSwitch = ({ label, id, name, checked, disabled, onChange, className, ...rest }) => {
   const classes = classNames('euiSwitch', className);
 
   return (
@@ -32,24 +23,13 @@ export const EuiSwitch = ({
       <span className="euiSwitch__body">
         <span className="euiSwitch__thumb" />
         <span className="euiSwitch__track">
-          <EuiIcon
-            type="cross"
-            size="m"
-            className="euiSwitch__icon"
-          />
+          <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
-          <EuiIcon
-            type="check"
-            size="m"
-            className="euiSwitch__icon euiSwitch__icon--checked"
-          />
+          <EuiIcon type="check" size="m" className="euiSwitch__icon euiSwitch__icon--checked" />
         </span>
       </span>
 
-      <label
-        className="euiSwitch__label"
-        htmlFor={id}
-      >
+      <label className="euiSwitch__label" htmlFor={id}>
         {label}
       </label>
     </div>
@@ -62,5 +42,5 @@ EuiSwitch.propTypes = {
   label: PropTypes.node,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };

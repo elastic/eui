@@ -7,12 +7,9 @@ import { EuiDescriptionListTitle } from './description_list_title';
 describe('EuiDescriptionListTitle', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiDescriptionListTitle {...requiredProps}>
-        Content
-      </EuiDescriptionListTitle>
+      <EuiDescriptionListTitle {...requiredProps}>Content</EuiDescriptionListTitle>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

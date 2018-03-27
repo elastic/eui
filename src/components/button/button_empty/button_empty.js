@@ -4,10 +4,7 @@ import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import {
-  ICON_TYPES,
-  EuiIcon,
-} from '../../icon';
+import { ICON_TYPES, EuiIcon } from '../../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButtonEmpty--primary',
@@ -35,8 +32,8 @@ const iconSideToClassNameMap = {
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 const flushTypeToClassNameMap = {
-  'left': 'euiButtonEmpty--flushLeft',
-  'right': 'euiButtonEmpty--flushRight',
+  left: 'euiButtonEmpty--flushLeft',
+  right: 'euiButtonEmpty--flushRight',
 };
 
 export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
@@ -57,14 +54,13 @@ export const EuiButtonEmpty = ({
   buttonRef,
   ...rest
 }) => {
-
   const classes = classNames(
     'euiButtonEmpty',
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
     flushTypeToClassNameMap[flush],
-    className,
+    className
   );
 
   // Add an icon to the button if one exists.
@@ -72,12 +68,7 @@ export const EuiButtonEmpty = ({
 
   if (iconType) {
     buttonIcon = (
-      <EuiIcon
-        className="euiButtonEmpty__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
+      <EuiIcon className="euiButtonEmpty__icon" type={iconType} size="m" aria-hidden="true" />
     );
   }
 
@@ -85,14 +76,7 @@ export const EuiButtonEmpty = ({
     const secureRel = getSecureRelForTarget(target, rel);
 
     return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        ref={buttonRef}
-        {...rest}
-      >
+      <a className={classes} href={href} target={target} rel={secureRel} ref={buttonRef} {...rest}>
         <span className="euiButtonEmpty__content">
           {buttonIcon}
           <span>{children}</span>
@@ -101,13 +85,7 @@ export const EuiButtonEmpty = ({
     );
   } else {
     return (
-      <button
-        disabled={isDisabled}
-        className={classes}
-        type={type}
-        ref={buttonRef}
-        {...rest}
-      >
+      <button disabled={isDisabled} className={classes} type={type} ref={buttonRef} {...rest}>
         <span className="euiButtonEmpty__content">
           {buttonIcon}
           <span>{children}</span>

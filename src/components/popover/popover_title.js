@@ -6,10 +6,7 @@ export const EuiPopoverTitle = ({ children, className, ...rest }) => {
   const classes = classNames('euiPopoverTitle', className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -28,28 +26,23 @@ export default class extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   onButtonClick = () => {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
     const button = (
-      <EuiButton
-        iconSide="right"
-        fill
-        iconType="arrowDown"
-        onClick={this.onButtonClick}
-      >
+      <EuiButton iconSide="right" fill iconType="arrowDown" onClick={this.onButtonClick}>
         Form in a popover
       </EuiButton>
     );
@@ -66,21 +59,12 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="A text field"
-        >
+        <EuiFormRow label="A text field">
           <EuiFieldText name="popfirst" />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Range"
-          helpText="Some help text for the range"
-        >
-          <EuiRange
-            min={0}
-            max={100}
-            name="poprange"
-          />
+        <EuiFormRow label="Range" helpText="Some help text for the range">
+          <EuiRange min={0} max={100} name="poprange" />
         </EuiFormRow>
       </EuiForm>
     );
@@ -94,9 +78,7 @@ export default class extends Component {
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover.bind(this)}
         >
-          <div style={{ width: '300px' }}>
-            {formSample}
-          </div>
+          <div style={{ width: '300px' }}>{formSample}</div>
         </EuiPopover>
       </div>
     );

@@ -3,54 +3,44 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps, findTestSubject } from '../../test';
 
-import {
-  EuiGlobalToastList,
-  TOAST_FADE_OUT_MS,
-} from './global_toast_list';
+import { EuiGlobalToastList, TOAST_FADE_OUT_MS } from './global_toast_list';
 
 describe('EuiGlobalToastList', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiGlobalToastList
-        {...requiredProps}
-        dismissToast={() => {}}
-        toastLifeTimeMs={5}
-      />
+      <EuiGlobalToastList {...requiredProps} dismissToast={() => {}} toastLifeTimeMs={5} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('toasts', () => {
       test('is rendered', () => {
-        const toasts = [{
-          title: 'A',
-          text: 'a',
-          color: 'success',
-          iconType: 'check',
-          'data-test-subj': 'a',
-          id: 'a',
-        }, {
-          title: 'B',
-          text: 'b',
-          color: 'danger',
-          iconType: 'alert',
-          'data-test-subj': 'b',
-          id: 'b',
-        }];
+        const toasts = [
+          {
+            title: 'A',
+            text: 'a',
+            color: 'success',
+            iconType: 'check',
+            'data-test-subj': 'a',
+            id: 'a',
+          },
+          {
+            title: 'B',
+            text: 'b',
+            color: 'danger',
+            iconType: 'alert',
+            'data-test-subj': 'b',
+            id: 'b',
+          },
+        ];
 
         const component = render(
-          <EuiGlobalToastList
-            toasts={toasts}
-            dismissToast={() => {}}
-            toastLifeTimeMs={5}
-          />
+          <EuiGlobalToastList toasts={toasts} dismissToast={() => {}} toastLifeTimeMs={5} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -59,10 +49,12 @@ describe('EuiGlobalToastList', () => {
         const dismissToastSpy = sinon.spy();
         const component = mount(
           <EuiGlobalToastList
-            toasts={[{
-              'data-test-subj': 'b',
-              id: 'b',
-            }]}
+            toasts={[
+              {
+                'data-test-subj': 'b',
+                id: 'b',
+              },
+            ]}
             dismissToast={dismissToastSpy}
             toastLifeTimeMs={100}
           />
@@ -84,10 +76,12 @@ describe('EuiGlobalToastList', () => {
         const dismissToastSpy = sinon.spy();
         mount(
           <EuiGlobalToastList
-            toasts={[{
-              'data-test-subj': 'b',
-              id: 'b',
-            }]}
+            toasts={[
+              {
+                'data-test-subj': 'b',
+                id: 'b',
+              },
+            ]}
             dismissToast={dismissToastSpy}
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
           />

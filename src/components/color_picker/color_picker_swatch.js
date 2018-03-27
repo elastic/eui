@@ -4,14 +4,10 @@ import classNames from 'classnames';
 
 import { EuiColorPickerEmptySwatch } from './color_picker_empty_swatch';
 
-export const EuiColorPickerSwatch = ({
-  color,
-  className,
-  ...rest
-}) => {
+export const EuiColorPickerSwatch = ({ color, className, ...rest }) => {
   const isClear = !color;
   const classes = classNames('euiColorPicker__swatch', className, {
-    'euiColorPicker__emptySwatch': isClear,
+    euiColorPicker__emptySwatch: isClear,
   });
   let children;
 

@@ -3,15 +3,13 @@ import sinon from 'sinon';
 import { mount } from 'enzyme';
 import { EuiCodeEditor } from './code_editor';
 import { keyCodes } from '../../services';
-import {
-  findTestSubject,
-  requiredProps,
-  takeMountedSnapshot,
-} from '../../test';
+import { findTestSubject, requiredProps, takeMountedSnapshot } from '../../test';
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../services/accessibility/html_id_generator', () => ({
-  htmlIdGenerator: () => { return () => 42; },
+  htmlIdGenerator: () => {
+    return () => 42;
+  },
 }));
 
 describe('EuiCodeEditor', () => {
@@ -33,7 +31,7 @@ describe('EuiCodeEditor', () => {
     let component;
 
     beforeEach(() => {
-      component = mount(<EuiCodeEditor/>);
+      component = mount(<EuiCodeEditor />);
     });
 
     describe('hint element', () => {
@@ -59,7 +57,7 @@ describe('EuiCodeEditor', () => {
     describe('interaction', () => {
       test('bluring the ace textbox should call a passed onBlur prop', () => {
         const blurSpy = sinon.spy();
-        const el = mount(<EuiCodeEditor onBlur={blurSpy}/>);
+        const el = mount(<EuiCodeEditor onBlur={blurSpy} />);
         el.instance().onBlurAce();
         expect(blurSpy.called).toBe(true);
       });

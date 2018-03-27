@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  EuiButtonIcon,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components';
+import { EuiButtonIcon, EuiFlexGroup, EuiFlexItem } from '../../../../src/components';
 
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
@@ -37,4 +33,3 @@ export default () => (
     </EuiFlexItem>
   </EuiFlexGroup>
 );
-

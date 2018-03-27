@@ -6,11 +6,8 @@ import { EuiFlyoutBody } from './flyout_body';
 
 describe('EuiFlyoutBody', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFlyoutBody {...requiredProps} />
-    );
+    const component = render(<EuiFlyoutBody {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

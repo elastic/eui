@@ -2,21 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-import {
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-} from '../../services';
+import { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 
-const ALIGNMENT = [
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-];
+const ALIGNMENT = [LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT];
 
 export const EuiTableHeaderCell = ({
   children,
@@ -56,11 +46,7 @@ export const EuiTableHeaderCell = ({
     const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
 
     return (
-      <th
-        className={classes}
-        scope={scope}
-        {...rest}
-      >
+      <th className={classes} scope={scope} {...rest}>
         <button
           type="button"
           className={buttonClasses}
@@ -77,15 +63,8 @@ export const EuiTableHeaderCell = ({
   }
 
   return (
-    <th
-      className={classes}
-      aria-label={ariaLabel}
-      scope={scope}
-      {...rest}
-    >
-      <div className={contentClasses}>
-        {children}
-      </div>
+    <th className={classes} aria-label={ariaLabel} scope={scope} {...rest}>
+      <div className={contentClasses}>{children}</div>
     </th>
   );
 };

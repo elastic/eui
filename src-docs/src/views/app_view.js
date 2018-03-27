@@ -1,26 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import {
-  applyTheme,
-} from '../services';
+import { applyTheme } from '../services';
 
-import {
-  GuidePageChrome,
-} from '../components';
+import { GuidePageChrome } from '../components';
 
-import {
-  EuiErrorBoundary,
-  EuiPage,
-  EuiPageBody,
-} from '../../../src/components';
+import { EuiErrorBoundary, EuiPage, EuiPageBody } from '../../../src/components';
 
 import { keyCodes } from '../../../src/services';
 
 export class AppView extends Component {
   updateTheme = () => {
     applyTheme(this.props.theme);
-  }
+  };
 
   componentDidUpdate(prevProps) {
     this.updateTheme();
@@ -31,9 +23,7 @@ export class AppView extends Component {
   }
 
   componentDidMount() {
-    const {
-      routes,
-    } = this.props;
+    const { routes } = this.props;
 
     this.updateTheme();
 
@@ -62,13 +52,7 @@ export class AppView extends Component {
   }
 
   renderContent() {
-    const {
-      children,
-      currentRoute,
-      toggleTheme,
-      theme,
-      routes,
-    } = this.props;
+    const { children, currentRoute, toggleTheme, theme, routes } = this.props;
 
     const { navigation } = routes;
 
@@ -84,20 +68,14 @@ export class AppView extends Component {
             />
           </EuiErrorBoundary>
 
-          <div className="guidePageContent">
-            {children}
-          </div>
+          <div className="guidePageContent">{children}</div>
         </EuiPageBody>
       </EuiPage>
     );
   }
 
   render() {
-    return (
-      <div className="guide">
-        {this.renderContent()}
-      </div>
-    );
+    return <div className="guide">{this.renderContent()}</div>;
   }
 }
 

@@ -1,12 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiCheckbox,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiCheckbox, EuiSpacer } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 

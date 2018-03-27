@@ -114,9 +114,7 @@ module.exports = class extends Generator {
 
       this.log(chalk.white(`\n// Export component (e.. from component's index.js).`));
       this.log(
-        `${chalk.magenta('export')} {\n` +
-        `  ${componentName},\n` +
-        `} ${chalk.magenta('from')} ${chalk.cyan(`'./${this.config.name}'`)};`
+        `${chalk.magenta('export')} { ${componentName} } ${chalk.magenta('from')} ${chalk.cyan(`'./${this.config.name}'`)};`
       );
 
       this.log(chalk.white('\n// Import styles.'));

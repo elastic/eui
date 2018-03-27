@@ -26,7 +26,9 @@ export const formatAuto = value => {
   }
 
   if (isArray(value)) {
-    return Array.isArray(value) ? value.map(item => formatAuto(item)).join(', ') : formatAuto(value);
+    return Array.isArray(value)
+      ? value.map(item => formatAuto(item)).join(', ')
+      : formatAuto(value);
   }
 
   // TODO not sure if we want that.. the (+) is that we show something, the (-) is that it's very technical

@@ -1,12 +1,8 @@
-import React, {
-  Fragment,
-} from 'react';
+import React, { Fragment } from 'react';
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import { calculateContrast, rgbToHex } from '../../../../src/services';
 
-import {
-  GuidePage,
-} from '../../components';
+import { GuidePage } from '../../components';
 
 import {
   EuiText,
@@ -64,7 +60,8 @@ function renderPaletteColor(color, index) {
         <EuiText size="s">
           <strong>{color}</strong>
           <EuiSpacer size="s" />
-          RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}<br/>
+          RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}
+          <br />
           HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}
         </EuiText>
       </div>
@@ -72,25 +69,24 @@ function renderPaletteColor(color, index) {
   );
 }
 
-export default() => (
+export default () => (
   <GuidePage title="Color guidelines">
-
     <EuiSpacer size="xl" />
 
     <EuiText>
       <h2>Core palette</h2>
       <p>
-        Elastic UI builds with a very limited palette. We use a core set of three colors,
-        combined with a green / orange / red qualitative set of three, and finally combine
-        those against a six-color grayscale. Variation behond these colors is minimal and
-        always dont with math manipulation against the original set.
+        Elastic UI builds with a very limited palette. We use a core set of three colors, combined
+        with a green / orange / red qualitative set of three, and finally combine those against a
+        six-color grayscale. Variation behond these colors is minimal and always dont with math
+        manipulation against the original set.
       </p>
     </EuiText>
 
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {allowedColors.map(function (color, index) {
+      {allowedColors.map(function(color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
@@ -100,20 +96,17 @@ export default() => (
     <EuiText>
       <h2>Qualitative visualization palette</h2>
       <p>
-        The following colors are color-blind safe and should be used in
-        qualitative visualizations.
+        The following colors are color-blind safe and should be used in qualitative visualizations.
       </p>
     </EuiText>
-
 
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {visColors.map(function (color, index) {
+      {visColors.map(function(color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
-
 
     <EuiSpacer size="xxl" />
 
@@ -122,23 +115,21 @@ export default() => (
       <p>
         <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
           WCAG specifications
-        </EuiLink> defines specific contrast ratios between forground text and a background color.
-        The grid below displays which color combinations pass that rating. In general you sould try to use
-        a color combination that is <EuiBadge color="#333">AA</EuiBadge> or above except when using
+        </EuiLink>{' '}
+        defines specific contrast ratios between forground text and a background color. The grid
+        below displays which color combinations pass that rating. In general you sould try to use a
+        color combination that is <EuiBadge color="#333">AA</EuiBadge> or above except when using
         large text.
       </p>
       <h3>Rating definitions</h3>
       <ul>
+        <li>{ratingAAA} Passes with a contrast of 7+</li>
         <li>
-          {ratingAAA} Passes with a contrast of 7+
+          <EuiBadge color="#333">AA</EuiBadge> {ratingAA} Passes with a contrast of 4.5+
         </li>
         <li>
-          <EuiBadge color="#333">AA</EuiBadge>{' '}
-          {ratingAA} Passes with a contrast of 4.5+
-        </li>
-        <li>
-          <EuiBadge color="#666">AA18</EuiBadge>{' '}
-          {ratingAA18} Passes with a contrast of 3+, but only if the text displayed is 18px or larger
+          <EuiBadge color="#666">AA18</EuiBadge> {ratingAA18} Passes with a contrast of 3+, but only
+          if the text displayed is 18px or larger
         </li>
       </ul>
     </EuiText>
@@ -146,16 +137,14 @@ export default() => (
     <EuiSpacer size="xxl" />
 
     <div>
-      {allowedColors.map(function (color, index) {
+      {allowedColors.map(function(color, index) {
         return (
           <Fragment key={index}>
             <EuiFlexGroup gutterSize="none">
-              {allowedColors.map(function (color2, index) {
-                const contrast = (
-                  calculateContrast(
-                    [lightColors[color].r, lightColors[color].g, lightColors[color].b],
-                    [lightColors[color2].r, lightColors[color2].g, lightColors[color2].b],
-                  )
+              {allowedColors.map(function(color2, index) {
+                const contrast = calculateContrast(
+                  [lightColors[color].r, lightColors[color].g, lightColors[color].b],
+                  [lightColors[color2].r, lightColors[color2].g, lightColors[color2].b]
                 );
 
                 let contrastRating;
@@ -188,26 +177,28 @@ export default() => (
                       title={`Contrast is ${contrast.toFixed(1)}`}
                       content={
                         <EuiDescriptionList>
-                          <EuiDescriptionListTitle>
-                            Text
-                          </EuiDescriptionListTitle>
+                          <EuiDescriptionListTitle>Text</EuiDescriptionListTitle>
                           <EuiDescriptionListDescription>
                             <EuiFlexGroup alignItems="center" gutterSize="s">
                               <EuiFlexItem grow={false}>
-                                <div className="guidelineColor__swatch" style={{ background: lightColors[color2].rgba }} />
+                                <div
+                                  className="guidelineColor__swatch"
+                                  style={{ background: lightColors[color2].rgba }}
+                                />
                               </EuiFlexItem>
                               <EuiFlexItem grow={false} style={{ color: 'white' }}>
                                 {color2}
                               </EuiFlexItem>
                             </EuiFlexGroup>
                           </EuiDescriptionListDescription>
-                          <EuiDescriptionListTitle>
-                            Background
-                          </EuiDescriptionListTitle>
+                          <EuiDescriptionListTitle>Background</EuiDescriptionListTitle>
                           <EuiDescriptionListDescription>
                             <EuiFlexGroup alignItems="center" gutterSize="s">
                               <EuiFlexItem grow={false}>
-                                <div className="guidelineColor__swatch" style={{ background: lightColors[color].rgba }} />
+                                <div
+                                  className="guidelineColor__swatch"
+                                  style={{ background: lightColors[color].rgba }}
+                                />
                               </EuiFlexItem>
                               <EuiFlexItem grow={false} style={{ color: 'white' }}>
                                 {color}
@@ -221,7 +212,8 @@ export default() => (
                         <div
                           className="guidelineColor__stripe"
                           style={{
-                            color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba
+                            color: lightColors[color2].rgba,
+                            backgroundColor: lightColors[color].rgba,
                           }}
                         >
                           <div>Text</div>

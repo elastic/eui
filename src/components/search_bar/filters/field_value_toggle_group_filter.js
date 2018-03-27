@@ -7,14 +7,14 @@ import { Query } from '../query';
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
   value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  negatedName: PropTypes.string
+  negatedName: PropTypes.string,
 });
 
 export const FieldValueToggleGroupFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('field_value_toggle_group').isRequired,
   field: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(FieldValueToggleGroupFilterItemType).isRequired,
-  available: PropTypes.func // () => boolean
+  available: PropTypes.func, // () => boolean
 });
 
 const FieldValueToggleGroupFilterPropTypes = {
@@ -25,7 +25,6 @@ const FieldValueToggleGroupFilterPropTypes = {
 };
 
 export class FieldValueToggleGroupFilter extends Component {
-
   static propTypes = FieldValueToggleGroupFilterPropTypes;
 
   constructor(props) {
@@ -46,9 +45,9 @@ export class FieldValueToggleGroupFilter extends Component {
   valueChanged(item, active) {
     const { field } = this.props.config;
     const { value } = item;
-    const query = active ?
-      this.props.query.removeSimpleFieldClauses(field) :
-      this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
+    const query = active
+      ? this.props.query.removeSimpleFieldClauses(field)
+      : this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
     this.props.onChange(query);
   }
 
@@ -61,11 +60,7 @@ export class FieldValueToggleGroupFilter extends Component {
       };
       const key = `field_value_toggle_filter_item_${index}`;
       return (
-        <EuiFilterButton
-          key={key}
-          onClick={onClick}
-          hasActiveFilters={active}
-        >
+        <EuiFilterButton key={key} onClick={onClick} hasActiveFilters={active}>
           {name}
         </EuiFilterButton>
       );

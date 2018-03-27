@@ -8,52 +8,35 @@ import { EuiPopover } from './popover';
 import { keyCodes } from '../../services';
 
 let id = 0;
-const getId = () => (`${id++}`);
+const getId = () => `${id++}`;
 
 describe('EuiPopover', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiPopover
-        id={getId()}
-        button={<button />}
-        closePopover={() => {}}
-        {...requiredProps}
-      />
+      <EuiPopover id={getId()} button={<button />} closePopover={() => {}} {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('children is rendered', () => {
     const component = render(
-      <EuiPopover
-        id={getId()}
-        button={<button />}
-        closePopover={() => {}}
-      >
+      <EuiPopover id={getId()} button={<button />} closePopover={() => {}}>
         Children
       </EuiPopover>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('withTitle', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            withTitle
-            button={<button />}
-            closePopover={() => {}}
-          />
+          <EuiPopover id={getId()} withTitle button={<button />} closePopover={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -78,15 +61,10 @@ describe('EuiPopover', () => {
     describe('anchorPosition', () => {
       test('defaults to centerDown', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-          />
+          <EuiPopover id={getId()} button={<button />} closePopover={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('leftCenter is rendered', () => {
@@ -99,8 +77,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('downRight is rendered', () => {
@@ -113,68 +90,43 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('isOpen', () => {
       test('defaults to false', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-          />
+          <EuiPopover id={getId()} button={<button />} closePopover={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('renders true', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-            isOpen
-          />
+          <EuiPopover id={getId()} button={<button />} closePopover={() => {}} isOpen />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('ownFocus', () => {
       test('defaults to false', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            isOpen
-            button={<button />}
-            closePopover={() => {}}
-          />
+          <EuiPopover id={getId()} isOpen button={<button />} closePopover={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('renders true', () => {
         const component = render(
-          <EuiPopover
-            id={getId()}
-            isOpen
-            ownFocus
-            button={<button />}
-            closePopover={() => {}}
-          />
+          <EuiPopover id={getId()} isOpen ownFocus button={<button />} closePopover={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -190,8 +142,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -207,8 +158,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });

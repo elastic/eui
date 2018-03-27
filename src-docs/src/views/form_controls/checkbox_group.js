@@ -1,12 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiCheckboxGroup,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiCheckboxGroup, EuiSpacer } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -16,16 +10,20 @@ export default class extends Component {
 
     const idPrefix = makeId();
 
-    this.checkboxes = [{
-      id: `${idPrefix}0`,
-      label: 'Option one',
-    }, {
-      id: `${idPrefix}1`,
-      label: 'Option two is checked by default',
-    }, {
-      id: `${idPrefix}2`,
-      label: 'Option three',
-    }];
+    this.checkboxes = [
+      {
+        id: `${idPrefix}0`,
+        label: 'Option one',
+      },
+      {
+        id: `${idPrefix}1`,
+        label: 'Option two is checked by default',
+      },
+      {
+        id: `${idPrefix}2`,
+        label: 'Option three',
+      },
+    ];
 
     this.state = {
       checkboxIdToSelectedMap: {
@@ -35,9 +33,12 @@ export default class extends Component {
   }
 
   onChange = optionId => {
-    const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
-      [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-    } });
+    const newCheckboxIdToSelectedMap = {
+      ...this.state.checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -11,7 +9,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFieldNumber,
-
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -28,28 +25,23 @@ export default class extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   onButtonClick = () => {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
     const button = (
-      <EuiButton
-        iconSide="right"
-        fill
-        iconType="arrowDown"
-        onClick={this.onButtonClick}
-      >
+      <EuiButton iconSide="right" fill iconType="arrowDown" onClick={this.onButtonClick}>
         Form in a popover
       </EuiButton>
     );
@@ -84,9 +76,7 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
       >
-        <div style={{ width: 500 }}>
-          {formSample}
-        </div>
+        <div style={{ width: 500 }}>{formSample}</div>
       </EuiPopover>
     );
   }

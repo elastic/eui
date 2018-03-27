@@ -3,9 +3,7 @@ import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import sinon from 'sinon';
 
-import {
-  EuiExpressionButton,
-} from './expression_button';
+import { EuiExpressionButton } from './expression_button';
 
 describe('EuiExpressionButton', () => {
   test('renders', () => {
@@ -14,7 +12,7 @@ describe('EuiExpressionButton', () => {
         description="the answer is"
         buttonValue="42"
         isActive={false}
-        onClick={()=>{}}
+        onClick={() => {}}
         {...requiredProps}
       />
     );
@@ -30,7 +28,7 @@ describe('EuiExpressionButton', () => {
             description="the answer is"
             buttonValue="42"
             isActive={true}
-            onClick={()=>{}}
+            onClick={() => {}}
           />
         );
 
@@ -43,7 +41,7 @@ describe('EuiExpressionButton', () => {
             description="the answer is"
             buttonValue="42"
             isActive={false}
-            onClick={()=>{}}
+            onClick={() => {}}
           />
         );
 

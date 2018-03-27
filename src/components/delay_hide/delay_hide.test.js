@@ -6,12 +6,7 @@ describe('when EuiDelayHide is visible initially', () => {
   let wrapper;
   beforeEach(() => {
     jest.useFakeTimers();
-    wrapper = mount(
-      <EuiDelayHide
-        hide={false}
-        render={() => <div>Hello World</div>}
-      />
-    );
+    wrapper = mount(<EuiDelayHide hide={false} render={() => <div>Hello World</div>} />);
   });
 
   test('it should be visible initially', async () => {
@@ -53,9 +48,7 @@ describe('when EuiDelayHide is hidden initially', () => {
   let wrapper;
   beforeEach(() => {
     jest.useFakeTimers();
-    wrapper = mount(
-      <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
-    );
+    wrapper = mount(<EuiDelayHide hide={true} render={() => <div>Hello World</div>} />);
   });
 
   test('it should be hidden initially', async () => {
@@ -84,11 +77,7 @@ describe('when EuiDelayHide is visible initially and has a minimumDuration of 20
   beforeEach(() => {
     jest.useFakeTimers();
     wrapper = mount(
-      <EuiDelayHide
-        hide={false}
-        minimumDuration={2000}
-        render={() => <div>Hello World</div>}
-      />
+      <EuiDelayHide hide={false} minimumDuration={2000} render={() => <div>Hello World</div>} />
     );
     wrapper.setProps({ hide: true });
   });

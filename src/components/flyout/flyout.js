@@ -1,15 +1,11 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
-import {
-  EuiOverlayMask,
-} from '../overlay_mask';
+import { EuiOverlayMask } from '../overlay_mask';
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
@@ -29,24 +25,15 @@ export class EuiFlyout extends Component {
   };
 
   render() {
-    const {
-      className,
-      children,
-      onClose,
-      ownFocus,
-      size,
-      ...rest
-    } = this.props;
+    const { className, children, onClose, ownFocus, size, ...rest } = this.props;
 
-    const classes = classnames(
-      'euiFlyout',
-      sizeToClassNameMap[size],
-      className
-    );
+    const classes = classnames('euiFlyout', sizeToClassNameMap[size], className);
 
     const flyoutContent = (
       <div
-        ref={node => { this.flyout = node; }}
+        ref={node => {
+          this.flyout = node;
+        }}
         className={classes}
         tabIndex={0}
         onKeyDown={this.onKeyDown}
@@ -60,9 +47,7 @@ export class EuiFlyout extends Component {
     // to click it to close it.
     let optionalOverlay;
     if (ownFocus) {
-      optionalOverlay = (
-        <EuiOverlayMask onClick={onClose} />
-      );
+      optionalOverlay = <EuiOverlayMask onClick={onClose} />;
     }
 
     return (

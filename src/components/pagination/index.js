@@ -1,7 +1,3 @@
-export {
-  EuiPagination,
-} from './pagination';
+export { EuiPagination } from './pagination';
 
-export {
-  EuiPaginationButton,
-} from './pagination_button';
+export { EuiPaginationButton } from './pagination_button';

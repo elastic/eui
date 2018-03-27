@@ -6,44 +6,26 @@ import { EuiAvatar, SIZES } from './avatar';
 
 describe('EuiAvatar', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiAvatar
-        name="name"
-        {...requiredProps}
-      />
-    );
+    const component = render(<EuiAvatar name="name" {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('imageUrl', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiAvatar
-            name="name"
-            imageUrl="image url"
-          />
-        );
+        const component = render(<EuiAvatar name="name" imageUrl="image url" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       SIZES.forEach(size => {
         it(`${size} is rendered`, () => {
-          const component = render(
-            <EuiAvatar
-              name="name"
-              size={size}
-            />
-          );
+          const component = render(<EuiAvatar name="name" size={size} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

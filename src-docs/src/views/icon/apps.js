@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiIcon,
-  EuiPanel,
-  EuiText,
-} from '../../../../src/components';
+import { EuiFlexGrid, EuiFlexItem, EuiIcon, EuiPanel, EuiText } from '../../../../src/components';
 
 const iconTypes = [
   'addDataApp',
@@ -37,24 +31,15 @@ const iconTypes = [
 
 export default () => (
   <EuiFlexGrid columns={4}>
-    {
-      iconTypes.map(iconType => (
-        <EuiFlexItem
-          className="guideDemo__icon"
-          key={iconType}
-          style={{ width: '200px' }}
-        >
-          <EuiPanel>
-            <EuiIcon
-              type={iconType}
-              size="xl"
-            />
-            <EuiText size="s">
-              <p>{iconType}</p>
-            </EuiText>
-          </EuiPanel>
-        </EuiFlexItem>
-      ))
-    }
+    {iconTypes.map(iconType => (
+      <EuiFlexItem className="guideDemo__icon" key={iconType} style={{ width: '200px' }}>
+        <EuiPanel>
+          <EuiIcon type={iconType} size="xl" />
+          <EuiText size="s">
+            <p>{iconType}</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+    ))}
   </EuiFlexGrid>
 );

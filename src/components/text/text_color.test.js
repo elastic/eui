@@ -6,11 +6,8 @@ import { EuiTextColor } from './text_color';
 
 describe('EuiTextColor', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTextColor {...requiredProps} />
-    );
+    const component = render(<EuiTextColor {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 import 'brace/mode/less';
 import 'brace/theme/github';
 
-import {
-  EuiCodeEditor,
-} from '../../../../src/components';
+import { EuiCodeEditor } from '../../../../src/components';
 
 export default class extends Component {
   state = {
-    value: '<p>This code is read only</p>'
+    value: '<p>This code is read only</p>',
   };
 
   render() {

@@ -15,12 +15,12 @@ import { Query } from '../query';
 const FieldValueOptionType = PropTypes.shape({
   value: PropTypes.any.isRequired,
   name: PropTypes.string,
-  view: PropTypes.node
+  view: PropTypes.node,
 });
 
 const FieldValueOptionsType = PropTypes.oneOfType([
   PropTypes.func, // (query) => Promise<FieldValueOptionType[]>
-  PropTypes.arrayOf(FieldValueOptionType)
+  PropTypes.arrayOf(FieldValueOptionType),
 ]);
 
 export const FieldValueSelectionFilterConfigType = PropTypes.shape({
@@ -29,7 +29,7 @@ export const FieldValueSelectionFilterConfigType = PropTypes.shape({
   name: PropTypes.string.isRequired,
   options: FieldValueOptionsType.isRequired,
   cache: PropTypes.number,
-  multiSelect: PropTypes.oneOfType([ PropTypes.bool, PropTypes.oneOf([ 'and', 'or' ]) ]),
+  multiSelect: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['and', 'or'])]),
   loadingMessage: PropTypes.string,
   noOptionsMessage: PropTypes.string,
   searchThreshold: PropTypes.number,
@@ -49,11 +49,10 @@ const defaults = {
     loadingMessage: 'Loading...',
     noOptionsMessage: 'No options found',
     searchThreshold: 10,
-  }
+  },
 };
 
 export class FieldValueSelectionFilter extends Component {
-
   static propTypes = FieldValueSelectionFilterPropTypes;
 
   constructor(props) {
@@ -62,7 +61,7 @@ export class FieldValueSelectionFilter extends Component {
     this.state = {
       popoverOpen: false,
       options: null,
-      error: null
+      error: null,
     };
   }
 
@@ -81,7 +80,7 @@ export class FieldValueSelectionFilter extends Component {
       return {
         options: null,
         error: undefined,
-        popoverOpen: !prevState.popoverOpen
+        popoverOpen: !prevState.popoverOpen,
       };
     });
   }
@@ -89,17 +88,19 @@ export class FieldValueSelectionFilter extends Component {
   loadOptions() {
     const loader = this.resolveOptionsLoader();
     this.setState({ options: null, error: undefined });
-    loader().then((options) => {
-      this.setState({
-        error: undefined,
-        options: {
-          all: options,
-          shown: options
-        }
+    loader()
+      .then(options => {
+        this.setState({
+          error: undefined,
+          options: {
+            all: options,
+            shown: options,
+          },
+        });
+      })
+      .catch(() => {
+        this.setState({ options: null, error: `Could not load options` });
       });
-    }).catch(() => {
-      this.setState({ options: null, error: `Could not load options` });
-    });
   }
 
   filterOptions(prefix = '') {
@@ -113,8 +114,8 @@ export class FieldValueSelectionFilter extends Component {
           shown: prevState.options.all.filter(option => {
             const name = this.resolveOptionName(option);
             return name.toLowerCase().startsWith(prefix.toLowerCase());
-          })
-        }
+          }),
+        },
       };
     });
   }
@@ -134,15 +135,17 @@ export class FieldValueSelectionFilter extends Component {
       }
       if (this.props.config.cache > 0) {
         return new Promise((resolve, reject) => {
-          return options().then((opts) => {
-            this.setState({ cachedOptions: opts });
-            this.timeoutId = setTimeout(() => {
-              this.setState({ cachedOptions: null });
-            }, this.props.config.cache);
-            resolve(opts);
-          }).catch((error) => {
-            reject(error);
-          });
+          return options()
+            .then(opts => {
+              this.setState({ cachedOptions: opts });
+              this.timeoutId = setTimeout(() => {
+                this.setState({ cachedOptions: null });
+              }, this.props.config.cache);
+              resolve(opts);
+            })
+            .catch(error => {
+              reject(error);
+            });
         });
       }
     };
@@ -158,20 +161,20 @@ export class FieldValueSelectionFilter extends Component {
       // we're closing popover only if the user can only select one item... if the
       // user can select more, we'll leave it open so she can continue selecting
       this.closePopover();
-      const query = checked ?
-        this.props.query.removeSimpleFieldClauses(field) :
-        this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
+      const query = checked
+        ? this.props.query.removeSimpleFieldClauses(field)
+        : this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
       this.props.onChange(query);
     } else {
       if (multiSelect === 'or') {
-        const query = checked ?
-          this.props.query.removeOrFieldValue(field, value) :
-          this.props.query.addOrFieldValue(field, value);
+        const query = checked
+          ? this.props.query.removeOrFieldValue(field, value)
+          : this.props.query.addOrFieldValue(field, value);
         this.props.onChange(query);
       } else {
-        const query = checked ?
-          this.props.query.removeSimpleFieldValue(field, value) :
-          this.props.query.addSimpleFieldValue(field, value);
+        const query = checked
+          ? this.props.query.removeSimpleFieldValue(field, value)
+          : this.props.query.addSimpleFieldValue(field, value);
         this.props.onChange(query);
       }
     }
@@ -179,7 +182,6 @@ export class FieldValueSelectionFilter extends Component {
 
   onKeyDown(index, event) {
     switch (event.keyCode) {
-
       case keyCodes.DOWN:
         if (index < this.selectItems.length - 1) {
           event.preventDefault();
@@ -209,9 +211,10 @@ export class FieldValueSelectionFilter extends Component {
   render() {
     const { index, query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
-    const active = multiSelect === 'or' ?
-      query.hasOrFieldClause(config.field) :
-      query.hasSimpleFieldClause(config.field);
+    const active =
+      multiSelect === 'or'
+        ? query.hasOrFieldClause(config.field)
+        : query.hasSimpleFieldClause(config.field);
     const button = (
       <EuiFilterButton
         iconType="arrowDown"
@@ -222,7 +225,6 @@ export class FieldValueSelectionFilter extends Component {
         {config.name}
       </EuiFilterButton>
     );
-
 
     const searchBox = this.renderSearchBox();
     const content = this.renderContent(config.field, query, config, multiSelect);
@@ -254,10 +256,10 @@ export class FieldValueSelectionFilter extends Component {
       return (
         <EuiPopoverTitle>
           <EuiFieldSearch
-            inputRef={(ref) => this.searchInput = ref}
+            inputRef={ref => (this.searchInput = ref)}
             disabled={disabled}
             incremental={true}
-            onSearch={(query) => this.filterOptions(query)}
+            onSearch={query => this.filterOptions(query)}
             onKeyDown={this.onKeyDown.bind(this, -1)}
           />
         </EuiPopoverTitle>
@@ -275,39 +277,41 @@ export class FieldValueSelectionFilter extends Component {
     if (this.state.options.shown.length === 0) {
       return this.renderNoOptions();
     }
-    const items = this.state.options.shown.reduce((items, option, index) => {
-      const clause = multiSelect === 'or' ?
-        query.getOrFieldClause(field, option.value) :
-        query.getSimpleFieldClause(field, option.value);
-      const checked = this.resolveChecked(clause);
-      const onClick = () => {
-        // clicking a checked item will uncheck it and effective remove the filter (value = undefined)
-        this.onOptionClick(field, option.value, checked);
-      };
-      const item = (
-        <EuiFilterSelectItem
-          key={index}
-          checked={checked}
-          onClick={onClick}
-          ref={(ref) => this.selectItems[index] = ref}
-          onKeyDown={this.onKeyDown.bind(this, index)}
-        >
-          {option.view ? option.view : this.resolveOptionName(option) }
-        </EuiFilterSelectItem>
-      );
-      if (!checked) {
-        items.rest.push(item);
-      } else if (checked === 'on') {
-        items.on.push(item);
-      } else {
-        items.off.push(item);
-      }
-      return items;
-    }, { on: [], off: [], rest: [] });
+    const items = this.state.options.shown.reduce(
+      (items, option, index) => {
+        const clause =
+          multiSelect === 'or'
+            ? query.getOrFieldClause(field, option.value)
+            : query.getSimpleFieldClause(field, option.value);
+        const checked = this.resolveChecked(clause);
+        const onClick = () => {
+          // clicking a checked item will uncheck it and effective remove the filter (value = undefined)
+          this.onOptionClick(field, option.value, checked);
+        };
+        const item = (
+          <EuiFilterSelectItem
+            key={index}
+            checked={checked}
+            onClick={onClick}
+            ref={ref => (this.selectItems[index] = ref)}
+            onKeyDown={this.onKeyDown.bind(this, index)}
+          >
+            {option.view ? option.view : this.resolveOptionName(option)}
+          </EuiFilterSelectItem>
+        );
+        if (!checked) {
+          items.rest.push(item);
+        } else if (checked === 'on') {
+          items.on.push(item);
+        } else {
+          items.off.push(item);
+        }
+        return items;
+      },
+      { on: [], off: [], rest: [] }
+    );
     return (
-      <div className="euiFilterSelect__items">
-        {[...items.on, ...items.off, ...items.rest ]}
-      </div>
+      <div className="euiFilterSelect__items">{[...items.on, ...items.off, ...items.rest]}</div>
     );
   }
 
@@ -322,8 +326,8 @@ export class FieldValueSelectionFilter extends Component {
     return (
       <div className="euiFilterSelect__note">
         <div className="euiFilterSelect__noteContent">
-          <EuiLoadingChart size="m"/>
-          <EuiSpacer size="xs"/>
+          <EuiLoadingChart size="m" />
+          <EuiSpacer size="xs" />
           <p>{message}</p>
         </div>
       </div>
@@ -334,8 +338,8 @@ export class FieldValueSelectionFilter extends Component {
     return (
       <div className="euiFilterSelect__note">
         <div className="euiFilterSelect__noteContent">
-          <EuiIcon size="m" type="faceSad" color="danger"/>
-          <EuiSpacer size="xs"/>
+          <EuiIcon size="m" type="faceSad" color="danger" />
+          <EuiSpacer size="xs" />
           <p>{message}</p>
         </div>
       </div>
@@ -347,8 +351,8 @@ export class FieldValueSelectionFilter extends Component {
     return (
       <div className="euiFilterSelect__note">
         <div className="euiFilterSelect__noteContent">
-          <EuiIcon type="minusInCircle"/>
-          <EuiSpacer size="xs"/>
+          <EuiIcon type="minusInCircle" />
+          <EuiSpacer size="xs" />
           <p>{message}</p>
         </div>
       </div>

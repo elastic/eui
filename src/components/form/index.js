@@ -1,7 +1,4 @@
-export {
-  EuiCheckbox,
-  EuiCheckboxGroup,
-} from './checkbox';
+export { EuiCheckbox, EuiCheckboxGroup } from './checkbox';
 export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
 export { EuiFieldSearch } from './field_search';
@@ -13,10 +10,7 @@ export { EuiFormErrorText } from './form_error_text';
 export { EuiFormHelpText } from './form_help_text';
 export { EuiFormLabel } from './form_label';
 export { EuiFormRow } from './form_row';
-export {
-  EuiRadio,
-  EuiRadioGroup,
-} from './radio';
+export { EuiRadio, EuiRadioGroup } from './radio';
 export { EuiRange } from './range';
 export { EuiSelect } from './select';
 export { EuiSwitch } from './switch';

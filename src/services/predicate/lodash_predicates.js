@@ -6,5 +6,5 @@ export {
   isDate,
   isNumber,
   isNaN,
-  isPromise
+  isPromise,
 } from 'lodash';

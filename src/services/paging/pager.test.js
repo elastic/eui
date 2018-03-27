@@ -1,6 +1,4 @@
-import {
-  Pager,
-} from './pager';
+import { Pager } from './pager';
 
 describe('Pager', () => {
   describe('constructor', () => {
@@ -160,7 +158,6 @@ describe('Pager', () => {
   });
 
   describe('behavior', () => {
-    describe('when there are no items', () => {
-    });
+    describe('when there are no items', () => {});
   });
 });

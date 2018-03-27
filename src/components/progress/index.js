@@ -1,3 +1,1 @@
-export {
-  EuiProgress,
-} from './progress';
+export { EuiProgress } from './progress';

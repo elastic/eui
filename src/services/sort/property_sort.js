@@ -3,5 +3,5 @@ import { SortDirectionType } from './sort_direction';
 
 export const PropertySortType = PropTypes.shape({
   field: PropTypes.string.isRequired,
-  direction: SortDirectionType.isRequired
+  direction: SortDirectionType.isRequired,
 });

@@ -2,17 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-} from '../../services';
+import { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 
-const ALIGNMENT = [
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-];
+const ALIGNMENT = [LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT];
 
 export const EuiTableRowCell = ({
   align,
@@ -35,11 +27,11 @@ export const EuiTableRowCell = ({
   return (
     <td className="euiTableRowCell" colSpan={colSpan}>
       <div className={contentClasses} {...rest}>
-        {
-          textOnly === true
-            ? <span className="euiTableCellContent__text">{children}</span>
-            : children
-        }
+        {textOnly === true ? (
+          <span className="euiTableCellContent__text">{children}</span>
+        ) : (
+          children
+        )}
       </div>
     </td>
   );
@@ -51,10 +43,10 @@ EuiTableRowCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   textOnly: PropTypes.bool,
-  colSpan: PropTypes.number
+  colSpan: PropTypes.number,
 };
 
 EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
-  textOnly: true
+  textOnly: true,
 };

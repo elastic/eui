@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiPopover,
@@ -8,7 +6,7 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiText
+  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -63,11 +61,15 @@ export default class extends Component {
           <EuiPopover
             id="downCenterWithTitle"
             ownFocus
-            button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={this.onButtonClick1.bind(this)}
+              >
                 downCenter with title
               </EuiButton>
-            )}
+            }
             isOpen={this.state.isPopoverOpen1}
             closePopover={this.closePopover1.bind(this)}
             anchorPosition="downCenter"
@@ -76,9 +78,7 @@ export default class extends Component {
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
-                <p>
-                  Popover content with default padding
-                </p>
+                <p>Popover content with default padding</p>
               </EuiText>
             </div>
           </EuiPopover>
@@ -88,11 +88,15 @@ export default class extends Component {
           <EuiPopover
             id="upCenterWithTitle"
             ownFocus
-            button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={this.onButtonClick2.bind(this)}
+              >
                 upCenter with title
               </EuiButton>
-            )}
+            }
             isOpen={this.state.isPopoverOpen2}
             closePopover={this.closePopover2.bind(this)}
             anchorPosition="upCenter"
@@ -101,9 +105,7 @@ export default class extends Component {
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
-                <p>
-                  Popover content with large padding
-                </p>
+                <p>Popover content with large padding</p>
               </EuiText>
             </div>
           </EuiPopover>
@@ -113,11 +115,15 @@ export default class extends Component {
           <EuiPopover
             id="rightUpWithTitle"
             ownFocus
-            button={(
-              <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
+            button={
+              <EuiButton
+                iconType="arrowDown"
+                iconSide="right"
+                onClick={this.onButtonClick3.bind(this)}
+              >
                 rightUp with title
               </EuiButton>
-            )}
+            }
             isOpen={this.state.isPopoverOpen3}
             closePopover={this.closePopover3.bind(this)}
             anchorPosition="rightUp"
@@ -126,9 +132,7 @@ export default class extends Component {
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
-                <p>
-                  Popover content with no padding
-                </p>
+                <p>Popover content with no padding</p>
               </EuiText>
             </div>
           </EuiPopover>

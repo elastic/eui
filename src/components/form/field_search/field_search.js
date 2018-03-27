@@ -4,14 +4,9 @@ import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { ENTER } from '../../../services/key_codes';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
-
+import { EuiValidatableControl } from '../validatable_control';
 
 const propTypes = {
   name: PropTypes.string,
@@ -27,17 +22,16 @@ const propTypes = {
    * when `true` the search will be executed (that is, the `onSearch` will be called) as the
    * user types.
    */
-  incremental: PropTypes.bool
+  incremental: PropTypes.bool,
 };
 
 const defaultProps = {
   fullWidth: false,
   isLoading: false,
-  incremental: false
+  incremental: false,
 };
 
 export class EuiFieldSearch extends Component {
-
   static propTypes = propTypes;
   static defaultProps = defaultProps;
 
@@ -48,7 +42,7 @@ export class EuiFieldSearch extends Component {
 
   componentDidMount() {
     if (Browser.isEventSupported('search', this.inputElement)) {
-      const onSearch = (event) => {
+      const onSearch = event => {
         if (this.props.onSearch) {
           this.props.onSearch(event.target.value);
         }
@@ -75,8 +69,8 @@ export class EuiFieldSearch extends Component {
   };
 
   render() {
-
-    const { className,
+    const {
+      className,
       id,
       name,
       placeholder,
@@ -87,7 +81,8 @@ export class EuiFieldSearch extends Component {
       inputRef,
       incremental,
       onSearch,
-      ...rest } = this.props;
+      ...rest
+    } = this.props;
 
     const classes = classNames(
       'euiFieldSearch',
@@ -98,7 +93,7 @@ export class EuiFieldSearch extends Component {
       className
     );
 
-    const ref = (inputElement) => {
+    const ref = inputElement => {
       this.inputElement = inputElement;
       if (inputRef) {
         inputRef(inputElement);
@@ -106,12 +101,7 @@ export class EuiFieldSearch extends Component {
     };
 
     return (
-
-      <EuiFormControlLayout
-        icon="search"
-        fullWidth={fullWidth}
-        isLoading={isLoading}
-      >
+      <EuiFormControlLayout icon="search" fullWidth={fullWidth} isLoading={isLoading}>
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
             type="search"

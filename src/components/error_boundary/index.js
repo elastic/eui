@@ -1,3 +1,1 @@
-export {
-  EuiErrorBoundary,
-} from './error_boundary';
+export { EuiErrorBoundary } from './error_boundary';

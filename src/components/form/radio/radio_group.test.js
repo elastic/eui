@@ -8,60 +8,45 @@ jest.mock('../radio', () => ({ EuiRadio: 'eui_radio' }));
 
 describe('EuiRadioGroup', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiRadioGroup {...requiredProps} onChange={() => {}} />
-    );
+    const component = render(<EuiRadioGroup {...requiredProps} onChange={() => {}} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('options are rendered', () => {
       const component = render(
         <EuiRadioGroup
-          options={[
-            { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
-          ]}
+          options={[{ id: '1', label: 'Option #1' }, { id: '2', label: 'Option #2' }]}
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('name is propagated to radios', () => {
       const component = render(
         <EuiRadioGroup
           name="radiogroupname"
-          options={[
-            { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
-          ]}
+          options={[{ id: '1', label: 'Option #1' }, { id: '2', label: 'Option #2' }]}
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('idSelected is rendered', () => {
       const component = render(
         <EuiRadioGroup
-          options={[
-            { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
-          ]}
+          options={[{ id: '1', label: 'Option #1' }, { id: '2', label: 'Option #2' }]}
           idSelected="1"
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

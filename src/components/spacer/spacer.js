@@ -13,23 +13,10 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiSpacer = ({
-  className,
-  size,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiSpacer',
-    sizeToClassNameMap[size],
-    className
-  );
+export const EuiSpacer = ({ className, size, ...rest }) => {
+  const classes = classNames('euiSpacer', sizeToClassNameMap[size], className);
 
-  return (
-    <div
-      className={classes}
-      {...rest}
-    />
-  );
+  return <div className={classes} {...rest} />;
 };
 
 EuiSpacer.propTypes = {

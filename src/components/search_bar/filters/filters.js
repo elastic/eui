@@ -1,19 +1,16 @@
 import React from 'react';
-import {
-  IsFilter,
-  IsFilterConfigType
-} from './is_filter';
+import { IsFilter, IsFilterConfigType } from './is_filter';
 import {
   FieldValueSelectionFilter,
-  FieldValueSelectionFilterConfigType
+  FieldValueSelectionFilterConfigType,
 } from './field_value_selection_filter';
 import {
   FieldValueToggleFilter,
-  FieldValueToggleFilterConfigType
+  FieldValueToggleFilterConfigType,
 } from './field_value_toggle_filter';
 import {
   FieldValueToggleGroupFilter,
-  FieldValueToggleGroupFilterConfigType
+  FieldValueToggleGroupFilterConfigType,
 } from './field_value_toggle_group_filter';
 import PropTypes from 'prop-types';
 
@@ -37,5 +34,5 @@ export const FilterConfigType = PropTypes.oneOfType([
   IsFilterConfigType,
   FieldValueSelectionFilterConfigType,
   FieldValueToggleFilterConfigType,
-  FieldValueToggleGroupFilterConfigType
+  FieldValueToggleGroupFilterConfigType,
 ]);

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -99,28 +97,32 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
-  scheduleToastForDismissal = (toast) => {
+  scheduleToastForDismissal = toast => {
     // Start fading the toast out once its lifetime elapses.
-    this.toastIdToTimerMap[toast.id] =
-      new Timer(this.dismissToast.bind(this, toast), this.props.toastLifeTimeMs);
+    this.toastIdToTimerMap[toast.id] = new Timer(
+      this.dismissToast.bind(this, toast),
+      this.props.toastLifeTimeMs
+    );
   };
 
-  dismissToast = (toast) => {
+  dismissToast = toast => {
     // Remove the toast after it's done fading out.
-    this.dismissTimeoutIds.push(setTimeout(() => {
-      this.props.dismissToast(toast);
-      this.toastIdToTimerMap[toast.id].clear();
-      delete this.toastIdToTimerMap[toast.id];
+    this.dismissTimeoutIds.push(
+      setTimeout(() => {
+        this.props.dismissToast(toast);
+        this.toastIdToTimerMap[toast.id].clear();
+        delete this.toastIdToTimerMap[toast.id];
 
-      this.setState(prevState => {
-        const toastIdToDismissedMap = { ...prevState.toastIdToDismissedMap };
-        delete toastIdToDismissedMap[toast.id];
+        this.setState(prevState => {
+          const toastIdToDismissedMap = { ...prevState.toastIdToDismissedMap };
+          delete toastIdToDismissedMap[toast.id];
 
-        return {
-          toastIdToDismissedMap,
-        };
-      });
-    }, TOAST_FADE_OUT_MS));
+          return {
+            toastIdToDismissedMap,
+          };
+        });
+      }, TOAST_FADE_OUT_MS)
+    );
 
     this.setState(prevState => {
       const toastIdToDismissedMap = {
@@ -178,20 +180,14 @@ export class EuiGlobalToastList extends Component {
     } = this.props;
 
     const renderedToasts = toasts.map(toast => {
-      const {
-        text,
-        ...rest
-      } = toast;
+      const { text, ...rest } = toast;
 
       return (
         <EuiGlobalToastListItem
           key={toast.id}
           isDismissed={this.state.toastIdToDismissedMap[toast.id]}
         >
-          <EuiToast
-            onClose={this.dismissToast.bind(this, toast)}
-            {...rest}
-          >
+          <EuiToast onClose={this.dismissToast.bind(this, toast)} {...rest}>
             {text}
           </EuiToast>
         </EuiGlobalToastListItem>
@@ -202,7 +198,9 @@ export class EuiGlobalToastList extends Component {
 
     return (
       <div
-        ref={element => { this.listElement = element; }}
+        ref={element => {
+          this.listElement = element;
+        }}
         className={classes}
         {...rest}
       >

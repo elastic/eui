@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -37,79 +35,94 @@ export default class extends Component {
     const panelTree = {
       id: 0,
       title: 'View options',
-      items: [{
-        name: 'Show fullscreen',
-        icon: (
-          <EuiIcon
-            type="search"
-            size="m"
-          />
-        ),
-        onClick: () => { this.closePopover(); window.alert('Show fullscreen'); },
-      }, {
-        name: 'Share this dashboard',
-        icon: 'user',
-        panel: {
-          id: 1,
-          title: 'Share this dashboard',
-          items: [{
-            name: 'PDF reports',
-            icon: 'user',
-            onClick: () => { this.closePopover(); window.alert('PDF reports'); },
-          }, {
-            name: 'CSV reports',
-            icon: 'user',
-            onClick: () => { this.closePopover(); window.alert('CSV reports'); },
-          }, {
-            name: 'Embed code',
-            icon: 'user',
-            panel: {
-              id: 2,
-              title: 'Embed code',
-              content: (
-                <div style={{ padding: 16 }}>
-                  <EuiFormRow
-                    label="Generate a public snapshot?"
-                  >
-                    <EuiSwitch
-                      name="switch"
-                      id="asdf"
-                      label="Snapshot data"
-                    />
-                  </EuiFormRow>
-                  <EuiFormRow
-                    label="Include the following in the embed"
-                  >
-                    <EuiSwitch
-                      name="switch"
-                      id="asdf2"
-                      label="Current time range"
-                    />
-                  </EuiFormRow>
-                  <EuiButton fill>Copy iFrame code</EuiButton>
-                </div>
-              ),
-            },
-          }, {
-            name: 'Permalinks',
-            icon: 'user',
-            onClick: () => { this.closePopover(); window.alert('Permalinks'); },
-          }],
+      items: [
+        {
+          name: 'Show fullscreen',
+          icon: <EuiIcon type="search" size="m" />,
+          onClick: () => {
+            this.closePopover();
+            window.alert('Show fullscreen');
+          },
         },
-      }, {
-        name: 'Edit / add panels',
-        icon: 'user',
-        onClick: () => { this.closePopover(); window.alert('Edit / add panels'); },
-      }, {
-        name: 'Display options',
-        icon: 'user',
-        onClick: () => { this.closePopover(); window.alert('Display options'); },
-      }, {
-        name: 'Disabled option',
-        icon: 'user',
-        disabled: true,
-        onClick: () => { this.closePopover(); window.alert('Disabled option'); },
-      }],
+        {
+          name: 'Share this dashboard',
+          icon: 'user',
+          panel: {
+            id: 1,
+            title: 'Share this dashboard',
+            items: [
+              {
+                name: 'PDF reports',
+                icon: 'user',
+                onClick: () => {
+                  this.closePopover();
+                  window.alert('PDF reports');
+                },
+              },
+              {
+                name: 'CSV reports',
+                icon: 'user',
+                onClick: () => {
+                  this.closePopover();
+                  window.alert('CSV reports');
+                },
+              },
+              {
+                name: 'Embed code',
+                icon: 'user',
+                panel: {
+                  id: 2,
+                  title: 'Embed code',
+                  content: (
+                    <div style={{ padding: 16 }}>
+                      <EuiFormRow label="Generate a public snapshot?">
+                        <EuiSwitch name="switch" id="asdf" label="Snapshot data" />
+                      </EuiFormRow>
+                      <EuiFormRow label="Include the following in the embed">
+                        <EuiSwitch name="switch" id="asdf2" label="Current time range" />
+                      </EuiFormRow>
+                      <EuiButton fill>Copy iFrame code</EuiButton>
+                    </div>
+                  ),
+                },
+              },
+              {
+                name: 'Permalinks',
+                icon: 'user',
+                onClick: () => {
+                  this.closePopover();
+                  window.alert('Permalinks');
+                },
+              },
+            ],
+          },
+        },
+        {
+          name: 'Edit / add panels',
+          icon: 'user',
+          onClick: () => {
+            this.closePopover();
+            window.alert('Edit / add panels');
+          },
+        },
+        {
+          name: 'Display options',
+          icon: 'user',
+          onClick: () => {
+            this.closePopover();
+            window.alert('Display options');
+          },
+        },
+        {
+          name: 'Disabled option',
+          icon: 'user',
+          disabled: true,
+          onClick: () => {
+            this.closePopover();
+            window.alert('Disabled option');
+          },
+        },
+      ],
     };
 
     this.panels = flattenPanelTree(panelTree);
@@ -129,11 +142,7 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick}
-      >
+      <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick}>
         Click me to load a context menu
       </EuiButton>
     );
@@ -148,10 +157,7 @@ export default class extends Component {
         withTitle
         anchorPosition="downLeft"
       >
-        <EuiContextMenu
-          initialPanelId={0}
-          panels={this.panels}
-        />
+        <EuiContextMenu initialPanelId={0} panels={this.panels} />
       </EuiPopover>
     );
   }

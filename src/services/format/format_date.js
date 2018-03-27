@@ -25,7 +25,7 @@ export const dateFormatAliases = {
       lastDay: '[Yesterday at] H:mmA',
       lastWeek: '[Last] dddd [at] H:mmA',
       sameElse: 'Do MMM YYYY [at] H:mmA',
-      ...options
+      ...options,
     });
   },
   calendarDate: (value, options) => {
@@ -36,9 +36,9 @@ export const dateFormatAliases = {
       lastDay: '[Yesterday]',
       lastWeek: '[Last] dddd',
       sameElse: 'Do MMM YYYY',
-      ...options
+      ...options,
     });
-  }
+  },
 };
 
 export const formatDate = (value, dateFormatKeyOrConfig = 'dateTime') => {
@@ -52,11 +52,7 @@ export const formatDate = (value, dateFormatKeyOrConfig = 'dateTime') => {
     return moment(value).format(dateFormat);
   }
 
-  const {
-    format = 'dateTime',
-    nil = '',
-    options,
-  } = dateFormatKeyOrConfig;
+  const { format = 'dateTime', nil = '', options } = dateFormatKeyOrConfig;
 
   const dateFormat = dateFormatAliases[format] || format;
 

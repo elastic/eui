@@ -1,3 +1,1 @@
-export {
-  EuiPortal,
-} from './portal';
+export { EuiPortal } from './portal';

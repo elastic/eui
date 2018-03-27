@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  EuiCode
-} from '../../../../../src/components';
+import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -17,19 +15,20 @@ export const searchCallbackSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    }, {
+    },
+    {
       type: GuideSectionTypes.HTML,
       code: html,
-    }
+    },
   ],
   text: (
     <div>
       <p>
-        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode> to display a search bar
-        and intercept the search value when it changes so you can perform your own search logic.
+        The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode> to display a search
+        bar and intercept the search value when it changes so you can perform your own search logic.
       </p>
     </div>
   ),
   props: propsInfo,
-  demo: <Table/>
+  demo: <Table />,
 };

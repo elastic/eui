@@ -1,15 +1,10 @@
 import React from 'react';
 
-import {
-  EuiCard,
-  EuiIcon,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components';
+import { EuiCard, EuiIcon, EuiFlexGroup, EuiFlexItem } from '../../../../src/components';
 
 const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
 
-const cardNodes = icons.map(function (item, index) {
+const cardNodes = icons.map(function(item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
@@ -22,8 +17,4 @@ const cardNodes = icons.map(function (item, index) {
   );
 });
 
-export default () => (
-  <EuiFlexGroup gutterSize="l">
-    {cardNodes}
-  </EuiFlexGroup>
-);
+export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;

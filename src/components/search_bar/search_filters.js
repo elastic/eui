@@ -7,15 +7,14 @@ import { EuiFilterGroup } from '../../components/filter_group';
 export const SearchFiltersFiltersType = PropTypes.arrayOf(FilterConfigType);
 
 export class EuiSearchFilters extends Component {
-
   static propTypes = {
     query: PropTypes.instanceOf(Query).isRequired,
     onChange: PropTypes.func.isRequired,
-    filters: SearchFiltersFiltersType
+    filters: SearchFiltersFiltersType,
   };
 
   static defaultProps = {
-    filters: []
+    filters: [],
   };
 
   constructor(props) {

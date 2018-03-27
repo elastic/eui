@@ -6,7 +6,6 @@ import AceEditor from 'react-ace';
 import { htmlIdGenerator, keyCodes } from '../../services';
 
 export class EuiCodeEditor extends Component {
-
   state = {
     isHintActive: true,
     isEditing: false,
@@ -14,7 +13,7 @@ export class EuiCodeEditor extends Component {
 
   idGenerator = htmlIdGenerator();
 
-  aceEditorRef = (aceEditor) => {
+  aceEditorRef = aceEditor => {
     if (aceEditor) {
       this.aceEditor = aceEditor;
       aceEditor.editor.textInput.getElement().tabIndex = -1;
@@ -22,7 +21,7 @@ export class EuiCodeEditor extends Component {
     }
   };
 
-  onKeydownAce = (ev) => {
+  onKeydownAce = ev => {
     if (ev.keyCode === keyCodes.ESCAPE) {
       // If the autocompletion context menu is open then we want to let ESCAPE close it but
       // **not** exit out of editing mode.
@@ -33,7 +32,7 @@ export class EuiCodeEditor extends Component {
         this.editorHint.focus();
       }
     }
-  }
+  };
 
   onFocusAce = (...args) => {
     this.setState({
@@ -42,7 +41,7 @@ export class EuiCodeEditor extends Component {
     if (this.props.onFocus) {
       this.props.onFocus(...args);
     }
-  }
+  };
 
   onBlurAce = (...args) => {
     this.stopEditing();
@@ -51,7 +50,7 @@ export class EuiCodeEditor extends Component {
     }
   };
 
-  onKeyDownHint = (ev) => {
+  onKeyDownHint = ev => {
     if (ev.keyCode === keyCodes.ENTER) {
       ev.preventDefault();
       this.startEditing();
@@ -63,7 +62,7 @@ export class EuiCodeEditor extends Component {
       isHintActive: false,
     });
     this.aceEditor.editor.textInput.focus();
-  }
+  };
 
   stopEditing() {
     this.setState({
@@ -109,38 +108,30 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
-    const activity = isReadOnly
-      ? 'interacting with the code'
-      : 'editing';
-
+    const activity = isReadOnly ? 'interacting with the code' : 'editing';
 
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
         className={promptClasses}
         id={this.idGenerator('codeEditor')}
-        ref={(hint) => { this.editorHint = hint; }}
+        ref={hint => {
+          this.editorHint = hint;
+        }}
         tabIndex="0"
         role="button"
         onClick={this.startEditing}
         onKeyDown={this.onKeyDownHint}
         data-test-subj="codeEditorHint"
       >
-        <p className="euiText">
-          Press Enter to start {activity}.
-        </p>
+        <p className="euiText">Press Enter to start {activity}.</p>
 
-        <p className="euiText">
-          When you&rsquo;re done, press Escape to stop {activity}.
-        </p>
+        <p className="euiText">When you&rsquo;re done, press Escape to stop {activity}.</p>
       </div>
     );
 
     return (
-      <div
-        className={classes}
-        style={{ width, height }}
-      >
+      <div className={classes} style={{ width, height }}>
         {prompt}
 
         <AceEditor

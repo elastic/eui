@@ -28,10 +28,7 @@ export class EuiPortal extends Component {
   }
 
   render() {
-    return createPortal(
-      this.props.children,
-      this.portalNode
-    );
+    return createPortal(this.props.children, this.portalNode);
   }
 }
 

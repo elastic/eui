@@ -43,7 +43,7 @@ export const EuiFlexGroup = ({
   justifyContent,
   wrap,
   component: Component,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiFlexGroup',
@@ -58,10 +58,7 @@ export const EuiFlexGroup = ({
   );
 
   return (
-    <Component
-      className={classes}
-      {...rest}
-    >
+    <Component className={classes} {...rest}>
       {children}
     </Component>
   );

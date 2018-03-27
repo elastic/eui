@@ -6,11 +6,8 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 
 describe('EuiToolTipPopover', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiToolTipPopover positionToolTip={() => {}} {...requiredProps} />
-    );
+    const component = render(<EuiToolTipPopover positionToolTip={() => {}} {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

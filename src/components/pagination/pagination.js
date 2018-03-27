@@ -19,7 +19,10 @@ export const EuiPagination = ({
   const classes = classNames('euiPagination', className);
 
   const pages = [];
-  const firstPageInRange = Math.max(0, Math.min(activePage - NUMBER_SURROUNDING_PAGES, pageCount - MAX_VISIBLE_PAGES));
+  const firstPageInRange = Math.max(
+    0,
+    Math.min(activePage - NUMBER_SURROUNDING_PAGES, pageCount - MAX_VISIBLE_PAGES)
+  );
   const lastPageInRange = Math.min(pageCount, firstPageInRange + MAX_VISIBLE_PAGES);
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
@@ -35,7 +38,6 @@ export const EuiPagination = ({
     );
   }
 
-
   const previousButton = (
     <EuiButtonIcon
       onClick={onPageClick.bind(null, activePage - 1)}
@@ -50,22 +52,14 @@ export const EuiPagination = ({
 
   if (firstPageInRange > 0) {
     firstPageButtons.push(
-      <EuiPaginationButton
-        key="0"
-        onClick={onPageClick.bind(null, 0)}
-        hideOnMobile
-      >
+      <EuiPaginationButton key="0" onClick={onPageClick.bind(null, 0)} hideOnMobile>
         1
       </EuiPaginationButton>
     );
 
     if (firstPageInRange > 1) {
       firstPageButtons.push(
-        <EuiPaginationButton
-          key="beginningEllipsis"
-          isPlaceholder
-          hideOnMobile
-        >
+        <EuiPaginationButton key="beginningEllipsis" isPlaceholder hideOnMobile>
           <span>&hellip;</span>
         </EuiPaginationButton>
       );
@@ -77,11 +71,7 @@ export const EuiPagination = ({
   if (lastPageInRange < pageCount) {
     if (lastPageInRange < pageCount - 1) {
       lastPageButtons.push(
-        <EuiPaginationButton
-          key="endingEllipsis"
-          isPlaceholder
-          hideOnMobile
-        >
+        <EuiPaginationButton key="endingEllipsis" isPlaceholder hideOnMobile>
           <span>&hellip;</span>
         </EuiPaginationButton>
       );
@@ -112,20 +102,14 @@ export const EuiPagination = ({
     const selectablePages = pages;
     if (compressed) {
       return (
-        <div
-          className={classes}
-          {...rest}
-        >
+        <div className={classes} {...rest}>
           {previousButton}
           {nextButton}
         </div>
       );
     } else {
       return (
-        <div
-          className={classes}
-          {...rest}
-        >
+        <div className={classes} {...rest}>
           {previousButton}
           {firstPageButtons}
           {selectablePages}
@@ -136,7 +120,7 @@ export const EuiPagination = ({
     }
   } else {
     // Don't render pagination if it isn't needed. Then span is here for a docs bug.
-    return <span/>;
+    return <span />;
   }
 };
 

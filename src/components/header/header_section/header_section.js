@@ -13,10 +13,7 @@ export const EuiHeaderSection = ({ side, children, className, ...rest }) => {
   const classes = classNames('euiHeaderSection', sideToClassNameMap[side], className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

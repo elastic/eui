@@ -11,7 +11,6 @@ describe('EuiOutsideClickDetector', () => {
       </EuiOutsideClickDetector>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

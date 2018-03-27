@@ -45,4 +45,3 @@ describe('comparators - property', () => {
     expect(comparator.mock.calls[0][1]).toBe('n2');
   });
 });
-

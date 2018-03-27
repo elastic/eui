@@ -2,18 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiDescriptionListDescription = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiDescriptionListDescription = ({ children, className, ...rest }) => {
   const classes = classNames('euiDescriptionList__description', className);
 
   return (
-    <dd
-      className={classes}
-      {...rest}
-    >
+    <dd className={classes} {...rest}>
       {children}
     </dd>
   );

@@ -8,24 +8,11 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiTabs = ({
-  size,
-  children,
-  className,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiTabs',
-    sizeToClassNameMap[size],
-    className
-  );
+export const EuiTabs = ({ size, children, className, ...rest }) => {
+  const classes = classNames('euiTabs', sizeToClassNameMap[size], className);
 
   return (
-    <div
-      role="tablist"
-      className={classes}
-      {...rest}
-    >
+    <div role="tablist" className={classes} {...rest}>
       {children}
     </div>
   );

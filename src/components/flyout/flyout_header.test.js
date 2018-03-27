@@ -6,11 +6,8 @@ import { EuiFlyoutHeader } from './flyout_header';
 
 describe('EuiFlyoutHeader', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFlyoutHeader {...requiredProps} />
-    );
+    const component = render(<EuiFlyoutHeader {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

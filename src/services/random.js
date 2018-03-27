@@ -4,7 +4,6 @@ import { times } from './utils';
 const defaultRand = Math.random;
 
 export class Random {
-
   constructor(rand = defaultRand) {
     this._rand = rand;
   }
@@ -49,5 +48,4 @@ export class Random {
     const time = this.integer({ min: minMls, max: maxMls });
     return new Date(time);
   }
-
 }

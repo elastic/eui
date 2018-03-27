@@ -1,15 +1,7 @@
-export {
-  EuiFlyout,
-} from './flyout';
+export { EuiFlyout } from './flyout';
 
-export {
-  EuiFlyoutBody,
-} from './flyout_body';
+export { EuiFlyoutBody } from './flyout_body';
 
-export {
-  EuiFlyoutFooter,
-} from './flyout_footer';
+export { EuiFlyoutFooter } from './flyout_footer';
 
-export {
-  EuiFlyoutHeader,
-} from './flyout_header';
+export { EuiFlyoutHeader } from './flyout_header';

@@ -1,7 +1,4 @@
-import React, {
-  cloneElement,
-  Component,
-} from 'react';
+import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
@@ -14,18 +11,18 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPanel, SIZES } from '../panel';
 
 const anchorPositionToClassNameMap = {
-  'upCenter': 'euiPopover--anchorUpCenter',
-  'upLeft': 'euiPopover--anchorUpLeft',
-  'upRight': 'euiPopover--anchorUpRight',
-  'downCenter': 'euiPopover--anchorDownCenter',
-  'downLeft': 'euiPopover--anchorDownLeft',
-  'downRight': 'euiPopover--anchorDownRight',
-  'leftCenter': 'euiPopover--anchorLeftCenter',
-  'leftUp': 'euiPopover--anchorLeftUp',
-  'leftDown': 'euiPopover--anchorLeftDown',
-  'rightCenter': 'euiPopover--anchorRightCenter',
-  'rightUp': 'euiPopover--anchorRightUp',
-  'rightDown': 'euiPopover--anchorRightDown',
+  upCenter: 'euiPopover--anchorUpCenter',
+  upLeft: 'euiPopover--anchorUpLeft',
+  upRight: 'euiPopover--anchorUpRight',
+  downCenter: 'euiPopover--anchorDownCenter',
+  downLeft: 'euiPopover--anchorDownLeft',
+  downRight: 'euiPopover--anchorDownRight',
+  leftCenter: 'euiPopover--anchorLeftCenter',
+  leftUp: 'euiPopover--anchorLeftUp',
+  leftDown: 'euiPopover--anchorLeftDown',
+  rightCenter: 'euiPopover--anchorRightCenter',
+  rightUp: 'euiPopover--anchorRightUp',
+  rightDown: 'euiPopover--anchorRightDown',
 };
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
@@ -142,7 +139,7 @@ export class EuiPopover extends Component {
       {
         'euiPopover-isOpen': this.state.isOpening,
         'euiPopover--withTitle': withTitle,
-      },
+      }
     );
 
     const panelClasses = classNames('euiPopover__panel', panelClassName);
@@ -181,12 +178,7 @@ export class EuiPopover extends Component {
 
     return (
       <EuiOutsideClickDetector onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}
-        >
+        <div className={classes} onKeyDown={this.onKeyDown} ref={popoverRef} {...rest}>
           {cloneElement(button, {
             'aria-controls': id,
             'aria-expanded': !!isOpen,
@@ -209,7 +201,7 @@ EuiPopover.propTypes = {
   anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
-  popoverRef: PropTypes.func
+  popoverRef: PropTypes.func,
 };
 
 EuiPopover.defaultProps = {

@@ -9,10 +9,7 @@ export const EuiFormLabel = ({ children, isFocused, isInvalid, className, ...res
   });
 
   return (
-    <label
-      className={classes}
-      {...rest}
-    >
+    <label className={classes} {...rest}>
       {children}
     </label>
   );

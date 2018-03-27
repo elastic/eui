@@ -6,7 +6,11 @@ describe('formatText', () => {
     expect(formatText(1)).toBe('1');
     const now = Date.now();
     expect(formatText(new Date(now))).toBe(new Date(now).toString());
-    expect(formatText({ /* simple object */})).toBe('[object Object]');
+    expect(
+      formatText({
+        /* simple object */
+      })
+    ).toBe('[object Object]');
   });
 
   test('no config - nil value', () => {

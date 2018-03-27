@@ -1,3 +1,1 @@
-export {
-  EuiOverlayMask,
-} from './overlay_mask';
+export { EuiOverlayMask } from './overlay_mask';

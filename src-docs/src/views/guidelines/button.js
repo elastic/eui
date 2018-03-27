@@ -1,15 +1,8 @@
 import React from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
-import {
-  GuidePage,
-  GuideRule,
-  GuideRuleTitle,
-  GuideRuleExample
-} from '../../components';
+import { GuidePage, GuideRule, GuideRuleTitle, GuideRuleExample } from '../../components';
 
 import {
   EuiText,
@@ -34,33 +27,26 @@ import ContextMenu from '../context_menu/context_menu';
 
 import imageButtonPlacement from '../../images/button_placement.png';
 
-export default() => (
+export default () => (
   <GuidePage title="Button guidelines">
     <EuiText>
       <p>
         This page documents patterns for button design, including types, placement, color, and size.
       </p>
       <Link to="/navigation/button">
-        <EuiButton>
-          View component code
-        </EuiButton>
+        <EuiButton>View component code</EuiButton>
       </Link>
     </EuiText>
 
-    <EuiHorizontalRule/>
+    <EuiHorizontalRule />
 
     <GuideRuleTitle>Button types</GuideRuleTitle>
 
-    <EuiSpacer size="xl"/>
+    <EuiSpacer size="xl" />
 
     <EuiFlexGroup alignItems="center">
-      <EuiFlexItem
-        grow={false}
-        style={{ minWidth: 120 }}
-      >
-        <EuiButton fill>
-          Filled
-        </EuiButton>
+      <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+        <EuiButton fill>Filled</EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem>
@@ -68,20 +54,16 @@ export default() => (
           <h4>
             <strong>Filled buttons are for the primary action</strong>
           </h4>
-          <p>
-            This button has the heavist visual weight to draw users&apos; attention.
-          </p>
+          <p>This button has the heavist visual weight to draw users&apos; attention.</p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
+    <EuiSpacer />
 
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
-        <EuiButton>
-          Standard
-        </EuiButton>
+        <EuiButton>Standard</EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem>
@@ -90,20 +72,18 @@ export default() => (
             <strong>Standard buttons are for secondary actions</strong>
           </h4>
           <p>
-            Such actions include Add and Apply. This button type works well for
-            multiple actions of equal weight.
+            Such actions include Add and Apply. This button type works well for multiple actions of
+            equal weight.
           </p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
+    <EuiSpacer />
 
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
-        <EuiButtonEmpty>
-          Empty
-        </EuiButtonEmpty>
+        <EuiButtonEmpty>Empty</EuiButtonEmpty>
       </EuiFlexItem>
 
       <EuiFlexItem>
@@ -112,14 +92,14 @@ export default() => (
             <strong>Empty buttons are for complimentary, UI-specific actions</strong>
           </h4>
           <p>
-            Close, cancel, filter, refresh, and other actions that reconfigure the
-            UI are appropriate for empty buttons.
+            Close, cancel, filter, refresh, and other actions that reconfigure the UI are
+            appropriate for empty buttons.
           </p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer/>
+    <EuiSpacer />
 
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
@@ -140,21 +120,18 @@ export default() => (
             <strong>Icon buttons are for saving space</strong>
           </h4>
           <p>
-            The icon must be immediately understood, for example, a trash can
-            for delete. Use these buttons sparingly, and never
-            for the primary action.
+            The icon must be immediately understood, for example, a trash can for delete. Use these
+            buttons sparingly, and never for the primary action.
           </p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiHorizontalRule/>
+    <EuiHorizontalRule />
 
     <GuideRuleTitle>Placement and order</GuideRuleTitle>
 
-    <GuideRule
-      description="Button placement and order should follow the user path."
-    />
+    <GuideRule description="Button placement and order should follow the user path." />
 
     <GuideRule
       heading="Put buttons on the right in containers with a restricted width"
@@ -202,10 +179,7 @@ export default() => (
         text="Do. Because the user's eye never leaves the left side,
           the buttons are on the bottom left. The primary action is in the leftmost position."
       >
-        <EuiImage
-          alt="button placement in form"
-          url="https://i.imgur.com/2nvcgEU.png"
-        />
+        <EuiImage alt="button placement in form" url="https://i.imgur.com/2nvcgEU.png" />
       </GuideRuleExample>
 
       <GuideRuleExample
@@ -219,7 +193,6 @@ export default() => (
           url="https://i.imgur.com/Y1rOaoN.png"
         />
       </GuideRuleExample>
-
     </GuideRule>
 
     <GuideRule
@@ -235,10 +208,7 @@ export default() => (
           A common pattern is a create button that adds an item to a list. Creation starts
           at the top and ends at the bottom. Think of it as adding to a pile."
       >
-        <EuiImage
-          alt="button placement in upper right"
-          url="https://i.imgur.com/fJhWvK9.png"
-        />
+        <EuiImage alt="button placement in upper right" url="https://i.imgur.com/fJhWvK9.png" />
       </GuideRuleExample>
 
       <GuideRuleExample
@@ -250,10 +220,7 @@ export default() => (
           the user on creation. In these special cases, where the container is constrained
           and the content is fairly short, the title and the button should be center aligned."
       >
-        <EuiImage
-          alt="center-aligned button"
-          url="https://i.imgur.com/H2yzAEB.png"
-        />
+        <EuiImage alt="center-aligned button" url="https://i.imgur.com/H2yzAEB.png" />
       </GuideRuleExample>
     </GuideRule>
 
@@ -272,7 +239,7 @@ export default() => (
         text="Do. Use only one filled button per layout. The primary action is
           the one you want the user to eventually complete."
       >
-        <EuiImage alt="one primary button per page" url="https://i.imgur.com/QdTkIt6.png"/>
+        <EuiImage alt="one primary button per page" url="https://i.imgur.com/QdTkIt6.png" />
       </GuideRuleExample>
       <GuideRuleExample
         panel={false}
@@ -280,11 +247,8 @@ export default() => (
         type="dont"
         text="Don't. Using too many primary buttons confuses the user."
       >
-        <EuiImage
-          alt="page without primary button"
-          url="https://i.imgur.com/rmVFU1C.png"
-        />
-        <EuiSpacer/>
+        <EuiImage alt="page without primary button" url="https://i.imgur.com/rmVFU1C.png" />
+        <EuiSpacer />
       </GuideRuleExample>
     </GuideRule>
 
@@ -304,9 +268,9 @@ export default() => (
         frame="frame"
       >
         <div>
-          <EuiButtonIcon size="s" iconType="pencil" aria-label="Next"/>
+          <EuiButtonIcon size="s" iconType="pencil" aria-label="Next" />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButtonIcon size="s" iconType="expand" aria-label="Next"/>
+          <EuiButtonIcon size="s" iconType="expand" aria-label="Next" />
         </div>
       </GuideRuleExample>
       <GuideRuleExample
@@ -317,11 +281,11 @@ export default() => (
       >
         <div>
           <EuiButton>
-            <EuiIcon type="pencil"/>
+            <EuiIcon type="pencil" />
           </EuiButton>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButton >
-            <EuiIcon type="expand"/>
+          <EuiButton>
+            <EuiIcon type="expand" />
           </EuiButton>
         </div>
       </GuideRuleExample>
@@ -340,14 +304,12 @@ export default() => (
         panel={false}
         frame="frame"
       >
-
         <EuiButton iconType="arrowRight" iconSide="right" fill>
           Continue
         </EuiButton>
         <EuiButton iconType="check" color="secondary" fill>
           Save and complete
         </EuiButton>
-
       </GuideRuleExample>
       <GuideRuleExample
         panel={false}
@@ -357,11 +319,7 @@ export default() => (
           This is especially true when the icon is positioned on the right,
           with a hard to grok icon."
       >
-        <EuiButton
-          iconType="indexOpen"
-          iconSide="right"
-          fill
-        >
+        <EuiButton iconType="indexOpen" iconSide="right" fill>
           Create index pattern
         </EuiButton>
       </GuideRuleExample>
@@ -371,7 +329,8 @@ export default() => (
 
     <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 
-    <GuideRule description="When in doubt, use a blue button in the default size. Never put more than two
+    <GuideRule
+      description="When in doubt, use a blue button in the default size. Never put more than two
       visual styles next to each other."
     >
       <GuideRuleExample
@@ -384,14 +343,10 @@ export default() => (
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton fill>
-                Save
-              </EuiButton>
+              <EuiButton fill>Save</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButtonEmpty>
-                Cancel
-              </EuiButtonEmpty>
+              <EuiButtonEmpty>Cancel</EuiButtonEmpty>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>
@@ -405,14 +360,10 @@ export default() => (
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton fill>
-                Save
-              </EuiButton>
+              <EuiButton fill>Save</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton>
-                Cancel
-              </EuiButton>
+              <EuiButton>Cancel</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiButton color="danger" fill size="s">
@@ -438,7 +389,7 @@ export default() => (
         type="do"
         text="Do. This example puts multiple actions in one button rather than showing them separately."
       >
-        <ContextMenu/>
+        <ContextMenu />
       </GuideRuleExample>
 
       <GuideRuleExample
@@ -450,19 +401,13 @@ export default() => (
         <div>
           <EuiFlexGroup>
             <EuiFlexItem grow={false}>
-              <EuiButton>
-                Show fullscreen
-              </EuiButton>
+              <EuiButton>Show fullscreen</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton>
-                Display options
-              </EuiButton>
+              <EuiButton>Display options</EuiButton>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiButton>
-                Edit / add panels
-              </EuiButton>
+              <EuiButton>Edit / add panels</EuiButton>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>
@@ -482,60 +427,50 @@ export default() => (
         If your label requries more words, consider using a text link instead."
     />
 
-    <EuiText >
+    <EuiText>
       <h3>Preferred words in buttons</h3>
-      <EuiSpacer/>
+      <EuiSpacer />
     </EuiText>
 
     <EuiTable>
       <EuiTableHeader>
-        <EuiTableHeaderCell>
-          Text
-        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>Text</EuiTableHeaderCell>
 
-        <EuiTableHeaderCell>
-          Description
-        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>Description</EuiTableHeaderCell>
       </EuiTableHeader>
 
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton>
-              Add thing
-            </EuiButton>
+            <EuiButton>Add thing</EuiButton>
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Establishes a new relationship.  Often used in a create-then-add scenario.
-            You create a dashboard, then add a visualization.  Always followed by an object.
-            Do not use &quot;Add new.&quot; Remove is the correct opposite.
+            Establishes a new relationship. Often used in a create-then-add scenario. You create a
+            dashboard, then add a visualization. Always followed by an object. Do not use &quot;Add
+            new.&quot; Remove is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButtonEmpty size="s">
-              Cancel
-            </EuiButtonEmpty>
+            <EuiButtonEmpty size="s">Cancel</EuiButtonEmpty>
           </EuiTableRowCell>
           <EuiTableRowCell>
-            Stops an action without saving pending changes. Never make Cancel
-            red&mdash;it&apos;s not a destructive action. Cancel is always an empty button.
+            Stops an action without saving pending changes. Never make Cancel red&mdash;it&apos;s
+            not a destructive action. Cancel is always an empty button.
           </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton fill>
-              Create thing
-            </EuiButton>
+            <EuiButton fill>Create thing</EuiButton>
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Creates a new object from scratch. Always followed by an object,
-            for example, “Create pipeline.” Do not use &quot;Create new.&quot;
-            Exception: “Add user” is more intuitive than “Create user.” Delete is the correct opposite.
+            Creates a new object from scratch. Always followed by an object, for example, “Create
+            pipeline.” Do not use &quot;Create new.&quot; Exception: “Add user” is more intuitive
+            than “Create user.” Delete is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -547,118 +482,87 @@ export default() => (
             <EuiButton color="danger" fill>
               Delete 6 things
             </EuiButton>&nbsp;&nbsp;
-            <EuiButtonIcon size="s" color="danger" iconType="trash" aria-label="delete"/>
+            <EuiButtonIcon size="s" color="danger" iconType="trash" aria-label="delete" />
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Deletes data so users can longer retrieve it. Create is the correct
-            opposite. Do not confuse with Remove.
+            Deletes data so users can longer retrieve it. Create is the correct opposite. Do not
+            confuse with Remove.
           </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton color="danger">
-              Remove
-            </EuiButton>&nbsp;&nbsp;
-            <EuiButtonIcon size="s" color="danger" iconType="cross" aria-label="Remove"/>
+            <EuiButton color="danger">Remove</EuiButton>&nbsp;&nbsp;
+            <EuiButtonIcon size="s" color="danger" iconType="cross" aria-label="Remove" />
           </EuiTableRowCell>
           <EuiTableRowCell>
-            Removes a relationship, but doesn&apos;t permanently delete data.
-            For example, you remove a visualization from a dashboard. Add is the correct opposite.
+            Removes a relationship, but doesn&apos;t permanently delete data. For example, you
+            remove a visualization from a dashboard. Add is the correct opposite.
           </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton fill>
-              Save
-            </EuiButton>&nbsp;&nbsp;
+            <EuiButton fill>Save</EuiButton>&nbsp;&nbsp;
             <EuiButton fill color="secondary" iconType="check">
               Save and complete
             </EuiButton>
           </EuiTableRowCell>
           <EuiTableRowCell>
-            Carries out pending changes, for example, Save edits. Do not confuse
-            with Add. Can use green if this button is the final save action.
+            Carries out pending changes, for example, Save edits. Do not confuse with Add. Can use
+            green if this button is the final save action.
           </EuiTableRowCell>
-
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
-    <EuiSpacer size="l"/>
+    <EuiSpacer size="l" />
 
     <EuiText>
       <h3>Avoid these words in buttons</h3>
     </EuiText>
-    <EuiSpacer/>
+    <EuiSpacer />
 
     <EuiTable>
       <EuiTableHeader>
-        <EuiTableHeaderCell>
-          Text
-        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>Text</EuiTableHeaderCell>
 
-        <EuiTableHeaderCell>
-          Use this instead
-        </EuiTableHeaderCell>
+        <EuiTableHeaderCell>Use this instead</EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton color="danger">
-              Discard
-            </EuiButton>
+            <EuiButton color="danger">Discard</EuiButton>
           </EuiTableRowCell>
 
-          <EuiTableRowCell>
-            Remove or Delete
-          </EuiTableRowCell>
+          <EuiTableRowCell>Remove or Delete</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton>
-              New
-            </EuiButton>
+            <EuiButton>New</EuiButton>
           </EuiTableRowCell>
 
-          <EuiTableRowCell>
-            Add or Create
-          </EuiTableRowCell>
+          <EuiTableRowCell>Add or Create</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton>
-              OK
-            </EuiButton>
+            <EuiButton>OK</EuiButton>
           </EuiTableRowCell>
 
-          <EuiTableRowCell>
-            Words that explain the action
-          </EuiTableRowCell>
+          <EuiTableRowCell>Words that explain the action</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton>
-              Yes?
-            </EuiButton>&nbsp;&nbsp;
-            <EuiButton color="danger">
-              No?
-            </EuiButton>
+            <EuiButton>Yes?</EuiButton>&nbsp;&nbsp;
+            <EuiButton color="danger">No?</EuiButton>
           </EuiTableRowCell>
 
-          <EuiTableRowCell>
-            Words that explain the action
-          </EuiTableRowCell>
-
+          <EuiTableRowCell>Words that explain the action</EuiTableRowCell>
         </EuiTableRow>
-
       </EuiTableBody>
     </EuiTable>
-
   </GuidePage>
 );

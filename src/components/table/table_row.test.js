@@ -2,13 +2,9 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import {
-  EuiTableRow,
-} from './table_row';
+import { EuiTableRow } from './table_row';
 
-import {
-  EuiTableRowCell
-} from './table_row_cell';
+import { EuiTableRowCell } from './table_row_cell';
 
 test('renders EuiTableRow', () => {
   const component = (

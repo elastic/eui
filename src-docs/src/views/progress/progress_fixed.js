@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiProgress,
@@ -25,7 +23,6 @@ export default class extends Component {
 
   toggleProgress() {
     const currentState = this.state.showProgress;
-
 
     if (!currentState) {
       this.timer = setTimeout(() => this.progress(0), 250);
@@ -59,30 +56,23 @@ export default class extends Component {
     if (this.state.showProgress) {
       progress = (
         <div>
-          <EuiCallOut
-            title="Look up!"
-            color="warning"
-            iconType="sortUp"
-          >
-            <p>
-              The progress bar is fixed to the top of your browser.
-            </p>
+          <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
+            <p>The progress bar is fixed to the top of your browser.</p>
           </EuiCallOut>
-          <EuiProgress value={this.state.value} max={100} size="s" position="fixed"/>
+          <EuiProgress value={this.state.value} max={100} size="s" position="fixed" />
         </div>
       );
     }
 
     return (
       <div>
-
         <EuiPanel style={{ width: 300, position: 'relative' }}>
           <EuiProgress size="xs" color="accent" position="absolute" />
           <EuiText>
             <h2>Absolutely!</h2>
             <p>
-              The progress bar is absolutely positioned in this panel. You could
-              see how this might be useful in our Toast component.
+              The progress bar is absolutely positioned in this panel. You could see how this might
+              be useful in our Toast component.
             </p>
           </EuiText>
         </EuiPanel>

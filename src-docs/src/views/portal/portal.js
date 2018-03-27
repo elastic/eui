@@ -1,12 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiPortal,
-  EuiButton,
-  EuiBottomBar,
-} from '../../../../src/components';
+import { EuiPortal, EuiButton, EuiBottomBar } from '../../../../src/components';
 
 export class Portal extends Component {
   constructor(props) {
@@ -24,7 +18,6 @@ export class Portal extends Component {
   }
 
   render() {
-
     let portal;
 
     if (this.state.isPortalVisible) {
@@ -38,9 +31,7 @@ export class Portal extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.togglePortal}>
-          Toggle portal
-        </EuiButton>
+        <EuiButton onClick={this.togglePortal}>Toggle portal</EuiButton>
 
         {portal}
       </div>

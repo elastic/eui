@@ -2,15 +2,9 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiText,
-  EuiTextColor,
-} from '../../../../src/components';
+import { EuiCode, EuiText, EuiTextColor } from '../../../../src/components';
 
 import Text from './text';
 const textSource = require('!!raw-loader!./text');
@@ -26,61 +20,73 @@ const textColorHtml = renderToHtml(TextColor);
 
 export const TextExample = {
   title: 'Text',
-  sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: textSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: textHtml,
-    }],
-    text: (
-      <p>
-        <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will apply
-        our standard typography styling and spacing to naked HTML. Because of
-        its forced style it <strong>only accepts raw HTML</strong> and can
-        not / should not be used to wrap React components (which would break
-        their styling).
-      </p>
-    ),
-    props: { EuiText },
-    demo: <Text />,
-  }, {
-    title: 'Text can come in various sizes',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: textSmallSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: textSmallHtml,
-    }],
-    text: (
-      <p>
-        Using the <EuiCode>size</EuiCode> prop on <EuiCode>EuiText</EuiCode> you
-        can get smaller sizes of text then the default.
-      </p>
-    ),
-    demo: <TextSmall />,
-  }, {
-    title: 'Coloring text',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: textColorSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: textColorHtml,
-    }],
-    text: (
-      <p>
-        There are two ways to color text. Either individually by
-        applying <EuiCode>EuiTextColor</EuiCode> on individual text objects, or
-        by passing the <EuiCode>color</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
-        a blanket approach across the entirely of your text. Either solution wraps
-        the element in a span with the <EuiCode>!important</EuiCode> applied to the color.
-        It will override any other colors in use, so be careful.
-      </p>
-    ),
-    props: { EuiTextColor },
-    demo: <TextColor />,
-  }],
+  sections: [
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: textSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: textHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will apply our standard
+          typography styling and spacing to naked HTML. Because of its forced style it{' '}
+          <strong>only accepts raw HTML</strong> and can not / should not be used to wrap React
+          components (which would break their styling).
+        </p>
+      ),
+      props: { EuiText },
+      demo: <Text />,
+    },
+    {
+      title: 'Text can come in various sizes',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: textSmallSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: textSmallHtml,
+        },
+      ],
+      text: (
+        <p>
+          Using the <EuiCode>size</EuiCode> prop on <EuiCode>EuiText</EuiCode> you can get smaller
+          sizes of text then the default.
+        </p>
+      ),
+      demo: <TextSmall />,
+    },
+    {
+      title: 'Coloring text',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: textColorSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: textColorHtml,
+        },
+      ],
+      text: (
+        <p>
+          There are two ways to color text. Either individually by applying{' '}
+          <EuiCode>EuiTextColor</EuiCode> on individual text objects, or by passing the{' '}
+          <EuiCode>color</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for a blanket
+          approach across the entirely of your text. Either solution wraps the element in a span
+          with the <EuiCode>!important</EuiCode> applied to the color. It will override any other
+          colors in use, so be careful.
+        </p>
+      ),
+      props: { EuiTextColor },
+      demo: <TextColor />,
+    },
+  ],
 };

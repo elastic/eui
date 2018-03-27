@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  render,
-  shallow,
-} from 'enzyme';
+import { render, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import { EuiKeyboardAccessible } from './keyboard_accessible';
@@ -22,9 +19,7 @@ describe('EuiKeyboardAccessible', () => {
     });
 
     test(`when there's no child`, () => {
-      const component = ( // eslint-disable-line no-unused-vars
-        <EuiKeyboardAccessible />
-      );
+      const component = <EuiKeyboardAccessible />; // eslint-disable-line no-unused-vars
 
       expect(consoleStub.calledOnce).toBe(true);
       expect(consoleStub.getCall(0).args[0]).toContain(
@@ -40,9 +35,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.calledOnce).toBe(true);
-      expect(consoleStub.getCall(0).args[0]).toContain(
-        `doesn't need to be used on a button.`
-      );
+      expect(consoleStub.getCall(0).args[0]).toContain(`doesn't need to be used on a button.`);
     });
 
     test('when the child is a link with an href', () => {
@@ -107,8 +100,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
   });
 
@@ -120,8 +112,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
 
     test('role', () => {
@@ -131,8 +122,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
   });
 
@@ -147,7 +137,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.ENTER
+        keyCode: keyCodes.ENTER,
       });
 
       sinon.assert.calledOnce(onClickHandler);
@@ -163,7 +153,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       $button.find('[data-div]').simulate('keyup', {
-        keyCode: keyCodes.SPACE
+        keyCode: keyCodes.SPACE,
       });
 
       sinon.assert.calledOnce(onClickHandler);

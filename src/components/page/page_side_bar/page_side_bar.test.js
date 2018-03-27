@@ -6,11 +6,8 @@ import { EuiPageSideBar } from './page_side_bar';
 
 describe('EuiPageSideBar', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPageSideBar {...requiredProps} />
-    );
+    const component = render(<EuiPageSideBar {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

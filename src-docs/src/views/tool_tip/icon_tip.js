@@ -12,11 +12,7 @@ export default () => (
   <Fragment>
     <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
       <EuiFlexItem grow={false}>
-        <EuiCheckbox
-          id="explainedCheckbox"
-          label="Use source maps"
-          onChange={() => {}}
-        />
+        <EuiCheckbox id="explainedCheckbox" label="Use source maps" onChange={() => {}} />
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>

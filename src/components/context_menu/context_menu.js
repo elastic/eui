@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -57,11 +55,11 @@ export class EuiContextMenu extends Component {
     className: PropTypes.string,
     panels: PropTypes.array,
     initialPanelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  }
+  };
 
   static defaultProps = {
     panels: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -178,26 +176,21 @@ export class EuiContextMenu extends Component {
 
   renderItems(items = []) {
     return items.map((item, index) => {
-      const {
-        panel,
-        name,
-        icon,
-        onClick,
-        ...rest
-      } = item;
+      const { panel, name, icon, onClick, ...rest } = item;
 
       const onClickHandler = panel
-        ? (event) => {
-          if (onClick && event) {
-            event.persist();
+        ? event => {
+            if (onClick && event) {
+              event.persist();
+            }
+            // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
+            // need to wait for that logic to complete before re-rendering the DOM via showPanel.
+            window.requestAnimationFrame(() => {
+              if (onClick) onClick(event);
+              this.showNextPanel(index);
+            });
           }
-          // This component is commonly wrapped in a EuiOutsideClickDetector, which means we'll
-          // need to wait for that logic to complete before re-rendering the DOM via showPanel.
-          window.requestAnimationFrame(() => {
-            if (onClick) onClick(event);
-            this.showNextPanel(index);
-          });
-        } : onClick;
+        : onClick;
 
       return (
         <EuiContextMenuItem
@@ -231,15 +224,21 @@ export class EuiContextMenu extends Component {
       <EuiContextMenuPanel
         key={panelId}
         className="euiContextMenu__panel"
-        onHeightChange={(transitionType === 'in') ? this.onIncomingPanelHeightChange : undefined}
-        onTransitionComplete={(transitionType === 'out') ? this.onOutGoingPanelTransitionComplete : undefined}
+        onHeightChange={transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined}
+        onTransitionComplete={
+          transitionType === 'out' ? this.onOutGoingPanelTransitionComplete : undefined
+        }
         title={panel.title}
         onClose={onClose}
         transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
-        transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
+        transitionDirection={
+          this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined
+        }
         hasFocus={transitionType === 'in'}
         items={this.idToRenderedItemsMap[panelId]}
-        initialFocusedItemIndex={this.state.isUsingKeyboardToNavigate ? this.state.focusedItemIndex : undefined}
+        initialFocusedItemIndex={
+          this.state.isUsingKeyboardToNavigate ? this.state.focusedItemIndex : undefined
+        }
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}
         showPreviousPanel={this.showPreviousPanel}
@@ -268,7 +267,9 @@ export class EuiContextMenu extends Component {
 
     return (
       <div
-        ref={node => { this.menu = node; }}
+        ref={node => {
+          this.menu = node;
+        }}
         className={classes}
         style={{ height: this.state.height }}
         {...rest}

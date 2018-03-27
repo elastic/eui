@@ -8,7 +8,7 @@ export const SortDirection = Object.freeze({
   },
   reverse(direction) {
     return this.isAsc(direction) ? this.DESC : this.ASC;
-  }
+  },
 });
 
-export const SortDirectionType = PropTypes.oneOf([ SortDirection.ASC, SortDirection.DESC ]);
+export const SortDirectionType = PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC]);

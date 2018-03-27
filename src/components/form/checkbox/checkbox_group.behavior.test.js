@@ -12,9 +12,7 @@ describe('EuiCheckboxGroup behavior', () => {
     const onChangeHandler = sinon.stub();
     const component = mount(
       <EuiCheckboxGroup
-        options={[
-          { id: '1', label: 'kibana', disabled: false },
-        ]}
+        options={[{ id: '1', label: 'kibana', disabled: false }]}
         idToSelectedMap={{
           '1': true,
         }}

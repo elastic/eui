@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiAvatar,
@@ -40,10 +38,7 @@ export default class extends Component {
   render() {
     const button = (
       <EuiHeaderSectionItemButton onClick={this.onMenuButtonClick}>
-        <EuiIcon
-          type="user"
-          size="m"
-        />
+        <EuiIcon type="user" size="m" />
 
         <EuiHeaderNotification>3</EuiHeaderNotification>
       </EuiHeaderSectionItemButton>
@@ -59,7 +54,10 @@ export default class extends Component {
         closePopover={this.closeMenu}
         panelClassName="euiHeaderPopover"
       >
-        <EuiFlexGroup gutterSize="m" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
+        <EuiFlexGroup
+          gutterSize="m"
+          className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter"
+        >
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>

@@ -5,19 +5,19 @@ export class EuiDelayHide extends Component {
   static propTypes = {
     hide: PropTypes.bool,
     minimumDuration: PropTypes.number,
-    render: PropTypes.func.isRequired
+    render: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     hide: false,
-    minimumDuration: 1000
+    minimumDuration: 1000,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      hide: this.props.hide
+      hide: this.props.hide,
     };
 
     this.lastRenderedTime = this.props.hide ? 0 : Date.now();

@@ -1,14 +1,12 @@
 import React from 'react';
 
-import {
-  EuiStepsHorizontal,
-} from '../../../../src/components';
+import { EuiStepsHorizontal } from '../../../../src/components';
 
 const horizontalSteps = [
   {
     title: 'Completed Step 1',
     isComplete: true,
-    onClick: () => window.alert('Step 1 clicked')
+    onClick: () => window.alert('Step 1 clicked'),
   },
   {
     title: 'Selected Step 2',
@@ -25,8 +23,6 @@ const horizontalSteps = [
 
 export default () => (
   <div>
-    <EuiStepsHorizontal
-      steps={horizontalSteps}
-    />
+    <EuiStepsHorizontal steps={horizontalSteps} />
   </div>
 );

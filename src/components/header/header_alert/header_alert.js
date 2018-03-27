@@ -2,30 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiButtonIcon,
-} from '../../button';
+import { EuiButtonIcon } from '../../button';
 
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../flex';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
-export const EuiHeaderAlert = ({
-  action,
-  className,
-  date,
-  text,
-  title,
-  ...rest
-}) => {
+export const EuiHeaderAlert = ({ action, className, date, text, title, ...rest }) => {
   const classes = classNames('euiHeaderAlert', className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       <EuiButtonIcon
         aria-label="Dismiss"
         iconType="cross"
@@ -43,9 +28,7 @@ export const EuiHeaderAlert = ({
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <div className="euiHeaderAlert__date">
-            {date}
-          </div>
+          <div className="euiHeaderAlert__date">{date}</div>
         </EuiFlexItem>
       </EuiFlexGroup>
     </div>

@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-import {
-  hashHistory,
-  Link,
-} from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 import {
   EuiFieldSearch,
@@ -17,9 +14,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import {
-  GuideThemeSelector,
-} from '../guide_theme_selector';
+import { GuideThemeSelector } from '../guide_theme_selector';
 
 export class GuidePageChrome extends Component {
   constructor(props) {
@@ -45,9 +40,12 @@ export class GuidePageChrome extends Component {
   };
 
   scrollTo = position => {
-    $('html, body').animate({
-      scrollTop: position,
-    }, 250);
+    $('html, body').animate(
+      {
+        scrollTop: position,
+      },
+      250
+    );
   };
 
   onClickLink = id => {
@@ -61,7 +59,6 @@ export class GuidePageChrome extends Component {
   };
 
   onClickRoute = path => {
-
     this.setState({
       search: '',
       isSideNavOpenOnMobile: false,
@@ -72,19 +69,14 @@ export class GuidePageChrome extends Component {
 
   renderIdentity() {
     const homeLink = (
-      <Link
-        to="/"
-        className="guideLogo"
-      >
+      <Link to="/" className="guideLogo">
         <EuiIcon type="logoElastic" size="l" />
       </Link>
     );
 
     return (
       <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-        <EuiFlexItem grow={false}>
-          {homeLink}
-        </EuiFlexItem>
+        <EuiFlexItem grow={false}>{homeLink}</EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <GuideThemeSelector
@@ -106,23 +98,21 @@ export class GuidePageChrome extends Component {
       name: title,
       onClick: this.onClickLink.bind(this, id),
     }));
-  }
+  };
 
   renderSideNav = sideNav => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
     sideNav.forEach(section => {
-      const matchingItems = section.items.filter(item => (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && item.hidden !== true
-      ));
+      const matchingItems = section.items.filter(
+        item =>
+          item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 &&
+          item.hidden !== true
+      );
 
       const items = matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
+        const { name, path, sections } = item;
 
         return {
           id: `${section.type}-${path}`,
@@ -185,9 +175,7 @@ export class GuidePageChrome extends Component {
           </div>
         </div>
 
-        <div className="guideSideNav__content">
-          {sideNavContent}
-        </div>
+        <div className="guideSideNav__content">{sideNavContent}</div>
       </div>
     );
   }

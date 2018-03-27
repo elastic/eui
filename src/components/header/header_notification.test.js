@@ -7,12 +7,9 @@ import { EuiHeaderNotification } from './header_notification';
 describe('EuiHeaderNotification', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiHeaderNotification {...requiredProps}>
-        Content
-      </EuiHeaderNotification>
+      <EuiHeaderNotification {...requiredProps}>Content</EuiHeaderNotification>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

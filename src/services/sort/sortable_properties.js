@@ -100,4 +100,3 @@ export class SortableProperties {
     this.currentSortedProperty.isAscending = !this.currentSortedProperty.isAscending;
   }
 }
-

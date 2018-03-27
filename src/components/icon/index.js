@@ -1,4 +1,1 @@
-export {
-  EuiIcon,
-  TYPES as ICON_TYPES,
-} from './icon';
+export { EuiIcon, TYPES as ICON_TYPES } from './icon';

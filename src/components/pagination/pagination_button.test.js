@@ -6,11 +6,8 @@ import { EuiPaginationButton } from './pagination_button';
 
 describe('EuiPaginationButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPaginationButton {...requiredProps} />
-    );
+    const component = render(<EuiPaginationButton {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

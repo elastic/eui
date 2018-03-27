@@ -1,14 +1,11 @@
-import {
-  cloneElement,
-  Component,
-} from 'react';
+import { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class EuiValidatableControl extends Component {
   static propTypes = {
     children: PropTypes.node,
     isInvalid: PropTypes.bool,
-  }
+  };
 
   updateValidity() {
     if (this.control == null || typeof this.control.setCustomValidity !== 'function') {

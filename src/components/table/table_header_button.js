@@ -2,17 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  ICON_TYPES,
-  EuiIcon,
-} from '../icon';
+import { ICON_TYPES, EuiIcon } from '../icon';
 
-export const EuiTableHeaderButton = ({
-  children,
-  className,
-  iconType,
-  ...rest
-}) => {
+export const EuiTableHeaderButton = ({ children, className, iconType, ...rest }) => {
   const classes = classNames('euiTableHeaderButton', className);
 
   // Add an icon to the button if one exists.
@@ -20,21 +12,12 @@ export const EuiTableHeaderButton = ({
 
   if (iconType) {
     buttonIcon = (
-      <EuiIcon
-        className="euiTableHeaderButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
+      <EuiIcon className="euiTableHeaderButton__icon" type={iconType} size="m" aria-hidden="true" />
     );
   }
 
   return (
-    <button
-      type="button"
-      className={classes}
-      {...rest}
-    >
+    <button type="button" className={classes} {...rest}>
       <span>{children}</span>
       {buttonIcon}
     </button>

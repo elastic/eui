@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { EuiButtonEmpty } from '../../button';
@@ -56,7 +54,10 @@ export class EuiTablePagination extends Component {
       <EuiContextMenuItem
         key={itemsPerPageOption}
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => { this.closePopover(); onChangeItemsPerPage(itemsPerPageOption); }}
+        onClick={() => {
+          this.closePopover();
+          onChangeItemsPerPage(itemsPerPageOption);
+        }}
       >
         {`${itemsPerPageOption} rows`}
       </EuiContextMenuItem>
@@ -74,18 +75,12 @@ export class EuiTablePagination extends Component {
             withTitle
             anchorPosition="upRight"
           >
-            <EuiContextMenuPanel
-              items={items}
-            />
+            <EuiContextMenuPanel items={items} />
           </EuiPopover>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiPagination
-            pageCount={pageCount}
-            activePage={activePage}
-            onPageClick={onChangePage}
-          />
+          <EuiPagination pageCount={pageCount} activePage={activePage} onPageClick={onChangePage} />
         </EuiFlexItem>
       </EuiFlexGroup>
     );

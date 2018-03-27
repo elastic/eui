@@ -6,11 +6,8 @@ import { EuiProgress } from './progress';
 
 describe('EuiProgress', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiProgress {...requiredProps} />
-    );
+    const component = render(<EuiProgress {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -1,11 +1,5 @@
-export {
-  EuiContextMenu,
-} from './context_menu';
+export { EuiContextMenu } from './context_menu';
 
-export {
-  EuiContextMenuPanel,
-} from './context_menu_panel';
+export { EuiContextMenuPanel } from './context_menu_panel';
 
-export {
-  EuiContextMenuItem,
-} from './context_menu_item';
+export { EuiContextMenuItem } from './context_menu_item';

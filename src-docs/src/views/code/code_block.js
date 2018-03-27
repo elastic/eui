@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  EuiCodeBlock,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
 const htmlCode = `<!--I'm an example of HTML-->
 <div>
@@ -15,9 +12,7 @@ const jsCode = require('!!raw-loader!./code_block');
 
 export default () => (
   <div>
-    <EuiCodeBlock language="html">
-      {htmlCode}
-    </EuiCodeBlock>
+    <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
 
     <EuiSpacer />
 
@@ -26,6 +21,5 @@ export default () => (
     </EuiCodeBlock>
 
     <EuiSpacer />
-
   </div>
 );

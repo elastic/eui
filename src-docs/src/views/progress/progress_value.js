@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -52,7 +50,6 @@ export default class extends Component {
   }
 
   render() {
-
     return (
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
@@ -62,9 +59,7 @@ export default class extends Component {
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiText>
-            <p>
-              {this.state.value}
-            </p>
+            <p>{this.state.value}</p>
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem>

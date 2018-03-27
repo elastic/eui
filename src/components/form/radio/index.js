@@ -1,7 +1,3 @@
-export {
-  EuiRadio,
-} from './radio';
+export { EuiRadio } from './radio';
 
-export {
-  EuiRadioGroup,
-} from './radio_group';
+export { EuiRadioGroup } from './radio_group';

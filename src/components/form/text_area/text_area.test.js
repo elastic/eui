@@ -6,11 +6,8 @@ import { EuiTextArea } from './text_area';
 
 describe('EuiTextArea', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTextArea {...requiredProps} />
-    );
+    const component = render(<EuiTextArea {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

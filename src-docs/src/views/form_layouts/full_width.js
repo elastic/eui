@@ -29,12 +29,7 @@ export default () => (
       fullWidth
       helpText="Note that fullWidth prop is passed to both the row and the child in this example"
     >
-      <EuiRange
-        min={0}
-        max={100}
-        name="range"
-        fullWidth
-      />
+      <EuiRange min={0} max={100} name="range" fullWidth />
     </EuiFormRow>
     <EuiFormRow
       label="Often useful for text areas"

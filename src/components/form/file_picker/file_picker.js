@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -81,7 +79,7 @@ export class EuiFilePicker extends Component {
     const classes = classNames(
       'euiFilePicker',
       {
-        'euiFilePicker__showDrop': this.state.isHoveringDrop,
+        euiFilePicker__showDrop: this.state.isHoveringDrop,
         'euiFilePicker-hasFiles': this.state.promptText !== initialPromptText,
       },
       className
@@ -104,9 +102,7 @@ export class EuiFilePicker extends Component {
     }
 
     return (
-      <div
-        className={classes}
-      >
+      <div className={classes}>
         <div className="euiFilePicker__wrap">
           <input
             type="file"
@@ -114,7 +110,9 @@ export class EuiFilePicker extends Component {
             name={name}
             className="euiFilePicker__input"
             onChange={this.handleChange}
-            ref={(input) => { this.fileInput = input; }}
+            ref={input => {
+              this.fileInput = input;
+            }}
             onDragOver={this.showDrop}
             onDragLeave={this.hideDrop}
             onDrop={this.hideDrop}
@@ -128,11 +126,7 @@ export class EuiFilePicker extends Component {
               size="l"
               aria-hidden="true"
             />
-            <div
-              className="euiFilePicker__promptText"
-            >
-              {this.state.promptText}
-            </div>
+            <div className="euiFilePicker__promptText">{this.state.promptText}</div>
             {clearButton}
           </div>
         </div>

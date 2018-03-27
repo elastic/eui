@@ -20,14 +20,11 @@ export class EuiOverlayMask extends Component {
     } = this.props;
 
     this.overlayMaskNode = document.createElement('div');
-    this.overlayMaskNode.className = classNames(
-      'euiOverlayMask',
-      className
-    );
+    this.overlayMaskNode.className = classNames('euiOverlayMask', className);
     if (onClick) {
       this.overlayMaskNode.addEventListener('click', onClick);
     }
-    Object.keys(rest).forEach((key) => {
+    Object.keys(rest).forEach(key => {
       if (typeof rest[key] !== 'string') {
         throw new Error(`Unhandled property type. EuiOverlayMask property ${key} is not a string.`);
       }
@@ -51,10 +48,7 @@ export class EuiOverlayMask extends Component {
   }
 
   render() {
-    return createPortal(
-      this.props.children,
-      this.overlayMaskNode
-    );
+    return createPortal(this.props.children, this.overlayMaskNode);
   }
 }
 

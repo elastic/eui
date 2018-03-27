@@ -21,7 +21,6 @@ export const EuiPanel = ({
   onClick,
   ...rest
 }) => {
-
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
@@ -37,7 +36,7 @@ export const EuiPanel = ({
 
   const props = {
     ref: panelRef,
-    className: classes
+    className: classes,
   };
 
   // Avoid passing down this prop if it hasn't been supplied, in order to
@@ -51,7 +50,6 @@ export const EuiPanel = ({
       {children}
     </PanelTag>
   );
-
 };
 
 EuiPanel.propTypes = {

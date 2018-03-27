@@ -3,7 +3,6 @@ import { DefaultItemAction } from './default_item_action';
 import { CustomItemAction } from './custom_item_action';
 
 export const ExpandedItemActions = ({ actions, visible, itemId, item, actionEnabled }) => {
-
   return actions.reduce((tools, action, index) => {
     const available = action.available ? action.available(item) : true;
     if (!available) {

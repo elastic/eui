@@ -42,26 +42,34 @@ export class GuideThemeSelector extends Component {
       </EuiButtonEmpty>
     );
 
-    const themeOptions = [{
-      name: 'Light',
-      value: 'light',
-    }, {
-      name: 'Dark',
-      value: 'dark',
-    }, {
-      name: 'K6',
-      value: 'k6',
-    }, {
-      name: 'K6 dark',
-      value: 'k6_dark',
-    }].map(option => {
+    const themeOptions = [
+      {
+        name: 'Light',
+        value: 'light',
+      },
+      {
+        name: 'Dark',
+        value: 'dark',
+      },
+      {
+        name: 'K6',
+        value: 'k6',
+      },
+      {
+        name: 'K6 dark',
+        value: 'k6_dark',
+      },
+    ].map(option => {
       const { name, value } = option;
 
       return (
         <EuiContextMenuItem
           key={value}
           icon={value === this.props.selectedTheme ? 'check' : 'empty'}
-          onClick={() => { this.closeThemePopover(); this.props.onToggleTheme(value); }}
+          onClick={() => {
+            this.closeThemePopover();
+            this.props.onToggleTheme(value);
+          }}
         >
           {`${name}`}
         </EuiContextMenuItem>
@@ -77,10 +85,7 @@ export class GuideThemeSelector extends Component {
         panelPaddingSize="none"
         anchorPosition="downRight"
       >
-        <EuiContextMenuPanel
-          style={{ width: '120px' }}
-          items={themeOptions}
-        />
+        <EuiContextMenuPanel style={{ width: '120px' }} items={themeOptions} />
       </EuiPopover>
     );
   }

@@ -6,40 +6,28 @@ import { EuiRadio } from './radio';
 
 describe('EuiRadio', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiRadio id="id" onChange={() => {}} {...requiredProps} />
-    );
+    const component = render(<EuiRadio id="id" onChange={() => {}} {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('checked is rendered', () => {
-      const component = render(
-        <EuiRadio id="id" onChange={() => {}} checked/>
-      );
+      const component = render(<EuiRadio id="id" onChange={() => {}} checked />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('label is rendered', () => {
-      const component = render(
-        <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>}/>
-      );
+      const component = render(<EuiRadio id="id" onChange={() => {}} label={<span>Label</span>} />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('disabled is rendered', () => {
-      const component = render(
-        <EuiRadio id="id" onChange={() => {}} disabled/>
-      );
+      const component = render(<EuiRadio id="id" onChange={() => {}} disabled />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

@@ -47,20 +47,14 @@ export class Table extends Component {
       sortField: 'firstName',
       sortDirection: 'asc',
       selectedItems: [],
-      multiAction: false
+      multiAction: false,
     };
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-    const {
-      index: pageIndex,
-      size: pageSize,
-    } = page;
+    const { index: pageIndex, size: pageSize } = page;
 
-    const {
-      field: sortField,
-      direction: sortDirection,
-    } = sort;
+    const { field: sortField, direction: sortDirection } = sort;
 
     this.setState({
       pageIndex,
@@ -75,7 +69,7 @@ export class Table extends Component {
     store.deleteUsers(...selectedItems.map(user => user.id));
 
     this.setState({
-      selectedItems: []
+      selectedItems: [],
     });
   };
 
@@ -87,11 +81,7 @@ export class Table extends Component {
     }
 
     return (
-      <EuiButton
-        color="danger"
-        iconType="trash"
-        onClick={this.onClickDelete}
-      >
+      <EuiButton color="danger" iconType="trash" onClick={this.onClickDelete}>
         Delete {selectedItems.length} Users
       </EuiButton>
     );
@@ -112,86 +102,100 @@ export class Table extends Component {
   };
 
   render() {
-    const {
+    const { pageIndex, pageSize, sortField, sortDirection } = this.state;
+
+    const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
       sortField,
-      sortDirection,
-    } = this.state;
-
-    const {
-      pageOfItems,
-      totalItemCount,
-    } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
+      sortDirection
+    );
 
     const deleteButton = this.renderDeleteButton();
 
-    const columns = [{
-      field: 'firstName',
-      name: 'First Name',
-      truncateText: true,
-      sortable: true
-    }, {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-    }, {
-      field: 'github',
-      name: 'Github',
-      render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
-      )
-    }, {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
-      sortable: true
-    }, {
-      field: 'nationality',
-      name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
-      }
-    }, {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
+    const columns = [
+      {
+        field: 'firstName',
+        name: 'First Name',
+        truncateText: true,
+        sortable: true,
       },
-      sortable: true
-    }, {
-      name: 'Actions',
-      actions: this.state.multiAction ? [{
-        name: 'Clone',
-        description: 'Clone this person',
-        icon: 'copy',
-        onClick: this.cloneUser
-      }, {
-        name: 'Delete',
-        description: 'Delete this person',
-        icon: 'trash',
-        color: 'danger',
-        onClick: this.deleteUser
-      }] : [{
-        name: 'Delete',
-        type: 'icon',
-        description: 'Delete this person',
-        icon: 'trash',
-        color: 'danger',
-        onClick: this.deleteUser
-      }]
-    }];
+      {
+        field: 'lastName',
+        name: 'Last Name',
+        truncateText: true,
+      },
+      {
+        field: 'github',
+        name: 'Github',
+        render: username => (
+          <EuiLink href={`https://github.com/${username}`} target="_blank">
+            {username}
+          </EuiLink>
+        ),
+      },
+      {
+        field: 'dateOfBirth',
+        name: 'Date of Birth',
+        dataType: 'date',
+        render: date => formatDate(date, 'dobLong'),
+        sortable: true,
+      },
+      {
+        field: 'nationality',
+        name: 'Nationality',
+        render: countryCode => {
+          const country = store.getCountry(countryCode);
+          return `${country.flag} ${country.name}`;
+        },
+      },
+      {
+        field: 'online',
+        name: 'Online',
+        dataType: 'boolean',
+        render: online => {
+          const color = online ? 'success' : 'danger';
+          const label = online ? 'Online' : 'Offline';
+          return <EuiHealth color={color}>{label}</EuiHealth>;
+        },
+        sortable: true,
+      },
+      {
+        name: 'Actions',
+        actions: this.state.multiAction
+          ? [
+              {
+                name: 'Clone',
+                description: 'Clone this person',
+                icon: 'copy',
+                onClick: this.cloneUser,
+              },
+              {
+                name: 'Delete',
+                description: 'Delete this person',
+                icon: 'trash',
+                color: 'danger',
+                onClick: this.deleteUser,
+              },
+            ]
+          : [
+              {
+                name: 'Delete',
+                type: 'icon',
+                description: 'Delete this person',
+                icon: 'trash',
+                color: 'danger',
+                onClick: this.deleteUser,
+              },
+            ],
+      },
+    ];
 
     const pagination = {
       pageIndex: pageIndex,
       pageSize: pageSize,
       totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8]
+      pageSizeOptions: [3, 5, 8],
     };
 
     const sorting = {
@@ -203,9 +207,9 @@ export class Table extends Component {
 
     const selection = {
       itemId: 'id',
-      selectable: (user) => user.online,
-      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-      onSelectionChange: this.onSelectionChange
+      selectable: user => user.online,
+      selectableMessage: selectable => (!selectable ? 'User is currently offline' : undefined),
+      onSelectionChange: this.onSelectionChange,
     };
 
     return (

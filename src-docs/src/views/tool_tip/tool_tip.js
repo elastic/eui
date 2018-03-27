@@ -15,10 +15,7 @@ export default () => (
     <EuiText>
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip
-          position="top"
-          content="Here is some tooltip text"
-        >
+        <EuiToolTip position="top" content="Here is some tooltip text">
           <EuiLink href="#">top</EuiLink>
         </EuiToolTip>
       </p>
@@ -31,26 +28,20 @@ export default () => (
           content="Here is some tooltip text. Lets add some more content to see how it wraps."
         >
           <EuiLink href="#">left</EuiLink>
-        </EuiToolTip>
-        {' '} and includes the optional title.
+        </EuiToolTip>{' '}
+        and includes the optional title.
       </p>
 
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip
-          position="right"
-          content="Here is some tooltip text"
-        >
+        <EuiToolTip position="right" content="Here is some tooltip text">
           <EuiLink href="#">right</EuiLink>
         </EuiToolTip>
       </p>
 
       <p>
         This tooltip appears on the bottom of this icon:{' '}
-        <EuiToolTip
-          position="bottom"
-          content="Here is some tooltip text"
-        >
+        <EuiToolTip position="bottom" content="Here is some tooltip text">
           <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
         </EuiToolTip>
       </p>
@@ -64,8 +55,13 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiToolTip position="top" content={<p>Works on any kind of element &mdash; buttons, inputs, you name it!</p>}>
-      <EuiButton onClick={() => alert('Buttons are still clickable within tooltips.')}>Hover me</EuiButton>
+    <EuiToolTip
+      position="top"
+      content={<p>Works on any kind of element &mdash; buttons, inputs, you name it!</p>}
+    >
+      <EuiButton onClick={() => alert('Buttons are still clickable within tooltips.')}>
+        Hover me
+      </EuiButton>
     </EuiToolTip>
   </div>
 );

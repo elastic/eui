@@ -12,7 +12,6 @@ describe('EuiToolTip', () => {
       </EuiToolTip>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

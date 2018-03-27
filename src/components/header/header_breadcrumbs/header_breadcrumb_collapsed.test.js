@@ -6,11 +6,8 @@ import { EuiHeaderBreadcrumbCollapsed } from './header_breadcrumb_collapsed';
 
 describe('EuiHeaderBreadcrumbCollapsed', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderBreadcrumbCollapsed {...requiredProps} />
-    );
+    const component = render(<EuiHeaderBreadcrumbCollapsed {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -2,14 +2,14 @@ export const always = () => true;
 
 export const never = () => false;
 
-export const isUndefined = (value) => {
+export const isUndefined = value => {
   return value === undefined;
 };
 
-export const isNull = (value) => {
+export const isNull = value => {
   return value === null;
 };
 
-export const isNil = (value) => {
+export const isNil = value => {
   return isUndefined(value) || isNull(value);
 };

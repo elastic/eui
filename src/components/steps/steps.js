@@ -5,12 +5,7 @@ import { EuiStep } from './step';
 
 function renderSteps(steps, firstStepNumber, headingElement) {
   return steps.map((step, index) => {
-    const {
-      className,
-      children,
-      title,
-      ...rest
-    } = step;
+    const { className, children, title, ...rest } = step;
 
     return (
       <EuiStep
@@ -27,20 +22,11 @@ function renderSteps(steps, firstStepNumber, headingElement) {
   });
 }
 
-export const EuiSteps = ({
-  className,
-  firstStepNumber,
-  headingElement,
-  steps,
-  ...rest,
-}) => {
+export const EuiSteps = ({ className, firstStepNumber, headingElement, steps, ...rest }) => {
   const classes = classNames('euiSteps', className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {renderSteps(steps, firstStepNumber, headingElement)}
     </div>
   );
@@ -48,7 +34,7 @@ export const EuiSteps = ({
 
 const stepPropType = PropTypes.shape({
   title: PropTypes.string.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
 });
 
 EuiSteps.propTypes = {
@@ -60,5 +46,5 @@ EuiSteps.propTypes = {
 
 EuiSteps.defaultProps = {
   firstStepNumber: 1,
-  headingElement: 'p'
+  headingElement: 'p',
 };

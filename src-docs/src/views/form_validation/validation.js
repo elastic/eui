@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiButton,
@@ -38,25 +35,16 @@ export default class extends Component {
 
     if (this.state.showErrors) {
       errors = [
-        'Here\'s an example of an error',
+        "Here's an example of an error",
         'You might have more than one error, so pass an array.',
       ];
     }
 
     return (
       <Fragment>
-        <EuiForm
-          isInvalid={this.state.showErrors}
-          error={errors}
-        >
-          <EuiFormRow
-            label="Validation only"
-            isInvalid={this.state.showErrors}
-          >
-            <EuiFieldText
-              name="first"
-              isInvalid={this.state.showErrors}
-            />
+        <EuiForm isInvalid={this.state.showErrors} error={errors}>
+          <EuiFormRow label="Validation only" isInvalid={this.state.showErrors}>
+            <EuiFieldText name="first" isInvalid={this.state.showErrors} />
           </EuiFormRow>
 
           <EuiFormRow
@@ -65,26 +53,14 @@ export default class extends Component {
             isInvalid={this.state.showErrors}
             error={errors}
           >
-            <EuiFieldText
-              name="text"
-              isInvalid={this.state.showErrors}
-            />
+            <EuiFieldText name="text" isInvalid={this.state.showErrors} />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Text area"
-            isInvalid={this.state.showErrors}
-          >
-            <EuiTextArea
-              name="area"
-              isInvalid={this.state.showErrors}
-            />
+          <EuiFormRow label="Text area" isInvalid={this.state.showErrors}>
+            <EuiTextArea name="area" isInvalid={this.state.showErrors} />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Select"
-            isInvalid={this.state.showErrors}
-          >
+          <EuiFormRow label="Select" isInvalid={this.state.showErrors}>
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
@@ -101,4 +77,3 @@ export default class extends Component {
     );
   }
 }
-

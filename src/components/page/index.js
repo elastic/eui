@@ -1,10 +1,6 @@
-export {
-  EuiPage,
-} from './page';
+export { EuiPage } from './page';
 
-export {
-  EuiPageBody,
-} from './page_body';
+export { EuiPageBody } from './page_body';
 
 export {
   EuiPageContent,
@@ -13,11 +9,6 @@ export {
   EuiPageContentHeaderSection,
 } from './page_content';
 
-export {
-  EuiPageHeader,
-  EuiPageHeaderSection,
-} from './page_header';
+export { EuiPageHeader, EuiPageHeaderSection } from './page_header';
 
-export {
-  EuiPageSideBar,
-} from './page_side_bar';
+export { EuiPageSideBar } from './page_side_bar';

@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  EuiProgress,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiProgress, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
@@ -21,5 +18,4 @@ export default () => (
 
     <EuiProgress value={90} max={100} color="danger" size="l" />
   </div>
-
 );

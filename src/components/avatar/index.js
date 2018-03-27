@@ -1,3 +1,1 @@
-export {
-  EuiAvatar,
-} from './avatar';
+export { EuiAvatar } from './avatar';

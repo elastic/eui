@@ -6,14 +6,8 @@ import { EuiTablePagination } from './table_pagination';
 
 describe('EuiTablePagination', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTablePagination
-        {...requiredProps}
-        onChangePage={() => {}}
-      />
-    );
+    const component = render(<EuiTablePagination {...requiredProps} onChangePage={() => {}} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -3,81 +3,51 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { findTestSubject, requiredProps } from '../../test';
 
-import {
-  EuiContextMenuPanel,
-} from './context_menu_panel';
+import { EuiContextMenuPanel } from './context_menu_panel';
 
-import {
-  EuiContextMenuItem,
-} from './context_menu_item';
+import { EuiContextMenuItem } from './context_menu_item';
 
 import { keyCodes } from '../../services';
 
 const items = [
-  (
-    <EuiContextMenuItem
-      key="A"
-      data-test-subj="itemA"
-    >
-      Option A
-    </EuiContextMenuItem>
-  ), (
-    <EuiContextMenuItem
-      key="B"
-      data-test-subj="itemB"
-    >
-      Option B
-    </EuiContextMenuItem>
-  ), (
-    <EuiContextMenuItem
-      key="C"
-      data-test-subj="itemC"
-    >
-      Option C
-    </EuiContextMenuItem>
-  )
+  <EuiContextMenuItem key="A" data-test-subj="itemA">
+    Option A
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="B" data-test-subj="itemB">
+    Option B
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="C" data-test-subj="itemC">
+    Option C
+  </EuiContextMenuItem>,
 ];
 
 describe('EuiContextMenuPanel', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiContextMenuPanel {...requiredProps}>
-        Hello
-      </EuiContextMenuPanel>
-    );
+    const component = render(<EuiContextMenuPanel {...requiredProps}>Hello</EuiContextMenuPanel>);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('title', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiContextMenuPanel title="Title" />
-        );
+        const component = render(<EuiContextMenuPanel title="Title" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('onClose', () => {
       test('renders a button as a title', () => {
-        const component = render(
-          <EuiContextMenuPanel title="Title" onClose={() =>{}} />
-        );
+        const component = render(<EuiContextMenuPanel title="Title" onClose={() => {}} />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test(`isn't called upon instantiation`, () => {
         const onCloseHandler = sinon.stub();
 
-        mount(
-          <EuiContextMenuPanel title="Title" onClose={onCloseHandler} />
-        );
+        mount(<EuiContextMenuPanel title="Title" onClose={onCloseHandler} />);
 
         sinon.assert.notCalled(onCloseHandler);
       });
@@ -85,9 +55,7 @@ describe('EuiContextMenuPanel', () => {
       test('is called when the title is clicked', () => {
         const onCloseHandler = sinon.stub();
 
-        const component = mount(
-          <EuiContextMenuPanel title="Title" onClose={onCloseHandler} />
-        );
+        const component = mount(<EuiContextMenuPanel title="Title" onClose={onCloseHandler} />);
 
         component.find('button').simulate('click');
 
@@ -99,9 +67,7 @@ describe('EuiContextMenuPanel', () => {
       it('is called with a height value', () => {
         const onHeightChange = sinon.stub();
 
-        mount(
-          <EuiContextMenuPanel onHeightChange={onHeightChange} />
-        );
+        mount(<EuiContextMenuPanel onHeightChange={onHeightChange} />);
 
         sinon.assert.calledWith(onHeightChange, 0);
       });
@@ -116,8 +82,7 @@ describe('EuiContextMenuPanel', () => {
                 <EuiContextMenuPanel transitionDirection="next" transitionType="in" />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
 
@@ -127,8 +92,7 @@ describe('EuiContextMenuPanel', () => {
                 <EuiContextMenuPanel transitionDirection="next" transitionType="out" />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
         });
@@ -142,8 +106,7 @@ describe('EuiContextMenuPanel', () => {
                 <EuiContextMenuPanel transitionDirection="previous" transitionType="in" />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
 
@@ -153,8 +116,7 @@ describe('EuiContextMenuPanel', () => {
                 <EuiContextMenuPanel transitionDirection="previous" transitionType="out" />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
         });
@@ -163,12 +125,7 @@ describe('EuiContextMenuPanel', () => {
 
     describe('initialFocusedItemIndex', () => {
       it('sets focus on the item occupying that index', () => {
-        const component = mount(
-          <EuiContextMenuPanel
-            items={items}
-            initialFocusedItemIndex={1}
-          />
-        );
+        const component = mount(<EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />);
 
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
       });

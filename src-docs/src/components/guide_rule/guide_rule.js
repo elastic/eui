@@ -1,51 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  EuiFlexGroup,
-} from '../../../../src/components';
+import { EuiFlexGroup } from '../../../../src/components';
 
-import {
-  GuideRuleDescription,
-} from './guide_rule_description';
+import { GuideRuleDescription } from './guide_rule_description';
 
-export const GuideRule = ({
-  children,
-  className,
-  heading,
-  description,
-  ...rest,
-}) => {
+export const GuideRule = ({ children, className, heading, description, ...rest }) => {
   const classes = classNames(
     'guideRule',
     {
-      'guideRule--hasHeading': description
+      'guideRule--hasHeading': description,
     },
-    className,
+    className
   );
 
   let descriptionNode;
 
   if (description) {
-    descriptionNode = (
-      <GuideRuleDescription
-        heading={heading}
-        description={description}
-      />
-    );
+    descriptionNode = <GuideRuleDescription heading={heading} description={description} />;
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {descriptionNode}
 
       <EuiFlexGroup className="guideRule__exampleRow" gutterSize="xl" wrap>
         {children}
       </EuiFlexGroup>
-
     </div>
   );
 };

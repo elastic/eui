@@ -13,24 +13,12 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
-export const EuiBottomBar = ({
-  children,
-  className,
-  paddingSize,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiBottomBar',
-    paddingSizeToClassNameMap[paddingSize],
-    className
-  );
+export const EuiBottomBar = ({ children, className, paddingSize, ...rest }) => {
+  const classes = classNames('euiBottomBar', paddingSizeToClassNameMap[paddingSize], className);
 
   return (
     <EuiPortal>
-      <div
-        className={classes}
-        {...rest}
-      >
+      <div className={classes} {...rest}>
         {children}
       </div>
     </EuiPortal>

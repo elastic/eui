@@ -20,10 +20,7 @@
  * apply the above workaround to them.
  */
 
-import {
-  Component,
-  cloneElement,
-} from 'react';
+import { Component, cloneElement } from 'react';
 
 import { keyCodes } from '../../services';
 
@@ -37,7 +34,7 @@ export class EuiKeyboardAccessible extends Component {
     if (this.props.children.props.onKeyDown) {
       this.props.children.props.onKeyDown(e);
     }
-  }
+  };
 
   onKeyUp = e => {
     // Support keyboard accessibility by emulating mouse click on ENTER or SPACE keypress.
@@ -49,7 +46,7 @@ export class EuiKeyboardAccessible extends Component {
     if (this.props.children.props.onKeyUp) {
       this.props.children.props.onKeyUp(e);
     }
-  }
+  };
 
   applyKeyboardAccessibility(child) {
     // Add attributes required for accessibility unless they are already specified.
@@ -83,12 +80,16 @@ const keyboardInaccessibleElement = (props, propName, componentName) => {
   }
 
   if (child.type === 'a' && child.props.href !== undefined) {
-    throw new Error(`${componentName} doesn't need to be used on a link if it has a href attribute.`);
+    throw new Error(
+      `${componentName} doesn't need to be used on a link if it has a href attribute.`
+    );
   }
 
   // We're emulating a click action, so we should already have a regular click handler defined.
   if (!child.props.onClick) {
-    throw new Error(`${componentName} needs to wrap an element which has an onClick prop assigned.`);
+    throw new Error(
+      `${componentName} needs to wrap an element which has an onClick prop assigned.`
+    );
   }
 
   if (typeof child.props.onClick !== 'function') {
