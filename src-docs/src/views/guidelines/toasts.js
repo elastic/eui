@@ -23,21 +23,21 @@ import {
 
 export default () => (
   <GuidePage title="Toast guidelines">
-    <EuiText>
+
+    <Link to="/display/toast">
+      <EuiButton className="guideRule__goToButton">
+        View component code
+      </EuiButton>
+    </Link>
+
+    <EuiText className="guideSection__text">
       <p>
         This page documents patterns for using toasts, short messages that
         appears on the lower right corner and time out after a few seconds.
         They are a popular design choice because they don&apos;t need to
         fit in a layout and don&apos;t disrupt the user.
       </p>
-      <Link to="/display/toast">
-        <EuiButton>
-          View component code
-        </EuiButton>
-      </Link>
     </EuiText>
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Toast types</GuideRuleTitle>
 
@@ -53,7 +53,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
             <strong>Success toasts indicate that everything worked out</strong>
           </h4>
@@ -76,7 +76,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
             <strong>Warning toasts direct user attention to a potential problem</strong>
           </h4>
@@ -100,7 +100,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
             <strong>Error toasts report a problem</strong>
           </h4>
@@ -125,7 +125,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
             <strong>Info toasts relay neutral information</strong>
           </h4>
@@ -138,10 +138,7 @@ export default () => (
 
     <EuiSpacer/>
 
-    <EuiHorizontalRule/>
-
     <GuideRuleTitle>Use a toast for a timely message</GuideRuleTitle>
-
 
     <GuideRule
       description="Toasts are appropriate for short feedback related to a user action.
@@ -177,8 +174,6 @@ export default () => (
       </GuideRuleExample>
 
     </GuideRule>
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Most often, it&apos;s a single line of text</GuideRuleTitle>
 
@@ -221,7 +216,7 @@ export default () => (
             title="Your form has errors"
             color="danger"
           >
-            <EuiText>
+            <EuiText className="guideSection__text">
               <ul>
                 <li>
                   Username is a required field.
@@ -239,8 +234,6 @@ export default () => (
       </GuideRuleExample>
 
     </GuideRule>
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Toasts should only contain a single action</GuideRuleTitle>
 
@@ -299,7 +292,7 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule/>
+    <EuiSpacer size="l" />
 
     <GuideRuleTitle>Icons should emphasize actions</GuideRuleTitle>
 
@@ -351,8 +344,6 @@ export default () => (
 
     </GuideRule>
 
-    <EuiHorizontalRule/>
-
     <GuideRuleTitle>Display one toast at a time</GuideRuleTitle>
 
     <GuideRule
@@ -401,8 +392,6 @@ export default () => (
 
       </GuideRuleExample>
     </GuideRule>
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Keep messages as short as possible</GuideRuleTitle>
 

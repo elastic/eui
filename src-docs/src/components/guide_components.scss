@@ -80,6 +80,16 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   margin-left: 240px;
 }
 
+.guideSection__text.euiText,
+.guideSection__text .euiText {
+  @include euiFontSizeS;
+  //font-weight: $euiFontWeightLight;
+  color: shadeOrTint($euiTextColor, .3, .1);
+
+  p, ul, ol {
+    max-width: 36rem;
+  }
+}
 
 .guideDemo__highlightLayout {
   div {

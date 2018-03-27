@@ -26,17 +26,17 @@ import {
 export default () => (
   <GuidePage title="Modals">
 
-    <EuiText>
+    <Link to="/layout/modal">
+      <EuiButton className="guideRule__goToButton">
+        View component code
+      </EuiButton>
+    </Link>
+
+    <EuiText className="guideSection__text">
       <p>
         A modal says “pay attention to me and nothing else.”  They work best for focusing users&apos; attention on a short
         amount of content and getting them to make a decision.
       </p>
-
-      <Link to="/layout/modal">
-        <EuiButton>
-          View component code
-        </EuiButton>
-      </Link>
     </EuiText>
 
     <EuiHorizontalRule/>
@@ -60,7 +60,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem >
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4><strong>The header sets the context</strong></h4>
           <p>Short and sentence-case, it lets the user know the task that needs to get done.</p>
           <h4><strong>The body supports a single task</strong></h4>
@@ -311,9 +311,9 @@ export default () => (
     <EuiSpacer size="xxl" />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Scrolling</h3>
             <p>
               Modal content should fit in a single screen.
@@ -325,10 +325,10 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Launching a modal from a modal</h3>
             <p>
               Using a modal on top of a modal typically means your workflow is
@@ -342,9 +342,9 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Opening a modal from a toolbar</h3>
             <p> Users don&apos;t expect a toolbar button to open a modal.</p>
           </EuiText>
@@ -353,9 +353,9 @@ export default () => (
     </EuiFlexGroup>
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Use modals sparingly</h3>
             <p>
               Modals pull users out of their current context.
@@ -366,10 +366,10 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Keep content clean & simple</h3>
             <p>
               A modal should be a short, direct conversation with the user.
@@ -380,9 +380,9 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Open on a user action</h3>
             <p>
               Don&apos;t just pop open a modal. Let a user action,

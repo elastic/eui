@@ -48,7 +48,7 @@ const GuideRuleWriting = ({
 
 export default () => (
   <GuidePage title="Writing guidelines">
-    <EuiText>
+    <EuiText className="guideSection__text">
       <p>
         You can have the most beautiful UI,
         but without <b>consistent, easy-to-understand text</b>,
@@ -61,19 +61,19 @@ export default () => (
     <EuiSpacer size="xxl" />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Clear and concise</h3>
             <p>Get straight to the point&mdash;in a way that your users understand.  Make every word contribute to meaning.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Consistent</h3>
             <p>Use the same terminology to mean the same thing. Make sure spelling, capitalization,
               punctuation, labels, and use of abbreviations are all consistent.
@@ -82,9 +82,9 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Conversational</h3>
             <p>Write as a professional in the field would talk&mdash;not as
             a professor lecturing students. Use words that the user would use.
@@ -570,28 +570,28 @@ export default () => (
     <EuiSpacer size="xxl" />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Work with a writer on your text</h3>
             <p>A writer can help determine where you need text and what it should say.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Word flow has a natural feel to it</h3>
             <p>Read your text out loud, make changes, and then repeat until the flow of your text feels just right.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem style={{ minWidth: 240 }}>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Use spell check</h3>
             <p>Run your text through a spelling and grammar checker.</p>
           </EuiText>
