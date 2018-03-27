@@ -25,11 +25,13 @@ export const EuiTableRowCell = ({
   header,
   hideForMobile,
   isMobileHeader,
+  hasActions,
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
     'euiTableRowCell--hideForMobile': hideForMobile,
     'euiTableRowCell--isMobileHeader': isMobileHeader,
+    'euiTableRowCell--hasActions': hasActions,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {

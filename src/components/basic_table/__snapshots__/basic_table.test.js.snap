@@ -750,6 +750,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_1_1"
             showOnHover={true}
             textOnly={false}
@@ -805,6 +806,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_2_1"
             showOnHover={true}
             textOnly={false}
@@ -860,6 +862,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_3_1"
             showOnHover={true}
             textOnly={false}
@@ -1234,6 +1237,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_1_1"
             showOnHover={true}
             textOnly={false}
@@ -1287,6 +1291,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_2_1"
             showOnHover={true}
             textOnly={false}
@@ -1340,6 +1345,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            hasActions={true}
             key="record_actions_3_1"
             showOnHover={true}
             textOnly={false}

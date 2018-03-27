@@ -199,11 +199,21 @@ export class Table extends Component {
       field: 'firstName',
       name: 'First Name',
       truncateText: true,
-      sortable: true
+      sortable: true,
+      hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
+      hideForMobile: true,
+    }, {
+      field: 'firstName',
+      name: 'Full Name',
+      truncateText: true,
+      isMobileHeader: true,
+      render: (name, item) => (
+        <span>{item.firstName} {item.lastName}</span>
+      ),
     }, {
       field: 'github',
       name: 'Github',
@@ -287,6 +297,8 @@ export class Table extends Component {
           pagination={pagination}
           sorting={sorting}
           selection={selection}
+          isSelectable={true}
+          hasActions={true}
           onChange={this.onTableChange}
         />
       </Fragment>

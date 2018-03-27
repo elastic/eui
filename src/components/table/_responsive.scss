@@ -47,8 +47,6 @@
       border-bottom: $euiBorderThin;
     }
 
-    overflow: hidden; // hide content that doesn't wrap
-
     &.euiTableRow-isSelectable {
       padding-left: $euiSizeXL;
       position: relative;
@@ -57,11 +55,31 @@
         position: absolute;
         left: 0;
         top: $euiSize; // same as row padding-top
-        bottom: $euiSize;
       }
     }
 
     &.euiTableRow-isSelected {
+    }
+
+    &.euiTableRow-hasActions {
+      padding-right: $euiSizeXL;
+      position: relative;
+
+      .euiTableRowCell--hasActions {
+        min-width: 0;
+        width: $euiSizeXXL;
+        position: absolute;
+        right: 0;
+        top: $euiSize;
+
+        &::before {
+          display: none;
+        }
+
+        .euiTableCellContent {
+          padding: 6px;
+        }
+      }
     }
   }
 
@@ -101,13 +119,14 @@
       }
 
       .euiTableCellContent {
-        padding-top: $euiSizeXS;
+        padding-top: $euiSizex;
       }
     }
   }
 
   .euiTableRowCellCheckbox {
     border: none;
+    padding: 6px;
 
     &::before {
       content: '';
