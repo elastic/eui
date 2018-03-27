@@ -15,21 +15,63 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
-  test('escaped chars as default clauses', () => {
-    const query = '\\- -\\: \\\\';
+  test('hyphen fields and values', () => {
+    const query = 'name-1:dash-1 -name-2:dash-2 \\-name-3:dash-3 term-1 -term-2 \\-term-3';
     const ast = defaultSyntax.parse(query);
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toBeDefined();
-    expect(ast.clauses).toHaveLength(3);
+    expect(ast.clauses).toHaveLength(6);
 
-    let clause = ast.getTermClause('-');
+    let clause = ast.getTermClause('term-1');
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
-    expect(clause.value).toBe('-');
+    expect(clause.value).toBe('term-1');
 
-    clause = ast.getTermClause(':');
+    clause = ast.getTermClause('term-2');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
+    expect(clause.value).toBe('term-2');
+
+    clause = ast.getTermClause('-term-3');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('-term-3');
+
+    clause = ast.getSimpleFieldClause('name-1', 'dash-1');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('name-1');
+    expect(clause.value).toBe('dash-1');
+
+    clause = ast.getSimpleFieldClause('name-2', 'dash-2');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(false);
+    expect(clause.field).toBe('name-2');
+    expect(clause.value).toBe('dash-2');
+
+    clause = ast.getSimpleFieldClause('-name-3', 'dash-3');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('-name-3');
+    expect(clause.value).toBe('dash-3');
+  });
+
+  test('escaped chars as default clauses', () => {
+    const query = '-\\: \\\\';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toBeDefined();
+    expect(ast.clauses).toHaveLength(2);
+
+    let clause = ast.getTermClause(':');
     expect(clause).toBeDefined();
     expect(AST.Term.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(false);
