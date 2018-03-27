@@ -137,6 +137,46 @@ export class EuiComboBox extends Component {
     }
   };
 
+  removeLastOption = () => {
+    if (this.hasActiveOption()) {
+      return;
+    }
+
+    if (!this.props.selectedOptions.length) {
+      return;
+    }
+
+    // Backspace will be used to delete the input, not a pill.
+    if (this.state.searchValue.length) {
+      return;
+    }
+
+    // Delete last pill.
+    this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
+  };
+
+  addCustomOption = () => {
+    if (this.doesSearchMatchOnlyOption()) {
+      this.options[0].click();
+      return;
+    }
+
+    if (!this.props.onCreateOption) {
+      return;
+    }
+
+    // Don't create the value if it's already been selected.
+    if (getSelectedOptionForSearchValue(this.state.searchValue, this.props.selectedOptions)) {
+      return;
+    }
+
+    // Add new custom pill if this is custom input, even if it partially matches an option..
+    if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
+      this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+      this.setState({ searchValue: '' });
+    }
+  };
+
   doesSearchMatchOnlyOption = () => {
     const { searchValue } = this.state;
     if (this.matchingOptions.length !== 1) {
@@ -163,21 +203,7 @@ export class EuiComboBox extends Component {
         break;
 
       case BACKSPACE:
-        if (this.hasActiveOption()) {
-          return;
-        }
-
-        if (!this.props.selectedOptions.length) {
-          return;
-        }
-
-        // Backspace will be used to delete the input, not a pill.
-        if (this.state.searchValue.length) {
-          return;
-        }
-
-        // Delete last pill.
-        this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
+        this.removeLastOption();
         break;
 
       case ESCAPE:
@@ -189,25 +215,7 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
-        if (this.doesSearchMatchOnlyOption()) {
-          this.options[0].click();
-          return;
-        }
-
-        if (!this.props.onCreateOption) {
-          return;
-        }
-
-        // Don't create the value if it's already been selected.
-        if (getSelectedOptionForSearchValue(this.state.searchValue, this.props.selectedOptions)) {
-          return;
-        }
-
-        // Add new custom pill if this is custom input, even if it partially matches an option..
-        if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
-          this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
-          this.setState({ searchValue: '' });
-        }
+        this.addCustomOption();
         break;
 
       case TAB:
