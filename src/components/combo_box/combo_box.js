@@ -203,9 +203,8 @@ export class EuiComboBox extends Component {
           return;
         }
 
-        // Add new custom pill if this is custom input.
-        const isCustomInput = !this.hasActiveOption() && !this.matchingOptions.length;
-        if (isCustomInput || this.doesSearchMatchOnlyOption()) {
+        // Add new custom pill if this is custom input, even if it partially matches an option..
+        if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
           this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
           this.setState({ searchValue: '' });
         }
