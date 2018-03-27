@@ -1,6 +1,4 @@
 import React from 'react';
-import {hashHistory} from 'react-router';
-import sassColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
 
 import imageIcons from '../../images/icons.jpg';
 import imageButtons from '../../images/buttons.svg';
@@ -9,24 +7,21 @@ import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
 
-
 import {
   Link,
 } from 'react-router';
 
 import {
-  EuiText,
-  EuiCode,
-  EuiFlexGroup,
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiSpacer,
-  EuiHorizontalRule,
   EuiCard,
+  EuiCode,
+  EuiFlexGrid,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiIcon,
-  EuiButton,
-  EuiTitle,
   EuiLink,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
   EuiToolTip,
 } from '../../../../src/components';
 

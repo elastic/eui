@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiPortal } from '../portal'
+import { EuiPortal } from '../portal';
 
 const paddingSizeToClassNameMap = {
   none: null,

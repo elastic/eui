@@ -9,11 +9,14 @@
       }
     }
   },
-  "extends": "@elastic/eslint-config-kibana",
+  "extends": [
+    "@elastic/eslint-config-kibana",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
   "env": {
     "jest": true
-  },
-  "rules": {
-    "no-console": "error"
   }
 }

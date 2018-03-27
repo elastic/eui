@@ -1,5 +1,6 @@
 import React, {
-  Component
+  Component,
+  Fragment
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
@@ -7,8 +8,6 @@ import {
   EuiLink,
   EuiHealth,
   EuiButton,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiSpacer,
   EuiInMemoryTable
 } from '../../../../../src/components';
@@ -49,15 +48,17 @@ export class Table extends Component {
       loading: false,
       users: [],
       message: (
-        <div>
-          <span>Looks like you don't have any users. Let's create some!</span>
+        <Fragment>
+          <span>Looks like you don&rsquo;t have any users. Let&rsquo;s create some!</span>
+          <EuiSpacer size="s" />
           <EuiButton
+            size="s"
             key="loadUsers"
             onClick={this.loadUsers.bind(this)}
           >
             Load Users
           </EuiButton>
-        </div>
+        </Fragment>
       ),
       selection: []
     };
@@ -137,7 +138,7 @@ export class Table extends Component {
       >
         Load Users (Error)
       </EuiButton>
-    )];
+      )];
   }
 
   render() {

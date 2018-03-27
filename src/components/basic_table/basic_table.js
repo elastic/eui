@@ -561,10 +561,10 @@ export class EuiBasicTable extends Component {
       field,
       render,
       textOnly,
-      name, // eslint-ignore-line no-unused-vars
-      description, // eslint-ignore-line no-unused-vars
-      dataType, // eslint-ignore-line no-unused-vars
-      sortable, // eslint-ignore-line no-unused-vars
+      name, // eslint-disable-line no-unused-vars
+      description, // eslint-disable-line no-unused-vars
+      dataType, // eslint-disable-line no-unused-vars
+      sortable, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
 
@@ -588,12 +588,12 @@ export class EuiBasicTable extends Component {
 
   renderItemComputedCell(itemId, item, column, columnIndex) {
     const {
-      field, // eslint-ignore-line no-unused-vars
-      render, // eslint-ignore-line no-unused-vars
-      name, // eslint-ignore-line no-unused-vars
-      description, // eslint-ignore-line no-unused-vars
-      dataType, // eslint-ignore-line no-unused-vars
-      sortable, // eslint-ignore-line no-unused-vars
+      field, // eslint-disable-line no-unused-vars
+      render, // eslint-disable-line no-unused-vars
+      name, // eslint-disable-line no-unused-vars
+      description, // eslint-disable-line no-unused-vars
+      dataType, // eslint-disable-line no-unused-vars
+      sortable, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
 

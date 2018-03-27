@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
 import ReactDOM from 'react-dom';
-import { requiredProps } from '../../test';
 import { EuiPortal } from './portal';
 
 // TODO: Temporary hack which we can remove once react-test-renderer supports portals.

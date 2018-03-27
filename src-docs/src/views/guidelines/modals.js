@@ -137,13 +137,13 @@ export default () => (
       heading="Content should fit in a single screen"
       description="If your modal has numerous options or a long list of items,
       use scrolling only if it&apso;s better than other design solutions, such as keeping the content on the page."
-      />
+    />
 
-      <GuideRule
-        heading="Don't launch a modal from a modal"
-        description="Using a modal on top of a modal typically means your workflow is too complex—users shouldn't
+    <GuideRule
+      heading="Don't launch a modal from a modal"
+      description="Using a modal on top of a modal typically means your workflow is too complex—users shouldn't
         have to remember which modal they are in. Instead, use a component that supports multiple steps, such as a form or steps"
-        />
+    />
 
 
     <EuiSpacer />
@@ -191,9 +191,9 @@ export default () => (
           />
         </div>
 
-        </GuideRuleExample>
+      </GuideRuleExample>
 
-      </GuideRule>
+    </GuideRule>
 
 
     <GuideRule
