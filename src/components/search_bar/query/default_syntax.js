@@ -54,6 +54,7 @@ fieldName "field name"
 
 fieldChar
   = alnum
+  / [-]
   / escapedChar
 
 fieldValue "field value"
@@ -80,13 +81,14 @@ word
 
 valueChar
   = alnum
+  / [-]
   / escapedChar
 
 escapedChar
   = "\\\\" reservedChar
 
 reservedChar
-  = [:\\-\\\\]
+  = [\-:\\\\]
 
 alnum "alpha numeric"
   = [a-zA-Z0-9]

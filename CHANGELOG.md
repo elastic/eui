@@ -1,11 +1,11 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.35`.
+- Relaxed query syntax of `EuiSearchBar` to allow usage of hyphens without escaping ([#581](https://github.com/elastic/eui/pull/581))
 
 # [`0.0.35`](https://github.com/elastic/eui/tree/v0.0.35)
 
-- Modified `link` and all buttons to support both href and onClick ([554](https://github.com/elastic/eui/pull/554))
-- Added `color` prop to `EuiIconTip` ([580](https://github.com/elastic/eui/pull/580))
+- Modified `link` and all buttons to support both href and onClick ([#554](https://github.com/elastic/eui/pull/554))
+- Added `color` prop to `EuiIconTip` ([#580](https://github.com/elastic/eui/pull/580))
 
 # [`0.0.34`](https://github.com/elastic/eui/tree/v0.0.34)
 
