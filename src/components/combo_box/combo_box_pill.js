@@ -23,9 +23,9 @@ export class EuiComboBoxPill extends Component {
     const {
       children,
       className,
-      option, // eslint-diable-line no-unused-vars
-      onClose, // eslint-diable-line no-unused-vars
-      ...rest,
+      option, // eslint-disable-line no-unused-vars
+      onClose, // eslint-disable-line no-unused-vars
+      ...rest
     } = this.props;
 
     const classes = classNames('euiComboBoxPill', className);

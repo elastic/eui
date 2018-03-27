@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 const highlight = (searchSubject, searchValue, isStrict = false) => {
   if (!searchValue) {

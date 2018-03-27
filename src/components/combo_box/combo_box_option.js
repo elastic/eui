@@ -34,7 +34,7 @@ export class EuiComboBoxOption extends Component {
       children,
       className,
       optionRef,
-      option, // eslint-diable-line no-unused-vars
+      option, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
       onEnterKey, // eslint-disable-line no-unused-vars
       ...rest
