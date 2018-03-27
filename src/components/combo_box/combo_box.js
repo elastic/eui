@@ -5,7 +5,6 @@
 
 import React, {
   Component,
-  Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -13,16 +12,63 @@ import tabbable from 'tabbable';
 import AutosizeInput from 'react-input-autosize';
 
 import { comboBoxKeyCodes } from '../../services';
-import { BACKSPACE, LEFT, RIGHT, TAB, ESCAPE } from '../../services/key_codes';
-import { EuiButton } from '../button';
+import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiCode } from '../code';
-import { EuiFlexGroup, EuiFlexOption } from '../flex';
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
 import { EuiHighlight } from '../highlight';
 import { EuiPanel } from '../panel';
-import { EuiText, EuiTextColor } from '../text';
+import { EuiText } from '../text';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { EuiComboBoxOption } from './combo_box_option';
+import { EuiComboBoxTitle } from './combo_box_title';
+
+const flattenOptionGroups = optionsOrGroups => {
+  return optionsOrGroups.reduce((options, optionOrGroup) => {
+    if (optionOrGroup.options) {
+      options.push(...optionOrGroup.options);
+    } else {
+      options.push(optionOrGroup);
+    }
+    return options;
+  }, []);
+};
+
+const getSelectedOptionForSearchValue = (searchValue, selectedOptions) => {
+  const normalizedSearchValue = searchValue.toLowerCase();
+  return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
+};
+
+const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue) => {
+  // Only show options which haven't yet been selected.
+  const selectedOption = getSelectedOptionForSearchValue(option.label, selectedOptions);
+  if (selectedOption) {
+    return false;
+  }
+
+  const normalizedOption = option.label.trim().toLowerCase();
+  if (normalizedOption.includes(normalizedSearchValue)) {
+    accumulator.push(option);
+  }
+};
+
+const getMatchingOptions = (options, selectedOptions, searchValue) => {
+  const normalizedSearchValue = searchValue.trim().toLowerCase();
+  const optionToGroupMap = new Map();
+  const matchingOptions = [];
+
+  options.forEach(option => {
+    if (option.options) {
+      option.options.forEach(groupOption => {
+        optionToGroupMap.set(groupOption, option)
+        collectMatchingOption(matchingOptions, groupOption, selectedOptions, normalizedSearchValue);
+      })
+    } else {
+      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue);
+    }
+  });
+
+  return { optionToGroupMap, matchingOptions };
+};
 
 export class EuiComboBox extends Component {
   static propTypes = {
@@ -43,12 +89,17 @@ export class EuiComboBox extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [];
+    const { options, selectedOptions, searchValue } = props;
+    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
+
     this.state = {
       isListOpen: this.props.isListOpen,
       focusedOptionIndex: undefined,
-      matchingOptions: [],
+      matchingOptions,
+      optionToGroupMap,
     };
+
+    this.options = [];
   }
 
   openList = () => {
@@ -117,25 +168,6 @@ export class EuiComboBox extends Component {
     });
   };
 
-  getMatchingOptions = (options, selectedOptions, searchValue) => {
-    const normalizedSearchValue = searchValue.trim().toLowerCase();
-    const matchingOptions = options.filter(option => {
-      // Only show options which haven't yet been selected.
-      const selectedOption = this.getSelectedOptionForSearchValue(option.label, selectedOptions);
-      if (selectedOption) {
-        return false;
-      }
-      const normalizedOption = option.label.trim().toLowerCase();
-      return normalizedOption.includes(normalizedSearchValue);
-    });
-    return matchingOptions;
-  };
-
-  getSelectedOptionForSearchValue = (searchValue, selectedOptions = this.props.selectedOptions) => {
-    const normalizedSearchValue = searchValue.toLowerCase();
-    return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
-  };
-
   doesSearchMatchOnlyOption = () => {
     const { searchValue } = this.props;
     const { matchingOptions } = this.state;
@@ -146,7 +178,7 @@ export class EuiComboBox extends Component {
   };
 
   areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
-    return options.length === selectedOptions.length;
+    return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
   onKeyDown = (e) => {
@@ -183,7 +215,7 @@ export class EuiComboBox extends Component {
 
       case comboBoxKeyCodes.ENTER:
         // Don't create the value if it's already been selected.
-        if (this.getSelectedOptionForSearchValue(this.props.searchValue)) {
+        if (getSelectedOptionForSearchValue(this.props.searchValue, this.props.selectedOptions)) {
           return;
         }
 
@@ -192,7 +224,7 @@ export class EuiComboBox extends Component {
           this.state.focusedOptionIndex === undefined
           || this.doesSearchMatchOnlyOption()
         ) {
-          this.props.onCreateOption();
+          this.props.onCreateOption(this.props.searchValue, flattenOptionGroups(this.props.options));
         }
         break;
 
@@ -295,13 +327,6 @@ export class EuiComboBox extends Component {
     setTimeout(() => {
       this.autoSizeInput.copyInputStyles();
     }, 100);
-
-    const { options, selectedOptions, searchValue } = this.props;
-    const matchingOptions = this.getMatchingOptions(options, selectedOptions, searchValue);
-
-    this.setState({
-      matchingOptions,
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -314,9 +339,10 @@ export class EuiComboBox extends Component {
     ) {
       // Clear refs to options if the ones we can display changes.
       this.options = [];
-      const matchingOptions = this.getMatchingOptions(options, selectedOptions, searchValue);
+      const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
 
       this.setState({
+        optionToGroupMap,
         matchingOptions,
       });
 
@@ -354,7 +380,7 @@ export class EuiComboBox extends Component {
   }
 
   renderPills() {
-    return this.props.selectedOptions.map((option, index) => {
+    return this.props.selectedOptions.map((option) => {
       const {
         value,
         label,
@@ -375,8 +401,8 @@ export class EuiComboBox extends Component {
   }
 
   renderList() {
-    const { options, searchValue, selectedOptions } = this.props;
-    const { matchingOptions } = this.state;
+    const { options, searchValue } = this.props;
+    const { matchingOptions, optionToGroupMap } = this.state;
 
     let emptyStateContent;
 
@@ -385,7 +411,7 @@ export class EuiComboBox extends Component {
     } else if (this.areAllOptionsSelected()) {
       emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
     } else if (matchingOptions.length === 0) {
-      const selectedOptionForValue = this.getSelectedOptionForSearchValue(searchValue);
+      const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
       if (selectedOptionForValue) {
         // Disallow duplicate custom options.
         emptyStateContent = (
@@ -404,17 +430,31 @@ export class EuiComboBox extends Component {
       </EuiText>
     ) : undefined;
 
-    const optionsList = matchingOptions.map((option, index) => {
+    const groupLabelToGroupMap = {};
+    const optionsList = [];
+
+    matchingOptions.forEach((option, index) => {
       const {
         value, // eslint-disable-line no-unused-vars
         label,
         ...rest
       } = option;
 
-      return (
+      const group = optionToGroupMap.get(option);
+
+      if (group && !groupLabelToGroupMap[group.label]) {
+        groupLabelToGroupMap[group.label] = true;
+        optionsList.push(
+          <EuiComboBoxTitle key={`group-${group.label}`}>
+            {group.label}
+          </EuiComboBoxTitle>
+        );
+      }
+
+      const renderedOption = (
         <EuiComboBoxOption
           option={option}
-          key={index}
+          key={option.value}
           onClick={this.onOptionClick}
           onEnterKey={this.onOptionEnterKey}
           optionRef={this.optionRef.bind(this, index)}
@@ -422,7 +462,9 @@ export class EuiComboBox extends Component {
         >
           <EuiHighlight search={searchValue}>{label}</EuiHighlight>
         </EuiComboBoxOption>
-      )
+      );
+
+      optionsList.push(renderedOption);
     });
 
     return (
@@ -447,7 +489,7 @@ export class EuiComboBox extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onCreateOption, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames('euiComboBox', className, {
