@@ -27,7 +27,6 @@ import {
   EuiTableBody,
   EuiTableRow,
   EuiTableRowCell,
-  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import ContextMenu from '../context_menu/context_menu';

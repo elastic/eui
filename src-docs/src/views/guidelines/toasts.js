@@ -14,7 +14,6 @@ import {
 import {
   EuiText,
   EuiButton,
-  EuiHorizontalRule,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
