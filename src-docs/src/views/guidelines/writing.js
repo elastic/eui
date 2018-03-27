@@ -13,6 +13,7 @@ import {
   EuiTitle,
   EuiButton,
   EuiSpacer,
+  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
@@ -60,8 +61,8 @@ export default () => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 240 }}>
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
             <h3>Clear and concise</h3>
@@ -70,7 +71,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 240 }}>
+      <EuiFlexItem>
 
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
@@ -82,7 +83,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 240 }}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
             <h3>Conversational</h3>
@@ -92,7 +93,7 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-    </EuiFlexGroup>
+    </EuiFlexGrid>
 
     <GuideRuleTitle>Style</GuideRuleTitle>
 
@@ -569,8 +570,8 @@ export default () => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 240 }}>
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
             <h3>Work with a writer on your text</h3>
@@ -579,7 +580,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 240 }}>
+      <EuiFlexItem>
 
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
@@ -589,7 +590,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 240 }}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
           <EuiText className="guideSection__text">
             <h3>Use spell check</h3>
@@ -597,7 +598,7 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-    </EuiFlexGroup>
+    </EuiFlexGrid>
 
 
 
