@@ -56,7 +56,7 @@ const collectMatchingOption = (accumulator, option, selectedOptions, normalizedS
   }
 };
 
-const getMatchingOptions = (options, selectedOptions, searchValue = '') => {
+const getMatchingOptions = (options, selectedOptions, searchValue) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const optionToGroupMap = new Map();
   const matchingOptions = [];
@@ -74,12 +74,6 @@ const getMatchingOptions = (options, selectedOptions, searchValue = '') => {
 
   return { optionToGroupMap, matchingOptions };
 };
-
-
-
-
-
-
 
 export class EuiComboBox extends Component {
   static propTypes = {
@@ -99,17 +93,19 @@ export class EuiComboBox extends Component {
   constructor(props) {
     super(props);
 
+    const initialSearchValue = '';
     const { options, selectedOptions } = props;
-    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions);
+    const { matchingOptions, optionToGroupMap } = getMatchingOptions(options, selectedOptions, initialSearchValue);
 
     this.state = {
-      searchValue: '',
+      searchValue: initialSearchValue,
       isListOpen: this.props.isListOpen,
-      focusedOptionIndex: undefined,
-      matchingOptions,
-      optionToGroupMap,
     };
 
+    // Cached derived state.
+    this.matchingOptions = matchingOptions;
+    this.optionToGroupMap = optionToGroupMap;
+    this.activeOptionIndex = undefined;
     this.options = [];
   }
 
@@ -120,9 +116,9 @@ export class EuiComboBox extends Component {
   };
 
   closeList = () => {
+    this.clearActiveOption();
     this.setState({
       isListOpen: false,
-      focusedOptionIndex: undefined,
     });
   };
 
@@ -147,100 +143,73 @@ export class EuiComboBox extends Component {
     }
 
     tabbableItems[comboBoxIndex + amount].focus();
-  }
+  };
 
-  incrementFocusedOptionIndex = amount => {
+  incrementActiveOptionIndex = amount => {
     // If there are no options available, reset the focus.
-    if (!this.state.matchingOptions.length) {
-      this.setState({
-        focusedOptionIndex: undefined,
-      });
+    if (!this.matchingOptions.length) {
+      this.clearActiveOption();
       return;
     }
 
-    let nextFocusedOptionIndex;
+    let nextActiveOptionIndex;
 
-    if (this.state.focusedOptionIndex === undefined) {
+    if (!this.hasActiveOption()) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextFocusedOptionIndex = amount < 0 ? this.options.length - 1 : 0;
+      nextActiveOptionIndex = amount < 0 ? this.options.length - 1 : 0;
     } else {
-      nextFocusedOptionIndex = this.state.focusedOptionIndex + amount;
+      nextActiveOptionIndex = this.activeOptionIndex + amount;
 
-      if (nextFocusedOptionIndex < 0) {
-        nextFocusedOptionIndex = this.options.length - 1;
-      } else if (nextFocusedOptionIndex === this.options.length) {
-        nextFocusedOptionIndex = 0;
+      if (nextActiveOptionIndex < 0) {
+        nextActiveOptionIndex = this.options.length - 1;
+      } else if (nextActiveOptionIndex === this.options.length) {
+        nextActiveOptionIndex = 0;
       }
     }
 
-    this.setState({
-      focusedOptionIndex: nextFocusedOptionIndex,
-    });
+    this.activeOptionIndex = nextActiveOptionIndex;
+    this.focusActiveOption();
+  };
+
+  hasActiveOption = () => {
+    return this.activeOptionIndex !== undefined;
+  };
+
+  clearActiveOption = () => {
+    this.activeOptionIndex = undefined;
+  };
+
+  focusActiveOption = () => {
+    // If an item is focused, focus it.
+    if (this.hasActiveOption()) {
+      this.options[this.activeOptionIndex].focus();
+    }
   };
 
   doesSearchMatchOnlyOption = () => {
-    const { matchingOptions, searchValue } = this.state;
-    if (matchingOptions.length !== 1) {
+    const { searchValue } = this.state;
+    if (this.matchingOptions.length !== 1) {
       return false;
     }
-    return matchingOptions[0].value.toLowerCase() === searchValue.toLowerCase();
+    return this.matchingOptions[0].value.toLowerCase() === searchValue.toLowerCase();
   };
 
-  areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
+  areAllOptionsSelected = () => {
+    const { options, selectedOptions } = this.props;
     return flattenOptionGroups(options).length === selectedOptions.length;
-  };
-
-  /**
-   * This method needs to be invoked directly any time we update state.searchValue. We use it
-   * to precalculate the options which match our searchValue and update the focusedOptionIndex based
-   * on the matchingOptions state.
-   *
-   * We have to precalculate matchingOptions instead of just derive it within render() because
-   * we store focusedOptionIndex in the state.
-   *
-   * We can't put this logic in componentWillReceiveProps, because that isn't called when the state
-   * updates. We also can't put it inside of componentWillUpdate, because you can't call setState
-   * within that method.
-   */
-  updateOptionsState = (options, selectedOptions, searchValue) => {
-    // Clear refs to options if the ones we can display changes.
-    this.options = [];
-    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
-
-    this.setState({
-      optionToGroupMap,
-      matchingOptions,
-    });
-
-    if (!matchingOptions.length) {
-      this.setState({
-        focusedOptionIndex: undefined,
-      });
-    } else {
-      // Use prevState because using the ENTER key to select an option will set focusedOptionIndex
-      // to undefined, and we want to avoid clobbering it here.
-      this.setState(prevState => {
-        if (prevState.focusedOptionIndex >= matchingOptions.length) {
-          // Clip focusedOptionIndex if it's now out of bounds.
-          return {
-            focusedOptionIndex: matchingOptions.length - 1,
-          };
-        }
-      });
-    }
   };
 
   onKeyDown = (e) => {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
         e.preventDefault();
-        this.incrementFocusedOptionIndex(-1);
+        this.incrementActiveOptionIndex(-1);
         break;
 
       case comboBoxKeyCodes.DOWN:
         e.preventDefault();
-        this.incrementFocusedOptionIndex(1);
+        this.incrementActiveOptionIndex(1);
         break;
 
       case BACKSPACE:
@@ -255,10 +224,8 @@ export class EuiComboBox extends Component {
 
       case ESCAPE:
         // Move focus from options list to input.
-        if (this.state.focusedOptionIndex !== undefined) {
-          this.setState({
-            focusedOptionIndex: undefined,
-          });
+        if (this.hasActiveOption()) {
+          this.clearActiveOption();
           this.searchInput.focus();
         }
         break;
@@ -266,9 +233,6 @@ export class EuiComboBox extends Component {
       case comboBoxKeyCodes.ENTER:
         if (this.doesSearchMatchOnlyOption()) {
           this.options[0].click();
-          this.setState({
-            searchValue: '',
-          }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
           return;
         }
 
@@ -281,15 +245,11 @@ export class EuiComboBox extends Component {
           return;
         }
 
-        // Add new custom pill.
-        if (
-          this.state.focusedOptionIndex === undefined
-          || this.doesSearchMatchOnlyOption()
-        ) {
+        // Add new custom pill if this is custom input.
+        const isCustomInput = !this.hasActiveOption() && !this.matchingOptions.length;
+        if (isCustomInput || this.doesSearchMatchOnlyOption()) {
           this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
-          this.setState({
-            searchValue: '',
-          }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
+          this.setState({ searchValue: '' });
         }
         break;
 
@@ -321,10 +281,9 @@ export class EuiComboBox extends Component {
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
-    this.setState({
-      focusedOptionIndex: undefined,
-      searchValue: '',
-    }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
+    this.clearActiveOption();
+    const searchValue = '';
+    this.setState({ searchValue });
     this.searchInput.focus();
   };
 
@@ -344,9 +303,7 @@ export class EuiComboBox extends Component {
     // and we need to update the index.
     const optionIndex = this.options.indexOf(e.target);
     if (optionIndex !== -1) {
-      this.setState({
-        focusedOptionIndex: optionIndex,
-      });
+      this.activeOptionIndex = optionIndex;
     }
   };
 
@@ -365,16 +322,11 @@ export class EuiComboBox extends Component {
   };
 
   onSearchChange = (e) => {
-    const searchValue = e.target.value;
     if (this.props.onSearchChange) {
       this.props.onSearchChange();
     }
-    this.setState({
-      searchValue,
-    })
 
-    const { options, selectedOptions } = this.props;
-    this.updateOptionsState(options, selectedOptions, searchValue);
+    this.setState({ searchValue: e.target.value })
   };
 
   comboBoxRef = node => {
@@ -404,29 +356,32 @@ export class EuiComboBox extends Component {
     }, 100);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps, nextState) {
     const { options, selectedOptions } = nextProps;
+    const { searchValue } = nextState;
 
     if (
       options !== this.props.options
       || selectedOptions !== this.props.selectedOptions
+      || searchValue !== this.props.searchValue
     ) {
-      this.updateOptionsState(options, selectedOptions, this.state.searchValue);
+      // Clear refs to options if the ones we can display changes.
+      this.options = [];
     }
-  }
 
-  componentWillUpdate(nextProps) {
-    // If the user has just selected the last option, then focus the input.
-    if (!this.areAllOptionsSelected() && this.areAllOptionsSelected(nextProps)) {
-      this.searchInput.focus();
+    // Calculate and cache the options which match the searchValue, because we use this information
+    // in multiple places and it would be expensive to calculate repeatedly.
+    const { matchingOptions, optionToGroupMap } = getMatchingOptions(options, selectedOptions, nextState.searchValue);
+    this.matchingOptions = matchingOptions;
+    this.optionToGroupMap = optionToGroupMap;
+
+    if (!matchingOptions.length) {
+      this.clearActiveOption();
     }
   }
 
   componentDidUpdate() {
-    // If an item is focused, focus it.
-    if (this.state.focusedOptionIndex !== undefined) {
-      this.options[this.state.focusedOptionIndex].focus();
-    }
+    this.focusActiveOption();
   }
 
   renderPills() {
@@ -452,7 +407,7 @@ export class EuiComboBox extends Component {
 
   renderList() {
     const { options, onCreateOption } = this.props;
-    const { matchingOptions, optionToGroupMap, searchValue } = this.state;
+    const { searchValue } = this.state;
 
     let emptyStateContent;
 
@@ -460,7 +415,7 @@ export class EuiComboBox extends Component {
       emptyStateContent = <p>There aren&rsquo;t any options available</p>;
     } else if (this.areAllOptionsSelected()) {
       emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
-    } else if (matchingOptions.length === 0) {
+    } else if (this.matchingOptions.length === 0) {
       if (searchValue) {
         if (onCreateOption) {
           const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
@@ -491,14 +446,14 @@ export class EuiComboBox extends Component {
     const groupLabelToGroupMap = {};
     const optionsList = [];
 
-    matchingOptions.forEach((option, index) => {
+    this.matchingOptions.forEach((option, index) => {
       const {
         value, // eslint-disable-line no-unused-vars
         label,
         ...rest
       } = option;
 
-      const group = optionToGroupMap.get(option);
+      const group = this.optionToGroupMap.get(option);
 
       if (group && !groupLabelToGroupMap[group.label]) {
         groupLabelToGroupMap[group.label] = true;
