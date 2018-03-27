@@ -16,6 +16,9 @@ import {
 
 // Guidelines
 
+import AccessibilityGuidelines
+  from './views/guidelines/accessibility';
+
 import ButtonGuidelines
   from './views/guidelines/button';
 
@@ -231,6 +234,9 @@ const createExample = (example) => {
 const navigation = [{
   name: 'Guidelines',
   items: [{
+    name: 'Accessibility',
+    component: AccessibilityGuidelines,
+  }, {
     name: 'Buttons',
     component: ButtonGuidelines,
   }, {

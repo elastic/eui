@@ -55,5 +55,5 @@ GuideRule.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   heading: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.node,
 };
