@@ -9,71 +9,17 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
-import AutosizeInput from 'react-input-autosize';
 
 import { comboBoxKeyCodes } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
-import { EuiCode } from '../code';
-import { EuiFormControlLayout, EuiValidatableControl } from '../form';
-import { EuiHighlight } from '../highlight';
-import { EuiPanel } from '../panel';
-import { EuiText } from '../text';
-import { EuiComboBoxPill } from './combo_box_pill';
-import { EuiComboBoxOption } from './combo_box_option';
-import { EuiComboBoxTitle } from './combo_box_title';
+import { EuiComboBoxInput } from './combo_box_input';
+import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
-const flattenOptionGroups = optionsOrGroups => {
-  return optionsOrGroups.reduce((options, optionOrGroup) => {
-    if (optionOrGroup.options) {
-      options.push(...optionOrGroup.options);
-    } else {
-      options.push(optionOrGroup);
-    }
-    return options;
-  }, []);
-};
-
-const getSelectedOptionForSearchValue = (searchValue, selectedOptions) => {
-  const normalizedSearchValue = searchValue.toLowerCase();
-  return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
-};
-
-const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue) => {
-  // Only show options which haven't yet been selected.
-  const selectedOption = getSelectedOptionForSearchValue(option.label, selectedOptions);
-  if (selectedOption) {
-    return false;
-  }
-
-  if (!normalizedSearchValue) {
-    accumulator.push(option);
-    return;
-  }
-
-  const normalizedOption = option.label.trim().toLowerCase();
-  if (normalizedOption.includes(normalizedSearchValue)) {
-    accumulator.push(option);
-  }
-};
-
-const getMatchingOptions = (options, selectedOptions, searchValue) => {
-  const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const optionToGroupMap = new Map();
-  const matchingOptions = [];
-
-  options.forEach(option => {
-    if (option.options) {
-      option.options.forEach(groupOption => {
-        optionToGroupMap.set(groupOption, option)
-        collectMatchingOption(matchingOptions, groupOption, selectedOptions, normalizedSearchValue);
-      })
-    } else {
-      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue);
-    }
-  });
-
-  return { optionToGroupMap, matchingOptions };
-};
+import {
+  getMatchingOptions,
+  flattenOptionGroups,
+  getSelectedOptionForSearchValue,
+} from './matching_options';
 
 export class EuiComboBox extends Component {
   static propTypes = {
@@ -106,7 +52,11 @@ export class EuiComboBox extends Component {
     this.matchingOptions = matchingOptions;
     this.optionToGroupMap = optionToGroupMap;
     this.activeOptionIndex = undefined;
+
+    // Refs.
     this.options = [];
+    this.autoSizeInput = undefined;
+    this.searchInput = undefined;
   }
 
   openList = () => {
@@ -282,8 +232,7 @@ export class EuiComboBox extends Component {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
     this.clearActiveOption();
-    const searchValue = '';
-    this.setState({ searchValue });
+    this.setState({ searchValue: '' });
     this.searchInput.focus();
   };
 
@@ -294,7 +243,7 @@ export class EuiComboBox extends Component {
 
   onComboBoxFocus = (e) => {
     // If the user has tabbed to the combo box, open it.
-    if (e.target === this.searchInputRef) {
+    if (e.target === this.searchInput) {
       this.searchInput.focus();
       return;
     }
@@ -384,122 +333,13 @@ export class EuiComboBox extends Component {
     this.focusActiveOption();
   }
 
-  renderPills() {
-    return this.props.selectedOptions.map((option) => {
-      const {
-        value,
-        label,
-        ...rest
-      } = option;
-
-      return (
-        <EuiComboBoxPill
-          option={option}
-          onClose={this.onRemoveOption}
-          key={value}
-          {...rest}
-        >
-          {label}
-        </EuiComboBoxPill>
-      )
-    });
-  }
-
-  renderList() {
-    const { options, onCreateOption } = this.props;
-    const { searchValue } = this.state;
-
-    let emptyStateContent;
-
-    if (!options.length) {
-      emptyStateContent = <p>There aren&rsquo;t any options available</p>;
-    } else if (this.areAllOptionsSelected()) {
-      emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
-    } else if (this.matchingOptions.length === 0) {
-      if (searchValue) {
-        if (onCreateOption) {
-          const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
-          if (selectedOptionForValue) {
-            // Disallow duplicate custom options.
-            emptyStateContent = (
-              <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
-            );
-          } else {
-            emptyStateContent = (
-              <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
-            );
-          }
-        } else {
-          emptyStateContent = (
-            <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
-          );
-        }
-      }
-    }
-
-    const emptyState = emptyStateContent ? (
-      <EuiText size="xs" className="euiComoboBox__empty">
-        {emptyStateContent}
-      </EuiText>
-    ) : undefined;
-
-    const groupLabelToGroupMap = {};
-    const optionsList = [];
-
-    this.matchingOptions.forEach((option, index) => {
-      const {
-        value, // eslint-disable-line no-unused-vars
-        label,
-        ...rest
-      } = option;
-
-      const group = this.optionToGroupMap.get(option);
-
-      if (group && !groupLabelToGroupMap[group.label]) {
-        groupLabelToGroupMap[group.label] = true;
-        optionsList.push(
-          <EuiComboBoxTitle key={`group-${group.label}`}>
-            {group.label}
-          </EuiComboBoxTitle>
-        );
-      }
-
-      const renderedOption = (
-        <EuiComboBoxOption
-          option={option}
-          key={option.value}
-          onClick={this.onOptionClick}
-          onEnterKey={this.onOptionEnterKey}
-          optionRef={this.optionRef.bind(this, index)}
-          {...rest}
-        >
-          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-        </EuiComboBoxOption>
-      );
-
-      optionsList.push(renderedOption);
-    });
-
-    return (
-      <EuiPanel
-        paddingSize="none"
-        className="euiComboBox__panel"
-        data-test-subj="comboBoxOptionsList"
-      >
-        <div className="euiComboBox__rowWrap">
-          {emptyState || optionsList}
-        </div>
-      </EuiPanel>
-    );
-  }
-
   render() {
     const {
       className,
-      options, // eslint-disable-line no-unused-vars
-      selectedOptions, // eslint-disable-line no-unused-vars
+      options,
+      selectedOptions,
       onChange, // eslint-disable-line no-unused-vars
-      onCreateOption, // eslint-disable-line no-unused-vars
+      onCreateOption,
       onSearchChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -519,33 +359,30 @@ export class EuiComboBox extends Component {
         ref={this.comboBoxRef}
         {...rest}
       >
-        <EuiFormControlLayout
-          icon="arrowDown"
-          iconSide="right"
-        >
-          <div
-            className="euiComboBox__inputWrap"
-            onClick={this.onComboBoxClick}
-            data-test-subj="comboBoxInput"
-          >
-            {this.renderPills()}
+        <EuiComboBoxInput
+          selectedOptions={selectedOptions}
+          onRemoveOption={this.onRemoveOption}
+          onClick={this.onComboBoxClick}
+          onChange={this.onSearchChange}
+          onFocus={this.openList}
+          value={searchValue}
+          autoSizeInputRef={this.autoSizeInputRef}
+          inputRef={this.searchInputRef}
+        />
 
-            <EuiValidatableControl isInvalid={false}>
-              <AutosizeInput
-                role="combobox"
-                style={{ fontSize: 14 }}
-                className="euiComboBox__input"
-                onFocus={this.openList}
-                onChange={this.onSearchChange}
-                value={searchValue}
-                ref={this.autoSizeInputRef}
-                inputRef={this.searchInputRef}
-              />
-            </EuiValidatableControl>
-          </div>
-        </EuiFormControlLayout>
-
-        {this.renderList()}
+        <EuiComboBoxOptionsList
+          options={options}
+          selectedOptions={selectedOptions}
+          onCreateOption={onCreateOption}
+          searchValue={searchValue}
+          matchingOptions={this.matchingOptions}
+          optionToGroupMap={this.optionToGroupMap}
+          optionRef={this.optionRef}
+          onOptionClick={this.onOptionClick}
+          onOptionEnterKey={this.onOptionEnterKey}
+          areAllOptionsSelected={this.areAllOptionsSelected()}
+          getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+        />
       </div>
     );
   }

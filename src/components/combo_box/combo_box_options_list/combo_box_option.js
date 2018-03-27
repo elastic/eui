@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ENTER, SPACE } from '../../services/key_codes';
+
+import { ENTER, SPACE } from '../../../services/key_codes';
 
 export class EuiComboBoxOption extends Component {
   static propTypes = {
