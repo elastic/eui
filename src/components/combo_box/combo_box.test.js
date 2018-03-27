@@ -9,14 +9,12 @@ describe('EuiComboBox', () => {
     const component = render(
       <EuiComboBox
         {...requiredProps}
-        searchValue=""
         onChange={() => {}}
         onSearchChange={() => {}}
         onCreateOption={() => {}}
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

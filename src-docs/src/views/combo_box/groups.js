@@ -45,7 +45,6 @@ export default class extends Component {
     this.options = [colorGroup, soundGroup];
 
     this.state = {
-      searchValue: '',
       isPopoverOpen: false,
       selectedOptions: [colorGroup.options[2], soundGroup.options[3]],
     };
@@ -53,14 +52,7 @@ export default class extends Component {
 
   onChange = (selectedOptions) => {
     this.setState({
-      searchValue: '',
       selectedOptions,
-    });
-  };
-
-  onSearchChange = (searchValue) => {
-    this.setState({
-      searchValue,
     });
   };
 
@@ -92,21 +84,17 @@ export default class extends Component {
 
     // Select the option.
     this.setState(prevState => ({
-      searchValue: '',
       selectedOptions: prevState.selectedOptions.concat(newOption),
     }));
   };
 
   render() {
-    const { searchValue, selectedOptions } = this.state;
     return (
       <EuiComboBox
         options={this.options}
-        selectedOptions={selectedOptions}
+        selectedOptions={this.state.selectedOptions}
         onChange={this.onChange}
-        onSearchChange={this.onSearchChange}
         onCreateOption={this.onCreateOption}
-        searchValue={searchValue}
       />
     );
   }

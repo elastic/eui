@@ -42,28 +42,18 @@ export default class extends Component {
     }];
 
     this.state = {
-      searchValue: '',
       isPopoverOpen: false,
       selectedOptions: [this.options[2], this.options[4]],
     };
   }
 
   onChange = (selectedOptions) => {
-    // TODO: Encapsulate searchValue within the combo box.
     this.setState({
-      searchValue: '',
       selectedOptions,
     });
   };
 
-  onSearchChange = (searchValue) => {
-    this.setState({
-      searchValue,
-    });
-  };
-
-  onCreateOption = () => {
-    const { searchValue } = this.state;
+  onCreateOption =(searchValue, flattenedOptions) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -76,7 +66,7 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (this.options.findIndex(option =>
+    if (flattenedOptions.findIndex(option =>
       option.value.trim().toLowerCase() === normalizedSearchValue
     ) === -1) {
       this.options.push(newOption);
@@ -84,21 +74,18 @@ export default class extends Component {
 
     // Select the option.
     this.setState(prevState => ({
-      searchValue: '',
       selectedOptions: prevState.selectedOptions.concat(newOption),
     }));
   };
 
   render() {
-    const { searchValue, selectedOptions } = this.state;
+    const { selectedOptions } = this.state;
     return (
       <EuiComboBox
         options={this.options}
         selectedOptions={selectedOptions}
         onChange={this.onChange}
-        onSearchChange={this.onSearchChange}
         onCreateOption={this.onCreateOption}
-        searchValue={searchValue}
       />
     );
   }

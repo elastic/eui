@@ -45,13 +45,18 @@ const collectMatchingOption = (accumulator, option, selectedOptions, normalizedS
     return false;
   }
 
+  if (!normalizedSearchValue) {
+    accumulator.push(option);
+    return;
+  }
+
   const normalizedOption = option.label.trim().toLowerCase();
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
 };
 
-const getMatchingOptions = (options, selectedOptions, searchValue) => {
+const getMatchingOptions = (options, selectedOptions, searchValue = '') => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const optionToGroupMap = new Map();
   const matchingOptions = [];
@@ -75,9 +80,8 @@ export class EuiComboBox extends Component {
     className: PropTypes.string,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
-    searchValue: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    onSearchChange: PropTypes.func.isRequired,
+    onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
   }
 
@@ -89,10 +93,11 @@ export class EuiComboBox extends Component {
   constructor(props) {
     super(props);
 
-    const { options, selectedOptions, searchValue } = props;
-    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
+    const { options, selectedOptions } = props;
+    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions);
 
     this.state = {
+      searchValue: '',
       isListOpen: this.props.isListOpen,
       focusedOptionIndex: undefined,
       matchingOptions,
@@ -169,8 +174,7 @@ export class EuiComboBox extends Component {
   };
 
   doesSearchMatchOnlyOption = () => {
-    const { searchValue } = this.props;
-    const { matchingOptions } = this.state;
+    const { matchingOptions, searchValue } = this.state;
     if (matchingOptions.length !== 1) {
       return false;
     }
@@ -179,6 +183,34 @@ export class EuiComboBox extends Component {
 
   areAllOptionsSelected = ({ options, selectedOptions } = this.props) => {
     return flattenOptionGroups(options).length === selectedOptions.length;
+  };
+
+  updateOptionsState = (options, selectedOptions, searchValue) => {
+    // Clear refs to options if the ones we can display changes.
+    this.options = [];
+    const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
+
+    this.setState({
+      optionToGroupMap,
+      matchingOptions,
+    });
+
+    if (!matchingOptions.length) {
+      this.setState({
+        focusedOptionIndex: undefined,
+      });
+    } else {
+      // Use prevState because using the ENTER key to select an option will set focusedOptionIndex
+      // to undefined, and we want to avoid clobbering it here.
+      this.setState(prevState => {
+        if (prevState.focusedOptionIndex >= matchingOptions.length) {
+          // Clip focusedOptionIndex if it's now out of bounds.
+          return {
+            focusedOptionIndex: matchingOptions.length - 1,
+          };
+        }
+      });
+    }
   };
 
   onKeyDown = (e) => {
@@ -197,7 +229,7 @@ export class EuiComboBox extends Component {
         // Delete last pill.
         if (this.props.selectedOptions.length) {
           // Backspace will be used to delete the input, not a pill.
-          if (!this.props.searchValue.length) {
+          if (!this.state.searchValue.length) {
             this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
           }
         }
@@ -214,12 +246,20 @@ export class EuiComboBox extends Component {
         break;
 
       case comboBoxKeyCodes.ENTER:
+        if (this.doesSearchMatchOnlyOption()) {
+          this.options[0].click();
+          this.setState({
+            searchValue: '',
+          }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
+          return;
+        }
+
         if (!this.props.onCreateOption) {
           return;
         }
 
         // Don't create the value if it's already been selected.
-        if (getSelectedOptionForSearchValue(this.props.searchValue, this.props.selectedOptions)) {
+        if (getSelectedOptionForSearchValue(this.state.searchValue, this.props.selectedOptions)) {
           return;
         }
 
@@ -228,7 +268,10 @@ export class EuiComboBox extends Component {
           this.state.focusedOptionIndex === undefined
           || this.doesSearchMatchOnlyOption()
         ) {
-          this.props.onCreateOption(this.props.searchValue, flattenOptionGroups(this.props.options));
+          this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+          this.setState({
+            searchValue: '',
+          }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
         }
         break;
 
@@ -262,7 +305,8 @@ export class EuiComboBox extends Component {
     onChange(selectedOptions.concat(addedOption));
     this.setState({
       focusedOptionIndex: undefined,
-    });
+      searchValue: '',
+    }, () => this.updateOptionsState(this.props.options, this.props.selectedOptions, this.state.searchValue));
     this.searchInput.focus();
   };
 
@@ -303,7 +347,16 @@ export class EuiComboBox extends Component {
   };
 
   onSearchChange = (e) => {
-    this.props.onSearchChange(e.target.value);
+    const searchValue = e.target.value;
+    if (this.props.onSearchChange) {
+      this.props.onSearchChange();
+    }
+    this.setState({
+      searchValue,
+    })
+
+    const { options, selectedOptions } = this.props;
+    this.updateOptionsState(options, selectedOptions, searchValue);
   };
 
   comboBoxRef = node => {
@@ -334,38 +387,13 @@ export class EuiComboBox extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { options, selectedOptions, searchValue } = nextProps;
+    const { options, selectedOptions } = nextProps;
 
     if (
       options !== this.props.options
       || selectedOptions !== this.props.selectedOptions
-      || searchValue !== this.props.searchValue
     ) {
-      // Clear refs to options if the ones we can display changes.
-      this.options = [];
-      const { optionToGroupMap, matchingOptions } = getMatchingOptions(options, selectedOptions, searchValue);
-
-      this.setState({
-        optionToGroupMap,
-        matchingOptions,
-      });
-
-      if (!matchingOptions.length) {
-        this.setState({
-          focusedOptionIndex: undefined,
-        });
-      } else {
-        // Use prevState because using the ENTER key to select an ption will set focusedOptionIndex
-        // to undefined, and we want to avoid clobbering it here.
-        this.setState(prevState => {
-          if (prevState.focusedOptionIndex >= matchingOptions.length) {
-            // Clip focusedOptionIndex if it's now out of bounds.
-            return {
-              focusedOptionIndex: matchingOptions.length - 1,
-            };
-          }
-        });
-      }
+      this.updateOptionsState(options, selectedOptions, this.state.searchValue);
     }
   }
 
@@ -405,8 +433,8 @@ export class EuiComboBox extends Component {
   }
 
   renderList() {
-    const { options, searchValue, onCreateOption } = this.props;
-    const { matchingOptions, optionToGroupMap } = this.state;
+    const { options, onCreateOption } = this.props;
+    const { matchingOptions, optionToGroupMap, searchValue } = this.state;
 
     let emptyStateContent;
 
@@ -415,22 +443,24 @@ export class EuiComboBox extends Component {
     } else if (this.areAllOptionsSelected()) {
       emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
     } else if (matchingOptions.length === 0) {
-      if (onCreateOption) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
-        if (selectedOptionForValue) {
-          // Disallow duplicate custom options.
-          emptyStateContent = (
-            <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
-          );
+      if (searchValue) {
+        if (onCreateOption) {
+          const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, this.props.selectedOptions);
+          if (selectedOptionForValue) {
+            // Disallow duplicate custom options.
+            emptyStateContent = (
+              <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+            );
+          } else {
+            emptyStateContent = (
+              <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+            );
+          }
         } else {
           emptyStateContent = (
-            <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+            <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
           );
         }
-      } else {
-        emptyStateContent = (
-          <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
-        );
       }
     }
 
@@ -493,7 +523,6 @@ export class EuiComboBox extends Component {
   render() {
     const {
       className,
-      searchValue,
       options, // eslint-disable-line no-unused-vars
       selectedOptions, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -501,6 +530,8 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
+
+    const { searchValue } = this.state;
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': this.state.isListOpen,
