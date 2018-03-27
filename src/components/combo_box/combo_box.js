@@ -24,6 +24,8 @@ import {
 export class EuiComboBox extends Component {
   static propTypes = {
     className: PropTypes.string,
+    isLoading: PropTypes.bool,
+    async: PropTypes.bool,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func.isRequired,
@@ -41,7 +43,7 @@ export class EuiComboBox extends Component {
 
     const initialSearchValue = '';
     const { options, selectedOptions } = props;
-    const { matchingOptions, optionToGroupMap } = getMatchingOptions(options, selectedOptions, initialSearchValue);
+    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
 
     this.state = {
       searchValue: initialSearchValue,
@@ -58,6 +60,12 @@ export class EuiComboBox extends Component {
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
   }
+
+  getMatchingOptions = (options, selectedOptions, searchValue) => {
+    // Assume the consumer has already filtered the options against the search value.
+    const isPreFiltered = this.props.async;
+    return getMatchingOptions(options, selectedOptions, searchValue, isPreFiltered);
+  };
 
   openList = () => {
     this.setState({
@@ -137,6 +145,10 @@ export class EuiComboBox extends Component {
     }
   };
 
+  clearSearchValue = () => {
+    this.onSearchChange('');
+  };
+
   removeLastOption = () => {
     if (this.hasActiveOption()) {
       return;
@@ -173,7 +185,7 @@ export class EuiComboBox extends Component {
     // Add new custom pill if this is custom input, even if it partially matches an option..
     if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
       this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
-      this.setState({ searchValue: '' });
+      this.clearSearchValue();
     }
   };
 
@@ -186,7 +198,11 @@ export class EuiComboBox extends Component {
   };
 
   areAllOptionsSelected = () => {
-    const { options, selectedOptions } = this.props;
+    const { options, selectedOptions, async } = this.props;
+    // Assume if this is async then there could be infinite options.
+    if (async) {
+      return false;
+    }
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
@@ -247,7 +263,7 @@ export class EuiComboBox extends Component {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.concat(addedOption));
     this.clearActiveOption();
-    this.setState({ searchValue: '' });
+    this.clearSearchValue();
     this.searchInput.focus();
   };
 
@@ -285,12 +301,11 @@ export class EuiComboBox extends Component {
     });
   };
 
-  onSearchChange = (e) => {
+  onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
-      this.props.onSearchChange();
+      this.props.onSearchChange(searchValue);
     }
-
-    this.setState({ searchValue: e.target.value })
+    this.setState({ searchValue });
   };
 
   comboBoxRef = node => {
@@ -335,7 +350,7 @@ export class EuiComboBox extends Component {
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const { matchingOptions, optionToGroupMap } = getMatchingOptions(options, selectedOptions, nextState.searchValue);
+    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
     this.matchingOptions = matchingOptions;
     this.optionToGroupMap = optionToGroupMap;
 
@@ -351,11 +366,13 @@ export class EuiComboBox extends Component {
   render() {
     const {
       className,
+      isLoading,
       options,
       selectedOptions,
-      onChange, // eslint-disable-line no-unused-vars
       onCreateOption,
+      onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
+      async, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -386,6 +403,7 @@ export class EuiComboBox extends Component {
         />
 
         <EuiComboBoxOptionsList
+          isLoading={isLoading}
           options={options}
           selectedOptions={selectedOptions}
           onCreateOption={onCreateOption}

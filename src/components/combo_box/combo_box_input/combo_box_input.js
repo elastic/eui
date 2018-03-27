@@ -52,7 +52,7 @@ export const EuiComboBoxInput = ({
             style={{ fontSize: 14 }}
             className="euiComboBox__input"
             onFocus={onFocus}
-            onChange={onChange}
+            onChange={(e) => onChange(e.target.value)}
             value={value}
             ref={autoSizeInputRef}
             inputRef={inputRef}

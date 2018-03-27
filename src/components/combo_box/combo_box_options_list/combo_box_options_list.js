@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { EuiCode } from '../../code';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
 import { EuiText } from '../../text';
+import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
 
 export const EuiComboBoxOptionsList = ({
   options,
+  isLoading,
   selectedOptions,
   onCreateOption,
   searchValue,
@@ -23,30 +26,39 @@ export const EuiComboBoxOptionsList = ({
 }) => {
   let emptyStateContent;
 
-  if (!options.length) {
+  if (isLoading) {
+    emptyStateContent = (
+      <EuiFlexGroup gutterSize="s" justifyContent="center">
+        <EuiFlexItem grow={false}>
+          <EuiLoadingSpinner size="m" />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          Loading options
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+  } else if (searchValue && matchingOptions.length === 0) {
+    if (onCreateOption) {
+      const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, selectedOptions);
+      if (selectedOptionForValue) {
+        // Disallow duplicate custom options.
+        emptyStateContent = (
+          <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+        );
+      } else {
+        emptyStateContent = (
+          <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+        );
+      }
+    } else {
+      emptyStateContent = (
+        <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
+      );
+    }
+  } else if (!options.length) {
     emptyStateContent = <p>There aren&rsquo;t any options available</p>;
   } else if (areAllOptionsSelected) {
     emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
-  } else if (matchingOptions.length === 0) {
-    if (searchValue) {
-      if (onCreateOption) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, selectedOptions);
-        if (selectedOptionForValue) {
-          // Disallow duplicate custom options.
-          emptyStateContent = (
-            <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
-          );
-        } else {
-          emptyStateContent = (
-            <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
-          );
-        }
-      } else {
-        emptyStateContent = (
-          <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
-        );
-      }
-    }
   }
 
   const emptyState = emptyStateContent ? (
@@ -107,6 +119,7 @@ export const EuiComboBoxOptionsList = ({
 
 EuiComboBoxOptionsList.propTypes = {
   options: PropTypes.array,
+  isLoading: PropTypes.bool,
   selectedOptions: PropTypes.array,
   onCreateOption: PropTypes.func,
   searchValue: PropTypes.string,

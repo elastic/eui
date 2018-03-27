@@ -23,6 +23,10 @@ import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 
+import Async from './async';
+const asyncSource = require('!!raw-loader!./async');
+const asyncHtml = renderToHtml(Async);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   sections: [{
@@ -75,5 +79,22 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <DisallowCustomOptions />,
+  }, {
+    title: 'Async',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: asyncSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: asyncHtml,
+    }],
+    text: (
+      <p>
+        Use the <EuiCode>onSearchChange</EuiCode> code to handle searches asynchronously. Use the
+        <EuiCode>isLoading</EuiCode> prop to let the user know that something async is happening.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Async />,
   }],
 };

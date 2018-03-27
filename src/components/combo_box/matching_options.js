@@ -14,11 +14,17 @@ export const getSelectedOptionForSearchValue = (searchValue, selectedOptions) =>
   return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
 };
 
-const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue) => {
+const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue, isPreFiltered) => {
   // Only show options which haven't yet been selected.
   const selectedOption = getSelectedOptionForSearchValue(option.label, selectedOptions);
   if (selectedOption) {
     return false;
+  }
+
+  // If the options have already been prefiltered then we can skip filtering against the search value.
+  if (isPreFiltered) {
+    accumulator.push(option);
+    return;
   }
 
   if (!normalizedSearchValue) {
@@ -32,7 +38,7 @@ const collectMatchingOption = (accumulator, option, selectedOptions, normalizedS
   }
 };
 
-export const getMatchingOptions = (options, selectedOptions, searchValue) => {
+export const getMatchingOptions = (options, selectedOptions, searchValue, isPreFiltered) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const optionToGroupMap = new Map();
   const matchingOptions = [];
@@ -41,12 +47,11 @@ export const getMatchingOptions = (options, selectedOptions, searchValue) => {
     if (option.options) {
       option.options.forEach(groupOption => {
         optionToGroupMap.set(groupOption, option)
-        collectMatchingOption(matchingOptions, groupOption, selectedOptions, normalizedSearchValue);
+        collectMatchingOption(matchingOptions, groupOption, selectedOptions, normalizedSearchValue, isPreFiltered);
       })
     } else {
-      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue);
+      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue, isPreFiltered);
     }
   });
-
   return { optionToGroupMap, matchingOptions };
 };
