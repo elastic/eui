@@ -44,12 +44,6 @@ export default () => (
         works best for focusing users&apos; attention on a short
         amount of content and getting them to make a decision.
       </p>
-
-      <Link to="/layout/modal">
-        <EuiButton>
-          View component code
-        </EuiButton>
-      </Link>
     </EuiText>
 
     <GuideRuleTitle>Modal in context</GuideRuleTitle>
