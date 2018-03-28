@@ -463,11 +463,13 @@ export class EuiBasicTable extends Component {
     const onMouseOver = () => this.onRowHover(rowIndex);
     const onMouseOut = () => this.clearRowHover();
 
-    // TODO: Add aria-owns attributes for accessibility.
-    const fullWidthColSpan = selection ? columns.length + 1 : columns.length;
+    // Occupy full width of table, taking checkbox column into account.
+    const expandedRowColSpan = selection ? columns.length + 1 : columns.length;
+    // We'll use the ID to associate the expanded row with the original.
+    const expandedRowId = `row_${itemId}_expansion`;
     const expandedRow = itemIdToExpandedRowMap[itemId] ? (
-      <EuiTableRow key={`row_${itemId}_expansion`}>
-        <EuiTableRowCell colSpan={fullWidthColSpan}>
+      <EuiTableRow id={expandedRowId} key={expandedRowId}>
+        <EuiTableRowCell colSpan={expandedRowColSpan}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
@@ -476,7 +478,7 @@ export class EuiBasicTable extends Component {
     return (
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
-          key={`row_${itemId}`}
+          aria-owns={expandedRowId}
           isSelected={selected}
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}

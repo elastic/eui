@@ -114,8 +114,8 @@ exports[`EuiBasicTable basic - with items 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -132,8 +132,8 @@ exports[`EuiBasicTable basic - with items 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -150,8 +150,8 @@ exports[`EuiBasicTable basic - with items 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -188,8 +188,8 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -206,8 +206,8 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -220,6 +220,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           </EuiTableRowCell>
         </EuiTableRow>
         <EuiTableRow
+          id="row_1_expansion"
           key="row_1_expansion"
         >
           <EuiTableRowCell
@@ -237,8 +238,8 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -275,8 +276,8 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -293,8 +294,8 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -342,8 +343,8 @@ exports[`EuiBasicTable with pagination 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -360,8 +361,8 @@ exports[`EuiBasicTable with pagination 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -378,8 +379,8 @@ exports[`EuiBasicTable with pagination 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -476,8 +477,8 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -506,8 +507,8 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -536,8 +537,8 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -614,8 +615,8 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -644,8 +645,8 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -674,8 +675,8 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -759,8 +760,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -816,8 +817,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -873,8 +874,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -978,8 +979,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1008,8 +1009,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1038,8 +1039,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1116,8 +1117,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1146,8 +1147,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1176,8 +1177,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1261,8 +1262,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1316,8 +1317,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1371,8 +1372,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1474,8 +1475,8 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1504,8 +1505,8 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1534,8 +1535,8 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         key="row_3"
       >
         <EuiTableRow
+          aria-owns="row_3_expansion"
           isSelected={false}
-          key="row_3"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1595,8 +1596,8 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1613,8 +1614,8 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1631,8 +1632,8 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1672,8 +1673,8 @@ exports[`EuiBasicTable with sorting 1`] = `
         key="row_0"
       >
         <EuiTableRow
+          aria-owns="row_0_expansion"
           isSelected={false}
-          key="row_0"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1690,8 +1691,8 @@ exports[`EuiBasicTable with sorting 1`] = `
         key="row_1"
       >
         <EuiTableRow
+          aria-owns="row_1_expansion"
           isSelected={false}
-          key="row_1"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -1708,8 +1709,8 @@ exports[`EuiBasicTable with sorting 1`] = `
         key="row_2"
       >
         <EuiTableRow
+          aria-owns="row_2_expansion"
           isSelected={false}
-          key="row_2"
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
