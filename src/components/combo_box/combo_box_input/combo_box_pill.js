@@ -18,6 +18,7 @@ export const EuiComboBoxPill =({
   return (
     <div
       className={classes}
+      title={children}
       {...rest}
     >
       <div className="euiComboBoxPill__label">
@@ -37,7 +38,7 @@ export const EuiComboBoxPill =({
 
 EuiComboBoxPill.propTypes = {
   option: PropTypes.object.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.string,
   className: PropTypes.string,
   onClose: PropTypes.func.isRequired,
 };
