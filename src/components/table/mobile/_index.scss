@@ -1,6 +1,9 @@
+@import '../../panel/index';
+
 @include screenXSmall(){
 
   .euiTable {
+    @include euiFontSize;
     thead { display: none; }
   }
 
@@ -41,25 +44,22 @@
   .euiTableHeaderButton {
   }
 
+  @include euiPanel($selector: 'euiTableRow');
+
   .euiTableRow {
     display: flex;
     flex-wrap: wrap;
-    border-top: $euiBorderThin;
-    padding-top: $euiSize;
-    padding-bottom: $euiSize;
-
-    &:last-of-type {
-      border-bottom: $euiBorderThin;
-    }
+    padding: $euiSize;
+    margin-bottom: $euiSize;
 
     &.euiTableRow-isSelectable {
-      padding-left: $euiSizeL;
+      padding-left: $euiSizeXXL;
       position: relative;
 
       .euiTableRowCellCheckbox {
         position: absolute;
-        left: 0;
-        top: $euiSize; // same as row padding-top
+        left: $euiSize;
+        top: $euiSizeL + (($euiSize*$euiLineHeight)-$euiSize)/2; // same as row padding-top + cell padding + 1/2 line height
       }
     }
 
@@ -67,22 +67,22 @@
     }
 
     &.euiTableRow-hasActions {
-      padding-right: $euiSizeL;
+      padding-right: $euiSizeXXL;
       position: relative;
 
       .euiTableRowCell--hasActions {
         min-width: 0;
-        width: $euiSizeXL;
+        width: $euiSize;
         position: absolute;
-        right: 0;
-        top: $euiSize;
+        right: $euiSize;
+        top: $euiSize + (($euiSize*$euiLineHeight)-$euiSize)/2; // same as row padding-top + 1/2 line height
 
         &::before {
           display: none;
         }
 
         .euiTableCellContent {
-          padding: 6px;
+          padding: 0;
         }
       }
     }
@@ -117,14 +117,9 @@
     &.euiTableRowCell--isMobileHeader {
       display: block;
       width: 100%;
-      @include euiFontSize();
 
       &::before {
-        display: none;
-      }
-
-      .euiTableCellContent {
-        padding-top: $euiSizeXS;
+        display: none; // don't display the header prop
       }
     }
 
@@ -136,12 +131,8 @@
   .euiTableRowCellCheckbox {
     border: none;
 
-    &::before {
-      content: '';
-      display: block;
-      padding: $euiSizeS;
-      padding-bottom: 0;
-      margin-bottom: -$euiSizeS; // pull up cell content closer
+    .euiTableCellContent {
+      padding: 0;
     }
   }
 

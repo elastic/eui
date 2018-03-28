@@ -222,7 +222,7 @@ export default class extends Component {
       label: 'Title',
       isMobileHeader: true,
       render: (title, item) => (
-        <span><EuiIcon type={item.type} size="m" style={{ verticalAlign: "baseline" }} /> {title}</span>
+        <span><EuiIcon type={item.type} size="m" style={{ verticalAlign: "text-top" }} /> {title}</span>
       ),
     }, {
       id: 'health',
