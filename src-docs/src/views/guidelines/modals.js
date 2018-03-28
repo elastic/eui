@@ -100,8 +100,6 @@ export default () => (
           <p>The primary action is a filled button, and the secondary action is a link button.
             Labels should use strong action verbs.
           </p>
-          <h4><strong>An overlay is recommended</strong></h4>
-          <p>It lets users know that the content behind the modal isn&apos;t active.</p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
