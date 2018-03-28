@@ -92,6 +92,32 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('itemIdToExpandedRowMap renders an expanded row', () => {
+    const props = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      itemIdToExpandedRowMap: {
+        '1': <div>Expanded row</div>,
+      },
+      onChange: () => {}
+    };
+    const component = shallow(
+      <EuiBasicTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with pagination', () => {
 
     const props = {

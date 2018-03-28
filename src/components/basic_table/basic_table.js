@@ -1,5 +1,6 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -141,7 +142,8 @@ export class EuiBasicTable extends Component {
 
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
-    noItemsMessage: 'No items found'
+    noItemsMessage: 'No items found',
+    itemIdToExpandedRowMap: {},
   };
 
   constructor(props) {
@@ -435,7 +437,7 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemRow(item, rowIndex) {
-    const { columns, selection } = this.props;
+    const { columns, selection, itemIdToExpandedRowMap } = this.props;
 
     const cells = [];
 
@@ -460,15 +462,29 @@ export class EuiBasicTable extends Component {
 
     const onMouseOver = () => this.onRowHover(rowIndex);
     const onMouseOut = () => this.clearRowHover();
-    return (
-      <EuiTableRow
-        key={`row_${rowIndex}_${itemId}`}
-        isSelected={selected}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-      >
-        {cells}
+
+    // TODO: Add aria-owns attributes for accessibility.
+    const fullWidthColSpan = selection ? columns.length + 1 : columns.length;
+    const expandedRow = itemIdToExpandedRowMap[itemId] ? (
+      <EuiTableRow key={`row_${itemId}_expansion`}>
+        <EuiTableRowCell colSpan={fullWidthColSpan}>
+          {itemIdToExpandedRowMap[itemId]}
+        </EuiTableRowCell>
       </EuiTableRow>
+    ) : undefined;
+
+    return (
+      <Fragment key={`row_${itemId}`}>
+        <EuiTableRow
+          key={`row_${itemId}`}
+          isSelected={selected}
+          onMouseOver={onMouseOver}
+          onMouseOut={onMouseOut}
+        >
+          {cells}
+        </EuiTableRow>
+        {expandedRow}
+      </Fragment>
     );
   }
 

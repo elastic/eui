@@ -11,6 +11,7 @@ import { section as basicSection } from './basic';
 import { section as paginatedSection } from './paginated';
 import { section as sortingSection } from './sorting';
 import { section as selectionSection } from './selection';
+import { section as expandingRowsSection } from './expanding_rows';
 import { section as actionsSection } from './actions';
 import {
   section as inMemorySection,
@@ -46,6 +47,7 @@ export const TableExample = {
     paginatedSection,
     sortingSection,
     selectionSection,
+    expandingRowsSection,
     actionsSection,
     inMemorySection,
     inMemorySelectionSection,
