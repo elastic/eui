@@ -12,15 +12,9 @@ import {
 } from '../../components';
 
 import {
-  EuiButton,
   EuiText,
   EuiHorizontalRule,
   EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiImage,
-  EuiLink,
-  EuiPanel
 } from '../../../../src/components';
 
 export default () => (
@@ -32,7 +26,8 @@ export default () => (
         cognitive, and motor impairments.  It’s a basic tenet of the EUI Framework.
         We’ve built in the color, markup, and behavior required for accessibility.&nbsp;
         <strong>When you use the EUI Framework, you can be confident you&apos;re building
-        an experience for users of all abilities.</strong>
+        an experience for users of all abilities.
+        </strong>
       </p>
 
 
@@ -55,42 +50,44 @@ export default () => (
         frame
         panel={false}
         type="do"
-        text="Core palette"
-      >
-      </GuideRuleExample>
+        text="Core color palette"
+      />
 
       <GuideRuleExample
         frame
         panel={false}
         type="do"
-        text="Visuzlization palette"
-      >
-      </GuideRuleExample>
+        text="Visuzlization color palette"
+      />
+
     </GuideRule>
 
     <GuideRule
-      heading="Color contrast ratios that meet AA standards"
-      description={<span>All EUI designs meet the <strong>AA color contrast standard.</strong>
-      This ensures sufficient color contrast between foreground and background colors.
-      This standard benefits users with color blindness and users with low vision.
-      For a grid of EUI color combinations that pass the AA rating, see the EUI color guidelines.</span>}
+      heading="Color contrast ratios meet AA standards"
+      description={
+        <span>All EUI designs meet the
+          <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html" target="blank">AA color contrast standard.</a>
+        &nbsp;This standard ensures sufficient color contrast between foreground and background colors,
+        which is important for users with color blindness and users with low vision.
+        For a grid of EUI color combinations that pass the AA rating, see the&nbsp;
+          <Link to="/guidelines/colors">EUI color guideline
+          </Link>.
+        </span>}
     >
 
       <GuideRuleExample
         frame
         panel={false}
         type="do"
-        text="These lines have sufficient contrast between the text and  background colors"
-      >
-      </GuideRuleExample>
+        text="Dark text on a light background offers good contrast between colors."
+      />
 
       <GuideRuleExample
         frame
         panel={false}
         type="dont"
-        text="These lines of text don&apos;t"
-      >
-      </GuideRuleExample>
+        text="Light text on a light background can be difficult to read."
+      />
     </GuideRule>
 
     <EuiHorizontalRule/>
@@ -104,57 +101,54 @@ export default () => (
       description="EUI provides a set of semantically correct components.
       Buttons are built with a button tag, headings with the heading tag,
       images with the figure tag, and so on. Semantic HTML enables assistive technologies to properly
-      identify the component."
+      identify the component for the user."
     >
-
-    <GuideRuleExample
-      frame
-      panel={false}
-      type="do"
-      text="The heading tag enables assitive technologies to convey
-      the hierachy of the headings on the page."
-    >
-    <EuiText>
-      <p>&lt;h1&gt;</p>
-      <p>&lt;h2&gt;</p>
-      <p>&lt;h3&gt;</p>
-    </EuiText>
-    </GuideRuleExample>
 
       <GuideRuleExample
         frame
         panel={false}
         type="do"
-        text="The image component uses figure and figcaption tags
-        to convey its purpose."
+        text="The EUI description list is built using the <dl> tag in conjunction with
+        <dt>, which defines the term, and <dd> which defines the description."
       >
-      <EuiText>
-        <p>&lt;figure&gt;</p>
-        <p>&lt;figcaption&gt;</p>
-      </EuiText>
+        <EuiText>
+          <p>&lt;dd&gt;</p>
+          <p>&lt;dl&gt;</p>
+          <p>&lt;dt&gt;</p>
+        </EuiText>
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        frame
+        panel={false}
+        type="do"
+        text="The EUI image component is built with the figure and figcaption tags."
+      >
+        <EuiText>
+          <p>&lt;figure&gt;</p>
+          <p>&lt;figcaption&gt;</p>
+        </EuiText>
       </GuideRuleExample>
 
     </GuideRule>
 
     <GuideRule
-      heading="ARIA roles for additional context"
-      description="EUI uses ARIA attributes
-      on the HMTL markup to
-      convey additional information about the component. These attributes provide properties such as
-      what the component does and the state it is in.
-      In turn, assistive technologies can better
-      communicate how users can interact with the component."
+      heading="ARIA roles for extra context"
+      description="EUI components include ARIA roles, states, and properties
+      on the HMTL markup to provide additional information about the component.
+      These attributes can help assistive technologies convey such context as
+      the the purpose of the component and how to interact with it."
     >
 
       <GuideRuleExample
         frame
         panel={false}
         type="do"
-        text="The accordian component uses the aria-expanded attribute to communicate whether or not the accordion is open."
+        text="The EUI accordian component uses the aria-expanded attribute to communicate whether or not the accordion is open."
       >
-      <EuiText>
-        <p>aria-expanded</p>
-      </EuiText>
+        <EuiText>
+          <p>aria-expanded</p>
+        </EuiText>
 
       </GuideRuleExample>
 
@@ -162,13 +156,13 @@ export default () => (
         frame
         panel={false}
         type="do"
-        text="An icon button uses the aria-label attribute to communicate the
-        meaning of the button. Developers get a
+        text="The EUI icon button uses the aria-label attribute to communicate the
+        button's action. Developers get a
         warning if the label isn't set."
       >
-      <EuiText>
-        <p>aria-label</p>
-      </EuiText>
+        <EuiText>
+          <p>aria-label</p>
+        </EuiText>
 
       </GuideRuleExample>
     </GuideRule>
@@ -180,13 +174,29 @@ export default () => (
     <GuideRuleTitle>Page traversal with the keyboard</GuideRuleTitle>
 
     <GuideRule
-      heading="Linear navigation of user interfaces"
+      heading=""
       description="EUI components are built to support logical,
-      linear exploration of user interfaces with the keyboard.
+      linear exploration of the user interface with the keyboard.
       Anything users can do with a mouse they should also be able to do with
       a keyboard or screen reader.  This includes traversing the page,
       changing focus, and performing tasks."
-    />
+    >
+
+      <GuideRuleExample
+        frame
+        panel={false}
+        type="do"
+        text="Image of keyboard navigation"
+      />
+
+      <GuideRuleExample
+        frame
+        panel={false}
+        type="do"
+        text=""
+      />
+
+    </GuideRule>
 
     <EuiSpacer />
 
@@ -194,33 +204,40 @@ export default () => (
 
     <GuideRuleTitle>Accessibility helpers</GuideRuleTitle>
     <EuiText>
-      <p>EUI has a number of utilties that can help you design for accessibility.</p>
+      <p>The EUI Framework has a number of utilties that can help you design and build your product for accessibility.</p>
     </EuiText>
 
     <GuideRule
-      heading="Deciding the best text color"
-      description="You should generally use either black or white for your text color.
-      The Is Color Dark utility can tell you
-      which color contrasts better with your given background color."
+      heading="Choosing the best text and background combination"
+      description={
+        <span> In general, you should use either black or white for your text color. The&nbsp;
+          <Link to="/utilities/is-color-dark">Is Color Dark utility
+          </Link>
+          &nbsp;can tell you which to color to use with your given background color.
+        </span>}
     />
 
     <GuideRule
       heading="Making elements keyboard focusable"
-      description="In some cases you might need to use an element that doesn't have keyboard interactions,
-        such as <div>, <span>, <p>, and <a> with no href. You can make these elements focusable and clickable by
-        wrapping them in the EuiKeyboardAccessible component."
-        />
+      description={
+        <span>In some cases you might need to use an element that doesn&apos;t have keyboard interactions,
+        such as &lt;div&gt;, &lt;span&gt;, &lt;p&gt;, and &lt;a&gt; without an href.
+        You can make these elements focusable and clickable by wrapping them in&nbsp;
+          <Link to="/utilities/accessibility">EuiKeyboardAccessible
+          </Link>.
+        </span>}
+    />
 
-        <GuideRule
-          heading="Setting focus on the first input in a modal"
-          description="When opening a modal, you can use the onfocus attribute to set focus on the first input.
-          In a confirmation modal, this allows users to tab between Cancel and the primary action."
-          />
+    <GuideRule
+      heading="Setting focus on the first input in a modal"
+      description="You can use onFocus to set focus on the first input when the modal opens.
+      In a confirmation modal, this allows users to tab between Cancel and the primary action."
+    />
 
-          <GuideRule
-            heading="Focus states"
-            description="Some description"
-            />
+    <GuideRule
+      heading="Focus states"
+      description="Some description"
+    />
 
 
   </GuidePage>
