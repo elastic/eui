@@ -14,11 +14,14 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const EuiText = ({ size, color, children, className, ...rest }) => {
+export const EuiText = ({ size, color, children, className, autoWrap, ...rest }) => {
 
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
+    {
+      'euiText--autoWrap' : autoWrap,
+    },
     className
   );
 
@@ -42,7 +45,12 @@ export const EuiText = ({ size, color, children, className, ...rest }) => {
 
 EuiText.propTypes = {
   children: PropTypes.node,
+  autoWrap: PropTypes.bool,
   className: PropTypes.string,
   size: PropTypes.oneOf(TEXT_SIZES),
   color: PropTypes.oneOf(COLORS),
+};
+
+EuiText.defaultProps = {
+  autoWrap: true,
 };

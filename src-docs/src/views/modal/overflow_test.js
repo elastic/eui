@@ -59,7 +59,7 @@ export class OverflowTest extends Component {
             </EuiModalHeader>
 
             <EuiModalBody>
-              <EuiText>
+              <EuiText autoWrap={false}>
                 <p>
                   KING. Whats he that wishes so?
                   My cousin, Westmorland? No, my fair cousin;
