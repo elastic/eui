@@ -239,7 +239,6 @@ const navigation = [{
   }, {
     name: 'Modals',
     component: ModalGuidelines,
-    hidden: true,
   }, {
     name: 'Text scales',
     component: TextScales,

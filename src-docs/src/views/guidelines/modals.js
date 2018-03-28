@@ -14,17 +14,23 @@ import {
 import {
   EuiButton,
   EuiText,
-  EuiHorizontalRule,
+  EuiTitle,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiImage,
-  EuiLink,
-  EuiPanel
+  EuiPanel,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiButtonEmpty,
+  EuiFormRow,
+  EuiFieldText,
+  EuiTextArea,
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Modals">
+  <GuidePage title="Modal guidelines">
 
     <Link to="/layout/modal">
       <EuiButton className="guideRule__goToButton">
@@ -34,162 +40,247 @@ export default () => (
 
     <EuiText className="guideSection__text">
       <p>
-        A modal says “pay attention to me and nothing else.”  They work best for focusing users&apos; attention on a short
+        A modal says “pay attention to me and nothing else.”  A modal
+        works best for focusing users&apos; attention on a short
         amount of content and getting them to make a decision.
       </p>
     </EuiText>
 
-    <EuiHorizontalRule/>
-
-
-    <GuideRuleTitle>Anatomy</GuideRuleTitle>
+    <GuideRuleTitle>Modal in context</GuideRuleTitle>
+    <EuiSpacer />
 
     <EuiSpacer size="xxl" />
 
     <EuiFlexGroup wrap={true}>
-      <EuiFlexItem >
-        <EuiPanel>
-          <div style={{ textAlign: 'center' }}>
-            <EuiImage
+      <EuiFlexItem style={{ minWidth: 300 }}>
+        <div>
+          <EuiPanel hasShadow paddingSize="none">
+            <EuiModalHeader>
+              <EuiModalHeaderTitle >
+                A modal title should be one line
+              </EuiModalHeaderTitle>
+            </EuiModalHeader>
+            <EuiModalBody>
+              <EuiText>
+                <p>
+                  The modal body will automatically
+                  scroll if the content gets too tall. Try to keep
+                  this from happening by keeping your content
+                  short and to the point.
+                </p>
+              </EuiText>
+            </EuiModalBody>
 
-              alt="page without primary button"
-              url="https://imgur.com/giUYBKh.jpg"
-            />
-          </div>
-        </EuiPanel>
+            <EuiModalFooter>
+              <EuiButtonEmpty>
+                Secondary action
+              </EuiButtonEmpty>
+
+              <EuiButton fill>
+                Primary action
+              </EuiButton>
+            </EuiModalFooter>
+          </EuiPanel>
+        </div>
       </EuiFlexItem>
 
       <EuiFlexItem >
         <EuiText className="guideSection__text">
           <h4><strong>The header sets the context</strong></h4>
-          <p>Short and sentence-case, it lets the user know the task that needs to get done.</p>
-          <h4><strong>The body supports a single task</strong></h4>
-          <p>This task should be critical to continuing the current process.</p>
+          <p>Short and sentence-case, the header should indicate what the modal is about.</p>
+          <h4><strong>The body is for a single task</strong></h4>
+          <p>This task should not require a lot of explanation or user interaction.</p>
           <h4><strong>Buttons are right-aligned</strong></h4>
           <p>The primary action is a filled button, and the secondary action is a link button.
+            Labels should use strong action verbs.
           </p>
-          <h4><strong>An overlay is always used</strong></h4>
-          <p>It lets the user know that the content behind the modal isn&apos;t active.</p>
         </EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiSpacer />
+    <EuiSpacer size="xl"/>
 
-    <EuiHorizontalRule/>
-
-
-    <GuideRuleTitle>Input</GuideRuleTitle>
+    <GuideRuleTitle>Use a modal to silo a single action</GuideRuleTitle>
 
 
 
     <GuideRule
       heading=""
-      description="An input modal (EuiModal) is for a simple task that doesn't require a lot of explanatory information or user interaction."
-    >
-
-      <GuideRuleExample
-        frame
-        panel={false}
-        type="do"
-        text="Do. The header is short and sentence-case, the body supports input for one task, and the buttons use action verbs."
-      >
-
-        <div style={{ textAlign: 'center' }}>
-
-          <EuiImage
-            alt="proper use of input modal"
-            size="l"
-            url="https://imgur.com/34HqJB5.jpg"
-          />
-        </div>
-
-
-
-
-      </GuideRuleExample>
-
-
-
-
-
-
-      <GuideRuleExample
-        panel={false}
-        type="dont"
-        text="Don't. If you have a lot of content that scrolls out of view, or if the content warrants multiple steps, use a form instead."
-      >
-
-        <div style={{ textAlign: 'center' }}>
-
-          <EuiImage
-
-            alt="page without primary button"
-            size="l"
-            url="https://imgur.com/jNvh44g.jpg"
-          />
-        </div>
-
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRule
-      heading="Content should fit in a single screen"
-      description="If your modal has numerous options or a long list of items,
-      use scrolling only if it&apso;s better than other design solutions, such as keeping the content on the page."
-    />
-
-    <GuideRule
-      heading="Don't launch a modal from a modal"
-      description="Using a modal on top of a modal typically means your workflow is too complex—users shouldn't
-        have to remember which modal they are in. Instead, use a component that supports multiple steps, such as a form or steps"
-    />
-
-
-    <EuiSpacer />
-
-    <EuiHorizontalRule/>
-
-    <GuideRuleTitle>Confirmation Modal</GuideRuleTitle>
-
-    <GuideRule
-      heading=""
-      description="The most common use of a modal in the EUI Framework is to
-      ask the user to confirm an action. It starts with a question and gives
-      users enough information to make a decision."
+      description="A modal can gather input necessary for continuing the current workflow.
+      This type of modal works best for a short, focused task.
+      Use input modals sparingly&mdash;they interrput the user's workflow.
+      "
     >
 
       <GuideRuleExample
         panel={false}
         type="do"
-        text="Do. A confirmation starts with a question and gives users enough information to make a decision."
+        text="Do. A save action is a good use case for a modal. The
+        meaning is clear and the content is simple."
       >
-        <div style={{ textAlign: 'center' }}>
 
-          <EuiImage
-            alt="Correct use of a confirmation modal"
-            size="l"
-            url="https://imgur.com/CjbqLZ4.jpg"
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Save dashboard
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiFormRow label="Name">
+              <EuiFieldText />
+            </EuiFormRow>
+            <EuiFormRow label="Description">
+              <EuiTextArea />
+            </EuiFormRow>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton fill>
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
 
       </GuideRuleExample>
 
       <GuideRuleExample
         panel={false}
         type="dont"
-        text="Don't use a confirmation modal for a message.  Use a toast for a success message because it is less disruptive.
-            Keep error and warning messages on the page."
+        text="Don't. Modals aren't the best design solution for multiple steps or complex user input.
+        An in-page form is more appropriate."
       >
-        <div style={{ textAlign: 'center' }}>
 
-          <EuiImage
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Add a team member
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiTitle size="s">
+              <h3>Step 1 of 3: the basics</h3>
+            </EuiTitle>
+            <EuiSpacer />
+            <EuiFormRow label="Name">
+              <EuiFieldText />
+            </EuiFormRow>
+            <EuiFormRow label="Email">
+              <EuiFieldText />
+            </EuiFormRow>
+          </EuiModalBody>
 
-            alt="Don't use a modal for a success message"
-            size="l"
-            url="https://imgur.com/cZXGOtz.jpg"
-          />
-        </div>
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton fill>
+              Continue to step 2
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
+
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading="Open a modal on a user action"
+      description="Let a user action, such as a button click,
+      open a modal. Don&apos;t open a modal from a toolbar action&mdash;users don&apos;t expect it.
+      "
+    />
+
+    <GuideRule
+      heading="Avoid scrolling content"
+      description="Modal content should fit in a single view. If your modal has
+      a lot of detail or a long list of items, consider a different solution, such as a
+      form or a table.
+      "
+    />
+
+    <GuideRule
+      heading="Don't stack modals"
+      description="Opening a modal on top of a modal might mean your workflow is too complex.
+      Instead, use a component that supports multiple steps, such as a form or steps."
+    />
+
+    <EuiSpacer />
+
+    <GuideRuleTitle>Use a modal to ask users to confirm an action</GuideRuleTitle>
+
+    <GuideRule
+      heading=""
+      description="The most common use of modal in the EUI Framework is
+      to cofirm a user action.
+      This modal should start with a question, give
+      users enough information to make a decision,
+      and restate the action in the button label."
+    >
+
+      <GuideRuleExample
+        panel={false}
+        type="do"
+        text="Do. Use a modal for confirmation when the user might lose data. For the body
+        text, use one to two short sentences that explain the consequences."
+      >
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Save changes before leaving?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                If you don&apos;t save, your changes will be lost.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Leave anyway
+            </EuiButtonEmpty>
+
+            <EuiButton fill>
+              Save changes
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
+
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        panel={false}
+        type="dont"
+        text="Don't.  Confirmations aren't good for messages.
+          Toasts are best for success messages because they are less disruptive.
+          Error and warning messages often appear directly on the page."
+      >
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Great!
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                Your dashboard has been successfully created.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButton fill>
+              Close
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
 
       </GuideRuleExample>
 
@@ -197,40 +288,73 @@ export default () => (
 
 
     <GuideRule
-      heading="Button text should always reinforce the header."
-      description="
-        Some explanation here"
+      heading="State the action in both the header and button text"
+      description="If the modal header is &quot;Refresh this field?&quot; then the button text should be &quot;Refresh.&quot;"
     >
       <GuideRuleExample
         panel={false}
         type="do"
         text="
-          Do. Match the header and button text.
+          Do. Use the same action verbs in the header and button text.
         "
       >
-        <div style={{ textAlign: 'center' }}>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Refresh field list?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This action resets the popularity counter of each field.
+              </p>
+            </EuiText>
+          </EuiModalBody>
 
-          <EuiImage
-            alt="Modal with good header, body, and button text"
-            size="l"
-            url="https://imgur.com/6x4RDuJ.jpg"
-          />
-        </div>
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton fill>
+              Refresh
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
         panel={false}
-        text="Don't start with a vague question such as &quot;Are you sure?&quot;
-          Instead of Yes and No buttons, use labels that describe the action."
+        text="Don't use a vague header such as &quot;Are you sure?&quot; or
+        the button labels &quot;Yes&quot; and &quot;No.&quot;
+          "
       >
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage
-            alt="Don't use Are you sure in the title"
-            size="l"
-            url="https://imgur.com/QmXWlnJ.jpg."
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Are you sure you want to refresh this field list?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This action resets the popularity counter of each field.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              No
+            </EuiButtonEmpty>
+
+            <EuiButton fill>
+              Yes
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
     </GuideRule>
 
@@ -242,157 +366,130 @@ export default () => (
       <GuideRuleExample
         panel={false}
         type="do"
-        text="Do. Asking users to delete a single item should ideally include its name in the title.
+        text="Do. Asking users to delete a single item should include the item name in the title,
+        if possible.
         Use single quotes around the name if it helps clarify meaning."
       >
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage
-            alt="modal for single confirmation"
-            size="l"
-            url="https://imgur.com/fis6cP2.jpg"
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Delete pipeline &apos;MyPipeline&apos;?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                You can&apos;t recover deleted data.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton color="danger" fill>
+              Delete
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
 
       <GuideRuleExample
         type="do"
         panel={false}
-        text="Do. For bulk actions, consider including the number of items in the title.
-        Don't get fancy with the button label&mdash;&quot;Delete&quot; is faster to parse
-        than &quot;Delete 6 pipelines&quot;."
+        text="Do. For bulk actions, include the number of items in the title."
       >
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage
-            alt="modal for bulk confirmations"
-            size="l"
-            url="https://imgur.com/HVzhp3z.jpg"
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Delete 6 pipelines?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                You can&apos;t recover deleted data.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton color="danger" fill>
+              Delete
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
     </GuideRule>
 
     <GuideRule
-      heading="Avoid repetition"
+      heading="Sometimes a header and buttons are enough"
       description="You can omit the body if users understand the decision
       from the header and button text alone."
     >
       <GuideRuleExample
         panel={false}
         type="do"
-        text="Do. Sometimes a header and body is enough."
+        text="Do. Here the header and body are enough.
+        The modal asks the user whether to remove an index pattern&mdash;
+        data won&apos;t be lost."
       >
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage
-            size="l"
-            alt="the header and the buttons convey the task"
-            url="https://imgur.com/GMEIjXx.jpg"
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>
+              Remove index pattern?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton fill color="danger">
+              Remove
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
         panel={false}
-        text="Don't. Body text that repeats the title is just extra text to read."
+        text="Don't write body text that simply repeats the title.
+        It doesn't add value."
       >
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage
-            alt="unneccessary body text"
-            size="l"
-            url="https://imgur.com/T2R9akR.jpg"
-          />
-        </div>
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Remove index pattern?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This action removes your index pattern.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
+
+            <EuiButton color="danger" fill>
+              Remove
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
       </GuideRuleExample>
     </GuideRule>
-
-
-    <GuideRuleTitle>Things to avoid</GuideRuleTitle>
-
-    <EuiSpacer size="xxl" />
-
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 240 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Scrolling</h3>
-            <p>
-              Modal content should fit in a single screen.
-              If your modal has numerous options or a long list of items, use scrolling only
-              if it&apos;s better than other design solutions,
-              such as keeping the content on the page.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-      <EuiFlexItem style={{ minWidth: 240 }}>
-
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Launching a modal from a modal</h3>
-            <p>
-              Using a modal on top of a modal typically means your workflow is
-              too complex&mdash;users shouldn&apos;t have
-              to remember which modal they are in.  Instead, use a component
-              that supports multiple steps,
-              such as a <EuiLink href="https://elastic.github.io/eui/#/forms/form" >form</EuiLink>{' '}
-              or <EuiLink href="https://elastic.github.io/eui/#/navigation/steps" > steps </EuiLink>.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-      <EuiFlexItem style={{ minWidth: 240 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Opening a modal from a toolbar</h3>
-            <p> Users don&apos;t expect a toolbar button to open a modal.</p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 240 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Use modals sparingly</h3>
-            <p>
-              Modals pull users out of their current context.
-              They are well-suited for asking users to confirm an action and for short, focused input.
-              Otherwise, it&apos;s better to show the content within the page.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-      <EuiFlexItem style={{ minWidth: 240 }}>
-
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Keep content clean & simple</h3>
-            <p>
-              A modal should be a short, direct conversation with the user.
-              If you’re trying to stuff a lot of content into your modal, then you should probably consider
-              a different solution, such as <EuiLink href="https://elastic.github.io/eui/#/forms/form" >form</EuiLink>.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-
-      <EuiFlexItem style={{ minWidth: 240 }}>
-        <EuiPanel paddingSize="l">
-          <EuiText className="guideSection__text">
-            <h3>Open on a user action</h3>
-            <p>
-              Don&apos;t just pop open a modal. Let a user action,
-              such as clicking a button, trigger a modal.
-            </p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-
   </GuidePage>
 );
