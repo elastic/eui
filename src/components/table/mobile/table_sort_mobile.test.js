@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps } from '../../../test';
 
 import { EuiTableSortMobile } from './table_sort_mobile';
 

@@ -4,6 +4,11 @@
     thead { display: none; }
   }
 
+  .euiTableHeaderMobile {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .euiTableSortMobile {
     display: block;
 
@@ -48,7 +53,7 @@
     }
 
     &.euiTableRow-isSelectable {
-      padding-left: $euiSizeXL;
+      padding-left: $euiSizeL;
       position: relative;
 
       .euiTableRowCellCheckbox {
@@ -62,12 +67,12 @@
     }
 
     &.euiTableRow-hasActions {
-      padding-right: $euiSizeXL;
+      padding-right: $euiSizeL;
       position: relative;
 
       .euiTableRowCell--hasActions {
         min-width: 0;
-        width: $euiSizeXXL;
+        width: $euiSizeXL;
         position: absolute;
         right: 0;
         top: $euiSize;
@@ -119,14 +124,13 @@
       }
 
       .euiTableCellContent {
-        padding-top: $euiSizex;
+        padding-top: $euiSizeXS;
       }
     }
   }
 
   .euiTableRowCellCheckbox {
     border: none;
-    padding: 6px;
 
     &::before {
       content: '';
@@ -144,9 +148,11 @@
     }
 
   .euiTableCellContent--alignRight {
+    justify-content: flex-start;
   }
 
   .euiTableCellContent--alignCenter {
+    justify-content: flex-start;
   }
 
   .euiTableCellContent--truncateText {

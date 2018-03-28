@@ -4,9 +4,9 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiButtonEmpty } from '../button/button_empty';
-import { EuiPopover } from '../popover';
-import { EuiContextMenuPanel } from '../context_menu';
+import { EuiButtonEmpty } from '../../button/button_empty';
+import { EuiPopover } from '../../popover';
+import { EuiContextMenuPanel } from '../../context_menu';
 
 export class EuiTableSortMobile extends Component {
   static propTypes = {
@@ -38,6 +38,7 @@ export class EuiTableSortMobile extends Component {
     const {
       children,
       className,
+      anchorPosition,
       ...rest
     } = this.props;
 
@@ -51,6 +52,8 @@ export class EuiTableSortMobile extends Component {
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
+        flush="right"
+        size="xs"
       >
         Sorting
       </EuiButtonEmpty>
@@ -63,12 +66,12 @@ export class EuiTableSortMobile extends Component {
         button={mobileSortButton}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
-        anchorPosition="downLeft"
+        anchorPosition={anchorPosition || "downLeft"}
         panelPaddingSize="none"
-        style={{ minWidth: 200 }}
         {...rest}
       >
         <EuiContextMenuPanel
+          style={{ minWidth: 200 }}
           items={children}
         />
       </EuiPopover>

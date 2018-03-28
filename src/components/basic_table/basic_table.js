@@ -26,8 +26,9 @@ import { EuiTableRow } from '../table/table_row';
 import { PaginationBar, PaginationType } from './pagination_bar';
 import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
-import { EuiTableSortMobile } from '../table/table_sort_mobile';
-import { EuiTableSortMobileItem } from '../table/table_sort_mobile_item';
+import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
+import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
+import { EuiTableSortMobileItem } from '../table/mobile/table_sort_mobile_item';
 
 const dataTypesProfiles = {
   auto: {
@@ -301,7 +302,7 @@ export class EuiBasicTable extends Component {
       <div
         ref={element => { this.tableElement = element; }}
       >
-        {mobileSort}
+        <EuiTableHeaderMobile>{mobileSort}</EuiTableHeaderMobile>
         <EuiTable>{head}{body}</EuiTable>
       </div>
     );

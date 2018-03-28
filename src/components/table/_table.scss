@@ -12,6 +12,11 @@
   background-color: $euiColorEmptyShade;
 }
 
+.euiTableHeaderMobile {
+  padding: $euiSizeS;
+}
+
+.euiTableHeaderMobile,
 .euiTableSortMobile {
   display: none;
 }
