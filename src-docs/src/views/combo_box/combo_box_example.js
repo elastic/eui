@@ -19,6 +19,10 @@ import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
 const groupsHtml = renderToHtml(Groups);
 
+import SingleSelection from './single_selection';
+const singleSelectionSource = require('!!raw-loader!./single_selection');
+const singleSelectionHtml = renderToHtml(SingleSelection);
+
 import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
@@ -67,6 +71,23 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Groups />,
+  }, {
+    title: 'Single selection',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: singleSelectionSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: singleSelectionHtml,
+    }],
+    text: (
+      <p>
+        To only allow the user to select a single option, provide
+        the <EuiCode>singleSelection</EuiCode> prop.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <SingleSelection />,
   }, {
     title: 'Disallowing custom options',
     source: [{

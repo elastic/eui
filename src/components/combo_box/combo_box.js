@@ -27,6 +27,7 @@ export class EuiComboBox extends Component {
     className: PropTypes.string,
     isLoading: PropTypes.bool,
     async: PropTypes.bool,
+    singleSelection: PropTypes.bool,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func,
@@ -287,8 +288,8 @@ export class EuiComboBox extends Component {
   }
 
   onAddOption = (addedOption) => {
-    const { onChange, selectedOptions } = this.props;
-    onChange(selectedOptions.concat(addedOption));
+    const { onChange, selectedOptions, singleSelection } = this.props;
+    onChange(singleSelection ? [addedOption] : selectedOptions.concat(addedOption));
     this.clearActiveOption();
     this.clearSearchValue();
     this.searchInput.focus();
@@ -402,6 +403,7 @@ export class EuiComboBox extends Component {
       options,
       selectedOptions,
       onCreateOption,
+      singleSelection, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
