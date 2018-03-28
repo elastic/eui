@@ -23,6 +23,10 @@ import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 
+import CustomOptionsOnly from './custom_options_only';
+const customOptionsOnlySource = require('!!raw-loader!./custom_options_only');
+const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
+
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
@@ -79,6 +83,23 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <DisallowCustomOptions />,
+  }, {
+    title: 'Hiding suggestions',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: customOptionsOnlySource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: customOptionsOnlyHtml,
+    }],
+    text: (
+      <p>
+        Alternatively, leave out the <EuiCode>onChange</EuiCode> prop to hide the suggestions list
+        and <em>only</em> allow the creation of custom options.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <CustomOptionsOnly />,
   }, {
     title: 'Async',
     source: [{

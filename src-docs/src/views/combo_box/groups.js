@@ -45,7 +45,6 @@ export default class extends Component {
     this.options = [colorGroup, soundGroup];
 
     this.state = {
-      isPopoverOpen: false,
       selectedOptions: [colorGroup.options[2], soundGroup.options[3]],
     };
   }

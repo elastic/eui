@@ -47,21 +47,5 @@ exports[`EuiComboBox is rendered 1`] = `
       />
     </svg>
   </div>
-  <div
-    class="euiPanel euiComboBox__panel"
-    data-test-subj="comboBoxOptionsList"
-  >
-    <div
-      class="euiComboBox__rowWrap"
-    >
-      <div
-        class="euiText euiText--extraSmall euiComoboBox__empty"
-      >
-        <p>
-          There aren’t any options available
-        </p>
-      </div>
-    </div>
-  </div>
 </div>
 `;

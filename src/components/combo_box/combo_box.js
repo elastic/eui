@@ -28,7 +28,7 @@ export class EuiComboBox extends Component {
     async: PropTypes.bool,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
   }
@@ -384,6 +384,27 @@ export class EuiComboBox extends Component {
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
 
+    let optionsList;
+
+    if (onChange) {
+      optionsList = (
+        <EuiComboBoxOptionsList
+          isLoading={isLoading}
+          options={options}
+          selectedOptions={selectedOptions}
+          onCreateOption={onCreateOption}
+          searchValue={searchValue}
+          matchingOptions={this.matchingOptions}
+          optionToGroupMap={this.optionToGroupMap}
+          optionRef={this.optionRef}
+          onOptionClick={this.onOptionClick}
+          onOptionEnterKey={this.onOptionEnterKey}
+          areAllOptionsSelected={this.areAllOptionsSelected()}
+          getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+        />
+      );
+    }
+
     return (
       <div
         className={classes}
@@ -405,20 +426,7 @@ export class EuiComboBox extends Component {
           inputRef={this.searchInputRef}
         />
 
-        <EuiComboBoxOptionsList
-          isLoading={isLoading}
-          options={options}
-          selectedOptions={selectedOptions}
-          onCreateOption={onCreateOption}
-          searchValue={searchValue}
-          matchingOptions={this.matchingOptions}
-          optionToGroupMap={this.optionToGroupMap}
-          optionRef={this.optionRef}
-          onOptionClick={this.onOptionClick}
-          onOptionEnterKey={this.onOptionEnterKey}
-          areAllOptionsSelected={this.areAllOptionsSelected()}
-          getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
-        />
+        {optionsList}
       </div>
     );
   }

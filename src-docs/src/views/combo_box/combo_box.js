@@ -42,7 +42,6 @@ export default class extends Component {
     }];
 
     this.state = {
-      isPopoverOpen: false,
       selectedOptions: [this.options[2], this.options[4]],
     };
   }
