@@ -48,6 +48,7 @@ export class EuiComboBoxOption extends Component {
 
     return (
       <button
+        role="option"
         className={classes}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}

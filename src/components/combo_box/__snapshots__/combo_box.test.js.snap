@@ -18,7 +18,7 @@ exports[`EuiComboBox is rendered 1`] = `
         style="font-size:14px;display:inline-block"
       >
         <input
-          role="combobox"
+          aria-hidden="true"
           style="box-sizing:content-box;width:1px"
           value=""
         />

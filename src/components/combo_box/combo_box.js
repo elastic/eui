@@ -382,6 +382,8 @@ export class EuiComboBox extends Component {
       'euiComboBox-isOpen': this.state.isListOpen,
     });
 
+    const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
+
     return (
       <div
         className={classes}
@@ -397,7 +399,8 @@ export class EuiComboBox extends Component {
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.openList}
-          value={searchValue}
+          value={value}
+          searchValue={searchValue}
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
         />
