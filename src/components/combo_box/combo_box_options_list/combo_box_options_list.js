@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { EuiCode } from '../../code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
@@ -10,124 +11,181 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
 
-export const EuiComboBoxOptionsList = ({
-  options,
-  isLoading,
-  selectedOptions,
-  onCreateOption,
-  searchValue,
-  matchingOptions,
-  optionToGroupMap,
-  optionRef,
-  onOptionClick,
-  onOptionEnterKey,
-  areAllOptionsSelected,
-  getSelectedOptionForSearchValue,
-}) => {
-  let emptyStateContent;
+const positionToClassNameMap = {
+  top: 'euiComboBoxOptionsList--top',
+  bottom: 'euiComboBoxOptionsList--bottom',
+};
 
-  if (isLoading) {
-    emptyStateContent = (
-      <EuiFlexGroup gutterSize="s" justifyContent="center">
-        <EuiFlexItem grow={false}>
-          <EuiLoadingSpinner size="m" />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          Loading options
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  } else if (searchValue && matchingOptions.length === 0) {
-    if (onCreateOption) {
-      const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, selectedOptions);
-      if (selectedOptionForValue) {
-        // Disallow duplicate custom options.
-        emptyStateContent = (
-          <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
-        );
-      } else {
-        emptyStateContent = (
-          <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
-        );
-      }
-    } else {
-      emptyStateContent = (
-        <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
-      );
-    }
-  } else if (!options.length) {
-    emptyStateContent = <p>There aren&rsquo;t any options available</p>;
-  } else if (areAllOptionsSelected) {
-    emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
+const POSITIONS = Object.keys(positionToClassNameMap);
+
+export class EuiComboBoxOptionsList extends Component {
+  static propTypes = {
+    options: PropTypes.array,
+    isLoading: PropTypes.bool,
+    selectedOptions: PropTypes.array,
+    onCreateOption: PropTypes.func,
+    searchValue: PropTypes.string,
+    matchingOptions: PropTypes.array,
+    optionToGroupMap: PropTypes.object,
+    optionRef: PropTypes.func,
+    onOptionClick: PropTypes.func,
+    onOptionEnterKey: PropTypes.func,
+    areAllOptionsSelected: PropTypes.bool,
+    getSelectedOptionForSearchValue: PropTypes.func,
+    updatePosition: PropTypes.func.isRequired,
+    position: PropTypes.oneOf(POSITIONS),
+    style: PropTypes.object,
+    listRef: PropTypes.func.isRequired,
   }
 
-  const emptyState = emptyStateContent ? (
-    <EuiText size="xs" className="euiComoboBox__empty">
-      {emptyStateContent}
-    </EuiText>
-  ) : undefined;
+  updatePosition = () => {
+    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
+    requestAnimationFrame(() => {
+      this.props.updatePosition(this.list.getBoundingClientRect());
+    });
+  };
 
-  const groupLabelToGroupMap = {};
-  const optionsList = [];
+  componentDidMount() {
+    document.body.classList.add('euiBody-hasPortalContent');
 
-  matchingOptions.forEach((option, index) => {
+    this.updatePosition();
+    window.addEventListener('resize', this.updatePosition);
+  }
+
+  componentWillUpdate(nextProps) {
+    const { options, selectedOptions } = nextProps;
+
+    if (
+      options !== this.props.options
+      || selectedOptions !== this.props.selectedOptions
+    ) {
+      this.updatePosition();
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('euiBody-hasPortalContent');
+    window.removeEventListener('resize', this.updatePosition);
+  }
+
+  listRef = node => {
+    this.props.listRef(node);
+    this.list = node;
+  }
+
+  render() {
     const {
-      value, // eslint-disable-line no-unused-vars
-      label,
-      ...rest
-    } = option;
+    options,
+    isLoading,
+    selectedOptions,
+    onCreateOption,
+    searchValue,
+    matchingOptions,
+    optionToGroupMap,
+    optionRef,
+    onOptionClick,
+    onOptionEnterKey,
+    areAllOptionsSelected,
+    getSelectedOptionForSearchValue,
+    position,
+    listRef, // eslint-disable-line no-unused-vars
+    updatePosition, // eslint-disable-line no-unused-vars
+    ...rest
+  } = this.props;
+    let emptyStateContent;
 
-    const group = optionToGroupMap.get(option);
-
-    if (group && !groupLabelToGroupMap[group.label]) {
-      groupLabelToGroupMap[group.label] = true;
-      optionsList.push(
-        <EuiComboBoxTitle key={`group-${group.label}`}>
-          {group.label}
-        </EuiComboBoxTitle>
+    if (isLoading) {
+      emptyStateContent = (
+        <EuiFlexGroup gutterSize="s" justifyContent="center">
+          <EuiFlexItem grow={false}>
+            <EuiLoadingSpinner size="m" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            Loading options
+          </EuiFlexItem>
+        </EuiFlexGroup>
       );
+    } else if (searchValue && matchingOptions.length === 0) {
+      if (onCreateOption) {
+        const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, selectedOptions);
+        if (selectedOptionForValue) {
+          // Disallow duplicate custom options.
+          emptyStateContent = (
+            <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+          );
+        } else {
+          emptyStateContent = (
+            <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+          );
+        }
+      } else {
+        emptyStateContent = (
+          <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
+        );
+      }
+    } else if (!options.length) {
+      emptyStateContent = <p>There aren&rsquo;t any options available</p>;
+    } else if (areAllOptionsSelected) {
+      emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
     }
 
-    const renderedOption = (
-      <EuiComboBoxOption
-        option={option}
-        key={option.value}
-        onClick={onOptionClick}
-        onEnterKey={onOptionEnterKey}
-        optionRef={optionRef.bind(this, index)}
+    const emptyState = emptyStateContent ? (
+      <EuiText size="xs" className="euiComboBoxOptionsList__empty">
+        {emptyStateContent}
+      </EuiText>
+    ) : undefined;
+
+    const groupLabelToGroupMap = {};
+    const optionsList = [];
+
+    matchingOptions.forEach((option, index) => {
+      const {
+        value, // eslint-disable-line no-unused-vars
+        label,
+        ...rest
+      } = option;
+
+      const group = optionToGroupMap.get(option);
+
+      if (group && !groupLabelToGroupMap[group.label]) {
+        groupLabelToGroupMap[group.label] = true;
+        optionsList.push(
+          <EuiComboBoxTitle key={`group-${group.label}`}>
+            {group.label}
+          </EuiComboBoxTitle>
+        );
+      }
+
+      const renderedOption = (
+        <EuiComboBoxOption
+          option={option}
+          key={option.value}
+          onClick={onOptionClick}
+          onEnterKey={onOptionEnterKey}
+          optionRef={optionRef.bind(this, index)}
+          {...rest}
+        >
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+        </EuiComboBoxOption>
+      );
+
+      optionsList.push(renderedOption);
+    });
+
+    const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position]);
+
+    return (
+      <EuiPanel
+        paddingSize="none"
+        className={classes}
+        data-test-subj="comboBoxOptionsList"
+        panelRef={this.listRef}
         {...rest}
       >
-        <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-      </EuiComboBoxOption>
+        <div className="euiComboBoxOptionsList__rowWrap">
+          {emptyState || optionsList}
+        </div>
+      </EuiPanel>
     );
-
-    optionsList.push(renderedOption);
-  });
-
-  return (
-    <EuiPanel
-      paddingSize="none"
-      className="euiComboBox__panel"
-      data-test-subj="comboBoxOptionsList"
-    >
-      <div className="euiComboBox__rowWrap">
-        {emptyState || optionsList}
-      </div>
-    </EuiPanel>
-  );
-};
-
-EuiComboBoxOptionsList.propTypes = {
-  options: PropTypes.array,
-  isLoading: PropTypes.bool,
-  selectedOptions: PropTypes.array,
-  onCreateOption: PropTypes.func,
-  searchValue: PropTypes.string,
-  matchingOptions: PropTypes.array,
-  optionToGroupMap: PropTypes.object,
-  optionRef: PropTypes.func,
-  onOptionClick: PropTypes.func,
-  onOptionEnterKey: PropTypes.func,
-  areAllOptionsSelected: PropTypes.bool,
-  getSelectedOptionForSearchValue: PropTypes.func,
-};
+  }
+}

@@ -43,46 +43,7 @@
     }
   }
 
-  .euiComboBox__panel {
-    z-index: 1;
-    position: absolute;
-    top: 100%;
-    left: -1px;
-    right: -1px;
-    border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
-    visibility: hidden;
-    opacity: 0;
-    border-top: none;
-    transition:
-      visibility $euiAnimSpeedNormal $euiAnimSlightResistance,
-      opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
-  }
-
-  .euiComoboBox__empty {
-    padding: $euiSizeS;
-    text-align: center;
-    color: $euiColorDarkShade;
-  }
-
-  .euiComboBox__rowWrap {
-    @include euiScrollBar;
-
-    padding: $euiSizeS;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-
-  .euiComboBox__footer {
-    padding: $euiSizeS;
-    border-top: $euiBorderThin;
-    background: $euiFormBackgroundColor;
-  }
   &.euiComboBox-isOpen {
-    .euiComboBox__panel {
-      visibility: visible;
-      opacity: 1;
-    }
-
     .euiComboBox__inputWrap {
       background: $euiColorEmptyShade;
       box-shadow:

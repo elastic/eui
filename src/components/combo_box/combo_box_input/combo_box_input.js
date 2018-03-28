@@ -10,6 +10,19 @@ import { htmlIdGenerator } from '../../../services';
 const makeId = htmlIdGenerator();
 
 export class EuiComboBoxInput extends Component {
+  static propTypes = {
+    selectedOptions: PropTypes.array,
+    onRemoveOption: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    searchValue: PropTypes.string,
+    autoSizeInputRef: PropTypes.func,
+    inputRef: PropTypes.func,
+    updatePosition: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -17,6 +30,13 @@ export class EuiComboBoxInput extends Component {
       hasFocus: false,
     };
   }
+
+  updatePosition = () => {
+    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
+    requestAnimationFrame(() => {
+      this.props.updatePosition();
+    });
+  };
 
   onFocus = () => {
     this.props.onFocus();
@@ -30,6 +50,16 @@ export class EuiComboBoxInput extends Component {
       hasFocus: false,
     });
   };
+
+  componentWillUpdate(nextProps) {
+    const { searchValue } = nextProps;
+
+    // We need to update the position of everything if the user enters enough input to change
+    // the size of the input.
+    if (searchValue !== this.props.searchValue) {
+      this.updatePosition();
+    }
+  }
 
   render() {
     const {
@@ -119,15 +149,3 @@ export class EuiComboBoxInput extends Component {
     );
   }
 }
-
-EuiComboBoxInput.propTypes = {
-  selectedOptions: PropTypes.array,
-  onRemoveOption: PropTypes.func,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
-  searchValue: PropTypes.string,
-  autoSizeInputRef: PropTypes.func,
-  inputRef: PropTypes.func,
-};

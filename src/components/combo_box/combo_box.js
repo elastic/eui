@@ -10,8 +10,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { comboBoxKeyCodes } from '../../services';
+import { comboBoxKeyCodes, calculatePopoverPosition } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
+import { EuiPortal } from '../portal';
 import { EuiComboBoxInput } from './combo_box_input';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
@@ -47,18 +48,23 @@ export class EuiComboBox extends Component {
 
     this.state = {
       searchValue: initialSearchValue,
-      isListOpen: this.props.isListOpen,
+      isListOpen: false,
+      listPosition: 'bottom',
+      listStyles: {},
     };
 
     // Cached derived state.
     this.matchingOptions = matchingOptions;
     this.optionToGroupMap = optionToGroupMap;
     this.activeOptionIndex = undefined;
+    this.listBounds = undefined;
 
     // Refs.
-    this.options = [];
+    this.comboBox = undefined;
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
+    this.optionsList = undefined;
+    this.options = [];
   }
 
   getMatchingOptions = (options, selectedOptions, searchValue) => {
@@ -77,6 +83,27 @@ export class EuiComboBox extends Component {
     this.clearActiveOption();
     this.setState({
       isListOpen: false,
+    });
+  };
+
+  updateListPosition = (listBounds = this.listBounds) => {
+    if (!this.state.isListOpen) {
+      return;
+    }
+
+    // Cache for future calls.
+    this.listBounds = listBounds;
+    const comboBoxBounds = this.comboBox.getBoundingClientRect();
+    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, listBounds, 'bottom', 0, ['bottom', 'top']);
+
+    const listStyles = {
+      top: top + window.scrollY,
+      left,
+    };
+
+    this.setState({
+      listPosition: position,
+      listStyles,
     });
   };
 
@@ -287,14 +314,15 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onComboBoxBlur = () => {
+  onComboBoxBlur = (e) => {
+    if (e.relatedTarget && this.comboBox.contains(e.relatedTarget)) return;
     // This callback generally handles cases when the user has taken focus away by clicking outside
     // of the combo box.
 
     // Wait for the DOM to update.
     requestAnimationFrame(() => {
       // If the user has placed focus somewhere outside of the combo box, close it.
-      const hasFocus = this.comboBox.contains(document.activeElement);
+      const hasFocus = this.comboBox.contains(document.activeElement) || this.optionsList.contains(document.activeElement);
       if (!hasFocus) {
         this.closeList();
       }
@@ -318,6 +346,10 @@ export class EuiComboBox extends Component {
 
   searchInputRef = node => {
     this.searchInput = node;
+  };
+
+  optionsListRef = node => {
+    this.optionsList = node;
   };
 
   optionRef = (index, node) => {
@@ -376,32 +408,38 @@ export class EuiComboBox extends Component {
       ...rest
     } = this.props;
 
-    const { searchValue } = this.state;
+    const { searchValue, isListOpen, listStyles, listPosition } = this.state;
 
     const classes = classNames('euiComboBox', className, {
-      'euiComboBox-isOpen': this.state.isListOpen,
+      'euiComboBox-isOpen': isListOpen,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
 
     let optionsList;
 
-    if (onChange) {
+    if (onChange && isListOpen) {
       optionsList = (
-        <EuiComboBoxOptionsList
-          isLoading={isLoading}
-          options={options}
-          selectedOptions={selectedOptions}
-          onCreateOption={onCreateOption}
-          searchValue={searchValue}
-          matchingOptions={this.matchingOptions}
-          optionToGroupMap={this.optionToGroupMap}
-          optionRef={this.optionRef}
-          onOptionClick={this.onOptionClick}
-          onOptionEnterKey={this.onOptionEnterKey}
-          areAllOptionsSelected={this.areAllOptionsSelected()}
-          getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
-        />
+        <EuiPortal>
+          <EuiComboBoxOptionsList
+            isLoading={isLoading}
+            options={options}
+            selectedOptions={selectedOptions}
+            onCreateOption={onCreateOption}
+            searchValue={searchValue}
+            matchingOptions={this.matchingOptions}
+            optionToGroupMap={this.optionToGroupMap}
+            listRef={this.optionsListRef}
+            optionRef={this.optionRef}
+            onOptionClick={this.onOptionClick}
+            onOptionEnterKey={this.onOptionEnterKey}
+            areAllOptionsSelected={this.areAllOptionsSelected()}
+            getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+            updatePosition={this.updateListPosition}
+            position={listPosition}
+            style={listStyles}
+          />
+        </EuiPortal>
       );
     }
 
@@ -424,6 +462,7 @@ export class EuiComboBox extends Component {
           searchValue={searchValue}
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
+          updatePosition={this.updateListPosition}
         />
 
         {optionsList}

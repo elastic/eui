@@ -10,6 +10,7 @@ No public interface changes since `0.0.36`.
 - Add support for expandable rows to `EuiBasicTable` ([#585](https://github.com/elastic/eui/pull/585))
 - Added `EuiComboBox` for selecting many options from a list of options ([567](https://github.com/elastic/eui/pull/567))
 - Added `EuiHighlight` for highlighting a substring within text ([567](https://github.com/elastic/eui/pull/567))
+- `calculatePopoverPosition` service now accepts a `positions` argument so you can specify which positions are acceptable.
 
 **Bug fixes**
 
