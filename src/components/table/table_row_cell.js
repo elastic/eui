@@ -25,6 +25,7 @@ export const EuiTableRowCell = ({
   header,
   hideForMobile,
   isMobileHeader,
+  isMobileFullWidth,
   hasActions,
   ...rest
 }) => {
@@ -32,6 +33,7 @@ export const EuiTableRowCell = ({
     'euiTableRowCell--hideForMobile': hideForMobile,
     'euiTableRowCell--isMobileHeader': isMobileHeader,
     'euiTableRowCell--hasActions': hasActions,
+    'euiTableRowCell--isMobileFullWidth': isMobileFullWidth,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -77,6 +79,7 @@ EuiTableRowCell.propTypes = {
   header: PropTypes.string,
   hideForMobile: PropTypes.bool,
   isMobileHeader: PropTypes.bool,
+  isMobileFullWidth: PropTypes.bool,
 };
 
 EuiTableRowCell.defaultProps = {

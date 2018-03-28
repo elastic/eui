@@ -127,6 +127,10 @@
         padding-top: $euiSizeXS;
       }
     }
+
+    &.euiTableRowCell--isMobileFullWidth {
+      width: 100%;
+    }
   }
 
   .euiTableRowCellCheckbox {
