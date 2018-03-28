@@ -93,31 +93,6 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
-    <GuideRule
-      heading="Support for high contrast mode"
-      description="The EUI dark theme has a black background with white text.
-      This high contrast mode makes it easier for users with low vision to read the screen."
-    >
-
-      <GuideRuleExample
-        frame
-        panel={false}
-        type="do"
-        text="Dark theme"
-      >
-      </GuideRuleExample>
-
-      <GuideRuleExample
-        frame
-        panel={false}
-        type="do"
-        text="Light theme"
-      >
-      </GuideRuleExample>
-    </GuideRule>
-
-    <EuiSpacer />
-
     <EuiHorizontalRule/>
 
     <GuideRuleTitle>Meaningful HTML markup</GuideRuleTitle>
@@ -213,18 +188,39 @@ export default () => (
       changing focus, and performing tasks."
     />
 
-    <GuideRule
-      heading="Build in additional keyboard navigation"
-      description="For elements without built-in keyboard navigation,
-      you can use EuiKeyboardAccessible to make them keyboard accessible.
-      This is necessary for non-button elements and anchor tags without href attributes."
-    />
-
-
     <EuiSpacer />
 
     <EuiHorizontalRule/>
 
+    <GuideRuleTitle>Accessibility helpers</GuideRuleTitle>
+    <EuiText>
+      <p>EUI has a number of utilties that can help you design for accessibility.</p>
+    </EuiText>
+
+    <GuideRule
+      heading="Deciding the best text color"
+      description="You should generally use either black or white for your text color.
+      The Is Color Dark utility can tell you
+      which color contrasts better with your given background color."
+    />
+
+    <GuideRule
+      heading="Making elements keyboard focusable"
+      description="In some cases you might need to use an element that doesn't have keyboard interactions,
+        such as <div>, <span>, <p>, and <a> with no href. You can make these elements focusable and clickable by
+        wrapping them in the EuiKeyboardAccessible component."
+        />
+
+        <GuideRule
+          heading="Setting focus on the first input in a modal"
+          description="When opening a modal, you can use the onfocus attribute to set focus on the first input.
+          In a confirmation modal, this allows users to tab between Cancel and the primary action."
+          />
+
+          <GuideRule
+            heading="Focus states"
+            description="Some description"
+            />
 
 
   </GuidePage>
