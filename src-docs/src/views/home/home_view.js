@@ -146,7 +146,7 @@ export const HomeView = () => (
         </Link>
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/forms/form">
+        <Link to="/forms/form-layouts">
           <EuiCard
             textAlign="left"
             image={imageForms}

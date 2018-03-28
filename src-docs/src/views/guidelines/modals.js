@@ -15,12 +15,9 @@ import {
   EuiButton,
   EuiText,
   EuiTitle,
-  EuiHorizontalRule,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiImage,
-  EuiLink,
   EuiPanel,
   EuiModalBody,
   EuiModalFooter,
@@ -54,9 +51,6 @@ export default () => (
         </EuiButton>
       </Link>
     </EuiText>
-
-    <EuiHorizontalRule/>
-
 
     <GuideRuleTitle>Modal in context</GuideRuleTitle>
     <EuiSpacer />
@@ -113,10 +107,6 @@ export default () => (
     </EuiFlexGroup>
 
     <EuiSpacer size="xl"/>
-
-
-    <EuiHorizontalRule/>
-
 
     <GuideRuleTitle>Use a modal to silo a single action</GuideRuleTitle>
 
@@ -210,7 +200,7 @@ export default () => (
       description="Let a user action, such as a button click,
       open a modal. Don&apos;t open a modal from a toolbar action&mdash;users don&apos;t expect it.
       "
-      />
+    />
 
     <GuideRule
       heading="Avoid scrolling content"
@@ -218,18 +208,15 @@ export default () => (
       a lot of detail or a long list of items, consider a different solution, such as a
       form or a table.
       "
-      />
+    />
 
-      <GuideRule
-        heading="Don't stack modals"
-        description="Opening a modal on top of a modal might mean your workflow is too complex.
-        Instead, use a component that supports multiple steps, such as a form or steps."
-        />
-
+    <GuideRule
+      heading="Don't stack modals"
+      description="Opening a modal on top of a modal might mean your workflow is too complex.
+      Instead, use a component that supports multiple steps, such as a form or steps."
+    />
 
     <EuiSpacer />
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Use a modal to ask users to confirm an action</GuideRuleTitle>
 
@@ -400,7 +387,7 @@ export default () => (
           <EuiModalBody>
             <EuiText>
               <p>
-                You can't recover deleted data.
+                You can&apos;t recover deleted data.
               </p>
             </EuiText>
           </EuiModalBody>
@@ -431,7 +418,7 @@ export default () => (
           <EuiModalBody>
             <EuiText>
               <p>
-                You can't recover deleted data.
+                You can&apos;t recover deleted data.
               </p>
             </EuiText>
           </EuiModalBody>
@@ -460,58 +447,57 @@ export default () => (
         text="Do. Here the header and body are enough.
         The modal asks the user whether to remove an index pattern&mdash;
         data won&apos;t be lost."
-        >
-          <EuiPanel hasShadow paddingSize="none">
-            <EuiModalHeader>
-              <EuiModalHeaderTitle >
-                Remove index pattern?
-              </EuiModalHeaderTitle>
-            </EuiModalHeader>
+      >
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>
+              Remove index pattern?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
 
-            <EuiModalFooter>
-              <EuiButtonEmpty>
-                Cancel
-              </EuiButtonEmpty>
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
 
-              <EuiButton fill color="danger">
-                Remove
-              </EuiButton>
-            </EuiModalFooter>
-          </EuiPanel>
-        </GuideRuleExample>
+            <EuiButton fill color="danger">
+              Remove
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
+      </GuideRuleExample>
 
-        <GuideRuleExample
-          type="dont"
-          panel={false}
-          text="Don't write body text that simply repeats the title.
-          It doesn't add value."
-        >
-          <EuiPanel hasShadow paddingSize="none">
-            <EuiModalHeader>
-              <EuiModalHeaderTitle >
-                Remove index pattern?
-              </EuiModalHeaderTitle>
-            </EuiModalHeader>
-            <EuiModalBody>
-              <EuiText>
-                <p>
-                  This action removes your index pattern.
-                </p>
-              </EuiText>
-            </EuiModalBody>
+      <GuideRuleExample
+        type="dont"
+        panel={false}
+        text="Don't write body text that simply repeats the title.
+        It doesn't add value."
+      >
+        <EuiPanel hasShadow paddingSize="none">
+          <EuiModalHeader>
+            <EuiModalHeaderTitle >
+              Remove index pattern?
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This action removes your index pattern.
+              </p>
+            </EuiText>
+          </EuiModalBody>
 
-            <EuiModalFooter>
-              <EuiButtonEmpty>
-                Cancel
-              </EuiButtonEmpty>
+          <EuiModalFooter>
+            <EuiButtonEmpty>
+              Cancel
+            </EuiButtonEmpty>
 
-              <EuiButton color="danger" fill>
-                Remove
-              </EuiButton>
-            </EuiModalFooter>
-          </EuiPanel>
-          </GuideRuleExample>
-      </GuideRule>
-
+            <EuiButton color="danger" fill>
+              Remove
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiPanel>
+      </GuideRuleExample>
+    </GuideRule>
   </GuidePage>
 );
