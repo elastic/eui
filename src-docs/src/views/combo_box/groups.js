@@ -90,6 +90,7 @@ export default class extends Component {
   render() {
     return (
       <EuiComboBox
+        placeholder="These options are grouped"
         options={this.options}
         selectedOptions={this.state.selectedOptions}
         onChange={this.onChange}

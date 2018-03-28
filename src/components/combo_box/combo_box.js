@@ -25,6 +25,7 @@ import {
 export class EuiComboBox extends Component {
   static propTypes = {
     className: PropTypes.string,
+    placeholder: PropTypes.string,
     isLoading: PropTypes.bool,
     async: PropTypes.bool,
     singleSelection: PropTypes.bool,
@@ -403,6 +404,7 @@ export class EuiComboBox extends Component {
       options,
       selectedOptions,
       onCreateOption,
+      placeholder,
       singleSelection, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
@@ -455,6 +457,7 @@ export class EuiComboBox extends Component {
         {...rest}
       >
         <EuiComboBoxInput
+          placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}
           onClick={this.onComboBoxClick}

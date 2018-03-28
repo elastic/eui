@@ -11,6 +11,7 @@ const makeId = htmlIdGenerator();
 
 export class EuiComboBoxInput extends Component {
   static propTypes = {
+    placeholder: PropTypes.string,
     selectedOptions: PropTypes.array,
     onRemoveOption: PropTypes.func,
     onClick: PropTypes.func,
@@ -63,6 +64,7 @@ export class EuiComboBoxInput extends Component {
 
   render() {
     const {
+      placeholder,
       selectedOptions,
       onRemoveOption,
       onClick,
@@ -118,6 +120,14 @@ export class EuiComboBoxInput extends Component {
       );
     }
 
+    let placeholderMessage;
+
+    if (placeholder && !selectedOptions.length && !searchValue) {
+      placeholderMessage = (
+        <p className="euiComboBoxPlaceholder">{placeholder}</p>
+      );
+    }
+
     return (
       <EuiFormControlLayout
         icon="arrowDown"
@@ -129,7 +139,7 @@ export class EuiComboBoxInput extends Component {
           data-test-subj="comboBoxInput"
         >
           {pills}
-
+          {placeholderMessage}
           <EuiValidatableControl isInvalid={false}>
             <AutosizeInput
               aria-hidden

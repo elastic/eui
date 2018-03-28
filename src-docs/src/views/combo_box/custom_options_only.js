@@ -35,6 +35,7 @@ export default class extends Component {
     const { selectedOptions } = this.state;
     return (
       <EuiComboBox
+        placeholder="Create some tags"
         selectedOptions={selectedOptions}
         onCreateOption={this.onCreateOption}
       />

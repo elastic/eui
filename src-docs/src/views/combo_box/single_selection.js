@@ -56,6 +56,7 @@ export default class extends Component {
     const { selectedOption } = this.state;
     return (
       <EuiComboBox
+        placeholder="Select a single option"
         singleSelection
         options={this.options}
         selectedOptions={selectedOption}

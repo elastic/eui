@@ -46,7 +46,7 @@ export default class extends Component {
     this.state = {
       isLoading: false,
       isPopoverOpen: false,
-      selectedOptions: [this.options[2], this.options[4]],
+      selectedOptions: [],
     };
   }
 
@@ -105,6 +105,7 @@ export default class extends Component {
 
     return (
       <EuiComboBox
+        placeholder="Search asynchronously"
         async
         options={this.options}
         selectedOptions={selectedOptions}

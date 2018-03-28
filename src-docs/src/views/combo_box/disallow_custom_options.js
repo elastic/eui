@@ -55,6 +55,7 @@ export default class extends Component {
   render() {
     return (
       <EuiComboBox
+        placeholder="Select from a list of options"
         options={this.options}
         selectedOptions={this.state.selectedOptions}
         onChange={this.onChange}
