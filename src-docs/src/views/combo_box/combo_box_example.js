@@ -91,6 +91,23 @@ export const ComboBoxExample = {
     props: { EuiComboBox },
     demo: <ComboBox />,
   }, {
+    title: 'Containers',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: containersSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: containersHtml,
+    }],
+    text: (
+      <p>
+        This example demonstrates how the combo box works within containers. Because this component
+        uses portals, it&rsquo;s important that it works within other portal-using components.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Containers />,
+  }, {
     title: 'Options can accept a color',
     source: [{
       type: GuideSectionTypes.JS,
@@ -192,22 +209,5 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Async />,
-  }, {
-    title: 'Containers',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: containersSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: containersHtml,
-    }],
-    text: (
-      <p>
-        This example demonstrates how the combo box works within containers. Because this component
-        uses portals, it&rsquo;s important that it works within other portal-using components.
-      </p>
-    ),
-    props: { EuiComboBox },
-    demo: <Containers />,
   }],
 };

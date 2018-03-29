@@ -37,6 +37,7 @@ export const EuiBadge = ({
   className,
   onClick,
   iconOnClick,
+  closeButtonProps,
   ...rest
 }) => {
 
@@ -70,7 +71,7 @@ export const EuiBadge = ({
     if (iconOnClick) {
       optionalIcon = (
         <EuiKeyboardAccessible>
-          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" />
+          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" {...closeButtonProps} />
         </EuiKeyboardAccessible>
       );
 
@@ -152,6 +153,11 @@ EuiBadge.propTypes = {
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color: checkValidColor,
+
+  /**
+   * Props passed to the close button.
+   */
+  closeButtonProps: PropTypes.object,
 };
 
 EuiBadge.defaultProps = {

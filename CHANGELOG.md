@@ -3,6 +3,7 @@
 - Added `EuiComboBox` for selecting many options from a list of options ([567](https://github.com/elastic/eui/pull/567))
 - Added `EuiHighlight` for highlighting a substring within text ([567](https://github.com/elastic/eui/pull/567))
 - `calculatePopoverPosition` service now accepts a `positions` argument so you can specify which positions are acceptable ([567](https://github.com/elastic/eui/pull/567))
+- Added `closeButtonProps` prop to `EuiBadge` ([567](https://github.com/elastic/eui/pull/567))
 
 **Breaking changes**
 

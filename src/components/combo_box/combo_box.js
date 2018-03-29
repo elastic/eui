@@ -24,6 +24,7 @@ import {
 
 export class EuiComboBox extends Component {
   static propTypes = {
+    id: PropTypes.string,
     className: PropTypes.string,
     placeholder: PropTypes.string,
     isLoading: PropTypes.bool,
@@ -240,6 +241,24 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
+  onFocusChange = event => {
+    event.target
+    // Close the list if the combo box has lost focus.
+    if (
+      this.comboBox === event.target
+      || this.comboBox.contains(event.target)
+      || this.optionsList === event.target
+      || this.optionsList && this.optionsList.contains(event.target)
+    ) {
+      return;
+    }
+
+    // Wait for the DOM to update.
+    requestAnimationFrame(() => {
+      this.closeList();
+    });
+  };
+
   onKeyDown = (e) => {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
@@ -321,24 +340,6 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onComboBoxBlur = (e) => {
-    if (e.relatedTarget && this.comboBox.contains(e.relatedTarget)) return;
-    // This callback generally handles cases when the user has taken focus away by clicking outside
-    // of the combo box.
-
-    // Wait for the DOM to update.
-    requestAnimationFrame(() => {
-      // If the user has placed focus somewhere outside of the combo box, close it.
-      const hasFocus =
-        this.comboBox.contains(document.activeElement)
-        || (this.optionsList && this.optionsList.contains(document.activeElement));
-
-      if (!hasFocus) {
-        this.closeList();
-      }
-    });
-  };
-
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
       this.props.onSearchChange(searchValue);
@@ -371,6 +372,9 @@ export class EuiComboBox extends Component {
   };
 
   componentDidMount() {
+    document.addEventListener('click', this.onFocusChange);
+    document.addEventListener('focusin', this.onFocusChange);
+
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       this.autoSizeInput.copyInputStyles();
@@ -405,8 +409,14 @@ export class EuiComboBox extends Component {
     this.focusActiveOption();
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onFocusChange);
+    document.removeEventListener('focusin', this.onFocusChange);
+  }
+
   render() {
     const {
+      id,
       className,
       isLoading,
       options,
@@ -459,13 +469,13 @@ export class EuiComboBox extends Component {
     return (
       <div
         className={classes}
-        onBlur={this.onComboBoxBlur}
         onFocus={this.onComboBoxFocus}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         {...rest}
       >
         <EuiComboBoxInput
+          id={id}
           placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}

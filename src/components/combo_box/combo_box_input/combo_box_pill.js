@@ -24,6 +24,9 @@ export const EuiComboBoxPill =({
       iconType="cross"
       iconSide="right"
       color={color}
+      closeButtonProps={{
+        tabIndex: '-1'
+      }}
       {...rest}
     >
       {children}

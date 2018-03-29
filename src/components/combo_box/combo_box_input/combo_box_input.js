@@ -11,6 +11,7 @@ const makeId = htmlIdGenerator();
 
 export class EuiComboBoxInput extends Component {
   static propTypes = {
+    id: PropTypes.string,
     placeholder: PropTypes.string,
     selectedOptions: PropTypes.array,
     onRemoveOption: PropTypes.func,
@@ -64,6 +65,7 @@ export class EuiComboBoxInput extends Component {
 
   render() {
     const {
+      id,
       placeholder,
       selectedOptions,
       onRemoveOption,
@@ -145,6 +147,7 @@ export class EuiComboBoxInput extends Component {
           <EuiValidatableControl isInvalid={false}>
             <AutosizeInput
               aria-hidden
+              id={id}
               style={{ fontSize: 14 }}
               className="euiComboBox__input"
               onFocus={this.onFocus}
