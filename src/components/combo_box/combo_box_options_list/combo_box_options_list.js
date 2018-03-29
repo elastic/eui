@@ -191,6 +191,7 @@ export class EuiComboBoxOptionsList extends Component {
       let optionalColorSwatch;
       if (color) {
         optionalColorSwatch = (
+          // This extra span is for the flex.
           <span>
             <span
               className={swatchClasses}

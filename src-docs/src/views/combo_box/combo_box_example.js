@@ -87,6 +87,25 @@ export const ComboBoxExample = {
     props: { EuiComboBox },
     demo: <ComboBox />,
   }, {
+    title: 'Options can accept a color',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: colorsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: colorsHtml,
+    }],
+    text: (
+      <p>
+        Useful for visualization or tagging systems. You can also pass a color in
+        your option list. The color can be a hex value
+        (like <EuiCode>#000</EuiCode>) or any other named color value accepted by
+        the <Link to="/display/badge">Badge</Link> component.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Colors />,
+  }, {
     title: 'Groups',
     source: [{
       type: GuideSectionTypes.JS,
@@ -169,24 +188,5 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Async />,
-  }, {
-    title: 'Colored pills',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: colorsSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: colorsHtml,
-    }],
-    text: (
-      <p>
-        Because the inner combo box pills are just <EuiCode>EuiBadge</EuiCode> items you can
-        also pass colors into your options list. These colors can be a hex value
-        (like <EuiCode>#000</EuiCode>) or any other named color value accepted by
-        the <Link to="/display/badge">Badge</Link> component.
-      </p>
-    ),
-    props: { EuiComboBox },
-    demo: <Colors />,
   }],
 };
