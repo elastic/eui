@@ -4,7 +4,7 @@ import {
   EuiComboBox,
 } from '../../../../src/components';
 
-const options = [{
+const allOptions = [{
   value: 'titan',
   label: 'Titan',
   'data-test-subj': 'titanOption',
@@ -41,12 +41,11 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = options.slice();
-
     this.state = {
       isLoading: false,
       isPopoverOpen: false,
       selectedOptions: [],
+      options: [],
     };
   }
 
@@ -57,23 +56,23 @@ export default class extends Component {
   };
 
   onSearchChange = (searchValue) => {
-    this.options = [];
-
     this.setState({
       isLoading: true,
+      options: [],
     });
 
     clearTimeout(this.searchTimeout);
 
     this.searchTimeout = setTimeout(() => {
-      this.options = options.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase()));
+      // Simulate a remotely-executed search.
       this.setState({
         isLoading: false,
+        options: allOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
       });
     }, 1200);
   }
 
-  onCreateOption =(searchValue, flattenedOptions) => {
+  onCreateOption = (searchValue, flattenedOptions) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -90,8 +89,10 @@ export default class extends Component {
       option.value.trim().toLowerCase() === normalizedSearchValue
     ) === -1) {
       // Simulate creating this option on the server.
-      options.push(newOption);
-      this.options.push(newOption);
+      allOptions.push(newOption);
+      this.setState(prevState => ({
+        options: prevState.options.concat(newOption),
+      }));
     }
 
     // Select the option.
@@ -100,14 +101,19 @@ export default class extends Component {
     }));
   };
 
+  componentDidMount() {
+    // Simulate initial load.
+    this.onSearchChange('');
+  }
+
   render() {
-    const { selectedOptions, isLoading } = this.state;
+    const { selectedOptions, isLoading, options } = this.state;
 
     return (
       <EuiComboBox
         placeholder="Search asynchronously"
         async
-        options={this.options}
+        options={options}
         selectedOptions={selectedOptions}
         isLoading={isLoading}
         onChange={this.onChange}
