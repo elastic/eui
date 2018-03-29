@@ -1,0 +1,22 @@
+$datepicker__background-color: $euiColorEmptyShade !default;
+$datepicker__border-color: $euiBorderColor !default;
+$datepicker__highlighted-color: #3dcc4a !default;
+$datepicker__muted-color: $euiColorLightestShade !default;
+$datepicker__selected-color: $euiColorPrimary !default;
+$datepicker__text-color: $euiTextColor !default;
+$datepicker__header-color: $euiColorFullShade !default;
+$datepicker__navigation-disabled-color: lighten($datepicker__muted-color, 10%)
+  !default;
+
+$datepicker__border-radius: $euiBorderRadius !default;
+$datepicker__day-margin: $euiSizeXS !default;
+$datepicker__font-size: $euiSizeM !default;
+$datepicker__font-family: $euiFontFamily !default;
+$datepicker__item-size: $euiSizeL !default;
+$datepicker__margin: $euiSize !default;
+$datepicker__navigation-size: $euiSize !default;
+$datepicker__triangle-size: 0 !default;
+
+.euiDatePicker {
+
+}
