@@ -11,6 +11,11 @@ import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
 
+
+import {
+  COLORS,
+} from '../../badge/badge';
+
 const positionToClassNameMap = {
   top: 'euiComboBoxOptionsList--top',
   bottom: 'euiComboBoxOptionsList--bottom',
@@ -144,8 +149,28 @@ export class EuiComboBoxOptionsList extends Component {
       const {
         value, // eslint-disable-line no-unused-vars
         label,
+        color,
         ...rest
       } = option;
+
+      const colorToClassNameMap = {
+        default: 'euiComboBoxOption__swatch--default',
+        primary: 'euiComboBoxOption__swatch--primary',
+        secondary: 'euiComboBoxOption__swatch--secondary',
+        accent: 'euiComboBoxOption__swatch--accent',
+        warning: 'euiComboBoxOption__swatch--warning',
+        danger: 'euiComboBoxOption__swatch--danger',
+        hollow: 'euiComboBoxOption__swatch--hollow',
+      };
+
+      let optionalColorClass = null;
+      let optionalCustomStyles = null;
+
+      if (COLORS.indexOf(color) > -1) {
+        optionalColorClass = colorToClassNameMap[color];
+      } else {
+        optionalCustomStyles = { backgroundColor: color };
+      }
 
       const group = optionToGroupMap.get(option);
 
@@ -158,6 +183,23 @@ export class EuiComboBoxOptionsList extends Component {
         );
       }
 
+      const swatchClasses = classNames(
+        'euiComboBoxOption__swatch',
+        optionalColorClass,
+      );
+
+      let optionalColorSwatch;
+      if (color) {
+        optionalColorSwatch = (
+          <span>
+            <span
+              className={swatchClasses}
+              style={optionalCustomStyles}
+            />
+          </span>
+        );
+      }
+
       const renderedOption = (
         <EuiComboBoxOption
           option={option}
@@ -167,6 +209,7 @@ export class EuiComboBoxOptionsList extends Component {
           optionRef={optionRef.bind(this, index)}
           {...rest}
         >
+          {optionalColorSwatch}
           <EuiHighlight search={searchValue}>{label}</EuiHighlight>
         </EuiComboBoxOption>
       );
