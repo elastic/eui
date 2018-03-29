@@ -1,13 +1,16 @@
+/**
+ * 1. Negative value accounts for the border
+ */
 .euiBadge {
   font-size: $euiSizeM;
   font-weight: $euiFontWeightMedium;
-  line-height: $euiSizeL - 2px;
+  line-height: $euiSizeL - 2px; /* 1 */
   display: inline-block;
   text-decoration: none;
   box-sizing: content-box;
   border-radius: $euiBorderRadius / 2;
   border: solid 1px transparent;
-  padding: 0 $euiSizeXS;
+  padding: 0 $euiSizeS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
@@ -58,7 +61,7 @@
 
 // Modifier naming and colors.
 $badgeTypes: (
-  default: $euiColorLightestShade,
+  default: $euiColorLightShade,
   primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
   secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
   warning: lighten(desaturate($euiColorWarning, 30%), 20%),
@@ -77,6 +80,7 @@ $badgeTypes: (
   }
 }
 
+// Hollow has a border and is mostly used for autocompleters.
 .euiBadge--hollow {
   background-color: $euiColorEmptyShade;
   border-color: $euiBorderColor;

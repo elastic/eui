@@ -18,7 +18,7 @@ export default class extends Component {
     }, {
       value: 'mimas',
       label: 'Mimas',
-      color: 'danger',
+      color: '#DB1374',
     }, {
       value: 'dione',
       label: 'Dione',
