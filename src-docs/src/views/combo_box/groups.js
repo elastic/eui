@@ -11,16 +11,12 @@ export default class extends Component {
     const colorGroup = {
       label: 'Colors',
       options: [{
-        value: 'red',
         label: 'Red',
       }, {
-        value: 'blue',
         label: 'Blue',
       }, {
-        value: 'yellow',
         label: 'Yellow',
       }, {
-        value: 'green',
         label: 'Green',
       }],
     };
@@ -28,16 +24,12 @@ export default class extends Component {
     const soundGroup = {
       label: 'Sounds',
       options: [{
-        value: 'pop',
         label: 'Pop',
       }, {
-        value: 'hiss',
         label: 'Hiss',
       }, {
-        value: 'screech',
         label: 'Screech',
       }, {
-        value: 'ding',
         label: 'Ding',
       }],
     };

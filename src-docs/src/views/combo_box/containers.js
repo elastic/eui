@@ -18,35 +18,25 @@ export default class extends Component {
     super(props);
 
     this.options = [{
-      value: 'titan',
       label: 'Titan',
       'data-test-subj': 'titanOption',
     }, {
-      value: 'enceladus',
       label: 'Enceladus',
     }, {
-      value: 'mimas',
       label: 'Mimas',
     }, {
-      value: 'dione',
       label: 'Dione',
     }, {
-      value: 'iapetus',
       label: 'Iapetus',
     }, {
-      value: 'phoebe',
       label: 'Phoebe',
     }, {
-      value: 'rhea',
       label: 'Rhea',
     }, {
-      value: 'pandora',
       label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
     }, {
-      value: 'tethys',
       label: 'Tethys',
     }, {
-      value: 'hyperion',
       label: 'Hyperion',
     }];
 
