@@ -50,6 +50,9 @@ exports.config = {
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
   sauceConnect: true,
+  webpackConfig: require('./spec/webpack.test.config.js'),
+  webpackPort: 9999,
+  baseUrl: 'http://localhost:9999',
   capabilities: [{
     browserName: 'chrome',
     chromeOptions: {
@@ -69,7 +72,7 @@ exports.config = {
     }
   }],
   onPrepare: function (config, capabilities) {
-    console.log(process.platform)
+    console.log(process.platform);
     if ((ci) || process.platform === 'win32') {
       capabilities.push({
         browserName: 'internet explorer',
@@ -79,10 +82,10 @@ exports.config = {
     console.log(capabilities);
   },
   before: function (capabilities, specs) {
-    var sinon = require('sinon');
+    const sinon = require('sinon');
     // http://sinonjs.org/
-    var chai = require('chai');
-    var chaiWebdriver = require('chai-webdriverio').default;
+    const chai = require('chai');
+    const chaiWebdriver = require('chai-webdriverio').default;
     chai.use(chaiWebdriver(browser));
     // http://chaijs.com/
     global.fetch = require('node-fetch');
