@@ -84,6 +84,7 @@ export const Table = () => {
     <EuiBasicTable
       items={store.users.filter((user, index) => index < 10)}
       columns={columns}
+      compressed={true}
     />
   );
 };

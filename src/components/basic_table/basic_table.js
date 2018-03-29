@@ -295,6 +295,9 @@ export class EuiBasicTable extends Component {
   }
 
   renderTable() {
+
+    const { compressed } = this.props;
+
     const mobileSort = this.renderTableMobileSort();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
@@ -303,7 +306,7 @@ export class EuiBasicTable extends Component {
         ref={element => { this.tableElement = element; }}
       >
         <EuiTableHeaderMobile>{mobileSort}</EuiTableHeaderMobile>
-        <EuiTable>{head}{body}</EuiTable>
+        <EuiTable compressed={compressed}>{head}{body}</EuiTable>
       </div>
     );
   }
