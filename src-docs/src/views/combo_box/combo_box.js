@@ -52,7 +52,7 @@ export default class extends Component {
     });
   };
 
-  onCreateOption =(searchValue, flattenedOptions) => {
+  onCreateOption = (searchValue, flattenedOptions) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {

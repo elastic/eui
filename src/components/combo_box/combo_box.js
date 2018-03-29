@@ -280,11 +280,6 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onComboBoxClick = () => {
-    // When the user clicks anywhere on the box, enter the interaction state.
-    this.searchInput.focus();
-  };
-
   onOptionEnterKey = (option) => {
     this.onAddOption(option);
   }
@@ -304,6 +299,11 @@ export class EuiComboBox extends Component {
   onRemoveOption = (removedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.filter(option => option !== removedOption));
+  };
+
+  onComboBoxClick = () => {
+    // When the user clicks anywhere on the box, enter the interaction state.
+    this.searchInput.focus();
   };
 
   onComboBoxFocus = (e) => {

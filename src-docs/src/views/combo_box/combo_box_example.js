@@ -46,6 +46,10 @@ import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
 
+import Containers from './containers';
+const containersSource = require('!!raw-loader!./containers');
+const containersHtml = renderToHtml(Containers);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -188,5 +192,22 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Async />,
+  }, {
+    title: 'Containers',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: containersSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: containersHtml,
+    }],
+    text: (
+      <p>
+        This example demonstrates how the combo box works within containers. Because this component
+        uses portals, it&rsquo;s important that it works within other portal-using components.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Containers />,
   }],
 };
