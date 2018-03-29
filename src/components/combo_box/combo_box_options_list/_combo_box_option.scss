@@ -16,28 +16,4 @@
     color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
   }
-
-  .euiComboBoxOption__swatch {
-    display: block;
-    width: $euiSizeS;
-    height: $euiSizeS;
-    background: #000;
-    margin-right: $euiSizeS;
-    border-radius: 50%;
-  }
-
-  $swatchTypes: (
-    default: $euiColorLightShade,
-    primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
-    secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
-    warning: lighten(desaturate($euiColorWarning, 30%), 20%),
-    danger: lighten(desaturate($euiColorDanger, 40%), 40%),
-    accent: lighten(desaturate($euiColorAccent, 40%), 40%),
-  );
-
-  @each $name, $color in $swatchTypes {
-    .euiComboBoxOption__swatch--#{$name} {
-      background-color: $color;
-    }
-  }
 }
