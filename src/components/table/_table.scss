@@ -25,7 +25,6 @@
   .euiTableCellContent {
     padding: $euiSizeXS;
     @include euiFontSizeXS;
-
   }
 
   .euiTableHeaderButton:focus {
@@ -46,6 +45,13 @@
   .euiTableHeaderButton {
     text-align: left;
     font-weight: $euiFontWeightMedium;
+  }
+
+  .euiTableCellContent {
+    // Always truncate
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 
@@ -84,7 +90,9 @@
   }
 
   &.euiTableRow-isExpandedRow {
-    background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
+    .euiTableRowCell {
+      background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
+    }
 
     &.euiTableRow-isSelectable .euiTableCellContent {
       padding-left: $euiSizeXL;
@@ -184,5 +192,21 @@
     &:hover, &:focus {
       opacity: 1;
     }
+  }
+}
+
+// Animate expanded row must be on the contents div inside
+
+.euiTableRow-isExpandedRow .euiTableCellContent {
+  overflow: hidden;
+  animation: $euiAnimSpeedNormal $euiAnimSlightResistance 1 normal forwards growExpandedRow;
+}
+
+@keyframes growExpandedRow {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 1000px;
   }
 }

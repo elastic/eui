@@ -75,7 +75,40 @@
         width: $euiSize;
         position: absolute;
         right: $euiSize;
-        top: $euiSize + (($euiSize*$euiLineHeight)-$euiSize)/2; // same as row padding-top + 1/2 line height
+        top: $euiSize + (($euiSize*$euiLineHeight)-$euiSize)/2 + 4px; // same as row padding-top + 1/2 line height
+
+        &::before {
+          display: none;
+        }
+
+        .euiTableCellContent {
+          padding: 0;
+        }
+      }
+    }
+
+    &[aria-owns] {
+      padding-right: $euiSizeXXL;
+      position: relative;
+
+      &.euiTableRow-hasActions {
+        padding-right: $euiSizeXXL + $euiSizeL;
+
+        .euiTableRowCell--hasActions {
+          right: $euiSizeL + $euiSize;
+        }
+      }
+
+      &:hover {
+        background: none;
+      }
+
+      .euiTableRowCell--isExpander {
+        min-width: 0;
+        width: $euiSize;
+        position: absolute;
+        right: $euiSize;
+        top: $euiSize + (($euiSize*$euiLineHeight)-$euiSize)/2 + 4px; // same as row padding-top + 1/2 line height
 
         &::before {
           display: none;
@@ -89,18 +122,19 @@
 
     &.euiTableRow-isExpandedRow {
       margin-top: -$euiSize*2;
-      background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
       position: relative;
       z-index: 2; // on top of it's parent/previous row
       border-top: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
-      padding-left: $euiSize; // override selectable as the padding is already applied via the content
+      padding-left: $euiSize; // override selectable as the padding is already applied via the contents
+
+      &:hover {
+        background: none;
+      }
 
       .euiTableRowCell {
         width: 100%;
-        border-bottom-left-radius: $euiBorderRadius - 1px;
-        border-bottom-right-radius: $euiBorderRadius - 1px;
 
         &::before {
           display: none;

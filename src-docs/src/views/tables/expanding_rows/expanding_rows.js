@@ -11,7 +11,13 @@ import {
   EuiHealth,
   EuiButton,
   EuiDescriptionList,
+  EuiScreenReaderOnly,
+  EuiIcon,
 } from '../../../../../src/components';
+
+import {
+  RIGHT_ALIGNMENT,
+} from '../../../../../src/services';
 
 /*
 Example user object:
@@ -168,10 +174,15 @@ export class Table extends Component {
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
-      name: 'Details',
+      align: RIGHT_ALIGNMENT,
+      width: '40px',
+      isExpander: true,
       render: (item) => (
-        <EuiLink onClick={() => this.toggleDetails(item)}>
-          {itemIdToExpandedRowMap[item.id] ? 'Hide' : 'Show'}
+        <EuiLink onClick={() => this.toggleDetails(item)} title={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}>
+          <EuiScreenReaderOnly>
+            <span>{itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}</span>
+          </EuiScreenReaderOnly>
+          <EuiIcon type={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'} aria-hidden={true} />
         </EuiLink>
       )
     }];
