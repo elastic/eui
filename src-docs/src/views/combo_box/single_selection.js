@@ -42,24 +42,25 @@ export default class extends Component {
     }];
 
     this.state = {
-      selectedOption: undefined,
+      selectedOptions: undefined,
     };
   }
 
-  onChange = (selectedOption) => {
+  onChange = (selectedOptions) => {
+    // We should only get back either 0 or 1 options.
     this.setState({
-      selectedOption,
+      selectedOptions: selectedOptions,
     });
   };
 
   render() {
-    const { selectedOption } = this.state;
+    const { selectedOptions } = this.state;
     return (
       <EuiComboBox
         placeholder="Select a single option"
         singleSelection
         options={this.options}
-        selectedOptions={selectedOption}
+        selectedOptions={selectedOptions}
         onChange={this.onChange}
       />
     );
