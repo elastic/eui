@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -7,8 +7,11 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiComboBox,
+  EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 import ComboBox from './combo_box';
@@ -37,6 +40,32 @@ const asyncHtml = renderToHtml(Async);
 
 export const ComboBoxExample = {
   title: 'Combo Box',
+  intro: (
+    <Fragment>
+      <EuiText>
+        <p>
+          Use a <EuiCode>EuiComboBox</EuiCode> when the input has so many options that the user
+          needs to be able to search them, the user needs to be able to select multiple options,
+          and/or the user should have the ability to specify
+          a custom value in addition to selecting from a predetermined list.
+        </p>
+      </EuiText>
+
+      <EuiCallOut
+        title="No duplicate option labels allowed"
+        color="warning"
+      >
+        <p>
+          The combo box will have errors if any of the options you pass to it share the same label
+          property. It&rsquo;s OK if options have duplicate values, though. This is because the label
+          is the only thing the combo box is concerned about, since this is what the user sees
+          and what is matched against when the user searches.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [{
     source: [{
       type: GuideSectionTypes.JS,
@@ -45,14 +74,6 @@ export const ComboBoxExample = {
       type: GuideSectionTypes.HTML,
       code: comboBoxHtml,
     }],
-    text: (
-      <p>
-        Use a <EuiCode>EuiComboBox</EuiCode> when the input has so many options that the user
-        needs to be able to search them, the user needs to be able to select multiple options,
-        and/or the user should have the ability to specify
-        a custom value in addition to selecting from a predetermined list.
-      </p>
-    ),
     props: { EuiComboBox },
     demo: <ComboBox />,
   }, {
