@@ -36,6 +36,7 @@ export class EuiComboBox extends Component {
     onChange: PropTypes.func,
     onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
+    renderOption: PropTypes.func,
   }
 
   static defaultProps = {
@@ -229,7 +230,7 @@ export class EuiComboBox extends Component {
     if (this.matchingOptions.length !== 1) {
       return false;
     }
-    return this.matchingOptions[0].value.toLowerCase() === searchValue.toLowerCase();
+    return this.matchingOptions[0].label.toLowerCase() === searchValue.toLowerCase();
   };
 
   areAllOptionsSelected = () => {
@@ -424,6 +425,7 @@ export class EuiComboBox extends Component {
       onCreateOption,
       placeholder,
       noSuggestions,
+      renderOption,
       singleSelection, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
@@ -461,6 +463,7 @@ export class EuiComboBox extends Component {
             updatePosition={this.updateListPosition}
             position={listPosition}
             style={listStyles}
+            renderOption={renderOption}
           />
         </EuiPortal>
       );

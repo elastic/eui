@@ -79,7 +79,6 @@ export class EuiComboBoxInput extends Component {
 
     const pills = selectedOptions.map((option) => {
       const {
-        value,
         label,
         color,
         ...rest
@@ -89,7 +88,7 @@ export class EuiComboBoxInput extends Component {
         <EuiComboBoxPill
           option={option}
           onClose={onRemoveOption}
-          key={value}
+          key={label.toLowerCase()}
           color={color}
           {...rest}
         >

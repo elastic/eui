@@ -22,9 +22,17 @@ import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
 const comboBoxHtml = renderToHtml(ComboBox);
 
-import Colors from './combo_box_colors';
-const colorsSource = require('!!raw-loader!./combo_box_colors');
+import Containers from './containers';
+const containersSource = require('!!raw-loader!./containers');
+const containersHtml = renderToHtml(Containers);
+
+import Colors from './colors';
+const colorsSource = require('!!raw-loader!./colors');
 const colorsHtml = renderToHtml(Colors);
+
+import RenderOption from './render_option';
+const renderOptionSource = require('!!raw-loader!./render_option');
+const renderOptionHtml = renderToHtml(RenderOption);
 
 import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
@@ -45,10 +53,6 @@ const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
-
-import Containers from './containers';
-const containersSource = require('!!raw-loader!./containers');
-const containersHtml = renderToHtml(Containers);
 
 export const ComboBoxExample = {
   title: 'Combo Box',
@@ -108,7 +112,7 @@ export const ComboBoxExample = {
     props: { EuiComboBox },
     demo: <Containers />,
   }, {
-    title: 'Options can accept a color',
+    title: 'Pill colors',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorsSource,
@@ -126,6 +130,24 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Colors />,
+  }, {
+    title: 'Option rendering',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: renderOptionSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: renderOptionHtml,
+    }],
+    text: (
+      <p>
+        You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>
+        and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the
+        <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <RenderOption />,
   }, {
     title: 'Groups',
     source: [{

@@ -36,6 +36,7 @@ export class EuiComboBoxOptionsList extends Component {
     position: PropTypes.oneOf(POSITIONS),
     style: PropTypes.object,
     listRef: PropTypes.func.isRequired,
+    renderOption: PropTypes.func,
   }
 
   updatePosition = () => {
@@ -92,6 +93,7 @@ export class EuiComboBoxOptionsList extends Component {
       areAllOptionsSelected,
       getSelectedOptionForSearchValue,
       position,
+      renderOption,
       listRef, // eslint-disable-line no-unused-vars
       updatePosition, // eslint-disable-line no-unused-vars
       ...rest
@@ -164,13 +166,15 @@ export class EuiComboBoxOptionsList extends Component {
       const renderedOption = (
         <EuiComboBoxOption
           option={option}
-          key={option.value}
+          key={option.label.toLowerCase()}
           onClick={onOptionClick}
           onEnterKey={onOptionEnterKey}
           optionRef={optionRef.bind(this, index)}
           {...rest}
         >
-          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+          {renderOption ? renderOption(option, searchValue) : (
+            <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+          )}
         </EuiComboBoxOption>
       );
 
