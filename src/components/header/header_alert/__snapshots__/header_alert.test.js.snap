@@ -32,12 +32,209 @@ exports[`EuiHeaderAlert is rendered 1`] = `
       />
     </svg>
   </button>
-  <p
+  <div
     class="euiHeaderAlert__title"
   >
     title
-  </p>
-  <p
+  </div>
+  <div
+    class="euiHeaderAlert__text"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__action euiLink"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiHeaderAlert renders action 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <button
+    aria-label="Dismiss"
+    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <path
+          d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+          id="cross-a"
+        />
+      </defs>
+      <use
+        fill-rule="nonzero"
+        href="#cross-a"
+      />
+    </svg>
+  </button>
+  <div
+    class="euiHeaderAlert__title"
+  >
+    title
+  </div>
+  <div
+    class="euiHeaderAlert__text"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__action euiLink"
+      >
+        <button>
+          Quietly take to the ship
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiHeaderAlert renders date as an element 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <button
+    aria-label="Dismiss"
+    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <path
+          d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+          id="cross-a"
+        />
+      </defs>
+      <use
+        fill-rule="nonzero"
+        href="#cross-a"
+      />
+    </svg>
+  </button>
+  <div
+    class="euiHeaderAlert__title"
+  >
+    shazm
+  </div>
+  <div
+    class="euiHeaderAlert__text"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__action euiLink"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <div
+        class="euiHeaderAlert__date"
+      >
+        <h2>
+          October 18, 1851
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiHeaderAlert renders title as an element 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiHeaderAlert testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <button
+    aria-label="Dismiss"
+    class="euiButtonIcon euiButtonIcon--primary euiHeaderAlert__dismiss"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiButtonIcon__icon euiIcon--medium"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <path
+          d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+          id="cross-a"
+        />
+      </defs>
+      <use
+        fill-rule="nonzero"
+        href="#cross-a"
+      />
+    </svg>
+  </button>
+  <div
+    class="euiHeaderAlert__title"
+  >
+    <h2>
+      Circumambulate the city
+    </h2>
+  </div>
+  <div
     class="euiHeaderAlert__text"
   />
   <div

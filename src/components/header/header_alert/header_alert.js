@@ -33,9 +33,9 @@ export const EuiHeaderAlert = ({
         className="euiHeaderAlert__dismiss"
       />
 
-      <p className="euiHeaderAlert__title">{title}</p>
+      <div className="euiHeaderAlert__title">{title}</div>
 
-      <p className="euiHeaderAlert__text">{text}</p>
+      <div className="euiHeaderAlert__text">{text}</div>
 
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
@@ -54,7 +54,6 @@ export const EuiHeaderAlert = ({
 
 EuiHeaderAlert.propTypes = {
   action: PropTypes.node,
-  children: PropTypes.node,
   className: PropTypes.string,
   date: PropTypes.node.isRequired,
   text: PropTypes.node,

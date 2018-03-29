@@ -8,6 +8,17 @@ exports[`EuiHeaderSection is rendered 1`] = `
 />
 `;
 
+exports[`EuiHeaderSection renders optional params 1`] = `
+<div
+  class="euiHeaderSection euiHeaderSection--left"
+  style="color:blue"
+>
+  <span>
+    Some years ago never mind how long precisely...
+  </span>
+</div>
+`;
+
 exports[`EuiHeaderSection side defaults to left 1`] = `
 <div
   class="euiHeaderSection euiHeaderSection--left"
