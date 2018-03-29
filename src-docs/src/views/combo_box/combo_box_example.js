@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -17,6 +21,10 @@ import {
 import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
 const comboBoxHtml = renderToHtml(ComboBox);
+
+import Colors from './combo_box_colors';
+const colorsSource = require('!!raw-loader!./combo_box_colors');
+const colorsHtml = renderToHtml(Colors);
 
 import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
@@ -50,6 +58,8 @@ export const ComboBoxExample = {
           a custom value in addition to selecting from a predetermined list.
         </p>
       </EuiText>
+
+      <EuiSpacer />
 
       <EuiCallOut
         title="No duplicate option labels allowed"
@@ -159,5 +169,24 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <Async />,
+  }, {
+    title: 'Colored pills',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: colorsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: colorsHtml,
+    }],
+    text: (
+      <p>
+        Because the inner combo box pills are just <EuiCode>EuiBadge</EuiCode> items you can
+        also pass colors into your options list. These colors can be a hex value
+        (like <EuiCode>#000</EuiCode>) or any other named color value accepted by
+        the <Link to="/display/badge">Badge</Link> component.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Colors />,
   }],
 };
