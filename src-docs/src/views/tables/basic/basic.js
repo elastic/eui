@@ -50,7 +50,6 @@ export const Table = () => {
   }, {
     field: 'firstName',
     name: 'Full Name',
-    truncateText: true,
     isMobileHeader: true,
     render: (name, item) => (
       <span>{item.firstName} <EuiLink href="#" target="_blank">{item.lastName}</EuiLink></span>

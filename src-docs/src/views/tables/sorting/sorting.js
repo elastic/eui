@@ -92,7 +92,6 @@ export class Table extends Component {
     }, {
       field: 'firstName',
       name: 'Full Name',
-      truncateText: true,
       sortable: true,
       isMobileHeader: true,
       render: (name, item) => (

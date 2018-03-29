@@ -209,7 +209,6 @@ export class Table extends Component {
     }, {
       field: 'firstName',
       name: 'Full Name',
-      truncateText: true,
       isMobileHeader: true,
       render: (name, item) => (
         <span>{item.firstName} {item.lastName}</span>
