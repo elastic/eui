@@ -1,10 +1,10 @@
 /**
- * 1. Negative value accounts for the border
+ * 1. Accounts for the border
  */
 .euiBadge {
   font-size: $euiSizeM;
   font-weight: $euiFontWeightMedium;
-  line-height: $euiSizeL - 2px; /* 1 */
+  line-height: $euiSize + 2px; /* 1 */
   display: inline-block;
   text-decoration: none;
   box-sizing: content-box;
