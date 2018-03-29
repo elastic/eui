@@ -54,10 +54,12 @@ export class EuiComboBoxOptionsList extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    const { options, selectedOptions } = nextProps;
+    const { options, selectedOptions, searchValue } = nextProps;
 
+    // We don't compare matchingOptions because that will result in a loop.
     if (
-      options !== this.props.options
+      searchValue !== this.props.searchValue
+      || options !== this.props.options
       || selectedOptions !== this.props.selectedOptions
     ) {
       this.updatePosition();
@@ -77,23 +79,24 @@ export class EuiComboBoxOptionsList extends Component {
 
   render() {
     const {
-    options,
-    isLoading,
-    selectedOptions,
-    onCreateOption,
-    searchValue,
-    matchingOptions,
-    optionToGroupMap,
-    optionRef,
-    onOptionClick,
-    onOptionEnterKey,
-    areAllOptionsSelected,
-    getSelectedOptionForSearchValue,
-    position,
-    listRef, // eslint-disable-line no-unused-vars
-    updatePosition, // eslint-disable-line no-unused-vars
-    ...rest
-  } = this.props;
+      options,
+      isLoading,
+      selectedOptions,
+      onCreateOption,
+      searchValue,
+      matchingOptions,
+      optionToGroupMap,
+      optionRef,
+      onOptionClick,
+      onOptionEnterKey,
+      areAllOptionsSelected,
+      getSelectedOptionForSearchValue,
+      position,
+      listRef, // eslint-disable-line no-unused-vars
+      updatePosition, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
+
     let emptyStateContent;
 
     if (isLoading) {
