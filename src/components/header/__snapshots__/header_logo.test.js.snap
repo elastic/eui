@@ -7,7 +7,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <svg
-    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
+    class="euiIcon euiIcon--xLarge euiHeaderLogo__icon"
     height="32"
     viewBox="0 0 32 32"
     width="32"
@@ -52,7 +52,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
   href="#"
 >
   <svg
-    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
+    class="euiIcon euiIcon--xLarge euiHeaderLogo__icon"
     height="32"
     viewBox="0 0 32 32"
     width="32"

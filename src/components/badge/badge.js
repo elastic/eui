@@ -115,6 +115,16 @@ export const EuiBadge = ({
   }
 };
 
+function checkValidColor(props, propName, componentName) {
+  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
+  if (props.color && !validHex && !COLORS.includes(props.color)) {
+    throw new Error(
+      `${componentName} needs to pass a valid color. This can either be a three ` +
+      `or six character hex value or one of the following: ${COLORS}`
+    );
+  }
+}
+
 EuiBadge.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -141,7 +151,7 @@ EuiBadge.propTypes = {
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
-  color: PropTypes.string,
+  color: checkValidColor,
 };
 
 EuiBadge.defaultProps = {

@@ -18,7 +18,7 @@ exports[`EuiFilePicker is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiFilePicker__icon euiIcon--large"
+        class="euiIcon euiIcon--large euiFilePicker__icon"
         height="16"
         viewBox="0 0 16 16"
         width="16"

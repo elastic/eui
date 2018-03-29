@@ -15,7 +15,7 @@ exports[`renders EuiConfirmModal 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiButtonIcon__icon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiButtonIcon__icon"
         height="16"
         viewBox="0 0 16 16"
         width="16"
