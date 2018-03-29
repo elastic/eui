@@ -500,12 +500,18 @@ export class EuiBasicTable extends Component {
       }
     });
 
-    // Occupy full width of table, taking checkbox column into account.
-    const expandedRowColSpan = selection ? columns.length + 1 : columns.length;
+    // Occupy full width of table, taking checkbox & mobile only columns into account.
+    let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
+
+    const mobileOnlyCols = columns.reduce((num, column) => {
+      return column.isMobileHeader ? num + 1 : num + 0;
+    }, 0);
+
+    expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
     // We'll use the ID to associate the expanded row with the original.
     const expandedRowId = `row_${itemId}_expansion`;
     const expandedRow = itemIdToExpandedRowMap[itemId] ? (
-      <EuiTableRow id={expandedRowId} key={expandedRowId}>
+      <EuiTableRow id={expandedRowId} key={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
         <EuiTableRowCell colSpan={expandedRowColSpan}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>

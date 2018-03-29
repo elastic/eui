@@ -66,7 +66,7 @@ export class EuiTableSortMobile extends Component {
         button={mobileSortButton}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
-        anchorPosition={anchorPosition || "downLeft"}
+        anchorPosition={anchorPosition || "downRight"}
         panelPaddingSize="none"
         {...rest}
       >

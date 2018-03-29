@@ -83,10 +83,23 @@
     background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
   }
 
+  &.euiTableRow-isExpandedRow {
+    background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
+
+    &.euiTableRow-isSelectable .euiTableCellContent {
+      padding-left: $euiSizeXL;
+    }
+  }
+
   &.euiTableRow-isSelected {
     background-color: tintOrShade($euiFocusBackgroundColor, 30%, 0%);
 
-    &:hover {
+    + .euiTableRow.euiTableRow-isExpandedRow {
+      background-color: tintOrShade($euiFocusBackgroundColor, 30%, 0%);
+    }
+
+    &:hover,
+    &:hover + .euiTableRow.euiTableRow-isExpandedRow  {
       background-color: tintOrShade($euiFocusBackgroundColor, 0, 10%);
     }
   }

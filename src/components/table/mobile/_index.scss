@@ -86,6 +86,27 @@
         }
       }
     }
+
+    &.euiTableRow-isExpandedRow {
+      margin-top: -$euiSize*2;
+      background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
+      position: relative;
+      z-index: 2; // on top of it's parent/previous row
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      padding-left: $euiSize; // override selectable as the padding is already applied via the content
+
+      .euiTableRowCell {
+        width: 100%;
+        border-bottom-left-radius: $euiBorderRadius - 1px;
+        border-bottom-right-radius: $euiBorderRadius - 1px;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
   }
 
   .euiTableRowCell {

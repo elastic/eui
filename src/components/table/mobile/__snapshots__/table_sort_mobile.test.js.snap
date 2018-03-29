@@ -6,7 +6,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiPopover euiPopover--anchorDownLeft"
+    class="euiPopover euiPopover--anchorDownRight"
     data-test-subj="test subject string"
   >
     <button
