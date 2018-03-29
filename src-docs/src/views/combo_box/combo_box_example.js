@@ -136,7 +136,7 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        Alternatively, leave out the <EuiCode>onChange</EuiCode> prop to hide the suggestions list
+        Alternatively, provide thhe <EuiCode>noSuggestions</EuiCode> prop to hide the suggestions list
         and <em>only</em> allow the creation of custom options.
       </p>
     ),

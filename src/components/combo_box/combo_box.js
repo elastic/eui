@@ -29,6 +29,7 @@ export class EuiComboBox extends Component {
     isLoading: PropTypes.bool,
     async: PropTypes.bool,
     singleSelection: PropTypes.bool,
+    noSuggestions: PropTypes.bool,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func,
@@ -90,6 +91,10 @@ export class EuiComboBox extends Component {
 
   updateListPosition = (listBounds = this.listBounds) => {
     if (!this.state.isListOpen) {
+      return;
+    }
+
+    if (!listBounds) {
       return;
     }
 
@@ -324,7 +329,10 @@ export class EuiComboBox extends Component {
     // Wait for the DOM to update.
     requestAnimationFrame(() => {
       // If the user has placed focus somewhere outside of the combo box, close it.
-      const hasFocus = this.comboBox.contains(document.activeElement) || this.optionsList.contains(document.activeElement);
+      const hasFocus =
+        this.comboBox.contains(document.activeElement)
+        || (this.optionsList && this.optionsList.contains(document.activeElement));
+
       if (!hasFocus) {
         this.closeList();
       }
@@ -405,6 +413,7 @@ export class EuiComboBox extends Component {
       selectedOptions,
       onCreateOption,
       placeholder,
+      noSuggestions,
       singleSelection, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
@@ -422,7 +431,7 @@ export class EuiComboBox extends Component {
 
     let optionsList;
 
-    if (onChange && isListOpen) {
+    if (!noSuggestions && isListOpen) {
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList

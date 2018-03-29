@@ -31,13 +31,21 @@ export default class extends Component {
     }));
   };
 
+  onChange = (selectedOptions) => {
+    this.setState({
+      selectedOptions,
+    });
+  };
+
   render() {
     const { selectedOptions } = this.state;
     return (
       <EuiComboBox
+        noSuggestions
         placeholder="Create some tags"
         selectedOptions={selectedOptions}
         onCreateOption={this.onCreateOption}
+        onChange={this.onChange}
       />
     );
   }
