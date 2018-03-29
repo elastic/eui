@@ -4,7 +4,7 @@
 .euiComboBoxOptionsList {
   @include euiFormControlSize;
   box-sizing: content-box; /* 1 */
-  z-index: 1;
+  z-index: $euiZComboBox;
   position: absolute;
 }
 
