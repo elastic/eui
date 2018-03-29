@@ -8,8 +8,7 @@
 
       &:after {
         position: absolute;
-        top: 36px;
-        content: ' ';
+        content: '';
         width: 100%;
         height: $euiBorderWidthThick;
         background-color: $euiColorPrimary;

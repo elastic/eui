@@ -42,7 +42,7 @@ export class EuiTablePagination extends Component {
 
     const button = (
       <EuiButtonEmpty
-        size="s"
+        size="xs"
         color="text"
         iconType="arrowDown"
         iconSide="right"

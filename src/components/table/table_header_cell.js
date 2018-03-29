@@ -73,7 +73,7 @@ export const EuiTableHeaderCell = ({
           aria-label={statefulAriaLabel}
         >
           <span className={contentClasses}>
-            {children}
+            <span className="euiTableCellContent--text">{children}</span>
             {sortIcon}
           </span>
         </button>
@@ -89,7 +89,7 @@ export const EuiTableHeaderCell = ({
       {...rest}
     >
       <div className={contentClasses}>
-        {children}
+        <span className="euiTableCellContent--text">{children}</span>
       </div>
     </th>
   );

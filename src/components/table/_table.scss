@@ -47,7 +47,11 @@
     font-weight: $euiFontWeightMedium;
   }
 
-  .euiTableCellContent {
+  .euiTableCellContent--text {
+    @include euiFontSizeXS;
+    color: $euiTitleColor;
+    font-weight: $euiFontWeightBold;
+
     // Always truncate
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -66,8 +70,10 @@
   width: 100%;
 
   &:hover, &:focus {
-    text-decoration: underline;
-    color: $euiColorPrimary;
+    .euiTableCellContent--text {
+      text-decoration: underline;
+      color: $euiColorPrimary;
+    }
 
     .euiTableSortIcon {
       display: block;
@@ -78,6 +84,7 @@
 
 .euiTableSortIcon {
   margin-left: $euiSizeXS;
+  flex-shrink: 0;
 
   .euiTableHeaderButton-isSorted & {
     fill: $euiTitleColor;
@@ -156,10 +163,12 @@
 
 .euiTableCellContent--alignRight {
   justify-content: flex-end;
+  text-align: right;
 }
 
 .euiTableCellContent--alignCenter {
   justify-content: center;
+  text-align: center;
 }
 
 .euiTableCellContent--truncateText {

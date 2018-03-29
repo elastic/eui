@@ -13,7 +13,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       <button
         aria-controls="customizablePagination"
         aria-expanded="false"
-        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty--iconRight"
+        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
         type="button"
       >
         <span

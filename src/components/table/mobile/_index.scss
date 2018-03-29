@@ -49,7 +49,7 @@
   .euiTableRow {
     display: flex;
     flex-wrap: wrap;
-    padding: $euiSize;
+    padding: $euiSizeS $euiSize;
     margin-bottom: $euiSize;
 
     &.euiTableRow-isSelectable {
