@@ -1,16 +1,19 @@
 .euiBadge {
   font-size: $euiSizeM;
   font-weight: $euiFontWeightMedium;
-  line-height: $euiSize + $euiSizeXS;
+  line-height: $euiSizeL - 2px;
   display: inline-block;
   text-decoration: none;
   box-sizing: content-box;
   border-radius: $euiBorderRadius / 2;
+  border: solid 1px transparent;
   padding: 0 $euiSizeXS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 
   + .euiBadge {
     margin-left: $euiSizeXS;
@@ -19,6 +22,13 @@
   .euiBadge__content {
     display: flex;
     align-items: center;
+    overflow: hidden;
+  }
+
+  .euiBadge__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
   }
 
   &:focus {
@@ -48,7 +58,7 @@
 
 // Modifier naming and colors.
 $badgeTypes: (
-  default: $euiColorLightShade,
+  default: $euiColorLightestShade,
   primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
   secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
   warning: lighten(desaturate($euiColorWarning, 30%), 20%),
@@ -65,4 +75,10 @@ $badgeTypes: (
       color: #FFF;
     }
   }
+}
+
+.euiBadge--hollow {
+  background-color: $euiColorEmptyShade;
+  border-color: $euiBorderColor;
+  color: $euiTextColor;
 }

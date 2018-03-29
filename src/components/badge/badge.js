@@ -17,6 +17,7 @@ const colorToClassNameMap = {
   accent: 'euiBadge--accent',
   warning: 'euiBadge--warning',
   danger: 'euiBadge--danger',
+  hollow: 'euiBadge--hollow',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -105,7 +106,7 @@ export const EuiBadge = ({
       >
         <span className="euiBadge__content">
           {optionalIcon}
-          <span>
+          <span className="euiBadge__text">
             {children}
           </span>
         </span>

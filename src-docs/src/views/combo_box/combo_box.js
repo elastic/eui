@@ -18,12 +18,14 @@ export default class extends Component {
     }, {
       value: 'mimas',
       label: 'Mimas',
+      color: 'danger',
     }, {
       value: 'dione',
       label: 'Dione',
     }, {
       value: 'iapetus',
       label: 'Iapetus',
+      color: 'primary',
     }, {
       value: 'phoebe',
       label: 'Phoebe',

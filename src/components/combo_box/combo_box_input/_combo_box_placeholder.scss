@@ -1,8 +1,8 @@
 .euiComboBoxPlaceholder {
   position: absolute;
   pointer-events: none;
-  padding: $euiSizeS $euiSizeXS;
-  transform: translateY(2px);
+  padding: 0 $euiSizeXS;
+  line-height: $euiSizeXL;
   color: $euiColorMediumShade;
   margin-bottom: 0 !important;
 }

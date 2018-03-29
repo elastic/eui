@@ -79,6 +79,7 @@ export class EuiComboBoxInput extends Component {
       const {
         value,
         label,
+        color,
         ...rest
       } = option;
 
@@ -87,6 +88,7 @@ export class EuiComboBoxInput extends Component {
           option={option}
           onClose={onRemoveOption}
           key={value}
+          color={color}
           {...rest}
         >
           {label}

@@ -14,6 +14,7 @@
     display: flex; /* 1 */
     flex-wrap: wrap; /* 1 */
     padding: $padding $euiSizeXXL $padding $padding; /* 2 */
+    align-content: flex-start;
 
     &:hover {
       cursor: text;
@@ -28,7 +29,7 @@
    */
   .euiComboBox__input {
     display: inline-flex !important; /* 1 */
-    height: 33px; /* 2 */
+    height: 32px; /* 2 */
 
     > input {
       appearance: none; /* 3 */

@@ -3,36 +3,31 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  EuiIcon,
-} from '../../icon';
+  EuiBadge,
+} from '../../badge';
 
 export const EuiComboBoxPill =({
   children,
   className,
   option,
   onClose,
+  color,
   ...rest
 }) => {
   const classes = classNames('euiComboBoxPill', className);
 
   return (
-    <div
+    <EuiBadge
       className={classes}
       title={children}
+      iconOnClick={() => onClose(option)}
+      iconType="cross"
+      iconSide="right"
+      color={color}
       {...rest}
     >
-      <div className="euiComboBoxPill__label">
-        {children}
-      </div>
-
-      <button
-        className="euiComboBoxPill__close"
-        onClick={() => onClose(option)}
-        tabIndex="-1"
-      >
-        <EuiIcon type="cross" className="euiComboBoxPill__closeIcon" />
-      </button>
-    </div>
+      {children}
+    </EuiBadge>
   );
 };
 
@@ -40,5 +35,10 @@ EuiComboBoxPill.propTypes = {
   option: PropTypes.object.isRequired,
   children: PropTypes.string,
   className: PropTypes.string,
+  color: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+};
+
+EuiComboBoxPill.defaultProps = {
+  color: 'hollow',
 };
