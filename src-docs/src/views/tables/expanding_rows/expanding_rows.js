@@ -7,12 +7,10 @@ import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
-  EuiLink,
+  EuiButtonIcon,
   EuiHealth,
   EuiButton,
   EuiDescriptionList,
-  EuiScreenReaderOnly,
-  EuiIcon,
 } from '../../../../../src/components';
 
 import {
@@ -174,16 +172,24 @@ export class Table extends Component {
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
+      name: 'Actions',
+      actions: [{
+        name: 'Clone',
+        description: 'Clone this person',
+        type: 'icon',
+        icon: 'copy',
+        onClick: () => ''
+      }]
+    }, {
       align: RIGHT_ALIGNMENT,
       width: '40px',
       isExpander: true,
       render: (item) => (
-        <EuiLink onClick={() => this.toggleDetails(item)} title={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}>
-          <EuiScreenReaderOnly>
-            <span>{itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}</span>
-          </EuiScreenReaderOnly>
-          <EuiIcon type={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'} aria-hidden={true} />
-        </EuiLink>
+        <EuiButtonIcon
+          onClick={() => this.toggleDetails(item)}
+          aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
+          iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
+        />
       )
     }];
 
@@ -212,8 +218,11 @@ export class Table extends Component {
       <Fragment>
         {deleteButton}
         <EuiBasicTable
+          compressed={true}
           items={pageOfItems}
           itemIdToExpandedRowMap={this.state.itemIdToExpandedRowMap}
+          isExpandable={true}
+          hasActions={true}
           columns={columns}
           pagination={pagination}
           sorting={sorting}

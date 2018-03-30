@@ -9,6 +9,7 @@ export const EuiTableRow = ({
   isSelectable,
   hasActions,
   isExpandedRow,
+  isExpandable,
    ...rest
 }) => {
   const classes = classNames('euiTableRow', className, {
@@ -16,6 +17,7 @@ export const EuiTableRow = ({
     'euiTableRow-isSelected': isSelected,
     'euiTableRow-hasActions': hasActions,
     'euiTableRow-isExpandedRow': isExpandedRow,
+    'euiTableRow-isExpandable': isExpandable,
   });
 
   return (
@@ -34,4 +36,6 @@ EuiTableRow.propTypes = {
   isSelectable: PropTypes.bool,
   isSelected: PropTypes.bool,
   hasActions: PropTypes.bool,
+  isExpandedRow: PropTypes.bool,
+  isExpandable: PropTypes.bool,
 };
