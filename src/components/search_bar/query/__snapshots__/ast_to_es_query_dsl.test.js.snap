@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`astToEs ast - '' 1`] = `
+exports[`astToEsQueryDsl ast - '' 1`] = `
 Object {
   "match_all": Object {},
 }
 `;
 
-exports[`astToEs ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
+exports[`astToEsQueryDsl ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -33,7 +33,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - 'is:online group:kibana john' 1`] = `
+exports[`astToEsQueryDsl ast - 'is:online group:kibana john' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -60,7 +60,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
+exports[`astToEsQueryDsl ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -107,7 +107,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - 'john -sales' 1`] = `
+exports[`astToEsQueryDsl ast - 'john -sales' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -128,7 +128,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
+exports[`astToEsQueryDsl ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -168,7 +168,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - 'john group:(eng or es) -group:kibana' 1`] = `
+exports[`astToEsQueryDsl ast - 'john group:(eng or es) -group:kibana' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -200,7 +200,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - -count<=4 size<5 age>=3 -number>9 1`] = `
+exports[`astToEsQueryDsl ast - -count<=4 size<5 age>=3 -number>9 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -239,7 +239,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - count>3 1`] = `
+exports[`astToEsQueryDsl ast - count>3 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -255,7 +255,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - date:'2004-03' -date<'2004-03-10' 1`] = `
+exports[`astToEsQueryDsl ast - date:'2004-03' -date<'2004-03-10' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -278,7 +278,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `
+exports[`astToEsQueryDsl ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
@@ -303,7 +303,7 @@ Object {
 }
 `;
 
-exports[`astToEs ast - date>='2004-03-22' 1`] = `
+exports[`astToEsQueryDsl ast - date>='2004-03-22' 1`] = `
 Object {
   "bool": Object {
     "must": Array [
