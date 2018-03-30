@@ -147,7 +147,8 @@ export const IconExample = {
     }],
     text: (
       <p>
-        Use the <EuiCode>color</EuiCode> prop to assign a color for your icons.
+        Use the <EuiCode>color</EuiCode> prop to assign a color for your icons. It
+        can accept named colors from our pallete or a three or six color hex code.
         The default behavior is to inherit the text color as the SVG
         color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
       </p>

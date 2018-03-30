@@ -1,16 +1,22 @@
+/**
+ * 1. Accounts for the border
+ */
 .euiBadge {
   font-size: $euiSizeM;
   font-weight: $euiFontWeightMedium;
-  line-height: $euiSize + $euiSizeXS;
+  line-height: $euiSize + 2px; /* 1 */
   display: inline-block;
   text-decoration: none;
   box-sizing: content-box;
   border-radius: $euiBorderRadius / 2;
-  padding: 0 $euiSizeXS;
+  border: solid 1px transparent;
+  padding: 0 $euiSizeS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 
   + .euiBadge {
     margin-left: $euiSizeXS;
@@ -19,6 +25,13 @@
   .euiBadge__content {
     display: flex;
     align-items: center;
+    overflow: hidden;
+  }
+
+  .euiBadge__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
   }
 
   &:focus {
@@ -26,6 +39,7 @@
   }
 
   .euiBadge__icon {
+    flex: 0 0 auto;
     margin-right: $euiSizeXS;
 
     &:focus {
@@ -65,4 +79,11 @@ $badgeTypes: (
       color: #FFF;
     }
   }
+}
+
+// Hollow has a border and is mostly used for autocompleters.
+.euiBadge--hollow {
+  background-color: $euiColorEmptyShade;
+  border-color: $euiBorderColor;
+  color: $euiTextColor;
 }

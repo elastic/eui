@@ -3,7 +3,7 @@
 exports[`EuiIcon is rendered 1`] = `
 <svg
   aria-label="aria-label"
-  class="euiIcon testClass1 testClass2 euiIcon--medium"
+  class="euiIcon euiIcon--medium testClass1 testClass2"
   data-test-subj="test subject string"
   height="16"
   viewBox="0 0 16 16"

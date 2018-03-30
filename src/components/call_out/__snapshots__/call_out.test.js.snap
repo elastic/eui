@@ -86,7 +86,7 @@ exports[`EuiCallOut props iconType is rendered 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="euiIcon euiCallOutHeader__icon euiIcon--medium"
+      class="euiIcon euiIcon--medium euiCallOutHeader__icon"
       height="18"
       viewBox="0 0 18 18"
       width="18"

@@ -74,6 +74,9 @@ import { CodeExample }
 import { ColorPickerExample }
   from './views/color_picker/color_picker_example';
 
+import { ComboBoxExample }
+  from './views/combo_box/combo_box_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -112,6 +115,9 @@ import { HeaderExample }
 
 import { HealthExample }
   from './views/health/health_example';
+
+import { HighlightExample }
+  from './views/highlight/highlight_example';
 
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
@@ -302,6 +308,7 @@ const navigation = [{
     FormLayoutsExample,
     FormControlsExample,
     FormValidationExample,
+    ComboBoxExample,
     ColorPickerExample,
     CodeEditorExample,
     ExpressionExample,
@@ -314,6 +321,7 @@ const navigation = [{
     AccessibilityExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    HighlightExample,
     IsColorDarkExample,
     OutsideClickDetectorExample,
     PortalExample,

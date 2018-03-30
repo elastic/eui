@@ -1,0 +1,11 @@
+.euiComboBoxTitle {
+  font-size: $euiFontSizeXS;
+  padding: $euiSizeXS $euiSizeS $euiSizeXS 0;
+  width: 100%;
+  font-weight: $euiFontWeightBold;
+  color: $euiColorFullShade;
+
+  .euiComboBoxOption + & {
+    margin-top: $euiSizeS;
+  }
+}

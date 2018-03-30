@@ -34,6 +34,13 @@ const positionAtLeft = (anchorBounds, width, height, buffer) => {
   return { left, top, width, height };
 };
 
+const positionToPositionerMap = {
+  top: positionAtTop,
+  right: positionAtRight,
+  bottom: positionAtBottom,
+  left: positionAtLeft,
+};
+
 /**
  * Determine the best position for a popover that avoids clipping by the window view port.
  *
@@ -41,27 +48,28 @@ const positionAtLeft = (anchorBounds, width, height, buffer) => {
  * @param {Object} popoverBounds - getBoundingClientRect() of the popover node (e.g. the tooltip).
  * @param {string} requestedPosition - Position the user wants. One of ["top", "right", "bottom", "left"]
  * @param {number} buffer - The space between the wrapper and the popover. Also the minimum space between the popover and the window.
+ * @param {Array} positions - List of acceptable positions. Defaults to ["top", "right", "bottom", "left"].
  *
  * @returns {Object} With properties position (one of ["top", "right", "bottom", "left"]), left, top, width, and height.
  */
-export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition, buffer = 16) {
+export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition, buffer = 16, positions = ['top', 'right', 'bottom', 'left']) {
+  if (typeof buffer !== 'number') {
+    throw new Error(`calculatePopoverPosition received a buffer argument of ${buffer}' but expected a number`);
+  }
+
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   const { width: popoverWidth, height: popoverHeight } = popoverBounds;
 
-  const positionToBoundsMap = {
-    top: positionAtTop(anchorBounds, popoverWidth, popoverHeight, buffer),
-    right: positionAtRight(anchorBounds, popoverWidth, popoverHeight, buffer),
-    bottom: positionAtBottom(anchorBounds, popoverWidth, popoverHeight, buffer),
-    left: positionAtLeft(anchorBounds, popoverWidth, popoverHeight, buffer),
-  };
-
-  const positions = Object.keys(positionToBoundsMap);
-
-  // Calculate how much area of the popover is visible at each position.
+  const positionToBoundsMap = {};
   const positionToVisibleAreaMap = {};
-  positions.forEach((position) => {
-    positionToVisibleAreaMap[position] = getVisibleArea(positionToBoundsMap[position], windowWidth, windowHeight);
+
+  positions.forEach(position => {
+    const bounds = positionToPositionerMap[position](anchorBounds, popoverWidth, popoverHeight, buffer);
+    positionToBoundsMap[position] = bounds;
+
+    // Calculate how much area of the popover is visible at each position.
+    positionToVisibleAreaMap[position] = getVisibleArea(bounds, windowWidth, windowHeight);
   });
 
   // If the requested position clips the popover, find the position which clips the popover the least.

@@ -147,6 +147,7 @@ import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
 
+
 const typeToIconMap = {
   addDataApp,
   advancedSettingsApp,
@@ -329,16 +330,40 @@ export const EuiIcon = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('euiIcon', className, sizeToClassNameMap[size], colorToClassMap[color]);
+  let optionalColorClass = null;
+  let optionalCustomStyles = null;
+
+  if (COLORS.indexOf(color) > -1) {
+    optionalColorClass = colorToClassMap[color];
+  } else {
+    optionalCustomStyles = { fill: color };
+  }
+
+  const classes = classNames(
+    'euiIcon',
+    sizeToClassNameMap[size],
+    optionalColorClass,
+    className,
+  );
 
   const Svg = typeToIconMap[type] || empty;
 
-  return <Svg className={classes} {...rest} />;
+  return <Svg className={classes} style={optionalCustomStyles} {...rest} />;
 };
+
+function checkValidColor(props, propName, componentName) {
+  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
+  if (props.color && !validHex && !COLORS.includes(props.color)) {
+    throw new Error(
+      `${componentName} needs to pass a valid color. This can either be a three ` +
+      `or six character hex value or one of the following: ${COLORS}`
+    );
+  }
+}
 
 EuiIcon.propTypes = {
   type: PropTypes.oneOf(TYPES),
-  color: PropTypes.oneOf(COLORS),
+  color: checkValidColor,
   size: PropTypes.oneOf(SIZES)
 };
 

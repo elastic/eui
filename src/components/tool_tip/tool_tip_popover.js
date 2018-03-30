@@ -22,14 +22,14 @@ export class EuiToolTipPopover extends Component {
   };
 
   componentDidMount() {
-    document.body.classList.add('euiBody-hasToolTip');
+    document.body.classList.add('euiBody-hasPortalContent');
 
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasToolTip');
+    document.body.classList.remove('euiBody-hasPortalContent');
     window.removeEventListener('resize', this.updateDimensions);
   }
 

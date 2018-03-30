@@ -57,6 +57,11 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                         <arrowRight
                           className="euiIcon euiIcon--medium"
                           height="16"
+                          style={
+                            Object {
+                              "fill": undefined,
+                            }
+                          }
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +70,11 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                           <svg
                             className="euiIcon euiIcon--medium"
                             height="16"
+                            style={
+                              Object {
+                                "fill": undefined,
+                              }
+                            }
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
@@ -169,6 +179,11 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                         <arrowDown
                           className="euiIcon euiIcon--medium"
                           height="16"
+                          style={
+                            Object {
+                              "fill": undefined,
+                            }
+                          }
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
@@ -177,6 +192,11 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                           <svg
                             className="euiIcon euiIcon--medium"
                             height="16"
+                            style={
+                              Object {
+                                "fill": undefined,
+                              }
+                            }
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
