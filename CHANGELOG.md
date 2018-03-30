@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.36`.
+
+# [`0.0.36`](https://github.com/elastic/eui/tree/v0.0.36)
+
 - Relaxed query syntax of `EuiSearchBar` to allow usage of hyphens without escaping ([#581](https://github.com/elastic/eui/pull/581))
 - Added support for range queries in `EuiSearchBar` (works for numeric and date values) ([#485](https://github.com/elastic/eui/pull/485))
 - Added support for emitting a `EuiSearchBar` query to an Elasticsearch query string ([#598](https://github.com/elastic/eui/pull/598))
