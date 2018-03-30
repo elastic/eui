@@ -4,6 +4,9 @@
 - Added support for range queries in `EuiSearchBar` (works for numeric and date values) ([#485](https://github.com/elastic/eui/pull/485))
 - Add support for expandable rows to `EuiBasicTable` ([#585](https://github.com/elastic/eui/pull/585))
 
+**Bug fixes**
+- Fix font-weight issue in K6 theme ([#596](https://github.com/elastic/eui/pull/596))
+
 # [`0.0.35`](https://github.com/elastic/eui/tree/v0.0.35)
 
 - Modified `link` and all buttons to support both href and onClick ([#554](https://github.com/elastic/eui/pull/554))
