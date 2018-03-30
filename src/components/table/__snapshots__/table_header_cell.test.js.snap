@@ -9,7 +9,7 @@ exports[`align defaults to left 1`] = `
     class="euiTableCellContent"
   >
     <span
-      class="euiTableCellContent--text"
+      class="euiTableCellContent__text"
     />
   </div>
 </th>
@@ -24,7 +24,7 @@ exports[`align renders center when specified 1`] = `
     class="euiTableCellContent euiTableCellContent--alignCenter"
   >
     <span
-      class="euiTableCellContent--text"
+      class="euiTableCellContent__text"
     />
   </div>
 </th>
@@ -39,7 +39,7 @@ exports[`align renders right when specified 1`] = `
     class="euiTableCellContent euiTableCellContent--alignRight"
   >
     <span
-      class="euiTableCellContent--text"
+      class="euiTableCellContent__text"
     />
   </div>
 </th>
@@ -56,7 +56,7 @@ exports[`renders EuiTableHeaderCell 1`] = `
     class="euiTableCellContent testClass1 testClass2"
   >
     <span
-      class="euiTableCellContent--text"
+      class="euiTableCellContent__text"
     >
       children
     </span>

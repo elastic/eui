@@ -513,7 +513,7 @@ export class EuiBasicTable extends Component {
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
     // We'll use the ID to associate the expanded row with the original.
-    const expandedRowId = `row_${itemId}_expansion`;
+    const expandedRowId = itemIdToExpandedRowMap.length > 0 ? `row_${itemId}_expansion` : undefined;
     const expandedRow = itemIdToExpandedRowMap[itemId] ? (
       <EuiTableRow id={expandedRowId} key={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
         <EuiTableRowCell colSpan={expandedRowColSpan}>
@@ -521,6 +521,8 @@ export class EuiBasicTable extends Component {
         </EuiTableRowCell>
       </EuiTableRow>
     ) : undefined;
+
+    console.log(itemIdToExpandedRowMap);
 
     return (
       <Fragment key={`row_${itemId}`}>

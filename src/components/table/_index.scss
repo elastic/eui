@@ -1,15 +1,5 @@
-@mixin euiTableCell {
-  vertical-align: middle;
-}
-
-@mixin euiTableCellCheckbox {
-  width: $euiSizeXL;
-  vertical-align: middle;
-
-  .euiTableCellContent {
-    padding-right: 0;
-  }
-}
+@import "variables";
+@import "mixins";
 
 @import "table";
 @import "mobile/index";
