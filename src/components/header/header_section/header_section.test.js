@@ -14,6 +14,19 @@ describe('EuiHeaderSection', () => {
       .toMatchSnapshot();
   });
 
+  test('renders optional params', () => {
+    const component = render(
+      <EuiHeaderSection style={{ color: 'blue' }}>
+        <span>
+          Some years ago never mind how long precisely...
+        </span>
+      </EuiHeaderSection>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
   describe('side', () => {
     test('defaults to left', () => {
       const component = render(

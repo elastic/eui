@@ -15,6 +15,17 @@ describe('EuiHeaderSectionItemButton', () => {
       .toMatchSnapshot();
   });
 
+  test('renders children', () => {
+    const component = render(
+      <EuiHeaderSectionItemButton>
+        <span>Ahoy!</span>
+      </EuiHeaderSectionItemButton>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
   describe('onClick', () => {
     test(`isn't called upon instantiation`, () => {
       const onClickHandler = sinon.stub();

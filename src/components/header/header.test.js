@@ -13,4 +13,15 @@ describe('EuiHeader', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('renders children', () => {
+    const component = render(
+      <EuiHeader>
+        <span>Hello!</span>
+      </EuiHeader>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });

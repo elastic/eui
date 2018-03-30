@@ -7,3 +7,13 @@ exports[`EuiHeader is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiHeader renders children 1`] = `
+<div
+  class="euiHeader"
+>
+  <span>
+    Hello!
+  </span>
+</div>
+`;

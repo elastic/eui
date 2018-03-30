@@ -14,6 +14,17 @@ describe('EuiHeaderSectionItem', () => {
       .toMatchSnapshot();
   });
 
+  test('renders children', () => {
+    const component = render(
+      <EuiHeaderSectionItem>
+        <span>Call me Ishmael.</span>
+      </EuiHeaderSectionItem>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
   describe('border', () => {
     test('defaults to left', () => {
       const component = render(
