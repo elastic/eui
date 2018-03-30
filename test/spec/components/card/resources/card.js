@@ -26,7 +26,7 @@ const cardNodes = icons.map(function (item, index) {
 });
 
 export const FlexGroup = () => (
-  <EuiFlexGroup gutterSize="l">
+  <EuiFlexGroup id="cardGroup" gutterSize="l">
     {cardNodes}
   </EuiFlexGroup>
 );

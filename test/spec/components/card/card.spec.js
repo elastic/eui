@@ -1,10 +1,15 @@
 
-describe('webdriver.io page', function () {
+describe('Card Page', function () {
 
-  it('should have the right title - the fancy generator way', function () {
-    // browser.debug();
+  beforeEach(function () {
     browser.url('/test/spec/components/card/resources/card.html');
-    browser.getTitle().should.be.equal('Card Test Page');
+    browser.waitForExist('#app');
+  });
+
+  it('should look good', function () {
+    const results = browser.checkElement('#cardGroup');
+    console.log(results);
+    expectImageToBeSame (browser.checkElement('#cardGroup'), results.misMatchPercentage);
   });
 
 });

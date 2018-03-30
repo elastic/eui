@@ -28,13 +28,13 @@ exports.config = {
   coloredLogs: true,
   logLevel: 'verbose',
   deprecationWarnings: true,
-  waitforTimeout: 1000000,
+  waitforTimeout: 20000,
   bail: 0,
   screenshotPath: 'test/failure-screenshots',
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
-    timeout: 10000,
+    timeout: 30000,
     retries: 2
   },
   reporters: ['dot', 'spec'],
@@ -47,8 +47,7 @@ exports.config = {
       misMatchTolerance: 0.01,
     }),
     viewportChangePause: 300,
-    viewports: [{ width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 }],
-    orientations: ['landscape', 'portrait'],
+    orientations: ['landscape'],
   },
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
@@ -65,7 +64,7 @@ exports.config = {
     // maxInstances can get overwritten per capability. So if you have an in house Selenium
     // grid with only 5 firefox instance available you can make sure that not more than
     // 5 instance gets started at a time.
-    maxInstances: 5,
+    maxInstances: 1,
     browserName: 'firefox',
     acceptInsecureCerts: true,
     'moz:firefoxOptions': {
@@ -96,5 +95,10 @@ exports.config = {
     global.Assertion = chai.Assertion;
     global.assert = chai.assert;
     chai.Should();
+
+    global.expectImageToBeSame = function expectImageToBeSame (results, percentOff) {
+      results.forEach((result, idx) => expect(result.isExactSameImage, 'Image ' + idx + ' is not the same by' + percentOff + '%.').to.be.true);
+    };
+
   },
 };
