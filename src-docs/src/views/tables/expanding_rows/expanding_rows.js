@@ -218,7 +218,6 @@ export class Table extends Component {
       <Fragment>
         {deleteButton}
         <EuiBasicTable
-          compressed={true}
           items={pageOfItems}
           itemIdToExpandedRowMap={this.state.itemIdToExpandedRowMap}
           isExpandable={true}
