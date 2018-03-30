@@ -1,6 +1,10 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.37`.
+**Bug fixes**
+
+- Visual fix for the focus state of disabled `EuiButton` ([603](https://github.com/elastic/eui/pull/603))
+- `EuiSelect` can pass any node as a value rather than just a string ([603](https://github.com/elastic/eui/pull/603))
+
 
 # [`0.0.37`](https://github.com/elastic/eui/tree/v0.0.37)
 
