@@ -21,7 +21,6 @@ export default class extends Component {
     }
 
     const newOption = {
-      value: searchValue,
       label: searchValue,
     };
 
