@@ -47,7 +47,10 @@ export const SearchBarExample = {
               Field/value search - one can search for terms within specific fields - Example,
               <EuiCode>tag:bug -severity:high</EuiCode>. In this example the intention is to find all items that has
               &quot;bug&quot; in their <EuiCode>tag</EuiCode> field but do not have &quot;high&quot; in their
-              <EuiCode>severity</EuiCode> field
+              <EuiCode>severity</EuiCode> field. It is also possible to define range queries on numeric and date fields.
+              For example, <EuiCode>followers&gt;=10</EuiCode> will only match items that have 10 follower or above. And
+              <EuiCode>created&gt;&#39;12 Jan 2018&#39;</EuiCode> will only match items that were created after 12th
+              January 2018.
             </li>
             <li>
               <EuiCode>is</EuiCode> clauses - a simple boolean filter over a flag - Example,

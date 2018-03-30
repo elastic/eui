@@ -82,13 +82,30 @@ export class Table extends Component {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;
+      }
+    }, {
+      field: 'nationality',
+      name: 'Nationality',
+      render: (countryCode) => {
+        const country = store.getCountry(countryCode);
+        return `${country.flag} ${country.name}`;
+      }
+    }, {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
       sortable: true
     }];
 
     const search = {
       box: {
-        incremental: this.state.incremental
+        incremental: this.state.incremental,
+        schema: true
       },
       filters: !this.state.filters ? undefined : [
         {

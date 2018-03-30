@@ -11,7 +11,6 @@ import {
 import { isBoolean, isString } from '../../services/predicate';
 import { Comparators, PropertySortType } from '../../services/sort';
 import {
-  Query,
   QueryType,
   SearchFiltersFiltersType,
   SearchBoxConfigPropTypes, EuiSearchBar
@@ -26,7 +25,15 @@ const InMemoryTablePropTypes = {
   error: PropTypes.string,
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
     defaultQuery: QueryType,
-    box: PropTypes.shape(SearchBoxConfigPropTypes),
+    box: PropTypes.shape({
+      ...SearchBoxConfigPropTypes,
+      schema: PropTypes.oneOfType([
+        // here we enable the user to just assign 'true' to the schema, in which case
+        // we will auto-generate it out of the columns configuration
+        PropTypes.bool,
+        SearchBoxConfigPropTypes.schema
+      ])
+    }),
     filters: SearchFiltersFiltersType,
     onChange: PropTypes.func,
   })]),
@@ -55,7 +62,7 @@ const getInitialQuery = (search) => {
   }
 
   const query = search.defaultQuery || '';
-  return isString(query) ? Query.parse(query) : query;
+  return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
 const getInitialPagination = (pagination) => {
@@ -132,31 +139,31 @@ export class EuiInMemoryTable extends Component {
   onTableChange = ({ page = {}, sort = {} }) => {
     const {
       index: pageIndex,
-      size: pageSize,
+      size: pageSize
     } = page;
 
     const {
       field: sortField,
-      direction: sortDirection,
+      direction: sortDirection
     } = sort;
 
     this.setState({
       pageIndex,
       pageSize,
       sortField,
-      sortDirection,
+      sortDirection
     });
   };
 
   onQueryChange(query) {
     if (this.props.search.onChange) {
       const shouldQueryInMemory = this.props.search.onChange(query);
-
-      if (!shouldQueryInMemory) return;
+      if (!shouldQueryInMemory) {
+        return;
+      }
     }
-
     this.setState({
-      query,
+      query
     });
   }
 
@@ -168,6 +175,10 @@ export class EuiInMemoryTable extends Component {
         ...searchBarProps
       } = isBoolean(search) ? {} : search;
 
+      if (searchBarProps.box && searchBarProps.box.schema === true) {
+        searchBarProps.box.schema = this.resolveSearchSchema();
+      }
+
       return (
         <EuiSearchBar
           onChange={this.onQueryChange.bind(this)}
@@ -175,6 +186,17 @@ export class EuiInMemoryTable extends Component {
         />
       );
     }
+  }
+
+  resolveSearchSchema() {
+    const { columns } = this.props;
+    return columns.reduce((schema, column) => {
+      if (column.field) {
+        const type = column.dataType || 'string';
+        schema.fields[column.field] = { type };
+      }
+      return schema;
+    }, { strict: true, fields: {} });
   }
 
   getItems() {
@@ -195,7 +217,7 @@ export class EuiInMemoryTable extends Component {
       pageSize,
     } = this.state;
 
-    const matchingItems = query ? Query.execute(query, items) : items;
+    const matchingItems = query ? EuiSearchBar.Query.execute(query, items) : items;
 
     const sortedItems =
       sortField ? matchingItems.sort(Comparators.property(sortField, Comparators.default(sortDirection))) : matchingItems;

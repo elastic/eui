@@ -1,5 +1,32 @@
+import { printIso8601 } from './date_format';
+import { isDateValue, dateValue } from './date_value';
 import { AST } from './ast';
-import { isArray } from '../../../services/predicate';
+import { isArray, isDateLike, isString } from '../../../services/predicate';
+
+const processDateOperation = (value, operator) => {
+  const { granularity, resolve } = value;
+  let expression = printIso8601(resolve());
+  if (!granularity) {
+    return { operator, expression };
+  }
+  switch (operator) {
+    case AST.Operator.GT:
+      expression = `${expression}||+1${granularity.es}/${granularity.es}`;
+      return { operator: AST.Operator.GTE, expression };
+    case AST.Operator.GTE:
+      expression = `${expression}||/${granularity.es}`;
+      return { operator, expression };
+    case AST.Operator.LT:
+      expression = `${expression}||/${granularity.es}`;
+      return { operator, expression };
+    case AST.Operator.LTE:
+      expression = `${expression}||+1${granularity.es}/${granularity.es}`;
+      return { operator: AST.Operator.LT, expression };
+    default:
+      expression = `${expression}||/${granularity.es}`;
+      return { expression };
+  }
+};
 
 export const _termValuesToQuery = (values, options) => {
   const body = {
@@ -16,54 +43,91 @@ export const _termValuesToQuery = (values, options) => {
   };
 };
 
-export const _fieldValuesToQuery = (field, values, operator) => {
+export const _fieldValuesToQuery = (field, operations, andOr) => {
+  const queries = [];
 
-  const { terms, phrases } = values.reduce((split, value) => {
-    if (value.match(/\s/)) {
-      split.phrases.push(value);
-    } else {
-      split.terms.push(value);
+  Object.keys(operations).forEach(operator => {
+    const values = operations[operator];
+    switch (operator) {
+
+      case AST.Operator.EQ:
+        const { terms, phrases, dates } = values.reduce((tokenTypes, value) => {
+          if (isDateValue(value)) {
+            tokenTypes.dates.push(value);
+          } else if (isDateLike(value)) {
+            tokenTypes.dates.push(dateValue(value));
+          } else if (isString(value) && value.match(/\s/)) {
+            tokenTypes.phrases.push(value);
+          } else {
+            tokenTypes.terms.push(value);
+          }
+          return tokenTypes;
+        }, { terms: [], phrases: [], dates: [] });
+
+        if (terms.length > 0) {
+          queries.push({
+            match: {
+              [field]: {
+                query: terms.join(' '),
+                operator: andOr
+              }
+            }
+          });
+        }
+
+        if (phrases.length > 0) {
+          queries.push(...phrases.map(phrase => ({
+            match_phrase: {
+              [field]: phrase
+            }
+          })));
+        }
+
+        if (dates.length > 0) {
+          queries.push(...dates.map(value => ({
+            match: {
+              [field]: processDateOperation(value).expression
+            }
+          })));
+        }
+
+        break;
+
+      default:
+
+        values.forEach(value => {
+          if (isDateValue(value)) {
+            const operation = processDateOperation(value, operator);
+            queries.push({
+              range: {
+                [field]: {
+                  [operation.operator]: operation.expression
+                }
+              }
+            });
+          } else {
+            queries.push({
+              range: {
+                [field]: {
+                  [operator]: value
+                }
+              }
+            });
+          }
+        });
     }
-    return split;
-  }, { terms: [], phrases: [] });
+  });
 
-  const termsQuery = terms.length === 0 ? undefined : {
-    match: {
-      [field]: {
-        query: terms.join(' '),
-        operator
-      }
+  if (queries.length === 1) {
+    return queries[0];
+  }
+
+  const key = andOr === 'and' ? 'must' : 'should';
+  return {
+    bool: {
+      [key]: [...queries]
     }
   };
-
-  const phraseQueries = phrases.length === 0 ? undefined : phrases.map(phrase => ({
-    match_phrase: {
-      [field]: phrase
-    }
-  }));
-
-  const key = operator === 'and' ? 'must' : 'should';
-
-  if (termsQuery && phraseQueries) {
-    return {
-      bool: {
-        [key]: [ termsQuery, ...phraseQueries ]
-      }
-    };
-  }
-  if (termsQuery) {
-    return termsQuery;
-  }
-  if (phraseQueries) {
-    if (phraseQueries.length === 1) {
-      return phraseQueries[0];
-    }
-    return {
-      bool: {
-        [key]: phraseQueries
-      }
-    };
-  }
 };
 
 export const _isFlagToQuery = (flag, on) => {
@@ -85,30 +149,33 @@ const collectTerms = (ast) => {
 
 const collectFields = (ast) => {
 
-  const fieldArray = (obj, field) => {
+  const fieldArray = (obj, field, operator) => {
     if (!obj[field]) {
-      obj[field] = [];
+      obj[field] = {};
     }
-    return obj[field];
+    if (!obj[field][operator]) {
+      obj[field][operator] = [];
+    }
+    return obj[field][operator];
   };
 
   return ast.getFieldClauses().reduce((fields, clause) => {
     if (AST.Match.isMustClause(clause)) {
       if (isArray(clause.value)) {
-        fieldArray(fields.must.or, clause.field).push(...clause.value);
+        fieldArray(fields.must.or, clause.field, clause.operator).push(...clause.value);
       } else {
-        fieldArray(fields.must.and, clause.field).push(clause.value);
+        fieldArray(fields.must.and, clause.field, clause.operator).push(clause.value);
       }
     } else {
       if (isArray(clause.value)) {
-        fieldArray(fields.mustNot.or, clause.field).push(...clause.value);
+        fieldArray(fields.mustNot.or, clause.field, clause.operator).push(...clause.value);
       } else {
-        fieldArray(fields.mustNot.and, clause.field).push(clause.value);
+        fieldArray(fields.mustNot.and, clause.field, clause.operator).push(clause.value);
       }
     }
     return fields;
   }, {
-    must: { and: {}, or: {} },
+    must: { and: {}, or: {}, },
     mustNot: { and: {}, or: {} }
   });
 };
@@ -134,15 +201,15 @@ export const astToEs = (ast, options = {}) => {
   if (termMustQuery) {
     must.push(termMustQuery);
   }
-  must.push(...Object.keys(fields.must.and).map(field => {
-    return fieldValuesToQuery(field, fields.must.and[field], 'and');
-  }));
-  must.push(...Object.keys(fields.must.or).map(field => {
-    return fieldValuesToQuery(field, fields.must.or[field], 'or');
-  }));
-  must.push(...ast.getIsClauses().map(clause => {
-    return isFlagToQuery(clause.flag, AST.Match.isMustClause(clause));
-  }));
+  Object.keys(fields.must.and).forEach(field => {
+    must.push(fieldValuesToQuery(field, fields.must.and[field], 'and'));
+  });
+  Object.keys(fields.must.or).forEach(field => {
+    must.push(fieldValuesToQuery(field, fields.must.or[field], 'or'));
+  });
+  ast.getIsClauses().forEach(clause => {
+    must.push(isFlagToQuery(clause.flag, AST.Match.isMustClause(clause)));
+  });
 
   const mustNot = [];
   mustNot.push(...extraMustNotQueries);
@@ -150,12 +217,12 @@ export const astToEs = (ast, options = {}) => {
   if (termMustNotQuery) {
     mustNot.push(termMustNotQuery);
   }
-  mustNot.push(...Object.keys(fields.mustNot.and).map(field => {
-    return fieldValuesToQuery(field, fields.mustNot.and[field], 'and');
-  }));
-  mustNot.push(...Object.keys(fields.mustNot.or).map(field => {
-    return fieldValuesToQuery(field, fields.mustNot.or[field], 'or');
-  }));
+  Object.keys(fields.mustNot.and).forEach(field => {
+    mustNot.push(fieldValuesToQuery(field, fields.mustNot.and[field], 'and'));
+  });
+  Object.keys(fields.mustNot.or).forEach(field => {
+    mustNot.push(fieldValuesToQuery(field, fields.mustNot.or[field], 'or'));
+  });
 
   const bool = {};
   if (must.length !== 0) {
