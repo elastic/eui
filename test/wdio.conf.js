@@ -28,11 +28,14 @@ exports.config = {
   coloredLogs: true,
   logLevel: 'verbose',
   deprecationWarnings: true,
+  waitforTimeout: 1000000,
   bail: 0,
   screenshotPath: 'test/failure-screenshots',
   framework: 'mocha',
   mochaOpts: {
-    ui: 'bdd'
+    ui: 'bdd',
+    timeout: 10000,
+    retries: 2
   },
   reporters: ['dot', 'spec'],
   services: [ci ? 'sauce' : 'selenium-standalone', 'chromedriver', 'visual-regression'],
@@ -50,8 +53,6 @@ exports.config = {
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
   sauceConnect: true,
-  webpackConfig: require('./spec/webpack.test.config.js'),
-  webpackPort: 9999,
   baseUrl: 'http://localhost:9999',
   capabilities: [{
     browserName: 'chrome',
@@ -66,20 +67,19 @@ exports.config = {
     // 5 instance gets started at a time.
     maxInstances: 5,
     browserName: 'firefox',
+    acceptInsecureCerts: true,
     'moz:firefoxOptions': {
       // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
       // args: ['-headless']
     }
   }],
   onPrepare: function (config, capabilities) {
-    console.log(process.platform);
     if ((ci) || process.platform === 'win32') {
       capabilities.push({
         browserName: 'internet explorer',
         killInstances: true
       });
     }
-    console.log(capabilities);
   },
   before: function (capabilities, specs) {
     const sinon = require('sinon');
