@@ -16,7 +16,11 @@ export class EuiComboBoxOption extends Component {
     onEnterKey: PropTypes.func.isRequired,
   }
 
-  onClick = () => {
+  onClick = (e) => {
+    // Prevent the combo box from losing focus.
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     const { onClick, option } = this.props;
     onClick(option);
   };

@@ -243,7 +243,6 @@ export class EuiComboBox extends Component {
   };
 
   onFocusChange = event => {
-    event.target
     // Close the list if the combo box has lost focus.
     if (
       this.comboBox === event.target

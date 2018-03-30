@@ -39,6 +39,7 @@
   }
 
   .euiBadge__icon {
+    flex: 0 0 auto;
     margin-right: $euiSizeXS;
 
     &:focus {
