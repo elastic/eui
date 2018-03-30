@@ -1,7 +1,8 @@
 import { defaultSyntax } from './default_syntax';
 import { executeAst } from './execute_ast';
 import { isNil, isString } from '../../../services/predicate';
-import { astToEs } from './ast_to_es';
+import { astToEsQueryDsl } from './ast_to_es_query_dsl';
+import { astToEsQueryString } from './ast_to_es_query_string';
 import { dateValueParser } from './date_value';
 import { AST } from './ast';
 
@@ -168,7 +169,12 @@ export class Query {
    */
   static toESQuery(query, options = {}) {
     const q = isString(query) ? Query.parse(query) : query;
-    return astToEs(q.ast, options);
+    return astToEsQueryDsl(q.ast, options);
+  }
+
+  static toESQueryString(query, options = {}) {
+    const q = isString(query) ? Query.parse(query) : query;
+    return astToEsQueryString(q.ast, options);
   }
 
 }

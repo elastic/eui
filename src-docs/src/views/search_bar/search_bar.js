@@ -151,6 +151,12 @@ export class SearchBar extends Component {
         stars: {
           type: 'number'
         },
+        created: {
+          type: 'date'
+        },
+        owner: {
+          type: 'string'
+        },
         tag: {
           type: 'string',
           validate: (value) => {
@@ -251,20 +257,31 @@ export class SearchBar extends Component {
       query,
     } = this.state;
 
-    const esQuery = EuiSearchBar.Query.toESQuery(query);
+    const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
+    const esQueryString = EuiSearchBar.Query.toESQueryString(query);
 
     const content = this.renderError() || (
       <EuiFlexGroup>
         <EuiFlexItem grow={4}>
+
           <EuiTitle size="s">
-            <h3>Elasticsearch query</h3>
+            <h3>Elasticsearch Query String</h3>
           </EuiTitle>
-
           <EuiSpacer size="s"/>
-
           <EuiCodeBlock language="js">
-            {esQuery ? JSON.stringify(esQuery, null, 2) : ''}
+            {esQueryString ? esQueryString : ''}
           </EuiCodeBlock>
+
+          <EuiSpacer size="l"/>
+
+          <EuiTitle size="s">
+            <h3>Elasticsearch Query DSL</h3>
+          </EuiTitle>`
+          <EuiSpacer size="s"/>
+          <EuiCodeBlock language="js">
+            {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
+          </EuiCodeBlock>
+
         </EuiFlexItem>
 
         <EuiFlexItem grow={6}>

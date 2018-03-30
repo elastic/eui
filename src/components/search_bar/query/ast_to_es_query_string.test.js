@@ -1,18 +1,18 @@
-import { astToEs } from './ast_to_es';
 import { AST } from './ast';
 import moment from 'moment/moment';
 import { dateValue } from './date_value';
 import { Granularity } from './date_format';
+import { astToEsQueryString } from './ast_to_es_query_string';
 
-describe('astToEs', () => {
+describe('astToEsQueryString', () => {
 
   test(`ast - ''`, () => {
-    const query = astToEs(AST.create([]));
+    const query = astToEsQueryString(AST.create([]));
     expect(query).toMatchSnapshot();
   });
 
   test(`ast - 'john -sales'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Term.must('john'),
       AST.Term.mustNot('sales'),
     ]));
@@ -20,7 +20,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - '-group:es group:kibana -group:beats group:logstash'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.mustNot.eq('group', 'es'),
       AST.Field.must.eq('group', 'kibana'),
       AST.Field.mustNot.eq('group', 'beats'),
@@ -30,7 +30,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - 'is:online group:kibana john'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Is.must('online'),
       AST.Field.must.eq('group', 'kibana'),
       AST.Term.must('john')
@@ -39,7 +39,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - 'john -doe is:online group:eng group:es -group:kibana -is:active'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Term.must('john'),
       AST.Term.mustNot('doe'),
       AST.Is.must('online'),
@@ -52,7 +52,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - 'john group:(eng or es) -group:kibana'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Term.must('john'),
       AST.Field.must.eq('group', ['eng', 'es']),
       AST.Field.mustNot.eq('group', 'kibana')
@@ -61,7 +61,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - 'john group:(eng or "marketing org") -group:"kibana team"`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Term.must('john'),
       AST.Field.must.eq('group', ['eng', 'marketing org']),
       AST.Field.mustNot.eq('group', 'kibana team')
@@ -70,14 +70,14 @@ describe('astToEs', () => {
   });
 
   test(`ast - count>3`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.must.gt('count', 3)
     ]));
     expect(query).toMatchSnapshot();
   });
 
   test(`ast - -count<=4 size<5 age>=3 -number>9`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.mustNot.lte('count', 4),
       AST.Field.must.lt('size', 5),
       AST.Field.must.gte('age', 3),
@@ -87,14 +87,14 @@ describe('astToEs', () => {
   });
 
   test(`ast - date>='2004-03-22'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.must.gte('date', dateValue(moment.utc('2004-03-22'), Granularity.DAY))
     ]));
     expect(query).toMatchSnapshot();
   });
 
   test(`ast - date:'2004-03' -date<'2004-03-10'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.must.eq('date', dateValue(moment.utc('2004-03'), Granularity.MONTH)),
       AST.Field.mustNot.lt('date', dateValue(moment.utc('2004-03-10'), Granularity.DAY))
     ]));
@@ -102,7 +102,7 @@ describe('astToEs', () => {
   });
 
   test(`ast - date>'2004-02' -otherDate>='2004-03-10'`, () => {
-    const query = astToEs(AST.create([
+    const query = astToEsQueryString(AST.create([
       AST.Field.must.gt('date', dateValue(moment.utc('2004-02'), Granularity.MONTH)),
       AST.Field.mustNot.gte('date', dateValue(moment.utc('2004-03-10'), Granularity.DAY))
     ]));

@@ -12,28 +12,32 @@ export const Granularity = Object.freeze({
     js: 'day',
     isSame: (d1, d2) => d1.isSame(d2, 'day'),
     start: (date) => date.startOf('day'),
-    startOfNext: (date) => date.add(1, 'days').startOf('day')
+    startOfNext: (date) => date.add(1, 'days').startOf('day'),
+    iso8601: (date) => date.format('YYYY-MM-DD')
   },
   WEEK: {
     es: 'w',
     js: 'week',
     isSame: (d1, d2) => d1.isSame(d2, 'week'),
     start: (date) => date.startOf('week'),
-    startOfNext: (date) => date.add(1, 'weeks').startOf('week')
+    startOfNext: (date) => date.add(1, 'weeks').startOf('week'),
+    iso8601: (date) => date.format('YYYY-MM-DD')
   },
   MONTH: {
     es: 'M',
     js: 'month',
     isSame: (d1, d2) => d1.isSame(d2, 'month'),
     start: (date) => date.startOf('month'),
-    startOfNext: (date) => date.add(1, 'months').startOf('month')
+    startOfNext: (date) => date.add(1, 'months').startOf('month'),
+    iso8601: (date) => date.format('YYYY-MM')
   },
   YEAR: {
     es: 'y',
     js: 'year',
     isSame: (d1, d2) => d1.isSame(d2, 'year'),
     start: (date) => date.startOf('year'),
-    startOfNext: (date) => date.add(1, 'years').startOf('year')
+    startOfNext: (date) => date.add(1, 'years').startOf('year'),
+    iso8601: (date) => date.format('YYYY')
   }
 });
 

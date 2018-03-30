@@ -180,7 +180,7 @@ const collectFields = (ast) => {
   });
 };
 
-export const astToEs = (ast, options = {}) => {
+export const astToEsQueryDsl = (ast, options = {}) => {
 
   if (ast.clauses.length === 0) {
     return { match_all: {} };
