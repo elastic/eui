@@ -33,7 +33,7 @@
   }
 
   &:active {
-    @include euiSlightShadowActive;
+    @include euiSlightShadowHover;
   }
 
   &:enabled {
@@ -64,8 +64,9 @@
 
     &:hover, &:focus {
       @include euiSlightShadow;
-      
+
       text-decoration: none;
+      box-shadow: none;
     }
   }
 }
@@ -85,6 +86,17 @@ $buttonTypes: (
     color: $color;
     border-color: $color;
 
+    $shadowColor: $euiShadowColor;
+
+    @if ($name == 'ghost') {
+      $shadowColor: #000;
+    } @else if (lightness($euiTextColor) < 50) {
+      // Only if this is the light theme do we use the button variant color to colorize the shadow
+      $shadowColor: desaturate($color, 60%);
+    }
+
+    @include euiSlightShadow($shadowColor);
+
     &.euiButton--fill {
       background-color: $color;
       border-color: $color;
@@ -93,7 +105,7 @@ $buttonTypes: (
 
       @if ($name == 'ghost') {
         $textColor: #000;
-      } @elseif (lightness($euiTextColor) > 50) {
+      } @else if (lightness($euiTextColor) > 50) {
         $textColor: $euiTextColor;
       }
 
@@ -111,14 +123,17 @@ $buttonTypes: (
       }
     }
 
-    &:enabled {
-      &:hover, &:focus {
-        background-color: transparentize($color, .9);
+    &:hover, &:focus {
+      background-color: transparentize($color, .9);
+      @include euiSlightShadowHover($shadowColor);
 
-        @if ($name == 'disabled') {
-          cursor: not-allowed;
-        }
+      @if ($name == 'disabled') {
+        cursor: not-allowed;
       }
+    }
+
+    &:disabled {
+      box-shadow: none;
     }
   }
 }

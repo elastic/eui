@@ -28,7 +28,7 @@ $euiButtonColorDisabled: tintOrShade($euiTextColor, 70%, 70%);
     animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: translateY(1px);
   }
 }

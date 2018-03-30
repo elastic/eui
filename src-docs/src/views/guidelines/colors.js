@@ -30,6 +30,7 @@ const allowedColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
+  'euiColorSlightHue',
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorWarning',

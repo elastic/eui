@@ -25,7 +25,6 @@
         text-align: left;
 
         // transition the shadow
-        @include euiSlightShadow;
         transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
 
         &:hover,
@@ -40,6 +39,9 @@
         &,
         &:hover,
         &:focus {
+          @if (lightness($euiTextColor) < 50) {
+            border-bottom-color: rgba($euiShadowColor, .6);
+          }
           @include euiBottomShadow;
         }
       }

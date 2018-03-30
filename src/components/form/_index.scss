@@ -36,14 +36,14 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 
 @mixin euiFormControlDefaultShadow {
   box-shadow:
-    0 2px 2px -1px rgba(0, 0, 0, 0.1),
+    0 2px 2px -1px rgba($euiShadowColor, 0.2),
     0 0 0 1px transparentize($euiColorFullShade, .92),
     inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
 }
 
 @mixin euiFormControlInvalidStyle {
   box-shadow:
-    0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba(0, 0, 0, 0.1),
+    0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba($euiShadowColor, 0.2),
     0 0 0 1px transparentize($euiColorFullShade, .84),
     inset 0 0 0 0 $euiColorEmptyShade,
     inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
@@ -52,7 +52,7 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 @mixin euiFormControlFocusStyle {
   background: tintOrShade($euiColorEmptyShade, 0%, 20%);
   box-shadow:
-    0 4px 4px -2px rgba(0, 0, 0, 0.1),
+    0 4px 4px -2px rgba($euiShadowColor, 0.2),
     0 0 0 1px transparentize($euiColorFullShade, .84),
     inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
     inset 0 -2px 0 0 $euiColorPrimary;
@@ -114,7 +114,7 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 
   border: 1px solid shadeOrTint($euiColorLightestShade, 18%, 30%);
   background: $euiColorEmptyShade no-repeat center;
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+  @include euiSlightShadow;
 
   @if $type == 'round' {
     border-radius: $size;
