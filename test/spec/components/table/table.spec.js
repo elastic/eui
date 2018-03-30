@@ -6,9 +6,11 @@ describe('Table Page', function () {
     browser.waitForExist('#app');
   });
 
-
-  it('should have the right title - the fancy generator way', function () {
-    browser.getTitle().should.be.equal('Table Test Page');
+  it('Basic Table', function () {
+    browser.waitForExist('.basicTable');
+    const results = browser.checkElement('.basicTable');
+    console.log(results);
+    expectImageToBeSame (results);
   });
 
 });

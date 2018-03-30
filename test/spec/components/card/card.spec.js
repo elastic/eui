@@ -6,10 +6,10 @@ describe('Card Page', function () {
     browser.waitForExist('#app');
   });
 
-  it('should look good', function () {
+  it('Flex Card Group', function () {
     const results = browser.checkElement('#cardGroup');
     console.log(results);
-    expectImageToBeSame (browser.checkElement('#cardGroup'), results.misMatchPercentage);
+    expectImageToBeSame (results);
   });
 
 });

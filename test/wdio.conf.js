@@ -17,6 +17,7 @@ function getScreenshotName(basePath) {
   };
 }
 
+//#TODO: Find out why this resolution fails, { width: 1200, height: 1024 }],
 
 exports.config = {
   specs: [
@@ -26,7 +27,7 @@ exports.config = {
   sync: true,
   port: '4444',
   coloredLogs: true,
-  logLevel: 'verbose',
+  logLevel: 'silent',
   deprecationWarnings: true,
   waitforTimeout: 20000,
   bail: 0,
@@ -46,7 +47,8 @@ exports.config = {
       diffName: getScreenshotName(path.join(process.cwd(), 'test/spec/screenshots/diff')),
       misMatchTolerance: 0.01,
     }),
-    viewportChangePause: 300,
+    viewportChangePause: 2000,
+    viewports: [{ width: 575, height: 320 }, { width: 768, height: 432 }, { width: 992, height: 620 }],
     orientations: ['landscape'],
   },
   user: process.env.SAUCE_USERNAME,
@@ -64,9 +66,8 @@ exports.config = {
     // maxInstances can get overwritten per capability. So if you have an in house Selenium
     // grid with only 5 firefox instance available you can make sure that not more than
     // 5 instance gets started at a time.
-    maxInstances: 1,
+    maxInstances: 2,
     browserName: 'firefox',
-    acceptInsecureCerts: true,
     'moz:firefoxOptions': {
       // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
       // args: ['-headless']
@@ -96,8 +97,9 @@ exports.config = {
     global.assert = chai.assert;
     chai.Should();
 
-    global.expectImageToBeSame = function expectImageToBeSame (results, percentOff) {
-      results.forEach((result, idx) => expect(result.isExactSameImage, 'Image ' + idx + ' is not the same by' + percentOff + '%.').to.be.true);
+    global.expectImageToBeSame = function expectImageToBeSame (results) {
+      results.forEach((result, idx) => expect(result.isExactSameImage,
+        'Image ' + idx + ' is not the same by' + result.misMatchTolerance+ ' %.').to.be.true);
     };
 
   },
