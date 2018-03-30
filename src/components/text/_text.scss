@@ -16,6 +16,15 @@
     width: 100%;
   }
 
+  &.euiText--autoWrap {
+    p,
+    ul,
+    ol,
+    blockquote {
+      max-width: 36rem;
+    }
+  }
+
   p,
   ul,
   ol,

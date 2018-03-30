@@ -73,7 +73,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       </svg>
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiText--small euiText--autoWrap euiToastBody"
     >
       a
     </div>
@@ -139,7 +139,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       </svg>
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiText--small euiText--autoWrap euiToastBody"
     >
       b
     </div>
