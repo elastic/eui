@@ -97,7 +97,7 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
   style="color:red"
 >
   <svg
-    class="euiIcon euiHeaderLogo__icon euiIcon--xLarge"
+    class="euiIcon euiIcon--xLarge euiHeaderLogo__icon"
     height="16"
     title="Moby Dick"
     viewBox="0 0 16 16"
