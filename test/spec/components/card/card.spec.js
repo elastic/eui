@@ -8,7 +8,6 @@ describe('Card Page', function () {
 
   it('Flex Card Group', function () {
     const results = browser.checkElement('#cardGroup');
-    console.log(results);
     expectImageToBeSame (results);
   });
 

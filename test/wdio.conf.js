@@ -5,6 +5,7 @@ const VisualRegressionCompare = require('wdio-visual-regression-service/compare'
 
 function getScreenshotName(basePath) {
   return function (context) {
+    const environment = process.env.CI === 'true';
     const type = context.type;
     const testName = context.test.title;
     const browserVersion = parseInt(context.browser.version, 10);
@@ -13,7 +14,8 @@ function getScreenshotName(basePath) {
     const browserWidth = browserViewport.width;
     const browserHeight = browserViewport.height;
 
-    return path.join(basePath, `${testName}_${type}_${browserName}_v${browserVersion}_${browserWidth}x${browserHeight}.png`);
+    return path.join(basePath,
+      `${testName}_${type}_${browserName}_v${browserVersion}_${browserWidth}x${browserHeight}_CI_is_${environment}.png`);
   };
 }
 
@@ -23,20 +25,19 @@ exports.config = {
   specs: [
     './test/spec/**/*spec.js'
   ],
-  maxInstances: 6,
+  maxInstances: 3,
   sync: true,
   port: '4444',
   coloredLogs: true,
   logLevel: 'silent',
   deprecationWarnings: true,
-  waitforTimeout: 20000,
+  waitforTimeout: 1800000,
   bail: 0,
   screenshotPath: 'test/failure-screenshots',
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
-    timeout: 30000,
-    retries: 2
+    timeout: 1800000,
   },
   reporters: ['dot', 'spec'],
   services: [ci ? 'sauce' : 'selenium-standalone', 'chromedriver', 'visual-regression'],
@@ -45,7 +46,7 @@ exports.config = {
       referenceName: getScreenshotName(path.join(process.cwd(), 'test/spec/screenshots/baseline')),
       screenshotName: getScreenshotName(path.join(process.cwd(), 'test/spec/screenshots/screen')),
       diffName: getScreenshotName(path.join(process.cwd(), 'test/spec/screenshots/diff')),
-      misMatchTolerance: 0.01,
+      misMatchTolerance: 0.1,
     }),
     viewportChangePause: 2000,
     viewports: [{ width: 575, height: 320 }, { width: 768, height: 432 }, { width: 992, height: 620 }],
@@ -57,6 +58,8 @@ exports.config = {
   baseUrl: 'http://localhost:9999',
   capabilities: [{
     browserName: 'chrome',
+    version: '65.0',
+    platform: 'macOS 10.13',
     chromeOptions: {
       // to run chrome headless the following flags are required
       // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
@@ -68,6 +71,7 @@ exports.config = {
     // 5 instance gets started at a time.
     maxInstances: 1,
     browserName: 'firefox',
+    version: '59.0',
     'moz:firefoxOptions': {
       // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
       // args: ['-headless']
@@ -77,9 +81,13 @@ exports.config = {
     if ((ci) || process.platform === 'win32') {
       capabilities.push({
         browserName: 'internet explorer',
-        killInstances: true
+        killInstances: false
       });
     }
+    if ((ci) && process.platform !== 'win32') {
+      capabilities[1].platform =  'macOS 10.13';
+    }
+    console.log(capabilities);
   },
   before: function (capabilities, specs) {
     const sinon = require('sinon');
@@ -98,8 +106,8 @@ exports.config = {
     chai.Should();
 
     global.expectImageToBeSame = function expectImageToBeSame (results) {
-      results.forEach((result, idx) => expect(result.isExactSameImage,
-        'Image ' + idx + ' is not the same by' + result.misMatchTolerance+ ' %.').to.be.true);
+      results.forEach((result, idx) => expect(result.isWithinMisMatchTolerance,
+        'Image ' + idx + ' is not the same by ' + result.misMatchPercentage + '%').to.be.true);
     };
 
   },

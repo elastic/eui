@@ -21,27 +21,27 @@ const store = {
   ]
 };
 
-const columns = [{
-  field: 'firstName',
-  name: 'First Name',
-  sortable: true,
-  'data-test-subj': 'firstNameCell',
-}, {
-  field: 'lastName',
-  name: 'Last Name',
-  truncateText: true,
-}, {
-  field: 'github',
-  name: 'Github',
-  render: (github) => (
-    <EuiLink href={'http://www.github.com/' + github} target="_blank">{github}</EuiLink>
-  )
-}, {
-  field: 'nationality',
-  name: 'Nationality'
-}];
+export const Table = () => {
+  const columns = [{
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    'data-test-subj': 'firstNameCell',
+  }, {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+  }, {
+    field: 'github',
+    name: 'Github',
+    render: (github) => (
+      <EuiLink href={'http://www.github.com/' + github} target="_blank">{github}</EuiLink>
+    )
+  }, {
+    field: 'nationality',
+    name: 'Nationality'
+  }];
 
-export const SimpleTable = () => {
   return (
     <EuiBasicTable
       className="basicTable"
@@ -51,4 +51,4 @@ export const SimpleTable = () => {
   );
 };
 
-ReactDOM.render(<SimpleTable />, document.getElementById('app'));
+ReactDOM.render(<Table />, document.getElementById('app'));

@@ -9,7 +9,6 @@ describe('Table Page', function () {
   it('Basic Table', function () {
     browser.waitForExist('.basicTable');
     const results = browser.checkElement('.basicTable');
-    console.log(results);
     expectImageToBeSame (results);
   });
 
