@@ -59,6 +59,7 @@ GuideRuleExample.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string,
   panel: PropTypes.bool,
+  frame: PropTypes.bool,
 };
 
 GuideRuleExample.defaultProps = {

@@ -5,3 +5,7 @@ export {
 export {
   GuideSectionTypes,
 } from './guide_section_types';
+
+export {
+  GuideSectionPlayground,
+} from './guide_section_playground';

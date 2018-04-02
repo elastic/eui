@@ -13,4 +13,5 @@ export {
 export {
   GuideSection,
   GuideSectionTypes,
+  GuideSectionPlayground,
 } from './guide_section';

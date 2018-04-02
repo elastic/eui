@@ -18,85 +18,34 @@ import {
   EuiText,
   EuiTextColor,
   EuiTitle,
-  EuiLink
 } from '../../../../src/components';
 
-function markup(text) {
-  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split(regex).map((token, index) => {
-    if (!token) {
-      return '';
-    }
-    if (token.startsWith('#')) {
-      const id = token.substring(1);
-      const onClick = () => {
-        document.getElementById(id).scrollIntoView();
-      };
-      return <EuiLink key={`markup-${index}`} onClick={onClick}>{id}</EuiLink>;
-    }
-    if (token.startsWith('`')) {
-      const code = token.substring(1, token.length - 1);
-      return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-    }
-    return token;
+import { markup, humanizeType } from '../../services/string/prop_types';
 
-  });
-}
-
-const humanizeType = type => {
-  if (!type) {
-    return '';
-  }
-
-  let humanizedType;
-
-  switch (type.name) {
-    case 'enum':
-      if (Array.isArray(type.value)) {
-        humanizedType = type.value.map(({ value }) => value).join(', ');
-        break;
-      }
-      humanizedType = type.value;
-      break;
-
-    case 'union':
-      if (Array.isArray(type.value)) {
-        const unionValues = type.value.map(({ name }) => name);
-        unionValues[unionValues.length - 1] = `or ${unionValues[unionValues.length - 1]}`;
-
-        if (unionValues.length > 2) {
-          humanizedType = unionValues.join(', ');
-        } else {
-          humanizedType = unionValues.join(' ');
-        }
-        break;
-      }
-      humanizedType = type.value;
-      break;
-
-    default:
-      humanizedType = type.name;
-  }
-
-  return humanizedType;
-};
-
+import { GuideSectionPlayground } from './guide_section_playground';
 
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
 
     this.componentNames = Object.keys(props.props);
+    this.tabs = [];
 
-    this.tabs = [{
-      name: 'Demo',
-    }, {
-      name: 'JavaScript',
-      isCode: true,
-    }, {
-      name: 'HTML',
-      isCode: true,
-    }];
+    if (this.props.demo) {
+      this.tabs.push({
+        name: this.props.playground ? 'Playground' : 'Demo',
+      });
+    }
+
+    if (this.props.source) {
+      this.tabs.push( {
+        name: 'JavaScript',
+        isCode: true,
+      }, {
+        name: 'HTML',
+        isCode: true,
+      });
+    }
 
     if (this.componentNames.length) {
       this.tabs.push({
@@ -267,6 +216,12 @@ export class GuideSection extends Component {
     ];
   }
 
+  renderPlayground() {
+    return (
+      <GuideSectionPlayground component={this.props.playground} demo={this.props.demo} />
+    )
+  }
+
   renderProps() {
     const { props } = this.props;
     return flatten(
@@ -348,7 +303,7 @@ export class GuideSection extends Component {
       <EuiErrorBoundary>
         <div>
           <div className="guideSection__space" />
-          {this.props.demo}
+          {this.props.playground ? this.renderPlayground() : this.props.demo}
         </div>
       </EuiErrorBoundary>
     );
@@ -375,6 +330,7 @@ GuideSection.propTypes = {
   theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
+  playground: PropTypes.func,
 };
 
 GuideSection.defaultProps = {

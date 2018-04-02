@@ -1,0 +1,17 @@
+.euiGuideSectionPlayground {
+  .euiTableCellContent__text {
+    flex-grow: 1;
+  }
+}
+
+.euiGuideSectionPlayground__table {
+  //@include euiFontSizeXS;
+}
+
+.euiGuideSectionPlayground__input {
+  padding: $euiSizeS;
+
+  + .euiFormControlLayout__icon {
+    top: $euiSizeS;
+  }
+}

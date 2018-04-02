@@ -13,9 +13,9 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import Panel from './panel';
-const panelSource = require('!!raw-loader!./panel');
-const panelHtml = renderToHtml(Panel);
+// import Panel from './panel';
+// const panelSource = require('!!raw-loader!./panel');
+// const panelHtml = renderToHtml(Panel);
 
 import PanelHover from './panel_hover';
 const panelHoverSource = require('!!raw-loader!./panel_hover');
@@ -24,13 +24,6 @@ const panelHoverHtml = renderToHtml(PanelHover);
 export const PanelExample = {
   title: 'Panel',
   sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: panelSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: panelHtml,
-    }],
     text: (
       <p>
         <EuiCode>Panel</EuiCode> is a simple wrapper component to add
@@ -38,8 +31,8 @@ export const PanelExample = {
         other larger components like <Link to="/layout/page">Page</Link> and <Link to="/layout/popover">Popover</Link>.
       </p>
     ),
-    props: { EuiPanel },
-    demo: <Panel />,
+    playground: EuiPanel,
+    demo: <EuiPanel>This is a panel. Use wisely. 🤪</EuiPanel>,
   }, {
     title: 'Panel can be hoverable',
     source: [{
