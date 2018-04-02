@@ -281,7 +281,6 @@ export class GuideSectionPlayground extends Component {
       .filter(prop => this.state.compProps[prop] !== undefined)
       .filter(prop => !this.state.allProps[prop].defaultValue || unquote(this.state.allProps[prop].defaultValue.value) !== this.state.compProps[prop].toString())
       .map(prop => {
-        console.log(this.state.compProps[prop]);
         switch (typeof this.state.compProps[prop]) {
           case 'string':
             modifiedProps += `\n  ${prop}=${JSON.stringify(this.state.compProps[prop])}`;
@@ -292,7 +291,7 @@ export class GuideSectionPlayground extends Component {
         }
       });
 
-    if (this.state.allProps.children) {
+    if (this.props.demo.children) {
 
       if (modifiedProps) {
         modifiedProps = `${modifiedProps}\n>\n`
