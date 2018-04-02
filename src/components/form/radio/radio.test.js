@@ -33,6 +33,15 @@ describe('EuiRadio', () => {
         .toMatchSnapshot();
     });
 
+    test('value is rendered', () => {
+      const component = render(
+        <EuiRadio id="id" onChange={() => {}} value={'bobbins'}/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('disabled is rendered', () => {
       const component = render(
         <EuiRadio id="id" onChange={() => {}} disabled/>

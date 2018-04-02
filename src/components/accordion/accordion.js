@@ -24,18 +24,20 @@ export class EuiAccordion extends Component {
     this.onToggle = this.onToggle.bind(this);
   }
 
+  componentDidUpdate() {
+    const height = this.state.isOpen ? this.childContent.clientHeight: 0
+
+    this.childWrapper.setAttribute('style', `height: ${height}px`);
+  }
+
   onToggle() {
-    const currentState = this.state.isOpen;
-    const height = this.childContent.clientHeight;
+    const isOpen = !this.state.isOpen;
     this.setState({
-      isOpen: !currentState,
+      isOpen: isOpen,
     });
 
-    if (!currentState) {
-      this.childWrapper.setAttribute('style', `height: ${height}px`);
-    } else {
-      this.childWrapper.setAttribute('style', `height: 0px`);
-    }
+    const height = isOpen ? this.childContent.clientHeight : 0;
+    this.childWrapper.setAttribute('style', `height: ${height}px`);
   }
 
   render() {
