@@ -36,8 +36,10 @@
     @include euiSlightShadowActive;
   }
 
-  &:hover, &:focus {
-    background-color: transparentize($euiColorPrimary, .9);
+  &:enabled {
+    &:hover, &:focus {
+      background-color: transparentize($euiColorPrimary, .9);
+    }
   }
 
   &:disabled {
@@ -61,6 +63,8 @@
     }
 
     &:hover, &:focus {
+      @include euiSlightShadow;
+      
       text-decoration: none;
     }
   }
@@ -95,9 +99,11 @@ $buttonTypes: (
 
       color: $textColor;
 
-      &:hover, &:focus {
-        background-color: darken($color, 5%);
-        border-color: darken($color, 5%);
+      &:enabled {
+        &:hover, &:focus {
+          background-color: darken($color, 5%);
+          border-color: darken($color, 5%);
+        }
       }
 
       &:disabled .euiButton__spinner {
@@ -105,11 +111,13 @@ $buttonTypes: (
       }
     }
 
-    &:hover, &:focus {
-      background-color: transparentize($color, .9);
+    &:enabled {
+      &:hover, &:focus {
+        background-color: transparentize($color, .9);
 
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
+        @if ($name == 'disabled') {
+          cursor: not-allowed;
+        }
       }
     }
   }
