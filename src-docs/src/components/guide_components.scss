@@ -148,7 +148,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .guideDemo__ghostBackground {
-  background: #444;
+  @if (lightness($euiTextColor) < 50) {
+    background: $euiColorDarkestShade;
+  }
   padding: $euiSizeL;
 }
 
