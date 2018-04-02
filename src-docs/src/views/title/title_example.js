@@ -1,30 +1,23 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
+// import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+// import {
+//   GuideSectionTypes,
+// } from '../../components';
 
 import {
   EuiCode,
   EuiTitle,
 } from '../../../../src/components';
 
-import Title from './title';
-const titleSource = require('!!raw-loader!./title');
-const titleHtml = renderToHtml(Title);
+// import Title from './title';
+// const titleSource = require('!!raw-loader!./title');
+// const titleHtml = renderToHtml(Title);
 
 export const TitleExample = {
   title: 'Title',
   sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: titleSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: titleHtml,
-    }],
     text: (
       <p>
         <EuiCode>EuiTitle</EuiCode> style the page, section and content
@@ -33,7 +26,7 @@ export const TitleExample = {
         they are margin neutral and more suitable for general layout design.
       </p>
     ),
-    props: { EuiTitle },
-    demo: <Title />,
+    playground: EuiTitle,
+    demo: <EuiTitle><span>Titles are markup agnostic, they only confer style</span></EuiTitle>,
   }],
 };

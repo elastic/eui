@@ -52,7 +52,7 @@ export class GuideSectionPlayground extends Component {
       compProps: compProps
     }
 
-    if (this.state.allProps.onClick) {
+    if (this.allProps && this.allProps.onClick) {
       this.state.simulateOnClick === false;
     }
 
@@ -175,6 +175,9 @@ export class GuideSectionPlayground extends Component {
   };
 
   renderPropsForcomponent = () => {
+    if (!this.state.allProps) {
+      return;
+    }
 
     const propNames = Object.keys(this.state.allProps);
 
