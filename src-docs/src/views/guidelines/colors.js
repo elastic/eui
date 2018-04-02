@@ -34,6 +34,7 @@ const allowedColors = [
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorWarning',
+  'euiColorWarningDark',
   'euiColorDanger',
   'euiColorAccent',
 ];

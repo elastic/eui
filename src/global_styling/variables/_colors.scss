@@ -37,7 +37,10 @@ $euiColorGhost: #FFF !default;
 // Status
 $euiColorSuccess: $euiColorSecondary !default;
 $euiColorDanger: #A30000 !default;
-$euiColorWarning: #CF3800 !default;
+$euiColorWarning: #E5830E !default;
+// Yellow doesn't work great for accessibility, so we have a darker orange
+// for use when using whites.
+$euiColorWarningDark: #CF3800 !default;
 
 // Grays
 $euiColorEmptyShade: #FFF !default;

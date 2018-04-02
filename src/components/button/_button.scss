@@ -70,7 +70,7 @@
 $buttonTypes: (
   primary: $euiColorPrimary,
   secondary: $euiColorSecondary,
-  warning: $euiColorWarning,
+  warning: $euiColorWarningDark,
   danger: $euiColorDanger,
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
 );

@@ -11,7 +11,7 @@
 $callOutTypes: (
   primary: $euiColorPrimary,
   success: $euiColorSecondary,
-  warning: adjust-hue($euiColorWarning, 20%),
+  warning: $euiColorWarning,
   danger: $euiColorDanger,
 );
 
