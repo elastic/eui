@@ -15,6 +15,7 @@ import {
   EuiSwitch,
   EuiSelect,
   EuiFieldText,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import { unquote, markup, humanizeType } from '../../services/string/prop_types';
@@ -51,6 +52,10 @@ export class GuideSectionPlayground extends Component {
       compProps: compProps
     }
 
+    if (this.state.allProps.onClick) {
+      this.state.simulateOnClick === false;
+    }
+
     //console.table(this.state.compProps);
   }
 
@@ -72,8 +77,17 @@ export class GuideSectionPlayground extends Component {
     this.setState({ compProps });
   };
 
+  onSimulateChange = e => {
+    const compProps = { ...this.state.compProps }
+    compProps[e.target.id] = e.target.checked ? () => {} : undefined;
+    this.setState({
+      compProps,
+      simulateOnClick: e.target.checked,
+    });
+  };
+
   controlType = (type, propName) => {
-    if (!type || (type.name === "node") || (type.name === "func")) {
+    if (!type || (type.name === "node")) {
       return '';
     }
 
@@ -140,6 +154,19 @@ export class GuideSectionPlayground extends Component {
         control = "union";
         break;
 
+      case 'func':
+        if (propName === "onClick") {
+          control = (
+            <EuiSwitch
+              id={propName}
+              label="simulate"
+              checked={this.state.simulateOnClick}
+              onChange={this.onSimulateChange}
+            />
+          );
+        }
+        break;
+
       default:
         control = type.name;
     }
@@ -185,7 +212,12 @@ export class GuideSectionPlayground extends Component {
         (
           <EuiTableRowCell key="name">
             {humanizedName}
-            {propDescription ? `<br>${markup(propDescription)}` : undefined}
+            {propDescription ? (
+              <span>
+                <br />
+                {markup(propDescription)}
+              </span>
+            ) : undefined}
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="type">
@@ -242,6 +274,47 @@ export class GuideSectionPlayground extends Component {
     return table;
   }
 
+  renderCodeBlock = () => {
+    let modifiedProps = '';
+
+    const buildProps = Object.keys(this.state.compProps) // eslint-disable-line no-unused-vars
+      .filter(prop => this.state.compProps[prop] !== undefined)
+      .filter(prop => !this.state.allProps[prop].defaultValue || unquote(this.state.allProps[prop].defaultValue.value) !== this.state.compProps[prop].toString())
+      .map(prop => {
+        console.log(this.state.compProps[prop]);
+        switch (typeof this.state.compProps[prop]) {
+          case 'string':
+            modifiedProps += `\n  ${prop}=${JSON.stringify(this.state.compProps[prop])}`;
+            return;
+          default:
+            modifiedProps += `\n  ${prop}={${this.state.compProps[prop]}}`;
+            return;
+        }
+      });
+
+    if (this.state.allProps.children) {
+
+      if (modifiedProps) {
+        modifiedProps = `${modifiedProps}\n>\n`
+      } else {
+        modifiedProps = '>\n';
+      }
+
+      return `<${this.props.component.name}` + modifiedProps + `  {children}\n</${this.props.component.name}>`;
+
+    } else {
+
+      if (modifiedProps) {
+        modifiedProps = `${modifiedProps}\n/>`
+      } else {
+        modifiedProps = ' />';
+      }
+
+      return `<${this.props.component.name}` + modifiedProps;
+    }
+
+  }
+
   render() {
     const {
       className,
@@ -280,6 +353,13 @@ export class GuideSectionPlayground extends Component {
         <div className="guideRule__example__panel">
           {newElem}
         </div>
+
+        <EuiCodeBlock
+          language="html"
+          style={{ maxHeight: 400 }}
+        >
+          {this.renderCodeBlock()}
+        </EuiCodeBlock>
 
         <EuiSpacer />
 

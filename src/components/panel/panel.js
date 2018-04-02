@@ -57,10 +57,22 @@ export const EuiPanel = ({
 EuiPanel.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * Increases the visual depth of the panel
+   */
   hasShadow: PropTypes.bool,
   paddingSize: PropTypes.oneOf(SIZES),
+
+  /**
+   * Disallows it from extending it's containers width & height
+   */
   grow: PropTypes.bool,
   panelRef: PropTypes.func,
+
+  /**
+   * Turns the wrapping element into a button to allow for interaction
+   */
   onClick: PropTypes.func,
 };
 
