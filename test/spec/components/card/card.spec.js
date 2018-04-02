@@ -1,13 +1,14 @@
-
-describe('Card Page', function () {
+describe('Card Component', function () {
 
   beforeEach(function () {
-    browser.url('/test/spec/components/card/resources/card.html');
-    browser.waitForExist('#app');
+    browser.url('/#/display/card');
+    browser.waitForExist('.euiTitle');
+    expect('.euiTitle').to.have.text('Card');
   });
 
-  it('Flex Card Group', function () {
-    const results = browser.checkElement('#cardGroup');
+  it('Basic Card', function () {
+    browser.waitForExist('#basic-card');
+    const results = browser.checkElement('#basic-card .euiFlexGroup');
     expectImageToBeSame (results);
   });
 

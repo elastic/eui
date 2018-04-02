@@ -18,7 +18,7 @@
     "lint-fix": "eslint --fix --cache --ignore-pattern **/*.snap.js ./src/**/*.js ./src-docs/**/*.js",
     "test": "npm run lint && npm run test-unit",
     "test-unit": "jest --config ./scripts/jest/config.json",
-    "start-test-server": "./node_modules/.bin/webpack-dev-server --config test/spec/webpack.config.js",
+    "start-test-server": "./node_modules/.bin/webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "./node_modules/.bin/wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
     "start-test-server-and-visual-test": "start-server-and-test start-test-server http-get://localhost:9999 test-visual",

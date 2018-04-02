@@ -31,13 +31,13 @@ exports.config = {
   coloredLogs: true,
   logLevel: 'silent',
   deprecationWarnings: true,
-  waitforTimeout: 1800000,
+  waitforTimeout: 300000,
   bail: 0,
   screenshotPath: 'test/failure-screenshots',
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
-    timeout: 1800000,
+    timeout: 300000,
   },
   reporters: ['dot', 'spec'],
   services: [ci ? 'sauce' : 'selenium-standalone', 'chromedriver', 'visual-regression'],
@@ -87,19 +87,18 @@ exports.config = {
     if ((ci) && process.platform !== 'win32') {
       capabilities[1].platform =  'macOS 10.13';
     }
-    console.log(capabilities);
   },
   before: function (capabilities, specs) {
     const sinon = require('sinon');
     // http://sinonjs.org/
     const chai = require('chai');
+    global.expect = chai.expect;
     const chaiWebdriver = require('chai-webdriverio').default;
     chai.use(chaiWebdriver(browser));
     // http://chaijs.com/
     global.fetch = require('node-fetch');
 
     chai.config.includeStack = true;
-    global.expect = chai.expect;
     global.AssertionError = chai.AssertionError;
     global.Assertion = chai.Assertion;
     global.assert = chai.assert;
