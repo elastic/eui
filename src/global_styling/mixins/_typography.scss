@@ -20,6 +20,13 @@
   font-weight: $euiFontWeightRegular;
 }
 
+@mixin euiLargeTextLineHeight($fontSize) {
+  // Decreases line height a bit, but adds padding to make up the difference
+  line-height: 1.2;
+  padding-top: (($fontSize*$euiLineHeight) - ($fontSize*1.2))/2;
+  padding-bottom: (($fontSize*$euiLineHeight) - ($fontSize*1.2))/2;
+}
+
 // Font sizing extends, using rem mixin
 
 @mixin euiFontSize {
@@ -49,18 +56,15 @@
 
 @mixin euiFontSizeL {
   @include fontSize($euiFontSizeL);
-  line-height: 1.2;
-  padding: (($euiFontSizeL*$euiLineHeight) - ($euiFontSizeL*1.2))/2 0;
+  @include euiLargeTextLineHeight($euiFontSizeL);
 }
 
 @mixin euiFontSizeXL {
   @include fontSize($euiFontSizeXL);
-  line-height: 1.2;
-  padding: (($euiFontSizeXL*$euiLineHeight) - ($euiFontSizeXL*1.2))/2 0;
+  @include euiLargeTextLineHeight($euiFontSizeXL);
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
-  line-height: 1.2;
-  padding: (($euiFontSizeXXL*$euiLineHeight) - ($euiFontSizeXXL*1.2))/2 0;
+  @include euiLargeTextLineHeight($euiFontSizeXXL);
 }

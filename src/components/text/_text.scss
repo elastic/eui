@@ -21,17 +21,17 @@
   ol,
   blockquote,
   img {
-    margin-bottom: $euiSizeL;
+    margin-bottom: 1.5em;
   }
 
   ul {
     list-style: disc;
-    margin-left: $euiSizeL;
+    margin-left: 1.5em;
   }
 
   ol {
     list-style: decimal;
-    margin-left: $euiSizeL;
+    margin-left: 1.5em;
   }
 
   blockquote {
@@ -39,7 +39,7 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding: $euiSizeL;
+    padding:  1.5em;
     max-width: 36rem;
     font-family: Georgia,Times,Times New Roman,serif;
     font-size: 112.5%;
@@ -74,29 +74,53 @@
   * + h4,
   * + h5,
   * + h6 {
-    margin-top: $euiSizeXL
+    margin-top: $euiSizeXL;
   }
 
   h1,h2,h3,h4,h5,h6 {
     @include euiTitle;
-    margin-bottom: $euiSizeS;
+  }
+
+  h1,h2,h3 {
+    line-height: 1.2;
   }
 
   h1 {
-    font-size: 200%;
+    font-size: ($euiFontSizeXXL/$euiFontSize)*100%;
+    margin-bottom: .4em;
   }
 
   h2 {
-    font-size: 150%;
-    line-height: $euiSizeXL;
+    font-size: ($euiFontSizeXL/$euiFontSize)*100%;
+    margin-bottom: .6em;
   }
 
   h3 {
-    font-size: 112.5%;
+    font-size: ($euiFontSizeL/$euiFontSize)*100%;
+    font-weight: 500;
+    margin-bottom: .5em;
   }
 
-  h3, h4, h5 {
+  h4, h5, h6 {
+    margin-bottom: .5em;
+  }
+
+  h4 {
+    font-size: 100%;
     font-weight: $euiFontWeightMedium;
+  }
+
+  h5, h6 {
+    font-weight: $euiFontWeightBold;
+  }
+
+  h5, small {
+    font-size: ($euiFontSizeS/$euiFontSize)*100%;
+  }
+
+  h6 {
+    font-size: ($euiFontSizeXS/$euiFontSize)*100%;
+    text-transform: uppercase;
   }
 
   &.euiText--small {
@@ -110,19 +134,6 @@
     * + h6 {
       margin-top: $euiSizeL;
     }
-
-    p,
-    ul,
-    ol,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    img {
-      margin-bottom: $euiFontSizeS;
-    }
   }
 
   &.euiText--extraSmall {
@@ -135,20 +146,6 @@
     * + h5,
     * + h6 {
       margin-top: $euiSizeM;
-    }
-
-    p,
-    ul,
-    ol,
-    blockquote,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    img {
-      margin-bottom: $euiFontSizeS;
     }
   }
 

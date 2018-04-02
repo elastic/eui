@@ -20,15 +20,19 @@ export default () => (
     </EuiTitle>
 
     <EuiTitle size="xs">
-      <h4>This is a extra small title</h4>
+      <h4>This is an extra small title</h4>
     </EuiTitle>
 
     <EuiTitle size="xxs">
-      <h5>This is a mini title</h5>
+      <h5>This is an extra extra small title</h5>
     </EuiTitle>
 
     <EuiTitle size="xxxs">
-      <h6>This is a label style headers ad should only be used when the header is inconsequential</h6>
+      <h6>This is an extra extra extra small title and should only be used when the title is inconsequential (like a label)</h6>
+    </EuiTitle>
+
+    <EuiTitle size="xxxs" uppercase>
+      <h6>This is an extra extra extra small title that is uppercase</h6>
     </EuiTitle>
 
 

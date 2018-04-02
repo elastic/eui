@@ -1,6 +1,14 @@
 .euiTitle {
   @include euiTitle;
   line-height: 1.2;
+
+  + .euiTitle {
+    margin-top: $euiSizeL;
+  }
+}
+
+.euiTitle--uppercase {
+  text-transform: uppercase;
 }
 
 .euiTitle--xxxsmall {
@@ -20,6 +28,7 @@
 
 .euiTitle--small {
   @include euiFontSizeL;
+  font-weight: 500;
 }
 
 .euiTitle--medium {

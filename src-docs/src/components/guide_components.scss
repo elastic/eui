@@ -121,6 +121,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   background-size: 100% 8px !important;
 }
 
+.guideDemo__textLines--s {
+  background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
+  background-size: 100% 7px !important;
+}
+
 .guideDemo__color {
   padding: $euiSizeS;
   color: $euiColorEmptyShade;
