@@ -21,16 +21,16 @@
 $euiFontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $euiCodeFontFamily: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
 
-// Font sizes
+// Font sizes -- scale is loosely based on Major Third (1.250)
 
 $euiFontSize:       $euiSize !default;
 
 $euiFontSizeXS:     $euiFontSize * .75 !default;
 $euiFontSizeS:      $euiFontSize * .875 !default;
-$euiFontSizeM:      $euiFontSize * 1.125 !default;
+$euiFontSizeM:      $euiFontSize * 1.25 !default;
 $euiFontSizeL:      $euiFontSize * 1.5 !default;
 $euiFontSizeXL:     $euiFontSize * 2 !default;
-$euiFontSizeXXL:    $euiFontSize * 3 !default;
+$euiFontSizeXXL:    $euiFontSize * 2.5 !default;
 
 // Line height
 

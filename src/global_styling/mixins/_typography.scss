@@ -49,15 +49,18 @@
 
 @mixin euiFontSizeL {
   @include fontSize($euiFontSizeL);
-  line-height: $euiLineHeight;
+  line-height: 1.2;
+  padding: (($euiFontSizeL*$euiLineHeight) - ($euiFontSizeL*1.2))/2 0;
 }
 
 @mixin euiFontSizeXL {
   @include fontSize($euiFontSizeXL);
-  line-height: $euiLineHeight;
+  line-height: 1.2;
+  padding: (($euiFontSizeXL*$euiLineHeight) - ($euiFontSizeXL*1.2))/2 0;
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
-  line-height: $euiLineHeight;
+  line-height: 1.2;
+  padding: (($euiFontSizeXXL*$euiLineHeight) - ($euiFontSizeXXL*1.2))/2 0;
 }

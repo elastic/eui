@@ -1,12 +1,32 @@
 .euiTitle {
   @include euiTitle;
-  @include euiFontSizeL;
+  line-height: 1.2;
+}
+
+.euiTitle--label {
+  @include euiText;
+  @include euiFontSizeXS;
+  font-weight: $euiFontWeightBold;
+}
+
+.euiTitle--mini {
+  @include euiFontSizeS;
+  font-weight: $euiFontWeightMedium;
+}
+
+.euiTitle--xsmall {
+  @include euiFontSize;
+  font-weight: $euiFontWeightMedium;
 }
 
 .euiTitle--small {
-  @include euiFontSizeM;
+  @include euiFontSizeL;
+}
+
+.euiTitle--medium {
+  @include euiFontSizeXL;
 }
 
 .euiTitle--large {
-  @include euiFontSizeXL;
+  @include euiFontSizeXXL;
 }
