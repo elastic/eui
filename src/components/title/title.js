@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const titleSizeToClassNameMap = {
-  label: 'euiTitle--label',
-  mini: 'euiTitle--mini',
+  xxxs: 'euiTitle--xxxsmall',
+  xxs: 'euiTitle--xxsmall',
   xs: 'euiTitle--xsmall',
   s: 'euiTitle--small',
   m: 'euiTitle--medium',
@@ -34,7 +34,7 @@ export const EuiTitle = ({ size, children, className, ...rest }) => {
 EuiTitle.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(TITLE_SIZES),
+  size: PropTypes.oneOf(TITLE_SIZES).isRequired,
 };
 
 EuiTitle.defaultProps = {

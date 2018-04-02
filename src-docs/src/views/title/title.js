@@ -23,11 +23,11 @@ export default () => (
       <h4>This is a extra small title</h4>
     </EuiTitle>
 
-    <EuiTitle size="mini">
+    <EuiTitle size="xxs">
       <h5>This is a mini title</h5>
     </EuiTitle>
 
-    <EuiTitle size="label">
+    <EuiTitle size="xxxs">
       <h6>This is a label style headers ad should only be used when the header is inconsequential</h6>
     </EuiTitle>
 

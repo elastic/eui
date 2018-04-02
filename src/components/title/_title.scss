@@ -3,13 +3,12 @@
   line-height: 1.2;
 }
 
-.euiTitle--label {
-  @include euiText;
+.euiTitle--xxxsmall {
   @include euiFontSizeXS;
   font-weight: $euiFontWeightBold;
 }
 
-.euiTitle--mini {
+.euiTitle--xxsmall {
   @include euiFontSizeS;
   font-weight: $euiFontWeightMedium;
 }
