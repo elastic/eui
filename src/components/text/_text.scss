@@ -96,6 +96,7 @@
   h3 {
     @include euiTitle($euiFontSizeL);
     font-size: ($euiFontSizeL/$euiFontSize)*100%; /* 1 */
+    font-weight: $euiFontWeightMedium;
     margin-bottom: .5em;
   }
 

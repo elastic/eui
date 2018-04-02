@@ -18,10 +18,11 @@
     @include fontSize($fontSize);
 
     @if ($fontSize < $euiFontSizeXL) {
-      $font-weight: $euiFontWeightMedium;
+      $font-weight: $euiFontWeightRegular;
     }
 
     @if ($fontSize < $euiFontSizeL) {
+      $font-weight: $euiFontWeightMedium;
       $line-height: $euiLineHeight;
     }
 

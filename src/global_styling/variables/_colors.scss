@@ -24,7 +24,7 @@ $euiColorSlightHue: #909AA1 !default;
 // Every color below must be based mathmatically on the set above.
 
 $euiTextColor: $euiColorDarkestShade !default;
-$euiTitleColor: $euiColorFullShade !default;
+$euiTitleColor: tintOrShade($euiColorFullShade, 10%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
 

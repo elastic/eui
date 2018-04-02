@@ -54,7 +54,7 @@ export default () => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Success toasts indicate that everything worked out</strong>
+            Success toasts indicate that everything worked out
           </h4>
           <p>
             They are the most-commonly used toasts.
@@ -77,7 +77,7 @@ export default () => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Warning toasts direct user attention to a potential problem</strong>
+            Warning toasts direct user attention to a potential problem
           </h4>
           <p>
             These toasts work well in monitoring apps when something
@@ -101,7 +101,7 @@ export default () => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Error toasts report a problem</strong>
+            Error toasts report a problem
           </h4>
           <p>
             An error toast might let users know an action didn&apos;t complete or that a form has errors.
@@ -126,7 +126,7 @@ export default () => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Info toasts relay neutral information</strong>
+            Info toasts relay neutral information
           </h4>
           <p>
             The default toast, an info toast might notify users about an ongoing action.
