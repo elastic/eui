@@ -38,10 +38,10 @@ export class GuideSectionPlayground extends Component {
       const { props } = docgenInfo;
       allProps = props ? props : undefined;
 
-      if (allProps) {
-        const propNames = Object.keys(allProps);
+      if (this.props.demo.props) {
+        const propNames = Object.keys(this.props.demo.props);
         const addingValues = propNames.map(name => { // eslint-disable-line no-unused-vars
-          const value = allProps[name].defaultValue ? this.props.component.defaultProps[name] : undefined;
+          const value = allProps[name].type.name !== 'node' ? this.props.demo.props[name] : undefined;
           compProps[name] = value;
         });
       }
@@ -294,7 +294,7 @@ export class GuideSectionPlayground extends Component {
         }
       });
 
-    if (this.props.demo.children) {
+    if (this.props.demo.props.children) {
 
       if (modifiedProps) {
         modifiedProps = `${modifiedProps}\n>\n`
