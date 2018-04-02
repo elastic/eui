@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Modifying drop shadow intensities and color. ([607](https://github.com/elastic/eui/pull/607))
+- Removed extraneous `global_styling/mixins/_forms.scss` file and importing the correct files in the `filter_group.scss` and `combo_box.scss` files. ([609](https://github.com/elastic/eui/pull/609))
 
 **Bug fixes**
 
