@@ -9,7 +9,7 @@ import {
 const steps = [
   {
     title: 'Inspect me',
-    children: <EuiTitle size="s"><h3>Did you notice the step title is inside a Heading 2 element?</h3></EuiTitle>
+    children: <EuiTitle size="xs"><h3>Did you notice the step title is inside a Heading 2 element?</h3></EuiTitle>
   }
 ];
 

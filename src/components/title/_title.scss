@@ -1,7 +1,4 @@
 .euiTitle {
-  @include euiTitle;
-  line-height: 1.2;
-
   + .euiTitle {
     margin-top: $euiSizeL;
   }
@@ -12,29 +9,25 @@
 }
 
 .euiTitle--xxxsmall {
-  @include euiFontSizeXS;
-  font-weight: $euiFontWeightBold;
+  @include euiTitle($euiFontSizeXS);
 }
 
 .euiTitle--xxsmall {
-  @include euiFontSizeS;
-  font-weight: $euiFontWeightMedium;
+  @include euiTitle($euiFontSizeS);
 }
 
 .euiTitle--xsmall {
-  @include euiFontSize;
-  font-weight: $euiFontWeightMedium;
+  @include euiTitle($euiFontSize);
 }
 
 .euiTitle--small {
-  @include euiFontSizeL;
-  font-weight: 500;
+  @include euiTitle($euiFontSizeL);
 }
 
 .euiTitle--medium {
-  @include euiFontSizeXL;
+  @include euiTitle($euiFontSizeXL);
 }
 
 .euiTitle--large {
-  @include euiFontSizeXXL;
+  @include euiTitle($euiFontSizeXXL);
 }

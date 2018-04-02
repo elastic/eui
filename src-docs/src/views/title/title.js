@@ -8,7 +8,7 @@ import {
 export default () => (
   <div>
     <EuiTitle size="l">
-      <h1>This is a large title</h1>
+      <h1>This is a large title, only one should exist per page</h1>
     </EuiTitle>
 
     <EuiTitle>

@@ -1,6 +1,7 @@
 .euiText {
   @include euiText;
   @include euiFontSize;
+  max-width: 36rem;
 
   a {
     color: $euiLinkColor;
@@ -77,27 +78,24 @@
     margin-top: $euiSizeXL;
   }
 
-  h1,h2,h3,h4,h5,h6 {
-    @include euiTitle;
-  }
-
-  h1,h2,h3 {
-    line-height: 1.2;
-  }
-
+  /**
+  * 1. Customize font size to be a percentage of the .euiText container's base font size (easy scaling)
+  */
   h1 {
-    font-size: ($euiFontSizeXXL/$euiFontSize)*100%;
+    @include euiTitle($euiFontSizeXXL);
+    font-size: ($euiFontSizeXXL/$euiFontSize)*100%; /* 1 */
     margin-bottom: .4em;
   }
 
   h2 {
-    font-size: ($euiFontSizeXL/$euiFontSize)*100%;
+    @include euiTitle($euiFontSizeXL);
+    font-size: ($euiFontSizeXL/$euiFontSize)*100%; /* 1 */
     margin-bottom: .6em;
   }
 
   h3 {
-    font-size: ($euiFontSizeL/$euiFontSize)*100%;
-    font-weight: 500;
+    @include euiTitle($euiFontSizeL);
+    font-size: ($euiFontSizeL/$euiFontSize)*100%; /* 1 */
     margin-bottom: .5em;
   }
 
@@ -106,21 +104,24 @@
   }
 
   h4 {
-    font-size: 100%;
-    font-weight: $euiFontWeightMedium;
+    @include euiTitle($euiFontSize);
+    font-size: 100%; /* 1 */
   }
 
-  h5, h6 {
-    font-weight: $euiFontWeightBold;
-  }
-
-  h5, small {
-    font-size: ($euiFontSizeS/$euiFontSize)*100%;
+  h5 {
+    @include euiTitle($euiFontSizeS);
+    font-size: ($euiFontSizeS/$euiFontSize)*100%; /* 1 */
   }
 
   h6 {
-    font-size: ($euiFontSizeXS/$euiFontSize)*100%;
+    @include euiTitle($euiFontSizeXS);
+    font-size: ($euiFontSizeXS/$euiFontSize)*100%; /* 1 */
     text-transform: uppercase;
+  }
+
+  small {
+    @include euiFontSizeS;
+    font-size: ($euiFontSizeS/$euiFontSize)*100%; /* 1 */
   }
 
   &.euiText--small {

@@ -253,7 +253,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="xl" />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>One primary button per layout</GuideRuleTitle>
 
@@ -360,7 +360,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="l" />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 

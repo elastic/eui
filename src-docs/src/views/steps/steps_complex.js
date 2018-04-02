@@ -57,7 +57,7 @@ const steps = [
     title: 'The last step has two options',
     children: (
       <EuiText>
-        <h3><strong>Option 1:</strong> If you have this type of instance</h3>
+        <h4><strong>Option 1:</strong> If you have this type of instance</h4>
         <EuiSubSteps>
           <ol>
             <li>Do thing 1</li>
@@ -65,7 +65,7 @@ const steps = [
             <li>Do thing 3</li>
           </ol>
         </EuiSubSteps>
-        <h3><strong>Option 2:</strong> If you have the other type of instance</h3>
+        <h4><strong>Option 2:</strong> If you have the other type of instance</h4>
         <EuiSubSteps>
           <ol>
             <li>Do thing 1</li>
