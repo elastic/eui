@@ -1,12 +1,15 @@
+$euiModalBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
+
 .euiModal {
-  @include euiBottomShadow;
+  @include euiBottomShadowLarge;
 
   display: flex;
   flex-direction: column;
   max-height: 75vh; // We overflow the modal body based off this
   position: relative;
   background-color: $euiColorEmptyShade;
-  border: $euiBorderThin;
+  border: 1px solid $euiModalBorderColor;
+  border-top-color: tintOrShade($euiModalBorderColor, 50%, 0%);
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
   min-width: 50%;
@@ -91,7 +94,7 @@
     bottom: 0;
     top: 0;
     border-radius: 0;
-    box-shadow: 0 -8px 16px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     border: none;
   }
 

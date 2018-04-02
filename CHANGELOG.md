@@ -1,5 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Modifying drop shadow intensities and color. ([607](https://github.com/elastic/eui/pull/607))
+
 **Bug fixes**
 
 - Visual fix for the focus state of disabled `EuiButton` ([603](https://github.com/elastic/eui/pull/603))

@@ -28,6 +28,7 @@
 
   &:hover, &:focus {
     border-color: $euiBorderColor;
+    @include euiSlightShadowHover;
 
     .euiKeyPadMenuItem__icon {
       transform: translateY(0);
