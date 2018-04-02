@@ -1,4 +1,4 @@
-$euiModalBorderColor: tintOrShade($euiShadowColorLarge, 40%, 0%) !default; // match shadow
+$euiModalBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
 
 .euiModal {
   @include euiBottomShadowLarge;

@@ -36,12 +36,13 @@
       }
 
       &.#{$selector}--shadow {
-        &,
-        &:hover,
-        &:focus {
-          @if (lightness($euiTextColor) < 50) {
-            border-bottom-color: rgba($euiShadowColor, .6);
-          }
+        @if (lightness($euiTextColor) < 50) {
+          border-bottom-color: rgba($euiShadowColor, .6);
+        }
+        @include euiBottomShadowMedium;
+
+        &.#{$selector}--isClickable:hover,
+        &.#{$selector}--isClickable:focus {
           @include euiBottomShadow;
         }
       }

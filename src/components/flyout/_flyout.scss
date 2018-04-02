@@ -1,4 +1,4 @@
-$euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 40%, 0%) !default; // match shadow
+$euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
 
 .euiFlyout {
   @include euiBottomShadowLarge;
