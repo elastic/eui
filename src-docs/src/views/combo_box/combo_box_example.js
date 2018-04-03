@@ -198,7 +198,7 @@ export const ComboBoxExample = {
     props: { EuiComboBox },
     demo: <DisallowCustomOptions />,
   }, {
-    title: 'Hiding suggestions',
+    title: 'Custom options only, with validation',
     source: [{
       type: GuideSectionTypes.JS,
       code: customOptionsOnlySource,

@@ -54,4 +54,10 @@
         inset 0 -2px 0 0 $euiColorPrimary;
     }
   }
+
+  &.euiComboBox-isInvalid {
+    .euiComboBox__inputWrap {
+      @include euiFormControlInvalidStyle;
+    }
+  }
 }

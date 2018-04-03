@@ -37,6 +37,7 @@ export class EuiComboBox extends Component {
     onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
     renderOption: PropTypes.func,
+    isInvalid: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -234,7 +235,13 @@ export class EuiComboBox extends Component {
 
     // Add new custom pill if this is custom input, even if it partially matches an option..
     if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
-      this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+      const isOptionCreated = this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+
+      // Expect the consumer to be explicit in rejecting a custom option.
+      if (isOptionCreated === false) {
+        return;
+      }
+
       this.clearSearchValue();
     }
   };
@@ -455,6 +462,7 @@ export class EuiComboBox extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
+      isInvalid,
       ...rest
     } = this.props;
 
@@ -462,6 +470,7 @@ export class EuiComboBox extends Component {
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
+      'euiComboBox-isInvalid': isInvalid,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');

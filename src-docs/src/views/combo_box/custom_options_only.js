@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 
 import {
   EuiComboBox,
+  EuiFormRow,
 } from '../../../../src/components';
+
+const isValid = (value) => {
+  // Only allow letters. No spaces, numbers, or special characters.
+  return value.match(/^[a-zA-Z]+$/) !== null;
+};
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      isInvalid: false,
       selectedOptions: [],
     };
   }
 
   onCreateOption = (searchValue) => {
-    const normalizedSearchValue = searchValue.trim().toLowerCase();
-
-    if (!normalizedSearchValue) {
-      return;
+    if (!isValid(searchValue)) {
+      // Return false to explicitly reject the user's input.
+      return false;
     }
 
     const newOption = {
@@ -30,22 +36,45 @@ export default class extends Component {
     }));
   };
 
+  onSearchChange = (searchValue) => {
+    if (!searchValue) {
+      this.setState({
+        isInvalid: false,
+      });
+
+      return;
+    }
+
+    this.setState({
+      isInvalid: !isValid(searchValue),
+    });
+  };
+
   onChange = (selectedOptions) => {
     this.setState({
       selectedOptions,
+      isInvalid: false,
     });
   };
 
   render() {
-    const { selectedOptions } = this.state;
+    const { selectedOptions, isInvalid } = this.state;
     return (
-      <EuiComboBox
-        noSuggestions
-        placeholder="Create some tags"
-        selectedOptions={selectedOptions}
-        onCreateOption={this.onCreateOption}
-        onChange={this.onChange}
-      />
+      <EuiFormRow
+        label="Only custom options"
+        isInvalid={isInvalid}
+        error={isInvalid ? 'Only letters are allowed' : undefined}
+      >
+        <EuiComboBox
+          noSuggestions
+          placeholder="Create some tags (letters only)"
+          selectedOptions={selectedOptions}
+          onCreateOption={this.onCreateOption}
+          onChange={this.onChange}
+          onSearchChange={this.onSearchChange}
+          isInvalid={isInvalid}
+        />
+      </EuiFormRow>
     );
   }
 }
