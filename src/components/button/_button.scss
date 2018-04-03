@@ -70,7 +70,7 @@
 $buttonTypes: (
   primary: $euiColorPrimary,
   secondary: $euiColorSecondary,
-  warning: $euiColorWarningDark,
+  warning: $euiColorWarning,
   danger: $euiColorDanger,
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
 );
@@ -78,21 +78,16 @@ $buttonTypes: (
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
   .euiButton--#{$name} {
-    color: $color;
+    color: makeHighContrastColor($color, $euiColorEmptyShade);
     border-color: $color;
 
     &.euiButton--fill {
       background-color: $color;
       border-color: $color;
 
-      $textColor: #FFF;
-      @if ($name == 'ghost') {
-        $textColor: #000;
-      } @else if (lightness($euiTextColor) > 50) {
-        $textColor: $euiTextColor;
-      }
+      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000);
 
-      color: $textColor;
+      color: $fillTextColor;
 
       &:enabled {
         &:hover, &:focus {
@@ -102,7 +97,7 @@ $buttonTypes: (
       }
 
       &:disabled .euiButton__spinner {
-        border-color: euiLoadingSpinnerBorderColors(transparentize($textColor, .3));
+        border-color: euiLoadingSpinnerBorderColors(transparentize($fillTextColor, .3));
       }
     }
 

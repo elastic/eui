@@ -4,7 +4,7 @@ $textColors: (
   subdued: $euiColorDarkShade,
   secondary: $euiColorSecondary,
   accent: $euiColorAccent,
-  warning: $euiColorWarningDark,
+  warning: $euiColorWarning,
   danger: $euiColorDanger,
   ghost: $euiColorGhost,
 );
@@ -12,11 +12,11 @@ $textColors: (
 // Create color modifiers based on the map
 @each $name, $color in $textColors {
   .euiTextColor.euiTextColor--#{$name} {
-    color: $color !important;
+    color: makeHighContrastColor($color, $euiColorEmptyShade) !important;
 
     // We need a blanket approach for coloring. It should overule everything.
     * {
-      color: $color !important;
+      color: makeHighContrastColor($color, $euiColorEmptyShade) !important;
     }
   }
 }
