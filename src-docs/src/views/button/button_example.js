@@ -14,6 +14,7 @@ import {
 } from '../../../../src/components';
 
 import Button from './button';
+import ButtonPlayground from './button_playground';
 const buttonSource = require('!!raw-loader!./button');
 const buttonHtml = renderToHtml(Button);
 
@@ -57,6 +58,7 @@ export const ButtonExample = {
     }],
     props: { EuiButton },
     demo: <Button />,
+    playground: <ButtonPlayground />,
   }, {
     title: 'Buttons can also be links',
     source: [{

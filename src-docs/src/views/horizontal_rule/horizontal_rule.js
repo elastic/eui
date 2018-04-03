@@ -10,6 +10,7 @@ export default () => (
   <div>
     <EuiTitle size="s"><span>Sizes</span></EuiTitle>
     <EuiSpacer />
+
     <p>quarter</p>
     <EuiHorizontalRule size="quarter"/>
     <p>half</p>

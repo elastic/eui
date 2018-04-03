@@ -25,30 +25,31 @@ export class GuideSectionPlayground extends Component {
     className: PropTypes.string,
     component: PropTypes.func,
     demo: PropTypes.node,
+    props: PropTypes.array,
   }
 
   constructor(props) {
     super(props);
 
-    let allProps = undefined;
+    this.allProps = undefined;
+    this.allowedProps = this.props.props;
     const compProps = {};
 
     if (this.props.component.__docgenInfo) {
       const docgenInfo = Array.isArray(this.props.component.__docgenInfo) ? this.props.component.__docgenInfo[0] : this.props.component.__docgenInfo;
       const { props } = docgenInfo;
-      allProps = props ? props : undefined;
+      this.allProps = props ? props : undefined;
 
       if (this.props.demo.props) {
-        const propNames = Object.keys(this.props.demo.props);
+        const propNames = this.allowedProps.length ? this.allowedProps : Object.keys(this.props.demo.props);
         const addingValues = propNames.map(name => { // eslint-disable-line no-unused-vars
-          const value = allProps[name].type.name !== 'node' ? this.props.demo.props[name] : undefined;
+          const value = this.allProps[name].type.name !== 'node' ? this.props.demo.props[name] : undefined;
           compProps[name] = value;
         });
       }
     }
 
     this.state = {
-      allProps: allProps,
       compProps: compProps
     }
 
@@ -56,7 +57,8 @@ export class GuideSectionPlayground extends Component {
       this.state.simulateOnClick === false;
     }
 
-    //console.table(this.state.compProps);
+    //console.table(this.allProps);
+    console.table(this.allProps);
   }
 
   onSwitchChange = e => {
@@ -95,10 +97,14 @@ export class GuideSectionPlayground extends Component {
 
     switch (type.name) {
       case 'bool':
+        // In case there was no default set, set to false initially
+        if (!this.allProps[propName].defaultValue) {
+          this.allProps[propName].defaultValue = { value: "false" };
+        }
         control = (
           <EuiSwitch
             id={propName}
-            label={this.state.compProps[propName].toString()}
+            label={this.state.compProps[propName] ? this.state.compProps[propName].toString() : "false"}
             checked={this.state.compProps[propName]}
             onChange={this.onSwitchChange}
           />
@@ -106,6 +112,11 @@ export class GuideSectionPlayground extends Component {
         break;
 
       case 'enum':
+        // In case there was no default set, add a default empty string
+        if (!this.allProps[propName].defaultValue) {
+          this.allProps[propName].defaultValue = { value: "" };
+          this.allProps[propName].type.value.push({ value: "" });
+        }
         if (Array.isArray(type.value)) {
           const options = type.value.map(function(item) {
             return {
@@ -175,11 +186,11 @@ export class GuideSectionPlayground extends Component {
   };
 
   renderPropsForcomponent = () => {
-    if (!this.state.allProps) {
+    if (!this.allProps) {
       return;
     }
 
-    const propNames = Object.keys(this.state.allProps);
+    const propNames = this.allowedProps.length ? this.allowedProps : Object.keys(this.allProps);
 
     const rows = propNames.map(propName => {
       const {
@@ -187,7 +198,7 @@ export class GuideSectionPlayground extends Component {
         required,
         defaultValue,
         type,
-      } = this.state.allProps[propName];
+      } = this.allProps[propName];
 
       let humanizedName = (
         <strong>{propName}</strong>
@@ -282,7 +293,7 @@ export class GuideSectionPlayground extends Component {
 
     const buildProps = Object.keys(this.state.compProps) // eslint-disable-line no-unused-vars
       .filter(prop => this.state.compProps[prop] !== undefined)
-      .filter(prop => !this.state.allProps[prop].defaultValue || unquote(this.state.allProps[prop].defaultValue.value) !== this.state.compProps[prop].toString())
+      .filter(prop => !this.allProps[prop].defaultValue || unquote(this.allProps[prop].defaultValue.value) !== this.state.compProps[prop].toString())
       .map(prop => {
         switch (typeof this.state.compProps[prop]) {
           case 'string':

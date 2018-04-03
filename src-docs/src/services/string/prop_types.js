@@ -6,6 +6,9 @@ import {
 } from '../../../../src/components';
 
 export function unquote(string) {
+  if (typeof string !== "string") {
+    return;
+  }
   const count = string.length - 1;
   const pair = string.charAt(0) + string.charAt(count);
   return (pair === '""' || pair === "''") ? string.slice(1, count) : string;
