@@ -146,6 +146,7 @@ export class FlyoutComplicated extends Component {
                 Flyout header
               </h2>
             </EuiTitle>
+            <EuiSpacer size="s" />
             <EuiTextColor color="subdued">
               <EuiText>
                 <p>Put navigation items in the header, and cross tab actions in a footer.</p>

@@ -381,7 +381,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="xs"><span>Delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -392,7 +392,7 @@ export default () => (
 
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="xs"><span>Are you sure you want to delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Are you sure you want to delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -506,7 +506,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="xs"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -516,7 +516,7 @@ export default () => (
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="xs"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
