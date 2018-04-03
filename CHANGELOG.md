@@ -7,7 +7,7 @@
 
 - Visual fix for the focus state of disabled `EuiButton` ([603](https://github.com/elastic/eui/pull/603))
 - `EuiSelect` can pass any node as a value rather than just a string ([603](https://github.com/elastic/eui/pull/603))
-
+- Fixed a typo in the flex TypeScript definition ([629](https://github.com/elastic/eui/pull/629))
 
 # [`0.0.37`](https://github.com/elastic/eui/tree/v0.0.37)
 
