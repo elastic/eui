@@ -47,7 +47,7 @@
 }
 
 // Calculate contrast
-@function checkContrast($background, $foreground) {
+@function contrastRatio($background, $foreground) {
   $backgroundLum: luminance($background) + .05;
   $foregroundLum: luminance($foreground) + .05;
 
@@ -56,8 +56,8 @@
 
 // Compare the contrast against both light and white text, then pick the highest.
 @function chooseLightOrDarkText($color, $light, $dark) {
-  $lightContrast: checkContrast($color, white);
-  $darkContrast: checkContrast($color, black);
+  $lightContrast: contrastRatio($color, white);
+  $darkContrast: contrastRatio($color, black);
 
   @if ($lightContrast > $darkContrast) {
     @return $light;
@@ -70,13 +70,13 @@
 // Given a color and a background, make that color AA accessibility by slightly
 // adjusting it till it works
 @function makeHighContrastColor($forground, $background) {
-  $contrast: checkContrast($forground, $background);
+  $contrast: contrastRatio($forground, $background);
 
   $highContrastTextColor: $forground;
 
   @while ($contrast < 4.5) {
     $highContrastTextColor: shadeOrTint($highContrastTextColor, 5%, 5%);
-    $contrast: checkContrast($highContrastTextColor, $euiColorEmptyShade);
+    $contrast: contrastRatio($highContrastTextColor, $euiColorEmptyShade);
   }
 
   @return $highContrastTextColor;
