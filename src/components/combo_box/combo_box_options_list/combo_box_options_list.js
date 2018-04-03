@@ -46,8 +46,6 @@ export class EuiComboBoxOptionsList extends Component {
   };
 
   componentDidMount() {
-    document.body.classList.add('euiBody-hasPortalContent');
-
     this.updatePosition();
     window.addEventListener('resize', this.updatePosition);
     window.addEventListener('scroll', this.updatePosition);
@@ -67,7 +65,6 @@ export class EuiComboBoxOptionsList extends Component {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasPortalContent');
     window.removeEventListener('resize', this.updatePosition);
     window.removeEventListener('scroll', this.updatePosition);
   }

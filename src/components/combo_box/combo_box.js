@@ -116,7 +116,7 @@ export class EuiComboBox extends Component {
 
     const { position, left, top } = calculatePopoverPosition(comboBoxBounds, this.listBounds, 'bottom', 0, ['bottom', 'top']);
 
-    this.optionsList.style.top = `${top + window.scrollY}px`;
+    this.optionsList.style.top = `${top}px`;
     this.optionsList.style.left = `${left}px`;
     this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
