@@ -54,25 +54,30 @@
   @return max($backgroundLum, $foregroundLum) / min($backgroundLum, $foregroundLum);
 }
 
-// Compare the contrast against both light and white text, then pick the highest.
-@function chooseLightOrDarkText($color, $light, $dark) {
-  $lightContrast: contrastRatio($color, white);
-  $darkContrast: contrastRatio($color, black);
+// Given $color, decided whether $lightText or $darkText should be used as the text color
+// ex: chooseLightOrDarkText(#EEE, #FFF, #000) would return #000 because it has
+//     a higher contrast than #FFF against a #EEE background.
+@function chooseLightOrDarkText($background, $lightText, $darkText) {
+  $lightContrast: contrastRatio($background, $lightText);
+  $darkContrast: contrastRatio($background, $darkText);
 
   @if ($lightContrast > $darkContrast) {
-    @return $light;
+    @return $lightText;
   }
   @else {
-    @return $dark;
+    @return $darkText;
   }
 }
 
-// Given a color and a background, make that color AA accessibility by slightly
-// adjusting it till it works
-@function makeHighContrastColor($forground, $background) {
-  $contrast: contrastRatio($forground, $background);
+// Given a $foreground and a $background, make the $foreground AA accessibility by slightly
+// adjusting it till the contrast is high enough
 
-  $highContrastTextColor: $forground;
+// ex: makeContrastColor($lightPink, #FFF) would continually shade the pink until
+//     it had higher than 4.5 contrast on a white background.
+@function makeHighContrastColor($foreground, $background) {
+  $contrast: contrastRatio($foreground, $background);
+
+  $highContrastTextColor: $foreground;
 
   @while ($contrast < 4.5) {
     $highContrastTextColor: shadeOrTint($highContrastTextColor, 5%, 5%);
