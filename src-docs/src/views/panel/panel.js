@@ -35,5 +35,11 @@ export default () => (
     <EuiPanel paddingSize="l" hasShadow>
       <EuiCode>paddingSize=&quot;l&quot;</EuiCode>, <EuiCode>hasShadow</EuiCode>
     </EuiPanel>
+
+    <EuiSpacer size="l"/>
+
+    <EuiPanel onClick={() => window.alert('Panel clicked')}>
+      <p>Hover me to see my hover state.</p>
+    </EuiPanel>
   </div>
 );

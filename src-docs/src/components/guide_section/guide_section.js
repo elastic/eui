@@ -33,7 +33,7 @@ export class GuideSection extends Component {
 
     if (this.props.demo) {
       this.tabs.push({
-        name: this.props.playground ? 'Playground' : 'Demo',
+        name: 'Demo',
       });
     }
 
@@ -50,6 +50,12 @@ export class GuideSection extends Component {
     if (this.componentNames.length) {
       this.tabs.push({
         name: 'Props',
+      });
+    }
+
+    if (this.props.playground) {
+      this.tabs.push({
+        name: 'Playground',
       });
     }
 
@@ -137,6 +143,12 @@ export class GuideSection extends Component {
         (
           <EuiTableRowCell key="name">
             {humanizedName}
+            {descriptionMarkup ? (
+              <span>
+                <br />
+                {descriptionMarkup}
+              </span>
+            ) : undefined}
           </EuiTableRowCell>
         ), (
           <EuiTableRowCell key="type">
@@ -145,10 +157,6 @@ export class GuideSection extends Component {
         ), (
           <EuiTableRowCell key="defaultValue">
             {defaultValueMarkup}
-          </EuiTableRowCell>
-        ), (
-          <EuiTableRowCell key="description">
-            {descriptionMarkup}
           </EuiTableRowCell>
         )
       ];
@@ -183,7 +191,7 @@ export class GuideSection extends Component {
       table = (
         <EuiTable className="guideSectionPropsTable" compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell>
+            <EuiTableHeaderCell style={{ width: '50%' }}>
               Prop
             </EuiTableHeaderCell>
 
@@ -193,10 +201,6 @@ export class GuideSection extends Component {
 
             <EuiTableHeaderCell>
               Default
-            </EuiTableHeaderCell>
-
-            <EuiTableHeaderCell>
-              Note
             </EuiTableHeaderCell>
           </EuiTableHeader>
 
@@ -299,11 +303,19 @@ export class GuideSection extends Component {
       );
     }
 
+    if (this.state.selectedTab.name === 'Playground') {
+      return (
+        <EuiErrorBoundary>
+          {this.props.playground}
+        </EuiErrorBoundary>
+      );
+    }
+
     return (
       <EuiErrorBoundary>
         <div>
           <div className="guideSection__space" />
-          {this.props.playground ? this.renderPlayground() : this.props.demo}
+          {this.props.demo}
         </div>
       </EuiErrorBoundary>
     );
@@ -330,7 +342,7 @@ GuideSection.propTypes = {
   theme: PropTypes.string.isRequired,
   routes: PropTypes.object.isRequired,
   props: PropTypes.object,
-  playground: PropTypes.func,
+  playground: PropTypes.object,
 };
 
 GuideSection.defaultProps = {
