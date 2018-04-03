@@ -1,25 +1,26 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Modifying drop shadow intensities and color. ([607](https://github.com/elastic/eui/pull/607))
-- Removed extraneous `global_styling/mixins/_forms.scss` file and importing the correct files in the `filter_group.scss` and `combo_box.scss` files. ([609](https://github.com/elastic/eui/pull/609))
+- Modified drop shadow intensities and color. ([#607](https://github.com/elastic/eui/pull/607))
+- Removed extraneous `global_styling/mixins/_forms.scss` file and importing the correct files in the `filter_group.scss` and `combo_box.scss` files. ([#609](https://github.com/elastic/eui/pull/609))
 
 **Bug fixes**
 
-- Visual fix for the focus state of disabled `EuiButton` ([603](https://github.com/elastic/eui/pull/603))
-- `EuiSelect` can pass any node as a value rather than just a string ([603](https://github.com/elastic/eui/pull/603))
-- Fixed a typo in the flex TypeScript definition ([629](https://github.com/elastic/eui/pull/629))
+- Visual fix for the focus state of disabled `EuiButton` ([#603](https://github.com/elastic/eui/pull/603))
+- `EuiSelect` can pass any node as a value rather than just a string ([#603](https://github.com/elastic/eui/pull/603))
+- Fixed a typo in the flex TypeScript definition ([#629](https://github.com/elastic/eui/pull/629))
+- Fixed `EuiComboBox` bug in which the options list wouldn't always match the width of the input ([#611](https://github.com/elastic/eui/pull/611))
 
 # [`0.0.37`](https://github.com/elastic/eui/tree/v0.0.37)
 
-- Added `EuiComboBox` for selecting many options from a list of options ([567](https://github.com/elastic/eui/pull/567))
-- Added `EuiHighlight` for highlighting a substring within text ([567](https://github.com/elastic/eui/pull/567))
-- `calculatePopoverPosition` service now accepts a `positions` argument so you can specify which positions are acceptable ([567](https://github.com/elastic/eui/pull/567))
-- Added `closeButtonProps` prop to `EuiBadge`, `hollow` badge type, and support for arbitrary hex color ([567](https://github.com/elastic/eui/pull/567))
-- Added support for arbitrary hex color to `EuiIcon` ([567](https://github.com/elastic/eui/pull/567))
+- Added `EuiComboBox` for selecting many options from a list of options ([#567](https://github.com/elastic/eui/pull/567))
+- Added `EuiHighlight` for highlighting a substring within text ([#567](https://github.com/elastic/eui/pull/567))
+- `calculatePopoverPosition` service now accepts a `positions` argument so you can specify which positions are acceptable ([#567](https://github.com/elastic/eui/pull/567))
+- Added `closeButtonProps` prop to `EuiBadge`, `hollow` badge type, and support for arbitrary hex color ([#567](https://github.com/elastic/eui/pull/567))
+- Added support for arbitrary hex color to `EuiIcon` ([#567](https://github.com/elastic/eui/pull/567))
 
 **Breaking changes**
 
-- Renamed `euiBody-hasToolTip` class to `euiBody-hasPortalContent` ([567](https://github.com/elastic/eui/pull/567))
+- Renamed `euiBody-hasToolTip` class to `euiBody-hasPortalContent` ([#567](https://github.com/elastic/eui/pull/567))
 
 # [`0.0.36`](https://github.com/elastic/eui/tree/v0.0.36)
 

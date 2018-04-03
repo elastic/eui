@@ -55,7 +55,6 @@ export class EuiComboBox extends Component {
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
-      listStyles: {},
     };
 
     // Cached derived state.
@@ -100,19 +99,29 @@ export class EuiComboBox extends Component {
       return;
     }
 
-    // Cache for future calls.
-    this.listBounds = listBounds;
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
-    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, listBounds, 'bottom', 0, ['bottom', 'top']);
 
-    const listStyles = {
-      top: top + window.scrollY,
-      left,
+    // Cache for future calls. Assign values directly instead of destructuring because listBounds is
+    // a DOMRect, not a JS object.
+    this.listBounds = {
+      bottom: listBounds.bottom,
+      height: listBounds.height,
+      left: comboBoxBounds.left,
+      right: comboBoxBounds.right,
+      top: listBounds.top,
+      width: comboBoxBounds.width,
+      x: listBounds.x,
+      y: listBounds.y,
     };
+
+    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, this.listBounds, 'bottom', 0, ['bottom', 'top']);
+
+    this.optionsList.style.top = `${top + window.scrollY}px`;
+    this.optionsList.style.left = `${left}px`;
+    this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
     this.setState({
       listPosition: position,
-      listStyles,
     });
   };
 
@@ -432,7 +441,7 @@ export class EuiComboBox extends Component {
       ...rest
     } = this.props;
 
-    const { searchValue, isListOpen, listStyles, listPosition } = this.state;
+    const { searchValue, isListOpen, listPosition } = this.state;
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -461,7 +470,6 @@ export class EuiComboBox extends Component {
             getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
             updatePosition={this.updateListPosition}
             position={listPosition}
-            style={listStyles}
             renderOption={renderOption}
           />
         </EuiPortal>
