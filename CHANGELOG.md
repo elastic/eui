@@ -1,6 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
 - Modifying drop shadow intensities and color. ([607](https://github.com/elastic/eui/pull/607))
+- Add Sass color functions. Make `$euiColorWarning` color usage more accessible while still being "yellow". ([628](https://github.com/elastic/eui/pull/628))
 
 **Bug fixes**
 
