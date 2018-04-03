@@ -54,7 +54,7 @@ export const CallOutExample = {
             error, warning, info, and then success.
           </li>
           <li>
-            Offer only one action per callout and ensure it's an action users can perform quickly.
+            Offer only one action per callout and ensure it&apos;s an action users can perform quickly.
           </li>
           <li>
             If the callout has a permanent spot in the UI, but needs to be less obstructive,
@@ -64,9 +64,9 @@ export const CallOutExample = {
             Use an <EuiCode>icon</EuiCode> prop if it adds context.
           </li>
         </ul>
-   </EuiText>
-   <EuiSpacer size="l"/>
-   </Fragment>
+      </EuiText>
+      <EuiSpacer size="l"/>
+    </Fragment>
  ),
   sections: [{
     title: 'Info',
