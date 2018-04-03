@@ -31,16 +31,25 @@ const createCountries = () => [
   { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
 ];
 
+const firstNames = ['Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan', 'John'];
+
+const lastNames = ['van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel', 'Dorlus'];
+
+const github = ['martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel', 'silne30'];
+
+const dob = new Date(1980, 1, 1);
+
 const createUsers = (countries) => {
   return times(20, (index) => {
+    console.log(index);
     return {
       id: index,
-      firstName: random.oneOf(['Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan', 'John']),
-      lastName: random.oneOf(['van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel', 'Dorlus']),
-      github: random.oneOf(['martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel', 'silne30']),
-      dateOfBirth: random.date({ min: new Date(1971, 0, 0), max: new Date(1990, 0, 0) }),
-      nationality: random.oneOf(countries.map(country => country.code)),
-      online: random.boolean()
+      firstName: index < 10 ? firstNames[index] : firstNames[index - 10],
+      lastName: index < 10 ? lastNames[index] : lastNames[index - 10],
+      github: index < 10 ? github[index] : github[index - 10],
+      dateOfBirth: dob,
+      nationality: random.first(countries.map(country => country.code)),
+      online: index % 2 === 0
     };
   });
 };
