@@ -15,14 +15,18 @@ const titleSizeToClassNameMap = {
 
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 
-export const EuiTitle = ({ size, children, className, uppercase, ...rest }) => {
+const textTransformToClassNameMap = {
+  uppercase: 'euiTitle--uppercase',
+};
+
+export const TEXT_TRANSFORM = Object.keys(textTransformToClassNameMap);
+
+export const EuiTitle = ({ size, children, className, textTransform, ...rest }) => {
 
   const classes = classNames(
     'euiTitle',
     titleSizeToClassNameMap[size],
-    {
-      'euiTitle--uppercase': uppercase,
-    },
+    textTransformToClassNameMap[textTransform],
     className
   );
 
@@ -38,7 +42,7 @@ EuiTitle.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOf(TITLE_SIZES).isRequired,
-  uppercase: PropTypes.bool,
+  textTransform: PropTypes.oneOf(TEXT_TRANSFORM),
 };
 
 EuiTitle.defaultProps = {

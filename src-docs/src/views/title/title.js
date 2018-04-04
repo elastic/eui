@@ -31,7 +31,7 @@ export default () => (
       <h6>This is an extra extra extra small title and should only be used when the title is inconsequential (like a label)</h6>
     </EuiTitle>
 
-    <EuiTitle size="xxxs" uppercase>
+    <EuiTitle size="xxxs" textTransform="uppercase">
       <h6>This is an extra extra extra small title that is uppercase</h6>
     </EuiTitle>
 
