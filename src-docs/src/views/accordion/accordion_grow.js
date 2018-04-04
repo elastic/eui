@@ -14,8 +14,7 @@ class AccordionGrow extends Component {
   }
 
   render() {
-
-    const rows = []
+    const rows = [];
     for (let i = 1; i <= this.state.counter; i++) {
       rows.push(<p key={i}>Row {i}</p>);
     }
@@ -42,13 +41,13 @@ class AccordionGrow extends Component {
   onIncrease() {
     this.setState(prevState => ({
       counter: prevState.counter + 1
-    }))
+    }));
   }
 
   onDecrease() {
     this.setState(prevState => ({
       counter: Math.max(0, prevState.counter - 1)
-    }))
+    }));
   }
 }
 

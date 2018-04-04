@@ -83,7 +83,7 @@ describe('EuiRadioGroup', () => {
 
   describe('callbacks', () => {
     test('id is used in callbacks when no value is available', () => {
-      const callback = jest.fn()
+      const callback = jest.fn();
 
       const component = mount(
         <EuiRadioGroup
@@ -96,18 +96,15 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      component.find('input[id="2"]').simulate('change')
+      component.find('input[id="2"]').simulate('change');
 
-      expect(callback.mock.calls.length).toEqual(1);
-      expect(callback.mock.calls[0].length).toEqual(3);
-
-      expect(callback.mock.calls[0][0]).toEqual('2');
-      expect(callback.mock.calls[0][1]).toBeUndefined();
-      // The callback is also invoked with the event, but that's not assert-able.
+      expect(callback).toHaveBeenCalledTimes(1);
+      const event = expect.any(Object);
+      expect(callback).toHaveBeenCalledWith('2', undefined, event);
     });
 
     test('value is used in callbacks when available', () => {
-      const callback = jest.fn()
+      const callback = jest.fn();
 
       const component = mount(
         <EuiRadioGroup
@@ -120,14 +117,11 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      component.find('input[id="2"]').simulate('change')
+      component.find('input[id="2"]').simulate('change');
 
-      expect(callback.mock.calls.length).toEqual(1);
-      expect(callback.mock.calls[0].length).toEqual(3);
-
-      expect(callback.mock.calls[0][0]).toEqual('2');
-      expect(callback.mock.calls[0][1]).toEqual('Value #2');
-      // The callback is also invoked with the event, but that's not assert-able.
+      expect(callback).toHaveBeenCalledTimes(1);
+      const event = expect.any(Object);
+      expect(callback).toHaveBeenCalledWith('2', 'Value #2', event);
     });
   });
 });

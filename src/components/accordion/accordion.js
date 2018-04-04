@@ -25,7 +25,7 @@ export class EuiAccordion extends Component {
   }
 
   componentDidUpdate() {
-    const height = this.state.isOpen ? this.childContent.clientHeight: 0
+    const height = this.state.isOpen ? this.childContent.clientHeight: 0;
 
     this.childWrapper.setAttribute('style', `height: ${height}px`);
   }
@@ -94,7 +94,7 @@ export class EuiAccordion extends Component {
               onClick={this.onToggle}
               className={buttonClasses}
             >
-              <EuiFlexGroup gutterSize="s" alignItems="center">
+              <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
                 <EuiFlexItem grow={false}>
                   {icon}
                 </EuiFlexItem>
