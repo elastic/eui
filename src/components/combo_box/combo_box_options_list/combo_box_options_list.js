@@ -48,7 +48,6 @@ export class EuiComboBoxOptionsList extends Component {
   componentDidMount() {
     this.updatePosition();
     window.addEventListener('resize', this.updatePosition);
-    window.addEventListener('scroll', this.updatePosition);
   }
 
   componentWillUpdate(nextProps) {
@@ -66,7 +65,6 @@ export class EuiComboBoxOptionsList extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updatePosition);
-    window.removeEventListener('scroll', this.updatePosition);
   }
 
   listRef = node => {
