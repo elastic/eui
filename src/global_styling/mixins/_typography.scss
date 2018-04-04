@@ -12,7 +12,7 @@
 
 @mixin euiTitle($fontSize: null) {
   $font-weight: $euiFontWeightMedium;
-  $line-height: 1.2;
+  $line-height: 1.25;
 
   @if $fontSize {
     @include fontSize($fontSize);

@@ -22,15 +22,16 @@ $euiFontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
 $euiCodeFontFamily: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
 
 // Font sizes -- scale is loosely based on Major Third (1.250)
+$euiTextScale: 2.25, 1.75, 1.25, 1.125, 1, .875, .75;
 
-$euiFontSize:       $euiSize !default;
+$euiFontSize:       $euiSize !default; // 5th position in scale
 
-$euiFontSizeXS:     $euiFontSize * .75 !default;
-$euiFontSizeS:      $euiFontSize * .875 !default;
-$euiFontSizeM:      $euiFontSize * 1.125 !default;
-$euiFontSizeL:      $euiFontSize * 1.25 !default;
-$euiFontSizeXL:     $euiFontSize * 1.75 !default;
-$euiFontSizeXXL:    $euiFontSize * 2.25 !default;
+$euiFontSizeXS:     $euiFontSize * nth($euiTextScale, 7) !default;
+$euiFontSizeS:      $euiFontSize * nth($euiTextScale, 6) !default;
+$euiFontSizeM:      $euiFontSize * nth($euiTextScale, 4) !default;
+$euiFontSizeL:      $euiFontSize * nth($euiTextScale, 3) !default;
+$euiFontSizeXL:     $euiFontSize * nth($euiTextScale, 2) !default;
+$euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1) !default;
 
 // Line height
 

@@ -1,3 +1,82 @@
+// This should only be used for .euiText, therefore it's not included in a separate mixin file
+@mixin euiScaleText($baseFontSize) {
+  $baseLineHeight: ($baseFontSize * $euiLineHeight);
+  $baseLineHeightMultiplier: $baseLineHeight/3;
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  img {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  ul, ol {
+    margin-left: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  blockquote {
+    padding:  convertToRem($baseFontSize * 1.5);
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 4));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 1);
+  }
+
+  * + h2,
+  * + h3,
+  * + h4,
+  * + h5,
+  * + h6 {
+    margin-top: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  /**
+  * 1. Set line-height to a muliplier of the base line height without being under the font-size.
+  */
+
+  h1 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 1));
+    line-height: convertToRem($baseLineHeightMultiplier * 6); /* 1 */
+  }
+
+  h2 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 2));
+    line-height: convertToRem($baseLineHeightMultiplier * 5); /* 1 */
+  }
+
+  h3 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 3));
+    line-height: convertToRem($baseLineHeightMultiplier * 4); /* 1 */
+    font-weight: $euiFontWeightMedium;
+  }
+
+  h4 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
+  }
+
+  h5 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+    line-height: convertToRem($baseLineHeight);
+  }
+
+  h6 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
+    line-height: convertToRem($baseLineHeight);
+    text-transform: uppercase;
+  }
+
+  small {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+  }
+}
+
 .euiText {
   @include euiText;
   @include euiFontSize;
@@ -17,22 +96,12 @@
     width: 100%;
   }
 
-  p,
-  ul,
-  ol,
-  blockquote,
-  img {
-    margin-bottom: 1.5em;
-  }
-
   ul {
     list-style: disc;
-    margin-left: 1.5em;
   }
 
   ol {
     list-style: decimal;
-    margin-left: 1.5em;
   }
 
   blockquote {
@@ -40,10 +109,7 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding:  1.5em;
-    max-width: 36rem;
     font-family: Georgia,Times,Times New Roman,serif;
-    font-size: 112.5%;
     line-height: 1.5;
     font-style: italic;
 
@@ -69,86 +135,45 @@
     }
   }
 
-  * + h1,
-  * + h2,
-  * + h3,
-  * + h4,
-  * + h5,
-  * + h6 {
-    margin-top: $euiSizeXL;
-  }
-
   /**
   * 1. Customize font size to be a percentage of the .euiText container's base font size (easy scaling)
   */
   h1 {
     @include euiTitle($euiFontSizeXXL);
-    font-size: ($euiFontSizeXXL/$euiFontSize)*100%; /* 1 */
-    margin-bottom: .4em;
   }
 
   h2 {
     @include euiTitle($euiFontSizeXL);
-    font-size: ($euiFontSizeXL/$euiFontSize)*100%; /* 1 */
-    margin-bottom: .6em;
   }
 
   h3 {
     @include euiTitle($euiFontSizeL);
-    font-size: ($euiFontSizeL/$euiFontSize)*100%; /* 1 */
     font-weight: $euiFontWeightMedium;
-    margin-bottom: .5em;
-  }
-
-  h4, h5, h6 {
-    margin-bottom: .5em;
   }
 
   h4 {
     @include euiTitle($euiFontSize);
-    font-size: 100%; /* 1 */
   }
 
   h5 {
     @include euiTitle($euiFontSizeS);
-    font-size: ($euiFontSizeS/$euiFontSize)*100%; /* 1 */
   }
 
   h6 {
     @include euiTitle($euiFontSizeXS);
-    font-size: ($euiFontSizeXS/$euiFontSize)*100%; /* 1 */
     text-transform: uppercase;
   }
 
-  small {
-    @include euiFontSizeS;
-    font-size: ($euiFontSizeS/$euiFontSize)*100%; /* 1 */
-  }
+  @include euiScaleText($euiFontSize);
 
   &.euiText--small {
     @include euiFontSizeS;
-
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6 {
-      margin-top: $euiSizeL;
-    }
+    @include euiScaleText($euiFontSizeS);
   }
 
   &.euiText--extraSmall {
     @include euiFontSizeXS;
-
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6 {
-      margin-top: $euiSizeM;
-    }
+    @include euiScaleText($euiFontSizeXS);
   }
 
   > :last-child {
