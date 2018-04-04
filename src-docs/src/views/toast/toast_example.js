@@ -55,7 +55,7 @@ export const ToastExample = {
       EuiGlobalToastListItem,
     },
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <EuiButton onClick={addToast}>
           Add toast to global toast list
         </EuiButton>
@@ -89,7 +89,7 @@ export const ToastExample = {
       </div>
     ),
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <Default />
       </div>
     ),
@@ -108,7 +108,7 @@ export const ToastExample = {
       </p>
     ),
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <Info />
       </div>
     ),
@@ -127,7 +127,7 @@ export const ToastExample = {
       </p>
     ),
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <Success />
       </div>
     ),
@@ -146,7 +146,7 @@ export const ToastExample = {
       </p>
     ),
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <Warning />
       </div>
     ),
@@ -165,7 +165,7 @@ export const ToastExample = {
       </p>
     ),
     demo: (
-      <div style={{ width: 320 }}>
+      <div style={{ maxWidth: 320 }}>
         <Danger />
       </div>
     ),
