@@ -1,7 +1,6 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
 @mixin euiScaleText($baseFontSize) {
-  $baseLineHeight: ($baseFontSize * $euiLineHeight);
-  $baseLineHeightMultiplier: $baseLineHeight/3;
+  $baseLineHeightMultiplier: $baseFontSize/2;
 
   p,
   ul,
@@ -63,12 +62,12 @@
 
   h5 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
-    line-height: convertToRem($baseLineHeight);
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
   }
 
   h6 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
-    line-height: convertToRem($baseLineHeight);
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
     text-transform: uppercase;
   }
 
