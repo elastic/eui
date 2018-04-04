@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.39`.
+
+# [`0.0.39`](https://github.com/elastic/eui/tree/v0.0.39)
+
 **Bug fixes**
 
 - Allow accordions to dynamically change height, and support values on radio inputs ([#613](https://github.com/elastic/eui/pull/613))
