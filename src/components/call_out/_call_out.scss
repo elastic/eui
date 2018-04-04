@@ -11,17 +11,18 @@
 $callOutTypes: (
   primary: $euiColorPrimary,
   success: $euiColorSecondary,
-  warning: adjust-hue($euiColorWarning, 20%),
+  warning: $euiColorWarning,
   danger: $euiColorDanger,
 );
 
 // Create button modifiders based upon the map.
 @each $name, $color in $callOutTypes {
   .euiCallOut--#{$name} {
-    border-color: $color;
-    background-color: tintOrShade($color, 90%, 70%);
+    $backgroundColor: tintOrShade($color, 90%, 70%);
+    $textColor: makeHighContrastColor($color, $backgroundColor);
 
-    $textColor: shadeOrTint($color, 30%, 70%);
+    border-color: $color;
+    background-color: $backgroundColor;
 
     .euiCallOutHeader__icon {
       fill: $textColor;

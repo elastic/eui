@@ -1,31 +1,3 @@
-// Mixes a provided color with white.
-@function tint($color, $percent) {
-  @return mix(#fff, $color, $percent);
-}
-
-// Mixes a provided color with black.
-@function shade($color, $percent) {
-  @return mix(#000, $color, $percent);
-}
-
-// For theming. Checks the text color and tells us whether it's light or dark.
-// Based on that we either tint or shade.
-@function tintOrShade($color, $tint, $shade) {
-  @if (lightness($euiTextColor) > 50) {
-    @return shade($color, $shade);
-  } @else {
-    @return tint($color, $tint);
-  }
-}
-
-@function shadeOrTint($color, $shade, $tint) {
-  @if (lightness($euiTextColor) < 50) {
-    @return shade($color, $shade);
-  } @else {
-    @return tint($color, $tint);
-  }
-}
-
 // Core
 
 $euiColorPrimary: #0079a5 !default;
@@ -37,7 +9,7 @@ $euiColorGhost: #FFF !default;
 // Status
 $euiColorSuccess: $euiColorSecondary !default;
 $euiColorDanger: #A30000 !default;
-$euiColorWarning: #CF3800 !default;
+$euiColorWarning: #E5830E !default;
 
 // Grays
 $euiColorEmptyShade: #FFF !default;
