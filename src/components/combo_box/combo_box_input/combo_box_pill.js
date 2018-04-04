@@ -21,19 +21,16 @@ export class EuiComboBoxPill extends Component {
     color: 'hollow',
   };
 
-  onCloseButtonClick(option, e) {
-    // Prevent the combo box from losing focus.
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    this.props.onClose(option)
-  }
+  onCloseButtonClick = () => {
+    const { onClose, option } = this.props;
+    onClose(option);
+  };
 
   render() {
     const {
       children,
       className,
-      option,
+      option, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       color,
       ...rest
@@ -44,7 +41,7 @@ export class EuiComboBoxPill extends Component {
       <EuiBadge
         className={classes}
         title={children}
-        iconOnClick={this.onCloseButtonClick.bind(this, option)}
+        iconOnClick={this.onCloseButtonClick}
         iconType="cross"
         iconSide="right"
         color={color}

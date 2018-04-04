@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiFormControlLayout, EuiValidatableControl } from '../../form';
+import { EuiFormControlLayout } from '../../form';
 import { EuiComboBoxPill } from './combo_box_pill';
 import { htmlIdGenerator } from '../../../services';
 
@@ -143,20 +143,18 @@ export class EuiComboBoxInput extends Component {
         >
           {pills}
           {placeholderMessage}
-          <EuiValidatableControl isInvalid={false}>
-            <AutosizeInput
-              aria-hidden
-              id={id}
-              style={{ fontSize: 14 }}
-              className="euiComboBox__input"
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
-              onChange={(e) => onChange(e.target.value)}
-              value={searchValue}
-              ref={autoSizeInputRef}
-              inputRef={inputRef}
-            />
-          </EuiValidatableControl>
+          <AutosizeInput
+            aria-hidden
+            id={id}
+            style={{ fontSize: 14 }}
+            className="euiComboBox__input"
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            onChange={(e) => onChange(e.target.value)}
+            value={searchValue}
+            ref={autoSizeInputRef}
+            inputRef={inputRef}
+          />
           {removeOptionMessage}
         </div>
       </EuiFormControlLayout>

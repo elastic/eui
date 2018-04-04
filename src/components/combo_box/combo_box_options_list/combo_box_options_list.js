@@ -46,11 +46,13 @@ export class EuiComboBoxOptionsList extends Component {
   };
 
   componentDidMount() {
-    document.body.classList.add('euiBody-hasPortalContent');
-
+    // Wait a frame, otherwise moving focus from one combo box to another will result in the class
+    // being removed from the body.
+    requestAnimationFrame(() => {
+      document.body.classList.add('euiBody-hasPortalContent');
+    });
     this.updatePosition();
     window.addEventListener('resize', this.updatePosition);
-    window.addEventListener('scroll', this.updatePosition);
   }
 
   componentWillUpdate(nextProps) {
@@ -69,7 +71,6 @@ export class EuiComboBoxOptionsList extends Component {
   componentWillUnmount() {
     document.body.classList.remove('euiBody-hasPortalContent');
     window.removeEventListener('resize', this.updatePosition);
-    window.removeEventListener('scroll', this.updatePosition);
   }
 
   listRef = node => {

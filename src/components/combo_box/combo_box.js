@@ -37,6 +37,7 @@ export class EuiComboBox extends Component {
     onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
     renderOption: PropTypes.func,
+    isInvalid: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -190,6 +191,11 @@ export class EuiComboBox extends Component {
     }
   };
 
+  focusSearchInput = () => {
+    this.clearActiveOption();
+    this.searchInput.focus();
+  };
+
   clearSearchValue = () => {
     this.onSearchChange('');
   };
@@ -229,7 +235,13 @@ export class EuiComboBox extends Component {
 
     // Add new custom pill if this is custom input, even if it partially matches an option..
     if (!this.hasActiveOption() || this.doesSearchMatchOnlyOption()) {
-      this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+      const isOptionCreated = this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+
+      // Expect the consumer to be explicit in rejecting a custom option.
+      if (isOptionCreated === false) {
+        return;
+      }
+
       this.clearSearchValue();
     }
   };
@@ -251,7 +263,19 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
-  onFocusChange = event => {
+  onFocus = () => {
+    document.addEventListener('click', this.onDocumentFocusChange);
+    document.addEventListener('focusin', this.onDocumentFocusChange);
+    this.openList();
+  }
+
+  onBlur = () => {
+    document.removeEventListener('click', this.onDocumentFocusChange);
+    document.removeEventListener('focusin', this.onDocumentFocusChange);
+    this.closeList();
+  }
+
+  onDocumentFocusChange = event => {
     // Close the list if the combo box has lost focus.
     if (
       this.comboBox === event.target
@@ -264,7 +288,11 @@ export class EuiComboBox extends Component {
 
     // Wait for the DOM to update.
     requestAnimationFrame(() => {
-      this.closeList();
+      if (document.activeElement === this.searchInput) {
+        return;
+      }
+
+      this.onBlur();
     });
   };
 
@@ -287,8 +315,7 @@ export class EuiComboBox extends Component {
       case ESCAPE:
         // Move focus from options list to input.
         if (this.hasActiveOption()) {
-          this.clearActiveOption();
-          this.searchInput.focus();
+          this.focusSearchInput();
         }
         break;
 
@@ -319,14 +346,14 @@ export class EuiComboBox extends Component {
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions, singleSelection } = this.props;
     onChange(singleSelection ? [addedOption] : selectedOptions.concat(addedOption));
-    this.clearActiveOption();
     this.clearSearchValue();
-    this.searchInput.focus();
+    this.focusSearchInput();
   };
 
   onRemoveOption = (removedOption) => {
     const { onChange, selectedOptions } = this.props;
     onChange(selectedOptions.filter(option => option !== removedOption));
+    this.focusSearchInput();
   };
 
   onComboBoxClick = () => {
@@ -381,9 +408,6 @@ export class EuiComboBox extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener('click', this.onFocusChange);
-    document.addEventListener('focusin', this.onFocusChange);
-
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       this.autoSizeInput.copyInputStyles();
@@ -419,8 +443,8 @@ export class EuiComboBox extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onFocusChange);
-    document.removeEventListener('focusin', this.onFocusChange);
+    document.removeEventListener('click', this.onDocumentFocusChange);
+    document.removeEventListener('focusin', this.onDocumentFocusChange);
   }
 
   render() {
@@ -438,6 +462,7 @@ export class EuiComboBox extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
+      isInvalid,
       ...rest
     } = this.props;
 
@@ -445,6 +470,7 @@ export class EuiComboBox extends Component {
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
+      'euiComboBox-isInvalid': isInvalid,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
@@ -491,7 +517,7 @@ export class EuiComboBox extends Component {
           onRemoveOption={this.onRemoveOption}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
-          onFocus={this.openList}
+          onFocus={this.onFocus}
           value={value}
           searchValue={searchValue}
           autoSizeInputRef={this.autoSizeInputRef}
