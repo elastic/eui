@@ -1,5 +1,9 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.38`.
+
+# [`0.0.38`](https://github.com/elastic/eui/tree/v0.0.38)
+
 - Modifying drop shadow intensities and color. ([607](https://github.com/elastic/eui/pull/607))
 - Add Sass color functions. Make `$euiColorWarning` color usage more accessible while still being "yellow". ([628](https://github.com/elastic/eui/pull/628))
 - Removed extraneous `global_styling/mixins/_forms.scss` file and importing the correct files in the `filter_group.scss` and `combo_box.scss` files. ([#609](https://github.com/elastic/eui/pull/609))
