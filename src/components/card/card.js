@@ -70,7 +70,7 @@ export const EuiCard = ({
       </span>
 
       <span className="euiCard__content">
-        <EuiTitle size="s" className="euiCard__title">
+        <EuiTitle className="euiCard__title">
           <span>{title}</span>
         </EuiTitle>
 

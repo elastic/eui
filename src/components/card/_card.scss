@@ -85,6 +85,8 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   .euiCard__title {
     display: block;
     margin-top: $euiCardSpacing;
+    @include euiTitle($euiFontSizeM);
+    font-weight: $euiFontWeightRegular;
   }
 
   .euiCard__description {

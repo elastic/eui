@@ -13,7 +13,7 @@ exports[`EuiCard is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiTitle--medium euiCard__title"
     >
       Card title
     </span>
