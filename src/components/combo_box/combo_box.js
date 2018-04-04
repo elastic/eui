@@ -117,12 +117,9 @@ export class EuiComboBox extends Component {
 
     const { position, left, top } = calculatePopoverPosition(comboBoxBounds, this.listBounds, 'bottom', 0, ['bottom', 'top']);
 
-    // We use !important to override the style set by the CSS class. We have to use setAttribute
-    // over setting properties on the style object because that won't work with !important.
-    this.optionsList.setAttribute(
-      'style',
-      `top: ${top + window.scrollY}px !important; left: ${left}px; width: ${comboBoxBounds.width}px;`
-    );
+    this.optionsList.style.top = `${top + window.scrollY}px`;
+    this.optionsList.style.left = `${left}px`;
+    this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
     this.setState({
       listPosition: position,
