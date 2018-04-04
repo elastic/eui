@@ -1,6 +1,8 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.39`.
+**Bug fixes**
+
+- Fix visual shadow glitch on hover of `EuiToast` ([#632](https://github.com/elastic/eui/pull/632))
 
 # [`0.0.39`](https://github.com/elastic/eui/tree/v0.0.39)
 
