@@ -1,17 +1,18 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
 @mixin euiScaleText($baseFontSize) {
   $baseLineHeightMultiplier: $baseFontSize/2;
+  line-height: convertToRem($baseLineHeightMultiplier*3);
 
   p,
   ul,
   ol,
   blockquote,
   img {
-    margin-bottom: convertToRem($baseLineHeightMultiplier * 4);
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
   }
 
   ul, ol {
-    margin-left: convertToRem($baseLineHeightMultiplier * 4);
+    margin-left: convertToRem($baseLineHeightMultiplier * 3);
   }
 
   blockquote {
@@ -36,24 +37,19 @@
     margin-top: convertToRem($baseLineHeightMultiplier * 4);
   }
 
-  /**
-  * 1. Set line-height to a muliplier of the base line height without being under the font-size.
-  */
-
   h1 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 1));
-    line-height: convertToRem($baseLineHeightMultiplier * 6); /* 1 */
+    line-height: convertToRem($baseLineHeightMultiplier * 6);
   }
 
   h2 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 2));
-    line-height: convertToRem($baseLineHeightMultiplier * 5); /* 1 */
+    line-height: convertToRem($baseLineHeightMultiplier * 5);
   }
 
   h3 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 3));
-    line-height: convertToRem($baseLineHeightMultiplier * 4); /* 1 */
-    font-weight: $euiFontWeightMedium;
+    line-height: convertToRem($baseLineHeightMultiplier * 4);
   }
 
   h4 {
@@ -68,7 +64,6 @@
   h6 {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
     line-height: convertToRem($baseLineHeightMultiplier * 2);
-    text-transform: uppercase;
   }
 
   small {
@@ -134,44 +129,40 @@
     }
   }
 
-  /**
-  * 1. Customize font size to be a percentage of the .euiText container's base font size (easy scaling)
-  */
   h1 {
-    @include euiTitle($euiFontSizeXXL);
+    @include euiTitle("l");
   }
 
   h2 {
-    @include euiTitle($euiFontSizeXL);
+    @include euiTitle("m");
   }
 
   h3 {
-    @include euiTitle($euiFontSizeL);
-    font-weight: $euiFontWeightMedium;
+    @include euiTitle("s");
   }
 
   h4 {
-    @include euiTitle($euiFontSize);
+    @include euiTitle("xs");
   }
 
   h5 {
-    @include euiTitle($euiFontSizeS);
+    @include euiTitle("xxs");
   }
 
   h6 {
-    @include euiTitle($euiFontSizeXS);
+    @include euiTitle("xxxs");
     text-transform: uppercase;
   }
 
   @include euiScaleText($euiFontSize);
 
   &.euiText--small {
-    @include euiFontSizeS;
+    @include fontSize($euiFontSizeS);
     @include euiScaleText($euiFontSizeS);
   }
 
   &.euiText--extraSmall {
-    @include euiFontSizeXS;
+    @include fontSize($euiFontSizeXS);
     @include euiScaleText($euiFontSizeXS);
   }
 

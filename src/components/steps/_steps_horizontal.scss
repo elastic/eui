@@ -89,7 +89,7 @@
 
 .euiStepHorizontal__title {
   display: block;
-  @include euiTitle($euiFontSize);
+  @include euiTitle("xs");
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
 

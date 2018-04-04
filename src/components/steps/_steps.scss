@@ -13,7 +13,7 @@
   }
 
   .euiStep__title {
-    font-weight: $euiFontWeightRegular;
+    font-weight: $euiFontWeightMid;
 
     &::before {
       content: attr(data-step-num); // Get the number from the data attribute
@@ -26,7 +26,7 @@
 
   .euiStep__content {
     border-left: $euiBorderThick;
-    padding: $euiSize;
+    padding: $euiSize $euiSize $euiSizeXL;
     margin: $euiSizeS 0;
 
     // Align the content's contents with the title

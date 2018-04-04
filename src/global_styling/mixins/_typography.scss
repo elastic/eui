@@ -10,47 +10,43 @@
   font-family: $euiCodeFontFamily;
 }
 
-@mixin euiTitle($fontSize: null) {
-  $font-weight: $euiFontWeightMedium;
-  $line-height: 1.25;
-
-  @if $fontSize {
-    @include fontSize($fontSize);
-
-    @if ($fontSize > $euiFontSizeL) {
-      $font-weight: $euiFontWeightLight;
-    }
-
-    @if ($fontSize < $euiFontSizeXL) {
-      $font-weight: $euiFontWeightRegular;
-    }
-
-    @if ($fontSize < $euiFontSizeL) {
-      $font-weight: $euiFontWeightMedium;
-      $line-height: $euiLineHeight;
-    }
-
-    @if ($fontSize < $euiFontSizeS) {
-      $font-weight: $euiFontWeightBold;
-    }
-  }
-
-  font-weight: $font-weight;
-  line-height: $line-height;
-  color: $euiTitleColor;
-}
-
 @mixin euiText {
   color: $euiTextColor;
   font-weight: $euiFontWeightRegular;
 }
 
-// Font sizing extends, using rem mixin
+@mixin euiTitle($size: "m") {
+  color: $euiTitleColor;
 
-@mixin euiFontSize {
-  @include fontSize($euiFontSize);
-  line-height: $euiLineHeight;
+  @if $size == "xxxs" {
+    @include euiFontSizeXS;
+    font-weight: $euiFontWeightBold;
+    @include lineHeight(3);
+  } @else if $size == "xxs" {
+    @include euiFontSizeS;
+    font-weight: $euiFontWeightBold;
+    @include lineHeight(3);
+  } @else if $size == "xs" {
+    @include euiFontSize;
+    font-weight: $euiFontWeightMedium;
+    @include lineHeight(3);
+  } @else if $size == "s" {
+    @include euiFontSizeL;
+    font-weight: $euiFontWeightMedium;
+    @include lineHeight(4);
+  } @else if $size == "m" {
+    @include euiFontSizeXL;
+    @include lineHeight(5);
+  } @else if $size == "l" {
+    @include euiFontSizeXXL;
+    @include lineHeight(6);
+  } @else {
+    @include fontSize($size);
+    @include lineHeight(3);
+  }
 }
+
+// Font sizing extends, using rem mixin
 
 @mixin euiFontSizeXS {
   @include fontSize($euiFontSizeXS);
@@ -74,15 +70,17 @@
 
 @mixin euiFontSizeL {
   @include fontSize($euiFontSizeL);
-  line-height: 1.2;
+  line-height: $euiLineHeight;
 }
 
 @mixin euiFontSizeXL {
   @include fontSize($euiFontSizeXL);
-  line-height: 1.2;
+  line-height: 1.25;
+  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
-  line-height: 1.2;
+  line-height: 1.25;
+  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
 }

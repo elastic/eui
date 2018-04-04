@@ -3,7 +3,7 @@
   &.euiDescriptionList--row {
 
     .euiDescriptionList__title {
-      @include euiTitle($euiFontSize);
+      @include euiTitle("xs");
       margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
@@ -29,7 +29,7 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiTitle($euiFontSizeS);
+        @include euiTitle("xxs");
       }
 
       .euiDescriptionList__description {
@@ -54,7 +54,7 @@
     }
 
     .euiDescriptionList__title {
-      @include euiTitle($euiFontSize);
+      @include euiTitle("xs");
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
@@ -76,7 +76,7 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiTitle($euiFontSizeS);
+        @include euiTitle("xxs");
       }
 
       .euiDescriptionList__description {

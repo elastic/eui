@@ -94,7 +94,7 @@
     }
 
     .euiSideNavItemButton__label {
-      @include euiTitle($euiFontSize);
+      @include euiTitle("xs");
     }
   }
 

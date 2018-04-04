@@ -9,25 +9,25 @@
 }
 
 .euiTitle--xxxsmall {
-  @include euiTitle($euiFontSizeXS);
+  @include euiTitle("xxxs");
 }
 
 .euiTitle--xxsmall {
-  @include euiTitle($euiFontSizeS);
+  @include euiTitle("xxs");
 }
 
 .euiTitle--xsmall {
-  @include euiTitle($euiFontSize);
+  @include euiTitle("xs");
 }
 
 .euiTitle--small {
-  @include euiTitle($euiFontSizeL);
+  @include euiTitle("s");
 }
 
 .euiTitle--medium {
-  @include euiTitle($euiFontSizeXL);
+  @include euiTitle("m");
 }
 
 .euiTitle--large {
-  @include euiTitle($euiFontSizeXXL);
+  @include euiTitle("l");
 }
