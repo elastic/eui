@@ -6,6 +6,10 @@
 
 **Breaking changes**
 
+- Support values on radio inputs. This is breaking because now the second argument to the radio `onChange` callback is the value, which bumps the change event to the third argument ([#613](https://github.com/elastic/eui/pull/613))
+
+**Breaking changes**
+
 - `EuiSelect` can pass any node as a value rather than just a string ([603](https://github.com/elastic/eui/pull/603))
 
 # [`0.0.38`](https://github.com/elastic/eui/tree/v0.0.38)

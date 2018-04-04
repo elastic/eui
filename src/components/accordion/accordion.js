@@ -31,13 +31,9 @@ export class EuiAccordion extends Component {
   }
 
   onToggle() {
-    const isOpen = !this.state.isOpen;
-    this.setState({
-      isOpen: isOpen,
-    });
-
-    const height = isOpen ? this.childContent.clientHeight : 0;
-    this.childWrapper.setAttribute('style', `height: ${height}px`);
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
   }
 
   render() {

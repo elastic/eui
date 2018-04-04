@@ -24,7 +24,7 @@ export const EuiRadioGroup = ({
           label={option.label}
           value={option.value}
           disabled={disabled}
-          onChange={onChange.bind(null, option.value || option.id)}
+          onChange={onChange.bind(null, option.id, option.value)}
         />
       );
     })}

@@ -99,10 +99,11 @@ describe('EuiRadioGroup', () => {
       component.find('input[id="2"]').simulate('change')
 
       expect(callback.mock.calls.length).toEqual(1);
-      expect(callback.mock.calls[0].length).toBeGreaterThan(0);
-      // Only check the first argument - the callback is also invoked with
-      // the event, but that's not assert-able.
+      expect(callback.mock.calls[0].length).toEqual(3);
+
       expect(callback.mock.calls[0][0]).toEqual('2');
+      expect(callback.mock.calls[0][1]).toBeUndefined();
+      // The callback is also invoked with the event, but that's not assert-able.
     });
 
     test('value is used in callbacks when available', () => {
@@ -122,10 +123,11 @@ describe('EuiRadioGroup', () => {
       component.find('input[id="2"]').simulate('change')
 
       expect(callback.mock.calls.length).toEqual(1);
-      expect(callback.mock.calls[0].length).toBeGreaterThan(0);
-      // Only check the first argument - the callback is also invoked with
-      // the event, but that's not assert-able.
-      expect(callback.mock.calls[0][0]).toEqual('Value #2');
+      expect(callback.mock.calls[0].length).toEqual(3);
+
+      expect(callback.mock.calls[0][0]).toEqual('2');
+      expect(callback.mock.calls[0][1]).toEqual('Value #2');
+      // The callback is also invoked with the event, but that's not assert-able.
     });
   });
 });
