@@ -34,7 +34,6 @@ export class EuiComboBoxOptionsList extends Component {
     getSelectedOptionForSearchValue: PropTypes.func,
     updatePosition: PropTypes.func.isRequired,
     position: PropTypes.oneOf(POSITIONS),
-    style: PropTypes.object,
     listRef: PropTypes.func.isRequired,
     renderOption: PropTypes.func,
   }

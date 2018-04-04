@@ -29,7 +29,7 @@ declare module '@elastic/eui' {
 
   export type FlexGroupGutterSize = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
   export type FlexGroupAlignItems =
-    | 'strech'
+    | 'stretch'
     | 'flexStart'
     | 'flexEnd'
     | 'center';
