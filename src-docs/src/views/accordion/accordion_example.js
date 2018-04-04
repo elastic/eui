@@ -27,6 +27,10 @@ import AccordionOpen from './accordion_open';
 const accordionOpenSource = require('!!raw-loader!./accordion_open');
 const accordionOpenHtml = renderToHtml(AccordionOpen);
 
+import AccordionGrow from './accordion_grow';
+const accordionGrowSource = require('!!raw-loader!./accordion_grow');
+const accordionGrowHtml = renderToHtml(AccordionGrow);
+
 export const AccordionExample = {
   title: 'Accordion',
   sections: [{
@@ -94,6 +98,22 @@ export const AccordionExample = {
       </p>
     ),
     demo: <AccordionOpen />,
+  }, {
+    title: 'Accordion content can dynamically change height',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: accordionGrowSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: accordionGrowHtml,
+    }],
+    text: (
+      <p>
+        If an accordion&rsquo;s content changes height while the accordion is open,
+        it will resize dynamically.
+      </p>
+    ),
+    demo: <AccordionGrow />,
   }, {
     title: 'Accordion for forms',
     source: [{
