@@ -175,6 +175,11 @@
 
     &.euiTableRowCell--isMobileFullWidth {
       width: 100%;
+
+      .euiTableCellContent--alignCenter {
+        justify-content: center;
+        text-align: center;
+      }
     }
   }
 

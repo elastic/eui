@@ -1,17 +1,16 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button/button_empty';
 import { EuiPopover } from '../../popover';
 import { EuiContextMenuPanel } from '../../context_menu';
+import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 export class EuiTableSortMobile extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
+    items: PropTypes.array,
   }
 
   constructor(props) {
@@ -36,9 +35,8 @@ export class EuiTableSortMobile extends Component {
 
   render() {
     const {
-      children,
       className,
-      anchorPosition,
+      items,
       ...rest
     } = this.props;
 
@@ -65,14 +63,29 @@ export class EuiTableSortMobile extends Component {
         ownFocus
         button={mobileSortButton}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
-        anchorPosition={anchorPosition || "downRight"}
+        closePopover={this.closePopover}
+        anchorPosition="downRight"
         panelPaddingSize="none"
         {...rest}
       >
         <EuiContextMenuPanel
           style={{ minWidth: 200 }}
-          items={children}
+          items={items && items.length ? items.map(item => {
+            return (
+              <EuiTableSortMobileItem
+                key={item.key}
+                onSort={() => {
+                  item.onSort();
+                  this.closePopover();
+                }}
+                isSorted={item.isSorted}
+                isSortAscending={item.isSortAscending}
+                hideForMobile={item.hideForMobile}
+              >
+                {item.name}
+              </EuiTableSortMobileItem>
+            );
+          }) : null}
         />
       </EuiPopover>
     );

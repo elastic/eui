@@ -15,34 +15,31 @@ export const EuiTableSortMobileItem = ({
   ...rest
 }) => {
 
-  if (onSort) {
-    let sortIcon = 'empty';
-    if (isSorted) {
-      sortIcon = isSortAscending ? 'sortUp' : 'sortDown';
-    }
+  let sortIcon = 'empty';
+  if (isSorted) {
+    sortIcon = isSortAscending ? 'sortUp' : 'sortDown';
+  }
 
-    const buttonClasses = classNames('euiTableSortMobileItem', className, {
-      'euiTableSortMobileItem-isSorted': isSorted,
-      'euiTableSortMobileItem--hideForMobile': hideForMobile,
-    });
+  const buttonClasses = classNames('euiTableSortMobileItem', className, {
+    'euiTableSortMobileItem-isSorted': isSorted,
+    'euiTableSortMobileItem--hideForMobile': hideForMobile,
+  });
 
     const columnTitle = ariaLabel ? ariaLabel : children;
     const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
 
-    return (
-      <EuiContextMenuItem
-        className={buttonClasses}
-        icon={sortIcon}
-        onClick={onSort}
-        aria-label={statefulAriaLabel}
-        {...rest}
-      >
-        {children}
-      </EuiContextMenuItem>
-    );
-  }
+  return (
+    <EuiContextMenuItem
+      className={buttonClasses}
+      icon={sortIcon}
+      onClick={onSort}
+      aria-label={statefulAriaLabel}
+      {...rest}
+    >
+      {children}
+    </EuiContextMenuItem>
+  );
 
-  return null;
 };
 
 EuiTableSortMobileItem.propTypes = {

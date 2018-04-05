@@ -27,7 +27,6 @@ import {
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
-  EuiTableSortMobileItem,
   EuiTableHeaderMobile,
 } from '../../../../../src/components';
 
@@ -356,34 +355,38 @@ export default class extends Component {
     );
   }
 
-  renderHeaderCells(mobile) {
-    return this.columns.map((column, columnIndex) => {
-      if (column.isCheckbox) {
-        if (!mobile) {
-          return (
-            <EuiTableHeaderCellCheckbox
-              key={column.id}
-              width={column.width}
-            >
-              {this.renderSelectAll()}
-            </EuiTableHeaderCellCheckbox>
-          );
-        }
+  getTableMobileSortItems() {
+    const items = [];
+    this.columns.forEach((column) => {
+      if (column.isCheckbox || !column.isSortable) {
+        return;
       }
+      items.push({
+        name: column.label,
+        key: column.id,
+        onSort: this.onSort.bind(this, column.id),
+        isSorted: this.state.sortedColumn === column.id,
+        isSortAscending: this.sortableProperties.isAscendingByName(column.id),
+      });
+    });
+    return items.length ? items : null;
+  }
 
-      if (mobile) {
-        return (
-          <EuiTableSortMobileItem
+  renderHeaderCells() {
+    const headers = [];
+
+    this.columns.forEach((column, columnIndex) => {
+      if (column.isCheckbox) {
+        headers.push(
+          <EuiTableHeaderCellCheckbox
             key={column.id}
-            onSort={column.isSortable ? this.onSort.bind(this, column.id) : undefined}
-            isSorted={this.state.sortedColumn === column.id}
-            isSortAscending={this.sortableProperties.isAscendingByName(column.id)}
+            width={column.width}
           >
-            {column.label}
-          </EuiTableSortMobileItem>
+            {this.renderSelectAll()}
+          </EuiTableHeaderCellCheckbox>
         );
       } else {
-        return (
+        headers.push(
           <EuiTableHeaderCell
             key={column.id}
             align={this.columns[columnIndex].alignment}
@@ -398,6 +401,8 @@ export default class extends Component {
         );
       }
     });
+
+    return headers.length ? headers : null;
   }
 
   renderRows() {
@@ -557,9 +562,7 @@ export default class extends Component {
           <EuiFlexGroup responsive={false} justifyContent="spaceBetween" alignItems="baseline">
             <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiTableSortMobile anchorPosition="downRight">
-                {this.renderHeaderCells(true)}
-              </EuiTableSortMobile>
+              <EuiTableSortMobile items={this.getTableMobileSortItems()} />
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiTableHeaderMobile>
