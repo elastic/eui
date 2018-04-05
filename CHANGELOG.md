@@ -1,5 +1,7 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
+- Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
+
 **Bug fixes**
 
 - Fix visual shadow glitch on hover of `EuiToast` ([#632](https://github.com/elastic/eui/pull/632))
