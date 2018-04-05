@@ -89,9 +89,9 @@
 
 .euiStepHorizontal__title {
   display: block;
-  @include euiTitle;
-  @include euiFontSize;
+  @include euiTitle("xs");
   margin-top: $euiSizeS;
+  font-weight: $euiFontWeightRegular;
 
   // truncate
   white-space: nowrap;  /* 1 */

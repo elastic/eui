@@ -69,7 +69,6 @@ $toastTypes: (
  * 3. Account for close button.
  */
 .euiToastHeader {
-  @include euiFontSize;
   padding-right: $euiSizeL; /* 3 */
 
   display: flex;
@@ -90,7 +89,7 @@ $toastTypes: (
   }
 
   .euiToastHeader__title {
-    color: $euiTitleColor;
+    @include euiTitle("s");
     font-weight: $euiFontWeightLight;
   }
 

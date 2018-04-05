@@ -15,7 +15,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       Step
     </span>
     <h2
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="1"
     >
       first title
@@ -37,7 +37,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       Step
     </span>
     <h2
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="2"
     >
       second title
@@ -59,7 +59,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       Step
     </span>
     <h2
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="3"
     >
       third title
@@ -90,7 +90,7 @@ exports[`EuiSteps renders steps 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="1"
     >
       first title
@@ -112,7 +112,7 @@ exports[`EuiSteps renders steps 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="2"
     >
       second title
@@ -134,7 +134,7 @@ exports[`EuiSteps renders steps 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="3"
     >
       third title
@@ -165,7 +165,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="10"
     >
       first title
@@ -187,7 +187,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="11"
     >
       second title
@@ -209,7 +209,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       Step
     </span>
     <p
-      class="euiTitle euiStep__title"
+      class="euiTitle euiTitle--small euiStep__title"
       data-step-num="12"
     >
       third title

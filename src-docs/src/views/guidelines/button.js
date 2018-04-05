@@ -65,7 +65,7 @@ export default() => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Filled buttons are for the primary action</strong>
+            Filled buttons are for the primary action
           </h4>
           <p>
             This button has the heavist visual weight to draw users&apos; attention.
@@ -86,7 +86,7 @@ export default() => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Standard buttons are for secondary actions</strong>
+            Standard buttons are for secondary actions
           </h4>
           <p>
             Such actions include Add and Apply. This button type works well for
@@ -108,7 +108,7 @@ export default() => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Empty buttons are for complimentary, UI-specific actions</strong>
+            Empty buttons are for complimentary, UI-specific actions
           </h4>
           <p>
             Close, cancel, filter, refresh, and other actions that reconfigure the
@@ -136,7 +136,7 @@ export default() => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            <strong>Icon buttons are for saving space</strong>
+            Icon buttons are for saving space
           </h4>
           <p>
             The icon must be immediately understood, for example, a trash can
@@ -253,7 +253,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="xl" />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>One primary button per layout</GuideRuleTitle>
 
@@ -360,7 +360,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiSpacer size="l" />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 

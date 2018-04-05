@@ -70,6 +70,24 @@ export default () => (
         So it thought the dog was making a poor life choice by focusing so much on mindfulness.
         What if its car broke down?
       </p>
+
+      <h4>This is Heading Four</h4>
+
+      <p>
+        So it thought the dog was making a poor life choice by focusing so much on mindfulness.
+        What if its car broke down?
+      </p>
+
+      <h5>This is Heading Five</h5>
+
+      <p>
+        <small>
+          So it thought the dog was making a poor life choice by focusing so much on mindfulness.
+          What if its car broke down?
+        </small>
+      </p>
+
+      <h6>This is Heading Six</h6>
     </EuiText>
   </div>
 );

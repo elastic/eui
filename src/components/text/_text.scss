@@ -1,6 +1,80 @@
+// This should only be used for .euiText, therefore it's not included in a separate mixin file
+@mixin euiScaleText($baseFontSize) {
+  $baseLineHeightMultiplier: $baseFontSize/2;
+  line-height: convertToRem($baseLineHeightMultiplier*3);
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  img {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
+  }
+
+  ul, ol {
+    margin-left: convertToRem($baseLineHeightMultiplier * 3);
+  }
+
+  blockquote {
+    padding:  convertToRem($baseFontSize * 1.5);
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 4));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 1);
+  }
+
+  * + h2,
+  * + h3,
+  * + h4,
+  * + h5,
+  * + h6 {
+    margin-top: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  h1 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 1));
+    line-height: convertToRem($baseLineHeightMultiplier * 6);
+  }
+
+  h2 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 2));
+    line-height: convertToRem($baseLineHeightMultiplier * 5);
+  }
+
+  h3 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 3));
+    line-height: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  h4 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
+  }
+
+  h5 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
+  }
+
+  h6 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
+  }
+
+  small {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+  }
+}
+
 .euiText {
   @include euiText;
   @include euiFontSize;
+  max-width: 36rem;
 
   a {
     color: $euiLinkColor;
@@ -16,22 +90,12 @@
     width: 100%;
   }
 
-  p,
-  ul,
-  ol,
-  blockquote,
-  img {
-    margin-bottom: $euiSizeL;
-  }
-
   ul {
     list-style: disc;
-    margin-left: $euiSizeL;
   }
 
   ol {
     list-style: decimal;
-    margin-left: $euiSizeL;
   }
 
   blockquote {
@@ -39,10 +103,7 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding: $euiSizeL;
-    max-width: 36rem;
     font-family: Georgia,Times,Times New Roman,serif;
-    font-size: 112.5%;
     line-height: 1.5;
     font-style: italic;
 
@@ -68,88 +129,41 @@
     }
   }
 
-  * + h1,
-  * + h2,
-  * + h3,
-  * + h4,
-  * + h5,
-  * + h6 {
-    margin-top: $euiSizeXL
-  }
-
-  h1,h2,h3,h4,h5,h6 {
-    @include euiTitle;
-    margin-bottom: $euiSizeS;
-  }
-
   h1 {
-    font-size: 200%;
+    @include euiTitle("l");
   }
 
   h2 {
-    font-size: 150%;
-    line-height: $euiSizeXL;
+    @include euiTitle("m");
   }
 
   h3 {
-    font-size: 112.5%;
+    @include euiTitle("s");
   }
 
-  h3, h4, h5 {
-    font-weight: $euiFontWeightMedium;
+  h4 {
+    @include euiTitle("xs");
   }
+
+  h5 {
+    @include euiTitle("xxs");
+  }
+
+  h6 {
+    @include euiTitle("xxxs");
+    text-transform: uppercase;
+  }
+
+  @include euiScaleText($euiFontSize);
 
   &.euiText--small {
-    @include euiFontSizeS;
-
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6 {
-      margin-top: $euiSizeL;
-    }
-
-    p,
-    ul,
-    ol,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    img {
-      margin-bottom: $euiFontSizeS;
-    }
+    @include fontSize($euiFontSizeS);
+    @include euiScaleText($euiFontSizeS);
   }
 
   &.euiText--extraSmall {
-    @include euiFontSizeXS;
-
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6 {
-      margin-top: $euiSizeM;
-    }
-
-    p,
-    ul,
-    ol,
-    blockquote,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    img {
-      margin-bottom: $euiFontSizeS;
-    }
+    @include fontSize($euiFontSizeXS);
+    @include euiScaleText($euiFontSizeXS);
   }
 
   > :last-child {

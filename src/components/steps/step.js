@@ -27,7 +27,7 @@ export const EuiStep = ({
 
       <EuiScreenReaderOnly><span>Step</span></EuiScreenReaderOnly>
 
-      <EuiTitle className="euiStep__title" data-step-num={step}>
+      <EuiTitle size="s" className="euiStep__title" data-step-num={step}>
         {React.createElement(headingElement, null, title)}
       </EuiTitle>
 

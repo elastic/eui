@@ -1,12 +1,33 @@
 .euiTitle {
-  @include euiTitle;
-  @include euiFontSizeL;
+  + .euiTitle {
+    margin-top: $euiSizeL;
+  }
+}
+
+.euiTitle--uppercase {
+  text-transform: uppercase;
+}
+
+.euiTitle--xxxsmall {
+  @include euiTitle("xxxs");
+}
+
+.euiTitle--xxsmall {
+  @include euiTitle("xxs");
+}
+
+.euiTitle--xsmall {
+  @include euiTitle("xs");
 }
 
 .euiTitle--small {
-  @include euiFontSizeM;
+  @include euiTitle("s");
+}
+
+.euiTitle--medium {
+  @include euiTitle("m");
 }
 
 .euiTitle--large {
-  @include euiFontSizeXL;
+  @include euiTitle("l");
 }

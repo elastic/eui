@@ -40,7 +40,8 @@ $callOutTypes: (
  * 3. Apply margin to all but last item in the flex.
  */
 .euiCallOutHeader {
-  @include euiFontSize;
+  @include euiTitle("xs");
+  font-weight: $euiFontWeightRegular;
   display: flex;
   align-items: baseline; /* 1 */
 
@@ -54,7 +55,8 @@ $callOutTypes: (
 
   // smaller font size for headers in small callout
   .euiCallOut--small & {
-    @include euiFontSizeS;
+    @include euiTitle("xxs");
+    font-weight: $euiFontWeightRegular;
   }
 }
 

@@ -132,12 +132,12 @@ export default () => (
     >
 
       <GuideRuleExample type="do">
-        <EuiText><h2>Edit saved objects</h2></EuiText>
+        <EuiText><h4>Edit saved objects</h4></EuiText>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
         <EuiText>
-          <h2>Edit saved objects</h2>
+          <h4>Edit saved objects</h4>
           <p>From here, you can edit saved objects. To get started, follow these steps.</p>
         </EuiText>
       </GuideRuleExample>
@@ -341,7 +341,7 @@ export default () => (
         A title-only message is ok."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
+        <EuiTitle size="xs"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
         <EuiSpacer/>
         <EuiText>
           <p>
@@ -352,7 +352,7 @@ export default () => (
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s"><span>Uh-oh!</span></EuiTitle>
+        <EuiTitle size="xs"><span>Uh-oh!</span></EuiTitle>
         <EuiSpacer/>
         <EuiText>
           <p>
@@ -381,7 +381,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -392,7 +392,7 @@ export default () => (
 
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Are you sure you want to delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Are you sure you want to delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -506,7 +506,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -516,7 +516,7 @@ export default () => (
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -547,10 +547,10 @@ export default () => (
       description="Losing data and other situations that might frustrate the user are not a time for humor."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s"><span>No results matched your search</span></EuiTitle>
+        <EuiTitle size="xs"><span>No results matched your search</span></EuiTitle>
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
+        <EuiTitle size="xs"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
         <EuiSpacer />
         <EuiText>
           <p>

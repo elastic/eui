@@ -32,7 +32,7 @@ $euiModalBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // ma
 }
 
   .euiModalHeader__title {
-    @include euiFontSizeL;
+    @include euiTitle("m");
   }
 
 .euiModalBody {

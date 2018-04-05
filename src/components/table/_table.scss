@@ -26,11 +26,12 @@
 
 .euiTableHeaderCell {
   @include euiTableCell;
-
-  color: $euiTitleColor;
+  @include euiTitle("xxs");
+  font-weight: $euiFontWeightMedium;
 
   .euiTableHeaderButton {
     text-align: left;
+    font-weight: $euiFontWeightMedium;
   }
 }
 

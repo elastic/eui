@@ -11,19 +11,22 @@
   .euiTitle {
     line-height: $euiStepNumberSize; /* 1 */
   }
-}
 
-  .euiStep__title::before {
-    content: attr(data-step-num); // Get the number from the data attribute
-    @include createStepsNumber();
+  .euiStep__title {
+    font-weight: $euiFontWeightMedium;
 
-    margin-right: $euiStepNumberMargin;
-    vertical-align: top; /* 1 */
+    &::before {
+      content: attr(data-step-num); // Get the number from the data attribute
+      @include createStepsNumber();
+
+      margin-right: $euiStepNumberMargin;
+      vertical-align: top; /* 1 */
+    }
   }
 
   .euiStep__content {
     border-left: $euiBorderThick;
-    padding: $euiSize;
+    padding: $euiSize $euiSize $euiSizeXL;
     margin: $euiSizeS 0;
 
     // Align the content's contents with the title
@@ -32,5 +35,5 @@
     // Align content border to horizontal center of step number
     margin-left: ($euiStepNumberSize/2) - 1px;
   }
-
+}
 

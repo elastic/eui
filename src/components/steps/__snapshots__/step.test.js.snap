@@ -12,7 +12,7 @@ exports[`EuiStep is rendered 1`] = `
     Step
   </span>
   <h3
-    class="euiTitle euiStep__title"
+    class="euiTitle euiTitle--small euiStep__title"
     data-step-num="1"
   >
     First step
