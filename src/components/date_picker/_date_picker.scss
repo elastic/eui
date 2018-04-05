@@ -82,7 +82,6 @@ $datepicker__time-width: auto !default;
 }
 
 .react-datepicker-wrapper {
-  display: inline-block;
 }
 
 .react-datepicker {
@@ -92,8 +91,9 @@ $datepicker__time-width: auto !default;
   color: $datepicker__text-color;
   border: 1px solid $datepicker__border-color;
   border-radius: $datepicker__border-radius;
-  display: inline-block;
+  display: flex;
   position: relative;
+  @include euiBottomShadowMedium;
 }
 
 .react-datepicker--time-only {
@@ -121,9 +121,9 @@ $datepicker__time-width: auto !default;
 
 .react-datepicker-popper {
   z-index: 1;
+  animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
 
   &[data-placement^="bottom"] {
-    margin-top: $datepicker__triangle-size + 2px;
 
     .react-datepicker__triangle {
       @extend %triangle-arrow-up;
@@ -131,7 +131,6 @@ $datepicker__time-width: auto !default;
   }
 
   &[data-placement^="top"] {
-    margin-bottom: $datepicker__triangle-size + 2px;
 
     .react-datepicker__triangle {
       @extend %triangle-arrow-down;
@@ -268,7 +267,7 @@ $datepicker__time-width: auto !default;
 }
 
 .react-datepicker__month {
-  margin: $datepicker__margin;
+  margin: 0 $datepicker__margin $datepicker__margin $datepicker__margin;
   text-align: center;
 }
 
@@ -287,32 +286,32 @@ $datepicker__time-width: auto !default;
 
   .react-datepicker__time {
     position: relative;
-    background: white;
+    background: $euiColorLightestShade;
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
 
     .react-datepicker__time-box {
       width: $datepicker__time-width;
-      overflow-x: hidden;
-      margin: 0 auto;
-      text-align: center;
+      padding: $euiSize 0 $euiSize $euiSizeXS;
       ul.react-datepicker__time-list {
-        list-style: none;
-        margin: 0;
-        height: calc(195px + (#{$datepicker__item-size} / 2));
+        height: 204px !important;
         overflow-y: scroll;
-        padding-right: 30px;
-        width: 100%;
-        box-sizing: content-box;
+        @include euiScrollBar;
 
         li.react-datepicker__time-list-item {
-          padding: 5px 10px;
+          padding: $euiSizeXS $euiSizeS;
+          margin-bottom: $euiSizeXS;
+          text-align: right;
+          font-family: $euiCodeFontFamily;
+          color: $euiColorDarkShade;
+
           &:hover {
             cursor: pointer;
-            background-color: $datepicker__background-color;
+            text-decoration: underline;
           }
           &--selected {
             background-color: $datepicker__selected-color;
             color: white;
-            font-weight: bold;
+            border-radius: $euiBorderRadius / 2;
             &:hover {
               background-color: $datepicker__selected-color;
             }
@@ -371,10 +370,12 @@ $datepicker__time-width: auto !default;
 .react-datepicker__day {
   cursor: pointer;
   border: solid 2px transparent;
+  transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
   &:hover {
-    border-radius: $datepicker__border-radius;
-    background-color: $datepicker__background-color;
+    text-decoration: underline;
+    font-weight: $euiFontWeightBold;
+    transform: scale(1.2);
   }
 
   &--today {
@@ -449,7 +450,6 @@ $datepicker__time-width: auto !default;
 
 .react-datepicker__input-container {
   position: relative;
-  display: inline-block;
 }
 
 .react-datepicker__year-read-view,
