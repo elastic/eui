@@ -42,7 +42,7 @@ export const CallOutExample = {
           This includes general information, success, warning, and error messages.
         </p>
         <p>
-          Keep these guidelines in mind:
+          <strong>Keep these guidelines in mind:</strong>
         </p>
         <ul>
           <li>
