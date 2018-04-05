@@ -21,28 +21,28 @@
   @if $size == "xxxs" {
     @include euiFontSizeXS;
     font-weight: $euiFontWeightBold;
-    @include lineHeight(3);
+    @include lineHeightFromBaseline(3);
   } @else if $size == "xxs" {
     @include euiFontSizeS;
     font-weight: $euiFontWeightBold;
-    @include lineHeight(3);
+    @include lineHeightFromBaseline(3);
   } @else if $size == "xs" {
     @include euiFontSize;
     font-weight: $euiFontWeightMedium;
-    @include lineHeight(3);
+    @include lineHeightFromBaseline(3);
   } @else if $size == "s" {
     @include euiFontSizeL;
     font-weight: $euiFontWeightMedium;
-    @include lineHeight(4);
+    @include lineHeightFromBaseline(4);
   } @else if $size == "m" {
     @include euiFontSizeXL;
-    @include lineHeight(5);
+    @include lineHeightFromBaseline(5);
   } @else if $size == "l" {
     @include euiFontSizeXXL;
-    @include lineHeight(6);
+    @include lineHeightFromBaseline(6);
   } @else {
     @include fontSize($size);
-    @include lineHeight(3);
+    @include lineHeightFromBaseline(3);
   }
 }
 
