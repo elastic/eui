@@ -1,6 +1,6 @@
 @mixin euiPopoverTitle {
   @include euiTitle("xs");
-  font-weight: $euiFontWeightMid;
+  //font-weight: $euiFontWeightMid;
   background-color: $euiColorLightestShade;
   padding: $euiSizeM;
 

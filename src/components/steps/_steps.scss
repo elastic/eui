@@ -13,7 +13,7 @@
   }
 
   .euiStep__title {
-    font-weight: $euiFontWeightMid;
+    font-weight: $euiFontWeightMedium;
 
     &::before {
       content: attr(data-step-num); // Get the number from the data attribute
