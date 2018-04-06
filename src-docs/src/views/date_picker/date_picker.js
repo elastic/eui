@@ -14,7 +14,7 @@ export default () => (
       dateFormat="LLL"
       showYearDropdown
       showMonthDropdown
-      yearDropdownItemNumber={10}
+      yearDropdownItemNumber={9}
     />
   </EuiFormRow>
 );
