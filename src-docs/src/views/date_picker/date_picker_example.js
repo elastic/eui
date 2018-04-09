@@ -15,6 +15,10 @@ import DatePicker from './date_picker';
 const datePickerSource = require('!!raw-loader!./date_picker');
 const datePickerHtml = renderToHtml(DatePicker);
 
+import Inline from './inline';
+const inlineSource = require('!!raw-loader!./inline');
+const inlineHtml = renderToHtml(Inline);
+
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
@@ -33,5 +37,22 @@ export const DatePickerExample = {
     ),
     components: { EuiDatePicker },
     demo: <DatePicker />,
+  }, {
+    title: 'Datepicker inline',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: inlineSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: inlineHtml,
+    }],
+    text: (
+      <p>
+        The passed icon needs to come from our list of svg icons. Can be flipped {
+          // eslint-disable-next-line react/no-unescaped-entities
+        } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+      </p>
+    ),
+    demo: <Inline />,
   }],
 };

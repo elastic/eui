@@ -21,7 +21,11 @@ $datepicker__triangle-size: 0 !default;
 $datepicker__time-width: auto !default;
 
 @mixin datePicker__arrow {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
+  @if (lightness($euiColorEmptyShade) > 50) {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
+  } @else {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImRvd25hcnJvd3doaXRlLWEiIGQ9Ik0xMy4wNjg4NTA4LDUuMTU3MjUwMzggTDguMzg0MjM5NzUsOS43NjgyNzQyOCBDOC4xNzA1NDQxNSw5Ljk3ODYxMzA4IDcuODI5OTkyMTQsOS45NzkxNDA5NSA3LjYxNTc2MDI1LDkuNzY4Mjc0MjggTDIuOTMxMTQ5MTUsNS4xNTcyNTAzOCBDMi43MTgxMzU5LDQuOTQ3NTgzMjEgMi4zNzI3NzMxOSw0Ljk0NzU4MzIxIDIuMTU5NzU5OTQsNS4xNTcyNTAzOCBDMS45NDY3NDY2OSw1LjM2NjkxNzU2IDEuOTQ2NzQ2NjksNS43MDY4NTUyMiAyLjE1OTc1OTk0LDUuOTE2NTIyNCBMNi44NDQzNzEwNCwxMC41Mjc1NDYzIEM3LjQ4NTE3NDI0LDExLjE1ODI4MzYgOC41MTY0NDk3OSwxMS4xNTY2ODUxIDkuMTU1NjI4OTYsMTAuNTI3NTQ2MyBMMTMuODQwMjQwMSw1LjkxNjUyMjQgQzE0LjA1MzI1MzMsNS43MDY4NTUyMiAxNC4wNTMyNTMzLDUuMzY2OTE3NTYgMTMuODQwMjQwMSw1LjE1NzI1MDM4IEMxMy42MjcyMjY4LDQuOTQ3NTgzMjEgMTMuMjgxODY0MSw0Ljk0NzU4MzIxIDEzLjA2ODg1MDgsNS4xNTcyNTAzOCBaIi8+ICA8L2RlZnM+ICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPiAgICA8dXNlIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgeGxpbms6aHJlZj0iI2Rvd25hcnJvd3doaXRlLWEiLz4gIDwvZz48L3N2Zz4=);
+  }
 }
 
 %triangle-arrow {
@@ -84,19 +88,27 @@ $datepicker__time-width: auto !default;
   }
 }
 
+.euiDatePicker {
+  &.euiDatePicker--shadow {
+    .react-datepicker {
+      border: 1px solid $datepicker__border-color;
+      border-radius: $datepicker__border-radius;
+      @include euiBottomShadowMedium;
+    }
+  }
+}
+
 .react-datepicker-wrapper {
 }
 
 .react-datepicker {
   font-family: $datepicker__font-family;
   font-size: $datepicker__font-size;
-  background-color: #fff;
+  background-color: $euiColorEmptyShade;
   color: $datepicker__text-color;
-  border: 1px solid $datepicker__border-color;
-  border-radius: $datepicker__border-radius;
   display: flex;
   position: relative;
-  @include euiBottomShadowMedium;
+
 }
 
 .react-datepicker--time-only {
@@ -207,9 +219,13 @@ $datepicker__time-width: auto !default;
     height: 16px;
     width: 16px;
     transform: rotate(90deg);
+    transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
     &:hover {
-      border-right-color: darken($datepicker__muted-color, 10%);
+      background-color: $euiColorLightestShade;
+      border-radius: $euiBorderRadius;
+      outline: solid 2px $euiColorLightestShade;
+      transform: scale(1.2) rotate(90deg);
     }
 
     &--disabled,
@@ -231,6 +247,10 @@ $datepicker__time-width: auto !default;
     }
 
     &:hover {
+      transform: scale(1.2) rotate(-90deg);
+      background-color: $euiColorLightestShade;
+      border-radius: $euiBorderRadius;
+      outline: solid 2px $euiColorLightestShade;
     }
 
     &--disabled,
@@ -282,6 +302,7 @@ $datepicker__time-width: auto !default;
   padding: $euiSize 0;
   background: $euiColorLightestShade;
   border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+  flex-grow: 1;
 
   &--with-today-button {
     display: inline;
@@ -296,7 +317,7 @@ $datepicker__time-width: auto !default;
     position: relative;
     flex-grow: 1;
     display: flex;
-    padding-right: $euiSizeXS;
+    padding-left: $euiSizeXS;
     overflow-y: scroll;
     @include euiScrollBar;
 
@@ -391,7 +412,7 @@ $datepicker__time-width: auto !default;
     color: $euiColorPrimary;
   }
   &--outside-month {
-    color: $euiColorMediumShade;
+    color: $euiColorDarkShade;
   }
 
   &--highlighted {
@@ -462,7 +483,7 @@ $datepicker__time-width: auto !default;
 
 .react-datepicker__year-read-view {
   font-weight: $euiFontWeightLight;
-  color: $euiColorMediumShade;
+  color: $euiColorDarkShade;
 }
 
 .react-datepicker__month-read-view {
@@ -527,6 +548,13 @@ $datepicker__time-width: auto !default;
   }
 }
 
+// Strike that, reverse it Willy Wonka style
+.react-datepicker__year-dropdown {
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
 .react-datepicker__year-option {
   &:first-of-type,
   &:last-of-type {
@@ -537,10 +565,10 @@ $datepicker__time-width: auto !default;
 .react-datepicker__year-option,
 .react-datepicker__month-option,
 .react-datepicker__month-year-option {
-  flex-basis: 25%;
-  font-size: $euiSizeM;
+  font-size: $euiFontSizeS;
   padding: $euiSizeS;
   color: $euiColorDarkestShade;
+  flex-basis: 33.3%;
 
   &:first-of-type {
     border-top-left-radius: $datepicker__border-radius;

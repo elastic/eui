@@ -45,37 +45,54 @@ export class EuiDatePicker extends Component {
       fullWidth,
       isLoading,
       placeholder,
+      inline,
+      shadow,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiDatePicker',
-      'euiFieldText',
-      'euiFieldText--fullWidth': fullWidth,
-      'euiFieldText-isLoading': isLoading,
-      'euiFieldText--withIcon',
+      {
+        'euiDatePicker--shadow': shadow,
+      },
       className
     );
 
+    const datePickerClasses = classNames(
+      'euiDatePicker',
+      'euiFieldText',
+      'euiFieldText--fullWidth': fullWidth,
+      'euiFieldText-isLoading': isLoading,
+      {
+        'euiFieldText--withIcon': !inline,
+      },
+    );
+
     return (
-      <EuiFormControlLayout
-        icon="calendar"
-        fullWidth={fullWidth}
-        isLoading={isLoading}
-      >
-        <EuiValidatableControl
-          isInvalid={isInvalid}
+      <span className={classes}>
+        <EuiFormControlLayout
+          icon={inline ? null : 'calendar'}
+          fullWidth={fullWidth}
+          isLoading={isLoading}
         >
-          <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChange}
-            className={classes}
-            placeholder={placeholder}
-            inputRef={inputRef}
-            {...rest}
-          />
-        </EuiValidatableControl>
-      </EuiFormControlLayout>
+          <EuiValidatableControl
+            isInvalid={isInvalid}
+          >
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              className={datePickerClasses}
+              placeholder={placeholder}
+              inputRef={inputRef}
+              inline={inline}
+              showYearDropdown
+              showMonthDropdown
+              yearDropdownItemNumber={7}
+              {...rest}
+            />
+          </EuiValidatableControl>
+        </EuiFormControlLayout>
+      </span>
     );
   }
 }
@@ -92,4 +109,5 @@ EuiDatePicker.propTypes = {
 EuiDatePicker.defaultProps = {
   fullWidth: false,
   isLoading: false,
+  shadow: true,
 };

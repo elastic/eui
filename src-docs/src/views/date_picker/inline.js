@@ -8,13 +8,17 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFormRow label="Select a date">
+  <div>
     <EuiDatePicker
+      inline
       showTimeSelect
       dateFormat="LLL"
-      showYearDropdown
-      showMonthDropdown
-      yearDropdownItemNumber={7}
     />
-  </EuiFormRow>
+    <EuiDatePicker
+      inline
+      showTimeSelect
+      dateFormat="LLL"
+      shadow={false}
+    />
+  </div>
 );
