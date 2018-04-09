@@ -14,15 +14,23 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
+      endDate: moment(),
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeStart = this.handleChangeStart.bind(this);
+    this.handleChangeEnd = this.handleChangeEnd.bind(this);
   }
 
-  handleChange(date) {
+  handleChangeStart(date) {
     this.setState({
       startDate: date
+    });
+  }
+
+  handleChangeEnd(date) {
+    this.setState({
+      endDate: date
     });
   }
 
@@ -31,18 +39,19 @@ export default class extends Component {
       <div>
         <EuiDatePicker
           selected={this.state.startDate}
-          onChange={this.handleChange}
-          inline
+          onChange={this.handleChangeStart}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
           showTimeSelect
           dateFormat="LLL"
         />
         <EuiDatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          inline
+          selected={this.state.endDate}
+          onChange={this.handleChangeEnd}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
           showTimeSelect
           dateFormat="LLL"
-          shadow={false}
         />
       </div>
     );

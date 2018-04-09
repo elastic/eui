@@ -16,11 +16,6 @@ import {
 } from '../form/validatable_control';
 
 export class EuiDatePicker extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-
   constructor(props) {
     super(props);
 
@@ -79,8 +74,6 @@ export class EuiDatePicker extends Component {
             isInvalid={isInvalid}
           >
             <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChange}
               className={datePickerClasses}
               placeholder={placeholder}
               inputRef={inputRef}

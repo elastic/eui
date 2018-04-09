@@ -88,12 +88,19 @@ $datepicker__time-width: auto !default;
   }
 }
 
+// Some wrapping cascade is needed in a couple rare cases. This is the only
+// "new" selectors added to this sass.
+
 .euiDatePicker {
   &.euiDatePicker--shadow {
     .react-datepicker {
       border: 1px solid $datepicker__border-color;
       border-radius: $datepicker__border-radius;
       @include euiBottomShadowMedium;
+    }
+
+    .react-datepicker__time-container {
+        background: $euiColorLightestShade;
     }
   }
 }
@@ -300,7 +307,6 @@ $datepicker__time-width: auto !default;
   width: $datepicker__time-width;
   display: flex;
   padding: $euiSize 0;
-  background: $euiColorLightestShade;
   border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
   flex-grow: 1;
 
@@ -434,11 +440,27 @@ $datepicker__time-width: auto !default;
 
   }
 
-  &--selected,
-  &--in-selecting-range,
   &--in-range {
+    background-color: transparentize($datepicker__selected-color, .9);
+    color: $euiColorFullShade;
+    border-radius: 0;
+    border-top: solid 6px $euiColorEmptyShade;
+    border-bottom: solid 6px $euiColorEmptyShade;
+    border-right: none;
+    border-left: none;
+    line-height: 20px;
+  }
+
+  &--selected,
+  &--range-start,
+  &--range-end,
+  &--in-selecting-range {
+    height: $euiSizeXL;
+    margin: 0 $euiSizeXS / 2;
     border-radius: $datepicker__border-radius;
     background-color: $datepicker__selected-color;
+    line-height: 28px;
+    border: solid 2px $euiColorPrimary;
     color: #fff;
 
     &:hover {
