@@ -31,8 +31,8 @@ export class Random {
     return values[Math.floor(this._rand() * values.length)];
   }
 
-  first(values) {
-    return values[0];
+  oneToOne(values, index) {
+    return values[index];
   }
 
   setOf(values, options) {
