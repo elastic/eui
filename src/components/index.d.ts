@@ -13,3 +13,6 @@
 /// <reference path="./link/index.d.ts" />
 /// <reference path="./loading/index.d.ts" />
 /// <reference path="./progress/index.d.ts" />
+/// <reference path="./portal/index.d.ts" />
+/// <reference path="./title/index.d.ts" />
+/// <reference path="./text/index.d.ts" />
