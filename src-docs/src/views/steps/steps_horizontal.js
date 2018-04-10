@@ -13,13 +13,16 @@ const horizontalSteps = [
   {
     title: 'Selected Step 2',
     isSelected: true,
+    onClick: () => window.alert('Step 2 clicked')
   },
   {
-    title: 'Incomplete Step 3',
+    title: 'Incomplete Step 3 which will wrap to the next line',
+    onClick: () => window.alert('Step 3 clicked')
   },
   {
     title: 'Disabled Step 4',
     disabled: true,
+    onClick: () => window.alert('Step 4 clicked')
   },
 ];
 

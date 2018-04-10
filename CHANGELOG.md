@@ -4,6 +4,11 @@
 - Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
 - Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))
 - Close `EuiComboBox` `singleSelection` options list when option is choosen ([#645](https://github.com/elastic/eui/pull/645))
+- Wrap `EuiHorizontalStep` text instead of truncating it ([#653](https://github.com/elastic/eui/pull/653))
+
+**Breaking changes**
+
+- `EuiHorizontalSteps` now requires an `onClick` prop be provided for each step configuration object ([#653](https://github.com/elastic/eui/pull/653))
 
 ## [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 

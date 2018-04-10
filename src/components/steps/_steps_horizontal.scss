@@ -4,8 +4,7 @@
 }
 
 /**
- * 1. Ensure the title truncates instead of wraps
- * 2. Ensure the connecting lines stays behind the number
+ * 1. Ensure the connecting lines stays behind the number
  */
 
 .euiStepsHorizontal {
@@ -20,11 +19,15 @@
   flex-grow: 1;
   flex-basis: 0%;
   padding: $euiSizeL $euiSize $euiSize;
-  overflow: hidden; /* 1 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
 
   // focus & hover state
   &:focus,
-  &:hover:not(:disabled) {
+  &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {
       background: $euiColorPrimary;
       color: $euiColorEmptyShade;
@@ -39,7 +42,7 @@
   }
 
   // disabled state
-  &[disabled] {
+  &.euiStepHorizontal-isDisabled {
     cursor: not-allowed;
   }
 
@@ -51,9 +54,9 @@
     position: absolute;
     width: 50%;
     height: 1px;
-    top: $euiSizeL + $euiStepNumberSize/2;
+    top: $euiSizeL + ($euiStepNumberSize / 2);
     background-color: $euiColorLightShade;
-    z-index: $euiZLevel0; /* 2 */
+    z-index: $euiZLevel0; /* 1 */
   }
 
   &::before {
@@ -76,8 +79,8 @@
 
 .euiStepHorizontal__number {
   @include createStepsNumber;
-  position: relative; /* 2 */
-  z-index: $euiZLevel1; /* 2 */
+  position: relative; /* 1 */
+  z-index: $euiZLevel1; /* 1 */
   transition: all $euiAnimSpeedFast ease-in-out;
 
   // if it contains an icon, it needs to shift up a couple px
@@ -88,17 +91,12 @@
 }
 
 .euiStepHorizontal__title {
-  display: block;
   @include euiTitle("xs");
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
+  text-align: center;
 
-  // truncate
-  white-space: nowrap;  /* 1 */
-  overflow: hidden;  /* 1 */
-  text-overflow: ellipsis;  /* 1 */
-
-  .euiStepHorizontal:disabled & {
+  .euiStepHorizontal-isDisabled & {
     color: $euiColorDarkShade;
   }
 }
