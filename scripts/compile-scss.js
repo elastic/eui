@@ -1,53 +1,75 @@
+const path = require('path');
 const util = require('util');
-const writeFile = util.promisify(require('fs').writeFile);
-const glob = util.promisify(require('glob'));
+const fs = require('fs');
+const globModule = require('glob');
 
 const chalk = require('chalk');
 const postcss = require('postcss');
 const sassExtract = require('sass-extract');
-const shell = require('shelljs');
 
-shell.mkdir('dist');
+const postcssConfiguration = require('../src-docs/postcss.config.js');
 
-glob('./src/theme_*.scss', undefined).then(files =>
-  Promise.all(
-    files.map(file => {
-      const splitPath = file.split('/');
-      const fileName = splitPath[splitPath.length - 1];
-      const splitFileName = fileName.split('.');
-      const baseFileName = splitFileName[0];
-      const cssFileName = `dist/eui_${baseFileName}.css`;
-      const varsFileName = `dist/eui_${baseFileName}.json`;
+const writeFile = util.promisify(fs.writeFile);
+const mkdir = util.promisify(fs.mkdir);
+const glob = util.promisify(globModule);
 
-      console.log(`… Processing "${file}"`);
-      return sassExtract
-        .render(
-          {
-            file,
-            outFile: cssFileName,
-          },
-          {
-            plugins: [{ plugin: 'sass-extract-js' }],
-          }
-        )
-        .then(({ css, vars }) =>
-          postcss(require('../src-docs/postcss.config.js'))
-            .process(css, { from: cssFileName, to: cssFileName })
-            .then(processedCss => ({
-              processedCss,
-              vars,
-            }))
-        )
-        .then(({ processedCss, vars }) => {
-          console.log(`… Writing theme css to "${cssFileName}"`);
-          console.log(`… Writing theme variables to "${varsFileName}"`);
-          return Promise.all([
-            writeFile(cssFileName, processedCss.css),
-            writeFile(varsFileName, JSON.stringify(vars, undefined, 2)),
-          ]).then(() => {
-            console.log(chalk.green(`✔ Finished processing "${file}"`));
-          });
-        });
+async function compileScssFiles(sourcePattern, destinationDirectory) {
+  try {
+    await mkdir(destinationDirectory);
+  } catch (err) {
+    if (err.code !== 'EEXIST') {
+      throw err;
+    }
+  }
+
+  const inputFilenames = await glob(sourcePattern, undefined);
+
+  await Promise.all(
+    inputFilenames.map(async inputFilename => {
+      console.log(chalk`{cyan …} Compiling {gray ${inputFilename}}`);
+
+      try {
+        const { name } = path.parse(inputFilename);
+        const outputFilenames = await compileScssFile(
+          inputFilename,
+          path.join(destinationDirectory, `eui_${name}.css`),
+          path.join(destinationDirectory, `eui_${name}.json`)
+        );
+
+        console.log(
+          chalk`{green ✔} Finished compiling {gray ${inputFilename}} to ${outputFilenames
+            .map(filename => chalk.gray(filename))
+            .join(', ')}`
+        );
+      } catch (error) {
+        console.log(chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${error.stack}`);
+      }
     })
-  )
-);
+  );
+}
+
+async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilename) {
+  const { css: renderedCss, vars: extractedVars } = await sassExtract.render(
+    {
+      file: inputFilename,
+      outFile: outputCssFilename,
+    },
+    {
+      plugins: [{ plugin: 'sass-extract-js' }],
+    }
+  );
+
+  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(renderedCss, {
+    from: outputCssFilename,
+    to: outputCssFilename,
+  });
+
+  await Promise.all([
+    writeFile(outputCssFilename, postprocessedCss),
+    writeFile(outputVarsFilename, JSON.stringify(extractedVars, undefined, 2)),
+  ]);
+
+  return [outputCssFilename, outputVarsFilename];
+}
+
+compileScssFiles(path.join('src', 'theme_*.scss'), 'dist');
