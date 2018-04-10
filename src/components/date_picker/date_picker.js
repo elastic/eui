@@ -63,6 +63,7 @@ export class EuiDatePicker extends Component {
       dayClassName,
       shouldCloseOnSelect,
       openToDate,
+      disabled,
       ...rest
     } = this.props;
 
@@ -97,7 +98,7 @@ export class EuiDatePicker extends Component {
             <DatePicker
               className={datePickerClasses}
               placeholder={placeholder}
-              inputRef={inputRef}
+              ref={inputRef}
               inline={inline}
               showYearDropdown
               showMonthDropdown
@@ -119,6 +120,7 @@ export class EuiDatePicker extends Component {
               excludeDates={excludeDates}
               shouldCloseOnSelect={shouldCloseOnSelect}
               openToDate={openToDate}
+              disabled={disabled}
               {...rest}
             />
           </EuiValidatableControl>
@@ -178,7 +180,7 @@ EuiDatePicker.propTypes = {
   dayClassName: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.string,
-  local: PropTypes.string,
+  locale: PropTypes.string,
   isInvalid: PropTypes.bool,
   inputRef: PropTypes.func,
   fullWidth: PropTypes.bool,
@@ -202,6 +204,6 @@ EuiDatePicker.defaultProps = {
   isLoading: false,
   shouldCloseOnSelect: true,
   shadow: true,
-  dateFormat:"MM/DD/YYY hh:mm A",
+  dateFormat:"MM/DD/YYYY hh:mm A",
   timeFormat:"hh:mm A",
 };

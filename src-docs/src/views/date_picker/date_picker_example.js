@@ -41,6 +41,7 @@ export const DatePickerExample = {
     ),
     components: { EuiDatePicker },
     demo: <DatePicker />,
+    props: { EuiDatePicker },
   }, {
     title: 'Datepicker range',
     source: [{
