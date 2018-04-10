@@ -38,6 +38,7 @@ export class EuiComboBoxOption extends Component {
       option, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
       onEnterKey, // eslint-disable-line no-unused-vars
+      disabled,
       ...rest
     } = this.props;
 
@@ -54,6 +55,7 @@ export class EuiComboBoxOption extends Component {
         onKeyDown={this.onKeyDown}
         ref={optionRef}
         tabIndex="-1"
+        disabled={disabled}
         {...rest}
       >
         {children}

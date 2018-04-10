@@ -13,6 +13,7 @@ export default class extends Component {
       'data-test-subj': 'titanOption',
     }, {
       label: 'Enceladus',
+      disabled: true,
     }, {
       label: 'Mimas',
     }, {
