@@ -97,7 +97,7 @@ export class EuiDatePicker extends Component {
           >
             <DatePicker
               className={datePickerClasses}
-              placeholder={placeholder}
+              placeholderText={placeholder}
               ref={inputRef}
               inline={inline}
               showYearDropdown

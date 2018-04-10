@@ -34,6 +34,7 @@ export default class extends Component {
           showTimeSelect
           selected={this.state.startDate}
           onChange={this.handleChange}
+          readonly
         />
       </EuiFormRow>
     );
