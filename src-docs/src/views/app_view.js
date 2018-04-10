@@ -31,34 +31,13 @@ export class AppView extends Component {
   }
 
   componentDidMount() {
-    const {
-      routes,
-    } = this.props;
-
     this.updateTheme();
 
-    document.addEventListener('keydown', e => {
-      if (e.target !== document.body) {
-        return;
-      }
+    document.addEventListener('keydown', this.onKeydown);
+  }
 
-      let route;
-
-      switch (e.keyCode) {
-        case keyCodes.LEFT:
-          route = routes.getPreviousRoute(this.props.currentRoute.name);
-          break;
-        case keyCodes.RIGHT:
-          route = routes.getNextRoute(this.props.currentRoute.name);
-          break;
-        default:
-          break;
-      }
-
-      if (route) {
-        routes.history.push(route.path);
-      }
-    });
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeydown);
   }
 
   renderContent() {
@@ -98,6 +77,38 @@ export class AppView extends Component {
         {this.renderContent()}
       </div>
     );
+  }
+
+  onKeydown = e => {
+    if (e.target !== document.body) {
+      return;
+    }
+
+    if (e.metaKey) {
+      return;
+    }
+
+    const {
+      routes,
+      currentRoute,
+    } = this.props;
+
+    if (e.keyCode === keyCodes.LEFT) {
+      pushRoute(routes.getPreviousRoute);
+      return;
+    }
+
+    if (e.keyCode === keyCodes.RIGHT) {
+      pushRoute(routes.getNextRoute);
+    }
+
+    function pushRoute(getRoute) {
+      const route = getRoute(currentRoute.name);
+
+      if (route) {
+        routes.history.push(route.path);
+      }
+    }
   }
 }
 

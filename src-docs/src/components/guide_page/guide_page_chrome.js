@@ -194,7 +194,7 @@ export class GuidePageChrome extends Component {
 }
 
 GuidePageChrome.propTypes = {
-  currentRouteName: PropTypes.string.isRequired,
+  currentRouteName: PropTypes.string,
   onToggleTheme: PropTypes.func.isRequired,
   selectedTheme: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,
