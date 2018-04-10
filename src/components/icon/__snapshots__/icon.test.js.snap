@@ -655,6 +655,27 @@ exports[`EuiIcon renders type clock 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type compute 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4zm10 8v1a2 2 0 0 1-2 2h-1v2h-1v-2H8.5v2h-1v-2H6v2H5v-2H4a2 2 0 0 1-2-2v-1H0v-1h2V8.5H0v-1h2V6H0V5h2V4a2 2 0 0 1 2-2h1V0h1v2h1.5V0h1v2H10V0h1v2h1a2 2 0 0 1 2 2v1h2v1h-2v1.5h2v1h-2V10h2v1h-2z"
+  />
+  <rect
+    height="6"
+    rx="1"
+    width="6"
+    x="5"
+    y="5"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type console 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -1626,6 +1647,26 @@ exports[`EuiIcon renders type invert 1`] = `
   />
   <path
     d="M8 2a6 6 0 1 0 0 12V2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type io 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10 13.99v-2.985h1v3.985H0V1.01h11v3.993h-1V2.01H1v11.98z"
+  />
+  <path
+    d="M4.512 9.979v-1h6.5v1zM13.008 9.48l2.98-2.98-2.98-2.98z"
+  />
+  <path
+    d="M5.5 6.479v6l-3-3zM7 7V6h6.5v1z"
   />
 </svg>
 `;
@@ -2738,6 +2779,23 @@ exports[`EuiIcon renders type mapMarker 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type memory 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M7 8h2V4H7zM3 8h2V4H3zM11.025 8h2V4h-2zM3.5 14.005h1v-1.784h-1zM6.175 14.005h1.001v-1.784H6.175zM8.851 14.005h1v-1.784h-1zM11.525 14.005h1v-1.784h-1z"
+  />
+  <path
+    d="M0 1v10h1v3.005h1V11h12v3.005h1V11h1V1H0zm1 9h14V2H1v8z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon renders type merge 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -3366,6 +3424,39 @@ exports[`EuiIcon renders type stopFilled 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type storage 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill-rule="evenodd"
+    transform="translate(0 2)"
+  >
+    <path
+      d="M2 6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2zm13 2v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm1-3V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v3c0 .601.271 1.133.69 1.5C.271 6.867 0 7.399 0 8v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8c0-.601-.271-1.133-.689-1.5.418-.367.689-.899.689-1.5z"
+      fill-rule="nonzero"
+    />
+    <circle
+      cx="4.5"
+      cy="9.5"
+      r="1.5"
+    />
+    <circle
+      cx="4.5"
+      cy="3.5"
+      r="1.5"
+    />
+    <path
+      d="M12 8h1v3h-1zM10 8h1v3h-1zM12 2h1v3h-1zM10 2h1v3h-1z"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon renders type string 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -3412,6 +3503,23 @@ exports[`EuiIcon renders type tear 1`] = `
   </defs>
   <use
     href="#tear-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type temperature 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.5 15a3.5 3.5 0 0 1-1.75-6.532L7 8.324V2.5A1.496 1.496 0 1 1 9.908 2H8.5v1H10v1H8.5v1H10v1H8.5v1H10v1.324l.25.144A3.5 3.5 0 0 1 8.5 15M11 7.758V2.5a2.5 2.5 0 1 0-5 0v5.258a4.5 4.5 0 1 0 5 0"
+  />
+  <path
+    d="M8.5 9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5"
   />
 </svg>
 `;
