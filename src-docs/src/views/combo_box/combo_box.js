@@ -12,7 +12,8 @@ export default class extends Component {
       label: 'Titan',
       'data-test-subj': 'titanOption',
     }, {
-      label: 'Enceladus',
+      label: 'Enceladus is disabled',
+      disabled: true,
     }, {
       label: 'Mimas',
     }, {
