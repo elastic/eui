@@ -15,7 +15,7 @@ export default class extends Component {
 
     this.state = {
       startDate: moment(),
-      endDate: moment(),
+      endDate: moment().add(11, 'd'),
     };
 
     this.handleChangeStart = this.handleChangeStart.bind(this);
@@ -43,7 +43,6 @@ export default class extends Component {
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           showTimeSelect
-          dateFormat="LLL"
         />
         <EuiDatePicker
           selected={this.state.endDate}
@@ -51,7 +50,6 @@ export default class extends Component {
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           showTimeSelect
-          dateFormat="LLL"
         />
       </div>
     );

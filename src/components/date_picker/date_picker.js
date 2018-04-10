@@ -15,6 +15,10 @@ import {
   EuiValidatableControl,
 } from '../form/validatable_control';
 
+import {
+  EuiErrorBoundary,
+} from '../error_boundary';
+
 export class EuiDatePicker extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +46,22 @@ export class EuiDatePicker extends Component {
       placeholder,
       inline,
       shadow,
+      dateFormat,
+      excludeDates,
+      locale,
+      minDate,
+      maxDate,
+      minTime,
+      maxTime,
+      timeFormat,
+      showTimeSelect,
+      showTimeSelectOnly,
+      onChange,
+      selected,
+      injectTimes,
+      calendarClassName,
+      dayClassName,
+      shouldCloseOnSelect,
       ...rest
     } = this.props;
 
@@ -63,7 +83,7 @@ export class EuiDatePicker extends Component {
       },
     );
 
-    return (
+    let datePickerOrError = (
       <span className={classes}>
         <EuiFormControlLayout
           icon={inline ? null : 'calendar'}
@@ -81,26 +101,92 @@ export class EuiDatePicker extends Component {
               showYearDropdown
               showMonthDropdown
               yearDropdownItemNumber={7}
+              dateFormat={dateFormat}
+              selected={selected}
+              onChange={onChange}
+              showTimeSelect={showTimeSelect}
+              showTimeSelectOnly={showTimeSelectOnly}
+              timeFormat={timeFormat}
+              injectTimes={injectTimes}
+              calendarClassName={calendarClassName}
+              dayClassName={dayClassName}
+              minTime={minTime}
+              maxTime={maxTime}
+              minDate={minDate}
+              maxDate={maxDate}
+              locale={locale}
+              excludeDates={excludeDates}
+              shouldCloseOnSelect={shouldCloseOnSelect}
               {...rest}
             />
           </EuiValidatableControl>
         </EuiFormControlLayout>
       </span>
     );
+
+    // EuiDatePicker only supports a subset of props from react-datepicker. Using any of
+    // the unsupported props below will spit out an error.
+    const PropNotSupported = () => {
+      throw new Error(`You are using a prop from react-datepicker that EuiDatePicker
+        does not support. Please check the EUI documentation for more information.`);
+    };
+
+    if (
+      this.props.monthsShown ||
+      this.props.showWeekNumbers ||
+      this.props.fixedHeight ||
+      this.props.dropdownMode ||
+      this.props.useShortMonthInDropdown ||
+      this.props.todayButton ||
+      this.props.timeCaption ||
+      this.props.withPortal
+    ) {
+      datePickerOrError = (
+        <EuiErrorBoundary>
+          <PropNotSupported />
+        </EuiErrorBoundary>
+      );
+    }
+
+    return (
+      <span>
+        {datePickerOrError}
+      </span>
+    );
   }
 }
 
+  // if (props.monthsShown || props.showWeekNumbers || props.fixedHeight || props.dropdownMode || props.useShortMonthInDropdown || props.withPortal) {
+
 EuiDatePicker.propTypes = {
+  className: PropTypes.string,
+  calendarClassName: PropTypes.string,
+  dayClassName: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.string,
+  local: PropTypes.string,
   isInvalid: PropTypes.bool,
   inputRef: PropTypes.func,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
+  onChange: PropTypes.func,
+  showTimeSelect: PropTypes.bool,
+  showTimeSelectOnly: PropTypes.bool,
+  timeFormat: PropTypes.string,
+  dateFormat: PropTypes.string,
+  injectTimes: PropTypes.array,
+  selected: PropTypes.instanceOf(moment),
+  minDate: PropTypes.instanceOf(moment),
+  maxDate: PropTypes.instanceOf(moment),
+  minTime: PropTypes.instanceOf(moment),
+  maxTime: PropTypes.instanceOf(moment),
 };
 
 EuiDatePicker.defaultProps = {
   fullWidth: false,
   isLoading: false,
+  shouldCloseOnSelect: true,
   shadow: true,
+  dateFormat:"MM/DD/YYY hh:mm A",
+  timeFormat:"hh:mm A",
 };

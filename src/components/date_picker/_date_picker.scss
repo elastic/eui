@@ -237,8 +237,8 @@ $datepicker__time-width: auto !default;
 
     &--disabled,
     &--disabled:hover {
-      border-right-color: $datepicker__navigation-disabled-color;
-      cursor: default;
+      cursor: not-allowed ;
+      opacity: .2;
     }
   }
 
@@ -262,8 +262,8 @@ $datepicker__time-width: auto !default;
 
     &--disabled,
     &--disabled:hover {
-      border-left-color: $datepicker__navigation-disabled-color;
-      cursor: default;
+      cursor: not-allowed ;
+      opacity: .2;
     }
   }
 
@@ -352,10 +352,11 @@ $datepicker__time-width: auto !default;
             }
           }
           &--disabled {
-            color: $datepicker__muted-color;
+            color: $euiColorLightShade;
 
             &:hover {
-              cursor: default;
+              cursor: not-allowed;
+              text-decoration: none;
               background-color: transparent;
             }
           }
@@ -407,7 +408,7 @@ $datepicker__time-width: auto !default;
   border: solid 2px transparent;
   transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
-  &:hover {
+  &:hover:not(&--disabled) {
     text-decoration: underline;
     font-weight: $euiFontWeightBold;
     transform: scale(1.2);
@@ -490,8 +491,8 @@ $datepicker__time-width: auto !default;
   }
 
   &--disabled {
-    cursor: default;
-    color: $datepicker__muted-color;
+    cursor: not-allowed;
+    color: $euiColorLightShade;
 
     &:hover {
       background-color: transparent;
@@ -606,13 +607,6 @@ $datepicker__time-width: auto !default;
     border-bottom-right-radius: $datepicker__border-radius;
   }
 
-  &.--selected_year, &.--selected_month {
-    background: $euiColorPrimary;
-    color: $euiColorEmptyShade;
-    font-weight: $euiFontWeightBold;
-    border-radius: $euiBorderRadius;
-  }
-
   &:hover {
     background-color: $datepicker__muted-color;
 
@@ -623,6 +617,13 @@ $datepicker__time-width: auto !default;
     .react-datepicker__navigation--years-previous {
       border-top-color: darken($datepicker__muted-color, 10%);
     }
+  }
+
+  &.--selected_year, &.--selected_month {
+    background: $euiColorPrimary;
+    color: $euiColorEmptyShade;
+    font-weight: $euiFontWeightBold;
+    border-radius: $euiBorderRadius;
   }
 
   &--selected {

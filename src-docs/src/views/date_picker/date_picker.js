@@ -32,10 +32,10 @@ export default class extends Component {
       <EuiFormRow label="Select a date">
         <EuiDatePicker
           showTimeSelect
-          dateFormat="LLL"
-          showYearDropdown
-          showMonthDropdown
-          yearDropdownItemNumber={7}
+          selected={this.state.startDate}
+          onChange={this.handleChange}
+          excludeDates={[moment(), moment().subtract(1, "days")]}
+          isLoading
         />
       </EuiFormRow>
     );

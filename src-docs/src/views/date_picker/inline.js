@@ -34,14 +34,12 @@ export default class extends Component {
           onChange={this.handleChange}
           inline
           showTimeSelect
-          dateFormat="LLL"
         />
         <EuiDatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
           inline
           showTimeSelect
-          dateFormat="LLL"
           shadow={false}
         />
       </div>
