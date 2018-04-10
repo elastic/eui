@@ -14,6 +14,7 @@ export class EuiComboBoxOption extends Component {
     optionRef: PropTypes.func,
     onClick: PropTypes.func.isRequired,
     onEnterKey: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
   }
 
   onClick = () => {
