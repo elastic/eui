@@ -36,6 +36,10 @@ import Range from './range';
 const rangeSource = require('!!raw-loader!./range');
 const rangeHtml = renderToHtml(Range);
 
+import MinMax from './min_max';
+const minMaxSource = require('!!raw-loader!./min_max');
+const minMaxHtml = renderToHtml(MinMax);
+
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
@@ -131,6 +135,26 @@ export const DatePickerExample = {
       </p>
     ),
     demo: <Range />,
+  }, {
+    title: 'Only allow specific dates and times',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: minMaxSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: minMaxHtml,
+    }],
+    text: (
+      <p>
+        Use  the <EuiCode>minDate</EuiCode>,
+        <EuiCode>maxDate</EuiCode>,
+        <EuiCode>minTime</EuiCode>,
+        and <EuiCode>maxTime</EuiCode>
+        props to specify specific ranges the <EuiCode>selected</EuiCode> code must
+        must fall into.
+      </p>
+    ),
+    demo: <MinMax />,
   }, {
     title: 'Datepicker inline',
     source: [{
