@@ -151,7 +151,9 @@ export const DatePickerExample = {
         <EuiCode>minTime</EuiCode>,
         and <EuiCode>maxTime</EuiCode>
         props to specify specific ranges the <EuiCode>selected</EuiCode> code must
-        must fall into.
+        must fall into. You can also use the <EuiCode>excludeDates</EuiCode> and
+        <EuiCode>excludeTimes</EuiCode> property to disallow a specific array
+        of items from selection.
       </p>
     ),
     demo: <MinMax />,

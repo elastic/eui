@@ -16,15 +16,39 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
+      startDate2: moment(),
+      startDate3: moment().add(1, "days"),
+      startDate4: moment().add(1, "days"),
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this);
+    this.handleChange4 = this.handleChange4.bind(this);
   }
 
   handleChange(date) {
     this.setState({
       startDate: date
+    });
+  }
+
+  handleChange2(date) {
+    this.setState({
+      startDate2: date
+    });
+  }
+
+  handleChange3(date) {
+    this.setState({
+      startDate3: date
+    });
+  }
+
+  handleChange4(date) {
+    this.setState({
+      startDate4: date
     });
   }
 
@@ -46,10 +70,32 @@ export default class extends Component {
         <EuiFormRow label="Only allow a certain range of times">
           <EuiDatePicker
             showTimeSelect
-            selected={this.state.startDate}
-            onChange={this.handleChange}
+            selected={this.state.startDate2}
+            onChange={this.handleChange2}
             minTime={moment().hours(17).minutes(0)}
             maxTime={moment().hours(20).minutes(30)}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer />
+
+        <EuiFormRow label="Exclude yesterday and today">
+          <EuiDatePicker
+            showTimeSelect
+            selected={this.state.startDate3}
+            onChange={this.handleChange3}
+            excludeDates={[moment(), moment().subtract(1, "days")]}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer />
+
+        <EuiFormRow label="Exclude 12AM and 5PM from selection">
+          <EuiDatePicker
+            showTimeSelect
+            selected={this.state.startDate4}
+            onChange={this.handleChange4}
+            excludeTimes={[moment().hours(0).minutes(0), moment().hours(17).minutes(0)]}
           />
         </EuiFormRow>
 
