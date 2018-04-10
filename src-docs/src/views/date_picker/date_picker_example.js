@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiLink,
   EuiDatePicker,
 } from '../../../../src/components';
 
@@ -48,7 +49,10 @@ export const DatePickerExample = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>EuiDatePicker</EuiCode> component.
+        At its most bare the <EuiCode>EuiDatePicker</EuiCode> only requires
+        props for <EuiCode>selected</EuiCode> and <EuiCode>onChange</EuiCode>.
+        It depends on <EuiLink href="https://momentjs.com/docs/">moment</EuiLink> for
+        all of its formatting.
       </p>
     ),
     components: { EuiDatePicker },

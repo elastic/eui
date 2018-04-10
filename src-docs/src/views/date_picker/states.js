@@ -5,6 +5,7 @@ import React, {
 import {
   EuiDatePicker,
   EuiSpacer,
+  EuiFormRow,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -26,6 +27,11 @@ export default class extends Component {
   }
 
   render() {
+    const errors = [
+        'Here\'s an example of an error',
+        'You might have more than one error, so pass an array.',
+      ];
+
     return (
       <div>
         <EuiDatePicker
@@ -65,6 +71,21 @@ export default class extends Component {
           disabled
           placeholder="Loading and disabled"
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow
+          label="Form row validation"
+          isInvalid
+          error={errors}
+        >
+          <EuiDatePicker
+            showTimeSelect
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+            placeholder="Example of an error"
+          />
+        </EuiFormRow>
       </div>
     );
   }

@@ -31,10 +31,8 @@ export default class extends Component {
     return (
       <EuiFormRow label="Select a date">
         <EuiDatePicker
-          showTimeSelect
           selected={this.state.startDate}
           onChange={this.handleChange}
-          readonly
         />
       </EuiFormRow>
     );
