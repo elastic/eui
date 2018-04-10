@@ -58,6 +58,11 @@
   cursor: not-allowed;
   background: darken($euiColorLightestShade, 2%);
   box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
+  color: $euiColorMediumShade;
+
+  &::placeholder {
+    color: $euiColorMediumShade;
+  }
 }
 
 /**
