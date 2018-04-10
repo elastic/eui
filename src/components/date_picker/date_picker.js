@@ -62,6 +62,7 @@ export class EuiDatePicker extends Component {
       calendarClassName,
       dayClassName,
       shouldCloseOnSelect,
+      openToDate,
       ...rest
     } = this.props;
 
@@ -117,6 +118,7 @@ export class EuiDatePicker extends Component {
               locale={locale}
               excludeDates={excludeDates}
               shouldCloseOnSelect={shouldCloseOnSelect}
+              openToDate={openToDate}
               {...rest}
             />
           </EuiValidatableControl>
@@ -132,13 +134,25 @@ export class EuiDatePicker extends Component {
     };
 
     if (
+      // We don't want to show multiple months next to each other
       this.props.monthsShown ||
+      // There is no need to show week numbers
       this.props.showWeekNumbers ||
+      // Our css adapts to height, no need to fix it
       this.props.fixedHeight ||
+      // We force the month / year selection UI. No need to configure it
       this.props.dropdownMode ||
+      // Short month is uncessary. Our UI has plenty of room for full months
       this.props.useShortMonthInDropdown ||
+      // The today button is not needed. This should always be external to the calendar
       this.props.todayButton ||
+      // We hide the time caption, so there is no need to overwrite its text
       this.props.timeCaption ||
+      // We always want keyboard accessibility on
+      this.props.disabledKeyboardNavigation ||
+      // This is easy enough to do. It can conflict with isLoading state
+      this.props.isClearable ||
+      // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
       this.props.withPortal
     ) {
       datePickerOrError = (
@@ -180,6 +194,7 @@ EuiDatePicker.propTypes = {
   maxDate: PropTypes.instanceOf(moment),
   minTime: PropTypes.instanceOf(moment),
   maxTime: PropTypes.instanceOf(moment),
+  openToDate: PropTypes.instanceOf(moment),
 };
 
 EuiDatePicker.defaultProps = {
