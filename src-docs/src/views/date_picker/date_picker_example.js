@@ -23,6 +23,10 @@ import Locale from './locale';
 const localeSource = require('!!raw-loader!./locale');
 const localeHtml = renderToHtml(Locale);
 
+import Time from './time_select';
+const timeSource = require('!!raw-loader!./time_select');
+const timeHtml = renderToHtml(Time);
+
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
 const inlineHtml = renderToHtml(Inline);
@@ -68,6 +72,26 @@ export const DatePickerExample = {
     ),
     demo: <States />,
   }, {
+    title: 'Time selection',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: timeSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: timeHtml,
+    }],
+    text: (
+      <p>
+        Two props control time selction. <EuiCode>showTimeSelect</EuiCode> will make
+        time selection appear next to the calendar
+        and <EuiCode>showTimeSelectOnly</EuiCode> will exclude the calendar and
+        make the time selection the only thing you see. Make sure to adjust
+        your <EuiCode>dateFormat</EuiCode> and <EuiCode>timeFormat</EuiCode> values
+        to match.
+      </p>
+    ),
+    demo: <Time />,
+  }, {
     title: 'Locale',
     source: [{
       type: GuideSectionTypes.JS,
@@ -80,9 +104,9 @@ export const DatePickerExample = {
       <p>
         Locale formatting is achieved by using the <EuiCode>locale</EuiCode>,
         <EuiCode>timeFormat</EuiCode> and <EuiCode>dateFormat</EuiCode> props.
-        The later will take any <EuiCode>moment()</EuiCode> notation. Check
+        The later will take any <EuiCode>moment()</EuiCode> notation. Check{' '}
         <a href="https://en.wikipedia.org/wiki/Date_format_by_country">Date format by country</a>
-        for formatting examples.
+        {' '}for formatting examples.
       </p>
     ),
     demo: <Locale />,
@@ -114,9 +138,10 @@ export const DatePickerExample = {
     }],
     text: (
       <p>
-        The passed icon needs to come from our list of svg icons. Can be flipped {
-          // eslint-disable-next-line react/no-unescaped-entities
-        } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+        Use the <EuiCode>inline</EuiCode> prop to display the date picker directly
+        in the page. If you do not need the shadows / popover effect to the date picker
+        then also apply the <EuiCode>shadow=false</EuiCode> prop as shown in the second
+        example.
       </p>
     ),
     demo: <Inline />,
