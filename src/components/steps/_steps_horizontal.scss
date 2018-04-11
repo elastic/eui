@@ -5,6 +5,9 @@
 
 /**
  * 1. Ensure the connecting lines stays behind the number
+ * 2. Make each step the same width
+ * 3. Make the content of each step align to the top, even if the steps are of varying heights,
+ *    e.g. due to some of their titles wrapping to multiple lines
  */
 
 .euiStepsHorizontal {
@@ -16,13 +19,13 @@
 
 // Button containing item
 .euiStepHorizontal {
-  flex-grow: 1;
-  flex-basis: 0%;
+  flex-grow: 1; /* 2 */
+  flex-basis: 0%; /* 2 */
   padding: $euiSizeL $euiSize $euiSize;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  display: flex; /* 3 */
+  flex-direction: column; /* 3 */
+  align-items: center; /* 3 */
+  justify-content: flex-start; /* 3 */
   cursor: pointer;
 
   // focus & hover state
