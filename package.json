@@ -105,6 +105,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
+    "sass-extract": "^2.1.0",
+    "sass-extract-js": "^0.3.0",
     "sass-loader": "^6.0.6",
     "sass-vars-to-js-loader": "^2.0.2",
     "shelljs": "^0.8.1",

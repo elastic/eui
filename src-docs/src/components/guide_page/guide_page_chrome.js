@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import {
-  hashHistory,
   Link,
 } from 'react-router';
 
@@ -60,14 +59,11 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  onClickRoute = path => {
-
+  onClickRoute = () => {
     this.setState({
       search: '',
       isSideNavOpenOnMobile: false,
     });
-
-    hashHistory.push(path);
   };
 
   renderIdentity() {
@@ -127,7 +123,8 @@ export class GuidePageChrome extends Component {
         return {
           id: `${section.type}-${path}`,
           name,
-          onClick: this.onClickRoute.bind(this, path),
+          href: `/#/${path}`,
+          onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(sections),
           isSelected: name === this.props.currentRouteName,
         };

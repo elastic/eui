@@ -52,16 +52,32 @@ function mapPanelItemsToPanels(panels) {
   return idAndItemIndexToPanelIdMap;
 }
 
+export const EuiContextMenuPanelItemShape = PropTypes.shape({
+  name: PropTypes.string,
+  icon: PropTypes.node,
+  onClick: PropTypes.func,
+  // If given, shows the panel with this id when clicked:
+  panel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  disabled: PropTypes.bool,
+});
+
+export const EuiContextMenuPanelShape = PropTypes.shape({
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  content: PropTypes.node,  // Either content or items array should be given.
+  items: PropTypes.arrayOf(EuiContextMenuPanelItemShape),
+  title: PropTypes.string,
+});
+
 export class EuiContextMenu extends Component {
   static propTypes = {
     className: PropTypes.string,
-    panels: PropTypes.array,
+    panels: PropTypes.arrayOf(EuiContextMenuPanelShape),
     initialPanelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  }
+  };
 
   static defaultProps = {
     panels: [],
-  }
+  };
 
   constructor(props) {
     super(props);
