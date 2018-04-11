@@ -5,6 +5,7 @@
 - Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))
 - Close `EuiComboBox` `singleSelection` options list when option is choosen ([#645](https://github.com/elastic/eui/pull/645))
 - Wrap `EuiHorizontalStep` text instead of truncating it ([#653](https://github.com/elastic/eui/pull/653))
+- Fixed a bug where `EuiSideNavItem` wouldn't pass an `onClick` handler down to `<a>` tags if they also had an `href`. ([#664](https://github.com/elastic/eui/pull/664))
 
 **Breaking changes**
 

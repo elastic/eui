@@ -14,6 +14,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
       <a
         className={className}
         href={href}
+        onClick={onClick}
         {...rest}
       >
         {children}
@@ -21,7 +22,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
     );
   }
 
-  else if (onClick) {
+  if (onClick) {
     return (
       <button
         className={className}
