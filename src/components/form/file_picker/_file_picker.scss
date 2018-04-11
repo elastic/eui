@@ -23,6 +23,9 @@
     &:hover:disabled {
       cursor: not-allowed;
     }
+    &:disabled ~ .euiFilePicker__prompt {
+      color: $euiColorMediumShade;
+    }
   }
 
   .euiFilePicker__icon {

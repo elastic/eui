@@ -16,4 +16,11 @@
     color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
   }
+  &:disabled {
+    color: $euiColorMediumShade;
+    cursor: not-allowed;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
