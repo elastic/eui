@@ -6,7 +6,7 @@
 
 - Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
 - Add TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
-- Grayed out labels for `disabled` controls ([#648])(https://github.com/elastic/eui/pull/648)
+- Grayed out labels for `disabled` controls ([#648](https://github.com/elastic/eui/pull/648))
 
 **Bug fixes**
 
@@ -102,7 +102,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550]https://github.com/elastic/eui/pull/550)
+- Fixed `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550](https://github.com/elastic/eui/pull/550))
 
 # [`0.0.31`](https://github.com/elastic/eui/tree/v0.0.31)
 
@@ -358,10 +358,10 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- Disabled tab styling. [(#258)[https://github.com/elastic/eui/pull/258]]
-- Proper classname for flexGroup alignItems prop. [(#257)[https://github.com/elastic/eui/pull/257]]
-- Clicking the downArrow icon in `EuiSelect` now triggers selection. [(#255)[https://github.com/elastic/eui/pull/255]]
-- Fixed `euiFormRow` id's from being the same as the containing input and label. [(#251)[https://github.com/elastic/eui/pull/251]]
+- Disabled tab styling. ([#258](https://github.com/elastic/eui/pull/258))
+- Proper classname for flexGroup alignItems prop. ([#257](https://github.com/elastic/eui/pull/257))
+- Clicking the downArrow icon in `EuiSelect` now triggers selection. ([#255](https://github.com/elastic/eui/pull/255))
+- Fixed `euiFormRow` id's from being the same as the containing input and label. ([#251](https://github.com/elastic/eui/pull/251))
 
 **Breaking changes**
 
@@ -370,7 +370,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 # [`0.0.10`](https://github.com/elastic/eui/tree/v0.0.10)
 
 - Updated `euiPopover` to propagate `panelPaddingSize` padding values to content only (title does inherit horizontal values) via CSS. [(#229)](https://github.com/elastic/eui/pull/229)
-- Updated `EuiErrorBoundary` to preserve newlines in error. [(#238)[https://github.com/elastic/eui/pull/238]]
+- Updated `EuiErrorBoundary` to preserve newlines in error. ([#238](https://github.com/elastic/eui/pull/238))
 - Added more icons and fixed a few for dark mode [(#228)](https://github.com/elastic/eui/pull/228)
 - Added `EuiFlyout` component. [(#227)](https://github.com/elastic/eui/pull/227)
 
@@ -380,8 +380,8 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- Fixed bug in `Pager` service which occurred when there were no items. [(#237)[https://github.com/elastic/eui/pull/237]]
-- Added `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. [(#242)[https://github.com/elastic/eui/pull/242]]
+- Fixed bug in `Pager` service which occurred when there were no items. ([#237](https://github.com/elastic/eui/pull/237))
+- Added `isPageable` method to `Pager` service and set first and last page index to -1 when there are no pages. ([#242](https://github.com/elastic/eui/pull/242))
 
 # [`0.0.9`](https://github.com/elastic/eui/tree/v0.0.9)
 

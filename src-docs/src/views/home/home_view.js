@@ -41,13 +41,15 @@ export const HomeView = () => (
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
-              <EuiLink href="https://github.com/elastic/eui">
-                <strong>{ pkg.version }</strong>
+              <EuiLink href="#/package/changelog">
+                <strong>v{ pkg.version }</strong>
               </EuiLink>
             </p>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiIcon type="logoGithub" />
+            <EuiLink href="https://github.com/elastic/eui">
+              <EuiIcon type="logoGithub" />
+            </EuiLink>
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>

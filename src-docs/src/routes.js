@@ -191,6 +191,9 @@ import { ToastExample }
 import { ToolTipExample }
   from './views/tool_tip/tool_tip_example';
 
+import { Changelog }
+  from './views/package/changelog';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -326,6 +329,11 @@ const navigation = [{
     OutsideClickDetectorExample,
     PortalExample,
   ].map(example => createExample(example)),
+}, {
+  name: 'Package',
+  items: [
+    Changelog
+  ]
 }].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
