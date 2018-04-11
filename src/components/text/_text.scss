@@ -154,6 +154,30 @@
     text-transform: uppercase;
   }
 
+  pre {
+    height: 100%;
+    overflow: auto;
+    white-space: pre-wrap;
+    padding: $euiSize;
+  }
+
+  pre,
+  pre code {
+    display: block;
+  }
+
+  pre,
+  code {
+    background: $euiCodeBlockBackgroundColor;
+    color: $euiCodeBlockColor;
+  }
+
+  code {
+    line-height: $euiLineHeight;
+    font-family: $euiCodeFontFamily;
+    font-weight: $euiFontWeightRegular;
+  }
+
   @include euiScaleText($euiFontSize);
 
   &.euiText--small {
