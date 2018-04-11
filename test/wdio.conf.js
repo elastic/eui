@@ -28,7 +28,7 @@ exports.config = {
   specs: [
     './test/spec/**/*spec.js'
   ],
-  maxInstances: 3,
+  maxInstances: 5,
   sync: true,
   port: '4444',
   coloredLogs: true,
@@ -107,7 +107,7 @@ exports.config = {
     global.assert = chai.assert;
     chai.Should();
 
-    global.expectImageToBeSame = function expectImageToBeSame (results) {
+    global.expectImageToBeSame = function expectImageToBeSame(results) {
       results.forEach((result, idx) => expect(result.isWithinMisMatchTolerance,
         'Image ' + idx + ' is not the same by ' + result.misMatchPercentage + '%').to.be.true);
     };
