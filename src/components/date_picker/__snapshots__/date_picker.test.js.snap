@@ -3,7 +3,7 @@
 exports[`EuiDatePicker is rendered 1`] = `
 <span>
   <span
-    class="euiDatePicker euiDatePicker--shadow testClass1 testClass2"
+    class="euiDatePicker euiDatePicker--shadow"
   >
     <div
       class="euiFormControlLayout"
@@ -16,7 +16,7 @@ exports[`EuiDatePicker is rendered 1`] = `
             class="react-datepicker__input-container"
           >
             <input
-              class="euiDatePicker euiFieldText euiFieldText--fullWidth euiFieldText-isLoading euiFieldText--withIcon"
+              class="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
               type="text"
               value=""
             />

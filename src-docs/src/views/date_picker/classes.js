@@ -31,52 +31,48 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <EuiFormRow label="Time select on">
+        <EuiFormRow label="className example">
           <EuiDatePicker
+            selected={this.state.startDate}
             showTimeSelect
-            selected={this.state.startDate}
             onChange={this.handleChange}
+            className="dpTest__purpleInput"
           />
         </EuiFormRow>
 
-        <EuiSpacer />
+        <EuiSpacer size="m" />
 
-        <EuiFormRow label="Time select off">
+        <EuiFormRow label="calendarClassName example">
           <EuiDatePicker
             selected={this.state.startDate}
-            onChange={this.handleChange}
-          />
-        </EuiFormRow>
-
-        <EuiSpacer />
-
-        <EuiFormRow label="Only time select, 24 hour clock">
-          <EuiDatePicker
             showTimeSelect
-            showTimeSelectOnly
-            selected={this.state.startDate}
             onChange={this.handleChange}
-            dateFormat="HH:mm"
-            timeFormat="HH:mm"
+            calendarClassName="dpTest__purpleCal"
           />
         </EuiFormRow>
 
-        <EuiSpacer />
+        <EuiSpacer size="m" />
 
-        <EuiFormRow label="Inject additional times into the list">
+        <EuiFormRow label="dayClassName example">
           <EuiDatePicker
-            showTimeSelect
-            showTimeSelectOnly
             selected={this.state.startDate}
+            showTimeSelect
             onChange={this.handleChange}
-            dateFormat="hh:mm a"
-            injectTimes={[
-              moment().hours(0).minutes(1),
-              moment().hours(0).minutes(5),
-              moment().hours(23).minutes(59)
-            ]}
+            dayClassName={date => date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined}
           />
         </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="popperClassName example">
+          <EuiDatePicker
+            selected={this.state.startDate}
+            showTimeSelect
+            onChange={this.handleChange}
+            popperClassName="dpTest__purplePopper"
+          />
+        </EuiFormRow>
+
       </div>
     );
   }

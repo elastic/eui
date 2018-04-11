@@ -40,6 +40,14 @@ import MinMax from './min_max';
 const minMaxSource = require('!!raw-loader!./min_max');
 const minMaxHtml = renderToHtml(MinMax);
 
+import Classes from './classes';
+const classesSource = require('!!raw-loader!./classes');
+const classesHtml = renderToHtml(Classes);
+
+import OpenToDate from './open_to_date';
+const openToDateSource = require('!!raw-loader!./open_to_date');
+const openToDateHtml = renderToHtml(OpenToDate);
+
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
@@ -157,6 +165,21 @@ export const DatePickerExample = {
     ),
     demo: <MinMax />,
   }, {
+    title: 'Open to a sepecifc date',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: openToDateSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: openToDateHtml,
+    }],
+    text: (
+      <p>
+        Use <EuiCode>openToDate</EuiCode> to default selection to a specific date.
+      </p>
+    ),
+    demo: <OpenToDate />,
+  }, {
     title: 'Datepicker inline',
     source: [{
       type: GuideSectionTypes.JS,
@@ -174,5 +197,27 @@ export const DatePickerExample = {
       </p>
     ),
     demo: <Inline />,
+    }, {
+      title: 'Custom classes',
+      source: [{
+        type: GuideSectionTypes.JS,
+        code: classesSource,
+      }, {
+        type: GuideSectionTypes.HTML,
+        code: classesHtml,
+      }],
+      text: (
+        <div>
+          <p>
+            Custom classes can be passed to various bits of the calendar and input.
+          </p>
+          <ul>
+            <li><EuiCode>className</EuiCode> will pass onto the input.</li>
+            <li><EuiCode>calendarClassName</EuiCode> will pass onto the calendar itself.</li>
+            <li><EuiCode>dayClassName</EuiCode> will pass onto specificed days.</li>
+          </ul>
+        </div>
+      ),
+      demo: <Classes />,
   }],
 };

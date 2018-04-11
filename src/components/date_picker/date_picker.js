@@ -61,6 +61,7 @@ export class EuiDatePicker extends Component {
       injectTimes,
       calendarClassName,
       dayClassName,
+      popperClassName,
       shouldCloseOnSelect,
       openToDate,
       disabled,
@@ -72,17 +73,17 @@ export class EuiDatePicker extends Component {
       {
         'euiDatePicker--shadow': shadow,
       },
-      className
     );
 
     const datePickerClasses = classNames(
       'euiDatePicker',
       'euiFieldText',
-      'euiFieldText--fullWidth': fullWidth,
-      'euiFieldText-isLoading': isLoading,
       {
+        'euiFieldText--fullWidth': fullWidth,
+        'euiFieldText-isLoading': isLoading,
         'euiFieldText--withIcon': !inline,
       },
+      className
     );
 
     let datePickerOrError = (
@@ -116,6 +117,7 @@ export class EuiDatePicker extends Component {
               maxTime={maxTime}
               minDate={minDate}
               maxDate={maxDate}
+              popperClassName={popperClassName}
               locale={locale}
               excludeDates={excludeDates}
               shouldCloseOnSelect={shouldCloseOnSelect}
@@ -172,12 +174,11 @@ export class EuiDatePicker extends Component {
   }
 }
 
-  // if (props.monthsShown || props.showWeekNumbers || props.fixedHeight || props.dropdownMode || props.useShortMonthInDropdown || props.withPortal) {
-
 EuiDatePicker.propTypes = {
   className: PropTypes.string,
   calendarClassName: PropTypes.string,
   dayClassName: PropTypes.string,
+  popperClassName: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.string,
   locale: PropTypes.string,
