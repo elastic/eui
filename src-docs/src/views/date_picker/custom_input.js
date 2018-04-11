@@ -11,18 +11,20 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-export const ExampleCustomInput = ({
-  value,
-  onClick,
-}) => {
-  return (
-    <EuiButton
-      className="example-custom-input"
-      onClick={onClick}
-    >
-      {value}
-    </EuiButton>
-  );
+// Should be a component because the datepicker does some ref stuff behind the scenes
+// eslint-disable-next-line react/prefer-stateless-function
+class ExampleCustomInput extends React.Component {
+
+  render () {
+    return (
+      <EuiButton
+        className="example-custom-input"
+        onClick={this.props.onClick}
+      >
+        {this.props.value}
+      </EuiButton>
+    )
+  }
 }
 
 ExampleCustomInput.propTypes = {
@@ -30,6 +32,7 @@ ExampleCustomInput.propTypes = {
   value: PropTypes.string
 };
 
+// eslint-disable-next-line react/no-multi-comp
 export default class extends Component {
 
   constructor(props) {

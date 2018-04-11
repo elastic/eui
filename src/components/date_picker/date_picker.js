@@ -184,7 +184,7 @@ export class EuiDatePicker extends Component {
 EuiDatePicker.propTypes = {
   className: PropTypes.string,
   calendarClassName: PropTypes.string,
-  dayClassName: PropTypes.string,
+  dayClassName: PropTypes.func,
   popperClassName: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.string,

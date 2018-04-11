@@ -1,25 +1,12 @@
-// This file is a heavy retheme of react-datepicker's Sass as of v1.4.0
-// https://github.com/Hacker0x01/react-datepicker
+/* This file is a heavy retheme of react-datepicker's Sass as of v1.4.0
+** https://github.com/Hacker0x01/react-datepicker
+**
+** In places where features were disabled, I've commented out the original Sass
+** selectors rather than removing it so we can better understand what's changed.
+*/
 
-$datepicker__background-color: $euiColorEmptyShade !default;
-$datepicker__border-color: $euiBorderColor !default;
-$datepicker__highlighted-color: $euiColorSecondary !default;
-$datepicker__muted-color: $euiColorLightestShade !default;
-$datepicker__selected-color: $euiColorPrimary !default;
-$datepicker__text-color: $euiColorFullShade !default;
-$datepicker__header-color: $euiColorFullShade !default;
-$datepicker__navigation-disabled-color: lighten($datepicker__muted-color, 10%) !default;
 
-$datepicker__border-radius: $euiBorderRadius !default;
-$datepicker__day-margin: $euiSizeXS / 2 !default;
-$datepicker__font-size: $euiSizeM !default;
-$datepicker__font-family: $euiFontFamily !default;
-$datepicker__item-size: $euiSizeXL !default;
-$datepicker__margin: $euiSize !default;
-$datepicker__navigation-size: $euiSize !default;
-$datepicker__triangle-size: 0 !default;
-$datepicker__time-width: auto !default;
-
+// We use SVG URIs for the navigation arrows. There is one for light and dark.
 @mixin datePicker__arrow {
   @if (lightness($euiColorEmptyShade) > 50) {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
@@ -34,9 +21,10 @@ $datepicker__time-width: auto !default;
 .euiDatePicker {
   &.euiDatePicker--shadow {
     .react-datepicker {
-      border: 1px solid $datepicker__border-color;
-      border-radius: $datepicker__border-radius;
       @include euiBottomShadowMedium;
+
+      border: 1px solid $euiBorderColor;
+      border-radius: $euiBorderRadius;
     }
 
     .react-datepicker__time-container {
@@ -45,39 +33,35 @@ $datepicker__time-width: auto !default;
   }
 }
 
-.react-datepicker-wrapper {
-}
+// .react-datepicker-wrapper {
+// }
 
 .react-datepicker {
-  font-family: $datepicker__font-family;
-  font-size: $datepicker__font-size;
+  font-family: $euiFontFamily;
+  font-size: $euiFontSizeS;
   background-color: $euiColorEmptyShade;
-  color: $datepicker__text-color;
+  color: $euiColorFullShade;
   display: flex;
   position: relative;
 
 }
 
 .react-datepicker--time-only {
-  .react-datepicker__triangle {
-    left: 35px;
-  }
 
   .react-datepicker__time-container {
     border-left: 0;
   }
 
-  .react-datepicker__time {
-    border-radius: 0.3rem;
-  }
-
-  .react-datepicker__time-box {
-    border-radius: 0.3rem;
-  }
+  // .react-datepicker__triangle {
+  // }
+  // .react-datepicker__time {
+  // }
+  // .react-datepicker__time-box {
+  // }
 }
 
-.react-datepicker__triangle {
-}
+// .react-datepicker__triangle {
+// }
 
 .react-datepicker-popper {
   z-index: 1;
@@ -85,35 +69,36 @@ $datepicker__time-width: auto !default;
 
   &[data-placement^="bottom"] {
 
-    .react-datepicker__triangle {
-    }
+    // .react-datepicker__triangle {
+    // }
   }
 
   &[data-placement^="top"] {
 
-    .react-datepicker__triangle {
-    }
+    // .react-datepicker__triangle {
+    // }
   }
 
   &[data-placement^="right"] {
-    margin-left: $datepicker__triangle-size;
+    margin-left: 0;
 
-    .react-datepicker__triangle {
-    }
+    // .react-datepicker__triangle {
+    // }
   }
 
   &[data-placement^="left"] {
-    margin-right: $datepicker__triangle-size;
+    margin-right: 0;
 
-    .react-datepicker__triangle {
-    }
+    // .react-datepicker__triangle {
+    // }
   }
 }
 
 .react-datepicker__header {
   text-align: center;
-  border-top-left-radius: $datepicker__border-radius;
-  border-top-right-radius: $datepicker__border-radius;
+  border-top-left-radius: $euiBorderRadius;
+  border-top-right-radius: $euiBorderRadius;
+
   &--time {
     display: none;
   }
@@ -155,8 +140,8 @@ $datepicker__time-width: auto !default;
   &--previous {
     @include datePicker__arrow;
     left: $euiSize + $euiSizeXS;
-    height: 16px;
-    width: 16px;
+    height: $euiSize;
+    width: $euiSize;
     transform: rotate(90deg);
     transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
@@ -176,12 +161,15 @@ $datepicker__time-width: auto !default;
 
   &--next {
     @include datePicker__arrow;
+    // Pixel value because of some padding on the icon
     right: 10px;
-    height: 16px;
-    width: 16px;
+    height: $euiSize;
+    width: $euiSize;
     transform: rotate(-90deg);
 
     &--with-time:not(&--with-today-button) {
+      // This a pixel value against the width of the cal. It needs
+      // to be left because the timepicker adds more width
       left: 248px;
     }
 
@@ -189,7 +177,7 @@ $datepicker__time-width: auto !default;
       transform: scale(1.2) rotate(-90deg);
       background-color: $euiColorLightestShade;
       border-radius: $euiBorderRadius;
-      outline: solid 2px $euiColorLightestShade;
+      outline: solid ($euiSize / 2) $euiColorLightestShade;
     }
 
     &--disabled,
@@ -207,36 +195,36 @@ $datepicker__time-width: auto !default;
     margin-right: auto;
 
     &-previous {
-      top: 4px;
-      border-top-color: $datepicker__muted-color;
+      top: $euiSizeXS;
+      border-top-color: $euiColorLightestShade;
 
       &:hover {
-        border-top-color: darken($datepicker__muted-color, 10%);
+        border-top-color: darken($euiColorLightestShade, 10%);
       }
     }
 
     &-upcoming {
-      top: -4px;
-      border-bottom-color: $datepicker__muted-color;
+      top: -$euiSizeXS;
+      border-bottom-color: $euiColorLightestShade;
 
       &:hover {
-        border-bottom-color: darken($datepicker__muted-color, 10%);
+        border-bottom-color: darken($euiColorLightestShade, 10%);
       }
     }
   }
 }
 
-.react-datepicker__month-container {
-}
+// .react-datepicker__month-container {
+// }
 
 .react-datepicker__month {
-  margin: 0 $datepicker__margin $datepicker__margin $datepicker__margin;
+  margin: 0 $euiSize $euiSize $euiSize;
   text-align: center;
 }
 
 .react-datepicker__time-container {
-  border-left: 1px solid $datepicker__border-color;
-  width: $datepicker__time-width;
+  border-left: 1px solid $euiBorderColor;
+  width: auto;
   display: flex;
   padding: $euiSize 0;
   border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
@@ -247,7 +235,7 @@ $datepicker__time-width: auto !default;
   //   border: 1px solid #aeaeae;
   //   border-radius: 0.3rem;
   //   position: absolute;
-  //   right: $datepicker__time-width;
+  //   right: auto;
   //   top: 0;
   // }
 
@@ -260,7 +248,7 @@ $datepicker__time-width: auto !default;
     @include euiScrollBar;
 
     .react-datepicker__time-box {
-      width: $datepicker__time-width;
+      width: auto;
       ul.react-datepicker__time-list {
         height: 204px !important;
 
@@ -276,11 +264,11 @@ $datepicker__time-width: auto !default;
             text-decoration: underline;
           }
           &--selected {
-            background-color: $datepicker__selected-color;
+            background-color: $euiColorPrimary;
             color: white;
             border-radius: $euiBorderRadius / 2;
             &:hover {
-              background-color: $datepicker__selected-color;
+              background-color: $euiColorPrimary;
             }
           }
           &--disabled {
@@ -299,17 +287,17 @@ $datepicker__time-width: auto !default;
 }
 
 .react-datepicker__week-number {
-  color: $datepicker__muted-color;
+  color: $euiColorLightestShade;
   display: inline-block;
-  width: $datepicker__item-size;
-  line-height: $datepicker__item-size - 4px;
+  width: $euiSizeXL;
+  line-height: $euiSizeXL - $euiSizeXS;
   text-align: center;
-  margin: 0 $datepicker__day-margin;
+  margin: 0 $euiSizeXS;
   &.react-datepicker__week-number--clickable {
     cursor: pointer;
     &:hover {
-      border-radius: $datepicker__border-radius;
-      background-color: $datepicker__background-color;
+      border-radius: $euiBorderRadius;
+      background-color: $euiColorEmptyShade;
     }
   }
 }
@@ -322,12 +310,12 @@ $datepicker__time-width: auto !default;
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  color: $datepicker__text-color;
+  color: $euiColorFullShade;
   display: inline-block;
-  width: $datepicker__item-size;
-  line-height: $datepicker__item-size - $euiSizeXS;
+  width: $euiSizeXL;
+  line-height: $euiSizeXL - $euiSizeXS;
   text-align: center;
-  margin: 0 $datepicker__day-margin;
+  margin: 0 $euiSizeXS;
 }
 
 .react-datepicker__day-name {
@@ -355,24 +343,24 @@ $datepicker__time-width: auto !default;
   }
 
   &--highlighted {
-    border-radius: $datepicker__border-radius;
-    background-color: $datepicker__highlighted-color;
+    border-radius: $euiBorderRadius;
+    background-color: $euiColorSecondary;
     color: $euiColorGhost;
 
     &:hover {
-      background-color: darken($datepicker__highlighted-color, 5%);
+      background-color: darken($euiColorSecondary, 5%);
     }
   }
 
   &--in-range {
-    background-color: transparentize($datepicker__selected-color, .9);
+    background-color: transparentize($euiColorPrimary, .9);
     color: $euiColorFullShade;
     border-radius: 0;
     border-top: solid 6px $euiColorEmptyShade;
     border-bottom: solid 6px $euiColorEmptyShade;
     border-right: none;
     border-left: none;
-    line-height: 20px;
+    line-height: $euiSizeL - $euiSizeXS;
   }
 
   &--selected,
@@ -381,35 +369,35 @@ $datepicker__time-width: auto !default;
   &--in-selecting-range {
     height: $euiSizeXL;
     margin: 0 $euiSizeXS / 2;
-    border-radius: $datepicker__border-radius;
-    background-color: $datepicker__selected-color;
-    line-height: 28px;
-    border: solid 2px $euiColorPrimary;
+    border-radius: $euiBorderRadius;
+    background-color: $euiColorPrimary;
+    line-height: $euiSizeL + $euiSizeXS;
+    border: solid $euiSizeXS / 2 $euiColorPrimary;
     color: $euiColorGhost;
 
     &:hover {
-      background-color: darken($datepicker__selected-color, 5%);
+      background-color: darken($euiColorPrimary, 5%);
     }
   }
 
   &--keyboard-selected {
-    border-radius: $datepicker__border-radius;
-    border: solid 2px $euiColorPrimary;
+    border-radius: $euiBorderRadius;
+    border: solid $euiSizeXS / 2 $euiColorPrimary;
     font-weight: $euiFontWeightBold;
 
     &:hover {
-      background-color: darken($datepicker__selected-color, 5%);
+      background-color: darken($euiColorPrimary, 5%);
     }
   }
 
   &--in-selecting-range:not(&--in-range) {
-    background-color: rgba($datepicker__selected-color, 0.5);
+    background-color: rgba($euiColorPrimary, 0.5);
   }
 
   &--in-range:not(&--in-selecting-range) {
     .react-datepicker__month--selecting-range & {
-      background-color: $datepicker__background-color;
-      color: $datepicker__text-color;
+      background-color: $euiColorEmptyShade;
+      color: $euiColorFullShade;
     }
   }
 
@@ -447,7 +435,7 @@ $datepicker__time-width: auto !default;
 
     .react-datepicker__year-read-view--down-arrow,
     .react-datepicker__month-read-view--down-arrow {
-      border-top-color: darken($datepicker__muted-color, 10%);
+      border-top-color: darken($euiColorLightestShade, 10%);
     }
   }
 
@@ -459,7 +447,7 @@ $datepicker__time-width: auto !default;
 .react-datepicker__year-dropdown,
 .react-datepicker__month-dropdown,
 .react-datepicker__month-year-dropdown {
-  background-color: $datepicker__background-color;
+  background-color: $euiColorEmptyShade;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -469,7 +457,7 @@ $datepicker__time-width: auto !default;
   right: 0;
   z-index: 1;
   text-align: center;
-  border-radius: $datepicker__border-radius;
+  border-radius: $euiBorderRadius;
   display: flex;
   flex-wrap: wrap;
   animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
@@ -511,8 +499,8 @@ $datepicker__time-width: auto !default;
   flex-basis: 33.3%;
 
   &:first-of-type {
-    border-top-left-radius: $datepicker__border-radius;
-    border-top-right-radius: $datepicker__border-radius;
+    border-top-left-radius: $euiBorderRadius;
+    border-top-right-radius: $euiBorderRadius;
   }
 
   &:last-of-type {
@@ -520,19 +508,19 @@ $datepicker__time-width: auto !default;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border-bottom-left-radius: $datepicker__border-radius;
-    border-bottom-right-radius: $datepicker__border-radius;
+    border-bottom-left-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
   }
 
   &:hover {
-    background-color: $datepicker__muted-color;
+    background-color: $euiColorLightestShade;
 
     .react-datepicker__navigation--years-upcoming {
-      border-bottom-color: darken($datepicker__muted-color, 10%);
+      border-bottom-color: darken($euiColorLightestShade, 10%);
     }
 
     .react-datepicker__navigation--years-previous {
-      border-top-color: darken($datepicker__muted-color, 10%);
+      border-top-color: darken($euiColorLightestShade, 10%);
     }
   }
 
@@ -550,17 +538,8 @@ $datepicker__time-width: auto !default;
 
 
 @include screenXSmall {
-  .react-datepicker {
-    flex-direction: column;
-  }
-
   .react-datepicker__time-container {
-    border-left: none;
-  }
-
-  .react-datepicker__time-box {
-    margin: auto;
-    font-size: $euiFontSize;
+    display: none;
   }
 }
 
@@ -575,7 +554,7 @@ $datepicker__time-width: auto !default;
 //   vertical-align: middle;
 //
 //   &::after {
-//     background-color: $datepicker__selected-color;
+//     background-color: $euiColorPrimary;
 //     border-radius: 50%;
 //     bottom: 0;
 //     box-sizing: border-box;
@@ -596,8 +575,8 @@ $datepicker__time-width: auto !default;
 // }
 //
 // .react-datepicker__today-button {
-//   background: $datepicker__background-color;
-//   border-top: 1px solid $datepicker__border-color;
+//   background: $euiColorEmptyShade;
+//   border-top: 1px solid $euiBorderColor;
 //   cursor: pointer;
 //   text-align: center;
 //   font-weight: bold;
@@ -636,18 +615,18 @@ $datepicker__time-width: auto !default;
 //
 //   .react-datepicker__current-month,
 //   .react-datepicker-time__header {
-//     font-size: $datepicker__font-size * 1.8;
+//     font-size: $euiFontSizeS * 1.8;
 //   }
 //
 //   .react-datepicker__navigation {
-//     border: 1.8 * $datepicker__navigation-size solid transparent;
+//     border: 1.8 * $euiSize solid transparent;
 //   }
 //
 //   .react-datepicker__navigation--previous {
-//     border-right-color: $datepicker__muted-color;
+//     border-right-color: $euiColorLightestShade;
 //
 //     &:hover {
-//       border-right-color: darken($datepicker__muted-color, 10%);
+//       border-right-color: darken($euiColorLightestShade, 10%);
 //     }
 //
 //     &--disabled,
@@ -658,10 +637,10 @@ $datepicker__time-width: auto !default;
 //   }
 //
 //   .react-datepicker__navigation--next {
-//     border-left-color: $datepicker__muted-color;
+//     border-left-color: $euiColorLightestShade;
 //
 //     &:hover {
-//       border-left-color: darken($datepicker__muted-color, 10%);
+//       border-left-color: darken($euiColorLightestShade, 10%);
 //     }
 //
 //     &--disabled,
