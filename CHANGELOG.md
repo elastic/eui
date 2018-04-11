@@ -3,6 +3,7 @@
 - Added `disabled` prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
 - Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
 - Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))
+- Close `EuiComboBox` `singleSelection` options list when option is choosen ([#645](https://github.com/elastic/eui/pull/645))
 
 ## [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 

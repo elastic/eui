@@ -346,7 +346,14 @@ export class EuiComboBox extends Component {
   onAddOption = (addedOption) => {
     const { onChange, selectedOptions, singleSelection } = this.props;
     onChange(singleSelection ? [addedOption] : selectedOptions.concat(addedOption));
+
     this.clearSearchValue();
+
+    if (singleSelection) {
+      this.closeList();
+      return;
+    }
+
     this.focusSearchInput();
   };
 
