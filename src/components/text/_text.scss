@@ -7,7 +7,8 @@
   ul,
   ol,
   blockquote,
-  img {
+  img,
+  pre {
     margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
   }
 
@@ -152,6 +153,30 @@
   h6 {
     @include euiTitle("xxxs");
     text-transform: uppercase;
+  }
+
+  pre {
+    height: 100%;
+    overflow: auto;
+    white-space: pre-wrap;
+    padding: $euiSize;
+  }
+
+  pre,
+  pre code {
+    display: block;
+  }
+
+  pre,
+  code {
+    background: $euiCodeBlockBackgroundColor;
+    color: $euiCodeBlockColor;
+  }
+
+  code {
+    line-height: $euiLineHeight;
+    font-family: $euiCodeFontFamily;
+    font-weight: $euiFontWeightRegular;
   }
 
   @include euiScaleText($euiFontSize);

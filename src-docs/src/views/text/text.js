@@ -12,6 +12,18 @@ export default () => (
         Far out in the uncharted backwaters of the unfashionable end of
         the western spiral arm of the Galaxy lies a small unregarded
         yellow sun.
+
+        When suddenly some wild JavaScript code appeared! <code>const whoa = &quot;!&quot;</code>
+      </p>
+
+      <pre>
+        <code>
+          const completelyUnexpected = &quot;the audacity!&quot;;
+        </code>
+      </pre>
+
+      <p>
+        That was close.
       </p>
 
       <blockquote>

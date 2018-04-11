@@ -1,12 +1,13 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Add disabled prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
-- Added export of sass theme variables in json format during compilation ([#642](https://github.com/elastic/eui/pull/642))
+- Added `disabled` prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
+- Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
+- Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))
 
 # [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 
 - Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
-- Add TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
+- Added TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
 - Grayed out labels for `disabled` controls ([#648](https://github.com/elastic/eui/pull/648))
 
 **Bug fixes**
@@ -27,7 +28,7 @@
 # [`0.0.38`](https://github.com/elastic/eui/tree/v0.0.38)
 
 - Modified drop shadow intensities and color. ([#607](https://github.com/elastic/eui/pull/607))
-- Added Sass color functions. Made `$euiColorWarning` color usage more accessible while still being "yellow". ([#628](https://github.com/elastic/eui/pull/628))
+- Added SASS color functions. Made `$euiColorWarning` color usage more accessible while still being "yellow". ([#628](https://github.com/elastic/eui/pull/628))
 - Removed extraneous `global_styling/mixins/_forms.scss` file and importing the correct files in the `filter_group.scss` and `combo_box.scss` files. ([#609](https://github.com/elastic/eui/pull/609))
 - Added `isInvalid` prop to `EuiComboBox` ([#631](https://github.com/elastic/eui/pull/631))
 - Added support for rejecting user input by returning `false` from the `onCreateOption` prop of `EuiComboBox` ([#631](https://github.com/elastic/eui/pull/631))
