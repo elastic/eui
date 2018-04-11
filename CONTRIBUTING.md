@@ -16,6 +16,7 @@ Here are our guidelines for updating the `CHANGELOG.md` file:
 * Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
 * In the list item, always link to any relevant Pull Requests, commit ranges, or individual commits
 * Add a short summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
+* Always write these change items in past tense
 * Avoid documenting internal implementation changes that don't have an effect on the public interface
 
 ## Software Releases

@@ -12,18 +12,18 @@
 
 **Bug fixes**
 
-- Fix visual shadow glitch on hover of `EuiToast` ([#632](https://github.com/elastic/eui/pull/632))
+- Fixed visual shadow glitch on hover of `EuiToast` ([#632](https://github.com/elastic/eui/pull/632))
 
 # [`0.0.39`](https://github.com/elastic/eui/tree/v0.0.39)
 
 **Bug fixes**
 
-- Allow accordions to dynamically change height, and support values on radio inputs ([#613](https://github.com/elastic/eui/pull/613))
+- Allowed accordions to dynamically change height, and support values on radio inputs ([#613](https://github.com/elastic/eui/pull/613))
 - Accordion toggle layout is no longer flagged responsive, in order to prevent unwanted stacking on mobile ([#613](https://github.com/elastic/eui/pull/613))
 
 **Breaking changes**
 
-- Support values on radio inputs. This is breaking because now the second argument to the radio `onChange` callback is the value, which bumps the change event to the third argument ([#613](https://github.com/elastic/eui/pull/613))
+- Supported values on radio inputs. This is breaking because now the second argument to the radio `onChange` callback is the value, which bumps the change event to the third argument ([#613](https://github.com/elastic/eui/pull/613))
 
 # [`0.0.38`](https://github.com/elastic/eui/tree/v0.0.38)
 
@@ -35,8 +35,8 @@
 
 **Bug fixes**
 
-- Visual fix for the focus state of disabled `EuiButton` ([#603](https://github.com/elastic/eui/pull/603))
-- `EuiSelect` can pass any node as a value rather than just a string ([#603](https://github.com/elastic/eui/pull/603))
+- Visually fixed for the focus state of disabled `EuiButton` ([#603](https://github.com/elastic/eui/pull/603))
+- `EuiSelect` can now receive any node as a value rather than just a string ([#603](https://github.com/elastic/eui/pull/603))
 - Fixed a typo in the flex TypeScript definition ([#629](https://github.com/elastic/eui/pull/629))
 - Fixed `EuiComboBox` bug in which the options list wouldn't always match the width of the input ([#611](https://github.com/elastic/eui/pull/611))
 - Fixed `EuiComboBox` bug in which opening the combo box when there's no scrollbar on the window would result in the list being positioned incorrectly ([#631](https://github.com/elastic/eui/pull/631))
@@ -73,7 +73,7 @@
 
 # [`0.0.34`](https://github.com/elastic/eui/tree/v0.0.34)
 
-- Adjust `EuiCallOut` and dark theme warning coloring ([#563](https://github.com/elastic/eui/pull/563))
+- Adjusted `EuiCallOut` and dark theme warning coloring ([#563](https://github.com/elastic/eui/pull/563))
 - Added a `buttonColor` prop to `EuiConfirmModal` ([#546](https://github.com/elastic/eui/pull/546))
 - Added 'baseline' as option to `EuiFlexGroup`'s `alignItems` prop ([#546](https://github.com/elastic/eui/pull/546))
 
@@ -82,14 +82,14 @@
 - Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
 - Fixed a bug where `EuiButtonEmpty` would offer a white background on hover when it was disabled, even when there was no such background transition on hover when the buttons are not disabled ([#561](https://github.com/elastic/eui/pull/561))
 - Fixed table cell bugs ([#565](https://github.com/elastic/eui/pull/565))
-  - `EuiBasicTable`  now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
+  - `EuiBasicTable` now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
   - Updated table cell CSS so that long single-word cell content will break and wrap mid-word.
 
 # [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)
 
 - Added initial sorting option to `EuiInMemoryTable` ([#547](https://github.com/elastic/eui/pull/547))
-- Horizontally scrolling `EuiTabs` ([#546](https://github.com/elastic/eui/pull/546))
-- Remove padding from both sides of `EuiEmptyButton` ([#546](https://github.com/elastic/eui/pull/546))
+- Introduced horizontally scrolling `EuiTabs` ([#546](https://github.com/elastic/eui/pull/546))
+- Removed padding from both sides of `EuiEmptyButton` ([#546](https://github.com/elastic/eui/pull/546))
 - Added `disabled` prop to placeholder (ellipses) button in pagination ([#546](https://github.com/elastic/eui/pull/546))
 - Converted `.euiHeader__notification` into `EuiHeaderNotification` ([#546](https://github.com/elastic/eui/pull/546))
 
@@ -119,7 +119,7 @@
 
 # [`0.0.30`](https://github.com/elastic/eui/tree/v0.0.30)
 
-- Add ability to force `EuiSideNav` items open by setting `item.forceOpen`. ([#515](https://github.com/elastic/eui/pull/515))
+- Added the ability to force `EuiSideNav` items open by setting `item.forceOpen`. ([#515](https://github.com/elastic/eui/pull/515))
 
 # [`0.0.29`](https://github.com/elastic/eui/tree/v0.0.29)
 
@@ -134,16 +134,16 @@
 
 # [`0.0.28`](https://github.com/elastic/eui/tree/v0.0.28)
 
-- `EuiInMemoryTable` pass items to BasicTable when message is provided ([#517](https://github.com/elastic/eui/pull/517)).
+- `EuiInMemoryTable` passes items to `BasicTable` when `message` is provided ([#517](https://github.com/elastic/eui/pull/517)).
 - `EuiSearchBox` now passes unused props through to `EuiFieldSearch` ([#514](https://github.com/elastic/eui/pull/514))
-- Change `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `messgae` propType to node
+- Changed `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `messgae` propType to node
 instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 # [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
 
-- Don't propagate a null `onClick` on EuiPanels ([#473](https://github.com/elastic/eui/pull/473))
-- Use 1.1px for the `EuiHorizontalRule` height, in order to work around strange Chrome height calculations ([#473](https://github.com/elastic/eui/pull/473))
-- New icons for `logoGithub` and `logoSketch` ([#494](https://github.com/elastic/eui/pull/494))
+- We no longer propagate a null `onClick` on EuiPanels ([#473](https://github.com/elastic/eui/pull/473))
+- Changed `EuiHorizontalRule` height to `1.1px`, in order to work around strange Chrome height calculations ([#473](https://github.com/elastic/eui/pull/473))
+- Introduced new icons: `logoGithub` and `logoSketch` ([#494](https://github.com/elastic/eui/pull/494))
 - `EuiCard` now has an `href` and `isClickable` prop for better handling hover animations. ([#494](https://github.com/elastic/eui/pull/494))
 - Added `calculateContrast` and `rgbToHex` to services ([#494](https://github.com/elastic/eui/pull/494))
 
@@ -159,9 +159,9 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- `EuiSelect` do not set `defaultValue` property when `value` property is provided ([#504](https://github.com/elastic/eui/pull/504)).
+- `EuiSelect` no longer sets `defaultValue` property when `value` property is provided ([#504](https://github.com/elastic/eui/pull/504)).
 - `EuiBottomBar` now uses `EuiPortal` to avoid zindex conflicts ([#487](https://github.com/elastic/eui/pull/487))
-- Upped dark theme contrast on disabled buttons  ([#487](https://github.com/elastic/eui/pull/487))
+- Enhanced dark theme contrast on disabled buttons  ([#487](https://github.com/elastic/eui/pull/487))
 
 **Breaking changes**
 
@@ -176,7 +176,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Breaking changes**
 
-- Complete refactor of `EuiToolTip`. They now work. Only a breaking change if you were using them. ([#484](https://github.com/elastic/eui/pull/484))
+- Completed refactor of `EuiToolTip`. They now work. ([#484](https://github.com/elastic/eui/pull/484))
 
 # [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 
@@ -186,11 +186,11 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- Fix error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
+- Fixed an error stemming from `selected` prop on `EuiSelect` ([#436](https://github.com/elastic/eui/pull/436))
 
 **Breaking changes**
 
-- The `Random` service's `oneOf` method now only accepts an array ([#454](https://github.com/elastic/eui/pull/454))
+- `Random#oneOf` now only accepts an array ([#454](https://github.com/elastic/eui/pull/454))
 
 # [`0.0.23`](https://github.com/elastic/eui/tree/v0.0.23)
 
@@ -218,7 +218,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 - Fixed disabled & checked state of switches ([#407](https://github.com/elastic/eui/pull/407))
 - Fixed `EuiCard` content alignment when content is short. ([#415](https://github.com/elastic/eui/pull/415))
 - Only apply the `$euiCodeBlockSelectedBackgroundColor` variable if it is a color ([#427](https://github.com/elastic/eui/pull/427))
-- No margins for `<hr>` ([#427](https://github.com/elastic/eui/pull/427))
+- `<hr>` no longer applies any margins ([#427](https://github.com/elastic/eui/pull/427))
 - Fixed `EuiButton` truncation ([#427](https://github.com/elastic/eui/pull/427))
 
 **Breaking changes**
@@ -227,9 +227,9 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 # [`0.0.21`](https://github.com/elastic/eui/tree/v0.0.21)
 
-- Logstash icon set. [#399](https://github.com/elastic/eui/pull/399)
+- Introduced the Logstash icon set. [#399](https://github.com/elastic/eui/pull/399)
 - Added support for `disabled` options in `EuiSelect`. [#324](https://github.com/elastic/eui/pull/324)
-- Badges can now accept onClicks and custom colors. They were changed stylistically to be bolder and smaller by default. ([#381](https://github.com/elastic/eui/pull/381))
+- Badges can now accept `onClick` and custom colors. They were changed stylistically to be bolder and smaller by default. ([#381](https://github.com/elastic/eui/pull/381))
 - Added component to wrap blocks of substeps `EuiSubSteps` in a shaded container. ([#375](https://github.com/elastic/eui/pull/375))
 - Added horizontal steps component ([#375](https://github.com/elastic/eui/pull/375))
 - Changed look and feel of pagination. Added `compressed` prop for smaller footprint pagination. ([#380](https://github.com/elastic/eui/pull/380))
@@ -243,9 +243,9 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Bug fixes**
 
 - Tables now default to `table-layout: fixed` to avoid some collapsing cell problems. [#398](https://github.com/elastic/eui/pull/398)
-- Wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
+- We now wrap long lines of text within the body of `EuiToast` instead of letting text overflow ([#392](https://github.com/elastic/eui/pull/392))
 - Fixed dark theme coloring of Substeps ([#396](https://github.com/elastic/eui/pull/396))
-- Reorder selectors to fix fixed progress bar in Firefox ([#404](https://github.com/elastic/eui/pull/404))
+- Sorted CSS selectors to fix `EuiProgress` in Firefox ([#404](https://github.com/elastic/eui/pull/404))
 
 # [`0.0.20`](https://github.com/elastic/eui/tree/v0.0.20)
 
@@ -259,7 +259,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 - **Note: This is deprecated in 0.0.21 and removed in 0.0.26.** `EuiTableOfRecords` selection bugs ([#365](https://github.com/elastic/eui/pull/365))
   - Deleting selected items now resets the select all checkbox to an unchecked state
-  - The select all checkbox only becomes checked when all selectable rows are checked, not just some of them
+  - The "select all" checkbox only becomes checked when all selectable rows are checked, not just some of them
 
 **Breaking changes**
 
@@ -289,7 +289,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- Stop propagation and prevent default when closing components. Otherwise the same Escape keypress could close the parent component(s) as well as the one you intend to close. ([#344](https://github.com/elastic/eui/pull/344))
+- We now stop propagation and prevent default when closing components. Otherwise the same Escape keypress could close the parent component(s) as well as the one you intend to close. ([#344](https://github.com/elastic/eui/pull/344))
 
 # [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
 
@@ -302,19 +302,19 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Breaking changes**
 
 - `EuiCodeBlock` now only shows fullscreen icons if `overflowHeight` prop is set. Also forces large fonts and padding while expanded. ([#325](https://github.com/elastic/eui/pull/325))
-- React ^16.2 is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
+- React `^16.2` is now a peer dependency ([#264](https://github.com/elastic/eui/pull/264))
 - `EuiProgress` no longer accepts the `indeterminate` property, which never had any effect. ([#326](https://github.com/elastic/eui/pull/326))
 
 **Bug fixes**
 
-- Fix TypeScript definitions such that optional and readonly properties survive being passed through `Omit` ([#322](https://github.com/elastic/eui/pull/322))
+- Fixed TypeScript definitions such that optional and read-only properties survive being passed through `Omit` ([#322](https://github.com/elastic/eui/pull/322))
 
 # [`0.0.14`](https://github.com/elastic/eui/tree/v0.0.14)
 
 - Added `isColorDark` color util ([#311](https://github.com/elastic/eui/pull/311))
 - EuiButton, EuiButtonEmpty and EuiButtonIcon can now take an `href` ([#316](https://github.com/elastic/eui/pull/316))
-- In `EuiSideNav`, allow a callback to be passed that renders the individual items in the navigation. This makes interoperability with e.g. `react-router` easier. ([#310](https://github.com/elastic/eui/pull/310))
-- Add new icon types to `EuiIcon` TypeScript definitions ([#323](https://github.com/elastic/eui/pull/323)).
+- We now accept a callback in `EuiSideNav` to render the individual items in the navigation. This makes interoperability with `react-router` and the like easier. ([#310](https://github.com/elastic/eui/pull/310))
+- Added new icon types to `EuiIcon` TypeScript definitions ([#323](https://github.com/elastic/eui/pull/323)).
 
 **Bug fixes**
 
@@ -326,22 +326,22 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Breaking changes**
 
-- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. ([#306](https://github.com/elastic/eui/pull/306))
+- Reverted test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. ([#306](https://github.com/elastic/eui/pull/306))
 
 **Bug fixes**
 
-- Adjust toast z-index to show over modals ([#296](https://github.com/elastic/eui/pull/296))
-- Fix nested `EuiFlexItem` collapse issue in IE ([#308](https://github.com/elastic/eui/pull/308))
+- Adjusted `z-index` to `EuiToast` to overlay it on top of modals ([#296](https://github.com/elastic/eui/pull/296))
+- Fixed nested `EuiFlexItem` collapse issue in IE ([#308](https://github.com/elastic/eui/pull/308))
 
 # [`0.0.12`](https://github.com/elastic/eui/tree/v0.0.12)
 
-- Minor style-only changes to `EuiPagination`, button reset, `EuiTableHeaderCell`, and `EuiCodeBlock`. ([#298](https://github.com/elastic/eui/pull/298))
-- All NPM dependencies now use ^ to install the latest minor version.
-- Added Apache, Nginx, MySQL logos ([#270](https://github.com/elastic/eui/pull/270))
+- Made minor style-only changes to `EuiPagination`, button reset, `EuiTableHeaderCell`, and `EuiCodeBlock`. ([#298](https://github.com/elastic/eui/pull/298))
+- All npm dependencies now use `^` to install the latest minor version.
+- Added Apache, nginx, MySQL logos ([#270](https://github.com/elastic/eui/pull/270))
 - Added small version of `EuiCallOut` ([#269](https://github.com/elastic/eui/pull/269))
 - Added first batch of TypeScript type definitions for components and services ([#252](https://github.com/elastic/eui/pull/252))
 - Added button for expanding `EuiCodeBlock` instances to be full-screen. ([#259](https://github.com/elastic/eui/pull/259))
-- Add test helper for async functions that throw exceptions ([#301](https://github.com/elastic/eui/pull/301))
+- Added a test helper for async functions that throw exceptions ([#301](https://github.com/elastic/eui/pull/301))
 
 **Bug fixes**
 
@@ -361,8 +361,8 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Bug fixes**
 
 - Disabled tab styling. ([#258](https://github.com/elastic/eui/pull/258))
-- Proper classname for flexGroup alignItems prop. ([#257](https://github.com/elastic/eui/pull/257))
-- Clicking the downArrow icon in `EuiSelect` now triggers selection. ([#255](https://github.com/elastic/eui/pull/255))
+- Added proper class name for `alignItems` prop in `EuiFlexGroup`. ([#257](https://github.com/elastic/eui/pull/257))
+- Clicking the `downArrow` icon in `EuiSelect` now triggers selection. ([#255](https://github.com/elastic/eui/pull/255))
 - Fixed `euiFormRow` id's from being the same as the containing input and label. ([#251](https://github.com/elastic/eui/pull/251))
 
 **Breaking changes**
@@ -390,17 +390,17 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Breaking changes**
 
 - Renamed `euiFlexGroup--alignItemsEnd` class to `euiFlexGroup--alignItemsFlexEnd`.
-- Remove support for `primary` color from `EuiTextColor` because it looked too much like a link.
+- Removed support for `primary` color from `EuiTextColor` because it looked too much like a link.
 
 **Bug fixes**
 
-- Give `EuiFormErrorText` and `EuiFormHelpText` proper line-height. ([#234](https://github.com/elastic/eui/pull/234))
+- Gave `EuiFormErrorText` and `EuiFormHelpText` proper `line-height`. ([#234](https://github.com/elastic/eui/pull/234))
 
 # [`0.0.8`](https://github.com/elastic/eui/tree/v0.0.8)
 
 **Bug fixes**
 
-- Fix button vertical alignment. ([#232](https://github.com/elastic/eui/pull/232))
+- Fixed vertical button alignment. ([#232](https://github.com/elastic/eui/pull/232))
 
 # [`0.0.7`](https://github.com/elastic/eui/tree/v0.0.7)
 
@@ -412,7 +412,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Bug fixes**
 
-- Case sensitive file name fix for Kibana dark theme. ([#216](https://github.com/elastic/eui/pull/216))
+- Case sensitive file name fixed for Kibana dark theme. ([#216](https://github.com/elastic/eui/pull/216))
 
 # [`0.0.6`](https://github.com/elastic/eui/tree/v0.0.6)
 
@@ -456,7 +456,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Breaking changes**
 
 - Fixed a bug where table cell classes were being applied twice ([#167](https://github.com/elastic/eui/pull/167))
-- React ^16.0 is now a peer dependency ([#198](https://github.com/elastic/eui/pull/198))
+- React `^16.0` is now a peer dependency ([#198](https://github.com/elastic/eui/pull/198))
 
 # [`0.0.3`](https://github.com/elastic/eui/tree/v0.0.3)
 
