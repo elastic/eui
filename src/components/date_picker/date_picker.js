@@ -66,6 +66,7 @@ export class EuiDatePicker extends Component {
       shouldCloseOnSelect,
       openToDate,
       disabled,
+      utcOffset,
       ...rest
     } = this.props;
 
@@ -73,6 +74,7 @@ export class EuiDatePicker extends Component {
       'euiDatePicker',
       {
         'euiDatePicker--shadow': shadow,
+        'euiDatePicker--inline': inline,
       },
     );
 
@@ -130,6 +132,7 @@ export class EuiDatePicker extends Component {
               shouldCloseOnSelect={shouldCloseOnSelect}
               openToDate={openToDate}
               disabled={disabled}
+              utcOffset={utcOffset}
               {...rest}
             />
           </EuiValidatableControl>

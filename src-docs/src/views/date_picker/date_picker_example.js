@@ -52,6 +52,10 @@ import CustomInput from './custom_input';
 const customInputSource = require('!!raw-loader!./custom_input');
 const customInputHtml = renderToHtml(CustomInput);
 
+import Utc from './utc';
+const utcSource = require('!!raw-loader!./utc');
+const utcHtml = renderToHtml(Utc);
+
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
@@ -198,6 +202,21 @@ export const DatePickerExample = {
       </p>
     ),
     demo: <CustomInput />,
+  }, {
+    title: 'Utc offsets',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: utcSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: utcHtml,
+    }],
+    text: (
+      <p>
+        Use <EuiCode>utcOffset</EuiCode> to apply an offset to the datetime.
+      </p>
+    ),
+    demo: <Utc />,
   }, {
     title: 'Datepicker inline',
     source: [{

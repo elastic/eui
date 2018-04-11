@@ -15,20 +15,33 @@
   }
 }
 
-// Some wrapping cascade is needed in a couple rare cases. This is the only
-// "new" selectors added to this sass.
-
+// The only "new" css in this component is a wrapper class for dealing with shadows.
+// This is mostly here so that we can provide an inline version that doesn't have the
+// shadows and depth.
 .euiDatePicker {
   &.euiDatePicker--shadow {
-    .react-datepicker {
+    .react-datepicker-popper {
       @include euiBottomShadowMedium;
 
       border: 1px solid $euiBorderColor;
-      border-radius: $euiBorderRadius;
+      background-color: $euiColorEmptyShade;
+      border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
 
     .react-datepicker__time-container {
         background: $euiColorLightestShade;
+    }
+
+    // If the shadow is on, and it is inline, we need to put the shadow on the datepciker
+    // itself rather than the popper.
+    &.euiDatePicker--inline {
+      .react-datepicker {
+        @include euiBottomShadowMedium;
+
+        border: 1px solid $euiBorderColor;
+        background-color: $euiColorEmptyShade;
+        border-radius: $euiBorderRadius;
+      }
     }
   }
 }
@@ -39,10 +52,10 @@
 .react-datepicker {
   font-family: $euiFontFamily;
   font-size: $euiFontSizeXS;
-  background-color: $euiColorEmptyShade;
   color: $euiColorFullShade;
   display: flex;
   position: relative;
+  border-radius: $euiBorderRadius;
 
 }
 
@@ -74,6 +87,11 @@
   }
 
   &[data-placement^="top"] {
+    box-shadow:
+      0 0px 12px -1px rgba($euiShadowColor, .2),
+      0 0px 4px -1px rgba($euiShadowColor, .2),
+      0 0px 2px 0 rgba($euiShadowColor, .2) !important;
+      border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
 
     // .react-datepicker__triangle {
     // }
@@ -525,6 +543,7 @@
     }
   }
 
+  // These selectors are not a typo. Likely a bug in their rendering.
   &.--selected_year, &.--selected_month {
     background: $euiColorPrimary;
     color: $euiColorEmptyShade;
