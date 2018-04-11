@@ -7,6 +7,9 @@ import moment from 'moment';
 
 import {
   EuiDatePicker,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormRow,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -36,22 +39,30 @@ export default class extends Component {
 
   render() {
     return (
-      <div>
-        <EuiDatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChangeStart}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          showTimeSelect
-        />
-        <EuiDatePicker
-          selected={this.state.endDate}
-          onChange={this.handleChangeEnd}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          showTimeSelect
-        />
-      </div>
+      <EuiFlexGroup gutterSize="none">
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Start date">
+            <EuiDatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChangeStart}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              showTimeSelect
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="End date">
+            <EuiDatePicker
+              selected={this.state.endDate}
+              onChange={this.handleChangeEnd}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              showTimeSelect
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }

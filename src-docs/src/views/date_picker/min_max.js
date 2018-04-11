@@ -20,12 +20,14 @@ export default class extends Component {
       startDate2: moment(),
       startDate3: moment().add(1, "days"),
       startDate4: moment().add(1, "days"),
+      startDate5: moment(),
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleChange3 = this.handleChange3.bind(this);
     this.handleChange4 = this.handleChange4.bind(this);
+    this.handleChange5 = this.handleChange5.bind(this);
   }
 
   handleChange(date) {
@@ -51,6 +53,17 @@ export default class extends Component {
       startDate4: date
     });
   }
+
+  handleChange5(date) {
+    this.setState({
+      startDate5: date
+    });
+  }
+
+  isWeekday(date) {
+    const day = date.day();
+    return day !== 0 && day !== 6;
+  };
 
   render() {
     return (
@@ -96,6 +109,17 @@ export default class extends Component {
             selected={this.state.startDate4}
             onChange={this.handleChange4}
             excludeTimes={[moment().hours(0).minutes(0), moment().hours(17).minutes(0)]}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer />
+
+        <EuiFormRow label="Filter so only weekdays are selectable">
+          <EuiDatePicker
+            showTimeSelect
+            selected={this.state.startDate5}
+            onChange={this.handleChange5}
+            filterDate={this.isWeekday}
           />
         </EuiFormRow>
 

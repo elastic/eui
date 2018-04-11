@@ -67,6 +67,7 @@ export class EuiDatePicker extends Component {
       openToDate,
       disabled,
       utcOffset,
+      filterDates,
       ...rest
     } = this.props;
 
@@ -133,6 +134,7 @@ export class EuiDatePicker extends Component {
               openToDate={openToDate}
               disabled={disabled}
               utcOffset={utcOffset}
+              filterDates={filterDates}
               {...rest}
             />
           </EuiValidatableControl>
