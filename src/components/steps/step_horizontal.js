@@ -50,7 +50,7 @@ export const EuiStepHorizontal = ({
         aria-selected={!!isSelected}
         aria-disabled={!!disabled}
         className={classes}
-        onClick={() => disabled ? onClick() : undefined}
+        onClick={() => !disabled ? onClick() : undefined}
         title={buttonTitle}
         {...rest}
       >
