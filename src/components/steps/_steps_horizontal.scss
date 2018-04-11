@@ -26,7 +26,7 @@
   cursor: pointer;
 
   // focus & hover state
-  &:focus,
+  &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {
       background: $euiColorPrimary;

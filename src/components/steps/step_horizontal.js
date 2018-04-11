@@ -41,6 +41,14 @@ export const EuiStepHorizontal = ({
     numberNode = step;
   }
 
+  const onStepClick = e => {
+    if (disabled) {
+      return;
+    }
+
+    onClick(e);
+  }
+
   const buttonTitle = `Step ${step}: ${title}${titleAppendix}`;
 
   return (
@@ -50,7 +58,8 @@ export const EuiStepHorizontal = ({
         aria-selected={!!isSelected}
         aria-disabled={!!disabled}
         className={classes}
-        onClick={() => !disabled ? onClick() : undefined}
+        onClick={onStepClick}
+        tabIndex={disabled ? '-1' : '0'}
         title={buttonTitle}
         {...rest}
       >
