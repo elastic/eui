@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import {
   EuiScreenReaderOnly,
+  EuiKeyboardAccessible,
 } from '../accessibility';
 
 import { EuiIcon } from '../icon';
@@ -40,38 +41,46 @@ export const EuiStepHorizontal = ({
     numberNode = step;
   }
 
+  const onStepClick = e => {
+    if (disabled) {
+      return;
+    }
+
+    onClick(e);
+  }
+
   const buttonTitle = `Step ${step}: ${title}${titleAppendix}`;
 
   return (
-    <button
-      role="tab"
-      aria-selected={!!isSelected}
-      type="button"
-      className={classes}
-      onClick={onClick}
-      disabled={disabled}
-      title={buttonTitle}
-      {...rest}
-    >
+    <EuiKeyboardAccessible>
+      <div
+        role="tab"
+        aria-selected={!!isSelected}
+        aria-disabled={!!disabled}
+        className={classes}
+        onClick={onStepClick}
+        tabIndex={disabled ? '-1' : '0'}
+        title={buttonTitle}
+        {...rest}
+      >
+        <EuiScreenReaderOnly><div>Step</div></EuiScreenReaderOnly>
 
-      <EuiScreenReaderOnly><span>Step</span></EuiScreenReaderOnly>
+        <div className="euiStepHorizontal__number">
+          {numberNode}
+        </div>
 
-      <div className="euiStepHorizontal__number">
-        {numberNode}
+        <div className="euiStepHorizontal__title">
+          {title}
+        </div>
       </div>
-
-      <span className="euiStepHorizontal__title">
-        {title}
-      </span>
-
-    </button>
+    </EuiKeyboardAccessible>
   );
 };
 
 EuiStepHorizontal.propTypes = {
   isSelected: PropTypes.bool,
   isComplete: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   title: PropTypes.node,
   className: PropTypes.string,

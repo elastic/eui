@@ -6,18 +6,17 @@ import { EuiStep } from './step';
 
 describe('EuiStep', () => {
   test('is rendered', () => {
-    const stepContent = (<p>Do this</p>);
     const component = render(
       <EuiStep
         {...requiredProps}
         headingElement={'h3'}
         step={1}
         title={'First step'}
-        children={stepContent}
-      />
+      >
+        <p>Do this</p>
+      </EuiStep>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
