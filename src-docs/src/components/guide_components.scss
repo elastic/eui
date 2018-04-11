@@ -80,7 +80,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   margin-left: 240px;
 }
 
-
 .guideDemo__highlightLayout {
   div {
     background: transparentize(#0096CC, .9);
@@ -109,6 +108,13 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__textLines {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
   background-size: 100% 8px !important;
+  background-position-y: 2px;
+}
+
+.guideDemo__textLines--s {
+  background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
+  background-size: 100% 7px !important;
+  background-position-y: -2px;
 }
 
 .guideDemo__color {
@@ -138,7 +144,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .guideDemo__ghostBackground {
-  background: #444;
+  @if (lightness($euiTextColor) < 50) {
+    background: $euiColorDarkestShade;
+  }
   padding: $euiSizeL;
 }
 

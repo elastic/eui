@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { calculatePopoverPosition, calculatePopoverStyles } from '../../services';
+import { calculatePopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
 
@@ -38,16 +38,20 @@ export class EuiToolTip extends Component {
     this.setState({ visible: true });
   };
 
-  positionToolTip = (toolTipRect) => {
-    const wrapperRect = this.wrapper.getBoundingClientRect();
-    const userPosition = this.props.position;
+  positionToolTip = (toolTipBounds) => {
+    const anchorBounds = this.anchor.getBoundingClientRect();
+    const requestedPosition = this.props.position;
 
-    const calculatedPosition = calculatePopoverPosition(wrapperRect, toolTipRect, userPosition);
-    const toolTipStyles = calculatePopoverStyles(wrapperRect, toolTipRect, calculatedPosition);
+    const { position, left, top } = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
+
+    const toolTipStyles = {
+      top: top + window.scrollY,
+      left,
+    };
 
     this.setState({
       visible: true,
-      calculatedPosition,
+      calculatedPosition: position,
       toolTipStyles,
     });
   };
@@ -70,9 +74,13 @@ export class EuiToolTip extends Component {
     this.hideToolTip();
   };
 
-  onMouseOut = () => {
-    if (!this.state.hasFocus) {
-      this.hideToolTip();
+  onMouseOut = (e) => {
+    // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
+    // left the anchor for a non-child.
+    if (this.anchor === e.relatedTarget || !this.anchor.contains(e.relatedTarget)) {
+      if (!this.state.hasFocus) {
+        this.hideToolTip();
+      }
     }
   };
 
@@ -110,8 +118,11 @@ export class EuiToolTip extends Component {
       );
     }
 
-    const trigger = (
-      <span ref={wrapper => this.wrapper = wrapper}>
+    const anchor = (
+      <span
+        ref={anchor => this.anchor = anchor}
+        className="euiToolTipAnchor"
+      >
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
@@ -124,7 +135,7 @@ export class EuiToolTip extends Component {
 
     return (
       <Fragment>
-        {trigger}
+        {anchor}
         {tooltip}
       </Fragment>
     );

@@ -2,7 +2,7 @@ import { omit } from '../../../../../src/services/objects';
 import { propsInfo as basicPropsInfo } from '../basic/props_info';
 import { propsInfo as searchBarPropsInfo } from '../../search_bar/props_info';
 
-const basicTableProps = omit(basicPropsInfo, [ 'EuiBasicTable', 'Pagination', 'Sorting' ]);
+const basicTableProps = omit(basicPropsInfo, [ 'EuiBasicTable', 'Pagination' ]);
 const searchBarProps = omit(searchBarPropsInfo, [ 'EuiSearchBar' ]);
 
 export const propsInfo = {
@@ -39,9 +39,9 @@ export const propsInfo = {
           type: { name: 'boolean | #Pagination' }
         },
         sorting: {
-          description: 'Enables/disables sorting',
+          description: 'Enables/disables sorting. Can be an object that configures initial sorting when enabled',
           required: false,
-          type: { name: 'boolean' }
+          type: { name: 'boolean | #Sorting' }
         },
         search: {
           description: 'Configures a search bar for the table',

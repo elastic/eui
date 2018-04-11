@@ -32,7 +32,7 @@ export default class extends Component {
           enableSnippets: true,
           enableLiveAutocompletion: true,
         }}
-        onBlur={() => { console.log('blur'); }}
+        onBlur={() => { console.log('blur'); }} // eslint-disable-line no-console
       />
     );
   }

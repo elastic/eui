@@ -17,6 +17,7 @@ const colorToClassNameMap = {
   accent: 'euiBadge--accent',
   warning: 'euiBadge--warning',
   danger: 'euiBadge--danger',
+  hollow: 'euiBadge--hollow',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -36,6 +37,7 @@ export const EuiBadge = ({
   className,
   onClick,
   iconOnClick,
+  closeButtonProps,
   ...rest
 }) => {
 
@@ -69,7 +71,7 @@ export const EuiBadge = ({
     if (iconOnClick) {
       optionalIcon = (
         <EuiKeyboardAccessible>
-          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" />
+          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" {...closeButtonProps} />
         </EuiKeyboardAccessible>
       );
 
@@ -105,7 +107,7 @@ export const EuiBadge = ({
       >
         <span className="euiBadge__content">
           {optionalIcon}
-          <span>
+          <span className="euiBadge__text">
             {children}
           </span>
         </span>
@@ -113,6 +115,16 @@ export const EuiBadge = ({
     );
   }
 };
+
+function checkValidColor(props, propName, componentName) {
+  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
+  if (props.color && !validHex && !COLORS.includes(props.color)) {
+    throw new Error(
+      `${componentName} needs to pass a valid color. This can either be a three ` +
+      `or six character hex value or one of the following: ${COLORS}`
+    );
+  }
+}
 
 EuiBadge.propTypes = {
   children: PropTypes.node,
@@ -140,7 +152,12 @@ EuiBadge.propTypes = {
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
-  color: PropTypes.string,
+  color: checkValidColor,
+
+  /**
+   * Props passed to the close button.
+   */
+  closeButtonProps: PropTypes.object,
 };
 
 EuiBadge.defaultProps = {

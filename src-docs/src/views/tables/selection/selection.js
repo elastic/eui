@@ -117,10 +117,12 @@ export class Table extends Component {
     const columns = [{
       field: 'firstName',
       name: 'First Name',
-      sortable: true
+      sortable: true,
+      truncateText: true,
     }, {
       field: 'lastName',
-      name: 'Last Name'
+      name: 'Last Name',
+      truncateText: true,
     }, {
       field: 'github',
       name: 'Github',

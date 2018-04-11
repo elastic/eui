@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 
 import { EuiRadioGroup } from './radio_group';
@@ -62,6 +62,66 @@ describe('EuiRadioGroup', () => {
 
       expect(component)
         .toMatchSnapshot();
+    });
+
+    test('value is propagated to radios', () => {
+      const component = render(
+        <EuiRadioGroup
+          name="radiogroupname"
+          options={[
+            { id: '1', label: 'Option #1', value: 'Value #1' },
+            { id: '2', label: 'Option #2', value: 'Value #2' }
+          ]}
+          onChange={() => {}}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+  });
+
+  describe('callbacks', () => {
+    test('id is used in callbacks when no value is available', () => {
+      const callback = jest.fn();
+
+      const component = mount(
+        <EuiRadioGroup
+          name="radiogroupname"
+          options={[
+            { id: '1', label: 'Option #1' },
+            { id: '2', label: 'Option #2' }
+          ]}
+          onChange={callback}
+        />
+      );
+
+      component.find('input[id="2"]').simulate('change');
+
+      expect(callback).toHaveBeenCalledTimes(1);
+      const event = expect.any(Object);
+      expect(callback).toHaveBeenCalledWith('2', undefined, event);
+    });
+
+    test('value is used in callbacks when available', () => {
+      const callback = jest.fn();
+
+      const component = mount(
+        <EuiRadioGroup
+          name="radiogroupname"
+          options={[
+            { id: '1', label: 'Option #1', value: 'Value #1' },
+            { id: '2', label: 'Option #2', value: 'Value #2' }
+          ]}
+          onChange={callback}
+        />
+      );
+
+      component.find('input[id="2"]').simulate('change');
+
+      expect(callback).toHaveBeenCalledTimes(1);
+      const event = expect.any(Object);
+      expect(callback).toHaveBeenCalledWith('2', 'Value #2', event);
     });
   });
 });

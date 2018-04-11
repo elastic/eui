@@ -27,7 +27,6 @@ import {
   EuiTableBody,
   EuiTableRow,
   EuiTableRowCell,
-  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import ContextMenu from '../context_menu/context_menu';
@@ -36,18 +35,18 @@ import imageButtonPlacement from '../../images/button_placement.png';
 
 export default() => (
   <GuidePage title="Button guidelines">
-    <EuiText>
+
+    <Link to="/navigation/button">
+      <EuiButton className="guideRule__goToButton">
+        View component code
+      </EuiButton>
+    </Link>
+
+    <EuiText className="guideSection__text">
       <p>
         This page documents patterns for button design, including types, placement, color, and size.
       </p>
-      <Link to="/navigation/button">
-        <EuiButton>
-          View component code
-        </EuiButton>
-      </Link>
     </EuiText>
-
-    <EuiHorizontalRule/>
 
     <GuideRuleTitle>Button types</GuideRuleTitle>
 
@@ -64,9 +63,9 @@ export default() => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
-            <strong>Filled buttons are for the primary action</strong>
+            Filled buttons are for the primary action
           </h4>
           <p>
             This button has the heavist visual weight to draw users&apos; attention.
@@ -85,9 +84,9 @@ export default() => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
-            <strong>Standard buttons are for secondary actions</strong>
+            Standard buttons are for secondary actions
           </h4>
           <p>
             Such actions include Add and Apply. This button type works well for
@@ -107,9 +106,9 @@ export default() => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
-            <strong>Empty buttons are for complimentary, UI-specific actions</strong>
+            Empty buttons are for complimentary, UI-specific actions
           </h4>
           <p>
             Close, cancel, filter, refresh, and other actions that reconfigure the
@@ -135,9 +134,9 @@ export default() => (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiText>
+        <EuiText className="guideSection__text">
           <h4>
-            <strong>Icon buttons are for saving space</strong>
+            Icon buttons are for saving space
           </h4>
           <p>
             The icon must be immediately understood, for example, a trash can
@@ -148,13 +147,10 @@ export default() => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiHorizontalRule/>
-
     <GuideRuleTitle>Placement and order</GuideRuleTitle>
-
-    <GuideRule
-      description="Button placement and order should follow the user path."
-    />
+    <EuiText className="guideSection__text">
+      <p>Button placement and order should follow the user path.</p>
+    </EuiText>
 
     <GuideRule
       heading="Put buttons on the right in containers with a restricted width"
@@ -257,7 +253,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>One primary button per layout</GuideRuleTitle>
 
@@ -288,12 +284,9 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule />
-
     <GuideRuleTitle>Icons in buttons either stand on their own or add context</GuideRuleTitle>
 
     <GuideRule
-      heading=""
       description="Icon buttons can save space.
         Limit icon buttons to groups of two&mdash;otherwise they lose meaning."
     >
@@ -367,7 +360,7 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule />
+    <EuiSpacer size="xxl" />
 
     <GuideRuleTitle>Minimize the mixing of color, size, and type</GuideRuleTitle>
 
@@ -424,8 +417,6 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule />
-
     <GuideRuleTitle>Stack action sets into one button</GuideRuleTitle>
 
     <GuideRule
@@ -469,23 +460,21 @@ export default() => (
       </GuideRuleExample>
     </GuideRule>
 
-    <EuiHorizontalRule />
-
     <GuideRuleTitle>Labels that say what the button does</GuideRuleTitle>
 
-    <GuideRule
-      heading=""
-      description="Labels should provide a clear indication of
+    <EuiText className="guideSection__text">
+      <p>
+        Labels should provide a clear indication of
         that action that occurs when the user clicks the button.
-        Prefer action words, and include an object when it's not clear from the context,
+        Prefer action words, and include an object when it is not clear from the context,
         for example, Add dashboard. Labels should be three words or less.
-        If your label requries more words, consider using a text link instead."
-    />
+        If your label requries more words, consider using a text link instead.
+      </p>
 
-    <EuiText >
       <h3>Preferred words in buttons</h3>
-      <EuiSpacer/>
     </EuiText>
+
+    <EuiSpacer/>
 
     <EuiTable>
       <EuiTableHeader>
@@ -586,11 +575,13 @@ export default() => (
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
-    <EuiSpacer size="l"/>
 
-    <EuiText>
+    <EuiSpacer size="xl"/>
+
+    <EuiText className="guideSection__text">
       <h3>Avoid these words in buttons</h3>
     </EuiText>
+
     <EuiSpacer/>
 
     <EuiTable>

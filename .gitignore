@@ -8,6 +8,7 @@ reports/
 tmp/
 dist/
 lib/
+.idea
 .vscode/
 .DS_Store
 .eslintcache

@@ -22,7 +22,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiToastHeader__icon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiToastHeader__icon"
         height="16"
         viewBox="0 0 16 16"
         width="16"
@@ -88,7 +88,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiToastHeader__icon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiToastHeader__icon"
         height="16"
         viewBox="0 0 16 16"
         width="16"

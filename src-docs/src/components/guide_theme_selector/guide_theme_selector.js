@@ -38,7 +38,7 @@ export class GuideThemeSelector extends Component {
         iconSide="right"
         onClick={this.onThemeButtonClick}
       >
-        Elastic UI <span className="guideSideNav__theme"> ~ {this.props.selectedTheme}</span>
+        <strong>Elastic UI</strong> <span className="guideSideNav__theme"> ~ {this.props.selectedTheme}</span>
       </EuiButtonEmpty>
     );
 

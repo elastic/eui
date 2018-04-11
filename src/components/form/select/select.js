@@ -82,7 +82,7 @@ EuiSelect.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired
+    text: PropTypes.node.isRequired
   })).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,

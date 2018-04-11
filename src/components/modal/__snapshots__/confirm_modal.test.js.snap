@@ -15,7 +15,7 @@ exports[`renders EuiConfirmModal 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiButtonIcon__icon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiButtonIcon__icon"
         height="16"
         viewBox="0 0 16 16"
         width="16"
@@ -60,7 +60,7 @@ exports[`renders EuiConfirmModal 1`] = `
       class="euiModalFooter"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        class="euiButtonEmpty euiButtonEmpty--primary"
         data-test-subj="confirmModalCancelButton"
         type="button"
       >
@@ -73,7 +73,7 @@ exports[`renders EuiConfirmModal 1`] = `
         </span>
       </button>
       <button
-        class="euiButton euiButton--primary euiButton--small euiButton--fill"
+        class="euiButton euiButton--primary euiButton--fill"
         data-test-subj="confirmModalConfirmButton"
         type="button"
       >

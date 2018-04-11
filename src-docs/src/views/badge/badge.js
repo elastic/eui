@@ -8,6 +8,7 @@ import {
 
 const badges = [
   'default',
+  'hollow',
   'primary',
   'secondary',
   'accent',

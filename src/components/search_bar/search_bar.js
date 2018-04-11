@@ -59,20 +59,28 @@ export const SearchBarPropTypes = {
   toolsRight: PropTypes.node,
 };
 
-const resolveQuery = (query) => {
+const parseQuery = (query, props) => {
+  const parseDate = props.box ? props.box.parseDate : undefined;
+  const schema = props.box ? props.box.schema : undefined;
+  const parseOptions = {
+    parseDate,
+    schema
+  };
   if (!query) {
-    return Query.parse('');
+    return Query.parse('', parseOptions);
   }
-  return isString(query) ? Query.parse(query) : query;
+  return isString(query) ? Query.parse(query, parseOptions) : query;
 };
 
 export class EuiSearchBar extends Component {
 
   static propTypes = SearchBoxConfigPropTypes;
 
+  static Query = Query;
+
   constructor(props) {
     super(props);
-    const query = resolveQuery(props.defaultQuery || props.query);
+    const query = parseQuery(props.defaultQuery || props.query, props);
     this.state = {
       query,
       queryText: query.text,
@@ -82,7 +90,7 @@ export class EuiSearchBar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.query) {
-      const query = resolveQuery(nextProps.query);
+      const query = parseQuery(nextProps.query, this.props);
       this.setState({
         query,
         queryText: query.text,
@@ -93,7 +101,7 @@ export class EuiSearchBar extends Component {
 
   onSearch = (queryText) => {
     try {
-      const query = Query.parse(queryText);
+      const query = parseQuery(queryText, this.props);
       if (this.props.onParse) {
         this.props.onParse({ query, queryText });
       }

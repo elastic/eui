@@ -7,9 +7,11 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiToolTip,
   EuiIconTip,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import ToolTip from './tool_tip';
@@ -22,6 +24,20 @@ const infoTipHtml = renderToHtml(IconTip);
 
 export const ToolTipExample = {
   title: 'ToolTip',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="EuiToolTip only applies to inline elements"
+      >
+        <p>
+          EuiToolTip wraps its children in a span element, so if you pass in a block-level child
+          (e.g. a div) the resulting DOM will be in violation of the HTML5 spec.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [{
     source: [{
       type: GuideSectionTypes.JS,
@@ -59,7 +75,8 @@ export const ToolTipExample = {
         </p>
         <p>
           It accepts all the same props as <EuiCode>EuiToolTip</EuiCode>.
-          For convenience, you can also specify an optional icon <EuiCode>type</EuiCode> prop.
+          For convenience, you can also specify optional icon <EuiCode>type</EuiCode> and
+          <EuiCode>color</EuiCode> props.
         </p>
       </Fragment>
     ),

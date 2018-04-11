@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  Fragment,
+} from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -8,6 +10,8 @@ import {
 
 import {
   EuiCallOut,
+  EuiText,
+  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
 
@@ -28,7 +32,42 @@ const dangerSource = require('!!raw-loader!./danger');
 const dangerHtml = renderToHtml(Danger);
 
 export const CallOutExample = {
-  title: 'Call Out',
+  title: 'Callout',
+  intro: (
+    <Fragment>
+      <EuiText>
+        <p>
+          <EuiCode>EuiCallOut</EuiCode> contains a message directly
+          related to content on the page.
+          This includes general information, success, warning, and error messages.
+        </p>
+        <p>
+          <strong>Keep these guidelines in mind:</strong>
+        </p>
+        <ul>
+          <li>
+            Minimize the number of callouts per page.
+          </li>
+          <li>
+            Stack callouts in the order in which
+            they require users&apos; attention:
+            error, warning, info, and then success.
+          </li>
+          <li>
+            Offer only one action per callout and ensure it&apos;s an action users can perform quickly.
+          </li>
+          <li>
+            If the callout has a permanent spot in the UI, but needs to be less obstructive,
+            set the <EuiCode>size</EuiCode> property to <EuiCode>s</EuiCode> (small).
+          </li>
+          <li>
+            Use an <EuiCode>icon</EuiCode> prop if it adds context.
+          </li>
+        </ul>
+      </EuiText>
+      <EuiSpacer size="l"/>
+    </Fragment>
+ ),
   sections: [{
     title: 'Info',
     source: [{
@@ -42,11 +81,6 @@ export const CallOutExample = {
       <div>
         <p>
           Use <EuiCode>EuiCallOut</EuiCode> to communicate general information to the user.
-          Note that the <EuiCode>Icon</EuiCode> prop is optional.
-        </p>
-        <p>
-          For callouts that have a perminant spot in the UI, but need to be less obstructive,
-          set the <EuiCode>size</EuiCode> property to <EuiCode>s</EuiCode> (small).
         </p>
       </div>
     ),
@@ -63,7 +97,9 @@ export const CallOutExample = {
     }],
     text: (
       <p>
-        Use this CallOut to notify the user of a succesfully completed action.
+        Use this callout to notify the user of an action that succesfully completed.
+        Use success callouts sparingly&mdash;callouts are typically used for things that
+        are broken rather than things that succeed.
       </p>
     ),
     demo: <Success />,
@@ -78,7 +114,7 @@ export const CallOutExample = {
     }],
     text: (
       <p>
-        Use this CallOut to warn the user against decisions they might regret.
+        Use this callout to warn the user against decisions they might regret.
       </p>
     ),
     demo: <Warning />,
@@ -93,10 +129,9 @@ export const CallOutExample = {
     }],
     text: (
       <p>
-        Use this CallOut to let the user know something went wrong.
+        Use this callout to let the user know that something went wrong.
       </p>
     ),
     demo: <Danger />,
   }],
 };
-

@@ -18,15 +18,15 @@ describe('EuiDescriptionList', () => {
 
   describe('props', () => {
     describe('listItems', () => {
-      test('is rendered', () => {
+      test('is rendered as strings and elements', () => {
         const listItems = [
           {
             title: 'Title 1',
             description: 'Description 1',
           },
           {
-            title: 'Title 2',
-            description: 'Description 2',
+            title: <em>Title 2</em>,
+            description: <code>Description 2</code>,
           },
           {
             title: 'Title 3',

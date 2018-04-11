@@ -1,14 +1,8 @@
 import React, {
   Fragment,
 } from 'react';
-import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
-import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss'
-import { calculateContrast, rgbToHex } from '../../../../src/services'
-
-
-import {
-  Link,
-} from 'react-router';
+import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
+import { calculateContrast, rgbToHex } from '../../../../src/services';
 
 import {
   GuidePage,
@@ -20,8 +14,6 @@ import {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiIcon,
-  EuiHorizontalRule,
   EuiBadge,
   EuiToolTip,
   EuiDescriptionList,
@@ -38,12 +30,13 @@ const allowedColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
+  'euiColorSlightHue',
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorWarning',
   'euiColorDanger',
   'euiColorAccent',
-]
+];
 
 const visColors = [
   'euiColorVis0',
@@ -56,7 +49,7 @@ const visColors = [
   'euiColorVis7',
   'euiColorVis8',
   'euiColorVis9',
-]
+];
 
 const ratingAAA = <EuiBadge color="#000">AAA</EuiBadge>;
 
@@ -85,7 +78,7 @@ export default() => (
 
     <EuiSpacer size="xl" />
 
-    <EuiText>
+    <EuiText className="guideSection__text">
       <h2>Core palette</h2>
       <p>
         Elastic UI builds with a very limited palette. We use a core set of three colors,
@@ -98,14 +91,14 @@ export default() => (
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {allowedColors.map(function(color, index) {
+      {allowedColors.map(function (color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
 
     <EuiSpacer size="xxl" />
 
-    <EuiText>
+    <EuiText className="guideSection__text">
       <h2>Qualitative visualization palette</h2>
       <p>
         The following colors are color-blind safe and should be used in
@@ -117,7 +110,7 @@ export default() => (
     <EuiSpacer />
 
     <EuiFlexGrid columns={3}>
-      {visColors.map(function(color, index) {
+      {visColors.map(function (color, index) {
         return renderPaletteColor(color, index);
       })}
     </EuiFlexGrid>
@@ -125,7 +118,7 @@ export default() => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiText>
+    <EuiText className="guideSection__text">
       <h2>Accessible text contrast</h2>
       <p>
         <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
@@ -154,11 +147,11 @@ export default() => (
     <EuiSpacer size="xxl" />
 
     <div>
-      {allowedColors.map(function(color, index) {
-         return (
-           <Fragment key={index}>
-             <EuiFlexGroup gutterSize="none">
-              {allowedColors.map(function(color2, index) {
+      {allowedColors.map(function (color, index) {
+        return (
+          <Fragment key={index}>
+            <EuiFlexGroup gutterSize="none">
+              {allowedColors.map(function (color2, index) {
                 const contrast = (
                   calculateContrast(
                     [lightColors[color].r, lightColors[color].g, lightColors[color].b],
@@ -226,7 +219,12 @@ export default() => (
                       }
                     >
                       <div>
-                        <div className="guidelineColor__stripe" style={{ color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba }}>
+                        <div
+                          className="guidelineColor__stripe"
+                          style={{
+                            color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba
+                          }}
+                        >
                           <div>Text</div>
                         </div>
                         {contrastRating}
@@ -235,11 +233,11 @@ export default() => (
                   </EuiFlexItem>
                 );
               })}
-             </EuiFlexGroup>
-             <EuiSpacer />
-           </Fragment>
-         );
-       })}
+            </EuiFlexGroup>
+            <EuiSpacer />
+          </Fragment>
+        );
+      })}
     </div>
   </GuidePage>
 );

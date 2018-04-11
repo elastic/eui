@@ -13,8 +13,9 @@
   z-index: $euiZToastList;
   bottom: 0;
   right: 0;
-  width: $euiToastWidth + $euiSize; /* 3 */
+  width: $euiToastWidth + $euiSize + $euiSizeXL; /* 3 */
   padding-right: $euiSize;
+  padding-left: $euiSizeXL;
   max-height: 100vh; /* 1 */
 
   &:hover {
@@ -64,4 +65,3 @@
     width: 100%; /* 1 */
   }
 }
-

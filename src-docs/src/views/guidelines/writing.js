@@ -13,6 +13,7 @@ import {
   EuiTitle,
   EuiButton,
   EuiSpacer,
+  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
@@ -48,7 +49,7 @@ const GuideRuleWriting = ({
 
 export default () => (
   <GuidePage title="Writing guidelines">
-    <EuiText>
+    <EuiText className="guideSection__text">
       <p>
         You can have the most beautiful UI,
         but without <b>consistent, easy-to-understand text</b>,
@@ -60,20 +61,20 @@ export default () => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Clear and concise</h3>
             <p>Get straight to the point&mdash;in a way that your users understand.  Make every word contribute to meaning.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Consistent</h3>
             <p>Use the same terminology to mean the same thing. Make sure spelling, capitalization,
               punctuation, labels, and use of abbreviations are all consistent.
@@ -82,9 +83,9 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Conversational</h3>
             <p>Write as a professional in the field would talk&mdash;not as
             a professor lecturing students. Use words that the user would use.
@@ -92,7 +93,7 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-    </EuiFlexGroup>
+    </EuiFlexGrid>
 
     <GuideRuleTitle>Style</GuideRuleTitle>
 
@@ -131,12 +132,12 @@ export default () => (
     >
 
       <GuideRuleExample type="do">
-        <EuiText><h2>Edit saved objects</h2></EuiText>
+        <EuiText><h4>Edit saved objects</h4></EuiText>
       </GuideRuleExample>
 
       <GuideRuleExample type="dont">
         <EuiText>
-          <h2>Edit saved objects</h2>
+          <h4>Edit saved objects</h4>
           <p>From here, you can edit saved objects. To get started, follow these steps.</p>
         </EuiText>
       </GuideRuleExample>
@@ -340,7 +341,7 @@ export default () => (
         A title-only message is ok."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
+        <EuiTitle size="xs"><span>This dashboard is empty. Let&apos;s fill it up!</span></EuiTitle>
         <EuiSpacer/>
         <EuiText>
           <p>
@@ -351,7 +352,7 @@ export default () => (
       </GuideRuleExample>
 
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s"><span>Uh-oh!</span></EuiTitle>
+        <EuiTitle size="xs"><span>Uh-oh!</span></EuiTitle>
         <EuiSpacer/>
         <EuiText>
           <p>
@@ -380,7 +381,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -391,7 +392,7 @@ export default () => (
 
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Are you sure you want to delete this report?</span></EuiTitle>
+          <EuiTitle size="m"><span>Are you sure you want to delete this report?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -505,7 +506,7 @@ export default () => (
     >
       <GuideRuleExample type="do" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -515,7 +516,7 @@ export default () => (
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="" panel={false}>
         <EuiPanel>
-          <EuiTitle size="s"><span>Remove this index pattern?</span></EuiTitle>
+          <EuiTitle size="m"><span>Remove this index pattern?</span></EuiTitle>
           <EuiSpacer />
           <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
             <EuiButtonEmpty color="text" size="s">Cancel</EuiButtonEmpty>
@@ -546,10 +547,10 @@ export default () => (
       description="Losing data and other situations that might frustrate the user are not a time for humor."
     >
       <GuideRuleExample type="do" text="">
-        <EuiTitle size="s"><span>No results matched your search</span></EuiTitle>
+        <EuiTitle size="xs"><span>No results matched your search</span></EuiTitle>
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="">
-        <EuiTitle size="s"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
+        <EuiTitle size="xs"><span><EuiIcon type="faceSad" /> No results found</span></EuiTitle>
         <EuiSpacer />
         <EuiText>
           <p>
@@ -569,35 +570,35 @@ export default () => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiFlexGroup wrap={true}>
-      <EuiFlexItem style={{ minWidth: 300 }}>
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Work with a writer on your text</h3>
             <p>A writer can help determine where you need text and what it should say.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem>
 
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Word flow has a natural feel to it</h3>
             <p>Read your text out loud, make changes, and then repeat until the flow of your text feels just right.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
 
-      <EuiFlexItem style={{ minWidth: 300 }}>
+      <EuiFlexItem>
         <EuiPanel paddingSize="l">
-          <EuiText>
+          <EuiText className="guideSection__text">
             <h3>Use spell check</h3>
             <p>Run your text through a spelling and grammar checker.</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
-    </EuiFlexGroup>
+    </EuiFlexGrid>
 
 
 

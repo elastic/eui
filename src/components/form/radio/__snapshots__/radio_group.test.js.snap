@@ -133,3 +133,48 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiRadioGroup props value is propagated to radios 1`] = `
+<div>
+  <div
+    class="euiRadio euiRadioGroup__item"
+  >
+    <input
+      class="euiRadio__input"
+      id="1"
+      name="radiogroupname"
+      type="radio"
+      value="Value #1"
+    />
+    <div
+      class="euiRadio__circle"
+    />
+    <label
+      class="euiRadio__label"
+      for="1"
+    >
+      Option #1
+    </label>
+  </div>
+  <div
+    class="euiRadio euiRadioGroup__item"
+  >
+    <input
+      class="euiRadio__input"
+      id="2"
+      name="radiogroupname"
+      type="radio"
+      value="Value #2"
+    />
+    <div
+      class="euiRadio__circle"
+    />
+    <label
+      class="euiRadio__label"
+      for="2"
+    >
+      Option #2
+    </label>
+  </div>
+</div>
+`;

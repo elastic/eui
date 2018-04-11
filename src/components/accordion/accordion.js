@@ -24,18 +24,16 @@ export class EuiAccordion extends Component {
     this.onToggle = this.onToggle.bind(this);
   }
 
-  onToggle() {
-    const currentState = this.state.isOpen;
-    const height = this.childContent.clientHeight;
-    this.setState({
-      isOpen: !currentState,
-    });
+  componentDidUpdate() {
+    const height = this.state.isOpen ? this.childContent.clientHeight: 0;
 
-    if (!currentState) {
-      this.childWrapper.setAttribute('style', `height: ${height}px`);
-    } else {
-      this.childWrapper.setAttribute('style', `height: 0px`);
-    }
+    this.childWrapper.setAttribute('style', `height: ${height}px`);
+  }
+
+  onToggle() {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
   }
 
   render() {
@@ -96,7 +94,7 @@ export class EuiAccordion extends Component {
               onClick={this.onToggle}
               className={buttonClasses}
             >
-              <EuiFlexGroup gutterSize="s" alignItems="center">
+              <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
                 <EuiFlexItem grow={false}>
                   {icon}
                 </EuiFlexItem>

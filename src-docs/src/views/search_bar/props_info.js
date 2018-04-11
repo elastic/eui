@@ -75,6 +75,60 @@ export const propsInfo = {
           required: false,
           defaultValue: { value: 'false' },
           type: { name: 'boolean' }
+        },
+        schema: {
+          description: 'A schema describing the supported fields and flags',
+          required: false,
+          type: { name: '#Schema' }
+        }
+      }
+    }
+  },
+
+  Schema: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        strict: {
+          description: 'Indicates whether the query parsing should be strictly compliant with the schema',
+          required: false,
+          defaultValue: { value: 'false' },
+          type: { name: 'boolean' }
+        },
+        flags: {
+          description: 'A list of supported flags',
+          required: false,
+          type: { name: 'string[]' }
+        },
+        fields: {
+          description: 'A dictionary of supported fields',
+          required: false,
+          type: { name: '{ [fieldName]: #SchemaField }' }
+        }
+      }
+    }
+  },
+
+  SchemaField: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description: 'The data type of the field',
+          required: true,
+          type: { name: 'boolean | string | date | number' }
+        },
+        valueDescription: {
+          description: 'A description of the values accepted by this field',
+          required: false,
+          defaultValue: { value: 'the data type' },
+          type: { name: 'string' }
+        },
+        validate: {
+          description: 'A function to validate a possible value for the field. An error should be thrown when ' +
+                       'validation fails (with appropriate error message of course)',
+          required: false,
+          type: { name: '(value) => void' }
         }
       }
     }

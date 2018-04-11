@@ -162,7 +162,7 @@ EuiSideNav.propTypes = {
    * `item.items` is an optional array containing additional item objects, representing nested children of this navigation item.
    * `item.name` is a required React node representing the text to render for this item (usually a string will suffice).
    * `item.onClick` is an optional callback function to be passed as the navigaiton item's `onClick` prop, and by default it will force rendering of the item as a `<button>` instead of a link.
-   * `item.renderItem` is an optional function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
+   * `item.renderItem` is an optional function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
   items: PropTypes.array,
   /**

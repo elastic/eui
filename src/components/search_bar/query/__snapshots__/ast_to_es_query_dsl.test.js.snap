@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`astToEsQueryDsl ast - '' 1`] = `
+Object {
+  "match_all": Object {},
+}
+`;
+
+exports[`astToEsQueryDsl ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana logstash",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "es beats",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - 'is:online group:kibana john' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+      Object {
+        "term": Object {
+          "online": true,
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "eng es",
+          },
+        },
+      },
+      Object {
+        "term": Object {
+          "online": true,
+        },
+      },
+      Object {
+        "term": Object {
+          "active": false,
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "doe",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - 'john -sales' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "sales",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "bool": Object {
+          "should": Array [
+            Object {
+              "match": Object {
+                "group": Object {
+                  "operator": "or",
+                  "query": "eng",
+                },
+              },
+            },
+            Object {
+              "match_phrase": Object {
+                "group": "marketing org",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match_phrase": Object {
+          "group": "kibana team",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - 'john group:(eng or es) -group:kibana' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "john",
+        },
+      },
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "or",
+            "query": "eng es",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "match": Object {
+          "group": Object {
+            "operator": "and",
+            "query": "kibana",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - -count<=4 size<5 age>=3 -number>9 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "size": Object {
+            "lt": 5,
+          },
+        },
+      },
+      Object {
+        "range": Object {
+          "age": Object {
+            "gte": 3,
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "count": Object {
+            "lte": 4,
+          },
+        },
+      },
+      Object {
+        "range": Object {
+          "number": Object {
+            "gt": 9,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - count>3 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "count": Object {
+            "gt": 3,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - date:'2004-03' -date<'2004-03-10' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "match": Object {
+          "date": "2004-03-01T00:00:00Z||/M",
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "lt": "2004-03-10T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-02-01T00:00:00Z||+1M/M",
+          },
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-03-10T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - date>='2004-03-22' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "range": Object {
+          "date": Object {
+            "gte": "2004-03-22T00:00:00Z||/d",
+          },
+        },
+      },
+    ],
+  },
+}
+`;

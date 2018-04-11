@@ -30,7 +30,7 @@ export default props => (
         <p>
           This demo shows off <EuiCode>EuiText</EuiCode> scaling in both
           the default and small sizes. The goal is that the bottom of
-          every text line should hit one of the 8px grid lines. This is
+          every text line should hit one of the 8px or 7px grid lines. This is
           for development only. Do not copy this code into a production environment.
         </p>
       }

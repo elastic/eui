@@ -48,6 +48,10 @@ export {
 } from './color_picker';
 
 export {
+  EuiComboBox,
+} from './combo_box';
+
+export {
   EuiContextMenu,
   EuiContextMenuPanel,
   EuiContextMenuItem,
@@ -121,6 +125,7 @@ export {
   EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
   EuiHeaderLogo,
+  EuiHeaderNotification,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
@@ -129,6 +134,10 @@ export {
 export {
   EuiHealth,
 } from './health';
+
+export {
+  EuiHighlight,
+} from './highlight';
 
 export {
   EuiHorizontalRule,

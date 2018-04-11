@@ -38,12 +38,12 @@ export const EuiPanel = ({
   const props = {
     ref: panelRef,
     className: classes
-  }
+  };
 
   // Avoid passing down this prop if it hasn't been supplied, in order to
   // avoid noise in react-test-renderer snapshots.
   if (onClick != null) {
-    props.onClick = onClick
+    props.onClick = onClick;
   }
 
   return (

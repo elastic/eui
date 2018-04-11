@@ -18,6 +18,8 @@ const iconColors = [
   'text',
   'subdued',
   'ghost',
+  '#490',
+  '#F98510',
 ];
 
 export default () => (

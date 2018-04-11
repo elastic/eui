@@ -1,14 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 import {
   EuiInMemoryTable,
   EuiLink,
   EuiHealth,
-  EuiSpacer,
-  EuiSwitch,
-  EuiFlexGroup,
-  EuiFlexItem
 } from '../../../../../src/components';
 
 /*
@@ -67,7 +63,7 @@ export class Table extends React.Component {
         this.setState({
           isLoading: false,
           items,
-        })
+        });
       }, 1000);
     }, 300);
   };
@@ -88,11 +84,13 @@ export class Table extends React.Component {
           {
             field: 'firstName',
             name: 'First Name',
-            sortable: true
+            sortable: true,
+            truncateText: true,
           },
           {
             field: 'lastName',
-            name: 'Last Name'
+            name: 'Last Name',
+            truncateText: true,
           },
           {
             field: 'github',

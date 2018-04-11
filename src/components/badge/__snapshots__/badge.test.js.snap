@@ -9,7 +9,9 @@ exports[`EuiBadge is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -23,7 +25,9 @@ exports[`EuiBadge props color accent is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -37,7 +41,9 @@ exports[`EuiBadge props color danger is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -51,7 +57,25 @@ exports[`EuiBadge props color default is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props color hollow is rendered 1`] = `
+<span
+  class="euiBadge euiBadge--hollow"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -65,7 +89,9 @@ exports[`EuiBadge props color primary is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -79,7 +105,9 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -93,7 +121,9 @@ exports[`EuiBadge props color warning is rendered 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -108,7 +138,7 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--small"
+      class="euiIcon euiIcon--small euiBadge__icon"
       height="18"
       viewBox="0 0 18 18"
       width="18"
@@ -125,7 +155,9 @@ exports[`EuiBadge props iconSide left is rendered 1`] = `
         />
       </g>
     </svg>
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -140,7 +172,7 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--small"
+      class="euiIcon euiIcon--small euiBadge__icon"
       height="18"
       viewBox="0 0 18 18"
       width="18"
@@ -157,7 +189,9 @@ exports[`EuiBadge props iconSide right is rendered 1`] = `
         />
       </g>
     </svg>
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
@@ -172,7 +206,7 @@ exports[`EuiBadge props iconType is rendered 1`] = `
     class="euiBadge__content"
   >
     <svg
-      class="euiIcon euiBadge__icon euiIcon--small"
+      class="euiIcon euiIcon--small euiBadge__icon"
       height="18"
       viewBox="0 0 18 18"
       width="18"
@@ -189,7 +223,9 @@ exports[`EuiBadge props iconType is rendered 1`] = `
         />
       </g>
     </svg>
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>

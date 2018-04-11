@@ -22,4 +22,17 @@ describe('EuiHeaderLogo', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('renders optional props', () => {
+    const component = render(
+      <EuiHeaderLogo
+        iconType="alert"
+        iconTitle="Moby Dick"
+        style={{ color: 'red' }}
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });

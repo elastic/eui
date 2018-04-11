@@ -22,8 +22,9 @@ export const EuiRadioGroup = ({
           name={name}
           checked={option.id === idSelected}
           label={option.label}
+          value={option.value}
           disabled={disabled}
-          onChange={onChange.bind(null, option.id)}
+          onChange={onChange.bind(null, option.id, option.value)}
         />
       );
     })}
@@ -35,6 +36,7 @@ EuiRadioGroup.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.node,
+      value: PropTypes.string,
     }),
   ).isRequired,
   idSelected: PropTypes.string,

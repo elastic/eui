@@ -7,7 +7,11 @@ import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 describe('EuiHeaderBreadcrumbs', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiHeaderBreadcrumbs {...requiredProps} />
+      <EuiHeaderBreadcrumbs {...requiredProps}>
+        <span>
+          I thought I would sail about a little and see the watery part of the world.
+        </span>
+      </EuiHeaderBreadcrumbs>
     );
 
     expect(component)

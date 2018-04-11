@@ -35,13 +35,19 @@ export const TextExample = {
       code: textHtml,
     }],
     text: (
-      <p>
-        <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will apply
-        our standard typography styling and spacing to naked HTML. Because of
-        its forced style it <strong>only accepts raw HTML</strong> and can
-        not / should not be used to wrap React components (which would break
-        their styling).
-      </p>
+      <div>
+        <p>
+          <EuiCode>EuiText</EuiCode> is a generic catchall wrapper that will apply
+          our standard typography styling and spacing to naked HTML. Because of
+          its forced style it <strong>only accepts raw HTML</strong> and can
+          not / should not be used to wrap React components (which would break
+          their styling).
+        </p>
+        <p>
+          <EuiCode>EuiText</EuiCode> also ensure proper line-length for readability by
+          setting a <EuiCode>max-width</EuiCode> on the entire component.
+        </p>
+      </div>
     ),
     props: { EuiText },
     demo: <Text />,

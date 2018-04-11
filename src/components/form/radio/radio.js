@@ -8,6 +8,7 @@ export const EuiRadio = ({
   name,
   checked,
   label,
+  value,
   onChange,
   disabled,
   ...rest
@@ -43,6 +44,7 @@ export const EuiRadio = ({
         type="radio"
         id={id}
         name={name}
+        value={value}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
@@ -60,6 +62,7 @@ EuiRadio.propTypes = {
   id: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   label: PropTypes.node,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 };

@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  checkHrefAndOnClick,
-  getSecureRelForTarget,
-} from '../../../services';
+import { getSecureRelForTarget } from '../../../services';
 
 import {
   ICON_TYPES,
@@ -43,7 +40,6 @@ export const EuiButtonIcon = ({
   color,
   isDisabled,
   href,
-  onClick,
   type,
   target,
   rel,
@@ -91,7 +87,6 @@ export const EuiButtonIcon = ({
       <button
         disabled={isDisabled}
         className={classes}
-        onClick={onClick}
         type={type}
         ref={buttonRef}
         {...rest}
@@ -109,7 +104,7 @@ EuiButtonIcon.propTypes = {
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
   'aria-label': accessibleButtonIcon,
-  href: checkHrefAndOnClick,
+  href: PropTypes.string,
   target: PropTypes.string,
   rel: PropTypes.string,
   onClick: PropTypes.func,

@@ -1,17 +1,9 @@
 .euiDescriptionList {
 
-  .euiDescriptionList__title {
-    font-weight: $euiFontWeightMedium;
-  }
-
-  .euiDescriptionList__description {
-    color: $euiColorDarkShade;
-  }
-
   &.euiDescriptionList--row {
 
     .euiDescriptionList__title {
-      @include euiFontSize;
+      @include euiTitle("xs");
       margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
@@ -37,7 +29,7 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiFontSizeS;
+        @include euiTitle("xxs");
       }
 
       .euiDescriptionList__description {
@@ -62,7 +54,7 @@
     }
 
     .euiDescriptionList__title {
-      @include euiFontSize;
+      @include euiTitle("xs");
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
@@ -84,7 +76,7 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiFontSizeS;
+        @include euiTitle("xxs");
       }
 
       .euiDescriptionList__description {

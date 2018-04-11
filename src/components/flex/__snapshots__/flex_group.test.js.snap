@@ -12,6 +12,12 @@ exports[`EuiFlexGroup is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFlexGroup props alignItems baseline is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--responsive"
+/>
+`;
+
 exports[`EuiFlexGroup props alignItems center is rendered 1`] = `
 <div
   class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"

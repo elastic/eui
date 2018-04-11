@@ -31,9 +31,11 @@ const createCountries = () => [
   { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
 ];
 
-const firstNames = ['Martijn', 'Elissa', 'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan', 'John'];
+const firstNames = ['Very long first name that will wrap or be truncated', 'Another very long first name which will wrap or be truncated',
+  'Clinton', 'Igor', 'Karl', 'Drew', 'Honza', 'Rashid', 'Jordan', 'John'];
 
-const lastNames = ['van Groningen', 'Weve', 'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel', 'Dorlus'];
+const lastNames = ['Very long last name that will wrap or be truncated', 'Another very long last name which will wrap or be truncated',
+  'Gormley', 'Motov', 'Minarik', 'Raines', 'Král', 'Khan', 'Sissel', 'Dorlus'];
 
 const github = ['martijnvg', 'elissaw', 'clintongormley', 'imotov', 'karmi', 'drewr', 'HonzaKral', 'rashidkpc', 'jordansissel', 'silne30'];
 

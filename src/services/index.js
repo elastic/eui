@@ -36,10 +36,6 @@ export {
   Pager
 } from './paging';
 
-export {
-  checkHrefAndOnClick,
-} from './prop_types';
-
 // TODO: Migrate these services into the services directory.
 export {
   Query,
@@ -64,5 +60,4 @@ export {
 
 export {
   calculatePopoverPosition,
-  calculatePopoverStyles,
 } from './popover';

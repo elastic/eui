@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   EuiCode,
-  EuiText,
   EuiSpacer,
   EuiCallOut,
 } from '../../../../src/components';
@@ -11,6 +10,7 @@ import { section as basicSection } from './basic';
 import { section as paginatedSection } from './paginated';
 import { section as sortingSection } from './sorting';
 import { section as selectionSection } from './selection';
+import { section as expandingRowsSection } from './expanding_rows';
 import { section as actionsSection } from './actions';
 import {
   section as inMemorySection,
@@ -23,7 +23,7 @@ import { section as customSection } from './custom';
 export const TableExample = {
   title: 'Tables',
   intro: (
-    <EuiText>
+    <div>
       <EuiCallOut title="EUI provides opinionated and non-opinionated ways to build tables">
         <p>
           Tables can get complicated very fast. If you&apos;re just looking for a basic table
@@ -39,13 +39,14 @@ export const TableExample = {
         </p>
       </EuiCallOut>
       <EuiSpacer />
-    </EuiText>
+    </div>
   ),
   sections: [
     basicSection,
     paginatedSection,
     sortingSection,
     selectionSection,
+    expandingRowsSection,
     actionsSection,
     inMemorySection,
     inMemorySelectionSection,

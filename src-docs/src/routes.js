@@ -74,6 +74,9 @@ import { CodeExample }
 import { ColorPickerExample }
   from './views/color_picker/color_picker_example';
 
+import { ComboBoxExample }
+  from './views/combo_box/combo_box_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -92,23 +95,29 @@ import { ExpressionExample }
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
 
-import { FilePickerExample }
-  from './views/file_picker/file_picker_example';
-
 import { FlexExample }
   from './views/flex/flex_example';
 
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
-import { FormExample }
-  from './views/form/form_example';
+import { FormControlsExample }
+  from './views/form_controls/form_controls_example';
+
+import { FormLayoutsExample }
+  from './views/form_layouts/form_layouts_example';
+
+import { FormValidationExample }
+  from './views/form_validation/form_validation_example';
 
 import { HeaderExample }
   from './views/header/header_example';
 
 import { HealthExample }
   from './views/health/health_example';
+
+import { HighlightExample }
+  from './views/highlight/highlight_example';
 
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
@@ -182,6 +191,9 @@ import { ToastExample }
 import { ToolTipExample }
   from './views/tool_tip/tool_tip_example';
 
+import { Changelog }
+  from './views/package/changelog';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -195,7 +207,12 @@ const slugify = str => {
   return parts.join('-');
 };
 
-const createExample = ({ title, intro, sections }) => {
+const createExample = (example) => {
+  if (!example) {
+    throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
+  }
+
+  const { title, intro, sections } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -231,7 +248,6 @@ const navigation = [{
   }, {
     name: 'Modals',
     component: ModalGuidelines,
-    hidden: true,
   }, {
     name: 'Text scales',
     component: TextScales,
@@ -292,12 +308,14 @@ const navigation = [{
 }, {
   name: 'Forms',
   items: [
-    CodeEditorExample,
+    FormLayoutsExample,
+    FormControlsExample,
+    FormValidationExample,
+    ComboBoxExample,
     ColorPickerExample,
+    CodeEditorExample,
     ExpressionExample,
-    FilePickerExample,
     FilterGroupExample,
-    FormExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 }, {
@@ -306,10 +324,16 @@ const navigation = [{
     AccessibilityExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    HighlightExample,
     IsColorDarkExample,
     OutsideClickDetectorExample,
     PortalExample,
   ].map(example => createExample(example)),
+}, {
+  name: 'Package',
+  items: [
+    Changelog
+  ]
 }].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),

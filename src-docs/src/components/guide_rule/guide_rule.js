@@ -19,7 +19,8 @@ export const GuideRule = ({
   const classes = classNames(
     'guideRule',
     {
-      'guideRule--hasHeading': description
+      'guideRule--hasHeading': heading,
+      'guideRule--hasDescription': description
     },
     className,
   );

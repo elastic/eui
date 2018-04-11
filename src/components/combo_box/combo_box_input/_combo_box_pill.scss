@@ -1,0 +1,6 @@
+// Overwrites the base styling of EuiBadge, to give it a larger size and margins
+// that make sense in the input wrap.
+.euiComboBoxPill {
+  margin: $euiSizeXS !important;
+  line-height: $euiSizeL - 2px;
+}

@@ -1,6 +1,4 @@
 import React from 'react';
-import {hashHistory} from 'react-router';
-import sassColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss'
 
 import imageIcons from '../../images/icons.jpg';
 import imageButtons from '../../images/buttons.svg';
@@ -9,24 +7,21 @@ import imageForms from '../../images/forms.svg';
 import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
 
-
 import {
   Link,
 } from 'react-router';
 
 import {
-  EuiText,
-  EuiCode,
-  EuiFlexGroup,
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiSpacer,
-  EuiHorizontalRule,
   EuiCard,
+  EuiCode,
+  EuiFlexGrid,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiIcon,
-  EuiButton,
-  EuiTitle,
   EuiLink,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
   EuiToolTip,
 } from '../../../../src/components';
 
@@ -46,13 +41,15 @@ export const HomeView = () => (
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
-              <EuiLink href="https://github.com/elastic/eui">
-                <strong>{ pkg.version }</strong>
+              <EuiLink href="#/package/changelog">
+                <strong>v{ pkg.version }</strong>
               </EuiLink>
             </p>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiIcon type="logoGithub" />
+            <EuiLink href="https://github.com/elastic/eui">
+              <EuiIcon type="logoGithub" />
+            </EuiLink>
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
@@ -151,7 +148,7 @@ export const HomeView = () => (
         </Link>
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/forms/form">
+        <Link to="/forms/form-layouts">
           <EuiCard
             textAlign="left"
             image={imageForms}

@@ -18,7 +18,7 @@ describe('EuiKeyboardAccessible', () => {
     });
 
     afterEach(() => {
-      console.error.restore();
+      console.error.restore(); // eslint-disable-line no-console
     });
 
     test(`when there's no child`, () => {
@@ -95,7 +95,7 @@ describe('EuiKeyboardAccessible', () => {
       );
 
       expect(consoleStub.called).toBe(false);
-      console.error.restore();
+      console.error.restore(); // eslint-disable-line no-console
     });
   });
 

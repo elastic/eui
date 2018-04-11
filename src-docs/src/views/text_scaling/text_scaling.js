@@ -17,6 +17,8 @@ const text = [
     yellow sun.
   </p>,
 
+  <h2 key={0.5}>This is Heading Two</h2>,
+
   <p key={2}>
     Orbiting this at a distance of roughly ninety-two million miles
     is an utterly insignificant little blue green planet whose ape-
@@ -40,7 +42,7 @@ const text = [
   </p>,
 
 
-  <h2 key={5}>This is Heading Two</h2>,
+  <h3 key={5}>This is Heading Three</h3>,
 
   <ol key={6}>
     <li>Number one</li>
@@ -59,12 +61,23 @@ const text = [
     fruit to jump <em>for</em>, and dead car batteries to jump-<em>start</em>.
   </p>,
 
-  <h3 key={9}>This is Heading Three</h3>,
+  <h4 key={9}>This is Heading Four</h4>,
 
   <p key={10}>
     So it thought the dog was making a poor life choice by focusing so much on mindfulness.
     What if its car broke down?
   </p>,
+
+  <h5 key={11}>This is Heading Five</h5>,
+
+  <p key={12}>
+    <small>
+      So it thought the dog was making a poor life choice by focusing so much on mindfulness.
+      What if its car broke down?
+    </small>
+  </p>,
+
+  <h6 key={13}>This is Heading Six</h6>,
 ];
 
 export default () => (
@@ -81,7 +94,7 @@ export default () => (
       </EuiPageContent>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
+      <EuiPageContent className="guideDemo__textLines--s" style={{ padding: 32 }}>
         <EuiPageContentBody>
 
           <EuiText size="s">

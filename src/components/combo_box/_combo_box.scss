@@ -1,0 +1,63 @@
+.euiComboBox {
+  @include euiFormControlSize;
+  position: relative;
+
+  /**
+   * 1. Allow pills to truncate their text with an ellipsis.
+   * 2. Don't allow pills to overlap with the caret.
+   * 3.
+   */
+  .euiComboBox__inputWrap {
+    @include euiFormControlStyle;
+    @include euiFormControlWithIcon($isIconOptional: true);
+    $padding: $euiSizeXS;
+    display: flex; /* 1 */
+    flex-wrap: wrap; /* 1 */
+    padding: $padding $euiSizeXXL $padding $padding; /* 2 */
+    align-content: flex-start;
+
+    &:hover {
+      cursor: text;
+    }
+  }
+
+  /**
+   * 1. Force field height to match other field heights.
+   * 2. Force input height to expand tp fill this element.
+   * 3. Reset appearance on Safari.
+   * 4. Fix react-input-autosize appearance.
+   */
+  .euiComboBox__input {
+    display: inline-flex !important; /* 1 */
+    height: 32px; /* 2 */
+
+    > input {
+      appearance: none; /* 3 */
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: $euiFontSizeS;
+      font-family: $euiFontFamily;
+      color: $euiTextColor;
+      margin: $euiSizeXS;
+      line-height: $euiLineHeight; /* 4 */
+    }
+  }
+
+  &.euiComboBox-isOpen {
+    .euiComboBox__inputWrap {
+      background: $euiColorEmptyShade;
+      box-shadow:
+        0 4px 4px -2px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0,0,0,0.16),
+        inset 0 0 0 0 $euiColorEmptyShade,
+        inset 0 -2px 0 0 $euiColorPrimary;
+    }
+  }
+
+  &.euiComboBox-isInvalid {
+    .euiComboBox__inputWrap {
+      @include euiFormControlInvalidStyle;
+    }
+  }
+}

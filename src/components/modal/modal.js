@@ -7,7 +7,7 @@ import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
-import { EuiButtonIcon } from '../button'
+import { EuiButtonIcon } from '../button';
 
 export class EuiModal extends Component {
   onKeyDown = event => {
