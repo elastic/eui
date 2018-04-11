@@ -1,11 +1,12 @@
 # [`master`](https://github.com/elastic/eui/tree/master)
 
-- Add disabled prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
+- Added `disabled` prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
+- Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
 
 # [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 
 - Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
-- Add TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
+- Added TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
 - Grayed out labels for `disabled` controls ([#648](https://github.com/elastic/eui/pull/648))
 
 **Bug fixes**

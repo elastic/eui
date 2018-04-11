@@ -19,7 +19,7 @@ export const EuiText = ({ size, color, children, className, ...rest }) => {
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
-    className
+    className,
   );
 
   let optionallyColoredText;
