@@ -63,7 +63,7 @@ declare module '@elastic/eui' {
     | 'indexOpen'
     | 'indexSettings'
     | 'indexPatternApp'
-    | 'io'
+    | 'inputOutput'
     | 'invert'
     | 'link'
     | 'list'
