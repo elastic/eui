@@ -38,36 +38,36 @@ export class EuiDatePicker extends Component {
 
   render() {
     const {
+      calendarClassName,
       className,
-      isInvalid,
-      inputRef,
-      fullWidth,
-      isLoading,
       customInput,
-      placeholder,
-      inline,
-      shadow,
       dateFormat,
+      dayClassName,
+      disabled,
       excludeDates,
+      filterDates,
+      fullWidth,
+      injectTimes,
+      inline,
+      inputRef,
+      isInvalid,
+      isLoading,
       locale,
-      minDate,
       maxDate,
-      minTime,
       maxTime,
-      timeFormat,
+      minDate,
+      minTime,
+      onChange,
+      openToDate,
+      placeholder,
+      popperClassName,
+      selected,
+      shadow,
+      shouldCloseOnSelect,
       showTimeSelect,
       showTimeSelectOnly,
-      onChange,
-      selected,
-      injectTimes,
-      calendarClassName,
-      dayClassName,
-      popperClassName,
-      shouldCloseOnSelect,
-      openToDate,
-      disabled,
+      timeFormat,
       utcOffset,
-      filterDates,
       ...rest
     } = this.props;
 
@@ -106,35 +106,35 @@ export class EuiDatePicker extends Component {
             isInvalid={isInvalid}
           >
             <DatePicker
-              className={datePickerClasses}
-              placeholderText={placeholder}
-              ref={inputRef}
-              inline={inline}
-              customInput={customInput}
-              showYearDropdown
-              showMonthDropdown
-              yearDropdownItemNumber={7}
-              dateFormat={dateFormat}
-              selected={selected}
-              onChange={onChange}
-              showTimeSelect={showTimeSelect}
-              showTimeSelectOnly={showTimeSelectOnly}
-              timeFormat={timeFormat}
-              injectTimes={injectTimes}
               calendarClassName={calendarClassName}
+              className={datePickerClasses}
+              customInput={customInput}
+              dateFormat={dateFormat}
               dayClassName={dayClassName}
-              minTime={minTime}
+              disabled={disabled}
+              excludeDates={excludeDates}
+              filterDates={filterDates}
+              injectTimes={injectTimes}
+              inline={inline}
+              locale={locale}
+              maxDate={maxDate}
               maxTime={maxTime}
               minDate={minDate}
-              maxDate={maxDate}
-              popperClassName={popperClassName}
-              locale={locale}
-              excludeDates={excludeDates}
-              shouldCloseOnSelect={shouldCloseOnSelect}
+              minTime={minTime}
+              onChange={onChange}
               openToDate={openToDate}
-              disabled={disabled}
+              placeholderText={placeholder}
+              popperClassName={popperClassName}
+              ref={inputRef}
+              selected={selected}
+              shouldCloseOnSelect={shouldCloseOnSelect}
+              showMonthDropdown
+              showTimeSelect={showTimeSelect}
+              showTimeSelectOnly={showTimeSelectOnly}
+              showYearDropdown
+              timeFormat={timeFormat}
               utcOffset={utcOffset}
-              filterDates={filterDates}
+              yearDropdownItemNumber={7}
               {...rest}
             />
           </EuiValidatableControl>
@@ -187,37 +187,38 @@ export class EuiDatePicker extends Component {
 }
 
 EuiDatePicker.propTypes = {
-  className: PropTypes.string,
   calendarClassName: PropTypes.string,
-  dayClassName: PropTypes.func,
-  popperClassName: PropTypes.string,
-  placeholder: PropTypes.string,
-  icon: PropTypes.string,
+  className: PropTypes.string,
   customInput: PropTypes.node,
-  locale: PropTypes.string,
-  isInvalid: PropTypes.bool,
-  inputRef: PropTypes.func,
+  dateFormat: PropTypes.string,
+  dayClassName: PropTypes.func,
+  filterDates: PropTypes.array,
   fullWidth: PropTypes.bool,
+  icon: PropTypes.string,
+  injectTimes: PropTypes.array,
+  inputRef: PropTypes.func,
+  isInvalid: PropTypes.bool,
   isLoading: PropTypes.bool,
+  locale: PropTypes.string,
+  maxDate: PropTypes.instanceOf(moment),
+  maxTime: PropTypes.instanceOf(moment),
+  minDate: PropTypes.instanceOf(moment),
+  minTime: PropTypes.instanceOf(moment),
   onChange: PropTypes.func,
+  openToDate: PropTypes.instanceOf(moment),
+  placeholder: PropTypes.string,
+  popperClassName: PropTypes.string,
+  selected: PropTypes.instanceOf(moment),
   showTimeSelect: PropTypes.bool,
   showTimeSelectOnly: PropTypes.bool,
   timeFormat: PropTypes.string,
-  dateFormat: PropTypes.string,
-  injectTimes: PropTypes.array,
-  selected: PropTypes.instanceOf(moment),
-  minDate: PropTypes.instanceOf(moment),
-  maxDate: PropTypes.instanceOf(moment),
-  minTime: PropTypes.instanceOf(moment),
-  maxTime: PropTypes.instanceOf(moment),
-  openToDate: PropTypes.instanceOf(moment),
 };
 
 EuiDatePicker.defaultProps = {
+  dateFormat:"MM/DD/YYYY hh:mm A",
   fullWidth: false,
   isLoading: false,
-  shouldCloseOnSelect: true,
   shadow: true,
-  dateFormat:"MM/DD/YYYY hh:mm A",
+  shouldCloseOnSelect: true,
   timeFormat:"hh:mm A",
 };
