@@ -43,7 +43,6 @@ const minMaxHtml = renderToHtml(MinMax);
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
-    title: 'DatePicker',
     source: [{
       type: GuideSectionTypes.JS,
       code: datePickerSource,
