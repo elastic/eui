@@ -123,7 +123,7 @@ export class GuidePageChrome extends Component {
         return {
           id: `${section.type}-${path}`,
           name,
-          href: `/#/${path}`,
+          href: `#/${path}`,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(sections),
           isSelected: name === this.props.currentRouteName,
