@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `grow` prop to `EuiText` ([#662](https://github.com/elastic/eui/pull/662))
 - Added `disabled` prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
 - Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
 - Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))

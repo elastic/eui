@@ -106,7 +106,7 @@ exports[`EuiToast is rendered 1`] = `
     />
   </div>
   <div
-    class="euiText euiText--small euiToastBody"
+    class="euiText euiText--small euiToastBody euiText--constrainedWidth"
   >
     <p>
       Hi
