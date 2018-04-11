@@ -22,6 +22,7 @@ import calendar from './assets/calendar.svg';
 import check from './assets/check.svg';
 import checkInCircleFilled from './assets/checkInCircleFilled.svg';
 import clock from './assets/clock.svg';
+import compute from './assets/compute.svg';
 import console from './assets/console.svg';
 import consoleApp from './assets/app_console.svg';
 import controlsHorizontal from './assets/controls_horizontal.svg';
@@ -66,6 +67,7 @@ import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
 import invert from './assets/invert.svg';
+import inputOutput from './assets/inputOutput.svg';
 import kqlField from './assets/kql_field.svg';
 import kqlOperand from './assets/kql_operand.svg';
 import kqlValue from './assets/kql_value.svg';
@@ -103,6 +105,7 @@ import logstashQueue from './assets/logstash_queue.svg';
 import machineLearningApp from './assets/app_ml.svg';
 import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
+import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import monitoringApp from './assets/app_monitoring.svg';
@@ -134,7 +137,9 @@ import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
 import stop from './assets/stop.svg';
 import stopFilled from './assets/stop_filled.svg';
+import storage from './assets/storage.svg';
 import string from './assets/string.svg';
+import temperature from './assets/temperature.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tear from './assets/tear.svg';
 import timelionApp from './assets/app_timelion.svg';
@@ -169,6 +174,7 @@ const typeToIconMap = {
   check,
   checkInCircleFilled,
   clock,
+  compute,
   console,
   consoleApp,
   controlsHorizontal,
@@ -213,6 +219,7 @@ const typeToIconMap = {
   indexPatternApp,
   indexSettings,
   invert,
+  inputOutput,
   kqlField,
   kqlOperand,
   kqlValue,
@@ -250,6 +257,7 @@ const typeToIconMap = {
   machineLearningApp,
   managementApp,
   mapMarker,
+  memory,
   merge,
   minusInCircle,
   monitoringApp,
@@ -281,7 +289,9 @@ const typeToIconMap = {
   stats,
   stop,
   stopFilled,
+  storage,
   string,
+  temperature,
   tableOfContents,
   tear,
   timelionApp,
