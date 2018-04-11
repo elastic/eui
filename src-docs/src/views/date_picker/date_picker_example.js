@@ -203,7 +203,7 @@ export const DatePickerExample = {
     ),
     demo: <CustomInput />,
   }, {
-    title: 'Utc offsets',
+    title: 'UTC offsets',
     source: [{
       type: GuideSectionTypes.JS,
       code: utcSource,
