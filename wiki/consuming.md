@@ -56,6 +56,28 @@ If you want access to the Sass variables, functions, and mixins in EUI then you'
 @import '../node_modules/@elastic/eui/src/theme_light.scss';
 ```
 
+### Reusing the variables in JavaScript
+
+The Sass variables are also made available for consumption as json files. This enables reuse of values in css-in-js systems like [styled-components](https://www.styled-components.com). As the following example shows, it can also make the downstream components theme-aware without much extra effort:
+
+```js
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import styled, { ThemeProvider } from 'styled-components';
+import * as euiVars from '@elastic/eui/dist/eui_theme_k6_light.json';
+
+const CustomComponent = styled.div`
+  color: ${props => props.theme.euiColorPrimary};
+  border: ${props => props.theme.euiBorderThin};
+`;
+
+ReactDOM.render(
+  <ThemeProvider theme={euiVars}>
+    <CustomComponent>content</CustomComponent>
+  </ThemeProvider>
+, document.querySelector('#renderTarget'));
+```
+
 ### "Module build failed" or "Module parse failed: Unexpected token" error
 
 If you get an error when importing a React component, you might need to configure Webpack's `resolve.mainFields` to `['webpack', 'browser', 'main']` to import the components from `lib` intead of `src`. See the [Webpack docs](https://webpack.js.org/configuration/resolve/#resolve-mainfields) for more info.
