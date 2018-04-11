@@ -43,6 +43,7 @@ export class EuiDatePicker extends Component {
       inputRef,
       fullWidth,
       isLoading,
+      customInput,
       placeholder,
       inline,
       shadow,
@@ -86,10 +87,15 @@ export class EuiDatePicker extends Component {
       className
     );
 
+    let showIcon = true;
+    if (inline || customInput) {
+      showIcon = false;
+    }
+
     let datePickerOrError = (
       <span className={classes}>
         <EuiFormControlLayout
-          icon={inline ? null : 'calendar'}
+          icon={showIcon ? 'calendar' : null}
           fullWidth={fullWidth}
           isLoading={isLoading}
         >
@@ -101,6 +107,7 @@ export class EuiDatePicker extends Component {
               placeholderText={placeholder}
               ref={inputRef}
               inline={inline}
+              customInput={customInput}
               showYearDropdown
               showMonthDropdown
               yearDropdownItemNumber={7}
@@ -181,6 +188,7 @@ EuiDatePicker.propTypes = {
   popperClassName: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.string,
+  customInput: PropTypes.node,
   locale: PropTypes.string,
   isInvalid: PropTypes.bool,
   inputRef: PropTypes.func,

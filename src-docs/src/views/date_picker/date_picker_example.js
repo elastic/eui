@@ -48,6 +48,10 @@ import OpenToDate from './open_to_date';
 const openToDateSource = require('!!raw-loader!./open_to_date');
 const openToDateHtml = renderToHtml(OpenToDate);
 
+import CustomInput from './custom_input';
+const customInputSource = require('!!raw-loader!./custom_input');
+const customInputHtml = renderToHtml(CustomInput);
+
 export const DatePickerExample = {
   title: 'DatePicker',
   sections: [{
@@ -179,6 +183,21 @@ export const DatePickerExample = {
       </p>
     ),
     demo: <OpenToDate />,
+  }, {
+    title: 'Custom input',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: customInputSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: customInputHtml,
+    }],
+    text: (
+      <p>
+        Use <EuiCode>customInput</EuiCode> to pass a custom input to trigger your calendar.
+      </p>
+    ),
+    demo: <CustomInput />,
   }, {
     title: 'Datepicker inline',
     source: [{
