@@ -38,7 +38,7 @@
 
 .react-datepicker {
   font-family: $euiFontFamily;
-  font-size: $euiFontSizeS;
+  font-size: $euiFontSizeXS;
   background-color: $euiColorEmptyShade;
   color: $euiColorFullShade;
   display: flex;
@@ -258,6 +258,7 @@
           text-align: right;
           font-family: $euiCodeFontFamily;
           color: $euiColorDarkShade;
+          white-space: nowrap;
 
           &:hover {
             cursor: pointer;
@@ -315,7 +316,7 @@
   width: $euiSizeXL;
   line-height: $euiSizeXL - $euiSizeXS;
   text-align: center;
-  margin: 0 $euiSizeXS;
+  margin: 0 $euiSizeXS / 2;
 }
 
 .react-datepicker__day-name {
@@ -493,7 +494,7 @@
 .react-datepicker__year-option,
 .react-datepicker__month-option,
 .react-datepicker__month-year-option {
-  font-size: $euiFontSizeS;
+  font-size: $euiFontSizeXS;
   padding: $euiSizeS;
   color: $euiColorDarkestShade;
   flex-basis: 33.3%;
@@ -615,7 +616,7 @@
 //
 //   .react-datepicker__current-month,
 //   .react-datepicker-time__header {
-//     font-size: $euiFontSizeS * 1.8;
+//     font-size: $euiFontSizeXS * 1.8;
 //   }
 //
 //   .react-datepicker__navigation {
