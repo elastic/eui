@@ -3,7 +3,7 @@
 
 $datepicker__background-color: $euiColorEmptyShade !default;
 $datepicker__border-color: $euiBorderColor !default;
-$datepicker__highlighted-color: #3dcc4a !default;
+$datepicker__highlighted-color: $euiColorSecondary !default;
 $datepicker__muted-color: $euiColorLightestShade !default;
 $datepicker__selected-color: $euiColorPrimary !default;
 $datepicker__text-color: $euiColorFullShade !default;
@@ -362,15 +362,6 @@ $datepicker__time-width: auto !default;
     &:hover {
       background-color: darken($datepicker__highlighted-color, 5%);
     }
-
-    &-custom-1 {
-      color: magenta;
-    }
-
-    &-custom-2 {
-      color: green;
-    }
-
   }
 
   &--in-range {
@@ -554,6 +545,22 @@ $datepicker__time-width: auto !default;
 
   &--selected {
     display: none;
+  }
+}
+
+
+@include screenXSmall {
+  .react-datepicker {
+    flex-direction: column;
+  }
+
+  .react-datepicker__time-container {
+    border-left: none;
+  }
+
+  .react-datepicker__time-box {
+    margin: auto;
+    font-size: $euiFontSize;
   }
 }
 
