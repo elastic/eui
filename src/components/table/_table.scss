@@ -149,7 +149,7 @@
   .euiTableCellContent__hoverItem {
     opacity: 0;
 
-    .euiTableRow:hover > .euiTableRowCell > &,
+    .euiTableRow:hover &,
     &:hover, &:focus {
       opacity: 1;
     }
