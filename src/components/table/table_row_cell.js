@@ -31,17 +31,26 @@ export const EuiTableRowCell = ({
     'euiTableCellContent--truncateText': truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
-    'euiTableCellContent--overflowingContent': !textOnly,
+    'euiTableCellContent--overflowingContent': textOnly !== true,
   });
+
+  const childClasses = classNames({
+    'euiTableCellContent__text': textOnly === true,
+    'euiTableCellContent__hoverItem': showOnHover,
+  });
+
+  let modifiedChildren = children;
+
+  if(textOnly === true) {
+    modifiedChildren = <span className={childClasses}>{children}</span>;
+  } else if(React.isValidElement(modifiedChildren)) {
+    modifiedChildren = React.Children.map(children, child => React.cloneElement(child, { className: childClasses }));
+  }
 
   return (
     <td className="euiTableRowCell" colSpan={colSpan}>
       <div className={contentClasses} {...rest}>
-        {
-          textOnly === true
-            ? <span className="euiTableCellContent__text">{children}</span>
-            : children
-        }
+        {modifiedChildren}
       </div>
     </td>
   );

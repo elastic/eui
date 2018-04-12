@@ -146,7 +146,7 @@
 }
 
 .euiTableCellContent--showOnHover {
-  > * {
+  .euiTableCellContent__hoverItem {
     opacity: 0;
 
     .euiTableRow:hover > .euiTableRowCell > &,

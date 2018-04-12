@@ -13,7 +13,7 @@ export class DefaultItemAction extends Component {
   }
 
   render() {
-    const { action, enabled, item } = this.props;
+    const { action, enabled, item, className } = this.props;
     if (!action.onClick) {
       throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback. If you want
       to provide a custom action control, make sure to define the 'render' callback`);
@@ -28,6 +28,7 @@ export class DefaultItemAction extends Component {
       }
       return (
         <EuiButtonIcon
+          className={className}
           aria-label={action.name}
           isDisabled={!enabled}
           color={color}
@@ -40,6 +41,7 @@ export class DefaultItemAction extends Component {
 
     return (
       <EuiButton
+        className={className}
         size="s"
         isDisabled={!enabled}
         color={color}
