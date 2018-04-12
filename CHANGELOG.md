@@ -9,7 +9,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiBasicTable` re-rendering on hover of table rows
+- Fixed `EuiBasicTable` re-rendering on hover of table rows ([#665](https://github.com/elastic/eui/pull/665))
 
 **Breaking changes**
 
