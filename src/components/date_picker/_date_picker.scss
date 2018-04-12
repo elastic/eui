@@ -541,19 +541,20 @@
     }
   }
 
-  // These selectors are not a typo. Likely a bug in their rendering.
-  &.--selected_year, &.--selected_month {
-    background: $euiColorPrimary;
-    color: $euiColorEmptyShade;
-    font-weight: $euiFontWeightBold;
-    border-radius: $euiBorderRadius;
-  }
-
   &--selected {
     display: none;
   }
 }
 
+// These selectors are not a typo. Likely a bug in their rendering.
+.react-datepicker__year-option {
+  &[class*="selected"] {
+    background: $euiColorPrimary;
+    color: $euiColorEmptyShade;
+    font-weight: $euiFontWeightBold;
+    border-radius: $euiBorderRadius;
+  }
+}
 
 @include screenXSmall {
   .react-datepicker__time-container {
