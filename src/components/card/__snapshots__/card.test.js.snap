@@ -18,7 +18,7 @@ exports[`EuiCard is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiText--small euiCard__description euiText--constrainedWidth"
     >
       <p>
         Card description

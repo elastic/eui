@@ -14,12 +14,14 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-export const EuiText = ({ size, color, children, className, ...rest }) => {
+export const EuiText = ({ size, color, grow, children, className, ...rest }) => {
 
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
-    className,
+    className, {
+      'euiText--constrainedWidth': !grow
+    }
   );
 
   let optionallyColoredText;
@@ -45,4 +47,9 @@ EuiText.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(TEXT_SIZES),
   color: PropTypes.oneOf(COLORS),
+  grow: PropTypes.bool,
+};
+
+EuiText.defaultProps = {
+  grow: false,
 };

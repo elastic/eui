@@ -75,7 +75,6 @@
 .euiText {
   @include euiText;
   @include euiFontSize;
-  max-width: 36rem;
 
   a {
     color: $euiLinkColor;
@@ -180,6 +179,10 @@
   }
 
   @include euiScaleText($euiFontSize);
+
+  &.euiText--constrainedWidth {
+    max-width: 36rem;
+  }
 
   &.euiText--small {
     @include fontSize($euiFontSizeS);
