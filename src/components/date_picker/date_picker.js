@@ -20,21 +20,6 @@ import {
 } from '../error_boundary';
 
 export class EuiDatePicker extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      startDate: moment()
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
 
   render() {
     const {
