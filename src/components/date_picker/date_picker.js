@@ -91,15 +91,19 @@ export class EuiDatePicker extends Component {
       className
     );
 
-    let showIcon = true;
+    let optionalIcon;
     if (inline || customInput) {
-      showIcon = false;
+      optionalIcon = null;
+    } else if (showTimeSelectOnly) {
+      optionalIcon = "clock";
+    } else {
+      optionalIcon = "calendar";
     }
 
     let datePickerOrError = (
       <span className={classes}>
         <EuiFormControlLayout
-          icon={showIcon ? 'calendar' : null}
+          icon={optionalIcon}
           fullWidth={fullWidth}
           isLoading={isLoading}
         >

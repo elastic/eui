@@ -45,6 +45,7 @@ export default class extends Component {
           <EuiDatePicker
             selected={this.state.startDate}
             onChange={this.handleChange}
+            dateFormat="MM/DD/YYYY"
           />
         </EuiFormRow>
 
