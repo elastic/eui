@@ -123,7 +123,7 @@
 }
 
 .react-datepicker__header__dropdown {
-  padding: $euiSizeS 0;
+  padding: $euiSize 0 $euiSizeS 0;
 }
 
 .react-datepicker__year-dropdown-container--select,
@@ -150,7 +150,8 @@
 .react-datepicker__navigation {
   cursor: pointer;
   position: absolute;
-  top: $euiSizeS + $euiSizeXS;
+  // Pixel pushing because these are icons against text
+  top: $euiSize + ($euiSizeXS / 2);
   width: 0;
   padding: 0;
   z-index: 1;
@@ -274,7 +275,6 @@
           padding: $euiSizeXS $euiSizeS;
           margin-bottom: $euiSizeXS;
           text-align: right;
-          font-family: $euiCodeFontFamily;
           color: $euiColorDarkShade;
           white-space: nowrap;
 
