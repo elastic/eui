@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.41`.
+- Added `euiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
 
 ## [`0.0.41`](https://github.com/elastic/eui/tree/v0.0.41)
 
