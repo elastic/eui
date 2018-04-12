@@ -31,7 +31,7 @@
     .react-datepicker-popper {
       @include euiBottomShadowMedium;
 
-      border: 1px solid $euiBorderColor;
+      border: $euiBorderThin;
       background-color: $euiColorEmptyShade;
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
@@ -273,7 +273,7 @@
 }
 
 .react-datepicker__time-container {
-  border-left: 1px solid $euiBorderColor;
+  border-left: $euiBorderColor;
   width: auto;
   display: flex;
   padding: $euiSize 0;

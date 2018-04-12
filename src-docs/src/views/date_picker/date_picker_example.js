@@ -88,9 +88,8 @@ export const DatePickerExample = {
     }],
     text: (
       <p>
-        The passed icon needs to come from our list of svg icons. Can be flipped {
-          // eslint-disable-next-line react/no-unescaped-entities
-        } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+        Examples of how the input can appear within a form. This should match our
+        other form styles.
       </p>
     ),
     demo: <States />,
