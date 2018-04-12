@@ -14,7 +14,7 @@ No public interface changes since `0.0.41`.
 
 **Breaking changes**
 
-- `EuiStepHorizontals` now requires an `onClick` prop be provided for each step configuration object ([#653](https://github.com/elastic/eui/pull/653))
+- `EuiStepsHorizontal` now requires an `onClick` prop be provided for each step configuration object ([#653](https://github.com/elastic/eui/pull/653))
 
 ## [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 
