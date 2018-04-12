@@ -59,7 +59,28 @@
 
 }
 
+// When in time only mode we make the dropdown look more like the combo box styling
 .react-datepicker--time-only {
+  min-width: 150px;
+
+  .react-datepicker__time-container {
+    background: $euiColorEmptyShade !important;
+
+    .react-datepicker__time {
+        // padding-left:
+
+      .react-datepicker__time-box {
+        width: 100%;
+
+        .react-datepicker__time-list li.react-datepicker__time-list-item {
+          font-size: $euiFontSizeS;
+          text-align: left;
+          color: $euiTextColor;
+        }
+      }
+    }
+  }
+
 
   .react-datepicker__time-container {
     border-left: 0;
