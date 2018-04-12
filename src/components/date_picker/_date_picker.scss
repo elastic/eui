@@ -198,7 +198,7 @@
     &:hover {
       background-color: $euiColorLightestShade;
       border-radius: $euiBorderRadius;
-      outline: solid ($euiSizeXS / 2) $euiColorLightestShade;
+      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
       transform: scale(1.2) rotate(90deg);
     }
 
