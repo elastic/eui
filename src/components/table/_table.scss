@@ -148,11 +148,9 @@
 .euiTableCellContent--showOnHover {
   > * {
     opacity: 0;
-  }
 
-  .euiTableRow:hover > .euiTableRowCell > &,
-  &:hover, &:focus {
-    > * {
+    .euiTableRow:hover > .euiTableRowCell > &,
+    &:hover, &:focus {
       opacity: 1;
     }
   }

@@ -10,41 +10,7 @@ export class DefaultItemAction extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { hasFocus: false };
-
-    // while generally considered an anti-pattern, here we require
-    // to do that as the onFocus/onBlur events of the action controls
-    // may trigger while this component is unmounted. An alternative
-    // (at least the workarounds suggested by react is to unregister
-    // the onFocus/onBlur listeners from the action controls... this
-    // unfortunately will lead to unecessarily complex code... so we'll
-    // stick to this approach for now)
-    this.mounted = false;
   }
-
-  componentWillMount() {
-    this.mounted = true;
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  onFocus = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: true });
-    }
-  };
-
-  onBlur = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: false });
-    }
-  };
-
-  hasFocus = () => {
-    return this.state.hasFocus;
-  };
 
   render() {
     const { action, enabled, item } = this.props;
@@ -55,7 +21,6 @@ export class DefaultItemAction extends Component {
     const onClick = () => action.onClick(item);
     const color = this.resolveActionColor();
     const icon = this.resolveActionIcon();
-    const style = this.hasFocus() ? { opacity: 1 } : null;
     if (action.type === 'icon') {
       if (!icon) {
         throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
@@ -68,10 +33,7 @@ export class DefaultItemAction extends Component {
           color={color}
           iconType={icon}
           title={action.description}
-          style={style}
           onClick={onClick}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
         />
       );
     }
@@ -84,10 +46,7 @@ export class DefaultItemAction extends Component {
         iconType={icon}
         fill={false}
         title={action.description}
-        style={style}
         onClick={onClick}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
       >
         {action.name}
       </EuiButton>
