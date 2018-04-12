@@ -85,53 +85,6 @@ export class EuiDatePicker extends Component {
       optionalIcon = "calendar";
     }
 
-    let datePickerOrError = (
-      <span className={classes}>
-        <EuiFormControlLayout
-          icon={optionalIcon}
-          fullWidth={fullWidth}
-          isLoading={isLoading}
-        >
-          <EuiValidatableControl
-            isInvalid={isInvalid}
-          >
-            <DatePicker
-              calendarClassName={calendarClassName}
-              className={datePickerClasses}
-              customInput={customInput}
-              dateFormat={dateFormat}
-              dayClassName={dayClassName}
-              disabled={disabled}
-              excludeDates={excludeDates}
-              filterDates={filterDates}
-              injectTimes={injectTimes}
-              inline={inline}
-              locale={locale}
-              maxDate={maxDate}
-              maxTime={maxTime}
-              minDate={minDate}
-              minTime={minTime}
-              onChange={onChange}
-              openToDate={openToDate}
-              placeholderText={placeholder}
-              popperClassName={popperClassName}
-              ref={inputRef}
-              selected={selected}
-              shouldCloseOnSelect={shouldCloseOnSelect}
-              showMonthDropdown
-              showTimeSelect={showTimeSelect}
-              showTimeSelectOnly={showTimeSelectOnly}
-              showYearDropdown
-              timeFormat={timeFormat}
-              utcOffset={utcOffset}
-              yearDropdownItemNumber={7}
-              {...rest}
-            />
-          </EuiValidatableControl>
-        </EuiFormControlLayout>
-      </span>
-    );
-
     // EuiDatePicker only supports a subset of props from react-datepicker. Using any of
     // the unsupported props below will spit out an error.
     const PropNotSupported = () => {
@@ -161,16 +114,60 @@ export class EuiDatePicker extends Component {
       // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
       this.props.withPortal
     ) {
-      datePickerOrError = (
+      return (
         <EuiErrorBoundary>
           <PropNotSupported />
         </EuiErrorBoundary>
+
       );
     }
 
     return (
       <span>
-        {datePickerOrError}
+        <span className={classes}>
+          <EuiFormControlLayout
+            icon={optionalIcon}
+            fullWidth={fullWidth}
+            isLoading={isLoading}
+          >
+            <EuiValidatableControl
+              isInvalid={isInvalid}
+            >
+              <DatePicker
+                calendarClassName={calendarClassName}
+                className={datePickerClasses}
+                customInput={customInput}
+                dateFormat={dateFormat}
+                dayClassName={dayClassName}
+                disabled={disabled}
+                excludeDates={excludeDates}
+                filterDates={filterDates}
+                injectTimes={injectTimes}
+                inline={inline}
+                locale={locale}
+                maxDate={maxDate}
+                maxTime={maxTime}
+                minDate={minDate}
+                minTime={minTime}
+                onChange={onChange}
+                openToDate={openToDate}
+                placeholderText={placeholder}
+                popperClassName={popperClassName}
+                ref={inputRef}
+                selected={selected}
+                shouldCloseOnSelect={shouldCloseOnSelect}
+                showMonthDropdown
+                showTimeSelect={showTimeSelect}
+                showTimeSelectOnly={showTimeSelectOnly}
+                showYearDropdown
+                timeFormat={timeFormat}
+                utcOffset={utcOffset}
+                yearDropdownItemNumber={7}
+                {...rest}
+              />
+            </EuiValidatableControl>
+          </EuiFormControlLayout>
+        </span>
       </span>
     );
   }
