@@ -10,11 +10,7 @@ exports[`DefaultItemAction render - button 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
   size="s"
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
+  style={null}
   title="action 1"
   type="button"
 >
@@ -31,11 +27,7 @@ exports[`DefaultItemAction render - icon 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
+  style={null}
   title="action 1"
   type="button"
 />

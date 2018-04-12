@@ -41,10 +41,10 @@ export class CustomItemAction extends Component {
   };
 
   render() {
-    const { action, enabled, visible, item } = this.props;
+    const { action, enabled, item } = this.props;
     const tool = action.render(item, enabled);
     const clonedTool = cloneElement(tool, { onFocus: this.onFocus, onBlur: this.onBlur });
-    const style = this.hasFocus() || visible ? { opacity: 1 } : { opacity: 0 };
+    const style = this.hasFocus() ? { opacity: 1 } : null;
     return (
       <div style={style}>
         {clonedTool}

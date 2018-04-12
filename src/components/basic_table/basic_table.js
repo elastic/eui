@@ -149,7 +149,6 @@ export class EuiBasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hoverRow: null,
       selection: []
     };
   }
@@ -238,14 +237,6 @@ export class EuiBasicTable extends Component {
       }
     };
     this.props.onChange(criteria);
-  }
-
-  onRowHover(row) {
-    this.setState({ hoverRow: row });
-  }
-
-  clearRowHover() {
-    this.setState({ hoverRow: null });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -460,9 +451,6 @@ export class EuiBasicTable extends Component {
       }
     });
 
-    const onMouseOver = () => this.onRowHover(rowIndex);
-    const onMouseOut = () => this.clearRowHover();
-
     // Occupy full width of table, taking checkbox column into account.
     const expandedRowColSpan = selection ? columns.length + 1 : columns.length;
     // We'll use the ID to associate the expanded row with the original.
@@ -480,8 +468,6 @@ export class EuiBasicTable extends Component {
         <EuiTableRow
           aria-owns={expandedRowId}
           isSelected={selected}
-          onMouseOver={onMouseOver}
-          onMouseOut={onMouseOut}
         >
           {cells}
         </EuiTableRow>
@@ -523,9 +509,7 @@ export class EuiBasicTable extends Component {
     );
   }
 
-  renderItemActionsCell(itemId, item, column, columnIndex, rowIndex) {
-    const visible = this.state.hoverRow === rowIndex;
-
+  renderItemActionsCell(itemId, item, column, columnIndex) {
     const actionEnabled = (action) =>
       this.state.selection.length === 0 && (!action.enabled || action.enabled(item));
 
@@ -545,7 +529,6 @@ export class EuiBasicTable extends Component {
             return (
               <CollapsedItemActions
                 actions={column.actions}
-                visible={visible}
                 itemId={itemId}
                 item={item}
                 actionEnabled={actionEnabled}
@@ -559,7 +542,6 @@ export class EuiBasicTable extends Component {
     const tools = (
       <ExpandedItemActions
         actions={actualActions}
-        visible={visible}
         itemId={itemId}
         item={item}
         actionEnabled={actionEnabled}
@@ -568,7 +550,7 @@ export class EuiBasicTable extends Component {
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
-      <EuiTableRowCell key={key} align="right" textOnly={false}>
+      <EuiTableRowCell showOnHover={true} key={key} align="right" textOnly={false}>
         {tools}
       </EuiTableRowCell>
     );

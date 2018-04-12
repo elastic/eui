@@ -19,6 +19,7 @@ export const EuiTableRowCell = ({
   children,
   className,
   truncateText,
+  showOnHover,
   textOnly,
   colSpan,
   ...rest
@@ -26,6 +27,7 @@ export const EuiTableRowCell = ({
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
+    'euiTableCellContent--showOnHover': showOnHover,
     'euiTableCellContent--truncateText': truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
@@ -47,6 +49,7 @@ export const EuiTableRowCell = ({
 
 EuiTableRowCell.propTypes = {
   align: PropTypes.oneOf(ALIGNMENT),
+  showOnHover: PropTypes.bool,
   truncateText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,

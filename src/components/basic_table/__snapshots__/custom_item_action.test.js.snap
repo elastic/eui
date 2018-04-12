@@ -2,10 +2,6 @@
 
 exports[`CustomItemAction render 1`] = `
 <div
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
+  style={null}
 />
 `;

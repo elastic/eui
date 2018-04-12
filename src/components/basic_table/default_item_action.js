@@ -47,7 +47,7 @@ export class DefaultItemAction extends Component {
   };
 
   render() {
-    const { action, enabled, visible, item } = this.props;
+    const { action, enabled, item } = this.props;
     if (!action.onClick) {
       throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback. If you want
       to provide a custom action control, make sure to define the 'render' callback`);
@@ -55,7 +55,7 @@ export class DefaultItemAction extends Component {
     const onClick = () => action.onClick(item);
     const color = this.resolveActionColor();
     const icon = this.resolveActionIcon();
-    const style = this.hasFocus() || visible ? { opacity: 1 } : { opacity: 0 };
+    const style = this.hasFocus() ? { opacity: 1 } : null;
     if (action.type === 'icon') {
       if (!icon) {
         throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
