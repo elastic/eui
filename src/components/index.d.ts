@@ -16,3 +16,7 @@
 /// <reference path="./portal/index.d.ts" />
 /// <reference path="./title/index.d.ts" />
 /// <reference path="./text/index.d.ts" />
+/// <reference path="./modal/index.d.ts" />
+/// <reference path="./overlay_mask/index.d.ts" />
+/// <reference path="./horizontal_rule/index.d.ts" />
+/// <reference path="./page/index.d.ts" />
