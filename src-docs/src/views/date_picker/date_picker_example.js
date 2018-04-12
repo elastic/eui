@@ -144,9 +144,8 @@ export const DatePickerExample = {
     }],
     text: (
       <p>
-        The passed icon needs to come from our list of svg icons. Can be flipped {
-          // eslint-disable-next-line react/no-unescaped-entities
-        } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+        By passing <EuiCode>startDate</EuiCode> and <EuiCode>endDate</EuiCode> props
+        you can provide styling the range in between two dates.
       </p>
     ),
     demo: <Range />,

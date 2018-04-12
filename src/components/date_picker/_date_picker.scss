@@ -3,10 +3,18 @@
 **
 ** In places where features were disabled, I've commented out the original Sass
 ** selectors rather than removing it so we can better understand what's changed.
+** Commented out selectors that don't have properties indicate that we are not
+** using those dom elements for styling of any kind. For example, react-datepicker
+** has lots of pointer arrows attached to its popovers, but we choose not to render
+** then in any way.
+**
+** Similarly, you will also find several times where we use display: none to
+** completely remove extranous UI (they had some overly obvious legends for example).
 */
 
 
-// We use SVG URIs for the navigation arrows. There is one for light and dark.
+// Because we don't have control over react-datepicker's dom we use SVG URIs for the navigation arrows.
+// There is one for light and dark.
 @mixin datePicker__arrow {
   @if (lightness($euiColorEmptyShade) > 50) {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
@@ -32,13 +40,13 @@
         background: $euiColorLightestShade;
     }
 
-    // If the shadow is on, and it is inline, we need to put the shadow on the datepciker
+    // If the shadow is on, and it is inline, we need to put the shadow on the datepicker
     // itself rather than the popper.
     &.euiDatePicker--inline {
       .react-datepicker {
         @include euiBottomShadowMedium;
 
-        border: 1px solid $euiBorderColor;
+        border: $euiBorderThin;
         background-color: $euiColorEmptyShade;
         border-radius: $euiBorderRadius;
       }
@@ -101,7 +109,7 @@
 // .react-datepicker__triangle {
 // }
 
-.react-datepicker-popper {
+.euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
   z-index: 1;
   animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
 
@@ -112,11 +120,9 @@
   }
 
   &[data-placement^="top"] {
-    box-shadow:
-      0 0px 12px -1px rgba($euiShadowColor, .2),
-      0 0px 4px -1px rgba($euiShadowColor, .2),
-      0 0px 2px 0 rgba($euiShadowColor, .2) !important;
-      border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
+    @include euiBottomShadowFlat;
+
+    border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
 
     // .react-datepicker__triangle {
     // }
@@ -275,12 +281,6 @@
   flex-grow: 1;
 
   // &--with-today-button {
-  //   display: inline;
-  //   border: 1px solid #aeaeae;
-  //   border-radius: 0.3rem;
-  //   position: absolute;
-  //   right: auto;
-  //   top: 0;
   // }
 
   .react-datepicker__time {
@@ -591,6 +591,9 @@
     display: none;
   }
 }
+
+// The below is for the portal version of react-datepicker which we do not use.
+// It is shown here just to know what their baseline includes.
 
 // .react-datepicker__close-icon {
 //   background-color: transparent;
