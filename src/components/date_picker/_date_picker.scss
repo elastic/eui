@@ -546,8 +546,11 @@
   }
 }
 
-// These selectors are not a typo. Likely a bug in their rendering.
-.react-datepicker__year-option {
+// These selectors are not a typo. react-datepicker has a bug where these selectors
+// output as "--selected_year". Sass has trouble compiling .--selected_year, so instead
+// we use this generic selector get around it.
+.react-datepicker__year-option,
+.react-datepicker__month-option {
   &[class*="selected"] {
     background: $euiColorPrimary;
     color: $euiColorEmptyShade;
@@ -556,6 +559,7 @@
   }
 }
 
+// We drop the time picker on mobile. They can still type in the time directly.
 @include screenXSmall {
   .react-datepicker__time-container {
     display: none;
