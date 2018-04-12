@@ -19,6 +19,15 @@ $euiShadowColorLarge: $euiColorSlightHue !default;
     0 2px 2px 0 rgba($color, $opacity);
 }
 
+// Similar to shadow medium but wihtout the bottom depth. Useful for popovers
+// that drop UP rather than DOWN.
+@mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: .2) {
+  box-shadow:
+    0 0px 12px -1px rgba($color, $opacity),
+    0 0px 4px -1px rgba($color, $opacity),
+    0 0px 2px 0 rgba($color, $opacity);
+}
+
 @mixin euiBottomShadow($color: $euiShadowColor, $opacity: .2) {
   box-shadow:
     0 12px 24px 0 rgba($color, $opacity),

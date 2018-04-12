@@ -58,6 +58,10 @@ export {
 } from './context_menu';
 
 export {
+  EuiDatePicker,
+} from './date_picker';
+
+export {
   EuiDelayHide
 } from './delay_hide';
 
