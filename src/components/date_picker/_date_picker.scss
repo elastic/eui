@@ -404,6 +404,7 @@
 
     &:hover {
       background-color: darken($euiColorPrimary, 5%);
+      color: $euiColorGhost;
     }
   }
 

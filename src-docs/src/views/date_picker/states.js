@@ -81,6 +81,7 @@ export default class extends Component {
         >
           <EuiDatePicker
             showTimeSelect
+            isInvalid
             selected={this.state.startDate}
             onChange={this.handleChange}
             placeholder="Example of an error"

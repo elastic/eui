@@ -86,6 +86,7 @@ export class EuiDatePicker extends Component {
         'euiFieldText--fullWidth': fullWidth,
         'euiFieldText-isLoading': isLoading,
         'euiFieldText--withIcon': !inline,
+        'euiFieldText-isInvalid': isInvalid,
       },
       className
     );
