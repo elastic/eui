@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.42`.
+
+## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
+
 - Added `EuiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
 - Added editor icon set to `EuiIcon` ([#671](https://github.com/elastic/eui/pull/671))
 
