@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `euiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
+- Added `EuiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
+- Added editor icon set to `EuiIcon` ([#671](https://github.com/elastic/eui/pull/671))
 
 ## [`0.0.41`](https://github.com/elastic/eui/tree/v0.0.41)
 
