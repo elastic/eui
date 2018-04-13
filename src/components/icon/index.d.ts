@@ -3,12 +3,12 @@
 import { SFC, SVGAttributes } from 'react';
 
 declare module '@elastic/eui' {
+
   /**
    * icon type defs
    *
    * @see './icon.js'
    */
-
   export type IconType =
     | 'addDataApp'
     | 'advancedSettingsApp'
@@ -37,8 +37,13 @@ declare module '@elastic/eui' {
     | 'controlsVertical'
     | 'copy'
     | 'copyClipboard'
+    | 'createAdvancedJob'
+    | 'createMultiMetricJob'
+    | 'createPopulationJob'
+    | 'createSingleMetricJob'
     | 'cross'
     | 'dashboardApp'
+    | 'dataVisualizer'
     | 'devToolsApp'
     | 'discoverApp'
     | 'document'
@@ -60,25 +65,36 @@ declare module '@elastic/eui' {
     | 'empty'
     | 'exit'
     | 'expand'
+    | 'exportAction'
+    | 'eyeClosed'
+    | 'eye'
     | 'faceHappy'
     | 'faceNeutral'
     | 'faceSad'
     | 'fullScreen'
     | 'gear'
+    | 'grab'
     | 'graphApp'
     | 'grid'
     | 'grokApp'
+    | 'heatmap'
     | 'help'
     | 'iInCircle'
+    | 'importAction'
     | 'indexClose'
     | 'indexEdit'
     | 'indexFlush'
     | 'indexMapping'
     | 'indexOpen'
-    | 'indexSettings'
     | 'indexPatternApp'
-    | 'inputOutput'
+    | 'indexSettings'
     | 'invert'
+    | 'inputOutput'
+    | 'kqlField'
+    | 'kqlOperand'
+    | 'kqlValue'
+    | 'kqlFunction'
+    | 'kqlSelector'
     | 'link'
     | 'list'
     | 'listAdd'
@@ -87,17 +103,27 @@ declare module '@elastic/eui' {
     | 'logoApache'
     | 'logoBeats'
     | 'logoCloud'
+    | 'logoDocker'
     | 'logoElastic'
     | 'logoElasticSearch'
     | 'logoElasticStack'
     | 'logoGmail'
+    | 'logoGithub'
     | 'logoKibana'
+    | 'logoKubernetes'
     | 'logoLogstash'
     | 'logoMySQL'
     | 'logoNginx'
+    | 'logoRedis'
+    | 'logoSketch'
     | 'logoSlack'
     | 'logoWebhook'
     | 'logoXpack'
+    | 'logstashFilter'
+    | 'logstashIf'
+    | 'logstashInput'
+    | 'logstashOutput'
+    | 'logstashQueue'
     | 'machineLearningApp'
     | 'managementApp'
     | 'mapMarker'
@@ -143,6 +169,7 @@ declare module '@elastic/eui' {
     | 'upgradeAssistantApp'
     | 'user'
     | 'usersRolesApp'
+    | 'vector'
     | 'visualizeApp'
     | 'watchesApp'
     | 'wrench';
@@ -167,7 +194,5 @@ declare module '@elastic/eui' {
     size?: IconSize;
   }
 
-  export const EuiIcon: SFC<
-    CommonProps & SVGAttributes<SVGAElement> & EuiIconProps
-  >;
+  export const EuiIcon: SFC<CommonProps & SVGAttributes<SVGAElement> & EuiIconProps>;
 }
