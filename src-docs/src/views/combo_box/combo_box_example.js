@@ -99,6 +99,23 @@ export const ComboBoxExample = {
     props: { EuiComboBox },
     demo: <ComboBox />,
   }, {
+    title: 'Virtualized',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: virtualizedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: virtualizedHtml,
+    }],
+    text: (
+      <p>
+        <EuiCode>EuiComboBoxList</EuiCode> uses <Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>
+        to only render visiable options to be super fast no matter how many options there are.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Virtualized />,
+  }, {
     title: 'Containers',
     source: [{
       type: GuideSectionTypes.JS,
@@ -201,22 +218,6 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <DisallowCustomOptions />,
-  }, {
-    title: 'Virtualized',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: virtualizedSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: virtualizedHtml,
-    }],
-    text: (
-      <p>
-        Use virtualization to handle long lists
-      </p>
-    ),
-    props: { EuiComboBox },
-    demo: <Virtualized />,
   }, {
     title: 'Custom options only, with validation',
     source: [{

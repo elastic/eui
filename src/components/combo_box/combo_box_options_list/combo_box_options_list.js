@@ -151,13 +151,11 @@ export class EuiComboBoxOptionsList extends Component {
 
     const groupLabelToGroupMap = {};
 
-    let optionsList;
-
-    optionsList = (
+    const optionsList = (
       <List
         width={384}
         height={184}
-        rowCount={matchingOptions.length} // plus number of group labels
+        rowCount={matchingOptions.length}
         rowHeight={27}
         rowRenderer={({ key, index, style }) => {
           const option = matchingOptions[index];

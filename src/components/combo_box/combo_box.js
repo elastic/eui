@@ -393,10 +393,12 @@ export class EuiComboBox extends Component {
 
   comboBoxRef = node => {
     this.comboBox = node;
-    /*const comboBoxBounds = this.comboBox.getBoundingClientRect();
-    this.setState({
-      width: comboBoxBounds.width,
-    });*/
+    if (this.comboBox) {
+      const comboBoxBounds = this.comboBox.getBoundingClientRect();
+      this.setState({
+        width: comboBoxBounds.width,
+      });
+    }
   };
 
   autoSizeInputRef = node => {
