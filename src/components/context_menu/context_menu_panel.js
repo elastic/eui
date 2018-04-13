@@ -34,6 +34,7 @@ export class EuiContextMenuPanel extends Component {
     onUseKeyboardToNavigate: PropTypes.func,
     hasFocus: PropTypes.bool,
     items: PropTypes.array,
+    watchedItemProps: PropTypes.array,
     showNextPanel: PropTypes.func,
     showPreviousPanel: PropTypes.func,
     initialFocusedItemIndex: PropTypes.number
@@ -219,6 +220,22 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
+  getWatchedProps(items) {
+    const { watchedItemProps } = this.props;
+
+    if(items && items.length && watchedItemProps && watchedItemProps.length) {
+      return items.map(item => {
+        const props = {
+          key: item.key,
+        };
+        watchedItemProps.forEach(prop => props[prop] = item.props[prop]);
+        return props;
+      });
+    }
+
+    return null;
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     // Prevent calling `this.updateFocus()` below if we don't have to.
     if (nextProps.hasFocus !== this.props.hasFocus) {
@@ -230,6 +247,10 @@ export class EuiContextMenuPanel extends Component {
     }
 
     if (nextState.focusedItemIndex !== this.state.focusedItemIndex) {
+      return true;
+    }
+
+    if(JSON.stringify(this.getWatchedProps(nextProps.items)) !== JSON.stringify(this.getWatchedProps(this.props.items))) {
       return true;
     }
 
@@ -276,6 +297,7 @@ export class EuiContextMenuPanel extends Component {
       onUseKeyboardToNavigate, // eslint-disable-line no-unused-vars
       hasFocus, // eslint-disable-line no-unused-vars
       items,
+      watchedItemProps, // eslint-disable-line no-unused-vars
       initialFocusedItemIndex, // eslint-disable-line no-unused-vars
       showNextPanel, // eslint-disable-line no-unused-vars
       showPreviousPanel, // eslint-disable-line no-unused-vars

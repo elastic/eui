@@ -10,6 +10,7 @@ import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 export class EuiTableSortMobile extends Component {
   static propTypes = {
     className: PropTypes.string,
+    anchorPosition: PropTypes.string,
     items: PropTypes.array,
   }
 
@@ -19,6 +20,10 @@ export class EuiTableSortMobile extends Component {
     this.state = {
       isPopoverOpen: false,
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return JSON.stringify(nextProps) !== JSON.stringify(this.props) || JSON.stringify(nextState) !== JSON.stringify(this.state);
   }
 
   onButtonClick = () => {
@@ -36,6 +41,7 @@ export class EuiTableSortMobile extends Component {
   render() {
     const {
       className,
+      anchorPosition,
       items,
       ...rest
     } = this.props;
@@ -64,7 +70,7 @@ export class EuiTableSortMobile extends Component {
         button={mobileSortButton}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
-        anchorPosition="downRight"
+        anchorPosition={anchorPosition || "downRight"}
         panelPaddingSize="none"
         {...rest}
       >
@@ -74,18 +80,15 @@ export class EuiTableSortMobile extends Component {
             return (
               <EuiTableSortMobileItem
                 key={item.key}
-                onSort={() => {
-                  item.onSort();
-                  this.closePopover();
-                }}
+                onSort={item.onSort}
                 isSorted={item.isSorted}
                 isSortAscending={item.isSortAscending}
-                hideForMobile={item.hideForMobile}
               >
                 {item.name}
               </EuiTableSortMobileItem>
             );
           }) : null}
+          watchedItemProps={['isSorted', 'isSortAscending']}
         />
       </EuiPopover>
     );

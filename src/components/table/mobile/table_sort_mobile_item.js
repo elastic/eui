@@ -11,7 +11,6 @@ export const EuiTableSortMobileItem = ({
   isSortAscending,
   className,
   ariaLabel,
-  hideForMobile,
   ...rest
 }) => {
 
@@ -22,7 +21,6 @@ export const EuiTableSortMobileItem = ({
 
   const buttonClasses = classNames('euiTableSortMobileItem', className, {
     'euiTableSortMobileItem-isSorted': isSorted,
-    'euiTableSortMobileItem--hideForMobile': hideForMobile,
   });
 
     const columnTitle = ariaLabel ? ariaLabel : children;
@@ -48,5 +46,4 @@ EuiTableSortMobileItem.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
-  hideForMobile: PropTypes.bool,
 };

@@ -319,7 +319,7 @@ export class EuiBasicTable extends Component {
     }
 
     columns.forEach((column, index) => {
-      if(!column.sortable) {
+      if(!column.sortable || column.hideForMobile) {
         return;
       }
 
@@ -331,7 +331,6 @@ export class EuiBasicTable extends Component {
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
         isSortAscending: sortDirection ? SortDirection.isAsc(sortDirection) : undefined,
-        hideForMobile: column.hideForMobile,
       });
     });
 
