@@ -144,3 +144,14 @@
     overflow: visible; /* 1 */
   }
 }
+
+.euiTableCellContent--showOnHover {
+  .euiTableCellContent__hoverItem {
+    opacity: 0;
+
+    .euiTableRow:hover &,
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+}

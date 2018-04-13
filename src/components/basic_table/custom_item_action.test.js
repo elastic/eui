@@ -13,7 +13,6 @@ describe('CustomItemAction', () => {
         render: () => 'test'
       },
       enabled: true,
-      visible: true,
       item: { id: 'xyz' }
     };
 

@@ -6,6 +6,7 @@ exports[`CollapsedItemActions render 1`] = `
   button={
     <EuiButtonIcon
       aria-label="actions"
+      className={undefined}
       color="text"
       iconType="gear"
       isDisabled={false}
@@ -32,7 +33,9 @@ exports[`CollapsedItemActions render 1`] = `
         >
           default1
         </EuiContextMenuItem>,
-        <EuiContextMenuItem />,
+        <EuiContextMenuItem
+          onClick={[Function]}
+        />,
       ]
     }
   />

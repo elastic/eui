@@ -12,6 +12,10 @@
 - Wrap `EuiStepHorizontal` text instead of truncating it ([#653](https://github.com/elastic/eui/pull/653))
 - Fixed a bug where `EuiSideNavItem` wouldn't pass an `onClick` handler down to `<a>` tags if they also had an `href`. ([#664](https://github.com/elastic/eui/pull/664))
 
+**Bug fixes**
+
+- Fixed `EuiBasicTable` re-rendering on hover of table rows ([#665](https://github.com/elastic/eui/pull/665))
+
 **Breaking changes**
 
 - `EuiStepsHorizontal` now requires an `onClick` prop be provided for each step configuration object ([#653](https://github.com/elastic/eui/pull/653))
