@@ -54,6 +54,10 @@ import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
 
+import Virtualized from './virtualized';
+const virtualizedSource = require('!!raw-loader!./virtualized');
+const virtualizedHtml = renderToHtml(Virtualized);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -197,6 +201,22 @@ export const ComboBoxExample = {
     ),
     props: { EuiComboBox },
     demo: <DisallowCustomOptions />,
+  }, {
+    title: 'Virtualized',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: virtualizedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: virtualizedHtml,
+    }],
+    text: (
+      <p>
+        Use virtualization to handle long lists
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Virtualized />,
   }, {
     title: 'Custom options only, with validation',
     source: [{
