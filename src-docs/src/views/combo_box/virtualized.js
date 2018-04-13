@@ -9,8 +9,16 @@ export default class extends Component {
     super(props);
 
     this.options = [];
-    for (let i=0; i < 5000; i++) {
-      this.options.push({ label: `option${i}` });
+    let groupOptions = [];
+    for (let i=1; i < 5000; i++) {
+      groupOptions.push({ label: `option${i}` });
+      if (i % 25 === 0) {
+        this.options.push({
+          label: `Options ${i - (groupOptions.length - 1)} to ${i}`,
+          options: groupOptions
+        });
+        groupOptions = [];
+      }
     }
 
     this.state = {

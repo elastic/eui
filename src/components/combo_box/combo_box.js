@@ -50,7 +50,7 @@ export class EuiComboBox extends Component {
 
     const initialSearchValue = '';
     const { options, selectedOptions } = props;
-    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
+    const matchingOptions = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
 
     this.state = {
       searchValue: initialSearchValue,
@@ -60,7 +60,6 @@ export class EuiComboBox extends Component {
 
     // Cached derived state.
     this.matchingOptions = matchingOptions;
-    this.optionToGroupMap = optionToGroupMap;
     this.activeOptionIndex = undefined;
     this.listBounds = undefined;
 
@@ -394,10 +393,10 @@ export class EuiComboBox extends Component {
 
   comboBoxRef = node => {
     this.comboBox = node;
-    const comboBoxBounds = this.comboBox.getBoundingClientRect();
+    /*const comboBoxBounds = this.comboBox.getBoundingClientRect();
     this.setState({
       width: comboBoxBounds.width,
-    });
+    });*/
   };
 
   autoSizeInputRef = node => {
@@ -442,9 +441,8 @@ export class EuiComboBox extends Component {
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
+    const matchingOptions = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
     this.matchingOptions = matchingOptions;
-    this.optionToGroupMap = optionToGroupMap;
 
     if (!matchingOptions.length) {
       this.clearActiveOption();
@@ -502,7 +500,6 @@ export class EuiComboBox extends Component {
             onCreateOption={onCreateOption}
             searchValue={searchValue}
             matchingOptions={this.matchingOptions}
-            optionToGroupMap={this.optionToGroupMap}
             listRef={this.optionsListRef}
             optionRef={this.optionRef}
             onOptionClick={this.onOptionClick}

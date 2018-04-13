@@ -27,7 +27,6 @@ export class EuiComboBoxOptionsList extends Component {
     onCreateOption: PropTypes.func,
     searchValue: PropTypes.string,
     matchingOptions: PropTypes.array,
-    optionToGroupMap: PropTypes.object,
     optionRef: PropTypes.func,
     onOptionClick: PropTypes.func,
     onOptionEnterKey: PropTypes.func,
@@ -93,7 +92,6 @@ export class EuiComboBoxOptionsList extends Component {
       onCreateOption,
       searchValue,
       matchingOptions,
-      optionToGroupMap,
       optionRef,
       onOptionClick,
       onOptionEnterKey,
@@ -155,79 +153,50 @@ export class EuiComboBoxOptionsList extends Component {
 
     let optionsList;
 
-    console.log(matchingOptions.length);
-    if (matchingOptions.length > 10) {
-      optionsList = (
-        <List
-          width={384}
-          height={184}
-          rowCount={matchingOptions.length} // plus number of group labels
-          rowHeight={27}
-          rowRenderer={({ key, index, style }) => {
-            const option = matchingOptions[index];
-            const {
-              value, // eslint-disable-line no-unused-vars
-              label,
-              ...rest
-            } = option;
+    optionsList = (
+      <List
+        width={384}
+        height={184}
+        rowCount={matchingOptions.length} // plus number of group labels
+        rowHeight={27}
+        rowRenderer={({ key, index, style }) => {
+          const option = matchingOptions[index];
+          const {
+            value, // eslint-disable-line no-unused-vars
+            label,
+            isGroupLabelOption,
+            ...rest
+          } = option;
+
+          if (isGroupLabelOption) {
             return (
               <div key={key} style={style}>
-                <EuiComboBoxOption
-                  option={option}
-                  key={option.label.toLowerCase()}
-                  onClick={onOptionClick}
-                  onEnterKey={onOptionEnterKey}
-                  optionRef={optionRef.bind(this, index)}
-                  {...rest}
-                >
-                  {renderOption ? renderOption(option, searchValue) : (
-                    <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-                  )}
-                </EuiComboBoxOption>
+                <EuiComboBoxTitle>
+                  {label}
+                </EuiComboBoxTitle>
               </div>
             );
-          }}
-        />
-      );
-    } else {
-      optionsList = [];
+          }
 
-      matchingOptions.forEach((option, index) => {
-        const {
-          value, // eslint-disable-line no-unused-vars
-          label,
-          ...rest
-        } = option;
-
-        const group = optionToGroupMap.get(option);
-
-        if (group && !groupLabelToGroupMap[group.label]) {
-          groupLabelToGroupMap[group.label] = true;
-          optionsList.push(
-            <EuiComboBoxTitle key={`group-${group.label}`}>
-              {group.label}
-            </EuiComboBoxTitle>
+          return (
+            <div key={key} style={style}>
+              <EuiComboBoxOption
+                option={option}
+                key={option.label.toLowerCase()}
+                onClick={onOptionClick}
+                onEnterKey={onOptionEnterKey}
+                optionRef={optionRef.bind(this, index)}
+                {...rest}
+              >
+                {renderOption ? renderOption(option, searchValue) : (
+                  <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+                )}
+              </EuiComboBoxOption>
+            </div>
           );
-        }
-
-        const renderedOption = (
-          <EuiComboBoxOption
-            option={option}
-            key={option.label.toLowerCase()}
-            onClick={onOptionClick}
-            onEnterKey={onOptionEnterKey}
-            optionRef={optionRef.bind(this, index)}
-            {...rest}
-          >
-            {renderOption ? renderOption(option, searchValue) : (
-              <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-            )}
-          </EuiComboBoxOption>
-        );
-
-        optionsList.push(renderedOption);
-      });
-    }
+        }}
+      />
+    );
 
     const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position]);
 
