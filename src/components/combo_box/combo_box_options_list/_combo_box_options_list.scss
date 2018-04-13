@@ -30,9 +30,11 @@
   }
 
   .euiComboBoxOptionsList__rowWrap {
-    @include euiScrollBar;
-
-    padding: $euiSizeS;
+    padding: 0;
     max-height: 200px;
-    overflow-y: auto;
+    overflow: hidden;
+  }
+
+  .ReactVirtualized__List {
+    @include euiScrollBar;
   }

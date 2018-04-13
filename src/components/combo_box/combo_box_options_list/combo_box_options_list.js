@@ -37,11 +37,6 @@ export class EuiComboBoxOptionsList extends Component {
     listRef: PropTypes.func.isRequired,
     renderOption: PropTypes.func,
     width: PropTypes.number,
-    height: PropTypes.number
-  }
-
-  static defaultProps = {
-    height: 200,
   }
 
   updatePosition = () => {
@@ -102,7 +97,6 @@ export class EuiComboBoxOptionsList extends Component {
       listRef, // eslint-disable-line no-unused-vars
       updatePosition, // eslint-disable-line no-unused-vars
       width,
-      height,
       ...rest
     } = this.props;
 
@@ -151,12 +145,16 @@ export class EuiComboBoxOptionsList extends Component {
 
     const groupLabelToGroupMap = {};
 
+    const optionHeight = 27; // TODO dynamically figure this out
+    const numVisiableOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
+    const height = numVisiableOptions * optionHeight;
+
     const optionsList = (
       <List
-        width={384}
-        height={184}
+        width={width}
+        height={height}
         rowCount={matchingOptions.length}
-        rowHeight={27}
+        rowHeight={optionHeight}
         rowRenderer={({ key, index, style }) => {
           const option = matchingOptions[index];
           const {

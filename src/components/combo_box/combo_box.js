@@ -122,7 +122,6 @@ export class EuiComboBox extends Component {
 
     this.setState({
       width: comboBoxBounds.width,
-      optionsListHeight: listBounds.height,
       listPosition: position,
     });
   };
@@ -479,7 +478,7 @@ export class EuiComboBox extends Component {
       ...rest
     } = this.props;
 
-    const { searchValue, isListOpen, listPosition, width, optionsListHeight } = this.state;
+    const { searchValue, isListOpen, listPosition, width, } = this.state;
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -492,7 +491,6 @@ export class EuiComboBox extends Component {
 
     if (!noSuggestions && isListOpen) {
       console.log("width", width);
-      console.log("optionsListHeight", optionsListHeight);
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
@@ -512,7 +510,6 @@ export class EuiComboBox extends Component {
             position={listPosition}
             renderOption={renderOption}
             width={width}
-            height={optionsListHeight}
           />
         </EuiPortal>
       );
