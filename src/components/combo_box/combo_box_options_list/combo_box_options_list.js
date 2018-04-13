@@ -37,7 +37,12 @@ export class EuiComboBoxOptionsList extends Component {
     position: PropTypes.oneOf(POSITIONS),
     listRef: PropTypes.func.isRequired,
     renderOption: PropTypes.func,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number
+  }
+
+  static defaultProps = {
+    height: 200,
   }
 
   updatePosition = () => {
@@ -154,8 +159,8 @@ export class EuiComboBoxOptionsList extends Component {
     if (matchingOptions.length > 10) {
       optionsList = (
         <List
-          width={400}
-          height={200}
+          width={384}
+          height={184}
           rowCount={matchingOptions.length} // plus number of group labels
           rowHeight={27}
           rowRenderer={({ key, index, style }) => {
