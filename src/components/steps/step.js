@@ -65,8 +65,18 @@ export const EuiStep = ({
 
 EuiStep.propTypes = {
   children: PropTypes.node.isRequired,
+  /**
+   * Will replace the number provided in props.step with alternate styling
+   */
+  status: PropTypes.oneOf(['complete', 'incomplete']),
+  /**
+   * The number of the step in the list of steps
+   */
   step: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  /**
+   * The HTML tag used for the title
+   */
   headingElement: PropTypes.string.isRequired,
 };
 
