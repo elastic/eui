@@ -9,6 +9,7 @@ function renderSteps(steps, firstStepNumber, headingElement) {
       className,
       children,
       title,
+      status,
       ...rest
     } = step;
 
@@ -19,6 +20,7 @@ function renderSteps(steps, firstStepNumber, headingElement) {
         headingElement={headingElement}
         step={firstStepNumber + index}
         title={title}
+        status={status}
         {...rest}
       >
         {children}

@@ -27,6 +27,10 @@ import StepsHorizontal from './steps_horizontal';
 const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
 const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
 
+import Status from './status';
+const statusSource = require('!!raw-loader!./status');
+const statusHtml = renderToHtml(Steps);
+
 export const StepsExample = {
   title: 'Steps',
   sections: [{
@@ -86,6 +90,24 @@ export const StepsExample = {
       </div>
     ),
     demo: <HeadingElementSteps />,
+  },
+  {
+    title: 'Steps status',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: statusSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: statusHtml,
+    }],
+    text: (
+      <p>
+        Steps can optionally include <EuiCode>status</EuiCode> prop with
+        a value of <EuiCode>complete</EuiCode> or <EuiCode>incomplete</EuiCode>. This
+        is used mostly as a final step when you need to make some sort of final check.
+      </p>
+    ),
+    demo: <Status />,
   },
   {
     title: 'Horizontal',
