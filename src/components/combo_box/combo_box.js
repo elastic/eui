@@ -56,11 +56,11 @@ export class EuiComboBox extends Component {
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
+      activeOptionIndex: undefined,
     };
 
     // Cached derived state.
     this.matchingOptions = matchingOptions;
-    this.activeOptionIndex = undefined;
     this.listBounds = undefined;
 
     // Refs.
@@ -161,33 +161,48 @@ export class EuiComboBox extends Component {
     if (!this.hasActiveOption()) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextActiveOptionIndex = amount < 0 ? this.options.length - 1 : 0;
+      nextActiveOptionIndex = amount < 0 ? this.matchingOptions.length - 1 : 0;
     } else {
-      nextActiveOptionIndex = this.activeOptionIndex + amount;
+      nextActiveOptionIndex = this.state.activeOptionIndex + amount;
 
       if (nextActiveOptionIndex < 0) {
-        nextActiveOptionIndex = this.options.length - 1;
-      } else if (nextActiveOptionIndex === this.options.length) {
+        nextActiveOptionIndex = this.matchingOptions.length - 1;
+      } else if (nextActiveOptionIndex === this.matchingOptions.length) {
         nextActiveOptionIndex = 0;
       }
     }
 
-    this.activeOptionIndex = nextActiveOptionIndex;
+    // Group titles are included in option list but are not selectable
+    // Skip group title options
+    if (this.matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
+      const direction = amount > 0 ? 1 : -1;
+      nextActiveOptionIndex = nextActiveOptionIndex + direction;
+    }
+
+    if (nextActiveOptionIndex < 0) {
+      nextActiveOptionIndex = this.matchingOptions.length - 1;
+    } else if (nextActiveOptionIndex === this.matchingOptions.length) {
+      nextActiveOptionIndex = 0;
+    }
+
+    this.setState({
+      activeOptionIndex: nextActiveOptionIndex,
+    });
     this.focusActiveOption();
   };
 
   hasActiveOption = () => {
-    return this.activeOptionIndex !== undefined;
+    return this.state.activeOptionIndex !== undefined;
   };
 
   clearActiveOption = () => {
-    this.activeOptionIndex = undefined;
+    this.state.activeOptionIndex = undefined;
   };
 
   focusActiveOption = () => {
     // If an item is focused, focus it.
-    if (this.hasActiveOption()) {
-      this.options[this.activeOptionIndex].focus();
+    if (this.hasActiveOption() && this.options[this.state.activeOptionIndex]) {
+      this.options[this.state.activeOptionIndex].focus();
     }
   };
 
@@ -379,7 +394,9 @@ export class EuiComboBox extends Component {
     // and we need to update the index.
     const optionIndex = this.options.indexOf(e.target);
     if (optionIndex !== -1) {
-      this.activeOptionIndex = optionIndex;
+      this.setState({
+        activeOptionIndex: optionIndex,
+      });
     }
   };
 
@@ -413,11 +430,7 @@ export class EuiComboBox extends Component {
   };
 
   optionRef = (index, node) => {
-    // Sometimes the node is null.
-    if (node) {
-      // Store all options.
-      this.options[index] = node;
-    }
+    this.options[index] = node;
   };
 
   componentDidMount() {
@@ -478,7 +491,7 @@ export class EuiComboBox extends Component {
       ...rest
     } = this.props;
 
-    const { searchValue, isListOpen, listPosition, width, } = this.state;
+    const { searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -509,6 +522,8 @@ export class EuiComboBox extends Component {
             position={listPosition}
             renderOption={renderOption}
             width={width}
+            scrollToIndex={activeOptionIndex}
+            onScroll={this.focusActiveOption}
           />
         </EuiPortal>
       );

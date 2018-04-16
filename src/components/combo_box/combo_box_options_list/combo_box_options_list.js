@@ -39,6 +39,8 @@ export class EuiComboBoxOptionsList extends Component {
     listRef: PropTypes.func.isRequired,
     renderOption: PropTypes.func,
     width: PropTypes.number,
+    scrollToIndex: PropTypes.number,
+    onScroll: PropTypes.func,
   }
 
   updatePosition = () => {
@@ -99,6 +101,8 @@ export class EuiComboBoxOptionsList extends Component {
       listRef, // eslint-disable-line no-unused-vars
       updatePosition, // eslint-disable-line no-unused-vars
       width,
+      scrollToIndex,
+      onScroll,
       ...rest
     } = this.props;
 
@@ -155,6 +159,8 @@ export class EuiComboBoxOptionsList extends Component {
         height={height}
         rowCount={matchingOptions.length}
         rowHeight={optionHeight}
+        scrollToIndex={scrollToIndex}
+        onScroll={onScroll}
         rowRenderer={({ key, index, style }) => {
           const option = matchingOptions[index];
           const {
