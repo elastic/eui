@@ -161,11 +161,19 @@ export const ComboBoxExample = {
       code: renderOptionHtml,
     }],
     text: (
-      <p>
-        You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>
-        and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the
-        <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
-      </p>
+      <Fragment>
+        <p>
+          You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>
+          and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the
+          <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
+        </p>
+
+        <p>
+          <strong>Note:</strong> virtualization (above) requires that each option have the same height.
+          Ensure that you render the options so that wrapping text is truncated instead of causing
+          the height of the option to change.
+        </p>
+      </Fragment>
     ),
     props: { EuiComboBox },
     demo: <RenderOption />,

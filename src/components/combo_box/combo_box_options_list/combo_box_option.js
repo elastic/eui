@@ -36,7 +36,7 @@ export class EuiComboBoxOption extends Component {
       children,
       className,
       optionRef,
-      option, // eslint-disable-line no-unused-vars
+      option,
       onClick, // eslint-disable-line no-unused-vars
       onEnterKey, // eslint-disable-line no-unused-vars
       disabled,
@@ -48,6 +48,10 @@ export class EuiComboBoxOption extends Component {
       className
     );
 
+    const {
+      label,
+    } = option;
+
     return (
       <button
         role="option"
@@ -57,6 +61,7 @@ export class EuiComboBoxOption extends Component {
         ref={optionRef}
         tabIndex="-1"
         disabled={disabled}
+        title={label}
         {...rest}
       >
         {children}

@@ -19,6 +19,8 @@ const positionToClassNameMap = {
 
 const POSITIONS = Object.keys(positionToClassNameMap);
 
+const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
+
 export class EuiComboBoxOptionsList extends Component {
   static propTypes = {
     options: PropTypes.array,
@@ -143,8 +145,6 @@ export class EuiComboBoxOptionsList extends Component {
       </EuiText>
     ) : undefined;
 
-    const groupLabelToGroupMap = {};
-
     const optionHeight = 27; // TODO dynamically figure this out
     const numVisiableOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisiableOptions * optionHeight;
@@ -184,8 +184,8 @@ export class EuiComboBoxOptionsList extends Component {
                 optionRef={optionRef.bind(this, index)}
                 {...rest}
               >
-                {renderOption ? renderOption(option, searchValue) : (
-                  <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+                {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
+                  <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
                 )}
               </EuiComboBoxOption>
             </div>

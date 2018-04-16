@@ -1,6 +1,6 @@
 .euiComboBoxOption {
   font-size: $euiFontSizeS;
-  padding: $euiSizeXS $euiSizeS;
+  padding: $euiSizeXS $euiSizeS $euiSizeXS #{$euiSizeM + $euiSizeXS};
   width: 100%;
   text-align: left;
   border: $euiBorderThin;
@@ -24,3 +24,9 @@
     }
   }
 }
+
+  .euiComboBoxOption__content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }

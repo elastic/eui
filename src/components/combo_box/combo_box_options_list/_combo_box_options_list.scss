@@ -11,6 +11,10 @@
   z-index: $euiZComboBox;
   position: absolute; /* 2 */
   top: 0; /* 2 */
+
+  .ReactVirtualized__List {
+    @include euiScrollBar;
+  }
 }
 
 .euiComboBoxOptionsList--bottom {
@@ -33,8 +37,4 @@
     padding: 0;
     max-height: 200px;
     overflow: hidden;
-  }
-
-  .ReactVirtualized__List {
-    @include euiScrollBar;
   }
