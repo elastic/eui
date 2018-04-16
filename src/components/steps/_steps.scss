@@ -25,7 +25,7 @@
     }
 
     &.euiStep__circle--complete {
-      animation: euiGrow $euiAnimSpeedFast ease-in;
+      animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
     }
 
     .euiStep__circleIcon {

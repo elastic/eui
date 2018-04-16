@@ -55,8 +55,17 @@ const stepPropType = PropTypes.shape({
 
 EuiSteps.propTypes = {
   className: PropTypes.string,
+  /**
+   * The number the steps should begin from
+   */
   firstStepNumber: PropTypes.number,
+  /**
+   * The HTML tag used for the title
+   */
   headingElement: PropTypes.string,
+  /**
+   * An array of individal step objects
+   */
   steps: PropTypes.arrayOf(stepPropType).isRequired,
 };
 

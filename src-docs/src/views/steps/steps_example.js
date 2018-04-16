@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiSteps,
+  EuiStep,
 } from '../../../../src/components';
 
 import Steps from './steps';
@@ -46,7 +47,7 @@ export const StepsExample = {
         Numbered steps
       </p>
     ),
-    props: { EuiSteps },
+    props: { EuiSteps, EuiStep },
     demo: <Steps />,
   },
   {

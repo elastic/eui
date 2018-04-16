@@ -234,6 +234,7 @@ export {
 } from './spacer';
 
 export {
+  EuiStep,
   EuiSteps,
   EuiSubSteps,
   EuiStepsHorizontal,
