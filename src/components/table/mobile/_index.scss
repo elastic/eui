@@ -67,9 +67,6 @@
 
     &.euiTableRow-isExpandable,
     &.euiTableRow-hasActions {
-      //@include euiTableSelectionBackground--mobile;
-
-      padding-left: $euiSizeXXL;
       position: relative;
 
       .euiTableRowCell--isExpander,
@@ -77,7 +74,6 @@
         min-width: 0;
         width: $euiSizeL;
         position: absolute;
-        left: $euiTableCellContentPadding;
         top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
 
         &::before {
@@ -99,10 +95,22 @@
     }
 
     &.euiTableRow-isExpandable {
-      &.euiTableRow-hasActions {
+      padding-left: $euiSizeXXL;
+
+      .euiTableRowCell--isExpander {
+        left: $euiTableCellContentPadding;
+      }
+    }
+
+    &.euiTableRow-hasActions {
+      padding-right: $euiSizeXXL;
+
+      .euiTableRowCell--hasActions {
+        right: $euiTableCellContentPadding;
+      }
+
+      &.euiTableRow-isSelectable {
         .euiTableRowCell--hasActions {
-          left: auto;
-          right: $euiTableCellContentPadding;
           top: auto;
           bottom: $euiSize; // same as row padding-bottom
         }
@@ -125,7 +133,7 @@
       }
 
       .euiTableRowCell {
-        width: calc(100% - #{$euiTableActionsAreaWidth});
+        width: calc(100% - #{$euiTableCellContentPadding});
 
         &::before {
           display: none;
