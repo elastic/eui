@@ -1,4 +1,8 @@
 export {
+  EuiStep,
+} from './step';
+
+export {
   EuiSteps,
 } from './steps';
 

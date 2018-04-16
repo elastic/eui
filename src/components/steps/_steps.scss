@@ -12,16 +12,31 @@
     line-height: $euiStepNumberSize; /* 1 */
   }
 
+  .euiStep__circle {
+    @include createStepsNumber();
+
+    margin-right: $euiStepNumberMargin;
+    vertical-align: top; /* 1 */
+
+    &.euiStep__circle--incomplete {
+      background-color: transparent;
+      border: solid 2px $euiColorPrimary;
+      color: $euiColorDarkShade;
+    }
+
+    &.euiStep__circle--complete {
+      animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
+    }
+
+    .euiStep__circleIcon {
+      position: relative;
+      top: -2px;
+    }
+  }
+
   .euiStep__title {
     font-weight: $euiFontWeightMedium;
-
-    &::before {
-      content: attr(data-step-num); // Get the number from the data attribute
-      @include createStepsNumber();
-
-      margin-right: $euiStepNumberMargin;
-      vertical-align: top; /* 1 */
-    }
+    display: inline-block;
   }
 
   .euiStep__content {
@@ -36,4 +51,3 @@
     margin-left: ($euiStepNumberSize/2) - 1px;
   }
 }
-
