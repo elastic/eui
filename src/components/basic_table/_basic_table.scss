@@ -3,10 +3,10 @@
   &-loading {
     position: relative;
 
-    thead {
+    tbody {
       overflow: hidden;
 
-      &:after {
+      &:before {
         position: absolute;
         content: '';
         width: 100%;
