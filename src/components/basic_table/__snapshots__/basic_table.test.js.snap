@@ -6,7 +6,9 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -39,7 +41,9 @@ exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -80,7 +84,9 @@ exports[`EuiBasicTable basic - empty 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -113,7 +119,9 @@ exports[`EuiBasicTable basic - with items 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -184,7 +192,9 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -268,7 +278,9 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -334,7 +346,9 @@ exports[`EuiBasicTable with pagination 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -416,7 +430,9 @@ exports[`EuiBasicTable with pagination and error 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -455,7 +471,9 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -601,7 +619,9 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -750,7 +770,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -990,7 +1012,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1139,7 +1163,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1288,7 +1314,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1522,7 +1550,9 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1657,7 +1687,9 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 >
   <div>
     <EuiTableHeaderMobile />
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -1742,7 +1774,9 @@ exports[`EuiBasicTable with sorting 1`] = `
         }
       />
     </EuiTableHeaderMobile>
-    <EuiTable>
+    <EuiTable
+      responsive={true}
+    >
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
