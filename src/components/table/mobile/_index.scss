@@ -77,15 +77,11 @@
         top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
 
         &::before {
-          display: none;
+          display: none; // Don't display table headers
         }
 
         .euiTableCellContent {
           padding: 0;
-
-          > * {
-            opacity: 1 !important; // always show actions on mobile (may need to move to js)
-          }
 
           .euiLink {
             padding: $euiSizeXS;
@@ -191,6 +187,12 @@
     border: none;
   }
 
+  // always show hover items on mobile
+  .euiTableCellContent--showOnHover {
+    .euiTableCellContent__hoverItem {
+      opacity: 1;
+    }
+  }
 
   // force all content back to left side
   .euiTableCellContent--alignRight {
