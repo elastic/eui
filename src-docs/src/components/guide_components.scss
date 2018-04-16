@@ -158,6 +158,22 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.dpTest__purpleCal {
+  background: purple;
+}
+
+.dpTest__purpleInput {
+  outline: solid 2px purple;
+}
+
+.dpTest__purpleDay {
+  background: purple;
+}
+
+.dpTest__purplePopper {
+  outline: solid 2px purple;
+}
+
 
 @import "../views/guidelines/index";
 @import "guide_section/index";

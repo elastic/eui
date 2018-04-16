@@ -9,6 +9,7 @@ function renderSteps(steps, firstStepNumber, headingElement) {
       className,
       children,
       title,
+      status,
       ...rest
     } = step;
 
@@ -19,6 +20,7 @@ function renderSteps(steps, firstStepNumber, headingElement) {
         headingElement={headingElement}
         step={firstStepNumber + index}
         title={title}
+        status={status}
         {...rest}
       >
         {children}
@@ -53,8 +55,17 @@ const stepPropType = PropTypes.shape({
 
 EuiSteps.propTypes = {
   className: PropTypes.string,
+  /**
+   * The number the steps should begin from
+   */
   firstStepNumber: PropTypes.number,
+  /**
+   * The HTML tag used for the title
+   */
   headingElement: PropTypes.string,
+  /**
+   * An array of individal step objects
+   */
   steps: PropTypes.arrayOf(stepPropType).isRequired,
 };
 

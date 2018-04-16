@@ -45,7 +45,7 @@ export class CollapsedItemActions extends Component {
 
   render() {
 
-    const { actions, itemId, item, actionEnabled, onFocus } = this.props;
+    const { actions, itemId, item, actionEnabled, onFocus, className } = this.props;
 
     const isOpen = this.state.popoverOpen;
 
@@ -60,8 +60,9 @@ export class CollapsedItemActions extends Component {
       allDisabled = allDisabled && !enabled;
       if (action.render) {
         const actionControl = action.render(item, enabled);
+        const actionControlOnClick = actionControl && actionControl.props && actionControl.props.onClick;
         controls.push(
-          <EuiContextMenuItem key={key}>
+          <EuiContextMenuItem key={key} onClick={actionControlOnClick ? actionControlOnClick.bind(null, item) : () => {}}>
             {actionControl}
           </EuiContextMenuItem>
         );
@@ -82,6 +83,7 @@ export class CollapsedItemActions extends Component {
 
     const popoverButton = (
       <EuiButtonIcon
+        className={className}
         aria-label="actions"
         iconType="gear"
         color="text"
@@ -93,6 +95,7 @@ export class CollapsedItemActions extends Component {
 
     return (
       <EuiPopover
+        className={className}
         popoverRef={this.registerPopoverDiv}
         id={`${itemId}-actions`}
         isOpen={isOpen}

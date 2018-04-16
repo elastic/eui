@@ -11,6 +11,7 @@ import {
   EuiFlexItem,
   EuiSwitch,
   EuiSpacer,
+  EuiText,
 } from '../../../../../src/components';
 
 /*
@@ -47,7 +48,8 @@ export class Table extends Component {
       sortField: 'firstName',
       sortDirection: 'asc',
       selectedItems: [],
-      multiAction: false
+      multiAction: false,
+      customAction: false,
     };
   }
 
@@ -79,6 +81,10 @@ export class Table extends Component {
     });
   };
 
+  onSelectionChange = (selectedItems) => {
+    this.setState({ selectedItems });
+  };
+
   renderDeleteButton() {
     const { selectedItems } = this.state;
 
@@ -101,6 +107,10 @@ export class Table extends Component {
     this.setState(prevState => ({ multiAction: !prevState.multiAction }));
   };
 
+  toggleCustomAction = () => {
+    this.setState(prevState => ({ customAction: !prevState.customAction }));
+  };
+
   deleteUser = user => {
     store.deleteUsers(user.id);
     this.setState({ selectedItems: [] });
@@ -117,6 +127,8 @@ export class Table extends Component {
       pageSize,
       sortField,
       sortDirection,
+      multiAction,
+      customAction,
     } = this.state;
 
     const {
@@ -125,6 +137,63 @@ export class Table extends Component {
     } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
 
     const deleteButton = this.renderDeleteButton();
+
+    let actions = null;
+
+    if(multiAction) {
+      actions = customAction
+        ? [{
+          render: (item) => {
+            return (
+              <EuiText color="secondary" onClick={() => this.cloneUser(item)}>
+                Clone
+              </EuiText>
+            );
+          }
+        }, {
+          render: (item) => {
+            return (
+              <EuiText color="danger" onClick={() => this.deleteUser(item)}>
+                Delete
+              </EuiText>
+            );
+          }
+        }]
+        : [{
+          name: 'Clone',
+          description: 'Clone this person',
+          icon: 'copy',
+          onClick: this.cloneUser
+        }, {
+          name: 'Delete',
+          description: 'Delete this person',
+          icon: 'trash',
+          color: 'danger',
+          onClick: this.deleteUser
+        }];
+    } else {
+      actions = customAction
+        ? [{
+          render: (item) => {
+            return (
+              <EuiLink
+                onClick={() => this.deleteUser(item)}
+                color="danger"
+              >
+                Delete
+              </EuiLink>
+            );
+          }
+        }]
+        : [{
+          name: 'Delete',
+          description: 'Delete this person',
+          icon: 'trash',
+          color: 'danger',
+          type: 'icon',
+          onClick: this.deleteUser
+        }];
+    }
 
     const columns = [{
       field: 'firstName',
@@ -166,25 +235,7 @@ export class Table extends Component {
       sortable: true
     }, {
       name: 'Actions',
-      actions: this.state.multiAction ? [{
-        name: 'Clone',
-        description: 'Clone this person',
-        icon: 'copy',
-        onClick: this.cloneUser
-      }, {
-        name: 'Delete',
-        description: 'Delete this person',
-        icon: 'trash',
-        color: 'danger',
-        onClick: this.deleteUser
-      }] : [{
-        name: 'Delete',
-        type: 'icon',
-        description: 'Delete this person',
-        icon: 'trash',
-        color: 'danger',
-        onClick: this.deleteUser
-      }]
+      actions
     }];
 
     const pagination = {
@@ -217,6 +268,13 @@ export class Table extends Component {
               label="Multiple Actions"
               checked={this.state.multiAction}
               onChange={this.toggleMultiAction}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Custom Actions"
+              checked={this.state.customAction}
+              onChange={this.toggleCustomAction}
             />
           </EuiFlexItem>
         </EuiFlexGroup>

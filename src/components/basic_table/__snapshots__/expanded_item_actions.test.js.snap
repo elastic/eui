@@ -19,7 +19,6 @@ Array [
     }
     itemId="xyz"
     key="item_action_xyz_0"
-    visible={true}
   />,
   <CustomItemAction
     action={
@@ -38,7 +37,6 @@ Array [
     }
     itemId="xyz"
     key="item_action_xyz_1"
-    visible={true}
   />,
 ]
 `;

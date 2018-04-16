@@ -17,7 +17,6 @@ describe('DefaultItemAction', () => {
         onClick: () => {}
       },
       enabled: true,
-      visible: true,
       item: { id: 'xyz' }
     };
 
@@ -40,7 +39,6 @@ describe('DefaultItemAction', () => {
         onClick: () => {}
       },
       enabled: true,
-      visible: true,
       item: { id: 'xyz' }
     };
 

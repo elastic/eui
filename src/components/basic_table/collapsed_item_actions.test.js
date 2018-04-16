@@ -21,7 +21,6 @@ describe('CollapsedItemActions', () => {
           }
         }
       ],
-      visible: true,
       itemId: 'id',
       item: { id: 'xyz' },
       actionEnabled: () => true,

@@ -1,9 +1,30 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
+
+## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
+
+- Added `EuiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
+- Added editor icon set to `EuiIcon` ([#671](https://github.com/elastic/eui/pull/671))
+
+## [`0.0.41`](https://github.com/elastic/eui/tree/v0.0.41)
+
+- Added `grow` prop to `EuiText` ([#662](https://github.com/elastic/eui/pull/662))
 - Added `disabled` prop to `EuiComboBoxOption` ([#650](https://github.com/elastic/eui/pull/650))
 - Added support for `<pre>` and `<code>` tags to `<EuiText>` ([#654](https://github.com/elastic/eui/pull/654))
 - Added export of SASS theme variables in JSON format during compilation ([#642](https://github.com/elastic/eui/pull/642))
 - Close `EuiComboBox` `singleSelection` options list when option is choosen ([#645](https://github.com/elastic/eui/pull/645))
+- Wrap `EuiStepHorizontal` text instead of truncating it ([#653](https://github.com/elastic/eui/pull/653))
+- Fixed a bug where `EuiSideNavItem` wouldn't pass an `onClick` handler down to `<a>` tags if they also had an `href`. ([#664](https://github.com/elastic/eui/pull/664))
+- Updated existing and added additional TypeScript definitions ([#666](https://github.com/elastic/eui/pull/666))
+
+**Bug fixes**
+
+- Fixed `EuiBasicTable` re-rendering on hover of table rows ([#665](https://github.com/elastic/eui/pull/665))
+
+**Breaking changes**
+
+- `EuiStepsHorizontal` now requires an `onClick` prop be provided for each step configuration object ([#653](https://github.com/elastic/eui/pull/653))
 
 ## [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 

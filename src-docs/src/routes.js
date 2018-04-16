@@ -80,6 +80,9 @@ import { ComboBoxExample }
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
+import { DatePickerExample }
+  from './views/date_picker/date_picker_example';
+
 import { DelayHideExample }
   from './views/delay_hide/delay_hide_example';
 
@@ -314,6 +317,7 @@ const navigation = [{
     ComboBoxExample,
     ColorPickerExample,
     CodeEditorExample,
+    DatePickerExample,
     ExpressionExample,
     FilterGroupExample,
     SearchBarExample,

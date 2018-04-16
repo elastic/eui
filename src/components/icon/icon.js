@@ -40,6 +40,20 @@ import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
 import dot from './assets/dot.svg';
+import editorAlignCenter from './assets/editor_align_center.svg';
+import editorAlignLeft from './assets/editor_align_left.svg';
+import editorAlignRight from './assets/editor_align_right.svg';
+import editorBold from './assets/editor_bold.svg';
+import editorCodeBlock from './assets/editor_code_block.svg';
+import editorComment from './assets/editor_comment.svg';
+import editorHeading from './assets/editor_heading.svg';
+import editorItalic from './assets/editor_italic.svg';
+import editorLink from './assets/editor_link.svg';
+import editorStrike from './assets/editor_strike.svg';
+import editorTable from './assets/editor_table.svg';
+import editorUnderline from './assets/editor_underline.svg';
+import editorOrderedList from './assets/editor_ordered_list.svg';
+import editorUnorderedList from './assets/editor_unordered_list.svg';
 import empty from './assets/empty.svg';
 import exit from './assets/exit.svg';
 import expand from './assets/expand.svg';
@@ -192,6 +206,20 @@ const typeToIconMap = {
   discoverApp,
   document,
   dot,
+  editorAlignCenter,
+  editorAlignLeft,
+  editorAlignRight,
+  editorBold,
+  editorCodeBlock,
+  editorComment,
+  editorHeading,
+  editorItalic,
+  editorLink,
+  editorStrike,
+  editorTable,
+  editorUnderline,
+  editorOrderedList,
+  editorUnorderedList,
   empty,
   exit,
   expand,

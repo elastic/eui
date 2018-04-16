@@ -27,4 +27,16 @@ declare module '@elastic/eui' {
     };
 
   export const EuiLoadingChart: SFC<EuiLoadingChartProps>;
+
+
+  /**
+   * @see './loading_kibana.js'
+   */
+  export interface EuiLoadingKibanaProps {
+    size: 'm' | 'l' | 'xl';
+  }
+
+  export const EuiLoadingKibana: SFC<
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingKibanaProps
+    >;
 }

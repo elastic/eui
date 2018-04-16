@@ -7,18 +7,19 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   data-test-subj="test subject string"
   role="tablist"
 >
-  <button
+  <div
+    aria-disabled="false"
     aria-selected="false"
     class="euiStepHorizontal euiStepHorizontal-isComplete"
     role="tab"
+    tabindex="0"
     title="Step 1: Completed Step 1 is complete"
-    type="button"
   >
-    <span
+    <div
       class="euiScreenReaderOnly"
     >
       Step
-    </span>
+    </div>
     <div
       class="euiStepHorizontal__number"
     >
@@ -41,81 +42,83 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         />
       </svg>
     </div>
-    <span
+    <div
       class="euiStepHorizontal__title"
     >
       Completed Step 1
-    </span>
-  </button>
-  <button
+    </div>
+  </div>
+  <div
+    aria-disabled="false"
     aria-selected="true"
     class="euiStepHorizontal euiStepHorizontal-isSelected"
     role="tab"
+    tabindex="0"
     title="Step 2: Selected Step 2"
-    type="button"
   >
-    <span
+    <div
       class="euiScreenReaderOnly"
     >
       Step
-    </span>
+    </div>
     <div
       class="euiStepHorizontal__number"
     >
       2
     </div>
-    <span
+    <div
       class="euiStepHorizontal__title"
     >
       Selected Step 2
-    </span>
-  </button>
-  <button
+    </div>
+  </div>
+  <div
+    aria-disabled="false"
     aria-selected="false"
     class="euiStepHorizontal euiStepHorizontal-isIncomplete"
     role="tab"
+    tabindex="0"
     title="Step 3: Incomplete Step 3"
-    type="button"
   >
-    <span
+    <div
       class="euiScreenReaderOnly"
     >
       Step
-    </span>
+    </div>
     <div
       class="euiStepHorizontal__number"
     >
       3
     </div>
-    <span
+    <div
       class="euiStepHorizontal__title"
     >
       Incomplete Step 3
-    </span>
-  </button>
-  <button
+    </div>
+  </div>
+  <div
+    aria-disabled="true"
     aria-selected="false"
     class="euiStepHorizontal euiStepHorizontal-isIncomplete euiStepHorizontal-isDisabled"
-    disabled=""
     role="tab"
+    tabindex="-1"
     title="Step 4: Disabled Step 4 is disabled"
-    type="button"
   >
-    <span
+    <div
       class="euiScreenReaderOnly"
     >
       Step
-    </span>
+    </div>
     <div
       class="euiStepHorizontal__number"
     >
       4
     </div>
-    <span
+    <div
       class="euiStepHorizontal__title"
     >
       Disabled Step 4
-    </span>
-  </button>
+    </div>
+  </div>
 </div>
 `;

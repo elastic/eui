@@ -6,15 +6,8 @@ exports[`DefaultItemAction render - button 1`] = `
   fill={false}
   iconSide="left"
   isDisabled={false}
-  onBlur={[Function]}
   onClick={[Function]}
-  onFocus={[Function]}
   size="s"
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
   title="action 1"
   type="button"
 >
@@ -28,14 +21,7 @@ exports[`DefaultItemAction render - icon 1`] = `
   color="primary"
   iconType="trash"
   isDisabled={false}
-  onBlur={[Function]}
   onClick={[Function]}
-  onFocus={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
   title="action 1"
   type="button"
 />

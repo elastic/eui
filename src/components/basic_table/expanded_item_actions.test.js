@@ -21,7 +21,6 @@ describe('ExpandedItemActions', () => {
           }
         }
       ],
-      visible: true,
       itemId: 'xyz',
       item: { id: 'xyz' },
       actionEnabled: () => true
