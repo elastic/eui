@@ -46,7 +46,7 @@
     &.euiTableRow-isSelectable {
       @include euiTableActionsBackground--mobile;
 
-      padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
+      padding-right: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
       position: relative;
 
       .euiTableRowCellCheckbox {
@@ -69,7 +69,7 @@
     &.euiTableRow-hasActions {
       //@include euiTableSelectionBackground--mobile;
 
-      padding-right: $euiSizeXXL;
+      padding-left: $euiSizeXXL;
       position: relative;
 
       .euiTableRowCell--isExpander,
