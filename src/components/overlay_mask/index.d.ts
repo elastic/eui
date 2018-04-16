@@ -1,6 +1,6 @@
 /// <reference path="../common.d.ts" />
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -10,8 +10,6 @@ declare module '@elastic/eui' {
    * @see './overlay_mask.js'
    */
   export interface EuiOverlayMaskProps {
-    className?: string,
-    children?: ReactNode,
     onClick?: () => void;
   }
 

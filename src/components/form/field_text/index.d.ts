@@ -10,11 +10,6 @@ declare module '@elastic/eui' {
    * @see './field_text.js'
    */
   export interface EuiFieldTextProps {
-    name?: string;
-    id?: string;
-    placeholder?: string;
-    value?: string;
-    defaultValue?: string;
     icon?: string;
     isInvalid?: boolean;
     inputRef?: (ref: HTMLInputElement) => void;
