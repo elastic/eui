@@ -43,7 +43,6 @@ const dob = new Date(1980, 1, 1);
 
 const createUsers = (countries) => {
   return times(20, (index) => {
-    console.log(index);
     return {
       id: index,
       firstName: index < 10 ? firstNames[index] : firstNames[index - 10],

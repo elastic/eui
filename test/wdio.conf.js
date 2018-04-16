@@ -63,22 +63,10 @@ exports.config = {
     browserName: 'chrome',
     version: ci ? '58' : '65',
     platform: 'macOS 10.12',
-    chromeOptions: {
-      // to run chrome headless the following flags are required
-      // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-      // args: ['--headless', '--disable-gpu'],
-    }
   }, {
-    // maxInstances can get overwritten per capability. So if you have an in house Selenium
-    // grid with only 5 firefox instance available you can make sure that not more than
-    // 5 instance gets started at a time.
     maxInstances: 2,
     browserName: 'firefox',
     version: ci ? '56.0' : null,
-    'moz:firefoxOptions': {
-      // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
-      // args: ['-headless']
-    }
   }],
   onPrepare: function (config, capabilities) {
     if ((ci) || process.platform === 'win32') {
@@ -108,6 +96,7 @@ exports.config = {
     chai.Should();
 
     global.expectImageToBeSame = function expectImageToBeSame(results) {
+      console.log(results);
       results.forEach((result, idx) => expect(result.isWithinMisMatchTolerance,
         'Image ' + idx + ' is not the same by ' + result.misMatchPercentage + '%').to.be.true);
     };
