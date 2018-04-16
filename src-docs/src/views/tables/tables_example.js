@@ -19,6 +19,7 @@ import {
   searchCallbackSection as inMemorySearchCallbackSection,
 } from './in_memory';
 import { section as customSection } from './custom';
+import { section as mobileSection } from './mobile';
 
 export const TableExample = {
   title: 'Tables',
@@ -52,6 +53,7 @@ export const TableExample = {
     inMemorySelectionSection,
     inMemorySearchSection,
     inMemorySearchCallbackSection,
+    mobileSection,
     customSection,
   ],
 };

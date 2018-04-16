@@ -5,7 +5,6 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -40,7 +39,6 @@ exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -83,7 +81,6 @@ exports[`EuiBasicTable basic - empty 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -118,7 +115,6 @@ exports[`EuiBasicTable basic - with items 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -191,7 +187,6 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -277,7 +272,6 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -345,7 +339,6 @@ exports[`EuiBasicTable with pagination 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -429,7 +422,6 @@ exports[`EuiBasicTable with pagination and error 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -470,7 +462,6 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -604,21 +595,6 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -755,21 +731,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -997,21 +958,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1148,21 +1094,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1299,21 +1230,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1535,21 +1451,6 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1686,7 +1587,6 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile />
     <EuiTable
       responsive={true}
     >
@@ -1759,21 +1659,6 @@ exports[`EuiBasicTable with sorting 1`] = `
   className="euiBasicTable testClass1 testClass2"
 >
   <div>
-    <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
-    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >

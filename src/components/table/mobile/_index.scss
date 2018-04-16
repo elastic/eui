@@ -2,21 +2,20 @@
 
 @include screenXSmall(){
 
+  .euiTableHeaderMobile {
+    display: flex;
+    justify-content: flex-end;
+    padding: $euiTableCellContentPadding 0;
+  }
+
+  .euiTableSortMobile {
+    display: block;
+  }
+
   .euiTable.euiTable--responsive {
-    @include euiFontSize;
 
     thead {
       display: none; // Use mobile versions of selecting and filtering instead
-    }
-
-    .euiTableHeaderMobile {
-      display: flex;
-      justify-content: flex-end;
-      padding: $euiTableCellContentPadding 0;
-    }
-
-    .euiTableSortMobile {
-      display: block;
     }
 
     // Not allowing compressed styles in mobile view (for now)
@@ -57,6 +56,7 @@
 
       // override hover & selected colors
       &.euiTableRow-isSelected {
+        &,
         &:hover,
         + .euiTableRow.euiTableRow-isExpandedRow,
         &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
@@ -138,6 +138,7 @@
     }
 
     .euiTableRowCell {
+      display: block; /* IE requires block to grow and wrap. */
       min-width: 50%;
       border: none;
 
@@ -159,11 +160,8 @@
         text-overflow: ellipsis;
       }
 
-      &.euiTableRowCell--hideForMobile {
-        display: none;
-      }
-
       &.euiTableRowCell--isMobileHeader {
+        @include euiFontSize;
         display: block;
         width: 100%;
 
@@ -179,6 +177,10 @@
           justify-content: center;
           text-align: center;
         }
+      }
+
+      &.euiTableRowCell--hideForMobile { // must come last to override any special cases
+        display: none;
       }
     }
 

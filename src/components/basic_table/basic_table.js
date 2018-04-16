@@ -295,17 +295,17 @@ export class EuiBasicTable extends Component {
 
   renderTable() {
 
-    const { compressed } = this.props;
+    const { compressed, responsive } = this.props;
 
-    const mobileSort = this.renderTableMobileSort();
+    const mobileHeader = responsive ? (<EuiTableHeaderMobile>{this.renderTableMobileSort()}</EuiTableHeaderMobile>) : undefined;
     const head = this.renderTableHead();
     const body = this.renderTableBody();
     return (
       <div
         ref={element => { this.tableElement = element; }}
       >
-        <EuiTableHeaderMobile>{mobileSort}</EuiTableHeaderMobile>
-        <EuiTable compressed={compressed}>{head}{body}</EuiTable>
+        {mobileHeader}
+        <EuiTable responsive={responsive} compressed={compressed}>{head}{body}</EuiTable>
       </div>
     );
   }

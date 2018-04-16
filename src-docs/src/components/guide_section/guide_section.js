@@ -194,7 +194,7 @@ export class GuideSection extends Component {
             <EuiCode>{typeMarkup}</EuiCode>
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="defaultValue" header="Default">
+          <EuiTableRowCell key="defaultValue" header="Default" hideForMobile={!defaultValueMarkup}>
             {defaultValueMarkup}
           </EuiTableRowCell>
         ), (
