@@ -1,6 +1,6 @@
 /// <reference path="../common.d.ts" />
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -15,7 +15,6 @@ declare module '@elastic/eui' {
   export type EuiHorizontalRuleMargin = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
   export interface EuiHorizontalRuleProps {
-    children?: ReactNode;
     size?: EuiHorizontalRuleSize;
     margin?: EuiHorizontalRuleMargin;
   }
