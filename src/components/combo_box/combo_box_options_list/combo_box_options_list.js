@@ -146,8 +146,8 @@ export class EuiComboBoxOptionsList extends Component {
     ) : undefined;
 
     const optionHeight = 27; // TODO dynamically figure this out
-    const numVisiableOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisiableOptions * optionHeight;
+    const numVisibleOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
+    const height = numVisibleOptions * optionHeight;
 
     const optionsList = (
       <List

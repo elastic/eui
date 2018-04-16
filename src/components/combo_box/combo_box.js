@@ -490,7 +490,6 @@ export class EuiComboBox extends Component {
     let optionsList;
 
     if (!noSuggestions && isListOpen) {
-      console.log("width", width);
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
