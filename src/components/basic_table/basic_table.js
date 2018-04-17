@@ -144,6 +144,7 @@ export class EuiBasicTable extends Component {
 
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
+    responsive: true,
     noItemsMessage: 'No items found',
     itemIdToExpandedRowMap: {},
   };

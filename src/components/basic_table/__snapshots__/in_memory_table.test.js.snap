@@ -15,6 +15,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
   items={Array []}
   noItemsMessage="No items found"
   onChange={[Function]}
+  responsive={true}
 />
 `;
 
@@ -49,6 +50,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
   }
   noItemsMessage="No items found"
   onChange={[Function]}
+  responsive={true}
   sorting={
     Object {
       "sort": Object {
@@ -90,6 +92,7 @@ exports[`EuiInMemoryTable with items 1`] = `
   }
   noItemsMessage="No items found"
   onChange={[Function]}
+  responsive={true}
 />
 `;
 
@@ -123,6 +126,7 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
   }
   noItemsMessage="show me!"
   onChange={[Function]}
+  responsive={true}
 />
 `;
 
@@ -141,6 +145,7 @@ exports[`EuiInMemoryTable with message 1`] = `
   items={Array []}
   noItemsMessage="where my items at?"
   onChange={[Function]}
+  responsive={true}
 />
 `;
 
@@ -160,6 +165,7 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
   loading={true}
   noItemsMessage="Loading items...."
   onChange={[Function]}
+  responsive={true}
 />
 `;
 
@@ -201,6 +207,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
       "totalItemCount": 3,
     }
   }
+  responsive={true}
 />
 `;
 
@@ -246,6 +253,7 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
       "totalItemCount": 3,
     }
   }
+  responsive={true}
 />
 `;
 
@@ -291,6 +299,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
       "totalItemCount": 3,
     }
   }
+  responsive={true}
   selection={
     Object {
       "itemId": "id",
@@ -335,6 +344,7 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
       "totalItemCount": 1,
     }
   }
+  responsive={true}
 />
 `;
 
@@ -381,6 +391,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       "totalItemCount": 3,
     }
   }
+  responsive={true}
   selection={
     Object {
       "itemId": "id",
@@ -456,6 +467,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         "totalItemCount": 3,
       }
     }
+    responsive={true}
     selection={
       Object {
         "itemId": "id",
@@ -525,6 +537,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       "totalItemCount": 3,
     }
   }
+  responsive={true}
   selection={
     Object {
       "itemId": "id",
@@ -579,6 +592,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       "totalItemCount": 3,
     }
   }
+  responsive={true}
   selection={
     Object {
       "itemId": "id",
@@ -666,6 +680,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         "totalItemCount": 1,
       }
     }
+    responsive={true}
     selection={
       Object {
         "itemId": "id",
@@ -712,6 +727,7 @@ exports[`EuiInMemoryTable with sorting 1`] = `
   }
   noItemsMessage="No items found"
   onChange={[Function]}
+  responsive={true}
   sorting={
     Object {
       "sort": undefined,
