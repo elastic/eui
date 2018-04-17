@@ -129,12 +129,17 @@
         padding-bottom: 0;
         margin-bottom: -$euiSizeS; // pull up cell content closer
 
-        min-height: 26px;
+        min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
 
         // Always truncate
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+
+      // Remove min-height of cell header if it's the only cell
+      &:only-child::before {
+        min-height: 0;
       }
 
       &.euiTableRowCell--isMobileHeader {
