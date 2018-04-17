@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiText,
   EuiTextColor,
+  EuiTextAlign,
 } from '../../../../src/components';
 
 import Text from './text';
@@ -23,6 +24,10 @@ const textSmallHtml = renderToHtml(TextSmall);
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
+
+import TextAlign from './text_align';
+const textAlignSource = require('!!raw-loader!./text_align');
+const textAlignHtml = renderToHtml(TextAlign);
 
 export const TextExample = {
   title: 'Text',
@@ -89,5 +94,24 @@ export const TextExample = {
     ),
     props: { EuiTextColor },
     demo: <TextColor />,
+  }, {
+    title: 'Alignment',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: textAlignSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: textAlignHtml,
+    }],
+    text: (
+      <p>
+        There are two ways to align text. Either individually by
+        applying <EuiCode>EuiTextAlign</EuiCode> on individual text objects, or
+        by passing the <EuiCode>textAlign</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
+        a blanket approach across the entirely of your text.
+      </p>
+    ),
+    props: { EuiTextAlign },
+    demo: <TextAlign />,
   }],
 };
