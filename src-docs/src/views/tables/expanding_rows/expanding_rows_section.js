@@ -25,8 +25,8 @@ export const section = {
     <p>
       You can expand rows by passing in a <EuiCode>itemIdToExpandedRowMap</EuiCode> prop
       which will contain the content you want rendered inside the expanded row.
-      You will also need to add the prop <EuiCode>isExpandedRow</EuiCode> to the row that
-      will be revealed.
+      When building out your table manually (not using EuiBasicTable), you will also need
+      to add the prop <EuiCode>isExpandedRow</EuiCode> to the row that will be revealed.
     </p>
   ),
   components: { EuiBasicTable },
