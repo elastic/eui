@@ -109,8 +109,8 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        <EuiCode>EuiComboBoxList</EuiCode> uses <Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>
-        to only render visiable options to be super fast no matter how many options there are.
+        <EuiCode>EuiComboBoxList</EuiCode> uses <Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>{' '}
+        to only render visible options to be super fast no matter how many options there are.
       </p>
     ),
     props: { EuiComboBox },
@@ -163,8 +163,8 @@ export const ComboBoxExample = {
     text: (
       <Fragment>
         <p>
-          You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>
-          and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the
+          You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>{' '}
+          and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the{' '}
           <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
         </p>
 

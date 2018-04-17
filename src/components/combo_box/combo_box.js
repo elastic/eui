@@ -3,7 +3,7 @@
  * from the tab order with tabindex="-1" so that we can control the keyboard navigation interface.
  */
 
-import _ from 'lodash';
+import { throttle } from 'lodash';
 import React, {
   Component,
 } from 'react';
@@ -151,7 +151,7 @@ export class EuiComboBox extends Component {
     tabbableItems[comboBoxIndex + amount].focus();
   };
 
-  incrementActiveOptionIndex = _.throttle(amount => {
+  incrementActiveOptionIndex = throttle(amount => {
     // If there are no options available, reset the focus.
     if (!this.matchingOptions.length) {
       this.clearActiveOption();
