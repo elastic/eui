@@ -2,12 +2,31 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiCard } from './card';
+import {
+  EuiCard,
+} from './card';
+
+import {
+  EuiIcon,
+} from '../icon';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
     const component = render(
       <EuiCard title="Card title" description="Card description" {...requiredProps} />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
+  test('icon', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        icon={<EuiIcon className="myIconClass" type="apmApp"/>}
+      />
     );
 
     expect(component)

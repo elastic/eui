@@ -46,7 +46,7 @@ export const EuiCard = ({
   if (icon) {
     iconNode = React.cloneElement(
       icon,
-      { className: 'euiCard__icon' }
+      { className: classNames(icon.props.className, 'euiCard__icon') }
     );
   }
 

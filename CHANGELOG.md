@@ -2,6 +2,10 @@
 
 - Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
 
+**Bug fixes**
+
+- Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
+
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
 - Added `EuiDatePicker` component for date/time input ([#644](https://github.com/elastic/eui/pull/644))
