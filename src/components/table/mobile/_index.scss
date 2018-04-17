@@ -38,25 +38,25 @@
         @include euiTableActionsBackground--mobile;
         padding-right: $euiSizeXXL;
         position: relative;
+      }
 
-        .euiTableRowCell--isExpander,
-        .euiTableRowCell--hasActions {
-          min-width: 0;
-          width: $euiSizeL;
-          position: absolute;
-          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
-          right: $euiTableCellContentPadding;
+      &.euiTableRow-isExpandable .euiTableRowCell--isExpander,
+      &.euiTableRow-hasActions .euiTableRowCell--hasActions {
+        min-width: 0;
+        width: $euiSizeL;
+        position: absolute;
+        top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
+        right: $euiTableCellContentPadding;
 
-          &::before {
-            display: none; // Don't display table headers
-          }
+        &::before {
+          display: none; // Don't display table headers
+        }
 
-          .euiTableCellContent {
-            padding: 0;
+        .euiTableCellContent {
+          padding: 0;
 
-            .euiLink {
-              padding: $euiSizeXS;
-            }
+          .euiLink {
+            padding: $euiSizeXS;
           }
         }
       }
