@@ -155,16 +155,15 @@ export class EuiComboBoxOptionsList extends Component {
       </EuiText>
     ) : undefined;
 
-    const optionHeight = rowHeight;
     const numVisibleOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisibleOptions * optionHeight;
+    const height = numVisibleOptions * rowHeight;
 
     const optionsList = (
       <List
         width={width}
         height={height}
         rowCount={matchingOptions.length}
-        rowHeight={optionHeight}
+        rowHeight={rowHeight}
         scrollToIndex={scrollToIndex}
         onScroll={onScroll}
         rowRenderer={({ key, index, style }) => {
