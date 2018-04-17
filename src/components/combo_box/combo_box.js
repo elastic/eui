@@ -188,7 +188,6 @@ export class EuiComboBox extends Component {
     this.setState({
       activeOptionIndex: nextActiveOptionIndex,
     });
-    this.focusActiveOption();
   };
 
   hasActiveOption = () => {
@@ -196,7 +195,9 @@ export class EuiComboBox extends Component {
   };
 
   clearActiveOption = () => {
-    this.state.activeOptionIndex = undefined;
+    this.setState({
+      activeOptionIndex: undefined,
+    });
   };
 
   focusActiveOption = () => {
@@ -381,6 +382,8 @@ export class EuiComboBox extends Component {
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
     this.searchInput.focus();
+    // If the user does this from a state in which an option has focus, then we need to clear it.
+    this.clearActiveOption();
   };
 
   onComboBoxFocus = (e) => {
@@ -459,7 +462,10 @@ export class EuiComboBox extends Component {
     this.matchingOptions = matchingOptions;
 
     if (!matchingOptions.length) {
-      this.clearActiveOption();
+      // Prevent endless setState -> componentWillUpdate -> setState loop.
+      if (nextState.hasActiveOption) {
+        this.clearActiveOption();
+      }
     }
   }
 

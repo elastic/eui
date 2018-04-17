@@ -11,12 +11,14 @@
   &:hover {
     text-decoration: underline;
   }
+
   &:focus {
     cursor: pointer;
     color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
   }
-  &:disabled {
+
+  &.euiComboBoxOption-isDisabled {
     color: $euiColorMediumShade;
     cursor: not-allowed;
     &:hover {
