@@ -41,6 +41,11 @@ export class EuiComboBoxOptionsList extends Component {
     width: PropTypes.number,
     scrollToIndex: PropTypes.number,
     onScroll: PropTypes.func,
+    rowHeight: PropTypes.number,
+  }
+
+  static defaultProps = {
+    rowHeight: 27, // row height of default option renderer
   }
 
   updatePosition = () => {
@@ -103,6 +108,7 @@ export class EuiComboBoxOptionsList extends Component {
       width,
       scrollToIndex,
       onScroll,
+      rowHeight,
       ...rest
     } = this.props;
 
@@ -149,7 +155,7 @@ export class EuiComboBoxOptionsList extends Component {
       </EuiText>
     ) : undefined;
 
-    const optionHeight = 27; // TODO dynamically figure this out
+    const optionHeight = rowHeight;
     const numVisibleOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * optionHeight;
 

@@ -39,6 +39,7 @@ export class EuiComboBox extends Component {
     onCreateOption: PropTypes.func,
     renderOption: PropTypes.func,
     isInvalid: PropTypes.bool,
+    rowHeight: PropTypes.number,
   }
 
   static defaultProps = {
@@ -495,6 +496,7 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
       isInvalid,
+      rowHeight,
       ...rest
     } = this.props;
 
@@ -531,6 +533,7 @@ export class EuiComboBox extends Component {
             width={width}
             scrollToIndex={activeOptionIndex}
             onScroll={this.focusActiveOption}
+            rowHeight={rowHeight}
           />
         </EuiPortal>
       );
