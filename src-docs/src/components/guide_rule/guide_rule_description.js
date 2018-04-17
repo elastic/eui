@@ -27,7 +27,7 @@ export const GuideRuleDescription = ({
       className={classes}
       {...rest}
     >
-      <EuiText>
+      <EuiText grow={false}>
         {headingNode}
         <p>{description}</p>
       </EuiText>

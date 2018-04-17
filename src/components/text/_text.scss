@@ -6,6 +6,8 @@
   p,
   ul,
   ol,
+  dl,
+  dd,
   blockquote,
   img,
   pre {
@@ -98,13 +100,16 @@
     list-style: decimal;
   }
 
+  dt {
+    @include euiTitle("xs");
+  }
+
   blockquote {
     position: relative;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     font-family: Georgia,Times,Times New Roman,serif;
-    line-height: 1.5;
     font-style: italic;
 
     p:last-child {
@@ -182,6 +187,9 @@
 
   &.euiText--constrainedWidth {
     max-width: 36rem;
+    // If the max-width is way too short of the width of the container,
+    // at least make it 2/3 of it's parent
+    min-width: 75%;
   }
 
   &.euiText--small {

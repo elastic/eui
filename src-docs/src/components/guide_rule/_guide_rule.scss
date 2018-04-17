@@ -18,14 +18,4 @@
   }
 }
 
-.guideRule__goToButton {
-  margin-bottom: $euiSizeM;
-
-  @include screenSmallMediumLarge {
-    position: absolute;
-    margin-top: -$euiSizeXL*2 - 6px;
-    right: $euiSizeL;
-  }
-}
-
 

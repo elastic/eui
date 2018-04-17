@@ -1,10 +1,6 @@
 import React from 'react';
 
 import {
-  Link,
-} from 'react-router';
-
-import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
@@ -21,15 +17,9 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Toast guidelines">
+  <GuidePage title="Toast guidelines" componentLinkTo="/display/toast">
 
-    <Link to="/display/toast">
-      <EuiButton className="guideRule__goToButton">
-        View component code
-      </EuiButton>
-    </Link>
-
-    <EuiText className="guideSection__text">
+    <EuiText grow={false} className="guideSection__text">
       <p>
         This page documents patterns for using toasts, short messages that
         appears on the lower right corner and time out after a few seconds.

@@ -51,5 +51,5 @@ EuiText.propTypes = {
 };
 
 EuiText.defaultProps = {
-  grow: false,
+  grow: true,
 };
