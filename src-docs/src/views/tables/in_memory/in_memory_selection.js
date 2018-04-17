@@ -233,6 +233,7 @@ export class Table extends Component {
           pagination={pagination}
           sorting={true}
           selection={selection}
+          isSelectable={true}
         />
       </div>
     );
