@@ -1,5 +1,125 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCard icon 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <span
+    class="euiCard__top"
+  >
+    <svg
+      class="euiIcon euiIcon--medium myIconClass euiCard__icon"
+      height="32"
+      viewBox="0 0 32 32"
+      width="32"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <path
+          d="M0 0h32v32H0z"
+          id="app_apm-a"
+        />
+        <path
+          d="M0 0h32v32H0z"
+          id="app_apm-c"
+        />
+        <path
+          d="M0 0h32v32H0z"
+          id="app_apm-e"
+        />
+        <path
+          d="M0 0h32v32H0z"
+          id="app_apm-g"
+        />
+      </defs>
+      <g
+        fill="none"
+        fill-rule="evenodd"
+      >
+        <mask
+          fill="#fff"
+          id="app_apm-b"
+        >
+          <use
+            href="#app_apm-a"
+          />
+        </mask>
+        <path
+          d="M5.44 9.6h21.12a2.24 2.24 0 0 1 0 4.48H5.44a2.24 2.24 0 1 1 0-4.48z"
+          fill="#13A7DF"
+          fill-rule="nonzero"
+          mask="url(#app_apm-b)"
+        />
+        <mask
+          fill="#fff"
+          id="app_apm-d"
+        >
+          <use
+            href="#app_apm-c"
+          />
+        </mask>
+        <path
+          d="M21.44 26.24h8.32a2.24 2.24 0 0 1 0 4.48h-8.32a2.24 2.24 0 1 1 0-4.48z"
+          fill="#00BFB3"
+          fill-rule="nonzero"
+          mask="url(#app_apm-d)"
+        />
+        <mask
+          fill="#fff"
+          id="app_apm-f"
+        >
+          <use
+            href="#app_apm-e"
+          />
+        </mask>
+        <path
+          d="M2.24 1.28h11.52a2.24 2.24 0 0 1 0 4.48H2.24a2.24 2.24 0 1 1 0-4.48z"
+          fill="#00BFB3"
+          fill-rule="nonzero"
+          mask="url(#app_apm-f)"
+        />
+        <g>
+          <mask
+            fill="#fff"
+            id="app_apm-h"
+          >
+            <use
+              href="#app_apm-g"
+            />
+          </mask>
+          <path
+            d="M5.44 17.92h11.52a2.24 2.24 0 0 1 0 4.48H5.44a2.24 2.24 0 0 1 0-4.48z"
+            fill="#00BFB3"
+            fill-rule="nonzero"
+            mask="url(#app_apm-h)"
+          />
+        </g>
+      </g>
+    </svg>
+  </span>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description euiText--constrainedWidth"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+  <span
+    class="euiCard__footer"
+  />
+</div>
+`;
+
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
