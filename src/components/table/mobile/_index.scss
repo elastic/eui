@@ -1,5 +1,6 @@
 @import '../../panel/index';
 
+
 @include screenXSmall(){
 
   .euiTableHeaderMobile {
@@ -13,20 +14,11 @@
   }
 
   .euiTable.euiTable--responsive {
+    // Not allowing compressed styles in mobile view (for now)
 
     thead {
       display: none; // Use mobile versions of selecting and filtering instead
     }
-
-    // Not allowing compressed styles in mobile view (for now)
-    // .euiTable--compressed {
-    //   .euiTableRowCellCheckbox::before,
-    //   .euiTableRowCell::before {
-    //     padding: $euiSizeXS;
-    //     padding-bottom: 0;
-    //     margin-bottom: -$euiSizeXS;
-    //   }
-    // }
 
     // Make each row a Panel
     @include euiPanel($selector: 'euiTableRow');
@@ -41,31 +33,10 @@
         background-color: transparent;
       }
 
-      &.euiTableRow-isSelectable {
-        @include euiTableActionsBackground--mobile;
-
-        padding-right: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
-        position: relative;
-
-        .euiTableRowCellCheckbox {
-          position: absolute;
-          right: $euiTableCellContentPadding/2;
-          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
-        }
-      }
-
-      // override hover & selected colors
-      &.euiTableRow-isSelected {
-        &,
-        &:hover,
-        + .euiTableRow.euiTableRow-isExpandedRow,
-        &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-          background-color: $euiTableSelectedColor;
-        }
-      }
-
       &.euiTableRow-isExpandable,
       &.euiTableRow-hasActions {
+        @include euiTableActionsBackground--mobile;
+        padding-right: $euiSizeXXL;
         position: relative;
 
         .euiTableRowCell--isExpander,
@@ -73,7 +44,8 @@
           min-width: 0;
           width: $euiSizeL;
           position: absolute;
-          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
+          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
+          right: $euiTableCellContentPadding;
 
           &::before {
             display: none; // Don't display table headers
@@ -89,32 +61,37 @@
         }
       }
 
-      &.euiTableRow-isExpandable {
-        padding-left: $euiSizeXXL;
-
+      &.euiTableRow-hasActions.euiTableRow-isExpandable {
         .euiTableRowCell--isExpander {
-          left: $euiTableCellContentPadding;
+          top: auto;
+          bottom: $euiSize; // same as row padding-bottom
         }
       }
 
-      &.euiTableRow-hasActions {
-        padding-right: $euiSizeXXL;
+      &.euiTableRow-isSelectable {
+        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding/2);
+        position: relative;
 
-        .euiTableRowCell--hasActions {
-          right: $euiTableCellContentPadding;
+        .euiTableRowCellCheckbox {
+          position: absolute;
+          left: $euiTableCellContentPadding/2;
+          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
         }
+      }
 
-        &.euiTableRow-isSelectable {
-          .euiTableRowCell--hasActions {
-            top: auto;
-            bottom: $euiSize; // same as row padding-bottom
-          }
+      // override hover & selected colors
+      &.euiTableRow-isSelected {
+        &,
+        &:hover,
+        + .euiTableRow.euiTableRow-isExpandedRow,
+        &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+          background-color: $euiTableSelectedColor;
         }
       }
 
       &.euiTableRow-isExpandedRow {
         @include euiTableActionsBackground--mobile;
-        @include euiBottomShadowMedium;
+        @include euiBottomShadowSmall;
         margin-top: -$euiTableCellContentPadding*2;
         position: relative;
         z-index: 2; // on top of it's parent/previous row
@@ -128,7 +105,7 @@
         }
 
         .euiTableRowCell {
-          width: calc(100% - #{$euiTableCellContentPadding});
+          width: calc(100% - #{$euiSizeXXL});
 
           &::before {
             display: none;
@@ -192,6 +169,12 @@
     .euiTableCellContent--showOnHover {
       .euiTableCellContent__hoverItem {
         opacity: 1;
+
+        // except when disabled
+        &:disabled,
+        button:disabled {
+          opacity: 0;
+        }
       }
     }
 

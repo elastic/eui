@@ -23,8 +23,8 @@ export const EuiTableSortMobileItem = ({
     'euiTableSortMobileItem-isSorted': isSorted,
   });
 
-    const columnTitle = ariaLabel ? ariaLabel : children;
-    const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
+  const columnTitle = ariaLabel ? ariaLabel : children;
+  const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
 
   return (
     <EuiContextMenuItem
