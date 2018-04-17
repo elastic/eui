@@ -4,7 +4,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiCard` `icon` prop preserve user provided className ([#684](https://github.com/elastic/eui/pull/684))
+- Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
 
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
