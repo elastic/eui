@@ -72,6 +72,16 @@
   small {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
   }
+
+  pre {
+    padding: $baseLineHeightMultiplier*2;
+  }
+
+  code {
+    // Setting the font size in rem's ensure it doesn't compound
+    // the 90% set by euiCodeBlock
+    font-size: convertToRem($baseFontSize * .9);
+  }
 }
 
 .euiText {
@@ -160,10 +170,7 @@
   }
 
   pre {
-    height: 100%;
-    overflow: auto;
     white-space: pre-wrap;
-    padding: $euiSize;
   }
 
   pre,
@@ -177,8 +184,10 @@
     color: $euiCodeBlockColor;
   }
 
+  // unset font-size from euiCodeBlock so it doesn't doubly add 90%
+
   code {
-    line-height: $euiLineHeight;
+    display: inline-block; // ensures background stretches the full line-height
     font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
   }
