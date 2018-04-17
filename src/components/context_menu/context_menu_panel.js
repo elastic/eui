@@ -223,8 +223,10 @@ export class EuiContextMenuPanel extends Component {
   getWatchedProps(items) {
     const { watchedItemProps } = this.props;
 
+    // Create array of each item's watched properties
     if(items && items.length && watchedItemProps && watchedItemProps.length) {
       return items.map(item => {
+        // Create object of item properties and values
         const props = {
           key: item.key,
         };
@@ -250,6 +252,7 @@ export class EuiContextMenuPanel extends Component {
       return true;
     }
 
+    // Check if any watched item properties changed by quick string comparison
     if(JSON.stringify(this.getWatchedProps(nextProps.items)) !== JSON.stringify(this.getWatchedProps(this.props.items))) {
       return true;
     }
