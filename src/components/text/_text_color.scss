@@ -16,9 +16,17 @@ $textColors: (
     // The below function makes sure the color is accessible on our default background.
     color: makeHighContrastColor($color, $euiColorEmptyShade) !important;
 
+    @if $name == "ghost" {
+      color: $color !important;
+    }
+
     // We need a blanket approach for coloring. It should overule everything.
     * {
       color: makeHighContrastColor($color, $euiColorEmptyShade) !important;
+
+      @if $name == "ghost" {
+        color: $color !important;
+      }
     }
   }
 }
