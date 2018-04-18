@@ -4,6 +4,7 @@
 - `EuiForm` and `EuiFormRow` now accept nodes for `errors` prop ([#685](https://github.com/elastic/eui/pull/685))
 - Removed the default `max-width` from `EuiText`. This can still be applied by setting `grow={false}` ([#683](https://github.com/elastic/eui/pull/683))
 - Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
+- Added responsive support for tables. **Responsive table views are on by default.**  ([#584](https://github.com/elastic/eui/pull/584))
 
 **Bug fixes**
 
