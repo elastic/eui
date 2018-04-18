@@ -220,19 +220,21 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
-  getWatchedProps(items) {
+  getWatchedPropsForItems(items) {
+    // This lets us compare prevProps and nextProps among items so we can re-render if our items
+    // have changed.
     const { watchedItemProps } = this.props;
 
-    // Create array of each item's watched properties
+    // Create fingerprint of all item's watched properties
     if(items && items.length && watchedItemProps && watchedItemProps.length) {
-      return items.map(item => {
+      return JSON.stringify(items.map(item => {
         // Create object of item properties and values
         const props = {
           key: item.key,
         };
         watchedItemProps.forEach(prop => props[prop] = item.props[prop]);
         return props;
-      });
+      }));
     }
 
     return null;
@@ -253,7 +255,7 @@ export class EuiContextMenuPanel extends Component {
     }
 
     // Check if any watched item properties changed by quick string comparison
-    if(JSON.stringify(this.getWatchedProps(nextProps.items)) !== JSON.stringify(this.getWatchedProps(this.props.items))) {
+    if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
       return true;
     }
 
