@@ -28,11 +28,6 @@ export const searchCallbackSection = {
         The example shows how to configure <EuiCode>EuiInMemoryTable</EuiCode> to display a search bar
         and intercept the search value when it changes so you can perform your own search logic.
       </p>
-
-      <p>
-        Note that when the search has returned results, you&rsquo;ll need to call the <EuiCode>onQueryComplete</EuiCode>
-        callback that&rsquo;s provided to the <EuiCode>search.onChange</EuiCode> prop.
-      </p>
     </Fragment>
   ),
   props: propsInfo,

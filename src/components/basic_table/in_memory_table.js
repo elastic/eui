@@ -157,13 +157,7 @@ export class EuiInMemoryTable extends Component {
 
   onQueryChange = (query) => {
     if (this.props.search.onChange) {
-      const shouldQueryInMemory = this.props.search.onChange(query, () => {
-        // Reset pagination state.
-        this.setState({
-          pageIndex: 0,
-        })
-      });
-
+      const shouldQueryInMemory = this.props.search.onChange(query);
       if (!shouldQueryInMemory) {
         return;
       }
@@ -240,6 +234,15 @@ export class EuiInMemoryTable extends Component {
       items: visibleItems,
       totalItemCount: matchingItems.length,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.items !== this.props.items) {
+      // We have new items because an external search has completed, so reset pagination state.
+      this.setState({
+        pageIndex: 0,
+      });
+    }
   }
 
   render() {
