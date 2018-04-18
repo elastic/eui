@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTableSortMobileItem is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiContextMenuItem euiTableSortMobileItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiContextMenu__icon"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;

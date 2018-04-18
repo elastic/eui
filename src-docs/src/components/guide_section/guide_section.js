@@ -186,19 +186,19 @@ export class GuideSection extends Component {
       }
       const cells = [
         (
-          <EuiTableRowCell key="name">
+          <EuiTableRowCell key="name" header="Prop">
             {humanizedName}
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="type">
+          <EuiTableRowCell key="type" header="Type">
             <EuiCode>{typeMarkup}</EuiCode>
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="defaultValue">
+          <EuiTableRowCell key="defaultValue" header="Default" hideForMobile={!defaultValue}>
             {defaultValueMarkup}
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="description">
+          <EuiTableRowCell key="description" header="Note" isMobileFullWidth={true} hideForMobile={!propDescription}>
             {descriptionMarkup}
           </EuiTableRowCell>
         )

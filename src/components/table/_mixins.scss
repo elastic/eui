@@ -1,0 +1,19 @@
+@mixin euiTableCell {
+  vertical-align: middle;
+  border-top: $euiBorderThin;
+  border-bottom: $euiBorderThin;
+}
+
+@mixin euiTableCellCheckbox {
+  @include euiTableCell;
+  border-top: none;
+  width: $euiTableCellCheckboxWidth;
+  vertical-align: middle;
+}
+
+@mixin euiTableActionsBackground--mobile {
+  background-image: linear-gradient(to right, $euiTableActionsBorderColor 0px, $euiTableActionsBorderColor 1px, transparent 1px, transparent 100%);
+  background-size: $euiTableActionsAreaWidth 100%;
+  background-position-x: right;
+  background-repeat: no-repeat;
+}

@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -8,6 +6,10 @@ import {
   EuiBasicTable,
   EuiLink,
   EuiHealth,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
 } from '../../../../../src/components';
 
 /*
@@ -43,6 +45,9 @@ export class Table extends Component {
       pageSize: 5,
       sortField: 'firstName',
       sortDirection: 'asc',
+      selectedItems: [],
+      customHeader: true,
+      isResponsive: true,
     };
   }
 
@@ -65,12 +70,36 @@ export class Table extends Component {
     });
   };
 
+  onSelectionChange = (selectedItems) => {
+    this.setState({ selectedItems });
+  };
+
+  toggleHeader = () => {
+    this.setState(prevState => ({ customHeader: !prevState.customHeader }));
+  };
+
+  toggleResponsive = () => {
+    this.setState(prevState => ({ isResponsive: !prevState.isResponsive }));
+  };
+
+  deleteUser = user => {
+    store.deleteUsers(user.id);
+    this.setState({ selectedItems: [] });
+  };
+
+  cloneUser = user => {
+    store.cloneUser(user.id);
+    this.setState({ selectedItems: [] });
+  };
+
   render() {
     const {
       pageIndex,
       pageSize,
       sortField,
       sortDirection,
+      customHeader,
+      isResponsive,
     } = this.state;
 
     const {
@@ -78,32 +107,44 @@ export class Table extends Component {
       totalItemCount,
     } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
 
+    const actions = [{
+      name: 'Clone',
+      description: 'Clone this person',
+      icon: 'copy',
+      onClick: this.cloneUser
+    }, {
+      name: 'Delete',
+      description: 'Delete this person',
+      icon: 'trash',
+      color: 'danger',
+      onClick: this.deleteUser
+    }];
+
     const columns = [{
       field: 'firstName',
       name: 'First Name',
-      sortable: true,
       truncateText: true,
-      hideForMobile: true,
+      sortable: true,
+      hideForMobile: customHeader,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
+      hideForMobile: customHeader,
     }, {
       field: 'firstName',
       name: 'Full Name',
-      sortable: true,
       isMobileHeader: true,
+      sortable: true,
+      hideForMobile: !customHeader,
       render: (name, item) => (
         <span>{item.firstName} {item.lastName}</span>
-      )
+      ),
     }, {
       field: 'github',
       name: 'Github',
       render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
+        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
       )
     }, {
       field: 'dateOfBirth',
@@ -128,6 +169,9 @@ export class Table extends Component {
         return <EuiHealth color={color}>{label}</EuiHealth>;
       },
       sortable: true
+    }, {
+      name: 'Actions',
+      actions
     }];
 
     const pagination = {
@@ -144,16 +188,47 @@ export class Table extends Component {
       },
     };
 
+    const selection = {
+      itemId: 'id',
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: this.onSelectionChange
+    };
+
     return (
-      <div>
+      <Fragment>
+        <EuiFlexGroup alignItems="center" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Responsive"
+              checked={isResponsive}
+              onChange={this.toggleResponsive}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label="Custom header"
+              disabled={!isResponsive}
+              checked={isResponsive && customHeader}
+              onChange={this.toggleHeader}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="l" />
+
         <EuiBasicTable
           items={pageOfItems}
           columns={columns}
           pagination={pagination}
           sorting={sorting}
+          selection={selection}
+          isSelectable={true}
+          hasActions={true}
+          responsive={isResponsive}
           onChange={this.onTableChange}
         />
-      </div>
+      </Fragment>
     );
   }
 }

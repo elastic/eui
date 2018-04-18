@@ -4,28 +4,34 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow>
-        <EuiTableRowCell
-          align="center"
-          colSpan={1}
-          textOnly={true}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          where my items at?
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell
+            align="center"
+            colSpan={1}
+            isMobileFullWidth={true}
+            textOnly={true}
+          >
+            where my items at?
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -33,36 +39,42 @@ exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow>
-        <EuiTableRowCell
-          align="center"
-          colSpan={1}
-          textOnly={true}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <p>
-            no items, click 
-            <a
-              href={true}
-            >
-              here
-            </a>
-             to make some
-          </p>
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell
+            align="center"
+            colSpan={1}
+            isMobileFullWidth={true}
+            textOnly={true}
+          >
+            <p>
+              no items, click 
+              <a
+                href={true}
+              >
+                here
+              </a>
+               to make some
+            </p>
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -70,28 +82,34 @@ exports[`EuiBasicTable basic - empty 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow>
-        <EuiTableRowCell
-          align="center"
-          colSpan={1}
-          textOnly={true}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          No items found
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell
+            align="center"
+            colSpan={1}
+            isMobileFullWidth={true}
+            textOnly={true}
+          >
+            No items found
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -99,67 +117,72 @@ exports[`EuiBasicTable basic - with items 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -167,81 +190,85 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
 <div
   className="euiBasicTable"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-        <EuiTableRow
-          id="row_1_expansion"
-          key="row_1_expansion"
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCell
-            align="left"
-            colSpan={1}
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            <div>
-              Expanded row
-            </div>
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+          <EuiTableRow
+            isExpandedRow={true}
+          >
+            <EuiTableRowCell
+              align="left"
+              colSpan={1}
+              textOnly={true}
+            >
+              <div>
+                Expanded row
+              </div>
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -249,51 +276,56 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -312,67 +344,72 @@ exports[`EuiBasicTable with pagination 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -391,34 +428,40 @@ exports[`EuiBasicTable with pagination and error 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <EuiTableRow>
-        <EuiTableRowCell
-          align="center"
-          colSpan={1}
-          textOnly={true}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiIcon
-            color="danger"
-            size="m"
-            type="minusInCircle"
-          />
-           
-          no can do
-        </EuiTableRowCell>
-      </EuiTableRow>
-    </EuiTableBody>
-  </EuiTable>
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <EuiTableRow>
+          <EuiTableRowCell
+            align="center"
+            colSpan={1}
+            isMobileFullWidth={true}
+            textOnly={true}
+          >
+            <EuiIcon
+              color="danger"
+              size="m"
+              type="minusInCircle"
+            />
+             
+            no can do
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -426,117 +469,122 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
-          >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_3_0"
-            textOnly={true}
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -555,120 +603,139 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_name_0",
+              "name": "Name",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="left"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
-          >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_3_0"
-            textOnly={true}
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -687,208 +754,230 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-      <EuiTableHeaderCell
-        align="right"
-        key="_actions_h_1"
-        scope="col"
-      >
-        Actions
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_name_0",
+              "name": "Name",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_1_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "description": "edit",
-                    "name": "Edit",
-                    "onClick": [Function],
-                    "type": "button",
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "1",
-                  "name": "name1",
-                }
-              }
-              itemId="1"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="left"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
-          >
-            name2
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_2_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "description": "edit",
-                    "name": "Edit",
-                    "onClick": [Function],
-                    "type": "button",
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "2",
-                  "name": "name2",
-                }
-              }
-              itemId="2"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+        <EuiTableHeaderCell
+          align="right"
+          key="_actions_h_1"
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          Actions
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_3_0"
-            textOnly={true}
-          >
-            name3
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_3_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "description": "edit",
-                    "name": "Edit",
-                    "onClick": [Function],
-                    "type": "button",
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "3",
-                  "name": "name3",
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_1_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                  ]
                 }
-              }
-              itemId="3"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+                item={
+                  Object {
+                    "id": "1",
+                    "name": "name1",
+                  }
+                }
+                itemId="1"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_2_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                  ]
+                }
+                item={
+                  Object {
+                    "id": "2",
+                    "name": "name2",
+                  }
+                }
+                itemId="2"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_3_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                  ]
+                }
+                item={
+                  Object {
+                    "id": "3",
+                    "name": "name3",
+                  }
+                }
+                itemId="3"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -907,120 +996,139 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="right"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_count_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Count
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_count_0",
+              "name": "Count",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_1_0"
-            textOnly={true}
-          >
-            1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="right"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_count_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_2_0"
-            textOnly={true}
-          >
-            2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Count
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_3_0"
-            textOnly={true}
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_1_0"
+              textOnly={true}
+            >
+              1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_2_0"
+              textOnly={true}
+            >
+              2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_3_0"
+              textOnly={true}
+            >
+              3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -1039,120 +1147,139 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_name_0",
+              "name": "Name",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={false}
-          >
-            NAME1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="left"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={false}
-          >
-            NAME2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_3_0"
-            textOnly={false}
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={false}
+            >
+              NAME1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            NAME3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={false}
+            >
+              NAME2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
+              textOnly={false}
+            >
+              NAME3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -1171,202 +1298,224 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-      <EuiTableHeaderCell
-        align="right"
-        key="_actions_h_1"
-        scope="col"
-      >
-        Actions
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_name_0",
+              "name": "Name",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_1_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "name": "Actions",
-                    "render": [Function],
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "1",
-                  "name": "name1",
-                }
-              }
-              itemId="1"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="left"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
-          >
-            name2
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_2_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "name": "Actions",
-                    "render": [Function],
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "2",
-                  "name": "name2",
-                }
-              }
-              itemId="2"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+        <EuiTableHeaderCell
+          align="right"
+          key="_actions_h_1"
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          Actions
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_3_0"
-            textOnly={true}
-          >
-            name3
-          </EuiTableRowCell>
-          <EuiTableRowCell
-            align="right"
-            key="record_actions_3_1"
-            showOnHover={true}
-            textOnly={false}
-          >
-            <ExpandedItemActions
-              actionEnabled={[Function]}
-              actions={
-                Array [
-                  Object {
-                    "name": "Actions",
-                    "render": [Function],
-                  },
-                ]
-              }
-              item={
-                Object {
-                  "id": "3",
-                  "name": "name3",
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_1_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "name": "Actions",
+                      "render": [Function],
+                    },
+                  ]
                 }
-              }
-              itemId="3"
-            />
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+                item={
+                  Object {
+                    "id": "1",
+                    "name": "name1",
+                  }
+                }
+                itemId="1"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_2_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "name": "Actions",
+                      "render": [Function],
+                    },
+                  ]
+                }
+                item={
+                  Object {
+                    "id": "2",
+                    "name": "name2",
+                  }
+                }
+                itemId="2"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+            <EuiTableRowCell
+              align="right"
+              hasActions={true}
+              key="record_actions_3_1"
+              showOnHover={true}
+              textOnly={false}
+            >
+              <ExpandedItemActions
+                actionEnabled={[Function]}
+                actions={
+                  Array [
+                    Object {
+                      "name": "Actions",
+                      "render": [Function],
+                    },
+                  ]
+                }
+                item={
+                  Object {
+                    "id": "3",
+                    "name": "name3",
+                  }
+                }
+                itemId="3"
+              />
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -1385,120 +1534,139 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCellCheckbox
-        key="_selection_column_h"
-        scope="col"
-        width="24px"
-      >
-        <EuiCheckbox
-          checked={false}
-          data-test-subj="checkboxSelectAll"
-          disabled={false}
-          id="_selection_column-checkbox"
-          onChange={[Function]}
-          type="inList"
-        />
-      </EuiTableHeaderCellCheckbox>
-      <EuiTableHeaderCell
-        align="right"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_count_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Count
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_count_0",
+              "name": "Count",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          scope="col"
+          width="24px"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_1"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-1"
-              disabled={false}
-              id="_selection_column_1-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_1_0"
-            textOnly={false}
-          >
-            x
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+          <EuiCheckbox
+            checked={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            onChange={[Function]}
+            type="inList"
+          />
+        </EuiTableHeaderCellCheckbox>
+        <EuiTableHeaderCell
+          align="right"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_count_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_2"
-          >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-2"
-              disabled={false}
-              id="_selection_column_2-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_2_0"
-            textOnly={false}
-          >
-            xx
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_3"
-      >
-        <EuiTableRow
-          aria-owns="row_3_expansion"
-          isSelected={false}
+          Count
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCellCheckbox
-            key="_selection_column_3"
+          <EuiTableRow
+            isSelected={false}
           >
-            <EuiCheckbox
-              checked={false}
-              data-test-subj="checkboxSelectRow-3"
-              disabled={false}
-              id="_selection_column_3-checkbox"
-              onChange={[Function]}
-              type="inList"
-            />
-          </EuiTableRowCellCheckbox>
-          <EuiTableRowCell
-            align="right"
-            key="_data_column_count_3_0"
-            textOnly={false}
+            <EuiTableRowCellCheckbox
+              key="_selection_column_1"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_1_0"
+              textOnly={false}
+            >
+              x
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
           >
-            xxx
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCellCheckbox
+              key="_selection_column_2"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_2_0"
+              textOnly={false}
+            >
+              xx
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCellCheckbox
+              key="_selection_column_3"
+            >
+              <EuiCheckbox
+                checked={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                onChange={[Function]}
+                type="inList"
+              />
+            </EuiTableRowCellCheckbox>
+            <EuiTableRowCell
+              align="right"
+              header="Count"
+              key="_data_column_count_3_0"
+              textOnly={false}
+            >
+              xxx
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
   <PaginationBar
     onPageChange={[Function]}
     onPageSizeChange={[Function]}
@@ -1517,67 +1685,72 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        key="_data_h_name_0"
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;
 
@@ -1585,69 +1758,88 @@ exports[`EuiBasicTable with sorting 1`] = `
 <div
   className="euiBasicTable testClass1 testClass2"
 >
-  <EuiTable>
-    <EuiTableHeader>
-      <EuiTableHeaderCell
-        align="left"
-        isSortAscending={true}
-        isSorted={true}
-        key="_data_h_name_0"
-        onSort={[Function]}
-        scope="col"
-      >
-        Name
-      </EuiTableHeaderCell>
-    </EuiTableHeader>
-    <EuiTableBody>
-      <React.Fragment
-        key="row_0"
-      >
-        <EuiTableRow
-          aria-owns="row_0_expansion"
-          isSelected={false}
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiTableSortMobile
+        items={
+          Array [
+            Object {
+              "isSortAscending": true,
+              "isSorted": true,
+              "key": "_data_s_name_0",
+              "name": "Name",
+              "onSort": [Function],
+            },
+          ]
+        }
+      />
+    </EuiTableHeaderMobile>
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          isSortAscending={true}
+          isSorted={true}
+          key="_data_h_name_0"
+          onSort={[Function]}
+          scope="col"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_0_0"
-            textOnly={true}
-          >
-            name1
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_1"
-      >
-        <EuiTableRow
-          aria-owns="row_1_expansion"
-          isSelected={false}
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_1_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name2
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-      <React.Fragment
-        key="row_2"
-      >
-        <EuiTableRow
-          aria-owns="row_2_expansion"
-          isSelected={false}
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
         >
-          <EuiTableRowCell
-            align="left"
-            key="_data_column_name_2_0"
-            textOnly={true}
+          <EuiTableRow
+            isSelected={false}
           >
-            name3
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </React.Fragment>
-    </EuiTableBody>
-  </EuiTable>
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
 </div>
 `;

@@ -12,15 +12,13 @@
   background-color: $euiColorEmptyShade;
 }
 
-.euiTable--compressed {
-  .euiTableCellContent {
-    padding: $euiSizeXS;
-    @include euiFontSizeXS;
-
-  }
-
-  .euiTableHeaderButton:focus {
-    outline: solid $euiSizeXS $euiFocusBackgroundColor;
+// Compressed styles not for mobile
+@include screenSmallMediumLarge {
+  .euiTable--compressed {
+    .euiTableCellContent {
+      @include euiFontSizeXS;
+      padding: $euiTableCellContentPadding--compressed;
+    }
   }
 }
 
@@ -28,29 +26,32 @@
   @include euiTableCell;
   @include euiTitle("xxs");
   font-weight: $euiFontWeightMedium;
+  border-top: none;
 
   .euiTableHeaderButton {
     text-align: left;
     font-weight: $euiFontWeightMedium;
   }
-}
 
-.euiTableHeaderCellCheckbox {
-  @include euiTableCellCheckbox;
+  .euiTableCellContent__text {
+    @include euiFontSizeXS;
+    color: $euiTitleColor;
+    font-weight: $euiFontWeightBold;
+  }
 }
 
 .euiTableHeaderButton {
   @include euiFontSizeS;
-
   color: inherit;
   width: 100%;
 
   &:hover, &:focus {
-    text-decoration: underline;
-    color: $euiColorPrimary;
+    .euiTableCellContent__text {
+      text-decoration: underline;
+      color: $euiColorPrimary;
+    }
 
     .euiTableSortIcon {
-      display: block;
       fill: $euiColorPrimary;
     }
   }
@@ -58,22 +59,42 @@
 
 .euiTableSortIcon {
   margin-left: $euiSizeXS;
+  flex-shrink: 0; // makes sure the icon doesn't change size because the text is long
 
   .euiTableHeaderButton-isSorted & {
     fill: $euiTitleColor;
   }
 }
 
+.euiTableHeaderCellCheckbox {
+  @include euiTableCellCheckbox;
+}
+
 .euiTableRow {
   &:hover {
-    background-color: tintOrShade($euiColorLightestShade, 50%, 20%);
+    background-color: $euiTableHoverColor;
+  }
+
+  &.euiTableRow-isExpandedRow {
+    .euiTableRowCell {
+      background-color: $euiTableHoverColor;
+    }
+
+    &.euiTableRow-isSelectable .euiTableCellContent {
+      padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
+    }
   }
 
   &.euiTableRow-isSelected {
-    background-color: tintOrShade($euiFocusBackgroundColor, 30%, 0%);
+    background-color: $euiTableSelectedColor;
 
-    &:hover {
-      background-color: tintOrShade($euiFocusBackgroundColor, 0, 10%);
+    + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+      background-color: $euiTableSelectedColor;
+    }
+
+    &:hover,
+    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell  {
+      background-color: $euiTableHoverSelectedColor;
     }
   }
 }
@@ -82,15 +103,14 @@
   @include euiTableCell;
 
   color: $euiTextColor;
-  border-top: $euiBorderThin;
-  border-bottom: $euiBorderThin;
+
+  &.euiTableRowCell--isMobileHeader {
+    display: none; // Hide if not mobile breakpoint
+  }
 }
 
 .euiTableRowCellCheckbox {
   @include euiTableCellCheckbox;
-
-  border-top: $euiBorderThin;
-  border-bottom: $euiBorderThin;
 }
 
 /**
@@ -102,7 +122,7 @@
 .euiTableCellContent {
   display: flex;
   align-items: center; /* 1 */
-  padding: $euiSizeS; /* 2 */
+  padding: $euiTableCellContentPadding; /* 2 */
 }
 
   /**
@@ -117,12 +137,15 @@
 
 .euiTableCellContent--alignRight {
   justify-content: flex-end;
+  text-align: right;
 }
 
 .euiTableCellContent--alignCenter {
   justify-content: center;
+  text-align: center;
 }
 
+.euiTableHeaderCell,
 .euiTableCellContent--truncateText {
   white-space: nowrap; /* 3 */
 
@@ -153,5 +176,21 @@
     &:hover, &:focus {
       opacity: 1;
     }
+  }
+}
+
+// Animate expanded row must be on the contents div inside
+
+.euiTableRow-isExpandedRow .euiTableCellContent {
+  overflow: hidden;
+  animation: $euiAnimSpeedNormal $euiAnimSlightResistance 1 normal forwards growExpandedRow;
+}
+
+@keyframes growExpandedRow {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 1000px;
   }
 }

@@ -181,6 +181,7 @@ export default class extends Component {
         return (
           <EuiTableRowCell
             key={column.id}
+            header={column.label}
             align={column.alignment}
             truncateText={cell && cell.truncateText}
           >

@@ -251,6 +251,9 @@ export {
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
+  EuiTableHeaderMobile,
+  EuiTableSortMobile,
+  EuiTableSortMobileItem,
 } from './table';
 
 export {

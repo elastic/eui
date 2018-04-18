@@ -26,6 +26,8 @@ import { EuiTableRow } from '../table/table_row';
 import { PaginationBar, PaginationType } from './pagination_bar';
 import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
+import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
+import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 
 const dataTypesProfiles = {
   auto: {
@@ -142,6 +144,7 @@ export class EuiBasicTable extends Component {
 
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
+    responsive: true,
     noItemsMessage: 'No items found',
     itemIdToExpandedRowMap: {},
   };
@@ -285,9 +288,47 @@ export class EuiBasicTable extends Component {
   }
 
   renderTable() {
+
+    const { compressed, responsive } = this.props;
+
+    const mobileHeader = responsive ? (<EuiTableHeaderMobile>{this.renderTableMobileSort()}</EuiTableHeaderMobile>) : undefined;
     const head = this.renderTableHead();
     const body = this.renderTableBody();
-    return <EuiTable>{head}{body}</EuiTable>;
+    return (
+      <div
+        ref={element => { this.tableElement = element; }}
+      >
+        {mobileHeader}
+        <EuiTable responsive={responsive} compressed={compressed}>{head}{body}</EuiTable>
+      </div>
+    );
+  }
+
+  renderTableMobileSort() {
+    const { columns, sorting } = this.props;
+    const items = [];
+
+    if (!sorting) {
+      return null;
+    }
+
+    columns.forEach((column, index) => {
+      if(!column.sortable || column.hideForMobile) {
+        return;
+      }
+
+      const sortDirection = this.resolveColumnSortDirection(column);
+
+      items.push({
+        name: column.name,
+        key: `_data_s_${column.field}_${index}`,
+        onSort: this.resolveColumnOnSort(column),
+        isSorted: !!sortDirection,
+        isSortAscending: sortDirection ? SortDirection.isAsc(sortDirection) : undefined,
+      });
+    });
+
+    return items.length ? <EuiTableSortMobile items={items} /> : null;
   }
 
   renderTableHead() {
@@ -373,6 +414,8 @@ export class EuiBasicTable extends Component {
           key={`_data_h_${column.field}_${index}`}
           align={align}
           width={column.width}
+          isMobileHeader={column.isMobileHeader}
+          hideForMobile={column.hideForMobile}
           {...sorting}
         >
           {column.name}
@@ -405,7 +448,7 @@ export class EuiBasicTable extends Component {
     return (
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell align="center" colSpan={colSpan}>
+          <EuiTableRowCell align="center" colSpan={colSpan} isMobileFullWidth={true}>
             <EuiIcon type="minusInCircle" color="danger"/> {error}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -419,7 +462,7 @@ export class EuiBasicTable extends Component {
     return (
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell align="center" colSpan={colSpan}>
+          <EuiTableRowCell align="center" colSpan={colSpan} isMobileFullWidth={true}>
             {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -428,7 +471,7 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemRow(item, rowIndex) {
-    const { columns, selection, itemIdToExpandedRowMap } = this.props;
+    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap, isExpandable } = this.props;
 
     const cells = [];
 
@@ -451,12 +494,19 @@ export class EuiBasicTable extends Component {
       }
     });
 
-    // Occupy full width of table, taking checkbox column into account.
-    const expandedRowColSpan = selection ? columns.length + 1 : columns.length;
+    // Occupy full width of table, taking checkbox & mobile only columns into account.
+    let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
+
+    const mobileOnlyCols = columns.reduce((num, column) => {
+      return column.isMobileHeader ? num + 1 : num + 0;
+    }, 0);
+
+    expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
+
     // We'll use the ID to associate the expanded row with the original.
-    const expandedRowId = `row_${itemId}_expansion`;
+    const expandedRowId = itemIdToExpandedRowMap.length > 0 ? `row_${itemId}_expansion` : undefined;
     const expandedRow = itemIdToExpandedRowMap[itemId] ? (
-      <EuiTableRow id={expandedRowId} key={expandedRowId}>
+      <EuiTableRow id={expandedRowId} key={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
         <EuiTableRowCell colSpan={expandedRowColSpan}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
@@ -467,7 +517,10 @@ export class EuiBasicTable extends Component {
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
           aria-owns={expandedRowId}
+          isSelectable={isSelectable}
           isSelected={selected}
+          hasActions={hasActions}
+          isExpandable={isExpandable}
         >
           {cells}
         </EuiTableRow>
@@ -550,7 +603,7 @@ export class EuiBasicTable extends Component {
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
-      <EuiTableRowCell showOnHover={true} key={key} align="right" textOnly={false}>
+      <EuiTableRowCell showOnHover={true} key={key} align="right" textOnly={false} hasActions={true}  >
         {tools}
       </EuiTableRowCell>
     );
@@ -577,6 +630,7 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={align}
+        header={column.name}
         // If there's no render function defined then we're only going to render text.
         textOnly={textOnly || !render}
         {...rest}
@@ -605,6 +659,8 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={align}
+        header={column.name}
+        isExpander={column.isExpander}
         {...rest}
       >
         {content}
@@ -624,7 +680,7 @@ export class EuiBasicTable extends Component {
     return profile.align;
   }
 
-  resolveColumnSortDirection(column) {
+  resolveColumnSortDirection = (column) => {
     const { sorting } = this.props;
     if (!sorting || !sorting.sort || !column.sortable) {
       return;
@@ -634,7 +690,7 @@ export class EuiBasicTable extends Component {
     }
   }
 
-  resolveColumnOnSort(column) {
+  resolveColumnOnSort = (column) => {
     const { sorting } = this.props;
     if (!sorting || !column.sortable) {
       return;

@@ -3,13 +3,12 @@
   &-loading {
     position: relative;
 
-    thead {
+    tbody {
       overflow: hidden;
 
-      &:after {
+      &:before {
         position: absolute;
-        top: 36px;
-        content: ' ';
+        content: '';
         width: 100%;
         height: $euiBorderWidthThick;
         background-color: $euiColorPrimary;

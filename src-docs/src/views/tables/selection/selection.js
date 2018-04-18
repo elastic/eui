@@ -10,6 +10,8 @@ import {
   EuiLink,
   EuiHealth,
   EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../../src/components';
 
 /*
@@ -47,6 +49,8 @@ export class Table extends Component {
       sortDirection: 'asc',
       selectedItems: [],
     };
+
+    this.renderStatus = this.renderStatus.bind(this);
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
@@ -99,6 +103,12 @@ export class Table extends Component {
     );
   }
 
+  renderStatus(online) {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
+  }
+
   render() {
     const {
       pageIndex,
@@ -119,10 +129,22 @@ export class Table extends Component {
       name: 'First Name',
       sortable: true,
       truncateText: true,
+      hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
+      hideForMobile: true,
+    }, {
+      field: 'firstName',
+      name: 'Full Name',
+      isMobileHeader: true,
+      render: (name, item) => (
+        <EuiFlexGroup responsive={false} alignItems="center">
+          <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{this.renderStatus(item.online)}</EuiFlexItem>
+        </EuiFlexGroup>
+      ),
     }, {
       field: 'github',
       name: 'Github',
@@ -148,12 +170,11 @@ export class Table extends Component {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-      sortable: true
+      render: (online) => (
+        this.renderStatus(online)
+      ),
+      sortable: true,
+      hideForMobile: true,
     }];
 
     const pagination = {
@@ -185,6 +206,7 @@ export class Table extends Component {
           columns={columns}
           pagination={pagination}
           sorting={sorting}
+          isSelectable={true}
           selection={selection}
           onChange={this.onTableChange}
         />

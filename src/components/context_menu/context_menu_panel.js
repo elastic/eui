@@ -34,6 +34,7 @@ export class EuiContextMenuPanel extends Component {
     onUseKeyboardToNavigate: PropTypes.func,
     hasFocus: PropTypes.bool,
     items: PropTypes.array,
+    watchedItemProps: PropTypes.array,
     showNextPanel: PropTypes.func,
     showPreviousPanel: PropTypes.func,
     initialFocusedItemIndex: PropTypes.number
@@ -219,6 +220,26 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
+  getWatchedPropsForItems(items) {
+    // This lets us compare prevProps and nextProps among items so we can re-render if our items
+    // have changed.
+    const { watchedItemProps } = this.props;
+
+    // Create fingerprint of all item's watched properties
+    if(items && items.length && watchedItemProps && watchedItemProps.length) {
+      return JSON.stringify(items.map(item => {
+        // Create object of item properties and values
+        const props = {
+          key: item.key,
+        };
+        watchedItemProps.forEach(prop => props[prop] = item.props[prop]);
+        return props;
+      }));
+    }
+
+    return null;
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     // Prevent calling `this.updateFocus()` below if we don't have to.
     if (nextProps.hasFocus !== this.props.hasFocus) {
@@ -230,6 +251,11 @@ export class EuiContextMenuPanel extends Component {
     }
 
     if (nextState.focusedItemIndex !== this.state.focusedItemIndex) {
+      return true;
+    }
+
+    // Check if any watched item properties changed by quick string comparison
+    if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
       return true;
     }
 
@@ -276,6 +302,7 @@ export class EuiContextMenuPanel extends Component {
       onUseKeyboardToNavigate, // eslint-disable-line no-unused-vars
       hasFocus, // eslint-disable-line no-unused-vars
       items,
+      watchedItemProps, // eslint-disable-line no-unused-vars
       initialFocusedItemIndex, // eslint-disable-line no-unused-vars
       showNextPanel, // eslint-disable-line no-unused-vars
       showPreviousPanel, // eslint-disable-line no-unused-vars

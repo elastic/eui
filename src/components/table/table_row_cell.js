@@ -22,8 +22,22 @@ export const EuiTableRowCell = ({
   showOnHover,
   textOnly,
   colSpan,
+  header,
+  hideForMobile,
+  isMobileHeader,
+  isMobileFullWidth,
+  hasActions,
+  isExpander,
   ...rest
 }) => {
+  const cellClasses = classNames('euiTableRowCell', {
+    'euiTableRowCell--hideForMobile': hideForMobile,
+    'euiTableRowCell--isMobileHeader': isMobileHeader,
+    'euiTableRowCell--hasActions': hasActions,
+    'euiTableRowCell--isMobileFullWidth': isMobileFullWidth,
+    'euiTableRowCell--isExpander': isExpander,
+  });
+
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
@@ -48,7 +62,7 @@ export const EuiTableRowCell = ({
   }
 
   return (
-    <td className="euiTableRowCell" colSpan={colSpan}>
+    <td className={cellClasses} colSpan={colSpan} data-header={header}>
       <div className={contentClasses} {...rest}>
         {modifiedChildren}
       </div>
@@ -63,7 +77,34 @@ EuiTableRowCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   textOnly: PropTypes.bool,
-  colSpan: PropTypes.number
+  colSpan: PropTypes.number,
+  /**
+   * The column's header title for use in mobile view (will be added as a data-attr)
+   */
+  header: PropTypes.string,
+  /**
+   * Indicates if the column was created to be the row's heading in mobile view
+   * (this column will be hidden at larger screens)
+   */
+  isMobileHeader: PropTypes.bool,
+  /**
+   * Indicates if the column should not show for mobile users
+   * (typically hidden because a custom mobile header utilizes the column's contents)
+   */
+  hideForMobile: PropTypes.bool,
+  /**
+   * Allocates 100% of the width of the container in mobile view
+   * (typically cells are contained to 50%)
+   */
+  isMobileFullWidth: PropTypes.bool,
+  /**
+   * Indicates if the column is dedicated to icon-only actions (affects mobile only)
+   */
+  hasActions: PropTypes.bool,
+  /**
+   * Indicates if the column is dedicated as the expandable row toggle
+   */
+  isExpander: PropTypes.bool,
 };
 
 EuiTableRowCell.defaultProps = {

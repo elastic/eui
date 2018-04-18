@@ -26,6 +26,8 @@ import {
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
+  EuiTableSortMobile,
+  EuiTableHeaderMobile,
 } from '../../../../../src/components';
 
 import {
@@ -207,11 +209,20 @@ export default class extends Component {
       alignment: LEFT_ALIGNMENT,
       width: '24px',
       cellProvider: cell => <EuiIcon type={cell} size="m" />,
+      hideForMobile: true,
     }, {
       id: 'title',
       label: 'Title',
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
+      hideForMobile: true,
+    }, {
+      id: 'title_type',
+      label: 'Title',
+      isMobileHeader: true,
+      render: (title, item) => (
+        <span><EuiIcon type={item.type} size="m" style={{ verticalAlign: "text-top" }} /> {title}</span>
+      ),
     }, {
       id: 'health',
       label: 'Health',
@@ -332,37 +343,66 @@ export default class extends Component {
     return this.state.itemIdToOpenActionsPopoverMap[itemId];
   };
 
+  renderSelectAll = mobile => {
+    return (
+      <EuiCheckbox
+        id="selectAllCheckbox"
+        label={mobile ? 'Select all' : null}
+        checked={this.areAllItemsSelected()}
+        onChange={this.toggleAll.bind(this)}
+        type={mobile ? null : 'inList'}
+      />
+    );
+  }
+
+  getTableMobileSortItems() {
+    const items = [];
+    this.columns.forEach((column) => {
+      if (column.isCheckbox || !column.isSortable) {
+        return;
+      }
+      items.push({
+        name: column.label,
+        key: column.id,
+        onSort: this.onSort.bind(this, column.id),
+        isSorted: this.state.sortedColumn === column.id,
+        isSortAscending: this.sortableProperties.isAscendingByName(column.id),
+      });
+    });
+    return items.length ? items : null;
+  }
+
   renderHeaderCells() {
-    return this.columns.map((column, columnIndex) => {
+    const headers = [];
+
+    this.columns.forEach((column, columnIndex) => {
       if (column.isCheckbox) {
-        return (
+        headers.push(
           <EuiTableHeaderCellCheckbox
             key={column.id}
             width={column.width}
           >
-            <EuiCheckbox
-              id="selectAllCheckbox"
-              checked={this.areAllItemsSelected()}
-              onChange={this.toggleAll.bind(this)}
-              type="inList"
-            />
+            {this.renderSelectAll()}
           </EuiTableHeaderCellCheckbox>
         );
+      } else {
+        headers.push(
+          <EuiTableHeaderCell
+            key={column.id}
+            align={this.columns[columnIndex].alignment}
+            width={column.width}
+            onSort={column.isSortable ? this.onSort.bind(this, column.id) : undefined}
+            isSorted={this.state.sortedColumn === column.id}
+            isSortAscending={this.sortableProperties.isAscendingByName(column.id)}
+            isMobileHeader={column.isMobileHeader}
+          >
+            {column.label}
+          </EuiTableHeaderCell>
+        );
       }
-
-      return (
-        <EuiTableHeaderCell
-          key={column.id}
-          align={this.columns[columnIndex].alignment}
-          width={column.width}
-          onSort={column.isSortable ? this.onSort.bind(this, column.id) : undefined}
-          isSorted={this.state.sortedColumn === column.id}
-          isSortAscending={this.sortableProperties.isAscendingByName(column.id)}
-        >
-          {column.label}
-        </EuiTableHeaderCell>
-      );
     });
+
+    return headers.length ? headers : null;
   }
 
   renderRows() {
@@ -389,7 +429,9 @@ export default class extends Component {
           return (
             <EuiTableRowCell
               key={column.id}
+              header={column.label}
               textOnly={false}
+              hasActions={true}
               align="right"
             >
               <EuiPopover
@@ -442,7 +484,11 @@ export default class extends Component {
           );
         }
 
-        if (column.cellProvider) {
+        if (column.render) {
+          const titleText = item.title.truncateText ? item.title.value : item.title;
+          const title = item.title.isLink ? <EuiLink href="">{item.title.value}</EuiLink> : titleText;
+          child = column.render(title, item);
+        } else if (column.cellProvider) {
           child = column.cellProvider(cell);
         } else if (cell.isLink) {
           child = <EuiLink href="">{cell.value}</EuiLink>;
@@ -455,9 +501,12 @@ export default class extends Component {
         return (
           <EuiTableRowCell
             key={column.id}
+            header={column.label}
             align={column.alignment}
             truncateText={cell && cell.truncateText}
             textOnly={cell ? cell.textOnly : true}
+            hideForMobile={column.hideForMobile}
+            isMobileHeader={column.isMobileHeader}
           >
             {child}
           </EuiTableRowCell>
@@ -468,6 +517,8 @@ export default class extends Component {
         <EuiTableRow
           key={item.id}
           isSelected={this.isItemSelected(item.id)}
+          isSelectable={true}
+          hasActions={true}
         >
           {cells}
         </EuiTableRow>
@@ -506,6 +557,15 @@ export default class extends Component {
         </EuiFlexGroup>
 
         <EuiSpacer size="m" />
+
+        <EuiTableHeaderMobile>
+          <EuiFlexGroup responsive={false} justifyContent="spaceBetween" alignItems="baseline">
+            <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiTableSortMobile items={this.getTableMobileSortItems()} />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiTableHeaderMobile>
 
         <EuiTable>
           <EuiTableHeader>

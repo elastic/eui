@@ -3,7 +3,7 @@
 exports[`renders EuiTable 1`] = `
 <table
   aria-label="aria-label"
-  class="euiTable testClass1 testClass2"
+  class="euiTable testClass1 testClass2 euiTable--responsive"
   data-test-subj="test subject string"
 >
   <thead>
@@ -15,7 +15,11 @@ exports[`renders EuiTable 1`] = `
         <div
           class="euiTableCellContent"
         >
-          Hi Title
+          <span
+            class="euiTableCellContent__text"
+          >
+            Hi Title
+          </span>
         </div>
       </th>
       <th
@@ -25,7 +29,11 @@ exports[`renders EuiTable 1`] = `
         <div
           class="euiTableCellContent"
         >
-          Bye Title
+          <span
+            class="euiTableCellContent__text"
+          >
+            Bye Title
+          </span>
         </div>
       </th>
     </tr>

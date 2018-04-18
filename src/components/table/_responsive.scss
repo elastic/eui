@@ -1,0 +1,184 @@
+@import '../panel/mixins';
+
+@include screenXSmall(){
+
+  .euiTable.euiTable--responsive {
+    // Not allowing compressed styles in mobile view (for now)
+
+    thead {
+      display: none; // Use mobile versions of selecting and filtering instead
+    }
+
+    // Make each row a Panel
+    @include euiPanel($selector: 'euiTableRow');
+
+    .euiTableRow {
+      display: flex;
+      flex-wrap: wrap;
+      padding: $euiTableCellContentPadding;
+      margin-bottom: $euiTableCellContentPadding;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &.euiTableRow-isExpandable,
+      &.euiTableRow-hasActions {
+        @include euiTableActionsBackground--mobile;
+        padding-right: $euiSizeXXL;
+        position: relative;
+      }
+
+      &.euiTableRow-isExpandable .euiTableRowCell--isExpander,
+      &.euiTableRow-hasActions .euiTableRowCell--hasActions {
+        min-width: 0;
+        width: $euiSizeL;
+        position: absolute;
+        top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
+        right: $euiTableCellContentPadding;
+
+        &::before {
+          display: none; // Don't display table headers
+        }
+
+        .euiTableCellContent {
+          padding: 0;
+
+          .euiLink {
+            padding: $euiSizeXS;
+          }
+        }
+      }
+
+      &.euiTableRow-hasActions.euiTableRow-isExpandable {
+        .euiTableRowCell--isExpander {
+          top: auto;
+          bottom: $euiSize; // same as row padding-bottom
+        }
+      }
+
+      &.euiTableRow-isSelectable {
+        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding/2);
+        position: relative;
+
+        .euiTableRowCellCheckbox {
+          position: absolute;
+          left: $euiTableCellContentPadding/2;
+          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
+        }
+      }
+
+      // override hover & selected colors
+      &.euiTableRow-isSelected {
+        &,
+        &:hover,
+        + .euiTableRow.euiTableRow-isExpandedRow,
+        &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
+          background-color: $euiTableSelectedColor;
+        }
+      }
+
+      &.euiTableRow-isExpandedRow {
+        @include euiTableActionsBackground--mobile;
+        @include euiBottomShadowSmall;
+        margin-top: -$euiTableCellContentPadding*2;
+        position: relative;
+        z-index: 2; // on top of it's parent/previous row
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        padding-left: $euiSizeS; // override selectable as the padding is already applied via the contents
+
+        &:hover {
+          background-color: $euiColorEmptyShade; // keep white background to cover triggering row's border
+        }
+
+        .euiTableRowCell {
+          width: calc(100% - #{$euiSizeXXL});
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .euiTableRowCell {
+      display: block; /* IE requires block to grow and wrap. */
+      min-width: 50%;
+      border: none;
+
+      // Prepend the data attribute "data-header" to each cell
+      &::before {
+        content: attr(data-header);
+        display: block;
+        @include fontSize($euiFontSize * .6875);
+        color: $euiColorDarkShade;
+        padding: $euiSizeS;
+        padding-bottom: 0;
+        margin-bottom: -$euiSizeS; // pull up cell content closer
+
+        min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
+
+        // Always truncate
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      // Remove min-height of cell header if it's the only cell
+      &:only-child::before {
+        min-height: 0;
+      }
+
+      &.euiTableRowCell--isMobileHeader {
+        @include euiFontSize;
+        display: block;
+        width: 100%;
+
+        &::before {
+          display: none; // don't display the header prop
+        }
+      }
+
+      &.euiTableRowCell--isMobileFullWidth {
+        width: 100%;
+
+        .euiTableCellContent--alignCenter {
+          justify-content: center;
+          text-align: center;
+        }
+      }
+
+      &.euiTableRowCell--hideForMobile { // must come last to override any special cases
+        display: none;
+      }
+    }
+
+    .euiTableRowCellCheckbox {
+      border: none;
+    }
+
+    // always show hover items on mobile
+    .euiTableCellContent--showOnHover {
+      .euiTableCellContent__hoverItem {
+        opacity: 1;
+
+        // except when disabled
+        &:disabled,
+        button:disabled {
+          opacity: 0;
+        }
+      }
+    }
+
+    // force all content back to left side
+    .euiTableCellContent--alignRight {
+      justify-content: flex-start;
+    }
+
+    .euiTableCellContent--alignCenter {
+      justify-content: flex-start;
+    }
+  }
+}

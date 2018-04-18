@@ -10,11 +10,11 @@ export const EuiTableHeaderCellCheckbox = ({
   const classes = classNames('euiTableHeaderCellCheckbox', className);
 
   return (
-    <td className={classes} {...rest} >
+    <th className={classes} {...rest} >
       <div className="euiTableCellContent">
         {children}
       </div>
-    </td>
+    </th>
   );
 };
 

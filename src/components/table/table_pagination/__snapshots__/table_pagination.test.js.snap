@@ -2,7 +2,7 @@
 
 exports[`EuiTablePagination is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--responsive"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -13,7 +13,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       <button
         aria-controls="customizablePagination"
         aria-expanded="false"
-        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty--iconRight"
+        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
         type="button"
       >
         <span

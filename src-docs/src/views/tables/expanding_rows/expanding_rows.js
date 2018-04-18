@@ -7,11 +7,15 @@ import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
-  EuiLink,
+  EuiButtonIcon,
   EuiHealth,
   EuiButton,
   EuiDescriptionList,
 } from '../../../../../src/components';
+
+import {
+  RIGHT_ALIGNMENT,
+} from '../../../../../src/services';
 
 /*
 Example user object:
@@ -147,10 +151,20 @@ export class Table extends Component {
       name: 'First Name',
       sortable: true,
       truncateText: true,
+      hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
+      hideForMobile: true,
+    }, {
+      field: 'firstName',
+      name: 'Full Name',
+      sortable: true,
+      isMobileHeader: true,
+      render: (name, item) => (
+        <span>{item.firstName} {item.lastName}</span>
+      )
     }, {
       field: 'dateOfBirth',
       name: 'Date of Birth',
@@ -158,11 +172,24 @@ export class Table extends Component {
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
-      name: 'Details',
+      name: 'Actions',
+      actions: [{
+        name: 'Clone',
+        description: 'Clone this person',
+        type: 'icon',
+        icon: 'copy',
+        onClick: () => ''
+      }]
+    }, {
+      align: RIGHT_ALIGNMENT,
+      width: '40px',
+      isExpander: true,
       render: (item) => (
-        <EuiLink onClick={() => this.toggleDetails(item)}>
-          {itemIdToExpandedRowMap[item.id] ? 'Hide' : 'Show'}
-        </EuiLink>
+        <EuiButtonIcon
+          onClick={() => this.toggleDetails(item)}
+          aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
+          iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
+        />
       )
     }];
 
@@ -193,9 +220,12 @@ export class Table extends Component {
         <EuiBasicTable
           items={pageOfItems}
           itemIdToExpandedRowMap={this.state.itemIdToExpandedRowMap}
+          isExpandable={true}
+          hasActions={true}
           columns={columns}
           pagination={pagination}
           sorting={sorting}
+          isSelectable={true}
           selection={selection}
           onChange={this.onTableChange}
         />

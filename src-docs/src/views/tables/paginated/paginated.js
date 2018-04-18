@@ -8,6 +8,8 @@ import {
   EuiBasicTable,
   EuiLink,
   EuiHealth,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../../src/components';
 
 /*
@@ -56,6 +58,12 @@ export class Table extends Component {
     });
   };
 
+  renderStatus = (online) => {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
+  }
+
   render() {
     const {
       pageIndex,
@@ -71,10 +79,22 @@ export class Table extends Component {
       field: 'firstName',
       name: 'First Name',
       truncateText: true,
+      hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
+      hideForMobile: true,
+    }, {
+      field: 'firstName',
+      name: 'Full Name',
+      isMobileHeader: true,
+      render: (name, item) => (
+        <EuiFlexGroup responsive={false} alignItems="center">
+          <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{this.renderStatus(item.online)}</EuiFlexItem>
+        </EuiFlexGroup>
+      ),
     }, {
       field: 'github',
       name: 'Github',
@@ -99,11 +119,9 @@ export class Table extends Component {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      }
+      render: (online) => (
+        this.renderStatus(online)
+      )
     }];
 
     const pagination = {
