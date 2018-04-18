@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
+- Add support for node as a proptype for EuiForm and EuiFormRow errors. ([#685](https://github.com/elastic/eui/pull/685))
 
 **Bug fixes**
 
