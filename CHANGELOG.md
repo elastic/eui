@@ -1,12 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
-- Virtualized `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
 
 **Bug fixes**
 
 - Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
 - `EuiInMemoryTable` pagination state is now reset automatically when a search is executed ([#686](https://github.com/elastic/eui/pull/686))
+- Fixed slow performance of `EuiComboBox` when there are hundreds or thousands of options by virtualizing `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
 
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
