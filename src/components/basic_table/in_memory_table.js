@@ -155,17 +155,26 @@ export class EuiInMemoryTable extends Component {
     });
   };
 
-  onQueryChange(query) {
+  onQueryChange = (query) => {
     if (this.props.search.onChange) {
-      const shouldQueryInMemory = this.props.search.onChange(query);
+      const shouldQueryInMemory = this.props.search.onChange(query, () => {
+        // Reset pagination state.
+        this.setState({
+          pageIndex: 0,
+        })
+      });
+
       if (!shouldQueryInMemory) {
         return;
       }
     }
+
+    // Reset pagination state.
     this.setState({
-      query
+      query,
+      pageIndex: 0,
     });
-  }
+  };
 
   renderSearchBar() {
     const { search } = this.props;
@@ -181,7 +190,7 @@ export class EuiInMemoryTable extends Component {
 
       return (
         <EuiSearchBar
-          onChange={this.onQueryChange.bind(this)}
+          onChange={this.onQueryChange}
           {...searchBarProps}
         />
       );
