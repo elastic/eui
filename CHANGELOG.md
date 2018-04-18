@@ -41,9 +41,9 @@
 
 ## [`0.0.40`](https://github.com/elastic/eui/tree/v0.0.40)
 
+- Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
 - Added TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
 - Grayed out labels for `disabled` controls ([#648](https://github.com/elastic/eui/pull/648))
-- Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
 
 **Bug fixes**
 
@@ -52,7 +52,6 @@
 **Breaking changes**
 
 - **Note: This breaking change is reversed in 0.0.43.** Added a default `max-width` to `EuiText`. ([#627](https://github.com/elastic/eui/pull/627))
-
 
 ## [`0.0.39`](https://github.com/elastic/eui/tree/v0.0.39)
 
