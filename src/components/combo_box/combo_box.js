@@ -175,10 +175,9 @@ export class EuiComboBox extends Component {
     }
 
     // Group titles are included in option list but are not selectable
-    // Skip group title options and disabled options
+    // Skip group title options
     const direction = amount > 0 ? 1 : -1;
-    while (this.matchingOptions[nextActiveOptionIndex].isGroupLabelOption
-      || this.matchingOptions[nextActiveOptionIndex].disabled) {
+    while (this.matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
       nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
       if (nextActiveOptionIndex < 0) {
