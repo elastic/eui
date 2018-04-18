@@ -1,0 +1,19 @@
+// Hide mobile-only elements by default
+.euiTableHeaderMobile,
+.euiTableHeaderCell--isMobileHeader {
+  display: none;
+}
+
+@include screenXSmall(){
+
+  .euiTableHeaderMobile {
+    display: flex;
+    justify-content: flex-end;
+    padding: $euiTableCellContentPadding 0;
+  }
+
+  .euiTableSortMobile {
+    display: block;
+  }
+
+}

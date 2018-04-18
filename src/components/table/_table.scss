@@ -12,12 +12,6 @@
   background-color: $euiColorEmptyShade;
 }
 
-// Hide mobile-only elements by default
-.euiTableHeaderMobile,
-.euiTableHeaderCell--isMobileHeader {
-  display: none;
-}
-
 // Compressed styles not for mobile
 @include screenSmallMediumLarge {
   .euiTable--compressed {
