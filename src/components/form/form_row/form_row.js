@@ -150,7 +150,7 @@ EuiFormRow.propTypes = {
   label: PropTypes.node,
   id: PropTypes.string,
   isInvalid: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
   helpText: PropTypes.node,
   hasEmptyLabelSpace: PropTypes.bool,
   fullWidth: PropTypes.bool,

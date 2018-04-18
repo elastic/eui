@@ -54,5 +54,5 @@ export const EuiForm = ({
 
 EuiForm.propTypes = {
   isInvalid: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
