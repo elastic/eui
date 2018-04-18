@@ -48,7 +48,7 @@ exports[`renders EuiConfirmModal 1`] = `
       class="euiModalBody"
     >
       <div
-        class="euiText euiText--constrainedWidth"
+        class="euiText"
         data-test-subj="confirmModalBodyText"
       >
         <p>

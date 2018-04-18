@@ -4,6 +4,7 @@ import {
   EuiText,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 const exampleText = (
@@ -13,7 +14,15 @@ const exampleText = (
       Far out in the uncharted backwaters of the unfashionable end of
       the western spiral arm of the Galaxy lies a small unregarded
       yellow sun.
+
+      When suddenly some wild JavaScript code appeared! <code>const whoa = &quot;!&quot;</code>
     </p>
+
+    <pre>
+      <code>
+        const completelyUnexpected = &quot;the audacity!&quot;;
+      </code>
+    </pre>
 
     <p>
       Orbiting this at a distance of roughly ninety-two million miles
@@ -80,6 +89,29 @@ const exampleText = (
     </p>
 
     <h6>This is Heading Six</h6>
+
+    <EuiHorizontalRule />
+
+    <dl>
+      <dt>
+        The Elder Scrolls: Morrowind
+      </dt>
+      <dd>
+        The opening music alone evokes such strong memories.
+      </dd>
+      <dt>
+        TIE Fighter
+      </dt>
+      <dd>
+        The sequel to XWING, join the dark side and fly for the Emporer.
+      </dd>
+      <dt>
+        Quake 2
+      </dt>
+      <dd>
+        The game that made me drop out of college.
+      </dd>
+    </dl>
   </div>
 );
 

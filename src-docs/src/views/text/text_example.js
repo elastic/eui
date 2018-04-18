@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiText,
   EuiTextColor,
+  EuiTextAlign,
 } from '../../../../src/components';
 
 import Text from './text';
@@ -24,9 +25,9 @@ import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
 const textColorHtml = renderToHtml(TextColor);
 
-import TextWidth from './text_width';
-const textWidthSource = require('!!raw-loader!./text_width');
-const textWidthHtml = renderToHtml(TextWidth);
+import TextAlign from './text_align';
+const textAlignSource = require('!!raw-loader!./text_align');
+const textAlignHtml = renderToHtml(TextAlign);
 
 export const TextExample = {
   title: 'Text',
@@ -48,8 +49,9 @@ export const TextExample = {
           their styling).
         </p>
         <p>
-          <EuiCode>EuiText</EuiCode> also ensure proper line-length for readability by
-          setting a <EuiCode>max-width</EuiCode> on the entire component.
+          <EuiCode>EuiText</EuiCode> can ensure proper line-length for readability by
+          setting a <EuiCode>max-width</EuiCode> on the entire component. To add the
+          max-width setting, set <EuiCode>grow = false</EuiCode>.
         </p>
       </div>
     ),
@@ -72,23 +74,6 @@ export const TextExample = {
     ),
     demo: <TextSmall />,
   }, {
-    title: 'Changing width',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: textWidthSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: textWidthHtml,
-    }],
-    text: (
-      <p>
-        In situations where you need to allow the width to expand to fill its container,
-        you can remove the width constraint by providing the <EuiCode>grow</EuiCode> prop.
-      </p>
-    ),
-    props: { EuiText },
-    demo: <TextWidth />,
-  }, {
     title: 'Coloring text',
     source: [{
       type: GuideSectionTypes.JS,
@@ -109,5 +94,24 @@ export const TextExample = {
     ),
     props: { EuiTextColor },
     demo: <TextColor />,
+  }, {
+    title: 'Alignment',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: textAlignSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: textAlignHtml,
+    }],
+    text: (
+      <p>
+        There are two ways to align text. Either individually by
+        applying <EuiCode>EuiTextAlign</EuiCode> on individual text objects, or
+        by passing the <EuiCode>textAlign</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
+        a blanket approach across the entirely of your text.
+      </p>
+    ),
+    props: { EuiTextAlign },
+    demo: <TextAlign />,
   }],
 };

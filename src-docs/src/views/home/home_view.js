@@ -13,7 +13,6 @@ import {
 
 import {
   EuiCard,
-  EuiCode,
   EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
@@ -77,7 +76,7 @@ export const HomeView = () => (
 
     </EuiFlexGroup>
     <EuiSpacer />
-    <EuiText>
+    <EuiText grow={false}>
       <p>
         The Elastic UI framework (EUI) is a design library in use at Elastic to
         build internal products that need to share our aesthetics.
@@ -160,26 +159,21 @@ export const HomeView = () => (
       </EuiFlexItem>
     </EuiFlexGrid>
     <EuiSpacer />
-    <EuiText>
+    <EuiText grow={false}>
       <h2>Design goals</h2>
-      <p>EUI has the following primary goals..</p>
-      <ul>
-        <li><EuiCode>EUI is accessible to everyone</EuiCode>. Use high contrast,
-          color-blind safe palettes and proper aria labels.
-        </li>
-        <li><EuiCode>EUI is themable</EuiCode>. Theming should involve changing
-          less than a dozen lines of code. This means strict variable usage.
-        </li>
-        <li><EuiCode>EUI is responsive</EuiCode>. Currently we target
-          mobile, laptop, desktop and wide desktop breakpoints.
-        </li>
-        <li><EuiCode>EUI is playful</EuiCode>. Consistent use of animation can
-          bring life to our design.
-        </li>
-        <li><EuiCode>EUI is documented and has tests</EuiCode>. Make sure
-          the code is friendly to the novice and expert alike.
-        </li>
-      </ul>
+      <p>EUI has the following primary goals...</p>
+      <dl>
+        <dt>EUI is accessible to everyone.</dt>
+        <dd>Use high contrast, color-blind safe palettes and proper aria labels.</dd>
+        <dt>EUI is themable.</dt>
+        <dd>Theming should involve changingless than a dozen lines of code. This means strict variable usage.</dd>
+        <dt>EUI is responsive.</dt>
+        <dd>Currently we target mobile, laptop, desktop and wide desktop breakpoints.</dd>
+        <dt>EUI is playful.</dt>
+        <dd>Consistent use of animation can bring life to our design.</dd>
+        <dt>EUI is documented and has tests.</dt>
+        <dd>Make sure Make sure the code is friendly to the novice and expert alike.</dd>
+      </dl>
     </EuiText>
   </div>
 );

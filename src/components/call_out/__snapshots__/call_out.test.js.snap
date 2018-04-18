@@ -14,7 +14,7 @@ exports[`EuiCallOut is rendered 1`] = `
     />
   </div>
   <div
-    class="euiText euiText--small euiText--constrainedWidth"
+    class="euiText euiText--small"
   >
     Content
   </div>
@@ -124,7 +124,7 @@ exports[`EuiCallOut props title is rendered 1`] = `
     </span>
   </div>
   <div
-    class="euiText euiText--small euiText--constrainedWidth"
+    class="euiText euiText--small"
   >
     Content
   </div>

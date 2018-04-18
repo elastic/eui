@@ -2,12 +2,18 @@
 
 - Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
 - `EuiForm` and `EuiFormRow` now accept nodes for `errors` prop ([#685](https://github.com/elastic/eui/pull/685))
+- Removed the default `max-width` from `EuiText`. This can still be applied by setting `grow={false}` ([#683](https://github.com/elastic/eui/pull/683))
+- Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
 
 **Bug fixes**
 
 - Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
 - `EuiInMemoryTable` pagination state is now reset automatically when a search is executed ([#686](https://github.com/elastic/eui/pull/686))
 - Fixed slow performance of `EuiComboBox` when there are hundreds or thousands of options by virtualizing `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
+- Fixed some text styles  ([#683](https://github.com/elastic/eui/pull/683))
+    - Fixed font-family of input, textarea, select, and buttons
+    - Fixed style of code, pre, and dl’s inside `EuiText`
+    - Fixed ghost text color which was being set to a dark gray
 
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
@@ -42,6 +48,10 @@
 **Bug fixes**
 
 - Fix visual shadow glitch on hover of `EuiToast` ([#632](https://github.com/elastic/eui/pull/632))
+
+**Breaking changes**
+
+- **Note: This breaking change is reversed in 0.0.43.** Added a default `max-width` to `EuiText`. ([#627](https://github.com/elastic/eui/pull/627))
 
 ## [`0.0.39`](https://github.com/elastic/eui/tree/v0.0.39)
 

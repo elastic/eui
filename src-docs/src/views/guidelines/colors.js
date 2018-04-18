@@ -78,7 +78,7 @@ export default() => (
 
     <EuiSpacer size="xl" />
 
-    <EuiText className="guideSection__text">
+    <EuiText grow={false} className="guideSection__text">
       <h2>Core palette</h2>
       <p>
         Elastic UI builds with a very limited palette. We use a core set of three colors,
@@ -98,7 +98,7 @@ export default() => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiText className="guideSection__text">
+    <EuiText grow={false} className="guideSection__text">
       <h2>Qualitative visualization palette</h2>
       <p>
         The following colors are color-blind safe and should be used in
@@ -118,7 +118,7 @@ export default() => (
 
     <EuiSpacer size="xxl" />
 
-    <EuiText className="guideSection__text">
+    <EuiText grow={false} className="guideSection__text">
       <h2>Accessible text contrast</h2>
       <p>
         <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">

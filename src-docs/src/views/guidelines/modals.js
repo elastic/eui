@@ -1,10 +1,6 @@
 import React from 'react';
 
 import {
-  Link,
-} from 'react-router';
-
-import {
   GuidePage,
   GuideRule,
   GuideRuleExample,
@@ -30,15 +26,9 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <GuidePage title="Modal guidelines">
+  <GuidePage title="Modal guidelines" componentLinkTo="/layout/modal">
 
-    <Link to="/layout/modal">
-      <EuiButton className="guideRule__goToButton">
-        View component code
-      </EuiButton>
-    </Link>
-
-    <EuiText className="guideSection__text">
+    <EuiText grow={false} className="guideSection__text">
       <p>
         A modal says “pay attention to me and nothing else.”  A modal
         works best for focusing users&apos; attention on a short

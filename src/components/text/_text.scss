@@ -6,6 +6,8 @@
   p,
   ul,
   ol,
+  dl,
+  dd,
   blockquote,
   img,
   pre {
@@ -53,7 +55,8 @@
     line-height: convertToRem($baseLineHeightMultiplier * 4);
   }
 
-  h4 {
+  h4,
+  dt {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
   }
 
@@ -69,6 +72,16 @@
 
   small {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+  }
+
+  pre {
+    padding: $baseLineHeightMultiplier*2;
+  }
+
+  code {
+    // Setting the font size in rem's ensure it doesn't compound
+    // the 90% set by euiCodeBlock
+    font-size: convertToRem($baseFontSize * .9);
   }
 }
 
@@ -104,7 +117,6 @@
     margin-left: auto;
     margin-right: auto;
     font-family: Georgia,Times,Times New Roman,serif;
-    line-height: 1.5;
     font-style: italic;
 
     p:last-child {
@@ -141,7 +153,8 @@
     @include euiTitle("s");
   }
 
-  h4 {
+  h4,
+  dt {
     @include euiTitle("xs");
   }
 
@@ -155,10 +168,7 @@
   }
 
   pre {
-    height: 100%;
-    overflow: auto;
     white-space: pre-wrap;
-    padding: $euiSize;
   }
 
   pre,
@@ -172,8 +182,10 @@
     color: $euiCodeBlockColor;
   }
 
+  // unset font-size from euiCodeBlock so it doesn't doubly add 90%
+
   code {
-    line-height: $euiLineHeight;
+    display: inline-block; // ensures background stretches the full line-height
     font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
   }
@@ -182,6 +194,9 @@
 
   &.euiText--constrainedWidth {
     max-width: 36rem;
+    // If the max-width is way too short of the width of the container,
+    // at least make it 2/3 of it's parent
+    min-width: 75%;
   }
 
   &.euiText--small {

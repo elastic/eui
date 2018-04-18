@@ -285,4 +285,5 @@ export {
 export {
   EuiText,
   EuiTextColor,
+  EuiTextAlign,
 } from './text';
