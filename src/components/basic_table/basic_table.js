@@ -137,7 +137,8 @@ const BasicTablePropTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  compressed: PropTypes.bool,
 };
 
 export class EuiBasicTable extends Component {

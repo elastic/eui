@@ -8,6 +8,10 @@ export const propsInfo = {
           required: true,
           type: { name: 'object[]' }
         },
+        compressed: {
+          description: 'Makes the font and padding smaller for the entire table',
+          type: { name: 'bool' }
+        },
         columns: {
           description: 'Defines the table columns',
           required: true,
