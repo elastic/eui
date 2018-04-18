@@ -54,6 +54,10 @@ import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
 const asyncHtml = renderToHtml(Async);
 
+import Virtualized from './virtualized';
+const virtualizedSource = require('!!raw-loader!./virtualized');
+const virtualizedHtml = renderToHtml(Virtualized);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -94,6 +98,23 @@ export const ComboBoxExample = {
     }],
     props: { EuiComboBox },
     demo: <ComboBox />,
+  }, {
+    title: 'Virtualized',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: virtualizedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: virtualizedHtml,
+    }],
+    text: (
+      <p>
+        <EuiCode>EuiComboBoxList</EuiCode> uses <Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>{' '}
+        to only render visible options to be super fast no matter how many options there are.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Virtualized />,
   }, {
     title: 'Containers',
     source: [{
@@ -140,11 +161,19 @@ export const ComboBoxExample = {
       code: renderOptionHtml,
     }],
     text: (
-      <p>
-        You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>
-        and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the
-        <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
-      </p>
+      <Fragment>
+        <p>
+          You can provide a <EuiCode>renderOption</EuiCode> prop which will accept <EuiCode>option</EuiCode>{' '}
+          and <EuiCode>searchValue</EuiCode> arguments. Use the <EuiCode>value</EuiCode> prop of the{' '}
+          <EuiCode>option</EuiCode> object to store metadata about the option for use in this callback.
+        </p>
+
+        <p>
+          <strong>Note:</strong> virtualization (above) requires that each option have the same height.
+          Ensure that you render the options so that wrapping text is truncated instead of causing
+          the height of the option to change.
+        </p>
+      </Fragment>
     ),
     props: { EuiComboBox },
     demo: <RenderOption />,

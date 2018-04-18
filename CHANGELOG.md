@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `status` prop to `EuiStep` for additional styling ([#673](https://github.com/elastic/eui/pull/673))
+- Virtualized `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
 
 **Bug fixes**
 

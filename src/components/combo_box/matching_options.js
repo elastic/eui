@@ -40,18 +40,23 @@ const collectMatchingOption = (accumulator, option, selectedOptions, normalizedS
 
 export const getMatchingOptions = (options, selectedOptions, searchValue, isPreFiltered) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const optionToGroupMap = new Map();
   const matchingOptions = [];
 
   options.forEach(option => {
     if (option.options) {
+      const matchingOptionsForGroup = [];
       option.options.forEach(groupOption => {
-        optionToGroupMap.set(groupOption, option)
-        collectMatchingOption(matchingOptions, groupOption, selectedOptions, normalizedSearchValue, isPreFiltered);
-      })
+        collectMatchingOption(matchingOptionsForGroup, groupOption, selectedOptions, normalizedSearchValue, isPreFiltered);
+      });
+      if (matchingOptionsForGroup.length > 0) {
+        // Add option for group label
+        matchingOptions.push({ label: option.label, isGroupLabelOption: true });
+        // Add matching options for group
+        matchingOptions.push(...matchingOptionsForGroup);
+      }
     } else {
       collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue, isPreFiltered);
     }
   });
-  return { optionToGroupMap, matchingOptions };
+  return matchingOptions;
 };

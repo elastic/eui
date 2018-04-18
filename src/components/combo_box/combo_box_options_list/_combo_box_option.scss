@@ -1,6 +1,6 @@
 .euiComboBoxOption {
   font-size: $euiFontSizeS;
-  padding: $euiSizeXS $euiSizeS;
+  padding: $euiSizeXS $euiSizeS $euiSizeXS #{$euiSizeM + $euiSizeXS};
   width: 100%;
   text-align: left;
   border: $euiBorderThin;
@@ -11,12 +11,14 @@
   &:hover {
     text-decoration: underline;
   }
+
   &:focus {
     cursor: pointer;
     color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
   }
-  &:disabled {
+
+  &.euiComboBoxOption-isDisabled {
     color: $euiColorMediumShade;
     cursor: not-allowed;
     &:hover {
@@ -24,3 +26,9 @@
     }
   }
 }
+
+  .euiComboBoxOption__content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }

@@ -3,6 +3,7 @@
  * from the tab order with tabindex="-1" so that we can control the keyboard navigation interface.
  */
 
+import { throttle } from 'lodash';
 import React, {
   Component,
 } from 'react';
@@ -38,6 +39,7 @@ export class EuiComboBox extends Component {
     onCreateOption: PropTypes.func,
     renderOption: PropTypes.func,
     isInvalid: PropTypes.bool,
+    rowHeight: PropTypes.number,
   }
 
   static defaultProps = {
@@ -50,18 +52,17 @@ export class EuiComboBox extends Component {
 
     const initialSearchValue = '';
     const { options, selectedOptions } = props;
-    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
+    const matchingOptions = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
 
     this.state = {
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
+      activeOptionIndex: undefined,
     };
 
     // Cached derived state.
     this.matchingOptions = matchingOptions;
-    this.optionToGroupMap = optionToGroupMap;
-    this.activeOptionIndex = undefined;
     this.listBounds = undefined;
 
     // Refs.
@@ -122,6 +123,7 @@ export class EuiComboBox extends Component {
     this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
     this.setState({
+      width: comboBoxBounds.width,
       listPosition: position,
     });
   };
@@ -149,7 +151,7 @@ export class EuiComboBox extends Component {
     tabbableItems[comboBoxIndex + amount].focus();
   };
 
-  incrementActiveOptionIndex = amount => {
+  incrementActiveOptionIndex = throttle(amount => {
     // If there are no options available, reset the focus.
     if (!this.matchingOptions.length) {
       this.clearActiveOption();
@@ -161,33 +163,49 @@ export class EuiComboBox extends Component {
     if (!this.hasActiveOption()) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextActiveOptionIndex = amount < 0 ? this.options.length - 1 : 0;
+      nextActiveOptionIndex = amount < 0 ? this.matchingOptions.length - 1 : 0;
     } else {
-      nextActiveOptionIndex = this.activeOptionIndex + amount;
+      nextActiveOptionIndex = this.state.activeOptionIndex + amount;
 
       if (nextActiveOptionIndex < 0) {
-        nextActiveOptionIndex = this.options.length - 1;
-      } else if (nextActiveOptionIndex === this.options.length) {
+        nextActiveOptionIndex = this.matchingOptions.length - 1;
+      } else if (nextActiveOptionIndex === this.matchingOptions.length) {
         nextActiveOptionIndex = 0;
       }
     }
 
-    this.activeOptionIndex = nextActiveOptionIndex;
-    this.focusActiveOption();
-  };
+    // Group titles are included in option list but are not selectable
+    // Skip group title options
+    const direction = amount > 0 ? 1 : -1;
+    while (this.matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
+      nextActiveOptionIndex = nextActiveOptionIndex + direction;
+
+      if (nextActiveOptionIndex < 0) {
+        nextActiveOptionIndex = this.matchingOptions.length - 1;
+      } else if (nextActiveOptionIndex === this.matchingOptions.length) {
+        nextActiveOptionIndex = 0;
+      }
+    }
+
+    this.setState({
+      activeOptionIndex: nextActiveOptionIndex,
+    });
+  }, 200);
 
   hasActiveOption = () => {
-    return this.activeOptionIndex !== undefined;
+    return this.state.activeOptionIndex !== undefined;
   };
 
   clearActiveOption = () => {
-    this.activeOptionIndex = undefined;
+    this.setState({
+      activeOptionIndex: undefined,
+    });
   };
 
   focusActiveOption = () => {
     // If an item is focused, focus it.
-    if (this.hasActiveOption()) {
-      this.options[this.activeOptionIndex].focus();
+    if (this.hasActiveOption() && this.options[this.state.activeOptionIndex]) {
+      this.options[this.state.activeOptionIndex].focus();
     }
   };
 
@@ -366,6 +384,8 @@ export class EuiComboBox extends Component {
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
     this.searchInput.focus();
+    // If the user does this from a state in which an option has focus, then we need to clear it.
+    this.clearActiveOption();
   };
 
   onComboBoxFocus = (e) => {
@@ -379,7 +399,9 @@ export class EuiComboBox extends Component {
     // and we need to update the index.
     const optionIndex = this.options.indexOf(e.target);
     if (optionIndex !== -1) {
-      this.activeOptionIndex = optionIndex;
+      this.setState({
+        activeOptionIndex: optionIndex,
+      });
     }
   };
 
@@ -392,6 +414,12 @@ export class EuiComboBox extends Component {
 
   comboBoxRef = node => {
     this.comboBox = node;
+    if (this.comboBox) {
+      const comboBoxBounds = this.comboBox.getBoundingClientRect();
+      this.setState({
+        width: comboBoxBounds.width,
+      });
+    }
   };
 
   autoSizeInputRef = node => {
@@ -407,11 +435,7 @@ export class EuiComboBox extends Component {
   };
 
   optionRef = (index, node) => {
-    // Sometimes the node is null.
-    if (node) {
-      // Store all options.
-      this.options[index] = node;
-    }
+    this.options[index] = node;
   };
 
   componentDidMount() {
@@ -436,12 +460,14 @@ export class EuiComboBox extends Component {
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const { matchingOptions, optionToGroupMap } = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
+    const matchingOptions = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
     this.matchingOptions = matchingOptions;
-    this.optionToGroupMap = optionToGroupMap;
 
     if (!matchingOptions.length) {
-      this.clearActiveOption();
+      // Prevent endless setState -> componentWillUpdate -> setState loop.
+      if (nextState.hasActiveOption) {
+        this.clearActiveOption();
+      }
     }
   }
 
@@ -470,10 +496,11 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
       isInvalid,
+      rowHeight,
       ...rest
     } = this.props;
 
-    const { searchValue, isListOpen, listPosition } = this.state;
+    const { searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -494,7 +521,6 @@ export class EuiComboBox extends Component {
             onCreateOption={onCreateOption}
             searchValue={searchValue}
             matchingOptions={this.matchingOptions}
-            optionToGroupMap={this.optionToGroupMap}
             listRef={this.optionsListRef}
             optionRef={this.optionRef}
             onOptionClick={this.onOptionClick}
@@ -504,6 +530,10 @@ export class EuiComboBox extends Component {
             updatePosition={this.updateListPosition}
             position={listPosition}
             renderOption={renderOption}
+            width={width}
+            scrollToIndex={activeOptionIndex}
+            onScroll={this.focusActiveOption}
+            rowHeight={rowHeight}
           />
         </EuiPortal>
       );

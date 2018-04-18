@@ -110,11 +110,11 @@ export default class extends Component {
     }));
   };
 
-  renderOption = (option, searchValue) => {
+  renderOption = (option, searchValue, contentClassName) => {
     const { color, label, value } = option;
     return (
       <EuiHealth color={color}>
-        <span>
+        <span className={contentClassName}>
           <EuiHighlight search={searchValue}>
             {label}
           </EuiHighlight>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { List } from 'react-virtualized';
 
 import { EuiCode } from '../../code';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
@@ -18,6 +19,8 @@ const positionToClassNameMap = {
 
 const POSITIONS = Object.keys(positionToClassNameMap);
 
+const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
+
 export class EuiComboBoxOptionsList extends Component {
   static propTypes = {
     options: PropTypes.array,
@@ -26,7 +29,6 @@ export class EuiComboBoxOptionsList extends Component {
     onCreateOption: PropTypes.func,
     searchValue: PropTypes.string,
     matchingOptions: PropTypes.array,
-    optionToGroupMap: PropTypes.object,
     optionRef: PropTypes.func,
     onOptionClick: PropTypes.func,
     onOptionEnterKey: PropTypes.func,
@@ -36,6 +38,14 @@ export class EuiComboBoxOptionsList extends Component {
     position: PropTypes.oneOf(POSITIONS),
     listRef: PropTypes.func.isRequired,
     renderOption: PropTypes.func,
+    width: PropTypes.number,
+    scrollToIndex: PropTypes.number,
+    onScroll: PropTypes.func,
+    rowHeight: PropTypes.number,
+  }
+
+  static defaultProps = {
+    rowHeight: 27, // row height of default option renderer
   }
 
   updatePosition = () => {
@@ -86,7 +96,6 @@ export class EuiComboBoxOptionsList extends Component {
       onCreateOption,
       searchValue,
       matchingOptions,
-      optionToGroupMap,
       optionRef,
       onOptionClick,
       onOptionEnterKey,
@@ -96,6 +105,10 @@ export class EuiComboBoxOptionsList extends Component {
       renderOption,
       listRef, // eslint-disable-line no-unused-vars
       updatePosition, // eslint-disable-line no-unused-vars
+      width,
+      scrollToIndex,
+      onScroll,
+      rowHeight,
       ...rest
     } = this.props;
 
@@ -142,44 +155,55 @@ export class EuiComboBoxOptionsList extends Component {
       </EuiText>
     ) : undefined;
 
-    const groupLabelToGroupMap = {};
-    const optionsList = [];
+    const numVisibleOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
+    const height = numVisibleOptions * rowHeight;
 
-    matchingOptions.forEach((option, index) => {
-      const {
-        value, // eslint-disable-line no-unused-vars
-        label,
-        ...rest
-      } = option;
+    const optionsList = (
+      <List
+        width={width}
+        height={height}
+        rowCount={matchingOptions.length}
+        rowHeight={rowHeight}
+        scrollToIndex={scrollToIndex}
+        onScroll={onScroll}
+        rowRenderer={({ key, index, style }) => {
+          const option = matchingOptions[index];
+          const {
+            value, // eslint-disable-line no-unused-vars
+            label,
+            isGroupLabelOption,
+            ...rest
+          } = option;
 
-      const group = optionToGroupMap.get(option);
+          if (isGroupLabelOption) {
+            return (
+              <div key={key} style={style}>
+                <EuiComboBoxTitle>
+                  {label}
+                </EuiComboBoxTitle>
+              </div>
+            );
+          }
 
-      if (group && !groupLabelToGroupMap[group.label]) {
-        groupLabelToGroupMap[group.label] = true;
-        optionsList.push(
-          <EuiComboBoxTitle key={`group-${group.label}`}>
-            {group.label}
-          </EuiComboBoxTitle>
-        );
-      }
-
-      const renderedOption = (
-        <EuiComboBoxOption
-          option={option}
-          key={option.label.toLowerCase()}
-          onClick={onOptionClick}
-          onEnterKey={onOptionEnterKey}
-          optionRef={optionRef.bind(this, index)}
-          {...rest}
-        >
-          {renderOption ? renderOption(option, searchValue) : (
-            <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-          )}
-        </EuiComboBoxOption>
-      );
-
-      optionsList.push(renderedOption);
-    });
+          return (
+            <div key={key} style={style}>
+              <EuiComboBoxOption
+                option={option}
+                key={option.label.toLowerCase()}
+                onClick={onOptionClick}
+                onEnterKey={onOptionEnterKey}
+                optionRef={optionRef.bind(this, index)}
+                {...rest}
+              >
+                {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
+                  <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
+                )}
+              </EuiComboBoxOption>
+            </div>
+          );
+        }}
+      />
+    );
 
     const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position]);
 

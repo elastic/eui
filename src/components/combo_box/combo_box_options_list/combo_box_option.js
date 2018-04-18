@@ -18,7 +18,12 @@ export class EuiComboBoxOption extends Component {
   }
 
   onClick = () => {
-    const { onClick, option } = this.props;
+    const { onClick, option, disabled } = this.props;
+
+    if (disabled) {
+      return;
+    }
+
     onClick(option);
   };
 
@@ -26,7 +31,12 @@ export class EuiComboBoxOption extends Component {
     if (e.keyCode === ENTER || e.keyCode === SPACE) {
       e.preventDefault();
       e.stopPropagation();
-      const { onEnterKey, option } = this.props;
+      const { onEnterKey, option, disabled } = this.props;
+
+      if (disabled) {
+        return;
+      }
+
       onEnterKey(option);
     }
   };
@@ -36,7 +46,7 @@ export class EuiComboBoxOption extends Component {
       children,
       className,
       optionRef,
-      option, // eslint-disable-line no-unused-vars
+      option,
       onClick, // eslint-disable-line no-unused-vars
       onEnterKey, // eslint-disable-line no-unused-vars
       disabled,
@@ -45,18 +55,27 @@ export class EuiComboBoxOption extends Component {
 
     const classes = classNames(
       'euiComboBoxOption',
-      className
+      className,
+      {
+        'euiComboBoxOption-isDisabled': disabled,
+      },
     );
+
+    const {
+      label,
+    } = option;
 
     return (
       <button
         role="option"
+        type="button"
         className={classes}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
         ref={optionRef}
         tabIndex="-1"
-        disabled={disabled}
+        aria-disabled={disabled}
+        title={label}
         {...rest}
       >
         {children}

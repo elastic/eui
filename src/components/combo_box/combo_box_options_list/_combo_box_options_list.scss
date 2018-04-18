@@ -11,6 +11,10 @@
   z-index: $euiZComboBox;
   position: absolute; /* 2 */
   top: 0; /* 2 */
+
+  .ReactVirtualized__List {
+    @include euiScrollBar;
+  }
 }
 
 .euiComboBoxOptionsList--bottom {
@@ -23,16 +27,18 @@
   box-shadow: none !important;
 }
 
+  /**
+   * 1. Prevent really long input from overflowing the container.
+   */
   .euiComboBoxOptionsList__empty {
     padding: $euiSizeS;
     text-align: center;
     color: $euiColorDarkShade;
+    word-wrap: break-word; /* 1 */
   }
 
   .euiComboBoxOptionsList__rowWrap {
-    @include euiScrollBar;
-
-    padding: $euiSizeS;
+    padding: 0;
     max-height: 200px;
-    overflow-y: auto;
+    overflow: hidden;
   }

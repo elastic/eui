@@ -26,10 +26,12 @@
    * 2. Force input height to expand tp fill this element.
    * 3. Reset appearance on Safari.
    * 4. Fix react-input-autosize appearance.
+   * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
    */
   .euiComboBox__input {
     display: inline-flex !important; /* 1 */
     height: 32px; /* 2 */
+    overflow: hidden; /* 5 */
 
     > input {
       appearance: none; /* 3 */
