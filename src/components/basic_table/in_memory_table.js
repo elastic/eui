@@ -23,6 +23,7 @@ const InMemoryTablePropTypes = {
   loading: PropTypes.bool,
   message: PropTypes.node,
   error: PropTypes.string,
+  compressed: PropTypes.bool,
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
     defaultQuery: QueryType,
     box: PropTypes.shape({
@@ -255,6 +256,7 @@ export class EuiInMemoryTable extends Component {
       selection,
       isSelectable,
       hasActions,
+      compressed,
       pagination: hasPagination,
       sorting: hasSorting,
     } = this.props;
@@ -302,6 +304,7 @@ export class EuiInMemoryTable extends Component {
         error={error}
         loading={loading}
         noItemsMessage={message}
+        compressed={compressed}
       />
     );
 
