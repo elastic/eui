@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
+- `EuiInMemoryTable` pagination state is now reset automatically when a search is executed ([#686](https://github.com/elastic/eui/pull/686))
 
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
