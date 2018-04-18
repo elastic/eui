@@ -55,7 +55,8 @@
     line-height: convertToRem($baseLineHeightMultiplier * 4);
   }
 
-  h4 {
+  h4,
+  dt {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
   }
 
@@ -110,10 +111,6 @@
     list-style: decimal;
   }
 
-  dt {
-    @include euiTitle("xs");
-  }
-
   blockquote {
     position: relative;
     text-align: center;
@@ -156,7 +153,8 @@
     @include euiTitle("s");
   }
 
-  h4 {
+  h4,
+  dt {
     @include euiTitle("xs");
   }
 

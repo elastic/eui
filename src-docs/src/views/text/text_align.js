@@ -25,7 +25,7 @@ export default () => (
       <p>You can also pass alignment to <EuiCode>EuiText</EuiCode> directly with a prop</p>
     </EuiText>
     <EuiText textAlign="center" color="secondary">
-      <p>And in conjuction with coloring.</p>
+      <p>And in conjunction with coloring.</p>
     </EuiText>
   </div>
 );
