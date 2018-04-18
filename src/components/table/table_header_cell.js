@@ -103,7 +103,15 @@ EuiTableHeaderCell.propTypes = {
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
+  /**
+   * Indicates if the column was created to be the row's heading in mobile view
+   * (this column will be hidden at larger screens)
+   */
   isMobileHeader: PropTypes.bool,
+  /**
+   * Indicates if the column should not show for mobile users
+   * (typically hidden because a custom mobile header utilizes the column's contents)
+   */
   hideForMobile: PropTypes.bool,
 };
 

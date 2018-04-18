@@ -186,7 +186,7 @@ export class GuideSection extends Component {
       }
       const cells = [
         (
-          <EuiTableRowCell key="name" header="Prop" isMobileHeader={true}>
+          <EuiTableRowCell key="name" header="Prop">
             {humanizedName}
           </EuiTableRowCell>
         ), (
@@ -194,11 +194,11 @@ export class GuideSection extends Component {
             <EuiCode>{typeMarkup}</EuiCode>
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="defaultValue" header="Default" hideForMobile={!defaultValueMarkup}>
+          <EuiTableRowCell key="defaultValue" header="Default" hideForMobile={!defaultValue}>
             {defaultValueMarkup}
           </EuiTableRowCell>
         ), (
-          <EuiTableRowCell key="description" header="Note" isMobileFullWidth={true}>
+          <EuiTableRowCell key="description" header="Note" isMobileFullWidth={true} hideForMobile={!propDescription}>
             {descriptionMarkup}
           </EuiTableRowCell>
         )

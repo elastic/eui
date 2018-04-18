@@ -33,9 +33,24 @@ export const EuiTableRow = ({
 EuiTableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Indicates if the table has a single column of checkboxes for selecting rows (affects mobile only)
+   */
   isSelectable: PropTypes.bool,
+  /**
+   * Indicates the current row has been selected
+   */
   isSelected: PropTypes.bool,
+  /**
+   * Indicates if the table has a dedicated column for icon-only actions (affects mobile only)
+   */
   hasActions: PropTypes.bool,
-  isExpandedRow: PropTypes.bool,
+  /**
+   * Indicates if the row will have an expanded row
+   */
   isExpandable: PropTypes.bool,
+  /**
+   * Indicates if the row will be the expanded row
+   */
+  isExpandedRow: PropTypes.bool,
 };

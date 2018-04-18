@@ -43,7 +43,16 @@ export const EuiTableSortMobileItem = ({
 EuiTableSortMobileItem.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Callback to know when an item has been clicked
+   */
   onSort: PropTypes.func,
+  /**
+   * Indicates current option is the sorted on column
+   */
   isSorted: PropTypes.bool,
+  /**
+   * Indicates which direction the current column is sorted on
+   */
   isSortAscending: PropTypes.bool,
 };

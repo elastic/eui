@@ -4,7 +4,9 @@ import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
 import { Table } from './mobile';
+import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode } from '../../../../../src/components/code';
+import { EuiTable, EuiTableHeaderCell, EuiTableRowCell } from '../../../../../src/components/table';
 const source = require('!!raw-loader!./mobile');
 const html = renderToHtml(Table);
 
@@ -29,7 +31,8 @@ export const section = {
         may set <EuiCode>responsive = false</EuiCode>.
       </p>
       <h3>
-        Properties that must be added at the table:
+        To make your table works responsively, please make sure you utilize
+        the following <EuiTextColor color="danger">additional</EuiTextColor> props:
       </h3>
       <ul>
         <li>
@@ -39,11 +42,11 @@ export const section = {
           <EuiCode>hasActions</EuiCode>: if the table has a column for actions which may/may not be hidden in hover
         </li>
       </ul>
-      <h3>
+      <h4>
         Custom mobile headers
-      </h3>
+      </h4>
       <p>
-        Add the following properties to your data and/or <EuiCode>&lt;EuiTableRowCell&gt;</EuiCode> to
+        Add the following properties to your data and/or <EuiCode>&lt;EuiTableRowCell&gt;</EuiCode> and <EuiCode>&lt;EuiTableHeaderCell&gt;</EuiCode> to
         customize the look of the section header.
       </p>
       <ul>
@@ -55,7 +58,7 @@ export const section = {
           <EuiCode>hideforMobile</EuiCode>: does not display the cell on mobile screens
         </li>
       </ul>
-      <h3>Other props:</h3>
+      <h4>Other props:</h4>
       <ul>
         <li>
           <EuiCode>isMobileFullWidth</EuiCode>: add to <EuiCode>&lt;EuiTableRowCell&gt;</EuiCode> if it should
@@ -64,6 +67,7 @@ export const section = {
       </ul>
     </div>
   ),
+  props: { EuiTable, EuiTableHeaderCell, EuiTableRowCell },
   components: { EuiBasicTable },
   demo: <Table/>,
 };
