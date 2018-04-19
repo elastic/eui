@@ -2,7 +2,7 @@ import React, {
   Fragment,
 } from 'react';
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
-import { calculateContrast, rgbToHex } from '../../../../src/services';
+import { calculateContrast, rgbToHex, isColorDark } from '../../../../src/services';
 
 import {
   GuidePage,
@@ -20,6 +20,8 @@ import {
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
   EuiLink,
+  EuiPanel,
+  EuiIcon,
 } from '../../../../src/components';
 
 const allowedColors = [
@@ -65,7 +67,7 @@ function renderPaletteColor(color, index) {
         <EuiText size="s">
           <strong>{color}</strong>
           <EuiSpacer size="s" />
-          RGB {lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b}<br/>
+          RGB ({lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b})<br/>
           HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}
         </EuiText>
       </div>
@@ -134,17 +136,49 @@ export default() => (
           {ratingAAA} Passes with a contrast of 7+
         </li>
         <li>
-          <EuiBadge color="#333">AA</EuiBadge>{' '}
           {ratingAA} Passes with a contrast of 4.5+
         </li>
         <li>
-          <EuiBadge color="#666">AA18</EuiBadge>{' '}
-          {ratingAA18} Passes with a contrast of 3+, but only if the text displayed is 18px or larger
+          {ratingAA18} Passes with a contrast of 3+, but only if the text is at least 18px or 14px and bold
         </li>
       </ul>
     </EuiText>
 
     <EuiSpacer size="xxl" />
+
+    <EuiFlexGrid columns={3}>
+      {allowedColors.map(function (color, index) {
+        return (
+          <EuiFlexItem key={index}>
+            <EuiPanel style={{ backgroundColor: lightColors[color].rgba, borderColor: lightColors[color].rgba }}>
+              {allowedColors.map(function (color2, index) {
+                const contrast = (
+                  calculateContrast(
+                    [lightColors[color].r, lightColors[color].g, lightColors[color].b],
+                    [lightColors[color2].r, lightColors[color2].g, lightColors[color2].b],
+                  )
+                );
+
+                let contrastRating;
+                if (contrast > 4.4) {
+                  contrastRating = (<EuiIcon type="checkInCircleFilled" />);
+                } else if (contrast >= 2.9) {
+                  contrastRating = (<EuiIcon type="editorBold" />);
+                } else if (color2.includes('Shade') && contrast >= 2) {
+                  contrastRating = (<EuiIcon type="minusInCircle" />);
+                } else {
+                  return;
+                }
+
+                return (
+                  <div key={index} style={{ fontSize: 12, color: lightColors[color2].rgba, marginBottom: 12 }} >{contrastRating} &ensp; {color2} </div>
+                )
+              })}
+            </EuiPanel>
+          </EuiFlexItem>
+        );
+      })}
+    </EuiFlexGrid>
 
     <div>
       {allowedColors.map(function (color, index) {
