@@ -21,6 +21,7 @@
     "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
+    "test-visual-tests": "node ./scripts/run-visual-tests.js",
     "start-test-server-and-visual-test": "start-server-and-test start-test-server http-get://localhost:9999 test-visual",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "npm test && npm run build && npm version patch && git push upstream --tags && npm publish && npm run sync-docs"
@@ -41,6 +42,7 @@
     "jquery": "^3.2.1",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
+    "nodegit": "^0.22.0",
     "numeral": "^2.0.6",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.0",
