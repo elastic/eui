@@ -96,7 +96,6 @@ exports.config = {
     chai.Should();
 
     global.expectImageToBeSame = function expectImageToBeSame(results) {
-      console.log(results);
       results.forEach((result, idx) => expect(result.isWithinMisMatchTolerance,
         'Image ' + idx + ' is not the same by ' + result.misMatchPercentage + '%').to.be.true);
     };
