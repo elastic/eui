@@ -8,7 +8,7 @@ var initialBranch;
   const checkoutOpts = {
     checkoutStrategy: git.Checkout.STRATEGY.SAFE
   };
-  return git.Repository.open("../test-eui")
+  return git.Repository.open("./")
     .then(function(repo) {
       self.repo = repo;
       return self.repo.getCurrentBranch()
