@@ -26,6 +26,7 @@
 - Removed the default `max-width` from `EuiText`. This can still be applied by setting `grow={false}` ([#683](https://github.com/elastic/eui/pull/683))
 - Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
 - `EuiBasicTable` added the `compressed` prop to allow for tables with smaller fonts and padding.  ([#687](https://github.com/elastic/eui/pull/687))
+- `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
 
 **Breaking changes**
 
