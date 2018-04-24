@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePicker', () => {
   test('is rendered', () => {
-    const component = render(
+    const component = shallow(
       <EuiDatePicker {...requiredProps} />
     );
 

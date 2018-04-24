@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiComboBox } from './combo_box';
 
 describe('EuiComboBox', () => {
   test('is rendered', () => {
-    const component = render(
+    const component = shallow(
       <EuiComboBox {...requiredProps} />
     );
 
