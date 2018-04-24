@@ -12,7 +12,7 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLoading, className }) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLoading, className, isIconClickable }) => {
 
   const classes = classNames(
     'euiFormControlLayout',
@@ -31,14 +31,24 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLo
 
   let optionalIcon;
   if (icon) {
-    const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
+    if (typeof icon === 'string' || icon instanceof String) {
+      icon = (
+        <EuiIcon
+          type={icon}
+          size="m"
+        />
+      );
+    }
+
+    const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide], {
+      'euiFormControlLayout__icon--notClickable': !isIconClickable,
+      'euiFormControlLayout__icon--clickable': isIconClickable
+    });
 
     optionalIcon = (
-      <EuiIcon
-        className={iconClasses}
-        type={icon}
-        size="m"
-      />
+      <div className={iconClasses}>
+        { icon }
+      </div>
     );
   }
 
@@ -53,14 +63,16 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLo
 
 EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   fullWidth: PropTypes.bool,
   iconSide: PropTypes.oneOf(ICON_SIDES),
+  isIconClickable: PropTypes.bool,
   isLoading: PropTypes.bool,
   className: PropTypes.string,
 };
 
 EuiFormControlLayout.defaultProps = {
   iconSide: 'left',
+  isIconClickable: false,
   isLoading: false,
 };

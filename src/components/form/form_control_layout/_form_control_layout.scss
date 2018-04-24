@@ -13,7 +13,14 @@
     position: absolute;
     top: $euiSizeM;
     left: $euiSizeM;
+  }
+
+  .euiFormControlLayout__icon--notClickable {
     pointer-events: none;
+  }
+
+  .euiFormControlLayout__icon--clickable {
+    cursor: pointer;
   }
 
   .euiFormControlLayout__icon--right {
