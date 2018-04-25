@@ -89,7 +89,7 @@ $toastTypes: (
   }
 
   .euiToastHeader__title {
-    @include euiTitle("s");
+    @include euiTitle("xs");
     font-weight: $euiFontWeightLight;
   }
 

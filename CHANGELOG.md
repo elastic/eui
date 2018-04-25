@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))
+
 **Bug fixes**
 
 - Fixed inherited `line-height` of inputs and buttons ([#702](https://github.com/elastic/eui/pull/702))
