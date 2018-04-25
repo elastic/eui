@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Fix inherited `line-height` of inputs and buttons ([#702](https://github.com/elastic/eui/pull/702))
+- Fixed inherited `line-height` of inputs and buttons ([#702](https://github.com/elastic/eui/pull/702))
 
 ## [`0.0.43`](https://github.com/elastic/eui/tree/v0.0.43)
 
