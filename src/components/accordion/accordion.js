@@ -176,5 +176,5 @@ EuiAccordion.propTypes = {
 
 EuiAccordion.defaultProps = {
   initialIsOpen: false,
-  paddingSize: 'l',
+  paddingSize: 'none',
 };

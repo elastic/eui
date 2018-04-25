@@ -4,7 +4,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   id="6"
   initialIsOpen={false}
-  paddingSize="l"
+  paddingSize="none"
 >
   <div
     className="euiAccordion"
@@ -119,7 +119,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     >
       <div>
         <div
-          className="euiAccordion__padding--l"
+          className=""
         />
       </div>
     </div>
@@ -131,7 +131,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   id="5"
   initialIsOpen={false}
-  paddingSize="l"
+  paddingSize="none"
 >
   <div
     className="euiAccordion euiAccordion-isOpen"
@@ -245,7 +245,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     >
       <div>
         <div
-          className="euiAccordion__padding--l"
+          className=""
         />
       </div>
     </div>
@@ -310,7 +310,7 @@ exports[`EuiAccordion is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__padding--l"
+        class=""
       />
     </div>
   </div>
@@ -376,7 +376,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__padding--l"
+        class=""
       />
     </div>
   </div>
@@ -438,7 +438,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__padding--l"
+        class=""
       />
     </div>
   </div>
@@ -507,7 +507,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__padding--l"
+        class=""
       />
     </div>
   </div>
@@ -568,7 +568,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__padding--l"
+        class=""
       >
         <p>
           You can see me.

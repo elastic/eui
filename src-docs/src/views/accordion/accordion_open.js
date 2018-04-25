@@ -13,6 +13,7 @@ export default () => (
       id="accordion1"
       buttonContent="I am opened by default. Click me to toggle close / open"
       initialIsOpen={true}
+      paddingSize="l"
     >
       <EuiText>
         <p>Any content inside of <EuiCode>EuiAccordion</EuiCode> will appear here.</p>

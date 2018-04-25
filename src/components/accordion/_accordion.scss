@@ -19,6 +19,7 @@
   overflow-y: hidden;
   transform: translatez(0);
   transition:
+    height $euiAnimSpeedNormal $euiAnimSlightResistance,
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance
   ;
 }
