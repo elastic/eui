@@ -2,6 +2,7 @@
 @import "../panel/mixins";
 
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
+$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
@@ -79,14 +80,18 @@ $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
   }
 }
 
+// If an icon or image exists, add some space
+.euiCard__top + .euiCard__content {
+  margin-top: $euiCardSpacing;
+}
+
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
   .euiCard__title {
     display: block;
-    margin-top: $euiCardSpacing;
-    @include euiTitle($euiFontSizeM);
-    font-weight: $euiFontWeightRegular;
+    @include euiTitle($euiCardTitleSize);
+    font-weight: $euiFontWeightMedium;
   }
 
   .euiCard__description {

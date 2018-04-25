@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed inherited `line-height` of inputs and buttons ([#702](https://github.com/elastic/eui/pull/702))
+- Fixed card title sizing in K6 theme. ([#704](https://github.com/elastic/eui/pull/704))
 
 ## [`0.0.43`](https://github.com/elastic/eui/tree/v0.0.43)
 
