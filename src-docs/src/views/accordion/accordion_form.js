@@ -88,10 +88,9 @@ export default () => (
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
+      paddingSize="l"
     >
-      <div className="euiAccordionForm__children">
-        {repeatableForm}
-      </div>
+      {repeatableForm}
     </EuiAccordion>
 
     <EuiAccordion
@@ -100,10 +99,9 @@ export default () => (
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
+      paddingSize="l"
     >
-      <div className="euiAccordionForm__children">
-        {repeatableForm}
-      </div>
+      {repeatableForm}
     </EuiAccordion>
   </div>
 );

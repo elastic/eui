@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -9,6 +9,8 @@ import {
 import {
   EuiAccordion,
   EuiCode,
+  EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import Accordion from './accordion';
@@ -33,6 +35,23 @@ const accordionGrowHtml = renderToHtml(AccordionGrow);
 
 export const AccordionExample = {
   title: 'Accordion',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="Take care including flex group content within accordions"
+      >
+        <p>
+          <EuiCode>EuiFlexGroup</EuiCode>&apos;s negative margins can sometimes
+          create scrollbars within <EuiCode>EuiAccordion</EuiCode> because of
+          the overflow tricks the used to hide content. If you run into this issue make
+          sure your <EuiCode>paddingSize</EuiCode> prop is large enough to account for
+          the <EuiCode>gutterSize</EuiCode> of any nested flex groups.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [{
     title: 'Unstyled',
     source: [{

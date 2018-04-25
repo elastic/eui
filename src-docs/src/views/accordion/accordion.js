@@ -23,7 +23,8 @@ export default () => (
 
     <EuiAccordion
       id="accordion2"
-      buttonContent="You can click me as well"
+      buttonContent="An accordion with some padding applied through props"
+      paddingSize="l"
     >
       <EuiText>
         <p>The content inside can be of any height.</p>

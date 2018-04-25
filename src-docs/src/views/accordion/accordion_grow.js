@@ -24,6 +24,7 @@ class AccordionGrow extends Component {
         id="accordion1"
         buttonContent="Click me to toggle close / open"
         initialIsOpen={true}
+        paddingSize="l"
       >
         <EuiText>
           <EuiSpacer size='s' />

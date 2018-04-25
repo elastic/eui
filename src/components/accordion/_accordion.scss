@@ -24,6 +24,22 @@
   ;
 }
 
+$paddingSizes: (
+  xs: $euiSizeXS,
+  s: $euiSizeS,
+  m: $euiSize,
+  l: $euiSizeL,
+  xl: $euiSizeXL,
+);
+
+// Create button modifiders based upon the map.
+@each $name, $size in $paddingSizes {
+
+  .euiAccordion__padding--#{$name} {
+    padding: $size;
+  }
+}
+
 .euiAccordion.euiAccordion-isOpen {
   .euiAccordion__childWrapper {
     visibility: visible;

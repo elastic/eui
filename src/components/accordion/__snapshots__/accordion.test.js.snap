@@ -4,6 +4,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <EuiAccordion
   id="6"
   initialIsOpen={false}
+  paddingSize="none"
 >
   <div
     className="euiAccordion"
@@ -116,7 +117,11 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       className="euiAccordion__childWrapper"
       id="6"
     >
-      <div />
+      <div>
+        <div
+          className=""
+        />
+      </div>
     </div>
   </div>
 </EuiAccordion>
@@ -126,6 +131,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <EuiAccordion
   id="5"
   initialIsOpen={false}
+  paddingSize="none"
 >
   <div
     className="euiAccordion euiAccordion-isOpen"
@@ -237,7 +243,11 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       className="euiAccordion__childWrapper"
       id="5"
     >
-      <div />
+      <div>
+        <div
+          className=""
+        />
+      </div>
     </div>
   </div>
 </EuiAccordion>
@@ -298,7 +308,11 @@ exports[`EuiAccordion is rendered 1`] = `
     class="euiAccordion__childWrapper"
     id="0"
   >
-    <div />
+    <div>
+      <div
+        class=""
+      />
+    </div>
   </div>
 </div>
 `;
@@ -360,7 +374,11 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     class="euiAccordion__childWrapper"
     id="2"
   >
-    <div />
+    <div>
+      <div
+        class=""
+      />
+    </div>
   </div>
 </div>
 `;
@@ -418,7 +436,11 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     class="euiAccordion__childWrapper"
     id="1"
   >
-    <div />
+    <div>
+      <div
+        class=""
+      />
+    </div>
   </div>
 </div>
 `;
@@ -483,7 +505,11 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     class="euiAccordion__childWrapper"
     id="3"
   >
-    <div />
+    <div>
+      <div
+        class=""
+      />
+    </div>
   </div>
 </div>
 `;
@@ -541,9 +567,13 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     id="4"
   >
     <div>
-      <p>
-        You can see me.
-      </p>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
     </div>
   </div>
 </div>
