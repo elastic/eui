@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.44`.
+
+## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
+
 - Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))
 
 **Bug fixes**
