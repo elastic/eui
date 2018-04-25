@@ -53,7 +53,6 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 
 /**
  * 1. Footer is always at the bottom.
- * 2. Footer is always at the bottom.
  */
 
 .euiCard__top {
@@ -83,7 +82,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 
 // If an icon or image exists, add some space
 .euiCard__top + .euiCard__content {
-  margin-top: $euiSize;
+  margin-top: $euiCardSpacing;
 }
 
 .euiCard__content {
