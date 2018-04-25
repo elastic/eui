@@ -171,7 +171,7 @@ EuiAccordion.propTypes = {
   /**
    * The padding around the exposed accordion content.
    */
-  paddingSize: PropTypes.string,
+  paddingSize: PropTypes.oneOf(PADDING_SIZES),
 };
 
 EuiAccordion.defaultProps = {
