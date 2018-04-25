@@ -1,3 +1,4 @@
+/* global browser expectImageToBeSame */
 describe('Table Component', function () {
 
   beforeEach(function () {

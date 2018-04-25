@@ -1,3 +1,4 @@
+/* global browser expectImageToBeSame */
 describe('Card Component', function () {
 
   beforeEach(function () {

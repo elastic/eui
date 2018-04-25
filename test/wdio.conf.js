@@ -1,4 +1,4 @@
-
+/* global browser */
 const ci = process.env.CI && process.env.CI === 'true';
 const path = require('path');
 const VisualRegressionCompare = require('wdio-visual-regression-service/compare');
@@ -61,7 +61,7 @@ exports.config = {
   baseUrl: 'http://localhost:9999',
   capabilities: [{
     browserName: 'chrome',
-    version: ci ? '58' : '65',
+    version: ci ? '58' : null,
     platform: 'macOS 10.12',
   }, {
     maxInstances: 2,
@@ -79,21 +79,17 @@ exports.config = {
       capabilities[1].platform =  'macOS 10.12';
     }
   },
-  before: function (capabilities, specs) {
-    const sinon = require('sinon');
-    // http://sinonjs.org/
+  before: function () {
     const chai = require('chai');
     global.expect = chai.expect;
     const chaiWebdriver = require('chai-webdriverio').default;
     chai.use(chaiWebdriver(browser));
-    // http://chaijs.com/
-    global.fetch = require('node-fetch');
 
     chai.config.includeStack = true;
     global.AssertionError = chai.AssertionError;
     global.Assertion = chai.Assertion;
     global.assert = chai.assert;
-    chai.Should();
+    chai.Should(); // eslint-disable-line new-cap
 
     global.expectImageToBeSame = function expectImageToBeSame(results) {
       results.forEach((result, idx) => expect(result.isWithinMisMatchTolerance,
