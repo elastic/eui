@@ -127,9 +127,6 @@ exports[`EuiCard is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiCard__top"
-  />
-  <span
     class="euiCard__content"
   >
     <span

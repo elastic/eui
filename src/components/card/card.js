@@ -57,6 +57,16 @@ export const EuiCard = ({
     OuterElement = 'button';
   }
 
+  let optionalCardTop;
+  if (image || icon) {
+    optionalCardTop = (
+      <span className="euiCard__top">
+        {imageNode}
+        {iconNode}
+      </span>
+    );
+  }
+
   return (
     <OuterElement
       onClick={onClick}
@@ -64,10 +74,8 @@ export const EuiCard = ({
       href={href}
       {...rest}
     >
-      <span className="euiCard__top">
-        {imageNode}
-        {iconNode}
-      </span>
+
+      {optionalCardTop}
 
       <span className="euiCard__content">
         <EuiTitle className="euiCard__title">
