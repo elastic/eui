@@ -132,7 +132,7 @@
     "wdio-sauce-service": "^0.4.8",
     "wdio-selenium-standalone-service": "^0.0.10",
     "wdio-spec-reporter": "^0.1.4",
-    "wdio-visual-regression-service": "^0.9.0",
+    "wdio-visual-regression-service": "silne30/wdio-visual-regression-service#Add_Filename_To_Result",
     "webdriverio": "^4.12.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.2",
