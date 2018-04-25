@@ -21,7 +21,6 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-input, textarea, select, button,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -33,6 +32,10 @@ time, mark, audio, video {
   font: inherit; /* 1 */
   font-family: inherit; /* 1 */
   vertical-align: baseline;
+}
+
+input, textarea, select, button {
+  font-family: inherit; /* 1 */
 }
 
 em {
