@@ -161,7 +161,7 @@ EuiAccordion.propTypes = {
    */
   buttonContent: PropTypes.node,
   /**
-   * Will apear right aligned against the button. Useful for separate actions like deletions.
+   * Will appear right aligned against the button. Useful for separate actions like deletions.
    */
   extraAction: PropTypes.node,
   /**
