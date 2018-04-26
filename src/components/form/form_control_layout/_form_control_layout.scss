@@ -13,14 +13,38 @@
     position: absolute;
     top: $euiSizeM;
     left: $euiSizeM;
-  }
-
-  .euiFormControlLayout__icon--notClickable {
     pointer-events: none;
   }
 
-  .euiFormControlLayout__icon--clickable {
-    cursor: pointer;
+  .euiFormControlLayout__iconButton {
+    pointer-events: all;
+    top: $euiSizeM - 1px;
+  }
+
+  .euiFormControlLayout__clear {
+    $clearSize: $euiSize;
+
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeM;
+
+    @include size($clearSize);
+    background-color: transparentize($euiColorMediumShade, .5);
+    border-radius: $clearSize;
+    line-height: $clearSize;
+
+    .euiFormControlLayout__clearIcon {
+      @include size($euiSizeS);
+      fill: $euiColorEmptyShade;
+      stroke: $euiColorEmptyShade;
+      stroke-width: 3px; // increase thickness of icon at such a small size
+      margin-top: -3px;
+    }
+
+    // Loading spinner needs adjustment if clear also exists
+    ~ .euiFormControlLayout__loading {
+      right: $euiSizeM*3;
+    }
   }
 
   .euiFormControlLayout__icon--right {
@@ -29,7 +53,16 @@
 
     // Loading spinner needs adjustment if icon also exists like selects.
     ~ .euiFormControlLayout__loading {
-      right: $euiSizeXL;
+      right: $euiSizeM*3;
+    }
+
+    // Same with clear buttons
+    ~ .euiFormControlLayout__clear {
+      right: $euiSizeM*3;
+
+      ~ .euiFormControlLayout__loading {
+        right: $euiSizeM*5;
+      }
     }
   }
 

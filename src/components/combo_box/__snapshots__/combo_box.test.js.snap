@@ -10,7 +10,6 @@ exports[`EuiComboBox is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearable={true}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}

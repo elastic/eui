@@ -9,7 +9,6 @@ exports[`EuiDatePicker is rendered 1`] = `
       fullWidth={false}
       icon="calendar"
       iconSide="left"
-      isIconClickable={false}
       isLoading={false}
     >
       <EuiValidatableControl>

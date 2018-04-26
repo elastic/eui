@@ -4,7 +4,7 @@
 
   /**
    * 1. Allow pills to truncate their text with an ellipsis.
-   * 2. Don't allow pills to overlap with the caret.
+   * 2. Don't allow pills to overlap with the caret or clear button.
    * 3.
    */
   .euiComboBox__inputWrap {
@@ -13,7 +13,7 @@
     $padding: $euiSizeXS;
     display: flex; /* 1 */
     flex-wrap: wrap; /* 1 */
-    padding: $padding $euiSizeXXL $padding $padding; /* 2 */
+    padding: $padding $euiSizeXL*2 $padding $padding; /* 2 */
     align-content: flex-start;
 
     &:hover {

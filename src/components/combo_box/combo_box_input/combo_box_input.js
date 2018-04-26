@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
 
-import { EuiIcon } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFormControlLayout } from '../../form';
 import { EuiComboBoxPill } from './combo_box_pill';
@@ -24,12 +23,11 @@ export class EuiComboBoxInput extends Component {
     autoSizeInputRef: PropTypes.func,
     inputRef: PropTypes.func,
     updatePosition: PropTypes.func.isRequired,
+    onClear: PropTypes.func,
+    hasSelectedOptions: PropTypes.bool.isRequired,
     isListOpen: PropTypes.bool.isRequired,
-    clearable: PropTypes.bool.isRequired,
     onOpen: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    onClear: PropTypes.func.isRequired,
-    hasSelectedOptions: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -82,12 +80,11 @@ export class EuiComboBoxInput extends Component {
       searchValue,
       autoSizeInputRef,
       inputRef,
-      isListOpen,
-      clearable,
-      onOpen,
-      onClose,
       onClear,
       hasSelectedOptions,
+      isListOpen,
+      onOpen,
+      onClose,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -144,39 +141,12 @@ export class EuiComboBoxInput extends Component {
       );
     }
 
-    const icons = [];
-    if (clearable && hasSelectedOptions) {
-      icons.push(
-        <EuiIcon
-          key='clear'
-          type='cross'
-          size="m"
-          onClick={onClear}
-        />);
-    }
-    if (isListOpen) {
-      icons.push(
-        <EuiIcon
-          key='close'
-          type='arrowUp'
-          size="m"
-          onClick={onClose}
-        />);
-    } else {
-      icons.push(
-        <EuiIcon
-          key='open'
-          type='arrowDown'
-          size="m"
-          onClick={onOpen}
-        />);
-    }
-
     return (
       <EuiFormControlLayout
-        icon={icons}
+        icon="arrowDown"
         iconSide="right"
-        isIconClickable={true}
+        onIconClick={isListOpen ? onClose : onOpen}
+        onClear={hasSelectedOptions ? onClear : undefined}
       >
         <div
           className="euiComboBox__inputWrap"
