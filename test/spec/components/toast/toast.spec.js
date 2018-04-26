@@ -1,3 +1,4 @@
+/* global browser expectImageToBeSame */
 describe('Toast Component', function () {
 
   beforeEach(function () {

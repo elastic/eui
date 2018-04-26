@@ -39,6 +39,8 @@ previously.
 
 ### Running Tests Locally
 
+Running Selenium locally requires installing the [Java SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html). 
+
 To run the tests, run: 
 
 ```bash
