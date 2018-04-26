@@ -62,9 +62,9 @@
         right: $euiSizeM * -.5;
         z-index: 3;
 
-        .euiKeyPadMenuItem__betaBadge {
+        .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
           width: $euiSizeL;
-          padding: 0 8px;  /* 2 */
+          padding: 0 ($euiSizeL - $euiFontSizeXS)/1.5;  /* 2 */
           overflow: hidden;  /* 2 */
           letter-spacing: 3rem;  /* 2 */
         }

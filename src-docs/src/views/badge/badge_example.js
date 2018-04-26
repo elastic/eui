@@ -96,7 +96,14 @@ export const BadgeExample = {
         <p>
           The <EuiCode>EuiBetaBadge</EuiCode> was created specifically to call out
           modules that are not in GA. Generally the labels used are &quot;Beta&quot; or &quot;Lab&quot;.
-          They require an extra <EuiCode>description</EuiCode> that will be presented in a tooltip.
+          They require an extra <EuiCode>tooltipContent</EuiCode> to describe the purpose of the badge.
+          You can pass an optional <EuiCode>title</EuiCode> prop to populate the tooltip title or html title
+          attribute but by default it will use the <EuiCode>label</EuiCode>.
+        </p>
+        <p>
+          If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be used in the badge itself and
+          the label will be applied as the title. Only use an icon when attaching the beta badge to small
+          components like the EuiKeyPadMenuItem.
         </p>
         <p>
           They can also be used in conjunction

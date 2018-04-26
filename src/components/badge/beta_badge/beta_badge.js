@@ -4,32 +4,53 @@ import classNames from 'classnames';
 
 import { EuiToolTip } from '../../tool_tip';
 
+import {
+  ICON_TYPES,
+  EuiIcon,
+} from '../../icon';
+
 export const EuiBetaBadge = ({
   className,
   label,
-  description,
+  tooltipContent,
   tooltipPosition,
   title,
+  iconType,
   ...rest,
 }) => {
 
   const classes = classNames(
     'euiBetaBadge',
+    {
+      'euiBetaBadge--iconOnly': iconType,
+    },
     className
   );
 
-  if (description) {
+  let icon;
+  if (iconType) {
+    icon = (
+      <EuiIcon
+        className="euiBetaBadge__icon"
+        type={iconType}
+        size="m"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  if (tooltipContent) {
     return (
       <EuiToolTip
         position={tooltipPosition}
-        content={description}
-        title={title}
+        content={tooltipContent}
+        title={title || label}
       >
         <span
           className={classes}
           {...rest}
         >
-          {label}
+          {icon || label}
         </span>
       </EuiToolTip>
     );
@@ -37,10 +58,10 @@ export const EuiBetaBadge = ({
     return (
       <span
         className={classes}
-        title={title}
+        title={title || label}
         {...rest}
       >
-        {label}
+        {icon || label}
       </span>
     )
   }
@@ -52,12 +73,17 @@ EuiBetaBadge.propTypes = {
   /**
    * One word label like "Beta" or "Lab"
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
 
   /**
-   * Description for the tooltip
+   * Supply an icon type if the badge should just be an icon
    */
-  description: PropTypes.node,
+  iconType: PropTypes.oneOf(ICON_TYPES),
+
+  /**
+   * Content for the tooltip
+   */
+  tooltipContent: PropTypes.node,
 
   /**
    * Custom position of the tooltip
@@ -65,7 +91,7 @@ EuiBetaBadge.propTypes = {
   tooltipPosition: PropTypes.string,
 
   /**
-   * Optional title will be supplied as tooltip title or title attribute
+   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   title: PropTypes.string,
 }

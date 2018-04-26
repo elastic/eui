@@ -108,8 +108,9 @@ export const CardExample = {
     text: (
       <p>
         If the card links to or references a module that is not GA (beta, lab, etc),
-        you can add a <EuiCode>betaLabel</EuiCode> and <EuiCode>betaDescription</EuiCode> to
-        the card and it will properly create and position an <EuiCode>EuiBetaBadge</EuiCode>.
+        you can add a <EuiCode>betaBadgeLabel</EuiCode> and <EuiCode>betaBadgeTooltipContent</EuiCode> to
+        the card and it will properly create and position an <EuiCode>EuiBetaBadge</EuiCode>. If you want to
+        change the title of the tooltip, supply a <EuiCode>betaBadgeTitle</EuiCode> prop.
       </p>
     ),
     components: { EuiCard },

@@ -17,8 +17,8 @@ const cardNodes = icons.map(function (item, index) {
         icon={<EuiIcon size="xxl" type={`${item}App`} />}
         title={`Kibana ${item}`}
         description="Example of a card's description. Stick to one or two sentences."
-        betaLabel={badges[index]}
-        betaDescription={badges[index] ? "This module is not GA. Please help us by reporting any bugs." : undefined}
+        betaBadgeLabel={badges[index]}
+        betaBadgeTooltipContent={badges[index] ? "This module is not GA. Please help us by reporting any bugs." : undefined}
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>

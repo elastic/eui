@@ -25,8 +25,9 @@ export const EuiCard = ({
   href,
   textAlign,
   isClickable,
-  betaLabel,
-  betaDescription,
+  betaBadgeLabel,
+  betaBadgeTooltipContent,
+  betaBadgeTitle,
   ...rest,
 }) => {
   const classes = classNames(
@@ -34,7 +35,7 @@ export const EuiCard = ({
     textAlignToClassNameMap[textAlign],
     {
       'euiCard--isClickable': onClick || href || isClickable,
-      'euiCard--hasBetaBadge': betaLabel,
+      'euiCard--hasBetaBadge': betaBadgeLabel,
     },
     className,
   );
@@ -72,10 +73,10 @@ export const EuiCard = ({
   }
 
   let optionalBetaBadge;
-  if (betaLabel) {
+  if (betaBadgeLabel) {
     optionalBetaBadge = (
       <span className="euiCard__betaBadgeWrapper">
-        <EuiBetaBadge label={betaLabel} description={betaDescription} className="euiCard__betaBadge" />
+        <EuiBetaBadge label={betaBadgeLabel} title={betaBadgeTitle} tooltipContent={betaBadgeTooltipContent} className="euiCard__betaBadge" />
       </span>
     )
   }
@@ -138,12 +139,17 @@ EuiCard.propTypes = {
   /**
    * Add a badge to the card to label it as "Beta" or other non-GA state
    */
-  betaLabel: PropTypes.string,
+  betaBadgeLabel: PropTypes.string,
 
   /**
-   * Add a description to the beta label (will appear in a tooltip)
+   * Add a description to the beta badge (will appear in a tooltip)
    */
-  betaDescription: PropTypes.node,
+  betaBadgeTooltipContent: PropTypes.node,
+
+  /**
+   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+   */
+  betaBadgeTitle: PropTypes.string,
 };
 
 EuiCard.defaultProps = {

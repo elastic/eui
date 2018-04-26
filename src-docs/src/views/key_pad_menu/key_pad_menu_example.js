@@ -68,11 +68,18 @@ export const KeyPadMenuExample = {
       code: keyPadBetaHtml,
     }],
     text: (
-      <p>
-        If the item links to a module that is not GA (beta, lab, etc),
-        you can add a <EuiCode>betaLabel</EuiCode> and <EuiCode>betaDescription</EuiCode> to
-        the card and it will properly create and position an <EuiCode>EuiBetaBadge</EuiCode>.
-      </p>
+      <div>
+        <p>
+          If the item links to a module that is not GA (beta, lab, etc),
+          you can add a <EuiCode>betaBadgeLabel</EuiCode> and <EuiCode>betaBadgeTooltipContent</EuiCode> to
+          the card and it will properly create and position an <EuiCode>EuiBetaBadge</EuiCode>.
+        </p>
+        <p>
+          Supplying just a label will only show the first letter in the badge and supply the full label
+          to the tooltip. You can also pass an <EuiCode>iconType</EuiCode> to replace the letter only badge
+          and the label will still become the title.
+        </p>
+      </div>
     ),
     demo: <KeyPadBeta />,
   }],

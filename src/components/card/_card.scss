@@ -28,10 +28,16 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
       transform: translateX(-50%);
       z-index: 3; // get above abs positioned image
       min-width: 40%; /* 2 */
+      max-width: calc(100% - #{$euiCardSpacing*2});
 
       .euiToolTipAnchor,
       .euiCard__betaBadge {
         width: 100%; /* 2 */
+      }
+
+      .euiCard__betaBadge {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

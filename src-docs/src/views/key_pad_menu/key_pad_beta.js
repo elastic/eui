@@ -18,8 +18,8 @@ export default () => (
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
-      betaLabel="Beta"
-      betaDescription="This module is not GA. Please help us by reporting any bugs."
+      betaBadgeLabel="Beta"
+      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
     >
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
@@ -27,8 +27,9 @@ export default () => (
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
-      betaLabel="Lab"
-      betaDescription="This module is not GA. Please help us by reporting any bugs."
+      betaBadgeLabel="Lab"
+      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
+      betaBadgeIconType="bolt"
     >
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
