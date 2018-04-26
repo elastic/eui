@@ -23,6 +23,10 @@ import CardFooter from './card_footer';
 const cardFooterSource = require('!!raw-loader!./card_footer');
 const cardFooterHtml = renderToHtml(CardFooter);
 
+import CardBeta from './card_beta';
+const cardBetaSource = require('!!raw-loader!./card_beta');
+const cardBetaHtml = renderToHtml(CardBeta);
+
 export const CardExample = {
   title: 'Card',
   sections: [{
@@ -91,5 +95,24 @@ export const CardExample = {
     ),
     components: { EuiCard },
     demo: <CardFooter />,
+  },
+  {
+    title: 'Beta badge',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: cardBetaSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: cardBetaHtml,
+    }],
+    text: (
+      <p>
+        If the card links to or references a module that is not GA (beta, lab, etc),
+        you can add a <EuiCode>betaLabel</EuiCode> and <EuiCode>betaDescription</EuiCode> to
+        the card and it will properly create and position an <EuiCode>EuiBetaBadge</EuiCode>.
+      </p>
+    ),
+    components: { EuiCard },
+    demo: <CardBeta />,
   }],
 };

@@ -1,0 +1,19 @@
+.euiBetaBadge {
+  display: inline-block;
+  padding: 0 $euiSizeL;
+  border-radius: $euiSizeL;
+  background-color: $euiColorAccent;
+  vertical-align: text-bottom; // if displayed inline with text
+  @include euiSlightShadowHover($euiColorAccent);
+
+  font-size: $euiSizeM;
+  font-weight: $euiFontWeightBold;
+  letter-spacing: .05em;
+  color: chooseLightOrDarkText($euiColorAccent, $euiColorEmptyShade, $euiColorFullShade);
+  text-transform: uppercase;
+  line-height: $euiSizeL;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: default;
+}
