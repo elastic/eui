@@ -32,6 +32,10 @@ export class Random {
     return values[Math.floor(this._rand() * values.length)];
   }
 
+  oneToOne(values, index) {
+    return values[index];
+  }
+
   setOf(values, options) {
     const count = this.integer({ min: 0, max: values.length, ...options });
     const copy = [...values];

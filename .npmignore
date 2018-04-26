@@ -2,6 +2,11 @@ node_modules/
 docs/
 reports/
 tmp/
+wiki/
+generator-eui/
+test/
+src-docs/
+scripts/
 
 
 .DS_Store
