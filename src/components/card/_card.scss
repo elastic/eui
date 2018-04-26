@@ -7,12 +7,40 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
 
+/**
+ * 1. Footer is always at the bottom.
+ * 2. Extend beta badges to at least 40% of the card's width
+ */
+
 // EuiCard specific
 .euiCard {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   padding: $euiCardSpacing;
+
+  &.euiCard--hasBetaBadge {
+    position: relative;
+
+    .euiCard__betaBadgeWrapper {
+      position: absolute;
+      top: $euiSizeL/-2;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3; // get above abs positioned image
+      min-width: 40%; /* 2 */
+      max-width: calc(100% - #{$euiCardSpacing*2});
+
+      .euiToolTipAnchor,
+      .euiCard__betaBadge {
+        width: 100%; /* 2 */
+      }
+
+      .euiCard__betaBadge {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 
   .euiCard__top,
   .euiCard__content,
@@ -51,10 +79,6 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   }
 }
 
-/**
- * 1. Footer is always at the bottom.
- */
-
 .euiCard__top {
   flex-grow: 0; /* 1 */
   position: relative;
@@ -69,6 +93,10 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
     left: $euiCardSpacing * -1;
     top: $euiCardSpacing * -1;
     margin-bottom: $euiCardSpacing * -1; // ensure the parent is only as tall as the image
+
+    // match border radius, minus 1px because it's inside a border
+    border-top-left-radius: $euiBorderRadius - 1px;
+    border-top-right-radius: $euiBorderRadius - 1px;
 
     // IF both exist, position the icon centered on top of image
     + .euiCard__icon {

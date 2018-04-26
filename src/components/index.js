@@ -23,6 +23,7 @@ export {
 
 export {
   EuiBadge,
+  EuiBetaBadge,
 } from './badge';
 
 export {

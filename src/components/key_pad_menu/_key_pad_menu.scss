@@ -14,6 +14,7 @@
 
 /**
  * 1. If this class is applied to a button, we need to override the Chrome default font.
+ * 2. If it has a BetaBadge, make sure only the first letter shows
  */
 .euiKeyPadMenuItem {
   display: block;
@@ -51,6 +52,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .euiKeyPadMenuItem--hasBetaBadge & {
+      position: relative;
+
+      .euiKeyPadMenuItem__betaBadgeWrapper {
+        position: absolute;
+        top: $euiSizeM * -.5;
+        right: $euiSizeM * -.5;
+        z-index: 3;
+
+        .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
+          width: $euiSizeL;
+          padding: 0 ($euiSizeL - $euiFontSizeXS)/1.5;  /* 2 */
+          overflow: hidden;  /* 2 */
+          letter-spacing: 3rem;  /* 2 */
+        }
+      }
+    }
   }
 
   .euiKeyPadMenuItem__icon {

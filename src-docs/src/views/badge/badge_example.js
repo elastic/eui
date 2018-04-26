@@ -9,6 +9,8 @@ import {
 import {
   EuiBadge,
   EuiCode,
+  EuiBetaBadge,
+  EuiLink,
 } from '../../../../src/components';
 
 import Badge from './badge';
@@ -22,6 +24,10 @@ const badgeWithIconHtml = renderToHtml(BadgeWithIcon);
 import BadgeButton from './badge_button';
 const badgeButtonSource = require('!!raw-loader!./badge_button');
 const badgeButtonHtml = renderToHtml(BadgeButton);
+
+import BetaBadge from './beta_badge';
+const betaBadgeSource = require('!!raw-loader!./beta_badge');
+const betaBadgeHtml = renderToHtml(BetaBadge);
 
 export const BadgeExample = {
   title: 'Badge',
@@ -76,5 +82,36 @@ export const BadgeExample = {
       </p>
     ),
     demo: <BadgeButton />,
+  }, {
+    title: 'Beta badge type',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: betaBadgeSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: betaBadgeHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          The <EuiCode>EuiBetaBadge</EuiCode> was created specifically to call out
+          modules that are not in GA. Generally the labels used are &quot;Beta&quot; or &quot;Lab&quot;.
+          They require an extra <EuiCode>tooltipContent</EuiCode> to describe the purpose of the badge.
+          You can pass an optional <EuiCode>title</EuiCode> prop to populate the tooltip title or html title
+          attribute but by default it will use the <EuiCode>label</EuiCode>.
+        </p>
+        <p>
+          If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be used in the badge itself and
+          the label will be applied as the title. Only use an icon when attaching the beta badge to small
+          components like the EuiKeyPadMenuItem.
+        </p>
+        <p>
+          They can also be used in conjunction
+          with <EuiLink href="/#/display/card">EuiCards</EuiLink> and <EuiLink href="/#/navigation/key-pad-menu">EuiKeyPadMenuItems</EuiLink>.
+        </p>
+      </div>
+    ),
+    props: { EuiBetaBadge },
+    demo: <BetaBadge />,
   }],
 };
