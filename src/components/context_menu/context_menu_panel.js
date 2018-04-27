@@ -255,7 +255,14 @@ export class EuiContextMenuPanel extends Component {
     }
 
     // Check if any watched item properties changed by quick string comparison
-    if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+    if (this.props.items != null) {
+      if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+        return true;
+      }
+    }
+
+    // if this panel was given any children, return true
+    if (this.props.children != null) {
       return true;
     }
 

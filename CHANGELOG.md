@@ -5,6 +5,10 @@
 - Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiTabbedContent` ([#737](https://github.com/elastic/eui/pull/737))
 
+**Bug fixes**
+
+- Allow `EuiContextMenuPanel`s to update when their `children` changes
+
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
 - Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))

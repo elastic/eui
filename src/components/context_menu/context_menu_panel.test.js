@@ -364,4 +364,117 @@ describe('EuiContextMenuPanel', () => {
       });
     });
   });
+
+  describe('updating items and content', () => {
+    describe('updates to items', () => {
+      it(`should not re-render if any items's watchedItemProps did not change`, () => {
+        return new Promise((resolve, reject) => {
+          try {
+            const getItem = (() => {
+              let counter = 0;
+              return key => {
+                return (
+                  <EuiContextMenuItem key={key} data-counter={counter++}>
+                    Option {key}
+                  </EuiContextMenuItem>
+                )
+              }
+            })();
+
+            function makeItems() {
+              return [getItem('A'), getItem('B')];
+            }
+
+            // by not passing `watchedItemProps` no changes to items should cause a re-render
+            const component = mount(
+              <EuiContextMenuPanel
+                items={makeItems()}
+              />
+            );
+
+            expect(component.debug()).toMatchSnapshot();
+
+            component.setProps(
+              { items: makeItems() },
+              () => {
+                expect(component.debug()).toMatchSnapshot();
+              }
+            );
+
+            resolve();
+          } catch(e) {
+            reject(e);
+          }
+        });
+      });
+
+      it(`should re-render if any items's watchedItemProps did change`, () => {
+        return new Promise((resolve, reject) => {
+          try {
+            const getItem = (() => {
+              let counter = 0;
+              return key => {
+                return (
+                  <EuiContextMenuItem key={key} data-counter={counter++}>
+                    Option {key}
+                  </EuiContextMenuItem>
+                )
+              }
+            })();
+
+            function makeItems() {
+              return [getItem('A'), getItem('B')];
+            }
+
+            // by referencing the `data-counter` property in `watchedItemProps`
+            // changes to the items should be picked up and re-rendered
+            const component = mount(
+              <EuiContextMenuPanel
+                watchedItemProps={['data-counter']}
+                items={makeItems()}
+              />
+            );
+
+            expect(component.debug()).toMatchSnapshot();
+
+            component.setProps(
+              { items: makeItems() },
+              () => {
+                expect(component.debug()).toMatchSnapshot();
+              }
+            );
+
+            resolve();
+          } catch(e) {
+            reject(e);
+          }
+        });
+      });
+
+      it(`should re-render at all times when children exists`, () => {
+        return new Promise((resolve, reject) => {
+          try {
+            const component = mount(
+              <EuiContextMenuPanel>
+                Hello World
+              </EuiContextMenuPanel>
+            );
+
+            expect(component.debug()).toMatchSnapshot();
+
+            component.setProps(
+              { children: 'More Salutations' },
+              () => {
+                expect(component.debug()).toMatchSnapshot();
+              }
+            );
+
+            resolve();
+          } catch(e) {
+            reject(e);
+          }
+        });
+      });
+    });
+  });
 });
