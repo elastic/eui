@@ -4,11 +4,15 @@
 - Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiTabbedContent` ([#737](https://github.com/elastic/eui/pull/737))
+- `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
 
 **Bug fixes**
 
 - Fixed `EuiTableRowCell` from overwriting its child element's `className` [#709](https://github.com/elastic/eui/pull/709)
 - Allow `EuiContextMenuPanel`s to update when their `children` changes ([#710](https://github.com/elastic/eui/pull/710))
+
+>>>>>>> move readme comment to master
+>>>>>>> move readme comment to master
 
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
@@ -26,7 +30,6 @@
 - Removed the default `max-width` from `EuiText`. This can still be applied by setting `grow={false}` ([#683](https://github.com/elastic/eui/pull/683))
 - Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
 - `EuiBasicTable` added the `compressed` prop to allow for tables with smaller fonts and padding.  ([#687](https://github.com/elastic/eui/pull/687))
-- `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
 
 **Breaking changes**
 
