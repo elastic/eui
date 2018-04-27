@@ -82,3 +82,15 @@ describe('truncateText', () => {
     expect(render(component)).toMatchSnapshot();
   });
 });
+
+describe(`children's className`, () => {
+  test('merges new classnames into existing ones', () => {
+    const component = (
+      <EuiTableRowCell textOnly={false} showOnHover={true}>
+        <div className="testClass"/>
+      </EuiTableRowCell>
+    );
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
