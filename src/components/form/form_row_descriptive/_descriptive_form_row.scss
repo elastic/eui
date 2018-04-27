@@ -9,22 +9,17 @@
     max-width: 100%;
   }
 
-  &__title {
+  .euiDescriptiveFormRow__title {
     @include euiTitle("xs");
-    margin-bottom: 0;
   }
 
-  &__text {
+  .euiDescriptiveFormRow__text {
     @include euiFontSizeS;
-    padding-bottom: 0;
+    padding-top: $euiSizeS;
   }
 
-  .euiFormRow {
+  .euiDescriptiveFormRow__fields {
     padding-top: ($euiFontSize*1.5) - $euiFontSizeXS + 2px;
-
-    &--hasEmptyLabelSpace {
-      padding-top: ($euiFontSize*1.5) + $euiSizeS + 2px;
-    }
   }
 
   @include screenXSmall {
@@ -34,8 +29,12 @@
       max-width: 100%;
     }
 
-    .euiFormRow {
+    .euiDescriptiveFormRow__fields {
       padding-top: 0;
+
+      > .euiFormRow--hasEmptyLabelSpace:first-child {
+        padding-top: 0;
+      }
     }
   }
 }

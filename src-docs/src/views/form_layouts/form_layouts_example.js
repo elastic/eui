@@ -29,6 +29,10 @@ import FormRows from './form_rows';
 const formRowsSource = require('!!raw-loader!./form_rows');
 const formRowsHtml = renderToHtml(FormRows);
 
+import DescriptiveFormRows from './form_rows_descriptive';
+const descriptiveFormRowsSource = require('!!raw-loader!./form_rows_descriptive');
+const descriptiveFormRowsHtml = renderToHtml(DescriptiveFormRows);
+
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
 const fullWidthHtml = renderToHtml(FullWidth);
@@ -64,7 +68,6 @@ export const FormLayoutsExample = {
       <p>
         Use the <EuiCode>EuiFormRow</EuiCode> component to easily associate form components with
         labels, help text, and error text. Use the <EuiCode>EuiForm</EuiCode> component to group <EuiCode>EuiFormRow</EuiCode>s.
-        <EuiCode>EuiDescriptiveFormRow</EuiCode> can also be used instead.
       </p>
     ),
     props: {
@@ -84,6 +87,26 @@ export const FormLayoutsExample = {
       EuiTextArea,
     },
     demo: <FormRows />,
+  }, {
+    title: 'Descriptive form rows',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: descriptiveFormRowsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: descriptiveFormRowsHtml,
+    }],
+    text: (
+      <p>
+        Use <EuiCode>DescriptiveFormRows</EuiCode> component to associate multiple <EuiCode>EuiFormRows</EuiCode>.
+        It can also simply be used with one <EuiCode>EuiFormRows</EuiCode> as a way to display help text (or additional
+        text) next to the field instead of below (on mobile, will revert to being stacked).
+      </p>
+    ),
+    props: {
+      EuiDescriptiveFormRow,
+    },
+    demo: <DescriptiveFormRows />,
   }, {
     title: 'Full-width',
     source: [{

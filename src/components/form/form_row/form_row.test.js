@@ -163,11 +163,10 @@ describe('EuiFormRow', () => {
   describe('behavior', () => {
     describe('onFocus', () => {
       test('is called in child', () => {
-        const parentFocusMock = sinon.stub();
         const focusMock = sinon.stub();
 
         const component = mount(
-          <EuiFormRow focusHandler={parentFocusMock} label={<span>Label</span>}>
+          <EuiFormRow label={<span>Label</span>}>
             <input onFocus={focusMock}/>
           </EuiFormRow>
         );
@@ -175,7 +174,6 @@ describe('EuiFormRow', () => {
         component.find('input').simulate('focus');
 
         sinon.assert.calledOnce(focusMock);
-        sinon.assert.calledOnce(parentFocusMock);
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
@@ -201,11 +199,10 @@ describe('EuiFormRow', () => {
 
     describe('onBlur', () => {
       test('is called in child', () => {
-        const parentBlurMock = sinon.stub();
         const blurMock = sinon.stub();
 
         const component = mount(
-          <EuiFormRow blurHandler={parentBlurMock} label={<span>Label</span>}>
+          <EuiFormRow label={<span>Label</span>}>
             <input onBlur={blurMock}/>
           </EuiFormRow>
         );
@@ -213,7 +210,6 @@ describe('EuiFormRow', () => {
         component.find('input').simulate('blur');
 
         sinon.assert.calledOnce(blurMock);
-        sinon.assert.calledOnce(parentBlurMock);
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel

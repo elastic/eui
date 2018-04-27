@@ -1,17 +1,23 @@
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
-import sinon from 'sinon';
 
+import { EuiFormRow } from '../form_row';
 import { EuiDescriptiveFormRow } from './descriptive_form_row';
 
 jest.mock(`../form_row/make_id`, () => () => `generated-id`);
 
 describe('EuiDescriptiveFormRow', () => {
+  const props = {
+    title: 'Title',
+  };
+
   test('is rendered', () => {
-    const component = render(
-      <EuiDescriptiveFormRow {...requiredProps}>
-        <input />
+    const component = shallow(
+      <EuiDescriptiveFormRow {...requiredProps} {...props}>
+        <EuiFormRow>
+          <input />
+        </EuiFormRow>
       </EuiDescriptiveFormRow>
     );
 
@@ -20,54 +26,64 @@ describe('EuiDescriptiveFormRow', () => {
   });
 
   test('ties together parts for accessibility', () => {
-    const props = {
+    const descriptiveFormRowProps = {
+      id: 'test-id',
+      text: 'Test text',
+    };
+
+    const formRowProps = {
       label: `Label`,
-      helpTitle: `Help title`,
       helpText: `Help text`,
       isInvalid: true,
       error: [
         `Error one`,
         `Error two`
-      ]
+      ],
+      describedByIds: ['test-id-legend-text'],
     };
 
     const tree = mount(
-      <EuiDescriptiveFormRow {...requiredProps} {...props}>
-        <input />
+      <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+        <EuiFormRow {...formRowProps}>
+          <input />
+        </EuiFormRow>
       </EuiDescriptiveFormRow>
     );
 
     expect(tree)
       .toMatchSnapshot();
 
+    // Descriptive form row has group role and is labelled by its title and text.
+    expect(tree.find(`EuiFlexItem`).at(0).prop(`id`)).toEqual(`test-id-legend`);
+    expect(tree.find(`.euiDescriptiveFormRow`).prop(`role`)).toEqual(`group`);
+    expect(tree.find(`.euiDescriptiveFormRow`).prop(`aria-labelledby`)).toEqual(`test-id-legend`);
+
+    // Title and text have own IDs.
+    expect(tree.find(`.euiDescriptiveFormRow__title`).prop(`id`)).toEqual(`test-id-legend-title`);
+    expect(tree.find(`.euiDescriptiveFormRow__text`).prop(`id`)).toEqual(`test-id-legend-text`);
+
     // Input is labeled by the label.
     expect(tree.find(`input`).prop(`id`)).toEqual(`generated-id`);
-    tree.find(`EuiFormLabel`).forEach((node) => expect(node.prop(`htmlFor`)).toEqual(`generated-id`));
 
-    // Input is described by help and error text.
+    // Input is described by legend text, help text and error text.
     expect(tree.find(`EuiFormHelpText`).prop(`id`)).toEqual(`generated-id-help`);
     expect(tree.find(`EuiFormErrorText`).at(0).prop(`id`)).toEqual(`generated-id-error-0`);
     expect(tree.find(`EuiFormErrorText`).at(1).prop(`id`)).toEqual(`generated-id-error-1`);
     expect(tree.find(`input`).prop(`aria-describedby`))
-      .toEqual(`generated-id-help generated-id-error-0 generated-id-error-1`);
+      .toEqual(`test-id-legend-text generated-id-help generated-id-error-0 generated-id-error-1`);
   });
 
   describe('props', () => {
-    test('help is rendered', () => {
-      const component = shallow(
-        <EuiDescriptiveFormRow helpTitle="Help title" helpText="Help text">
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
+    test('title and text is rendered', () => {
+      const descriptiveFormRowProps = {
+        text: 'Test text',
+      };
 
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('label is rendered', () => {
       const component = shallow(
-        <EuiDescriptiveFormRow label="label">
-          <input/>
+        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
         </EuiDescriptiveFormRow>
       );
 
@@ -76,64 +92,15 @@ describe('EuiDescriptiveFormRow', () => {
     });
 
     test('id is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow id="id">
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
+      const descriptiveFormRowProps = {
+        id: 'test-id',
+      };
 
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('isInvalid is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow isInvalid label="label">
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('error as string is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow error="Error" isInvalid={true}>
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('error as array is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow error={['Error', 'Error2']} isInvalid={true}>
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('error is not rendered if isInvalid is false', () => {
-      const component = render(
-        <EuiDescriptiveFormRow error={['Error']} isInvalid={false}>
-          <input/>
-        </EuiDescriptiveFormRow>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('hasEmptyLabelSpace is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow hasEmptyLabelSpace>
-          <input/>
+      const component = shallow(
+        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
         </EuiDescriptiveFormRow>
       );
 
@@ -142,88 +109,37 @@ describe('EuiDescriptiveFormRow', () => {
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(
-        <EuiDescriptiveFormRow fullWidth>
-          <input/>
+      const descriptiveFormRowProps = {
+        fullWidth: true,
+      };
+
+      const component = shallow(
+        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+          <EuiFormRow fullWidth>
+            <input />
+          </EuiFormRow>
         </EuiDescriptiveFormRow>
       );
 
       expect(component)
         .toMatchSnapshot();
     });
-  });
 
-  describe('behavior', () => {
-    describe('onFocus', () => {
-      test('is called in child', () => {
-        const focusMock = sinon.stub();
+    test('gutterSize is rendered', () => {
+      const descriptiveFormRowProps = {
+        gutterSize: 's',
+      };
 
-        const component = mount(
-          <EuiDescriptiveFormRow label={<span>Label</span>}>
-            <input onFocus={focusMock}/>
-          </EuiDescriptiveFormRow>
-        );
+      const component = shallow(
+        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescriptiveFormRow>
+      );
 
-        component.find('input').simulate('focus');
-
-        sinon.assert.calledOnce(focusMock);
-
-        // Ensure the focus event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
-      });
-
-      test('works in parent even if not in child', () => {
-        const component = mount(
-          <EuiDescriptiveFormRow label={<span>Label</span>}>
-            <input/>
-          </EuiDescriptiveFormRow>
-        );
-
-        component.find('input').simulate('focus');
-
-        // Ensure the focus event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
-      });
-    });
-
-    describe('onBlur', () => {
-      test('is called in child', () => {
-        const blurMock = sinon.stub();
-
-        const component = mount(
-          <EuiDescriptiveFormRow label={<span>Label</span>}>
-            <input onBlur={blurMock}/>
-          </EuiDescriptiveFormRow>
-        );
-
-        component.find('input').simulate('blur');
-
-        sinon.assert.calledOnce(blurMock);
-
-        // Ensure the blur event is properly fired on the parent
-        // which will pass down to the EuiFormLabels
-        expect(component)
-          .toMatchSnapshot();
-      });
-
-      test('works in parent even if not in child', () => {
-        const component = mount(
-          <EuiDescriptiveFormRow label={<span>Label</span>}>
-            <input/>
-          </EuiDescriptiveFormRow>
-        );
-
-        component.find('input').simulate('blur');
-
-        // Ensure the blur event is properly fired on the parent
-        // which will pass down to the EuiFormLabels
-        expect(component)
-          .toMatchSnapshot();
-      });
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

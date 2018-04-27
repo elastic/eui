@@ -8,7 +8,6 @@ import {
   EuiFieldText,
   EuiForm,
   EuiFormRow,
-  EuiDescriptiveFormRow,
   EuiFilePicker,
   EuiRange,
   EuiSelect,
@@ -134,30 +133,6 @@ export default class extends Component {
             onChange={this.onCheckboxChange}
           />
         </EuiFormRow>
-
-        <EuiDescriptiveFormRow
-          label="Text field"
-          hasEmptyLabelSpace={false}
-          helpTitle="Descriptive form row"
-          helpText={`Descriptive form rows show help text next to the field. Use this to avoid
-          excessive whitespace when there are many stacked form rows with help text. On mobile,
-          this will stack instead.`}
-        >
-          <EuiFieldText name="first" />
-        </EuiDescriptiveFormRow>
-
-        <EuiDescriptiveFormRow
-          hasEmptyLabelSpace={true}
-          helpTitle="Use a switch instead of a single checkbox"
-          helpText="The label can be placed as the title instead of appearing over input."
-        >
-          <EuiSwitch
-            name="switch"
-            label="Should we do this?"
-            checked={this.state.isSwitchChecked}
-            onChange={this.onSwitchChange}
-          />
-        </EuiDescriptiveFormRow>
 
         <EuiButton type="submit" fill>
           Save form

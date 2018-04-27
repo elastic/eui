@@ -8,7 +8,6 @@ import {
   EuiForm,
   EuiSelect,
   EuiFormRow,
-  EuiDescriptiveFormRow,
   EuiTextArea,
   EuiFieldText,
 } from '../../../../src/components';
@@ -95,23 +94,6 @@ export default class extends Component {
               isInvalid={this.state.showErrors}
             />
           </EuiFormRow>
-
-          <EuiDescriptiveFormRow
-            label="Select"
-            helpTitle="Select in descriptive form row"
-            helpText="Example of validation in a descriptive form row"
-            isInvalid={this.state.showErrors}
-            error={errors[0]}
-          >
-            <EuiSelect
-              options={[
-                { value: 'option_one', text: 'Option one' },
-                { value: 'option_two', text: 'Option two' },
-                { value: 'option_three', text: 'Option three' },
-              ]}
-              isInvalid={this.state.showErrors}
-            />
-          </EuiDescriptiveFormRow>
 
           {button}
         </EuiForm>

@@ -26,15 +26,8 @@ export class EuiFormRow extends Component {
   }
 
   onFocus(...args) {
-    const { focusHandler: onParentFocus } = this.props;
-
     // Doing this to allow onFocus to be called correctly from the child input element as this component overrides it
     const onChildFocus = get(this.props, 'children.props.onFocus');
-
-    if (onParentFocus) {
-      onParentFocus(...args);
-    }
-
     if (onChildFocus) {
       onChildFocus(...args);
     }
@@ -45,15 +38,8 @@ export class EuiFormRow extends Component {
   }
 
   onBlur(...args) {
-    const { blurHandler: onParentBlur } = this.props;
-
     // Doing this to allow onBlur to be called correctly from the child input element as this component overrides it
     const onChildBlur = get(this.props, 'children.props.onBlur');
-
-    if (onParentBlur) {
-      onParentBlur(...args);
-    }
-
     if (onChildBlur) {
       onChildBlur(...args);
 
@@ -74,8 +60,6 @@ export class EuiFormRow extends Component {
       fullWidth,
       className,
       describedByIds,
-      blurHandler, // eslint-disable-line no-unused-vars
-      focusHandler, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -170,14 +154,6 @@ EuiFormRow.propTypes = {
   helpText: PropTypes.node,
   hasEmptyLabelSpace: PropTypes.bool,
   fullWidth: PropTypes.bool,
-  /**
-   * Function to call when children's onFocus is called
-   */
-  focusHandler: PropTypes.func,
-  /**
-   * Function to call when children's onBlur is called
-   */
-  blurHandler: PropTypes.func,
   /**
    * IDs of additional elements that should be part of children's `aria-describedby`
    */
