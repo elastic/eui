@@ -7,7 +7,7 @@
 
 **Bug fixes**
 
-- Allow `EuiContextMenuPanel`s to update when their `children` changes
+- Allow `EuiContextMenuPanel`s to update when their `children` changes ([#710](https://github.com/elastic/eui/pull/710))
 
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
