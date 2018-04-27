@@ -13,6 +13,7 @@ export { EuiFormErrorText } from './form_error_text';
 export { EuiFormHelpText } from './form_help_text';
 export { EuiFormLabel } from './form_label';
 export { EuiFormRow } from './form_row';
+export { EuiDescriptiveFormRow } from './form_row_descriptive';
 export {
   EuiRadio,
   EuiRadioGroup,

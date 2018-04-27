@@ -114,6 +114,7 @@ export {
   EuiFormHelpText,
   EuiFormLabel,
   EuiFormRow,
+  EuiDescriptiveFormRow,
   EuiRadio,
   EuiRadioGroup,
   EuiRange,

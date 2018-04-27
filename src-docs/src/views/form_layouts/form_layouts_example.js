@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiForm,
   EuiFormRow,
+  EuiDescriptiveFormRow,
   EuiCheckboxGroup,
   EuiFieldNumber,
   EuiFieldPassword,
@@ -63,6 +64,7 @@ export const FormLayoutsExample = {
       <p>
         Use the <EuiCode>EuiFormRow</EuiCode> component to easily associate form components with
         labels, help text, and error text. Use the <EuiCode>EuiForm</EuiCode> component to group <EuiCode>EuiFormRow</EuiCode>s.
+        <EuiCode>EuiDescriptiveFormRow</EuiCode> can also be used instead.
       </p>
     ),
     props: {
@@ -73,6 +75,7 @@ export const FormLayoutsExample = {
       EuiFieldText,
       EuiForm,
       EuiFormRow,
+      EuiDescriptiveFormRow,
       EuiFilePicker,
       EuiRange,
       EuiRadioGroup,

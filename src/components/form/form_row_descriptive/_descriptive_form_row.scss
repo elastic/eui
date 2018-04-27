@@ -1,0 +1,41 @@
+.euiDescriptiveFormRow {
+  max-width: $euiFormMaxWidth*2;
+
+  + * {
+    margin-top: $euiSizeL;
+  }
+
+  &.euiDescriptiveFormRow--fullWidth {
+    max-width: 100%;
+  }
+
+  &__title {
+    @include euiTitle("xs");
+    margin-bottom: 0;
+  }
+
+  &__text {
+    @include euiFontSizeS;
+    padding-bottom: 0;
+  }
+
+  .euiFormRow {
+    padding-top: ($euiFontSize*1.5) - $euiFontSizeXS + 2px;
+
+    &--hasEmptyLabelSpace {
+      padding-top: ($euiFontSize*1.5) + $euiSizeS + 2px;
+    }
+  }
+
+  @include screenXSmall {
+    max-width: $euiFormMaxWidth;
+
+    &.euiDescriptiveFormRow--fullWidth {
+      max-width: 100%;
+    }
+
+    .euiFormRow {
+      padding-top: 0;
+    }
+  }
+}

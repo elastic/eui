@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiBetaBadge` for non-GA labelling including options to add it to `EuiCard` and `EuiKeyPadMenuItem` ([#705](https://github.com/elastic/eui/pull/705))
-
+- Added `EuiDescriptiveFormRow` component, a wrapper around `EuiFormRow` to display it horizontally on desktop
 
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 

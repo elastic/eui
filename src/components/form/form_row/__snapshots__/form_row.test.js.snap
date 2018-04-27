@@ -2,6 +2,8 @@
 
 exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 <EuiFormRow
+  blurHandler={[Function]}
+  describedByIds={Array []}
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -38,6 +40,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 
 exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 <EuiFormRow
+  describedByIds={Array []}
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -74,6 +77,8 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 
 exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 <EuiFormRow
+  describedByIds={Array []}
+  focusHandler={[Function]}
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -110,6 +115,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 
 exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
 <EuiFormRow
+  describedByIds={Array []}
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -153,6 +159,20 @@ exports[`EuiFormRow is rendered 1`] = `
 >
   <input
     id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props describedByIds is rendered 1`] = `
+<div
+  className="euiFormRow"
+  id="generated-id-row"
+>
+  <input
+    aria-describedby="generated-id-additional"
+    id="generated-id"
+    onBlur={[Function]}
+    onFocus={[Function]}
   />
 </div>
 `;

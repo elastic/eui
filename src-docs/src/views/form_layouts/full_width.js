@@ -3,8 +3,10 @@ import React, { Fragment } from 'react';
 import {
   EuiFieldSearch,
   EuiRange,
+  EuiSelect,
   EuiTextArea,
   EuiFormRow,
+  EuiDescriptiveFormRow,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
@@ -36,6 +38,7 @@ export default () => (
         fullWidth
       />
     </EuiFormRow>
+
     <EuiFormRow
       label="Often useful for text areas"
       fullWidth
@@ -48,5 +51,14 @@ export default () => (
           lines get this long? It is much more readable when contained to a scannable max-width."
       />
     </EuiFormRow>
+
+    <EuiDescriptiveFormRow
+      label="Select field"
+      fullWidth
+      helpTitle="Descriptive form row full width"
+      helpText="Descriptive form row can also be full width. Again, full width is passed to both the row and the textarea."
+    >
+      <EuiSelect fullWidth />
+    </EuiDescriptiveFormRow>
   </Fragment>
 );

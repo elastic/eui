@@ -1,0 +1,1051 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDescriptiveFormRow behavior onBlur is called in child 1`] = `
+<EuiDescriptiveFormRow
+  fullWidth={false}
+  gutterSize="l"
+  hasEmptyLabelSpace={false}
+  isInvalid={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiDescriptiveFormRow"
+  >
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
+    >
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormLabel
+              className="euiDescriptiveFormRow__title"
+              htmlFor="generated-id"
+              isFocused={false}
+              isInvalid={false}
+            >
+              <label
+                className="euiFormLabel euiDescriptiveFormRow__title"
+                htmlFor="generated-id"
+              >
+                <span>
+                  Label
+                </span>
+              </label>
+            </EuiFormLabel>
+            <EuiFormHelpText
+              className="euiDescriptiveFormRow__text"
+              id="generated-id-help"
+            >
+              <div
+                className="euiFormHelpText euiDescriptiveFormRow__text"
+                id="generated-id-help"
+              />
+            </EuiFormHelpText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormRow
+              blurHandler={[Function]}
+              describedByIds={
+                Array [
+                  "generated-id-help",
+                ]
+              }
+              focusHandler={[Function]}
+              fullWidth={false}
+              hasEmptyLabelSpace={false}
+              id="generated-id"
+              isInvalid={false}
+              label={
+                <span>
+                  Label
+                </span>
+              }
+            >
+              <div
+                className="euiFormRow"
+                id="generated-id-row"
+              >
+                <EuiFormLabel
+                  htmlFor="generated-id"
+                  isFocused={false}
+                  isInvalid={false}
+                >
+                  <label
+                    className="euiFormLabel"
+                    htmlFor="generated-id"
+                  >
+                    <span>
+                      Label
+                    </span>
+                  </label>
+                </EuiFormLabel>
+                <input
+                  aria-describedby="generated-id-help"
+                  id="generated-id"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </div>
+            </EuiFormRow>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </div>
+</EuiDescriptiveFormRow>
+`;
+
+exports[`EuiDescriptiveFormRow behavior onBlur works in parent even if not in child 1`] = `
+<EuiDescriptiveFormRow
+  fullWidth={false}
+  gutterSize="l"
+  hasEmptyLabelSpace={false}
+  isInvalid={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiDescriptiveFormRow"
+  >
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
+    >
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormLabel
+              className="euiDescriptiveFormRow__title"
+              htmlFor="generated-id"
+              isFocused={false}
+              isInvalid={false}
+            >
+              <label
+                className="euiFormLabel euiDescriptiveFormRow__title"
+                htmlFor="generated-id"
+              >
+                <span>
+                  Label
+                </span>
+              </label>
+            </EuiFormLabel>
+            <EuiFormHelpText
+              className="euiDescriptiveFormRow__text"
+              id="generated-id-help"
+            >
+              <div
+                className="euiFormHelpText euiDescriptiveFormRow__text"
+                id="generated-id-help"
+              />
+            </EuiFormHelpText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormRow
+              blurHandler={[Function]}
+              describedByIds={
+                Array [
+                  "generated-id-help",
+                ]
+              }
+              focusHandler={[Function]}
+              fullWidth={false}
+              hasEmptyLabelSpace={false}
+              id="generated-id"
+              isInvalid={false}
+              label={
+                <span>
+                  Label
+                </span>
+              }
+            >
+              <div
+                className="euiFormRow"
+                id="generated-id-row"
+              >
+                <EuiFormLabel
+                  htmlFor="generated-id"
+                  isFocused={false}
+                  isInvalid={false}
+                >
+                  <label
+                    className="euiFormLabel"
+                    htmlFor="generated-id"
+                  >
+                    <span>
+                      Label
+                    </span>
+                  </label>
+                </EuiFormLabel>
+                <input
+                  aria-describedby="generated-id-help"
+                  id="generated-id"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </div>
+            </EuiFormRow>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </div>
+</EuiDescriptiveFormRow>
+`;
+
+exports[`EuiDescriptiveFormRow behavior onFocus is called in child 1`] = `
+<EuiDescriptiveFormRow
+  fullWidth={false}
+  gutterSize="l"
+  hasEmptyLabelSpace={false}
+  isInvalid={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiDescriptiveFormRow"
+  >
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
+    >
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormLabel
+              className="euiDescriptiveFormRow__title"
+              htmlFor="generated-id"
+              isFocused={true}
+              isInvalid={false}
+            >
+              <label
+                className="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isFocused"
+                htmlFor="generated-id"
+              >
+                <span>
+                  Label
+                </span>
+              </label>
+            </EuiFormLabel>
+            <EuiFormHelpText
+              className="euiDescriptiveFormRow__text"
+              id="generated-id-help"
+            >
+              <div
+                className="euiFormHelpText euiDescriptiveFormRow__text"
+                id="generated-id-help"
+              />
+            </EuiFormHelpText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormRow
+              blurHandler={[Function]}
+              describedByIds={
+                Array [
+                  "generated-id-help",
+                ]
+              }
+              focusHandler={[Function]}
+              fullWidth={false}
+              hasEmptyLabelSpace={false}
+              id="generated-id"
+              isInvalid={false}
+              label={
+                <span>
+                  Label
+                </span>
+              }
+            >
+              <div
+                className="euiFormRow"
+                id="generated-id-row"
+              >
+                <EuiFormLabel
+                  htmlFor="generated-id"
+                  isFocused={true}
+                  isInvalid={false}
+                >
+                  <label
+                    className="euiFormLabel euiFormLabel-isFocused"
+                    htmlFor="generated-id"
+                  >
+                    <span>
+                      Label
+                    </span>
+                  </label>
+                </EuiFormLabel>
+                <input
+                  aria-describedby="generated-id-help"
+                  id="generated-id"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </div>
+            </EuiFormRow>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </div>
+</EuiDescriptiveFormRow>
+`;
+
+exports[`EuiDescriptiveFormRow behavior onFocus works in parent even if not in child 1`] = `
+<EuiDescriptiveFormRow
+  fullWidth={false}
+  gutterSize="l"
+  hasEmptyLabelSpace={false}
+  isInvalid={false}
+  label={
+    <span>
+      Label
+    </span>
+  }
+>
+  <div
+    className="euiDescriptiveFormRow"
+  >
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
+    >
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormLabel
+              className="euiDescriptiveFormRow__title"
+              htmlFor="generated-id"
+              isFocused={true}
+              isInvalid={false}
+            >
+              <label
+                className="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isFocused"
+                htmlFor="generated-id"
+              >
+                <span>
+                  Label
+                </span>
+              </label>
+            </EuiFormLabel>
+            <EuiFormHelpText
+              className="euiDescriptiveFormRow__text"
+              id="generated-id-help"
+            >
+              <div
+                className="euiFormHelpText euiDescriptiveFormRow__text"
+                id="generated-id-help"
+              />
+            </EuiFormHelpText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormRow
+              blurHandler={[Function]}
+              describedByIds={
+                Array [
+                  "generated-id-help",
+                ]
+              }
+              focusHandler={[Function]}
+              fullWidth={false}
+              hasEmptyLabelSpace={false}
+              id="generated-id"
+              isInvalid={false}
+              label={
+                <span>
+                  Label
+                </span>
+              }
+            >
+              <div
+                className="euiFormRow"
+                id="generated-id-row"
+              >
+                <EuiFormLabel
+                  htmlFor="generated-id"
+                  isFocused={true}
+                  isInvalid={false}
+                >
+                  <label
+                    className="euiFormLabel euiFormLabel-isFocused"
+                    htmlFor="generated-id"
+                  >
+                    <span>
+                      Label
+                    </span>
+                  </label>
+                </EuiFormLabel>
+                <input
+                  aria-describedby="generated-id-help"
+                  id="generated-id"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </div>
+            </EuiFormRow>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </div>
+</EuiDescriptiveFormRow>
+`;
+
+exports[`EuiDescriptiveFormRow is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow testClass1 testClass2"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiFormRow"
+        data-test-subj="test subject string"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help"
+          id="generated-id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props error as array is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isInvalid"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help generated-id-error-0 generated-id-error-1"
+          id="generated-id"
+        />
+        <div
+          class="euiFormErrorText euiFormRow__text"
+          id="generated-id-error-0"
+        >
+          Error
+        </div>
+        <div
+          class="euiFormErrorText euiFormRow__text"
+          id="generated-id-error-1"
+        >
+          Error2
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props error as string is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isInvalid"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help generated-id-error-0"
+          id="generated-id"
+        />
+        <div
+          class="euiFormErrorText euiFormRow__text"
+          id="generated-id-error-0"
+        >
+          Error
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props error is not rendered if isInvalid is false 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help"
+          id="generated-id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow euiDescriptiveFormRow--fullWidth"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help"
+          id="generated-id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props hasEmptyLabelSpace is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title"
+        for="generated-id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow euiFormRow--hasEmptyLabelSpace"
+        id="generated-id-row"
+      >
+        <input
+          aria-describedby="generated-id-help"
+          id="generated-id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props help is rendered 1`] = `
+<div
+  className="euiDescriptiveFormRow"
+>
+  <EuiFlexGroup
+    alignItems="stretch"
+    component="div"
+    gutterSize="l"
+    justifyContent="flexStart"
+    responsive={true}
+    wrap={false}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={true}
+    >
+      <EuiFormLabel
+        className="euiDescriptiveFormRow__title"
+        htmlFor="generated-id"
+        isFocused={false}
+        isInvalid={false}
+      >
+        Help title
+      </EuiFormLabel>
+      <EuiFormHelpText
+        className="euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      >
+        Help text
+      </EuiFormHelpText>
+    </EuiFlexItem>
+    <EuiFlexItem
+      component="div"
+      grow={true}
+    >
+      <EuiFormRow
+        blurHandler={[Function]}
+        describedByIds={
+          Array [
+            "generated-id-help",
+          ]
+        }
+        focusHandler={[Function]}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        id="generated-id"
+        isInvalid={false}
+      >
+        <input />
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props id is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title"
+        for="id"
+      />
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow"
+        id="id-row"
+      >
+        <input
+          aria-describedby="id-help"
+          id="id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props isInvalid is rendered 1`] = `
+<div
+  class="euiDescriptiveFormRow"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <label
+        class="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isInvalid"
+        for="generated-id"
+      >
+        label
+      </label>
+      <div
+        class="euiFormHelpText euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </div>
+    <div
+      class="euiFlexItem"
+    >
+      <div
+        class="euiFormRow"
+        id="generated-id-row"
+      >
+        <label
+          class="euiFormLabel euiFormLabel-isInvalid"
+          for="generated-id"
+        >
+          label
+        </label>
+        <input
+          aria-describedby="generated-id-help"
+          id="generated-id"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow props label is rendered 1`] = `
+<div
+  className="euiDescriptiveFormRow"
+>
+  <EuiFlexGroup
+    alignItems="stretch"
+    component="div"
+    gutterSize="l"
+    justifyContent="flexStart"
+    responsive={true}
+    wrap={false}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={true}
+    >
+      <EuiFormLabel
+        className="euiDescriptiveFormRow__title"
+        htmlFor="generated-id"
+        isFocused={false}
+        isInvalid={false}
+      >
+        label
+      </EuiFormLabel>
+      <EuiFormHelpText
+        className="euiDescriptiveFormRow__text"
+        id="generated-id-help"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem
+      component="div"
+      grow={true}
+    >
+      <EuiFormRow
+        blurHandler={[Function]}
+        describedByIds={
+          Array [
+            "generated-id-help",
+          ]
+        }
+        focusHandler={[Function]}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        id="generated-id"
+        isInvalid={false}
+        label="label"
+      >
+        <input />
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;
+
+exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
+<EuiDescriptiveFormRow
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  error={
+    Array [
+      "Error one",
+      "Error two",
+    ]
+  }
+  fullWidth={false}
+  gutterSize="l"
+  hasEmptyLabelSpace={false}
+  helpText="Help text"
+  helpTitle="Help title"
+  isInvalid={true}
+  label="Label"
+>
+  <div
+    className="euiDescriptiveFormRow testClass1 testClass2"
+  >
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
+    >
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormLabel
+              className="euiDescriptiveFormRow__title"
+              htmlFor="generated-id"
+              isFocused={false}
+              isInvalid={true}
+            >
+              <label
+                className="euiFormLabel euiDescriptiveFormRow__title euiFormLabel-isInvalid"
+                htmlFor="generated-id"
+              >
+                Help title
+              </label>
+            </EuiFormLabel>
+            <EuiFormHelpText
+              className="euiDescriptiveFormRow__text"
+              id="generated-id-help"
+            >
+              <div
+                className="euiFormHelpText euiDescriptiveFormRow__text"
+                id="generated-id-help"
+              >
+                Help text
+              </div>
+            </EuiFormHelpText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiFormRow
+              aria-label="aria-label"
+              blurHandler={[Function]}
+              data-test-subj="test subject string"
+              describedByIds={
+                Array [
+                  "generated-id-help",
+                ]
+              }
+              error={
+                Array [
+                  "Error one",
+                  "Error two",
+                ]
+              }
+              focusHandler={[Function]}
+              fullWidth={false}
+              hasEmptyLabelSpace={false}
+              id="generated-id"
+              isInvalid={true}
+              label="Label"
+            >
+              <div
+                aria-label="aria-label"
+                className="euiFormRow"
+                data-test-subj="test subject string"
+                id="generated-id-row"
+              >
+                <EuiFormLabel
+                  htmlFor="generated-id"
+                  isFocused={false}
+                  isInvalid={true}
+                >
+                  <label
+                    className="euiFormLabel euiFormLabel-isInvalid"
+                    htmlFor="generated-id"
+                  >
+                    Label
+                  </label>
+                </EuiFormLabel>
+                <input
+                  aria-describedby="generated-id-help generated-id-error-0 generated-id-error-1"
+                  id="generated-id"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+                <EuiFormErrorText
+                  className="euiFormRow__text"
+                  id="generated-id-error-0"
+                  key="Error one"
+                >
+                  <div
+                    className="euiFormErrorText euiFormRow__text"
+                    id="generated-id-error-0"
+                  >
+                    Error one
+                  </div>
+                </EuiFormErrorText>
+                <EuiFormErrorText
+                  className="euiFormRow__text"
+                  id="generated-id-error-1"
+                  key="Error two"
+                >
+                  <div
+                    className="euiFormErrorText euiFormRow__text"
+                    id="generated-id-error-1"
+                  >
+                    Error two
+                  </div>
+                </EuiFormErrorText>
+              </div>
+            </EuiFormRow>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </div>
+</EuiDescriptiveFormRow>
+`;
