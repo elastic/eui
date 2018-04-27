@@ -76,7 +76,7 @@ export default class extends Component {
         selectedOptions={selectedOptions}
         onChange={this.onChange}
         onCreateOption={this.onCreateOption}
-        isClearable={false}
+        isClearable={true}
       />
     );
   }
