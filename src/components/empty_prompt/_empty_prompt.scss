@@ -1,0 +1,8 @@
+@import '../text/_mixins';
+
+.euiEmptyPrompt {
+  @include euiTextConstrainedWidth;
+  text-align: center;
+  padding: $euiSizeL;
+  margin: auto;
+}

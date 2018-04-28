@@ -73,6 +73,10 @@ export {
 } from './description_list';
 
 export {
+  EuiEmptyPrompt,
+} from './empty_prompt';
+
+export {
   EuiErrorBoundary,
 } from './error_boundary';
 
