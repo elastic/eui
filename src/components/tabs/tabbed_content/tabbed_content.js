@@ -75,8 +75,7 @@ export class EuiTabbedContent extends Component {
     return (
       <div className={className} {...rest}>
         <EuiTabs size={size}>
-          {
-          tabs.map((tab) => {
+          {tabs.map((tab) => {
             const {
               id,
               name,
@@ -93,8 +92,7 @@ export class EuiTabbedContent extends Component {
             };
 
             return <EuiTab {...props}>{name}</EuiTab>;
-          })
-        }
+          })}
         </EuiTabs>
 
         <div

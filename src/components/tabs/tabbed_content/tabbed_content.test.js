@@ -29,7 +29,7 @@ const tabs = [
 ];
 
 describe('EuiTabbedContent', () => {
-  test('is rendered', () => {
+  test('is rendered with required props and tabs', () => {
     const component = render(<EuiTabbedContent {...requiredProps} tabs={tabs} />);
     expect(component).toMatchSnapshot();
   });
@@ -46,14 +46,14 @@ describe('EuiTabbedContent', () => {
     });
 
     describe('selectedTab', () => {
-      test('is rendered', () => {
+      test('renders a selected tab', () => {
         const component = render(<EuiTabbedContent selectedTab={kibanaTab} tabs={tabs} />);
         expect(component).toMatchSnapshot();
       });
     });
 
     describe('initialSelectedTab', () => {
-      test('is rendered', () => {
+      test('renders a selected tab', () => {
         const component = render(<EuiTabbedContent initialSelectedTab={kibanaTab} tabs={tabs} />);
         expect(component).toMatchSnapshot();
       });

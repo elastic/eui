@@ -46,7 +46,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
 </div>
 `;
 
-exports[`EuiTabbedContent is rendered 1`] = `
+exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 <div
   aria-label="aria-label"
   class="testClass1 testClass2"
@@ -96,7 +96,7 @@ exports[`EuiTabbedContent is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiTabbedContent props initialSelectedTab is rendered 1`] = `
+exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
 <div>
   <div
     class="euiTabs"
@@ -142,7 +142,7 @@ exports[`EuiTabbedContent props initialSelectedTab is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiTabbedContent props selectedTab is rendered 1`] = `
+exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 <div>
   <div
     class="euiTabs"
