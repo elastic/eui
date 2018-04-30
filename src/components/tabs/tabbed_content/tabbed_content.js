@@ -11,10 +11,22 @@ const makeId = htmlIdGenerator();
 export class EuiTabbedContent extends Component {
   static propTypes = {
     className: PropTypes.string,
-    // We use the id to associate tabs with panels for accessibility.
+
+    /**
+     * Each tab needs an id property, so we can associate it with its panel for accessibility
+     */
     tabs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string.isRequired })).isRequired,
     onTabClick: PropTypes.func,
+
+    /**
+     * Use this prop if you want to control selection state within the owner component
+     */
     selectedTab: PropTypes.object,
+
+    /**
+     * Use this prop to set the initially selected tab while letting the tabbed content component
+     * control selection state internally
+     */
     initialSelectedTab: PropTypes.object,
     size: PropTypes.oneOf(SIZES),
   };
