@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { TITLE_SIZES } from '../title/title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { EuiIcon, COLORS } from '../icon/icon';
+import { EuiIcon, COLORS, TYPES } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiTitle } from '../title';
 
@@ -114,7 +114,7 @@ export const EuiEmptyPrompt = ({
 };
 
 EuiEmptyPrompt.propTypes = {
-  iconType: PropTypes.string,
+  iconType: PropTypes.oneOf(TYPES),
 
   /**
    * Pass `null` to use original icon color
