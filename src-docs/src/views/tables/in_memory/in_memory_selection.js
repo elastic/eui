@@ -49,6 +49,7 @@ export class Table extends Component {
       message: (
         <EuiEmptyPrompt
           title={<h3>No users</h3>}
+          titleSize="xs"
           body="Looks like you don&rsquo;t have any users. Let&rsquo;s create some!"
           actions={(
             <EuiButton

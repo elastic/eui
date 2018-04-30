@@ -9,7 +9,6 @@ export default () => (
   <EuiEmptyPrompt
     iconType="dataVisualizer"
     iconColor={null}
-    iconSize="xs"
     title={<h2>You have no spice</h2>}
     titleSize="xs"
     body={
@@ -18,6 +17,6 @@ export default () => (
         <p>You&rsquo;ll need spice to rule Arrakis, young Atreides.</p>
       </Fragment>
     }
-    actions={<EuiButton color="primary" fill>Harvest spice</EuiButton>}
+    actions={<EuiButton size="s" color="primary" fill>Harvest spice</EuiButton>}
   />
 );

@@ -52,7 +52,7 @@ export const EmptyPromptExample = {
     text: (
       <p>
         You can control sizes and colors with the <EuiCode>iconColor</EuiCode>,{' '}
-        <EuiCode>iconSize</EuiCode>, and <EuiCode>titleSize</EuiCode> props.
+        and <EuiCode>titleSize</EuiCode> props.
       </p>
     ),
     props: { EuiEmptyPrompt },

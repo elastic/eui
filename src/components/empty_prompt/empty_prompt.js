@@ -5,14 +5,13 @@ import classNames from 'classnames';
 import { TITLE_SIZES } from '../title/title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { EuiIcon, COLORS, SIZES } from '../icon/icon';
+import { EuiIcon, COLORS } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiTitle } from '../title';
 
 export const EuiEmptyPrompt = ({
   iconType,
   iconColor,
-  iconSize,
   title,
   titleSize,
   body,
@@ -27,7 +26,7 @@ export const EuiEmptyPrompt = ({
   if (iconType) {
     icon = (
       <Fragment>
-        <EuiIcon type={iconType} size={iconSize} color={iconColor} />
+        <EuiIcon type={iconType} size="xxl" color={iconColor} />
         <EuiSpacer size="s" />
       </Fragment>
     )
@@ -121,7 +120,6 @@ EuiEmptyPrompt.propTypes = {
    * Pass `null` to use original icon color
    */
   iconColor: PropTypes.oneOf(COLORS),
-  iconSize: PropTypes.oneOf(SIZES),
   title: PropTypes.node,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
   body: PropTypes.node,
@@ -131,5 +129,4 @@ EuiEmptyPrompt.propTypes = {
 
 EuiEmptyPrompt.defaultProps = {
   iconColor: "subdued",
-  iconSize: "xxl",
 };
