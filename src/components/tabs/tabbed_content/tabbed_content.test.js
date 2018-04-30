@@ -12,13 +12,13 @@ jest.mock('../../../services/accessibility/html_id_generator', () => ({
 
 const elasticsearchTab = {
   id: 'es',
-  title: `Elasticsearch`,
+  name: `Elasticsearch`,
   content: <p>Elasticsearch content</p>,
 };
 
 const kibanaTab = {
   id: 'kibana',
-  title: `Kibana`,
+  name: `Kibana`,
   'data-test-subj': 'kibanaTab',
   content: <p>Kibana content</p>,
 };

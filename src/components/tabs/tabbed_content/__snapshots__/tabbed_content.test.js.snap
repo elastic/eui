@@ -12,12 +12,13 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       class="euiTab euiTab-isSelected"
       id="es"
       role="tab"
-      title="Elasticsearch"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Elasticsearch
+      </span>
     </button>
     <button
       aria-controls="42-kibana"
@@ -26,12 +27,13 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
-      title="Kibana"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Kibana
+      </span>
     </button>
   </div>
   <div
@@ -62,12 +64,13 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       class="euiTab euiTab-isSelected"
       id="es"
       role="tab"
-      title="Elasticsearch"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Elasticsearch
+      </span>
     </button>
     <button
       aria-controls="42-kibana"
@@ -76,12 +79,13 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
-      title="Kibana"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Kibana
+      </span>
     </button>
   </div>
   <div
@@ -108,12 +112,13 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       class="euiTab"
       id="es"
       role="tab"
-      title="Elasticsearch"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Elasticsearch
+      </span>
     </button>
     <button
       aria-controls="42-kibana"
@@ -122,12 +127,13 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
-      title="Kibana"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Kibana
+      </span>
     </button>
   </div>
   <div
@@ -154,12 +160,13 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       class="euiTab"
       id="es"
       role="tab"
-      title="Elasticsearch"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Elasticsearch
+      </span>
     </button>
     <button
       aria-controls="42-kibana"
@@ -168,12 +175,13 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
-      title="Kibana"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Kibana
+      </span>
     </button>
   </div>
   <div
@@ -200,12 +208,13 @@ exports[`EuiTabbedContent props size is rendered 1`] = `
       class="euiTab euiTab-isSelected"
       id="es"
       role="tab"
-      title="Elasticsearch"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Elasticsearch
+      </span>
     </button>
     <button
       aria-controls="42-kibana"
@@ -214,12 +223,13 @@ exports[`EuiTabbedContent props size is rendered 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
-      title="Kibana"
       type="button"
     >
       <span
         class="euiTab__content"
-      />
+      >
+        Kibana
+      </span>
     </button>
   </div>
   <div

@@ -13,9 +13,14 @@ export class EuiTabbedContent extends Component {
     className: PropTypes.string,
 
     /**
-     * Each tab needs an id property, so we can associate it with its panel for accessibility
+     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
+     * The name property is also required to display to the user.
      */
-    tabs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string.isRequired })).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      content: PropTypes.node.isRequired,
+    })).isRequired,
     onTabClick: PropTypes.func,
 
     /**
@@ -38,19 +43,25 @@ export class EuiTabbedContent extends Component {
 
     this.rootId = makeId();
 
-    this.state = {
-      selectedTab: selectedTab || initialSelectedTab || tabs[0],
-    };
+    // Only track selection state if it's not controlled externally.
+    if (!selectedTab) {
+      this.state = {
+        selectedTab: initialSelectedTab || tabs[0],
+      };
+    }
   }
 
   onTabClick = (selectedTab) => {
-    const { onTabClick } = this.props;
+    const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
       onTabClick(selectedTab)
     }
 
-    this.setState({ selectedTab })
+    // Only track selection state if it's not controlled externally.
+    if (!externalSelectedTab) {
+      this.setState({ selectedTab })
+    }
   };
 
   render() {
