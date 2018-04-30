@@ -368,7 +368,7 @@ describe('EuiContextMenuPanel', () => {
   describe('updating items and content', () => {
     describe('updates to items', () => {
       it(`should not re-render if any items's watchedItemProps did not change`, () => {
-        expect.assertions(2);
+        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         // by not passing `watchedItemProps` no changes to items should cause a re-render
         const component = mount(
@@ -396,7 +396,7 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it(`should re-render if any items's watchedItemProps did change`, () => {
-        expect.assertions(2);
+        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         // by referencing the `data-counter` property in `watchedItemProps`
         // changes to the items should be picked up and re-rendered
@@ -426,7 +426,7 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it(`should re-render at all times when children exists`, () => {
-        expect.assertions(2);
+        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         const component = mount(
           <EuiContextMenuPanel>
