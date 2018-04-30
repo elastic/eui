@@ -276,7 +276,7 @@ export class SearchBar extends Component {
 
           <EuiTitle size="s">
             <h3>Elasticsearch Query DSL</h3>
-          </EuiTitle>`
+          </EuiTitle>
           <EuiSpacer size="s"/>
           <EuiCodeBlock language="js">
             {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
