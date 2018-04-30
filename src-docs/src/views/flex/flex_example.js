@@ -49,6 +49,10 @@ import FlexJustify from './flex_justify';
 const flexJustifySource = require('!!raw-loader!./flex_justify');
 const flexJustifyHtml = renderToHtml(FlexJustify);
 
+import Direction from './direction';
+const directionSource = require('!!raw-loader!./direction');
+const directionHtml = renderToHtml(Direction);
+
 import FlexGrid from './flex_grid';
 const flexGridSource = require('!!raw-loader!./flex_grid');
 const flexGridHtml = renderToHtml(FlexGrid);
@@ -216,7 +220,7 @@ export const FlexExample = {
     text: (
       <p>
         <EuiCode>FlexGroup</EuiCode>s can also
-        use <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode>props
+        use <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode> props
         that accept normal flex-box paramenters. Below are some common scenarios,
         where you need to separate two items, center justify a single one, or
         center an item vertically. Note the usage
@@ -224,6 +228,21 @@ export const FlexExample = {
       </p>
     ),
     demo: <div className="guideDemo__highlightGrid"><FlexJustify /></div>,
+  }, {
+    title: 'FlexGroup can change direction',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: directionSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: directionHtml,
+    }],
+    text: (
+      <p>
+        You can change direction using the <EuiCode>direction</EuiCode> prop.
+      </p>
+    ),
+    demo: <div className="guideDemo__highlightGrid"><Direction /></div>,
   }, {
     title: 'FlexGrids are for repeatable grids',
     source: [{

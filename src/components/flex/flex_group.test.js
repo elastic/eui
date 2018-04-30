@@ -11,6 +11,7 @@ import {
   GUTTER_SIZES,
   ALIGN_ITEMS,
   JUSTIFY_CONTENTS,
+  DIRECTIONS,
 } from './flex_group';
 
 beforeAll(startThrowingReactWarnings);
@@ -73,6 +74,19 @@ describe('EuiFlexGroup', () => {
         test(`${value} is rendered`, () => {
           const component = render(
             <EuiFlexGroup justifyContent={value} />
+          );
+
+          expect(component)
+            .toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('direction', () => {
+      DIRECTIONS.forEach(value => {
+        test(`${value} is rendered`, () => {
+          const component = render(
+            <EuiFlexGroup direction={value} />
           );
 
           expect(component)
