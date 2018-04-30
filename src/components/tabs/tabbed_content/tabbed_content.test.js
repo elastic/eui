@@ -5,12 +5,19 @@ import { requiredProps, findTestSubject } from '../../../test';
 
 import { EuiTabbedContent } from './tabbed_content';
 
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => { return () => 42; },
+}));
+
 const elasticsearchTab = {
+  id: 'es',
   title: `Elasticsearch`,
   content: <p>Elasticsearch content</p>,
 };
 
 const kibanaTab = {
+  id: 'kibana',
   title: `Kibana`,
   'data-test-subj': 'kibanaTab',
   content: <p>Kibana content</p>,
