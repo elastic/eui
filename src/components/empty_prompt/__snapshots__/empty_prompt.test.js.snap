@@ -79,7 +79,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
     class="euiSpacer euiSpacer--s"
   />
   <div
-    class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"

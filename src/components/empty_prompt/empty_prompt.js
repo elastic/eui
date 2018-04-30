@@ -2,15 +2,19 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { TITLE_SIZES } from '../title/title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { EuiIcon } from '../icon';
+import { EuiIcon, COLORS, SIZES } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiTitle } from '../title';
 
 export const EuiEmptyPrompt = ({
   iconType,
+  iconColor,
+  iconSize,
   title,
+  titleSize,
   body,
   actions,
   className,
@@ -23,7 +27,7 @@ export const EuiEmptyPrompt = ({
   if (iconType) {
     icon = (
       <Fragment>
-        <EuiIcon type={iconType} size="xxl" color="subdued" />
+        <EuiIcon type={iconType} size={iconSize} color={iconColor} />
         <EuiSpacer size="s" />
       </Fragment>
     )
@@ -37,7 +41,7 @@ export const EuiEmptyPrompt = ({
     if (title) {
       titleEl = (
         <Fragment>
-          <EuiTitle>
+          <EuiTitle size={titleSize}>
             {title}
           </EuiTitle>
           <EuiSpacer size="m" />
@@ -73,14 +77,17 @@ export const EuiEmptyPrompt = ({
 
     if (Array.isArray(actions)) {
       actionsRow = (
-        <EuiFlexGroup gutterSize="m" alignItems="center" justifyContent="center">
-          {
-            actions.map((action, index) => (
-              <EuiFlexItem key={index} grow={false}>
-                {action}
-              </EuiFlexItem>
-            ))
-          }
+        <EuiFlexGroup
+          gutterSize="m"
+          alignItems="center"
+          justifyContent="center"
+          direction="column"
+        >
+          {actions.map((action, index) => (
+            <EuiFlexItem key={index} grow={false}>
+              {action}
+            </EuiFlexItem>
+          ))}
         </EuiFlexGroup>
       )
     } else {
@@ -103,15 +110,26 @@ export const EuiEmptyPrompt = ({
       {icon}
       {content}
       {actionsEl}
-
     </div>
   );
 };
 
 EuiEmptyPrompt.propTypes = {
   iconType: PropTypes.string,
+
+  /**
+   * Pass `null` to use original icon color
+   */
+  iconColor: PropTypes.oneOf(COLORS),
+  iconSize: PropTypes.oneOf(SIZES),
   title: PropTypes.node,
+  titleSize: PropTypes.oneOf(TITLE_SIZES),
   body: PropTypes.node,
   actions: PropTypes.node,
   className: PropTypes.string,
+};
+
+EuiEmptyPrompt.defaultProps = {
+  iconColor: "subdued",
+  iconSize: "xxl",
 };

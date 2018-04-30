@@ -15,6 +15,10 @@ import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptHtml = renderToHtml(EmptyPrompt);
 
+import Custom from './custom';
+const customSource = require('!!raw-loader!./custom');
+const customHtml = renderToHtml(Custom);
+
 import Simple from './simple';
 const simpleSource = require('!!raw-loader!./simple');
 const simpleHtml = renderToHtml(Simple);
@@ -36,6 +40,23 @@ export const EmptyPromptExample = {
     ),
     props: { EuiEmptyPrompt },
     demo: <EmptyPrompt />,
+  }, {
+    title: 'Custom sizes and colors',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: customSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: customHtml,
+    }],
+    text: (
+      <p>
+        You can control sizes and colors with the <EuiCode>iconColor</EuiCode>,{' '}
+        <EuiCode>iconSize</EuiCode>, and <EuiCode>titleSize</EuiCode> props.
+      </p>
+    ),
+    props: { EuiEmptyPrompt },
+    demo: <Custom />,
   }, {
     title: 'Less content, more actions',
     source: [{
