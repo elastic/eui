@@ -1,6 +1,0 @@
-@mixin euiTextConstrainedWidth {
-  max-width: 36em;
-  // If the max-width is way too short of the width of the container,
-  // at least make it 2/3 of it's parent
-  min-width: 75%;
-}

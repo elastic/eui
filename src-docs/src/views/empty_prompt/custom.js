@@ -7,7 +7,7 @@ import {
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="editorStrike"
+    iconType="dataVisualizer"
     iconColor={null}
     iconSize="xs"
     title={<h2>You have no spice</h2>}
