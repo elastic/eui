@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTabbedContent behavior when selected tab state isn't controlled by the owner, select the first tab by default 1`] = `
+<div>
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42-es"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42-kibana"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42-es"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42-es"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42-kibana"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42-es"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
+<div>
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42-es"
+      aria-selected="false"
+      class="euiTab"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42-kibana"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="kibana"
+    id="42-kibana"
+    role="tabpanel"
+  >
+    <p>
+      Kibana content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
+<div>
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42-es"
+      aria-selected="false"
+      class="euiTab"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42-kibana"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="kibana"
+    id="42-kibana"
+    role="tabpanel"
+  >
+    <p>
+      Kibana content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props size is rendered 1`] = `
+<div>
+  <div
+    class="euiTabs euiTabs--small"
+    role="tablist"
+  >
+    <button
+      aria-controls="42-es"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42-kibana"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42-es"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
