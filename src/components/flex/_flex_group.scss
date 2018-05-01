@@ -73,6 +73,24 @@ $gutterTypes: (
   align-items: baseline;
 }
 
+// Direction
+
+.euiFlexGroup--directionRow {
+  flex-direction: row;
+}
+
+.euiFlexGroup--directionRowReverse {
+  flex-direction: row-reverse;
+}
+
+.euiFlexGroup--directionColumn {
+  flex-direction: column;
+}
+
+.euiFlexGroup--directionColumnReverse {
+  flex-direction: column-reverse;
+}
+
 // Wrap
 .euiFlexGroup--wrap {
   flex-wrap: wrap;

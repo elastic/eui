@@ -58,7 +58,13 @@ export const EuiTableRowCell = ({
   if(textOnly === true) {
     modifiedChildren = <span className={childClasses}>{children}</span>;
   } else if(React.isValidElement(modifiedChildren)) {
-    modifiedChildren = React.Children.map(children, child => React.cloneElement(child, { className: childClasses }));
+    modifiedChildren = React.Children.map(
+      children,
+      child => React.cloneElement(
+        child,
+        { className: classNames(child.props.className, childClasses) }
+      )
+    );
   }
 
   return (

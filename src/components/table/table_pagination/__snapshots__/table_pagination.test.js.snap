@@ -2,7 +2,7 @@
 
 exports[`EuiTablePagination is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"

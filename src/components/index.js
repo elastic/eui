@@ -73,6 +73,10 @@ export {
 } from './description_list';
 
 export {
+  EuiEmptyPrompt,
+} from './empty_prompt';
+
+export {
   EuiErrorBoundary,
 } from './error_boundary';
 
@@ -186,12 +190,12 @@ export {
 } from './modal';
 
 export {
-  EuiOverlayMask,
-} from './overlay_mask';
-
-export {
   EuiOutsideClickDetector,
 } from './outside_click_detector';
+
+export {
+  EuiOverlayMask,
+} from './overlay_mask';
 
 export {
   EuiPage,
@@ -232,6 +236,10 @@ export {
 } from './search_bar';
 
 export {
+  EuiSideNav,
+} from './side_nav';
+
+export {
   EuiSpacer,
 } from './spacer';
 
@@ -266,11 +274,18 @@ export {
 export {
   EuiTab,
   EuiTabs,
+  EuiTabbedContent,
 } from './tabs';
 
 export {
-  EuiSideNav,
-} from './side_nav';
+  EuiText,
+  EuiTextColor,
+  EuiTextAlign,
+} from './text';
+
+export {
+  EuiTitle,
+} from './title';
 
 export {
   EuiGlobalToastList,
@@ -282,13 +297,3 @@ export {
   EuiIconTip,
   EuiToolTip,
 } from './tool_tip';
-
-export {
-  EuiTitle,
-} from './title';
-
-export {
-  EuiText,
-  EuiTextColor,
-  EuiTextAlign,
-} from './text';

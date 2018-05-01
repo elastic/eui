@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiEmptyPrompt is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiEmptyPrompt testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <svg
+    class="euiIcon euiIcon--xxLarge euiIcon--subdued"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <path
+        d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+        id="arrow_up-a"
+      />
+    </defs>
+    <use
+      fill-rule="nonzero"
+      href="#arrow_up-a"
+      transform="rotate(180 8 8)"
+    />
+  </svg>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+  <span
+    class="euiTextColor euiTextColor--subdued"
+  >
+    <h2
+      class="euiTitle euiTitle--medium"
+    >
+      Title
+    </h2>
+    <div
+      class="euiSpacer euiSpacer--m"
+    />
+    <div
+      class="euiText"
+    >
+      <p>
+        Body
+      </p>
+    </div>
+    <div
+      class="euiSpacer euiSpacer--l"
+    />
+  </span>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+  <div>
+    Actions
+  </div>
+</div>
+`;
+
+exports[`EuiEmptyPrompt props actions renders alone 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+  actions
+</div>
+`;
+
+exports[`EuiEmptyPrompt props actions renders an array 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      action1
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      action2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiEmptyPrompt props body renders alone 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <span
+    class="euiTextColor euiTextColor--subdued"
+  >
+    <div
+      class="euiText"
+    >
+      body
+    </div>
+    <div
+      class="euiSpacer euiSpacer--l"
+    />
+  </span>
+</div>
+`;
+
+exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <svg
+    class="euiIcon euiIcon--xxLarge euiIcon--subdued"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <path
+        d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+        id="arrow_up-a"
+      />
+    </defs>
+    <use
+      fill-rule="nonzero"
+      href="#arrow_up-a"
+      transform="rotate(180 8 8)"
+    />
+  </svg>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+</div>
+`;
+
+exports[`EuiEmptyPrompt props title renders alone 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <span
+    class="euiTextColor euiTextColor--subdued"
+  >
+    <div
+      class="euiTitle euiTitle--medium"
+    >
+      title
+    </div>
+    <div
+      class="euiSpacer euiSpacer--m"
+    />
+  </span>
+</div>
+`;

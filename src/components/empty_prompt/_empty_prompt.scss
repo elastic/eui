@@ -1,0 +1,8 @@
+@import '../text/_variables';
+
+.euiEmptyPrompt {
+  max-width: $euiTextConstrainedMaxWidth;
+  text-align: center;
+  padding: $euiSizeL;
+  margin: auto;
+}

@@ -8,7 +8,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem euiFlexItem--flexGrowZero"
