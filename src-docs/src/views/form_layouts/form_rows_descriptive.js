@@ -85,8 +85,8 @@ export default class extends Component {
           description={
             <span>
               When using this with a single field where the text here serves as the help text for the input,
-              it is a good idea to give it <EuiCode>someID</EuiCode> and pass <EuiCode>someID-description</EuiCode>
-              to the form row&apos;s <EuiCode>describedByIds</EuiCode> prop.
+              it is a good idea to give it <EuiCode>someID</EuiCode> and pass <EuiCode>someID-description</EuiCode> to
+              the form row&apos;s <EuiCode>describedByIds</EuiCode> prop.
             </span>
           }
         >
