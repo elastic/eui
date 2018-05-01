@@ -9,17 +9,26 @@
     max-width: 100%;
   }
 
-  .euiDescriptiveFormRow__title {
-    @include euiTitle("xs");
-  }
-
-  .euiDescriptiveFormRow__text {
-    @include euiFontSizeS;
+  .euiDescriptiveFormRow__description {
     padding-top: $euiSizeS;
   }
 
   .euiDescriptiveFormRow__fields {
-    padding-top: ($euiFontSize*1.5) - $euiFontSizeXS + 2px;
+    min-width: $euiFormMaxWidth;
+
+    $baseLineHeightMultiplier: $euiFontSizeXS/2;
+
+    &--paddingSmall {
+      padding-top: $baseLineHeightMultiplier*3 - $euiFontSizeXS + 2px;
+    }
+
+    &--paddingMedium {
+      padding-top: $baseLineHeightMultiplier*4 - $euiFontSizeXS + 2px;
+    }
+
+    &--paddingLarge {
+      padding-top: $baseLineHeightMultiplier*5 - $euiFontSizeXS + 2px;
+    }
   }
 
   @include screenXSmall {

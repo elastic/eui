@@ -80,26 +80,28 @@ export default class extends Component {
       <EuiForm>
         <EuiDescriptiveFormRow
           id="single-example"
-          title="Single text field"
-          text={
+          title={<h3>Single text field</h3>}
+          paddingSize="m"
+          description={
             <span>
               When using this with a single field where the text here serves as the help text for the input,
-              it is a good idea to give it <EuiCode>someID</EuiCode> and pass <EuiCode>someID-legend-text</EuiCode>
+              it is a good idea to give it <EuiCode>someID</EuiCode> and pass <EuiCode>someID-description</EuiCode>
               to the form row&apos;s <EuiCode>describedByIds</EuiCode> prop.
             </span>
           }
         >
           <EuiFormRow
             label="Text field"
-            describedByIds={['single-example-legend-text']}
+            describedByIds={['single-example-description']}
           >
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescriptiveFormRow>
 
         <EuiDescriptiveFormRow
-          title="Multiple fields"
-          text="Here are three form rows. The first form row does not have a title."
+          title={<strong>Multiple fields</strong>}
+          paddingSize="s"
+          description="Here are three form rows. The first form row does not have a title."
         >
           <EuiFormRow
             hasEmptyLabelSpace
@@ -138,8 +140,9 @@ export default class extends Component {
         </EuiDescriptiveFormRow>
 
         <EuiDescriptiveFormRow
-          title="Full width"
-          text={
+          title={<h2>Full width</h2>}
+          paddingSize="l"
+          description={
             <span>
               By default, <EuiCode>EuiDescriptiveFormRow</EuiCode> will be double the default width of form elements.
               However, you can pass <EuiCode>fullWidth</EuiCode> prop to this, the individual field and row components

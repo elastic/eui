@@ -10,6 +10,7 @@ jest.mock(`../form_row/make_id`, () => () => `generated-id`);
 describe('EuiDescriptiveFormRow', () => {
   const props = {
     title: 'Title',
+    description: 'Test description',
   };
 
   test('is rendered', () => {
@@ -28,7 +29,6 @@ describe('EuiDescriptiveFormRow', () => {
   test('ties together parts for accessibility', () => {
     const descriptiveFormRowProps = {
       id: 'test-id',
-      text: 'Test text',
     };
 
     const formRowProps = {
@@ -39,7 +39,7 @@ describe('EuiDescriptiveFormRow', () => {
         `Error one`,
         `Error two`
       ],
-      describedByIds: ['test-id-legend-text'],
+      describedByIds: ['test-id-description'],
     };
 
     const tree = mount(
@@ -55,12 +55,12 @@ describe('EuiDescriptiveFormRow', () => {
 
     // Descriptive form row has group role and is labelled by its title and text.
     expect(tree.find(`EuiFlexItem`).at(0).prop(`id`)).toEqual(`test-id-legend`);
-    expect(tree.find(`.euiDescriptiveFormRow`).prop(`role`)).toEqual(`group`);
-    expect(tree.find(`.euiDescriptiveFormRow`).prop(`aria-labelledby`)).toEqual(`test-id-legend`);
+    expect(tree.find(`div.euiDescriptiveFormRow`).prop(`role`)).toEqual(`group`);
+    expect(tree.find(`div.euiDescriptiveFormRow`).prop(`aria-labelledby`)).toEqual(`test-id-legend`);
 
     // Title and text have own IDs.
-    expect(tree.find(`.euiDescriptiveFormRow__title`).prop(`id`)).toEqual(`test-id-legend-title`);
-    expect(tree.find(`.euiDescriptiveFormRow__text`).prop(`id`)).toEqual(`test-id-legend-text`);
+    expect(tree.find(`div.euiDescriptiveFormRow__title`).prop(`id`)).toEqual(`test-id-title`);
+    expect(tree.find(`div.euiDescriptiveFormRow__description`).prop(`id`)).toEqual(`test-id-description`);
 
     // Input is labeled by the label.
     expect(tree.find(`input`).prop(`id`)).toEqual(`generated-id`);
@@ -70,27 +70,10 @@ describe('EuiDescriptiveFormRow', () => {
     expect(tree.find(`EuiFormErrorText`).at(0).prop(`id`)).toEqual(`generated-id-error-0`);
     expect(tree.find(`EuiFormErrorText`).at(1).prop(`id`)).toEqual(`generated-id-error-1`);
     expect(tree.find(`input`).prop(`aria-describedby`))
-      .toEqual(`test-id-legend-text generated-id-help generated-id-error-0 generated-id-error-1`);
+      .toEqual(`test-id-description generated-id-help generated-id-error-0 generated-id-error-1`);
   });
 
   describe('props', () => {
-    test('title and text is rendered', () => {
-      const descriptiveFormRowProps = {
-        text: 'Test text',
-      };
-
-      const component = shallow(
-        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
-          <EuiFormRow>
-            <input />
-          </EuiFormRow>
-        </EuiDescriptiveFormRow>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
     test('id is rendered', () => {
       const descriptiveFormRowProps = {
         id: 'test-id',
@@ -128,6 +111,23 @@ describe('EuiDescriptiveFormRow', () => {
     test('gutterSize is rendered', () => {
       const descriptiveFormRowProps = {
         gutterSize: 's',
+      };
+
+      const component = shallow(
+        <EuiDescriptiveFormRow {...requiredProps} {...props} {...descriptiveFormRowProps}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescriptiveFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('paddingSize is rendered', () => {
+      const descriptiveFormRowProps = {
+        paddingSize: 'l',
       };
 
       const component = shallow(

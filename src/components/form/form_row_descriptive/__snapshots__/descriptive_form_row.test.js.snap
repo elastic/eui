@@ -12,6 +12,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
   <EuiFlexGroup
     alignItems="stretch"
     component="div"
+    direction="row"
     gutterSize="l"
     justifyContent="flexStart"
     responsive={true}
@@ -19,18 +20,29 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={true}
+      grow={false}
       id="generated-id-legend"
     >
-      <div
+      <EuiText
         className="euiDescriptiveFormRow__title"
-        id="generated-id-legend-title"
+        grow={true}
+        id="generated-id-title"
+        size="xs"
       >
         Title
-      </div>
+      </EuiText>
+      <EuiText
+        className="euiDescriptiveFormRow__description"
+        color="subdued"
+        grow={true}
+        id="generated-id-description"
+        size="s"
+      >
+        Test description
+      </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields"
+      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
       component="div"
       grow={true}
     >
@@ -58,6 +70,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
   <EuiFlexGroup
     alignItems="stretch"
     component="div"
+    direction="row"
     gutterSize="l"
     justifyContent="flexStart"
     responsive={true}
@@ -65,18 +78,29 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={true}
+      grow={false}
       id="generated-id-legend"
     >
-      <div
+      <EuiText
         className="euiDescriptiveFormRow__title"
-        id="generated-id-legend-title"
+        grow={true}
+        id="generated-id-title"
+        size="xs"
       >
         Title
-      </div>
+      </EuiText>
+      <EuiText
+        className="euiDescriptiveFormRow__description"
+        color="subdued"
+        grow={true}
+        id="generated-id-description"
+        size="s"
+      >
+        Test description
+      </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields"
+      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
       component="div"
       grow={true}
     >
@@ -104,6 +128,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
   <EuiFlexGroup
     alignItems="stretch"
     component="div"
+    direction="row"
     gutterSize="s"
     justifyContent="flexStart"
     responsive={true}
@@ -111,18 +136,29 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={true}
+      grow={false}
       id="generated-id-legend"
     >
-      <div
+      <EuiText
         className="euiDescriptiveFormRow__title"
-        id="generated-id-legend-title"
+        grow={true}
+        id="generated-id-title"
+        size="xs"
       >
         Title
-      </div>
+      </EuiText>
+      <EuiText
+        className="euiDescriptiveFormRow__description"
+        color="subdued"
+        grow={true}
+        id="generated-id-description"
+        size="s"
+      >
+        Test description
+      </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields"
+      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
       component="div"
       grow={true}
     >
@@ -150,6 +186,7 @@ exports[`EuiDescriptiveFormRow props id is rendered 1`] = `
   <EuiFlexGroup
     alignItems="stretch"
     component="div"
+    direction="row"
     gutterSize="l"
     justifyContent="flexStart"
     responsive={true}
@@ -157,18 +194,29 @@ exports[`EuiDescriptiveFormRow props id is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={true}
+      grow={false}
       id="test-id-legend"
     >
-      <div
+      <EuiText
         className="euiDescriptiveFormRow__title"
-        id="test-id-legend-title"
+        grow={true}
+        id="test-id-title"
+        size="xs"
       >
         Title
-      </div>
+      </EuiText>
+      <EuiText
+        className="euiDescriptiveFormRow__description"
+        color="subdued"
+        grow={true}
+        id="test-id-description"
+        size="s"
+      >
+        Test description
+      </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields"
+      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
       component="div"
       grow={true}
     >
@@ -184,7 +232,7 @@ exports[`EuiDescriptiveFormRow props id is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiDescriptiveFormRow props title and text is rendered 1`] = `
+exports[`EuiDescriptiveFormRow props paddingSize is rendered 1`] = `
 <div
   aria-label="aria-label"
   aria-labelledby="generated-id-legend"
@@ -196,6 +244,7 @@ exports[`EuiDescriptiveFormRow props title and text is rendered 1`] = `
   <EuiFlexGroup
     alignItems="stretch"
     component="div"
+    direction="row"
     gutterSize="l"
     justifyContent="flexStart"
     responsive={true}
@@ -203,24 +252,29 @@ exports[`EuiDescriptiveFormRow props title and text is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={true}
+      grow={false}
       id="generated-id-legend"
     >
-      <div
+      <EuiText
         className="euiDescriptiveFormRow__title"
-        id="generated-id-legend-title"
+        grow={true}
+        id="generated-id-title"
+        size="xs"
       >
         Title
-      </div>
-      <div
-        className="euiDescriptiveFormRow__text"
-        id="generated-id-legend-text"
+      </EuiText>
+      <EuiText
+        className="euiDescriptiveFormRow__description"
+        color="subdued"
+        grow={true}
+        id="generated-id-description"
+        size="s"
       >
-        Test text
-      </div>
+        Test description
+      </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields"
+      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingLarge"
       component="div"
       grow={true}
     >
@@ -241,10 +295,11 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
   aria-label="aria-label"
   className="testClass1 testClass2"
   data-test-subj="test subject string"
+  description="Test description"
   fullWidth={false}
   gutterSize="l"
   id="test-id"
-  text="Test text"
+  paddingSize="m"
   title="Title"
 >
   <div
@@ -258,49 +313,73 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
     <EuiFlexGroup
       alignItems="stretch"
       component="div"
+      direction="row"
       gutterSize="l"
       justifyContent="flexStart"
       responsive={true}
       wrap={false}
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem
           component="div"
-          grow={true}
+          grow={false}
           id="test-id-legend"
         >
           <div
-            className="euiFlexItem"
+            className="euiFlexItem euiFlexItem--flexGrowZero"
             id="test-id-legend"
           >
-            <div
+            <EuiText
               className="euiDescriptiveFormRow__title"
-              id="test-id-legend-title"
+              grow={true}
+              id="test-id-title"
+              size="xs"
             >
-              Title
-            </div>
-            <div
-              className="euiDescriptiveFormRow__text"
-              id="test-id-legend-text"
+              <div
+                className="euiText euiText--extraSmall euiDescriptiveFormRow__title"
+                id="test-id-title"
+              >
+                Title
+              </div>
+            </EuiText>
+            <EuiText
+              className="euiDescriptiveFormRow__description"
+              color="subdued"
+              grow={true}
+              id="test-id-description"
+              size="s"
             >
-              Test text
-            </div>
+              <div
+                className="euiText euiText--small euiDescriptiveFormRow__description"
+                id="test-id-description"
+              >
+                <EuiTextColor
+                  color="subdued"
+                >
+                  <span
+                    className="euiTextColor euiTextColor--subdued"
+                  >
+                    Test description
+                  </span>
+                </EuiTextColor>
+              </div>
+            </EuiText>
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescriptiveFormRow__fields"
+          className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
           component="div"
           grow={true}
         >
           <div
-            className="euiFlexItem euiDescriptiveFormRow__fields"
+            className="euiFlexItem euiDescriptiveFormRow__fields euiDescriptiveFormRow__fields--paddingMedium"
           >
             <EuiFormRow
               describedByIds={
                 Array [
-                  "test-id-legend-text",
+                  "test-id-description",
                 ]
               }
               error={
@@ -332,7 +411,7 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
                   </label>
                 </EuiFormLabel>
                 <input
-                  aria-describedby="test-id-legend-text generated-id-help generated-id-error-0 generated-id-error-1"
+                  aria-describedby="test-id-description generated-id-help generated-id-error-0 generated-id-error-1"
                   id="generated-id"
                   onBlur={[Function]}
                   onFocus={[Function]}

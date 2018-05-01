@@ -4,10 +4,17 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiText } from '../../text/text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { GUTTER_SIZES } from '../../flex/flex_group';
 
 import makeId from '../form_row/make_id';
+
+const paddingSizeToClassNameMap = {
+  s: 'euiDescriptiveFormRow__fields--paddingSmall',
+  m: 'euiDescriptiveFormRow__fields--paddingMedium',
+  l: 'euiDescriptiveFormRow__fields--paddingLarge',
+};
 
 export class EuiDescriptiveFormRow extends Component {
   constructor(props) {
@@ -23,9 +30,10 @@ export class EuiDescriptiveFormRow extends Component {
       children,
       className,
       gutterSize,
+      paddingSize,
       fullWidth,
       title,
-      text,
+      description,
       ...rest
     } = this.props;
 
@@ -36,7 +44,12 @@ export class EuiDescriptiveFormRow extends Component {
       {
         'euiDescriptiveFormRow--fullWidth': fullWidth,
       },
-      className
+      className,
+    );
+
+    const fieldClasses = classNames(
+      'euiDescriptiveFormRow__fields',
+      paddingSizeToClassNameMap[paddingSize],
     );
 
     return (
@@ -48,19 +61,15 @@ export class EuiDescriptiveFormRow extends Component {
         {...rest}
       >
         <EuiFlexGroup gutterSize={gutterSize}>
-          <EuiFlexItem id={`${id}-legend`}>
-            <div id={`${id}-legend-title`} className="euiDescriptiveFormRow__title">
+          <EuiFlexItem id={`${id}-legend`} grow={false}>
+            <EuiText size="xs" id={`${id}-title`} className="euiDescriptiveFormRow__title">
               {title}
-            </div>
-            {
-              text ? (
-                <div id={`${id}-legend-text`} className="euiDescriptiveFormRow__text">
-                  {text}
-                </div>
-              ) : ''
-            }
+            </EuiText>
+            <EuiText size="s" color="subdued" id={`${id}-description`} className="euiDescriptiveFormRow__description">
+              {description}
+            </EuiText>
           </EuiFlexItem>
-          <EuiFlexItem className="euiDescriptiveFormRow__fields">
+          <EuiFlexItem className={fieldClasses}>
             {children}
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -71,15 +80,26 @@ export class EuiDescriptiveFormRow extends Component {
 
 EuiDescriptiveFormRow.propTypes = {
   id: PropTypes.string,
+  /**
+   * One or more `EuiFormRow`s
+   */
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  /**
+   * Passed to `EuiFlexGroup`
+   */
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
+  /**
+   * Padding to help align the first field to description
+   */
+  paddingSize: PropTypes.oneOf(['s', 'm', 'l']),
   fullWidth: PropTypes.bool,
   title: PropTypes.node.isRequired,
-  text: PropTypes.node,
+  description: PropTypes.node.isRequired,
 };
 
 EuiDescriptiveFormRow.defaultProps = {
   gutterSize: 'l',
+  paddingSize: 'm',
   fullWidth: false,
 };
