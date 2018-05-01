@@ -42,6 +42,20 @@ exports[`align renders right when specified 1`] = `
 </td>
 `;
 
+exports[`children's className merges new classnames into existing ones 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+  >
+    <div
+      class="testClass euiTableCellContent__hoverItem"
+    />
+  </div>
+</td>
+`;
+
 exports[`renders EuiTableRowCell 1`] = `
 <td
   class="euiTableRowCell"
