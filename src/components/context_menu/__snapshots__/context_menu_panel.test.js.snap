@@ -110,3 +110,131 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
   <div />
 </div>
 `;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 1`] = `
+"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option A
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+      <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option B
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 2`] = `
+"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option A
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+      <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option B
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 1`] = `
+"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      Hello World
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 2`] = `
+"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      More Salutations
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 1`] = `
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      <EuiContextMenuItem data-counter={0} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option A
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+      <EuiContextMenuItem data-counter={1} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option B
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;
+
+exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 2`] = `
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+  <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
+    <div>
+      <EuiContextMenuItem data-counter={2} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={2}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option A
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+      <EuiContextMenuItem data-counter={3} buttonRef={[Function: bound ]}>
+        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={3}>
+          <span className=\\"euiContextMenu__itemLayout\\">
+            <span className=\\"euiContextMenuItem__text\\">
+              Option B
+            </span>
+          </span>
+        </button>
+      </EuiContextMenuItem>
+    </div>
+  </div>
+</EuiContextMenuPanel>"
+`;

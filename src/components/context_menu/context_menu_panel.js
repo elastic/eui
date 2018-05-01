@@ -254,8 +254,21 @@ export class EuiContextMenuPanel extends Component {
       return true;
     }
 
-    // Check if any watched item properties changed by quick string comparison
-    if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+    // **
+    // this component should have either items or children,
+    // if there are items we can determine via `watchedItemProps` if we should update
+    // if there are children we can't know if they have changed so return true
+    // **
+
+    if (this.props.items != null) {
+      // Check if any watched item properties changed by quick string comparison
+      if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+        return true;
+      }
+    }
+
+    // it's not possible (in any good way) to know if `children` has changed, assume they might have
+    if (this.props.children != null) {
       return true;
     }
 
