@@ -4,6 +4,7 @@
 - Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiTabbedContent` ([#737](https://github.com/elastic/eui/pull/737))
+- `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
 
 **Bug fixes**
 

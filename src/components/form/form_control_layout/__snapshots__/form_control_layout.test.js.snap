@@ -19,6 +19,7 @@ exports[`EuiFormControlLayout props icon is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <svg
+    aria-hidden="true"
     class="euiIcon euiIcon--medium euiFormControlLayout__icon"
     height="16"
     viewBox="0 0 16 16"
@@ -44,6 +45,7 @@ exports[`EuiFormControlLayout props iconSide left is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <svg
+    aria-hidden="true"
     class="euiIcon euiIcon--medium euiFormControlLayout__icon"
     height="16"
     viewBox="0 0 16 16"
@@ -69,6 +71,7 @@ exports[`EuiFormControlLayout props iconSide right is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <svg
+    aria-hidden="true"
     class="euiIcon euiIcon--medium euiFormControlLayout__icon euiFormControlLayout__icon--right"
     height="16"
     viewBox="0 0 16 16"
