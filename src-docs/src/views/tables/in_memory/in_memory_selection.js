@@ -1,6 +1,5 @@
 import React, {
   Component,
-  Fragment
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
@@ -8,8 +7,8 @@ import {
   EuiLink,
   EuiHealth,
   EuiButton,
-  EuiSpacer,
-  EuiInMemoryTable
+  EuiInMemoryTable,
+  EuiEmptyPrompt,
 } from '../../../../../src/components';
 import { Random } from '../../../../../src/services/random';
 
@@ -48,23 +47,26 @@ export class Table extends Component {
       loading: false,
       users: [],
       message: (
-        <Fragment>
-          <span>Looks like you don&rsquo;t have any users. Let&rsquo;s create some!</span>
-          <EuiSpacer size="s" />
-          <EuiButton
-            size="s"
-            key="loadUsers"
-            onClick={this.loadUsers.bind(this)}
-          >
-            Load Users
-          </EuiButton>
-        </Fragment>
+        <EuiEmptyPrompt
+          title={<h3>No users</h3>}
+          titleSize="xs"
+          body="Looks like you don&rsquo;t have any users. Let&rsquo;s create some!"
+          actions={(
+            <EuiButton
+              size="s"
+              key="loadUsers"
+              onClick={this.loadUsers}
+            >
+              Load Users
+            </EuiButton>
+          )}
+        />
       ),
       selection: []
     };
   }
 
-  loadUsers() {
+  loadUsers = () => {
     this.setState({
       message: 'Loading users...',
       loading: true,
@@ -79,7 +81,7 @@ export class Table extends Component {
         users: store.users
       });
     }, random.number({ min: 0, max: 3000 }));
-  }
+  };
 
   loadUsersWithError() {
     this.setState({

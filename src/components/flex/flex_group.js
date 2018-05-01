@@ -34,6 +34,15 @@ const justifyContentToClassNameMap = {
 
 export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
 
+const directionToClassNameMap = {
+  row: 'euiFlexGroup--directionRow',
+  rowReverse: 'euiFlexGroup--directionRowReverse',
+  column: 'euiFlexGroup--directionColumn',
+  columnReverse: 'euiFlexGroup--directionColumnReverse',
+};
+
+export const DIRECTIONS = Object.keys(directionToClassNameMap);
+
 export const EuiFlexGroup = ({
   children,
   className,
@@ -41,6 +50,7 @@ export const EuiFlexGroup = ({
   alignItems,
   responsive,
   justifyContent,
+  direction,
   wrap,
   component: Component,
   ...rest,
@@ -50,6 +60,7 @@ export const EuiFlexGroup = ({
     gutterSizeToClassNameMap[gutterSize],
     alignItemsToClassNameMap[alignItems],
     justifyContentToClassNameMap[justifyContent],
+    directionToClassNameMap[direction],
     {
       'euiFlexGroup--responsive': responsive,
       'euiFlexGroup--wrap': wrap,
@@ -74,6 +85,7 @@ EuiFlexGroup.propTypes = {
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
+  direction: PropTypes.oneOf(DIRECTIONS),
   component: PropTypes.oneOf(['div', 'span']),
   wrap: PropTypes.bool,
 };
@@ -83,6 +95,7 @@ EuiFlexGroup.defaultProps = {
   alignItems: 'stretch',
   responsive: true,
   justifyContent: 'flexStart',
+  direction: 'row',
   component: 'div',
   wrap: false,
 };

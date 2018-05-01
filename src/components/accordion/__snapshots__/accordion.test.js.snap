@@ -12,13 +12,14 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     <EuiFlexGroup
       alignItems="center"
       component="div"
+      direction="row"
       gutterSize="none"
       justifyContent="flexStart"
       responsive={true}
       wrap={false}
     >
       <div
-        className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem
           component="div"
@@ -36,13 +37,14 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
               <EuiFlexGroup
                 alignItems="center"
                 component="div"
+                direction="row"
                 gutterSize="s"
                 justifyContent="flexStart"
                 responsive={false}
                 wrap={false}
               >
                 <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     component="div"
@@ -139,13 +141,14 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     <EuiFlexGroup
       alignItems="center"
       component="div"
+      direction="row"
       gutterSize="none"
       justifyContent="flexStart"
       responsive={true}
       wrap={false}
     >
       <div
-        className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem
           component="div"
@@ -163,13 +166,14 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
               <EuiFlexGroup
                 alignItems="center"
                 component="div"
+                direction="row"
                 gutterSize="s"
                 justifyContent="flexStart"
                 responsive={false}
                 wrap={false}
               >
                 <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     component="div"
@@ -260,7 +264,7 @@ exports[`EuiAccordion is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -271,7 +275,7 @@ exports[`EuiAccordion is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -322,7 +326,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   class="euiAccordion"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -333,7 +337,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -388,7 +392,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   class="euiAccordion"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -399,7 +403,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -450,7 +454,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   class="euiAccordion"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -461,7 +465,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -519,7 +523,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   class="euiAccordion euiAccordion-isOpen"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--responsive"
+    class="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
   >
     <div
       class="euiFlexItem"
@@ -530,7 +534,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         class="euiAccordion__button"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter"
+          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"

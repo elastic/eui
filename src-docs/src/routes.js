@@ -89,6 +89,9 @@ import { DelayHideExample }
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
 
+import { EmptyPromptExample }
+  from './views/empty_prompt/empty_prompt_example';
+
 import { ErrorBoundaryExample }
   from './views/error_boundary/error_boundary_example';
 
@@ -297,6 +300,7 @@ const navigation = [{
     CardExample,
     CodeExample,
     DescriptionListExample,
+    EmptyPromptExample,
     HealthExample,
     IconExample,
     ImageExample,

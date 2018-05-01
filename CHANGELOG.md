@@ -1,7 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiBetaBadge` for non-GA labelling including options to add it to `EuiCard` and `EuiKeyPadMenuItem` ([#705](https://github.com/elastic/eui/pull/705))
-
+- Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
+- Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
