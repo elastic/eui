@@ -11,9 +11,6 @@
 - Fixed `EuiTableRowCell` from overwriting its child element's `className` [#709](https://github.com/elastic/eui/pull/709)
 - Allow `EuiContextMenuPanel`s to update when their `children` changes ([#710](https://github.com/elastic/eui/pull/710))
 
->>>>>>> move readme comment to master
->>>>>>> move readme comment to master
-
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
 - Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))
