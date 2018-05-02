@@ -24,7 +24,8 @@
     "test-visual-tests": "node ./scripts/run-visual-tests.js",
     "start-test-server-and-visual-test": "start-server-and-test start-test-server http-get://localhost:9999 test-visual",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
-    "release": "npm test && npm run build && npm version patch && git push upstream --tags && npm publish && npm run sync-docs"
+    "release": "npm test && npm run build && npm version patch && git push upstream --tags && npm publish && npm run sync-docs",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
