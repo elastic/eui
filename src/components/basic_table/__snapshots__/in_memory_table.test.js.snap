@@ -96,6 +96,46 @@ exports[`EuiInMemoryTable with items 1`] = `
 />
 `;
 
+exports[`EuiInMemoryTable with items and expanded item 1`] = `
+<EuiBasicTable
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
+  itemIdToExpandedRowMap={
+    Object {
+      "1": <div>
+        expanded row content
+      </div>,
+    }
+  }
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
 exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
 <EuiBasicTable
   columns={

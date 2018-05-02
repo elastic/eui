@@ -23,6 +23,11 @@ export class EuiComboBoxInput extends Component {
     autoSizeInputRef: PropTypes.func,
     inputRef: PropTypes.func,
     updatePosition: PropTypes.func.isRequired,
+    onClear: PropTypes.func,
+    hasSelectedOptions: PropTypes.bool.isRequired,
+    isListOpen: PropTypes.bool.isRequired,
+    onOpen: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -75,6 +80,11 @@ export class EuiComboBoxInput extends Component {
       searchValue,
       autoSizeInputRef,
       inputRef,
+      onClear,
+      hasSelectedOptions,
+      isListOpen,
+      onOpen,
+      onClose,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -135,6 +145,8 @@ export class EuiComboBoxInput extends Component {
       <EuiFormControlLayout
         icon="arrowDown"
         iconSide="right"
+        onIconClick={isListOpen ? onClose : onOpen}
+        onClear={hasSelectedOptions ? onClear : undefined}
       >
         <div
           className="euiComboBox__inputWrap"

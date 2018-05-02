@@ -259,6 +259,7 @@ export class EuiInMemoryTable extends Component {
       compressed,
       pagination: hasPagination,
       sorting: hasSorting,
+      itemIdToExpandedRowMap,
     } = this.props;
 
     const {
@@ -305,6 +306,7 @@ export class EuiInMemoryTable extends Component {
         loading={loading}
         noItemsMessage={message}
         compressed={compressed}
+        itemIdToExpandedRowMap={itemIdToExpandedRowMap}
       />
     );
 

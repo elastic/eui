@@ -12,7 +12,7 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLoading, className }) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, onClear, iconSide, isLoading, onIconClick, className }) => {
 
   const classes = classNames(
     'euiFormControlLayout',
@@ -31,14 +31,48 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLo
 
   let optionalIcon;
   if (icon) {
-    const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
+    const iconClasses = classNames(
+      'euiFormControlLayout__icon',
+      iconSideToClassNameMap[iconSide],
+      {
+        'euiFormControlLayout__iconButton': onIconClick
+      },
+    );
 
-    optionalIcon = (
-      <EuiIcon
-        className={iconClasses}
-        type={icon}
-        size="m"
-      />
+    if (onIconClick) {
+      optionalIcon = (
+        <button
+          className={iconClasses}
+          onClick={onIconClick}
+        >
+          <EuiIcon
+            type={icon}
+          />
+        </button>
+      )
+    } else {
+      optionalIcon = (
+        <EuiIcon
+          aria-hidden="true"
+          className={iconClasses}
+          type={icon}
+        />
+      );
+    }
+  }
+
+  let optionalClear;
+  if (onClear) {
+    optionalClear = (
+      <button
+        className="euiFormControlLayout__clear"
+        onClick={onClear}
+      >
+        <EuiIcon
+          className="euiFormControlLayout__clearIcon"
+          type="cross"
+        />
+      </button>
     );
   }
 
@@ -46,6 +80,7 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, iconSide, isLo
     <div className={classes}>
       {children}
       {optionalIcon}
+      {optionalClear}
       {optionalLoader}
     </div>
   );
@@ -57,6 +92,8 @@ EuiFormControlLayout.propTypes = {
   fullWidth: PropTypes.bool,
   iconSide: PropTypes.oneOf(ICON_SIDES),
   isLoading: PropTypes.bool,
+  onClear: PropTypes.func,
+  onIconClick: PropTypes.func,
   className: PropTypes.string,
 };
 
