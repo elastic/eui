@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiDescriptiveFormRow is rendered 1`] = `
+exports[`EuiDescribedFormGroup is rendered 1`] = `
 <div
   aria-describedby="generated-id"
   aria-label="aria-label"
@@ -58,7 +58,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
+exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
   aria-describedby="generated-id"
   aria-label="aria-label"
@@ -116,7 +116,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
+exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
   aria-describedby="generated-id"
   aria-label="aria-label"
@@ -174,7 +174,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
+exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
   aria-describedby="generated-id"
   aria-label="aria-label"
@@ -232,7 +232,7 @@ exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
+exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
 <EuiDescribedFormGroup
   aria-label="aria-label"
   className="testClass1 testClass2"

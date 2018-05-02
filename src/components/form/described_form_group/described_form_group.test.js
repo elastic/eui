@@ -7,7 +7,7 @@ import { EuiDescribedFormGroup } from './described_form_group';
 
 jest.mock(`../form_row/make_id`, () => () => `generated-id`);
 
-describe('EuiDescriptiveFormRow', () => {
+describe('EuiDescribedFormGroup', () => {
   const props = {
     title: <h3>Title</h3>,
     description: 'Test description',
@@ -27,7 +27,7 @@ describe('EuiDescriptiveFormRow', () => {
   });
 
   test('ties together parts for accessibility', () => {
-    const descriptiveFormRowProps = {
+    const describedFormGroupProps = {
       idAria: 'test-id',
     };
 
@@ -43,7 +43,7 @@ describe('EuiDescriptiveFormRow', () => {
     };
 
     const tree = mount(
-      <EuiDescribedFormGroup {...requiredProps} {...props} {...descriptiveFormRowProps}>
+      <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
         <EuiFormRow {...formRowProps}>
           <input />
         </EuiFormRow>
@@ -56,12 +56,12 @@ describe('EuiDescriptiveFormRow', () => {
 
   describe('props', () => {
     test('fullWidth is rendered', () => {
-      const descriptiveFormRowProps = {
+      const describedFormGroupProps = {
         fullWidth: true,
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...descriptiveFormRowProps}>
+        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
           <EuiFormRow fullWidth>
             <input />
           </EuiFormRow>
@@ -73,12 +73,12 @@ describe('EuiDescriptiveFormRow', () => {
     });
 
     test('gutterSize is rendered', () => {
-      const descriptiveFormRowProps = {
+      const describedFormGroupProps = {
         gutterSize: 's',
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...descriptiveFormRowProps}>
+        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
@@ -90,12 +90,12 @@ describe('EuiDescriptiveFormRow', () => {
     });
 
     test('titleSize is rendered', () => {
-      const descriptiveFormRowProps = {
+      const describedFormGroupProps = {
         titleSize: 'l',
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...descriptiveFormRowProps}>
+        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
