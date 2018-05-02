@@ -5,7 +5,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
   aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  className="euiDescriptiveFormRow testClass1 testClass2"
+  className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
 >
@@ -23,7 +23,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
       grow={false}
     >
       <EuiTitle
-        className="euiDescriptiveFormRow__title"
+        className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
       >
@@ -32,7 +32,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
         </h3>
       </EuiTitle>
       <EuiText
-        className="euiDescriptiveFormRow__description"
+        className="euiDescribedFormGroup__description"
         color="subdued"
         grow={true}
         id="generated-id"
@@ -42,7 +42,7 @@ exports[`EuiDescriptiveFormRow is rendered 1`] = `
       </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--xsmall"
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
       component="div"
       grow={true}
     >
@@ -63,7 +63,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
   aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  className="euiDescriptiveFormRow euiDescriptiveFormRow--fullWidth testClass1 testClass2"
+  className="euiDescribedFormGroup euiDescribedFormGroup--fullWidth testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
 >
@@ -81,7 +81,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
       grow={true}
     >
       <EuiTitle
-        className="euiDescriptiveFormRow__title"
+        className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
       >
@@ -90,7 +90,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
         </h3>
       </EuiTitle>
       <EuiText
-        className="euiDescriptiveFormRow__description"
+        className="euiDescribedFormGroup__description"
         color="subdued"
         grow={true}
         id="generated-id"
@@ -100,7 +100,7 @@ exports[`EuiDescriptiveFormRow props fullWidth is rendered 1`] = `
       </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--xsmall"
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
       component="div"
       grow={true}
     >
@@ -121,7 +121,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
   aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  className="euiDescriptiveFormRow testClass1 testClass2"
+  className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
 >
@@ -139,7 +139,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
       grow={false}
     >
       <EuiTitle
-        className="euiDescriptiveFormRow__title"
+        className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
       >
@@ -148,7 +148,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
         </h3>
       </EuiTitle>
       <EuiText
-        className="euiDescriptiveFormRow__description"
+        className="euiDescribedFormGroup__description"
         color="subdued"
         grow={true}
         id="generated-id"
@@ -158,7 +158,7 @@ exports[`EuiDescriptiveFormRow props gutterSize is rendered 1`] = `
       </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--xsmall"
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
       component="div"
       grow={true}
     >
@@ -179,7 +179,7 @@ exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
   aria-describedby="generated-id"
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  className="euiDescriptiveFormRow testClass1 testClass2"
+  className="euiDescribedFormGroup testClass1 testClass2"
   data-test-subj="test subject string"
   role="group"
 >
@@ -197,7 +197,7 @@ exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
       grow={false}
     >
       <EuiTitle
-        className="euiDescriptiveFormRow__title"
+        className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="l"
       >
@@ -206,7 +206,7 @@ exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
         </h3>
       </EuiTitle>
       <EuiText
-        className="euiDescriptiveFormRow__description"
+        className="euiDescribedFormGroup__description"
         color="subdued"
         grow={true}
         id="generated-id"
@@ -216,7 +216,7 @@ exports[`EuiDescriptiveFormRow props titleSize is rendered 1`] = `
       </EuiText>
     </EuiFlexItem>
     <EuiFlexItem
-      className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--large"
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
       component="div"
       grow={true}
     >
@@ -252,7 +252,7 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
     aria-describedby={null}
     aria-label="aria-label"
     aria-labelledby="test-id-title"
-    className="euiDescriptiveFormRow testClass1 testClass2"
+    className="euiDescribedFormGroup testClass1 testClass2"
     data-test-subj="test subject string"
     role="group"
   >
@@ -276,26 +276,26 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
             className="euiFlexItem euiFlexItem--flexGrowZero"
           >
             <EuiTitle
-              className="euiDescriptiveFormRow__title"
+              className="euiDescribedFormGroup__title"
               id="test-id-title"
               size="xs"
             >
               <h3
-                className="euiTitle euiTitle--xsmall euiDescriptiveFormRow__title"
+                className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"
                 id="test-id-title"
               >
                 Title
               </h3>
             </EuiTitle>
             <EuiText
-              className="euiDescriptiveFormRow__description"
+              className="euiDescribedFormGroup__description"
               color="subdued"
               grow={true}
               id="test-id"
               size="s"
             >
               <div
-                className="euiText euiText--small euiDescriptiveFormRow__description"
+                className="euiText euiText--small euiDescribedFormGroup__description"
                 id="test-id"
               >
                 <EuiTextColor
@@ -312,17 +312,17 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           component="div"
           grow={true}
         >
           <div
-            className="euiFlexItem euiDescriptiveFormRow__fields euiDescriptiveFormRow__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
           >
             <EuiFormRow
               describedByIds={
                 Array [
-                  "idAria",
+                  "test-id",
                 ]
               }
               error={
@@ -354,7 +354,7 @@ exports[`EuiDescriptiveFormRow ties together parts for accessibility 1`] = `
                   </label>
                 </EuiFormLabel>
                 <input
-                  aria-describedby="idAria generated-id-help generated-id-error-0 generated-id-error-1"
+                  aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
                   id="generated-id"
                   onBlur={[Function]}
                   onFocus={[Function]}

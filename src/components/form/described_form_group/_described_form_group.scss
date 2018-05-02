@@ -1,23 +1,23 @@
-.euiDescriptiveFormRow {
+.euiDescribedFormGroup {
   max-width: $euiFormMaxWidth*2;
 
   + * {
     margin-top: $euiSizeL;
   }
 
-  &.euiDescriptiveFormRow--fullWidth {
+  &.euiDescribedFormGroup--fullWidth {
     max-width: 100%;
   }
 
-  .euiDescriptiveFormRow__description {
+  .euiDescribedFormGroup__description {
     padding-top: $euiSizeS;
   }
 
-  .euiDescriptiveFormRow__fields {
+  .euiDescribedFormGroup__fields {
     min-width: $euiFormMaxWidth;
   }
 
-  .euiDescriptiveFormRow__fieldPadding {
+  .euiDescribedFormGroup__fieldPadding {
     &--xxxsmall {
       padding-top: $euiFontSizeXS*1.5 - $euiFontSizeXS + 2px;
     }
@@ -41,11 +41,11 @@
   @include screenXSmall {
     max-width: $euiFormMaxWidth;
 
-    &.euiDescriptiveFormRow--fullWidth {
+    &.euiDescribedFormGroup--fullWidth {
       max-width: 100%;
     }
 
-    .euiDescriptiveFormRow__fields {
+    .euiDescribedFormGroup__fields {
       padding-top: 0;
 
       > .euiFormRow--hasEmptyLabelSpace:first-child {

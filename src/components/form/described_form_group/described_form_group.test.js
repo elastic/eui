@@ -39,7 +39,7 @@ describe('EuiDescriptiveFormRow', () => {
         `Error one`,
         `Error two`
       ],
-      describedByIds: ['idAria'],
+      describedByIds: ['test-id'],
     };
 
     const tree = mount(

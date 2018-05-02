@@ -12,21 +12,18 @@ import { GUTTER_SIZES } from '../../flex/flex_group';
 import makeId from '../form_row/make_id';
 
 const paddingSizeToClassNameMap = {
-  xxxs: 'euiDescriptiveFormRow__fieldPadding--xxxsmall',
-  xxs: 'euiDescriptiveFormRow__fieldPadding--xxsmall',
-  xs: 'euiDescriptiveFormRow__fieldPadding--xsmall',
-  s: 'euiDescriptiveFormRow__fieldPadding--small',
-  m: 'euiDescriptiveFormRow__fieldPadding--medium',
-  l: 'euiDescriptiveFormRow__fieldPadding--large',
+  xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
+  xxs: 'euiDescribedFormGroup__fieldPadding--xxsmall',
+  xs: 'euiDescribedFormGroup__fieldPadding--xsmall',
+  s: 'euiDescribedFormGroup__fieldPadding--small',
+  m: 'euiDescribedFormGroup__fieldPadding--medium',
+  l: 'euiDescribedFormGroup__fieldPadding--large',
 };
 
 export class EuiDescribedFormGroup extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      ariaId: props.idAria || makeId()
-    };
+    this.ariaId = props.idAria || makeId();
   }
 
   render() {
@@ -42,27 +39,27 @@ export class EuiDescribedFormGroup extends Component {
       ...rest
     } = this.props;
 
-    const { ariaId } = this.state;
+    const ariaId = this.ariaId;
 
     const classes = classNames(
-      'euiDescriptiveFormRow',
+      'euiDescribedFormGroup',
       {
-        'euiDescriptiveFormRow--fullWidth': fullWidth,
+        'euiDescribedFormGroup--fullWidth': fullWidth,
       },
       className,
     );
 
     const fieldClasses = classNames(
-      'euiDescriptiveFormRow__fields',
+      'euiDescribedFormGroup__fields',
       paddingSizeToClassNameMap[titleSize],
     );
 
     const ariaProps = {
       'aria-labelledby': `${ariaId}-title`,
 
-      // if user has defined an aria ID and there is one child, assume they have passed the ID to
-      // the form row and skip describedby here
-      'aria-describedby': userAriaId && React.Children.count(children) === 1 ? null : ariaId,
+      // if user has defined an aria ID, assume they have passed the ID to
+      // the form row describedByIds and skip describedby here
+      'aria-describedby': userAriaId ? null : ariaId,
     };
 
     return (
@@ -74,10 +71,10 @@ export class EuiDescribedFormGroup extends Component {
       >
         <EuiFlexGroup gutterSize={gutterSize}>
           <EuiFlexItem grow={fullWidth}>
-            <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescriptiveFormRow__title">
+            <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescribedFormGroup__title">
               {title}
             </EuiTitle>
-            <EuiText id={ariaId} size="s" color="subdued" className="euiDescriptiveFormRow__description">
+            <EuiText id={ariaId} size="s" color="subdued" className="euiDescribedFormGroup__description">
               {description}
             </EuiText>
           </EuiFlexItem>
