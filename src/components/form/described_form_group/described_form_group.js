@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiTitle, TITLE_SIZES } from '../../title/title';
 import { EuiText } from '../../text/text';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { GUTTER_SIZES } from '../../flex/flex_group';
@@ -11,17 +12,20 @@ import { GUTTER_SIZES } from '../../flex/flex_group';
 import makeId from '../form_row/make_id';
 
 const paddingSizeToClassNameMap = {
-  s: 'euiDescriptiveFormRow__fields--paddingSmall',
-  m: 'euiDescriptiveFormRow__fields--paddingMedium',
-  l: 'euiDescriptiveFormRow__fields--paddingLarge',
+  xxxs: 'euiDescriptiveFormRow__fieldPadding--xxxsmall',
+  xxs: 'euiDescriptiveFormRow__fieldPadding--xxsmall',
+  xs: 'euiDescriptiveFormRow__fieldPadding--xsmall',
+  s: 'euiDescriptiveFormRow__fieldPadding--small',
+  m: 'euiDescriptiveFormRow__fieldPadding--medium',
+  l: 'euiDescriptiveFormRow__fieldPadding--large',
 };
 
-export class EuiDescriptiveFormRow extends Component {
+export class EuiDescribedFormGroup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: props.id || makeId()
+      ariaId: props.idAria || makeId()
     };
   }
 
@@ -30,14 +34,15 @@ export class EuiDescriptiveFormRow extends Component {
       children,
       className,
       gutterSize,
-      paddingSize,
       fullWidth,
+      titleSize,
       title,
       description,
+      idAria: userAriaId,
       ...rest
     } = this.props;
 
-    const { id } = this.state;
+    const { ariaId } = this.state;
 
     const classes = classNames(
       'euiDescriptiveFormRow',
@@ -49,23 +54,30 @@ export class EuiDescriptiveFormRow extends Component {
 
     const fieldClasses = classNames(
       'euiDescriptiveFormRow__fields',
-      paddingSizeToClassNameMap[paddingSize],
+      paddingSizeToClassNameMap[titleSize],
     );
+
+    const ariaProps = {
+      'aria-labelledby': `${ariaId}-title`,
+
+      // if user has defined an aria ID and there is one child, assume they have passed the ID to
+      // the form row and skip describedby here
+      'aria-describedby': userAriaId && React.Children.count(children) === 1 ? null : ariaId,
+    };
 
     return (
       <div
-        id={id}
-        aria-labelledby={`${id}-legend`}
         role="group"
         className={classes}
+        {...ariaProps}
         {...rest}
       >
         <EuiFlexGroup gutterSize={gutterSize}>
-          <EuiFlexItem id={`${id}-legend`} grow={false}>
-            <EuiText size="xs" id={`${id}-title`} className="euiDescriptiveFormRow__title">
+          <EuiFlexItem grow={fullWidth}>
+            <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescriptiveFormRow__title">
               {title}
-            </EuiText>
-            <EuiText size="s" color="subdued" id={`${id}-description`} className="euiDescriptiveFormRow__description">
+            </EuiTitle>
+            <EuiText id={ariaId} size="s" color="subdued" className="euiDescriptiveFormRow__description">
               {description}
             </EuiText>
           </EuiFlexItem>
@@ -78,8 +90,7 @@ export class EuiDescriptiveFormRow extends Component {
   }
 }
 
-EuiDescriptiveFormRow.propTypes = {
-  id: PropTypes.string,
+EuiDescribedFormGroup.propTypes = {
   /**
    * One or more `EuiFormRow`s
    */
@@ -89,17 +100,15 @@ EuiDescriptiveFormRow.propTypes = {
    * Passed to `EuiFlexGroup`
    */
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
-  /**
-   * Padding to help align the first field to description
-   */
-  paddingSize: PropTypes.oneOf(['s', 'm', 'l']),
   fullWidth: PropTypes.bool,
+  titleSize: PropTypes.oneOf(TITLE_SIZES),
   title: PropTypes.node.isRequired,
   description: PropTypes.node.isRequired,
+  idAria: PropTypes.string,
 };
 
-EuiDescriptiveFormRow.defaultProps = {
+EuiDescribedFormGroup.defaultProps = {
   gutterSize: 'l',
-  paddingSize: 'm',
+  titleSize: 'xs',
   fullWidth: false,
 };

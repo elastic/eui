@@ -4,12 +4,11 @@ import React, {
 
 import {
   EuiButton,
-  EuiCheckboxGroup,
   EuiCode,
   EuiFieldText,
   EuiForm,
   EuiFormRow,
-  EuiDescriptiveFormRow,
+  EuiDescribedFormGroup,
   EuiFilePicker,
   EuiRange,
   EuiSelect,
@@ -78,29 +77,28 @@ export default class extends Component {
   render() {
     return (
       <EuiForm>
-        <EuiDescriptiveFormRow
-          id="single-example"
+        <EuiDescribedFormGroup
+          idAria="single-example-aria"
           title={<h3>Single text field</h3>}
-          paddingSize="m"
           description={
             <span>
-              When using this with a single field where the text here serves as the help text for the input,
-              it is a good idea to give it <EuiCode>someID</EuiCode> and pass <EuiCode>someID-description</EuiCode> to
-              the form row&apos;s <EuiCode>describedByIds</EuiCode> prop.
+              When using this with a single form row where this text serves as the help text for the input,
+              it is a good idea to pass <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and pass
+              <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form row.
             </span>
           }
         >
           <EuiFormRow
             label="Text field"
-            describedByIds={['single-example-description']}
+            describedByIds={['single-example-aria']}
           >
             <EuiFieldText name="first" />
           </EuiFormRow>
-        </EuiDescriptiveFormRow>
+        </EuiDescribedFormGroup>
 
-        <EuiDescriptiveFormRow
+        <EuiDescribedFormGroup
           title={<strong>Multiple fields</strong>}
-          paddingSize="s"
+          titleSize="m"
           description="Here are three form rows. The first form row does not have a title."
         >
           <EuiFormRow
@@ -137,14 +135,14 @@ export default class extends Component {
               id="range"
             />
           </EuiFormRow>
-        </EuiDescriptiveFormRow>
+        </EuiDescribedFormGroup>
 
-        <EuiDescriptiveFormRow
+        <EuiDescribedFormGroup
           title={<h2>Full width</h2>}
-          paddingSize="l"
+          titleSize="xxxs"
           description={
             <span>
-              By default, <EuiCode>EuiDescriptiveFormRow</EuiCode> will be double the default width of form elements.
+              By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be double the default width of form elements.
               However, you can pass <EuiCode>fullWidth</EuiCode> prop to this, the individual field and row components
               to expand to their container.
             </span>
@@ -160,26 +158,13 @@ export default class extends Component {
               label="Should we do this?"
               checked={this.state.isSwitchChecked}
               onChange={this.onSwitchChange}
-              fullWidth
             />
           </EuiFormRow>
 
-          <EuiFormRow>
-            <EuiFieldText name="second" />
+          <EuiFormRow fullWidth>
+            <EuiFieldText name="second" fullWidth />
           </EuiFormRow>
-
-          <EuiFormRow
-            label="Checkboxes"
-            fullWidth
-          >
-            <EuiCheckboxGroup
-              options={this.state.checkboxes}
-              idToSelectedMap={this.state.checkboxIdToSelectedMap}
-              onChange={this.onCheckboxChange}
-              fullWidth
-            />
-          </EuiFormRow>
-        </EuiDescriptiveFormRow>
+        </EuiDescribedFormGroup>
 
         <EuiButton type="submit" fill>
           Save form

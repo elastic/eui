@@ -15,19 +15,26 @@
 
   .euiDescriptiveFormRow__fields {
     min-width: $euiFormMaxWidth;
+  }
 
-    $baseLineHeightMultiplier: $euiFontSizeXS/2;
-
-    &--paddingSmall {
-      padding-top: $baseLineHeightMultiplier*3 - $euiFontSizeXS + 2px;
+  .euiDescriptiveFormRow__fieldPadding {
+    &--xxxsmall {
+      padding-top: $euiFontSizeXS*1.5 - $euiFontSizeXS + 2px;
     }
-
-    &--paddingMedium {
-      padding-top: $baseLineHeightMultiplier*4 - $euiFontSizeXS + 2px;
+    &--xxsmall {
+      padding-top: $euiFontSizeS*1.5 - $euiFontSizeXS + 2px;
     }
-
-    &--paddingLarge {
-      padding-top: $baseLineHeightMultiplier*5 - $euiFontSizeXS + 2px;
+    &--xsmall {
+      padding-top: $euiFontSize*1.5 - $euiFontSizeXS + 2px;
+    }
+    &--small {
+      padding-top: $euiFontSizeL*1.5 - $euiFontSizeXS + 2px;
+    }
+    &--medium {
+      padding-top: $euiFontSizeXL*1.5 - $euiFontSizeXS + 2px;
+    }
+    &--large {
+      padding-top: $euiFontSizeXXL*1.5 - $euiFontSizeXS + 2px;
     }
   }
 
