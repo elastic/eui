@@ -11,6 +11,10 @@
 - Fixed `EuiTableRowCell` from overwriting its child element's `className` [#709](https://github.com/elastic/eui/pull/709)
 - Allow `EuiContextMenuPanel`s to update when their `children` changes ([#710](https://github.com/elastic/eui/pull/710))
 
+**Breaking changes**
+
+- Rename `logoElasticSearch` to `logoElasticsearch` [#755](https://github.com/elastic/eui/pull/755)
+
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
 - Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))

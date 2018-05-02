@@ -14,7 +14,7 @@ const iconTypes = [
   'logoCloud',
   'logoDocker',
   'logoElastic',
-  'logoElasticSearch',
+  'logoElasticsearch',
   'logoElasticStack',
   'logoGithub',
   'logoGmail',

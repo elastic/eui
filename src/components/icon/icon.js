@@ -97,7 +97,7 @@ import logoBeats from './assets/logo_beats.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoElastic from './assets/logo_elastic.svg';
-import logoElasticSearch from './assets/logo_elastic_search.svg';
+import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
@@ -263,7 +263,7 @@ const typeToIconMap = {
   logoCloud,
   logoDocker,
   logoElastic,
-  logoElasticSearch,
+  logoElasticsearch,
   logoElasticStack,
   logoGmail,
   logoGithub,

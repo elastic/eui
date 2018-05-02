@@ -43,7 +43,7 @@ export default class extends Component {
   render() {
     const sideNav = [
       this.createItem('Elasticsearch', {
-        icon: <EuiIcon type="logoElasticSearch" />,
+        icon: <EuiIcon type="logoElasticsearch" />,
         items: [
           this.createItem('Data sources'),
           this.createItem('Users'),

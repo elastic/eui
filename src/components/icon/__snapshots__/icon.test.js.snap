@@ -2490,7 +2490,7 @@ exports[`EuiIcon renders type logoElastic 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon renders type logoElasticSearch 1`] = `
+exports[`EuiIcon renders type logoElasticsearch 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   height="32"
