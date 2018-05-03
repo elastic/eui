@@ -39,6 +39,10 @@ import WritingGuidelines
 import { IsColorDarkExample }
   from './views/is_color_dark/is_color_dark_example';
 
+
+import { UtilityClassesExample }
+  from './views/utility_classes/utility_classes_example';
+
 // Component examples
 
 import { AccessibilityExample }
@@ -336,6 +340,7 @@ const navigation = [{
     IsColorDarkExample,
     OutsideClickDetectorExample,
     PortalExample,
+    UtilityClassesExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Package',
