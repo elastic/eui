@@ -47,6 +47,7 @@ export class EuiComboBox extends Component {
     options: [],
     selectedOptions: [],
     isClearable: true,
+    singleSelection: false,
   }
 
   constructor(props) {
@@ -497,7 +498,7 @@ export class EuiComboBox extends Component {
       placeholder,
       noSuggestions,
       renderOption,
-      singleSelection, // eslint-disable-line no-unused-vars
+      singleSelection,
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
@@ -572,6 +573,7 @@ export class EuiComboBox extends Component {
           isListOpen={isListOpen}
           onOpen={this.openList}
           onClose={this.closeList}
+          singleSelection={singleSelection}
         />
 
         {optionsList}

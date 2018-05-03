@@ -3,6 +3,7 @@
 - Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
 - Added `describedByIds` prop to `EuiFormRow` to help with accessibility ([#707](https://github.com/elastic/eui/pull/707))
 - Added `isLoading` prop to `EuiButtonEmpty` ([#768](https://github.com/elastic/eui/pull/768))
+- Removed individual badge cross icon when `EuiComboBox` has `singleSelection` prop enabled. ([#769](https://github.com/elastic/eui/pull/769))
 
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
 

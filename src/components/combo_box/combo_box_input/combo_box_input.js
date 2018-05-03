@@ -28,6 +28,7 @@ export class EuiComboBoxInput extends Component {
     isListOpen: PropTypes.bool.isRequired,
     onOpen: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    singleSelection: PropTypes.bool,
   }
 
   constructor(props) {
@@ -85,6 +86,7 @@ export class EuiComboBoxInput extends Component {
       isListOpen,
       onOpen,
       onClose,
+      singleSelection,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -97,7 +99,7 @@ export class EuiComboBoxInput extends Component {
       return (
         <EuiComboBoxPill
           option={option}
-          onClose={onRemoveOption}
+          onClose={singleSelection ? null : onRemoveOption}
           key={label.toLowerCase()}
           color={color}
           {...rest}
