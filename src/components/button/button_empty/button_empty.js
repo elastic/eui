@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import {
+  EuiLoadingSpinner
+} from '../../loading';
+
 import { getSecureRelForTarget } from '../../../services';
 
 import {
@@ -50,6 +54,7 @@ export const EuiButtonEmpty = ({
   size,
   flush,
   isDisabled,
+  isLoading,
   href,
   target,
   rel,
@@ -57,6 +62,9 @@ export const EuiButtonEmpty = ({
   buttonRef,
   ...rest
 }) => {
+
+  // If in the loading state, force disabled to true
+  isDisabled = isLoading ? true : isDisabled;
 
   const classes = classNames(
     'euiButtonEmpty',
@@ -70,7 +78,14 @@ export const EuiButtonEmpty = ({
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (iconType) {
+  if (isLoading) {
+    buttonIcon = (
+      <EuiLoadingSpinner
+        className="euiButton__spinner"
+        size="m"
+      />
+    );
+  } else if (iconType) {
     buttonIcon = (
       <EuiIcon
         className="euiButtonEmpty__icon"
@@ -130,6 +145,12 @@ EuiButtonEmpty.propTypes = {
   target: PropTypes.string,
   rel: PropTypes.string,
   onClick: PropTypes.func,
+
+  /**
+   * Adds/swaps for loading spinner & disables
+   */
+  isLoading: PropTypes.bool,
+
   type: PropTypes.string,
   buttonRef: PropTypes.func,
 };
