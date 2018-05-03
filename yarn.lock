@@ -10142,9 +10142,9 @@ wdio-sync@0.7.1:
     fibers "~2.0.0"
     object.assign "^4.0.3"
 
-wdio-visual-regression-service@^0.9.0:
+wdio-visual-regression-service@silne30/wdio-visual-regression-service#Add_Filename_To_Result:
   version "0.9.0"
-  resolved "https://registry.yarnpkg.com/wdio-visual-regression-service/-/wdio-visual-regression-service-0.9.0.tgz#caca5507010f02a20a0b83d321f289e3ad565e5e"
+  resolved "https://codeload.github.com/silne30/wdio-visual-regression-service/tar.gz/2ac00b6d9fc4e742b59bc667d36fedfb0ba983e5"
   dependencies:
     babel-runtime "^6.9.0"
     debug "^2.2.0"
