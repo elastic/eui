@@ -15,7 +15,7 @@ const utilityClassesSource = require('!!raw-loader!./utility_classes');
 const utilityClassesHtml = renderToHtml(UtilityClasses);
 
 export const UtilityClassesExample = {
-  title: 'UtilityClasses',
+  title: 'CSS utility classes',
   sections: [{
     source: [{
       type: GuideSectionTypes.JS,
@@ -27,7 +27,7 @@ export const UtilityClassesExample = {
     text: (
       <p>
         The following CSS-only classes are provided as helper utilities. They are
-        useful for making micro-adjustments to existing components.
+        useful for making micro-adjustments to existing React components.
       </p>
     ),
     demo: <UtilityClasses />,
