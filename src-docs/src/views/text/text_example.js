@@ -87,9 +87,7 @@ export const TextExample = {
         There are two ways to color text. Either individually by
         applying <EuiCode>EuiTextColor</EuiCode> on individual text objects, or
         by passing the <EuiCode>color</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
-        a blanket approach across the entirely of your text. Either solution wraps
-        the element in a span with the <EuiCode>!important</EuiCode> applied to the color.
-        It will override any other colors in use, so be careful.
+        a blanket approach across the entirely of your text. 
       </p>
     ),
     props: { EuiTextColor },
