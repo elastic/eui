@@ -269,6 +269,27 @@ export default () => (
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
+          onClick={() => window.alert('Button clicked')}
+          isLoading
+        >
+          Loading
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          onClick={() => window.alert('Button clicked')}
+          isLoading
+          iconSide="right"
+        >
+          Loading
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
           color="danger"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
