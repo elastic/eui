@@ -68,7 +68,7 @@ export default () => (
       <p>
         Sometimes you need to color entire blocks of text, no matter what is in them.
         You can always apply color directly (versus using the separated component) to
-        make it easy.
+        make it easy. Links should still <a href="#">properly color</a>.
       </p>
     </EuiText>
   </div>

@@ -88,6 +88,10 @@
 .euiText {
   @include euiText;
   @include euiFontSize;
+  // The euiText mixin forces a color. Since euiText is usually a child
+  // of other styling concerns, we should inherit their coloring. The default
+  // coloring will likely coming from the reset.scss anyway.
+  color: inherit;
 
   a {
     color: $euiLinkColor;

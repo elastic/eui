@@ -5,6 +5,10 @@
 - Added `isLoading` prop to `EuiButtonEmpty` ([#768](https://github.com/elastic/eui/pull/768))
 - Removed individual badge cross icon when `EuiComboBox` has `singleSelection` prop enabled. ([#769](https://github.com/elastic/eui/pull/769))
 
+**Bug fixes**
+
+- Removed specificity on `EuiText` that was causing cascade conflicts around text coloring. ([#770](https://github.com/elastic/eui/pull/770))
+
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
 
 - Added `EuiBetaBadge` for non-GA labelling including options to add it to `EuiCard` and `EuiKeyPadMenuItem` ([#705](https://github.com/elastic/eui/pull/705))
