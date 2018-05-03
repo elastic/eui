@@ -17,7 +17,6 @@ const utilityClassesHtml = renderToHtml(UtilityClasses);
 export const UtilityClassesExample = {
   title: 'UtilityClasses',
   sections: [{
-    title: 'UtilityClasses',
     source: [{
       type: GuideSectionTypes.JS,
       code: utilityClassesSource,
@@ -27,7 +26,8 @@ export const UtilityClassesExample = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>EuiUtilityClasses</EuiCode> component.
+        The following CSS-only classes are provided as helper utilities. They are
+        useful for making micro-adjustments to existing components.
       </p>
     ),
     demo: <UtilityClasses />,
