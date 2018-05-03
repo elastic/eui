@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiForm,
   EuiFormRow,
+  EuiDescribedFormGroup,
   EuiCheckboxGroup,
   EuiFieldNumber,
   EuiFieldPassword,
@@ -27,6 +28,10 @@ import {
 import FormRows from './form_rows';
 const formRowsSource = require('!!raw-loader!./form_rows');
 const formRowsHtml = renderToHtml(FormRows);
+
+import DescribedFormGroup from './described_form_group';
+const describedFormGroupSource = require('!!raw-loader!./described_form_group');
+const describedFormGroupHtml = renderToHtml(DescribedFormGroup);
 
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
@@ -81,6 +86,26 @@ export const FormLayoutsExample = {
       EuiTextArea,
     },
     demo: <FormRows />,
+  }, {
+    title: 'Described form groups',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: describedFormGroupSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: describedFormGroupHtml,
+    }],
+    text: (
+      <p>
+        Use <EuiCode>EuiDescribedFormGroup</EuiCode> component to associate multiple <EuiCode>EuiFormRow</EuiCode>s.
+        It can also simply be used with one <EuiCode>EuiFormRow</EuiCode> as a way to display help text (or additional
+        text) next to the field instead of below (on mobile, will revert to being stacked).
+      </p>
+    ),
+    props: {
+      EuiDescribedFormGroup,
+    },
+    demo: <DescribedFormGroup />,
   }, {
     title: 'Full-width',
     source: [{

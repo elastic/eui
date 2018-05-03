@@ -30,7 +30,6 @@ export class EuiFormRow extends Component {
     const onChildFocus = get(this.props, 'children.props.onFocus');
     if (onChildFocus) {
       onChildFocus(...args);
-
     }
 
     this.setState({
@@ -60,6 +59,7 @@ export class EuiFormRow extends Component {
       hasEmptyLabelSpace,
       fullWidth,
       className,
+      describedByIds,
       ...rest
     } = this.props;
 
@@ -109,7 +109,7 @@ export class EuiFormRow extends Component {
       );
     }
 
-    const describingIds = [];
+    const describingIds = [...describedByIds];
     if (optionalHelpText) {
       describingIds.push(optionalHelpText.props.id);
     }
@@ -154,9 +154,14 @@ EuiFormRow.propTypes = {
   helpText: PropTypes.node,
   hasEmptyLabelSpace: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  /**
+   * IDs of additional elements that should be part of children's `aria-describedby`
+   */
+  describedByIds: PropTypes.array,
 };
 
 EuiFormRow.defaultProps = {
   hasEmptyLabelSpace: false,
   fullWidth: false,
+  describedByIds: [],
 };

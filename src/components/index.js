@@ -107,6 +107,7 @@ export {
 export {
   EuiCheckbox,
   EuiCheckboxGroup,
+  EuiDescribedFormGroup,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,

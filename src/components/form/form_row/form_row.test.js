@@ -60,6 +60,17 @@ describe('EuiFormRow', () => {
         .toMatchSnapshot();
     });
 
+    test('describedByIds is rendered', () => {
+      const component = shallow(
+        <EuiFormRow describedByIds={['generated-id-additional']}>
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('id is rendered', () => {
       const component = render(
         <EuiFormRow id="id">

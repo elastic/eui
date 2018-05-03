@@ -118,7 +118,6 @@ export default class extends Component {
         >
           <EuiSwitch
             name="switch"
-
             label="Should we do this?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}

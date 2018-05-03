@@ -2,6 +2,7 @@ export {
   EuiCheckbox,
   EuiCheckboxGroup,
 } from './checkbox';
+export { EuiDescribedFormGroup } from './described_form_group';
 export { EuiFieldNumber } from './field_number';
 export { EuiFieldPassword } from './field_password';
 export { EuiFieldSearch } from './field_search';
