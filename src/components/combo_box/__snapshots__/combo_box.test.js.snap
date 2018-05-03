@@ -22,6 +22,7 @@ exports[`EuiComboBox is rendered 1`] = `
     onRemoveOption={[Function]}
     searchValue=""
     selectedOptions={Array []}
+    singleSelection={false}
     updatePosition={[Function]}
     value=""
   />

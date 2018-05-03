@@ -14,7 +14,7 @@ export class EuiComboBoxPill extends Component {
     children: PropTypes.string,
     className: PropTypes.string,
     color: PropTypes.string,
-    onClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -37,17 +37,30 @@ export class EuiComboBoxPill extends Component {
     } = this.props;
     const classes = classNames('euiComboBoxPill', className);
 
+    if (onClose) {
+      return (
+        <EuiBadge
+          className={classes}
+          title={children}
+          iconOnClick={this.onCloseButtonClick}
+          iconType="cross"
+          iconSide="right"
+          color={color}
+          closeButtonProps={{
+            tabIndex: '-1'
+          }}
+          {...rest}
+        >
+          {children}
+        </EuiBadge>
+      );
+    }
+
     return (
       <EuiBadge
         className={classes}
         title={children}
-        iconOnClick={this.onCloseButtonClick}
-        iconType="cross"
-        iconSide="right"
         color={color}
-        closeButtonProps={{
-          tabIndex: '-1'
-        }}
         {...rest}
       >
         {children}
