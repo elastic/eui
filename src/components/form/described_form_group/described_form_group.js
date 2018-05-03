@@ -70,7 +70,7 @@ export class EuiDescribedFormGroup extends Component {
         {...rest}
       >
         <EuiFlexGroup gutterSize={gutterSize}>
-          <EuiFlexItem grow={fullWidth}>
+          <EuiFlexItem>
             <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescribedFormGroup__title">
               {title}
             </EuiTitle>

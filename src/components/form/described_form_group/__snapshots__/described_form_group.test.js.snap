@@ -20,7 +20,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={false}
+      grow={true}
     >
       <EuiTitle
         className="euiDescribedFormGroup__title"
@@ -136,7 +136,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={false}
+      grow={true}
     >
       <EuiTitle
         className="euiDescribedFormGroup__title"
@@ -194,7 +194,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   >
     <EuiFlexItem
       component="div"
-      grow={false}
+      grow={true}
     >
       <EuiTitle
         className="euiDescribedFormGroup__title"
@@ -270,10 +270,10 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
       >
         <EuiFlexItem
           component="div"
-          grow={false}
+          grow={true}
         >
           <div
-            className="euiFlexItem euiFlexItem--flexGrowZero"
+            className="euiFlexItem"
           >
             <EuiTitle
               className="euiDescribedFormGroup__title"
