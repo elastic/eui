@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.45`.
+- Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
+- Added `describedByIds` prop to `EuiFormRow` to help with accessibility ([#707](https://github.com/elastic/eui/pull/707))
 
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
 
@@ -9,8 +10,6 @@ No public interface changes since `0.0.45`.
 - Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiTabbedContent` ([#737](https://github.com/elastic/eui/pull/737))
 - `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
-- Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
-- Added `describedByIds` prop to `EuiFormRow` to help with accessibility ([#707](https://github.com/elastic/eui/pull/707))
 
 **Bug fixes**
 
