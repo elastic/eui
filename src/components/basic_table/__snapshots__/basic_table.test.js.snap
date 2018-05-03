@@ -225,6 +225,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           key="row_1"
         >
           <EuiTableRow
+            aria-owns="row_1_expansion"
             isSelected={false}
           >
             <EuiTableRowCell
@@ -237,6 +238,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
             </EuiTableRowCell>
           </EuiTableRow>
           <EuiTableRow
+            id="row_1_expansion"
             isExpandedRow={true}
           >
             <EuiTableRowCell
@@ -292,7 +294,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       </EuiTableHeader>
       <EuiTableBody>
         <React.Fragment
-          key="row_0"
+          key="row_3"
         >
           <EuiTableRow
             isSelected={false}
@@ -300,7 +302,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
             <EuiTableRowCell
               align="left"
               header="Name"
-              key="_data_column_name_0_0"
+              key="_data_column_name_3_0"
               textOnly={true}
             >
               name1
@@ -308,7 +310,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           </EuiTableRow>
         </React.Fragment>
         <React.Fragment
-          key="row_1"
+          key="row_4"
         >
           <EuiTableRow
             isSelected={false}
@@ -316,7 +318,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
             <EuiTableRowCell
               align="left"
               header="Name"
-              key="_data_column_name_1_0"
+              key="_data_column_name_4_0"
               textOnly={true}
             >
               name2

@@ -436,7 +436,11 @@ export class EuiBasicTable extends Component {
       return this.renderEmptyBody();
     }
     const rows = items.map((item, index) => {
-      return this.renderItemRow(item, index);
+      // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
+      const tableItemIndex = this.props.pagination ?
+        this.props.pagination.pageIndex * this.props.pagination.pageSize + index
+        : index;
+      return this.renderItemRow(item, tableItemIndex);
     });
     if (this.props.loading) {
       return <LoadingTableBody>{rows}</LoadingTableBody>;
@@ -505,9 +509,10 @@ export class EuiBasicTable extends Component {
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
     // We'll use the ID to associate the expanded row with the original.
-    const expandedRowId = itemIdToExpandedRowMap.length > 0 ? `row_${itemId}_expansion` : undefined;
-    const expandedRow = itemIdToExpandedRowMap[itemId] ? (
-      <EuiTableRow id={expandedRowId} key={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
+    const hasExpandedRow = itemIdToExpandedRowMap.hasOwnProperty(itemId);
+    const expandedRowId = hasExpandedRow ? `row_${itemId}_expansion` : undefined;
+    const expandedRow = hasExpandedRow ? (
+      <EuiTableRow id={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
         <EuiTableRowCell colSpan={expandedRowColSpan}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>

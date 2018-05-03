@@ -16,6 +16,7 @@
 - Fixed `EuiTableRowCell` from overwriting its child element's `className` [#709](https://github.com/elastic/eui/pull/709)
 - Allow `EuiContextMenuPanel`s to update when their `children` changes ([#710](https://github.com/elastic/eui/pull/710))
 - `EuiInMemoryTable` now passes `itemIdToExpandedRowMap` prop to `EuiBasicTable` ([#759](https://github.com/elastic/eui/pull/759))
+- Expanded table rows in paginated data no longer leak to other pages ([#761](https://github.com/elastic/eui/pull/761))
 
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
