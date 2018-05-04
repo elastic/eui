@@ -2,6 +2,11 @@
 
 No public interface changes since `3.1.0`.
 
+**Bug Fixes**
+
+- To make it more accessible, added a random id to `EuiSwitch`'s id prop if none is passed.  ([#779](https://github.com/elastic/eui/pull/779))
+
+
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
 - Added `EuiMutationObserver` to expose Mutation Observer API to React components ([#966](https://github.com/elastic/eui/pull/966))
