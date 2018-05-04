@@ -102,7 +102,6 @@ export class EuiSearchBar extends Component {
   onSearch = (queryText) => {
     try {
       const query = parseQuery(queryText, this.props);
-      console.log(query);
       if (this.props.onParse) {
         this.props.onParse({ query, queryText });
       }
