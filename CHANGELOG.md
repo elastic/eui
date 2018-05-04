@@ -24,6 +24,10 @@
 - `EuiInMemoryTable` now passes `itemIdToExpandedRowMap` prop to `EuiBasicTable` ([#759](https://github.com/elastic/eui/pull/759))
 - Expanded table rows in paginated data no longer leak to other pages ([#761](https://github.com/elastic/eui/pull/761))
 
+**Breaking changes**
+
+- Rename `logoElasticSearch` to `logoElasticsearch` [#755](https://github.com/elastic/eui/pull/755)
+
 ## [`0.0.44`](https://github.com/elastic/eui/tree/v0.0.44)
 
 - Reduced `EuiToast` title size ([#703](https://github.com/elastic/eui/pull/703))

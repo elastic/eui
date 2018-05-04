@@ -105,7 +105,7 @@ declare module '@elastic/eui' {
     | 'logoCloud'
     | 'logoDocker'
     | 'logoElastic'
-    | 'logoElasticSearch'
+    | 'logoElasticsearch'
     | 'logoElasticStack'
     | 'logoGmail'
     | 'logoGithub'
