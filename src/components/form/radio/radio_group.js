@@ -52,5 +52,4 @@ EuiRadioGroup.propTypes = {
 
 EuiRadioGroup.defaultProps = {
   options: [],
-  compressed: false,
 };
