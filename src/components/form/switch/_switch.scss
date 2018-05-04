@@ -12,8 +12,10 @@
 
   /**
    * 1. The input is "hidden" but still focusable.
+   * 2. Make sure it's still hidden when [disabled].
    */
-  .euiSwitch__input {
+  .euiSwitch__input,
+  .euiSwitch__input[disabled] /* 2 */ {
     position: absolute;
     opacity: 0; /* 1 */
     width: 100%;
