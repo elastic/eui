@@ -113,7 +113,7 @@ rangeValue
 containsValue
   = number
   / date
-  / boolean
+  / booleanWord
   / word
   / phrase
 
@@ -135,6 +135,11 @@ escapedChar
 
 reservedChar
   = [\-:\\\\]
+
+// only match booleans followed by whitespace or end of input
+booleanWord
+  = bool:boolean &space { return bool; }
+  / bool:boolean !. { return bool; }
 
 boolean
   = [tT][rR][uU][eE] { return Exp.boolean(text(), location()); }
@@ -171,7 +176,9 @@ const Exp = {
   date: (expression, location) => ({ type: 'date', expression, location }),
   number: (expression, location) => ({ type: 'number', expression, location }),
   string: (expression, location) => ({ type: 'string', expression, location }),
-  boolean: (expression, location) => ({ type: 'boolean', expression, location })
+  boolean: (expression, location) => {
+    return { type: 'boolean', expression, location };
+  }
 };
 
 const validateFlag = (flag, location, ctx) => {
