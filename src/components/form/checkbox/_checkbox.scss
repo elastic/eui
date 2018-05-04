@@ -12,13 +12,19 @@
       position: relative;
       z-index: 2;
       cursor: pointer;
+
+      @at-root {
+        .euiCheckbox--compressed#{&} {
+          font-size: $euiFontSizeXS;
+        }
+      }
     }
 
     + .euiCheckbox__square {
       display: inline-block;
       position: absolute;
       left: 0;
-      top: ($euiSizeL - $euiCheckBoxSize)/2;
+      top: ($euiSizeL - $euiCheckBoxSize)/2 - 1px;
       @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
     }
 

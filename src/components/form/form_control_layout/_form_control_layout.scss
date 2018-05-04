@@ -22,24 +22,11 @@
   }
 
   .euiFormControlLayout__clear {
-    $clearSize: $euiSize;
-
     position: absolute;
     top: $euiSizeM;
     right: $euiSizeM;
 
-    @include size($clearSize);
-    background-color: transparentize($euiColorMediumShade, .5);
-    border-radius: $clearSize;
-    line-height: $clearSize;
-
-    .euiFormControlLayout__clearIcon {
-      @include size($euiSizeS);
-      fill: $euiColorEmptyShade;
-      stroke: $euiColorEmptyShade;
-      stroke-width: 3px; // increase thickness of icon at such a small size
-      margin-top: -3px;
-    }
+    @include euiFormControlLayout__clear('.euiFormControlLayout__clearIcon');
 
     // Loading spinner needs adjustment if clear also exists
     ~ .euiFormControlLayout__loading {
@@ -70,5 +57,16 @@
     position: absolute;
     top: $euiSizeM;
     right: $euiSizeM;
+  }
+}
+
+.euiFormControlLayout--compressed {
+  width: auto;
+
+  .euiFormControlLayout__icon,
+  .euiFormControlLayout__loading {
+    // match to compressed top padding
+    top: $euiSizeM/2;
+    //@include size(12px);
   }
 }

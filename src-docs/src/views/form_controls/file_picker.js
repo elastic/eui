@@ -65,6 +65,16 @@ export class FilePicker extends Component {
           disabled
           initialPromptText="Disabled"
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFilePicker
+          id="asdf2"
+          multiple
+          compressed
+          initialPromptText="Select some files"
+          onChange={files => { this.onChange(files); }}
+        />
       </Fragment>
     );
   }

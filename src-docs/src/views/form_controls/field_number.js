@@ -69,6 +69,15 @@ export default class extends Component {
           onChange={this.onChange}
           readOnly
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFieldNumber
+          placeholder="Compressed"
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

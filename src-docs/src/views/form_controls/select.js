@@ -65,6 +65,15 @@ export default class extends Component {
           isLoading
           disabled
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiSelect
+          options={this.options}
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

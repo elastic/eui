@@ -22,11 +22,13 @@ export const EuiFieldNumber = ({
   isInvalid,
   fullWidth,
   isLoading,
+  compressed,
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
     'euiFieldNumber--withIcon': icon,
     'euiFieldNumber--fullWidth': fullWidth,
+    'euiFieldNumber--compressed': compressed,
     'euiFieldNumber-isLoading': isLoading,
   });
 
@@ -35,6 +37,7 @@ export const EuiFieldNumber = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      compressed={compressed}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
@@ -82,10 +85,15 @@ EuiFieldNumber.propTypes = {
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
+  /**
+   * when `true` creates a shorter height input
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiFieldNumber.defaultProps = {
   value: undefined,
   fullWidth: false,
   isLoading: false,
+  compressed: false,
 };

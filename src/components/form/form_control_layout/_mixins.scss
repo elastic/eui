@@ -1,0 +1,16 @@
+@mixin euiFormControlLayout__clear($iconClass) {
+  $clearSize: $euiSize;
+
+  @include size($clearSize);
+  background-color: transparentize($euiColorMediumShade, .5);
+  border-radius: $clearSize;
+  line-height: $clearSize;
+
+  #{$iconClass} {
+    @include size($euiSizeS);
+    fill: $euiColorEmptyShade;
+    stroke: $euiColorEmptyShade;
+    stroke-width: 3px; // increase thickness of icon at such a small size
+    margin-top: -3px;
+  }
+}

@@ -2,6 +2,7 @@
 
 exports[`EuiFieldNumber is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="alert"
   isloading="false"
@@ -25,6 +26,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
 
 exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="true"
   isloading="false"
 >
@@ -39,6 +41,7 @@ exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
 
 exports[`EuiFieldNumber props isInvalid is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   isloading="false"
 >
@@ -55,6 +58,7 @@ exports[`EuiFieldNumber props isInvalid is rendered 1`] = `
 
 exports[`EuiFieldNumber props isLoading is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   isloading="true"
 >
@@ -69,6 +73,7 @@ exports[`EuiFieldNumber props isLoading is rendered 1`] = `
 
 exports[`EuiFieldNumber props value no initial value 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   isloading="false"
 >
@@ -84,6 +89,7 @@ exports[`EuiFieldNumber props value no initial value 1`] = `
 
 exports[`EuiFieldNumber props value value is number 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   isloading="false"
 >

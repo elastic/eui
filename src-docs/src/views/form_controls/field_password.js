@@ -59,6 +59,15 @@ export default class extends Component {
           isLoading
           disabled
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFieldPassword
+          placeholder="Compressed"
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

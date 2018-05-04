@@ -85,6 +85,12 @@
     max-width: 100%;
   }
 
+  &--compressed {
+    // keep the same side padding, just reduce the height
+    padding-top: $euiSizeM/2;
+    padding-bottom: $euiSizeM/2;
+  }
+
   &:invalid { /* 1 */
     @include euiFormControlInvalidStyle;
   }

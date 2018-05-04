@@ -1,9 +1,18 @@
+@import '../form_control_layout/mixins';
+
 .euiFilePicker {
   .euiFilePicker__wrap {
     @include euiFormControlSize;
 
     position: relative;
     display: inline-block;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        width: auto;
+
+      }
+    }
   }
 
   // The input is an invisiable dropzone / button
@@ -31,6 +40,15 @@
   .euiFilePicker__icon {
     margin-bottom: $euiSize;
     transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        position: absolute;
+        top: $euiSizeM/2;
+        left: $euiSizeM;
+        transform: scale(1) !important; // don't scale icon on hover
+      }
+    }
   }
 
   /**
@@ -46,7 +64,7 @@
     display: block;
     background: $euiColorLightestShade;
     padding: $euiSizeL;
-    border-radius: $euiBorderRadius / 2;
+    //border-radius: $euiBorderRadius / 2;
     background: $euiFormBackgroundColor;
     text-align: center;
     transition:
@@ -54,6 +72,13 @@
       background-color $euiAnimSpeedSlow ease-in,
       border-color $euiAnimSpeedSlow ease-in,
       color $euiAnimSpeedSlow ease-in;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        padding: $euiSizeXS $euiSizeXXL; // ensure space for import icon and clear button
+        text-align: left;
+      }
+    }
   }
 
   .euiFilePicker__promptText {
@@ -62,6 +87,13 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @at-root {
+      // make compressed prompt look like placeholder
+      .euiFilePicker--compressed#{&} {
+        color: $euiColorMediumShade;
+      }
+    }
   }
 
   /**
@@ -69,6 +101,15 @@
    */
   .euiFilePicker__clearButton {
     pointer-events: auto; /* 1 */
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        position: absolute;
+        top: $euiSizeM/2;
+        right: $euiSizeM;
+        @include euiFormControlLayout__clear('.euiFilePicker__clearIcon');
+      }
+    }
   }
 
   // Hover and focus
@@ -91,10 +132,14 @@
     @include euiFormControlDisabledStyle;
   }
 
-
-  // When the filepicker has files in it
-  &.euiFilePicker-hasFiles .euiFilePicker__promptText {
+  // When the filepicker has files in it, but not in compressed mode
+  &:not(.euiFilePicker--compressed).euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
+  }
+
+  // When the filepicker has files in it, AND in compressed mode
+  &.euiFilePicker--compressed.euiFilePicker-hasFiles .euiFilePicker__promptText {
+    color: $euiTextColor;
   }
 
   // When you are dragging files over the dropzone
