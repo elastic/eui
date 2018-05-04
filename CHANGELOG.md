@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.46`.
+**Bug fixes**
+
+- Ensuring switches’ inputs are still hidden when `[disabled]` ([#778](https://github.com/elastic/eui/pull/778))
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
