@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { EuiPropTypes } from '../../utils';
 
 import { isColorDark, hexToRgb } from '../../services/color';
 import { EuiKeyboardAccessible } from '../accessibility';
@@ -37,6 +38,8 @@ export const EuiBadge = ({
   className,
   onClick,
   iconOnClick,
+  onClickAriaLabel,
+  iconOnClickAriaLabel,
   closeButtonProps,
   ...rest
 }) => {
@@ -71,7 +74,14 @@ export const EuiBadge = ({
     if (iconOnClick) {
       optionalIcon = (
         <EuiKeyboardAccessible>
-          <EuiIcon onClick={iconOnClick} type={iconType} size="s" className="euiBadge__icon" {...closeButtonProps} />
+          <EuiIcon
+            onClick={iconOnClick}
+            type={iconType}
+            size="s"
+            className="euiBadge__icon"
+            aria-label={iconOnClickAriaLabel}
+            {...closeButtonProps}
+          />
         </EuiKeyboardAccessible>
       );
 
@@ -88,6 +98,7 @@ export const EuiBadge = ({
         className={classes}
         style={optionalCustomStyles}
         onClick={onClick}
+        aria-label={onClickAriaLabel}
         {...rest}
       >
         <span className="euiBadge__content">
@@ -115,6 +126,8 @@ export const EuiBadge = ({
     );
   }
 };
+
+
 
 function checkValidColor(props, propName, componentName) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
@@ -145,9 +158,19 @@ EuiBadge.propTypes = {
   iconOnClick: PropTypes.func,
 
   /**
+   * Aria label applied to the iconOnClick button
+   */
+  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('iconOnClick', 'iconOnClickAriaLabel'),
+
+  /**
    * Will apply an onclick to the badge itself
    */
   onClick: PropTypes.func,
+
+  /**
+   * Aria label applied to the iconOnClick button
+   */
+  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('onClick', 'onClickAriaLabel'),
 
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
