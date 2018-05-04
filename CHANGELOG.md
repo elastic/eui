@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.46`.
+- Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
