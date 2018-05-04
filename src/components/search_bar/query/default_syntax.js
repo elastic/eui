@@ -176,9 +176,7 @@ const Exp = {
   date: (expression, location) => ({ type: 'date', expression, location }),
   number: (expression, location) => ({ type: 'number', expression, location }),
   string: (expression, location) => ({ type: 'string', expression, location }),
-  boolean: (expression, location) => {
-    return { type: 'boolean', expression, location };
-  }
+  boolean: (expression, location) => ({ type: 'boolean', expression, location })
 };
 
 const validateFlag = (flag, location, ctx) => {
