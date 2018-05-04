@@ -8,6 +8,7 @@
 **Bug fixes**
 
 - Removed specificity on `EuiText` that was causing cascade conflicts around text coloring. ([#770](https://github.com/elastic/eui/pull/770))
+- Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
 
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
 
