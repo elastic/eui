@@ -6,8 +6,9 @@ wiki/
 generator-eui/
 test/
 src-docs/
-scripts/
 
+# ignore everything in `scripts` except postinstall.js
+scripts/!(postinstall.js)
 
 .DS_Store
 .eslintcache
