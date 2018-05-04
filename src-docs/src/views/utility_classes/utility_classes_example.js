@@ -6,10 +6,6 @@ import {
   GuideSectionTypes,
 } from '../../components';
 
-import {
-  EuiCode,
-} from '../../../../src/components';
-
 import UtilityClasses from './utility_classes';
 const utilityClassesSource = require('!!raw-loader!./utility_classes');
 const utilityClassesHtml = renderToHtml(UtilityClasses);

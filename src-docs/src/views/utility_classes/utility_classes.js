@@ -54,44 +54,44 @@ export default () => (
     <EuiSpacer />
 
     <div>
-      <EuiIcon type="logoElasticStack" size="xxl" />
-      <EuiCode className="eui-alignTop">.eui-alignTop</EuiCode>
+      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignTop" />
+      <EuiCode>.eui-alignTop</EuiCode>
     </div>
 
     <EuiSpacer />
 
     <div>
-      <EuiIcon type="logoElasticStack" size="xxl" />
-      <EuiCode className="eui-alignMiddle">.eui-alignMiddle</EuiCode>
+      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignMiddle" />
+      <EuiCode>.eui-alignMiddle</EuiCode>
     </div>
 
     <EuiSpacer />
 
     <div>
-      <EuiIcon type="logoElasticStack" size="xxl" />
-      <EuiCode className="eui-alignBottom">.eui-alignBottom</EuiCode>
+      <EuiIcon type="logoElasticStack" size="xxl"  className="eui-alignBottom" />
+      <EuiCode>.eui-alignBottom</EuiCode>
     </div>
 
     <EuiSpacer />
 
     <div>
-      <EuiIcon type="logoElasticStack" size="xxl" />
-      <EuiCode className="eui-alignBaseline">.eui-alignBaseline</EuiCode>
+      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignBaseline" />
+      <EuiCode>.eui-alignBaseline</EuiCode>
     </div>
 
     <EuiSpacer />
 
     <h4>Display</h4>
 
-    <EuiCode className="eui-block">.eui-block</EuiCode>
+    <EuiCode className="eui-displayBlock">.eui-displayBlock</EuiCode>
 
     <EuiSpacer />
 
-    <EuiCode className="eui-inline">.eui-inline</EuiCode>
+    <EuiCode className="eui-displayInline">.eui-displayInline</EuiCode>
 
     <EuiSpacer />
 
-    <EuiCode className="eui-inlineBlock">.eui-inlineBlock</EuiCode>
+    <EuiCode className="eui-displayInlineBlock">.eui-displayInlineBlock</EuiCode>
 
   </EuiText>
 );
