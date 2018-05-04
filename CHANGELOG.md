@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
+
 **Bug fixes**
 
 - Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777))
