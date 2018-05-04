@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.46`.
+
+## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
+
 - Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
 - Added `describedByIds` prop to `EuiFormRow` to help with accessibility ([#707](https://github.com/elastic/eui/pull/707))
 - Added `isLoading` prop to `EuiButtonEmpty` ([#768](https://github.com/elastic/eui/pull/768))
@@ -10,6 +14,8 @@
 - Removed specificity on `EuiText` that was causing cascade conflicts around text coloring. ([#770](https://github.com/elastic/eui/pull/770))
 
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
+
+***NOTE v0.0.45 has a bug causing it to fail during installation, please use v0.0.46***
 
 - Added `EuiBetaBadge` for non-GA labelling including options to add it to `EuiCard` and `EuiKeyPadMenuItem` ([#705](https://github.com/elastic/eui/pull/705))
 - Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
