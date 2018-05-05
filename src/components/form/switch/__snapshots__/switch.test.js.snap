@@ -8,7 +8,7 @@ exports[`EuiSwitch is rendered 1`] = `
     aria-label="aria-label"
     class="euiSwitch__input"
     data-test-subj="test subject string"
-    id="u9dcpoo5"
+    id="test"
     type="checkbox"
   />
   <span
