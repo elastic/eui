@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { findDOMNode } from 'react-dom';
 import { XYPlot, makeWidthFlexible, XAxis, YAxis, HorizontalGridLines, Crosshair } from 'react-vis';
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
@@ -14,13 +15,12 @@ export class InnerCustomPlot extends PureComponent {
     this._getAllSeriesDataAtIndex = this._getAllSeriesDataAtIndex.bind(this);
     this._itemsFormat = this._itemsFormat.bind(this);
     this.seriesItems = {};
-    this.classNameID = Math.random()
-      .toString(36)
-      .substring(7);
   }
   state = {
     crosshairValues: []
   };
+
+  _setXYPlotRef = ref => this._xyPlotRef = ref
 
   _onMouseLeave() {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
@@ -29,7 +29,7 @@ export class InnerCustomPlot extends PureComponent {
   _onNearestX = (value, { index, event, innerX }) => {
     if (this.state.lastCrosshairIndex === index) return;
 
-    const svg = document.getElementsByClassName(this.classNameID)[0].firstChild;
+    const svg = findDOMNode(this._xyPlotRef).firstChild;
     const rect = svg.getBoundingClientRect();
     const mouseX = event.pageX - rect.left;
     const closer = this._closestX(mouseX, innerX, this.state.lastIndexsX);
@@ -123,7 +123,7 @@ export class InnerCustomPlot extends PureComponent {
 
     return (
       <XYPlot
-        className={this.classNameID}
+        ref={this._setXYPlotRef}
         dontCheckIfEmpty
         xType={mode}
         onMouseLeave={this._onMouseLeave}
