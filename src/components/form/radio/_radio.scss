@@ -12,12 +12,6 @@
       position: relative;
       z-index: 2;
       cursor: pointer;
-
-      @at-root {
-        .euiRadio--compressed#{&} {
-          font-size: $euiFontSizeXS;
-        }
-      }
     }
 
     + .euiRadio__circle {

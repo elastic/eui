@@ -12,12 +12,6 @@
       position: relative;
       z-index: 2;
       cursor: pointer;
-
-      @at-root {
-        .euiCheckbox--compressed#{&} {
-          font-size: $euiFontSizeXS;
-        }
-      }
     }
 
     + .euiCheckbox__square {

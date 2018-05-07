@@ -73,7 +73,6 @@ EuiCheckbox.propTypes = {
   disabled: PropTypes.bool,
   /**
    * when `true` creates a shorter height checkbox row
-   * and decreases font size
    */
   compressed: PropTypes.bool,
 };

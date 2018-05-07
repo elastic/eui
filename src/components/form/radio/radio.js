@@ -69,7 +69,6 @@ EuiRadio.propTypes = {
   disabled: PropTypes.bool,
   /**
    * when `true` creates a shorter height radio row
-   * and decreases font size
    */
   compressed: PropTypes.bool,
 };
