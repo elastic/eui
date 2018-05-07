@@ -160,7 +160,7 @@ EuiBadge.propTypes = {
   /**
    * Aria label applied to the iconOnClick button
    */
-  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('iconOnClick', 'iconOnClickAriaLabel'),
+  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('iconOnClick'),
 
   /**
    * Will apply an onclick to the badge itself
@@ -168,9 +168,9 @@ EuiBadge.propTypes = {
   onClick: PropTypes.func,
 
   /**
-   * Aria label applied to the iconOnClick button
+   * Aria label applied to the onClick button
    */
-  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('onClick', 'onClickAriaLabel'),
+  onClickAriaLabel: EuiPropTypes.requiresAriaLabel('onClick'),
 
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
