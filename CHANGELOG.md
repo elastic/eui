@@ -6,6 +6,7 @@
 
 - Added aria-live labeling for `EuiToasts` ([#777](https://github.com/elastic/eui/pull/777))
 - Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777))
+- Ensure switches’ inputs are still hidden when `[disabled]` ([#778](https://github.com/elastic/eui/pull/778))
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
