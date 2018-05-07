@@ -58,8 +58,5 @@ exports[`EuiSwitch is rendered 1`] = `
       </svg>
     </span>
   </span>
-  <label
-    class="euiSwitch__label"
-  />
 </div>
 `;
