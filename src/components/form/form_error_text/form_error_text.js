@@ -8,6 +8,7 @@ export const EuiFormErrorText = ({ children, className, ...rest }) => {
   return (
     <div
       className={classes}
+      aria-live="polite"
       {...rest}
     >
       {children}
