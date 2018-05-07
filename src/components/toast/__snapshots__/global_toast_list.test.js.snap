@@ -13,11 +13,18 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
   class="euiGlobalToastList"
 >
   <div
+    aria-live="polite"
     class="euiToast euiToast--success euiGlobalToastListItem"
     data-test-subj="a"
     id="a"
   >
+    <p
+      class="euiScreenReaderOnly"
+    >
+      A new notification appears
+    </p>
     <div
+      aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
     >
       <svg
@@ -79,11 +86,18 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
   </div>
   <div
+    aria-live="polite"
     class="euiToast euiToast--danger euiGlobalToastListItem"
     data-test-subj="b"
     id="b"
   >
+    <p
+      class="euiScreenReaderOnly"
+    >
+      A new notification appears
+    </p>
     <div
+      aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
     >
       <svg

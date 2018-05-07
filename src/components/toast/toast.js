@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiScreenReaderOnly } from '../accessibility';
+
 import {
   ICON_TYPES,
   EuiIcon,
@@ -72,9 +74,14 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
   return (
     <div
       className={classes}
+      aria-live="polite"
       {...rest}
     >
-      <div className={headerClasses}>
+      <EuiScreenReaderOnly>
+        <p>A new notification appears</p>
+      </EuiScreenReaderOnly>
+
+      <div className={headerClasses} aria-label="Notification">
         {headerIcon}
 
         <span className="euiToastHeader__title">

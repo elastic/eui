@@ -1,5 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
+
+**Bug fixes**
+
+- Added aria-live labeling for `EuiToasts` ([#777](https://github.com/elastic/eui/pull/777))
+- Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777))
+- Ensure switches’ inputs are still hidden when `[disabled]` ([#778](https://github.com/elastic/eui/pull/778))
+
+## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
+
 - Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
 - Added `describedByIds` prop to `EuiFormRow` to help with accessibility ([#707](https://github.com/elastic/eui/pull/707))
 - Added `isLoading` prop to `EuiButtonEmpty` ([#768](https://github.com/elastic/eui/pull/768))
@@ -11,6 +21,8 @@
 - Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
 
 ## [`0.0.45`](https://github.com/elastic/eui/tree/v0.0.45)
+
+***NOTE v0.0.45 has a bug causing it to fail during installation, please use v0.0.46***
 
 - Added `EuiBetaBadge` for non-GA labelling including options to add it to `EuiCard` and `EuiKeyPadMenuItem` ([#705](https://github.com/elastic/eui/pull/705))
 - Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
