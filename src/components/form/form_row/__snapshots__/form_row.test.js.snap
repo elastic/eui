@@ -185,12 +185,14 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
     id="generated-id"
   />
   <div
+    aria-live="polite"
     class="euiFormErrorText euiFormRow__text"
     id="generated-id-error-0"
   >
     Error
   </div>
   <div
+    aria-live="polite"
     class="euiFormErrorText euiFormRow__text"
     id="generated-id-error-1"
   >
@@ -209,6 +211,7 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
     id="generated-id"
   />
   <div
+    aria-live="polite"
     class="euiFormErrorText euiFormRow__text"
     id="generated-id-error-0"
   >
@@ -287,6 +290,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
   id="generated-id-row"
 >
   <label
+    aria-invalid="true"
     class="euiFormLabel euiFormLabel-isInvalid"
     for="generated-id"
   >

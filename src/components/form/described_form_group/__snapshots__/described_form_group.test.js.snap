@@ -342,11 +342,13 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 id="generated-id-row"
               >
                 <EuiFormLabel
+                  aria-invalid={true}
                   htmlFor="generated-id"
                   isFocused={false}
                   isInvalid={true}
                 >
                   <label
+                    aria-invalid={true}
                     className="euiFormLabel euiFormLabel-isInvalid"
                     htmlFor="generated-id"
                   >
@@ -365,6 +367,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   key="Error one"
                 >
                   <div
+                    aria-live="polite"
                     className="euiFormErrorText euiFormRow__text"
                     id="generated-id-error-0"
                   >
@@ -377,6 +380,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   key="Error two"
                 >
                   <div
+                    aria-live="polite"
                     className="euiFormErrorText euiFormRow__text"
                     id="generated-id-error-1"
                   >
