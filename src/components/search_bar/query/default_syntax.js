@@ -113,7 +113,7 @@ rangeValue
 containsValue
   = number
   / date
-  / boolean
+  / booleanWord
   / word
   / phrase
 
@@ -135,6 +135,11 @@ escapedChar
 
 reservedChar
   = [\-:\\\\]
+
+// only match booleans followed by whitespace or end of input
+booleanWord
+  = bool:boolean &space { return bool; }
+  / bool:boolean !. { return bool; }
 
 boolean
   = [tT][rR][uU][eE] { return Exp.boolean(text(), location()); }
