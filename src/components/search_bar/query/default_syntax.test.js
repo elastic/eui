@@ -645,6 +645,22 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  test('boolean word boundary', () => {
+    const query = `active:truest`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('active');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(AST.Operator.isEQClause(clause)).toBe(true);
+    expect(clause.field).toBe('active');
+    expect(clause.value).toBe('truest');
+  });
+
   test('number range expressions', () => {
 
     const query = `num1>6 -num2>=8 num3<4 -num4<=2`;
