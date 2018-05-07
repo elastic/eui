@@ -43,6 +43,7 @@ export class EuiComboBoxPill extends Component {
           className={classes}
           title={children}
           iconOnClick={this.onCloseButtonClick}
+          iconOnClickAriaLabel={`Remove ${children} from selection in this group`}
           iconType="cross"
           iconSide="right"
           color={color}

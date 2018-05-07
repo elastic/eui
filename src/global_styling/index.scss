@@ -9,5 +9,8 @@
 // Mixins provide generic code expansion through helpers
 @import 'mixins/index';
 
+// Utility classes provide one-off selectors for common css problems
+@import 'utility/index';
+
 // The reset file makes use of variables and mixins
 @import 'reset/index';
