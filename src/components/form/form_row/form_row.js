@@ -102,6 +102,7 @@ export class EuiFormRow extends Component {
         <EuiFormLabel
           isFocused={this.state.isFocused}
           isInvalid={isInvalid}
+          aria-invalid={isInvalid}
           htmlFor={id}
         >
           {label}
@@ -117,7 +118,6 @@ export class EuiFormRow extends Component {
     }
 
     if (optionalErrors) {
-      optionalProps[`aria-invalid`] = true;
       optionalErrors.forEach(error => describingIds.push(error.props.id));
     }
 
