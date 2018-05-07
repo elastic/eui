@@ -6,13 +6,6 @@
 
     position: relative;
     display: inline-block;
-
-    @at-root {
-      .euiFilePicker--compressed#{&} {
-        width: auto;
-
-      }
-    }
   }
 
   // The input is an invisiable dropzone / button
@@ -54,6 +47,7 @@
   /**
    * 1. Don't block the user from dropping files onto the filepicker.
    * 2. Put prompt on top of input, so the clear button can intercept the click.
+   * 3. Ensure space for import icon and clear button (only if it has files)
    */
   .euiFilePicker__prompt {
     @include euiFormControlDefaultShadow;
@@ -75,7 +69,7 @@
 
     @at-root {
       .euiFilePicker--compressed#{&} {
-        padding: $euiSizeXS $euiSizeXXL; // ensure space for import icon and clear button
+        padding: $euiSizeXS $euiSize $euiSizeXS $euiSizeXXL; /* 3 */
         text-align: left;
       }
     }
@@ -130,6 +124,10 @@
   // Disabled
   .euiFilePicker__input:disabled + .euiFilePicker__prompt {
     @include euiFormControlDisabledStyle;
+  }
+
+  &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
+    padding-right: $euiSizeXXL; /* 3 */
   }
 
   // When the filepicker has files in it, but not in compressed mode
