@@ -28,6 +28,7 @@ export default class extends Component {
       <Fragment>
         <EuiTextArea
           placeholder="Placeholder text"
+          aria-label="Use aria labels when no actual label is in use"
           value={this.state.value}
           onChange={this.onChange}
         />
@@ -36,6 +37,7 @@ export default class extends Component {
 
         <EuiTextArea
           placeholder="Disabled"
+          aria-label="Use aria labels when no actual label is in use"
           value={this.state.value}
           onChange={this.onChange}
           disabled
@@ -45,6 +47,7 @@ export default class extends Component {
 
         <EuiTextArea
           placeholder="Read-only"
+          aria-label="Use aria labels when no actual label is in use"
           value={this.state.value}
           onChange={this.onChange}
           readOnly

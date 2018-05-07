@@ -102,6 +102,7 @@ export class EuiFormRow extends Component {
         <EuiFormLabel
           isFocused={this.state.isFocused}
           isInvalid={isInvalid}
+          aria-invalid={isInvalid}
           htmlFor={id}
         >
           {label}
@@ -109,15 +110,17 @@ export class EuiFormRow extends Component {
       );
     }
 
+    const optionalProps = {};
     const describingIds = [...describedByIds];
+
     if (optionalHelpText) {
       describingIds.push(optionalHelpText.props.id);
     }
+
     if (optionalErrors) {
       optionalErrors.forEach(error => describingIds.push(error.props.id));
     }
 
-    const optionalProps = {};
     if (describingIds.length > 0) {
       optionalProps[`aria-describedby`] = describingIds.join(` `);
     }
