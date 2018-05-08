@@ -3,15 +3,16 @@ import { mount } from 'enzyme';
 import patchRandom from '../../test/patch_random';
 
 import EuiChart from './chart';
-import EuiArea from './area';
+import EuiBar from './bar';
 
-describe('EuiArea', () => {
+describe('EuiBar', () => {
   test('is rendered', () => {
     const unpatchRandom = patchRandom();
 
     const component = mount(
       <EuiChart width={600} height={200}>
-        <EuiArea
+        <EuiBar
+          name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
       </EuiChart>
@@ -27,16 +28,11 @@ describe('EuiArea', () => {
 
     const component = mount(
       <EuiChart width={600} height={200}>
-        <EuiArea
-          data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
+        <EuiBar
           name="test-chart"
+          data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           color="#ff0000"
-          curve="curveCatmullRom"
-          hasLineMarks={true}
-          lineMarkColor="#00ff00"
-          lineMarkSize={13}
           onClick={() => {}}
-          onMarkClick={() => {}}
         />
       </EuiChart>
     );
