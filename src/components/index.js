@@ -138,6 +138,8 @@ export {
   EuiHeaderBreadcrumb,
   EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
+  EuiHeaderLink,
+  EuiHeaderLinks,
   EuiHeaderLogo,
   EuiHeaderNotification,
   EuiHeaderSection,

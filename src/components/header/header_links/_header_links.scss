@@ -1,0 +1,27 @@
+@import '../../link/mixins';
+
+.euiHeaderLinks {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  flex-grow: 1;
+}
+
+.euiHeaderLinks__list {
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include screenXSmall(){
+    display: none;
+  }
+}
+
+.euiHeaderLinks__mobile {
+  display: none !important; // override popover inline-block
+  position: absolute !important; // override popover relative
+  right: 0;
+
+  @include screenXSmall(){
+    display: block !important;
+  }
+}

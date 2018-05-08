@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const borderToClassNameMap = {
-  left: undefined,
+  left: 'euiHeaderSectionItem--borderLeft',
   right: 'euiHeaderSectionItem--borderRight',
+  none: undefined,
 };
 
 const BORDERS = Object.keys(borderToClassNameMap);
