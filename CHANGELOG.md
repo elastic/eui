@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
+- Added standard links list for `EuiHeader`. ([#804](https://github.com/elastic/eui/pull/804))
 
 **Bug fixes**
 
