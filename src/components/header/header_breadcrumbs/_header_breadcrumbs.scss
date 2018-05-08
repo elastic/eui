@@ -31,7 +31,7 @@
   }
 
   &.euiHeaderBreadcrumb-isActive {
-    color: $euiColorMediumShade;
+    color: makeHighContrastColor($euiColorMediumShade, $euiHeaderBackgroundColor);
   }
 }
 
@@ -44,7 +44,7 @@
   }
 
 .euiHeaderBreadcrumb--collapsed {
-  color: $euiColorLightShade;
+  color: makeHighContrastColor($euiColorMediumShade, $euiHeaderBackgroundColor);
 }
 
 // Laptop
