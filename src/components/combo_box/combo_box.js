@@ -74,6 +74,8 @@ export class EuiComboBox extends Component {
     this.searchInput = undefined;
     this.optionsList = undefined;
     this.options = [];
+
+    this._hasUnmounted = false;
   }
 
   getMatchingOptions = (options, selectedOptions, searchValue) => {
@@ -96,6 +98,10 @@ export class EuiComboBox extends Component {
   };
 
   updateListPosition = (listBounds = this.listBounds) => {
+    if (this._hasUnmounted) {
+      return;
+    }
+
     if (!this.state.isListOpen) {
       return;
     }
@@ -483,6 +489,8 @@ export class EuiComboBox extends Component {
   }
 
   componentWillUnmount() {
+    this.incrementActiveOptionIndex.cancel;
+    this._hasUnmounted = true;
     document.removeEventListener('click', this.onDocumentFocusChange);
     document.removeEventListener('focusin', this.onDocumentFocusChange);
   }
