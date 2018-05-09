@@ -489,7 +489,7 @@ export class EuiComboBox extends Component {
   }
 
   componentWillUnmount() {
-    this.incrementActiveOptionIndex.cancel;
+    this.incrementActiveOptionIndex.cancel();
     this._hasUnmounted = true;
     document.removeEventListener('click', this.onDocumentFocusChange);
     document.removeEventListener('focusin', this.onDocumentFocusChange);
