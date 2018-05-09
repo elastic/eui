@@ -3,10 +3,11 @@
  * 2. Put the list at the top of the screen, otherwise it will cause a scrollbar to show up when
  *    the portal is appended to the body. This would throw off our logic for positioning the
  *    list beneath the input.
+ * 3. The height can expand, hence auto
  */
 .euiComboBoxOptionsList {
-  @include euiFormControlSize;
-  box-sizing: content-box; /* 1 */
+  @include euiFormControlSize(auto);
+  box-sizing: content-box; /* 3 */
   margin-left: -1px; /* 1 */
   z-index: $euiZComboBox;
   position: absolute; /* 2 */

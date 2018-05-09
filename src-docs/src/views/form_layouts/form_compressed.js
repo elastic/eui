@@ -83,7 +83,7 @@ export default class extends Component {
             helpText="I am some friendly help text."
             compressed
           >
-            <EuiFieldText name="first" />
+            <EuiFieldText name="first" isLoading />
           </EuiFormRow>
 
           <EuiFormRow

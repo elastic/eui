@@ -1,6 +1,7 @@
-@mixin euiFormControlSize {
+@mixin euiFormControlSize($height: $euiSizeXXL) {
   max-width: $euiFormMaxWidth;
   width: 100%;
+  height: $height;
 }
 
 @mixin euiFormControlWithIcon($isIconOptional: false) {
@@ -88,6 +89,7 @@
   &--compressed {
     padding-top: $euiFormControlPadding--compressed;
     padding-bottom: $euiFormControlPadding--compressed;
+    height: $euiSizeXL;
   }
 
   &:invalid { /* 1 */

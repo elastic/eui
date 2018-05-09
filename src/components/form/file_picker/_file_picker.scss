@@ -2,7 +2,8 @@
 
 .euiFilePicker {
   .euiFilePicker__wrap {
-    @include euiFormControlSize;
+    // Auto means the height isn't set to a fixed size
+    @include euiFormControlSize(auto);
 
     position: relative;
     display: inline-block;
