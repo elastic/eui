@@ -85,7 +85,7 @@ export default class extends Component {
     });
   };
 
-  onCreateOption =(searchValue, flattenedOptions=[]) => {
+  onCreateOption = (searchValue, flattenedOptions = []) => {
     if (!searchValue) {
       return;
     }
