@@ -55,6 +55,7 @@ You can find documentation around creating and submitting new components in [CON
 ### Consumption
 
 * [Consuming EUI][consuming]
+* [Using EUI with react-router][react-router]
 
 ### Maintenance
 
@@ -80,4 +81,5 @@ You can find documentation around creating and submitting new components in [CON
 [releasing-versions]: wiki/releasing-versions.md
 [testing]: wiki/testing.md
 [theming]: wiki/theming.md
+[react-router]: wiki/react-router.md
 [docs]: https://elastic.github.io/eui/
