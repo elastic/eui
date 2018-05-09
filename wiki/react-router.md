@@ -1,8 +1,8 @@
 # Using react-router with EUI
 
 EUI doesn't prescribe the use of any particular routing library, and we also don't want to incur
-the maintenance burden of supporting router-specific components. For these reasons, we don't
-provide any particular tools for working with `react-router` (or any other routing lib), but
+the maintenance burden of supporting router-specific components. For these reasons, EUI doesn't
+publish any tools for working with `react-router` (or any other routing lib). However,
 integrating EUI with `react-router` on the consumer's side is fairly straightforward.
 
 ## How react-router works
@@ -27,22 +27,22 @@ This technique is recommended because of its flexibility. As a consumer, you hav
 use either the `href` or `onClick` values, or both. It's also terser than the second option.
 
 ```jsx
-<EuiLink {...toHrefAndOnClick('/location')}>Link</EuiLink>
+<EuiLink {...getRouterLinkProps('/location')}>Link</EuiLink>
 ```
 
 ### 2) Adapter component
 
 Alternatively, you can create a component which will consume or encapsulate the
-`convertToHrefAndOnClick` logic, and use that in conjunction with a
+`getRouterLinkProps` logic, and use that in conjunction with a
 [`render` prop](https://reactjs.org/docs/render-props.html).
 
 ```jsx
-const RrAdapter = ({to, render}) => {
-  const {href, onClick} = toHrefAndOnClick(to);
+const RouterLinkAdapter = ({to, render}) => {
+  const {href, onClick} = getRouterLinkProps(to);
   return render(href, onClick);
 };
 
-<RrAdapter
+<RouterLinkAdapter
   to="/location"
   render={(onClick, href) => <EuiLink onClick={onClick} href={href}>Link</EuiLink>}
 />;
@@ -67,15 +67,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.exposeRouter();
+    this.registerRouter();
   }
 
   componentDidUpdate() {
-    // Re-expose the router after a hot reload.
-    this.exposeRouter();
+    // If using HMR, you'll need to re-register the router after a hot reload. Note that
+    // you may want to add some conditions here to cull this logic from a production build,
+    // e.g. `if (process.env.NODE_ENV !== `production` && module.hot)`
+    this.registerRouter();
   }
 
-  exposeRouter() {
+  registerRouter() {
     // Expose the router to the app without requiring React or context.
     const { router } = this.context;
     registerRouter(router);
@@ -91,7 +93,7 @@ ReactDOM.render(
 ```
 
 You can create a `routing.js` lib to surface the `registerRouter` method as well as your
-conversion function (called `convertToHrefAndOnClick` here).
+conversion function (called `getRouterLinkProps` here).
 
 ```js
 // routing.js
@@ -111,7 +113,7 @@ export const registerRouter = reactRouter => {
  * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/v3/modules/Link.js.
  */
-export const convertToHrefAndOnClick = to => {
+export const getRouterLinkProps = to => {
   const location = resolveToLocation(to, router);
   const href = router.createHref(location);
   const onClick = event => {
@@ -154,15 +156,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.exposeRouter();
+    this.registerRouter();
   }
 
   componentDidUpdate() {
-    // Re-expose the router after a hot reload.
-    this.exposeRouter();
+    // If using HMR, you'll need to re-register the router after a hot reload. Note that
+    // you may want to add some conditions here to cull this logic from a production build,
+    // e.g. `if (process.env.NODE_ENV !== `production` && module.hot)`
+    this.registerRouter();
   }
 
-  exposeRouter() {
+  registerRouter() {
     // Expose the router to the app without requiring React or context.
     const { router } = this.context;
     registerRouter(router);
@@ -178,7 +182,7 @@ ReactDOM.render(
 ```
 
 You can create a `routing.js` lib to surface the `registerRouter` method as well as your
-conversion function (called `convertToHrefAndOnClick` here).
+conversion function (called `getRouterLinkProps` here).
 
 ```js
 // routing.js
@@ -198,7 +202,7 @@ export const registerRouter = reactRouter => {
  * The logic for generating hrefs and onClick handlers from the `to` prop is largely borrowed from
  * https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js.
  */
-export const convertToHrefAndOnClick = to => {
+export const getRouterLinkProps = to => {
   const location = typeof to === "string"
     ? createLocation(to, null, null, router.history.location)
     : to;
