@@ -96,6 +96,10 @@ export class EuiComboBox extends Component {
   };
 
   updateListPosition = (listBounds = this.listBounds) => {
+    if (!this._isMounted) {
+      return;
+    }
+
     if (!this.state.isListOpen) {
       return;
     }
@@ -446,6 +450,8 @@ export class EuiComboBox extends Component {
   };
 
   componentDidMount() {
+    this._isMounted = true;
+
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
       this.autoSizeInput.copyInputStyles();
@@ -483,6 +489,8 @@ export class EuiComboBox extends Component {
   }
 
   componentWillUnmount() {
+    this.incrementActiveOptionIndex.cancel();
+    this._isMounted = false;
     document.removeEventListener('click', this.onDocumentFocusChange);
     document.removeEventListener('focusin', this.onDocumentFocusChange);
   }
