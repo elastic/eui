@@ -50,6 +50,8 @@ const RouterLinkAdapter = ({to, render}) => {
 
 ## react-router 3.x
 
+### Share `router` globally
+
 To enable these techniques, you'll need to make the `router` instance available outside of React's
 `context`. One method for doing this is to assign it to a globally-available singleton within your
 app's root component.
@@ -70,15 +72,8 @@ class App extends Component {
     this.registerRouter();
   }
 
-  componentDidUpdate() {
-    // If using HMR, you'll need to re-register the router after a hot reload. Note that
-    // you may want to add some conditions here to cull this logic from a production build,
-    // e.g. `if (process.env.NODE_ENV !== `production` && module.hot)`
-    this.registerRouter();
-  }
-
   registerRouter() {
-    // Expose the router to the app without requiring React or context.
+    // Share the router with the app without requiring React or context.
     const { router } = this.context;
     registerRouter(router);
   }
@@ -92,7 +87,21 @@ ReactDOM.render(
 )
 ```
 
-You can create a `routing.js` lib to surface the `registerRouter` method as well as your
+### Hot module reloading
+
+Note that if using HMR, you'll need to re-register the router after a hot reload.
+
+```js
+  componentDidUpdate() {
+    // You may want to add some conditions here to cull this logic from a production build,
+    // e.g. `if (process.env.NODE_ENV !== 'production' && module.hot)`
+    this.registerRouter();
+  }
+```
+
+### `routing.js` service
+
+You can create a `routing.js` service to surface the `registerRouter` method as well as your
 conversion function (called `getRouterLinkProps` here).
 
 ```js
@@ -132,10 +141,11 @@ export const getRouterLinkProps = to => {
 
   return {href, onClick}
 };
-
 ```
 
 ## react-router 4.x
+
+### Share `router` globally
 
 Setup is slightly different with `react-router` 4.x. To enable these techniques, you'll need to make
 the `router` instance available outside of React's `context`. One method for doing this is to assign
@@ -159,15 +169,8 @@ class App extends Component {
     this.registerRouter();
   }
 
-  componentDidUpdate() {
-    // If using HMR, you'll need to re-register the router after a hot reload. Note that
-    // you may want to add some conditions here to cull this logic from a production build,
-    // e.g. `if (process.env.NODE_ENV !== `production` && module.hot)`
-    this.registerRouter();
-  }
-
   registerRouter() {
-    // Expose the router to the app without requiring React or context.
+    // Share the router with the app without requiring React or context.
     const { router } = this.context;
     registerRouter(router);
   }
@@ -181,7 +184,13 @@ ReactDOM.render(
 )
 ```
 
-You can create a `routing.js` lib to surface the `registerRouter` method as well as your
+### Hot module reloading
+
+[See above](#hot-module-reloading).
+
+### `routing.js` service
+
+You can create a `routing.js` service to surface the `registerRouter` method as well as your
 conversion function (called `getRouterLinkProps` here).
 
 ```js
