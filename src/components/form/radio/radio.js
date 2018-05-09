@@ -11,12 +11,14 @@ export const EuiRadio = ({
   value,
   onChange,
   disabled,
+  compressed,
   ...rest
 }) => {
   const classes = classNames(
     'euiRadio',
     {
-      'euiRadio--noLabel': !label
+      'euiRadio--noLabel': !label,
+      'euiRadio--compressed': compressed,
     },
     className
   );
@@ -65,9 +67,14 @@ EuiRadio.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  /**
+   * when `true` creates a shorter height radio row
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiRadio.defaultProps = {
   checked: false,
   disabled: false,
+  compressed: false,
 };

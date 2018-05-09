@@ -1,3 +1,7 @@
 .euiRadioGroup__item + .euiRadioGroup__item {
   margin-top: $euiSizeS;
+
+  &.euiRadio--compressed {
+    margin-top: 0;
+  }
 }

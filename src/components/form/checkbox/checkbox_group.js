@@ -9,6 +9,7 @@ export const EuiCheckboxGroup = ({
   onChange,
   className,
   disabled,
+  compressed,
   ...rest
 }) => (
   <div className={className} {...rest}>
@@ -22,6 +23,7 @@ export const EuiCheckboxGroup = ({
           label={option.label}
           disabled={disabled}
           onChange={onChange.bind(null, option.id)}
+          compressed={compressed}
         />
       );
     })}
@@ -37,9 +39,14 @@ EuiCheckboxGroup.propTypes = {
   ).isRequired,
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool).isRequired,
   onChange: PropTypes.func.isRequired,
+  /**
+   * Tightens up the spacing between checkbox rows and sends down the
+   * compressed prop to the checkbox itself
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiCheckboxGroup.defaultProps = {
   options: [],
-  idToSelectedMap: {},
+  idToSelectedMap: {}
 };

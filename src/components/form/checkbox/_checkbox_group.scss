@@ -1,3 +1,7 @@
 .euiCheckboxGroup__item + .euiCheckboxGroup__item {
   margin-top: $euiSizeS;
+
+  &.euiCheckbox--compressed {
+    margin-top: 0;
+  }
 }

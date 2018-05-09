@@ -75,7 +75,7 @@
   border: none;
   font-size: $euiFontSizeS;
   font-family: $euiFontFamily;
-  padding: $euiSizeM;
+  padding: $euiFormControlPadding;
   color: $euiTextColor;
   background: $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
@@ -83,6 +83,11 @@
 
   &--fullWidth {
     max-width: 100%;
+  }
+
+  &--compressed {
+    padding-top: $euiFormControlPadding--compressed;
+    padding-bottom: $euiFormControlPadding--compressed;
   }
 
   &:invalid { /* 1 */

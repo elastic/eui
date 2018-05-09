@@ -20,10 +20,15 @@ export class EuiFilePicker extends Component {
      * Use as a callback to access the HTML FileList API
      */
     onChange: PropTypes.func,
+    /**
+     * Reduces the size to a typical (compressed) input
+     */
+    compressed: PropTypes.bool,
   };
 
   static defaultProps = {
     initialPromptText: 'Select or drag and drop a file',
+    compressed: false,
   };
 
   constructor(props) {
@@ -74,6 +79,7 @@ export class EuiFilePicker extends Component {
       initialPromptText,
       className,
       disabled,
+      compressed,
       onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -82,6 +88,7 @@ export class EuiFilePicker extends Component {
       'euiFilePicker',
       {
         'euiFilePicker__showDrop': this.state.isHoveringDrop,
+        'euiFilePicker--compressed': compressed,
         'euiFilePicker-hasFiles': this.state.promptText !== initialPromptText,
       },
       className
@@ -89,16 +96,31 @@ export class EuiFilePicker extends Component {
 
     let clearButton;
     if (this.state.promptText !== initialPromptText) {
-      clearButton = (
-        <EuiButtonEmpty
-          aria-label="Clear selected files"
-          className="euiFilePicker__clearButton"
-          size="xs"
-          onClick={this.removeFiles}
-        >
-          Remove
-        </EuiButtonEmpty>
-      );
+      if (compressed) {
+        clearButton = (
+          <button
+            aria-label="Clear selected files"
+            className="euiFilePicker__clearButton"
+            onClick={this.removeFiles}
+          >
+            <EuiIcon
+              className="euiFilePicker__clearIcon"
+              type="cross"
+            />
+          </button>
+        )
+      } else {
+        clearButton = (
+          <EuiButtonEmpty
+            aria-label="Clear selected files"
+            className="euiFilePicker__clearButton"
+            size="xs"
+            onClick={this.removeFiles}
+          >
+            Remove
+          </EuiButtonEmpty>
+        );
+      }
     } else {
       clearButton = null;
     }
@@ -125,7 +147,7 @@ export class EuiFilePicker extends Component {
             <EuiIcon
               className="euiFilePicker__icon"
               type="importAction"
-              size="l"
+              size={compressed ? 'm' : 'l'}
               aria-hidden="true"
             />
             <div

@@ -16,13 +16,15 @@ export const EuiCheckbox = ({
   onChange,
   type,
   disabled,
+  compressed,
   ...rest
 }) => {
   const classes = classNames(
     'euiCheckbox',
     typeToClassNameMap[type],
     {
-      'euiCheckbox--noLabel': !label
+      'euiCheckbox--noLabel': !label,
+      'euiCheckbox--compressed': compressed
     },
     className
   );
@@ -69,9 +71,14 @@ EuiCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(TYPES),
   disabled: PropTypes.bool,
+  /**
+   * when `true` creates a shorter height checkbox row
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiCheckbox.defaultProps = {
   checked: false,
   disabled: false,
+  compressed: false,
 };

@@ -10,6 +10,7 @@ export const EuiRadioGroup = ({
   name,
   className,
   disabled,
+  compressed,
   ...rest
 }) => (
   <div className={className} {...rest}>
@@ -25,6 +26,7 @@ export const EuiRadioGroup = ({
           value={option.value}
           disabled={disabled}
           onChange={onChange.bind(null, option.id, option.value)}
+          compressed={compressed}
         />
       );
     })}
@@ -41,6 +43,11 @@ EuiRadioGroup.propTypes = {
   ).isRequired,
   idSelected: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  /**
+   * Tightens up the spacing between radio rows and sends down the
+   * compressed prop to the radio itself
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiRadioGroup.defaultProps = {

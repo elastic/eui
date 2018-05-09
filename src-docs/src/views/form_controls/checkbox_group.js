@@ -6,6 +6,7 @@ import React, {
 import {
   EuiCheckboxGroup,
   EuiSpacer,
+  EuiTitle,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -55,11 +56,28 @@ export default class extends Component {
 
         <EuiSpacer size="m" />
 
+        <EuiTitle size="xxs"><h3>Disabled</h3></EuiTitle>
+
+        <EuiSpacer size="s" />
+
         <EuiCheckboxGroup
           options={this.checkboxes}
           idToSelectedMap={this.state.checkboxIdToSelectedMap}
           onChange={this.onChange}
           disabled
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiTitle size="xxs"><h3>Compressed</h3></EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        <EuiCheckboxGroup
+          options={this.checkboxes}
+          idToSelectedMap={this.state.checkboxIdToSelectedMap}
+          onChange={this.onChange}
+          compressed
         />
       </Fragment>
     );

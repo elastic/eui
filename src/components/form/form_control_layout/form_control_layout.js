@@ -12,12 +12,23 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, onClear, iconSide, isLoading, onIconClick, className }) => {
+export const EuiFormControlLayout = ({
+  children,
+  icon,
+  fullWidth,
+  onClear,
+  iconSide,
+  isLoading,
+  onIconClick,
+  compressed,
+  className
+}) => {
 
   const classes = classNames(
     'euiFormControlLayout',
     {
       'euiFormControlLayout--fullWidth': fullWidth,
+      'euiFormControlLayout--compressed': compressed,
     },
     className
   );
@@ -95,9 +106,11 @@ EuiFormControlLayout.propTypes = {
   onClear: PropTypes.func,
   onIconClick: PropTypes.func,
   className: PropTypes.string,
+  compressed: PropTypes.bool,
 };
 
 EuiFormControlLayout.defaultProps = {
   iconSide: 'left',
   isLoading: false,
+  compressed: false,
 };

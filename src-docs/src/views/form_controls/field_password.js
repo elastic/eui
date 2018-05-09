@@ -63,6 +63,15 @@ export default class extends Component {
           disabled
           aria-label="Use aria labels when no actual label is in use"
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFieldPassword
+          placeholder="Compressed"
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

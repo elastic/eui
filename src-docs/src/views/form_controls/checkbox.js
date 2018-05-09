@@ -44,6 +44,16 @@ export default class extends Component {
           onChange={this.onChange}
           disabled
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiCheckbox
+          id={makeId()}
+          label="I am a compressed checkbox"
+          checked={this.state.checked}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

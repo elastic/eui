@@ -6,9 +6,10 @@
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
   max-width: $euiFormMaxWidth;
+  padding-bottom: $euiSizeS;
 
   + * {
-    margin-top: $euiSizeL;
+    margin-top: $euiSize;
   }
 
   &.euiFormRow--fullWidth {
@@ -19,7 +20,13 @@
     padding-top: $euiFontSizeXS + $euiSizeS; /* 2 */
   }
 
-  .euiFormRow__text + .euiFormRow__text {
-    padding-top: 0;
+  &.euiFormRow--compressed {
+    + * {
+      margin-top: $euiSizeS;
+    }
+
+    .euiFormRow__text {
+      padding-top: $euiSizeM/2;
+    }
   }
 }

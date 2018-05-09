@@ -2,6 +2,7 @@
 
 exports[`EuiFieldSearch is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="search"
   isloading="false"
@@ -23,6 +24,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
 
 exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="true"
   icon="search"
   isloading="false"
@@ -38,6 +40,7 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 
 exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="search"
   isloading="false"
@@ -55,6 +58,7 @@ exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
 
 exports[`EuiFieldSearch props isLoading is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="search"
   isloading="true"

@@ -16,12 +16,14 @@ export const EuiTextArea = ({
   className,
   isInvalid,
   fullWidth,
+  compressed,
   ...rest
 }) => {
   const classes = classNames(
     'euiTextArea',
     {
       'euiTextArea--fullWidth': fullWidth,
+      'euiTextArea--compressed': compressed,
     },
     className
   );
@@ -50,6 +52,7 @@ EuiTextArea.propTypes = {
   rows: PropTypes.number,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  compressed: PropTypes.bool,
 };
 
 EuiTextArea.defaultProps = {
