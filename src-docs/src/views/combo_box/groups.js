@@ -47,7 +47,11 @@ export default class extends Component {
     });
   };
 
-  onCreateOption = (searchValue, flattenedOptions) => {
+  onCreateOption = (searchValue, flattenedOptions = []) => {
+    if (!searchValue) {
+      return;
+    }
+
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -60,7 +64,7 @@ export default class extends Component {
 
     // Create the option if it doesn't exist.
     if (flattenedOptions.findIndex(option =>
-      option.value.trim().toLowerCase() === normalizedSearchValue
+      option.label.trim().toLowerCase() === normalizedSearchValue
     ) === -1) {
       if (this.options[this.options.length - 1].label !== 'Custom') {
         this.options.push({
