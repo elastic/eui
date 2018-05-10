@@ -1,0 +1,31 @@
+
+
+.euiHeaderLink {
+  display: inline-block;
+
+  .euiHeaderLink__link {
+    display: block;
+    height: $euiHeaderChildSize;
+    line-height: $euiHeaderChildSize;
+    padding: 0 $euiSize;
+    color: $euiHeaderBreadcrumbColor;
+    @include euiLink;
+  }
+
+  &.euiHeaderLink-isActive .euiHeaderLink__link {
+    color: $euiColorPrimary;
+  }
+}
+
+.euiHeaderLinks__mobile {
+  .euiHeaderLink {
+    display: block;
+    width: auto;
+
+    .euiHeaderLink__link {
+      height: auto;
+      line-height: $euiLineHeight;
+      padding: $euiSizeS;
+    }
+  }
+}

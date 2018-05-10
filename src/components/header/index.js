@@ -13,6 +13,11 @@ export {
 } from './header_breadcrumbs';
 
 export {
+  EuiHeaderLink,
+  EuiHeaderLinks,
+} from './header_links';
+
+export {
   EuiHeaderLogo,
 } from './header_logo';
 

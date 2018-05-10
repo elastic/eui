@@ -10,6 +10,7 @@ $euiHeaderChildSize: $euiSizeXXL + $euiSizeL;
 @import 'header';
 @import 'header_popover';
 @import 'header_profile';
+@import 'header_links/index';
 @import 'header_logo';
 @import 'header_notification';
 @import 'header_alert/index';

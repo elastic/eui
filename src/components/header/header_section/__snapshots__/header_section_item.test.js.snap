@@ -2,7 +2,7 @@
 
 exports[`EuiHeaderSectionItem border defaults to left 1`] = `
 <div
-  class="euiHeaderSectionItem"
+  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
 />
 `;
 
@@ -15,14 +15,14 @@ exports[`EuiHeaderSectionItem border renders right 1`] = `
 exports[`EuiHeaderSectionItem is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeaderSectionItem testClass1 testClass2"
+  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeaderSectionItem renders children 1`] = `
 <div
-  class="euiHeaderSectionItem"
+  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
 >
   <span>
     Call me Ishmael.
