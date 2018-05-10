@@ -39,7 +39,6 @@ export class EuiContextMenuItem extends Component {
   };
 
   render() {
-    console.log(this.props);
 
     const {
       children,
