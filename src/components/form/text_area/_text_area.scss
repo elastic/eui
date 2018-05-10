@@ -1,6 +1,5 @@
 .euiTextArea {
   @include euiFormControlStyle;
   // Textareas have their own sizing
-  @include euiFormControlSize(auto);
-  line-height: $euiLineHeight;
+  height: auto !important;
 }

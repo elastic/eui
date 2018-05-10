@@ -28,12 +28,22 @@ export const EuiTextArea = ({
     className
   );
 
+  let definedRows;
+
+  if (rows) {
+    definedRows = rows;
+  } else if (compressed){
+    definedRows = 3;
+  } else {
+    definedRows = 6;
+  }
+
   return (
     <EuiValidatableControl isInvalid={isInvalid}>
       <textarea
         className={classes}
         {...rest}
-        rows={rows}
+        rows={definedRows}
         name={name}
         id={id}
         ref={inputRef}
@@ -56,6 +66,5 @@ EuiTextArea.propTypes = {
 };
 
 EuiTextArea.defaultProps = {
-  rows: 6,
   fullWidth: false,
 };

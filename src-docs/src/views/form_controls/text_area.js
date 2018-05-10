@@ -53,7 +53,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTextArea
-          placeholder="compressed"
+          placeholder="compressed has three rows"
           value={this.state.value}
           onChange={this.onChange}
           compressed
