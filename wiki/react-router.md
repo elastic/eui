@@ -130,6 +130,11 @@ export const getRouterLinkProps = to => {
       return;
     }
 
+    // If target prop is set (e.g. to "_blank"), let browser handle link.
+    if (event.target.getAttribute('target')) {
+      return;
+    }
+
     if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
       return;
     }
@@ -220,6 +225,11 @@ export const getRouterLinkProps = to => {
 
   const onClick = event => {
     if (event.defaultPrevented) {
+      return;
+    }
+    
+    // If target prop is set (e.g. to "_blank"), let browser handle link.
+    if (event.target.getAttribute('target')) {
       return;
     }
 
