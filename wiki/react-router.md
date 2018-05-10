@@ -59,6 +59,8 @@ import { registerRouter } from './routing';
 
 // App is your app's root component.
 class App extends Component {
+  // NOTE: As an alternative to consuming context directly, you could use the `withRouter` HOC
+  // (https://github.com/ReactTraining/react-router/blob/v3/docs/API.md#withroutercomponent-options)
   static contextTypes = {
     router: PropTypes.shape({
       createHref: PropTypes.func.isRequired,
