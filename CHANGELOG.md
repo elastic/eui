@@ -2,6 +2,7 @@
 
 - Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
 - Added `compressed` versions of `EuiFormRow` and all form controls.  ([#800](https://github.com/elastic/eui/pull/800))
+- Added the ability to add tooltips to `EuiContextMenuItem`s.  ([#817](https://github.com/elastic/eui/pull/817))
 
 **Bug fixes**
 
