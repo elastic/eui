@@ -42,10 +42,9 @@ const RouterLinkAdapter = ({to, render}) => {
   return render(href, onClick);
 };
 
-<RouterLinkAdapter
-  to="/location"
-  render={(onClick, href) => <EuiLink onClick={onClick} href={href}>Link</EuiLink>}
-/>;
+<RouterLinkAdapter to="/location">
+  {(onClick, href) => <EuiLink onClick={onClick} href={href}>Link</EuiLink>}
+<RouterLinkAdapter/>;
 ```
 
 ## react-router 3.x
