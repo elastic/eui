@@ -454,7 +454,9 @@ export class EuiComboBox extends Component {
 
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
-      this.autoSizeInput.copyInputStyles();
+      if (this.autoSizeInput) {
+        this.autoSizeInput.copyInputStyles();
+      }
     }, 100);
   }
 

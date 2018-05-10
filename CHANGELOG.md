@@ -9,6 +9,7 @@
 - Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777)) ([#802](https://github.com/elastic/eui/pull/802))
 - Ensure switches’ inputs are still hidden when `[disabled]` ([#778](https://github.com/elastic/eui/pull/778))
 - Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
+- `EuiComboBox` do not setState or call refs once component is unmounted ([807](https://github.com/elastic/eui/pull/807) and [#813](https://github.com/elastic/eui/pull/813))
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
