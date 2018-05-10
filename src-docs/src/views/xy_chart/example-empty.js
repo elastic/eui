@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { EuiChart } from '../../../../src/components';
+import { EuiXYChart } from '../../../../src/components';
 
 export default () => (
-  <EuiChart
+  <EuiXYChart
     width={600}
     height={200}
   />

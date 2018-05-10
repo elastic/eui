@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiChart is rendered (empty) 1`] = `
+exports[`EuiXYChart is rendered (empty) 1`] = `
 <div
   style="width:100%;height:100%"
 >
   <div
-    class="euichart-error-nodata"
+    class="euixychart-error-nodata"
     style="width:600px;height:200px"
   >
     <div
@@ -39,8 +39,8 @@ exports[`EuiChart is rendered (empty) 1`] = `
 </div>
 `;
 
-exports[`EuiChart passes handler functions 1`] = `
-<FlexibleInnerCustomPlot
+exports[`EuiXYChart passes handler functions 1`] = `
+<FlexibleXYChart
   height={200}
   onHover={[Function]}
   onMouseLeave={[Function]}
@@ -81,7 +81,7 @@ exports[`EuiChart passes handler functions 1`] = `
       }
     }
   >
-    <InnerCustomPlot
+    <XYChart
       animation={null}
       height={200}
       mode="linear"
@@ -125,7 +125,7 @@ exports[`EuiChart passes handler functions 1`] = `
         width={600}
       >
         <div
-          className="euichart-error-nodata"
+          className="euixychart-error-nodata"
           style={
             Object {
               "height": 200,
@@ -186,7 +186,7 @@ exports[`EuiChart passes handler functions 1`] = `
           </div>
         </div>
       </StatusText>
-    </InnerCustomPlot>
+    </XYChart>
   </div>
-</FlexibleInnerCustomPlot>
+</FlexibleXYChart>
 `;

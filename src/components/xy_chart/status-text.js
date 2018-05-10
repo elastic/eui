@@ -5,7 +5,7 @@ import { EuiIcon } from '../icon';
 
 function StatusText({ width, height, text }) {
   return (
-    <div className="euichart-error-nodata" style={{ width, height }}>
+    <div className="euixychart-error-nodata" style={{ width, height }}>
       <div
         style={{
           position: 'absolute',

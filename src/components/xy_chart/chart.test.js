@@ -1,13 +1,13 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 
-import EuiChart from './chart';
+import EuiXYChart from './chart';
 import { requiredProps } from '../../test/required_props';
 
-describe('EuiChart', () => {
+describe('EuiXYChart', () => {
   test('is rendered (empty)', () => {
     const component = render(
-      <EuiChart
+      <EuiXYChart
         width={600}
         height={200}
         yTicks={[[0, 'zero'], [100, 'one hundred']]}
@@ -21,7 +21,7 @@ describe('EuiChart', () => {
 
   test('passes handler functions', () => {
     const component = mount(
-      <EuiChart
+      <EuiXYChart
         width={600}
         height={200}
         onHover={() => {}}

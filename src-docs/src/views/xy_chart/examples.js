@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { EuiChart, EuiBar, EuiArea, EuiLine } from '../../../../src/components';
+import { EuiXYChart, EuiBar, EuiArea, EuiLine } from '../../../../src/components';
 
 export default () => (
-  <EuiChart
+  <EuiXYChart
     onHover={() => {
       console.log('hover');
     }}
@@ -28,5 +28,5 @@ export default () => (
       data={[{ x: 0, y: 0 }, { x: 1, y: 2 }]}
     />
     <EuiLine name="Winners" title="changeingValue" data={[{ x: 0, y: 0 }, { x: 5, y: 2 }]} />
-  </EuiChart>
+  </EuiXYChart>
 );

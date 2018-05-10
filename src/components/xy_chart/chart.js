@@ -7,7 +7,7 @@ import Highlight from './highlight';
 import { VISUALIZATION_COLORS } from '../../services/colors/visualization_colors';
 import StatusText from './status-text';
 
-export class InnerCustomPlot extends PureComponent {
+export class XYChart extends PureComponent {
   constructor(props) {
     super(props);
     this._onMouseLeave = this._onMouseLeave.bind(this);
@@ -189,7 +189,7 @@ export class InnerCustomPlot extends PureComponent {
   }
 }
 
-InnerCustomPlot.propTypes = {
+XYChart.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   onHover: PropTypes.func,
@@ -208,7 +208,7 @@ InnerCustomPlot.propTypes = {
   errorText: PropTypes.string
 };
 
-InnerCustomPlot.defaultProps = {
+XYChart.defaultProps = {
   truncateLegends: false,
   showYAxis: true,
   showXAxis: true,
@@ -216,4 +216,4 @@ InnerCustomPlot.defaultProps = {
   mode: 'linear'
 };
 
-export default makeWidthFlexible(InnerCustomPlot);
+export default makeWidthFlexible(XYChart);

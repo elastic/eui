@@ -5,8 +5,8 @@ import ChartExampleCode from './examples';
 import EmptyExampleCode from './example-empty';
 import AutoAxisChartExampleCode from './example-auto-axis';
 
-export const ChartExample = {
-  title: 'SeriesChart',
+export const XYChartExample = {
+  title: 'XYChart',
   intro: (
     <div>
       <EuiCallOut title="Work in progress" color="warning">
@@ -25,7 +25,7 @@ export const ChartExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiChart</EuiCode> to display line, bar, area, and stream charts. Note that charts are composed with{' '}
+            Use <EuiCode>EuiXYChart</EuiCode> to display line, bar, area, and stream charts. Note that charts are composed with{' '}
             <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>, <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child
             components.
           </p>
@@ -52,7 +52,7 @@ export const ChartExample = {
       text: (
         <div>
           <p>
-            When no data is provided to EuiChart, an empty state is displayed
+            When no data is provided to EuiXYChart, an empty state is displayed
           </p>
         </div>
       ),
