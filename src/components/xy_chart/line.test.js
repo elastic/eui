@@ -66,9 +66,9 @@ describe('EuiLine', () => {
 
       function renderChart() {
         render(
-          <EuiChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
+          <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             <EuiLine data={data}/>
-          </EuiChart>
+          </EuiXYChart>
         )
       }
 
@@ -99,11 +99,11 @@ describe('EuiLine', () => {
 
       function renderChart() {
         render(
-          <EuiChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
+          <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
               <EuiLine key={index} data={data}/>
             ))}
-          </EuiChart>
+          </EuiXYChart>
         )
       }
 
