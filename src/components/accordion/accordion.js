@@ -35,10 +35,19 @@ export class EuiAccordion extends Component {
     this.onToggle = this.onToggle.bind(this);
   }
 
-  componentDidUpdate() {
-    const height = this.state.isOpen ? this.childContent.clientHeight: 0;
+  setChildContentHeight = () => {
+    requestAnimationFrame(() => {
+      const height = this.state.isOpen ? this.childContent.clientHeight: 0;
+      this.childWrapper.setAttribute('style', `height: ${height}px`);
+    });
+  }
 
-    this.childWrapper.setAttribute('style', `height: ${height}px`);
+  componentDidMount() {
+    this.setChildContentHeight();
+  }
+
+  componentDidUpdate() {
+    this.setChildContentHeight();
   }
 
   onToggle() {
