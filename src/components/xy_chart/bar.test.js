@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import patchRandom from '../../test/patch_random';
+import { patchRandom } from '../../test/patch_random';
 
 import EuiXYChart from './chart';
 import EuiBar from './bar';

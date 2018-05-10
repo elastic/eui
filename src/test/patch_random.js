@@ -1,4 +1,4 @@
-export default function patchRandom() {
+export function patchRandom() {
   const _mathRandom = Math.random;
   let x = 0;
   Math.random = () => x += 0.00001;
