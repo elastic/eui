@@ -25,13 +25,13 @@ export class EuiContextMenuItem extends Component {
     buttonRef: PropTypes.func,
     disabled: PropTypes.bool,
     /**
-     * Optional if adding a tooltip. Add an optional tooltip on hover
-     */
-    toolTipTitle: PropTypes.node,
-    /**
      * Required if using a tooltip. Add an optional tooltip on hover
      */
     toolTipContent: PropTypes.node,
+    /**
+     * Optional title for the tooltip
+     */
+    toolTipTitle: PropTypes.node,
     /**
      * Dictates the position of the tooltip.
      */
@@ -110,11 +110,11 @@ export class EuiContextMenuItem extends Component {
       </button>
     );
 
-    if (toolTipTitle || toolTipContent) {
+    if (toolTipContent) {
       return (
         <EuiToolTip
           title={toolTipTitle ? toolTipTitle : null}
-          content={toolTipContent ? toolTipContent : null}
+          content={toolTipContent}
           anchorClassName="eui-displayBlock"
           position={toolTipPosition}
         >
