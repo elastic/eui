@@ -1,0 +1,3 @@
+export {
+  EuiBreadcrumbs,
+} from './breadcrumbs';

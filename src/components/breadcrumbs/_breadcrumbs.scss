@@ -1,0 +1,20 @@
+.euiBreadcrumbs {
+  font-size: $euiFontSizeS;
+}
+
+.euiBreadcrumb {
+  display: inline-block;
+
+  &:not(.euiBreadcrumb--last) {
+    margin-right: $euiBreadcrumbSpacing;
+  }
+}
+
+.euiBreadcrumb--last {
+  font-weight: 500;
+}
+
+.euiBreadcrumbArrow {
+  margin-right: $euiBreadcrumbSpacing;
+  transform: translateY(-0.1em);
+}
