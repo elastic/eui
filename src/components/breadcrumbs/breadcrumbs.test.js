@@ -7,7 +7,7 @@ import { EuiBreadcrumbs } from './breadcrumbs';
 describe('EuiBreadcrumbs', () => {
   test('is rendered', () => {
     const breadcrumbs = [{
-      text: 'Animals',
+      text: <span>Animals</span>,
       href: '#',
       onClick: (e) => { e.preventDefault(); console.log('You clicked Animals'); },
       'data-test-subj': 'breadcrumbsAnimals',
