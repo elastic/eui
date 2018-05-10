@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiRange = ({ className, id, name, min, max, fullWidth, value, ...rest }) => {
+export const EuiRange = ({ className, compressed, id, name, min, max, fullWidth, value, ...rest }) => {
   const classes = classNames(
     'euiRange',
     {
       'euiRange--fullWidth': fullWidth,
+      'euiRange--compressed': compressed,
     },
     className
   );
@@ -32,10 +33,12 @@ EuiRange.propTypes = {
   max: PropTypes.number.isRequired,
   value: PropTypes.string,
   fullWidth: PropTypes.bool,
+  compressed: PropTypes.bool,
 };
 
 EuiRange.defaultProps = {
   min: 1,
   max: 100,
   fullWidth: false,
+  compressed: false,
 };

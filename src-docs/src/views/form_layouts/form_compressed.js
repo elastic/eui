@@ -77,7 +77,7 @@ export default class extends Component {
   render() {
     return (
       <EuiPanel style={{ maxWidth: 300 }}>
-        <EuiForm compressed>
+        <EuiForm>
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
