@@ -35,12 +35,12 @@ $euiTextScale:      2.25, 1.75, 1.25, 1.125, 1, .875, .75;
 
 $euiFontSize:       $euiSize !default; // 5th position in scale
 
-$euiFontSizeXS:     $euiFontSize * nth($euiTextScale, 7) !default;
-$euiFontSizeS:      $euiFontSize * nth($euiTextScale, 6) !default;
-$euiFontSizeM:      $euiFontSize * nth($euiTextScale, 4) !default;
-$euiFontSizeL:      $euiFontSize * nth($euiTextScale, 3) !default;
-$euiFontSizeXL:     $euiFontSize * nth($euiTextScale, 2) !default;
-$euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1) !default;
+$euiFontSizeXS:     $euiFontSize * nth($euiTextScale, 7) !default; // 12px
+$euiFontSizeS:      $euiFontSize * nth($euiTextScale, 6) !default; // 14px
+$euiFontSizeM:      $euiFontSize * nth($euiTextScale, 4) !default; // 18px
+$euiFontSizeL:      $euiFontSize * nth($euiTextScale, 3) !default; // 20px
+$euiFontSizeXL:     $euiFontSize * nth($euiTextScale, 2) !default; // 28px
+$euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1) !default; // 36px
 
 // Line height
 

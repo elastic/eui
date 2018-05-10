@@ -11,18 +11,10 @@ import {
   EuiForm,
   EuiFormRow,
   EuiDescribedFormGroup,
-  EuiCheckboxGroup,
-  EuiFieldNumber,
-  EuiFieldPassword,
-  EuiFieldSearch,
   EuiFieldText,
   EuiPopover,
   EuiRange,
-  EuiRadioGroup,
-  EuiSelect,
   EuiSwitch,
-  EuiTextArea,
-  EuiFilePicker,
 } from '../../../../src/components';
 
 import FormRows from './form_rows';
@@ -53,6 +45,10 @@ import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
+import FormCompressed from './form_compressed';
+const formCompressedSource = require('!!raw-loader!./form_compressed');
+const formCompressedHtml = renderToHtml(FormCompressed);
+
 export const FormLayoutsExample = {
   title: 'Form layouts',
   sections: [{
@@ -71,21 +67,51 @@ export const FormLayoutsExample = {
       </p>
     ),
     props: {
-      EuiCheckboxGroup,
-      EuiFieldNumber,
-      EuiFieldPassword,
-      EuiFieldSearch,
-      EuiFieldText,
       EuiForm,
       EuiFormRow,
-      EuiFilePicker,
-      EuiRange,
-      EuiRadioGroup,
-      EuiSelect,
-      EuiSwitch,
-      EuiTextArea,
     },
     demo: <FormRows />,
+  }, {
+    title: 'Full-width',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: fullWidthSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: fullWidthHtml,
+    }],
+    text: (
+      <p>
+        Form elements will automatically flex to a max-width of <EuiCode>400px</EuiCode>.
+        You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to both individual field
+        and row components to expand to their container. This should be done rarely and usually
+        you will only need it for isolated controls like search bars and sliders.
+      </p>
+    ),
+    props: {
+      EuiFormRow,
+    },
+    demo: <FullWidth />,
+  }, {
+    title: 'Compressed',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: formCompressedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: formCompressedHtml,
+    }],
+    text: (
+      <p>
+        If the particular form is in an area with a small amount of real estate,
+        you can add the prop <EuiCode>compressed</EuiCode> to the <EuiCode>EuiFormRow</EuiCode>s and it
+        will pass down to the form controls.
+      </p>
+    ),
+    props: {
+      EuiFormRow,
+    },
+    demo: <FormCompressed />,
   }, {
     title: 'Described form groups',
     source: [{
@@ -106,30 +132,6 @@ export const FormLayoutsExample = {
       EuiDescribedFormGroup,
     },
     demo: <DescribedFormGroup />,
-  }, {
-    title: 'Full-width',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: fullWidthSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: fullWidthHtml,
-    }],
-    text: (
-      <p>
-        Form elements will automatically flex to a max-width of <EuiCode>400px</EuiCode>.
-        You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to both individual field
-        and row components to expand to their container. This should be done rarely and usually
-        you will only need it for isolated controls like search bars and sliders.
-      </p>
-    ),
-    props: {
-      EuiFieldSearch,
-      EuiRange,
-      EuiTextArea,
-      EuiFormRow,
-    },
-    demo: <FullWidth />,
   }, {
     title: 'In popover',
     text: (
@@ -215,4 +217,3 @@ export const FormLayoutsExample = {
     demo: <InlinePopover />,
   }],
 };
-

@@ -1,9 +1,18 @@
+@import '../form_control_layout/mixins';
+
 .euiFilePicker {
   .euiFilePicker__wrap {
-    @include euiFormControlSize;
+    // Auto means the height isn't set to a fixed size
+    @include euiFormControlSize(auto);
 
     position: relative;
     display: inline-block;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        height: $euiSizeXL;
+      }
+    }
   }
 
   // The input is an invisiable dropzone / button
@@ -31,11 +40,21 @@
   .euiFilePicker__icon {
     margin-bottom: $euiSize;
     transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        position: absolute;
+        top: $euiSizeS;
+        left: $euiSizeM;
+        transform: scale(1) !important; // don't scale icon on hover
+      }
+    }
   }
 
   /**
    * 1. Don't block the user from dropping files onto the filepicker.
    * 2. Put prompt on top of input, so the clear button can intercept the click.
+   * 3. Ensure space for import icon and clear button (only if it has files)
    */
   .euiFilePicker__prompt {
     @include euiFormControlDefaultShadow;
@@ -46,7 +65,7 @@
     display: block;
     background: $euiColorLightestShade;
     padding: $euiSizeL;
-    border-radius: $euiBorderRadius / 2;
+    //border-radius: $euiBorderRadius / 2;
     background: $euiFormBackgroundColor;
     text-align: center;
     transition:
@@ -54,6 +73,14 @@
       background-color $euiAnimSpeedSlow ease-in,
       border-color $euiAnimSpeedSlow ease-in,
       color $euiAnimSpeedSlow ease-in;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        padding: $euiSizeS $euiSize $euiSizeS $euiSizeXXL; /* 3 */
+        text-align: left;
+        height: $euiSizeXL;
+      }
+    }
   }
 
   .euiFilePicker__promptText {
@@ -62,6 +89,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @at-root {
+      // make compressed prompt look like placeholder
+      .euiFilePicker--compressed#{&} {
+        color: $euiColorMediumShade;
+        line-height: $euiSize;
+      }
+    }
   }
 
   /**
@@ -69,6 +104,15 @@
    */
   .euiFilePicker__clearButton {
     pointer-events: auto; /* 1 */
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        position: absolute;
+        top: $euiSizeM/2;
+        right: $euiSizeM;
+        @include euiFormControlLayout__clear('.euiFilePicker__clearIcon');
+      }
+    }
   }
 
   // Hover and focus
@@ -91,10 +135,18 @@
     @include euiFormControlDisabledStyle;
   }
 
+  &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
+    padding-right: $euiSizeXXL; /* 3 */
+  }
 
-  // When the filepicker has files in it
-  &.euiFilePicker-hasFiles .euiFilePicker__promptText {
+  // When the filepicker has files in it, but not in compressed mode
+  &:not(.euiFilePicker--compressed).euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
+  }
+
+  // When the filepicker has files in it, AND in compressed mode
+  &.euiFilePicker--compressed.euiFilePicker-hasFiles .euiFilePicker__promptText {
+    color: $euiTextColor;
   }
 
   // When you are dragging files over the dropzone

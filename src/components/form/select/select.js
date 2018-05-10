@@ -21,6 +21,7 @@ export const EuiSelect = ({
   isLoading,
   hasNoInitialSelection,
   defaultValue,
+  compressed,
   value,
   ...rest
 }) => {
@@ -28,6 +29,7 @@ export const EuiSelect = ({
     'euiSelect',
     {
       'euiSelect--fullWidth': fullWidth,
+      'euiSelect--compressed': compressed,
       'euiSelect-isLoading': isLoading,
     },
     className
@@ -53,6 +55,7 @@ export const EuiSelect = ({
       iconSide="right"
       fullWidth={fullWidth}
       isLoading={isLoading}
+      compressed={compressed}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
@@ -93,6 +96,10 @@ EuiSelect.propTypes = {
    */
   hasNoInitialSelection: PropTypes.bool,
   inputRef: PropTypes.func,
+  /**
+   * when `true` creates a shorter height input
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiSelect.defaultProps = {
@@ -100,4 +107,5 @@ EuiSelect.defaultProps = {
   fullWidth: false,
   isLoading: false,
   hasNoInitialSelection: false,
+  compressed: false,
 };

@@ -60,6 +60,7 @@ export class EuiFormRow extends Component {
       fullWidth,
       className,
       describedByIds,
+      compressed,
       ...rest
     } = this.props;
 
@@ -70,6 +71,7 @@ export class EuiFormRow extends Component {
       {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
+        'euiFormRow--compressed': compressed,
       },
       className
     );
@@ -129,6 +131,7 @@ export class EuiFormRow extends Component {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      compressed: compressed,
       ...optionalProps
     });
 
@@ -161,6 +164,11 @@ EuiFormRow.propTypes = {
    * IDs of additional elements that should be part of children's `aria-describedby`
    */
   describedByIds: PropTypes.array,
+  /**
+   * Tightens up the spacing and sends down the
+   * compressed prop to the input
+   */
+  compressed: PropTypes.bool,
 };
 
 EuiFormRow.defaultProps = {

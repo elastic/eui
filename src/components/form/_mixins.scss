@@ -1,6 +1,7 @@
-@mixin euiFormControlSize {
+@mixin euiFormControlSize($height: $euiSizeXXL) {
   max-width: $euiFormMaxWidth;
   width: 100%;
+  height: $height;
 }
 
 @mixin euiFormControlWithIcon($isIconOptional: false) {
@@ -75,7 +76,7 @@
   border: none;
   font-size: $euiFontSizeS;
   font-family: $euiFontFamily;
-  padding: $euiSizeM;
+  padding: $euiFormControlPadding;
   color: $euiTextColor;
   background: $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
@@ -83,6 +84,12 @@
 
   &--fullWidth {
     max-width: 100%;
+  }
+
+  &--compressed {
+    padding-top: $euiFormControlPadding--compressed;
+    padding-bottom: $euiFormControlPadding--compressed;
+    height: $euiSizeXL;
   }
 
   &:invalid { /* 1 */

@@ -1,3 +1,14 @@
 $euiFormMaxWidth: 400px;
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%); // exact 508c foreground for $euiColorLightShade
+
+$euiRadioSize: $euiSize;
+$euiCheckBoxSize: $euiSize;
+
+$euiSwitchHeight: $euiSize * 1.25;
+$euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS;
+$euiSwitchThumbSize: $euiSwitchHeight;
+$euiSwitchIconHeight: $euiSize;
+
+$euiFormControlPadding: $euiSizeM;
+$euiFormControlPadding--compressed: $euiSizeS;

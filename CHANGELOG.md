@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
+- Added `compressed` versions of `EuiFormRow` and all form controls.  ([#800](https://github.com/elastic/eui/pull/800))
 
 **Bug fixes**
 

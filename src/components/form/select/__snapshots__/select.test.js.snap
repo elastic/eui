@@ -2,6 +2,7 @@
 
 exports[`EuiSelect is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"
@@ -21,6 +22,7 @@ exports[`EuiSelect is rendered 1`] = `
 
 exports[`EuiSelect props disabled options are rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"
@@ -48,6 +50,7 @@ exports[`EuiSelect props disabled options are rendered 1`] = `
 
 exports[`EuiSelect props fullWidth is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="true"
   icon="arrowDown"
   iconside="right"
@@ -63,6 +66,7 @@ exports[`EuiSelect props fullWidth is rendered 1`] = `
 
 exports[`EuiSelect props isInvalid is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"
@@ -80,6 +84,7 @@ exports[`EuiSelect props isInvalid is rendered 1`] = `
 
 exports[`EuiSelect props isLoading is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"
@@ -95,6 +100,7 @@ exports[`EuiSelect props isLoading is rendered 1`] = `
 
 exports[`EuiSelect props options are rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"
@@ -121,6 +127,7 @@ exports[`EuiSelect props options are rendered 1`] = `
 
 exports[`EuiSelect props value option is rendered 1`] = `
 <eui-form-control-layout
+  compressed="false"
   fullwidth="false"
   icon="arrowDown"
   iconside="right"

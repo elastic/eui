@@ -27,13 +27,18 @@ const propTypes = {
    * when `true` the search will be executed (that is, the `onSearch` will be called) as the
    * user types.
    */
-  incremental: PropTypes.bool
+  incremental: PropTypes.bool,
+  /**
+   * when `true` creates a shorter height input
+   */
+  compressed: PropTypes.bool,
 };
 
 const defaultProps = {
   fullWidth: false,
   isLoading: false,
-  incremental: false
+  incremental: false,
+  compressed: false,
 };
 
 export class EuiFieldSearch extends Component {
@@ -86,6 +91,7 @@ export class EuiFieldSearch extends Component {
       isLoading,
       inputRef,
       incremental,
+      compressed,
       onSearch,
       ...rest } = this.props;
 
@@ -93,6 +99,7 @@ export class EuiFieldSearch extends Component {
       'euiFieldSearch',
       {
         'euiFieldSearch--fullWidth': fullWidth,
+        'euiFieldSearch--compressed': compressed,
         'euiFieldSearch-isLoading': isLoading,
       },
       className
@@ -111,6 +118,7 @@ export class EuiFieldSearch extends Component {
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
+        compressed={compressed}
       >
         <EuiValidatableControl isInvalid={isInvalid}>
           <input

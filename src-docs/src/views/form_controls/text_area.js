@@ -52,6 +52,15 @@ export default class extends Component {
           onChange={this.onChange}
           readOnly
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiTextArea
+          placeholder="compressed has three rows"
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

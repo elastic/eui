@@ -10,11 +10,18 @@ export const EuiSwitch = ({
   name,
   checked,
   disabled,
+  compressed,
   onChange,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiSwitch', className);
+  const classes = classNames(
+    'euiSwitch',
+    {
+      'euiSwitch--compressed': compressed,
+    },
+    className
+  );
 
   return (
     <div className={classes}>
@@ -46,12 +53,15 @@ export const EuiSwitch = ({
         </span>
       </span>
 
-      <label
-        className="euiSwitch__label"
-        htmlFor={id}
-      >
-        {label}
-      </label>
+      { label &&
+        <label
+          className="euiSwitch__label"
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      }
+
     </div>
   );
 };
@@ -62,5 +72,6 @@ EuiSwitch.propTypes = {
   label: PropTypes.node,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  compressed: PropTypes.bool
 };

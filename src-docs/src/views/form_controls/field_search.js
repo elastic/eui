@@ -73,6 +73,15 @@ export default class extends Component {
           readOnly
           aria-label="Use aria labels when no actual label is in use"
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiFieldSearch
+          placeholder="Compressed"
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+        />
       </Fragment>
     );
   }

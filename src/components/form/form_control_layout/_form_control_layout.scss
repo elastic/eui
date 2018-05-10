@@ -1,5 +1,8 @@
+@import '../variables';
+
 .euiFormControlLayout {
-  @include euiFormControlSize;
+  // Let the height expand as needed
+  @include euiFormControlSize(auto);
 
   display: inline-block;
   position: relative;
@@ -11,64 +14,75 @@
 
   .euiFormControlLayout__icon {
     position: absolute;
-    top: $euiSizeM;
-    left: $euiSizeM;
+    top: $euiFormControlPadding;
+    left: $euiFormControlPadding;
     pointer-events: none;
+
+    @at-root {
+      .euiFormControlLayout--compressed#{&} {
+        top: $euiFormControlPadding--compressed;
+      }
+    }
   }
 
   .euiFormControlLayout__iconButton {
     pointer-events: all;
-    top: $euiSizeM - 1px;
+    top: $euiFormControlPadding - 1px;
+
+    @at-root {
+      .euiFormControlLayout--compressed#{&} {
+        top: $euiFormControlPadding--compressed - 1px;
+      }
+    }
   }
 
   .euiFormControlLayout__clear {
-    $clearSize: $euiSize;
-
     position: absolute;
-    top: $euiSizeM;
-    right: $euiSizeM;
+    top: $euiFormControlPadding;
+    right: $euiFormControlPadding;
 
-    @include size($clearSize);
-    background-color: transparentize($euiColorMediumShade, .5);
-    border-radius: $clearSize;
-    line-height: $clearSize;
+    @include euiFormControlLayout__clear('.euiFormControlLayout__clearIcon');
 
-    .euiFormControlLayout__clearIcon {
-      @include size($euiSizeS);
-      fill: $euiColorEmptyShade;
-      stroke: $euiColorEmptyShade;
-      stroke-width: 3px; // increase thickness of icon at such a small size
-      margin-top: -3px;
+    @at-root {
+      .euiFormControlLayout--compressed#{&} {
+        top: $euiFormControlPadding--compressed + 2px;
+      }
     }
 
     // Loading spinner needs adjustment if clear also exists
     ~ .euiFormControlLayout__loading {
-      right: $euiSizeM*3;
+      right: $euiFormControlPadding*3;
     }
   }
 
   .euiFormControlLayout__icon--right {
     left: auto;
-    right: $euiSizeM;
+    right: $euiFormControlPadding;
 
     // Loading spinner needs adjustment if icon also exists like selects.
     ~ .euiFormControlLayout__loading {
-      right: $euiSizeM*3;
+      right: $euiFormControlPadding*3;
     }
 
     // Same with clear buttons
     ~ .euiFormControlLayout__clear {
-      right: $euiSizeM*3;
+      right: $euiFormControlPadding*3;
 
       ~ .euiFormControlLayout__loading {
-        right: $euiSizeM*5;
+        right: $euiFormControlPadding*5;
       }
     }
   }
 
   .euiFormControlLayout__loading {
     position: absolute;
-    top: $euiSizeM;
-    right: $euiSizeM;
+    top: $euiFormControlPadding;
+    right: $euiFormControlPadding;
+
+    @at-root {
+      .euiFormControlLayout--compressed#{&} {
+        top: $euiFormControlPadding--compressed + 1px;
+      }
+    }
   }
 }

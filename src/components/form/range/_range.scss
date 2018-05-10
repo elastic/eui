@@ -9,7 +9,8 @@
 // to be more easily maintained / themeable going forward.
 
 .euiRange {
-  @include euiFormControlSize;
+  // Auto means the height isn't defined
+  @include euiFormControlSize(auto);
 
   appearance: none;
   margin: $euiRangeThumbHeight / 2 0;

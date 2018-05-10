@@ -4,6 +4,7 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
 <EuiFieldSearch
   aria-label="aria-label"
   className="testClass1 testClass2"
+  compressed={false}
   data-test-subj="test subject string"
   defaultValue=""
   fullWidth={true}
@@ -19,6 +20,7 @@ exports[`EuiSearchBox render - no config 1`] = `
 <EuiFieldSearch
   aria-label="aria-label"
   className="testClass1 testClass2"
+  compressed={false}
   data-test-subj="test subject string"
   defaultValue=""
   fullWidth={true}
