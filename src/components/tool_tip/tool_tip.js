@@ -88,6 +88,7 @@ export class EuiToolTip extends Component {
     const {
       children,
       className,
+      anchorClassName,
       content,
       title,
       ...rest
@@ -97,6 +98,11 @@ export class EuiToolTip extends Component {
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
       className
+    );
+
+    const anchorClasses = classNames(
+      'euiToolTipAnchor',
+      anchorClassName,
     );
 
     let tooltip;
@@ -121,7 +127,7 @@ export class EuiToolTip extends Component {
     const anchor = (
       <span
         ref={anchor => this.anchor = anchor}
-        className="euiToolTipAnchor"
+        className={anchorClasses}
       >
         {cloneElement(children, {
           onFocus: this.showToolTip,

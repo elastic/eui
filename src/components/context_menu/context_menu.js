@@ -199,6 +199,8 @@ export class EuiContextMenu extends Component {
         name,
         icon,
         onClick,
+        toolTipTitle,
+        toolTipContent,
         ...rest
       } = item;
 
@@ -221,6 +223,8 @@ export class EuiContextMenu extends Component {
           icon={icon}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
+          toolTipTitle={toolTipTitle}
+          toolTipContent={toolTipContent}
           {...rest}
         >
           {name}
