@@ -23,6 +23,10 @@ import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
 const truncateHtml = renderToHtml(Truncate);
 
+import Max from './max';
+const maxSource = require('!!raw-loader!./max');
+const maxHtml = renderToHtml(Max);
+
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   sections: [{
@@ -59,7 +63,7 @@ export const BreadcrumbsExample = {
     props: { EuiBreadcrumbs },
     demo: <Responsive />,
   }, {
-    title: 'Truncate',
+    title: 'Truncate each breadcrumb',
     source: [{
       type: GuideSectionTypes.JS,
       code: truncateSource,
@@ -74,5 +78,21 @@ export const BreadcrumbsExample = {
     ),
     props: { EuiBreadcrumbs },
     demo: <Truncate />,
+  }, {
+    title: 'Limit the number of breadcrumbs',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: maxSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: maxHtml,
+    }],
+    text: (
+      <p>
+        Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a certain number.
+      </p>
+    ),
+    props: { EuiBreadcrumbs },
+    demo: <Max />,
   }],
 };

@@ -4,7 +4,6 @@
 
 .euiBreadcrumb {
   display: inline-block;
-  position: relative;
 
   &:not(.euiBreadcrumb--last) {
     margin-right: $euiBreadcrumbSpacing;
@@ -15,13 +14,17 @@
   font-weight: 500;
 }
 
+.euiBreadcrumb--collapsed {
+  color: $euiColorLightShade;
+}
+
 .euiBreadcrumbSeparator {
   pointer-events: none;
   display: inline-block;
   margin-right: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
-  transform: rotate(15deg) translateY(0.2em);
+  transform: translateY(0.2em) rotate(15deg);
   background: $euiColorLightShade;
 }
 

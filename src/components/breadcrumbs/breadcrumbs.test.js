@@ -33,6 +33,10 @@ describe('EuiBreadcrumbs', () => {
     const breadcrumbs = [{
       text: 'Animals',
     }, {
+      text: 'Reptiles',
+    }, {
+      text: 'Boa constrictor',
+    }, {
       text: 'Edit',
     }];
 
@@ -46,6 +50,28 @@ describe('EuiBreadcrumbs', () => {
     describe('truncate', () => {
       test('is rendered', () => {
         const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate />);
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('max', () => {
+      test('renders 1 item', () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} max={1} />);
+        expect(component).toMatchSnapshot();
+      });
+
+      test('renders 2 items', () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} max={2} />);
+        expect(component).toMatchSnapshot();
+      });
+
+      test('renders 3 items', () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} max={3} />);
+        expect(component).toMatchSnapshot();
+      });
+
+      test(`doesn't break when max exceeds the number of breadcrumbs`, () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} max={20} />);
         expect(component).toMatchSnapshot();
       });
     });
