@@ -14,8 +14,7 @@ this `to` prop with EUI components' `href` and `onClick` props.
 
 ## Techniques
 
-There are many techniques for integrating EUI with `react-router`, but we think these two are
-the strongest:
+There are many techniques for integrating EUI with `react-router` ([see below](#techniques-we-dont-recommend) for some techniques we don't recommend), but we think these two are the strongest:
 
 ### 1) Conversion function (recommended)
 
@@ -37,14 +36,14 @@ Alternatively, you can create a component which will consume or encapsulate the
 [`render` prop](https://reactjs.org/docs/render-props.html).
 
 ```jsx
-const RouterLinkAdapter = ({to, render}) => {
+const RouterLinkAdapter = ({to, children}) => {
   const {href, onClick} = getRouterLinkProps(to);
-  return render(href, onClick);
+  return children(href, onClick);
 };
 
 <RouterLinkAdapter to="/location">
   {(onClick, href) => <EuiLink onClick={onClick} href={href}>Link</EuiLink>}
-<RouterLinkAdapter/>;
+<RouterLinkAdapter/>
 ```
 
 ## react-router 3.x
@@ -80,7 +79,7 @@ class App extends Component {
 
 ReactDOM.render(
   <Router history={history}>
-    <Route path='/' component={App} />,
+    <Route path="/" component={App} />,
   </Router>,
   appRoot
 )
@@ -235,3 +234,24 @@ export const getRouterLinkProps = to => {
 };
 
 ```
+
+## Techniques we don't recommend
+
+### Using EUI classes with the react-router `<Link>` component
+
+It's possible to integrate EUI with `react-router` by using its CSS classes only:
+
+```jsx
+<Link className="euiLink" to="/location">Link</Link>
+```
+
+But it's important to be aware of two caveats to this approach:
+
+* EUI's components contain a lot of useful behavior. For example, `EuiLink` will render either
+  a button or an anchor tag depending on the presence of `onClick` and `href` props. It will also
+  create a secure `rel` attribute if you add `target="_blank"`. Consumers lose out on these
+  features if they use EUI's CSS instead of its React components.
+* This creates a brittle dependency upon the `euiLink` CSS class. If we were to rename this
+  class in EUI, this would constitute a breaking change and we'd make a note of it in the change
+  log. But if a consumer doesn't notice this note then the only way they could detect that something
+  in their UI has changed (and possibly broken) would be through manual testing.
