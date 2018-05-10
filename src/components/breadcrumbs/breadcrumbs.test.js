@@ -42,5 +42,12 @@ describe('EuiBreadcrumbs', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('truncate', () => {
+      test('is rendered', () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate />);
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

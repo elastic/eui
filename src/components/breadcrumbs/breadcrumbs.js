@@ -8,6 +8,7 @@ export const EuiBreadcrumbs = ({
   breadcrumbs,
   className,
   responsive,
+  truncate,
   ...rest,
 }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
@@ -62,6 +63,7 @@ export const EuiBreadcrumbs = ({
   })
 
   const classes = classNames('euiBreadcrumbs', className, {
+    'euiBreadcrumbs--truncate': truncate,
     'euiBreadcrumbs--responsive': responsive,
   });
 
@@ -75,6 +77,7 @@ export const EuiBreadcrumbs = ({
 EuiBreadcrumbs.propTypes = {
   className: PropTypes.string,
   responsive: PropTypes.bool,
+  truncate: PropTypes.bool,
   breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.node.isRequired,
     href: PropTypes.string,

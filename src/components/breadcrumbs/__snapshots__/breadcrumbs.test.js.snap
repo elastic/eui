@@ -62,3 +62,24 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   </span>
 </div>
 `;
+
+exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
+<div
+  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+>
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    type="button"
+  >
+    Animals
+  </button>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <span
+    class="euiBreadcrumb euiBreadcrumb--last"
+  >
+    Edit
+  </span>
+</div>
+`;

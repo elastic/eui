@@ -60,3 +60,12 @@
     }
   }
 }
+
+.euiBreadcrumbs--truncate {
+  .euiBreadcrumb {
+    white-space: nowrap;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

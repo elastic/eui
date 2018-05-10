@@ -19,6 +19,10 @@ import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
 
+import Truncate from './truncate';
+const truncateSource = require('!!raw-loader!./truncate');
+const truncateHtml = renderToHtml(Truncate);
+
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   sections: [{
@@ -54,5 +58,21 @@ export const BreadcrumbsExample = {
     ),
     props: { EuiBreadcrumbs },
     demo: <Responsive />,
+  }, {
+    title: 'Truncate',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: truncateSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: truncateHtml,
+    }],
+    text: (
+      <p>
+        The <EuiCode>truncate</EuiCode> prop will truncate breadcrumbs which are too long.
+      </p>
+    ),
+    props: { EuiBreadcrumbs },
+    demo: <Truncate />,
   }],
 };
