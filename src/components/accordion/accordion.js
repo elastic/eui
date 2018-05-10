@@ -121,7 +121,7 @@ export class EuiAccordion extends Component {
               className={buttonClasses}
             >
               <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
-                <EuiFlexItem grow={false}>
+                <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
                   {icon}
                 </EuiFlexItem>
 
