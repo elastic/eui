@@ -7,6 +7,12 @@
 
     position: relative;
     display: inline-block;
+
+    @at-root {
+      .euiFilePicker--compressed#{&} {
+        height: $euiSizeXL;
+      }
+    }
   }
 
   // The input is an invisiable dropzone / button
@@ -38,7 +44,7 @@
     @at-root {
       .euiFilePicker--compressed#{&} {
         position: absolute;
-        top: $euiSizeM/2;
+        top: $euiSizeS;
         left: $euiSizeM;
         transform: scale(1) !important; // don't scale icon on hover
       }
@@ -70,8 +76,9 @@
 
     @at-root {
       .euiFilePicker--compressed#{&} {
-        padding: $euiSizeXS $euiSize $euiSizeXS $euiSizeXXL; /* 3 */
+        padding: $euiSizeS $euiSize $euiSizeS $euiSizeXXL; /* 3 */
         text-align: left;
+        height: $euiSizeXL;
       }
     }
   }
@@ -87,6 +94,7 @@
       // make compressed prompt look like placeholder
       .euiFilePicker--compressed#{&} {
         color: $euiColorMediumShade;
+        line-height: $euiSize;
       }
     }
   }
