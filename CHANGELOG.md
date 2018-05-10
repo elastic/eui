@@ -5,6 +5,7 @@
 
 **Bug fixes**
 
+- Fixes height calculation error on `EuiAccordion` when it starts loads in an open state. ([#816](https://github.com/elastic/eui/pull/816))
 - Added aria-invalid labeling on `EuiFormRow` ([#777](https://github.com/elastic/eui/pull/799))
 - Added aria-live labeling for `EuiToasts` ([#777](https://github.com/elastic/eui/pull/777))
 - Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777)) ([#802](https://github.com/elastic/eui/pull/802))

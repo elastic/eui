@@ -2,14 +2,20 @@
   text-align: left;
   width: 100%;
 
-  &:hover, &:focus {
+  &:hover {
     text-decoration: underline;
     cursor: pointer;
   }
 
   &:focus {
-    background-color: $euiFocusBackgroundColor;
+    .euiAccordion__iconWrapper {
+      @include euiFocusRing;
+
+      color: $euiColorPrimary;
+      border-radius: $euiBorderRadius;
+    }
   }
+
 }
 
 .euiAccordion__childWrapper {
@@ -23,6 +29,7 @@
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance
   ;
 }
+
 
 $paddingSizes: (
   xs: $euiSizeXS,
