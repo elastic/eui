@@ -15,6 +15,10 @@ import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
 const breadcrumbsHtml = renderToHtml(Breadcrumbs);
 
+import Responsive from './responsive';
+const responsiveSource = require('!!raw-loader!./responsive');
+const responsiveHtml = renderToHtml(Responsive);
+
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   sections: [{
@@ -34,5 +38,21 @@ export const BreadcrumbsExample = {
     ),
     props: { EuiBreadcrumbs },
     demo: <Breadcrumbs />,
+  }, {
+    title: 'Responsive',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: responsiveSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: responsiveHtml,
+    }],
+    text: (
+      <p>
+        The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on narrower screens.
+      </p>
+    ),
+    props: { EuiBreadcrumbs },
+    demo: <Responsive />,
   }],
 };

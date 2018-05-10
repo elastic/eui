@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../icon';
 import { EuiLink } from '../link';
 
 export const EuiBreadcrumbs = ({
   breadcrumbs,
   className,
+  responsive,
   ...rest,
 }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
@@ -15,12 +15,13 @@ export const EuiBreadcrumbs = ({
       text,
       href,
       onClick,
+      className: breadcrumbClassName,
       ...breadcrumbRest
     } = breadcrumb;
 
     const isLastBreadcrumb = index === breadcrumbs.length - 1;
 
-    const breadcrumbClasses = classNames('euiBreadcrumb', {
+    const breadcrumbClasses = classNames('euiBreadcrumb', breadcrumbClassName, {
       'euiBreadcrumb--last': isLastBreadcrumb,
     });
 
@@ -46,21 +47,23 @@ export const EuiBreadcrumbs = ({
       );
     }
 
-    let arrow;
+    let separator;
 
     if (!isLastBreadcrumb) {
-      arrow = <EuiIcon className='euiBreadcrumbArrow' type='arrowRight' color='subdued' />;
+      separator = <div className='euiBreadcrumbSeparator' />;
     }
 
     return (
       <Fragment key={index}>
         {link}
-        {arrow}
+        {separator}
       </Fragment>
     );
   })
 
-  const classes = classNames('euiBreadcrumbs', className);
+  const classes = classNames('euiBreadcrumbs', className, {
+    'euiBreadcrumbs--responsive': responsive,
+  });
 
   return (
     <div className={classes} {...rest}>
@@ -71,6 +74,7 @@ export const EuiBreadcrumbs = ({
 
 EuiBreadcrumbs.propTypes = {
   className: PropTypes.string,
+  responsive: PropTypes.bool,
   breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.node.isRequired,
     href: PropTypes.string,

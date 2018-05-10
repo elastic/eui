@@ -4,6 +4,7 @@
 
 .euiBreadcrumb {
   display: inline-block;
+  position: relative;
 
   &:not(.euiBreadcrumb--last) {
     margin-right: $euiBreadcrumbSpacing;
@@ -14,7 +15,48 @@
   font-weight: 500;
 }
 
-.euiBreadcrumbArrow {
+.euiBreadcrumbSeparator {
+  pointer-events: none;
+  display: inline-block;
   margin-right: $euiBreadcrumbSpacing;
-  transform: translateY(-0.1em);
+  width: 1px;
+  height: $euiSize;
+  transform: rotate(15deg) translateY(0.2em);
+  background: $euiColorLightShade;
+}
+
+.euiBreadcrumbs--responsive {
+  // Laptop
+  @include screenMedium {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+
+      // Only show last 4 breadcrumbs
+      &:nth-last-of-type(-n+3) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Tablets
+  @include screenSmall {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+
+      // Only show last 2 breadcrumbs
+      &:nth-last-of-type(-n+1) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Mobile
+  @include screenXSmall {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+    }
+  }
 }
