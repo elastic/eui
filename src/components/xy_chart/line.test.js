@@ -73,6 +73,8 @@ describe('EuiLine', () => {
       }
 
       const runtime = benchmarkFunction(renderChart);
+      // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
+      // this is ~120ms on a MacBookPro
       expect(runtime).toBeLessThan(1000);
     });
 
@@ -108,6 +110,8 @@ describe('EuiLine', () => {
       }
 
       const runtime = benchmarkFunction(renderChart);
+      // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
+      // this is ~1700ms on a MacBookPro
       expect(runtime).toBeLessThan(3000);
     });
   });
