@@ -93,11 +93,15 @@ export class GuidePageChrome extends Component {
   }
 
   renderSubSections = (subSections = []) => {
-    if (subSections.length <= 1) {
+    console.log(subSections);
+
+    const subSectionsWithTitles = subSections.filter(item => (item.title));
+
+    if (subSectionsWithTitles.length <= 1) {
       return;
     }
 
-    return subSections.map(({ title, id }) => ({
+    return subSectionsWithTitles.map(({ title, id }) => ({
       id: `subSection-${id}`,
       name: title,
       onClick: this.onClickLink.bind(this, id),
