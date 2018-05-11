@@ -1,7 +1,6 @@
 import React, {
   cloneElement,
   Component,
-  Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -35,7 +34,7 @@ export class EuiContextMenuItem extends Component {
     /**
      * Dictates the position of the tooltip.
      */
-    toolTipPosition: PropTypes.node,
+    toolTipPosition: PropTypes.string,
   };
 
   render() {
@@ -122,9 +121,7 @@ export class EuiContextMenuItem extends Component {
       );
     } else {
       return (
-        <Fragment>
-          {button}
-        </Fragment>
+        button
       );
     }
 

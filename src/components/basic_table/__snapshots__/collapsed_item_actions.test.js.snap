@@ -30,11 +30,13 @@ exports[`CollapsedItemActions render 1`] = `
           disabled={false}
           icon={undefined}
           onClick={[Function]}
+          toolTipPosition="right"
         >
           default1
         </EuiContextMenuItem>,
         <EuiContextMenuItem
           onClick={[Function]}
+          toolTipPosition="right"
         />,
       ]
     }
