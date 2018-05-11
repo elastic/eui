@@ -93,7 +93,6 @@ export class GuidePageChrome extends Component {
   }
 
   renderSubSections = (subSections = []) => {
-    console.log(subSections);
 
     const subSectionsWithTitles = subSections.filter(item => (item.title));
 

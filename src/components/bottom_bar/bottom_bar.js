@@ -33,10 +33,6 @@ export class EuiBottomBar extends Component {
     }
   }
 
-  handleScreenReaderFocus() {
-    this.bar.focus();
-  }
-
   render() {
     const {
       children,
