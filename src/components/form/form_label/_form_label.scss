@@ -4,7 +4,6 @@
 .euiFormLabel {
   font-size: $euiFontSizeXS;
   margin-bottom: $euiSizeS;
-  cursor: pointer;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   font-weight: $euiFontWeightMedium;
 
@@ -15,4 +14,8 @@
   &.euiFormLabel-isFocused {
     color: $euiColorPrimary; /* 1 */
   }
+}
+
+.euiFormLabel[for] {
+  cursor: pointer;
 }
