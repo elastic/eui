@@ -42,7 +42,6 @@ export default class extends Component {
     return (
       <EuiPopover
         id="popover"
-        ownFocus
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
