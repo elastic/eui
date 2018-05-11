@@ -47,11 +47,12 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
+                    className="euiAccordion__iconWrapper"
                     component="div"
                     grow={false}
                   >
                     <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero"
+                      className="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
                     >
                       <EuiIcon
                         size="m"
@@ -176,11 +177,12 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
+                    className="euiAccordion__iconWrapper"
                     component="div"
                     grow={false}
                   >
                     <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero"
+                      className="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
                     >
                       <EuiIcon
                         size="m"
@@ -278,7 +280,7 @@ exports[`EuiAccordion is rendered 1`] = `
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
               class="euiIcon euiIcon--medium"
@@ -340,7 +342,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
               class="euiIcon euiIcon--medium"
@@ -406,7 +408,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
               class="euiIcon euiIcon--medium"
@@ -468,7 +470,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
               class="euiIcon euiIcon--medium"
@@ -537,7 +539,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
               class="euiIcon euiIcon--medium"
