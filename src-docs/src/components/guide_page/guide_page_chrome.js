@@ -71,6 +71,7 @@ export class GuidePageChrome extends Component {
       <Link
         to="/"
         className="guideLogo"
+        aria-label="Go to home page"
       >
         <EuiIcon type="logoElastic" size="l" />
       </Link>
