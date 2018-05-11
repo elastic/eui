@@ -102,7 +102,7 @@ export const EuiPagination = ({
     <EuiButtonIcon
       onClick={onPageClick.bind(null, activePage + 1)}
       iconType="arrowRight"
-      aria-label="Previous"
+      aria-label="Next"
       disabled={activePage === pageCount - 1}
       color="text"
     />
