@@ -172,6 +172,7 @@ export class EuiPopover extends Component {
             tabIndex={tabIndex}
             hasShadow
             id={id}
+            aria-live="assertive"
           >
             {children}
           </EuiPanel>
