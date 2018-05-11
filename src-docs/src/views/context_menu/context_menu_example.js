@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiContextMenu,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
 } from '../../../../src/components';
 
 import ContextMenu from './context_menu';
@@ -36,7 +38,7 @@ export const ContextMenuExample = {
         which itself can be wrapped around any component (like a button in this example).
       </p>
     ),
-    props: { EuiContextMenu },
+    props: { EuiContextMenu, EuiContextMenuPanel, EuiContextMenuItem },
     demo: <ContextMenu />,
   }, {
     title: `With single panel`,

@@ -6,19 +6,39 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
+import { EuiToolTip } from '../tool_tip';
 
 export class EuiContextMenuItem extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Icon used for the item
+     */
     icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     onClick: PropTypes.func,
+    /**
+     * Whether the item leads to a new set of items
+     */
     hasPanel: PropTypes.bool,
     buttonRef: PropTypes.func,
     disabled: PropTypes.bool,
+    /**
+     * Required if using a tooltip. Add an optional tooltip on hover
+     */
+    toolTipContent: PropTypes.node,
+    /**
+     * Optional title for the tooltip
+     */
+    toolTipTitle: PropTypes.node,
+    /**
+     * Dictates the position of the tooltip.
+     */
+    toolTipPosition: PropTypes.string,
   };
 
   render() {
+
     const {
       children,
       className,
@@ -26,6 +46,9 @@ export class EuiContextMenuItem extends Component {
       icon,
       buttonRef,
       disabled,
+      toolTipTitle,
+      toolTipContent,
+      toolTipPosition,
       ...rest
     } = this.props;
 
@@ -67,7 +90,7 @@ export class EuiContextMenuItem extends Component {
       'euiContextMenuItem-isDisabled': disabled,
     });
 
-    return (
+    const button = (
       <button
         className={classes}
         type="button"
@@ -84,5 +107,27 @@ export class EuiContextMenuItem extends Component {
         </span>
       </button>
     );
+
+    if (toolTipContent) {
+      return (
+        <EuiToolTip
+          title={toolTipTitle ? toolTipTitle : null}
+          content={toolTipContent}
+          anchorClassName="eui-displayBlock"
+          position={toolTipPosition}
+        >
+          {button}
+        </EuiToolTip>
+      );
+    } else {
+      return (
+        button
+      );
+    }
+
   }
 }
+
+EuiContextMenuItem.defaultProps = {
+  toolTipPosition: "right",
+};

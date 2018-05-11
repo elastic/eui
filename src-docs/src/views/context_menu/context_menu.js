@@ -101,8 +101,11 @@ export default class extends Component {
         icon: 'user',
         onClick: () => { this.closePopover(); window.alert('Edit / add panels'); },
       }, {
-        name: 'Display options',
+        name: 'You can add a tooltip',
         icon: 'user',
+        toolTipTitle: 'Optional tooltip',
+        toolTipContent: 'Optional content for a tooltip',
+        toolTipPosition: 'right',
         onClick: () => { this.closePopover(); window.alert('Display options'); },
       }, {
         name: 'Disabled option',
