@@ -11,8 +11,6 @@ exports[`EuiTablePagination is rendered 1`] = `
       class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
     >
       <button
-        aria-controls="customizablePagination"
-        aria-expanded="false"
         class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
         type="button"
       >
