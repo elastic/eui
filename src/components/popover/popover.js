@@ -1,5 +1,4 @@
 import React, {
-  cloneElement,
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -126,7 +125,6 @@ export class EuiPopover extends Component {
       ownFocus,
       withTitle,
       children,
-      id,
       className,
       closePopover,
       panelClassName,
@@ -202,7 +200,6 @@ export class EuiPopover extends Component {
 }
 
 EuiPopover.propTypes = {
-  id: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
