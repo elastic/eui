@@ -5,6 +5,7 @@ exports[`EuiSideNavItem is rendered 1`] = `
   class="euiSideNavItem"
 >
   <div
+    aria-label="[object Object]"
     class="euiSideNavItemButton"
   >
     <span
@@ -29,6 +30,7 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
   class="euiSideNavItem"
 >
   <div
+    aria-label="[object Object]"
     class="euiSideNavItemButton"
   >
     <span
@@ -49,6 +51,7 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
   class="euiSideNavItem"
 >
   <div
+    aria-label="[object Object]"
     class="euiSideNavItemButton euiSideNavItemButton-isSelected"
   >
     <span
@@ -69,6 +72,7 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
   class="euiSideNavItem"
 >
   <div
+    aria-label="[object Object]"
     class="euiSideNavItemButton"
   >
     <span

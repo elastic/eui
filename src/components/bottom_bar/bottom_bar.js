@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -50,6 +51,11 @@ export class EuiBottomBar extends Component {
 
     return (
       <EuiPortal>
+        <EuiScreenReaderOnly>
+          <p aria-live="assertive">
+            There is a new menu opening with page level controls at the bottom of the document.
+          </p>
+        </EuiScreenReaderOnly>
         <div
           className={classes}
           ref={node => { this.bar = node; }}

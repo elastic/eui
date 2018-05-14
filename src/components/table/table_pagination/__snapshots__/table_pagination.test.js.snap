@@ -9,10 +9,9 @@ exports[`EuiTablePagination is rendered 1`] = `
   >
     <div
       class="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
+      id="customizablePagination"
     >
       <button
-        aria-controls="customizablePagination"
-        aria-expanded="false"
         class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
         type="button"
       >

@@ -8,10 +8,9 @@ exports[`EuiTableSortMobile is rendered 1`] = `
     aria-label="aria-label"
     class="euiPopover euiPopover--anchorDownRight"
     data-test-subj="test subject string"
+    id="sortPopover"
   >
     <button
-      aria-controls="sortPopover"
-      aria-expanded="false"
       class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--iconRight euiButtonEmpty--flushRight"
       type="button"
     >

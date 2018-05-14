@@ -29,6 +29,7 @@ export const EuiPagination = ({
         key={index}
         onClick={onPageClick.bind(null, i)}
         hideOnMobile
+        aria-label={`Page ${i + 1} of ${lastPageInRange}`}
       >
         {i + 1}
       </EuiPaginationButton>
@@ -42,7 +43,7 @@ export const EuiPagination = ({
       iconType="arrowLeft"
       disabled={activePage === 0}
       color="text"
-      aria-label="Previous"
+      aria-label="Previous page"
     />
   );
 
@@ -54,6 +55,7 @@ export const EuiPagination = ({
         key="0"
         onClick={onPageClick.bind(null, 0)}
         hideOnMobile
+        aria-label={`Page 1 of ${lastPageInRange}`}
       >
         1
       </EuiPaginationButton>
@@ -65,6 +67,7 @@ export const EuiPagination = ({
           key="beginningEllipsis"
           isPlaceholder
           hideOnMobile
+          aria-hidden
         >
           <span>&hellip;</span>
         </EuiPaginationButton>
@@ -81,6 +84,7 @@ export const EuiPagination = ({
           key="endingEllipsis"
           isPlaceholder
           hideOnMobile
+          aria-hidden
         >
           <span>&hellip;</span>
         </EuiPaginationButton>
@@ -92,6 +96,7 @@ export const EuiPagination = ({
         key={pageCount - 1}
         onClick={onPageClick.bind(null, pageCount - 1)}
         hideOnMobile
+        aria-label={`Jump to the last page, number ${pageCount}`}
       >
         {pageCount}
       </EuiPaginationButton>
@@ -102,7 +107,7 @@ export const EuiPagination = ({
     <EuiButtonIcon
       onClick={onPageClick.bind(null, activePage + 1)}
       iconType="arrowRight"
-      aria-label="Previous"
+      aria-label="Next page"
       disabled={activePage === pageCount - 1}
       color="text"
     />
@@ -124,6 +129,7 @@ export const EuiPagination = ({
       return (
         <div
           className={classes}
+          role="group"
           {...rest}
         >
           {previousButton}

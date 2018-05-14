@@ -366,6 +366,7 @@ export class EuiBasicTable extends Component {
             disabled={disabled}
             onChange={onChange}
             data-test-subj="checkboxSelectAll"
+            aria-label="Select all rows"
           />
         </EuiTableHeaderCellCheckbox>
       );
@@ -562,6 +563,7 @@ export class EuiBasicTable extends Component {
           checked={checked}
           onChange={onChange}
           title={title}
+          aria-label="Select this row"
           data-test-subj={`checkboxSelectRow-${itemId}`}
         />
       </EuiTableRowCellCheckbox>
