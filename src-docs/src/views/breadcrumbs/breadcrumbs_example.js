@@ -89,7 +89,8 @@ export const BreadcrumbsExample = {
     }],
     text: (
       <p>
-        Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a certain number.
+        Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a certain number. By default,
+        this number is 5.
       </p>
     ),
     props: { EuiBreadcrumbs },

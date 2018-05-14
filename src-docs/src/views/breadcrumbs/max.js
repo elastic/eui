@@ -30,5 +30,5 @@ export default () => {
     text: 'Nebulosa subspecies',
   }];
 
-  return <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={5} responsive={false} truncate={false} />;
+  return <EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} truncate={false} />;
 };

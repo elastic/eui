@@ -140,4 +140,5 @@ EuiBreadcrumbs.propTypes = {
 EuiBreadcrumbs.defaultProps = {
   responsive: true,
   truncate: true,
+  max: 5,
 };
