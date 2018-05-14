@@ -12,8 +12,17 @@ export {
 } from './accessibility';
 
 export {
+  EuiBadge,
+  EuiBetaBadge,
+} from './badge';
+
+export {
   EuiBottomBar,
 } from './bottom_bar';
+
+export {
+  EuiBreadcrumbs,
+} from './breadcrumbs';
 
 export {
   EuiButton,
@@ -22,17 +31,12 @@ export {
 } from './button';
 
 export {
-  EuiBadge,
-  EuiBetaBadge,
-} from './badge';
+  EuiCallOut,
+} from './call_out';
 
 export {
   EuiCard,
 } from './card';
-
-export {
-  EuiCallOut,
-} from './call_out';
 
 export {
   EuiCode,

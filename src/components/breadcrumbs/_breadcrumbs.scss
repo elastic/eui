@@ -1,0 +1,74 @@
+.euiBreadcrumbs {
+  font-size: $euiFontSizeS;
+}
+
+.euiBreadcrumb {
+  display: inline-block;
+
+  &:not(.euiBreadcrumb--last) {
+    margin-right: $euiBreadcrumbSpacing;
+  }
+}
+
+.euiBreadcrumb--last {
+  font-weight: $euiFontWeightMedium;
+}
+
+.euiBreadcrumb--collapsed {
+  color: $euiColorLightShade;
+}
+
+.euiBreadcrumbSeparator {
+  pointer-events: none;
+  display: inline-block;
+  margin-right: $euiBreadcrumbSpacing;
+  width: 1px;
+  height: $euiSize;
+  transform: translateY(0.2em) rotate(15deg);
+  background: $euiColorLightShade;
+}
+
+.euiBreadcrumbs--responsive {
+  // Laptop
+  @include screenMedium {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+
+      // Only show last 4 breadcrumbs
+      &:nth-last-of-type(-n+3) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Tablets
+  @include screenSmall {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+
+      // Only show last 2 breadcrumbs
+      &:nth-last-of-type(-n+1) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Mobile
+  @include screenXSmall {
+    .euiBreadcrumbSeparator,
+    .euiBreadcrumb {
+      display: none;
+    }
+  }
+}
+
+.euiBreadcrumbs--truncate {
+  .euiBreadcrumb {
+    white-space: nowrap;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

@@ -1,9 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added utility CSS classes for text and alignment concerns.  ([#774](https://github.com/elastic/eui/pull/774))
-- Added `compressed` versions of `EuiFormRow` and all form controls.  ([#800](https://github.com/elastic/eui/pull/800))
-- Removed pointer cursor on `EuiFormLabel` when a `for` property is not set.  ([#825](https://github.com/elastic/eui/pull/825))
-- Added the ability to add tooltips to `EuiContextMenuItem`s.  ([#817](https://github.com/elastic/eui/pull/817))
+- Added utility CSS classes for text and alignment concerns ([#774](https://github.com/elastic/eui/pull/774))
+- Added `compressed` versions of `EuiFormRow` and all form controls ([#800](https://github.com/elastic/eui/pull/800))
+- Removed pointer cursor on `EuiFormLabel` when a `for` property is not set ([#825](https://github.com/elastic/eui/pull/825))
+- Added the ability to add tooltips to `EuiContextMenuItem`s ([#817](https://github.com/elastic/eui/pull/817))
+- Added `EuiBreadcrumbs` ([#815](https://github.com/elastic/eui/pull/815))
 
 **Bug fixes**
 
@@ -35,7 +36,7 @@
 - Added `direction` prop to EuiFlexGroup ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiEmptyPrompt` which can be used as a placeholder over empty tables and lists ([#711](https://github.com/elastic/eui/pull/711))
 - Added `EuiTabbedContent` ([#737](https://github.com/elastic/eui/pull/737))
-- `EuiComboBox` added buttons for clearing and opening/closing the combo box.  ([#698](https://github.com/elastic/eui/pull/698))
+- `EuiComboBox` added buttons for clearing and opening/closing the combo box ([#698](https://github.com/elastic/eui/pull/698))
 
 **Bug fixes**
 
@@ -63,11 +64,11 @@
 - `EuiForm` and `EuiFormRow` now accept nodes for `errors` prop ([#685](https://github.com/elastic/eui/pull/685))
 - Removed the default `max-width` from `EuiText`. This can still be applied by setting `grow={false}` ([#683](https://github.com/elastic/eui/pull/683))
 - Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
-- `EuiBasicTable` added the `compressed` prop to allow for tables with smaller fonts and padding.  ([#687](https://github.com/elastic/eui/pull/687))
+- `EuiBasicTable` added the `compressed` prop to allow for tables with smaller fonts and padding ([#687](https://github.com/elastic/eui/pull/687))
 
 **Breaking changes**
 
-- Added responsive support for tables. This isn't technically a breaking change, but you will need to apply some new props (`hasActions`, `isSelectable`) for certain tables to make them look their best in mobile. **Responsive table views are on by default.**  ([#584](https://github.com/elastic/eui/pull/584))
+- Added responsive support for tables. This isn't technically a breaking change, but you will need to apply some new props (`hasActions`, `isSelectable`) for certain tables to make them look their best in mobile. **Responsive table views are on by default.** ([#584](https://github.com/elastic/eui/pull/584))
 
 **Bug fixes**
 
@@ -75,7 +76,7 @@
 - Fixed `EuiCard` `icon` prop to include user provided className ([#684](https://github.com/elastic/eui/pull/684))
 - `EuiInMemoryTable` pagination state is now reset automatically when a search is executed ([#686](https://github.com/elastic/eui/pull/686))
 - Fixed slow performance of `EuiComboBox` when there are hundreds or thousands of options by virtualizing `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
-- Fixed some text styles  ([#683](https://github.com/elastic/eui/pull/683))
+- Fixed some text styles ([#683](https://github.com/elastic/eui/pull/683))
     - Fixed font-family of input, textarea, select, and buttons
     - Fixed style of code, pre, and dl’s inside `EuiText`
     - Fixed ghost text color which was being set to a dark gray
@@ -186,7 +187,7 @@
 - Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
 - Fixed a bug where `EuiButtonEmpty` would offer a white background on hover when it was disabled, even when there was no such background transition on hover when the buttons are not disabled ([#561](https://github.com/elastic/eui/pull/561))
 - Fixed table cell bugs ([#565](https://github.com/elastic/eui/pull/565))
-  - `EuiBasicTable`  now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
+  - `EuiBasicTable` now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
   - Updated table cell CSS so that long single-word cell content will break and wrap mid-word.
 
 ## [`0.0.33`](https://github.com/elastic/eui/tree/v0.0.33)
@@ -265,7 +266,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 - `EuiSelect` do not set `defaultValue` property when `value` property is provided ([#504](https://github.com/elastic/eui/pull/504)).
 - `EuiBottomBar` now uses `EuiPortal` to avoid zindex conflicts ([#487](https://github.com/elastic/eui/pull/487))
-- Upped dark theme contrast on disabled buttons  ([#487](https://github.com/elastic/eui/pull/487))
+- Upped dark theme contrast on disabled buttons ([#487](https://github.com/elastic/eui/pull/487))
 
 **Breaking changes**
 
