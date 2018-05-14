@@ -14,6 +14,10 @@
 - Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
 - `EuiComboBox` do not setState or call refs once component is unmounted ([807](https://github.com/elastic/eui/pull/807) and [#813](https://github.com/elastic/eui/pull/813))
 
+**Breaking changes**
+
+- Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property [#830](https://github.com/elastic/eui/pull/830)
+
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
 - Added `EuiDescribedFormGroup` component, a wrapper around `EuiFormRow`(s) ([#707](https://github.com/elastic/eui/pull/707))
