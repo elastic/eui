@@ -74,7 +74,11 @@ export const EuiBreadcrumbs = ({
 
     if (isLastBreadcrumb) {
       link = (
-        <span className={breadcrumbClasses} {...breadcrumbRest}>
+        <span
+          className={breadcrumbClasses}
+          title={truncate ? text : undefined}
+          {...breadcrumbRest}
+        >
           { text }
         </span>
       );
@@ -85,6 +89,7 @@ export const EuiBreadcrumbs = ({
           href={href}
           onClick={onClick}
           className={breadcrumbClasses}
+          title={truncate ? text : undefined}
           {...breadcrumbRest}
         >
           {text}

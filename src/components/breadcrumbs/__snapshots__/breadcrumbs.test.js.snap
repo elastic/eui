@@ -215,6 +215,7 @@ exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
     type="button"
   >
     Animals
@@ -224,6 +225,7 @@ exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Reptiles"
     type="button"
   >
     Reptiles
@@ -233,6 +235,7 @@ exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Boa constrictor"
     type="button"
   >
     Boa constrictor
@@ -242,6 +245,7 @@ exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
