@@ -37,6 +37,7 @@ export class GuideThemeSelector extends Component {
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onThemeButtonClick}
+        aria-label="Select a visual theme"
       >
         <strong>Elastic UI</strong> <span className="guideSideNav__theme"> ~ {this.props.selectedTheme}</span>
       </EuiButtonEmpty>

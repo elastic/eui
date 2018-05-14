@@ -287,9 +287,9 @@ export default() => (
         frame="frame"
       >
         <div>
-          <EuiButtonIcon size="s" iconType="pencil" aria-label="Next"/>
+          <EuiButtonIcon size="s" iconType="pencil" aria-label="Edit"/>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButtonIcon size="s" iconType="expand" aria-label="Next"/>
+          <EuiButtonIcon size="s" iconType="expand" aria-label="Expand"/>
         </div>
       </GuideRuleExample>
       <GuideRuleExample
@@ -300,11 +300,11 @@ export default() => (
       >
         <div>
           <EuiButton>
-            <EuiIcon type="pencil"/>
+            <EuiIcon type="pencil" aria-label="Edit" />
           </EuiButton>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <EuiButton >
-            <EuiIcon type="expand"/>
+          <EuiButton>
+            <EuiIcon type="expand" aria-label="Expand" />
           </EuiButton>
         </div>
       </GuideRuleExample>
