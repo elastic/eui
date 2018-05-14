@@ -3,13 +3,14 @@
 exports[`EuiBreadcrumbs is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2"
+  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
   data-test-subj="test subject string"
 >
   <a
     class="euiLink euiLink--subdued euiBreadcrumb customClass"
     data-test-subj="breadcrumbsAnimals"
     href="#"
+    title="[object Object]"
   >
     <span>
       Animals
@@ -20,6 +21,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Reptiles"
     type="button"
   >
     Reptiles
@@ -30,6 +32,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   <a
     class="euiLink euiLink--subdued euiBreadcrumb"
     href="#"
+    title="Boa constrictor"
   >
     Boa constrictor
   </a>
@@ -38,6 +41,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -46,10 +50,11 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
 
 exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of breadcrumbs 1`] = `
 <div
-  class="euiBreadcrumbs"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
     type="button"
   >
     Animals
@@ -59,6 +64,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Reptiles"
     type="button"
   >
     Reptiles
@@ -68,6 +74,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Boa constrictor"
     type="button"
   >
     Boa constrictor
@@ -77,6 +84,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -85,7 +93,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
 
 exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 <div
-  class="euiBreadcrumbs"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <div
     class="euiBreadcrumb euiBreadcrumb--collapsed"
@@ -97,6 +105,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -105,10 +114,11 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 
 exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
 <div
-  class="euiBreadcrumbs"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
     type="button"
   >
     Animals
@@ -126,6 +136,7 @@ exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -134,10 +145,11 @@ exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
 
 exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
 <div
-  class="euiBreadcrumbs"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
     type="button"
   >
     Animals
@@ -155,6 +167,7 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Boa constrictor"
     type="button"
   >
     Boa constrictor
@@ -164,6 +177,7 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -172,10 +186,11 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
 
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 <div
-  class="euiBreadcrumbs euiBreadcrumbs--responsive"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
     type="button"
   >
     Animals
@@ -185,6 +200,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Reptiles"
     type="button"
   >
     Reptiles
@@ -194,6 +210,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Boa constrictor"
     type="button"
   >
     Boa constrictor
@@ -203,6 +220,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   />
   <span
     class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
   >
     Edit
   </span>
@@ -211,7 +229,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 
 exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
 <div
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"

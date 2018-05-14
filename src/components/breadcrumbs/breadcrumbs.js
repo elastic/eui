@@ -136,3 +136,8 @@ EuiBreadcrumbs.propTypes = {
     onClick: PropTypes.func,
   })).isRequired,
 };
+
+EuiBreadcrumbs.defaultProps = {
+  responsive: true,
+  truncate: true,
+};

@@ -30,7 +30,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiBreadcrumbs breadcrumbs={breadcrumbs} />
+      <EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} truncate={false} />
       <EuiSpacer size="xs" />
 
       <EuiPageContentHeader>
