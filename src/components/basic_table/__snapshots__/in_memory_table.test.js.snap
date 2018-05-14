@@ -308,6 +308,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
       },
     ]
   }
+  itemId="id"
   itemIdToExpandedRowMap={Object {}}
   items={
     Array [
@@ -342,7 +343,6 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -400,6 +400,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       },
     ]
   }
+  itemId="id"
   itemIdToExpandedRowMap={Object {}}
   items={
     Array [
@@ -434,7 +435,6 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -476,6 +476,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         },
       ]
     }
+    itemId="id"
     itemIdToExpandedRowMap={Object {}}
     items={
       Array [
@@ -510,7 +511,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     responsive={true}
     selection={
       Object {
-        "itemId": "id",
         "onSelectionChanged": [Function],
       }
     }
@@ -546,6 +546,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       },
     ]
   }
+  itemId="id"
   itemIdToExpandedRowMap={Object {}}
   items={
     Array [
@@ -580,7 +581,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -605,6 +605,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       },
     ]
   }
+  itemId="id"
   itemIdToExpandedRowMap={Object {}}
   items={
     Array [
@@ -635,7 +636,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -697,6 +697,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         },
       ]
     }
+    itemId="id"
     itemIdToExpandedRowMap={Object {}}
     items={
       Array [
@@ -723,7 +724,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     responsive={true}
     selection={
       Object {
-        "itemId": "id",
         "onSelectionChanged": [Function],
       }
     }

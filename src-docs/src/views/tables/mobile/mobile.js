@@ -189,7 +189,6 @@ export class Table extends Component {
     };
 
     const selection = {
-      itemId: 'id',
       selectable: (user) => user.online,
       selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
       onSelectionChange: this.onSelectionChange
@@ -219,6 +218,7 @@ export class Table extends Component {
 
         <EuiBasicTable
           items={pageOfItems}
+          itemId="id"
           columns={columns}
           pagination={pagination}
           sorting={sorting}

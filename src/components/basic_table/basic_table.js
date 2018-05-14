@@ -111,13 +111,12 @@ export const ComputedColumnType = PropTypes.shape({
 
 export const ColumnType = PropTypes.oneOfType([FieldDataColumnType, ComputedColumnType, ActionsColumnType]);
 
-const ItemIdType = PropTypes.oneOfType([
+export const ItemIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the item id property
   PropTypes.func    // (item) => string
 ]);
 
 export const SelectionType = PropTypes.shape({
-  itemId: ItemIdType.isRequired,
   onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
   selectableMessage: PropTypes.func // (selectable, item) => boolean;
@@ -129,6 +128,7 @@ const SortingType = PropTypes.shape({
 
 const BasicTablePropTypes = {
   items: PropTypes.array.isRequired,
+  itemId: ItemIdType,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   pagination: PaginationType,
   sorting: SortingType,
@@ -172,12 +172,12 @@ export class EuiBasicTable extends Component {
   }
 
   itemId(item) {
-    const { selection } = this.props;
-    if (selection) {
-      if (isFunction(selection.itemId)) {
-        return selection.itemId(item);
+    const { itemId } = this.props;
+    if (itemId) {
+      if (isFunction(itemId)) {
+        return itemId(item);
       }
-      return item[selection.itemId];
+      return item[itemId];
     }
   }
 
@@ -480,7 +480,7 @@ export class EuiBasicTable extends Component {
 
     const cells = [];
 
-    const itemId = selection ? this.itemId(item) : rowIndex;
+    const itemId = this.itemId(item) || rowIndex;
     const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedRecord => (
       this.itemId(selectedRecord) === itemId
     ));

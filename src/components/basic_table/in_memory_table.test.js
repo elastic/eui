@@ -293,6 +293,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -302,7 +303,6 @@ describe('EuiInMemoryTable', () => {
       ],
       pagination: true,
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };
@@ -322,6 +322,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -333,7 +334,6 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };
@@ -353,6 +353,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -367,7 +368,6 @@ describe('EuiInMemoryTable', () => {
       },
       sorting: true,
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };
@@ -387,6 +387,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -409,7 +410,6 @@ describe('EuiInMemoryTable', () => {
       pagination: true,
       sorting: true,
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };
@@ -429,6 +429,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -452,7 +453,6 @@ describe('EuiInMemoryTable', () => {
       sorting: true,
       search: true,
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };
@@ -472,6 +472,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -510,7 +511,6 @@ describe('EuiInMemoryTable', () => {
         ]
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       }
     };

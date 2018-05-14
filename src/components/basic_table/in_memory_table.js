@@ -4,6 +4,7 @@ import {
   EuiBasicTable,
   ColumnType,
   SelectionType,
+  ItemIdType,
 } from './basic_table';
 import {
   defaults as paginationBarDefaults
@@ -54,7 +55,8 @@ const InMemoryTablePropTypes = {
       sort: PropertySortType
     })
   ]),
-  selection: SelectionType
+  selection: SelectionType,
+  itemId: ItemIdType
 };
 
 const getInitialQuery = (search) => {
@@ -260,6 +262,7 @@ export class EuiInMemoryTable extends Component {
       pagination: hasPagination,
       sorting: hasSorting,
       itemIdToExpandedRowMap,
+      itemId,
     } = this.props;
 
     const {
@@ -295,6 +298,7 @@ export class EuiInMemoryTable extends Component {
     const table = (
       <EuiBasicTable
         items={items}
+        itemId={itemId}
         columns={columns}
         pagination={pagination}
         sorting={sorting}
