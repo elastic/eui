@@ -102,6 +102,7 @@ describe('EuiInMemoryTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',

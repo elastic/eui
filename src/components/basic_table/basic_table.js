@@ -28,6 +28,7 @@ import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
+import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 
 const dataTypesProfiles = {
   auto: {
@@ -132,13 +133,14 @@ const BasicTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   pagination: PaginationType,
   sorting: SortingType,
-  selection: SelectionType,
+  selection: withRequiredProp(SelectionType, 'itemId', 'see https://github.com/elastic/eui/pull/830'),
   onChange: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'see https://github.com/elastic/eui/pull/830')
 };
 
 export class EuiBasicTable extends Component {
@@ -147,7 +149,6 @@ export class EuiBasicTable extends Component {
   static defaultProps = {
     responsive: true,
     noItemsMessage: 'No items found',
-    itemIdToExpandedRowMap: {},
   };
 
   constructor(props) {
@@ -476,7 +477,7 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemRow(item, rowIndex) {
-    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap, isExpandable } = this.props;
+    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap = {}, isExpandable } = this.props;
 
     const cells = [];
 

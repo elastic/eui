@@ -11,7 +11,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   noItemsMessage="No items found"
   onChange={[Function]}
@@ -31,7 +30,6 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -73,7 +71,6 @@ exports[`EuiInMemoryTable with items 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -107,6 +104,7 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
       },
     ]
   }
+  itemId="id"
   itemIdToExpandedRowMap={
     Object {
       "1": <div>
@@ -147,7 +145,6 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -181,7 +178,6 @@ exports[`EuiInMemoryTable with message 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   noItemsMessage="where my items at?"
   onChange={[Function]}
@@ -200,7 +196,6 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   loading={true}
   noItemsMessage="Loading items...."
@@ -220,7 +215,6 @@ exports[`EuiInMemoryTable with pagination 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -262,7 +256,6 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -309,7 +302,6 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
     ]
   }
   itemId="id"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -361,7 +353,6 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
     ]
   }
   error="ouch!"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -401,7 +392,6 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
     ]
   }
   itemId="id"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -477,7 +467,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
       ]
     }
     itemId="id"
-    itemIdToExpandedRowMap={Object {}}
     items={
       Array [
         Object {
@@ -547,7 +536,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
     ]
   }
   itemId="id"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -606,7 +594,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
     ]
   }
   itemId="id"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -698,7 +685,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
       ]
     }
     itemId="id"
-    itemIdToExpandedRowMap={Object {}}
     items={
       Array [
         Object {
@@ -748,7 +734,6 @@ exports[`EuiInMemoryTable with sorting 1`] = `
       },
     ]
   }
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
