@@ -133,14 +133,14 @@ const BasicTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   pagination: PaginationType,
   sorting: SortingType,
-  selection: withRequiredProp(SelectionType, 'itemId', 'see https://github.com/elastic/eui/pull/830'),
+  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
   onChange: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
-  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'see https://github.com/elastic/eui/pull/830')
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row')
 };
 
 export class EuiBasicTable extends Component {

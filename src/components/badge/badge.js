@@ -158,7 +158,7 @@ EuiBadge.propTypes = {
   iconOnClick: EuiPropTypes.withRequiredProp(
     PropTypes.func,
     'iconOnClickAriaLabel',
-    'Please provide an aria label to compliment your iconOnClick'
+    'Please provide an aria label to complement your iconOnClick'
   ),
 
   /**
@@ -172,7 +172,7 @@ EuiBadge.propTypes = {
   onClick: EuiPropTypes.withRequiredProp(
     PropTypes.func,
     'onClickAriaLabel',
-    'Please provide an aria label to compliment your onClick'
+    'Please provide an aria label to complement your onClick'
   ),
 
   /**
