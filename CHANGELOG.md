@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.46`.
+**Breaking changes**
+
+- Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property ([#830](https://github.com/elastic/eui/pull/830))
+- Renamed/refactored `requiresAriaLabel` prop validator to a more general `withRequiredProp` ([#830](https://github.com/elastic/eui/pull/830))
 
 ## [`0.0.47`](https://github.com/elastic/eui/tree/v0.0.47)
 
@@ -15,16 +18,12 @@ No public interface changes since `0.0.46`.
 - Fixes height calculation error on `EuiAccordion` when it starts loads in an open state. ([#816](https://github.com/elastic/eui/pull/816))
 - Added aria-invalid labeling on `EuiFormRow` ([#777](https://github.com/elastic/eui/pull/799))
 - Added aria-live labeling for `EuiToasts` ([#777](https://github.com/elastic/eui/pull/777))
-- Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `withRequiredProp` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777)) ([#802](https://github.com/elastic/eui/pull/802))
+- Added aria labeling requirements for `EuiBadge` , as well as a generic prop_type function `requiresAriaLabel` in `utils` to check for it. ([#777](https://github.com/elastic/eui/pull/777)) ([#802](https://github.com/elastic/eui/pull/802))
 - Ensure switches’ inputs are still hidden when `[disabled]` ([#778](https://github.com/elastic/eui/pull/778))
 - Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
 - `EuiComboBox` do not setState or call refs once component is unmounted ([807](https://github.com/elastic/eui/pull/807) and [#813](https://github.com/elastic/eui/pull/813))
 - Added better accessibility labeling to `EuiPagination`, `EuiSideNav`, `EuiPopover`, `EuiBottomBar` and `EuiBasicTable`.  ([#821](https://github.com/elastic/eui/pull/821))
-- Added `isDisabled` to `EuiComboBox`  ([#829](https://github.com/elastic/eui/pull/829))
-
-**Breaking changes**
-
-- Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property ([#830](https://github.com/elastic/eui/pull/830)) 
+- Added `isDisabled` to `EuiComboBox`  ([#829](https://github.com/elastic/eui/pull/829)) 
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
