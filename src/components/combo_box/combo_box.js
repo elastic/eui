@@ -436,7 +436,7 @@ export class EuiComboBox extends Component {
 
   onClear = () => {
     if (this.props.isClearable && this.clearSelectedOptions && !this.props.isDisabled) {
-      return this.clearSelectedOptions;
+      return this.clearSelectedOptions();
     } else {
       return undefined;
     }
