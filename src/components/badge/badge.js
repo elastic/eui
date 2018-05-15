@@ -176,6 +176,11 @@ EuiBadge.propTypes = {
   ),
 
   /**
+   * Aria label applied to the onClick button
+   */
+  onClickAriaLabel: PropTypes.string,
+
+  /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color: checkValidColor,
