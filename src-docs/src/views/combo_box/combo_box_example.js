@@ -58,6 +58,10 @@ import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
 const virtualizedHtml = renderToHtml(Virtualized);
 
+import Disabled from './disabled';
+const disabledSource = require('!!raw-loader!./disabled');
+const disabledHtml = renderToHtml(Disabled);
+
 export const ComboBoxExample = {
   title: 'Combo Box',
   intro: (
@@ -98,6 +102,22 @@ export const ComboBoxExample = {
     }],
     props: { EuiComboBox },
     demo: <ComboBox />,
+  }, {
+    title: 'Disabled',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: disabledSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: disabledHtml,
+    }],
+    text: (
+      <p>
+        Set the prop <EuiCode>isDisabled</EuiCode> to make the combo box disabled.
+      </p>
+    ),
+    props: { EuiComboBox },
+    demo: <Disabled />,
   }, {
     title: 'Virtualized',
     source: [{

@@ -64,4 +64,10 @@
       @include euiFormControlInvalidStyle;
     }
   }
+
+  &.euiComboBox-isDisabled {
+    .euiComboBox__inputWrap {
+      @include euiFormControlDisabledStyle;
+    }
+  }
 }

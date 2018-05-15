@@ -26,6 +26,7 @@ import {
 export class EuiComboBox extends Component {
   static propTypes = {
     id: PropTypes.string,
+    isDisabled: PropTypes.bool,
     className: PropTypes.string,
     placeholder: PropTypes.string,
     isLoading: PropTypes.bool,
@@ -433,6 +434,14 @@ export class EuiComboBox extends Component {
     }
   };
 
+  onClear = () => {
+    if (this.props.isClearable && this.clearSelectedOptions && !this.props.isDisabled) {
+      return this.clearSelectedOptions();
+    } else {
+      return undefined;
+    }
+  }
+
   autoSizeInputRef = node => {
     this.autoSizeInput = node;
   };
@@ -500,6 +509,7 @@ export class EuiComboBox extends Component {
   render() {
     const {
       id,
+      isDisabled,
       className,
       isLoading,
       options,
@@ -514,7 +524,7 @@ export class EuiComboBox extends Component {
       async, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
-      isClearable,
+      isClearable, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -523,6 +533,7 @@ export class EuiComboBox extends Component {
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
       'euiComboBox-isInvalid': isInvalid,
+      'euiComboBox-isDisabled': isDisabled,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
@@ -552,6 +563,7 @@ export class EuiComboBox extends Component {
             scrollToIndex={activeOptionIndex}
             onScroll={this.focusActiveOption}
             rowHeight={rowHeight}
+            isDisabled={isDisabled}
           />
         </EuiPortal>
       );
@@ -578,12 +590,13 @@ export class EuiComboBox extends Component {
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
           updatePosition={this.updateListPosition}
-          onClear={isClearable && this.clearSelectedOptions ? this.clearSelectedOptions : undefined}
+          onClear={this.onClear}
           hasSelectedOptions={selectedOptions.length > 0}
           isListOpen={isListOpen}
           onOpen={this.openList}
           onClose={this.closeList}
           singleSelection={singleSelection}
+          isDisabled={isDisabled}
         />
 
         {optionsList}
