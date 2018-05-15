@@ -435,7 +435,7 @@ export class EuiComboBox extends Component {
   };
 
   onClear = () => {
-    if (isClearable && this.clearSelectedOptions && !isDisabled) {
+    if (this.props.isClearable && this.clearSelectedOptions && !this.props.isDisabled) {
       return this.clearSelectedOptions;
     } else {
       return undefined;
@@ -524,7 +524,7 @@ export class EuiComboBox extends Component {
       async, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
-      isClearable,
+      isClearable, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
