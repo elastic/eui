@@ -24,6 +24,7 @@ export const EuiLink = ({
   target,
   rel,
   type,
+  onClick,
   ...rest
 }) => {
   const classes = classNames('euiLink', colorsToClassNameMap[color], className);
@@ -33,6 +34,7 @@ export const EuiLink = ({
       <button
         className={classes}
         type={type}
+        onClick={onClick}
         {...rest}
       >
         {children}
@@ -48,6 +50,7 @@ export const EuiLink = ({
       href={href}
       target={target}
       rel={secureRel}
+      onClick={onClick}
       {...rest}
     >
       {children}

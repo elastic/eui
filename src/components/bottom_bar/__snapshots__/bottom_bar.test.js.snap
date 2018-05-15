@@ -1,35 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiBottomBar is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiBottomBar euiBottomBar--paddingMedium testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  Content
-</div>
+Array [
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new menu opening with page level controls at the bottom of the document.
+  </p>,
+  <div
+    aria-label="aria-label"
+    class="euiBottomBar euiBottomBar--paddingMedium testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Content
+  </div>,
+]
 `;
 
 exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
-<div
-  class="euiBottomBar euiBottomBar--paddingLarge"
-/>
+Array [
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new menu opening with page level controls at the bottom of the document.
+  </p>,
+  <div
+    class="euiBottomBar euiBottomBar--paddingLarge"
+  />,
+]
 `;
 
 exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
-<div
-  class="euiBottomBar euiBottomBar--paddingMedium"
-/>
+Array [
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new menu opening with page level controls at the bottom of the document.
+  </p>,
+  <div
+    class="euiBottomBar euiBottomBar--paddingMedium"
+  />,
+]
 `;
 
 exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
-<div
-  class="euiBottomBar"
-/>
+Array [
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new menu opening with page level controls at the bottom of the document.
+  </p>,
+  <div
+    class="euiBottomBar"
+  />,
+]
 `;
 
 exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
-<div
-  class="euiBottomBar euiBottomBar--paddingSmall"
-/>
+Array [
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new menu opening with page level controls at the bottom of the document.
+  </p>,
+  <div
+    class="euiBottomBar euiBottomBar--paddingSmall"
+  />,
+]
 `;

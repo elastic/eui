@@ -15,6 +15,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
         className={className}
         href={href}
         onClick={onClick}
+        role="menuitem"
         {...rest}
       >
         {children}
@@ -27,6 +28,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
       <button
         className={className}
         onClick={onClick}
+        role="menuitem"
         {...rest}
       >
         {children}
@@ -37,6 +39,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   return (
     <div
       className={className}
+      aria-label={children}
       {...rest}
     >
       {children}
