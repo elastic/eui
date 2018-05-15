@@ -29,6 +29,7 @@ export class EuiComboBoxInput extends Component {
     onOpen: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     singleSelection: PropTypes.bool,
+    isDisabled: PropTypes.bool,
   }
 
   constructor(props) {
@@ -87,6 +88,7 @@ export class EuiComboBoxInput extends Component {
       onOpen,
       onClose,
       singleSelection,
+      isDisabled,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -99,7 +101,7 @@ export class EuiComboBoxInput extends Component {
       return (
         <EuiComboBoxPill
           option={option}
-          onClose={singleSelection ? null : onRemoveOption}
+          onClose={(isDisabled || singleSelection) ? null : onRemoveOption}
           key={label.toLowerCase()}
           color={color}
           {...rest}
@@ -143,12 +145,18 @@ export class EuiComboBoxInput extends Component {
       );
     }
 
+    const clickProps = {};
+
+    if (!isDisabled) {
+      clickProps.onClear = hasSelectedOptions ? onClear : undefined;
+      clickProps.onIconClick = isListOpen ? onClose : onOpen;
+    }
+
     return (
       <EuiFormControlLayout
         icon="arrowDown"
         iconSide="right"
-        onIconClick={isListOpen ? onClose : onOpen}
-        onClear={hasSelectedOptions ? onClear : undefined}
+        {...clickProps}
       >
         <div
           className="euiComboBox__inputWrap"
@@ -168,6 +176,7 @@ export class EuiComboBoxInput extends Component {
             value={searchValue}
             ref={autoSizeInputRef}
             inputRef={inputRef}
+            disabled={isDisabled}
           />
           {removeOptionMessage}
         </div>
