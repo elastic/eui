@@ -434,6 +434,14 @@ export class EuiComboBox extends Component {
     }
   };
 
+  onClear = () => {
+    if (isClearable && this.clearSelectedOptions && !isDisabled) {
+      return this.clearSelectedOptions;
+    } else {
+      return undefined;
+    }
+  }
+
   autoSizeInputRef = node => {
     this.autoSizeInput = node;
   };
@@ -582,7 +590,7 @@ export class EuiComboBox extends Component {
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
           updatePosition={this.updateListPosition}
-          onClear={(isClearable && this.clearSelectedOptions && !isDisabled) ? this.clearSelectedOptions : undefined}
+          onClear={this.onClear}
           hasSelectedOptions={selectedOptions.length > 0}
           isListOpen={isListOpen}
           onOpen={this.openList}
