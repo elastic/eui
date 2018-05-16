@@ -8,6 +8,11 @@ export const propsInfo = {
           required: true,
           type: { name: 'object[]' }
         },
+        itemId: {
+          description: 'describes how to extract a unique ID from each item, used for selections & expanded rows',
+          required: false,
+          type: { name: 'string | (item) => string' }
+        },
         compressed: {
           description: 'Makes the font and padding smaller for the entire table',
           type: { name: 'bool' }
@@ -88,11 +93,6 @@ export const propsInfo = {
     __docgenInfo: {
       _euiObjectType: 'type',
       props: {
-        itemId: {
-          description: 'describes how to extract a unique ID from each item',
-          required: true,
-          type: { name: 'string | (item) => string' }
-        },
         onSelectionChanged: {
           description: 'A callback that will be called whenever the item selection changes',
           required: false,

@@ -155,22 +155,30 @@ EuiBadge.propTypes = {
   /**
    * Will apply an onclick to icon within the badge
    */
-  iconOnClick: PropTypes.func,
+  iconOnClick: EuiPropTypes.withRequiredProp(
+    PropTypes.func,
+    'iconOnClickAriaLabel',
+    'Please provide an aria label to complement your iconOnClick'
+  ),
 
   /**
    * Aria label applied to the iconOnClick button
    */
-  iconOnClickAriaLabel: EuiPropTypes.requiresAriaLabel('iconOnClick'),
+  iconOnClickAriaLabel: PropTypes.string,
 
   /**
    * Will apply an onclick to the badge itself
    */
-  onClick: PropTypes.func,
+  onClick: EuiPropTypes.withRequiredProp(
+    PropTypes.func,
+    'onClickAriaLabel',
+    'Please provide an aria label to complement your onClick'
+  ),
 
   /**
    * Aria label applied to the onClick button
    */
-  onClickAriaLabel: EuiPropTypes.requiresAriaLabel('onClick'),
+  onClickAriaLabel: PropTypes.string,
 
   /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.

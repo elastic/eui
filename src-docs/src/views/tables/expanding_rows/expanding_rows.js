@@ -208,7 +208,6 @@ export class Table extends Component {
     };
 
     const selection = {
-      itemId: 'id',
       selectable: (user) => user.online,
       selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
       onSelectionChange: this.onSelectionChange
@@ -219,6 +218,7 @@ export class Table extends Component {
         {deleteButton}
         <EuiBasicTable
           items={pageOfItems}
+          itemId="id"
           itemIdToExpandedRowMap={this.state.itemIdToExpandedRowMap}
           isExpandable={true}
           hasActions={true}

@@ -1,7 +1,7 @@
 import { is } from './is';
-import { requiresAriaLabel } from './requires_aria_label';
+import { withRequiredProp } from './with_required_prop';
 
 export const EuiPropTypes = {
   is,
-  requiresAriaLabel,
+  withRequiredProp,
 };

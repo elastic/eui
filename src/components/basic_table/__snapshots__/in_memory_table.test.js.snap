@@ -14,7 +14,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   noItemsMessage="No items found"
   onChange={[Function]}
@@ -37,7 +36,6 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -82,7 +80,6 @@ exports[`EuiInMemoryTable with items 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -119,6 +116,7 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
     ]
   }
   data-test-subj="test subject string"
+  itemId="id"
   itemIdToExpandedRowMap={
     Object {
       "1": <div>
@@ -162,7 +160,6 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -199,7 +196,6 @@ exports[`EuiInMemoryTable with message 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   noItemsMessage="where my items at?"
   onChange={[Function]}
@@ -221,7 +217,6 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={Array []}
   loading={true}
   noItemsMessage="Loading items...."
@@ -244,7 +239,6 @@ exports[`EuiInMemoryTable with pagination 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -293,7 +287,6 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -342,7 +335,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
+  itemId="id"
   items={
     Array [
       Object {
@@ -376,7 +369,6 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -398,7 +390,6 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
   }
   data-test-subj="test subject string"
   error="ouch!"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
@@ -440,7 +431,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
+  itemId="id"
   items={
     Array [
       Object {
@@ -474,7 +465,6 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -519,7 +509,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
       ]
     }
     data-test-subj="test subject string"
-    itemIdToExpandedRowMap={Object {}}
+    itemId="id"
     items={
       Array [
         Object {
@@ -554,7 +544,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     search={true}
     selection={
       Object {
-        "itemId": "id",
         "onSelectionChanged": [Function],
       }
     }
@@ -593,7 +582,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
+  itemId="id"
   items={
     Array [
       Object {
@@ -627,7 +616,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -655,7 +643,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
+  itemId="id"
   items={
     Array [
       Object {
@@ -689,7 +677,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   responsive={true}
   selection={
     Object {
-      "itemId": "id",
       "onSelectionChanged": [Function],
     }
   }
@@ -754,7 +741,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
       ]
     }
     data-test-subj="test subject string"
-    itemIdToExpandedRowMap={Object {}}
+    itemId="id"
     items={
       Array [
         Object {
@@ -808,7 +795,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     }
     selection={
       Object {
-        "itemId": "id",
         "onSelectionChanged": [Function],
       }
     }
@@ -836,7 +822,6 @@ exports[`EuiInMemoryTable with sorting 1`] = `
     ]
   }
   data-test-subj="test subject string"
-  itemIdToExpandedRowMap={Object {}}
   items={
     Array [
       Object {
