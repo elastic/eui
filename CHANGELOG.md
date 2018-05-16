@@ -5,6 +5,10 @@
 - Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property ([#830](https://github.com/elastic/eui/pull/830))
 - Renamed/refactored `requiresAriaLabel` prop validator to a more general `withRequiredProp` ([#830](https://github.com/elastic/eui/pull/830))
 
+**Bug fixes**
+- `EuiComboBox` do not pass `isDisabled` prop to `EuiComboBoxOptionsList` to avoid "React does not reconize the 'isDisabled' prop on a DOM element" console warning ([#838](https://github.com/elastic/eui/pull/838))
+- `EuiComboBox` do not display clear icon when `isClearable` prop is set to false and `selectedOptions` prop is provided ([#838](https://github.com/elastic/eui/pull/838))
+
 ## [`0.0.47`](https://github.com/elastic/eui/tree/v0.0.47)
 
 - Added utility CSS classes for text and alignment concerns ([#774](https://github.com/elastic/eui/pull/774))
@@ -23,7 +27,7 @@
 - Made boolean matching in `EuiSearchBar` more exact so it doesn't match words starting with booleans, like "truest" or "offer" ([#776](https://github.com/elastic/eui/pull/776))
 - `EuiComboBox` do not setState or call refs once component is unmounted ([807](https://github.com/elastic/eui/pull/807) and [#813](https://github.com/elastic/eui/pull/813))
 - Added better accessibility labeling to `EuiPagination`, `EuiSideNav`, `EuiPopover`, `EuiBottomBar` and `EuiBasicTable`.  ([#821](https://github.com/elastic/eui/pull/821))
-- Added `isDisabled` to `EuiComboBox`  ([#829](https://github.com/elastic/eui/pull/829)) 
+- Added `isDisabled` to `EuiComboBox`  ([#829](https://github.com/elastic/eui/pull/829))
 
 ## [`0.0.46`](https://github.com/elastic/eui/tree/v0.0.46)
 
