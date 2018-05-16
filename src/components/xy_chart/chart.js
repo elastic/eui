@@ -33,10 +33,10 @@ export class XYChart extends PureComponent {
     const maxChartXValue = (xDomain[1] - xDomain[0]) + 1;
 
     return (e) => {
-      const mouseX = e.clientX - e.target.getBoundingClientRect().left;
+      const mouseX = e.clientX - e.currentTarget.getBoundingClientRect().left;
       const xBucketWidth = innerChartWidth / maxChartXValue;
       const bucketIndex = Math.floor(mouseX / xBucketWidth)
-      
+
       if (bucketIndex !== this.state.lastCrosshairIndex) {
         this.setState({
           crosshairValues: this._getAllSeriesDataAtIndex(bucketIndex),
@@ -51,10 +51,12 @@ export class XYChart extends PureComponent {
     if (name) this.seriesItems[name] = fn;
   };
 
-  _getAllSeriesDataAtIndex = index => {
-    return Object.keys(this.seriesItems).map(name => {
-      return this.seriesItems[name](index);
+  _getAllSeriesDataAtIndex = xBucket => {
+    const data = Object.keys(this.seriesItems).map(name => {
+      return this.seriesItems[name](xBucket);
     });
+
+    return data;
   };
 
   _itemsFormat(values) {
