@@ -4,15 +4,6 @@ import PropTypes from 'prop-types';
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 
 class EUILineSeries extends AbstractSeries {
-  constructor(props) {
-    super(props);
-    this.seriesDataAtIndex = this.seriesDataAtIndex.bind(this);
-    props.registerSeriesDataCallback(props.name, this.seriesDataAtIndex);
-  }
-
-  seriesDataAtIndex = index => {
-    return index !== undefined ? this.props.data[index] : this.props.data;
-  };
   render() {
     const { data, name, curve, onClick, onMarkClick, hasLineMarks, lineMarkColor, lineMarkSize, color, ...rest } = this.props;
 

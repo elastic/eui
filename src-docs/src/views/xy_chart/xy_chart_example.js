@@ -4,6 +4,7 @@ import { EuiCallOut, EuiSpacer, EuiCode } from '../../../../src/components';
 import ChartExampleCode from './examples';
 import EmptyExampleCode from './example-empty';
 import AutoAxisChartExampleCode from './example-auto-axis';
+import { ExampleCrosshair } from './example-crosshair';
 
 export const XYChartExample = {
   title: 'XYChart',
@@ -69,6 +70,31 @@ export const XYChartExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <EmptyExampleCode />
+        </div>
+      )
+    },
+    {
+      title: 'Keep cross-hair in sync',
+      text: (
+        <div>
+          <p>
+            When displayed side-by-side with other charts, we need to be able to keep them in sync
+          </p>
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./example-empty')
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React'
+        }
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <ExampleCrosshair />
         </div>
       )
     },

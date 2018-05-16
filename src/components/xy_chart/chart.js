@@ -6,14 +6,15 @@ import Highlight from './highlight';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 
+const NO_DATA_VALUE = '~~NODATATODISPLAY~~';
+
 export class XYChart extends PureComponent {
   constructor(props) {
     super(props);
     this._onMouseLeave = this._onMouseLeave.bind(this);
-    this._getAllSeriesDataAtIndex = this._getAllSeriesDataAtIndex.bind(this);
-    this._itemsFormat = this._itemsFormat.bind(this);
-    this._getAllPotentialDataTicks = this._getAllPotentialDataTicks.bind(this);
-    this.seriesItems = {};
+    this._updateCrosshairValues = this._updateCrosshairValues.bind(this);
+
+    this.seriesItems = [];
   }
   state = {
     crosshairValues: [],
@@ -27,44 +28,51 @@ export class XYChart extends PureComponent {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
   }
 
-
-  _getAllPotentialDataTicks = (xDomain) => {
-    const innerChartWidth = this._xyPlotRef._getDefaultScaleProps(this._xyPlotRef.props).xRange[1]
+  _updateCrosshairValues = (e) => {
+    // Calculate the range of the X axis
+    const chartData = this._xyPlotRef.state.data.filter(d => d !== undefined)
+    const plotValues = getPlotValues(chartData, this.props.width);
+    const xDomain = plotValues.x.domain();
     const maxChartXValue = (xDomain[1] - xDomain[0]) + 1;
 
-    return (e) => {
-      const mouseX = e.clientX - e.currentTarget.getBoundingClientRect().left;
-      const xBucketWidth = innerChartWidth / maxChartXValue;
-      const bucketIndex = Math.floor(mouseX / xBucketWidth)
+    const innerChartWidth = this._xyPlotRef._getDefaultScaleProps(this._xyPlotRef.props).xRange[1]
 
-      if (bucketIndex !== this.state.lastCrosshairIndex) {
-        this.setState({
-          crosshairValues: this._getAllSeriesDataAtIndex(bucketIndex),
-          lastCrosshairIndex: bucketIndex,
-        });
-      }
-      
-    }
+    const mouseX = e.clientX - e.currentTarget.getBoundingClientRect().left;
+    const xAxisesBucketWidth = innerChartWidth / maxChartXValue;
+    const bucketX = Math.floor(mouseX / xAxisesBucketWidth)
+
+    if (bucketX !== this.state.lastCrosshairX) {
+      this.setState({
+        crosshairValues: this._getAllSeriesFromDataAtIndex(chartData, bucketX),
+        lastCrosshairX: bucketX,
+      });
+    }  
   }
 
-  _registerSeriesDataCallback = (name, fn) => {
-    if (name) this.seriesItems[name] = fn;
+  _getAllSeriesFromDataAtIndex = (chartData, xBucket) => {
+    const chartDataForXValue = chartData.map(series => series.filter(seriesData => {
+      return seriesData.x === xBucket
+    })[0])
+    .filter(series => series !== undefined)
+
+    if(chartDataForXValue.length === 0) {
+      chartDataForXValue.push({ x: xBucket, y: NO_DATA_VALUE })
+    }
+  
+    return chartDataForXValue;
   };
 
-  _getAllSeriesDataAtIndex = xBucket => {
-    const data = Object.keys(this.seriesItems).map(name => {
-      return this.seriesItems[name](xBucket);
-    });
-
-    return data;
-  };
-
-  _itemsFormat(values) {
+  _itemsFormat = (values) => {
     return values.map((v, i) => {
       if (v) {
+        if(v.y === NO_DATA_VALUE) {
+          return {
+            title: 'No Data',
+          };
+        }
         return {
           value: v.y,
-          title: Object.keys(this.seriesItems)[i] || 'Other',
+          title: this.seriesItems[i] || 'Other',
         };
       }
     });
@@ -90,9 +98,10 @@ export class XYChart extends PureComponent {
 
   _renderChildren = (child, i) => {
     const props = {
-      registerSeriesDataCallback: this._registerSeriesDataCallback,
       id: `chart-${i}`,
     };
+
+    this.seriesItems.push(child.props.name);
 
     if (!child.props.color) {
       props.color = VISUALIZATION_COLORS[this.colorIterator];
@@ -120,11 +129,7 @@ export class XYChart extends PureComponent {
       onSelectEnd,
       children,
     } = this.props;
-    const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
-    if (plotValues) {
-      plotValues.xDomain = plotValues.x.domain();
-      plotValues.yDomain = plotValues.y.domain();
-    }
+    
 
     if (!children || errorText) {
       return <StatusText text={errorText} width={width} height={height} />;
@@ -137,7 +142,7 @@ export class XYChart extends PureComponent {
         ref={this._setXYPlotRef}
         dontCheckIfEmpty
         xType={mode}
-        onMouseMove={plotValues ? this._getAllPotentialDataTicks(plotValues.xDomain) : undefined}
+        onMouseMove={this._updateCrosshairValues}
         onMouseLeave={this._onMouseLeave}
         width={width}
         animation={true}
