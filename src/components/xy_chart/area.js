@@ -15,12 +15,12 @@ class StaticPlot extends AbstractSeries {
   };
 
   render() {
-    const { name, data, curve, onNearestX, color, ...rest } = this.props;
+    const { name, data, curve, color, ...rest } = this.props;
 
     return (
       <g>
         <AreaSeries {...rest} key={`${name}-area`} curve={curve} _opacityValue={0.2} color={color} data={data} />
-        <Line {...rest} key={`${name}`} curve={curve} onNearestX={onNearestX} color={color} data={data} />
+        <Line {...rest} key={`${name}`} curve={curve} color={color} data={data} />
       </g>
     );
   }

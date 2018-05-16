@@ -14,7 +14,7 @@ class EUILineSeries extends AbstractSeries {
     return index !== undefined ? this.props.data[index] : this.props.data;
   };
   render() {
-    const { data, name, curve, onClick, onMarkClick, hasLineMarks, lineMarkColor, lineMarkSize, onNearestX, color, ...rest } = this.props;
+    const { data, name, curve, onClick, onMarkClick, hasLineMarks, lineMarkColor, lineMarkSize, color, ...rest } = this.props;
 
     return (
       <g>
@@ -36,7 +36,6 @@ class EUILineSeries extends AbstractSeries {
             key={`${name}-mark`}
             data={data}
             color={color || lineMarkColor}
-            onNearestX={onNearestX}
             size={lineMarkSize}
             stroke={'white'}
             opacity={1}

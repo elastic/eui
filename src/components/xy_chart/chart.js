@@ -19,6 +19,8 @@ export class XYChart extends PureComponent {
     crosshairValues: [],
   };
 
+  colorIterator = 0;
+
   _setXYPlotRef = ref => (this._xyPlotRef = ref);
 
   _onMouseLeave() {
@@ -27,11 +29,9 @@ export class XYChart extends PureComponent {
 
 
   _getAllPotentialDataTicks = (xDomain) => {
-    console.log(xDomain)
     const innerChartWidth = this._xyPlotRef._getDefaultScaleProps(this._xyPlotRef.props).xRange[1]
     const maxChartXValue = (xDomain[1] - xDomain[0]) + 1;
 
-    
     return (e) => {
       const mouseX = e.clientX - e.target.getBoundingClientRect().left;
       const xBucketWidth = innerChartWidth / maxChartXValue;
@@ -86,6 +86,23 @@ export class XYChart extends PureComponent {
     }
   }
 
+  _renderChildren = (child, i) => {
+    const props = {
+      registerSeriesDataCallback: this._registerSeriesDataCallback,
+      id: `chart-${i}`,
+    };
+
+    if (!child.props.color) {
+      props.color = VISUALIZATION_COLORS[this.colorIterator];
+
+      this.colorIterator++;
+      if (this.colorIterator > VISUALIZATION_COLORS.length - 1) this.colorIterator = 0;
+    }
+
+    return React.cloneElement(child, props);
+  }
+  
+
   render() {
     const {
       width,
@@ -94,8 +111,7 @@ export class XYChart extends PureComponent {
       errorText,
       xAxisLocation,
       yAxisLocation,
-      showYAxis,
-      showXAxis,
+      showAxis,
       yTicks,
       xTicks,
       showTooltips,
@@ -105,15 +121,14 @@ export class XYChart extends PureComponent {
     const plotValues = getPlotValues(this._getAllSeriesDataAtIndex(), width);
     if (plotValues) {
       plotValues.xDomain = plotValues.x.domain();
-
       plotValues.yDomain = plotValues.y.domain();
     }
-
-    let colorIterator = 0;
 
     if (!children || errorText) {
       return <StatusText text={errorText} width={width} height={height} />;
     }
+
+    this.colorIterator = 0;
 
     return (
       <XYPlot
@@ -127,47 +142,30 @@ export class XYChart extends PureComponent {
         height={height}
         margin={2}
       >
-        <HorizontalGridLines
-          tickValues={this._getTicks(yTicks)}
-          style={{ strokeDasharray: '5 5' }}
-        />
-
-        {showXAxis && (
+        
+        {showAxis && [
+          <HorizontalGridLines
+            key="lines"
+            tickValues={this._getTicks(yTicks)}
+            style={{ strokeDasharray: '5 5' }}
+          />, 
           <XAxis
+            key="x"
             orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
             tickSize={1}
             tickValues={this._getTicks(xTicks)}
             tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
-          />
-        )}
-
-        {showYAxis && (
+          />,
           <YAxis
+            key="Y"
             tickSize={1}
             orientation={yAxisLocation === 'right' ? 'right' : 'left'}
             tickValues={this._getTicks(yTicks)}
             tickFormat={yTicks ? v => this._getTickLabels(yTicks)[v] || v : undefined}
           />
-        )}
+        ]}
 
-        {React.Children.map(children, (child, i) => {
-          const props = {
-            registerSeriesDataCallback: this._registerSeriesDataCallback,
-            onNearestX: () => {},
-            id: `chart-${i}`,
-          };
-
-          
-
-          if (!child.props.color) {
-            props.color = VISUALIZATION_COLORS[colorIterator];
-
-            colorIterator++;
-            if (colorIterator > VISUALIZATION_COLORS.length - 1) colorIterator = 0;
-          }
-
-          return React.cloneElement(child, props);
-        })}
+        {React.Children.map(children, this._renderChildren)}
 
         {showTooltips && (
           <Crosshair
@@ -194,8 +192,7 @@ XYChart.propTypes = {
   xTicks: PropTypes.array,
   yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
   truncateLegends: PropTypes.bool,
-  showYAxis: PropTypes.bool,
-  showYAxis: PropTypes.bool,
+  showAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
   mode: PropTypes.string,
@@ -205,8 +202,7 @@ XYChart.propTypes = {
 
 XYChart.defaultProps = {
   truncateLegends: false,
-  showYAxis: true,
-  showXAxis: true,
+  showAxis: true,
   showTooltips: true,
   mode: 'linear',
 };

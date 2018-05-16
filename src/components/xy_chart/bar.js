@@ -13,7 +13,7 @@ class EUIBarSeries extends VerticalBarSeries {
     return index !== undefined ? this.props.data[index] : this.props.data;
   };
   render() {
-    const { name, data, color, onNearestX, onClick, ...rest } = this.props;
+    const { name, data, color, onClick, ...rest } = this.props;
 
     return (
       <g>
@@ -21,7 +21,6 @@ class EUIBarSeries extends VerticalBarSeries {
           key={name}
           onSeriesClick={onClick}
           color={color}
-          onNearestX={onNearestX}
           style={{ rx: 2, ry: 2 }}
           data={data}
           {...rest}
