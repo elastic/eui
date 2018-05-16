@@ -1,44 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
+import { LineSeries, MarkSeries } from 'react-vis';
+import { asSeries } from './as_series';
 
-class EUILineSeries extends AbstractSeries {
-  render() {
-    const { data, name, curve, onClick, onMarkClick, hasLineMarks, lineMarkColor, lineMarkSize, color, ...rest } = this.props;
+const EUILineSeries = ({ data, name, curve, onClick, onMarkClick, hasLineMarks, lineMarkColor, lineMarkSize, color, ...rest }) => (
+  <g>
+    <LineSeries
+      {...rest}
+      key={`${name}-border`}
+      curve={curve}
+      data={data}
+      opacity={1}
+      onSeriesClick={onClick}
+      style={{ strokeWidth: 4 }}
+      _colorValue={'white'}
+    />
+    <LineSeries {...rest} key={name} curve={curve} data={data} opacity={1} style={{ strokeWidth: 2 }} color={color} />
 
-    return (
-      <g>
-        <LineSeries
-          {...rest}
-          key={`${name}-border`}
-          curve={curve}
-          data={data}
-          opacity={1}
-          onSeriesClick={onClick}
-          style={{ strokeWidth: 4 }}
-          _colorValue={'white'}
-        />
-        <LineSeries {...rest} key={name} curve={curve} data={data} opacity={1} style={{ strokeWidth: 2 }} color={color} />
+    {hasLineMarks && (
+      <MarkSeries
+        {...rest}
+        key={`${name}-mark`}
+        data={data}
+        color={color || lineMarkColor}
+        size={lineMarkSize}
+        stroke={'white'}
+        opacity={1}
+        onSeriesClick={onMarkClick || onClick}
+        strokeWidth={2}
+      />
+    )}
+  </g>
+)
 
-        {hasLineMarks && (
-          <MarkSeries
-            {...rest}
-            key={`${name}-mark`}
-            data={data}
-            color={color || lineMarkColor}
-            size={lineMarkSize}
-            stroke={'white'}
-            opacity={1}
-            onSeriesClick={onMarkClick || onClick}
-            strokeWidth={2}
-          />
-        )}
-      </g>
-    );
-  }
-}
-export default EUILineSeries;
 EUILineSeries.displayName = 'EUILineSeries';
 
 EUILineSeries.propTypes = {
@@ -58,3 +53,5 @@ EUILineSeries.defaultProps = {
   hasLineMarks: true,
   lineMarkSize: 5
 };
+
+export default asSeries(EUILineSeries);

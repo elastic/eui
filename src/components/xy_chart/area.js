@@ -1,20 +1,15 @@
 import React from 'react';
 import Line from './line';
-import { AreaSeries, AbstractSeries } from 'react-vis';
+import { AreaSeries } from 'react-vis';
+import { asSeries } from './as_series';
 
-class StaticPlot extends AbstractSeries {
-  render() {
-    const { name, data, curve, color, ...rest } = this.props;
+const StaticPlot = ({ name, data, curve, color, ...rest }) => (
+  <g>
+    <AreaSeries {...rest} key={`${name}-area`} curve={curve} _opacityValue={0.2} color={color} data={data} />
+    <Line {...rest} key={`${name}`} curve={curve} color={color} data={data} />
+  </g>
+);
 
-    return (
-      <g>
-        <AreaSeries {...rest} key={`${name}-area`} curve={curve} _opacityValue={0.2} color={color} data={data} />
-        <Line {...rest} key={`${name}`} curve={curve} color={color} data={data} />
-      </g>
-    );
-  }
-}
-export default StaticPlot;
 
 StaticPlot.displayName = 'EUIAreaSeries';
 
@@ -25,3 +20,5 @@ StaticPlot.propTypes = {
 StaticPlot.defaultProps = {
   ...Line.defaultProps
 };
+
+export default asSeries(StaticPlot);

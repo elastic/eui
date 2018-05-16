@@ -42,10 +42,14 @@ export class XYChart extends PureComponent {
     const bucketX = Math.floor(mouseX / xAxisesBucketWidth)
 
     if (bucketX !== this.state.lastCrosshairX) {
-      this.setState({
-        crosshairValues: this._getAllSeriesFromDataAtIndex(chartData, bucketX),
-        lastCrosshairX: bucketX,
-      });
+      if(this.props.onCrosshairUpdate) this.props.onCrosshairUpdate(bucketX)
+      if(!this.props.crosshairX) {
+        this.setState({
+          crosshairValues: this._getAllSeriesFromDataAtIndex(chartData, bucketX),
+          lastCrosshairX: bucketX,
+        });
+      }
+      
     }  
   }
 
@@ -112,6 +116,13 @@ export class XYChart extends PureComponent {
 
     return React.cloneElement(child, props);
   }
+
+  _getCrosshairValues = (crosshairX) => {
+    if(!crosshairX) return this.state.crosshairValues
+
+    const chartData = this._xyPlotRef.state.data.filter(d => d !== undefined)
+    return this._getAllSeriesFromDataAtIndex(chartData, crosshairX)
+  }
   
 
   render() {
@@ -125,6 +136,7 @@ export class XYChart extends PureComponent {
       showAxis,
       yTicks,
       xTicks,
+      crosshairX,
       showTooltips,
       onSelectEnd,
       children,
@@ -176,7 +188,7 @@ export class XYChart extends PureComponent {
 
         {showTooltips && (
           <Crosshair
-            values={this.state.crosshairValues}
+            values={this._getCrosshairValues(crosshairX)}
             style={{ line: { background: 'rgb(218, 218, 218)' } }}
             titleFormat={() => null}
             itemsFormat={this._itemsFormat}
@@ -205,6 +217,7 @@ XYChart.propTypes = {
   mode: PropTypes.string,
   showTooltips: PropTypes.bool,
   errorText: PropTypes.string,
+  crosshairX: PropTypes.number
 };
 
 XYChart.defaultProps = {

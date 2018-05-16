@@ -15,7 +15,7 @@ export class ExampleCrosshair extends React.Component {
       <div>
         <EuiXYChart
           onCrosshairUpdate={this._updateCrosshairLocation}
-          crosshairLocation={this.state.crosshairX}
+          crosshairX={this.state.crosshairX}
           width={600}
           height={200}
         >
@@ -24,7 +24,7 @@ export class ExampleCrosshair extends React.Component {
         <br /><br />
         <EuiXYChart
           onCrosshairUpdate={this._updateCrosshairLocation}
-          crosshairLocation={this.state.crosshairX}
+          crosshairX={this.state.crosshairX}
           width={600}
           height={200}
         >

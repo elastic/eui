@@ -51,6 +51,10 @@ exports[`EuiLine all props are rendered 1`] = `
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
             onMouseMove={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
             onWheel={[Function]}
             width={600}
           >
@@ -391,7 +395,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -590,7 +594,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         />
                       </g>
                     </GridLines>
-                  </Component>
+                  </Motion>
                 </Animation>
               </GridLines>
             </HorizontalGridLines>
@@ -933,7 +937,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -1469,7 +1473,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         </AxisTicks>
                       </g>
                     </Axis>
-                  </Component>
+                  </Motion>
                 </Animation>
               </Axis>
             </XAxis>
@@ -1812,7 +1816,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -2204,11 +2208,11 @@ exports[`EuiLine all props are rendered 1`] = `
                         </AxisTicks>
                       </g>
                     </Axis>
-                  </Component>
+                  </Motion>
                 </Animation>
               </Axis>
             </YAxis>
-            <EUILineSeries
+            <EUILineSeriesAsSeries
               _adjustBy={Array []}
               _adjustWhat={Array []}
               _allData={
@@ -2340,43 +2344,11 @@ exports[`EuiLine all props are rendered 1`] = `
                 ]
               }
             >
-              <g>
-                <LineSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="white"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  className=""
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  curve="curveCatmullRom"
-                  data={
+              <EUILineSeries
+                _adjustBy={Array []}
+                _adjustWhat={Array []}
+                _allData={
+                  Array [
                     Array [
                       Object {
                         "x": 0,
@@ -2386,97 +2358,125 @@ exports[`EuiLine all props are rendered 1`] = `
                         "x": 1,
                         "y": 15,
                       },
-                    ]
+                    ],
+                  ]
+                }
+                _colorValue="#ff0000"
+                _opacityValue={1}
+                angleDomain={Array []}
+                animation={true}
+                clusters={
+                  Set {
+                    undefined,
                   }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  key="test-chart-border"
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  onSeriesClick={[Function]}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeStyle="solid"
-                  style={
+                }
+                color="#ff0000"
+                colorDomain={Array []}
+                colorRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                curve="curveCatmullRom"
+                data={
+                  Array [
                     Object {
-                      "strokeWidth": 4,
-                    }
-                  }
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                      "x": 0,
+                      "y": 5,
+                    },
+                    Object {
+                      "x": 1,
+                      "y": 15,
+                    },
+                  ]
+                }
+                fillDomain={Array []}
+                fillRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                getAngle={[Function]}
+                getAngle0={[Function]}
+                getColor={[Function]}
+                getColor0={[Function]}
+                getFill={[Function]}
+                getFill0={[Function]}
+                getOpacity={[Function]}
+                getOpacity0={[Function]}
+                getRadius={[Function]}
+                getRadius0={[Function]}
+                getSize={[Function]}
+                getSize0={[Function]}
+                getStroke={[Function]}
+                getStroke0={[Function]}
+                getX={[Function]}
+                getX0={[Function]}
+                getY={[Function]}
+                getY0={[Function]}
+                hasLineMarks={true}
+                id="chart-0"
+                innerHeight={196}
+                innerWidth={596}
+                lineMarkColor="#00ff00"
+                lineMarkSize={13}
+                marginBottom={2}
+                marginLeft={2}
+                marginRight={2}
+                marginTop={2}
+                name="test-chart"
+                onClick={[Function]}
+                onMarkClick={[Function]}
+                opacityDomain={Array []}
+                opacityType="literal"
+                radiusDomain={Array []}
+                sameTypeIndex={0}
+                sameTypeTotal={1}
+                seriesIndex={0}
+                sizeDomain={Array []}
+                sizeRange={
+                  Array [
+                    1,
+                    10,
+                  ]
+                }
+                strokeDomain={Array []}
+                strokeRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                xDomain={
+                  Array [
+                    0,
+                    1,
+                  ]
+                }
+                xRange={
+                  Array [
+                    0,
+                    596,
+                  ]
+                }
+                xType="linear"
+                yDomain={
+                  Array [
+                    5,
+                    15,
+                  ]
+                }
+                yRange={
+                  Array [
+                    196,
+                    0,
+                  ]
+                }
+              >
+                <g>
+                  <LineSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -2496,44 +2496,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     _colorValue="white"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     className=""
                     clusters={
@@ -2590,6 +2552,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
+                    key="test-chart-border"
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -2609,6 +2572,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         10,
                       ]
                     }
+                    stack={false}
                     strokeDomain={Array []}
                     strokeRange={
                       Array [
@@ -2648,62 +2612,11 @@ exports[`EuiLine all props are rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00007000000000000001"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <LineSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.00008}
-                        _colorValue="white"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        className=""
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        curve="curveCatmullRom"
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -2713,252 +2626,342 @@ exports[`EuiLine all props are rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="white"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      className=""
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        onSeriesClick={[Function]}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeStyle="solid"
-                        style={
+                      }
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      curve="curveCatmullRom"
+                      data={
+                        Array [
                           Object {
-                            "strokeWidth": 4,
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      onSeriesClick={[Function]}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stack={false}
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeStyle="solid"
+                      style={
+                        Object {
+                          "strokeWidth": 4,
+                        }
+                      }
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
                           }
                         }
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00007000000000000001"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
-                          d="M0,196L596,0"
-                          onClick={[Function]}
-                          onContextMenu={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
+                        <LineSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.00008}
+                          _colorValue="white"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          className=""
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          curve="curveCatmullRom"
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          onSeriesClick={[Function]}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stack={false}
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeStyle="solid"
                           style={
                             Object {
-                              "opacity": 1,
-                              "stroke": "white",
-                              "strokeDasharray": undefined,
                               "strokeWidth": 4,
                             }
                           }
-                          transform="translate(2,2)"
-                        />
-                      </LineSeries>
-                    </Component>
-                  </Animation>
-                </LineSeries>
-                <LineSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="#ff0000"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  className=""
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  color="#ff0000"
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  curve="curveCatmullRom"
-                  data={
-                    Array [
-                      Object {
-                        "x": 0,
-                        "y": 5,
-                      },
-                      Object {
-                        "x": 1,
-                        "y": 15,
-                      },
-                    ]
-                  }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  key="test-chart"
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeStyle="solid"
-                  style={
-                    Object {
-                      "strokeWidth": 2,
-                    }
-                  }
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
+                        >
+                          <path
+                            className="rv-xy-plot__series rv-xy-plot__series--line "
+                            d="M0,196L596,0"
+                            onClick={[Function]}
+                            onContextMenu={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                            style={
+                              Object {
+                                "opacity": 1,
+                                "stroke": "white",
+                                "strokeDasharray": undefined,
+                                "strokeWidth": 4,
+                              }
+                            }
+                            transform="translate(2,2)"
+                          />
+                        </LineSeries>
+                      </Motion>
+                    </Animation>
+                  </LineSeries>
+                  <LineSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -2978,44 +2981,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     _colorValue="#ff0000"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     className=""
                     clusters={
@@ -3073,6 +3038,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
+                    key="test-chart"
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -3091,6 +3057,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         10,
                       ]
                     }
+                    stack={false}
                     strokeDomain={Array []}
                     strokeRange={
                       Array [
@@ -3130,63 +3097,11 @@ exports[`EuiLine all props are rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00009"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <LineSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.0001}
-                        _colorValue="#ff0000"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        className=""
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        color="#ff0000"
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        curve="curveCatmullRom"
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -3196,247 +3111,342 @@ exports[`EuiLine all props are rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="#ff0000"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      className=""
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeStyle="solid"
-                        style={
+                      }
+                      color="#ff0000"
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      curve="curveCatmullRom"
+                      data={
+                        Array [
                           Object {
-                            "strokeWidth": 2,
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stack={false}
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeStyle="solid"
+                      style={
+                        Object {
+                          "strokeWidth": 2,
+                        }
+                      }
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
                           }
                         }
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00009"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
-                          d="M0,196L596,0"
-                          onClick={[Function]}
-                          onContextMenu={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
+                        <LineSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.0001}
+                          _colorValue="#ff0000"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          className=""
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          color="#ff0000"
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          curve="curveCatmullRom"
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stack={false}
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeStyle="solid"
                           style={
                             Object {
-                              "opacity": 1,
-                              "stroke": "#ff0000",
-                              "strokeDasharray": undefined,
                               "strokeWidth": 2,
                             }
                           }
-                          transform="translate(2,2)"
-                        />
-                      </LineSeries>
-                    </Component>
-                  </Animation>
-                </LineSeries>
-                <MarkSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="#ff0000"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  color="#ff0000"
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  data={
-                    Array [
-                      Object {
-                        "x": 0,
-                        "y": 5,
-                      },
-                      Object {
-                        "x": 1,
-                        "y": 15,
-                      },
-                    ]
-                  }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  key="test-chart-mark"
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  onSeriesClick={[Function]}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  size={13}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  stroke="white"
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeWidth={2}
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
+                        >
+                          <path
+                            className="rv-xy-plot__series rv-xy-plot__series--line "
+                            d="M0,196L596,0"
+                            onClick={[Function]}
+                            onContextMenu={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                            style={
+                              Object {
+                                "opacity": 1,
+                                "stroke": "#ff0000",
+                                "strokeDasharray": undefined,
+                                "strokeWidth": 2,
+                              }
+                            }
+                            transform="translate(2,2)"
+                          />
+                        </LineSeries>
+                      </Motion>
+                    </Animation>
+                  </LineSeries>
+                  <MarkSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -3456,44 +3466,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     _colorValue="#ff0000"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     clusters={
                       Set {
@@ -3549,6 +3521,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
+                    key="test-chart-mark"
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -3604,61 +3577,11 @@ exports[`EuiLine all props are rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00011"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <MarkSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.00012}
-                        _colorValue="#ff0000"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        color="#ff0000"
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -3668,139 +3591,358 @@ exports[`EuiLine all props are rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="#ff0000"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
+                      }
+                      color="#ff0000"
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      data={
+                        Array [
+                          Object {
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      onSeriesClick={[Function]}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      size={13}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stroke="white"
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeWidth={2}
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
+                          }
                         }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        onSeriesClick={[Function]}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        size={13}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        stroke="white"
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeWidth={2}
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00011"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <g
-                          className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-                          transform="translate(2,2)"
+                        <MarkSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.00012}
+                          _colorValue="#ff0000"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          color="#ff0000"
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          onSeriesClick={[Function]}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          size={13}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stroke="white"
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeWidth={2}
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
                         >
-                          <circle
-                            cx={0}
-                            cy={196}
-                            key="0"
-                            onClick={[Function]}
-                            onContextMenu={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                            r={13}
-                            style={
-                              Object {
-                                "fill": "#ff0000",
-                                "opacity": 1,
-                                "stroke": "white",
-                                "strokeWidth": 2,
+                          <g
+                            className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
+                            transform="translate(2,2)"
+                          >
+                            <circle
+                              cx={0}
+                              cy={196}
+                              key="0"
+                              onClick={[Function]}
+                              onContextMenu={[Function]}
+                              onMouseOut={[Function]}
+                              onMouseOver={[Function]}
+                              r={13}
+                              style={
+                                Object {
+                                  "fill": "#ff0000",
+                                  "opacity": 1,
+                                  "stroke": "white",
+                                  "strokeWidth": 2,
+                                }
                               }
-                            }
-                          />
-                          <circle
-                            cx={596}
-                            cy={0}
-                            key="1"
-                            onClick={[Function]}
-                            onContextMenu={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                            r={13}
-                            style={
-                              Object {
-                                "fill": "#ff0000",
-                                "opacity": 1,
-                                "stroke": "white",
-                                "strokeWidth": 2,
+                            />
+                            <circle
+                              cx={596}
+                              cy={0}
+                              key="1"
+                              onClick={[Function]}
+                              onContextMenu={[Function]}
+                              onMouseOut={[Function]}
+                              onMouseOver={[Function]}
+                              r={13}
+                              style={
+                                Object {
+                                  "fill": "#ff0000",
+                                  "opacity": 1,
+                                  "stroke": "white",
+                                  "strokeWidth": 2,
+                                }
                               }
-                            }
-                          />
-                        </g>
-                      </MarkSeries>
-                    </Component>
-                  </Animation>
-                </MarkSeries>
-              </g>
-            </EUILineSeries>
+                            />
+                          </g>
+                        </MarkSeries>
+                      </Motion>
+                    </Animation>
+                  </MarkSeries>
+                </g>
+              </EUILineSeries>
+            </EUILineSeriesAsSeries>
           </svg>
           <Crosshair
             _adjustBy={Array []}
@@ -3971,6 +4113,10 @@ exports[`EuiLine is rendered 1`] = `
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
             onMouseMove={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
             onWheel={[Function]}
             width={600}
           >
@@ -4311,7 +4457,7 @@ exports[`EuiLine is rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -4510,7 +4656,7 @@ exports[`EuiLine is rendered 1`] = `
                         />
                       </g>
                     </GridLines>
-                  </Component>
+                  </Motion>
                 </Animation>
               </GridLines>
             </HorizontalGridLines>
@@ -4853,7 +4999,7 @@ exports[`EuiLine is rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -5389,7 +5535,7 @@ exports[`EuiLine is rendered 1`] = `
                         </AxisTicks>
                       </g>
                     </Axis>
-                  </Component>
+                  </Motion>
                 </Animation>
               </Axis>
             </XAxis>
@@ -5732,7 +5878,7 @@ exports[`EuiLine is rendered 1`] = `
                     ]
                   }
                 >
-                  <Component
+                  <Motion
                     defaultStyle={
                       Object {
                         "i": 0,
@@ -6124,11 +6270,11 @@ exports[`EuiLine is rendered 1`] = `
                         </AxisTicks>
                       </g>
                     </Axis>
-                  </Component>
+                  </Motion>
                 </Animation>
               </Axis>
             </YAxis>
-            <EUILineSeries
+            <EUILineSeriesAsSeries
               _adjustBy={Array []}
               _adjustWhat={Array []}
               _allData={
@@ -6256,43 +6402,11 @@ exports[`EuiLine is rendered 1`] = `
                 ]
               }
             >
-              <g>
-                <LineSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="white"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  className=""
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  curve="linear"
-                  data={
+              <EUILineSeries
+                _adjustBy={Array []}
+                _adjustWhat={Array []}
+                _allData={
+                  Array [
                     Array [
                       Object {
                         "x": 0,
@@ -6302,96 +6416,121 @@ exports[`EuiLine is rendered 1`] = `
                         "x": 1,
                         "y": 15,
                       },
-                    ]
+                    ],
+                  ]
+                }
+                _colorValue="#00B3A4"
+                _opacityValue={1}
+                angleDomain={Array []}
+                animation={true}
+                clusters={
+                  Set {
+                    undefined,
                   }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  key="undefined-border"
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeStyle="solid"
-                  style={
+                }
+                color="#00B3A4"
+                colorDomain={Array []}
+                colorRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                curve="linear"
+                data={
+                  Array [
                     Object {
-                      "strokeWidth": 4,
-                    }
-                  }
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                      "x": 0,
+                      "y": 5,
+                    },
+                    Object {
+                      "x": 1,
+                      "y": 15,
+                    },
+                  ]
+                }
+                fillDomain={Array []}
+                fillRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                getAngle={[Function]}
+                getAngle0={[Function]}
+                getColor={[Function]}
+                getColor0={[Function]}
+                getFill={[Function]}
+                getFill0={[Function]}
+                getOpacity={[Function]}
+                getOpacity0={[Function]}
+                getRadius={[Function]}
+                getRadius0={[Function]}
+                getSize={[Function]}
+                getSize0={[Function]}
+                getStroke={[Function]}
+                getStroke0={[Function]}
+                getX={[Function]}
+                getX0={[Function]}
+                getY={[Function]}
+                getY0={[Function]}
+                hasLineMarks={true}
+                id="chart-0"
+                innerHeight={196}
+                innerWidth={596}
+                lineMarkSize={5}
+                marginBottom={2}
+                marginLeft={2}
+                marginRight={2}
+                marginTop={2}
+                opacityDomain={Array []}
+                opacityType="literal"
+                radiusDomain={Array []}
+                sameTypeIndex={0}
+                sameTypeTotal={1}
+                seriesIndex={0}
+                sizeDomain={Array []}
+                sizeRange={
+                  Array [
+                    1,
+                    10,
+                  ]
+                }
+                strokeDomain={Array []}
+                strokeRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                xDomain={
+                  Array [
+                    0,
+                    1,
+                  ]
+                }
+                xRange={
+                  Array [
+                    0,
+                    596,
+                  ]
+                }
+                xType="linear"
+                yDomain={
+                  Array [
+                    5,
+                    15,
+                  ]
+                }
+                yRange={
+                  Array [
+                    196,
+                    0,
+                  ]
+                }
+              >
+                <g>
+                  <LineSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -6411,44 +6550,6 @@ exports[`EuiLine is rendered 1`] = `
                     _colorValue="white"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     className=""
                     clusters={
@@ -6505,6 +6606,7 @@ exports[`EuiLine is rendered 1`] = `
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
+                    key="undefined-border"
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -6523,6 +6625,7 @@ exports[`EuiLine is rendered 1`] = `
                         10,
                       ]
                     }
+                    stack={false}
                     strokeDomain={Array []}
                     strokeRange={
                       Array [
@@ -6562,62 +6665,11 @@ exports[`EuiLine is rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00007000000000000001"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <LineSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.00008}
-                        _colorValue="white"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        className=""
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        curve="linear"
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -6627,250 +6679,340 @@ exports[`EuiLine is rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="white"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      className=""
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeStyle="solid"
-                        style={
+                      }
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      curve="linear"
+                      data={
+                        Array [
                           Object {
-                            "strokeWidth": 4,
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stack={false}
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeStyle="solid"
+                      style={
+                        Object {
+                          "strokeWidth": 4,
+                        }
+                      }
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
                           }
                         }
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00007000000000000001"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
-                          d="M0,196L596,0"
-                          onClick={[Function]}
-                          onContextMenu={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
+                        <LineSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.00008}
+                          _colorValue="white"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          className=""
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          curve="linear"
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stack={false}
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeStyle="solid"
                           style={
                             Object {
-                              "opacity": 1,
-                              "stroke": "white",
-                              "strokeDasharray": undefined,
                               "strokeWidth": 4,
                             }
                           }
-                          transform="translate(2,2)"
-                        />
-                      </LineSeries>
-                    </Component>
-                  </Animation>
-                </LineSeries>
-                <LineSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="#00B3A4"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  className=""
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  color="#00B3A4"
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  curve="linear"
-                  data={
-                    Array [
-                      Object {
-                        "x": 0,
-                        "y": 5,
-                      },
-                      Object {
-                        "x": 1,
-                        "y": 15,
-                      },
-                    ]
-                  }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeStyle="solid"
-                  style={
-                    Object {
-                      "strokeWidth": 2,
-                    }
-                  }
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
+                        >
+                          <path
+                            className="rv-xy-plot__series rv-xy-plot__series--line "
+                            d="M0,196L596,0"
+                            onClick={[Function]}
+                            onContextMenu={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                            style={
+                              Object {
+                                "opacity": 1,
+                                "stroke": "white",
+                                "strokeDasharray": undefined,
+                                "strokeWidth": 4,
+                              }
+                            }
+                            transform="translate(2,2)"
+                          />
+                        </LineSeries>
+                      </Motion>
+                    </Animation>
+                  </LineSeries>
+                  <LineSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -6890,44 +7032,6 @@ exports[`EuiLine is rendered 1`] = `
                     _colorValue="#00B3A4"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     className=""
                     clusters={
@@ -7003,6 +7107,7 @@ exports[`EuiLine is rendered 1`] = `
                         10,
                       ]
                     }
+                    stack={false}
                     strokeDomain={Array []}
                     strokeRange={
                       Array [
@@ -7042,63 +7147,11 @@ exports[`EuiLine is rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00009"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <LineSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.0001}
-                        _colorValue="#00B3A4"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        className=""
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        color="#00B3A4"
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        curve="linear"
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -7108,246 +7161,342 @@ exports[`EuiLine is rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="#00B3A4"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      className=""
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeStyle="solid"
-                        style={
+                      }
+                      color="#00B3A4"
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      curve="linear"
+                      data={
+                        Array [
                           Object {
-                            "strokeWidth": 2,
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stack={false}
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeStyle="solid"
+                      style={
+                        Object {
+                          "strokeWidth": 2,
+                        }
+                      }
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
                           }
                         }
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00009"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
-                          d="M0,196L596,0"
-                          onClick={[Function]}
-                          onContextMenu={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
+                        <LineSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.0001}
+                          _colorValue="#00B3A4"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          className=""
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          color="#00B3A4"
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          curve="linear"
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stack={false}
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeStyle="solid"
                           style={
                             Object {
-                              "opacity": 1,
-                              "stroke": "#00B3A4",
-                              "strokeDasharray": undefined,
                               "strokeWidth": 2,
                             }
                           }
-                          transform="translate(2,2)"
-                        />
-                      </LineSeries>
-                    </Component>
-                  </Animation>
-                </LineSeries>
-                <MarkSeries
-                  _adjustBy={Array []}
-                  _adjustWhat={Array []}
-                  _allData={
-                    Array [
-                      Array [
-                        Object {
-                          "x": 0,
-                          "y": 5,
-                        },
-                        Object {
-                          "x": 1,
-                          "y": 15,
-                        },
-                      ],
-                    ]
-                  }
-                  _colorValue="#00B3A4"
-                  _opacityValue={1}
-                  angleDomain={Array []}
-                  animation={true}
-                  clusters={
-                    Set {
-                      undefined,
-                    }
-                  }
-                  color="#00B3A4"
-                  colorDomain={Array []}
-                  colorRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  data={
-                    Array [
-                      Object {
-                        "x": 0,
-                        "y": 5,
-                      },
-                      Object {
-                        "x": 1,
-                        "y": 15,
-                      },
-                    ]
-                  }
-                  fillDomain={Array []}
-                  fillRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  getAngle={[Function]}
-                  getAngle0={[Function]}
-                  getColor={[Function]}
-                  getColor0={[Function]}
-                  getFill={[Function]}
-                  getFill0={[Function]}
-                  getNull={[Function]}
-                  getOpacity={[Function]}
-                  getOpacity0={[Function]}
-                  getRadius={[Function]}
-                  getRadius0={[Function]}
-                  getSize={[Function]}
-                  getSize0={[Function]}
-                  getStroke={[Function]}
-                  getStroke0={[Function]}
-                  getX={[Function]}
-                  getX0={[Function]}
-                  getY={[Function]}
-                  getY0={[Function]}
-                  id="chart-0"
-                  innerHeight={196}
-                  innerWidth={596}
-                  key="undefined-mark"
-                  marginBottom={2}
-                  marginLeft={2}
-                  marginRight={2}
-                  marginTop={2}
-                  opacity={1}
-                  opacityDomain={Array []}
-                  opacityType="literal"
-                  radiusDomain={Array []}
-                  sameTypeIndex={0}
-                  sameTypeTotal={1}
-                  seriesIndex={0}
-                  size={5}
-                  sizeDomain={Array []}
-                  sizeRange={
-                    Array [
-                      1,
-                      10,
-                    ]
-                  }
-                  stroke="white"
-                  strokeDomain={Array []}
-                  strokeRange={
-                    Array [
-                      "#EF5D28",
-                      "#FF9833",
-                    ]
-                  }
-                  strokeWidth={2}
-                  xDomain={
-                    Array [
-                      0,
-                      1,
-                    ]
-                  }
-                  xRange={
-                    Array [
-                      0,
-                      596,
-                    ]
-                  }
-                  xType="linear"
-                  yDomain={
-                    Array [
-                      5,
-                      15,
-                    ]
-                  }
-                  yRange={
-                    Array [
-                      196,
-                      0,
-                    ]
-                  }
-                >
-                  <Animation
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
+                        >
+                          <path
+                            className="rv-xy-plot__series rv-xy-plot__series--line "
+                            d="M0,196L596,0"
+                            onClick={[Function]}
+                            onContextMenu={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                            style={
+                              Object {
+                                "opacity": 1,
+                                "stroke": "#00B3A4",
+                                "strokeDasharray": undefined,
+                                "strokeWidth": 2,
+                              }
+                            }
+                            transform="translate(2,2)"
+                          />
+                        </LineSeries>
+                      </Motion>
+                    </Animation>
+                  </LineSeries>
+                  <MarkSeries
                     _adjustBy={Array []}
                     _adjustWhat={Array []}
                     _allData={
@@ -7367,44 +7516,6 @@ exports[`EuiLine is rendered 1`] = `
                     _colorValue="#00B3A4"
                     _opacityValue={1}
                     angleDomain={Array []}
-                    animatedProps={
-                      Array [
-                        "xRange",
-                        "xDomain",
-                        "x",
-                        "yRange",
-                        "yDomain",
-                        "y",
-                        "colorRange",
-                        "colorDomain",
-                        "color",
-                        "opacityRange",
-                        "opacityDomain",
-                        "opacity",
-                        "strokeRange",
-                        "strokeDomain",
-                        "stroke",
-                        "fillRange",
-                        "fillDomain",
-                        "fill",
-                        "width",
-                        "height",
-                        "marginLeft",
-                        "marginTop",
-                        "marginRight",
-                        "marginBottom",
-                        "data",
-                        "angleDomain",
-                        "angleRange",
-                        "angle",
-                        "radiusDomain",
-                        "radiusRange",
-                        "radius",
-                        "innerRadiusDomain",
-                        "innerRadiusRange",
-                        "innerRadius",
-                      ]
-                    }
                     animation={true}
                     clusters={
                       Set {
@@ -7460,6 +7571,7 @@ exports[`EuiLine is rendered 1`] = `
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
+                    key="undefined-mark"
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -7514,61 +7626,11 @@ exports[`EuiLine is rendered 1`] = `
                       ]
                     }
                   >
-                    <Component
-                      defaultStyle={
-                        Object {
-                          "i": 0,
-                        }
-                      }
-                      key="0.00011"
-                      onRest={[Function]}
-                      style={
-                        Object {
-                          "i": Object {
-                            "damping": 26,
-                            "precision": 0.01,
-                            "stiffness": 170,
-                            "val": 1,
-                          },
-                        }
-                      }
-                    >
-                      <MarkSeries
-                        _adjustBy={Array []}
-                        _adjustWhat={Array []}
-                        _allData={
-                          Array [
-                            Array [
-                              Object {
-                                "x": 0,
-                                "y": 5,
-                              },
-                              Object {
-                                "x": 1,
-                                "y": 15,
-                              },
-                            ],
-                          ]
-                        }
-                        _animation={0.00012}
-                        _colorValue="#00B3A4"
-                        _opacityValue={1}
-                        angleDomain={Array []}
-                        animation={null}
-                        clusters={
-                          Set {
-                            undefined,
-                          }
-                        }
-                        color="#00B3A4"
-                        colorDomain={Array []}
-                        colorRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        data={
+                    <Animation
+                      _adjustBy={Array []}
+                      _adjustWhat={Array []}
+                      _allData={
+                        Array [
                           Array [
                             Object {
                               "x": 0,
@@ -7578,138 +7640,356 @@ exports[`EuiLine is rendered 1`] = `
                               "x": 1,
                               "y": 15,
                             },
-                          ]
+                          ],
+                        ]
+                      }
+                      _colorValue="#00B3A4"
+                      _opacityValue={1}
+                      angleDomain={Array []}
+                      animatedProps={
+                        Array [
+                          "xRange",
+                          "xDomain",
+                          "x",
+                          "yRange",
+                          "yDomain",
+                          "y",
+                          "colorRange",
+                          "colorDomain",
+                          "color",
+                          "opacityRange",
+                          "opacityDomain",
+                          "opacity",
+                          "strokeRange",
+                          "strokeDomain",
+                          "stroke",
+                          "fillRange",
+                          "fillDomain",
+                          "fill",
+                          "width",
+                          "height",
+                          "marginLeft",
+                          "marginTop",
+                          "marginRight",
+                          "marginBottom",
+                          "data",
+                          "angleDomain",
+                          "angleRange",
+                          "angle",
+                          "radiusDomain",
+                          "radiusRange",
+                          "radius",
+                          "innerRadiusDomain",
+                          "innerRadiusRange",
+                          "innerRadius",
+                        ]
+                      }
+                      animation={true}
+                      clusters={
+                        Set {
+                          undefined,
                         }
-                        fillDomain={Array []}
-                        fillRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
+                      }
+                      color="#00B3A4"
+                      colorDomain={Array []}
+                      colorRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      data={
+                        Array [
+                          Object {
+                            "x": 0,
+                            "y": 5,
+                          },
+                          Object {
+                            "x": 1,
+                            "y": 15,
+                          },
+                        ]
+                      }
+                      fillDomain={Array []}
+                      fillRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      getAngle={[Function]}
+                      getAngle0={[Function]}
+                      getColor={[Function]}
+                      getColor0={[Function]}
+                      getFill={[Function]}
+                      getFill0={[Function]}
+                      getNull={[Function]}
+                      getOpacity={[Function]}
+                      getOpacity0={[Function]}
+                      getRadius={[Function]}
+                      getRadius0={[Function]}
+                      getSize={[Function]}
+                      getSize0={[Function]}
+                      getStroke={[Function]}
+                      getStroke0={[Function]}
+                      getX={[Function]}
+                      getX0={[Function]}
+                      getY={[Function]}
+                      getY0={[Function]}
+                      id="chart-0"
+                      innerHeight={196}
+                      innerWidth={596}
+                      marginBottom={2}
+                      marginLeft={2}
+                      marginRight={2}
+                      marginTop={2}
+                      opacity={1}
+                      opacityDomain={Array []}
+                      opacityType="literal"
+                      radiusDomain={Array []}
+                      sameTypeIndex={0}
+                      sameTypeTotal={1}
+                      seriesIndex={0}
+                      size={5}
+                      sizeDomain={Array []}
+                      sizeRange={
+                        Array [
+                          1,
+                          10,
+                        ]
+                      }
+                      stroke="white"
+                      strokeDomain={Array []}
+                      strokeRange={
+                        Array [
+                          "#EF5D28",
+                          "#FF9833",
+                        ]
+                      }
+                      strokeWidth={2}
+                      xDomain={
+                        Array [
+                          0,
+                          1,
+                        ]
+                      }
+                      xRange={
+                        Array [
+                          0,
+                          596,
+                        ]
+                      }
+                      xType="linear"
+                      yDomain={
+                        Array [
+                          5,
+                          15,
+                        ]
+                      }
+                      yRange={
+                        Array [
+                          196,
+                          0,
+                        ]
+                      }
+                    >
+                      <Motion
+                        defaultStyle={
+                          Object {
+                            "i": 0,
+                          }
                         }
-                        getAngle={[Function]}
-                        getAngle0={[Function]}
-                        getColor={[Function]}
-                        getColor0={[Function]}
-                        getFill={[Function]}
-                        getFill0={[Function]}
-                        getNull={[Function]}
-                        getOpacity={[Function]}
-                        getOpacity0={[Function]}
-                        getRadius={[Function]}
-                        getRadius0={[Function]}
-                        getSize={[Function]}
-                        getSize0={[Function]}
-                        getStroke={[Function]}
-                        getStroke0={[Function]}
-                        getX={[Function]}
-                        getX0={[Function]}
-                        getY={[Function]}
-                        getY0={[Function]}
-                        id="chart-0"
-                        innerHeight={196}
-                        innerWidth={596}
-                        marginBottom={2}
-                        marginLeft={2}
-                        marginRight={2}
-                        marginTop={2}
-                        opacity={1}
-                        opacityDomain={Array []}
-                        opacityType="literal"
-                        radiusDomain={Array []}
-                        sameTypeIndex={0}
-                        sameTypeTotal={1}
-                        seriesIndex={0}
-                        size={5}
-                        sizeDomain={Array []}
-                        sizeRange={
-                          Array [
-                            1,
-                            10,
-                          ]
-                        }
-                        stroke="white"
-                        strokeDomain={Array []}
-                        strokeRange={
-                          Array [
-                            "#EF5D28",
-                            "#FF9833",
-                          ]
-                        }
-                        strokeWidth={2}
-                        xDomain={
-                          Array [
-                            0,
-                            1,
-                          ]
-                        }
-                        xRange={
-                          Array [
-                            0,
-                            596,
-                          ]
-                        }
-                        xType="linear"
-                        yDomain={
-                          Array [
-                            5,
-                            15,
-                          ]
-                        }
-                        yRange={
-                          Array [
-                            196,
-                            0,
-                          ]
+                        key="0.00011"
+                        onRest={[Function]}
+                        style={
+                          Object {
+                            "i": Object {
+                              "damping": 26,
+                              "precision": 0.01,
+                              "stiffness": 170,
+                              "val": 1,
+                            },
+                          }
                         }
                       >
-                        <g
-                          className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-                          transform="translate(2,2)"
+                        <MarkSeries
+                          _adjustBy={Array []}
+                          _adjustWhat={Array []}
+                          _allData={
+                            Array [
+                              Array [
+                                Object {
+                                  "x": 0,
+                                  "y": 5,
+                                },
+                                Object {
+                                  "x": 1,
+                                  "y": 15,
+                                },
+                              ],
+                            ]
+                          }
+                          _animation={0.00012}
+                          _colorValue="#00B3A4"
+                          _opacityValue={1}
+                          angleDomain={Array []}
+                          animation={null}
+                          clusters={
+                            Set {
+                              undefined,
+                            }
+                          }
+                          color="#00B3A4"
+                          colorDomain={Array []}
+                          colorRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          data={
+                            Array [
+                              Object {
+                                "x": 0,
+                                "y": 5,
+                              },
+                              Object {
+                                "x": 1,
+                                "y": 15,
+                              },
+                            ]
+                          }
+                          fillDomain={Array []}
+                          fillRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          getAngle={[Function]}
+                          getAngle0={[Function]}
+                          getColor={[Function]}
+                          getColor0={[Function]}
+                          getFill={[Function]}
+                          getFill0={[Function]}
+                          getNull={[Function]}
+                          getOpacity={[Function]}
+                          getOpacity0={[Function]}
+                          getRadius={[Function]}
+                          getRadius0={[Function]}
+                          getSize={[Function]}
+                          getSize0={[Function]}
+                          getStroke={[Function]}
+                          getStroke0={[Function]}
+                          getX={[Function]}
+                          getX0={[Function]}
+                          getY={[Function]}
+                          getY0={[Function]}
+                          id="chart-0"
+                          innerHeight={196}
+                          innerWidth={596}
+                          marginBottom={2}
+                          marginLeft={2}
+                          marginRight={2}
+                          marginTop={2}
+                          opacity={1}
+                          opacityDomain={Array []}
+                          opacityType="literal"
+                          radiusDomain={Array []}
+                          sameTypeIndex={0}
+                          sameTypeTotal={1}
+                          seriesIndex={0}
+                          size={5}
+                          sizeDomain={Array []}
+                          sizeRange={
+                            Array [
+                              1,
+                              10,
+                            ]
+                          }
+                          stroke="white"
+                          strokeDomain={Array []}
+                          strokeRange={
+                            Array [
+                              "#EF5D28",
+                              "#FF9833",
+                            ]
+                          }
+                          strokeWidth={2}
+                          xDomain={
+                            Array [
+                              0,
+                              1,
+                            ]
+                          }
+                          xRange={
+                            Array [
+                              0,
+                              596,
+                            ]
+                          }
+                          xType="linear"
+                          yDomain={
+                            Array [
+                              5,
+                              15,
+                            ]
+                          }
+                          yRange={
+                            Array [
+                              196,
+                              0,
+                            ]
+                          }
                         >
-                          <circle
-                            cx={0}
-                            cy={196}
-                            key="0"
-                            onClick={[Function]}
-                            onContextMenu={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                            r={5}
-                            style={
-                              Object {
-                                "fill": "#00B3A4",
-                                "opacity": 1,
-                                "stroke": "white",
-                                "strokeWidth": 2,
+                          <g
+                            className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
+                            transform="translate(2,2)"
+                          >
+                            <circle
+                              cx={0}
+                              cy={196}
+                              key="0"
+                              onClick={[Function]}
+                              onContextMenu={[Function]}
+                              onMouseOut={[Function]}
+                              onMouseOver={[Function]}
+                              r={5}
+                              style={
+                                Object {
+                                  "fill": "#00B3A4",
+                                  "opacity": 1,
+                                  "stroke": "white",
+                                  "strokeWidth": 2,
+                                }
                               }
-                            }
-                          />
-                          <circle
-                            cx={596}
-                            cy={0}
-                            key="1"
-                            onClick={[Function]}
-                            onContextMenu={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                            r={5}
-                            style={
-                              Object {
-                                "fill": "#00B3A4",
-                                "opacity": 1,
-                                "stroke": "white",
-                                "strokeWidth": 2,
+                            />
+                            <circle
+                              cx={596}
+                              cy={0}
+                              key="1"
+                              onClick={[Function]}
+                              onContextMenu={[Function]}
+                              onMouseOut={[Function]}
+                              onMouseOver={[Function]}
+                              r={5}
+                              style={
+                                Object {
+                                  "fill": "#00B3A4",
+                                  "opacity": 1,
+                                  "stroke": "white",
+                                  "strokeWidth": 2,
+                                }
                               }
-                            }
-                          />
-                        </g>
-                      </MarkSeries>
-                    </Component>
-                  </Animation>
-                </MarkSeries>
-              </g>
-            </EUILineSeries>
+                            />
+                          </g>
+                        </MarkSeries>
+                      </Motion>
+                    </Animation>
+                  </MarkSeries>
+                </g>
+              </EUILineSeries>
+            </EUILineSeriesAsSeries>
           </svg>
           <Crosshair
             _adjustBy={Array []}
