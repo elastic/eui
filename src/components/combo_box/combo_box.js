@@ -434,14 +434,6 @@ export class EuiComboBox extends Component {
     }
   };
 
-  onClear = () => {
-    if (this.props.isClearable && this.clearSelectedOptions && !this.props.isDisabled) {
-      return this.clearSelectedOptions();
-    } else {
-      return undefined;
-    }
-  }
-
   autoSizeInputRef = node => {
     this.autoSizeInput = node;
   };
@@ -524,7 +516,7 @@ export class EuiComboBox extends Component {
       async, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
-      isClearable, // eslint-disable-line no-unused-vars
+      isClearable,
       ...rest
     } = this.props;
 
@@ -563,7 +555,6 @@ export class EuiComboBox extends Component {
             scrollToIndex={activeOptionIndex}
             onScroll={this.focusActiveOption}
             rowHeight={rowHeight}
-            isDisabled={isDisabled}
           />
         </EuiPortal>
       );
@@ -590,7 +581,7 @@ export class EuiComboBox extends Component {
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
           updatePosition={this.updateListPosition}
-          onClear={this.onClear}
+          onClear={isClearable && !isDisabled ? this.clearSelectedOptions : undefined}
           hasSelectedOptions={selectedOptions.length > 0}
           isListOpen={isListOpen}
           onOpen={this.openList}

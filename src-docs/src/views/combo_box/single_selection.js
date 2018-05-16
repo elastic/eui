@@ -32,7 +32,7 @@ export default class extends Component {
     }];
 
     this.state = {
-      selectedOptions: undefined,
+      selectedOptions: [this.options[2]],
     };
   }
 
@@ -48,10 +48,11 @@ export default class extends Component {
     return (
       <EuiComboBox
         placeholder="Select a single option"
-        singleSelection
+        singleSelection={true}
         options={this.options}
         selectedOptions={selectedOptions}
         onChange={this.onChange}
+        isClearable={false}
       />
     );
   }
