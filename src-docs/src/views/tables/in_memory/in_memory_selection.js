@@ -217,7 +217,6 @@ export class Table extends Component {
     };
 
     const selection = {
-      itemId: 'id',
       selectable: (user) => user.online,
       selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
       onSelectionChange: (selection) => this.setState({ selection })
@@ -227,6 +226,7 @@ export class Table extends Component {
       <div>
         <EuiInMemoryTable
           items={this.state.users}
+          itemId="id"
           error={this.state.error}
           loading={this.state.loading}
           message={this.state.message}

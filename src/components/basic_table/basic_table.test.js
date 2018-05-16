@@ -99,6 +99,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -272,6 +273,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -285,7 +287,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       onChange: () => {}
@@ -306,6 +307,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -320,7 +322,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {
@@ -344,6 +345,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -359,7 +361,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {
@@ -383,6 +384,7 @@ describe('EuiBasicTable', () => {
         { id: '2', count: 2 },
         { id: '3', count: 3 }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'count',
@@ -398,7 +400,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {
@@ -423,6 +424,7 @@ describe('EuiBasicTable', () => {
         { id: '2', count: 2 },
         { id: '3', count: 3 }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'count',
@@ -439,7 +441,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {
@@ -463,6 +464,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -488,7 +490,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {
@@ -512,6 +513,7 @@ describe('EuiBasicTable', () => {
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],
+      itemId: 'id',
       columns: [
         {
           field: 'name',
@@ -543,7 +545,6 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5
       },
       selection: {
-        itemId: 'id',
         onSelectionChanged: () => undefined
       },
       sorting: {

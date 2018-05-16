@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withRequiredProp warns when the base prop is present and valid but the required prop is missing 1`] = `"Warning: Failed exampleProp type: Property \\"exampleProp\\" was passed without corresponding property \\"requiredProp\\""`;
+
+exports[`withRequiredProp warns when the underlying prop validator fails 1`] = `"Warning: Failed exampleProp type: Invalid exampleProp \`exampleProp\` of type \`number\` supplied to \`ExampleComponent\`, expected \`string\`."`;
+
+exports[`withRequiredProp warns with a custom message when validation fails 1`] = `"Warning: Failed exampleProp type: Property \\"exampleProp\\" was passed without corresponding property \\"requiredProp\\"; a custom message"`;

@@ -206,22 +206,6 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
       </EuiTableHeader>
       <EuiTableBody>
         <React.Fragment
-          key="row_0"
-        >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_0_0"
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
           key="row_1"
         >
           <EuiTableRow
@@ -234,7 +218,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
               key="_data_column_name_1_0"
               textOnly={true}
             >
-              name2
+              name1
             </EuiTableRowCell>
           </EuiTableRow>
           <EuiTableRow
@@ -262,6 +246,22 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
               align="left"
               header="Name"
               key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_3"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_3_0"
               textOnly={true}
             >
               name3

@@ -28,6 +28,7 @@ import { EuiIcon } from '../icon/icon';
 import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
+import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 
 const dataTypesProfiles = {
   auto: {
@@ -111,13 +112,12 @@ export const ComputedColumnType = PropTypes.shape({
 
 export const ColumnType = PropTypes.oneOfType([FieldDataColumnType, ComputedColumnType, ActionsColumnType]);
 
-const ItemIdType = PropTypes.oneOfType([
+export const ItemIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the item id property
   PropTypes.func    // (item) => string
 ]);
 
 export const SelectionType = PropTypes.shape({
-  itemId: ItemIdType.isRequired,
   onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
   selectableMessage: PropTypes.func // (selectable, item) => boolean;
@@ -129,16 +129,18 @@ const SortingType = PropTypes.shape({
 
 const BasicTablePropTypes = {
   items: PropTypes.array.isRequired,
+  itemId: ItemIdType,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   pagination: PaginationType,
   sorting: SortingType,
-  selection: SelectionType,
+  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
   onChange: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row')
 };
 
 export class EuiBasicTable extends Component {
@@ -147,7 +149,6 @@ export class EuiBasicTable extends Component {
   static defaultProps = {
     responsive: true,
     noItemsMessage: 'No items found',
-    itemIdToExpandedRowMap: {},
   };
 
   constructor(props) {
@@ -172,12 +173,12 @@ export class EuiBasicTable extends Component {
   }
 
   itemId(item) {
-    const { selection } = this.props;
-    if (selection) {
-      if (isFunction(selection.itemId)) {
-        return selection.itemId(item);
+    const { itemId } = this.props;
+    if (itemId) {
+      if (isFunction(itemId)) {
+        return itemId(item);
       }
-      return item[selection.itemId];
+      return item[itemId];
     }
   }
 
@@ -477,11 +478,11 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemRow(item, rowIndex) {
-    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap, isExpandable } = this.props;
+    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap = {}, isExpandable } = this.props;
 
     const cells = [];
 
-    const itemId = selection ? this.itemId(item) : rowIndex;
+    const itemId = this.itemId(item) || rowIndex;
     const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedRecord => (
       this.itemId(selectedRecord) === itemId
     ));
