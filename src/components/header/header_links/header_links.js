@@ -52,8 +52,9 @@ export class EuiHeaderLinks extends Component {
     );
 
     return (
-      <div
+      <nav
         className={classes}
+        aria-label="App navigation"
         {...rest}
       >
 
@@ -74,7 +75,7 @@ export class EuiHeaderLinks extends Component {
           {children}
         </EuiPopover>
 
-      </div>
+      </nav>
     );
   }
 }
