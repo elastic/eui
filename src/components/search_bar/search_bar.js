@@ -88,6 +88,7 @@ export class EuiSearchBar extends Component {
     };
   }
 
+  // TODO: React 16.3 - getDerivedStateFromProps
   componentWillReceiveProps(nextProps) {
     if (nextProps.query) {
       const query = parseQuery(nextProps.query, this.props);

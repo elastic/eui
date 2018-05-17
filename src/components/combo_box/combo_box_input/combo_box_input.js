@@ -60,6 +60,7 @@ export class EuiComboBoxInput extends Component {
     });
   };
 
+  // TODO: React 16.3 - componentDidUpdate
   componentWillUpdate(nextProps) {
     const { searchValue } = nextProps;
 

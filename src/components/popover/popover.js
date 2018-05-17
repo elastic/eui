@@ -73,6 +73,7 @@ export class EuiPopover extends Component {
     this.updateFocus();
   }
 
+  // TODO: React 16.3 - componentDidUpdate
   componentWillReceiveProps(nextProps) {
     // The popover is being opened.
     if (!this.props.isOpen && nextProps.isOpen) {

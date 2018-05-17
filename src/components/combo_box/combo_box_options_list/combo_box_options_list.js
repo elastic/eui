@@ -65,6 +65,7 @@ export class EuiComboBoxOptionsList extends Component {
     window.addEventListener('resize', this.updatePosition);
   }
 
+  // TODO: React 16.3 - componentDidUpdate
   componentWillUpdate(nextProps) {
     const { options, selectedOptions, searchValue } = nextProps;
 

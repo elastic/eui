@@ -248,6 +248,7 @@ export class EuiBasicTable extends Component {
     this.props.onChange(criteria);
   }
 
+  // TODO: React 16.3 - getDerivedStateFromProps
   componentWillReceiveProps(nextProps) {
     // Don't call changeSelection here or else we can get into an infinite loop:
     // changeSelection calls props.onSelectionChanged on owner ->

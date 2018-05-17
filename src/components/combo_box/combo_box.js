@@ -461,6 +461,8 @@ export class EuiComboBox extends Component {
     }, 100);
   }
 
+  // TODO: React 16.3 - ideally refactor from class members into state
+  // and use getDerivedStateFromProps; otherwise componentDidUpdate
   componentWillUpdate(nextProps, nextState) {
     const { options, selectedOptions } = nextProps;
     const { searchValue } = nextState;

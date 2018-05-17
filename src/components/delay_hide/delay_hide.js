@@ -28,6 +28,7 @@ export class EuiDelayHide extends Component {
     return minimumDuration - visibleDuration;
   }
 
+  // TODO: React 16.3 - componentDidUpdate
   componentWillReceiveProps(nextProps) {
     clearTimeout(this.timeout);
     const timeRemaining = this.getTimeRemaining(nextProps.minimumDuration);

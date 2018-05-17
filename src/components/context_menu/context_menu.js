@@ -173,10 +173,13 @@ export class EuiContextMenu extends Component {
     this.mapIdsToRenderedItems(panels);
   }
 
+  // TODO: React 16.3 - move this into constructor
   componentWillMount() {
     this.updatePanelMaps(this.props.panels);
   }
 
+  // TODO: React 16.3 - componentDidUpdate; alternatively refactor the panel mappings
+  // into state and use getDerivedStateFromProps
   componentWillReceiveProps(nextProps) {
     if (nextProps.panels !== this.props.panels) {
       this.updatePanelMaps(nextProps.panels);

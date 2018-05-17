@@ -240,6 +240,7 @@ export class EuiInMemoryTable extends Component {
     };
   }
 
+  // TODO: React 16.3 - getDerivedStateFromProps
   componentWillReceiveProps(nextProps) {
     if (nextProps.items !== this.props.items) {
       // We have new items because an external search has completed, so reset pagination state.
