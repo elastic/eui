@@ -263,6 +263,7 @@ export class EuiInMemoryTable extends Component {
       sorting: hasSorting,
       itemIdToExpandedRowMap,
       itemId,
+      ...rest
     } = this.props;
 
     const {
@@ -311,6 +312,7 @@ export class EuiInMemoryTable extends Component {
         noItemsMessage={message}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+        {...rest}
       />
     );
 

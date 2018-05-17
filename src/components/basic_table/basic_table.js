@@ -140,7 +140,11 @@ const BasicTablePropTypes = {
   noItemsMessage: PropTypes.node,
   className: PropTypes.string,
   compressed: PropTypes.bool,
-  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row')
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  responsive: PropTypes.bool,
+  isSelectable: PropTypes.bool,
+  isExpandable: PropTypes.bool,
+  hasActions: PropTypes.bool
 };
 
 export class EuiBasicTable extends Component {
@@ -268,7 +272,26 @@ export class EuiBasicTable extends Component {
   }
 
   render() {
-    const { className, loading } = this.props;
+    const {
+      className,
+      loading,
+      items, // eslint-disable-line no-unused-vars
+      itemId, // eslint-disable-line no-unused-vars
+      columns, // eslint-disable-line no-unused-vars
+      pagination, // eslint-disable-line no-unused-vars
+      sorting, // eslint-disable-line no-unused-vars
+      selection, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
+      error, // eslint-disable-line no-unused-vars
+      noItemsMessage, // eslint-disable-line no-unused-vars
+      compressed, // eslint-disable-line no-unused-vars
+      itemIdToExpandedRowMap, // eslint-disable-line no-unused-vars
+      responsive, // eslint-disable-line no-unused-vars
+      isSelectable, // eslint-disable-line no-unused-vars
+      isExpandable, // eslint-disable-line no-unused-vars
+      hasActions, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
 
     const classes = classNames(
       'euiBasicTable',
@@ -282,7 +305,7 @@ export class EuiBasicTable extends Component {
     const paginationBar = this.renderPaginationBar();
 
     return (
-      <div className={classes}>
+      <div className={classes} {...rest}>
         {table}
         {paginationBar}
       </div>

@@ -2,6 +2,8 @@
 
 exports[`EuiInMemoryTable empty array 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -11,6 +13,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={Array []}
   noItemsMessage="No items found"
   onChange={[Function]}
@@ -20,6 +23,8 @@ exports[`EuiInMemoryTable empty array 1`] = `
 
 exports[`EuiInMemoryTable with initial sorting 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -30,6 +35,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
@@ -62,6 +68,8 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
 
 exports[`EuiInMemoryTable with items 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -71,6 +79,7 @@ exports[`EuiInMemoryTable with items 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
@@ -95,6 +104,8 @@ exports[`EuiInMemoryTable with items 1`] = `
 
 exports[`EuiInMemoryTable with items and expanded item 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -104,6 +115,7 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   itemId="id"
   itemIdToExpandedRowMap={
     Object {
@@ -136,6 +148,8 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
 
 exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -145,6 +159,7 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
@@ -169,6 +184,8 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
 
 exports[`EuiInMemoryTable with message 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -178,6 +195,7 @@ exports[`EuiInMemoryTable with message 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={Array []}
   noItemsMessage="where my items at?"
   onChange={[Function]}
@@ -187,6 +205,8 @@ exports[`EuiInMemoryTable with message 1`] = `
 
 exports[`EuiInMemoryTable with message and loading 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -196,6 +216,7 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={Array []}
   loading={true}
   noItemsMessage="Loading items...."
@@ -206,6 +227,8 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
 
 exports[`EuiInMemoryTable with pagination 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -215,6 +238,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
@@ -224,6 +248,10 @@ exports[`EuiInMemoryTable with pagination 1`] = `
       Object {
         "id": "2",
         "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
       },
     ]
   }
@@ -247,6 +275,8 @@ exports[`EuiInMemoryTable with pagination 1`] = `
 
 exports[`EuiInMemoryTable with pagination and default page size 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -256,6 +286,7 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
@@ -292,6 +323,8 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
 
 exports[`EuiInMemoryTable with pagination and selection 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -301,6 +334,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   itemId="id"
   items={
     Array [
@@ -343,6 +377,8 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
 
 exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -352,6 +388,7 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   error="ouch!"
   items={
     Array [
@@ -381,6 +418,8 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
 
 exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -391,6 +430,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   itemId="id"
   items={
     Array [
@@ -445,6 +485,8 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     size="l"
   />
   <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
     columns={
       Array [
         Object {
@@ -466,6 +508,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         },
       ]
     }
+    data-test-subj="test subject string"
     itemId="id"
     items={
       Array [
@@ -498,6 +541,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
       }
     }
     responsive={true}
+    search={true}
     selection={
       Object {
         "onSelectionChanged": [Function],
@@ -514,6 +558,8 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
 
 exports[`EuiInMemoryTable with pagination, selection, sorting and a single record action 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -535,6 +581,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       },
     ]
   }
+  data-test-subj="test subject string"
   itemId="id"
   items={
     Array [
@@ -582,6 +629,8 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
 
 exports[`EuiInMemoryTable with pagination, selection, sorting and column renderer 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -593,6 +642,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       },
     ]
   }
+  data-test-subj="test subject string"
   itemId="id"
   items={
     Array [
@@ -603,6 +653,10 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       Object {
         "id": "2",
         "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
       },
     ]
   }
@@ -663,6 +717,8 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     size="l"
   />
   <EuiBasicTable
+    aria-label="aria-label"
+    className="testClass1 testClass2"
     columns={
       Array [
         Object {
@@ -684,12 +740,21 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         },
       ]
     }
+    data-test-subj="test subject string"
     itemId="id"
     items={
       Array [
         Object {
           "id": "1",
           "name": "name1",
+        },
+        Object {
+          "id": "2",
+          "name": "name2",
+        },
+        Object {
+          "id": "3",
+          "name": "name3",
         },
       ]
     }
@@ -708,6 +773,26 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
       }
     }
     responsive={true}
+    search={
+      Object {
+        "box": Object {
+          "aria-label": "aria-label",
+          "className": "testClass1 testClass2",
+          "data-test-subj": "test subject string",
+          "incremental": true,
+        },
+        "defaultQuery": "name:name1",
+        "filters": Array [
+          Object {
+            "field": "name",
+            "name": "Name1",
+            "negatedName": "Not Name1",
+            "type": "field_value_toggle",
+            "value": "name1",
+          },
+        ],
+      }
+    }
     selection={
       Object {
         "onSelectionChanged": [Function],
@@ -724,6 +809,8 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
 
 exports[`EuiInMemoryTable with sorting 1`] = `
 <EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
   columns={
     Array [
       Object {
@@ -734,6 +821,7 @@ exports[`EuiInMemoryTable with sorting 1`] = `
       },
     ]
   }
+  data-test-subj="test subject string"
   items={
     Array [
       Object {
