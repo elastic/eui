@@ -207,7 +207,7 @@ export class EuiContextMenuPanel extends Component {
     this.updateFocus();
   }
 
-  // @TODO: React 16.3 - componentDidUpdate & getDerivedStateFromProps; alternatively refactor
+  // TODO: React 16.3 - componentDidUpdate & getDerivedStateFromProps; alternatively refactor
   // this.menuItems into state and only use getDerivedStateFromProps
   componentWillReceiveProps(nextProps) {
     // Clear refs to menuItems if we're getting new ones.

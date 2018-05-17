@@ -33,7 +33,7 @@ export class EuiSearchBox extends Component {
     super(props);
   }
 
-  // @TODO: React 16.3 - shouldn't `query` be passed to EuiFieldSearch's value?
+  // TODO: React 16.3 - shouldn't `query` be passed to EuiFieldSearch's value?
   // (and possibly remove `inputRef` from EuiFieldSearch)
   // if that doesn't work, componentDidUpdate
   componentWillUpdate(nextProps) {
