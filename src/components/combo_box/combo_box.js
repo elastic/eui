@@ -74,6 +74,7 @@ export class EuiComboBox extends Component {
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
     this.optionsList = undefined;
+    this.prevTabIndex = undefined;
     this.options = [];
   }
 
@@ -138,25 +139,20 @@ export class EuiComboBox extends Component {
 
   tabAway = amount => {
     const tabbableItems = tabbable(document);
-    const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
-
-    // Wrap to last tabbable if tabbing backwards.
-    if (amount < 0) {
-      if (comboBoxIndex === 0) {
-        tabbableItems[tabbableItems.length - 1].focus();
-        return;
-      }
+    if (!this.prevTabIndex) {
+      this.prevTabIndex = tabbableItems.indexOf(this.searchInput);
     }
 
-    // Wrap to first tabbable if tabbing forwards.
-    if (amount > 0) {
-      if (comboBoxIndex === tabbableItems.length - 1) {
-        tabbableItems[0].focus();
-        return;
-      }
+    let nextTabIndex = this.prevTabIndex + amount;
+    if (nextTabIndex < 0) {
+      nextTabIndex = tabbableItems.length - 1;
+    } else if (nextTabIndex > tabbableItems.length - 1) {
+      nextTabIndex = 0;
     }
 
-    tabbableItems[comboBoxIndex + amount].focus();
+    this.closeList();
+    tabbableItems[nextTabIndex].focus();
+    this.prevTabIndex = nextTabIndex;
   };
 
   incrementActiveOptionIndex = throttle(amount => {
