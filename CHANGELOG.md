@@ -4,15 +4,17 @@ No changes since 0.0.48.
 
 ## [`0.0.48`](https://github.com/elastic/eui/tree/v0.0.48)
 
-**Bug fixes**
-- `EuiInMemoryTable` and `EuiBasicTable` now pass unknown props through to their child ([#836](https://github.com/elastic/eui/pull/836)) 
-
 **Breaking changes**
 
+- `EuiHeaderBreadcrumbs` refactored to use `EuiBreadcrumbs`. This removed all child components of `EuiHeaderBreadcrumbs`. ([#844](https://github.com/elastic/eui/pull/844))
 - Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property ([#830](https://github.com/elastic/eui/pull/830))
 - Renamed/refactored `requiresAriaLabel` prop validator to a more general `withRequiredProp` ([#830](https://github.com/elastic/eui/pull/830))
 
 **Bug fixes**
+
+- `EuiInMemoryTable` and `EuiBasicTable` now pass unknown props through to their child ([#836](https://github.com/elastic/eui/pull/836))
+- Added `EuiHeaderLinks` which allow you to construct navigation in the header in place of the app menu. ([#844](https://github.com/elastic/eui/pull/844))
+- `EuiPopover` will use an alert to warn the user it traps focus ([#844](https://github.com/elastic/eui/pull/844))
 - `EuiComboBox` do not pass `isDisabled` prop to `EuiComboBoxOptionsList` to avoid "React does not reconize the 'isDisabled' prop on a DOM element" console warning ([#838](https://github.com/elastic/eui/pull/838))
 - `EuiComboBox` do not display clear icon when `isClearable` prop is set to false and `selectedOptions` prop is provided ([#838](https://github.com/elastic/eui/pull/838))
 
