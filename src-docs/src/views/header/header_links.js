@@ -23,23 +23,23 @@ export default class extends Component {
     return (
       <EuiHeader>
 
-        <EuiHeaderSectionItem border="none">
+        <EuiHeaderSectionItem border="right">
           <EuiHeaderLogo href="#">
-            Elastic
+            Product
           </EuiHeaderLogo>
         </EuiHeaderSectionItem>
 
         <EuiHeaderLinks>
           <EuiHeaderLink href="#" isActive>
-            Products
+            Docs
           </EuiHeaderLink>
 
           <EuiHeaderLink href="#">
-            Licenses
+            Code
           </EuiHeaderLink>
 
           <EuiHeaderLink href="#">
-            Usage
+            Developers
           </EuiHeaderLink>
         </EuiHeaderLinks>
 

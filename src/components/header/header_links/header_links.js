@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 import { EuiIcon } from '../../icon';
 import { EuiPopover } from '../../popover';
-import { EuiHeaderSectionItemButton } from '../header_section';
+import { EuiHeaderSectionItemButton, EuiHeaderSectionItem } from '../header_section';
 
 export class EuiHeaderLinks extends Component {
   constructor(props) {
@@ -41,9 +41,14 @@ export class EuiHeaderLinks extends Component {
     const classes = classNames('euiHeaderLinks', className);
 
     const button = (
-      <EuiHeaderSectionItemButton onClick={this.onMenuButtonClick}>
-        <EuiIcon type="list" size="m" />
-      </EuiHeaderSectionItemButton>
+      <EuiHeaderSectionItem border="left">
+        <EuiHeaderSectionItemButton
+          aria-label="Open navigation menu"
+          onClick={this.onMenuButtonClick}
+        >
+          <EuiIcon type="apps" size="m" />
+        </EuiHeaderSectionItemButton>
+      </EuiHeaderSectionItem>
     );
 
     return (
@@ -52,10 +57,9 @@ export class EuiHeaderLinks extends Component {
         {...rest}
       >
 
-        <ul className="euiHeaderLinks__list">
+        <ul className="euiHeaderLinks__list" role="navigation">
           {children}
         </ul>
-
 
         <EuiPopover
           className="euiHeaderLinks__mobile"

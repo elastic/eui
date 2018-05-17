@@ -4,12 +4,14 @@
   display: inline-block;
 
   .euiHeaderLink__link {
+    @include euiLink;
+
     display: block;
     height: $euiHeaderChildSize;
     line-height: $euiHeaderChildSize;
-    padding: 0 $euiSize;
+    padding: 0 $euiSizeL;
     color: $euiHeaderBreadcrumbColor;
-    @include euiLink;
+    font-weight: $euiFontWeightMedium;
   }
 
   &.euiHeaderLink-isActive .euiHeaderLink__link {
