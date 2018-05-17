@@ -77,6 +77,7 @@ export const EuiBreadcrumbs = ({
         <span
           className={breadcrumbClasses}
           title={truncate ? text : undefined}
+          aria-current="page"
           {...breadcrumbRest}
         >
           { text }
@@ -119,9 +120,9 @@ export const EuiBreadcrumbs = ({
   });
 
   return (
-    <div className={classes} {...rest}>
+    <nav aria-label="breadcrumb" className={classes} {...rest}>
       {limitedBreadcrumbs}
-    </div>
+    </nav>
   );
 };
 

@@ -6,15 +6,26 @@ import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 describe('EuiHeaderBreadcrumbs', () => {
   test('is rendered', () => {
+    const breadcrumbs = [{
+      text: <span>Animals</span>,
+      href: '#',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked Animals'); },
+      'data-test-subj': 'breadcrumbsAnimals',
+      className: 'customClass',
+    }, {
+      text: 'Reptiles',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked Reptiles'); },
+    }, {
+      text: 'Boa constrictor',
+      href: '#',
+    }, {
+      text: 'Edit',
+    }];
+
     const component = render(
-      <EuiHeaderBreadcrumbs {...requiredProps}>
-        <span>
-          I thought I would sail about a little and see the watery part of the world.
-        </span>
-      </EuiHeaderBreadcrumbs>
+      <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

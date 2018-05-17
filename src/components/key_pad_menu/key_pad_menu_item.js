@@ -64,6 +64,7 @@ export const EuiKeyPadMenuItem = ({ href, label, children, className, betaBadgeL
     <a
       href={href}
       className={classes}
+      role="menuitem"
       {...rest}
     >
       {renderContent(children, label, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType)}

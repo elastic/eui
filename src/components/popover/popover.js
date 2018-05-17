@@ -10,6 +10,8 @@ import { cascadingMenuKeyCodes } from '../../services';
 
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
+import { EuiScreenReaderOnly } from '../accessibility';
+
 import { EuiPanel, SIZES } from '../panel';
 
 const anchorPositionToClassNameMap = {
@@ -162,6 +164,15 @@ export class EuiPopover extends Component {
         ariaLive = 'assertive';
       }
 
+      let focusTrapScreenReaderText;
+      if (ownFocus) {
+        focusTrapScreenReaderText = (
+          <EuiScreenReaderOnly>
+            <p role="alert">You are in a popup menu. To exit this menu hit escape.</p>
+          </EuiScreenReaderOnly>
+        );
+      }
+
       panel = (
         <FocusTrap
           active={ownFocus}
@@ -170,6 +181,7 @@ export class EuiPopover extends Component {
             initialFocus,
           }}
         >
+          {focusTrapScreenReaderText}
           <EuiPanel
             panelRef={this.panelRef}
             className={panelClasses}

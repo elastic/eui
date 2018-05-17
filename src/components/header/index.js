@@ -7,9 +7,7 @@ export {
 } from './header_alert';
 
 export {
-  EuiHeaderBreadcrumb,
   EuiHeaderBreadcrumbs,
-  EuiHeaderBreadcrumbCollapsed,
 } from './header_breadcrumbs';
 
 export {
