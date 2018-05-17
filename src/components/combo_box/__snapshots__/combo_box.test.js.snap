@@ -28,3 +28,205 @@ exports[`EuiComboBox is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`props isClearable is false with selectedOptions 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
+exports[`props isClearable is false without selectedOptions 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={false}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    updatePosition={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`props isDisabled 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2 euiComboBox-isDisabled"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isDisabled={true}
+    isListOpen={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={false}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
+
+exports[`props options 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={false}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    updatePosition={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`props selectedOptions 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
+exports[`props singleSelection 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiComboBox testClass1 testClass2"
+  data-test-subj="test subject string"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onClose={[Function]}
+    onFocus={[Function]}
+    onOpen={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={true}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
