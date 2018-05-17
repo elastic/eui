@@ -8,8 +8,6 @@ import {
 
 import {
   EuiHeader,
-  EuiHeaderBreadcrumb,
-  EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
   EuiHeaderSection,
   EuiHeaderSectionItem,
@@ -45,8 +43,6 @@ export const HeaderExample = {
     ),
     props: {
       EuiHeader,
-      EuiHeaderBreadcrumb,
-      EuiHeaderBreadcrumbCollapsed,
       EuiHeaderBreadcrumbs,
       EuiHeaderSection,
       EuiHeaderSectionItem,
