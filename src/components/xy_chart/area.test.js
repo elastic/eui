@@ -3,7 +3,7 @@ import { mount, render } from 'enzyme';
 import { patchRandom } from '../../test/patch_random';
 
 import EuiXYChart from './chart';
-import EuiArea from './area';
+import { EuiArea } from './area';
 import { benchmarkFunction } from '../../test/time_execution';
 
 describe('EuiArea', () => {
@@ -13,6 +13,7 @@ describe('EuiArea', () => {
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiArea
+          name="somename"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
       </EuiXYChart>
@@ -66,7 +67,7 @@ describe('EuiArea', () => {
       function renderChart() {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiArea data={data}/>
+            <EuiArea name="somename" data={data}/>
           </EuiXYChart>
         )
       }
@@ -102,7 +103,7 @@ describe('EuiArea', () => {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiArea key={index} data={data}/>
+              <EuiArea name={`somename-${index}`} key={index} data={data}/>
             ))}
           </EuiXYChart>
         )

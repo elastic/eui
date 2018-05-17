@@ -23,8 +23,20 @@ class EUIBarSeries extends VerticalBarSeries {
 export default EUIBarSeries;
 
 EUIBarSeries.propTypes = {
+  /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
+  /** Array<{x: string|number, y: string|number}> */
+  data: PropTypes.arrayOf(PropTypes.shape({
+    x: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    y: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+  })).isRequired,
+  /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,
   onClick: PropTypes.func
 };

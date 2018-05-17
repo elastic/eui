@@ -4,7 +4,7 @@ import { patchRandom } from '../../test/patch_random';
 import { benchmarkFunction } from '../../test/time_execution';
 
 import EuiXYChart from './chart';
-import EuiLine from './line';
+import { EuiLine } from './line';
 
 describe('EuiLine', () => {
   test('is rendered', () => {
@@ -13,6 +13,7 @@ describe('EuiLine', () => {
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiLine
+          name="test"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
       </EuiXYChart>
@@ -67,7 +68,7 @@ describe('EuiLine', () => {
       function renderChart() {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiLine data={data}/>
+            <EuiLine name="test" data={data}/>
           </EuiXYChart>
         )
       }
@@ -103,7 +104,7 @@ describe('EuiLine', () => {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiLine key={index} data={data}/>
+              <EuiLine name="test" key={index} data={data}/>
             ))}
           </EuiXYChart>
         )
