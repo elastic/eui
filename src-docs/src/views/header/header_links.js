@@ -38,8 +38,8 @@ export default class extends Component {
             Code
           </EuiHeaderLink>
 
-          <EuiHeaderLink href="#">
-            Developers
+          <EuiHeaderLink iconType="help" href="#">
+            Help
           </EuiHeaderLink>
         </EuiHeaderLinks>
 

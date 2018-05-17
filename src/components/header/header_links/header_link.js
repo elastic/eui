@@ -1,24 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { EuiButtonEmpty } from '../../button';
 
 export const EuiHeaderLink = ({
   href,
+  onClick,
+  iconType,
   isActive,
   children,
   className,
   ...rest,
 }) => {
-  const classes = classNames('euiHeaderLink', className, {
-    'euiHeaderLink-isActive': isActive,
-  });
+  const classes = classNames('euiHeaderLink', className);
 
   return (
-    <li className={classes} {...rest}>
-      <a className="euiHeaderLink__link" href={href}>
-        <span className="euiHeaderLink__text">{children}</span>
-      </a>
-    </li>
+    <EuiButtonEmpty
+      className={classes}
+      href={href}
+      onClick={onClick}
+      iconType={iconType}
+      color={isActive ? 'primary' : 'text'}
+      {...rest}
+    >
+      {children}
+    </EuiButtonEmpty>
   );
 };
 

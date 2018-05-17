@@ -57,9 +57,9 @@ export class EuiHeaderLinks extends Component {
         {...rest}
       >
 
-        <ul className="euiHeaderLinks__list" role="navigation">
+        <div className="euiHeaderLinks__list" role="navigation">
           {children}
-        </ul>
+        </div>
 
         <EuiPopover
           className="euiHeaderLinks__mobile"
