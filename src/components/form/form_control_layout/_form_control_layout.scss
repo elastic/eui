@@ -27,15 +27,27 @@
 
   .euiFormControlLayout__iconButton {
     pointer-events: all;
+    height: $euiSize;
+    width: $euiSize;
     @include size($euiSize);
 
     .euiIcon {
       vertical-align: baseline;
     }
 
+    svg {
+      margin-top: -$euiSizeXS;
+    }
+
+    &:focus {
+      background: $euiColorPrimary;
+      border-radius: 100%;
+      color: $euiColorGhost;
+    }
+
     @at-root {
       .euiFormControlLayout--compressed#{&} {
-        top: $euiFormControlPadding--compressed - 1px;
+        top: $euiFormControlPadding--compressed;
       }
     }
   }
