@@ -9,14 +9,14 @@ export default () => {
     [5, '5'],
     [10, '10'],
     [15, '15'],
-    [200, '200']
+    [20, '20']
   ];
 
   const barData = [];
   for (let i = 0; i < 10; i++) {
     const data = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 20; i++) {
       data.push({ x: i, y: Math.random() });
     }
 
