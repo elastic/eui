@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No changes since 0.0.48.
+
+## [`0.0.48`](https://github.com/elastic/eui/tree/v0.0.48)
+
 **Bug fixes**
 - `EuiInMemoryTable` and `EuiBasicTable` now pass unknown props through to their child ([#836](https://github.com/elastic/eui/pull/836)) 
 
