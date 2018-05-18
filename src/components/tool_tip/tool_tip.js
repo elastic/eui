@@ -129,6 +129,13 @@ export class EuiToolTip extends Component {
         ref={anchor => this.anchor = anchor}
         className={anchorClasses}
       >
+        {/**
+          * We apply onFocus, onBlur, etc to the children element because that's the element
+          * the user will be interacting with, as opposed to the enclosing anchor element.
+          * For example, if the inner component is a button and the user tabs to it, we want
+          * the enter key to trigger the button. That won't work if the enclosing anchor
+          * element has focus.
+          */}
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
