@@ -61,9 +61,7 @@ export const HeaderExample = {
     }],
     text: (
       <p>
-        Kibana should and will eventually always use the breadcrumb style of header.
-        However, in some rare cases where EUI is being used as a one-off site or page,
-        you can use <EuiCode>EuiHeaderLinks</EuiCode>, <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
+        If you&rsquo;re using EUI in a one-off site or page, you can use <EuiCode>EuiHeaderLinks</EuiCode>, <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
       </p>
     ),
     props: {
