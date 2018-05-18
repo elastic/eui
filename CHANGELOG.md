@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No changes since 0.0.48.
+**Bug fixes**
+- `EuiInMemoryTable` now applies its search filter ([#851](https://github.com/elastic/eui/pull/851))
 
 ## [`0.0.48`](https://github.com/elastic/eui/tree/v0.0.48)
 
