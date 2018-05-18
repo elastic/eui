@@ -1,5 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Breaking changes**
+- EUI requires React `16.3` or higher ([#849](https://github.com/elastic/eui/pull/849))
+
 **Bug fixes**
 - `EuiInMemoryTable` now applies its search filter ([#851](https://github.com/elastic/eui/pull/851))
 
