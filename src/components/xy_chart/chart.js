@@ -9,22 +9,14 @@ import StatusText from './status-text';
 const NO_DATA_VALUE = '~~NODATATODISPLAY~~';
 
 export class XYChart extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._onMouseLeave = this._onMouseLeave.bind(this);
-    this._updateCrosshairValues = this._updateCrosshairValues.bind(this);
-
-    this.seriesItems = [];
-  }
   state = {
     crosshairValues: [],
   };
-
+  seriesItems = [];
   colorIterator = 0;
-
   _setXYPlotRef = ref => (this._xyPlotRef = ref);
 
-  _onMouseLeave() {
+  _onMouseLeave = () => {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
   }
 
@@ -57,7 +49,6 @@ export class XYChart extends PureComponent {
     const chartDataForXValue = chartData.map(series => series.filter(seriesData => {
       return seriesData.x === xBucket
     })[0])
-    .filter(series => series !== undefined)
 
     if(chartDataForXValue.length === 0) {
       chartDataForXValue.push({ x: xBucket, y: NO_DATA_VALUE })
