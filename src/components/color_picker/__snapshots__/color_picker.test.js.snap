@@ -3,74 +3,37 @@
 exports[`renders EuiColorPicker 1`] = `
 <div
   class="euiColorPicker testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <div
-    class="euiColorPicker__preview"
+    style="color:#ffeedd"
   >
     <div
-      aria-label="aria-label"
-      class="euiColorPicker__swatch"
-      data-test-subj="colorSwatch"
-      style="background:#ffeedd"
-    />
-    <div
-      aria-label="Color selection is #ffeedd"
-      class="euiColorPicker__label"
+      class="euiFormControlLayout"
     >
-      #ffeedd
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
-<div
-  class="euiColorPicker testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiColorPicker__preview"
-  >
-    <div
-      aria-label="aria-label"
-      class="euiColorPicker__swatch euiColorPicker__emptySwatch"
-      data-test-subj="colorSwatch"
-      style="background:"
-    >
-      <svg>
-        <line
-          x1="0"
-          x2="100%"
-          y1="100%"
-          y2="0"
+      <input
+        class="euiFieldText euiFieldText--withIcon"
+        maxlength="7"
+        type="text"
+        value="#FFEEDD"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          fill-rule="evenodd"
+          height="12"
+          rx="2"
+          width="12"
+          x="2"
+          y="2"
         />
       </svg>
     </div>
-    <div
-      aria-label="Color selection is (transparent)"
-      class="euiColorPicker__label"
-    >
-      (transparent)
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders EuiColorPicker without a color label when showColorLabel is false 1`] = `
-<div
-  class="euiColorPicker testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiColorPicker__preview"
-  >
-    <div
-      aria-label="aria-label"
-      class="euiColorPicker__swatch"
-      data-test-subj="colorSwatch"
-      style="background:#ffffff"
-    />
   </div>
 </div>
 `;

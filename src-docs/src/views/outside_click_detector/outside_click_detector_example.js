@@ -28,7 +28,7 @@ export const OutsideClickDetectorExample = {
     text: (
       <p>
         Use <EuiCode>EuiOutsideClickDetector</EuiCode> to trigger a handler when the user clicks outside of the
-        child element.
+        child element. Note that it will not work if the immediate child is a React <EuiCode>Fragment</EuiCode>.
       </p>
     ),
     props: { EuiOutsideClickDetector },

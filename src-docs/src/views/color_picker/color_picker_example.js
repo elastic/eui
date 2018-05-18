@@ -29,25 +29,5 @@ export const ColorPickerExample = {
       code: colorPickerHtml,
     }],
     demo: <ColorPicker />,
-  }, {
-    title: 'With label and reset link',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: colorPickerClearSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: colorPickerClearHtml,
-    }],
-    demo: <ColorPickerLabelAndClear />,
-  }, {
-    title: 'Without a color label',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: colorPickerNoColorLabelSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: colorPickerNoColorLabelHtml,
-    }],
-    demo: <ColorPickerNoColorLabel />,
   }],
 };

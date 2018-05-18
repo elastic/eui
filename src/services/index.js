@@ -17,6 +17,7 @@ export {
 
 export {
   isColorDark,
+  isValidHex,
   calculateContrast,
   calculateLuminance,
   hexToRgb,
