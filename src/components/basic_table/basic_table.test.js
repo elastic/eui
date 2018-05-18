@@ -2,7 +2,25 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBasicTable } from './basic_table';
+import { EuiBasicTable, getItemId } from './basic_table';
+
+describe('getItemId', () => {
+  it('returns undefined if no itemId prop is given', () => {
+    expect(getItemId({ id: 5 }, {})).toBeUndefined();
+    expect(getItemId({ itemId: 5 }, {})).toBeUndefined();
+    expect(getItemId({ _itemId: 5 }, {})).toBeUndefined();
+  });
+
+  it('returns the correct id when a string itemId is given', () => {
+    expect(getItemId({ id: 5 }, { itemId: 'id' })).toBe(5);
+    expect(getItemId({ thing: '5' }, { itemId: 'thing' })).toBe('5');
+  });
+
+  it('returns the correct id when a function itemId is given', () => {
+    expect(getItemId({ id: 5 }, { itemId: () => 6 })).toBe(6);
+    expect(getItemId({ x: 2, y: 4 }, { itemId: ({ x, y }) => x * y })).toBe(8);
+  });
+});
 
 describe('EuiBasicTable', () => {
 

@@ -147,6 +147,16 @@ const BasicTablePropTypes = {
   hasActions: PropTypes.bool
 };
 
+export function getItemId(item, props) {
+  const { itemId } = props;
+  if (itemId) {
+    if (isFunction(itemId)) {
+      return itemId(item);
+    }
+    return item[itemId];
+  }
+}
+
 export class EuiBasicTable extends Component {
 
   static propTypes = BasicTablePropTypes;
@@ -154,6 +164,19 @@ export class EuiBasicTable extends Component {
     responsive: true,
     noItemsMessage: 'No items found',
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.selection) {
+      // next props doesn't have a selection, reset our state
+      return { selection: [] };
+    }
+
+    const selection = prevState.selection.filter(selectedItem => (
+      nextProps.items.findIndex(item => getItemId(item, nextProps) === getItemId(selectedItem, nextProps)) !== -1
+    ));
+
+    return { selection };
+  }
 
   constructor(props) {
     super(props);
@@ -174,16 +197,6 @@ export class EuiBasicTable extends Component {
       criteria.sort = props.sorting.sort;
     }
     return criteria;
-  }
-
-  itemId(item) {
-    const { itemId } = this.props;
-    if (itemId) {
-      if (isFunction(itemId)) {
-        return itemId(item);
-      }
-      return item[itemId];
-    }
   }
 
   changeSelection(selection) {
@@ -246,30 +259,6 @@ export class EuiBasicTable extends Component {
       }
     };
     this.props.onChange(criteria);
-  }
-
-  // TODO: React 16.3 - getDerivedStateFromProps
-  componentWillReceiveProps(nextProps) {
-    // Don't call changeSelection here or else we can get into an infinite loop:
-    // changeSelection calls props.onSelectionChanged on owner ->
-    // owner may react by changing props ->
-    // we receive new props, calling componentWillReceiveProps ->
-    // and we're in an infinite loop
-    if (!this.props.selection) {
-      return;
-    }
-
-    if (!nextProps.selection) {
-      this.setState({ selection: [] });
-      return;
-    }
-
-    this.setState(prevState => {
-      const selection = prevState.selection.filter(selectedItem => (
-        nextProps.items.findIndex(item => this.itemId(item) === this.itemId(selectedItem)) !== -1
-      ));
-      return { selection };
-    });
   }
 
   render() {
@@ -506,9 +495,9 @@ export class EuiBasicTable extends Component {
 
     const cells = [];
 
-    const itemId = this.itemId(item) || rowIndex;
+    const itemId = getItemId(item, this.props) || rowIndex;
     const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedRecord => (
-      this.itemId(selectedRecord) === itemId
+      getItemId(selectedRecord, this.props) === itemId
     ));
 
     if (selection) {
@@ -572,7 +561,7 @@ export class EuiBasicTable extends Component {
         this.changeSelection([...this.state.selection, item]);
       } else {
         this.changeSelection(this.state.selection.reduce((selection, selectedItem) => {
-          if (this.itemId(selectedItem) !== itemId) {
+          if (getItemId(selectedItem, this.props) !== itemId) {
             selection.push(selectedItem);
           }
           return selection;
