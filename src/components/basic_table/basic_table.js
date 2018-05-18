@@ -199,10 +199,6 @@ export class EuiBasicTable extends Component {
     return criteria;
   }
 
-  itemId(item) {
-    return getItemId(item, this.props);
-  }
-
   changeSelection(selection) {
     if (!this.props.selection) {
       return;
