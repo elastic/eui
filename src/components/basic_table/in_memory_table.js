@@ -264,6 +264,8 @@ export class EuiInMemoryTable extends Component {
       sorting: hasSorting,
       itemIdToExpandedRowMap,
       itemId,
+      items: _unuseditems, // eslint-disable-line no-unused-vars
+      search, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

@@ -249,10 +249,6 @@ exports[`EuiInMemoryTable with pagination 1`] = `
         "id": "2",
         "name": "name2",
       },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
     ]
   }
   noItemsMessage="No items found"
@@ -541,7 +537,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
       }
     }
     responsive={true}
-    search={true}
     selection={
       Object {
         "onSelectionChanged": [Function],
@@ -654,10 +649,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
         "id": "2",
         "name": "name2",
       },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
     ]
   }
   noItemsMessage="No items found"
@@ -748,14 +739,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
           "id": "1",
           "name": "name1",
         },
-        Object {
-          "id": "2",
-          "name": "name2",
-        },
-        Object {
-          "id": "3",
-          "name": "name3",
-        },
       ]
     }
     noItemsMessage="No items found"
@@ -773,26 +756,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
       }
     }
     responsive={true}
-    search={
-      Object {
-        "box": Object {
-          "aria-label": "aria-label",
-          "className": "testClass1 testClass2",
-          "data-test-subj": "test subject string",
-          "incremental": true,
-        },
-        "defaultQuery": "name:name1",
-        "filters": Array [
-          Object {
-            "field": "name",
-            "name": "Name1",
-            "negatedName": "Not Name1",
-            "type": "field_value_toggle",
-            "value": "name1",
-          },
-        ],
-      }
-    }
     selection={
       Object {
         "onSelectionChanged": [Function],
