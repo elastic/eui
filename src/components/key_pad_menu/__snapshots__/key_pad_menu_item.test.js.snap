@@ -5,6 +5,7 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
   aria-label="aria-label"
   class="euiKeyPadMenuItem testClass1 testClass2"
   data-test-subj="test subject string"
+  role="menuitem"
 >
   <div
     class="euiKeyPadMenuItem__inner"
@@ -27,6 +28,7 @@ exports[`EuiKeyPadMenuItem renders href 1`] = `
 <a
   class="euiKeyPadMenuItem"
   href="#"
+  role="menuitem"
 >
   <div
     class="euiKeyPadMenuItem__inner"

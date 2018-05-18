@@ -4,8 +4,6 @@ import React, {
 
 import {
   EuiHeader,
-  EuiHeaderBreadcrumb,
-  EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
   EuiHeaderSection,
   EuiHeaderSectionItem,
@@ -40,37 +38,41 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <EuiHeaderLogo href="#" />
+      <EuiHeaderLogo href="#" aria-label="Go to home page" />
     );
   }
 
   renderBreadcrumbs() {
+    const breadcrumbs = [{
+      text: 'Management',
+      href: '#',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked management'); },
+      'data-test-subj': 'breadcrumbsAnimals',
+      className: 'customClass',
+    }, {
+      text: 'Truncation test is here for a really long item',
+      href: '#',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked truncation test'); },
+    }, {
+      text: 'hidden',
+      href: '#',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked hidden'); },
+    }, {
+      text: 'Users',
+      href: '#',
+      onClick: (e) => { e.preventDefault(); console.log('You clicked users'); },
+    }, {
+      text: 'Create',
+    }];
+
     return (
-      <EuiHeaderBreadcrumbs>
-        <EuiHeaderBreadcrumb href="#">
-          Management
-        </EuiHeaderBreadcrumb>
-
-        <EuiHeaderBreadcrumb href="#">
-          Truncation test is here
-        </EuiHeaderBreadcrumb>
-
-        <EuiHeaderBreadcrumbCollapsed />
-
-        <EuiHeaderBreadcrumb href="#">
-          Users
-        </EuiHeaderBreadcrumb>
-
-        <EuiHeaderBreadcrumb href="#" isActive>
-          Create
-        </EuiHeaderBreadcrumb>
-      </EuiHeaderBreadcrumbs>
+      <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />
     );
   }
 
   renderSearch() {
     return (
-      <EuiHeaderSectionItemButton>
+      <EuiHeaderSectionItemButton aria-label="Search">
         <EuiIcon
           type="search"
           size="m"

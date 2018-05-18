@@ -39,7 +39,13 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiHeaderSectionItemButton onClick={this.onMenuButtonClick}>
+      <EuiHeaderSectionItemButton
+        aria-controls="headerUserMenu"
+        aria-expanded={this.state.isOpen}
+        aria-haspopup="true"
+        aria-label="Account menu"
+        onClick={this.onMenuButtonClick}
+      >
         <EuiIcon
           type="user"
           size="m"

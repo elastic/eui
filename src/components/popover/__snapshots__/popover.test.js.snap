@@ -93,6 +93,12 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
 >
   <button />
   <div>
+    <p
+      class="euiScreenReaderOnly"
+      role="alert"
+    >
+      You are in a popup menu. To exit this menu hit escape.
+    </p>
     <div
       aria-live="off"
       class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"

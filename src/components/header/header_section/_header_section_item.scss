@@ -10,7 +10,6 @@
   &:after {
     position: absolute;
     content: "";
-    width: 1px;
     top: $euiSize;
     bottom: 0;
     background: $euiBorderColor;
@@ -28,8 +27,16 @@
     }
   }
 
+.euiHeaderSectionItem--borderLeft {
+  &:after {
+    left: 0;
+    width: 1px;
+  }
+}
+
 .euiHeaderSectionItem--borderRight {
   &:after {
+    width: 1px;
     left: auto;
     right: 0;
   }

@@ -135,9 +135,9 @@ export {
 export {
   EuiHeader,
   EuiHeaderAlert,
-  EuiHeaderBreadcrumb,
-  EuiHeaderBreadcrumbCollapsed,
   EuiHeaderBreadcrumbs,
+  EuiHeaderLink,
+  EuiHeaderLinks,
   EuiHeaderLogo,
   EuiHeaderNotification,
   EuiHeaderSection,

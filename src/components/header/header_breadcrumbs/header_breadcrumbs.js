@@ -1,15 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export const EuiHeaderBreadcrumbs = ({ children, className, ...rest }) => {
+import { EuiBreadcrumbs } from '../../breadcrumbs'
+
+export const EuiHeaderBreadcrumbs = ({ className, breadcrumbs, ...rest }) => {
   const classes = classNames('euiHeaderBreadcrumbs', className);
 
   return (
-    <div
+
+    <EuiBreadcrumbs
+      max={4}
+      breadcrumbs={breadcrumbs}
       className={classes}
       {...rest}
-    >
-      {children}
-    </div>
+    />
   );
 };

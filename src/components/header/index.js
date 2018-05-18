@@ -7,10 +7,13 @@ export {
 } from './header_alert';
 
 export {
-  EuiHeaderBreadcrumb,
   EuiHeaderBreadcrumbs,
-  EuiHeaderBreadcrumbCollapsed,
 } from './header_breadcrumbs';
+
+export {
+  EuiHeaderLink,
+  EuiHeaderLinks,
+} from './header_links';
 
 export {
   EuiHeaderLogo,

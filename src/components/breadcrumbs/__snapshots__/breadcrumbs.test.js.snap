@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiBreadcrumbs is rendered 1`] = `
-<div
+<nav
   aria-label="aria-label"
   class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
   data-test-subj="test subject string"
@@ -40,16 +40,18 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of breadcrumbs 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
@@ -83,16 +85,18 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <div
@@ -104,16 +108,18 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
@@ -135,16 +141,18 @@ exports[`EuiBreadcrumbs props max renders 2 items 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
@@ -176,16 +184,18 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
@@ -219,16 +229,18 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
 
 exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
-<div
+<nav
+  aria-label="breadcrumb"
   class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
 >
   <button
@@ -262,10 +274,11 @@ exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <span
+    aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
     title="Edit"
   >
     Edit
   </span>
-</div>
+</nav>
 `;
