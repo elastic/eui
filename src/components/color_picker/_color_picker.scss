@@ -1,10 +1,15 @@
 .euiColorPicker {
   cursor: pointer;
+
+  .block-picker, .sketch-picker {
+    box-shadow: none !important;
+  }
 }
 
   .euiColorPicker__preview {
     display: flex;
     align-items: center;
+    width: 100%;
   }
 
   .euiColorPicker__swatch {
@@ -13,6 +18,7 @@
     border-radius: $euiBorderRadius;
     box-shadow: inset 0 0 0 1px rgba(#000, 0.2);
     display: inline-block;
+    position: relative;
   }
 
   .euiColorPicker__emptySwatch {
@@ -20,6 +26,8 @@
       position: absolute;
       width: $colorPickerSize;
       height: $colorPickerSize;
+      left: 0;
+      top: 0;
     }
 
     svg line {
@@ -29,15 +37,20 @@
   }
 
   .euiColorPicker__label {
-    font-size: $euiFontSize;
-    line-height: $euiLineHeight;
-    margin-left: 10px;
+    margin-left: $euiSizeS;
     display: inline-block;
     vertical-align: middle;
   }
 
-.euiColorPickerPopUp {
-  position: absolute;
-  z-index: 10;
+.twitter-picker {
+  box-shadow: none !important;
+
+  > div {
+    padding: 0 !important;
+  }
 }
 
+.euiColorPickerPopUp {
+  position: absolute;
+  z-index: $euiZContentMenu;
+}

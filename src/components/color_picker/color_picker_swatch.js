@@ -20,14 +20,14 @@ export const EuiColorPickerSwatch = ({
   }
 
   return (
-    <div
+    <span
       className={classes}
       data-test-subj="colorSwatch"
       style={{ background: color ? color : '' }}
       {...rest}
     >
       {children}
-    </div>
+    </span>
   );
 };
 

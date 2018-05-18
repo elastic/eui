@@ -6,6 +6,8 @@ import {
   EuiColorPicker,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiButtonEmpty,
+  EuiFormRow,
   EuiKeyboardAccessible,
 } from '../../../../src/components';
 
@@ -27,28 +29,22 @@ export class ColorPickerLabelAndClear extends Component {
 
   render() {
     return (
-      <EuiFlexGroup alignItems="center">
+      <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
-          <label className="kuiLabel">
-            Background color
-          </label>
+          <EuiFormRow label="Pick a color">
+            <EuiColorPicker
+              onChange={this.handleChange}
+              color={this.state.color}
+            />
+          </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiColorPicker
-            onChange={this.handleChange}
-            color={this.state.color}
-          />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <p className="kuiText">
-            <EuiKeyboardAccessible>
-              <a className="kuiLink" onClick={this.resetColor}>
-                Reset
-              </a>
-            </EuiKeyboardAccessible>
-          </p>
+          <EuiFormRow hasEmptyLabelSpace>
+            <EuiButtonEmpty onClick={this.resetColor}>
+              Reset
+            </EuiButtonEmpty>
+          </EuiFormRow>
         </EuiFlexItem>
       </EuiFlexGroup>
     );
