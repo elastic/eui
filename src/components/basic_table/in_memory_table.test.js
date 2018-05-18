@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiInMemoryTable } from './in_memory_table';
+import { ENTER } from '../../services/key_codes';
 
 describe('EuiInMemoryTable', () => {
 
@@ -522,4 +523,74 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('search interaction & functionality', () => {
+    it('updates the results as based on the entered query', () => {
+      const items = [
+        {
+          active: true,
+          name: 'Kansas'
+        },
+        {
+          active: true,
+          name: 'North Dakota'
+        },
+        {
+          active: false,
+          name: 'Florida'
+        },
+      ];
+
+      const columns = [
+        {
+          field: 'active',
+          name: 'Is Active'
+        },
+        {
+          field: 'name',
+          name: 'Name'
+        }
+      ];
+
+      const search = {};
+
+      const props = { items, columns, search, className: 'testTable' };
+
+      const component = mount(
+        <EuiInMemoryTable {...props}/>
+      );
+
+      // should render with all three results visible
+      expect(component.find('.testTable EuiTableRow').length).toBe(3);
+
+      const searchField = component.find('EuiFieldSearch input[type="search"]');
+
+      searchField.simulate(
+        'keyUp',
+        {
+          target: {
+            value: 'is:active',
+          },
+          keyCode: ENTER
+        }
+      );
+      component.update();
+
+      // should render with the two active results
+      expect(component.find('.testTable EuiTableRow').length).toBe(2);
+
+      searchField.simulate(
+        'keyUp',
+        {
+          target: {
+            value: 'active:false',
+          },
+          keyCode: ENTER
+        }
+      );
+      component.update();
+
+      // should render with the one inactive result
+      expect(component.find('.testTable EuiTableRow').length).toBe(1);
+    });
+  });
 });
