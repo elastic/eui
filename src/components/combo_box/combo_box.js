@@ -74,7 +74,7 @@ export class EuiComboBox extends Component {
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
     this.optionsList = undefined;
-    this.prevTabIndex = undefined;
+    this.tabOffset = 0;
     this.options = [];
   }
 
@@ -139,21 +139,32 @@ export class EuiComboBox extends Component {
 
   tabAway = amount => {
     const tabbableItems = tabbable(document);
-    if (!this.prevTabIndex) {
-      this.prevTabIndex = tabbableItems.indexOf(this.searchInput);
-    }
+    const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
 
-    let nextTabIndex = this.prevTabIndex + amount;
+    let nextTabIndex = comboBoxIndex + this.tabOffset + amount;
     if (nextTabIndex < 0) {
       nextTabIndex = tabbableItems.length - 1;
     } else if (nextTabIndex > tabbableItems.length - 1) {
       nextTabIndex = 0;
     }
 
-    this.closeList();
     tabbableItems[nextTabIndex].focus();
-    this.prevTabIndex = nextTabIndex;
+    if (this.isDescendant(tabbableItems[nextTabIndex])) {
+      this.tabOffset += amount;
+    }
   };
+
+  isDescendant = node => {
+    let parentNode = node.parentNode;
+    while (parentNode) {
+      if (parentNode === this.comboBox) {
+        return true;
+      }
+      parentNode = parentNode.parentNode;
+    }
+
+    return false;
+  }
 
   incrementActiveOptionIndex = throttle(amount => {
     // If there are no options available, reset the focus.
