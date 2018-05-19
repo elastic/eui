@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   EuiIcon,
-  EuiToolTip,
+  EuiTooltip,
   EuiLink,
   EuiText,
   EuiFieldText,
@@ -15,57 +15,57 @@ export default () => (
     <EuiText>
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip
+        <EuiTooltip
           position="top"
           content="Here is some tooltip text"
         >
           <EuiLink href="#">top</EuiLink>
-        </EuiToolTip>
+        </EuiTooltip>
       </p>
 
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip
+        <EuiTooltip
           position="left"
           title="Tooltip titles are optional"
           content="Here is some tooltip text. Lets add some more content to see how it wraps."
         >
           <EuiLink href="#">left</EuiLink>
-        </EuiToolTip>
+        </EuiTooltip>
         {' '} and includes the optional title.
       </p>
 
       <p>
         This tooltip appears on the{' '}
-        <EuiToolTip
+        <EuiTooltip
           position="right"
           content="Here is some tooltip text"
         >
           <EuiLink href="#">right</EuiLink>
-        </EuiToolTip>
+        </EuiTooltip>
       </p>
 
       <p>
         This tooltip appears on the bottom of this icon:{' '}
-        <EuiToolTip
+        <EuiTooltip
           position="bottom"
           content="Here is some tooltip text"
         >
           <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
-        </EuiToolTip>
+        </EuiTooltip>
       </p>
     </EuiText>
 
     <EuiSpacer />
 
-    <EuiToolTip position="right" content="Works on anything">
+    <EuiTooltip position="right" content="Works on anything">
       <EuiFieldText placeholder="Hover over me" />
-    </EuiToolTip>
+    </EuiTooltip>
 
     <EuiSpacer />
 
-    <EuiToolTip position="top" content={<p>Works on any kind of element &mdash; buttons, inputs, you name it!</p>}>
+    <EuiTooltip position="top" content={<p>Works on any kind of element &mdash; buttons, inputs, you name it!</p>}>
       <EuiButton onClick={() => alert('Buttons are still clickable within tooltips.')}>Hover me</EuiButton>
-    </EuiToolTip>
+    </EuiTooltip>
   </div>
 );

@@ -202,7 +202,7 @@ import { ToastExample }
   from './views/toast/toast_example';
 
 import { ToolTipExample }
-  from './views/tool_tip/tool_tip_example';
+  from './views/tooltip/tooltip_example';
 
 import { Changelog }
   from './views/package/changelog';

@@ -299,5 +299,5 @@ export {
 
 export {
   EuiIconTip,
-  EuiToolTip,
-} from './tool_tip';
+  EuiTooltip,
+} from './tooltip';

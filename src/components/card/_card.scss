@@ -30,7 +30,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
       min-width: 40%; /* 2 */
       max-width: calc(100% - #{$euiCardSpacing*2});
 
-      .euiToolTipAnchor,
+      .EuiTooltipAnchor,
       .euiCard__betaBadge {
         width: 100%; /* 2 */
       }

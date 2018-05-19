@@ -21,7 +21,7 @@ import {
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiToolTip,
+  EuiTooltip,
 } from '../../../../src/components';
 
 const pkg = require('../../../../package.json');
@@ -56,7 +56,7 @@ export const HomeView = () => (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
-            <EuiToolTip
+            <EuiTooltip
               title="Download zip"
               postiion="down"
               content="Import these sketch files into a new project as libraries.
@@ -66,7 +66,7 @@ export const HomeView = () => (
               <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.25/eui_sketch_0.0.25.zip">
                 <strong>Sketch libraries</strong>
               </EuiLink>
-            </EuiToolTip>
+            </EuiTooltip>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiIcon type="logoSketch" />

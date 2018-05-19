@@ -9,13 +9,13 @@ import {
 import {
   EuiCallOut,
   EuiCode,
-  EuiToolTip,
+  EuiTooltip,
   EuiIconTip,
   EuiSpacer,
 } from '../../../../src/components';
 
-import ToolTip from './tool_tip';
-const toolTipSource = require('!!raw-loader!./tool_tip');
+import ToolTip from './tooltip';
+const toolTipSource = require('!!raw-loader!./tooltip');
 const toolTipHtml = renderToHtml(ToolTip);
 
 import IconTip from './icon_tip';
@@ -27,10 +27,10 @@ export const ToolTipExample = {
   intro: (
     <Fragment>
       <EuiCallOut
-        title="EuiToolTip only applies to inline elements"
+        title="EuiTooltip only applies to inline elements"
       >
         <p>
-          EuiToolTip wraps its children in a span element, so if you pass in a block-level child
+          EuiTooltip wraps its children in a span element, so if you pass in a block-level child
           (e.g. a div) the resulting DOM will be in violation of the HTML5 spec.
         </p>
       </EuiCallOut>
@@ -48,14 +48,14 @@ export const ToolTipExample = {
     }],
     text: (
       <p>
-        Wrap <EuiCode>EuiToolTip</EuiCode> around any item that you need a tooltip for.
+        Wrap <EuiCode>EuiTooltip</EuiCode> around any item that you need a tooltip for.
         The <EuiCode>position</EuiCode> prop will take a suggested position, but will
         change it if the tool tip gets too close to the edge of the screen. You can use
         the <EuiCode>clickOnly</EuiCode> prop to tell the too tip to only appear on click
         wrather than on hover.
       </p>
     ),
-    props: { EuiToolTip },
+    props: { EuiTooltip },
     demo: <ToolTip />,
   }, {
     title: 'IconTip',
@@ -74,13 +74,13 @@ export const ToolTipExample = {
           and only hide them behind a <EuiCode>EuiIconTip</EuiCode> as a last resort.
         </p>
         <p>
-          It accepts all the same props as <EuiCode>EuiToolTip</EuiCode>.
+          It accepts all the same props as <EuiCode>EuiTooltip</EuiCode>.
           For convenience, you can also specify optional icon <EuiCode>type</EuiCode> and
           <EuiCode>color</EuiCode> props.
         </p>
       </Fragment>
     ),
-    props: { EuiToolTip, EuiIconTip },
+    props: { EuiTooltip, EuiIconTip },
     demo: <IconTip />,
   }],
 };
