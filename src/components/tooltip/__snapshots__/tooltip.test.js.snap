@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTooltip is rendered 1`] = `
+<span
+  class="EuiTooltipAnchor"
+>
+  <button
+    aria-describedby="id"
+  >
+    Trigger
+  </button>
+</span>
+`;

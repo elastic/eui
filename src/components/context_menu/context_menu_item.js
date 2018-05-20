@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
-import { EuiToolTip } from '../tool_tip';
+import { EuiTooltip } from '../tooltip';
 
 export class EuiContextMenuItem extends Component {
   static propTypes = {
@@ -110,14 +110,14 @@ export class EuiContextMenuItem extends Component {
 
     if (toolTipContent) {
       return (
-        <EuiToolTip
+        <EuiTooltip
           title={toolTipTitle ? toolTipTitle : null}
           content={toolTipContent}
           anchorClassName="eui-displayBlock"
           position={toolTipPosition}
         >
           {button}
-        </EuiToolTip>
+        </EuiTooltip>
       );
     } else {
       return (

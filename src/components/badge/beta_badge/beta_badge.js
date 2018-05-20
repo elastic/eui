@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiToolTip } from '../../tool_tip';
+import { EuiTooltip } from '../../tooltip';
 
 import {
   ICON_TYPES,
@@ -41,7 +41,7 @@ export const EuiBetaBadge = ({
 
   if (tooltipContent) {
     return (
-      <EuiToolTip
+      <EuiTooltip
         position={tooltipPosition}
         content={tooltipContent}
         title={title || label}
@@ -52,7 +52,7 @@ export const EuiBetaBadge = ({
         >
           {icon || label}
         </span>
-      </EuiToolTip>
+      </EuiTooltip>
     );
   } else {
     return (

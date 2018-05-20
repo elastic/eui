@@ -5,6 +5,7 @@
 
 **Bug fixes**
 - `EuiInMemoryTable` now applies its search filter ([#851](https://github.com/elastic/eui/pull/851))
+-`"Tooltip" is one word` ([#708] (https://github.com/elastic/eui/pull/857))
 
 ## [`0.0.48`](https://github.com/elastic/eui/tree/v0.0.48)
 
@@ -209,7 +210,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiToolTip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
+- Fixed `EuiTooltip` bug which caused the tooltip to hide when moving the mouse around inside of the trigger element ([#557](https://github.com/elastic/eui/pull/557), [#564](https://github.com/elastic/eui/pull/564))
 - Fixed a bug where `EuiButtonEmpty` would offer a white background on hover when it was disabled, even when there was no such background transition on hover when the buttons are not disabled ([#561](https://github.com/elastic/eui/pull/561))
 - Fixed table cell bugs ([#565](https://github.com/elastic/eui/pull/565))
   - `EuiBasicTable` now supports explicitly setting `truncateText` and `textOnly` on column definitions, and supports passing through unrecognized props to the cell (e.g. `data-test-subj`).
@@ -234,7 +235,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiToolTip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550](https://github.com/elastic/eui/pull/550))
+- Fixed `EuiTooltip` smart positioning to prevent tooltip from being clipped by the window where possible ([#550](https://github.com/elastic/eui/pull/550))
 
 ## [`0.0.31`](https://github.com/elastic/eui/tree/v0.0.31)
 
@@ -306,7 +307,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Breaking changes**
 
-- Complete refactor of `EuiToolTip`. They now work. Only a breaking change if you were using them. ([#484](https://github.com/elastic/eui/pull/484))
+- Complete refactor of `EuiTooltip`. They now work. Only a breaking change if you were using them. ([#484](https://github.com/elastic/eui/pull/484))
 
 ## [`0.0.24`](https://github.com/elastic/eui/tree/v0.0.24)
 

@@ -1,5 +1,5 @@
 declare module '@elastic/eui' {
-  type EuiToolTipPosition = 'top' | 'right' | 'bottom' | 'left';
+  type EuiTooltipPosition = 'top' | 'right' | 'bottom' | 'left';
 
   type EuiPopoverAnchorRect = {
     top: number;
@@ -16,14 +16,14 @@ declare module '@elastic/eui' {
   export const calculatePopoverPosition: (
     anchorBounds: EuiPopoverAnchorRect,
     popoverBounds: EuiPopoverDimensions,
-    requestedPosition: EuiToolTipPosition,
+    requestedPosition: EuiTooltipPosition,
     buffer?: number,
-    positions?: EuiToolTipPosition[]
+    positions?: EuiTooltipPosition[]
   ) => {
     top: number;
     left: number;
     width: number;
     height: number;
-    position: EuiToolTipPosition;
+    position: EuiTooltipPosition;
   };
 }

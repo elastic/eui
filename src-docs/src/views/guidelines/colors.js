@@ -15,7 +15,7 @@ import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiBadge,
-  EuiToolTip,
+  EuiTooltip,
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
@@ -185,7 +185,7 @@ export default() => (
 
                 return (
                   <EuiFlexItem className="guidelineColor__test" key={index}>
-                    <EuiToolTip
+                    <EuiTooltip
                       title={`Contrast is ${contrast.toFixed(1)}`}
                       content={
                         <EuiDescriptionList>
@@ -229,7 +229,7 @@ export default() => (
                         </div>
                         {contrastRating}
                       </div>
-                    </EuiToolTip>
+                    </EuiTooltip>
                   </EuiFlexItem>
                 );
               })}
