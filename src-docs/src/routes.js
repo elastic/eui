@@ -201,7 +201,7 @@ import { TitleExample }
 import { ToastExample }
   from './views/toast/toast_example';
 
-import { ToolTipExample }
+import { TooltipExample }
   from './views/tooltip/tooltip_example';
 
 import { Changelog }
@@ -318,7 +318,7 @@ const navigation = [{
     TextExample,
     TitleExample,
     ToastExample,
-    ToolTipExample,
+    TooltipExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Forms',
