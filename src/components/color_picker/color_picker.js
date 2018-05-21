@@ -41,12 +41,6 @@ export class EuiColorPicker extends Component {
     this.props.onChange(e.target.value);
   };
 
-  getColorLabel() {
-    const { color } = this.props;
-    const colorValue = color === null ? '(transparent)' : color;
-    return (colorValue);
-  }
-
   handleSwatchSelection(color) {
     this.props.onChange(color);
     this.input.focus();
@@ -105,11 +99,12 @@ export class EuiColorPicker extends Component {
           <div style={{ color: color }}>
             <EuiFieldText
               onFocus={this.showColorSelector}
-              value={color.toUpperCase()}
+              value={color ? color.toUpperCase() : ""}
+              placeholder={!color ? "Transparent" : null}
               id={id}
               onChange={this.handleColorSelection}
               maxLength="7"
-              icon="stopFilled"
+              icon={color ? "stopFilled" : "stopSlash"}
               inputRef={(input) => { this.input = input; }}
               isInvalid={isInvalid}
               compressed={compressed}

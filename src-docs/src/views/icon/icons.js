@@ -115,6 +115,7 @@ const iconTypes = [
   'stats',
   'stop',
   'stopFilled',
+  'stopSlash',
   'storage',
   'string',
   'temperature',
