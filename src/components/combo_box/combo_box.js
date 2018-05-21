@@ -23,6 +23,8 @@ import {
   getSelectedOptionForSearchValue,
 } from './matching_options';
 
+const UNSET = -999;
+
 export class EuiComboBox extends Component {
   static propTypes = {
     id: PropTypes.string,
@@ -74,7 +76,7 @@ export class EuiComboBox extends Component {
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
     this.optionsList = undefined;
-    this.tabOffset = 0;
+    this.tabOffset = UNSET;
     this.options = [];
   }
 
@@ -151,6 +153,8 @@ export class EuiComboBox extends Component {
     tabbableItems[nextTabIndex].focus();
     if (this.isDescendant(tabbableItems[nextTabIndex])) {
       this.tabOffset += amount;
+    } else {
+      this.tabOffset = UNSET;
     }
   };
 
@@ -300,6 +304,13 @@ export class EuiComboBox extends Component {
     document.addEventListener('click', this.onDocumentFocusChange);
     document.addEventListener('focusin', this.onDocumentFocusChange);
     this.openList();
+
+    if (this.tabOffset === UNSET) {
+      const tabbableItems = tabbable(document);
+      const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
+      tabbableItems[comboBoxIndex].focus();
+      this.tabOffset = 0;
+    }
   }
 
   onBlur = () => {
