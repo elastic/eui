@@ -42,6 +42,15 @@ describe('EuiButton', () => {
         expect(component)
           .toMatchSnapshot();
       });
+
+      it('renders a button even when href is defined', () => {
+        const component = render(
+          <EuiButton href="#" isDisabled />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
     });
 
     describe('isLoading', () => {

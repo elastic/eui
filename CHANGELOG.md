@@ -1,14 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.49`.
+**Bug fixes**
+
+- `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
 
 ## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
 
 **Breaking changes**
+
 - EUI requires React `16.3` or higher ([#849](https://github.com/elastic/eui/pull/849))
 - `EuiHeaderBreadcrumbs` refactored to use `EuiBreadcrumbs`. This removed all child components of `EuiHeaderBreadcrumbs`. ([#844](https://github.com/elastic/eui/pull/844))
 
 **Bug fixes**
+
 - `EuiInMemoryTable` now applies its search filter ([#851](https://github.com/elastic/eui/pull/851))
 - `EuiInMemoryTable` and `EuiBasicTable` now pass unknown props through to their child ([#836](https://github.com/elastic/eui/pull/836))
 - Added `EuiHeaderLinks` which allow you to construct navigation in the header in place of the app menu. ([#844](https://github.com/elastic/eui/pull/844))

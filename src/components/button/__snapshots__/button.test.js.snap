@@ -248,6 +248,22 @@ exports[`EuiButton props isDisabled is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props isDisabled renders a button even when href is defined 1`] = `
+<button
+  class="euiButton euiButton--primary"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButton props isLoading is rendered 1`] = `
 <button
   class="euiButton euiButton--primary"

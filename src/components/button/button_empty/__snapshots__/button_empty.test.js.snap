@@ -237,6 +237,20 @@ exports[`EuiButtonEmpty props isDisabled is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props isDisabled renders a button even when href is defined 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--primary"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props size l is rendered 1`] = `
 <button
   class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--large"

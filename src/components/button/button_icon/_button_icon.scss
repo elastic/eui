@@ -18,6 +18,11 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
+    .euiButtonIcon__icon {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
     &:hover, &:focus {
       background-color: $euiColorEmptyShade;
       text-decoration: none;
@@ -44,7 +49,6 @@ $buttonTypes: (
     }
 
     &:hover, &:focus {
-
       @if ($name == 'disabled') {
         cursor: not-allowed;
       }
