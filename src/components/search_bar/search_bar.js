@@ -19,7 +19,7 @@ export const SearchBarPropTypes = {
   /**
    * (query: Query) => void
    */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 
   /**
    (query?: Query, queryText: string, error?: string) => void
@@ -56,16 +56,12 @@ export const SearchBarPropTypes = {
   /**
    * Tools which go to the right of the search bar.
    */
-  toolsRight: PropTypes.node,
+  toolsRight: PropTypes.node
 };
 
 const parseQuery = (query, props) => {
-  const parseDate = props.box ? props.box.parseDate : undefined;
   const schema = props.box ? props.box.schema : undefined;
-  const parseOptions = {
-    parseDate,
-    schema
-  };
+  const parseOptions = { schema };
   if (!query) {
     return Query.parse('', parseOptions);
   }
@@ -74,7 +70,7 @@ const parseQuery = (query, props) => {
 
 export class EuiSearchBar extends Component {
 
-  static propTypes = SearchBoxConfigPropTypes;
+  static propTypes = SearchBarPropTypes;
 
   static Query = Query;
 
@@ -88,31 +84,47 @@ export class EuiSearchBar extends Component {
     };
   }
 
-  // TODO: React 16.3 - getDerivedStateFromProps
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.query) {
-      const query = parseQuery(nextProps.query, this.props);
-      this.setState({
+      const query = parseQuery(nextProps.query, nextProps);
+      return {
         query,
         queryText: query.text,
         error: null
-      });
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(oldProps, oldState) {
+    const { query, queryText, error } = this.state;
+
+    const isQueryDifferent = oldState.queryText !== queryText;
+
+    const oldError = oldState.error ? oldState.error.message : null;
+    const newError = error ? error.message : null;
+    const isErrorDifferent = oldError !== newError;
+
+    if (isQueryDifferent || isErrorDifferent) {
+      if (this.props.onParse) {
+        this.props.onParse({ query, queryText, error });
+      }
+
+      // only fire onChange if there isn't an error
+      if (newError == null) {
+        if (this.props.onChange) {
+          this.props.onChange(query);
+        }
+      }
     }
   }
 
   onSearch = (queryText) => {
     try {
       const query = parseQuery(queryText, this.props);
-      if (this.props.onParse) {
-        this.props.onParse({ query, queryText });
-      }
       this.setState({ query, queryText, error: null });
-      this.props.onChange(query);
     } catch (e) {
       const error = { message: e.message };
-      if (this.props.onParse) {
-        this.props.onParse({ queryText, error });
-      }
       this.setState({ queryText, error });
     }
   };
@@ -123,7 +135,9 @@ export class EuiSearchBar extends Component {
       queryText: query.text,
       error: null
     });
-    this.props.onChange(query);
+    if (this.props.onChange) {
+      this.props.onChange(query);
+    }
   };
 
   renderTools(tools) {
