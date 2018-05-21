@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- When using `EuiSearchBar` as a controlled input, the `onParse` and `onChange` callbacks will now fire
+
 **Bug fixes**
 
 - `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
