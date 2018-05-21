@@ -5,6 +5,7 @@ import { getPlotValues } from './utils';
 import Highlight from './highlight';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
+import { debounce } from 'lodash'
 
 const NO_DATA_VALUE = '~~NODATATODISPLAY~~';
 
@@ -20,7 +21,15 @@ export class XYChart extends PureComponent {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
   }
 
-  _updateCrosshairValues = (e) => {
+  _onMouseMove = (e) => {
+    e.persist();
+    this._updateCrosshairValues({
+      boundingClientRect: e.currentTarget.getBoundingClientRect(),
+      clientX: e.clientX
+    });
+  }
+
+  _updateCrosshairValues = debounce(({ boundingClientRect, clientX }) => {
     // Calculate the range of the X axis
     const chartData = this._xyPlotRef.state.data.filter(d => d !== undefined)
     const plotValues = getPlotValues(chartData, this.props.width);
@@ -29,7 +38,7 @@ export class XYChart extends PureComponent {
 
     const innerChartWidth = this._xyPlotRef._getDefaultScaleProps(this._xyPlotRef.props).xRange[1]
 
-    const mouseX = e.clientX - e.currentTarget.getBoundingClientRect().left;
+    const mouseX = clientX - boundingClientRect.left;
     const xAxisesBucketWidth = innerChartWidth / maxChartXValue;
     const bucketX = Math.floor(mouseX / xAxisesBucketWidth)
 
@@ -43,7 +52,7 @@ export class XYChart extends PureComponent {
       }
       
     }  
-  }
+  }, 20)
 
   _getAllSeriesFromDataAtIndex = (chartData, xBucket) => {
     const chartDataForXValue = chartData.map(series => series.filter(seriesData => {
@@ -145,7 +154,7 @@ export class XYChart extends PureComponent {
         ref={this._setXYPlotRef}
         dontCheckIfEmpty
         xType={mode}
-        onMouseMove={this._updateCrosshairValues}
+        onMouseMove={this._onMouseMove}
         onMouseLeave={this._onMouseLeave}
         width={width}
         animation={true}
