@@ -56,7 +56,7 @@ export const SearchBarPropTypes = {
   /**
    * Tools which go to the right of the search bar.
    */
-  toolsRight: PropTypes.node
+  toolsRight: PropTypes.node,
 };
 
 const parseQuery = (query, props) => {
