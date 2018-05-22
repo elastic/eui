@@ -18,21 +18,23 @@ export class ColorPicker extends Component {
   };
 
   render() {
+    const hasErrors = !isValidHex(this.state.color) && (this.state.color !== "");
+
     let errors;
-    if (!isValidHex(this.state.color)) {
+    if (hasErrors) {
       errors = ['Provide a valid hex value'];
     }
 
     return (
       <EuiFormRow
         label="Pick a color"
-        isInvalid={!isValidHex(this.state.color)}
+        isInvalid={hasErrors}
         error={errors}
       >
         <EuiColorPicker
           onChange={this.handleChange}
           color={this.state.color}
-          isInvalid={!isValidHex(this.state.color)}
+          isInvalid={hasErrors}
         />
       </EuiFormRow>
     );
