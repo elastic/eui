@@ -14,6 +14,7 @@ export class Timer {
 
   resume = () => {
     this.id = setTimeout(this.finish, this.timeRemaining);
+    this.finishTime = Date.now() + this.timeRemaining;
     this.timeRemaining = undefined;
   };
 
@@ -26,7 +27,9 @@ export class Timer {
   };
 
   finish = () => {
-    this.callback();
+    if (this.callback) {
+      this.callback();
+    }
     this.clear();
   };
 }
