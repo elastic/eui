@@ -23,6 +23,8 @@ import {
   getSelectedOptionForSearchValue,
 } from './matching_options';
 
+const UNSET = -999;
+
 export class EuiComboBox extends Component {
   static propTypes = {
     id: PropTypes.string,
@@ -74,6 +76,7 @@ export class EuiComboBox extends Component {
     this.autoSizeInput = undefined;
     this.searchInput = undefined;
     this.optionsList = undefined;
+    this.tabOffset = UNSET;
     this.options = [];
   }
 
@@ -140,24 +143,32 @@ export class EuiComboBox extends Component {
     const tabbableItems = tabbable(document);
     const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
 
-    // Wrap to last tabbable if tabbing backwards.
-    if (amount < 0) {
-      if (comboBoxIndex === 0) {
-        tabbableItems[tabbableItems.length - 1].focus();
-        return;
-      }
+    let nextTabIndex = comboBoxIndex + this.tabOffset + amount;
+    if (nextTabIndex < 0) {
+      nextTabIndex = tabbableItems.length - 1;
+    } else if (nextTabIndex > tabbableItems.length - 1) {
+      nextTabIndex = 0;
     }
 
-    // Wrap to first tabbable if tabbing forwards.
-    if (amount > 0) {
-      if (comboBoxIndex === tabbableItems.length - 1) {
-        tabbableItems[0].focus();
-        return;
-      }
+    tabbableItems[nextTabIndex].focus();
+    if (this.isDescendant(tabbableItems[nextTabIndex])) {
+      this.tabOffset += amount;
+    } else {
+      this.tabOffset = UNSET;
     }
-
-    tabbableItems[comboBoxIndex + amount].focus();
   };
+
+  isDescendant = node => {
+    let parentNode = node.parentNode;
+    while (parentNode) {
+      if (parentNode === this.comboBox) {
+        return true;
+      }
+      parentNode = parentNode.parentNode;
+    }
+
+    return false;
+  }
 
   incrementActiveOptionIndex = throttle(amount => {
     // If there are no options available, reset the focus.
@@ -293,6 +304,13 @@ export class EuiComboBox extends Component {
     document.addEventListener('click', this.onDocumentFocusChange);
     document.addEventListener('focusin', this.onDocumentFocusChange);
     this.openList();
+
+    if (this.tabOffset === UNSET) {
+      const tabbableItems = tabbable(document);
+      const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
+      tabbableItems[comboBoxIndex].focus();
+      this.tabOffset = 0;
+    }
   }
 
   onBlur = () => {

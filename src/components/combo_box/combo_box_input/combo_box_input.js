@@ -157,6 +157,7 @@ export class EuiComboBoxInput extends Component {
       <EuiFormControlLayout
         icon="arrowDown"
         iconSide="right"
+        onFocus={this.onFocus}
         {...clickProps}
       >
         <div

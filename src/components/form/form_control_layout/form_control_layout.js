@@ -21,7 +21,8 @@ export const EuiFormControlLayout = ({
   isLoading,
   onIconClick,
   compressed,
-  className
+  className,
+  onFocus,
 }) => {
 
   const classes = classNames(
@@ -55,6 +56,7 @@ export const EuiFormControlLayout = ({
         <button
           className={iconClasses}
           onClick={onIconClick}
+          onFocus={onFocus}
         >
           <EuiIcon
             type={icon}
@@ -78,6 +80,7 @@ export const EuiFormControlLayout = ({
       <button
         className="euiFormControlLayout__clear"
         onClick={onClear}
+        onFocus={onFocus}
       >
         <EuiIcon
           className="euiFormControlLayout__clearIcon"
