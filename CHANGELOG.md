@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- When using `EuiSearchBar` as a controlled input, the `onParse` and `onChange` callbacks will now fire
+**Breaking changes**
+
+- `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863)) 
 
 **Bug fixes**
 

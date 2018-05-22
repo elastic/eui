@@ -17,14 +17,9 @@ export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), Prop
 
 export const SearchBarPropTypes = {
   /**
-   * (query: Query) => void
-   */
-  onChange: PropTypes.func,
-
-  /**
    (query?: Query, queryText: string, error?: string) => void
    */
-  onParse: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 
   /**
    The initial query the bar will hold when first mounted
@@ -56,12 +51,18 @@ export const SearchBarPropTypes = {
   /**
    * Tools which go to the right of the search bar.
    */
-  toolsRight: PropTypes.node
+  toolsRight: PropTypes.node,
+
+  /**
+   * Date formatter to use when parsing date values
+   */
+  dateFormat: PropTypes.object
 };
 
 const parseQuery = (query, props) => {
   const schema = props.box ? props.box.schema : undefined;
-  const parseOptions = { schema };
+  const dateFormat = props.dateFormat;
+  const parseOptions = { schema, dateFormat };
   if (!query) {
     return Query.parse('', parseOptions);
   }
@@ -106,16 +107,7 @@ export class EuiSearchBar extends Component {
     const isErrorDifferent = oldError !== newError;
 
     if (isQueryDifferent || isErrorDifferent) {
-      if (this.props.onParse) {
-        this.props.onParse({ query, queryText, error });
-      }
-
-      // only fire onChange if there isn't an error
-      if (newError == null) {
-        if (this.props.onChange) {
-          this.props.onChange(query);
-        }
-      }
+      this.props.onChange({ query, queryText, error });
     }
   }
 
@@ -135,9 +127,6 @@ export class EuiSearchBar extends Component {
       queryText: query.text,
       error: null
     });
-    if (this.props.onChange) {
-      this.props.onChange(query);
-    }
   };
 
   renderTools(tools) {

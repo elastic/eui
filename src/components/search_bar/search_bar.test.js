@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import React, { Component } from 'react';
+import React from 'react';
 import { requiredProps } from '../../test';
 import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
@@ -79,74 +79,49 @@ describe('SearchBar', () => {
   });
 
   describe('controlled input', () => {
-    test('calls onParse callback when a new query is passed', () => {
-      const onParse = jest.fn();
+    test('calls onChange callback when a new query is passed', () => {
+      const onChange = jest.fn();
 
-      class Wrapper extends Component {
-        constructor(...args) {
-          super(...args);
-          this.state = { query: '' };
-        }
-
-        setQuery(query) {
-          this.setState({ query });
-        }
-
-        render() {
-          return (
-            <EuiSearchBar
-              {...requiredProps}
-              query={this.state.query}
-              onParse={onParse}
-            />
-          );
-        }
-      }
       const component = mount(
-        <Wrapper/>
+        <EuiSearchBar
+          {...requiredProps}
+          query=""
+          onChange={onChange}
+        />
       );
 
-      const wrapperInstance = component.instance();
-      wrapperInstance.setQuery('is:active');
+      component.setProps({
+        ...requiredProps,
+        query: 'is:active',
+        onChange
+      });
 
-      expect(onParse).toHaveBeenCalledTimes(1);
-      const [[{ query, queryText }]] = onParse.mock.calls;
+      expect(onChange).toHaveBeenCalledTimes(1);
+      const [[{ query, queryText }]] = onChange.mock.calls;
       expect(query).toBeInstanceOf(Query);
       expect(queryText).toBe('is:active');
     });
 
-    test('does not call onParse when an unwatched prop changes', () => {
-      const onParse = jest.fn();
+    test('does not call onChange when an unwatched prop changes', () => {
+      const onChange = jest.fn();
 
-      class Wrapper extends Component {
-        constructor(...args) {
-          super(...args);
-          this.state = { isFoo: false };
-        }
-
-        setIsFoo(isFoo) {
-          this.setState({ isFoo });
-        }
-
-        render() {
-          return (
-            <EuiSearchBar
-              {...requiredProps}
-              query="is:active"
-              isFoo={this.state.isFoo}
-              onParse={onParse}
-            />
-          );
-        }
-      }
       const component = mount(
-        <Wrapper/>
+        <EuiSearchBar
+          {...requiredProps}
+          query="is:active"
+          isFoo={false}
+          onChange={onChange}
+        />
       );
 
-      const wrapperInstance = component.instance();
-      wrapperInstance.setIsFoo(true);
+      component.setProps({
+        ...requiredProps,
+        query: 'is:active',
+        isFoo: true,
+        onChange
+      });
 
-      expect(onParse).toHaveBeenCalledTimes(0);
+      expect(onChange).toHaveBeenCalledTimes(0);
     });
   });
 });
