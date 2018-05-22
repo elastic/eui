@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.49`.
+**Bug fixes**
+- Fixed `EuiComboBox` focus trap ([#845](https://github.com/elastic/eui/pull/845))
 
 ## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
 
