@@ -123,6 +123,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   }
 
   .euiCard__description {
+    color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
     margin-top: $euiCardSpacing/2;
   }
 }
