@@ -5,6 +5,7 @@
 - `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
 - Added FF/IE fallback for `.eui-textBreakWord` ([#864](https://github.com/elastic/eui/pull/864))
 - Fixed `EuiCard` description text color when used in/as an anchor tag ([#864](https://github.com/elastic/eui/pull/864))
+- Fixed `EuiCard` IE bugs ([#864](https://github.com/elastic/eui/pull/864))
 
 ## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
 
