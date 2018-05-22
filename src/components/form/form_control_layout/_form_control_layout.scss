@@ -27,7 +27,11 @@
 
   .euiFormControlLayout__iconButton {
     pointer-events: all;
-    top: $euiFormControlPadding - 1px;
+    @include size($euiSize);
+
+    .euiIcon {
+      vertical-align: baseline;
+    }
 
     @at-root {
       .euiFormControlLayout--compressed#{&} {
