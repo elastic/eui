@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
+- `EuiGlobalToastList` no longer triggers `Uncaught TypeError: _this.callback is not a function`  ([#865](https://github.com/elastic/eui/pull/865))
 
 ## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
 
