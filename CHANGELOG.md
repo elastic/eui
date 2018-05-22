@@ -19,6 +19,7 @@ No public interface changes since `0.0.38`.
 - Fixed `EuiComboBox` bug in which opening the combo box when there's no scrollbar on the window would result in the list being positioned incorrectly ([#631](https://github.com/elastic/eui/pull/631))
 - Fixed `EuiComboBox` bug in which clicking a pill's close button would close the list ([#631](https://github.com/elastic/eui/pull/631))
 - Fixed `EuiComboBox` bug in which moving focus from one combo box to another would remove the `euiBody-hasPortalContent` class from the body. ([#631](https://github.com/elastic/eui/pull/631))
+- `EuiGlobalToastList` no longer triggers `Uncaught TypeError: _this.callback is not a function`  ([#865](https://github.com/elastic/eui/pull/865))
 
 # [`0.0.37`](https://github.com/elastic/eui/tree/v0.0.37)
 
