@@ -95,3 +95,12 @@ exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
   type="button"
 />
 `;
+
+exports[`EuiButtonIcon props isDisabled renders a button even when href is defined 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--primary"
+  disabled=""
+  type="button"
+/>
+`;

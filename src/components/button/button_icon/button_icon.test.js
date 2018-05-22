@@ -24,6 +24,15 @@ describe('EuiButtonIcon', () => {
         expect(component)
           .toMatchSnapshot();
       });
+
+      it('renders a button even when href is defined', () => {
+        const component = render(
+          <EuiButtonIcon aria-label="button" href="#" isDisabled />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
     });
 
     describe('iconType', () => {
