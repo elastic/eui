@@ -68,7 +68,7 @@ EuiToggle.propTypes = {
    * Use your own logic to pass the child you want according to
    * the checked state of your component.
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
 
   /**
    * Determines the input type based on multiple or single item(s).

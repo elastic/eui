@@ -7,3 +7,11 @@ export {
 export {
   EuiButtonIcon,
 } from './button_icon';
+
+export {
+  EuiButtonToggle,
+} from './button_toggle';
+
+export {
+  EuiButtonGroup,
+} from './button_group';
