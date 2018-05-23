@@ -41,7 +41,10 @@ export class CustomButton extends Component {
           color={this.state.color}
           isInvalid={hasErrors}
           button={
-            <EuiColorPickerSwatch color={this.state.color} />
+            <EuiColorPickerSwatch
+              color={this.state.color}
+              aria-label="Select a new color"
+            />
           }
         />
       </EuiFormRow>

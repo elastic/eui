@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch'
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiFieldText } from '../form'
 import { EuiPanel } from '../panel'
 import { EuiOutsideClickDetector } from '../outside_click_detector'
@@ -85,7 +86,7 @@ export class EuiColorPicker extends Component {
           className="euiColorPicker__swatchSelect"
           color={swatch}
           onClick={this.handleSwatchSelection.bind(this, swatch)}
-          aria-label={`Select ${color} as the color`}
+          aria-label={`Select ${swatch} as the color`}
         />
       </EuiFlexItem>
     ));
@@ -97,6 +98,13 @@ export class EuiColorPicker extends Component {
           className="euiColorPicker__panel"
           paddingSize="s"
         >
+          <EuiScreenReaderOnly>
+            <p aria-live="polite">
+              A popup with a range of selectable colors opened.
+              Tab forward to cycle through colors choices or press
+              escape to close this popup.
+            </p>
+          </EuiScreenReaderOnly>
           <EuiFlexGroup wrap responsive={false} gutterSize="s">
             {swatchButtons}
           </EuiFlexGroup>
