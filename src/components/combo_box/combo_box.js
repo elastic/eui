@@ -137,13 +137,17 @@ export class EuiComboBox extends Component {
   };
 
   tabAway = amount => {
+    if (![-1, 1].includes(amount)) {
+      throw new Error(`tabAway expects amount to be -1 or 1, but received ${amount}`);
+    }
+
     const tabbableItems = tabbable(document);
 
     if (document.activeElement === this.searchInput) {
       const searchInputIndex = tabbableItems.indexOf(this.searchInput);
 
       // Wrap to last tabbable if tabbing backwards.
-      if (amount < 0) {
+      if (amount === -1) {
         if (searchInputIndex === 0) {
           tabbableItems[tabbableItems.length - 1].focus();
           return;
@@ -159,7 +163,7 @@ export class EuiComboBox extends Component {
       const clearButtonIndex = tabbableItems.indexOf(this.clearButton);
 
       // Wrap to first tabbable if tabbing forwards.
-      if (amount > 0) {
+      if (amount === 1) {
         if (clearButtonIndex === tabbableItems.length - 1) {
           tabbableItems[0].focus();
           return;
