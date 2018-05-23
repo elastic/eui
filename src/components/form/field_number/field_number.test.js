@@ -4,7 +4,13 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiFieldNumber } from './field_number';
 
-jest.mock('../form_control_layout', () => ({ EuiFormControlLayout: 'eui-form-control-layout' }));
+jest.mock('../form_control_layout', () => {
+  const formControlLayout = require.requireActual('../form_control_layout')
+  return {
+    ...formControlLayout,
+    EuiFormControlLayout: 'eui-form-control-layout',
+  }
+});
 jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
 
 describe('EuiFieldNumber', () => {

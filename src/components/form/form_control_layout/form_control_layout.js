@@ -15,13 +15,12 @@ export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 export const EuiFormControlLayout = ({
   children,
   icon,
+  clear,
   fullWidth,
-  onClear,
-  iconSide,
   isLoading,
-  onIconClick,
   compressed,
-  className
+  className,
+  ...rest
 }) => {
 
   const classes = classNames(
@@ -42,11 +41,26 @@ export const EuiFormControlLayout = ({
 
   let optionalIcon;
   if (icon) {
+    // Normalize the icon to an object if it's a string.
+    const iconProps = typeof icon === 'string' ? {
+      type: icon,
+    } : icon;
+
+    const {
+      className: iconClassName,
+      type: iconType,
+      side: iconSide = 'left',
+      onClick: onIconClick,
+      ref: iconRef,
+      ...iconRest
+    } = iconProps
+
     const iconClasses = classNames(
       'euiFormControlLayout__icon',
       iconSideToClassNameMap[iconSide],
+      iconClassName,
       {
-        'euiFormControlLayout__iconButton': onIconClick
+        'euiFormControlLayout__iconButton': onIconClick,
       },
     );
 
@@ -55,9 +69,11 @@ export const EuiFormControlLayout = ({
         <button
           className={iconClasses}
           onClick={onIconClick}
+          ref={iconRef}
+          {...iconRest}
         >
           <EuiIcon
-            type={icon}
+            type={iconType}
           />
         </button>
       )
@@ -66,18 +82,28 @@ export const EuiFormControlLayout = ({
         <EuiIcon
           aria-hidden="true"
           className={iconClasses}
-          type={icon}
+          type={iconType}
+          {...iconRest}
         />
       );
     }
   }
 
   let optionalClear;
-  if (onClear) {
+  if (clear) {
+    const {
+      className: clearClassName,
+      onClick: onClearClick,
+      ...clearRest
+    } = clear;
+
+    const clearClasses = classNames('euiFormControlLayout__clear', clearClassName);
+
     optionalClear = (
       <button
-        className="euiFormControlLayout__clear"
-        onClick={onClear}
+        className={clearClasses}
+        onClick={onClearClick}
+        {...clearRest}
       >
         <EuiIcon
           className="euiFormControlLayout__clearIcon"
@@ -88,7 +114,7 @@ export const EuiFormControlLayout = ({
   }
 
   return (
-    <div className={classes}>
+    <div className={classes} {...rest}>
       {children}
       {optionalIcon}
       {optionalClear}
@@ -99,18 +125,24 @@ export const EuiFormControlLayout = ({
 
 EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      type: PropTypes.string,
+      side: PropTypes.oneOf(ICON_SIDES),
+      onClick: PropTypes.func,
+    }),
+  ]),
+  clear: PropTypes.shape({
+    onClick: PropTypes.func,
+  }),
   fullWidth: PropTypes.bool,
-  iconSide: PropTypes.oneOf(ICON_SIDES),
   isLoading: PropTypes.bool,
-  onClear: PropTypes.func,
-  onIconClick: PropTypes.func,
   className: PropTypes.string,
   compressed: PropTypes.bool,
 };
 
 EuiFormControlLayout.defaultProps = {
-  iconSide: 'left',
   isLoading: false,
   compressed: false,
 };

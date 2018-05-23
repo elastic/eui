@@ -29,6 +29,7 @@ export class EuiComboBoxInput extends Component {
     onOpenListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.bool,
     isDisabled: PropTypes.bool,
+    clearButtonRef: PropTypes.func,
   }
 
   constructor(props) {
@@ -88,6 +89,7 @@ export class EuiComboBoxInput extends Component {
       onOpenListClick,
       singleSelection,
       isDisabled,
+      clearButtonRef,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -147,14 +149,24 @@ export class EuiComboBoxInput extends Component {
     const clickProps = {};
 
     if (!isDisabled) {
-      clickProps.onClear = hasSelectedOptions ? onClear : undefined;
-      clickProps.onIconClick = isListOpen ? undefined : onOpenListClick;
+      clickProps.clear = {
+        onClick: hasSelectedOptions ? onClear : undefined,
+        ref: clearButtonRef,
+      };
     }
+
+    const icon = {
+      type: 'arrowDown',
+      side: 'right',
+      onClick: isListOpen && !isDisabled ? undefined : onOpenListClick,
+      // We want to remove this from the tab order because you can open the combo box by tabbing
+      // to it already.
+      tabIndex: '-1',
+    };
 
     return (
       <EuiFormControlLayout
-        icon="arrowDown"
-        iconSide="right"
+        icon={icon}
         {...clickProps}
       >
         <div

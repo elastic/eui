@@ -138,25 +138,37 @@ export class EuiComboBox extends Component {
 
   tabAway = amount => {
     const tabbableItems = tabbable(document);
-    const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
 
-    // Wrap to last tabbable if tabbing backwards.
-    if (amount < 0) {
-      if (comboBoxIndex === 0) {
-        tabbableItems[tabbableItems.length - 1].focus();
-        return;
+    if (document.activeElement === this.searchInput) {
+      const searchInputIndex = tabbableItems.indexOf(this.searchInput);
+
+      // Wrap to last tabbable if tabbing backwards.
+      if (amount < 0) {
+        if (searchInputIndex === 0) {
+          tabbableItems[tabbableItems.length - 1].focus();
+          return;
+        }
       }
+
+      // Otherwise tab to the next adjacent item.
+      tabbableItems[searchInputIndex + amount].focus();
+      return;
     }
 
-    // Wrap to first tabbable if tabbing forwards.
-    if (amount > 0) {
-      if (comboBoxIndex === tabbableItems.length - 1) {
-        tabbableItems[0].focus();
-        return;
-      }
-    }
+    if (document.activeElement === this.clearButton) {
+      const clearButtonIndex = tabbableItems.indexOf(this.clearButton);
 
-    tabbableItems[comboBoxIndex + amount].focus();
+      // Wrap to first tabbable if tabbing forwards.
+      if (amount > 0) {
+        if (clearButtonIndex === tabbableItems.length - 1) {
+          tabbableItems[0].focus();
+          return;
+        }
+      }
+
+      // Otherwise tab to the next adjacent item.
+      tabbableItems[clearButtonIndex + amount].focus();
+    }
   };
 
   incrementActiveOptionIndex = throttle(amount => {
@@ -290,14 +302,10 @@ export class EuiComboBox extends Component {
   };
 
   onFocus = () => {
-    document.addEventListener('click', this.onDocumentFocusChange);
-    document.addEventListener('focusin', this.onDocumentFocusChange);
     this.openList();
   }
 
   onBlur = () => {
-    document.removeEventListener('click', this.onDocumentFocusChange);
-    document.removeEventListener('focusin', this.onDocumentFocusChange);
     this.closeList();
   }
 
@@ -309,6 +317,7 @@ export class EuiComboBox extends Component {
       || this.optionsList === event.target
       || this.optionsList && this.optionsList.contains(event.target)
     ) {
+      this.onFocus();
       return;
     }
 
@@ -454,8 +463,14 @@ export class EuiComboBox extends Component {
     this.options[index] = node;
   };
 
+  clearButtonRef = node => {
+    this.clearButton = node;
+  };
+
   componentDidMount() {
     this._isMounted = true;
+    document.addEventListener('click', this.onDocumentFocusChange);
+    document.addEventListener('focusin', this.onDocumentFocusChange);
 
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
@@ -593,6 +608,7 @@ export class EuiComboBox extends Component {
           onOpenListClick={this.onOpenListClick}
           singleSelection={singleSelection}
           isDisabled={isDisabled}
+          clearButtonRef={this.clearButtonRef}
         />
 
         {optionsList}

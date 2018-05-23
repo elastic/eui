@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
+  ICON_SIDES,
   EuiFormControlLayout,
 } from '../form_control_layout';
 
@@ -61,7 +62,14 @@ EuiFieldText.propTypes = {
   id: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      type: PropTypes.string,
+      side: PropTypes.oneOf(ICON_SIDES),
+      onClick: PropTypes.func,
+    }),
+  ]),
   isInvalid: PropTypes.bool,
   inputRef: PropTypes.func,
   fullWidth: PropTypes.bool,

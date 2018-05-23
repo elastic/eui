@@ -10,6 +10,7 @@ exports[`EuiComboBox is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
@@ -38,6 +39,7 @@ exports[`props isClearable is false with selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
@@ -74,6 +76,7 @@ exports[`props isClearable is false without selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
@@ -101,6 +104,7 @@ exports[`props isDisabled 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isDisabled={true}
@@ -135,6 +139,7 @@ exports[`props options 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
@@ -163,6 +168,7 @@ exports[`props selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
@@ -200,6 +206,7 @@ exports[`props singleSelection 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
