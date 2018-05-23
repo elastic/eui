@@ -31,8 +31,10 @@ export const section = {
       <ul>
         <li>
           <EuiCode>items</EuiCode> are an array of objects that should be displayed in the table;
-          one item per row. The exact item data that will be rendered in each cell in these rows is determined
-          by the <EuiCode>columns</EuiCode> property.
+          one item per row. You can define a <EuiCode>__props__</EuiCode> property on each item
+          object to define props to pass to the corresponding row component. The exact item data
+          that will be rendered in each cell in these rows is determined by
+          the <EuiCode>columns</EuiCode> property.
         </li>
         <li>
           <EuiCode>columns</EuiCode> defines what columns the table has and how to extract item data

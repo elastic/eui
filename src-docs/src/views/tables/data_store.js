@@ -50,7 +50,7 @@ const createUsers = (countries) => {
       github: index < 10 ? github[index] : github[index - 10],
       dateOfBirth: dob,
       nationality: random.oneToOne(countries.map(country => country.code), index),
-      online: index % 2 === 0
+      online: index % 2 === 0,
     };
   });
 };

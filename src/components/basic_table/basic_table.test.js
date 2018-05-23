@@ -23,75 +23,80 @@ describe('getItemId', () => {
 });
 
 describe('EuiBasicTable', () => {
+  describe('empty', () => {
+    test('is rendered', () => {
+      const props = {
+        ...requiredProps,
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ]
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-  test('basic - empty', () => {
+      expect(component).toMatchSnapshot();
+    });
 
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    test('renders a string as a custom message', () => {
+      const props = {
+        ...requiredProps,
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        noItemsMessage: 'where my items at?'
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders a node as a custom message', () => {
+      const props = {
+        ...requiredProps,
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('basic - empty - custom message', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ],
-      noItemsMessage: 'where my items at?'
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('basic - empty - custom message as node', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ],
-      noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('basic - with items', () => {
-
+  test('items are rendered with custom props', () => {
     const props = {
       ...requiredProps,
       items: [
-        { id: '1', name: 'name1' },
+        {
+          id: '1',
+          name: 'name1',
+          __props__: {
+            'data-test-subj': `row`,
+            className: 'customClass',
+            onClick: () => {},
+          },
+        },
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' }
       ],

@@ -80,9 +80,21 @@ export const Table = () => {
     }
   }];
 
+  const items = store.users.filter((user, index) => index < 10).map(user => {
+    const { id } = user;
+    return {
+      ...user,
+      __props__: {
+        'data-test-subj': `row-${id}`,
+        className: 'customClass',
+        onClick: () => console.log(`Clicked row ${id}`),
+      },
+    };
+  });
+
   return (
     <EuiBasicTable
-      items={store.users.filter((user, index) => index < 10)}
+      items={items}
       columns={columns}
     />
   );

@@ -534,6 +534,8 @@ export class EuiBasicTable extends Component {
       </EuiTableRow>
     ) : undefined;
 
+    const { __props__: customRowProps } = item;
+
     return (
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
@@ -542,6 +544,7 @@ export class EuiBasicTable extends Component {
           isSelected={selected}
           hasActions={hasActions}
           isExpandable={isExpandable}
+          {...customRowProps}
         >
           {cells}
         </EuiTableRow>
