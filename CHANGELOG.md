@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
+- `EuiBasicTable` and `EuiInMemoryTable` now let you define a `__props__` object on each row item,
+which lets you apply custom props to each row component ([#869](https://github.com/elastic/eui/pull/869))
 
 **Breaking changes**
 
