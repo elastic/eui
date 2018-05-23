@@ -39,9 +39,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
 
 exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -84,9 +82,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
 
 exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -209,9 +205,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
 
 exports[`EuiBasicTable items are rendered with custom props 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -287,9 +281,7 @@ exports[`EuiBasicTable items are rendered with custom props 1`] = `
 
 exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -357,9 +349,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 
 exports[`EuiBasicTable with pagination 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -443,9 +433,7 @@ exports[`EuiBasicTable with pagination 1`] = `
 
 exports[`EuiBasicTable with pagination and error 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -486,9 +474,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
 
 exports[`EuiBasicTable with pagination and selection 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -630,9 +616,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
 
 exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -791,9 +775,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 
 exports[`EuiBasicTable with pagination, selection, sorting and a single record action 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1043,9 +1025,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 
 exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1204,9 +1184,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1365,9 +1343,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and multiple record actions 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1611,9 +1587,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 
 exports[`EuiBasicTable with pagination, selection, sorting, column renderer and column dataType 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1772,9 +1746,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 
 exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -1847,9 +1819,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 
 exports[`EuiBasicTable with sorting 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>

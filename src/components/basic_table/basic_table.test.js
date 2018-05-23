@@ -45,7 +45,6 @@ describe('EuiBasicTable', () => {
 
     test('renders a string as a custom message', () => {
       const props = {
-        ...requiredProps,
         items: [],
         columns: [
           {
@@ -65,7 +64,6 @@ describe('EuiBasicTable', () => {
 
     test('renders a node as a custom message', () => {
       const props = {
-        ...requiredProps,
         items: [],
         columns: [
           {
@@ -86,7 +84,6 @@ describe('EuiBasicTable', () => {
 
   test('items are rendered with custom props', () => {
     const props = {
-      ...requiredProps,
       items: [
         {
           id: '1',
@@ -143,9 +140,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -173,9 +168,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination - 2nd page', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -202,9 +195,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and error', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -233,9 +224,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sorting', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -262,9 +251,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sortable columns and sorting disabled', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -288,9 +275,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and selection', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -322,9 +307,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection and sorting', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -360,9 +343,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column renderer', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -399,9 +380,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column dataType', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -439,9 +418,7 @@ describe('EuiBasicTable', () => {
 
   // here we want to verify that the column renderer takes precedence over the column data type
   test('with pagination, selection, sorting, column renderer and column dataType', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -479,9 +456,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and a single record action', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -528,9 +503,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and multiple record actions', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
