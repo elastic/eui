@@ -1,15 +1,16 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
-import { patchRandom } from '../../test/patch_random';
+import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { benchmarkFunction } from '../../test/time_execution';
 
 import EuiXYChart from './chart';
 import { EuiLine } from './line';
 
+beforeEach(patchRandom);
+afterEach(unpatchRandom);
+
 describe('EuiLine', () => {
   test('is rendered', () => {
-    const unpatchRandom = patchRandom();
-
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiLine
@@ -20,13 +21,9 @@ describe('EuiLine', () => {
     );
 
     expect(component).toMatchSnapshot();
-
-    unpatchRandom();
   });
 
   test('all props are rendered', () => {
-    const unpatchRandom = patchRandom();
-
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiLine
@@ -44,8 +41,6 @@ describe('EuiLine', () => {
     );
 
     expect(component).toMatchSnapshot();
-
-    unpatchRandom();
   });
 
 

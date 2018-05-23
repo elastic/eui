@@ -1,15 +1,16 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
-import { patchRandom } from '../../test/patch_random';
+import { patchRandom, unpatchRandom } from '../../test/patch_random';
 
 import EuiXYChart from './chart';
 import { EuiArea } from './area';
 import { benchmarkFunction } from '../../test/time_execution';
 
+beforeEach(patchRandom);
+afterEach(unpatchRandom);
+
 describe('EuiArea', () => {
   test('is rendered', () => {
-    const unpatchRandom = patchRandom();
-
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiArea
@@ -20,13 +21,9 @@ describe('EuiArea', () => {
     );
 
     expect(component).toMatchSnapshot();
-
-    unpatchRandom();
   });
 
   test('all props are rendered', () => {
-    const unpatchRandom = patchRandom();
-
     const component = mount(
       <EuiXYChart width={600} height={200}>
         <EuiArea
@@ -44,8 +41,6 @@ describe('EuiArea', () => {
     );
 
     expect(component).toMatchSnapshot();
-
-    unpatchRandom();
   });
 
   describe('performance', () => {
