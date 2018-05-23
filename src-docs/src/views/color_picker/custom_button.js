@@ -2,7 +2,12 @@ import React, {
   Component,
 } from 'react';
 
-import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
+import {
+  EuiColorPicker,
+  EuiFormRow,
+  EuiColorPickerSwatch
+} from '../../../../src/components';
+
 import { isValidHex } from '../../../../src/services';
 
 export class CustomButton extends Component {
@@ -36,10 +41,7 @@ export class CustomButton extends Component {
           color={this.state.color}
           isInvalid={hasErrors}
           button={
-            <button
-              className="euiColorPicker__swatchSelect"
-              style={{ background: this.state.color }}
-            />
+            <EuiColorPickerSwatch color={this.state.color} />
           }
         />
       </EuiFormRow>

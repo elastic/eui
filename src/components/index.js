@@ -50,6 +50,7 @@ export {
 
 export {
   EuiColorPicker,
+  EuiColorPickerSwatch,
 } from './color_picker';
 
 export {

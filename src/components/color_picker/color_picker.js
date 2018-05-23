@@ -5,6 +5,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiColorPickerSwatch } from './color_picker_swatch'
 import { EuiFieldText } from '../form'
 import { EuiPanel } from '../panel'
 import { EuiOutsideClickDetector } from '../outside_click_detector'
@@ -44,8 +45,15 @@ export class EuiColorPicker extends Component {
 
   handleSwatchSelection(color) {
     this.props.onChange(color);
+
+    // When the trigger is an input, focus the input so you can adjust
     if (this.input) {
       this.input.focus();
+    }
+
+    // When the trigger is a button it makes sense to close the popover
+    if (this.props.button) {
+      this.closeColorSelector();
     }
   }
 
@@ -73,10 +81,11 @@ export class EuiColorPicker extends Component {
 
     const swatchButtons = swatchOptions.map((swatch) => (
       <EuiFlexItem grow={false} key={swatch}>
-        <button
+        <EuiColorPickerSwatch
           className="euiColorPicker__swatchSelect"
-          style={{ background: swatch }}
+          color={swatch}
           onClick={this.handleSwatchSelection.bind(this, swatch)}
+          aria-label={`Select ${color} as the color`}
         />
       </EuiFlexItem>
     ));
@@ -117,7 +126,7 @@ export class EuiColorPicker extends Component {
     if (button) {
       buttonOrInput = (
         cloneElement(button, {
-          onClick: this.showColorSelector,
+          onClick: this.state.showColorSelector ? this.closeColorSelector : this.showColorSelector,
           id: id,
           disabled: disabled
         }
