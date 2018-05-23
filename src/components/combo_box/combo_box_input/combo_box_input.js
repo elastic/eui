@@ -26,8 +26,7 @@ export class EuiComboBoxInput extends Component {
     onClear: PropTypes.func,
     hasSelectedOptions: PropTypes.bool.isRequired,
     isListOpen: PropTypes.bool.isRequired,
-    onOpen: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onOpenListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.bool,
     isDisabled: PropTypes.bool,
   }
@@ -86,8 +85,7 @@ export class EuiComboBoxInput extends Component {
       onClear,
       hasSelectedOptions,
       isListOpen,
-      onOpen,
-      onClose,
+      onOpenListClick,
       singleSelection,
       isDisabled,
     } = this.props;
@@ -150,7 +148,7 @@ export class EuiComboBoxInput extends Component {
 
     if (!isDisabled) {
       clickProps.onClear = hasSelectedOptions ? onClear : undefined;
-      clickProps.onIconClick = isListOpen ? onClose : onOpen;
+      clickProps.onIconClick = isListOpen ? undefined : onOpenListClick;
     }
 
     return (

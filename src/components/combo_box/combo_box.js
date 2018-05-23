@@ -417,6 +417,10 @@ export class EuiComboBox extends Component {
     }
   };
 
+  onOpenListClick = () => {
+    this.searchInput.focus();
+  };
+
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
       this.props.onSearchChange(searchValue);
@@ -586,8 +590,7 @@ export class EuiComboBox extends Component {
           onClear={isClearable && !isDisabled ? this.clearSelectedOptions : undefined}
           hasSelectedOptions={selectedOptions.length > 0}
           isListOpen={isListOpen}
-          onOpen={this.openList}
-          onClose={this.closeList}
+          onOpenListClick={this.onOpenListClick}
           singleSelection={singleSelection}
           isDisabled={isDisabled}
         />
