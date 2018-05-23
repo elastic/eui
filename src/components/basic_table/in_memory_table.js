@@ -123,6 +123,20 @@ export class EuiInMemoryTable extends Component {
     responsive: true,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.items !== prevState.items) {
+      // We have new items because an external search has completed, so reset pagination state.
+      return {
+        props: {
+          items: nextProps.items,
+        },
+        pageIndex: 0,
+      };
+    } else {
+      return null;
+    }
+  }
+
   constructor(props) {
     super(props);
 
@@ -131,7 +145,9 @@ export class EuiInMemoryTable extends Component {
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
-      items: props.items,
+      props: {
+        items: props.items,
+      },
       query: getInitialQuery(search),
       pageIndex,
       pageSize,
@@ -208,7 +224,7 @@ export class EuiInMemoryTable extends Component {
   }
 
   getItems() {
-    const { items } = this.state;
+    const { props: { items } } = this.state;
 
     if (!items.length) {
       return {
@@ -239,18 +255,6 @@ export class EuiInMemoryTable extends Component {
       items: visibleItems,
       totalItemCount: matchingItems.length,
     };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.items !== prevState.items) {
-      // We have new items because an external search has completed, so reset pagination state.
-      return {
-        items: nextProps.items,
-        pageIndex: 0,
-      };
-    } else {
-      return null;
-    }
   }
 
   render() {
