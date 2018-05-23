@@ -159,9 +159,9 @@ export class EuiInMemoryTable extends Component {
     });
   };
 
-  onQueryChange = (query) => {
+  onQueryChange = ({ query, queryText, error }) => {
     if (this.props.search.onChange) {
-      const shouldQueryInMemory = this.props.search.onChange(query);
+      const shouldQueryInMemory = this.props.search.onChange({ query, queryText, error });
       if (!shouldQueryInMemory) {
         return;
       }

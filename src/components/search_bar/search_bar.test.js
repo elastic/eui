@@ -1,7 +1,9 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
+import { Query } from './query';
 
 describe('SearchBar', () => {
   test('render - no config, no query', () => {
@@ -74,5 +76,41 @@ describe('SearchBar', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('controlled input', () => {
+    test('calls onChange callback when a new query is passed', () => {
+      const onChange = jest.fn();
+
+      const component = mount(
+        <EuiSearchBar
+          query=""
+          onChange={onChange}
+        />
+      );
+
+      component.setProps({ query: 'is:active' });
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      const [[{ query, queryText }]] = onChange.mock.calls;
+      expect(query).toBeInstanceOf(Query);
+      expect(queryText).toBe('is:active');
+    });
+
+    test('does not call onChange when an unwatched prop changes', () => {
+      const onChange = jest.fn();
+
+      const component = mount(
+        <EuiSearchBar
+          query="is:active"
+          isFoo={false}
+          onChange={onChange}
+        />
+      );
+
+      component.setProps({ isFoo: true });
+
+      expect(onChange).toHaveBeenCalledTimes(0);
+    });
   });
 });

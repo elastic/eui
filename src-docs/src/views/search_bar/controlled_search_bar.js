@@ -7,11 +7,10 @@ import {
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiCodeBlock,
-  EuiTitle,
   EuiSwitch,
   EuiBasicTable,
   EuiSearchBar,
+  EuiButton,
 } from '../../../../src/components';
 
 const random = new Random();
@@ -65,7 +64,7 @@ const loadTags = () => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
-export class SearchBar extends Component {
+export class ControlledSearchBar extends Component {
 
   constructor(props) {
     super(props);
@@ -92,6 +91,28 @@ export class SearchBar extends Component {
   toggleIncremental = () => {
     this.setState(prevState => ({ incremental: !prevState.incremental }));
   };
+
+  setQuery = query => {
+    this.setState({ query });
+  }
+
+  renderBookmarks() {
+    return (
+      <Fragment>
+        <p>Enter a query, or select one from a bookmark</p>
+        <EuiSpacer size="s"/>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiButton size="s" onClick={() => this.setQuery('status:open owner:dewey')}>mine, open</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton size="s" onClick={() => this.setQuery('status:closed owner:dewey')}>mine, closed</EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="m"/>
+      </Fragment>
+    );
+  }
 
   renderSearch() {
     const { incremental } = this.state;
@@ -170,7 +191,7 @@ export class SearchBar extends Component {
 
     return (
       <EuiSearchBar
-        defaultQuery={initialQuery}
+        query={this.state.query}
         box={{
           placeholder: 'e.g. type:visualization -is:active joe',
           incremental,
@@ -253,43 +274,11 @@ export class SearchBar extends Component {
   render() {
     const {
       incremental,
-      query,
     } = this.state;
-
-    const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
-    const esQueryString = EuiSearchBar.Query.toESQueryString(query);
 
     const content = this.renderError() || (
       <EuiFlexGroup>
-        <EuiFlexItem grow={4}>
-
-          <EuiTitle size="s">
-            <h3>Elasticsearch Query String</h3>
-          </EuiTitle>
-          <EuiSpacer size="s"/>
-          <EuiCodeBlock language="js">
-            {esQueryString ? esQueryString : ''}
-          </EuiCodeBlock>
-
-          <EuiSpacer size="l"/>
-
-          <EuiTitle size="s">
-            <h3>Elasticsearch Query DSL</h3>
-          </EuiTitle>
-          <EuiSpacer size="s"/>
-          <EuiCodeBlock language="js">
-            {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
-          </EuiCodeBlock>
-
-        </EuiFlexItem>
-
         <EuiFlexItem grow={6}>
-          <EuiTitle size="s">
-            <h3>JS execution</h3>
-          </EuiTitle>
-
-          <EuiSpacer size="s"/>
-
           {this.renderTable()}
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -297,6 +286,11 @@ export class SearchBar extends Component {
 
     return (
       <Fragment>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            {this.renderBookmarks()}
+          </EuiFlexItem>
+        </EuiFlexGroup>
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem>
             {this.renderSearch()}
