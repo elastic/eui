@@ -108,18 +108,24 @@ export class EuiGlobalToastList extends Component {
   dismissToast = (toast) => {
     // Remove the toast after it's done fading out.
     this.dismissTimeoutIds.push(setTimeout(() => {
-      this.props.dismissToast(toast);
-      this.toastIdToTimerMap[toast.id].clear();
-      delete this.toastIdToTimerMap[toast.id];
+      // Because this is wrapped in a setTimeout, and because React does not guarantee when
+      // state updates happen, it is possible to double-dismiss a toast
+      // including by double-clicking the "x" button on the toast
+      // so, first check to make sure we haven't already dismissed this toast
+      if (this.toastIdToTimerMap.hasOwnProperty(toast.id)) {
+        this.props.dismissToast(toast);
+        this.toastIdToTimerMap[toast.id].clear();
+        delete this.toastIdToTimerMap[toast.id];
 
-      this.setState(prevState => {
-        const toastIdToDismissedMap = { ...prevState.toastIdToDismissedMap };
-        delete toastIdToDismissedMap[toast.id];
+        this.setState(prevState => {
+          const toastIdToDismissedMap = { ...prevState.toastIdToDismissedMap };
+          delete toastIdToDismissedMap[toast.id];
 
-        return {
-          toastIdToDismissedMap,
-        };
-      });
+          return {
+            toastIdToDismissedMap,
+          };
+        });
+      }
     }, TOAST_FADE_OUT_MS));
 
     this.setState(prevState => {
