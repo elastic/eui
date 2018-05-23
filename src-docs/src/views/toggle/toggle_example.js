@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiToggle,
+  EuiLink,
 } from '../../../../src/components';
 
 import Toggle from './toggle';
@@ -26,11 +27,17 @@ export const ToggleExample = {
       code: toggleHtml,
     }],
     text: (
-      <p>
-        The <EuiCode>EuiToggle</EuiCode> component is a very simplified utility for creating
-        toggle-able elements. There is only an on/off (checked/unchecked) state. All this creates is
-        a visibly hidden input (checkbox or radio) overtop of the children provided.
-      </p>
+      <div>
+        <p>
+          The <EuiCode>EuiToggle</EuiCode> component is a very simplified utility for creating
+          toggle-able elements. There is only an on/off (checked/unchecked) state. All this creates is
+          a visibly hidden input (checkbox or radio) overtop of the children provided.
+        </p>
+        <p>
+          By default, the children will be wrapped in a block element. To change the display you can
+          simply use one of the <EuiLink href="/#/utilities/css-utility-classes">utility classes</EuiLink> like <EuiCode>.eui-displayInlineBlock</EuiCode>.
+        </p>
+      </div>
     ),
     components: { EuiToggle },
     demo: <Toggle />,

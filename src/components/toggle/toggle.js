@@ -13,20 +13,27 @@ export const EuiToggle = ({
   id,
   label,
   checked,
-  disabled,
+  isDisabled,
   onChange,
   children,
   type,
+  name,
+  value,
   className,
+  inputClassName,
   ...rest,
 }) => {
   const classes = classNames(
     'euiToggle',
     {
-      'euiToggle--disabled': disabled,
       'euiToggle--checked': checked,
     },
     className
+  );
+
+  const inputClasses = classNames(
+    'euiToggle__input',
+    inputClassName,
   );
 
   return (
@@ -35,11 +42,13 @@ export const EuiToggle = ({
       {...rest}
     >
       <input
-        className="euiToggle__input"
+        className={inputClasses}
         id={id}
+        name={name}
+        value={value}
         type={typeToInputTypeMap[type]}
         checked={checked}
-        disabled={disabled}
+        disabled={isDisabled}
         onChange={onChange}
         aria-label={label}
       />
@@ -62,7 +71,7 @@ EuiToggle.propTypes = {
    * For handling the onChange event of the input
    */
   onChange: PropTypes.func,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 
   /**
    * Use your own logic to pass the child you want according to
@@ -78,7 +87,8 @@ EuiToggle.propTypes = {
   /**
    * What would typically be the input's label. Required for accessibility.
    */
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
 };
 
 EuiToggle.defaultProps = {

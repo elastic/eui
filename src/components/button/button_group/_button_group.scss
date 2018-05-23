@@ -7,6 +7,16 @@
 
   .euiButtonToggle {
     border-radius: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .euiButtonToggle--fill {
+    z-index: 2; // Raise it above the simply bordered versions for crisper lines
+  }
+
+  .euiToggle__input {
+    z-index: 3; // but make sure the input is on top
   }
 
   &:first-child {

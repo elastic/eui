@@ -7,7 +7,7 @@ import { EuiButtonToggle } from './button_toggle';
 describe('EuiButtonToggle', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonToggle {...requiredProps} />
+      <EuiButtonToggle {...requiredProps} toggleLabel="Lable me" />
     );
 
     expect(component)

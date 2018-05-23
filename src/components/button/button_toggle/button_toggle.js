@@ -121,7 +121,7 @@ EuiButtonToggle.propTypes = {
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   buttonRef: PropTypes.func,
-  toggleLabel: PropTypes.string,
+  toggleLabel: PropTypes.string.isRequired,
 
   /**
    * Starting state of toggle
