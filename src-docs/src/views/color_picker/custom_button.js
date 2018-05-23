@@ -5,7 +5,7 @@ import React, {
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 import { isValidHex } from '../../../../src/services';
 
-export class CustomSwatches extends Component {
+export class CustomButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,13 +25,6 @@ export class CustomSwatches extends Component {
       errors = ['Provide a valid hex value'];
     }
 
-    const customSwatches = [
-      '#333',
-      '#666',
-      '#999',
-      '#CCC',
-    ]
-
     return (
       <EuiFormRow
         label="Pick a color"
@@ -42,7 +35,12 @@ export class CustomSwatches extends Component {
           onChange={this.handleChange}
           color={this.state.color}
           isInvalid={hasErrors}
-          swatches={customSwatches}
+          button={
+            <button
+              className="euiColorPicker__swatchSelect"
+              style={{ background: this.state.color }}
+            />
+          }
         />
       </EuiFormRow>
     );

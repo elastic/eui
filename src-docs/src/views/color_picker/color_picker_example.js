@@ -18,6 +18,10 @@ import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
 
+import { CustomButton } from './custom_button';
+const customButtonSource = require('!!raw-loader!./custom_button');
+const customButtonHtml = renderToHtml(CustomButton);
+
 export const ColorPickerExample = {
   title: 'Color Picker',
   sections: [{
@@ -45,5 +49,22 @@ export const ColorPickerExample = {
       </p>
     ),
     demo: <CustomSwatches />,
+  }, {
+    title: 'Custom button',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: customButtonSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: customButtonHtml,
+    }],
+    text: (
+      <p>
+        You can optionally use a custom button as the trigger for selection using
+        the <EuiCode>button</EuiCode> prop. Please remember to add accessibility to this
+        component, using proper button markup and aria labeling.
+      </p>
+    ),
+    demo: <CustomButton />,
   }],
 };

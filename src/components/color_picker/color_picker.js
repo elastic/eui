@@ -1,5 +1,6 @@
 import React, {
   Component,
+  cloneElement,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -43,7 +44,9 @@ export class EuiColorPicker extends Component {
 
   handleSwatchSelection(color) {
     this.props.onChange(color);
-    this.input.focus();
+    if (this.input) {
+      this.input.focus();
+    }
   }
 
   onKeyDown = event => {
@@ -63,6 +66,7 @@ export class EuiColorPicker extends Component {
       id,
       isInvalid,
       swatches,
+      button,
     } = this.props;
     const classes = classNames('euiColorPicker', className);
     const swatchOptions = swatches || VISUALIZATION_COLORS;
@@ -90,26 +94,46 @@ export class EuiColorPicker extends Component {
         </EuiPanel>
       );
     }
+
+    const input = (
+      <div style={{ color: color }}>
+        <EuiFieldText
+          onFocus={this.showColorSelector}
+          value={color ? color.toUpperCase() : ""}
+          placeholder={!color ? "Transparent" : null}
+          id={id}
+          onChange={this.handleColorSelection}
+          maxLength="7"
+          icon={color ? "stopFilled" : "stopSlash"}
+          inputRef={(input) => { this.input = input; }}
+          isInvalid={isInvalid}
+          compressed={compressed}
+          disabled={disabled}
+        />
+      </div>
+    );
+
+    let buttonOrInput;
+    if (button) {
+      buttonOrInput = (
+        cloneElement(button, {
+          onClick: this.showColorSelector,
+          id: id,
+          disabled: disabled
+        }
+      ));
+    } else {
+      buttonOrInput = input;
+    }
+
     return (
       <div
         className={classes}
         onKeyDown={this.onKeyDown}
       >
         <EuiOutsideClickDetector onOutsideClick={this.closeColorSelector}>
-          <div style={{ color: color }}>
-            <EuiFieldText
-              onFocus={this.showColorSelector}
-              value={color ? color.toUpperCase() : ""}
-              placeholder={!color ? "Transparent" : null}
-              id={id}
-              onChange={this.handleColorSelection}
-              maxLength="7"
-              icon={color ? "stopFilled" : "stopSlash"}
-              inputRef={(input) => { this.input = input; }}
-              isInvalid={isInvalid}
-              compressed={compressed}
-              disabled={disabled}
-            />
+          <div>
+            {buttonOrInput}
             {swatchesPanel}
           </div>
         </EuiOutsideClickDetector>

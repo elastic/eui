@@ -4,35 +4,37 @@ exports[`renders EuiColorPicker 1`] = `
 <div
   class="euiColorPicker testClass1 testClass2"
 >
-  <div
-    style="color:#ffeedd"
-  >
+  <div>
     <div
-      class="euiFormControlLayout"
+      style="color:#ffeedd"
     >
-      <input
-        class="euiFieldText euiFieldText--withIcon"
-        maxlength="7"
-        type="text"
-        value="#FFEEDD"
-      />
-      <svg
-        aria-hidden="true"
-        class="euiIcon euiIcon--medium euiFormControlLayout__icon"
-        height="16"
-        viewBox="0 0 16 16"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="euiFormControlLayout"
       >
-        <rect
-          fill-rule="evenodd"
-          height="12"
-          rx="2"
-          width="12"
-          x="2"
-          y="2"
+        <input
+          class="euiFieldText euiFieldText--withIcon"
+          maxlength="7"
+          type="text"
+          value="#FFEEDD"
         />
-      </svg>
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill-rule="evenodd"
+            height="12"
+            rx="2"
+            width="12"
+            x="2"
+            y="2"
+          />
+        </svg>
+      </div>
     </div>
   </div>
 </div>

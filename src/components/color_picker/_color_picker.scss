@@ -7,8 +7,8 @@
     border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     position: absolute;
     top: 100%;
-    // 5 columns + margins + border
-    width: ($euiSizeL * 5) + ($euiSizeS * 6) + 2px;
+    // 5 columns of swatches + margins + border
+    max-width: ($euiSizeL * 5) + ($euiSizeS * 6) + 2px;
 
   }
 
@@ -18,6 +18,7 @@
     width: $euiSizeL;
     border-radius: $euiBorderRadius / 2;
     cursor: pointer;
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2);
 
     &:focus {
       @include euiFocusRing;

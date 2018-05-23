@@ -2490,6 +2490,39 @@ exports[`EuiIcon renders type logoElastic 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon renders type logoElasticStack 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fill-rule="evenodd"
+  >
+    <path
+      d="M.395 3.64A3.137 3.137 0 0 1 3.533.501h24.94a3.137 3.137 0 0 1 3.138 3.137v6.237H.395V3.64z"
+      fill="#EF5098"
+    />
+    <path
+      d="M.395 22.356h14.82v9.362H3.515a3.137 3.137 0 0 1-3.138-3.056l.02-6.306z"
+      fill="#14A8E0"
+    />
+    <path
+      d="M16.778 22.356h14.82v6.237a3.137 3.137 0 0 1-3.137 3.137H16.778v-9.374z"
+      fill="#FDD10D"
+    />
+    <path
+      d="M.395 11.438h31.197V20.8H.395z"
+      fill="#20BBB1"
+      fill-rule="nonzero"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon renders type logoElasticsearch 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -2527,39 +2560,6 @@ exports[`EuiIcon renders type logoElasticsearch 1`] = `
         fill="#FED10A"
       />
     </g>
-  </g>
-</svg>
-`;
-
-exports[`EuiIcon renders type logoElasticStack 1`] = `
-<svg
-  class="euiIcon euiIcon--medium"
-  height="32"
-  viewBox="0 0 32 32"
-  width="32"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g
-    fill="none"
-    fill-rule="evenodd"
-  >
-    <path
-      d="M.395 3.64A3.137 3.137 0 0 1 3.533.501h24.94a3.137 3.137 0 0 1 3.138 3.137v6.237H.395V3.64z"
-      fill="#EF5098"
-    />
-    <path
-      d="M.395 22.356h14.82v9.362H3.515a3.137 3.137 0 0 1-3.138-3.056l.02-6.306z"
-      fill="#14A8E0"
-    />
-    <path
-      d="M16.778 22.356h14.82v6.237a3.137 3.137 0 0 1-3.137 3.137H16.778v-9.374z"
-      fill="#FDD10D"
-    />
-    <path
-      d="M.395 11.438h31.197V20.8H.395z"
-      fill="#20BBB1"
-      fill-rule="nonzero"
-    />
   </g>
 </svg>
 `;
@@ -3714,6 +3714,27 @@ exports[`EuiIcon renders type stopFilled 1`] = `
     width="12"
     x="2"
     y="2"
+  />
+</svg>
+`;
+
+exports[`EuiIcon renders type stopSlash 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M12.259 3.034A1.001 1.001 0 0 0 12 3H4a1 1 0 0 0-1 1v8c0 .09.012.176.034.259l9.225-9.225zm.707.707l-9.225 9.225c.083.022.17.034.259.034h8a1 1 0 0 0 1-1V4c0-.09-.012-.176-.034-.259zM4 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"
+      id="stop_slash-a"
+    />
+  </defs>
+  <use
+    href="#stop_slash-a"
   />
 </svg>
 `;
