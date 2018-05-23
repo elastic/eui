@@ -28,6 +28,8 @@ export {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiButtonToggle,
+  EuiButtonGroup,
 } from './button';
 
 export {
@@ -296,6 +298,10 @@ export {
   EuiGlobalToastListItem,
   EuiToast,
 } from './toast';
+
+export {
+  EuiToggle,
+} from './toggle';
 
 export {
   EuiIconTip,

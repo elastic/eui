@@ -11,6 +11,8 @@ import {
   EuiButtonEmpty,
   EuiButtonIcon,
   EuiCode,
+  EuiButtonGroup,
+  EuiButtonToggle,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -44,6 +46,14 @@ const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
 import ButtonLoading from './button_loading';
 const buttonLoadingSource = require('!!raw-loader!./button_loading');
 const buttonLoadingHtml = renderToHtml(ButtonLoading);
+
+import ButtonToggle from './button_toggle';
+const buttonToggleSource = require('!!raw-loader!./button_toggle');
+const buttonToggleHtml = renderToHtml(ButtonToggle);
+
+import ButtonGroup from './button_group';
+const buttonGroupSource = require('!!raw-loader!./button_group');
+const buttonGroupHtml = renderToHtml(ButtonGroup);
 
 export const ButtonExample = {
   title: 'Button',
@@ -177,5 +187,37 @@ export const ButtonExample = {
       </p>
     ),
     demo: <ButtonGhost />,
+  }, {
+    title: 'Toggle buttons',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: buttonToggleSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: buttonToggleHtml,
+    }],
+    text: (
+      <p>
+        ...
+      </p>
+    ),
+    demo: <ButtonToggle />,
+    props: { EuiButtonToggle },
+  }, {
+    title: 'Groups',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: buttonGroupSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: buttonGroupHtml,
+    }],
+    text: (
+      <p>
+        ...
+      </p>
+    ),
+    demo: <ButtonToggle />,
+    props: { EuiButtonGroup },
   }],
 };
