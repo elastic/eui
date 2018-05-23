@@ -161,6 +161,7 @@ export class EuiComboBoxOptionsList extends Component {
 
     const optionsList = (
       <List
+        tabIndex={-1}
         width={width}
         height={height}
         rowCount={matchingOptions.length}
