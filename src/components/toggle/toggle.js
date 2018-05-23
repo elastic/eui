@@ -78,7 +78,7 @@ EuiToggle.propTypes = {
   /**
    * What would typically be the input's label. Required for accessibility.
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 EuiToggle.defaultProps = {

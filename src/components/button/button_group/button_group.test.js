@@ -7,7 +7,7 @@ import { EuiButtonGroup } from './button_group';
 describe('EuiButtonGroup', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonGroup {...requiredProps} />
+      <EuiButtonGroup onChange={() => {}} {...requiredProps} />
     );
 
     expect(component)

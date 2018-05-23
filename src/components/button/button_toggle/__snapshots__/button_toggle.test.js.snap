@@ -2,8 +2,24 @@
 
 exports[`EuiButtonToggle is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiButtonToggle testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
+  class="euiToggle euiButtonToggle__wrapper testClass1 testClass2"
+>
+  <input
+    class="euiToggle__input"
+    type="checkbox"
+  />
+  <div
+    aria-label="aria-label"
+    class="euiButtonToggle"
+    data-test-subj="test subject string"
+  >
+    <span
+      class="euiButtonToggle__content"
+    >
+      <span
+        class="euiButtonToggle__text"
+      />
+    </span>
+  </div>
+</div>
 `;

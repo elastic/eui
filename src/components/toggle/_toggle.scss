@@ -6,5 +6,9 @@
 
   .euiToggle__input {
     @include euiHiddenSelectableInput;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 }

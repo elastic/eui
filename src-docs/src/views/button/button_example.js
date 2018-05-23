@@ -217,7 +217,7 @@ export const ButtonExample = {
         ...
       </p>
     ),
-    demo: <ButtonToggle />,
+    demo: <ButtonGroup />,
     props: { EuiButtonGroup },
   }],
 };
