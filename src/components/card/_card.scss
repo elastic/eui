@@ -10,6 +10,9 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 /**
  * 1. Footer is always at the bottom.
  * 2. Extend beta badges to at least 40% of the card's width
+ * 3. Fix for IE to ensure badges are visible outside of a <button> tag
+ * 4. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+      (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
  */
 
 // EuiCard specific
@@ -17,6 +20,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   display: flex;
   flex-direction: column;
   padding: $euiCardSpacing;
+  overflow: visible; /* 3 */
 
   &.euiCard--hasBetaBadge {
     position: relative;
@@ -82,6 +86,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 .euiCard__top {
   flex-grow: 0; /* 1 */
   position: relative;
+  min-height: 1px; /* 4 */
 
   .euiCard__icon {
     margin-top: $euiCardSpacing/2;
@@ -103,6 +108,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
       transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
     }
   }
@@ -123,6 +129,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   }
 
   .euiCard__description {
+    color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
     margin-top: $euiCardSpacing/2;
   }
 }
