@@ -44,7 +44,7 @@ export class Table extends React.Component {
     };
   }
 
-  onQueryChange = query => {
+  onQueryChange = ({ query }) => {
     clearTimeout(debounceTimeoutId);
     clearTimeout(requestTimeoutId);
 

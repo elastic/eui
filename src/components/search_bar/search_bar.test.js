@@ -84,17 +84,12 @@ describe('SearchBar', () => {
 
       const component = mount(
         <EuiSearchBar
-          {...requiredProps}
           query=""
           onChange={onChange}
         />
       );
 
-      component.setProps({
-        ...requiredProps,
-        query: 'is:active',
-        onChange
-      });
+      component.setProps({ query: 'is:active' });
 
       expect(onChange).toHaveBeenCalledTimes(1);
       const [[{ query, queryText }]] = onChange.mock.calls;
@@ -107,19 +102,13 @@ describe('SearchBar', () => {
 
       const component = mount(
         <EuiSearchBar
-          {...requiredProps}
           query="is:active"
           isFoo={false}
           onChange={onChange}
         />
       );
 
-      component.setProps({
-        ...requiredProps,
-        query: 'is:active',
-        isFoo: true,
-        onChange
-      });
+      component.setProps({ isFoo: true });
 
       expect(onChange).toHaveBeenCalledTimes(0);
     });
