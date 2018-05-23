@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+const typeToInputTypeMap = {
+  'single': 'checkbox',
+  'multi': 'radio',
+};
+
+export const TYPES = Object.keys(typeToInputTypeMap);;
+
 export const EuiToggle = ({
   id,
   label,
@@ -9,7 +16,7 @@ export const EuiToggle = ({
   disabled,
   onChange,
   children,
-  containsButton,
+  type,
   className,
   ...rest,
 }) => {
@@ -18,37 +25,42 @@ export const EuiToggle = ({
     {
       'euiToggle--disabled': disabled,
       'euiToggle--checked': checked,
-      'euiToggle--containsButton': containsButton,
     },
     className
   );
 
-  const childrenNode = containsButton ? React.cloneElement(children, { tabIndex: -1 }) : children;
-
   return (
-    <span
+    <div
       className={classes}
       {...rest}
     >
       <input
         className="euiToggle__input"
         id={id}
-        type="checkbox"
+        type={typeToInputTypeMap[type]}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
         aria-label={label}
       />
 
-      {childrenNode}
+      {children}
 
-    </span>
+    </div>
   );
 };
 
 EuiToggle.propTypes = {
   id: PropTypes.string,
+
+  /**
+   * Initial state of the toggle
+   */
   checked: PropTypes.bool,
+
+  /**
+   * For handling the onChange event of the input
+   */
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
 
@@ -56,16 +68,19 @@ EuiToggle.propTypes = {
    * Use your own logic to pass the child you want according to
    * the checked state of your component.
    */
-  children: PropTypes.node,
+  children: PropTypes.element,
 
   /**
-   * Use your own logic to pass the child you want according to
-   * the checked state of your component.
+   * Determines the input type based on multiple or single item(s).
    */
-  containsButton: PropTypes.bool,
+  type: PropTypes.oneOf(TYPES),
 
   /**
-   * Required for accessibility.
+   * What would typically be the input's label. Required for accessibility.
    */
   label: PropTypes.string.isRequired,
+};
+
+EuiToggle.defaultProps = {
+  type: 'single',
 };

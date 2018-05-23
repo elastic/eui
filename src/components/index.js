@@ -298,6 +298,10 @@ export {
 } from './toast';
 
 export {
+  EuiToggle,
+} from './toggle';
+
+export {
   EuiIconTip,
   EuiToolTip,
 } from './tool_tip';

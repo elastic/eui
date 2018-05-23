@@ -18,7 +18,6 @@ const toggleHtml = renderToHtml(Toggle);
 export const ToggleExample = {
   title: 'Toggle',
   sections: [{
-    title: 'Toggle',
     source: [{
       type: GuideSectionTypes.JS,
       code: toggleSource,
@@ -28,10 +27,13 @@ export const ToggleExample = {
     }],
     text: (
       <p>
-        Description needed: how to use the <EuiCode>EuiToggle</EuiCode> component.
+        The <EuiCode>EuiToggle</EuiCode> component is a very simplified utility for creating
+        toggle-able elements. There is only an on/off (checked/unchecked) state. All this creates is
+        a visibly hidden input (checkbox or radio) overtop of the children provided.
       </p>
     ),
     components: { EuiToggle },
     demo: <Toggle />,
+    props: { EuiToggle },
   }],
 };
