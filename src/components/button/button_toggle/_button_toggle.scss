@@ -22,10 +22,6 @@
     @include euiSlightShadow; // don't colorize the shadow
   }
 
-  .euiButtonToggle__content {
-    padding: 0 $euiSizeS;
-  }
-
   @include euiButtonToggleStates() {
     @include euiSlightShadowHover;
     text-decoration: underline;
@@ -33,6 +29,18 @@
 
   &:disabled {
     border-color: $euiButtonToggleBorderColor;
+  }
+
+  &.euiButtonToggle--isIconOnly {
+    min-width: 0;
+
+    .euiButton__content {
+      padding: 0 $euiSizeS;
+    }
+
+    .euiButton__text:empty {
+      display: none;
+    }
   }
 }
 

@@ -16,6 +16,7 @@ export const EuiButtonGroup = ({
   isFullWidth,
   idToSelectedMap,
   type,
+  isIconOnly,
   ...rest
 }) => {
 
@@ -47,10 +48,13 @@ export const EuiButtonGroup = ({
             name={name}
             label={option.label}
             value={option.value}
+            iconType={option.iconType}
+            iconSide={option.iconSide}
             isDisabled={isDisabled}
             onChange={onChange.bind(null, option.id, option.value)}
             color={color}
             type={type}
+            isIconOnly={isIconOnly}
           />
         );
       })}
@@ -72,6 +76,7 @@ EuiButtonGroup.propTypes = {
   type: PropTypes.oneOf(TOGGLE_TYPES),
   idSelected: PropTypes.string,
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool),
+  isIconOnly: PropTypes.bool,
 };
 
 EuiButtonGroup.defaultProps = {

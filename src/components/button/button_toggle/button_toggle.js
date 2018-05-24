@@ -13,10 +13,14 @@ export const EuiButtonToggle = ({
   onChange,
   label,
   type,
+  isIconOnly,
   ...rest,
 }) => {
   const classes = classNames(
     'euiButtonToggle',
+    {
+      'euiButtonToggle--isIconOnly': isIconOnly,
+    }
   );
 
   const wrapperClasses = classNames(
@@ -26,6 +30,9 @@ export const EuiButtonToggle = ({
     },
     className
   );
+
+  //const WrappingElement = isIconOnly ? EuiButtonIcon : EuiButton;
+  const buttonContent = isIconOnly ? '' : label;
 
   return (
     <EuiToggle
@@ -46,7 +53,7 @@ export const EuiButtonToggle = ({
         color={color}
         {...rest}
       >
-        {label}
+        {buttonContent}
       </EuiButton>
     </EuiToggle>
   );
@@ -72,6 +79,11 @@ EuiButtonToggle.propTypes = {
    */
   isSelected: PropTypes.bool,
   type: PropTypes.oneOf(TOGGLE_TYPES),
+
+  /**
+   * Hides the label from the button content and only displays the icon
+   */
+  isIconOnly: PropTypes.bool,
 };
 
 EuiButtonToggle.defaultProps = {

@@ -17,6 +17,7 @@ export default class extends Component {
 
     const idPrefix = makeId();
     const idPrefix2 = makeId();
+    const idPrefix3 = makeId();
 
     this.toggleButtons = [{
       id: `${idPrefix}0`,
@@ -40,11 +41,45 @@ export default class extends Component {
       label: 'Option 3',
     }];
 
+    this.toggleButtonsIcons = [{
+      id: `${idPrefix3}0`,
+      label: 'Align left',
+      iconType: 'editorAlignLeft',
+    }, {
+      id: `${idPrefix3}1`,
+      label: 'Align center',
+      iconType: 'editorAlignCenter',
+    }, {
+      id: `${idPrefix3}2`,
+      label: 'Align right',
+      iconType: 'editorAlignRight',
+    }];
+
+    this.toggleButtonsIconsMulti = [{
+      id: `${idPrefix3}3`,
+      label: 'Bold',
+      iconType: 'editorBold',
+    }, {
+      id: `${idPrefix3}4`,
+      label: 'Italic',
+      iconType: 'editorItalic',
+    }, {
+      id: `${idPrefix3}5`,
+      label: 'Underline',
+      iconType: 'editorUnderline',
+    }, {
+      id: `${idPrefix3}6`,
+      label: 'Strikethrough',
+      iconType: 'editorStrike',
+    }];
+
     this.state = {
       toggleIdSelected: `${idPrefix}1`,
       toggleIdToSelectedMap: {
         [`${idPrefix2}1`]: true,
       },
+      toggleIconIdSelected: `${idPrefix3}1`,
+      toggleIconIdToSelectedMap: {},
     };
   }
 
@@ -61,6 +96,22 @@ export default class extends Component {
 
     this.setState({
       toggleIdToSelectedMap: newToggleIdToSelectedMap,
+    });
+  };
+
+  onChangeIcons = optionId => {
+    this.setState({
+      toggleIconIdSelected: optionId,
+    });
+  };
+
+  onChangeIconsMulti = optionId => {
+    const newToggleIconIdToSelectedMap = ({ ...this.state.toggleIconIdToSelectedMap, ...{
+      [optionId]: !this.state.toggleIconIdToSelectedMap[optionId],
+    } });
+
+    this.setState({
+      toggleIconIdToSelectedMap: newToggleIconIdToSelectedMap,
     });
   };
 
@@ -99,6 +150,31 @@ export default class extends Component {
           onChange={this.onChange}
           isDisabled
           isFullWidth
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiTitle size="xxs"><h3>Icons only</h3></EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        <EuiButtonGroup
+          className="eui-displayInlineBlock"
+          options={this.toggleButtonsIcons}
+          idSelected={this.state.toggleIconIdSelected}
+          onChange={this.onChangeIcons}
+          isIconOnly
+        />
+
+        &nbsp;&nbsp;
+
+        <EuiButtonGroup
+          className="eui-displayInlineBlock"
+          options={this.toggleButtonsIconsMulti}
+          idToSelectedMap={this.state.toggleIconIdToSelectedMap}
+          onChange={this.onChangeIconsMulti}
+          type="multi"
+          isIconOnly
         />
       </Fragment>
     );
