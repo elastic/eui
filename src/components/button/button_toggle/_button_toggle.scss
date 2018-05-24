@@ -26,10 +26,6 @@
     text-decoration: underline;
   }
 
-  // &:disabled {
-  //   border-color: $euiButtonToggleBorderColor;
-  // }
-
   &.euiButtonToggle--isIconOnly {
     min-width: 0;
 
@@ -40,6 +36,12 @@
     .euiButton__text:empty {
       display: none;
     }
+  }
+
+  &.euiButtonToggle--isEmpty {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
   }
 }
 

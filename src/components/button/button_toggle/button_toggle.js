@@ -9,18 +9,22 @@ export const EuiButtonToggle = ({
   className,
   color,
   isDisabled,
-  isSelected,
-  onChange,
-  label,
-  type,
+  isEmpty,
   isIconOnly,
+  isSelected,
+  label,
+  name,
+  onChange,
   toggleClassName,
+  type,
+  value,
   ...rest,
 }) => {
   const classes = classNames(
     'euiButtonToggle',
     {
       'euiButtonToggle--isIconOnly': isIconOnly,
+      'euiButtonToggle--isEmpty': isEmpty,
     },
     className,
   );
@@ -39,18 +43,20 @@ export const EuiButtonToggle = ({
     <EuiToggle
       className={wrapperClasses}
       inputClassName="euiButtonToggle__input"
+      checked={isSelected}
       isDisabled={isDisabled}
       label={label}
-      checked={isSelected}
+      name={name}
       onChange={onChange}
       type={type}
+      value={value}
     >
       <EuiButton
         tabIndex="-1" // prevents double focus from input to button
         className={classes}
-        size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
-        disabled={isDisabled}
         color={color}
+        disabled={isDisabled}
+        size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
         {...rest}
       >
         {buttonContent}
@@ -61,24 +67,18 @@ export const EuiButtonToggle = ({
 
 EuiButtonToggle.propTypes = {
   className: PropTypes.string,
-  isDisabled: PropTypes.bool,
+
+  /**
+   * Button label, which is also passed to `EuiToggle` as the input's label
+   */
+  label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
 
   /**
    * See `EuiButton`
    */
   color: PropTypes.string,
-
-  /**
-   * Button label, which is also passed to `EuiToggle` as the input's label
-   */
-  label: PropTypes.string.isRequired,
-
-  /**
-   * Is the button a single action or part of a group (multi)?
-   * Used primarily for `EuiButtonGroup`
-   */
-  type: PropTypes.oneOf(TOGGLE_TYPES),
+  isDisabled: PropTypes.bool,
 
   /**
    * Hides the label from the button content and only displays the icon
@@ -86,9 +86,20 @@ EuiButtonToggle.propTypes = {
   isIconOnly: PropTypes.bool,
 
   /**
+   * Simulates a `EuiButtonEmpty`
+   */
+  isEmpty: PropTypes.bool,
+
+  /**
    * Classnames to add to `EuiToggle` instead of the `EuiButton`
    */
   toggleClassName: PropTypes.string,
+
+  /**
+   * Is the button a single action or part of a group (multi)?
+   * Used primarily for `EuiButtonGroup`
+   */
+  type: PropTypes.oneOf(TOGGLE_TYPES),
 };
 
 EuiButtonToggle.defaultProps = {

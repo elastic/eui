@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import {
   EuiButtonToggle,
+  EuiSpacer,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -13,6 +15,7 @@ export default class extends Component {
       toggle1On: false,
       toggle2On: false,
       toggle3On: true,
+      toggle4On: true,
     };
   }
 
@@ -24,40 +27,52 @@ export default class extends Component {
     this.setState({ toggle1On: e.target.checked });
   }
 
+  onToggle4Change = (e) => {
+    this.setState({ toggle4On: e.target.checked });
+  }
+
   render() {
     return (
       <div>
         <EuiButtonToggle
           label="Toggle Me"
-          iconType={this.state.toggle0On ? 'eye' : 'eyeClosed'}
+          iconType={this.state.toggle0On ? 'check' : 'cross'}
           onChange={this.onToggle0Change}
         />
 
-        <br />
-        <br />
+        &emsp;
 
         <EuiButtonToggle
-          color="primary"
           label={this.state.toggle1On ? "I'm a filled toggle" : "I'm a primary toggle"}
           fill={this.state.toggle1On}
           onChange={this.onToggle1Change}
         />
 
-        <br />
-        <br />
+        &emsp;
 
         <EuiButtonToggle
-          color="primary"
+          label="Toggle Me"
+          iconType={this.state.toggle4On ? 'eye' : 'eyeClosed'}
+          onChange={this.onToggle4Change}
+          isEmpty
+          isIconOnly
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiTitle size="xxs"><h3>Disabled</h3></EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        <EuiButtonToggle
           isDisabled
           label="Can't toggle this"
           fill={this.state.toggle2On}
         />
 
-        <br />
-        <br />
+        &emsp;
 
         <EuiButtonToggle
-          color="primary"
           isDisabled
           label="Can't toggle this either"
           fill={this.state.toggle3On}

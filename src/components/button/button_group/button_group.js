@@ -6,17 +6,17 @@ import { EuiButtonToggle } from '../button_toggle';
 import { TOGGLE_TYPES } from '../../toggle';
 
 export const EuiButtonGroup = ({
-  options,
-  idSelected,
-  onChange,
-  name,
   className,
-  isDisabled,
   color,
-  isFullWidth,
+  idSelected,
   idToSelectedMap,
-  type,
+  isDisabled,
+  isFullWidth,
   isIconOnly,
+  name,
+  onChange,
+  options,
+  type,
   ...rest
 }) => {
 
@@ -41,23 +41,23 @@ export const EuiButtonGroup = ({
 
         return (
           <EuiButtonToggle
-            toggleClassName="euiButtonGroup__toggle"
             className="euiButtonGroup__button"
-            key={index}
-            id={option.id}
-            isSelected={isSelectedState}
-            fill={isSelectedState}
-            name={name}
-            label={option.label}
-            value={option.value}
-            iconType={option.iconType}
-            iconSide={option.iconSide}
-            isDisabled={isDisabled}
-            onChange={onChange.bind(null, option.id, option.value)}
             color={color}
-            type={type}
+            fill={isSelectedState}
+            iconSide={option.iconSide}
+            iconType={option.iconType}
+            id={option.id}
+            isDisabled={isDisabled}
             isIconOnly={isIconOnly}
+            isSelected={isSelectedState}
+            key={index}
+            label={option.label}
+            name={name}
+            onChange={onChange.bind(null, option.id, option.value)}
             size="s" // force small for button groups
+            toggleClassName="euiButtonGroup__toggle"
+            type={type}
+            value={option.value}
           />
         );
       })}

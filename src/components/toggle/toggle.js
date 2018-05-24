@@ -11,16 +11,16 @@ export const TYPES = Object.keys(typeToInputTypeMap);;
 
 export const EuiToggle = ({
   id,
-  label,
-  checked,
-  isDisabled,
-  onChange,
-  children,
-  type,
-  name,
-  value,
   className,
+  checked,
+  children,
   inputClassName,
+  isDisabled,
+  label,
+  name,
+  onChange,
+  type,
+  value,
   ...rest,
 }) => {
   const classes = classNames(
@@ -42,15 +42,15 @@ export const EuiToggle = ({
       {...rest}
     >
       <input
-        className={inputClasses}
         id={id}
-        name={name}
-        value={value}
-        type={typeToInputTypeMap[type]}
+        className={inputClasses}
+        aria-label={label}
         checked={checked}
         disabled={isDisabled}
+        name={name}
         onChange={onChange}
-        aria-label={label}
+        type={typeToInputTypeMap[type]}
+        value={value}
       />
 
       {children}
@@ -75,12 +75,12 @@ EuiToggle.propTypes = {
 
   /**
    * Use your own logic to pass the child you want according to
-   * the checked state of your component.
+   * the checked state of your component
    */
   children: PropTypes.node,
 
   /**
-   * Determines the input type based on multiple or single item(s).
+   * Determines the input type based on multiple or single item(s)
    */
   type: PropTypes.oneOf(TYPES),
 
@@ -88,6 +88,10 @@ EuiToggle.propTypes = {
    * What would typically be the input's label. Required for accessibility.
    */
   label: PropTypes.string.isRequired,
+
+  /**
+   * Additional classNames for the input itself
+   */
   inputClassName: PropTypes.string,
 };
 
