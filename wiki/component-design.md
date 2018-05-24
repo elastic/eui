@@ -114,7 +114,7 @@ export const EuiMegaMenu = ({
 
 ### Booleans
 
-Generally, boolean props should have an `is` prefix, e.g. `isPlaceholder` or `isReadOnly`. The exception to this is when the prop matches an existing HTML attribute such as `disabled`; to avoid confusion prop name should align with the HTML specification. 
+Generally, boolean props should have an `is` prefix, e.g. `isPlaceholder` or `isReadOnly`. The exception to this is when the prop matches an existing HTML attribute such as `disabled`; to avoid confusion prop name should align with the HTML specification. This type of mirroring the attributes makes the most sense when the component is a thin wrapper around an existing HTML element, e.g. EuiButton -> button and EuiRadio -> <input type="radio">. 
 
 ### Event handlers
 
