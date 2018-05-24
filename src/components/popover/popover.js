@@ -32,6 +32,28 @@ const anchorPositionToClassNameMap = {
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
 export class EuiPopover extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.prevProps.isOpen && !nextProps.isOpen) {
+      return {
+        prevProps: {
+          isOpen: nextProps.isOpen
+        },
+        isClosing: true,
+        isOpening: false,
+      };
+    }
+
+    if (prevState.prevProps.isOpen !== nextProps.isOpen) {
+      return {
+        prevProps: {
+          isOpen: nextProps.isOpen
+        }
+      };
+    }
+
+    return null;
+  }
+  
   constructor(props) {
     super(props);
 
@@ -103,28 +125,6 @@ export class EuiPopover extends Component {
     }
 
     this.updateFocus();
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.prevProps.isOpen && !nextProps.isOpen) {
-      return {
-        prevProps: {
-          isOpen: nextProps.isOpen
-        },
-        isClosing: true,
-        isOpening: false,
-      };
-    }
-
-    if (prevState.prevProps.isOpen !== nextProps.isOpen) {
-      return {
-        prevProps: {
-          isOpen: nextProps.isOpen
-        }
-      };
-    }
-
-    return null;
   }
 
   componentWillUnmount() {
