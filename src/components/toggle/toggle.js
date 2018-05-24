@@ -19,6 +19,7 @@ export const EuiToggle = ({
   label,
   name,
   onChange,
+  title,
   type,
   value,
   ...rest,
@@ -49,6 +50,7 @@ export const EuiToggle = ({
         disabled={isDisabled}
         name={name}
         onChange={onChange}
+        title={title}
         type={typeToInputTypeMap[type]}
         value={value}
       />

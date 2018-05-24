@@ -6,10 +6,6 @@
 .euiButtonGroup--fullWidth {
   .euiButtonGroup__toggle {
     flex: 1;
-
-    .euiButtonGroup__button {
-      width: 100%;
-    }
   }
 }
 
@@ -33,6 +29,7 @@
 
   .euiButtonGroup__button {
     border-radius: 0;
+    width: 100%;
 
     // always the same border color unless it's selected
     &:not([class*="fill"]) {
@@ -61,5 +58,14 @@
   &:last-child .euiButtonGroup__button {
     border-top-right-radius: $euiBorderRadius;
     border-bottom-right-radius: $euiBorderRadius;
+  }
+
+  @include screenXSmall(){
+    flex: 1;
+    min-width: 0;
+
+    .euiButtonGroup__button {
+      min-width: 0;
+    }
   }
 }

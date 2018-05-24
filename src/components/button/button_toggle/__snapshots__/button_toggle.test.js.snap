@@ -7,6 +7,7 @@ exports[`EuiButtonToggle is rendered 1`] = `
   <input
     aria-label="Label me"
     class="euiToggle__input euiButtonToggle__input"
+    title="Label me"
     type="checkbox"
   />
   <button

@@ -49,6 +49,7 @@ export const EuiButtonToggle = ({
       name={name}
       onChange={onChange}
       type={type}
+      title={label}
       value={value}
     >
       <EuiButton
