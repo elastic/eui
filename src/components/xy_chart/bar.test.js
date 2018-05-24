@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 import { patchRandom, unpatchRandom } from '../../test/patch_random';
+import { requiredProps } from '../../test/required_props';
 
 import EuiXYChart from './chart';
 import EuiBar from './bar';
@@ -12,7 +13,7 @@ afterEach(unpatchRandom);
 describe('EuiBar', () => {
   test('is rendered', () => {
     const component = mount(
-      <EuiXYChart width={600} height={200}>
+      <EuiXYChart width={600} height={200} {...requiredProps}>
         <EuiBar
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}

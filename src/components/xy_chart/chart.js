@@ -53,7 +53,7 @@ export class XYChart extends PureComponent {
           crosshairValues
         });
       }
-    }  
+    }
   }
 
   _getAllSeriesFromDataAtIndex = (chartData, xBucket) => {
@@ -64,7 +64,7 @@ export class XYChart extends PureComponent {
     if(chartDataForXValue.length === 0) {
       chartDataForXValue.push({ x: xBucket, y: NO_DATA_VALUE })
     }
-  
+
     return chartDataForXValue;
   };
 
@@ -125,7 +125,7 @@ export class XYChart extends PureComponent {
     const chartData = this._xyPlotRef.current.state.data.filter(d => d !== undefined)
     return this._getAllSeriesFromDataAtIndex(chartData, crosshairX)
   }
-  
+
 
   render() {
     const {
@@ -142,8 +142,12 @@ export class XYChart extends PureComponent {
       showTooltips,
       onSelectEnd,
       children,
+      animation, // eslint-disable-line no-unused-vars
+      onCrosshairUpdate, // eslint-disable-line no-unused-vars
+      truncateLegends, // eslint-disable-line no-unused-vars
+      ...rest
     } = this.props;
-    
+
 
     if (!children || errorText) {
       return <StatusText text={errorText} width={width} height={height} />;
@@ -152,53 +156,55 @@ export class XYChart extends PureComponent {
     this.colorIterator = 0;
 
     return (
-      <XYPlot
-        ref={this._xyPlotRef}
-        dontCheckIfEmpty
-        xType={mode}
-        onMouseMove={this._onMouseMove}
-        onMouseLeave={this._onMouseLeave}
-        width={width}
-        animation={true}
-        height={height}
-        margin={2}
-      >
-        
-        {showAxis && [
-          <HorizontalGridLines
-            key="lines"
-            tickValues={this._getTicks(yTicks)}
-            style={{ strokeDasharray: '5 5' }}
-          />, 
-          <XAxis
-            key="x"
-            orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
-            tickSize={1}
-            tickValues={this._getTicks(xTicks)}
-            tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
-          />,
-          <YAxis
-            key="Y"
-            tickSize={1}
-            orientation={yAxisLocation === 'right' ? 'right' : 'left'}
-            tickValues={this._getTicks(yTicks)}
-            tickFormat={yTicks ? v => this._getTickLabels(yTicks)[v] || v : undefined}
-          />
-        ]}
+      <div {...rest}>
+        <XYPlot
+          ref={this._xyPlotRef}
+          dontCheckIfEmpty
+          xType={mode}
+          onMouseMove={this._onMouseMove}
+          onMouseLeave={this._onMouseLeave}
+          width={width}
+          animation={true}
+          height={height}
+          margin={2}
+        >
 
-        {React.Children.map(children, this._renderChildren)}
+          {showAxis && [
+            <HorizontalGridLines
+              key="lines"
+              tickValues={this._getTicks(yTicks)}
+              style={{ strokeDasharray: '5 5' }}
+            />,
+            <XAxis
+              key="x"
+              orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
+              tickSize={1}
+              tickValues={this._getTicks(xTicks)}
+              tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
+            />,
+            <YAxis
+              key="Y"
+              tickSize={1}
+              orientation={yAxisLocation === 'right' ? 'right' : 'left'}
+              tickValues={this._getTicks(yTicks)}
+              tickFormat={yTicks ? v => this._getTickLabels(yTicks)[v] || v : undefined}
+            />
+          ]}
 
-        {showTooltips && (
-          <Crosshair
-            values={this._getCrosshairValues(crosshairX)}
-            style={{ line: { background: 'rgb(218, 218, 218)' } }}
-            titleFormat={() => null}
-            itemsFormat={this._itemsFormat}
-          />
-        )}
-        
-        {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
-      </XYPlot>
+          {React.Children.map(children, this._renderChildren)}
+
+          {showTooltips && (
+            <Crosshair
+              values={this._getCrosshairValues(crosshairX)}
+              style={{ line: { background: 'rgb(218, 218, 218)' } }}
+              titleFormat={() => null}
+              itemsFormat={this._itemsFormat}
+            />
+          )}
+
+          {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
+        </XYPlot>
+      </div>
     );
   }
 }
@@ -219,7 +225,8 @@ XYChart.propTypes = {
   mode: PropTypes.string,
   showTooltips: PropTypes.bool,
   errorText: PropTypes.string,
-  crosshairX: PropTypes.number
+  crosshairX: PropTypes.number,
+  onCrosshairUpdate: PropTypes.func
 };
 
 XYChart.defaultProps = {
