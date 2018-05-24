@@ -6,29 +6,21 @@ import {
 
 export default () => (
   <div>
-    <EuiButtonToggle toggleLabel="Toggle Me">
-      Toggle Me
-    </EuiButtonToggle>
+    <EuiButtonToggle label="Toggle Me" />
 
     <br />
     <br />
 
-    <EuiButtonToggle color="primary" toggleLabel="I'm a primary toggle">
-      I&apos;m a primary toggle
-    </EuiButtonToggle>
+    <EuiButtonToggle color="primary" label="I'm a primary toggle" />
 
     <br />
     <br />
 
-    <EuiButtonToggle color="primary" isDisabled toggleLabel="Can't toggle this">
-      Can&apos;t toggle this
-    </EuiButtonToggle>
+    <EuiButtonToggle color="primary" isDisabled label="Can't toggle this" />
 
     <br />
     <br />
 
-    <EuiButtonToggle color="primary" selected isDisabled toggleLabel="Can't toggle this">
-      Can&apos;t toggle this either
-    </EuiButtonToggle>
+    <EuiButtonToggle color="primary" isSelected isDisabled label="Can't toggle this either" />
   </div>
 );

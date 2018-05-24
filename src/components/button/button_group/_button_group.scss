@@ -4,19 +4,19 @@
 
 .euiButtonGroup__item {
   margin-left: -1px;
+  z-index: 1;
+
+  &[class*="checked"] {
+    z-index: 2; // Raise it above the simply bordered versions for crisper lines
+
+    // add a slight divider if two selected items are next to each other
+    + [class*="checked"] {
+      box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
+    }
+  }
 
   .euiButtonToggle {
     border-radius: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .euiButtonToggle--fill {
-    z-index: 2; // Raise it above the simply bordered versions for crisper lines
-  }
-
-  .euiToggle__input {
-    z-index: 3; // but make sure the input is on top
   }
 
   &:first-child {

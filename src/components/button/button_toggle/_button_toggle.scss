@@ -1,155 +1,61 @@
-// Our base button
-.euiButtonToggle {
-  @include euiButton;
-  @include euiSlightShadow;
+// Pointer events and interactions are handled by the input (checkbox/radio)
+// and not the button, this mixin helps to target that element for states
+@mixin euiButtonToggleStates(){
+  @at-root {
+    .euiButtonToggle__input:enabled:hover + #{&},
+    .euiButtonToggle__input:enabled:focus + #{&},
+    .euiButtonToggle__input:enabled:active + #{&} {
+      @content;
+    }
+  }
+}
 
-  border-color: $euiColorLightShade;
-  border-radius: $euiBorderRadius;
-  min-width: $euiButtonMinWidth;
-  height: $euiButtonHeightSmall;
+.euiButtonToggle__wrapper {
+  display: inline-block;
+}
+
+.euiButtonToggle {
+  // always the same border color unless it's selected
+  border-color: $euiButtonToggleBorderColor;
+
+  &:enabled {
+    @include euiSlightShadow; // don't colorize the shadow
+  }
 
   .euiButtonToggle__content {
-    @include euiButtonContent;
-    padding: 0 ($euiSize - $euiSizeXS);
+    padding: 0 $euiSizeS;
   }
 
-  .euiButtonToggle__text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: $euiButtonHeightSmall;
+  @include euiButtonToggleStates() {
+    @include euiSlightShadowHover;
+    text-decoration: underline;
   }
 
-  &.euiButtonToggle--iconRight {
-    .euiButtonToggle__content {
-      @include euiButtonContent($isReverse: true);
-    }
-  }
-
-  @at-root {
-    .euiButtonToggle__wrapper .euiToggle__input:hover + #{&},
-    .euiButtonToggle__wrapper .euiToggle__input:focus + #{&},
-    .euiButtonToggle__wrapper .euiToggle__input:active + #{&} {
-      @include euiSlightShadowHover;
-      background-color: transparentize($euiColorDarkShade, .9);
-      text-decoration: underline;
-    }
-  }
-
-  &.euiButtonToggle--fill {
-    background-color: $euiColorDarkShade;
-    border-color: $euiColorDarkShade;
-    color: $euiColorEmptyShade;
-
-    @at-root {
-      .euiButtonToggle__wrapper .euiToggle__input:hover + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:focus + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:active + #{&} {
-        background-color: darken($euiColorDarkShade, 5%);
-        border-color: darken($euiColorDarkShade, 5%);
-        text-decoration: underline;
-      }
-    }
-  }
-
-  &.euiButtonToggle--isDisabled {
-    color: $euiButtonColorDisabled;
-    border-color: $euiButtonColorDisabled;
-    pointer-events: none;
-
-    .euiButtonToggle__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    &.euiButtonToggle--fill {
-      color: $euiColorEmptyShade;
-      background-color: $euiButtonColorDisabled;
-      border-color: $euiButtonColorDisabled;
-
-      @at-root {
-        .euiButtonToggle__wrapper .euiToggle__input:hover + #{&},
-        .euiButtonToggle__wrapper .euiToggle__input:focus + #{&},
-        .euiButtonToggle__wrapper .euiToggle__input:active + #{&} {
-          background-color: $euiButtonColorDisabled;
-          border-color: $euiButtonColorDisabled;
-        }
-      }
-    }
-
-    @at-root {
-      .euiButtonToggle__wrapper .euiToggle__input:hover + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:focus + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:active + #{&} {
-        @include euiSlightShadow;
-        background-color: transparent;
-        text-decoration: none;
-      }
-    }
+  &:disabled {
+    border-color: $euiButtonToggleBorderColor;
   }
 }
 
-// Modifier naming and colors.
-$buttonTypes: (
-  primary: $euiColorPrimary,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
-);
+// // Default color
+// .euiButtonToggle:not([class*="primary"]):not([class*="ghost"]) {
+//   @include euiButtonToggleStates() {
+//     background-color: transparentize($euiColorDarkShade, .9);
+//   }
 
-// Create button modifiders based upon the map.
-@each $name, $color in $buttonTypes {
-  .euiButtonToggle--#{$name} {
+//   &[class*="--fill"] {
+//     background-color: $euiColorDarkShade;
+//     border-color: $euiColorDarkShade;
+//     color: $euiColorEmptyShade;
 
-    @if ($name == 'ghost') {
-      // Ghost is unique and ALWAYS sits against a dark background.
-      border-color: $color;
-    }
+//     @include euiButtonToggleStates() {
+//       background-color: darken($euiColorDarkShade, 5%);
+//       border-color: darken($euiColorDarkShade, 5%);
+//     }
 
-    color: $color;
+//     &:disabled {
+//       background-color: $euiButtonColorDisabled;
+//       border-color: $euiButtonToggleBorderColor;
+//     }
+//   }
+// }
 
-    &.euiButtonToggle--fill {
-      background-color: $color;
-      border-color: $color;
-
-      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000);
-
-      color: $fillTextColor;
-
-      @at-root {
-        .euiButtonToggle__wrapper .euiToggle__input:hover + #{&},
-        .euiButtonToggle__wrapper .euiToggle__input:focus + #{&},
-        .euiButtonToggle__wrapper .euiToggle__input:active + #{&} {
-          background-color: darken($color, 5%);
-          border-color: darken($color, 5%);
-        }
-      }
-    }
-
-    $shadowColor: $euiShadowColor;
-    @if ($name == 'ghost') {
-      $shadowColor: #000;
-    } @else if (lightness($euiTextColor) < 50) {
-      // Only if this is the light theme do we use the button variant color to colorize the shadow
-      $shadowColor: desaturate($color, 60%);
-    }
-
-    @at-root {
-      .euiButtonToggle__wrapper .euiToggle__input:enabled:hover + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:enabled:focus + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:enabled:active + #{&} {
-        @if ($name == 'disabled') {
-          cursor: not-allowed;
-        }
-      }
-    }
-
-    @at-root {
-      .euiButtonToggle__wrapper .euiToggle__input:disabled + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:disabled:hover + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:disabled:focus + #{&},
-      .euiButtonToggle__wrapper .euiToggle__input:disabled:active + #{&} {
-        @if ($name == 'ghost') {
-          @include euiSlightShadow(#000);
-        }
-      }
-    }
-  }
-}

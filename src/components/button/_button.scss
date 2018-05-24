@@ -20,6 +20,7 @@
 
   &.euiButton--small {
     height: $euiButtonHeightSmall;
+    line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
   }
 
   &.euiButton--iconRight {
@@ -73,6 +74,7 @@ $buttonTypes: (
   warning: $euiColorWarning,
   danger: $euiColorDanger,
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
+  text: $euiColorDarkShade, // Reserved for special use cases
 );
 
 // Create button modifiders based upon the map.
@@ -82,6 +84,9 @@ $buttonTypes: (
     @if ($name == 'ghost') {
       // Ghost is unique and ALWAYS sits against a dark background.
       color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
     } @else {
       // Other colors need to check their contrast against the page background color.
       color: makeHighContrastColor($color, $euiColorEmptyShade);

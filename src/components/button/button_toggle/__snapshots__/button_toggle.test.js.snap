@@ -5,22 +5,26 @@ exports[`EuiButtonToggle is rendered 1`] = `
   class="euiToggle euiButtonToggle__wrapper testClass1 testClass2"
 >
   <input
-    aria-label="Lable me"
-    class="euiToggle__input"
+    aria-label="Label me"
+    class="euiToggle__input euiButtonToggle__input"
     type="checkbox"
   />
-  <div
+  <button
     aria-label="aria-label"
-    class="euiButtonToggle"
+    class="euiButton euiButton--text euiButton--small euiButtonToggle"
     data-test-subj="test subject string"
+    tabindex="-1"
+    type="button"
   >
     <span
-      class="euiButtonToggle__content"
+      class="euiButton__content"
     >
       <span
-        class="euiButtonToggle__text"
-      />
+        class="euiButton__text"
+      >
+        Label me
+      </span>
     </span>
-  </div>
+  </button>
 </div>
 `;

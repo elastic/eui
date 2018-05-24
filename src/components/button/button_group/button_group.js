@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { EuiButtonToggle } from '../button_toggle';
-
-const colorToClassNameMap = {
-  default: '',
-  primary: 'euiButtonToggle--primary',
-  ghost: 'euiButtonToggle--ghost',
-};
-
-export const COLORS = Object.keys(colorToClassNameMap);
 
 export const EuiButtonGroup = ({
   options,
@@ -20,39 +13,43 @@ export const EuiButtonGroup = ({
   disabled,
   color,
   ...rest
-}) => (
-  <div className={className} {...rest}>
-    {options.map((option, index) => {
-      return (
-        <EuiButtonToggle
-          className="euiButtonGroup__item"
-          key={index}
-          id={option.id}
-          name={name}
-          selected={option.id === idSelected}
-          label={option.label}
-          isDisabled={disabled}
-          onChange={onChange.bind(null, option.id, option.label)}
-          color={color}
-        >
-          {option.content}
-        </EuiButtonToggle>
-      );
-    })}
-  </div>
-);
+}) => {
+
+  const classes = classNames(
+    'euiButtonGroup',
+    className,
+  );
+
+  return (
+    <div className={classes} {...rest}>
+      {options.map((option, index) => {
+        return (
+          <EuiButtonToggle
+            className="euiButtonGroup__item"
+            key={index}
+            id={option.id}
+            name={name}
+            isSelected={option.id === idSelected}
+            label={option.label}
+            isDisabled={disabled}
+            onChange={onChange.bind(null, option.id, option.label)}
+            color={color}
+          />
+        );
+      })}
+    </div>
+  )
+};
 
 EuiButtonGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string,
-      content: PropTypes.node,
+      label: PropTypes.string.isRequired
     }),
   ).isRequired,
   idSelected: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  color: PropTypes.oneOf(COLORS),
 };
 
 EuiButtonGroup.defaultProps = {
