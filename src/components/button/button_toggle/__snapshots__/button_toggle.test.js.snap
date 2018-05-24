@@ -2,7 +2,7 @@
 
 exports[`EuiButtonToggle is rendered 1`] = `
 <div
-  class="euiToggle euiButtonToggle__wrapper testClass1 testClass2"
+  class="euiToggle euiButtonToggle__wrapper"
 >
   <input
     aria-label="Label me"
@@ -11,7 +11,7 @@ exports[`EuiButtonToggle is rendered 1`] = `
   />
   <button
     aria-label="aria-label"
-    class="euiButton euiButton--text euiButton--small euiButtonToggle"
+    class="euiButton euiButton--primary euiButtonToggle testClass1 testClass2"
     data-test-subj="test subject string"
     tabindex="-1"
     type="button"

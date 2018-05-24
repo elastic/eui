@@ -27,22 +27,41 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <EuiButtonToggle label="Toggle Me" isSelected={this.state.toggle0On} onChange={this.onToggle0Change} />
+        <EuiButtonToggle
+          label="Toggle Me"
+          iconType={this.state.toggle0On ? 'eye' : 'eyeClosed'}
+          onChange={this.onToggle0Change}
+        />
 
         <br />
         <br />
 
-        <EuiButtonToggle color="primary" label="I'm a primary toggle" isSelected={this.state.toggle1On} onChange={this.onToggle1Change} />
+        <EuiButtonToggle
+          color="primary"
+          label={this.state.toggle1On ? "I'm a filled toggle" : "I'm a primary toggle"}
+          fill={this.state.toggle1On}
+          onChange={this.onToggle1Change}
+        />
 
         <br />
         <br />
 
-        <EuiButtonToggle color="primary" isDisabled label="Can't toggle this" isSelected={this.state.toggle2On} />
+        <EuiButtonToggle
+          color="primary"
+          isDisabled
+          label="Can't toggle this"
+          fill={this.state.toggle2On}
+        />
 
         <br />
         <br />
 
-        <EuiButtonToggle color="primary" isDisabled label="Can't toggle this either" isSelected={this.state.toggle3On} />
+        <EuiButtonToggle
+          color="primary"
+          isDisabled
+          label="Can't toggle this either"
+          fill={this.state.toggle3On}
+        />
       </div>
     );
   }

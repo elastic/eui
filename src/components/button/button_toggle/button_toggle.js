@@ -14,13 +14,15 @@ export const EuiButtonToggle = ({
   label,
   type,
   isIconOnly,
+  toggleClassName,
   ...rest,
 }) => {
   const classes = classNames(
     'euiButtonToggle',
     {
       'euiButtonToggle--isIconOnly': isIconOnly,
-    }
+    },
+    className,
   );
 
   const wrapperClasses = classNames(
@@ -28,27 +30,25 @@ export const EuiButtonToggle = ({
     {
       'euiButtonToggle--isDisabled': isDisabled,
     },
-    className
+    toggleClassName
   );
 
-  //const WrappingElement = isIconOnly ? EuiButtonIcon : EuiButton;
   const buttonContent = isIconOnly ? '' : label;
 
   return (
     <EuiToggle
       className={wrapperClasses}
+      inputClassName="euiButtonToggle__input"
       isDisabled={isDisabled}
       label={label}
       checked={isSelected}
       onChange={onChange}
-      inputClassName="euiButtonToggle__input"
       type={type}
     >
       <EuiButton
         tabIndex="-1" // prevents double focus from input to button
         className={classes}
-        size="s"
-        fill={isSelected}
+        size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
         disabled={isDisabled}
         color={color}
         {...rest}
@@ -65,27 +65,32 @@ EuiButtonToggle.propTypes = {
   onChange: PropTypes.func,
 
   /**
-   * See EuiButton
+   * See `EuiButton`
    */
   color: PropTypes.string,
 
   /**
-   * Button label, which is also passed to EuiToggle as the input's label
+   * Button label, which is also passed to `EuiToggle` as the input's label
    */
   label: PropTypes.string.isRequired,
 
   /**
-   * Starting state of toggle
+   * Is the button a single action or part of a group (multi)?
+   * Used primarily for `EuiButtonGroup`
    */
-  isSelected: PropTypes.bool,
   type: PropTypes.oneOf(TOGGLE_TYPES),
 
   /**
    * Hides the label from the button content and only displays the icon
    */
   isIconOnly: PropTypes.bool,
+
+  /**
+   * Classnames to add to `EuiToggle` instead of the `EuiButton`
+   */
+  toggleClassName: PropTypes.string,
 };
 
 EuiButtonToggle.defaultProps = {
-  color: 'text',
+  color: 'primary',
 };

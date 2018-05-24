@@ -41,10 +41,12 @@ export const EuiButtonGroup = ({
 
         return (
           <EuiButtonToggle
-            className="euiButtonGroup__item"
+            toggleClassName="euiButtonGroup__toggle"
+            className="euiButtonGroup__button"
             key={index}
             id={option.id}
             isSelected={isSelectedState}
+            fill={isSelectedState}
             name={name}
             label={option.label}
             value={option.value}
@@ -55,6 +57,7 @@ export const EuiButtonGroup = ({
             color={color}
             type={type}
             isIconOnly={isIconOnly}
+            size="s" // force small for button groups
           />
         );
       })}
@@ -70,13 +73,37 @@ EuiButtonGroup.propTypes = {
     }),
   ).isRequired,
   onChange: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool,
-  isFullWidth: PropTypes.bool,
+
+  /**
+   * See `EuiButton`
+   */
   color: PropTypes.string,
-  type: PropTypes.oneOf(TOGGLE_TYPES),
-  idSelected: PropTypes.string,
-  idToSelectedMap: PropTypes.objectOf(PropTypes.bool),
+
+  /**
+   * Hides the label from the button content and only displays the icon
+   */
   isIconOnly: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+
+  /**
+   * Makes the whole group 100% of it's parent
+   */
+  isFullWidth: PropTypes.bool,
+
+  /**
+   * Can only a "single" option be selected or "multi"ple?
+   */
+  type: PropTypes.oneOf(TOGGLE_TYPES),
+
+  /**
+   * Id of selected option for `type="single"`
+   */
+  idSelected: PropTypes.string,
+
+  /**
+   * Map of ids of selected options for `type="multi"`
+   */
+  idToSelectedMap: PropTypes.objectOf(PropTypes.bool),
 };
 
 EuiButtonGroup.defaultProps = {

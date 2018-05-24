@@ -13,6 +13,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiButtonToggle,
+  EuiLink,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -169,25 +170,6 @@ export const ButtonExample = {
     props: { EuiButtonIcon },
     demo: <ButtonIcon />,
   }, {
-    title: 'Ghost buttons for deep color backgrounds',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: buttonGhostSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: buttonGhostHtml,
-    }],
-    text: (
-      <p>
-        You can also pass <EuiCode>type=&apos;ghost&apos;</EuiCode> to any of the button
-        styles on this page. These should be used extremely rarely, and are
-        only for placing buttons on top of dark or image-based backgrounds.
-        A good example of their use is in
-        the <EuiCode>EuiBottomBar</EuiCode> component
-      </p>
-    ),
-    demo: <ButtonGhost />,
-  }, {
     title: 'Toggle buttons',
     source: [{
       type: GuideSectionTypes.JS,
@@ -197,9 +179,19 @@ export const ButtonExample = {
       code: buttonToggleHtml,
     }],
     text: (
-      <p>
-        ...
-      </p>
+      <div>
+        <p>
+          This is a specialized component that combines <EuiCode>EuiButton</EuiCode> and <EuiCode>EuiToggle</EuiCode> to
+          create a button with an on/off state. You can pass all the same parameters to it as you
+          can to <EuiCode>EuiButton</EuiCode>. The main difference is that, it does not accept any children,
+          but a <EuiCode>label</EuiCode> prop instead. This is for the handling of accessiblity with
+          the <EuiCode>EuiToggle</EuiCode>.
+        </p>
+        <p>
+          The <EuiCode>EuiButtonToggle</EuiCode> does not have any inherit visual state differences.
+          These you must apply in your implementation.
+        </p>
+      </div>
     ),
     demo: <ButtonToggle />,
     props: { EuiButtonToggle },
@@ -213,11 +205,40 @@ export const ButtonExample = {
       code: buttonGroupHtml,
     }],
     text: (
-      <p>
-        ...
-      </p>
+      <div>
+        <p>
+          Button groups are handled similarly to the way checkbox and radio groups are
+          handled but made to look like buttons. They group multiple <EuiCode>EuiButtonToggle</EuiCode>s
+          and utilize the <EuiCode>type=&quot;single&quot;</EuiCode> or <EuiCode>&quot;multi&quot;</EuiCode> prop
+          to determine whether multiple or only single selections are allowed per group.
+        </p>
+        <p>
+          Stylistically, all button groups are the size of small buttons, do not stretch to fill the container
+          and typically should only be <EuiCode>color=&quot;text&quot;</EuiCode> (default)
+          or <EuiCode>&quot;primary&quot;</EuiCode>.
+          If your just displaying a group of icons, add the prop <EuiCode>isIconOnly</EuiCode>.
+        </p>
+      </div>
     ),
     demo: <ButtonGroup />,
     props: { EuiButtonGroup },
+  }, {
+    title: 'Ghost',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: buttonGhostSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: buttonGhostHtml,
+    }],
+    text: (
+      <p>
+        For buttons on dark color backgrounds, you can pass <EuiCode>color=&apos;ghost&apos;</EuiCode> to
+        any of the button styles on this page. These should be used extremely rarely, and are
+        only for placing buttons on top of dark or image-based backgrounds.
+        A good example of their use is in the <EuiLink href="/#/layout/bottom-bar">EuiBottomBar</EuiLink> component.
+      </p>
+    ),
+    demo: <ButtonGhost />,
   }],
 };

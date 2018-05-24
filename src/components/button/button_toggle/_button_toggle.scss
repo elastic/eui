@@ -1,35 +1,34 @@
-// Pointer events and interactions are handled by the input (checkbox/radio)
-// and not the button, this mixin helps to target that element for states
-@mixin euiButtonToggleStates(){
-  @at-root {
-    .euiButtonToggle__input:enabled:hover + #{&},
-    .euiButtonToggle__input:enabled:focus + #{&},
-    .euiButtonToggle__input:enabled:active + #{&} {
-      @content;
+
+.euiButtonToggle__wrapper {
+  display: inline-block;
+
+  // Transform the whole thing so that the button doesn't
+  // steal pointer events from input
+  &:not(.euiButtonToggle--isDisabled) {
+    transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &:focus {
+      animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    &:active {
+      transform: translateY(1px);
     }
   }
 }
 
-.euiButtonToggle__wrapper {
-  display: inline-block;
-}
-
 .euiButtonToggle {
-  // always the same border color unless it's selected
-  border-color: $euiButtonToggleBorderColor;
-
-  &:enabled {
-    @include euiSlightShadow; // don't colorize the shadow
-  }
-
   @include euiButtonToggleStates() {
-    @include euiSlightShadowHover;
     text-decoration: underline;
   }
 
-  &:disabled {
-    border-color: $euiButtonToggleBorderColor;
-  }
+  // &:disabled {
+  //   border-color: $euiButtonToggleBorderColor;
+  // }
 
   &.euiButtonToggle--isIconOnly {
     min-width: 0;
@@ -54,7 +53,7 @@ $buttonTypes: (
   text: $euiColorDarkShade, // Reserved for special use cases
 );
 
-// Create button modifiders based upon the map.
+// Add hover states based on input state
 @each $name, $color in $buttonTypes {
   .euiButtonToggle[class*="#{$name}"] {
     @include euiButtonToggleStates() {
@@ -69,3 +68,4 @@ $buttonTypes: (
     }
   }
 }
+
