@@ -16,8 +16,7 @@ export class CustomItemAction extends Component {
     this.mounted = false;
   }
 
-  // TODO: React 16.3 - move this to componentDidMount
-  componentWillMount() {
+  componentDidMount() {
     this.mounted = true;
   }
 

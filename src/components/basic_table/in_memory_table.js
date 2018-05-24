@@ -123,6 +123,20 @@ export class EuiInMemoryTable extends Component {
     responsive: true,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.items !== prevState.items) {
+      // We have new items because an external search has completed, so reset pagination state.
+      return {
+        prevProps: {
+          items: nextProps.items,
+        },
+        pageIndex: 0,
+      };
+    } else {
+      return null;
+    }
+  }
+
   constructor(props) {
     super(props);
 
@@ -131,6 +145,9 @@ export class EuiInMemoryTable extends Component {
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
+      prevProps: {
+        items: props.items,
+      },
       query: getInitialQuery(search),
       pageIndex,
       pageSize,
@@ -207,7 +224,7 @@ export class EuiInMemoryTable extends Component {
   }
 
   getItems() {
-    const { items } = this.props;
+    const { prevProps: { items } } = this.state;
 
     if (!items.length) {
       return {
@@ -238,16 +255,6 @@ export class EuiInMemoryTable extends Component {
       items: visibleItems,
       totalItemCount: matchingItems.length,
     };
-  }
-
-  // TODO: React 16.3 - getDerivedStateFromProps
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.items !== this.props.items) {
-      // We have new items because an external search has completed, so reset pagination state.
-      this.setState({
-        pageIndex: 0,
-      });
-    }
   }
 
   render() {
