@@ -310,10 +310,14 @@ export class EuiComboBox extends Component {
   };
 
   onFocus = () => {
+    document.addEventListener('click', this.onDocumentFocusChange);
+    document.addEventListener('focusin', this.onDocumentFocusChange);
     this.openList();
   }
 
   onBlur = () => {
+    document.removeEventListener('click', this.onDocumentFocusChange);
+    document.removeEventListener('focusin', this.onDocumentFocusChange);
     this.closeList();
   }
 
@@ -366,16 +370,10 @@ export class EuiComboBox extends Component {
         break;
 
       case TAB:
-        if (e.shiftKey) {
-          if (this.tabAway(-1)) {
-            e.preventDefault();
-            e.stopPropagation();
-          }
-        } else {
-          if (this.tabAway(1)) {
-            e.preventDefault();
-            e.stopPropagation();
-          }
+        const amount = e.shiftKey ? -1 : 1;
+        if (this.tabAway(amount)) {
+          e.preventDefault();
+          e.stopPropagation();
         }
         break;
     }
@@ -484,8 +482,6 @@ export class EuiComboBox extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    document.addEventListener('click', this.onDocumentFocusChange);
-    document.addEventListener('focusin', this.onDocumentFocusChange);
 
     // TODO: This will need to be called once the actual stylesheet loads.
     setTimeout(() => {
