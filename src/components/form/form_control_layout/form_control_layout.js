@@ -5,12 +5,7 @@ import classNames from 'classnames';
 import { EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
 
-const iconSideToClassNameMap = {
-  left: 'euiFormControlLayout__icon--left',
-  right: '',
-};
-
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
+export const ICON_SIDES = ['left', 'right'];
 
 export class EuiFormControlLayout extends Component {
   render() {
@@ -77,7 +72,6 @@ export class EuiFormControlLayout extends Component {
 
       const iconClasses = classNames(
         'euiFormControlLayout__icon',
-        iconSideToClassNameMap[iconSide],
         iconClassName,
         {
           'euiFormControlLayout__icon--button': onIconClick,
@@ -133,32 +127,34 @@ export class EuiFormControlLayout extends Component {
       );
     }
 
-    // If the icon is on the right, it should be placed after the clear button in the DOM.
-    if (optionalIconSide === 'right') {
-      return (
+    let leftIcons;
+
+    if ( optionalIconSide === 'left') {
+      leftIcons = (
         <div className="euiFormControlLayout__icons">
-          {optionalClear}
-          {optionalLoader}
           {optionalIcon}
         </div>
       );
     }
 
-    let optionalRightIcons;
+    let rightIcons;
 
-    if (optionalClear || optionalLoader) {
-      optionalRightIcons = (
-        <div className="euiFormControlLayout__icons">
+    // If the icon is on the right, it should be placed after the clear button in the DOM.
+    if (optionalClear || optionalLoader || optionalIconSide === 'right') {
+      rightIcons = (
+        <div className="euiFormControlLayout__icons euiFormControlLayout__icons--right">
           {optionalClear}
           {optionalLoader}
+          {optionalIconSide === 'right' ? optionalIcon : undefined}
         </div>
       );
     }
 
+
     return (
       <Fragment>
-        {optionalIcon}
-        {optionalRightIcons}
+        {leftIcons}
+        {rightIcons}
       </Fragment>
     );
   }

@@ -16,18 +16,6 @@
     pointer-events: none;
   }
 
-  .euiFormControlLayout__icon--left {
-    position: absolute;
-    top: $euiFormControlPadding;
-    left: $euiFormControlPadding;
-
-    @at-root {
-      .euiFormControlLayout--compressed#{&} {
-        top: $euiFormControlPadding--compressed;
-      }
-    }
-  }
-
   .euiFormControlLayout__icon--button {
     pointer-events: all;
     height: $euiSize;
@@ -51,15 +39,20 @@
 
   .euiFormControlLayout__icons {
     position: absolute;
-    right: $euiFormControlPadding;
     top: 0;
     bottom: 0;
+    left: $euiFormControlPadding;
     display: flex;
     align-items: center;
 
     > * + * {
       margin-left: $euiFormControlPadding;
     }
+  }
+
+  .euiFormControlLayout__icons--right {
+    left: auto;
+    right: $euiFormControlPadding;
   }
 
   .euiFormControlLayout__clear {

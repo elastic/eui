@@ -100,7 +100,6 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
-      compressed
       isLoading
       clear={{ onClick: () => {} }}
       icon="search"
