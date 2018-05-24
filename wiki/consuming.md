@@ -33,6 +33,10 @@ Test utilities are published from the `lib/test` directory.
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
 
+## Requirements
+
+EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
+
 ## Using EUI in Kibana
 
 The EUI CSS is included in [Kibana's](https://www..github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
