@@ -110,6 +110,16 @@ export const EuiMegaMenu = ({
   /* ... */
 ```
 
+## Naming props
+
+### Booleans
+
+Generally, boolean props should have an `is` prefix, e.g. `isPlaceholder` or `isReadOnly`. The exception to this is when the prop matches an existing HTML attribute such as `disabled`; to avoid confusion prop name should align with the HTML specification. This type of mirroring the attributes makes the most sense when the component is a thin wrapper around an existing HTML element, e.g. EuiButton -> button and EuiRadio -> <input type="radio">. 
+
+### Event handlers
+
+All event handlers should take the form `onEvent` and accurately describe when it will be called. e.g. `onClick` indicates the handler is called when the component is clicked, but if there is more granularity the handler should reflect that with `onItemClick`, `onRowClick`, etc.
+
 ## Common and required props
 
 Try to leverage the `children` prop wherever possible. This will create a simpler more uniform
