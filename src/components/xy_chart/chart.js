@@ -5,7 +5,6 @@ import { getPlotValues } from './utils';
 import Highlight from './highlight';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
-import { debounce } from 'lodash'
 
 const NO_DATA_VALUE = '~~NODATATODISPLAY~~';
 
@@ -15,7 +14,8 @@ export class XYChart extends PureComponent {
   };
   seriesItems = [];
   colorIterator = 0;
-  _setXYPlotRef = ref => (this._xyPlotRef = ref);
+  lastCrosshairX = 0;
+  _xyPlotRef = React.createRef();;
 
   _onMouseLeave = () => {
     this.setState({ crosshairValues: [], lastCrosshairIndex: null });
@@ -29,30 +29,32 @@ export class XYChart extends PureComponent {
     });
   }
 
-  _updateCrosshairValues = debounce(({ boundingClientRect, clientX }) => {
+  _updateCrosshairValues = ({ boundingClientRect, clientX }) => {
     // Calculate the range of the X axis
-    const chartData = this._xyPlotRef.state.data.filter(d => d !== undefined)
+    const chartData = this._xyPlotRef.current.state.data.filter(d => d !== undefined)
     const plotValues = getPlotValues(chartData, this.props.width);
     const xDomain = plotValues.x.domain();
     const maxChartXValue = (xDomain[1] - xDomain[0]) + 1;
 
-    const innerChartWidth = this._xyPlotRef._getDefaultScaleProps(this._xyPlotRef.props).xRange[1]
+    const innerChartWidth = this._xyPlotRef.current._getDefaultScaleProps(this._xyPlotRef.current.props).xRange[1]
 
     const mouseX = clientX - boundingClientRect.left;
     const xAxisesBucketWidth = innerChartWidth / maxChartXValue;
     const bucketX = Math.floor(mouseX / xAxisesBucketWidth)
 
-    if (bucketX !== this.state.lastCrosshairX) {
+    if (bucketX !== this.lastCrosshairX) {
       if(this.props.onCrosshairUpdate) this.props.onCrosshairUpdate(bucketX)
       if(!this.props.crosshairX) {
+        this.lastCrosshairX = bucketX;
+
+        const crosshairValues = this._getAllSeriesFromDataAtIndex(chartData, bucketX)
+
         this.setState({
-          crosshairValues: this._getAllSeriesFromDataAtIndex(chartData, bucketX),
-          lastCrosshairX: bucketX,
+          crosshairValues
         });
       }
-      
     }  
-  }, 20)
+  }
 
   _getAllSeriesFromDataAtIndex = (chartData, xBucket) => {
     const chartDataForXValue = chartData.map(series => series.filter(seriesData => {
@@ -120,7 +122,7 @@ export class XYChart extends PureComponent {
   _getCrosshairValues = (crosshairX) => {
     if(!crosshairX) return this.state.crosshairValues
 
-    const chartData = this._xyPlotRef.state.data.filter(d => d !== undefined)
+    const chartData = this._xyPlotRef.current.state.data.filter(d => d !== undefined)
     return this._getAllSeriesFromDataAtIndex(chartData, crosshairX)
   }
   
@@ -151,7 +153,7 @@ export class XYChart extends PureComponent {
 
     return (
       <XYPlot
-        ref={this._setXYPlotRef}
+        ref={this._xyPlotRef}
         dontCheckIfEmpty
         xType={mode}
         onMouseMove={this._onMouseMove}
