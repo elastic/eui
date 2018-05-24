@@ -58,12 +58,12 @@ exports[`children's className merges new classnames into existing ones 1`] = `
 
 exports[`renders EuiTableRowCell 1`] = `
 <td
+  aria-label="aria-label"
   class="euiTableRowCell"
+  data-test-subj="test subject string"
 >
   <div
-    aria-label="aria-label"
     class="euiTableCellContent testClass1 testClass2"
-    data-test-subj="test subject string"
   >
     <span
       class="euiTableCellContent__text"

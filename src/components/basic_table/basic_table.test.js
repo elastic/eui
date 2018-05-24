@@ -6,19 +6,19 @@ import { EuiBasicTable, getItemId } from './basic_table';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
-    expect(getItemId({ id: 5 }, {})).toBeUndefined();
-    expect(getItemId({ itemId: 5 }, {})).toBeUndefined();
-    expect(getItemId({ _itemId: 5 }, {})).toBeUndefined();
+    expect(getItemId({ id: 5 })).toBeUndefined();
+    expect(getItemId({ itemId: 5 })).toBeUndefined();
+    expect(getItemId({ _itemId: 5 })).toBeUndefined();
   });
 
   it('returns the correct id when a string itemId is given', () => {
-    expect(getItemId({ id: 5 }, { itemId: 'id' })).toBe(5);
-    expect(getItemId({ thing: '5' }, { itemId: 'thing' })).toBe('5');
+    expect(getItemId({ id: 5 }, 'id')).toBe(5);
+    expect(getItemId({ thing: '5' }, 'thing')).toBe('5');
   });
 
   it('returns the correct id when a function itemId is given', () => {
-    expect(getItemId({ id: 5 }, { itemId: () => 6 })).toBe(6);
-    expect(getItemId({ x: 2, y: 4 }, { itemId: ({ x, y }) => x * y })).toBe(8);
+    expect(getItemId({ id: 5 }, () => 6)).toBe(6);
+    expect(getItemId({ x: 2, y: 4 }, ({ x, y }) => x * y)).toBe(8);
   });
 });
 
@@ -82,34 +82,123 @@ describe('EuiBasicTable', () => {
     });
   });
 
-  test('items are rendered with custom props', () => {
-    const props = {
-      items: [
-        {
-          id: '1',
-          name: 'name1',
-          __props__: {
-            'data-test-subj': `row`,
-            className: 'customClass',
+  describe('rowProps', () => {
+    test('renders rows with custom props from a callback', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        rowProps: (item) => {
+          const { id } = item;
+          return {
+            'data-test-subj': `row-${id}`,
+            className: 'customRowClass',
             onClick: () => {},
-          },
+          };
         },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders rows with custom props from an object', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        rowProps: {
+          'data-test-subj': `row`,
+          className: 'customClass',
+          onClick: () => {},
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('cellProps', () => {
+    test('renders cells with custom props from a callback', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        cellProps: (item, column, columnIndex) => {
+          const { id } = item;
+          const { field } = column;
+          return {
+            'data-test-subj': `cell-${id}-${columnIndex}-${field}`,
+            className: 'customRowClass',
+            onClick: () => {},
+          };
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders rows with custom props from an object', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        cellProps: {
+          'data-test-subj': `cell`,
+          className: 'customClass',
+          onClick: () => {},
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('itemIdToExpandedRowMap renders an expanded row', () => {

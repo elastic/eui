@@ -68,8 +68,8 @@ export const EuiTableRowCell = ({
   }
 
   return (
-    <td className={cellClasses} colSpan={colSpan} data-header={header}>
-      <div className={contentClasses} {...rest}>
+    <td className={cellClasses} colSpan={colSpan} data-header={header} {...rest}>
+      <div className={contentClasses}>
         {modifiedChildren}
       </div>
     </td>

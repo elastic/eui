@@ -80,22 +80,31 @@ export const Table = () => {
     }
   }];
 
-  const items = store.users.filter((user, index) => index < 10).map(user => {
-    const { id } = user;
+  const items = store.users.filter((user, index) => index < 10);
+
+  const getRowProps = (item) => {
+    const { id } = item;
     return {
-      ...user,
-      __props__: {
-        'data-test-subj': `row-${id}`,
-        className: 'customClass',
-        onClick: () => console.log(`Clicked row ${id}`),
-      },
+      'data-test-subj': `row-${id}`,
+      className: 'customRowClass',
+      onClick: () => console.log(`Clicked row ${id}`),
     };
-  });
+  };
+
+  const getCellProps = (item, column, columnIndex) => {
+    const { id } = item;
+    return {
+      className: 'customCellClass',
+      'data-test-subj': `cell-${id}-${columnIndex}`,
+    };
+  };
 
   return (
     <EuiBasicTable
       items={items}
       columns={columns}
+      rowProps={getRowProps}
+      cellProps={getCellProps}
     />
   );
 };

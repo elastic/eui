@@ -1,5 +1,169 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiBasicTable cellProps renders cells with custom props from a callback 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-1-0-name"
+              header="Name"
+              key="_data_column_name_0_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-2-0-name"
+              header="Name"
+              key="_data_column_name_1_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-3-0-name"
+              header="Name"
+              key="_data_column_name_2_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
+exports[`EuiBasicTable cellProps renders rows with custom props from an object 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_0_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_1_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_2_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
 exports[`EuiBasicTable empty is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -203,7 +367,89 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
 </div>
 `;
 
-exports[`EuiBasicTable items are rendered with custom props 1`] = `
+exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-1"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-2"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-3"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
+exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`] = `
 <div
   className="euiBasicTable"
 >
@@ -245,7 +491,10 @@ exports[`EuiBasicTable items are rendered with custom props 1`] = `
           key="row_1"
         >
           <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
             isSelected={false}
+            onClick={[Function]}
           >
             <EuiTableRowCell
               align="left"
@@ -261,7 +510,10 @@ exports[`EuiBasicTable items are rendered with custom props 1`] = `
           key="row_2"
         >
           <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
             isSelected={false}
+            onClick={[Function]}
           >
             <EuiTableRowCell
               align="left"
