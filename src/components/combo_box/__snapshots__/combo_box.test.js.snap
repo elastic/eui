@@ -10,19 +10,20 @@ exports[`EuiComboBox is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClear={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
     searchValue=""
     selectedOptions={Array []}
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value=""
   />
@@ -39,12 +40,12 @@ exports[`props isClearable is false with selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
@@ -60,6 +61,7 @@ exports[`props isClearable is false with selectedOptions 1`] = `
       ]
     }
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value="Mimas, Iapetus"
   />
@@ -76,18 +78,19 @@ exports[`props isClearable is false without selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
     searchValue=""
     selectedOptions={Array []}
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value=""
   />
@@ -104,13 +107,13 @@ exports[`props isDisabled 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isDisabled={true}
     isListOpen={false}
     onChange={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
@@ -123,6 +126,7 @@ exports[`props isDisabled 1`] = `
       ]
     }
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value="Mimas"
   />
@@ -139,19 +143,20 @@ exports[`props options 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClear={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
     searchValue=""
     selectedOptions={Array []}
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value=""
   />
@@ -168,13 +173,13 @@ exports[`props selectedOptions 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClear={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
@@ -190,6 +195,7 @@ exports[`props selectedOptions 1`] = `
       ]
     }
     singleSelection={false}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value="Mimas, Iapetus"
   />
@@ -206,13 +212,13 @@ exports[`props singleSelection 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
-    clearButtonRef={[Function]}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
     onChange={[Function]}
     onClear={[Function]}
     onClick={[Function]}
+    onCloseListClick={[Function]}
     onFocus={[Function]}
     onOpenListClick={[Function]}
     onRemoveOption={[Function]}
@@ -225,6 +231,7 @@ exports[`props singleSelection 1`] = `
       ]
     }
     singleSelection={true}
+    toggleButtonRef={[Function]}
     updatePosition={[Function]}
     value="Mimas"
   />
