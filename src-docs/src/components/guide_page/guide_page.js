@@ -10,7 +10,7 @@ import {
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButton
+  EuiButton,
 } from '../../../../src/components';
 
 export const GuidePage = ({ children, title, intro, componentLinkTo }) => {
@@ -38,6 +38,9 @@ export const GuidePage = ({ children, title, intro, componentLinkTo }) => {
       </div>
 
       {children}
+
+      {/* Give some space between the bottom of long content and the bottom of the screen */}
+      <EuiSpacer size="xl" />
     </Fragment>
   );
 };
