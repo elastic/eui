@@ -14,6 +14,7 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiFilePicker,
+  EuiFormControlLayout,
   EuiLink,
   EuiRadio,
   EuiRange,
@@ -73,6 +74,10 @@ const rangeHtml = renderToHtml(Range);
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchHtml = renderToHtml(Switch);
+
+import FormControlLayout from './form_control_layout';
+const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
+const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
 export const FormControlsExample = {
   title: 'Form controls',
@@ -255,6 +260,26 @@ export const FormControlsExample = {
       EuiSwitch,
     },
     demo: <Switch />,
+  }, {
+    title: 'Form control layout',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: formControlLayoutSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: formControlLayoutHtml,
+    }],
+    text: (
+      <p>
+        <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
+        form controls, but it&rsquo;s published in case you want to create your own form control
+        which matches those of EUI. The examples below demonstrate its various states.
+      </p>
+    ),
+    props: {
+      EuiFormControlLayout,
+    },
+    demo: <FormControlLayout />,
   }],
 };
 

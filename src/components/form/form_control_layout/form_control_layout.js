@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -6,122 +6,163 @@ import { EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
 
 const iconSideToClassNameMap = {
-  left: '',
-  right: 'euiFormControlLayout__icon--right',
+  left: 'euiFormControlLayout__icon--left',
+  right: '',
 };
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({
-  children,
-  icon,
-  clear,
-  fullWidth,
-  isLoading,
-  compressed,
-  className,
-  ...rest
-}) => {
+export class EuiFormControlLayout extends Component {
+  render() {
+    const {
+      children,
+      icon, // eslint-disable-line no-unused-vars
+      clear, // eslint-disable-line no-unused-vars
+      fullWidth,
+      isLoading, // eslint-disable-line no-unused-vars
+      compressed,
+      className,
+      ...rest
+    } = this.props;
 
-  const classes = classNames(
-    'euiFormControlLayout',
-    {
-      'euiFormControlLayout--fullWidth': fullWidth,
-      'euiFormControlLayout--compressed': compressed,
-    },
-    className
-  );
+    const classes = classNames(
+      'euiFormControlLayout',
+      {
+        'euiFormControlLayout--fullWidth': fullWidth,
+        'euiFormControlLayout--compressed': compressed,
+      },
+      className
+    );
 
-  let optionalLoader;
-  if (isLoading) {
-    optionalLoader = (
-      <EuiLoadingSpinner size="m" className="euiFormControlLayout__loading" />
+    return (
+      <div className={classes} {...rest}>
+        {children}
+        {this.renderIcons()}
+      </div>
     );
   }
 
-  let optionalIcon;
-  if (icon) {
-    // Normalize the icon to an object if it's a string.
-    const iconProps = typeof icon === 'string' ? {
-      type: icon,
-    } : icon;
-
+  renderIcons() {
     const {
-      className: iconClassName,
-      type: iconType,
-      side: iconSide = 'left',
-      onClick: onIconClick,
-      ref: iconRef,
-      ...iconRest
-    } = iconProps
+      isLoading,
+      icon,
+      clear,
+    } = this.props;
 
-    const iconClasses = classNames(
-      'euiFormControlLayout__icon',
-      iconSideToClassNameMap[iconSide],
-      iconClassName,
-      {
-        'euiFormControlLayout__iconButton': onIconClick,
-      },
-    );
-
-    if (onIconClick) {
-      optionalIcon = (
-        <button
-          className={iconClasses}
-          onClick={onIconClick}
-          ref={iconRef}
-          {...iconRest}
-        >
-          <EuiIcon
-            type={iconType}
-          />
-        </button>
-      )
-    } else {
-      optionalIcon = (
-        <EuiIcon
-          aria-hidden="true"
-          className={iconClasses}
-          type={iconType}
-          {...iconRest}
-        />
+    let optionalLoader;
+    if (isLoading) {
+      optionalLoader = (
+        <EuiLoadingSpinner size="m" />
       );
     }
-  }
 
-  let optionalClear;
-  if (clear) {
-    const {
-      className: clearClassName,
-      onClick: onClearClick,
-      ...clearRest
-    } = clear;
+    let optionalIconSide;
+    let optionalIcon;
+    if (icon) {
+      // Normalize the icon to an object if it's a string.
+      const iconProps = typeof icon === 'string' ? {
+        type: icon,
+      } : icon;
 
-    const clearClasses = classNames('euiFormControlLayout__clear', clearClassName);
+      const {
+        className: iconClassName,
+        type: iconType,
+        side: iconSide = 'left',
+        onClick: onIconClick,
+        ref: iconRef,
+        ...iconRest
+      } = iconProps
 
-    optionalClear = (
-      <button
-        className={clearClasses}
-        onClick={onClearClick}
-        {...clearRest}
-      >
-        <EuiIcon
-          className="euiFormControlLayout__clearIcon"
-          type="cross"
-        />
-      </button>
+      optionalIconSide = iconSide
+
+      const iconClasses = classNames(
+        'euiFormControlLayout__icon',
+        iconSideToClassNameMap[iconSide],
+        iconClassName,
+        {
+          'euiFormControlLayout__icon--button': onIconClick,
+        },
+      );
+
+      if (onIconClick) {
+        optionalIcon = (
+          <button
+            className={iconClasses}
+            onClick={onIconClick}
+            ref={iconRef}
+            {...iconRest}
+          >
+            <EuiIcon
+              type={iconType}
+            />
+          </button>
+        )
+      } else {
+        optionalIcon = (
+          <EuiIcon
+            aria-hidden="true"
+            className={iconClasses}
+            type={iconType}
+            {...iconRest}
+          />
+        );
+      }
+    }
+
+    let optionalClear;
+    if (clear) {
+      const {
+        className: clearClassName,
+        onClick: onClearClick,
+        ...clearRest
+      } = clear;
+
+      const clearClasses = classNames('euiFormControlLayout__clear', clearClassName);
+
+      optionalClear = (
+        <button
+          className={clearClasses}
+          onClick={onClearClick}
+          {...clearRest}
+        >
+          <EuiIcon
+            className="euiFormControlLayout__clearIcon"
+            type="cross"
+          />
+        </button>
+      );
+    }
+
+    // If the icon is on the right, it should be placed after the clear button in the DOM.
+    if (optionalIconSide === 'right') {
+      return (
+        <div className="euiFormControlLayout__icons">
+          {optionalClear}
+          {optionalLoader}
+          {optionalIcon}
+        </div>
+      );
+    }
+
+    let optionalRightIcons;
+
+    if (optionalClear || optionalLoader) {
+      optionalRightIcons = (
+        <div className="euiFormControlLayout__icons">
+          {optionalClear}
+          {optionalLoader}
+        </div>
+      );
+    }
+
+    return (
+      <Fragment>
+        {optionalIcon}
+        {optionalRightIcons}
+      </Fragment>
     );
   }
-
-  return (
-    <div className={classes} {...rest}>
-      {children}
-      {optionalIcon}
-      {optionalClear}
-      {optionalLoader}
-    </div>
-  );
-};
+}
 
 EuiFormControlLayout.propTypes = {
   children: PropTypes.node,
