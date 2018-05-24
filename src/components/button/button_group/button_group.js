@@ -7,6 +7,7 @@ import { TOGGLE_TYPES } from '../../toggle';
 
 export const EuiButtonGroup = ({
   className,
+  buttonSize,
   color,
   idSelected,
   idToSelectedMap,
@@ -54,7 +55,7 @@ export const EuiButtonGroup = ({
             label={option.label}
             name={name}
             onChange={onChange.bind(null, option.id, option.value)}
-            size="s" // force small for button groups
+            size={buttonSize}
             toggleClassName="euiButtonGroup__toggle"
             type={type}
             value={option.value}
@@ -78,6 +79,12 @@ EuiButtonGroup.propTypes = {
    * See `EuiButton`
    */
   color: PropTypes.string,
+
+  /**
+   * Most button groups should be the small button size,
+   * but if you NEED to bump it to regular, change this to 'm'
+   */
+  buttonSize: PropTypes.string,
 
   /**
    * Hides the label from the button content and only displays the icon
@@ -107,8 +114,9 @@ EuiButtonGroup.propTypes = {
 };
 
 EuiButtonGroup.defaultProps = {
-  options: [],
-  idToSelectedMap: {},
+  buttonSize: 's',
   color: 'text',
+  idToSelectedMap: {},
+  options: [],
   type: 'single',
 };

@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiToggle,
   EuiLink,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Toggle from './toggle';
@@ -37,6 +38,14 @@ export const ToggleExample = {
           By default, the children will be wrapped in a block element. To change the display you can
           simply use one of the <EuiLink href="/#/utilities/css-utility-classes">utility classes</EuiLink> like <EuiCode>.eui-displayInlineBlock</EuiCode>.
         </p>
+        <EuiCallOut title="Accessibility">
+          <p>
+            This utility is just a helper component and comes with no inherit styles including
+            no <EuiCode>:hover</EuiCode> or <EuiCode>:focus</EuiCode> states. If you use this utility
+            directly, be sure to add these states. Otherwise, you may just want to utilize
+            the <EuiLink href="/#/navigation/button">EuiButtonToggle</EuiLink> component.
+          </p>
+        </EuiCallOut>
       </div>
     ),
     components: { EuiToggle },
