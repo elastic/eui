@@ -36,26 +36,28 @@
   }
 }
 
-// // Default color
-// .euiButtonToggle:not([class*="primary"]):not([class*="ghost"]) {
-//   @include euiButtonToggleStates() {
-//     background-color: transparentize($euiColorDarkShade, .9);
-//   }
+// Modifier naming and colors.
+$buttonTypes: (
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
+  text: $euiColorDarkShade, // Reserved for special use cases
+);
 
-//   &[class*="--fill"] {
-//     background-color: $euiColorDarkShade;
-//     border-color: $euiColorDarkShade;
-//     color: $euiColorEmptyShade;
+// Create button modifiders based upon the map.
+@each $name, $color in $buttonTypes {
+  .euiButtonToggle[class*="#{$name}"] {
+    @include euiButtonToggleStates() {
+      background-color: transparentize($color, .9);
+    }
 
-//     @include euiButtonToggleStates() {
-//       background-color: darken($euiColorDarkShade, 5%);
-//       border-color: darken($euiColorDarkShade, 5%);
-//     }
-
-//     &:disabled {
-//       background-color: $euiButtonColorDisabled;
-//       border-color: $euiButtonToggleBorderColor;
-//     }
-//   }
-// }
-
+    &[class*="fill"] {
+      @include euiButtonToggleStates() {
+        background-color: darken($color, 5%);
+        border-color: darken($color, 5%);
+      }
+    }
+  }
+}

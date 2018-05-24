@@ -1,76 +1,61 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiToggle } from '../../toggle';
+import { EuiToggle, TOGGLE_TYPES } from '../../toggle';
 import { EuiButton } from '../button';
 
-export class EuiButtonToggle extends Component {
-  constructor(props) {
-    super(props);
+export const EuiButtonToggle = ({
+  className,
+  color,
+  isDisabled,
+  isSelected,
+  onChange,
+  label,
+  type,
+  ...rest,
+}) => {
+  const classes = classNames(
+    'euiButtonToggle',
+  );
 
-    this.state = {
-      isSelected: this.props.isSelected || false,
-    };
-  }
+  const wrapperClasses = classNames(
+    'euiButtonToggle__wrapper',
+    {
+      'euiButtonToggle--isDisabled': isDisabled,
+    },
+    className
+  );
 
-  onToggleChange = (e) => {
-    this.setState({ isSelected: e.target.checked });
-    this.props.onClick;
-  }
-
-  render() {
-    const {
-      className,
-      color,
-      isDisabled,
-      label,
-      ...rest
-    } = this.props;
-
-    const classes = classNames(
-      'euiButtonToggle',
-    );
-
-    const wrapperClasses = classNames(
-      'euiButtonToggle__wrapper',
-      {
-        'euiButtonToggle--isDisabled': isDisabled,
-      },
-      className
-    );
-
-    return (
-      <EuiToggle
-        className={wrapperClasses}
-        onChange={this.onToggleChange}
-        isDisabled={isDisabled}
-        checked={this.state.isSelected}
-        label={label}
-        inputClassName="euiButtonToggle__input"
+  return (
+    <EuiToggle
+      className={wrapperClasses}
+      isDisabled={isDisabled}
+      label={label}
+      checked={isSelected}
+      onChange={onChange}
+      inputClassName="euiButtonToggle__input"
+      type={type}
+    >
+      <EuiButton
+        tabIndex="-1" // prevents double focus from input to button
+        className={classes}
+        size="s"
+        fill={isSelected}
+        disabled={isDisabled}
+        color={color}
+        {...rest}
       >
-        <EuiButton
-          tabIndex="-1" // prevents double focus from input to button
-          className={classes}
-          size="s"
-          fill={this.state.isSelected}
-          disabled={isDisabled}
-          color={color}
-          {...rest}
-        >
-          {label}
-        </EuiButton>
-      </EuiToggle>
-    );
-  }
-}
+        {label}
+      </EuiButton>
+    </EuiToggle>
+  );
+};
 
 EuiButtonToggle.propTypes = {
   className: PropTypes.string,
   isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
 
   /**
    * See EuiButton
@@ -86,6 +71,7 @@ EuiButtonToggle.propTypes = {
    * Starting state of toggle
    */
   isSelected: PropTypes.bool,
+  type: PropTypes.oneOf(TOGGLE_TYPES),
 };
 
 EuiButtonToggle.defaultProps = {

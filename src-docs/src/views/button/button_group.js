@@ -16,29 +16,51 @@ export default class extends Component {
     super(props);
 
     const idPrefix = makeId();
+    const idPrefix2 = makeId();
 
     this.toggleButtons = [{
       id: `${idPrefix}0`,
       label: 'Option one',
-      content: 'Option one',
     }, {
       id: `${idPrefix}1`,
       label: 'Option two is selected by default',
-      content: 'Option two is selected by default',
     }, {
       id: `${idPrefix}2`,
       label: 'Option three',
-      content: 'Option three',
+    }];
+
+    this.toggleButtonsMulti = [{
+      id: `${idPrefix2}0`,
+      label: 'Option 1',
+    }, {
+      id: `${idPrefix2}1`,
+      label: 'Option 2 is selected by default',
+    }, {
+      id: `${idPrefix2}2`,
+      label: 'Option 3',
     }];
 
     this.state = {
       toggleIdSelected: `${idPrefix}1`,
+      toggleIdToSelectedMap: {
+        [`${idPrefix2}1`]: true,
+      },
     };
   }
 
   onChange = optionId => {
     this.setState({
       toggleIdSelected: optionId,
+    });
+  };
+
+  onChangeMulti = optionId => {
+    const newToggleIdToSelectedMap = ({ ...this.state.toggleIdToSelectedMap, ...{
+      [optionId]: !this.state.toggleIdToSelectedMap[optionId],
+    } });
+
+    this.setState({
+      toggleIdToSelectedMap: newToggleIdToSelectedMap,
     });
   };
 
@@ -53,20 +75,21 @@ export default class extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiTitle size="xxs"><h3>Primary</h3></EuiTitle>
+        <EuiTitle size="xxs"><h3>Primary &amp; multi select</h3></EuiTitle>
 
         <EuiSpacer size="s" />
 
         <EuiButtonGroup
-          options={this.toggleButtons}
-          idSelected={this.state.toggleIdSelected}
-          onChange={this.onChange}
+          options={this.toggleButtonsMulti}
+          idToSelectedMap={this.state.toggleIdToSelectedMap}
+          onChange={this.onChangeMulti}
           color="primary"
+          type="multi"
         />
 
         <EuiSpacer size="m" />
 
-        <EuiTitle size="xxs"><h3>Disabled</h3></EuiTitle>
+        <EuiTitle size="xxs"><h3>Disabled &amp; full width</h3></EuiTitle>
 
         <EuiSpacer size="s" />
 
@@ -74,7 +97,8 @@ export default class extends Component {
           options={this.toggleButtons}
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChange}
-          disabled
+          isDisabled
+          isFullWidth
         />
       </Fragment>
     );

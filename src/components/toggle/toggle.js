@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const typeToInputTypeMap = {
-  'single': 'checkbox',
-  'multi': 'radio',
+  'single': 'radio',
+  'multi': 'checkbox',
 };
 
 export const TYPES = Object.keys(typeToInputTypeMap);;
@@ -92,5 +92,5 @@ EuiToggle.propTypes = {
 };
 
 EuiToggle.defaultProps = {
-  type: 'single',
+  type: 'multi',
 };

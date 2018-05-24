@@ -1,5 +1,16 @@
 .euiButtonGroup {
+  max-width: 100%;
+  display: flex;
+}
 
+.euiButtonGroup--fullWidth {
+  .euiButtonGroup__item {
+    flex: 1;
+
+    .euiButtonToggle {
+      width: 100%;
+    }
+  }
 }
 
 .euiButtonGroup__item {
