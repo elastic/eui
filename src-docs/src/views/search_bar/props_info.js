@@ -4,15 +4,10 @@ export const propsInfo = {
     __docgenInfo: {
       props: {
         onChange: {
-          description: 'Called every time the query behind the search bar changes',
-          required: true,
-          type: { name: '(query: #Query) => void' }
-        },
-        onParse: {
           description: 'Called every time the text query in the search box is parsed. When parsing is successful ' +
                        'the callback will receive both the query text and the parsed query. When it fails ' +
                        'the callback ill receive the query text and an error object (holding the error message)',
-          required: false,
+          required: true,
           type: { name: '({ query?: #Query, queryText: string, error?: { message: string } }) => void' }
         },
         query: {
