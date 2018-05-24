@@ -34,7 +34,7 @@ export const EuiButtonGroup = ({
 
         let isSelectedState;
         if (type === 'multi') {
-          isSelectedState = idToSelectedMap[option.id];
+          isSelectedState = idToSelectedMap[option.id] || false;
         } else {
           isSelectedState = option.id === idSelected;
         }
