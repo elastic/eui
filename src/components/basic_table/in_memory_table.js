@@ -127,7 +127,7 @@ export class EuiInMemoryTable extends Component {
     if (nextProps.items !== prevState.items) {
       // We have new items because an external search has completed, so reset pagination state.
       return {
-        props: {
+        prevProps: {
           items: nextProps.items,
         },
         pageIndex: 0,
@@ -145,7 +145,7 @@ export class EuiInMemoryTable extends Component {
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
-      props: {
+      prevProps: {
         items: props.items,
       },
       query: getInitialQuery(search),
@@ -224,7 +224,7 @@ export class EuiInMemoryTable extends Component {
   }
 
   getItems() {
-    const { props: { items } } = this.state;
+    const { prevProps: { items } } = this.state;
 
     if (!items.length) {
       return {
