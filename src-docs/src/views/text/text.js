@@ -124,6 +124,29 @@ export default () => (
           The game that made me drop out of college.
         </dd>
       </dl>
+
+      <EuiHorizontalRule />
+
+      <dl className="eui-definitionListReverse">
+        <dt>
+          Name
+        </dt>
+        <dd>
+          The Elder Scrolls: Morrowind
+        </dd>
+        <dt>
+          Game style
+        </dt>
+        <dd>
+          Open-world, fantasy, action role-playing
+        </dd>
+        <dt>
+          Release date
+        </dt>
+        <dd>
+          2002
+        </dd>
+      </dl>
     </EuiText>
   </div>
 );

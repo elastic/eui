@@ -10,7 +10,7 @@ const favoriteVideoGame = [
     description: 'The Elder Scrolls: Morrowind',
   },
   {
-    title: 'Video game style',
+    title: 'Game style',
     description: 'Open-world, fantasy, action role-playing',
   },
   {
