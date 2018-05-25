@@ -64,7 +64,6 @@ export class EuiFormControlLayout extends Component {
         type: iconType,
         side: iconSide = 'left',
         onClick: onIconClick,
-        ariaLabel: ariaLabel,
         ref: iconRef,
         ...iconRest
       } = iconProps
@@ -85,7 +84,6 @@ export class EuiFormControlLayout extends Component {
             className={iconClasses}
             onClick={onIconClick}
             ref={iconRef}
-            aria-label={ariaLabel}
             {...iconRest}
           >
             <EuiIcon
