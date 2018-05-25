@@ -28,7 +28,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             <EuiTableRowCell
               align="left"
               className="customRowClass"
-              data-test-subj="cell-1-0-name"
+              data-test-subj="cell-1-name"
               header="Name"
               key="_data_column_name_0_0"
               onClick={[Function]}
@@ -47,7 +47,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             <EuiTableRowCell
               align="left"
               className="customRowClass"
-              data-test-subj="cell-2-0-name"
+              data-test-subj="cell-2-name"
               header="Name"
               key="_data_column_name_1_0"
               onClick={[Function]}
@@ -66,7 +66,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             <EuiTableRowCell
               align="left"
               className="customRowClass"
-              data-test-subj="cell-3-0-name"
+              data-test-subj="cell-3-name"
               header="Name"
               key="_data_column_name_2_0"
               onClick={[Function]}

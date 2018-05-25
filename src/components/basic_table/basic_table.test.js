@@ -156,11 +156,11 @@ describe('EuiBasicTable', () => {
             description: 'description'
           }
         ],
-        cellProps: (item, column, columnIndex) => {
+        cellProps: (item, column) => {
           const { id } = item;
           const { field } = column;
           return {
-            'data-test-subj': `cell-${id}-${columnIndex}-${field}`,
+            'data-test-subj': `cell-${id}-${field}`,
             className: 'customRowClass',
             onClick: () => {},
           };

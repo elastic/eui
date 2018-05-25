@@ -169,10 +169,10 @@ function getRowProps(item, rowProps) {
   return {};
 }
 
-function getCellProps(item, column, columnIndex, cellProps) {
+function getCellProps(item, column, cellProps) {
   if (cellProps) {
     if (isFunction(cellProps)) {
-      return cellProps(item, column, columnIndex);
+      return cellProps(item, column);
     }
     return cellProps;
   }
@@ -681,7 +681,7 @@ export class EuiBasicTable extends Component {
     const content = contentRenderer(value, item);
 
     const { cellProps: cellPropsCallback } = this.props;
-    const cellProps = getCellProps(item, column, columnIndex, cellPropsCallback);
+    const cellProps = getCellProps(item, column, cellPropsCallback);
 
     return (
       <EuiTableRowCell

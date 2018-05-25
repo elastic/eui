@@ -91,11 +91,12 @@ export const Table = () => {
     };
   };
 
-  const getCellProps = (item, column, columnIndex) => {
+  const getCellProps = (item, column) => {
     const { id } = item;
+    const { field } = column;
     return {
       className: 'customCellClass',
-      'data-test-subj': `cell-${id}-${columnIndex}`,
+      'data-test-subj': `cell-${id}-${field}`,
     };
   };
 
