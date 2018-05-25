@@ -1,0 +1,71 @@
+.euiButtonGroup {
+  max-width: 100%;
+  display: flex;
+}
+
+.euiButtonGroup--fullWidth {
+  .euiButtonGroup__toggle {
+    flex: 1;
+  }
+}
+
+.euiButtonGroup__toggle {
+  margin-left: -1px;
+  z-index: 1;
+
+  // DO NOT Transform
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+
+  &[class*="checked"] {
+    z-index: 2; // Raise it above the simply bordered versions for crisper lines
+
+    // add a slight divider if two selected items are next to each other
+    + [class*="checked"] {
+      box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
+    }
+  }
+
+  .euiButtonGroup__button {
+    border-radius: 0;
+    width: 100%;
+
+    // always the same border color unless it's selected
+    &:not([class*="fill"]) {
+      border-color: $euiButtonToggleBorderColor;
+    }
+
+    // don't colorize the shadows
+    &:enabled {
+      @include euiSlightShadow;
+    }
+
+    @include euiButtonToggleStates() {
+      @include euiSlightShadowHover;
+    }
+  }
+
+  &:first-child {
+    margin-left: 0;
+
+    .euiButtonGroup__button {
+      border-top-left-radius: $euiBorderRadius;
+      border-bottom-left-radius: $euiBorderRadius;
+    }
+  }
+
+  &:last-child .euiButtonGroup__button {
+    border-top-right-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
+  }
+
+  @include screenXSmall(){
+    flex: 1;
+    min-width: 0;
+
+    .euiButtonGroup__button {
+      min-width: 0;
+    }
+  }
+}

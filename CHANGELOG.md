@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
+
 **Breaking changes**
 
 - `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863))

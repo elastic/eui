@@ -19,6 +19,7 @@ const colorToClassNameMap = {
   warning: 'euiButton--warning',
   danger: 'euiButton--danger',
   ghost: 'euiButton--ghost',
+  text: 'euiButton--text',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
