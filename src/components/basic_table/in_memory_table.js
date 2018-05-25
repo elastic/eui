@@ -56,7 +56,9 @@ const InMemoryTablePropTypes = {
     })
   ]),
   selection: SelectionType,
-  itemId: ItemIdType
+  itemId: ItemIdType,
+  rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 const getInitialQuery = (search) => {
@@ -271,6 +273,8 @@ export class EuiInMemoryTable extends Component {
       sorting: hasSorting,
       itemIdToExpandedRowMap,
       itemId,
+      rowProps,
+      cellProps,
       items: _unuseditems, // eslint-disable-line no-unused-vars
       search, // eslint-disable-line no-unused-vars
       ...rest
@@ -310,6 +314,8 @@ export class EuiInMemoryTable extends Component {
       <EuiBasicTable
         items={items}
         itemId={itemId}
+        rowProps={rowProps}
+        cellProps={cellProps}
         columns={columns}
         pagination={pagination}
         sorting={sorting}
