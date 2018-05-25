@@ -6,108 +6,199 @@ import { EuiBasicTable, getItemId } from './basic_table';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
-    expect(getItemId({ id: 5 }, {})).toBeUndefined();
-    expect(getItemId({ itemId: 5 }, {})).toBeUndefined();
-    expect(getItemId({ _itemId: 5 }, {})).toBeUndefined();
+    expect(getItemId({ id: 5 })).toBeUndefined();
+    expect(getItemId({ itemId: 5 })).toBeUndefined();
+    expect(getItemId({ _itemId: 5 })).toBeUndefined();
   });
 
   it('returns the correct id when a string itemId is given', () => {
-    expect(getItemId({ id: 5 }, { itemId: 'id' })).toBe(5);
-    expect(getItemId({ thing: '5' }, { itemId: 'thing' })).toBe('5');
+    expect(getItemId({ id: 5 }, 'id')).toBe(5);
+    expect(getItemId({ thing: '5' }, 'thing')).toBe('5');
   });
 
   it('returns the correct id when a function itemId is given', () => {
-    expect(getItemId({ id: 5 }, { itemId: () => 6 })).toBe(6);
-    expect(getItemId({ x: 2, y: 4 }, { itemId: ({ x, y }) => x * y })).toBe(8);
+    expect(getItemId({ id: 5 }, () => 6)).toBe(6);
+    expect(getItemId({ x: 2, y: 4 }, ({ x, y }) => x * y)).toBe(8);
   });
 });
 
 describe('EuiBasicTable', () => {
+  describe('empty', () => {
+    test('is rendered', () => {
+      const props = {
+        ...requiredProps,
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ]
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-  test('basic - empty', () => {
+      expect(component).toMatchSnapshot();
+    });
 
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    test('renders a string as a custom message', () => {
+      const props = {
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        noItemsMessage: 'where my items at?'
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders a node as a custom message', () => {
+      const props = {
+        items: [],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('basic - empty - custom message', () => {
+  describe('rowProps', () => {
+    test('renders rows with custom props from a callback', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        rowProps: (item) => {
+          const { id } = item;
+          return {
+            'data-test-subj': `row-${id}`,
+            className: 'customRowClass',
+            onClick: () => {},
+          };
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ],
-      noItemsMessage: 'where my items at?'
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+      expect(component).toMatchSnapshot();
+    });
 
-    expect(component).toMatchSnapshot();
+    test('renders rows with custom props from an object', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        rowProps: {
+          'data-test-subj': `row`,
+          className: 'customClass',
+          onClick: () => {},
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('basic - empty - custom message as node', () => {
+  describe('cellProps', () => {
+    test('renders cells with custom props from a callback', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        cellProps: (item, column) => {
+          const { id } = item;
+          const { field } = column;
+          return {
+            'data-test-subj': `cell-${id}-${field}`,
+            className: 'customRowClass',
+            onClick: () => {},
+          };
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-    const props = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ],
-      noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+      expect(component).toMatchSnapshot();
+    });
 
-    expect(component).toMatchSnapshot();
-  });
+    test('renders rows with custom props from an object', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' }
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        cellProps: {
+          'data-test-subj': `cell`,
+          className: 'customClass',
+          onClick: () => {},
+        },
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
 
-  test('basic - with items', () => {
-
-    const props = {
-      ...requiredProps,
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description'
-        }
-      ]
-    };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
-
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('itemIdToExpandedRowMap renders an expanded row', () => {
@@ -138,9 +229,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -168,9 +257,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination - 2nd page', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -197,9 +284,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and error', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -228,9 +313,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sorting', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -257,9 +340,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with sortable columns and sorting disabled', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -283,9 +364,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination and selection', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -317,9 +396,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection and sorting', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -355,9 +432,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column renderer', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -394,9 +469,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and column dataType', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -434,9 +507,7 @@ describe('EuiBasicTable', () => {
 
   // here we want to verify that the column renderer takes precedence over the column data type
   test('with pagination, selection, sorting, column renderer and column dataType', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
@@ -474,9 +545,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and a single record action', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -523,9 +592,7 @@ describe('EuiBasicTable', () => {
   });
 
   test('with pagination, selection, sorting and multiple record actions', () => {
-
     const props = {
-      ...requiredProps,
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },

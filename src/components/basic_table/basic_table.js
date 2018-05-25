@@ -118,7 +118,7 @@ export const ItemIdType = PropTypes.oneOfType([
 ]);
 
 export const SelectionType = PropTypes.shape({
-  onSelectionChange: PropTypes.func, // (selection: Record[]) => void;,
+  onSelectionChange: PropTypes.func, // (selection: item[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
   selectableMessage: PropTypes.func // (selectable, item) => boolean;
 });
@@ -144,11 +144,12 @@ const BasicTablePropTypes = {
   responsive: PropTypes.bool,
   isSelectable: PropTypes.bool,
   isExpandable: PropTypes.bool,
-  hasActions: PropTypes.bool
+  hasActions: PropTypes.bool,
+  rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
-export function getItemId(item, props) {
-  const { itemId } = props;
+export function getItemId(item, itemId) {
   if (itemId) {
     if (isFunction(itemId)) {
       return itemId(item);
@@ -157,8 +158,29 @@ export function getItemId(item, props) {
   }
 }
 
-export class EuiBasicTable extends Component {
+function getRowProps(item, rowProps) {
+  if (rowProps) {
+    if (isFunction(rowProps)) {
+      return rowProps(item);
+    }
+    return rowProps;
+  }
 
+  return {};
+}
+
+function getCellProps(item, column, cellProps) {
+  if (cellProps) {
+    if (isFunction(cellProps)) {
+      return cellProps(item, column);
+    }
+    return cellProps;
+  }
+
+  return {};
+}
+
+export class EuiBasicTable extends Component {
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
     responsive: true,
@@ -171,8 +193,9 @@ export class EuiBasicTable extends Component {
       return { selection: [] };
     }
 
+    const { itemId } = nextProps;
     const selection = prevState.selection.filter(selectedItem => (
-      nextProps.items.findIndex(item => getItemId(item, nextProps) === getItemId(selectedItem, nextProps)) !== -1
+      nextProps.items.findIndex(item => getItemId(item, itemId) === getItemId(selectedItem, itemId)) !== -1
     ));
 
     return { selection };
@@ -280,6 +303,8 @@ export class EuiBasicTable extends Component {
       isSelectable, // eslint-disable-line no-unused-vars
       isExpandable, // eslint-disable-line no-unused-vars
       hasActions, // eslint-disable-line no-unused-vars
+      rowProps, // eslint-disable-line no-unused-vars
+      cellProps, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -495,9 +520,10 @@ export class EuiBasicTable extends Component {
 
     const cells = [];
 
-    const itemId = getItemId(item, this.props) || rowIndex;
-    const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedRecord => (
-      getItemId(selectedRecord, this.props) === itemId
+    const { itemId: itemIdCallback } = this.props;
+    const itemId = getItemId(item, itemIdCallback) || rowIndex;
+    const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedItem => (
+      getItemId(selectedItem, itemIdCallback) === itemId
     ));
 
     if (selection) {
@@ -534,6 +560,9 @@ export class EuiBasicTable extends Component {
       </EuiTableRow>
     ) : undefined;
 
+    const { rowProps: rowPropsCallback } = this.props;
+    const rowProps = getRowProps(item, rowPropsCallback);
+
     return (
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
@@ -542,6 +571,7 @@ export class EuiBasicTable extends Component {
           isSelected={selected}
           hasActions={hasActions}
           isExpandable={isExpandable}
+          {...rowProps}
         >
           {cells}
         </EuiTableRow>
@@ -560,8 +590,9 @@ export class EuiBasicTable extends Component {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
       } else {
+        const { itemId: itemIdCallback } = this.props;
         this.changeSelection(this.state.selection.reduce((selection, selectedItem) => {
-          if (getItemId(selectedItem, this.props) !== itemId) {
+          if (getItemId(selectedItem, itemIdCallback) !== itemId) {
             selection.push(selectedItem);
           }
           return selection;
@@ -648,6 +679,10 @@ export class EuiBasicTable extends Component {
     const value = get(item, field);
     const contentRenderer = this.resolveContentRenderer(column);
     const content = contentRenderer(value, item);
+
+    const { cellProps: cellPropsCallback } = this.props;
+    const cellProps = getCellProps(item, column, cellPropsCallback);
+
     return (
       <EuiTableRowCell
         key={key}
@@ -655,6 +690,7 @@ export class EuiBasicTable extends Component {
         header={column.name}
         // If there's no render function defined then we're only going to render text.
         textOnly={textOnly || !render}
+        {...cellProps}
         {...rest}
       >
         {content}

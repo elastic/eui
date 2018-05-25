@@ -1,6 +1,170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiBasicTable basic - empty - custom message 1`] = `
+exports[`EuiBasicTable cellProps renders cells with custom props from a callback 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-1-name"
+              header="Name"
+              key="_data_column_name_0_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-2-name"
+              header="Name"
+              key="_data_column_name_1_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customRowClass"
+              data-test-subj="cell-3-name"
+              header="Name"
+              key="_data_column_name_2_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
+exports[`EuiBasicTable cellProps renders rows with custom props from an object 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_0_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_1_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            isSelected={false}
+          >
+            <EuiTableRowCell
+              align="left"
+              className="customClass"
+              data-test-subj="cell"
+              header="Name"
+              key="_data_column_name_2_0"
+              onClick={[Function]}
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
+exports[`EuiBasicTable empty is rendered 1`] = `
 <div
   aria-label="aria-label"
   className="euiBasicTable testClass1 testClass2"
@@ -28,7 +192,7 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
             isMobileFullWidth={true}
             textOnly={true}
           >
-            where my items at?
+            No items found
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
@@ -37,11 +201,9 @@ exports[`EuiBasicTable basic - empty - custom message 1`] = `
 </div>
 `;
 
-exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
+exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -82,11 +244,9 @@ exports[`EuiBasicTable basic - empty - custom message as node 1`] = `
 </div>
 `;
 
-exports[`EuiBasicTable basic - empty 1`] = `
+exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -110,84 +270,9 @@ exports[`EuiBasicTable basic - empty 1`] = `
             isMobileFullWidth={true}
             textOnly={true}
           >
-            No items found
+            where my items at?
           </EuiTableRowCell>
         </EuiTableRow>
-      </EuiTableBody>
-    </EuiTable>
-  </div>
-</div>
-`;
-
-exports[`EuiBasicTable basic - with items 1`] = `
-<div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div>
-    <EuiTableHeaderMobile />
-    <EuiTable
-      responsive={true}
-    >
-      <EuiTableHeader>
-        <EuiTableHeaderCell
-          align="left"
-          key="_data_h_name_0"
-          scope="col"
-        >
-          Name
-        </EuiTableHeaderCell>
-      </EuiTableHeader>
-      <EuiTableBody>
-        <React.Fragment
-          key="row_0"
-        >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_0_0"
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
-        >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_1_0"
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
-        >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_2_0"
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -282,11 +367,173 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
 </div>
 `;
 
+exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-1"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-2"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-3"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
+exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile />
+    <EuiTable
+      responsive={true}
+    >
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          key="_data_h_name_0"
+          scope="col"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody>
+        <React.Fragment
+          key="row_0"
+        >
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_0_0"
+              textOnly={true}
+            >
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_1"
+        >
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_1_0"
+              textOnly={true}
+            >
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+        <React.Fragment
+          key="row_2"
+        >
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              header="Name"
+              key="_data_column_name_2_0"
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </React.Fragment>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+</div>
+`;
+
 exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -354,9 +601,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 
 exports[`EuiBasicTable with pagination 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -440,9 +685,7 @@ exports[`EuiBasicTable with pagination 1`] = `
 
 exports[`EuiBasicTable with pagination and error 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -483,9 +726,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
 
 exports[`EuiBasicTable with pagination and selection 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -627,9 +868,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
 
 exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -788,9 +1027,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 
 exports[`EuiBasicTable with pagination, selection, sorting and a single record action 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1040,9 +1277,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 
 exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1201,9 +1436,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1362,9 +1595,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 
 exports[`EuiBasicTable with pagination, selection, sorting and multiple record actions 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1608,9 +1839,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 
 exports[`EuiBasicTable with pagination, selection, sorting, column renderer and column dataType 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
@@ -1769,9 +1998,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 
 exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile />
@@ -1844,9 +2071,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
 
 exports[`EuiBasicTable with sorting 1`] = `
 <div
-  aria-label="aria-label"
-  className="euiBasicTable testClass1 testClass2"
-  data-test-subj="test subject string"
+  className="euiBasicTable"
 >
   <div>
     <EuiTableHeaderMobile>
