@@ -32,12 +32,37 @@ const anchorPositionToClassNameMap = {
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
 export class EuiPopover extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.prevProps.isOpen && !nextProps.isOpen) {
+      return {
+        prevProps: {
+          isOpen: nextProps.isOpen
+        },
+        isClosing: true,
+        isOpening: false,
+      };
+    }
+
+    if (prevState.prevProps.isOpen !== nextProps.isOpen) {
+      return {
+        prevProps: {
+          isOpen: nextProps.isOpen
+        }
+      };
+    }
+
+    return null;
+  }
+  
   constructor(props) {
     super(props);
 
     this.closingTransitionTimeout = undefined;
 
     this.state = {
+      prevProps: {
+        isOpen: props.isOpen
+      },
       isClosing: false,
       isOpening: false,
     };
@@ -75,10 +100,9 @@ export class EuiPopover extends Component {
     this.updateFocus();
   }
 
-  // TODO: React 16.3 - componentDidUpdate
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // The popover is being opened.
-    if (!this.props.isOpen && nextProps.isOpen) {
+    if (!prevProps.isOpen && this.props.isOpen) {
       clearTimeout(this.closingTransitionTimeout);
       // We need to set this state a beat after the render takes place, so that the CSS
       // transition can take effect.
@@ -90,23 +114,16 @@ export class EuiPopover extends Component {
     }
 
     // The popover is being closed.
-    if (this.props.isOpen && !nextProps.isOpen) {
+    if (prevProps.isOpen && !this.props.isOpen) {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
-      this.setState({
-        isClosing: true,
-        isOpening: false,
-      });
-
       this.closingTransitionTimeout = setTimeout(() => {
         this.setState({
           isClosing: false,
         });
       }, 250);
     }
-  }
 
-  componentDidUpdate() {
     this.updateFocus();
   }
 
