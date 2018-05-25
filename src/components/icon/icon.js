@@ -125,6 +125,8 @@ import minusInCircle from './assets/minus_in_circle.svg';
 import monitoringApp from './assets/app_monitoring.svg';
 import node from './assets/node.svg';
 import number from './assets/number.svg';
+import offline from './assets/offline.svg';
+import online from './assets/online.svg';
 import pause from './assets/pause.svg';
 import pencil from './assets/pencil.svg';
 import pin from './assets/pin.svg';
@@ -291,6 +293,8 @@ const typeToIconMap = {
   monitoringApp,
   node,
   number,
+  offline,
+  online,
   pause,
   pencil,
   pin,

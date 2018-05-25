@@ -94,6 +94,8 @@ const iconTypes = [
   'minusInCircle',
   'node',
   'number',
+  'offline',
+  'online',
   'pause',
   'pencil',
   'pin',
