@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `textStyle="reverse"` prop to `EuiDescriptionList` as well as a class (`.eui-definitionListReverse`) for `dl`'s withing `EuiText` ([#882](https://github.com/elastic/eui/pull/882))
+- Added `textStyle="reverse"` prop to `EuiDescriptionList` as well as a class (`.eui-definitionListReverse`) for `dl`'s within `EuiText` ([#882](https://github.com/elastic/eui/pull/882))
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
 
