@@ -30,17 +30,22 @@ export class EuiValidatableControl extends Component {
     this.updateValidity();
   }
 
-  render() {
-    return cloneElement(this.props.children, {
-      ref: node => {
-        this.control = node;
+  setRef = node => {
+    this.control = node;
 
-        // Call the original ref, if any
-        const { ref } = this.props.children;
-        if (typeof ref === 'function') {
-          ref(node);
-        }
-      },
-    });
+    // Call the original ref, if any
+    const { ref } = this.props.children;
+    if (typeof ref === 'function') {
+      ref(node);
+    }
+  }
+
+  render() {
+    return cloneElement(
+      this.props.children,
+      {
+        ref: this.setRef,
+      }
+    );
   }
 }
