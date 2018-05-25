@@ -13,52 +13,63 @@ export class EuiDelayHide extends Component {
     minimumDuration: 1000
   };
 
-  constructor(props) {
-    super(props);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // if the component should be visible (nextProps.hide === false)
+    // but we're currently suppresing it, update state.countdownExpired
+    if (nextProps.hide === false && prevState.countdownExpired === true) {
+      return {
+        countdownExpired: false,
+      };
+    }
+
+    return null;
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.timeoutId = null; // track timeout so it can be referenced / cleared
 
     this.state = {
-      hide: this.props.hide
+      // start countdownExpired based on the hide prop
+      countdownExpired: this.props.hide,
     };
-
-    this.lastRenderedTime = this.props.hide ? 0 : Date.now();
   }
 
-  getTimeRemaining(minimumDuration) {
-    const visibleDuration = Date.now() - this.lastRenderedTime;
-    return minimumDuration - visibleDuration;
-  }
-
-  // TODO: React 16.3 - componentDidUpdate
-  componentWillReceiveProps(nextProps) {
-    clearTimeout(this.timeout);
-    const timeRemaining = this.getTimeRemaining(nextProps.minimumDuration);
-
-    if (nextProps.hide && timeRemaining > 0) {
-      this.setStateDelayed(timeRemaining);
-    } else {
-      if (this.state.hide && !nextProps.hide) {
-        this.lastRenderedTime = Date.now();
-      }
-
-      this.setState({ hide: nextProps.hide });
+  componentDidMount() {
+    // if the component begins visible start counting
+    if (this.props.hide === false) {
+      this.startCountdown();
     }
   }
 
-  setStateDelayed = timeRemaining => {
-    this.timeout = setTimeout(() => {
-      this.setState({ hide: true });
-    }, timeRemaining);
-  };
+  componentDidUpdate(prevProps) {
+    const isComponentBecomingVisible = prevProps.hide === true && this.props.hide === false;
+    if (isComponentBecomingVisible) {
+      this.startCountdown();
+    }
+  }
 
   componentWillUnmount() {
-    clearTimeout(this.timeout);
+    if (this.timeoutId != null) {
+      clearTimeout(this.timeoutId);
+    }
+  }
+
+  startCountdown = () => {
+    // only start the countdown if there is not one in progress
+    if (this.timeoutId == null) {
+      this.timeoutId = setTimeout(this.finishCountdown, this.props.minimumDuration);
+    }
+  }
+
+  finishCountdown = () => {
+    this.timeoutId = null;
+    this.setState({ countdownExpired: true });
   }
 
   render() {
-    if (this.state.hide) {
-      return null;
-    }
-
-    return this.props.render();
+    const shouldHideContent = this.props.hide === true && this.state.countdownExpired;
+    return shouldHideContent ? null : this.props.render();
   }
 }
