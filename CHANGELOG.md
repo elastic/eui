@@ -1,12 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
+- `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,
+which let you apply custom props to rows and props ([#869](https://github.com/elastic/eui/pull/869))
 
 **Breaking changes**
 
 - `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863))
 - `EuiInMemoryTable`'s `search.onChange` callback now passes an object with `{ query, queryText, error }` instead of only the query ([#863](https://github.com/elastic/eui/pull/863))
 - `EuiFormControlLayout` no longer has `onClear`, `iconSide`, or `onIconClick` props. Instead of `onClear` it now accepts a `clear` object of the shape `{ onClick }`. Instead of the icon props, it now accepts a single `icon` prop which be either a string or an object of the shape `{ type, side, onClick }`. ([#866](https://github.com/elastic/eui/pull/866))
+- `EuiBasicTable` and `EuiInMemoryTable` pass-through cell props (defined by the `columns` prop and the `cellProps` prop) used to be applied to the `div` inside of the `td` element. They're now applied directly to the `td` element. ([#869](https://github.com/elastic/eui/pull/869))
 
 **Bug fixes**
 
