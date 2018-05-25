@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -270,11 +270,19 @@ export const FormControlsExample = {
       code: formControlLayoutHtml,
     }],
     text: (
-      <p>
-        <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
-        form controls, but it&rsquo;s published in case you want to create your own form control
-        which matches those of EUI. The examples below demonstrate its various states.
-      </p>
+      <Fragment>
+        <p>
+          <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
+          form controls, but it&rsquo;s published in case you want to create your own form control
+          which matches those of EUI. The examples below demonstrate its various states.
+        </p>
+
+        <p>
+          Note that the padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t take into account the presence
+          of the various icons supported by <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
+          provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible for its own padding.
+        </p>
+      </Fragment>
     ),
     props: {
       EuiFormControlLayout,
