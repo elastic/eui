@@ -137,26 +137,46 @@ export class EuiComboBox extends Component {
   };
 
   tabAway = amount => {
+    if (![-1, 1].includes(amount)) {
+      throw new Error(`tabAway expects amount to be -1 or 1, but received ${amount}`);
+    }
+
     const tabbableItems = tabbable(document);
-    const comboBoxIndex = tabbableItems.indexOf(this.searchInput);
 
-    // Wrap to last tabbable if tabbing backwards.
-    if (amount < 0) {
-      if (comboBoxIndex === 0) {
-        tabbableItems[tabbableItems.length - 1].focus();
-        return;
+    if (document.activeElement === this.searchInput) {
+      const searchInputIndex = tabbableItems.indexOf(this.searchInput);
+
+      // Wrap to last tabbable if tabbing backwards.
+      if (amount === -1) {
+        if (searchInputIndex === 0) {
+          tabbableItems[tabbableItems.length - 1].focus();
+          return true;
+        }
       }
+
+      // Otherwise tab to the next adjacent item.
+      tabbableItems[searchInputIndex + amount].focus();
+      return true;
     }
 
-    // Wrap to first tabbable if tabbing forwards.
-    if (amount > 0) {
-      if (comboBoxIndex === tabbableItems.length - 1) {
-        tabbableItems[0].focus();
-        return;
+    if (document.activeElement === this.toggleButton) {
+      const toggleButtonIndex = tabbableItems.indexOf(this.toggleButton);
+
+      // Wrap to first tabbable if tabbing forwards.
+      if (amount === 1) {
+        if (toggleButtonIndex === tabbableItems.length - 1) {
+          tabbableItems[0].focus();
+          return true;
+        }
       }
+
+      // Otherwise tab to the next adjacent item.
+      tabbableItems[toggleButtonIndex + amount].focus();
+      return true;
     }
 
-    tabbableItems[comboBoxIndex + amount].focus();
+    // Tab natively.
+    return false;
   };
 
   incrementActiveOptionIndex = throttle(amount => {
@@ -350,12 +370,10 @@ export class EuiComboBox extends Component {
         break;
 
       case TAB:
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.shiftKey) {
-          this.tabAway(-1);
-        } else {
-          this.tabAway(1);
+        const amount = e.shiftKey ? -1 : 1;
+        if (this.tabAway(amount)) {
+          e.preventDefault();
+          e.stopPropagation();
         }
         break;
     }
@@ -417,6 +435,14 @@ export class EuiComboBox extends Component {
     }
   };
 
+  onOpenListClick = () => {
+    this.searchInput.focus();
+  };
+
+  onCloseListClick = () => {
+    this.closeList();
+  };
+
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
       this.props.onSearchChange(searchValue);
@@ -448,6 +474,10 @@ export class EuiComboBox extends Component {
 
   optionRef = (index, node) => {
     this.options[index] = node;
+  };
+
+  toggleButtonRef = node => {
+    this.toggleButton = node;
   };
 
   componentDidMount() {
@@ -586,10 +616,11 @@ export class EuiComboBox extends Component {
           onClear={isClearable && !isDisabled ? this.clearSelectedOptions : undefined}
           hasSelectedOptions={selectedOptions.length > 0}
           isListOpen={isListOpen}
-          onOpen={this.openList}
-          onClose={this.closeList}
+          onOpenListClick={this.onOpenListClick}
+          onCloseListClick={this.onCloseListClick}
           singleSelection={singleSelection}
           isDisabled={isDisabled}
+          toggleButtonRef={this.toggleButtonRef}
         />
 
         {optionsList}

@@ -2,9 +2,46 @@
 
 exports[`EuiFormControlLayout is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  aria-label="aria-label"
+  class="euiFormControlLayout testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <input />
+</div>
+`;
+
+exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+  >
+    <button
+      class="euiFormControlLayout__clear customClass"
+      data-test-subj="clearButton"
+    >
+      <svg
+        class="euiIcon euiIcon--medium euiFormControlLayout__clearIcon"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
+            id="cross-a"
+          />
+        </defs>
+        <use
+          fill-rule="nonzero"
+          href="#cross-a"
+        />
+      </svg>
+    </button>
+  </div>
 </div>
 `;
 
@@ -14,81 +51,124 @@ exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
 />
 `;
 
-exports[`EuiFormControlLayout props icon is rendered 1`] = `
+exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
 <div
   class="euiFormControlLayout"
 >
-  <svg
-    aria-hidden="true"
-    class="euiIcon euiIcon--medium euiFormControlLayout__icon"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    class="euiFormControlLayout__icons"
   >
-    <g
-      fill-rule="evenodd"
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
-      />
-      <path
-        d="M7 6h1v5H7zM7 12h1v1H7z"
-      />
-    </g>
-  </svg>
+      <g
+        fill-rule="evenodd"
+      >
+        <path
+          d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
+        />
+        <path
+          d="M7 6h1v5H7zM7 12h1v1H7z"
+        />
+      </g>
+    </svg>
+  </div>
 </div>
 `;
 
-exports[`EuiFormControlLayout props iconSide left is rendered 1`] = `
+exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
 <div
   class="euiFormControlLayout"
 >
-  <svg
-    aria-hidden="true"
-    class="euiIcon euiIcon--medium euiFormControlLayout__icon"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    class="euiFormControlLayout__icons"
   >
-    <g
-      fill-rule="evenodd"
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiFormControlLayout__icon customClass"
+      data-test-subj="myIcon"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
-      />
-      <path
-        d="M7 6h1v5H7zM7 12h1v1H7z"
-      />
-    </g>
-  </svg>
+      <g
+        fill-rule="evenodd"
+      >
+        <path
+          d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
+        />
+        <path
+          d="M7 6h1v5H7zM7 12h1v1H7z"
+        />
+      </g>
+    </svg>
+  </div>
 </div>
 `;
 
-exports[`EuiFormControlLayout props iconSide right is rendered 1`] = `
+exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
 <div
   class="euiFormControlLayout"
 >
-  <svg
-    aria-hidden="true"
-    class="euiIcon euiIcon--medium euiFormControlLayout__icon euiFormControlLayout__icon--right"
-    height="16"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
+    class="euiFormControlLayout__icons"
   >
-    <g
-      fill-rule="evenodd"
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
-      />
-      <path
-        d="M7 6h1v5H7zM7 12h1v1H7z"
-      />
-    </g>
-  </svg>
+      <g
+        fill-rule="evenodd"
+      >
+        <path
+          d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
+        />
+        <path
+          d="M7 6h1v5H7zM7 12h1v1H7z"
+        />
+      </g>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        fill-rule="evenodd"
+      >
+        <path
+          d="M7.5 2.236L1.618 14h11.764L7.5 2.236zm.894-.447l5.882 11.764A1 1 0 0 1 13.382 15H1.618a1 1 0 0 1-.894-1.447L6.606 1.789a1 1 0 0 1 1.788 0z"
+        />
+        <path
+          d="M7 6h1v5H7zM7 12h1v1H7z"
+        />
+      </g>
+    </svg>
+  </div>
 </div>
 `;
 
@@ -97,7 +177,11 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiLoadingSpinner euiLoadingSpinner--medium euiFormControlLayout__loading"
-  />
+    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+  >
+    <div
+      class="euiLoadingSpinner euiLoadingSpinner--medium"
+    />
+  </div>
 </div>
 `;

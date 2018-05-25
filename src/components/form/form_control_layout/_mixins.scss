@@ -5,6 +5,11 @@
   background-color: transparentize($euiColorMediumShade, .5);
   border-radius: $clearSize;
   line-height: $clearSize;
+  transition: background-color $euiAnimSpeedExtraFast $euiAnimSlightResistance;
+
+  &:focus, &:hover {
+    background-color: $euiColorPrimary;
+  }
 
   #{$iconClass} {
     @include size($euiSizeS);

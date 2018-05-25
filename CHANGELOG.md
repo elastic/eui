@@ -4,9 +4,11 @@
 
 - `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863))
 - `EuiInMemoryTable`'s `search.onChange` callback now passes an object with `{ query, queryText, error }` instead of only the query ([#863](https://github.com/elastic/eui/pull/863))
+- `EuiFormControlLayout` no longer has `onClear`, `iconSide`, or `onIconClick` props. Instead of `onClear` it now accepts a `clear` object of the shape `{ onClick }`. Instead of the icon props, it now accepts a single `icon` prop which be either a string or an object of the shape `{ type, side, onClick }`. ([#866](https://github.com/elastic/eui/pull/866))
 
 **Bug fixes**
 
+- `EuiComboBox` is no longer a focus trap, the clear button is now keyboard-accessible, and the virtualized list no longer interferes with the tab order ([#866](https://github.com/elastic/eui/pull/866))
 - `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
 - `EuiGlobalToastList` no longer triggers `Uncaught TypeError: _this.callback is not a function`  ([#865](https://github.com/elastic/eui/pull/865))
 - `EuiGlobalToastList` checks to see if it has dismissed a toast before re-dismissing it ([#868](https://github.com/elastic/eui/pull/868))

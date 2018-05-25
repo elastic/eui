@@ -26,10 +26,11 @@ export class EuiComboBoxInput extends Component {
     onClear: PropTypes.func,
     hasSelectedOptions: PropTypes.bool.isRequired,
     isListOpen: PropTypes.bool.isRequired,
-    onOpen: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onOpenListClick: PropTypes.func.isRequired,
+    onCloseListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.bool,
     isDisabled: PropTypes.bool,
+    toggleButtonRef: PropTypes.func,
   }
 
   constructor(props) {
@@ -86,10 +87,11 @@ export class EuiComboBoxInput extends Component {
       onClear,
       hasSelectedOptions,
       isListOpen,
-      onOpen,
-      onClose,
+      onOpenListClick,
+      onCloseListClick,
       singleSelection,
       isDisabled,
+      toggleButtonRef,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -149,14 +151,21 @@ export class EuiComboBoxInput extends Component {
     const clickProps = {};
 
     if (!isDisabled) {
-      clickProps.onClear = hasSelectedOptions ? onClear : undefined;
-      clickProps.onIconClick = isListOpen ? onClose : onOpen;
+      clickProps.clear = {
+        onClick: hasSelectedOptions ? onClear : undefined,
+      };
     }
+
+    const icon = {
+      type: 'arrowDown',
+      side: 'right',
+      onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
+      ref: toggleButtonRef,
+    };
 
     return (
       <EuiFormControlLayout
-        icon="arrowDown"
-        iconSide="right"
+        icon={icon}
         {...clickProps}
       >
         <div

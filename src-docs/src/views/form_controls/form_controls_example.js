@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -14,6 +14,7 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiFilePicker,
+  EuiFormControlLayout,
   EuiLink,
   EuiRadio,
   EuiRange,
@@ -73,6 +74,10 @@ const rangeHtml = renderToHtml(Range);
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchHtml = renderToHtml(Switch);
+
+import FormControlLayout from './form_control_layout';
+const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
+const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
 export const FormControlsExample = {
   title: 'Form controls',
@@ -255,6 +260,34 @@ export const FormControlsExample = {
       EuiSwitch,
     },
     demo: <Switch />,
+  }, {
+    title: 'Form control layout',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: formControlLayoutSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: formControlLayoutHtml,
+    }],
+    text: (
+      <Fragment>
+        <p>
+          <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
+          form controls, but it&rsquo;s published in case you want to create your own form control
+          which matches those of EUI. The examples below demonstrate its various states.
+        </p>
+
+        <p>
+          Note that the padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t take into account the presence
+          of the various icons supported by <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
+          provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible for its own padding.
+        </p>
+      </Fragment>
+    ),
+    props: {
+      EuiFormControlLayout,
+    },
+    demo: <FormControlLayout />,
   }],
 };
 

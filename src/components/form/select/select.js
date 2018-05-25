@@ -49,10 +49,14 @@ export const EuiSelect = ({
     selectDefaultValue = defaultValue || '';
   }
 
+  const icon = {
+    type: 'arrowDown',
+    side: 'right',
+  };
+
   return (
     <EuiFormControlLayout
-      icon="arrowDown"
-      iconSide="right"
+      icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
