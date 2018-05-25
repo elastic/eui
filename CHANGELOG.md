@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public changes since 0.0.50
+
+## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
+
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
 - `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,
 which let you apply custom props to rows and props ([#869](https://github.com/elastic/eui/pull/869))
