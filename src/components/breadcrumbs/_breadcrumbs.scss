@@ -70,5 +70,6 @@
     max-width: 150px;
     text-overflow: ellipsis;
     overflow: hidden;
+    vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
   }
 }
