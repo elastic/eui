@@ -21,6 +21,7 @@ which let you apply custom props to rows and props ([#869](https://github.com/el
 - Fixed `EuiCard` description text color when used in/as an anchor tag ([#864](https://github.com/elastic/eui/pull/864))
 - Fixed `EuiCard` IE bugs ([#864](https://github.com/elastic/eui/pull/864))
 - Fixed button labeling for `EuiFormControlLayout` and `EuiComboBox` accessibility ([#876](https://github.com/elastic/eui/pull/876))
+- Fixed `EuiBreadcrumb` slash alignment when truncating ([#878](https://github.com/elastic/eui/pull/878))
 
 ## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
 
