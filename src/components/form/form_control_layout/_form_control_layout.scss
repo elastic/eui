@@ -26,10 +26,6 @@
       vertical-align: baseline;
     }
 
-    svg {
-      margin-top: -$euiSizeXS;
-    }
-
     &:focus {
       background: $euiColorPrimary;
       border-radius: 100%;

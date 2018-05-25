@@ -117,6 +117,7 @@ export class EuiFormControlLayout extends Component {
         <button
           className={clearClasses}
           onClick={onClearClick}
+          aria-label="Clear selections"
           {...clearRest}
         >
           <EuiIcon

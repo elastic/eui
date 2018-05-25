@@ -18,6 +18,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
     class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
   >
     <button
+      aria-label="Clear selections"
       class="euiFormControlLayout__clear customClass"
       data-test-subj="clearButton"
     >

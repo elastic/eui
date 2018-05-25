@@ -121,7 +121,7 @@ export class EuiComboBoxInput extends Component {
       const removeOptionMessageContent =
         `Combo box. Selected. ` +
         (searchValue ? `${searchValue}. Selected. ` : '') +
-        (selectedOptions.length ? `${value}. Unselected. Press Backspace to delete ${selectedOptions[selectedOptions.length - 1].label}. ` : '') +
+        (selectedOptions.length ? `${value}. Press Backspace to delete ${selectedOptions[selectedOptions.length - 1].label}. ` : '') +
         `You are currently on a combo box. Type text or, to display a list of choices, press Down Arrow. ` +
         `To exit the list of choices, press Escape.`;
 
@@ -161,6 +161,7 @@ export class EuiComboBoxInput extends Component {
       side: 'right',
       onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
       ref: toggleButtonRef,
+      'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
     };
 
     return (
