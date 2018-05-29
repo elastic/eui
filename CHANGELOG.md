@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public changes since 0.0.50
+- Added `layout` prop to `EuiCard` ([#885](https://github.com/elastic/eui/pull/885))
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
 
