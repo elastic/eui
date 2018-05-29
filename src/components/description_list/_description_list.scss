@@ -25,6 +25,18 @@
       text-align: right;
     }
 
+    // Reversed makes the description larger than the title
+    &.euiDescriptionList--reverse {
+      .euiDescriptionList__title {
+        @include euiText;
+        @include euiFontSizeS;
+      }
+
+      .euiDescriptionList__description {
+        @include euiTitle("xs");
+      }
+    }
+
     // Compressed gets smaller fonts.
     &.euiDescriptionList--compressed {
 
@@ -34,6 +46,17 @@
 
       .euiDescriptionList__description {
         @include euiFontSizeS;
+      }
+
+      &.euiDescriptionList--reverse {
+        .euiDescriptionList__title {
+          @include euiText;
+          @include euiFontSizeS;
+        }
+
+        .euiDescriptionList__description {
+          @include euiTitle("xxs");
+        }
       }
     }
   }
@@ -73,6 +96,17 @@
       }
     }
 
+    &.euiDescriptionList--reverse {
+      .euiDescriptionList__title {
+        @include euiText;
+        @include euiFontSize;
+      }
+
+      .euiDescriptionList__description {
+        @include euiTitle("xs");
+      }
+    }
+
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
@@ -81,6 +115,17 @@
 
       .euiDescriptionList__description {
         @include euiFontSizeS;
+      }
+
+      &.euiDescriptionList--reverse {
+        .euiDescriptionList__title {
+          @include euiText;
+          @include euiFontSizeS;
+        }
+
+        .euiDescriptionList__description {
+          @include euiTitle("xxs");
+        }
       }
     }
   }
