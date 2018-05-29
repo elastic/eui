@@ -1,6 +1,6 @@
 
 /**
- * 1. Extend beta badges to at least 40% of the card's width
+ * 1. Extend beta badges to at least 40% of the container's width
  */
 
 @mixin hasBetaBadge($selector, $spacing: $euiSize) {

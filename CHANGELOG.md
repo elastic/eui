@@ -9,6 +9,7 @@
 - Added `textStyle="reverse"` prop to `EuiDescriptionList` as well as a class (`.eui-definitionListReverse`) for `dl`'s within `EuiText` ([#882](https://github.com/elastic/eui/pull/882))
 - Added `inspect` icon ([#886](https://github.com/elastic/eui/pull/886))
 - Added `layout` prop to `EuiCard` ([#885](https://github.com/elastic/eui/pull/885))
+- Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
 
 **Bug fixes**
 

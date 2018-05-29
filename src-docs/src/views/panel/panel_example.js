@@ -71,7 +71,7 @@ export const PanelExample = {
     }],
     text: (
       <p>
-        Similar to <Link to="/display/card">EuiCard</Link> panels can also accept
+        Similar to <Link to="/display/card">EuiCard</Link>, panels can also accept
         an <Link to="/display/badge">EuiBetaBadge</Link>.
       </p>
     ),
