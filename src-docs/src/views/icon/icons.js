@@ -72,6 +72,7 @@ const iconTypes = [
   'indexMapping',
   'indexOpen',
   'indexSettings',
+  'inspect',
   'invert',
   'inputOutput',
   'kqlField',
