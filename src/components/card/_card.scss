@@ -9,9 +9,8 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 
 /**
  * 1. Footer is always at the bottom.
- * 2. Extend beta badges to at least 40% of the card's width
- * 3. Fix for IE to ensure badges are visible outside of a <button> tag
- * 4. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+ * 2. Fix for IE to ensure badges are visible outside of a <button> tag
+ * 3. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
       (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
  * 5. Horizontal layouts should always top left align no matter the textAlign prop
  */
@@ -21,31 +20,9 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   display: flex;
   flex-direction: column;
   padding: $euiCardSpacing;
-  overflow: visible; /* 3 */
+  overflow: visible; /* 2 */
 
-  &.euiCard--hasBetaBadge {
-    position: relative;
-
-    .euiCard__betaBadgeWrapper {
-      position: absolute;
-      top: $euiSizeL/-2;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3; // get above abs positioned image
-      min-width: 40%; /* 2 */
-      max-width: calc(100% - #{$euiCardSpacing*2});
-
-      .euiToolTipAnchor,
-      .euiCard__betaBadge {
-        width: 100%; /* 2 */
-      }
-
-      .euiCard__betaBadge {
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
+  @include hasBetaBadge;
 
   .euiCard__top,
   .euiCard__content,
@@ -87,7 +64,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 .euiCard__top {
   flex-grow: 0; /* 1 */
   position: relative;
-  min-height: 1px; /* 4 */
+  min-height: 1px; /* 3 */
 
   .euiCard__icon {
     margin-top: $euiCardSpacing/2;
