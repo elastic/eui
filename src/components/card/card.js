@@ -27,7 +27,7 @@ const cardLayout = (props, propName, componentName, ...rest) => {
   if (oneOfResult) return oneOfResult;
 
   if (props[propName] === 'horizontal' ) {
-    if (props.image || props.footer || props.textAlign !== 'center') {
+    if (props.image || props.footer) {
       return new Error(
         `${componentName}: '${propName} = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'.`
       );
