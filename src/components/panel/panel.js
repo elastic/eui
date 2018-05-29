@@ -34,7 +34,7 @@ export const EuiPanel = ({
       'euiPanel--shadow': hasShadow,
       'euiPanel--flexGrowZero': !grow,
       'euiPanel--isClickable': onClick,
-      'euiCard--hasBetaBadge': betaBadgeLabel,
+      'euiPanel--hasBetaBadge': betaBadgeLabel,
     },
     className
   );
@@ -55,8 +55,8 @@ export const EuiPanel = ({
   let optionalBetaBadge;
   if (betaBadgeLabel) {
     optionalBetaBadge = (
-      <span className="euiCard__betaBadgeWrapper">
-        <EuiBetaBadge label={betaBadgeLabel} title={betaBadgeTitle} tooltipContent={betaBadgeTooltipContent} className="euiCard__betaBadge" />
+      <span className="euiPanel__betaBadgeWrapper">
+        <EuiBetaBadge label={betaBadgeLabel} title={betaBadgeTitle} tooltipContent={betaBadgeTooltipContent} className="euiPanel__betaBadge" />
       </span>
     )
   }
@@ -88,7 +88,7 @@ EuiPanel.propTypes = {
   panelRef: PropTypes.func,
   onClick: PropTypes.func,
   /**
-   * Add a badge to the card to label it as "Beta" or other non-GA state
+   * Add a badge to the panel to label it as "Beta" or other non-GA state
    */
   betaBadgeLabel: PropTypes.string,
 
