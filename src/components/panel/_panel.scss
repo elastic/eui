@@ -1,6 +1,10 @@
 // Export basic class & modifiers
 @include euiPanel($selector: 'euiPanel');
 
+.euiPanel {
+  @include hasBetaBadge;
+}
+
 // Specific
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPanel.euiPanel--#{$modifier} {
