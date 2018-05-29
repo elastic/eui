@@ -25,12 +25,20 @@ const alignmentsToClassNameMap = {
 
 export const ALIGNMENTS = Object.keys(alignmentsToClassNameMap);
 
+const textStylesToClassNameMap = {
+  normal: '',
+  reverse: 'euiDescriptionList--reverse',
+};
+
+export const TEXT_STYLES = Object.keys(textStylesToClassNameMap);
+
 export const EuiDescriptionList = ({
   children,
   className,
   listItems,
   align,
   compressed,
+  textStyle,
   type,
   ...rest
 }) => {
@@ -38,6 +46,7 @@ export const EuiDescriptionList = ({
     'euiDescriptionList',
     typesToClassNameMap[type],
     alignmentsToClassNameMap[align],
+    textStylesToClassNameMap[textStyle],
     {
       'euiDescriptionList--compressed': compressed,
     },
@@ -74,19 +83,38 @@ export const EuiDescriptionList = ({
 };
 
 EuiDescriptionList.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
   listItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.node,
     description: PropTypes.node,
   })),
-  compressed: PropTypes.bool,
-  type: PropTypes.oneOf(TYPES),
+  children: PropTypes.node,
+  className: PropTypes.string,
+
+  /**
+   * Text alignment
+   */
   align: PropTypes.oneOf(ALIGNMENTS),
+
+  /**
+   * Smaller text and condensed spacing
+   */
+  compressed: PropTypes.bool,
+
+  /**
+   * How should the content be styled, by default
+   * this will emphasize the title
+   */
+  textStyle: PropTypes.oneOf(TEXT_STYLES),
+
+  /**
+   * How each item should be layed out
+   */
+  type: PropTypes.oneOf(TYPES),
 };
 
 EuiDescriptionList.defaultProps = {
-  type: 'row',
   align: 'left',
   compressed: false,
+  textStyle: 'normal',
+  type: 'row',
 };
