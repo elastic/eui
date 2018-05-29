@@ -233,21 +233,6 @@ export class EuiContextMenuPanel extends Component {
     return null;
   }
 
-  // // TODO: React 16.3 - componentDidUpdate & getDerivedStateFromProps; alternatively refactor
-  // // this.menuItems into state and only use getDerivedStateFromProps
-  // componentWillReceiveProps(nextProps) {
-  //   // Clear refs to menuItems if we're getting new ones.
-  //   if (nextProps.items !== this.props.items) {
-  //     this.menuItems = [];
-  //   }
-  //
-  //   if (nextProps.transitionType) {
-  //     this.setState({
-  //       isTransitioning: true,
-  //     });
-  //   }
-  // }
-
   getWatchedPropsForItems(items) {
     // This lets us compare prevProps and nextProps among items so we can re-render if our items
     // have changed.
