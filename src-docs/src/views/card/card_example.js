@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiCard,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Card from './card';
@@ -26,6 +27,10 @@ const cardFooterHtml = renderToHtml(CardFooter);
 import CardBeta from './card_beta';
 const cardBetaSource = require('!!raw-loader!./card_beta');
 const cardBetaHtml = renderToHtml(CardBeta);
+
+import CardLayout from './card_layout';
+const cardLayoutSource = require('!!raw-loader!./card_layout');
+const cardLayoutHtml = renderToHtml(CardLayout);
 
 export const CardExample = {
   title: 'Card',
@@ -55,6 +60,30 @@ export const CardExample = {
     demo: <Card />,
   },
   {
+    title: 'Layout',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: cardLayoutSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: cardLayoutHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Most of the time, cards should read from top to bottom (vertical). However, in some cases, you may
+          want the icon to be to the left of the content. In this case, add the prop <EuiCode>layout=&quot;horizontal&quot;</EuiCode>.
+        </p>
+        <EuiCallOut
+          color="danger"
+          title={<span>Horizontal layouts <strong>do not</strong> work with images, footers or <EuiCode>textAlign</EuiCode>. Therefore, these properties will be ignored.</span>}
+        />
+      </div>
+    ),
+    components: { EuiCard },
+    demo: <CardLayout />,
+  },
+  {
     title: 'Images',
     source: [{
       type: GuideSectionTypes.JS,
@@ -69,9 +98,9 @@ export const CardExample = {
           Images can be added in place of, or in conjuction with, icons.
           Just pass a url into the <EuiCode>image</EuiCode> prop and it will expand to to edges of the card.
         </p>
-        <p>
-          Make sure that all images are the <strong>same proportions</strong> when used in a singular row.
-        </p>
+        <EuiCallOut
+          title={<span>Make sure that all images are the <strong>same proportions</strong> when used in a singular row.</span>}
+        />
       </div>
     ),
     components: { EuiCard },

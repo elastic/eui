@@ -12,7 +12,15 @@ const textAlignToClassNameMap = {
   right: 'euiCard--rightAligned',
 };
 
-export const ALIGNMENTS = Object.keys(textAlignToClassNameMap);
+export const TEXT_ALIGNMENTS = Object.keys(textAlignToClassNameMap);
+
+
+const layoutToClassNameMap = {
+  vertical: '',
+  horizontal: 'euiCard--horizontal',
+};
+
+export const LAYOUT_ALIGNMENTS = Object.keys(layoutToClassNameMap);
 
 export const EuiCard = ({
   className,
@@ -28,11 +36,13 @@ export const EuiCard = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  layout,
   ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
     textAlignToClassNameMap[textAlign],
+    layoutToClassNameMap[layout],
     {
       'euiCard--isClickable': onClick || href || isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
@@ -41,7 +51,7 @@ export const EuiCard = ({
   );
 
   let imageNode;
-  if (image) {
+  if (image && layout === 'vertical') {
     imageNode = (
       <img className="euiCard__image" src={image} alt="" />
     );
@@ -63,7 +73,7 @@ export const EuiCard = ({
   }
 
   let optionalCardTop;
-  if (image || icon) {
+  if (imageNode || iconNode) {
     optionalCardTop = (
       <span className="euiCard__top">
         {imageNode}
@@ -102,9 +112,11 @@ export const EuiCard = ({
         </EuiText>
       </span>
 
-      <span className="euiCard__footer">
-        {footer}
-      </span>
+      {layout === 'vertical' &&
+        <span className="euiCard__footer">
+          {footer}
+        </span>
+      }
     </OuterElement>
   );
 };
@@ -134,7 +146,12 @@ EuiCard.propTypes = {
    */
   onClick: PropTypes.func,
   href: PropTypes.string,
-  textAlign: PropTypes.oneOf(ALIGNMENTS),
+  textAlign: PropTypes.oneOf(TEXT_ALIGNMENTS),
+
+  /**
+   * Change to "horizontal" if you need the icon to be left of the content
+   */
+  layout: PropTypes.oneOf(LAYOUT_ALIGNMENTS),
 
   /**
    * Add a badge to the card to label it as "Beta" or other non-GA state
@@ -154,4 +171,5 @@ EuiCard.propTypes = {
 
 EuiCard.defaultProps = {
   textAlign: 'center',
+  layout: 'vertical',
 };
