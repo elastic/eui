@@ -151,11 +151,11 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 // otherwise the button tag won't properly align contents to top
 .euiCard.euiCard--horizontal.euiCard--hasIcon {
   flex-direction: row;
-  align-items: normal !important; /* 5 */
+  align-items: flex-start !important; /* 5 */
 
   .euiCard__top,
   .euiCard__content {
-    flex-basis: 1%; // Makes sure the top shrinks and the content grows
+    width: auto; // Makes sure the top shrinks and the content grows
     margin-top: 0;
   }
 
