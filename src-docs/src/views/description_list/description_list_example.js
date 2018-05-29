@@ -27,6 +27,10 @@ import DescriptionListInline from './description_list_inline';
 const descriptionListInlineSource = require('!!raw-loader!./description_list_inline');
 const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
 
+import DescriptionListReverse from './description_list_reverse';
+const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
+const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
+
 export const DescriptionListExample = {
   title: 'Description List',
   sections: [{
@@ -48,6 +52,28 @@ export const DescriptionListExample = {
     ),
     props: { EuiDescriptionList },
     demo: <DescriptionList />,
+  }, {
+    title: 'Reverse style',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: descriptionListReverseSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: descriptionListReverseHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Setting the <EuiCode>textStyle</EuiCode> prop to <EuiCode>reverse</EuiCode> will reverse
+          the text styles of the <EuiCode>title</EuiCode> and <EuiCode>description</EuiCode> elements
+          so that the description is more prominent. This works best for key/value type content.
+        </p>
+        <p>
+          Adding this property to the <EuiCode>inline</EuiCode> type will not change anything.
+        </p>
+      </div>
+    ),
+    demo: <DescriptionListReverse />,
   }, {
     title: 'As columns',
     source: [{
