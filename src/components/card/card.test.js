@@ -33,6 +33,19 @@ describe('EuiCard', () => {
       .toMatchSnapshot();
   });
 
+  test('horizontal', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        layout="horizontal"
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
   describe('onClick', () => {
     it('supports onClick as a link', () => {
       const handler = jest.fn();

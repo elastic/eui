@@ -14,6 +14,27 @@ const textAlignToClassNameMap = {
 
 export const ALIGNMENTS = Object.keys(textAlignToClassNameMap);
 
+const layoutToClassNameMap = {
+  vertical: '',
+  horizontal: 'euiCard--horizontal',
+};
+
+export const LAYOUT_ALIGNMENTS = Object.keys(layoutToClassNameMap);
+const oneOfLayouts = PropTypes.oneOf(LAYOUT_ALIGNMENTS);
+
+const cardLayout = (props, propName, componentName, ...rest) => {
+  const oneOfResult = oneOfLayouts(props, propName, componentName, ...rest);
+  if (oneOfResult) return oneOfResult;
+
+  if (props[propName] === 'horizontal' ) {
+    if (props.image || props.footer) {
+      return new Error(
+        `${componentName}: '${propName} = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'.`
+      );
+    }
+  }
+};
+
 export const EuiCard = ({
   className,
   description,
@@ -28,20 +49,23 @@ export const EuiCard = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  layout,
   ...rest,
 }) => {
   const classes = classNames(
     'euiCard',
     textAlignToClassNameMap[textAlign],
+    layoutToClassNameMap[layout],
     {
       'euiCard--isClickable': onClick || href || isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
+      'euiCard--hasIcon': icon,
     },
     className,
   );
 
   let imageNode;
-  if (image) {
+  if (image && layout === 'vertical') {
     imageNode = (
       <img className="euiCard__image" src={image} alt="" />
     );
@@ -63,7 +87,7 @@ export const EuiCard = ({
   }
 
   let optionalCardTop;
-  if (image || icon) {
+  if (imageNode || iconNode) {
     optionalCardTop = (
       <span className="euiCard__top">
         {imageNode}
@@ -102,9 +126,11 @@ export const EuiCard = ({
         </EuiText>
       </span>
 
-      <span className="euiCard__footer">
-        {footer}
-      </span>
+      {layout === 'vertical' &&
+        <span className="euiCard__footer">
+          {footer}
+        </span>
+      }
     </OuterElement>
   );
 };
@@ -137,6 +163,11 @@ EuiCard.propTypes = {
   textAlign: PropTypes.oneOf(ALIGNMENTS),
 
   /**
+   * Change to "horizontal" if you need the icon to be left of the content
+   */
+  layout: cardLayout,
+
+  /**
    * Add a badge to the card to label it as "Beta" or other non-GA state
    */
   betaBadgeLabel: PropTypes.string,
@@ -154,4 +185,5 @@ EuiCard.propTypes = {
 
 EuiCard.defaultProps = {
   textAlign: 'center',
+  layout: 'vertical',
 };

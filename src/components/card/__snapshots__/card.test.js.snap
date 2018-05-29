@@ -1,8 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCard horizontal 1`] = `
+<div
+  class="euiCard euiCard--centerAligned euiCard--horizontal"
+>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+</div>
+`;
+
 exports[`EuiCard icon 1`] = `
 <div
-  class="euiCard euiCard--centerAligned"
+  class="euiCard euiCard--centerAligned euiCard--hasIcon"
 >
   <span
     class="euiCard__top"
