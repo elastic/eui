@@ -1,0 +1,30 @@
+
+/**
+ * 1. Extend beta badges to at least 40% of the card's width
+ */
+
+@mixin hasBetaBadge {
+  &--hasBetaBadge {
+    position: relative;
+  }
+
+  &__betaBadgeWrapper {
+    position: absolute;
+    top: $euiSizeL/-2;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3; // get above abs positioned image
+    min-width: 40%; /* 1 */
+    max-width: calc(100% - #{$euiCardSpacing*2});
+  }
+
+  .euiToolTipAnchor,
+  &__betaBadge {
+    width: 100%; /* 1 */
+  }
+
+  &__betaBadge {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
