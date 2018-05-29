@@ -52,6 +52,7 @@ export class EuiContextMenuPanel extends Component {
     this.state = {
       isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
+      currentHeight: undefined
     };
   }
 
@@ -242,6 +243,20 @@ export class EuiContextMenuPanel extends Component {
     return null;
   }
 
+  didItemsChange(prevItems, nextItems) {
+    // If the count of items has changed then update
+    const oldItemsLength = prevItems ? prevItems.length : 0;
+    const newItemsLength = nextItems ? nextItems.length : 0;
+    if (oldItemsLength !== newItemsLength) {
+      return true;
+    }
+
+    // Check if any watched item properties changed by quick string comparison
+    if(this.getWatchedPropsForItems(nextItems) !== this.getWatchedPropsForItems(prevItems)) {
+      return true;
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     // Prevent calling `this.updateFocus()` below if we don't have to.
     if (nextProps.hasFocus !== this.props.hasFocus) {
@@ -263,8 +278,7 @@ export class EuiContextMenuPanel extends Component {
     // **
 
     if (this.props.items != null) {
-      // Check if any watched item properties changed by quick string comparison
-      if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+      if (this.didItemsChange(this.props.items, nextProps.items)) {
         return true;
       }
     }
@@ -277,7 +291,29 @@ export class EuiContextMenuPanel extends Component {
     return false;
   }
 
-  componentDidUpdate() {
+  updateHeight() {
+    const currentHeight = this.panel ? this.panel.clientHeight : 0;
+
+    if (this.state.height !== currentHeight) {
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(currentHeight);
+
+        this.setState({ height: currentHeight });
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.items != null) {
+      // content comes from items
+      if (this.didItemsChange(prevProps.items, this.props.items)) {
+        this.updateHeight();
+      }
+    } else {
+      // content comes from children
+      this.updateHeight();
+    }
+
     this.updateFocus();
   }
 
@@ -293,11 +329,7 @@ export class EuiContextMenuPanel extends Component {
   panelRef = node => {
     this.panel = node;
 
-    if (this.panel) {
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(this.panel.clientHeight);
-      }
-    }
+    this.updateHeight();
   };
 
   contentRef = node => {
