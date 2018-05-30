@@ -61,9 +61,8 @@ export class EuiComboBoxInput extends Component {
     });
   };
 
-  // TODO: React 16.3 - componentDidUpdate
-  componentWillUpdate(nextProps) {
-    const { searchValue } = nextProps;
+  componentDidUpdate(prevProps) {
+    const { searchValue } = prevProps;
 
     // We need to update the position of everything if the user enters enough input to change
     // the size of the input.
