@@ -102,6 +102,17 @@ export class EuiComboBox extends Component {
 
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
 
+    listBounds = {
+      bottom: listBounds.bottom,
+      height: listBounds.height,
+      left: comboBoxBounds.left,
+      right: comboBoxBounds.right,
+      top: listBounds.top,
+      width: comboBoxBounds.width,
+      x: listBounds.x,
+      y: listBounds.y,
+    };
+
     const { position, left, top } = calculatePopoverPosition(comboBoxBounds, listBounds, 'bottom', 0, ['bottom', 'top']);
 
     this.optionsList.style.top = `${top + window.scrollY}px`;
@@ -111,16 +122,7 @@ export class EuiComboBox extends Component {
     // Cache for future calls. Assign values directly instead of destructuring because listBounds is
     // a DOMRect, not a JS object.
     this.setState({
-      listBounds: {
-        bottom: listBounds.bottom,
-        height: listBounds.height,
-        left: comboBoxBounds.left,
-        right: comboBoxBounds.right,
-        top: listBounds.top,
-        width: comboBoxBounds.width,
-        x: listBounds.x,
-        y: listBounds.y,
-      },
+      listBounds,
       width: comboBoxBounds.width,
       listPosition: position,
     });
