@@ -8,6 +8,10 @@ No public facing changes since `0.0.51`
 - Added `inspect` icon ([#886](https://github.com/elastic/eui/pull/886))
 - Added `layout` prop to `EuiCard` ([#885](https://github.com/elastic/eui/pull/885))
 
+**Bug fixes**
+
+- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into setClass methods. ([#883](https://github.com/elastic/eui/pull/883))
+
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
