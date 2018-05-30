@@ -63,7 +63,7 @@ export const HomeView = () => (
                 This will provide symbols that match against their EUI component
                 counterparts."
             >
-              <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.25/eui_sketch_0.0.25.zip">
+              <EuiLink href="https://github.com/elastic/eui/releases/download/v0.0.51/eui_sketch_0.0.51.zip">
                 <strong>Sketch libraries</strong>
               </EuiLink>
             </EuiToolTip>
