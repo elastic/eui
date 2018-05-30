@@ -48,10 +48,14 @@ export class EuiContextMenuPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.menuItems = [];
     this.state = {
+      prevProps: {
+        items: this.props.items
+      },
+      menuItems: [],
       isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
+      currentHeight: undefined
     };
   }
 
@@ -61,13 +65,13 @@ export class EuiContextMenuPanel extends Component {
     if (this.state.focusedItemIndex === undefined) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextFocusedItemIndex = amount < 0 ? this.menuItems.length - 1 : 0;
+      nextFocusedItemIndex = amount < 0 ? this.state.menuItems.length - 1 : 0;
     } else {
       nextFocusedItemIndex = this.state.focusedItemIndex + amount;
 
       if (nextFocusedItemIndex < 0) {
-        nextFocusedItemIndex = this.menuItems.length - 1;
-      } else if (nextFocusedItemIndex === this.menuItems.length) {
+        nextFocusedItemIndex = this.state.menuItems.length - 1;
+      } else if (nextFocusedItemIndex === this.state.menuItems.length) {
         nextFocusedItemIndex = 0;
       }
     }
@@ -104,11 +108,11 @@ export class EuiContextMenuPanel extends Component {
       switch (e.keyCode) {
         case cascadingMenuKeyCodes.TAB:
           // We need to sync up with the user if s/he is tabbing through the items.
-          const focusedItemIndex = this.menuItems.indexOf(document.activeElement);
+          const focusedItemIndex = this.state.menuItems.indexOf(document.activeElement);
 
           this.setState({
             focusedItemIndex:
-              (focusedItemIndex >= 0 && focusedItemIndex < this.menuItems.length)
+              (focusedItemIndex >= 0 && focusedItemIndex < this.state.menuItems.length)
                 ? focusedItemIndex
                 : undefined,
           });
@@ -165,7 +169,7 @@ export class EuiContextMenuPanel extends Component {
     }
 
     // If there aren't any items then this is probably a form or something.
-    if (!this.menuItems.length) {
+    if (!this.state.menuItems.length) {
       // If we've already focused on something inside the panel, everything's fine.
       if (this.panel.contains(document.activeElement)) {
         return;
@@ -183,7 +187,7 @@ export class EuiContextMenuPanel extends Component {
 
     // If an item is focused, focus it.
     if (this.state.focusedItemIndex !== undefined) {
-      this.menuItems[this.state.focusedItemIndex].focus();
+      this.state.menuItems[this.state.focusedItemIndex].focus();
       return;
     }
 
@@ -207,19 +211,26 @@ export class EuiContextMenuPanel extends Component {
     this.updateFocus();
   }
 
-  // TODO: React 16.3 - componentDidUpdate & getDerivedStateFromProps; alternatively refactor
-  // this.menuItems into state and only use getDerivedStateFromProps
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let needsUpdate = false;
+    const nextState = {};
+
     // Clear refs to menuItems if we're getting new ones.
-    if (nextProps.items !== this.props.items) {
-      this.menuItems = [];
+    if (nextProps.items !== prevState.prevProps.items) {
+      needsUpdate = true;
+      nextState.menuItems = [];
+      nextState.prevProps = { items: nextProps.items };
     }
 
     if (nextProps.transitionType) {
-      this.setState({
-        isTransitioning: true,
-      });
+      needsUpdate = true;
+      nextState.isTransitioning = true;
     }
+
+    if (needsUpdate) {
+      return nextState;
+    }
+    return null;
   }
 
   getWatchedPropsForItems(items) {
@@ -228,7 +239,7 @@ export class EuiContextMenuPanel extends Component {
     const { watchedItemProps } = this.props;
 
     // Create fingerprint of all item's watched properties
-    if(items && items.length && watchedItemProps && watchedItemProps.length) {
+    if(items.length && watchedItemProps && watchedItemProps.length) {
       return JSON.stringify(items.map(item => {
         // Create object of item properties and values
         const props = {
@@ -240,6 +251,18 @@ export class EuiContextMenuPanel extends Component {
     }
 
     return null;
+  }
+
+  didItemsChange(prevItems, nextItems) {
+    // If the count of items has changed then update
+    if (prevItems.length !== nextItems.length) {
+      return true;
+    }
+
+    // Check if any watched item properties changed by quick string comparison
+    if(this.getWatchedPropsForItems(nextItems) !== this.getWatchedPropsForItems(prevItems)) {
+      return true;
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -262,9 +285,8 @@ export class EuiContextMenuPanel extends Component {
     // if there are children we can't know if they have changed so return true
     // **
 
-    if (this.props.items != null) {
-      // Check if any watched item properties changed by quick string comparison
-      if(this.getWatchedPropsForItems(nextProps.items) !== this.getWatchedPropsForItems(this.props.items)) {
+    if (this.props.items.length > 0 || nextProps.items.length > 0) {
+      if (this.didItemsChange(this.props.items, nextProps.items)) {
         return true;
       }
     }
@@ -277,7 +299,29 @@ export class EuiContextMenuPanel extends Component {
     return false;
   }
 
-  componentDidUpdate() {
+  updateHeight() {
+    const currentHeight = this.panel ? this.panel.clientHeight : 0;
+
+    if (this.state.height !== currentHeight) {
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(currentHeight);
+
+        this.setState({ height: currentHeight });
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.items.length > 0 || this.props.items.length > 0) {
+      // content comes from items
+      if (this.didItemsChange(prevProps.items, this.props.items)) {
+        this.updateHeight();
+      }
+    } else {
+      // content comes from children
+      this.updateHeight();
+    }
+
     this.updateFocus();
   }
 
@@ -286,18 +330,14 @@ export class EuiContextMenuPanel extends Component {
     // is still invoked, so we have to do a truthiness check.
     if (node) {
       // Store all menu items.
-      this.menuItems[index] = node;
+      this.state.menuItems[index] = node;
     }
   };
 
   panelRef = node => {
     this.panel = node;
 
-    if (this.panel) {
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(this.panel.clientHeight);
-      }
-    }
+    this.updateHeight();
   };
 
   contentRef = node => {

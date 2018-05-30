@@ -27,6 +27,7 @@ No public facing changes since `0.0.51`
 
 **Bug fixes**
 
+- `EuiContextMenuPanel` now updates appropriately if its items are modified ([#887](https://github.com/elastic/eui/pull/887))
 - `EuiComboBox` is no longer a focus trap, the clear button is now keyboard-accessible, and the virtualized list no longer interferes with the tab order ([#866](https://github.com/elastic/eui/pull/866))
 - `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` now look and behave disabled when `isDisabled={true}` ([#862](https://github.com/elastic/eui/pull/862))
 - `EuiGlobalToastList` no longer triggers `Uncaught TypeError: _this.callback is not a function`  ([#865](https://github.com/elastic/eui/pull/865))
