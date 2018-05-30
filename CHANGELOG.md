@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public facing changes since `0.0.51`
+
+## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
+
 - Added `textStyle="reverse"` prop to `EuiDescriptionList` as well as a class (`.eui-definitionListReverse`) for `dl`'s within `EuiText` ([#882](https://github.com/elastic/eui/pull/882))
 - Added `inspect` icon ([#886](https://github.com/elastic/eui/pull/886))
 - Added `layout` prop to `EuiCard` ([#885](https://github.com/elastic/eui/pull/885))
