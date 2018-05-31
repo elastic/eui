@@ -149,9 +149,9 @@ export class EuiComboBoxInput extends Component {
 
     const clickProps = {};
 
-    if (!isDisabled) {
+    if (!isDisabled && onClear && hasSelectedOptions) {
       clickProps.clear = {
-        onClick: hasSelectedOptions ? onClear : undefined,
+        onClick: onClear,
       };
     }
 
