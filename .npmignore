@@ -6,12 +6,15 @@ wiki/
 generator-eui/
 test/
 src-docs/
+.nvmrc
 
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)
 
 .DS_Store
 .eslintcache
+.idea
+.vscode
 .yo-rc.json
 package-lock.json
 npm-debug.log
