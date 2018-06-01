@@ -4,17 +4,17 @@ import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
 import EuiXYChart from './chart';
-import EuiBar from './bar';
+import EuiVerticalBarSeries from './vertical_bar_series';
 import { benchmarkFunction } from '../../test/time_execution';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
-describe('EuiBar', () => {
+describe.skip('EuiVerticalBarSeries', () => {
   test('is rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200} {...requiredProps}>
-        <EuiBar
+        <EuiVerticalBarSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
@@ -27,7 +27,7 @@ describe('EuiBar', () => {
   test('all props are rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200}>
-        <EuiBar
+        <EuiVerticalBarSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           color="#ff0000"
@@ -58,7 +58,7 @@ describe('EuiBar', () => {
       function renderChart() {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiBar name="barchart" data={data}/>
+            <EuiVerticalBarSeries name="barchart" data={data}/>
           </EuiXYChart>
         )
       }
@@ -94,7 +94,7 @@ describe('EuiBar', () => {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiBar key={index} name={`barchart-${index}`} data={data}/>
+              <EuiVerticalBarSeries key={index} name={`barchart-${index}`} data={data}/>
             ))}
           </EuiXYChart>
         )

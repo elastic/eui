@@ -16,7 +16,6 @@ exports[`EuiLine all props are rendered 1`] = `
     <XYChart
       animation={null}
       height={200}
-      mode="linear"
       showAxis={true}
       showTooltips={true}
       truncateLegends={false}
@@ -32,7 +31,6 @@ exports[`EuiLine all props are rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
-          xType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -153,7 +151,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -260,7 +257,6 @@ exports[`EuiLine all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -382,7 +378,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -510,7 +505,6 @@ exports[`EuiLine all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -690,7 +684,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -798,7 +791,6 @@ exports[`EuiLine all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -924,7 +916,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -1053,7 +1044,6 @@ exports[`EuiLine all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -1188,7 +1178,6 @@ exports[`EuiLine all props are rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -1569,7 +1558,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -1677,7 +1665,6 @@ exports[`EuiLine all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -1803,7 +1790,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -1932,7 +1918,6 @@ exports[`EuiLine all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -2067,7 +2052,6 @@ exports[`EuiLine all props are rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -2331,7 +2315,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -2468,7 +2451,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -2641,7 +2623,6 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -2796,7 +2777,6 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -2953,7 +2933,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -3126,7 +3105,6 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -3281,7 +3259,6 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -3433,7 +3410,6 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -3601,7 +3577,6 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -3751,7 +3726,6 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -3910,7 +3884,6 @@ exports[`EuiLine all props are rendered 1`] = `
                   596,
                 ]
               }
-              xType="linear"
               yDomain={
                 Array [
                   5,
@@ -3954,7 +3927,6 @@ exports[`EuiLine is rendered 1`] = `
       className="testClass1 testClass2"
       data-test-subj="test subject string"
       height={200}
-      mode="linear"
       showAxis={true}
       showTooltips={true}
       truncateLegends={false}
@@ -3974,7 +3946,6 @@ exports[`EuiLine is rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
-          xType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -4095,7 +4066,6 @@ exports[`EuiLine is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -4202,7 +4172,6 @@ exports[`EuiLine is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -4324,7 +4293,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -4452,7 +4420,6 @@ exports[`EuiLine is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -4632,7 +4599,6 @@ exports[`EuiLine is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -4740,7 +4706,6 @@ exports[`EuiLine is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -4866,7 +4831,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -4995,7 +4959,6 @@ exports[`EuiLine is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -5130,7 +5093,6 @@ exports[`EuiLine is rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -5511,7 +5473,6 @@ exports[`EuiLine is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -5619,7 +5580,6 @@ exports[`EuiLine is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -5745,7 +5705,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -5874,7 +5833,6 @@ exports[`EuiLine is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -6009,7 +5967,6 @@ exports[`EuiLine is rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -6270,7 +6227,6 @@ exports[`EuiLine is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -6406,7 +6362,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -6578,7 +6533,6 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -6732,7 +6686,6 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -6889,7 +6842,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -7062,7 +7014,6 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -7217,7 +7168,6 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -7368,7 +7318,6 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -7535,7 +7484,6 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -7684,7 +7632,6 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -7843,7 +7790,6 @@ exports[`EuiLine is rendered 1`] = `
                   596,
                 ]
               }
-              xType="linear"
               yDomain={
                 Array [
                   5,

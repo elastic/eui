@@ -16,7 +16,6 @@ exports[`EuiArea all props are rendered 1`] = `
     <XYChart
       animation={null}
       height={200}
-      mode="linear"
       showAxis={true}
       showTooltips={true}
       truncateLegends={false}
@@ -32,7 +31,6 @@ exports[`EuiArea all props are rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
-          xType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -153,7 +151,6 @@ exports[`EuiArea all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -260,7 +257,6 @@ exports[`EuiArea all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -382,7 +378,6 @@ exports[`EuiArea all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -510,7 +505,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -690,7 +684,6 @@ exports[`EuiArea all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -798,7 +791,6 @@ exports[`EuiArea all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -924,7 +916,6 @@ exports[`EuiArea all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -1053,7 +1044,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -1188,7 +1178,6 @@ exports[`EuiArea all props are rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -1569,7 +1558,6 @@ exports[`EuiArea all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -1677,7 +1665,6 @@ exports[`EuiArea all props are rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -1803,7 +1790,6 @@ exports[`EuiArea all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -1932,7 +1918,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -2067,7 +2052,6 @@ exports[`EuiArea all props are rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -2331,7 +2315,6 @@ exports[`EuiArea all props are rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -2467,7 +2450,6 @@ exports[`EuiArea all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -2639,7 +2621,6 @@ exports[`EuiArea all props are rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -2793,7 +2774,6 @@ exports[`EuiArea all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -2945,7 +2925,6 @@ exports[`EuiArea all props are rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -3082,7 +3061,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -3255,7 +3233,6 @@ exports[`EuiArea all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -3410,7 +3387,6 @@ exports[`EuiArea all props are rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -3567,7 +3543,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -3740,7 +3715,6 @@ exports[`EuiArea all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -3895,7 +3869,6 @@ exports[`EuiArea all props are rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -4047,7 +4020,6 @@ exports[`EuiArea all props are rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -4215,7 +4187,6 @@ exports[`EuiArea all props are rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -4365,7 +4336,6 @@ exports[`EuiArea all props are rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -4526,7 +4496,6 @@ exports[`EuiArea all props are rendered 1`] = `
                   596,
                 ]
               }
-              xType="linear"
               yDomain={
                 Array [
                   5,
@@ -4570,7 +4539,6 @@ exports[`EuiArea is rendered 1`] = `
       className="testClass1 testClass2"
       data-test-subj="test subject string"
       height={200}
-      mode="linear"
       showAxis={true}
       showTooltips={true}
       truncateLegends={false}
@@ -4590,7 +4558,6 @@ exports[`EuiArea is rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
-          xType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -4711,7 +4678,6 @@ exports[`EuiArea is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -4818,7 +4784,6 @@ exports[`EuiArea is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -4940,7 +4905,6 @@ exports[`EuiArea is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -5068,7 +5032,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -5248,7 +5211,6 @@ exports[`EuiArea is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -5356,7 +5318,6 @@ exports[`EuiArea is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -5482,7 +5443,6 @@ exports[`EuiArea is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -5611,7 +5571,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -5746,7 +5705,6 @@ exports[`EuiArea is rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -6127,7 +6085,6 @@ exports[`EuiArea is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -6235,7 +6192,6 @@ exports[`EuiArea is rendered 1`] = `
                       596,
                     ]
                   }
-                  xType="linear"
                   yDomain={
                     Array [
                       5,
@@ -6361,7 +6317,6 @@ exports[`EuiArea is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -6490,7 +6445,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -6625,7 +6579,6 @@ exports[`EuiArea is rendered 1`] = `
                                 596,
                               ]
                             }
-                            xType="linear"
                             yDomain={
                               Array [
                                 5,
@@ -6886,7 +6839,6 @@ exports[`EuiArea is rendered 1`] = `
                     596,
                   ]
                 }
-                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -7019,7 +6971,6 @@ exports[`EuiArea is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -7188,7 +7139,6 @@ exports[`EuiArea is rendered 1`] = `
                           596,
                         ]
                       }
-                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -7339,7 +7289,6 @@ exports[`EuiArea is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -7488,7 +7437,6 @@ exports[`EuiArea is rendered 1`] = `
                         596,
                       ]
                     }
-                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -7624,7 +7572,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -7796,7 +7743,6 @@ exports[`EuiArea is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -7950,7 +7896,6 @@ exports[`EuiArea is rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -8107,7 +8052,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -8280,7 +8224,6 @@ exports[`EuiArea is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -8435,7 +8378,6 @@ exports[`EuiArea is rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -8586,7 +8528,6 @@ exports[`EuiArea is rendered 1`] = `
                             596,
                           ]
                         }
-                        xType="linear"
                         yDomain={
                           Array [
                             5,
@@ -8753,7 +8694,6 @@ exports[`EuiArea is rendered 1`] = `
                               596,
                             ]
                           }
-                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -8902,7 +8842,6 @@ exports[`EuiArea is rendered 1`] = `
                                   596,
                                 ]
                               }
-                              xType="linear"
                               yDomain={
                                 Array [
                                   5,
@@ -9063,7 +9002,6 @@ exports[`EuiArea is rendered 1`] = `
                   596,
                 ]
               }
-              xType="linear"
               yDomain={
                 Array [
                   5,

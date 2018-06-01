@@ -131,7 +131,9 @@ export class XYChart extends PureComponent {
     const {
       width,
       height,
-      mode,
+      xType,
+      yType,
+      stackBy,
       errorText,
       xAxisLocation,
       yAxisLocation,
@@ -160,13 +162,15 @@ export class XYChart extends PureComponent {
         <XYPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty
-          xType={mode}
           onMouseMove={this._onMouseMove}
           onMouseLeave={this._onMouseLeave}
           width={width}
           animation={true}
           height={height}
           margin={2}
+          xType={xType}
+          yType={yType}
+          stackBy={stackBy}
         >
 
           {showAxis && [
@@ -212,6 +216,9 @@ export class XYChart extends PureComponent {
 XYChart.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  stackBy: PropTypes.string,
+  xType: PropTypes.string,
+  yType: PropTypes.string,
   onHover: PropTypes.func,
   onMouseLeave: PropTypes.func,
   onSelectEnd: PropTypes.func,
@@ -222,18 +229,16 @@ XYChart.propTypes = {
   showAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
-  mode: PropTypes.string,
   showTooltips: PropTypes.bool,
   errorText: PropTypes.string,
   crosshairX: PropTypes.number,
-  onCrosshairUpdate: PropTypes.func
+  onCrosshairUpdate: PropTypes.func,
 };
 
 XYChart.defaultProps = {
   truncateLegends: false,
   showAxis: true,
   showTooltips: true,
-  mode: 'linear',
 };
 
 export default makeWidthFlexible(XYChart);

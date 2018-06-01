@@ -84,7 +84,6 @@ exports[`EuiXYChart passes handler functions 1`] = `
     <XYChart
       animation={null}
       height={200}
-      mode="linear"
       onHover={[Function]}
       onMouseLeave={[Function]}
       onSelectEnd={[Function]}
