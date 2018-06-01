@@ -12,7 +12,12 @@ class EuiHorizontalBarSeries extends HorizontalBarSeries {
           key={name}
           onSeriesClick={onClick}
           color={color}
-          style={{ rx: 2, ry: 2 }}
+          style={{
+            strokeWidth: 1,
+            stroke: 'white',
+            rx: 2,
+            ry: 2,
+          }}
           data={data}
           {...rest}
         />

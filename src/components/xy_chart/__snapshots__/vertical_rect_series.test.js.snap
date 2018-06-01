@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiVerticalBarSeries all props are rendered 1`] = `
+exports[`EuiVerticalRectSeries all props are rendered 1`] = `
 <div
   style="width:100%;height:100%"
 >
@@ -100,47 +100,7 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(29.799999999999994, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                -0.4
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(89.39999999999999, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                -0.2
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(149, 0)"
+              transform="translate(0, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -160,7 +120,27 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(208.6, 0)"
+              transform="translate(59.6, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.1
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(119.2, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -180,7 +160,27 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(268.2, 0)"
+              transform="translate(178.79999999999998, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.3
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(238.4, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -200,7 +200,27 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(327.8, 0)"
+              transform="translate(298, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(357.59999999999997, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -220,7 +240,27 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(387.40000000000003, 0)"
+              transform="translate(417.2, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.7
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(476.8, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -240,7 +280,27 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(447, 0)"
+              transform="translate(536.4, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.9
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(596, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -256,46 +316,6 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
                 transform="translate(0, 9)"
               >
                 1.0
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(506.59999999999997, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                1.2
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(566.1999999999999, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                1.4
               </text>
             </g>
           </g>
@@ -477,24 +497,26 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
             </g>
           </g>
         </g>
-        <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
-          transform="translate(2,2)"
-        >
-          <rect
-            height="65.33333333333331"
-            style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="22.35000000000001"
-            y="130.66666666666669"
-          />
-          <rect
-            height="196"
-            style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="320.35"
-            y="0"
-          />
+        <g>
+          <g
+            class="rv-xy-plot__series rv-xy-plot__series--rect "
+            transform="translate(2,2)"
+          >
+            <rect
+              height="65.33333333333331"
+              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              width="0"
+              x="0"
+              y="130.66666666666669"
+            />
+            <rect
+              height="196"
+              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              width="596"
+              x="0"
+              y="0"
+            />
+          </g>
         </g>
       </svg>
     </div>
@@ -502,7 +524,7 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
 </div>
 `;
 
-exports[`EuiVerticalBarSeries is rendered 1`] = `
+exports[`EuiVerticalRectSeries is rendered 1`] = `
 <div
   style="width:100%;height:100%"
 >
@@ -606,47 +628,7 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(29.799999999999994, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                -0.4
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(89.39999999999999, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                -0.2
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(149, 0)"
+              transform="translate(0, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -666,7 +648,27 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(208.6, 0)"
+              transform="translate(59.6, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.1
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(119.2, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -686,7 +688,27 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(268.2, 0)"
+              transform="translate(178.79999999999998, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.3
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(238.4, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -706,7 +728,27 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(327.8, 0)"
+              transform="translate(298, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(357.59999999999997, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -726,7 +768,27 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(387.40000000000003, 0)"
+              transform="translate(417.2, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.7
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(476.8, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -746,7 +808,27 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(447, 0)"
+              transform="translate(536.4, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="-1"
+                y2="1"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 9)"
+              >
+                0.9
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(596, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -762,46 +844,6 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
                 transform="translate(0, 9)"
               >
                 1.0
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(506.59999999999997, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                1.2
-              </text>
-            </g>
-            <g
-              class="rv-xy-plot__axis__tick"
-              transform="translate(566.1999999999999, 0)"
-            >
-              <line
-                class="rv-xy-plot__axis__tick__line"
-                x1="0"
-                x2="0"
-                y1="-1"
-                y2="1"
-              />
-              <text
-                class="rv-xy-plot__axis__tick__text"
-                dy="0.72em"
-                text-anchor="middle"
-                transform="translate(0, 9)"
-              >
-                1.4
               </text>
             </g>
           </g>
@@ -983,24 +1025,26 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
             </g>
           </g>
         </g>
-        <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
-          transform="translate(2,2)"
-        >
-          <rect
-            height="65.33333333333331"
-            style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="22.35000000000001"
-            y="130.66666666666669"
-          />
-          <rect
-            height="196"
-            style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="320.35"
-            y="0"
-          />
+        <g>
+          <g
+            class="rv-xy-plot__series rv-xy-plot__series--rect "
+            transform="translate(2,2)"
+          >
+            <rect
+              height="65.33333333333331"
+              style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
+              width="0"
+              x="0"
+              y="130.66666666666669"
+            />
+            <rect
+              height="196"
+              style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
+              width="596"
+              x="0"
+              y="0"
+            />
+          </g>
         </g>
       </svg>
     </div>
@@ -1008,7 +1052,7 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiVerticalBarSeries renders stacked bar chart 1`] = `
+exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
 <div
   style="width:100%;height:100%"
 >
@@ -1269,43 +1313,47 @@ exports[`EuiVerticalBarSeries renders stacked bar chart 1`] = `
             </g>
           </g>
         </g>
-        <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
-          transform="translate(2,2)"
-        >
-          <rect
-            height="98"
-            style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="22.35000000000001"
-            y="98"
-          />
-          <rect
-            height="58.80000000000001"
-            style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="320.35"
-            y="137.2"
-          />
+        <g>
+          <g
+            class="rv-xy-plot__series rv-xy-plot__series--rect "
+            transform="translate(2,2)"
+          >
+            <rect
+              height="98"
+              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              width="0"
+              x="149"
+              y="98"
+            />
+            <rect
+              height="58.80000000000001"
+              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              width="298"
+              x="149"
+              y="137.2"
+            />
+          </g>
         </g>
-        <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
-          transform="translate(2,2)"
-        >
-          <rect
-            height="39.19999999999999"
-            style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="22.35000000000001"
-            y="58.80000000000001"
-          />
-          <rect
-            height="137.2"
-            style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
-            width="253.29999999999998"
-            x="320.35"
-            y="0"
-          />
+        <g>
+          <g
+            class="rv-xy-plot__series rv-xy-plot__series--rect "
+            transform="translate(2,2)"
+          >
+            <rect
+              height="39.19999999999999"
+              style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
+              width="0"
+              x="149"
+              y="58.80000000000001"
+            />
+            <rect
+              height="137.2"
+              style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
+              width="298"
+              x="149"
+              y="0"
+            />
+          </g>
         </g>
       </svg>
     </div>

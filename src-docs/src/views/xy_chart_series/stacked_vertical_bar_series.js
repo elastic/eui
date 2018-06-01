@@ -7,19 +7,19 @@ import {
 } from '../../../../src/components';
 
 const dataA = [
-  { x: 'A', y: 3 },
-  { x: 'B', y: 1 },
-  { x: 'C', y: 5 },
-  { x: 'D', y: 2 },
-  { x: 'E', y: 1 },
+  { x: 0, y: 5 },
+  { x: 1, y: 4 },
+  { x: 2, y: 3 },
+  { x: 3, y: 2 },
+  { x: 4, y: 1 },
 ];
 
 const dataB = [
-  { x: 'A', y: 1 },
-  { x: 'B', y: 2 },
-  { x: 'C', y: 3 },
-  { x: 'D', y: 4 },
-  { x: 'E', y: 5 },
+  { x: 0, y: 1 },
+  { x: 1, y: 2 },
+  { x: 2, y: 3 },
+  { x: 3, y: 4 },
+  { x: 4, y: 5 },
 ];
 
 export default class extends Component {

@@ -4,7 +4,9 @@ import LineSeriesExample from './line_series';
 import VerticalBarSeriesExample from './vertical_bar_series';
 import HorizontalBarSeriesExample from './horizontal_bar_series';
 import StackedHorizontalBarSeriesExample from './stacked_horizontal_bar_series';
+import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series';
 import StackedVerticalBarSeriesExample from './stacked_vertical_bar_series';
+import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
 import VerticalRectSeriesExample from './vertical_rect_series';
 import HorizontalRectSeriesExample from './horizontal_rect_series';
 import AreaSeriesExample from './area_series';
@@ -232,6 +234,62 @@ export const XYChartSeriesExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <StackedVerticalBarSeriesExample />
+        </div>
+      )
+    },
+    {
+      title: 'Stacked Vertical Histogram',
+      text: (
+        <div>
+          <p>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
+            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
+            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+          </p>
+        </div>
+      ),
+      props: { EuiHorizontalBarSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./stacked_vertical_rect_series')
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React'
+        }
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <StackedVerticalRectSeriesExample />
+        </div>
+      )
+    },
+    {
+      title: 'Stacked Horizontal Histogram',
+      text: (
+        <div>
+          <p>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
+            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
+            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+          </p>
+        </div>
+      ),
+      props: { EuiHorizontalBarSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./stacked_horizontal_rect_series')
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React'
+        }
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <StackedHorizontalRectSeriesExample />
         </div>
       )
     },

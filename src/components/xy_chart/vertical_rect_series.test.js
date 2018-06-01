@@ -4,17 +4,17 @@ import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
 import EuiXYChart from './chart';
-import EuiVerticalBarSeries from './vertical_bar_series';
+import EuiVerticalRectSeries from './vertical_rect_series';
 import { benchmarkFunction } from '../../test/time_execution';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
-describe('EuiVerticalBarSeries', () => {
+describe('EuiVerticalRectSeries', () => {
   test('is rendered', () => {
     const component = render(
       <EuiXYChart width={600} height={200} {...requiredProps}>
-        <EuiVerticalBarSeries
+        <EuiVerticalRectSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
@@ -27,7 +27,7 @@ describe('EuiVerticalBarSeries', () => {
   test('all props are rendered', () => {
     const component = render(
       <EuiXYChart width={600} height={200}>
-        <EuiVerticalBarSeries
+        <EuiVerticalRectSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           color="#ff0000"
@@ -39,7 +39,7 @@ describe('EuiVerticalBarSeries', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders stacked bar chart', () => {
+  test('renders stacked vertical histogram', () => {
     const component = render(
       <EuiXYChart
         width={600}
@@ -47,13 +47,13 @@ describe('EuiVerticalBarSeries', () => {
         xType="ordinal"
         stackBy="y"
       >
-        <EuiVerticalBarSeries
+        <EuiVerticalRectSeries
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}
           color="#ff0000"
           onClick={() => {}}
         />
-        <EuiVerticalBarSeries
+        <EuiVerticalRectSeries
           name="test-series-b"
           data={[{ x: 0, y: 2 }, { x: 1, y: 7 }]}
           color="#00ff00"
@@ -84,7 +84,7 @@ describe('EuiVerticalBarSeries', () => {
       function renderChart() {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiVerticalBarSeries name="barchart" data={data}/>
+            <EuiVerticalRectSeries name="barchart" data={data}/>
           </EuiXYChart>
         )
       }
@@ -120,7 +120,7 @@ describe('EuiVerticalBarSeries', () => {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiVerticalBarSeries key={index} name={`barchart-${index}`} data={data}/>
+              <EuiVerticalRectSeries key={index} name={`barchart-${index}`} data={data}/>
             ))}
           </EuiXYChart>
         )
