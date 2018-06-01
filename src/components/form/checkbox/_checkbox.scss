@@ -38,7 +38,7 @@
       cursor: not-allowed !important;
 
       ~ .euiCheckbox__label {
-        color: $euiColorMediumShade;
+        color: $euiFormControlDisabledColor;
         cursor: not-allowed !important;
       }
 

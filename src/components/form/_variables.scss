@@ -10,5 +10,10 @@ $euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS;
 $euiSwitchThumbSize: $euiSwitchHeight;
 $euiSwitchIconHeight: $euiSize;
 
+$euiFormControlHeight: $euiSizeXXL;
+$euiFormControlHeight--compressed: $euiSizeXL;
+
 $euiFormControlPadding: $euiSizeM;
 $euiFormControlPadding--compressed: $euiSizeS;
+
+$euiFormControlDisabledColor: $euiColorMediumShade;

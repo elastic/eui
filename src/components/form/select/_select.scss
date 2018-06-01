@@ -9,12 +9,12 @@
   @include euiFormControlWithIcon($side: "right"); /* 1 */
   @include euiFormControlIsLoading($isNextToIcon: true);
 
-  line-height: $euiSizeXXL; /* 2 */
+  line-height: $euiFormControlHeight; /* 2 */
   padding-top: 0; /* 2 */
   padding-bottom: 0; /* 2 */
 
   &--compressed {
-    line-height: $euiSizeXL; /* 2 */
+    line-height: $euiFormControlHeight--compressed; /* 2 */
     padding-top: 0; /* 2 */
     padding-bottom: 0; /* 2 */
   }

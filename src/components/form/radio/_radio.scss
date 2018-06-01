@@ -32,7 +32,7 @@
       cursor: not-allowed !important;
 
       ~ .euiRadio__label {
-        color: $euiColorMediumShade;
+        color: $euiFormControlDisabledColor;
         cursor: not-allowed !important;
       }
 
