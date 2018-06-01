@@ -1,9 +1,20 @@
+@import '../badge/beta_badge/mixins';
+
 // Export basic class & modifiers
 @include euiPanel($selector: 'euiPanel');
+
+.euiPanel {
+  @include hasBetaBadge($selector: 'euiPanel');
+}
 
 // Specific
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPanel.euiPanel--#{$modifier} {
     padding: $amount;
+
+    // Overwrite @hasBetaBadge max-width depending upon padding
+    .euiPanel__betaBadgeWrapper {
+      max-width: calc(100% - #{$amount*2});
+    }
   }
 }

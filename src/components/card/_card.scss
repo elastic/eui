@@ -1,5 +1,6 @@
 @import "../panel/variables";
 @import "../panel/mixins";
+@import '../badge/beta_badge/mixins';
 
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
 $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
@@ -9,11 +10,10 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 
 /**
  * 1. Footer is always at the bottom.
- * 2. Extend beta badges to at least 40% of the card's width
- * 3. Fix for IE to ensure badges are visible outside of a <button> tag
- * 4. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+ * 2. Fix for IE to ensure badges are visible outside of a <button> tag
+ * 3. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
       (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
- * 5. Horizontal layouts should always top left align no matter the textAlign prop
+ * 4. Horizontal layouts should always top left align no matter the textAlign prop
  */
 
 // EuiCard specific
@@ -21,31 +21,9 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   display: flex;
   flex-direction: column;
   padding: $euiCardSpacing;
-  overflow: visible; /* 3 */
+  overflow: visible; /* 2 */
 
-  &.euiCard--hasBetaBadge {
-    position: relative;
-
-    .euiCard__betaBadgeWrapper {
-      position: absolute;
-      top: $euiSizeL/-2;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3; // get above abs positioned image
-      min-width: 40%; /* 2 */
-      max-width: calc(100% - #{$euiCardSpacing*2});
-
-      .euiToolTipAnchor,
-      .euiCard__betaBadge {
-        width: 100%; /* 2 */
-      }
-
-      .euiCard__betaBadge {
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
+  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing);
 
   .euiCard__top,
   .euiCard__content,
@@ -87,7 +65,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 .euiCard__top {
   flex-grow: 0; /* 1 */
   position: relative;
-  min-height: 1px; /* 4 */
+  min-height: 1px; /* 3 */
 
   .euiCard__icon {
     margin-top: $euiCardSpacing/2;
@@ -143,7 +121,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 .euiCard.euiCard--horizontal {
   .euiCard__content {
     padding-top: $euiSizeS; // Aligns title and text a bit better and adds spacing in case of beta badge
-    text-align: left; /* 5 */
+    text-align: left; /* 4 */
   }
 }
 
@@ -151,7 +129,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 // otherwise the button tag won't properly align contents to top
 .euiCard.euiCard--horizontal.euiCard--hasIcon {
   flex-direction: row;
-  align-items: flex-start !important; /* 5 */
+  align-items: flex-start !important; /* 4 */
 
   .euiCard__top,
   .euiCard__content {

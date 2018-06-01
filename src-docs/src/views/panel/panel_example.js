@@ -21,6 +21,10 @@ import PanelHover from './panel_hover';
 const panelHoverSource = require('!!raw-loader!./panel_hover');
 const panelHoverHtml = renderToHtml(PanelHover);
 
+import PanelBadge from './panel_badge';
+const panelBadgeSource = require('!!raw-loader!./panel_badge');
+const panelBadgeHtml = renderToHtml(PanelBadge);
+
 export const PanelExample = {
   title: 'Panel',
   sections: [{
@@ -56,5 +60,21 @@ export const PanelExample = {
       </p>
     ),
     demo: <PanelHover />,
+  }, {
+    title: 'Panel beta badges',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: panelBadgeSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: panelBadgeHtml,
+    }],
+    text: (
+      <p>
+        Similar to <Link to="/display/card">EuiCard</Link>, panels can also accept
+        an <Link to="/display/badge">EuiBetaBadge</Link>.
+      </p>
+    ),
+    demo: <PanelBadge />,
   }],
 };
