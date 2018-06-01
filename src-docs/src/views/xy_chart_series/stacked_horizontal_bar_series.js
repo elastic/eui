@@ -6,22 +6,21 @@ import {
   EuiHorizontalBarSeries,
 } from '../../../../src/components';
 
-const data = [
-  [
-    { x: 1, y: 'A' },
-    { x: 2, y: 'B' },
-    { x: 3, y: 'C' },
-    { x: 4, y: 'D' },
-    { x: 5, y: 'E' },
-  ],
-  [
-    { x: 3, y: 'A' },
-    { x: 2, y: 'B' },
-    { x: 1, y: 'C' },
-    { x: 2, y: 'D' },
-    { x: 3, y: 'E' },
-  ]
+const dataA = [
+  { x: 1, y: 'A' },
+  { x: 2, y: 'B' },
+  { x: 3, y: 'C' },
+  { x: 4, y: 'D' },
+  { x: 5, y: 'E' },
 ];
+const dataB = [
+  { x: 3, y: 'A' },
+  { x: 2, y: 'B' },
+  { x: 1, y: 'C' },
+  { x: 2, y: 'D' },
+  { x: 3, y: 'E' },
+];
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -36,22 +35,9 @@ export default class extends Component {
       stacked: !this.state.stacked,
     });
   }
-  renderBars = () => {
-    const { stacked } = this.state
-    return data.map((d, i) => {
-      return (
-        <EuiHorizontalBarSeries
-          key={i}
-          cluster={stacked ? `cluster${i}` : null}
-          name={`Tag ${i}`}
-          data={d}
-        />
-      )
-    })
-  }
 
   render() {
-
+    const { stacked } = this.state
     return (
       <div>
         <EuiButton
@@ -65,11 +51,16 @@ export default class extends Component {
           width={600}
           height={200}
           yType="ordinal"
-          stackBy="x"
+          stackBy={stacked ? 'x' : null}
         >
-          {
-            this.renderBars()
-          }
+          <EuiHorizontalBarSeries
+            name={`Tag A`}
+            data={dataA}
+          />
+          <EuiHorizontalBarSeries
+            name={`Tag B`}
+            data={dataB}
+          />
         </EuiXYChart>
 
       </div>

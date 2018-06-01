@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalRectSeries } from 'react-vis';
 
-class EuiVerticalBarSeries extends VerticalRectSeries {
+export default class EuiVerticalRectSeries extends VerticalRectSeries {
   render() {
     const { name, data, color, onClick, ...rest } = this.props;
 
@@ -20,9 +20,8 @@ class EuiVerticalBarSeries extends VerticalRectSeries {
     );
   }
 }
-export default EuiVerticalBarSeries;
 
-EuiVerticalBarSeries.propTypes = {
+EuiVerticalRectSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
@@ -41,4 +40,4 @@ EuiVerticalBarSeries.propTypes = {
   onClick: PropTypes.func
 };
 
-EuiVerticalBarSeries.defaultProps = {};
+EuiVerticalRectSeries.defaultProps = {};
