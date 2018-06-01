@@ -30,10 +30,11 @@ export default EuiHorizontalRectSeries;
 EuiHorizontalRectSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
-  /** Array<{x: string|number, y: string|number}> */
+  /** Array<{x: number, y: number, y0: number}> */
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
+    y0: PropTypes.number,
   })).isRequired,
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,

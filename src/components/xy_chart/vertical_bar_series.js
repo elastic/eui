@@ -28,7 +28,7 @@ export default EuiVerticalBarSeries;
 EuiVerticalBarSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
-  /** Array<{x: string|number, y: string|number}> */
+  /** Array<{x: string|number, y: number}> */
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.oneOfType([
       PropTypes.string,

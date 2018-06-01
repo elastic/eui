@@ -10,7 +10,15 @@ import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
 import VerticalRectSeriesExample from './vertical_rect_series';
 import HorizontalRectSeriesExample from './horizontal_rect_series';
 import AreaSeriesExample from './area_series';
-import { EuiCode, EuiVerticalBarSeries, EuiHorizontalBarSeries, EuiLine, EuiArea } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiVerticalBarSeries,
+  EuiVerticalRectSeries,
+  EuiHorizontalBarSeries,
+  EuiHorizontalRectSeries,
+  EuiLine,
+  EuiArea,
+} from '../../../../src/components';
 
 export const XYChartSeriesExample = {
   title: 'XYChart Series',
@@ -85,7 +93,7 @@ export const XYChartSeriesExample = {
           </p>
           <p>
             The Y-Axis can be configured with <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
-            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>
+            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
           </p>
         </div>
       ),
@@ -153,7 +161,7 @@ export const XYChartSeriesExample = {
           </p>
         </div>
       ),
-      props: { EuiVerticalBarSeries },
+      props: { EuiVerticalRectSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -183,7 +191,7 @@ export const XYChartSeriesExample = {
           </p>
         </div>
       ),
-      props: { EuiVerticalBarSeries },
+      props: { EuiHorizontalRectSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -257,7 +265,7 @@ export const XYChartSeriesExample = {
           </ul>
         </div>
       ),
-      props: { EuiHorizontalBarSeries },
+      props: { EuiVerticalBarSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -286,7 +294,7 @@ export const XYChartSeriesExample = {
           <p>Note: Is not possible to &quot;cluster&quot; bars by the same X value.</p>
         </div>
       ),
-      props: { EuiHorizontalBarSeries },
+      props: { EuiVerticalRectSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -315,7 +323,7 @@ export const XYChartSeriesExample = {
           <p>Note: Is not possible to &quot;cluster&quot; bars by the same Y value.</p>
         </div>
       ),
-      props: { EuiHorizontalBarSeries },
+      props: { EuiHorizontalRectSeries },
       source: [
         {
           type: GuideSectionTypes.JS,

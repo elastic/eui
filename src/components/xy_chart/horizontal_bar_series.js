@@ -30,7 +30,7 @@ export default EuiHorizontalBarSeries;
 EuiHorizontalBarSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
-  /** Array<{x: string|number, y: string|number}> */
+  /** Array<{x: number, y: string|number}> */
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.oneOfType([
