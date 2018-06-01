@@ -161,6 +161,7 @@ export class EuiComboBoxInput extends Component {
       onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
       ref: toggleButtonRef,
       'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
+      disabled: isDisabled
     };
 
     return (
