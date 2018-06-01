@@ -30,6 +30,8 @@
     fill: $euiColorEmptyShade;
     stroke: $euiColorEmptyShade;
     stroke-width: 3px; // increase thickness of icon at such a small size
-    margin-top: -3px;
+    // better vertical position fix that works with IE
+    position: relative;
+    top: -2px;
   }
 }
