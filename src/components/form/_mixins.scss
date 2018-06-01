@@ -4,15 +4,15 @@
   height: $height;
 }
 
-@mixin euiFormControlWithIcon($isIconOptional: false) {
+@mixin euiFormControlWithIcon($isIconOptional: false, $side: "left") {
   @if ($isIconOptional) {
     @at-root {
       #{&}--withIcon {
-        @include euiFormControlLayout__padding(1, "left");
+        @include euiFormControlLayout__padding(1, $side);
       }
     }
   } @else {
-    @include euiFormControlLayout__padding(1, "left");
+    @include euiFormControlLayout__padding(1, $side);
   }
 }
 
