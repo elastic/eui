@@ -77,8 +77,15 @@ export const XYChartSeriesExample = {
         <div>
           <p>
             Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalBarSeries</EuiCode> for displaying
-            vertical bar charts. Use the appropriate <EuiCode>xType</EuiCode> props to match your
-            x value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            vertical bar charts.
+          </p>
+          <p>
+            Specify <EuiCode>EuiXYChart</EuiCode> prop <EuiCode>xType=&quot;ordinal&quot;</EuiCode>
+            because we are creating a Bar Chart.
+          </p>
+          <p>
+            The Y-Axis can be configured with <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
+            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>
           </p>
         </div>
       ),
@@ -105,8 +112,14 @@ export const XYChartSeriesExample = {
         <div>
           <p>
             Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
-            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
-            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            horizontal bar charts.
+          </p>
+          <p>
+            Specify <EuiCode>EuiXYChart</EuiCode> prop <EuiCode>yType=&quot;ordinal&quot;</EuiCode>
+            because we are creating a Bar Chart.
+          </p>
+          <p>The X-Axis can be configured with <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
+            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
           </p>
         </div>
       ),
@@ -134,6 +147,9 @@ export const XYChartSeriesExample = {
           <p>
             Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode> for displaying
             vertical histograms.
+            The Y-Axis needs can be configured with <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
+            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
+            The same for X-Axis.
           </p>
         </div>
       ),
@@ -159,8 +175,11 @@ export const XYChartSeriesExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode> for displaying
-            an horizontal histogram.
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalRectSeries</EuiCode> for displaying
+            horizontal histograms.
+            The Y-Axis needs can be configured as <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
+            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
+            The same for X-Axis.
           </p>
         </div>
       ),
@@ -187,9 +206,18 @@ export const XYChartSeriesExample = {
         <div>
           <p>
             Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
-            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
-            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            horizontal stacked bar charts.
+            Specify <EuiCode>EuiXYChart</EuiCode> props like the following:
           </p>
+          <ul>
+            <li>
+              <EuiCode>yType=&quot;ordinal&quot;</EuiCode> because we are creating a Bar Chart
+            </li>
+            <li>
+              <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars one above the other.
+              If <EuiCode>stackBy</EuiCode> is not specified, bars are clustered together depending on the Y value
+            </li>
+          </ul>
         </div>
       ),
       props: { EuiHorizontalBarSeries },
@@ -214,10 +242,19 @@ export const XYChartSeriesExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
-            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
-            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalBarSeries</EuiCode> for displaying
+            vertical stacked bar charts.
+            Specify <EuiCode>EuiXYChart</EuiCode> props like the following:
           </p>
+          <ul>
+            <li>
+              <EuiCode>xType=&quot;ordinal&quot;</EuiCode> because we are creating a Bar Chart
+            </li>
+            <li>
+              <EuiCode>stackBy=&quot;y&quot;</EuiCode> to stack bars one above the other.
+              If <EuiCode>stackBy</EuiCode> is not specified, bars are clustered together depending on the X value
+            </li>
+          </ul>
         </div>
       ),
       props: { EuiHorizontalBarSeries },
@@ -242,10 +279,11 @@ export const XYChartSeriesExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
-            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
-            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode> for displaying
+            stacked vedrtical histograms.
           </p>
+          <p>Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars together.</p>
+          <p>Note: Is not possible to &quot;cluster&quot; bars by the same X value.</p>
         </div>
       ),
       props: { EuiHorizontalBarSeries },
@@ -270,10 +308,11 @@ export const XYChartSeriesExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalBarSeries</EuiCode> for displaying
-            horizontal bar charts. Use the appropriate <EuiCode>yType</EuiCode> props to match your
-            y value scale. Available values are: <EuiCode>ordinal</EuiCode>,<EuiCode>linear</EuiCode>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalRectSeries</EuiCode> to display
+            stacked horizontal histograms.
           </p>
+          <p>Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars together.</p>
+          <p>Note: Is not possible to &quot;cluster&quot; bars by the same Y value.</p>
         </div>
       ),
       props: { EuiHorizontalBarSeries },

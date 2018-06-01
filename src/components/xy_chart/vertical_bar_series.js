@@ -34,10 +34,7 @@ EuiVerticalBarSeries.propTypes = {
       PropTypes.string,
       PropTypes.number
     ]),
-    y: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
+    y: PropTypes.number,
   })).isRequired,
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,

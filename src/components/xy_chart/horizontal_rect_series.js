@@ -32,14 +32,8 @@ EuiHorizontalRectSeries.propTypes = {
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
   data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    y: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
+    x: PropTypes.number,
+    y: PropTypes.number,
   })).isRequired,
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,
