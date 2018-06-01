@@ -1,0 +1,10 @@
+.euiComboBox__input {
+
+  // Ensure that no input states are visible on the hidden input
+  input[aria-hidden="true"] {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+}
