@@ -79,15 +79,31 @@ export class EuiContextMenu extends Component {
     panels: [],
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { panels } = nextProps;
+
+    if ( prevState.prevProps.panels !== panels ) {
+      return {
+        prevProps: { panels },
+        idToPanelMap: mapIdsToPanels(panels),
+        idToPreviousPanelIdMap: mapIdsToPreviousPanels(panels),
+        idAndItemIndexToPanelIdMap: mapPanelItemsToPanels(panels)
+      };
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
-    this.idToPanelMap = {};
-    this.idToPreviousPanelIdMap = {};
-    this.idAndItemIndexToPanelIdMap = {};
-    this.idToRenderedItemsMap = {};
-
     this.state = {
+      prevProps: {},
+      idToPanelMap: {},
+      idToPreviousPanelIdMap: {},
+      idAndItemIndexToPanelIdMap: {},
+      idToRenderedItemsMap: {},
+
       height: undefined,
       outgoingPanelId: undefined,
       incomingPanelId: props.initialPanelId,
@@ -98,8 +114,18 @@ export class EuiContextMenu extends Component {
     };
   }
 
+  componentDidMount() {
+    this.mapIdsToRenderedItems(this.props.panels);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.panels !== this.props.panels) {
+      this.mapIdsToRenderedItems(this.props.panels);
+    }
+  }
+
   hasPreviousPanel = panelId => {
-    const previousPanelId = this.idToPreviousPanelIdMap[panelId];
+    const previousPanelId = this.state.idToPreviousPanelIdMap[panelId];
     return typeof previousPanelId !== 'undefined';
   };
 
@@ -113,7 +139,7 @@ export class EuiContextMenu extends Component {
   }
 
   showNextPanel = itemIndex => {
-    const nextPanelId = this.idAndItemIndexToPanelIdMap[this.state.incomingPanelId][itemIndex];
+    const nextPanelId = this.state.idAndItemIndexToPanelIdMap[this.state.incomingPanelId][itemIndex];
     if (nextPanelId) {
       if (this.state.isUsingKeyboardToNavigate) {
         this.setState({
@@ -128,10 +154,10 @@ export class EuiContextMenu extends Component {
   showPreviousPanel = () => {
     // If there's a previous panel, then we can close the current panel to go back to it.
     if (this.hasPreviousPanel(this.state.incomingPanelId)) {
-      const previousPanelId = this.idToPreviousPanelIdMap[this.state.incomingPanelId];
+      const previousPanelId = this.state.idToPreviousPanelIdMap[this.state.incomingPanelId];
 
       // Set focus on the item which shows the panel we're leaving.
-      const previousPanel = this.idToPanelMap[previousPanelId];
+      const previousPanel = this.state.idToPanelMap[previousPanelId];
       const focusedItemIndex = previousPanel.items.findIndex(
         item => item.panel === this.state.incomingPanelId
       );
@@ -166,33 +192,15 @@ export class EuiContextMenu extends Component {
     }
   };
 
-  updatePanelMaps(panels) {
-    this.idToPanelMap = mapIdsToPanels(panels);
-    this.idToPreviousPanelIdMap = mapIdsToPreviousPanels(panels);
-    this.idAndItemIndexToPanelIdMap = mapPanelItemsToPanels(panels);
-    this.mapIdsToRenderedItems(panels);
-  }
-
-  // TODO: React 16.3 - move this into constructor
-  componentWillMount() {
-    this.updatePanelMaps(this.props.panels);
-  }
-
-  // TODO: React 16.3 - componentDidUpdate; alternatively refactor the panel mappings
-  // into state and use getDerivedStateFromProps
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.panels !== this.props.panels) {
-      this.updatePanelMaps(nextProps.panels);
-    }
-  }
-
   mapIdsToRenderedItems = panels => {
-    this.idToRenderedItemsMap = {};
+    const idToRenderedItemsMap = {};
 
     // Pre-rendering the items lets us check reference equality inside of EuiContextMenuPanel.
     panels.forEach(panel => {
-      this.idToRenderedItemsMap[panel.id] = this.renderItems(panel.items);
+      idToRenderedItemsMap[panel.id] = this.renderItems(panel.items);
     });
+
+    this.setState({ idToRenderedItemsMap });
   };
 
   renderItems(items = []) {
@@ -237,7 +245,7 @@ export class EuiContextMenu extends Component {
   }
 
   renderPanel(panelId, transitionType) {
-    const panel = this.idToPanelMap[panelId];
+    const panel = this.state.idToPanelMap[panelId];
 
     if (!panel) {
       return;
@@ -261,7 +269,7 @@ export class EuiContextMenu extends Component {
         transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
         transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
         hasFocus={transitionType === 'in'}
-        items={this.idToRenderedItemsMap[panelId]}
+        items={this.state.idToRenderedItemsMap[panelId]}
         initialFocusedItemIndex={this.state.isUsingKeyboardToNavigate ? this.state.focusedItemIndex : undefined}
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}

@@ -21,6 +21,14 @@ import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
 
+import ContentPanel from './content_panel';
+const contentPanelSource = require('!!raw-loader!./content_panel');
+const contentPanelHtml = renderToHtml(ContentPanel);
+
+import ContextMenuWithContent from './context_menu_with_content';
+const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
+const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
+
 export const ContextMenuExample = {
   title: 'Context Menu',
   sections: [{
@@ -56,5 +64,38 @@ export const ContextMenuExample = {
       </p>
     ),
     demo: <SinglePanel />,
+  }, {
+    title: `Displaying custom elements`,
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: contentPanelSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: contentPanelHtml,
+    }],
+    text: (
+      <p>
+        If you have custom content to show instead of a list of options,
+        you can pass a React element as a child to <EuiCode>EuiContextMenuPanel</EuiCode>.
+      </p>
+    ),
+    demo: <ContentPanel />,
+  }, {
+    title: `Using panels with mixed items & content`,
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: contextMenuWithContentSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: contextMenuWithContentHtml,
+    }],
+    text: (
+      <p>
+        Context menu panels can be passed React elements through the
+        <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>. The panel
+        will display your custom content without modification.
+      </p>
+    ),
+    demo: <ContextMenuWithContent />,
   }],
 };
