@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public facing changes since `0.0.51`
+- Removed `.nvmrc` file from published npm package ([#892](https://github.com/elastic/eui/pull/892))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 
