@@ -27,6 +27,16 @@
   }
 }
 
+// Similar to above, but uses the light or dark color based
+// on whether it's the light or darkt theme
+@function lightOrDarkTheme($lightColor, $darkColor) {
+  @if (lightness($euiTextColor) < 50) {
+    @return $lightColor;
+  } @else {
+    @return $darkColor;
+  }
+}
+
 // Calculates luminance, which is better than brightness for checking colors
 // pow, nth functions come from the _math.scss functions
 @function luminance($color) {
