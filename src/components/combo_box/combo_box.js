@@ -56,18 +56,15 @@ export class EuiComboBox extends Component {
 
     const initialSearchValue = '';
     const { options, selectedOptions } = props;
-    const matchingOptions = this.getMatchingOptions(options, selectedOptions, initialSearchValue);
 
     this.state = {
+      matchingOptions: getMatchingOptions(options, selectedOptions, initialSearchValue, props.async),
+      listBounds: undefined,
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
       activeOptionIndex: undefined,
     };
-
-    // Cached derived state.
-    this.matchingOptions = matchingOptions;
-    this.listBounds = undefined;
 
     // Refs.
     this.comboBox = undefined;
@@ -76,12 +73,6 @@ export class EuiComboBox extends Component {
     this.optionsList = undefined;
     this.options = [];
   }
-
-  getMatchingOptions = (options, selectedOptions, searchValue) => {
-    // Assume the consumer has already filtered the options against the search value.
-    const isPreFiltered = this.props.async;
-    return getMatchingOptions(options, selectedOptions, searchValue, isPreFiltered);
-  };
 
   openList = () => {
     this.setState({
@@ -96,7 +87,7 @@ export class EuiComboBox extends Component {
     });
   };
 
-  updateListPosition = (listBounds = this.listBounds) => {
+  updateListPosition = (listBounds = this.state.listBounds) => {
     if (!this._isMounted) {
       return;
     }
@@ -111,9 +102,7 @@ export class EuiComboBox extends Component {
 
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
 
-    // Cache for future calls. Assign values directly instead of destructuring because listBounds is
-    // a DOMRect, not a JS object.
-    this.listBounds = {
+    listBounds = {
       bottom: listBounds.bottom,
       height: listBounds.height,
       left: comboBoxBounds.left,
@@ -124,13 +113,16 @@ export class EuiComboBox extends Component {
       y: listBounds.y,
     };
 
-    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, this.listBounds, 'bottom', 0, ['bottom', 'top']);
+    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, listBounds, 'bottom', 0, ['bottom', 'top']);
 
     this.optionsList.style.top = `${top + window.scrollY}px`;
     this.optionsList.style.left = `${left}px`;
     this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
+    // Cache for future calls. Assign values directly instead of destructuring because listBounds is
+    // a DOMRect, not a JS object.
     this.setState({
+      listBounds,
       width: comboBoxBounds.width,
       listPosition: position,
     });
@@ -181,42 +173,42 @@ export class EuiComboBox extends Component {
 
   incrementActiveOptionIndex = throttle(amount => {
     // If there are no options available, reset the focus.
-    if (!this.matchingOptions.length) {
+    if (!this.state.matchingOptions.length) {
       this.clearActiveOption();
       return;
     }
 
-    let nextActiveOptionIndex;
+    this.setState(({ activeOptionIndex, matchingOptions }) => {
+      let nextActiveOptionIndex;
 
-    if (!this.hasActiveOption()) {
-      // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
-      // either the first or last item.
-      nextActiveOptionIndex = amount < 0 ? this.matchingOptions.length - 1 : 0;
-    } else {
-      nextActiveOptionIndex = this.state.activeOptionIndex + amount;
+      if (!this.hasActiveOption()) {
+        // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
+        // either the first or last item.
+        nextActiveOptionIndex = amount < 0 ? matchingOptions.length - 1 : 0;
+      } else {
+        nextActiveOptionIndex = activeOptionIndex + amount;
 
-      if (nextActiveOptionIndex < 0) {
-        nextActiveOptionIndex = this.matchingOptions.length - 1;
-      } else if (nextActiveOptionIndex === this.matchingOptions.length) {
-        nextActiveOptionIndex = 0;
+        if (nextActiveOptionIndex < 0) {
+          nextActiveOptionIndex = matchingOptions.length - 1;
+        } else if (nextActiveOptionIndex === matchingOptions.length) {
+          nextActiveOptionIndex = 0;
+        }
       }
-    }
 
-    // Group titles are included in option list but are not selectable
-    // Skip group title options
-    const direction = amount > 0 ? 1 : -1;
-    while (this.matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
-      nextActiveOptionIndex = nextActiveOptionIndex + direction;
+      // Group titles are included in option list but are not selectable
+      // Skip group title options
+      const direction = amount > 0 ? 1 : -1;
+      while (matchingOptions[nextActiveOptionIndex].isGroupLabelOption) {
+        nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
-      if (nextActiveOptionIndex < 0) {
-        nextActiveOptionIndex = this.matchingOptions.length - 1;
-      } else if (nextActiveOptionIndex === this.matchingOptions.length) {
-        nextActiveOptionIndex = 0;
+        if (nextActiveOptionIndex < 0) {
+          nextActiveOptionIndex = matchingOptions.length - 1;
+        } else if (nextActiveOptionIndex === matchingOptions.length) {
+          nextActiveOptionIndex = 0;
+        }
       }
-    }
 
-    this.setState({
-      activeOptionIndex: nextActiveOptionIndex,
+      return { activeOptionIndex: nextActiveOptionIndex };
     });
   }, 200);
 
@@ -294,10 +286,10 @@ export class EuiComboBox extends Component {
 
   doesSearchMatchOnlyOption = () => {
     const { searchValue } = this.state;
-    if (this.matchingOptions.length !== 1) {
+    if (this.state.matchingOptions.length !== 1) {
       return false;
     }
-    return this.matchingOptions[0].label.toLowerCase() === searchValue.toLowerCase();
+    return this.state.matchingOptions[0].label.toLowerCase() === searchValue.toLowerCase();
   };
 
   areAllOptionsSelected = () => {
@@ -491,35 +483,55 @@ export class EuiComboBox extends Component {
     }, 100);
   }
 
-  // TODO: React 16.3 - ideally refactor from class members into state
-  // and use getDerivedStateFromProps; otherwise componentDidUpdate
-  componentWillUpdate(nextProps, nextState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const { options, selectedOptions } = nextProps;
-    const { searchValue } = nextState;
-
-    if (
-      options !== this.props.options
-      || selectedOptions !== this.props.selectedOptions
-      || searchValue !== this.props.searchValue
-    ) {
-      // Clear refs to options if the ones we can display changes.
-      this.options = [];
-    }
+    const { searchValue } = prevState;
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const matchingOptions = this.getMatchingOptions(options, selectedOptions, nextState.searchValue);
-    this.matchingOptions = matchingOptions;
+    const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async);
 
-    if (!matchingOptions.length) {
-      // Prevent endless setState -> componentWillUpdate -> setState loop.
-      if (nextState.hasActiveOption) {
-        this.clearActiveOption();
+    return { matchingOptions };
+  }
+
+  updateMatchingOptionsIfDifferent(newMatchingOptions) {
+    const { matchingOptions } = this.state;
+
+    let areOptionsDifferent = false;
+
+    if (matchingOptions.length !== newMatchingOptions.length) {
+      areOptionsDifferent = true;
+    } else {
+      for (let i = 0; i < matchingOptions.length; i++) {
+        if (matchingOptions[i].label !== newMatchingOptions[i].label) {
+          areOptionsDifferent = true;
+          break;
+        }
+      }
+    }
+
+    if (areOptionsDifferent) {
+      this.options = [];
+      this.setState({ matchingOptions: newMatchingOptions });
+
+      if (!newMatchingOptions.length) {
+        // Prevent endless setState -> componentWillUpdate -> setState loop.
+        if (this.state.hasActiveOption) {
+          this.clearActiveOption();
+        }
       }
     }
   }
 
   componentDidUpdate() {
+    const { options, selectedOptions } = this.props;
+    const { searchValue } = this.state;
+
+    // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps
+    // isn't called after a state change, and we track `searchValue` in state
+    // instead we need to react to a change in searchValue here
+    this.updateMatchingOptionsIfDifferent(getMatchingOptions(options, selectedOptions, searchValue, this.props.async));
+
     this.focusActiveOption();
   }
 
@@ -573,7 +585,7 @@ export class EuiComboBox extends Component {
             selectedOptions={selectedOptions}
             onCreateOption={onCreateOption}
             searchValue={searchValue}
-            matchingOptions={this.matchingOptions}
+            matchingOptions={this.state.matchingOptions}
             listRef={this.optionsListRef}
             optionRef={this.optionRef}
             onOptionClick={this.onOptionClick}

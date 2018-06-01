@@ -61,9 +61,8 @@ export class EuiComboBoxInput extends Component {
     });
   };
 
-  // TODO: React 16.3 - componentDidUpdate
-  componentWillUpdate(nextProps) {
-    const { searchValue } = nextProps;
+  componentDidUpdate(prevProps) {
+    const { searchValue } = prevProps;
 
     // We need to update the position of everything if the user enters enough input to change
     // the size of the input.
@@ -150,9 +149,9 @@ export class EuiComboBoxInput extends Component {
 
     const clickProps = {};
 
-    if (!isDisabled) {
+    if (!isDisabled && onClear && hasSelectedOptions) {
       clickProps.clear = {
-        onClick: hasSelectedOptions ? onClear : undefined,
+        onClick: onClear,
       };
     }
 
