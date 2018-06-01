@@ -12,10 +12,10 @@
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto); /* 3 */
 
-    $padding: $euiSizeXS;
+    padding: $euiSizeXS;
     display: flex; /* 1 */
     flex-wrap: wrap; /* 1 */
-    padding: $padding $euiSizeXL*2 $padding $padding; /* 2 */
+    @include euiFormControlLayout__padding(2); /* 2 */
     align-content: flex-start;
 
     &:hover {

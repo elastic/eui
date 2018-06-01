@@ -5,27 +5,24 @@
 }
 
 @mixin euiFormControlWithIcon($isIconOptional: false) {
-  $iconPadding: $euiSizeXXL;
-
   @if ($isIconOptional) {
     @at-root {
       #{&}--withIcon {
-        padding-left: $iconPadding;
+        @include euiFormControlLayout__padding(1, "left");
       }
     }
   } @else {
-    padding-left: $iconPadding;
+    @include euiFormControlLayout__padding(1, "left");
   }
 }
 
 @mixin euiFormControlIsLoading($isNextToIcon: false) {
-
   @at-root {
     #{&}-isLoading {
       @if ($isNextToIcon) {
-        padding-right: $euiSizeXXL + $euiSize;
+        @include euiFormControlLayout__padding(2);
       } @else {
-        padding-right: $euiSizeXXL;
+        @include euiFormControlLayout__padding(1);
       }
     }
   }
