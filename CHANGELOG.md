@@ -16,6 +16,7 @@
 - Fixed `EuiComboBox` hidden input focus styles ([#894](https://github.com/elastic/eui/pull/894))
 - Fixed responsive widths of `EuiDescribedFormGroup` ([#894](https://github.com/elastic/eui/pull/894))
 - Fixed descenders being cut off in `EuiSelect` ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed extra spacing applied by Safari to `EuiFieldSearch` ([#894](https://github.com/elastic/eui/pull/894))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 
