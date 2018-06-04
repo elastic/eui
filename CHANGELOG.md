@@ -22,7 +22,7 @@
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
 
-**Note: this release creates a minor regression to form controls containing icons, in which the icon blocks the user from clicking the control.**
+**Note: this release creates a minor regression to form controls containing icons, in which the icon blocks the user from clicking the control. This is fixed in `0.0.52`.**
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
 - `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,

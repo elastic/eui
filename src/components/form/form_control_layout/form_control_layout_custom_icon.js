@@ -22,13 +22,14 @@ export const EuiFormControlLayoutCustomIcon = ({
   if (onClick) {
     return (
       <button
-        className={classes}
         onClick={onClick}
+        className={classes}
         ref={iconRef}
         {...rest}
       >
         <EuiIcon
           className="euiFormControlLayoutCustomIcon__clickableIcon"
+          aria-hidden="true"
           type={type}
         />
       </button>
@@ -36,12 +37,16 @@ export const EuiFormControlLayoutCustomIcon = ({
   }
 
   return (
-    <EuiIcon
-      aria-hidden="true"
+    <span
       className={classes}
-      type={type}
+      ref={iconRef}
       {...rest}
-    />
+    >
+      <EuiIcon
+        aria-hidden="true"
+        type={type}
+      />
+    </span>
   );
 };
 
