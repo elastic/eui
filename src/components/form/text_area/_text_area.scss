@@ -3,7 +3,8 @@
   line-height: $euiLineHeight; // give more spacing between multiple lines
 
   // Textareas have their own sizing
-  &, &--compressed {
+  &,
+  &--compressed {
     height: auto;
   }
 }
