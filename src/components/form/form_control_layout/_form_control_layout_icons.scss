@@ -1,0 +1,43 @@
+.euiFormControlLayoutIcons {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $euiFormControlPadding;
+  display: flex;
+  align-items: center;
+
+  > * + * {
+    margin-left: $euiFormControlPadding;
+  }
+}
+
+.euiFormControlLayoutIcons--right {
+  left: auto;
+  right: $euiFormControlPadding;
+}
+
+  .euiFormControlLayoutIcons__clearButton {
+    @include euiFormControlLayoutClearIcon('.euiFormControlLayoutIcons__clearButtonIcon');
+  }
+
+  .euiFormControlLayoutIcons__customIcon {
+    pointer-events: none;
+  }
+
+  .euiFormControlLayoutIcons__customIcon--clickable {
+    pointer-events: all;
+    height: $euiSize;
+    width: $euiSize;
+    @include size($euiSize);
+
+    .euiIcon {
+      vertical-align: baseline;
+    }
+
+    &:focus {
+      background: $euiColorPrimary;
+      border-radius: 100%;
+      color: $euiColorGhost;
+    }
+  }

@@ -15,15 +15,15 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+    class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
   >
     <button
       aria-label="Clear selections"
-      class="euiFormControlLayout__clear customClass"
+      class="euiFormControlLayoutIcons__clearButton customClass"
       data-test-subj="clearButton"
     >
       <svg
-        class="euiIcon euiIcon--medium euiFormControlLayout__clearIcon"
+        class="euiIcon euiIcon--medium euiFormControlLayoutIcons__clearButtonIcon"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"
@@ -58,11 +58,11 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons"
+    class="euiFormControlLayoutIcons"
   >
     <svg
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      class="euiIcon euiIcon--medium euiFormControlLayoutIcons__customIcon"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -89,11 +89,11 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons"
+    class="euiFormControlLayoutIcons"
   >
     <svg
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiFormControlLayout__icon customClass"
+      class="euiIcon euiIcon--medium euiFormControlLayoutIcons__customIcon customClass"
       data-test-subj="myIcon"
       focusable="false"
       height="16"
@@ -121,11 +121,11 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons"
+    class="euiFormControlLayoutIcons"
   >
     <svg
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      class="euiIcon euiIcon--medium euiFormControlLayoutIcons__customIcon"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -152,11 +152,11 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+    class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
   >
     <svg
       aria-hidden="true"
-      class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      class="euiIcon euiIcon--medium euiFormControlLayoutIcons__customIcon"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -183,7 +183,7 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
   class="euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__icons euiFormControlLayout__icons--right"
+    class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
   >
     <div
       class="euiLoadingSpinner euiLoadingSpinner--medium"
