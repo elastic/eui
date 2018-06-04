@@ -394,8 +394,12 @@ export const EuiIcon = ({
   const Svg = typeToIconMap[type] || empty;
 
   // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
-  // focusable="false". We want to default SVGs to *not* be focusable.
-  const focusable = tabIndex === '0' ? 'true' : 'false';
+  // focusable="false".
+  //   - If there's no tab index specified, we'll default the icon to not be focusable,
+  //     which is how SVGs behave in Chrome, Safari, and FF.
+  //   - If tab index is -1, then the consumer wants the icon to not be focusable.
+  //   - For all other values, the consumer wants the icon to be focusable.
+  const focusable = (!tabIndex || tabIndex === '-1') ? 'false' : 'true';
 
   return (
     <Svg
