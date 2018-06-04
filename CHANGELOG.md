@@ -1,8 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**Breaking changes**
-
-- Added `restrictWidth` to `EuiPage` which defaults to `true` and maxes out the width at 1000px ([#896](https://github.com/elastic/eui/pull/896))
+- Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
+- Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
 
 **Bug fixes**
 - Removed `.nvmrc` file from published npm package ([#892](https://github.com/elastic/eui/pull/892))
