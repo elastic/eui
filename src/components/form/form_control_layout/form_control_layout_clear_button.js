@@ -9,17 +9,17 @@ export const EuiFormControlLayoutClearButton = ({
   onClick,
   ...rest
 }) => {
-  const classes = classNames('euiFormControlLayoutIcons__clearButton', className);
+  const classes = classNames('euiFormControlLayoutClearButton', className);
 
   return (
     <button
       className={classes}
       onClick={onClick}
-      aria-label="Clear selections"
+      aria-label="Clear input"
       {...rest}
     >
       <EuiIcon
-        className="euiFormControlLayoutIcons__clearButtonIcon"
+        className="euiFormControlLayoutClearButton__icon"
         type="cross"
       />
     </button>

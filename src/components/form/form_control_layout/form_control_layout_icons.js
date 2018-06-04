@@ -63,7 +63,7 @@ export class EuiFormControlLayoutIcons extends Component {
       ref: iconRef,
       side, // eslint-disable-line no-unused-vars
       ...iconRest
-    } = iconProps
+    } = iconProps;
 
     return (
       <EuiFormControlLayoutCustomIcon
@@ -93,10 +93,7 @@ export class EuiFormControlLayoutIcons extends Component {
     }
 
     return (
-      <EuiFormControlLayoutClearButton
-        aria-label="Clear selections"
-        {...clear}
-      />
+      <EuiFormControlLayoutClearButton {...clear} />
     );
   }
 }

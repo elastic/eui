@@ -12,10 +12,10 @@ export const EuiFormControlLayoutCustomIcon = ({
   ...rest
 }) => {
   const classes = classNames(
-    'euiFormControlLayoutIcons__customIcon',
+    'euiFormControlLayoutCustomIcon',
     className,
     {
-      'euiFormControlLayoutIcons__customIcon--clickable': onClick,
+      'euiFormControlLayoutCustomIcon--clickable': onClick,
     },
   );
 
@@ -28,6 +28,7 @@ export const EuiFormControlLayoutCustomIcon = ({
         {...rest}
       >
         <EuiIcon
+          className="euiFormControlLayoutCustomIcon__clickableIcon"
           type={type}
         />
       </button>

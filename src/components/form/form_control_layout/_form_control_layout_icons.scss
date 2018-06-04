@@ -16,28 +16,3 @@
   left: auto;
   right: $euiFormControlPadding;
 }
-
-  .euiFormControlLayoutIcons__clearButton {
-    @include euiFormControlLayoutClearIcon('.euiFormControlLayoutIcons__clearButtonIcon');
-  }
-
-  .euiFormControlLayoutIcons__customIcon {
-    pointer-events: none;
-  }
-
-  .euiFormControlLayoutIcons__customIcon--clickable {
-    pointer-events: all;
-    height: $euiSize;
-    width: $euiSize;
-    @include size($euiSize);
-
-    .euiIcon {
-      vertical-align: baseline;
-    }
-
-    &:focus {
-      background: $euiColorPrimary;
-      border-radius: 100%;
-      color: $euiColorGhost;
-    }
-  }
