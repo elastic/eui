@@ -14,6 +14,7 @@ exports[`EuiHeaderAlert is rendered 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiButtonIcon__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -77,6 +78,7 @@ exports[`EuiHeaderAlert renders action 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiButtonIcon__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -144,6 +146,7 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiButtonIcon__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -209,6 +212,7 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiButtonIcon__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"

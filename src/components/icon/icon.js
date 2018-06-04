@@ -372,6 +372,7 @@ export const EuiIcon = ({
   size,
   color,
   className,
+  tabIndex,
   ...rest
 }) => {
   let optionalColorClass = null;
@@ -392,7 +393,19 @@ export const EuiIcon = ({
 
   const Svg = typeToIconMap[type] || empty;
 
-  return <Svg className={classes} style={optionalCustomStyles} {...rest} />;
+  // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
+  // focusable="false". We want to default SVGs to *not* be focusable.
+  const focusable = tabIndex === '0' ? 'true' : 'false';
+
+  return (
+    <Svg
+      className={classes}
+      style={optionalCustomStyles}
+      tabIndex={tabIndex}
+      focusable={focusable}
+      {...rest}
+    />
+  );
 };
 
 function checkValidColor(props, propName, componentName) {

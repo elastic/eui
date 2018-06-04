@@ -24,6 +24,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
     >
       <svg
         class="euiIcon euiIcon--medium euiFormControlLayout__clearIcon"
+        focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
@@ -62,6 +63,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -93,6 +95,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiFormControlLayout__icon customClass"
       data-test-subj="myIcon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -123,6 +126,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"
@@ -153,6 +157,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
     <svg
       aria-hidden="true"
       class="euiIcon euiIcon--medium euiFormControlLayout__icon"
+      focusable="false"
       height="16"
       viewBox="0 0 16 16"
       width="16"

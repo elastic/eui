@@ -60,6 +60,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                       >
                         <arrowRight
                           className="euiIcon euiIcon--medium"
+                          focusable="false"
                           height="16"
                           style={
                             Object {
@@ -73,6 +74,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
+                            focusable="false"
                             height="16"
                             style={
                               Object {
@@ -190,6 +192,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                       >
                         <arrowDown
                           className="euiIcon euiIcon--medium"
+                          focusable="false"
                           height="16"
                           style={
                             Object {
@@ -203,6 +206,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
+                            focusable="false"
                             height="16"
                             style={
                               Object {
@@ -284,6 +288,7 @@ exports[`EuiAccordion is rendered 1`] = `
           >
             <svg
               class="euiIcon euiIcon--medium"
+              focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
@@ -346,6 +351,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
           >
             <svg
               class="euiIcon euiIcon--medium"
+              focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
@@ -412,6 +418,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
           >
             <svg
               class="euiIcon euiIcon--medium"
+              focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
@@ -474,6 +481,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
           >
             <svg
               class="euiIcon euiIcon--medium"
+              focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
@@ -543,6 +551,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
           >
             <svg
               class="euiIcon euiIcon--medium"
+              focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"

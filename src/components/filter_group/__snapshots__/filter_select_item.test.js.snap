@@ -15,6 +15,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
     >
       <svg
         class="euiIcon euiIcon--medium"
+        focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
