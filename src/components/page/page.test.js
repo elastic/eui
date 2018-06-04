@@ -16,7 +16,7 @@ describe('EuiPage', () => {
 
   test('sets a max-width', () => {
     const component = render(
-      <EuiPage {...requiredProps} restrictWidth="1024" />
+      <EuiPage {...requiredProps} restrictWidth={1024} />
     );
 
     expect(component)

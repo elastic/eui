@@ -49,7 +49,10 @@ EuiPage.propTypes = {
    * set to `false` to not restrict the width,
    * set to a number for a custom width.
    */
-  restrictWidth: PropTypes.any,
+  restrictWidth: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number
+  ]),
 };
 
 EuiPage.defaultProps = {
