@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiCode,
   EuiPage,
   EuiPageBody,
   EuiPageContent,
@@ -50,11 +51,20 @@ export const PageExample = {
       code: pageHtml,
     }],
     text: (
-      <p>
-        Page layouts are modular and have the ability to add or remove components
-        as needed for the design. These examples are colored for illustrative
-        purposes only.
-      </p>
+      <div>
+        <p>
+          Page layouts are modular and have the ability to add or remove components
+          as needed for the design. These examples are colored for illustrative
+          purposes only.
+        </p>
+        <p>
+          By default, the entire page will always be 100% of the window&apos;s width,
+          to max this out the typical width and center the page, set
+          the <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>. You
+          can also pass an integer to this property to max out the width at a custom
+          size.
+        </p>
+      </div>
     ),
     props: {
       EuiPage,

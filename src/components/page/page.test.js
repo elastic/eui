@@ -13,4 +13,13 @@ describe('EuiPage', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('sets a max-width', () => {
+    const component = render(
+      <EuiPage {...requiredProps} restrictWidth={1024} />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });

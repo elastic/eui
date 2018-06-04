@@ -52,7 +52,7 @@ export class AppView extends Component {
     const { navigation } = routes;
 
     return (
-      <EuiPage className="guidePage">
+      <EuiPage restrictWidth={1240} className="guidePage">
         <EuiPageBody>
           <EuiErrorBoundary>
             <GuidePageChrome
