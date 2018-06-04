@@ -3,7 +3,7 @@
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage euiPage--restrictWidth-default testClass1 testClass2"
+  class="euiPage euiPage--widthIsNotRestricted testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

@@ -53,5 +53,5 @@ EuiPage.propTypes = {
 };
 
 EuiPage.defaultProps = {
-  restrictWidth: true,
+  restrictWidth: false,
 }
