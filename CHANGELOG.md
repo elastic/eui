@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added updated logos for Cloud and Cloud ECE ([#906](https://github.com/elastic/eui/pull/906))
 - Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
 - Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
 - Added `resize` prop to `EuiTextArea` that defaults to ‘vertical’ (only height) ([#894](https://github.com/elastic/eui/pull/894))
