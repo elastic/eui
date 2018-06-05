@@ -1,13 +1,18 @@
 .euiFormControlLayoutCustomIcon {
   pointer-events: none;
+
+  .euiFormControlLayoutCustomIcon__icon {
+    transform: translateY(-1px);
+  }
 }
 
 .euiFormControlLayoutCustomIcon--clickable {
   pointer-events: all;
   @include size($euiSize);
 
-  .euiFormControlLayoutCustomIcon__clickableIcon {
+  .euiFormControlLayoutCustomIcon__icon {
     vertical-align: baseline;
+    transform: none;
   }
 
   &:focus {

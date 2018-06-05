@@ -28,7 +28,7 @@ export const EuiFormControlLayoutCustomIcon = ({
         {...rest}
       >
         <EuiIcon
-          className="euiFormControlLayoutCustomIcon__clickableIcon"
+          className="euiFormControlLayoutCustomIcon__icon"
           aria-hidden="true"
           type={type}
         />
@@ -43,6 +43,7 @@ export const EuiFormControlLayoutCustomIcon = ({
       {...rest}
     >
       <EuiIcon
+        className="euiFormControlLayoutCustomIcon__icon"
         aria-hidden="true"
         type={type}
       />
