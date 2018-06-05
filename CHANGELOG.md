@@ -4,9 +4,11 @@
 - Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
 
 **Bug fixes**
+
 - Removed `.nvmrc` file from published npm package ([#892](https://github.com/elastic/eui/pull/892))
 - `EuiComboBox` no longer shows the _clear_ icon when it's a no-op ([#890](https://github.com/elastic/eui/pull/890))
 - `EuiIcon` no longer takes focus in Edge and IE unless `tabIndex` is defined as a value other than `"-1"` ([#900](https://github.com/elastic/eui/pull/900))
+- Fixed regression introduced in `0.0.50` in which the form control icons blocked users from clicking the control ([#898](https://github.com/elastic/eui/pull/898))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 
@@ -16,9 +18,11 @@
 
 **Bug fixes**
 
-- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into setClass methods. ([#883](https://github.com/elastic/eui/pull/883))
+- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into `setRef` methods. ([#883](https://github.com/elastic/eui/pull/883))
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
+
+**Note: this release creates a minor regression to form controls containing icons, in which the icon blocks the user from clicking the control. This is fixed in `0.0.52`.**
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
 - `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,

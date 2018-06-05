@@ -1,5 +1,6 @@
-@mixin euiFormControlLayout__clear($iconClass) {
+@mixin euiFormControlLayoutClearIcon($iconClass) {
   $clearSize: $euiSize;
+  pointer-events: all;
 
   @include size($clearSize);
   background-color: transparentize($euiColorMediumShade, .5);

@@ -110,7 +110,7 @@
         position: absolute;
         top: $euiSizeM/2;
         right: $euiSizeM;
-        @include euiFormControlLayout__clear('.euiFilePicker__clearIcon');
+        @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
       }
     }
   }
