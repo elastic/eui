@@ -2,21 +2,11 @@
 
 - Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
 - Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
-- Added `resize` prop to `EuiTextArea` that defaults to ‘vertical’ (only height) ([#894](https://github.com/elastic/eui/pull/894))
-- Added multiple style-only adjustments to `EuiFormControlLayout` buttons/icons ([#894](https://github.com/elastic/eui/pull/894))
-- Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
 
 **Bug fixes**
-
 - Removed `.nvmrc` file from published npm package ([#892](https://github.com/elastic/eui/pull/892))
 - `EuiComboBox` no longer shows the _clear_ icon when it's a no-op ([#890](https://github.com/elastic/eui/pull/890))
 - `EuiIcon` no longer takes focus in Edge and IE unless `tabIndex` is defined as a value other than `"-1"` ([#900](https://github.com/elastic/eui/pull/900))
-- Fixed regression introduced in `0.0.50` in which the form control icons blocked users from clicking the control ([#898](https://github.com/elastic/eui/pull/898))
-- Fixed `EuiSwitch` background in case it’s been placed on a gray background ([#894](https://github.com/elastic/eui/pull/894))
-- Fixed `EuiComboBox` hidden input focus styles ([#894](https://github.com/elastic/eui/pull/894))
-- Fixed responsive widths of `EuiDescribedFormGroup` ([#894](https://github.com/elastic/eui/pull/894))
-- Fixed descenders being cut off in `EuiSelect` ([#894](https://github.com/elastic/eui/pull/894))
-- Fixed extra spacing applied by Safari to `EuiFieldSearch` ([#894](https://github.com/elastic/eui/pull/894))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 
@@ -26,15 +16,20 @@
 
 **Bug fixes**
 
-- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into `setRef` methods. ([#883](https://github.com/elastic/eui/pull/883))
+- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into setClass methods. ([#883](https://github.com/elastic/eui/pull/883))
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
-
-**Note: this release creates a minor regression to form controls containing icons, in which the icon blocks the user from clicking the control. This is fixed in `0.0.52`.**
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
 - `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,
 - Added `offine` and `online` icons ([#881](https://github.com/elastic/eui/pull/881))
+
+**Breaking changes**
+
+- `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863))
+- `EuiInMemoryTable`'s `search.onChange` callback now passes an object with `{ query, queryText, error }` instead of only the query ([#863](https://github.com/elastic/eui/pull/863))
+- `EuiFormControlLayout` no longer has `onClear`, `iconSide`, or `onIconClick` props. Instead of `onClear` it now accepts a `clear` object of the shape `{ onClick }`. Instead of the icon props, it now accepts a single `icon` prop which be either a string or an object of the shape `{ type, side, onClick }`. ([#866](https://github.com/elastic/eui/pull/866))
+- `EuiBasicTable` and `EuiInMemoryTable` pass-through cell props (defined by the `columns` prop and the `cellProps` prop) used to be applied to the `div` inside of the `td` element. They're now applied directly to the `td` element. ([#869](https://github.com/elastic/eui/pull/869))
 
 **Bug fixes**
 
@@ -49,14 +44,12 @@
 - Fixed button labeling for `EuiFormControlLayout` and `EuiComboBox` accessibility ([#876](https://github.com/elastic/eui/pull/876))
 - Fixed `EuiBreadcrumb` slash alignment when truncating ([#878](https://github.com/elastic/eui/pull/878))
 
+## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
+
 **Breaking changes**
 
-- `EuiSearchBar` no longer has an `onParse` callback, and now passes an object to `onChange` with the shape `{ query, queryText, error }` ([#863](https://github.com/elastic/eui/pull/863))
-- `EuiInMemoryTable`'s `search.onChange` callback now passes an object with `{ query, queryText, error }` instead of only the query ([#863](https://github.com/elastic/eui/pull/863))
-- `EuiFormControlLayout` no longer has `onClear`, `iconSide`, or `onIconClick` props. Instead of `onClear` it now accepts a `clear` object of the shape `{ onClick }`. Instead of the icon props, it now accepts a single `icon` prop which be either a string or an object of the shape `{ type, side, onClick }`. ([#866](https://github.com/elastic/eui/pull/866))
-- `EuiBasicTable` and `EuiInMemoryTable` pass-through cell props (defined by the `columns` prop and the `cellProps` prop) used to be applied to the `div` inside of the `td` element. They're now applied directly to the `td` element. ([#869](https://github.com/elastic/eui/pull/869))
-
-## [`0.0.49`](https://github.com/elastic/eui/tree/v0.0.49)
+- EUI requires React `16.3` or higher ([#849](https://github.com/elastic/eui/pull/849))
+- `EuiHeaderBreadcrumbs` refactored to use `EuiBreadcrumbs`. This removed all child components of `EuiHeaderBreadcrumbs`. ([#844](https://github.com/elastic/eui/pull/844))
 
 **Bug fixes**
 
@@ -65,22 +58,17 @@
 - Added `EuiHeaderLinks` which allow you to construct navigation in the header in place of the app menu. ([#844](https://github.com/elastic/eui/pull/844))
 - `EuiPopover` will use an alert to warn the user it traps focus ([#844](https://github.com/elastic/eui/pull/844))
 
-**Breaking changes**
-
-- EUI requires React `16.3` or higher ([#849](https://github.com/elastic/eui/pull/849))
-- `EuiHeaderBreadcrumbs` refactored to use `EuiBreadcrumbs`. This removed all child components of `EuiHeaderBreadcrumbs`. ([#844](https://github.com/elastic/eui/pull/844))
-
 ## [`0.0.48`](https://github.com/elastic/eui/tree/v0.0.48)
-
-**Bug fixes**
-
-- `EuiComboBox` does not pass `isDisabled` prop to `EuiComboBoxOptionsList` to avoid "React does not recognize the 'isDisabled' prop on a DOM element" console warning ([#838](https://github.com/elastic/eui/pull/838))
-- `EuiComboBox` does not display clear icon when `isClearable` prop is set to false and `selectedOptions` prop is provided ([#838](https://github.com/elastic/eui/pull/838))
 
 **Breaking changes**
 
 - Move `EuiBasicTable`'s `itemId` prop from `selection` to a top-level property ([#830](https://github.com/elastic/eui/pull/830))
 - Renamed/refactored `requiresAriaLabel` prop validator to a more general `withRequiredProp` ([#830](https://github.com/elastic/eui/pull/830))
+
+**Bug fixes**
+
+- `EuiComboBox` do not pass `isDisabled` prop to `EuiComboBoxOptionsList` to avoid "React does not reconize the 'isDisabled' prop on a DOM element" console warning ([#838](https://github.com/elastic/eui/pull/838))
+- `EuiComboBox` do not display clear icon when `isClearable` prop is set to false and `selectedOptions` prop is provided ([#838](https://github.com/elastic/eui/pull/838))
 
 ## [`0.0.47`](https://github.com/elastic/eui/tree/v0.0.47)
 
@@ -151,6 +139,10 @@
 - Added support for text alignment with `EuiTextAlign` ([#683](https://github.com/elastic/eui/pull/683))
 - `EuiBasicTable` added the `compressed` prop to allow for tables with smaller fonts and padding ([#687](https://github.com/elastic/eui/pull/687))
 
+**Breaking changes**
+
+- Added responsive support for tables. This isn't technically a breaking change, but you will need to apply some new props (`hasActions`, `isSelectable`) for certain tables to make them look their best in mobile. **Responsive table views are on by default.** ([#584](https://github.com/elastic/eui/pull/584))
+
 **Bug fixes**
 
 - Added a `paddingSize` prop to `EuiAccordion` to better mitigate situations where a nested `EuiFlexGroup` causes scrollbars ([#701](https://github.com/elastic/eui/pull/701))
@@ -161,10 +153,6 @@
     - Fixed font-family of input, textarea, select, and buttons
     - Fixed style of code, pre, and dl’s inside `EuiText`
     - Fixed ghost text color which was being set to a dark gray
-
-**Breaking changes**
-
-- Added responsive support for tables. This isn't technically a breaking change, but you will need to apply some new props (`hasActions`, `isSelectable`) for certain tables to make them look their best in mobile. **Responsive table views are on by default.** ([#584](https://github.com/elastic/eui/pull/584))
 
 ## [`0.0.42`](https://github.com/elastic/eui/tree/v0.0.42)
 
@@ -476,6 +464,9 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 **Bug fixes**
 
 - Added `react-color` as a dependency (was previously a devDependency) ([#354](https://github.com/elastic/eui/pull/354))
+
+**Bug fixes**
+
 - Stop propagation and prevent default when closing components. Otherwise the same Escape keypress could close the parent component(s) as well as the one you intend to close. ([#344](https://github.com/elastic/eui/pull/344))
 
 ## [`0.0.15`](https://github.com/elastic/eui/tree/v0.0.15)
@@ -513,7 +504,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Breaking changes**
 
-- Reverted test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. ([#306](https://github.com/elastic/eui/pull/306))
+- Revert test helper for async functions that throw exceptions. See PR for details on how this can be handled in Jest 22. ([#306](https://github.com/elastic/eui/pull/306))
 
 **Bug fixes**
 
@@ -554,7 +545,7 @@ instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 **Breaking changes**
 
-- `{rest}` prop attachment moved from wrapping div to the input on checkboxes and switches. ([#246](https://github.com/elastic/eui/pull/246))
+- `{rest}` prop attacmhment moved from wrapping div to the input on checkboxes and switches. ([#246](https://github.com/elastic/eui/pull/246))
 
 ## [`0.0.10`](https://github.com/elastic/eui/tree/v0.0.10)
 
