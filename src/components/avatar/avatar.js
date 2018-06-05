@@ -92,6 +92,7 @@ export const EuiAvatar = ({
   );
 };
 
+// TODO: Migrate to a service
 function checkValidColor(props, propName, componentName) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
   if (props.color && !validHex) {
@@ -146,7 +147,7 @@ EuiAvatar.propTypes = {
   initials: checkValidInitials,
 
   /**
-   * The type of avatar is this displaying
+   * The type of avatar to this is displaying
    */
   type: PropTypes.oneOf(TYPES),
 };
