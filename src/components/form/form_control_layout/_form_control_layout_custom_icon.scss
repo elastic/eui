@@ -4,8 +4,6 @@
 
 .euiFormControlLayoutCustomIcon--clickable {
   pointer-events: all;
-  height: $euiSize;
-  width: $euiSize;
   @include size($euiSize);
 
   .euiFormControlLayoutCustomIcon__clickableIcon {
@@ -13,8 +11,11 @@
   }
 
   &:focus {
-    background: $euiColorPrimary;
-    border-radius: 100%;
-    color: $euiColorGhost;
+    @include euiFocusRing;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $euiFormControlDisabledColor;
   }
 }

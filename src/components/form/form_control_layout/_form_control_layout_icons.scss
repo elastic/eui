@@ -8,11 +8,18 @@
   align-items: center;
 
   > * + * {
-    margin-left: $euiFormControlPadding;
+    margin-left: $euiFormControlPadding/2;
   }
 }
 
 .euiFormControlLayoutIcons--right {
   left: auto;
   right: $euiFormControlPadding;
+}
+
+
+// If the control is disabled, change the color of the icons
+*:disabled + .euiFormControlLayoutIcons {
+  cursor: not-allowed;
+  color: $euiFormControlDisabledColor;
 }
