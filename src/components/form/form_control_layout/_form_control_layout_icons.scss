@@ -1,0 +1,18 @@
+.euiFormControlLayoutIcons {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $euiFormControlPadding;
+  display: flex;
+  align-items: center;
+
+  > * + * {
+    margin-left: $euiFormControlPadding;
+  }
+}
+
+.euiFormControlLayoutIcons--right {
+  left: auto;
+  right: $euiFormControlPadding;
+}

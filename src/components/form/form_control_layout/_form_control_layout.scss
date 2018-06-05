@@ -6,52 +6,9 @@
 
   display: inline-block;
   position: relative;
+}
 
-  &.euiFormControlLayout--fullWidth {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .euiFormControlLayout__icon {
-    pointer-events: none;
-  }
-
-  .euiFormControlLayout__icon--button {
-    pointer-events: all;
-    height: $euiSize;
-    width: $euiSize;
-    @include size($euiSize);
-
-    .euiIcon {
-      vertical-align: baseline;
-    }
-
-    &:focus {
-      background: $euiColorPrimary;
-      border-radius: 100%;
-      color: $euiColorGhost;
-    }
-  }
-
-  .euiFormControlLayout__icons {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: $euiFormControlPadding;
-    display: flex;
-    align-items: center;
-
-    > * + * {
-      margin-left: $euiFormControlPadding;
-    }
-  }
-
-  .euiFormControlLayout__icons--right {
-    left: auto;
-    right: $euiFormControlPadding;
-  }
-
-  .euiFormControlLayout__clear {
-    @include euiFormControlLayout__clear('.euiFormControlLayout__clearIcon');
-  }
+.euiFormControlLayout--fullWidth {
+  width: 100%;
+  max-width: 100%;
 }

@@ -1,0 +1,20 @@
+.euiFormControlLayoutCustomIcon {
+  pointer-events: none;
+}
+
+.euiFormControlLayoutCustomIcon--clickable {
+  pointer-events: all;
+  height: $euiSize;
+  width: $euiSize;
+  @include size($euiSize);
+
+  .euiFormControlLayoutCustomIcon__clickableIcon {
+    vertical-align: baseline;
+  }
+
+  &:focus {
+    background: $euiColorPrimary;
+    border-radius: 100%;
+    color: $euiColorGhost;
+  }
+}
