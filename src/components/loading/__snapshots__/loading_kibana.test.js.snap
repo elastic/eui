@@ -11,6 +11,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
   >
     <svg
       class="euiIcon euiIcon--medium"
+      focusable="false"
       height="40"
       viewBox="0 0 30 40"
       width="30"

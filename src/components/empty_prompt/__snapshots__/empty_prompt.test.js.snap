@@ -8,6 +8,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
 >
   <svg
     class="euiIcon euiIcon--xxLarge euiIcon--subdued"
+    focusable="false"
     height="16"
     viewBox="0 0 16 16"
     width="16"
@@ -120,6 +121,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
 >
   <svg
     class="euiIcon euiIcon--xxLarge euiIcon--subdued"
+    focusable="false"
     height="16"
     viewBox="0 0 16 16"
     width="16"

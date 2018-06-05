@@ -14,52 +14,66 @@ describe('EuiIcon', () => {
       <EuiIcon type="search" {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
-  describe('title', () => {
-    test('defaults to a humanized version of the type', () => {
-      const component = render(
-        <EuiIcon type="dashboardApp" />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('is rendered', () => {
-      const component = render(
-        <EuiIcon type="search" title="a custom title" />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-  });
-
-  describe('renders size', () => {
-    SIZES.forEach(size => {
-      test(size, () => {
+  describe('props', () => {
+    describe('title', () => {
+      test('defaults to a humanized version of the type', () => {
         const component = render(
-          <EuiIcon type="search" size={size} />
+          <EuiIcon type="dashboardApp" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered', () => {
+        const component = render(
+          <EuiIcon type="search" title="a custom title" />
+        );
+
+        expect(component).toMatchSnapshot();
       });
     });
-  });
 
-  describe('renders type', () => {
-    TYPES.forEach(type => {
-      test(type, () => {
-        const component = render(
-          <EuiIcon type={type} />
-        );
+    describe('size', () => {
+      SIZES.forEach(size => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiIcon type="search" size={size} />
+          );
 
-        expect(component)
-          .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('type', () => {
+      TYPES.forEach(type => {
+        test(`${type} is rendered`, () => {
+          const component = render(
+            <EuiIcon type={type} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('tabIndex', () => {
+      test('renders focusable="false" when not provided', () => {
+        const component = render(<EuiIcon type="search" />);
+        expect(component).toMatchSnapshot();
+      });
+
+      test('renders focusable="false" when -1', () => {
+        const component = render(<EuiIcon type="search" tabIndex="-1" />);
+        expect(component).toMatchSnapshot();
+      });
+
+      test('renders focusable="true" when 0', () => {
+        const component = render(<EuiIcon type="search" tabIndex="0" />);
+        expect(component).toMatchSnapshot();
       });
     });
   });

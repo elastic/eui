@@ -6,6 +6,7 @@
 **Bug fixes**
 - Removed `.nvmrc` file from published npm package ([#892](https://github.com/elastic/eui/pull/892))
 - `EuiComboBox` no longer shows the _clear_ icon when it's a no-op ([#890](https://github.com/elastic/eui/pull/890))
+- `EuiIcon` no longer takes focus in Edge and IE unless `tabIndex` is defined as a value other than `"-1"` ([#900](https://github.com/elastic/eui/pull/900))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 

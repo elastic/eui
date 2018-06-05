@@ -27,6 +27,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       >
         <svg
           class="euiIcon euiIcon--medium euiContextMenu__icon"
+          focusable="false"
           height="16"
           viewBox="0 0 16 16"
           width="16"
@@ -80,6 +81,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       >
         <svg
           class="euiIcon euiIcon--medium euiContextMenu__icon"
+          focusable="false"
           height="16"
           viewBox="0 0 16 16"
           width="16"
@@ -125,6 +127,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       >
         <svg
           class="euiIcon euiIcon--medium euiContextMenu__icon"
+          focusable="false"
           height="16"
           viewBox="0 0 16 16"
           width="16"
@@ -165,6 +168,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           </span>
           <svg
             class="euiIcon euiIcon--medium euiContextMenu__arrow"
+            focusable="false"
             height="16"
             viewBox="0 0 16 16"
             width="16"
@@ -199,6 +203,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           </span>
           <svg
             class="euiIcon euiIcon--medium euiContextMenu__arrow"
+            focusable="false"
             height="16"
             viewBox="0 0 16 16"
             width="16"
@@ -233,6 +238,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           </span>
           <svg
             class="euiIcon euiIcon--medium euiContextMenu__arrow"
+            focusable="false"
             height="16"
             viewBox="0 0 16 16"
             width="16"
@@ -276,6 +282,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
       >
         <svg
           class="euiIcon euiIcon--medium euiContextMenu__icon"
+          focusable="false"
           height="16"
           viewBox="0 0 16 16"
           width="16"
