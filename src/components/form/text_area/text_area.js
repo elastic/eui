@@ -6,21 +6,32 @@ import {
   EuiValidatableControl,
 } from '../validatable_control';
 
+const resizeToClassNameMap = {
+  vertical: 'euiTextArea--resizeVertical',
+  horizontal: 'euiTextArea--resizeHorizontal',
+  both: 'euiTextArea--resizeBoth',
+  none: 'euiTextArea--resizeNone',
+};
+
+export const RESIZE = Object.keys(resizeToClassNameMap);
+
 export const EuiTextArea = ({
   children,
-  rows,
-  name,
-  id,
-  placeholder,
-  inputRef,
   className,
-  isInvalid,
-  fullWidth,
   compressed,
+  fullWidth,
+  id,
+  inputRef,
+  isInvalid,
+  name,
+  placeholder,
+  resize,
+  rows,
   ...rest
 }) => {
   const classes = classNames(
     'euiTextArea',
+    resizeToClassNameMap[resize],
     {
       'euiTextArea--fullWidth': fullWidth,
       'euiTextArea--compressed': compressed,
@@ -63,8 +74,14 @@ EuiTextArea.propTypes = {
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+
+  /**
+   * Which direction, if at all, should the textarea resize
+   */
+  resize: PropTypes.oneOf(RESIZE),
 };
 
 EuiTextArea.defaultProps = {
   fullWidth: false,
+  resize: 'vertical',
 };

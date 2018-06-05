@@ -1,12 +1,23 @@
 /**
  * 1. Leave room for caret.
+ * 2. Ensure the descenders don't get cut off
  */
+
 .euiSelect {
+  appearance: none;
   @include euiFormControlStyle;
+  @include euiFormControlWithIcon($side: "right"); /* 1 */
   @include euiFormControlIsLoading($isNextToIcon: true);
 
-  padding-right: $euiSizeXXL; /* 1 */
-  appearance: none;
+  line-height: $euiFormControlHeight; /* 2 */
+  padding-top: 0; /* 2 */
+  padding-bottom: 0; /* 2 */
+
+  &--compressed {
+    line-height: $euiFormControlHeight--compressed; /* 2 */
+    padding-top: 0; /* 2 */
+    padding-bottom: 0; /* 2 */
+  }
 
   &::-ms-expand {
     display: none;

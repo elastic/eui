@@ -110,12 +110,12 @@
     }
 
     + label {
-      color: $euiColorMediumShade;
+      color: $euiFormControlDisabledColor;
     }
   }
 
   .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
-    background-color: darken($euiFormBackgroundColor, 3);
+    background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
   }
 
   /**

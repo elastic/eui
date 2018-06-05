@@ -1,31 +1,36 @@
-@mixin euiFormControlSize($height: $euiSizeXXL) {
+/*
+ * 1. Ensure the icon padding remains when in readOnly mode
+ */
+
+@mixin euiFormControlSize($height: $euiFormControlHeight) {
   max-width: $euiFormMaxWidth;
   width: 100%;
   height: $height;
 }
 
-@mixin euiFormControlWithIcon($isIconOptional: false) {
-  $iconPadding: $euiSizeXXL;
-
+@mixin euiFormControlWithIcon($isIconOptional: false, $side: "left") {
   @if ($isIconOptional) {
     @at-root {
-      #{&}--withIcon {
-        padding-left: $iconPadding;
+      #{&}--withIcon,
+      #{&}--withIcon[readOnly] /* 1 */ {
+        @include euiFormControlLayout__padding(1, $side);
       }
     }
   } @else {
-    padding-left: $iconPadding;
+    &,
+    &[readOnly] /* 1 */ {
+      @include euiFormControlLayout__padding(1, $side);
+    }
   }
 }
 
 @mixin euiFormControlIsLoading($isNextToIcon: false) {
-
   @at-root {
     #{&}-isLoading {
       @if ($isNextToIcon) {
-        padding-right: $euiSizeXXL + $euiSize;
+        @include euiFormControlLayout__padding(2);
       } @else {
-        padding-right: $euiSizeXXL;
+        @include euiFormControlLayout__padding(1);
       }
     }
   }
@@ -59,11 +64,19 @@
   cursor: not-allowed;
   background: darken($euiColorLightestShade, 2%);
   box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
-  color: $euiColorMediumShade;
+  color: $euiFormControlDisabledColor;
 
   &::placeholder {
-    color: $euiColorMediumShade;
+    color: $euiFormControlDisabledColor;
   }
+}
+
+@mixin euiFormControlReadOnlyStyle {
+  cursor: default;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding-left: 0; // line up text with label
 }
 
 /**
@@ -89,7 +102,7 @@
   &--compressed {
     padding-top: $euiFormControlPadding--compressed;
     padding-bottom: $euiFormControlPadding--compressed;
-    height: $euiSizeXL;
+    height: $euiFormControlHeight--compressed;
   }
 
   &:invalid { /* 1 */
@@ -105,14 +118,14 @@
   }
 
   &[readOnly] {
-    cursor: default;
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
+    @include euiFormControlReadOnlyStyle;
   }
 }
 
-// CUSTOM STYLES & STATES
+//
+// Custom styles and states for checkboxes and radios
+//
+
 @mixin euiCustomControl($type: null, $size: $euiSize){
 
   @if $size {

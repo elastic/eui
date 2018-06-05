@@ -2,6 +2,9 @@
 
 - Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
 - Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
+- Added `resize` prop to `EuiTextArea` that defaults to ‘vertical’ (only height) ([#894](https://github.com/elastic/eui/pull/894))
+- Added multiple style-only adjustments to `EuiFormControlLayout` buttons/icons ([#894](https://github.com/elastic/eui/pull/894))
+- Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
 
 **Bug fixes**
 
@@ -9,6 +12,11 @@
 - `EuiComboBox` no longer shows the _clear_ icon when it's a no-op ([#890](https://github.com/elastic/eui/pull/890))
 - `EuiIcon` no longer takes focus in Edge and IE unless `tabIndex` is defined as a value other than `"-1"` ([#900](https://github.com/elastic/eui/pull/900))
 - Fixed regression introduced in `0.0.50` in which the form control icons blocked users from clicking the control ([#898](https://github.com/elastic/eui/pull/898))
+- Fixed `EuiSwitch` background in case it’s been placed on a gray background ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed `EuiComboBox` hidden input focus styles ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed responsive widths of `EuiDescribedFormGroup` ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed descenders being cut off in `EuiSelect` ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed extra spacing applied by Safari to `EuiFieldSearch` ([#894](https://github.com/elastic/eui/pull/894))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 

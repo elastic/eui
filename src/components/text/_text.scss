@@ -62,6 +62,7 @@
   dt,
   dl.eui-definitionListReverse dd {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
+    line-height: convertToRem($baseLineHeightMultiplier * 3);
   }
 
   dl.eui-definitionListReverse dt {

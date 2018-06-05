@@ -1,3 +1,17 @@
+@mixin euiFormControlLayout__padding($numOfIcons, $side: "right") {
+  $iconPaddingStart: $euiSizeXXL;
+
+  @if variable-exists(numOfIcons) == false {
+    @error "$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayout__padding().";
+  } @else if $numOfIcons == 1 {
+    padding-#{$side}: $iconPaddingStart;
+  } @else if $numOfIcons == 2 {
+    padding-#{$side}: $iconPaddingStart + $euiSize;
+  } @else if $numOfIcons == 3 {
+    padding-#{$side}: $iconPaddingStart + ($euiSize*2) + $euiSizeS;
+  }
+}
+
 @mixin euiFormControlLayoutClearIcon($iconClass) {
   $clearSize: $euiSize;
   pointer-events: all;
@@ -6,10 +20,9 @@
   background-color: transparentize($euiColorMediumShade, .5);
   border-radius: $clearSize;
   line-height: $clearSize;
-  transition: background-color $euiAnimSpeedExtraFast $euiAnimSlightResistance;
 
-  &:focus, &:hover {
-    background-color: $euiColorPrimary;
+  &:focus {
+    @include euiFocusRing;
   }
 
   #{$iconClass} {
@@ -17,6 +30,8 @@
     fill: $euiColorEmptyShade;
     stroke: $euiColorEmptyShade;
     stroke-width: 3px; // increase thickness of icon at such a small size
-    margin-top: -3px;
+    // better vertical position fix that works with IE
+    position: relative;
+    top: -2px;
   }
 }

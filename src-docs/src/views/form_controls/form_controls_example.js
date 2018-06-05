@@ -7,6 +7,8 @@ import {
 } from '../../components';
 
 import {
+  EuiBadge,
+  EuiCallOut,
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
@@ -272,16 +274,25 @@ export const FormControlsExample = {
     text: (
       <Fragment>
         <p>
+          <EuiBadge color={'warning'}>
+            Building block only
+          </EuiBadge>
+        </p>
+
+        <p>
           <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
           form controls, but it&rsquo;s published in case you want to create your own form control
           which matches those of EUI. The examples below demonstrate its various states.
         </p>
 
-        <p>
-          Note that the padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t take into account the presence
-          of the various icons supported by <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
-          provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible for its own padding.
-        </p>
+        <EuiCallOut title="Additional padding required" color="warning">
+          <p>
+            The padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t take into account the presence
+            of the various icons supported by <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
+            provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible for its own padding.
+          </p>
+        </EuiCallOut>
+
       </Fragment>
     ),
     props: {

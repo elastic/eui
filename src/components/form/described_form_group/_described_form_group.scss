@@ -14,7 +14,8 @@
   }
 
   .euiDescribedFormGroup__fields {
-    min-width: $euiFormMaxWidth;
+    width: $euiFormMaxWidth;
+    max-width: 100%;
   }
 
   .euiDescribedFormGroup__fieldPadding {
@@ -39,12 +40,6 @@
   }
 
   @include screenXSmall {
-    max-width: $euiFormMaxWidth;
-
-    &.euiDescribedFormGroup--fullWidth {
-      max-width: 100%;
-    }
-
     .euiDescribedFormGroup__fields {
       padding-top: 0;
 
