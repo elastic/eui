@@ -479,7 +479,7 @@ export default() => (
 
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButton>
               Add thing
             </EuiButton>
@@ -493,7 +493,7 @@ export default() => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButtonEmpty size="s">
               Cancel
             </EuiButtonEmpty>
@@ -505,7 +505,7 @@ export default() => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButton fill>
               Create thing
             </EuiButton>
@@ -519,7 +519,7 @@ export default() => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButton color="danger" fill>
               Delete
             </EuiButton>&nbsp;&nbsp;
@@ -536,7 +536,7 @@ export default() => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButton color="danger">
               Remove
             </EuiButton>&nbsp;&nbsp;
@@ -549,7 +549,7 @@ export default() => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileHeader>
+          <EuiTableRowCell isMobileFullWidth>
             <EuiButton fill>
               Save
             </EuiButton>&nbsp;&nbsp;
