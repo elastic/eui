@@ -96,6 +96,7 @@ import loggingApp from './assets/app_logging.svg';
 import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCloud from './assets/logo_cloud.svg';
+import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
@@ -265,6 +266,7 @@ const typeToIconMap = {
   logoApache,
   logoBeats,
   logoCloud,
+  logoCloudEnterprise,
   logoDocker,
   logoElastic,
   logoElasticsearch,
