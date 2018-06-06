@@ -16,11 +16,6 @@ const colors = [
   'disabled',
 ];
 
-const ghostBackgroundStyle = {
-  background: '#000',
-  borderRadius: '4px',
-}
-
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
     {
