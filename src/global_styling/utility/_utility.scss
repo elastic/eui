@@ -52,27 +52,12 @@
 [class*="euiShowFor"] {
  display: none !important; /* 3 */
 }
-.euiHideFrom--xsmall {
-  @include screenXSmall() { display: none !important; }
-}
-.euiHideFrom--small {
-  @include screenSmall() { display: none !important; }
-}
-.euiHideFrom--medium {
-  @include screenMedium() { display: none !important; }
-}
-.euiHideFrom--large {
-  @include screenLarge() { display: none !important; }
-}
-.euiShowFor--xsmall {
-  @include screenXSmall() { display: initial !important; }
-}
-.euiShowFor--small {
-  @include screenSmall() { display: initial !important; }
-}
-.euiShowFor--medium {
-  @include screenMedium() { display: initial !important; }
-}
-.euiShowFor--large {
-  @include screenLarge() { display: initial !important; }
+
+@each $size in $euiBreakpointKeys {
+  .euiHideFrom--#{$size} {
+    @include euiBreakpoint($size) { display: none !important; }
+  }
+  .euiShowFor--#{$size} {
+    @include  euiBreakpoint($size) { display: initial !important; }
+  }
 }

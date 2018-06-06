@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const responsiveSizesToClassNameMap = {
-  xs: 'euiShowFor--xsmall',
-  s:  'euiShowFor--small',
-  m:  'euiShowFor--medium',
-  l:  'euiShowFor--large',
+  xs: 'euiShowFor--xs',
+  s:  'euiShowFor--s',
+  m:  'euiShowFor--m',
+  l:  'euiShowFor--l',
+  xl:  'euiShowFor--xs',
 }
 
 const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);

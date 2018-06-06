@@ -95,23 +95,27 @@ export default () => (
 
     <h4>Responsive</h4>
 
-    <EuiCode className="euiHideFrom--xsmall">.euiHideFrom--xsmall</EuiCode>
+    <EuiCode className="euiHideFrom--xs">.euiHideFrom--xs</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--small">.euiHideFrom--small</EuiCode>
+    <EuiCode className="euiHideFrom--s">.euiHideFrom--s</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--medium">.euiHideFrom--medium</EuiCode>
+    <EuiCode className="euiHideFrom--m">.euiHideFrom--m</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--large">.euiHideFrom--large</EuiCode>
+    <EuiCode className="euiHideFrom--l">.euiHideFrom--l</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="euiHideFrom--xl">.euiHideFrom--xl</EuiCode>
 
     <EuiSpacer />
 
-    <EuiCode className="euiShowFor--xsmall">.euiShowFor--xsmall</EuiCode>
+    <EuiCode className="euiShowFor--xs">.euiShowFor--xs</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiShowFor--small">.euiShowFor--small</EuiCode>
+    <EuiCode className="euiShowFor--s">.euiShowFor--s</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiShowFor--medium">.euiShowFor--medium</EuiCode>
+    <EuiCode className="euiShowFor--m">.euiShowFor--m</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiShowFor--large">.euiShowFor--large</EuiCode>
+    <EuiCode className="euiShowFor--l">.euiShowFor--l</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="euiShowFor--xl">.euiShowFor--xl</EuiCode>
 
 
   </EuiText>
