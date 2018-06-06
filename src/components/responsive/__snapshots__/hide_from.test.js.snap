@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`EuiHideFrom is rendered 1`] = `
-<span
-  aria-label="aria-label"
-  class="euiHideFrom euiHideFrom--xsmall euiHideFrom--small euiHideFrom--medium euiHideFrom--large testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;

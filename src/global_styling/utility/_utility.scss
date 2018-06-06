@@ -40,39 +40,3 @@
   white-space: nowrap !important;
   word-wrap: normal !important; /* 2 */
 }
-
-/**
- *  Responsive
- *
- *  3. Be sure to hide/show the element initially
- */
-[class*="euiHideFrom"] {
-  display: initial !important; /* 3 */
-}
-[class*="euiShowFor"] {
- display: none !important; /* 3 */
-}
-.euiHideFrom--xsmall {
-  @include screenXSmall() { display: none !important; }
-}
-.euiHideFrom--small {
-  @include screenSmall() { display: none !important; }
-}
-.euiHideFrom--medium {
-  @include screenMedium() { display: none !important; }
-}
-.euiHideFrom--large {
-  @include screenLarge() { display: none !important; }
-}
-.euiShowFor--xsmall {
-  @include screenXSmall() { display: initial !important; }
-}
-.euiShowFor--small {
-  @include screenSmall() { display: initial !important; }
-}
-.euiShowFor--medium {
-  @include screenMedium() { display: initial !important; }
-}
-.euiShowFor--large {
-  @include screenLarge() { display: initial !important; }
-}

@@ -93,26 +93,5 @@ export default () => (
 
     <EuiCode className="eui-displayInlineBlock">.eui-displayInlineBlock</EuiCode>
 
-    <h4>Responsive</h4>
-
-    <EuiCode className="euiHideFrom--xsmall">.euiHideFrom--xsmall</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiHideFrom--small">.euiHideFrom--small</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiHideFrom--medium">.euiHideFrom--medium</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiHideFrom--large">.euiHideFrom--large</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="euiShowFor--xsmall">.euiShowFor--xsmall</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiShowFor--small">.euiShowFor--small</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiShowFor--medium">.euiShowFor--medium</EuiCode>
-    <EuiSpacer />
-    <EuiCode className="euiShowFor--large">.euiShowFor--large</EuiCode>
-
-
   </EuiText>
 );

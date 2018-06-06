@@ -174,9 +174,6 @@ import { PortalExample }
 import { ProgressExample }
   from './views/progress/progress_example';
 
-  import { ResponsiveExample }
-    from './views/responsive/responsive_example';
-
 import { SearchBarExample }
   from './views/search_bar/search_bar_example';
 
@@ -344,7 +341,6 @@ const navigation = [{
   name: 'Utilities',
   items: [
     AccessibilityExample,
-    ResponsiveExample,
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
