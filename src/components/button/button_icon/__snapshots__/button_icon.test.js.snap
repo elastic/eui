@@ -41,10 +41,34 @@ exports[`EuiButtonIcon props color primary is rendered 1`] = `
 />
 `;
 
+exports[`EuiButtonIcon props color subdued is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--subdued"
+  type="button"
+/>
+`;
+
+exports[`EuiButtonIcon props color success is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--success"
+  type="button"
+/>
+`;
+
 exports[`EuiButtonIcon props color text is rendered 1`] = `
 <button
   aria-label="button"
   class="euiButtonIcon euiButtonIcon--text"
+  type="button"
+/>
+`;
+
+exports[`EuiButtonIcon props color warning is rendered 1`] = `
+<button
+  aria-label="button"
+  class="euiButtonIcon euiButtonIcon--warning"
   type="button"
 />
 `;
