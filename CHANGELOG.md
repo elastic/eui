@@ -6,6 +6,7 @@
 - Added `resize` prop to `EuiTextArea` that defaults to ‘vertical’ (only height) ([#894](https://github.com/elastic/eui/pull/894))
 - Added multiple style-only adjustments to `EuiFormControlLayout` buttons/icons ([#894](https://github.com/elastic/eui/pull/894))
 - Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
+- Added more customization options to `EuiAvatar` ([#903](https://github.com/elastic/eui/pull/903))
 
 **Bug fixes**
 

@@ -1,39 +1,46 @@
 .euiAvatar {
-  @include innerBorder('dark', 50%);
-
-  border-radius: 50%;
   display: inline-block;
   background-size: cover;
-  color: $euiColorGhost;
   text-align: center;
-  text-shadow: 1px 1px rgba(0,0,0,.2);
   vertical-align: middle;
+  overflow-x: hidden;
+  cursor: default; // Make sure we don't get the text cursor
 }
 
-.euiAvatar--s {
-  width: $euiSizeL;
-  height: $euiSizeL;
-  line-height: $euiSizeL;
-  font-size: $euiSizeM;
+.euiAvatar--user {
+  @include innerBorder('dark', 50%, .05);
+  border-radius: 50%;
 }
 
-.euiAvatar--m {
-  width: $euiSizeXL;
-  height: $euiSizeXL;
-  line-height: $euiSizeXL;
-  font-size: $euiSize;
+.euiAvatar--space {
+  @include innerBorder('dark', $euiBorderRadius, .05);
+  border-radius: $euiBorderRadius;
 }
 
-.euiAvatar--l {
-  width: $euiSizeXXL;
-  height: $euiSizeXXL;
-  line-height: $euiSizeXXL;
-  font-size: $euiSizeL;
-}
+// Modifiers for sizing.
+$avatarSizing: (
+  s: (
+    size: $euiSizeL,
+    font-size: $euiSizeM
+  ),
+  m: (
+    size: $euiSizeXL,
+    font-size: $euiSize
+  ),
+  l: (
+    size: $euiSizeXXL,
+    font-size: $euiSizeL
+  ),
+  xl: (
+    size: ($euiSize * 4),
+    font-size: $euiSizeXL
+  ),
+);
 
-.euiAvatar--xl {
-  width: $euiSize * 4;
-  height: $euiSize * 4;
-  line-height: $euiSize * 4;
-  font-size: $euiSizeXL;
+@each $size, $map in $avatarSizing {
+  .euiAvatar--#{$size} {
+    @include size(map-get($map, 'size'));
+    line-height: map-get($map, 'size');
+    font-size: map-get($map, 'font-size');
+  }
 }

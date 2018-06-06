@@ -47,5 +47,62 @@ describe('EuiAvatar', () => {
         });
       });
     });
+
+    describe('initials', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAvatar
+            name="name"
+            initials="na"
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
+    describe('initialsLength', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAvatar
+            name="name"
+            initialsLength={2}
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
+    describe('type', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAvatar
+            name="name"
+            type="space"
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
+    describe('color', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAvatar
+            name="name"
+            color="#000"
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
   });
 });
