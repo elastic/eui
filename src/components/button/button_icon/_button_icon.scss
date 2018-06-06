@@ -33,7 +33,7 @@
 // Modifier naming and colors.
 $buttonTypes: (
   danger: $euiColorDanger,
-  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  disabled: $euiButtonColorDisabled,
   ghost: $euiColorGhost,
   primary: $euiColorPrimary,
   subdued: $euiColorDarkShade,
