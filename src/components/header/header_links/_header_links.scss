@@ -11,7 +11,7 @@
   white-space: nowrap;
   overflow: hidden;
 
-  @include screenXSmall(){
+  @include euiBreakpoint('xs','s'){
     display: none;
   }
 }
@@ -21,7 +21,7 @@
   position: absolute !important; // override popover relative
   right: 0;
 
-  @include screenXSmall(){
+  @include euiBreakpoint('xs','s'){
     display: block !important;
   }
 }

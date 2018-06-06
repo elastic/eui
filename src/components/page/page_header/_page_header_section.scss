@@ -4,7 +4,7 @@
     margin-left: $euiSizeXL;
   }
 }
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
 
   .euiPageHeaderSection {
     width: 100%;

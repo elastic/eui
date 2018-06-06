@@ -30,7 +30,7 @@
 
 .euiBreadcrumbs--responsive {
   // Laptop
-  @include screenMedium {
+  @include euiBreakpoint('l') {
     .euiBreadcrumbSeparator,
     .euiBreadcrumb {
       display: none;
@@ -43,7 +43,7 @@
   }
 
   // Tablets
-  @include screenSmall {
+  @include euiBreakpoint('m') {
     .euiBreadcrumbSeparator,
     .euiBreadcrumb {
       display: none;
@@ -56,7 +56,7 @@
   }
 
   // Mobile
-  @include screenXSmall {
+  @include euiBreakpoint('xs','s') {
     .euiBreadcrumbSeparator,
     .euiBreadcrumb {
       display: none;
