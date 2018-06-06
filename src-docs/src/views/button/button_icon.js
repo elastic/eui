@@ -14,7 +14,6 @@ const colors = [
   'warning',
   'danger',
   'disabled',
-  'ghost',
 ];
 
 const ghostBackgroundStyle = {
@@ -26,7 +25,7 @@ export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
     {
       colors.map(color => (
-        <EuiFlexItem grow={false} style={color === "ghost" ? ghostBackgroundStyle : null}>
+        <EuiFlexItem grow={false}>
           <EuiButtonIcon
             size="s"
             color={color}
