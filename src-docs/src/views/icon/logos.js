@@ -12,6 +12,7 @@ const iconTypes = [
   'logoApache',
   'logoBeats',
   'logoCloud',
+  'logoCloudEnterprise',
   'logoDocker',
   'logoElastic',
   'logoElasticsearch',

@@ -8,10 +8,10 @@
 // Useful border shade when dealing with images of unknown color.
 @mixin innerBorder($type: 'dark', $borderRadius: 0, $alpha: .1) {
 
-  $color: rgba(0, 0, 0, $alpha);
+  $color: rgba($euiColorDarkestShade, $alpha);
 
   @if $type == 'light' {
-    $color: rgba(255, 255, 255, $alpha);
+    $color: rgba($euiColorEmptyShade, $alpha);
   }
 
   position: relative;
