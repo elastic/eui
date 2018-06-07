@@ -7,6 +7,7 @@
 - Added multiple style-only adjustments to `EuiFormControlLayout` buttons/icons ([#894](https://github.com/elastic/eui/pull/894))
 - Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
 - Added more customization options to `EuiAvatar` ([#903](https://github.com/elastic/eui/pull/903))
+- Added more color options to `EuiButtonIcon` ([#907](https://github.com/elastic/eui/pull/907))
 
 **Bug fixes**
 
@@ -19,6 +20,7 @@
 - Fixed responsive widths of `EuiDescribedFormGroup` ([#894](https://github.com/elastic/eui/pull/894))
 - Fixed descenders being cut off in `EuiSelect` ([#894](https://github.com/elastic/eui/pull/894))
 - Fixed extra spacing applied by Safari to `EuiFieldSearch` ([#894](https://github.com/elastic/eui/pull/894))
+- Fixed contrast issues in dark theming ([#907](https://github.com/elastic/eui/pull/907))
 
 ## [`0.0.51`](https://github.com/elastic/eui/tree/v0.0.51)
 
