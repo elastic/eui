@@ -95,15 +95,15 @@ export default () => (
 
     <h4>Responsive</h4>
 
-    <EuiCode className="euiHideFrom--xs">.euiHideFrom--xs</EuiCode>
+    <EuiCode className="euiHideFor--xs">.euiHideFor--xs</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--s">.euiHideFrom--s</EuiCode>
+    <EuiCode className="euiHideFor--s">.euiHideFor--s</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--m">.euiHideFrom--m</EuiCode>
+    <EuiCode className="euiHideFor--m">.euiHideFor--m</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--l">.euiHideFrom--l</EuiCode>
+    <EuiCode className="euiHideFor--l">.euiHideFor--l</EuiCode>
     <EuiSpacer />
-    <EuiCode className="euiHideFrom--xl">.euiHideFrom--xl</EuiCode>
+    <EuiCode className="euiHideFor--xl">.euiHideFor--xl</EuiCode>
 
     <EuiSpacer />
 

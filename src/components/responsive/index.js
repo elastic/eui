@@ -1,5 +1,5 @@
 export {
-  EuiHideFrom,
+  EuiHideFor,
 } from './hide_from';
 
 export {

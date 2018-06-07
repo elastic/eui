@@ -7,10 +7,10 @@ const responsiveSizesToClassNameMap = {
   s:  'euiShowFor--s',
   m:  'euiShowFor--m',
   l:  'euiShowFor--l',
-  xl:  'euiShowFor--xs',
+  xl: 'euiShowFor--xl',
 }
 
-const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
+export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
 export const EuiShowFor = ({
   children,

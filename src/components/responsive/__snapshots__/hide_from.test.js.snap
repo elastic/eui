@@ -1,9 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHideFrom is rendered 1`] = `
+exports[`EuiHideFor l is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFrom euiHideFrom--xs euiHideFrom--s euiHideFrom--m euiHideFrom--l testClass1 testClass2"
+  class="euiHideFor euiHideFor--l testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiHideFor m is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiHideFor euiHideFor--m testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiHideFor s is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiHideFor euiHideFor--s testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiHideFor xl is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiHideFor euiHideFor--xl testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiHideFor xs is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiHideFor euiHideFor--xs testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

@@ -309,7 +309,7 @@ export {
 } from './tool_tip';
 
 export {
-  EuiHideFrom,
+  EuiHideFor,
   EuiShowFor,
 } from './responsive';
 

@@ -10,7 +10,7 @@ import {
 import {
   EuiCode,
   EuiShowFor,
-  EuiHideFrom,
+  EuiHideFor,
   EuiCodeBlock,
 } from '../../../../src/components';
 
@@ -37,7 +37,7 @@ function renderSizes(size, index) {
 export const ResponsiveExample = {
   title: 'Responsive',
   sections: [{
-    title: 'EuiShowFor and EuiHideFrom',
+    title: 'EuiShowFor and EuiHideFor',
     source: [{
       type: GuideSectionTypes.JS,
       code: responsiveSource,
@@ -49,7 +49,7 @@ export const ResponsiveExample = {
       <div>
         <p>
           Pass an array of named breakpoints to either
-          the <EuiCode>EuiShowFor</EuiCode> or <EuiCode>EuiHideFrom</EuiCode> components
+          the <EuiCode>EuiShowFor</EuiCode> or <EuiCode>EuiHideFor</EuiCode> components
           to make them responsive.
         </p>
 
@@ -62,7 +62,7 @@ export const ResponsiveExample = {
         </EuiCodeBlock>
       </div>
     ),
-    props: { EuiShowFor, EuiHideFrom },
+    props: { EuiShowFor, EuiHideFor },
     demo: <Responsive />,
   }],
 };

@@ -2,27 +2,27 @@ import React from 'react';
 
 import {
   EuiCode,
-  EuiHideFrom,
+  EuiHideFor,
   EuiShowFor,
 } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiHideFrom sizes={['xs']}>
+    <EuiHideFor sizes={['xs']}>
       Hiding from <EuiCode>xs</EuiCode> screens only
-    </EuiHideFrom>
+    </EuiHideFor>
     <br/>
-    <EuiHideFrom sizes={['xs','s']}>
+    <EuiHideFor sizes={['xs','s']}>
       Hiding from <EuiCode>xs, s</EuiCode> screens
-    </EuiHideFrom>
+    </EuiHideFor>
     <br/>
-    <EuiHideFrom sizes={['xs','s','m', 'l']}>
+    <EuiHideFor sizes={['xs','s','m', 'l']}>
       Hiding from <EuiCode>xs, s, m, l</EuiCode> screens
-    </EuiHideFrom>
+    </EuiHideFor>
     <br/>
-    <EuiHideFrom sizes={['xl']}>
+    <EuiHideFor sizes={['xl']}>
       Hiding from <EuiCode>xl</EuiCode> screens only
-    </EuiHideFrom>
+    </EuiHideFor>
 
     <br/>
     <br/>

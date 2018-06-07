@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const responsiveSizesToClassNameMap = {
-  xs: 'euiHideFrom--xs',
-  s:  'euiHideFrom--s',
-  m:  'euiHideFrom--m',
-  l:  'euiHideFrom--l',
-  xl:  'euiHideFrom--xl',
+  xs: 'euiHideFor--xs',
+  s:  'euiHideFor--s',
+  m:  'euiHideFor--m',
+  l:  'euiHideFor--l',
+  xl:  'euiHideFor--xl',
 }
 
-const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
+export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
-export const EuiHideFrom = ({
+export const EuiHideFor = ({
   children,
   className,
   sizes,
@@ -24,7 +24,7 @@ export const EuiHideFrom = ({
   });
 
   const classes = classNames(
-    'euiHideFrom',
+    'euiHideFor',
     sizingClasses,
     className
   );
@@ -39,7 +39,7 @@ export const EuiHideFrom = ({
   );
 };
 
-EuiHideFrom.propTypes = {
+EuiHideFor.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   /**

@@ -46,7 +46,7 @@
  *
  *  3. Be sure to hide/show the element initially
  */
-[class*="euiHideFrom"] {
+[class*="euiHideFor"] {
   display: initial !important; /* 3 */
 }
 [class*="euiShowFor"] {
@@ -54,7 +54,7 @@
 }
 
 @each $size in $euiBreakpointKeys {
-  .euiHideFrom--#{$size} {
+  .euiHideFor--#{$size} {
     @include euiBreakpoint($size) { display: none !important; }
   }
   .euiShowFor--#{$size} {

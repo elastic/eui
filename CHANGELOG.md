@@ -7,7 +7,7 @@
 - Added multiple style-only adjustments to `EuiFormControlLayout` buttons/icons ([#894](https://github.com/elastic/eui/pull/894))
 - Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
 - Added more customization options to `EuiAvatar` ([#903](https://github.com/elastic/eui/pull/903))
-- Added responsive helpers in the form of `EuiShowFor` and `EuiHideFrom` components and corresponding CSS classes. ([#909](https://github.com/elastic/eui/pull/909))
+- Added responsive helpers in the form of `EuiShowFor` and `EuiHideFor` components and corresponding CSS classes. ([#909](https://github.com/elastic/eui/pull/909))
 
 **Deprecations**
 
