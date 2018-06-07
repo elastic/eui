@@ -25,11 +25,14 @@ const accessibleButtonIcon = (props, propName, componentName) => {
 };
 
 const colorToClassNameMap = {
-  primary: 'euiButtonIcon--primary',
   danger: 'euiButtonIcon--danger',
   disabled: 'euiButtonIcon--disabled',
   ghost: 'euiButtonIcon--ghost',
+  primary: 'euiButtonIcon--primary',
+  subdued: 'euiButtonIcon--subdued',
+  success: 'euiButtonIcon--success',
   text: 'euiButtonIcon--text',
+  warning: 'euiButtonIcon--warning',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
