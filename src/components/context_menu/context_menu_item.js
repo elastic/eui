@@ -98,6 +98,16 @@ export class EuiContextMenuItem extends Component {
       'euiContextMenuItem-isDisabled': disabled,
     });
 
+    const buttonInner = (
+      <span className="euiContextMenu__itemLayout">
+        {iconInstance}
+        <span className="euiContextMenuItem__text">
+          {children}
+        </span>
+        {arrow}
+      </span>
+    );
+
     let button;
     // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
     // this is a button and piggyback off its disabled styles.
@@ -113,13 +123,7 @@ export class EuiContextMenuItem extends Component {
           ref={buttonRef}
           {...rest}
         >
-          <span className="euiContextMenu__itemLayout">
-            {iconInstance}
-            <span className="euiContextMenuItem__text">
-              {children}
-            </span>
-            {arrow}
-          </span>
+          {buttonInner}
         </a>
       );
     } else {
@@ -131,13 +135,7 @@ export class EuiContextMenuItem extends Component {
           ref={buttonRef}
           {...rest}
         >
-          <span className="euiContextMenu__itemLayout">
-            {iconInstance}
-            <span className="euiContextMenuItem__text">
-              {children}
-            </span>
-            {arrow}
-          </span>
+          {buttonInner}
         </button>
       );
     }
