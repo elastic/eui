@@ -22,7 +22,7 @@ function renderSizes(size, index) {
   let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
 
   if (index < sizes.euiBreakpointKeys.length - 1) {
-    code += ` - ${(sizes.euiBreakpoints[sizes.euiBreakpointKeys[index+1]] - 1)}px`;
+    code += ` (to ${(sizes.euiBreakpoints[sizes.euiBreakpointKeys[index+1]] - 1)}px)`;
   } else {
   code += ` +`;
   }
@@ -53,7 +53,10 @@ export const ResponsiveExample = {
           to make them responsive.
         </p>
 
-        <p><strong>The sizing correlates with our <EuiCode>$euiBreakpoints</EuiCode> SASS map.</strong></p>
+        <p>
+          The sizing correlates with our <EuiCode>$euiBreakpoints</EuiCode> SASS map. The named
+          breakpoint starts at the pixel value provided and ends before the next one.
+        </p>
 
         <EuiCodeBlock language="scss" paddingSize="s">
           {sizes.euiBreakpointKeys.map(function (size, index) {
