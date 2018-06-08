@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.1.0`.
+
+## [`0.0.52`](https://github.com/elastic/eui/tree/v0.0.52)
+
 - Added updated logos for Cloud and Cloud ECE ([#906](https://github.com/elastic/eui/pull/906))
 - Added the ability for `EuiBetaBadge` to appear on `EuiPanel` similar to `EuiCard` ([#885](https://github.com/elastic/eui/pull/888))
 - Added `restrictWidth` to `EuiPage` ([#896](https://github.com/elastic/eui/pull/896))
