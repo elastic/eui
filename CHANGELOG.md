@@ -32,14 +32,14 @@
 
 **Bug fixes**
 
-- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into `setRef` methods. ([#883](https://github.com/elastic/eui/pull/883))
+- Moved `EuiFieldSearch`'s and `EuiValidateControl`'s ref out of render into `setRef` methods ([#883](https://github.com/elastic/eui/pull/883))
 
 ## [`0.0.50`](https://github.com/elastic/eui/tree/v0.0.50)
 
 **Note: this release creates a minor regression to form controls containing icons, in which the icon blocks the user from clicking the control. This is fixed in `0.0.52`.**
 
 - Created `EuiToggle`, `EuiButtonToggle`, and `EuiButtonGroup` ([#872](https://github.com/elastic/eui/pull/872))
-- `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks,
+- `EuiBasicTable` and `EuiInMemoryTable` now accept `rowProps` and `cellProps` callbacks, which let you apply custom props to rows and props ([#869](https://github.com/elastic/eui/pull/869))
 - Added `offine` and `online` icons ([#881](https://github.com/elastic/eui/pull/881))
 
 **Bug fixes**
