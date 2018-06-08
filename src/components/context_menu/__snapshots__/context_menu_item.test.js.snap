@@ -71,6 +71,23 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiContextMenuItem props href renders a link 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
+`;
+
 exports[`EuiContextMenuItem props icon is rendered 1`] = `
 <button
   class="euiContextMenuItem"
@@ -87,4 +104,58 @@ exports[`EuiContextMenuItem props icon is rendered 1`] = `
     />
   </span>
 </button>
+`;
+
+exports[`EuiContextMenuItem props onClick renders a button 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props rel is rendered 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+  rel="help"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiContextMenuItem props target is rendered 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
 `;

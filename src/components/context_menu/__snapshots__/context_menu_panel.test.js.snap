@@ -117,7 +117,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
       <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option A
@@ -126,7 +126,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
         </button>
       </EuiContextMenuItem>
       <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option B
@@ -144,7 +144,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
       <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option A
@@ -153,7 +153,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
         </button>
       </EuiContextMenuItem>
       <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option B
@@ -191,7 +191,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
       <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={0}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option A
@@ -200,7 +200,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
         </button>
       </EuiContextMenuItem>
       <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={1}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option B
@@ -218,7 +218,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
       <EuiContextMenuItem data-counter={2} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={2}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option A
@@ -227,7 +227,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
         </button>
       </EuiContextMenuItem>
       <EuiContextMenuItem data-counter={3} toolTipPosition=\\"right\\" buttonRef={[Function: bound ]}>
-        <button className=\\"euiContextMenuItem\\" type=\\"button\\" disabled={[undefined]} data-counter={3}>
+        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
           <span className=\\"euiContextMenu__itemLayout\\">
             <span className=\\"euiContextMenuItem__text\\">
               Option B

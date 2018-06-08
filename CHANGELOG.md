@@ -9,6 +9,7 @@
 - Added more customization options to `EuiAvatar` ([#903](https://github.com/elastic/eui/pull/903))
 - Added more color options to `EuiButtonIcon` ([#907](https://github.com/elastic/eui/pull/907))
 - Added icon for EMS (Elastic Map Service) (`emsApp`) ([#914](https://github.com/elastic/eui/pull/914))
+- Added support for `href`, `target`, and `rel` properties for `EuiContextMenu` items ([#911](https://github.com/elastic/eui/pull/911))
 - Added responsive helpers in the form of `EuiShowFor` and `EuiHideFor` components and corresponding CSS classes. ([#909](https://github.com/elastic/eui/pull/909))
 
 **Deprecations**

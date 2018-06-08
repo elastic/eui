@@ -36,9 +36,9 @@ export default class extends Component {
 
     const panelTree = {
       id: 0,
-      title: 'View options',
+      title: 'This is a context menu',
       items: [{
-        name: 'Show fullscreen',
+        name: 'Handle an onClick',
         icon: (
           <EuiIcon
             type="search"
@@ -47,19 +47,20 @@ export default class extends Component {
         ),
         onClick: () => { this.closePopover(); window.alert('Show fullscreen'); },
       }, {
-        name: 'Share this dashboard',
+        name: 'Go to a link',
+        icon: 'user',
+        href: 'http://elastic.co',
+        target: '_blank',
+      }, {
+        name: 'Nest panels',
         icon: 'user',
         panel: {
           id: 1,
-          title: 'Share this dashboard',
+          title: 'Nest panels',
           items: [{
             name: 'PDF reports',
             icon: 'user',
             onClick: () => { this.closePopover(); window.alert('PDF reports'); },
-          }, {
-            name: 'CSV reports',
-            icon: 'user',
-            onClick: () => { this.closePopover(); window.alert('CSV reports'); },
           }, {
             name: 'Embed code',
             icon: 'user',
@@ -96,10 +97,6 @@ export default class extends Component {
             onClick: () => { this.closePopover(); window.alert('Permalinks'); },
           }],
         },
-      }, {
-        name: 'Edit / add panels',
-        icon: 'user',
-        onClick: () => { this.closePopover(); window.alert('Edit / add panels'); },
       }, {
         name: 'You can add a tooltip',
         icon: 'user',

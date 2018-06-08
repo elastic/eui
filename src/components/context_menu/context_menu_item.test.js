@@ -13,8 +13,7 @@ describe('EuiContextMenuItem', () => {
       </EuiContextMenuItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -24,8 +23,7 @@ describe('EuiContextMenuItem', () => {
           <EuiContextMenuItem icon={<span className="euiIcon fa-user" />} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -35,12 +33,19 @@ describe('EuiContextMenuItem', () => {
           <EuiContextMenuItem disabled />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('onClick', () => {
+      test('renders a button', () => {
+        const component = render(
+          <EuiContextMenuItem {...requiredProps} onClick={() => {}} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
       test(`isn't called upon instantiation`, () => {
         const onClickHandler = sinon.stub();
 
@@ -73,6 +78,36 @@ describe('EuiContextMenuItem', () => {
         component.simulate('click');
 
         sinon.assert.notCalled(onClickHandler);
+      });
+    });
+
+    describe('href', () => {
+      test('renders a link', () => {
+        const component = render(
+          <EuiContextMenuItem {...requiredProps} href='url' />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('rel', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiContextMenuItem {...requiredProps} href='url' rel='help' />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('target', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiContextMenuItem {...requiredProps} href='url' target='_blank' />
+        );
+
+        expect(component).toMatchSnapshot();
       });
     });
 
