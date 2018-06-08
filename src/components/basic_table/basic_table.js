@@ -668,31 +668,53 @@ export class EuiBasicTable extends Component {
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
-      <EuiTableRowCell showOnHover={true} key={key} align="right" textOnly={false} hasActions={true}  >
+      <EuiTableRowCell
+        showOnHover={true}
+        key={key}
+        align="right"
+        textOnly={false}
+        hasActions={true}
+      >
         {tools}
       </EuiTableRowCell>
     );
   }
 
   renderItemFieldDataCell(itemId, item, column, columnIndex) {
-    const {
-      field,
-      textOnly,
-      render,
-      dataType,
-      align,
-      name,
-      description, // eslint-disable-line no-unused-vars
-      sortable, // eslint-disable-line no-unused-vars
-      ...rest
-    } = column;
+    const { field, render, dataType } = column;
 
     const key = `_data_column_${field}_${itemId}_${columnIndex}`;
-    const columnAlign = align || this.getAlignForDataType(dataType);
     const contentRenderer = render || this.getRendererForDataType(dataType);
     const value = get(item, field);
     const content = contentRenderer(value, item);
 
+    return this.renderItemCell(item, column, key, content);
+  }
+
+  renderItemComputedCell(itemId, item, column, columnIndex) {
+    const { render, dataType } = column;
+
+    const key = `_computed_column_${itemId}_${columnIndex}`;
+    const contentRenderer = render || this.getRendererForDataType(dataType);
+    const content = contentRenderer(item);
+
+    return this.renderItemCell(item, column, key, content);
+  }
+
+  renderItemCell(item, column, key, content) {
+    const {
+      align,
+      render,
+      dataType,
+      isExpander,
+      name,
+      textOnly,
+      field, // eslint-disable-line no-unused-vars
+      description, // eslint-disable-line no-unused-vars
+      sortable, // eslint-disable-line no-unused-vars
+      ...rest
+    } = column;
+    const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
 
@@ -701,40 +723,9 @@ export class EuiBasicTable extends Component {
         key={key}
         align={columnAlign}
         header={name}
-        // If there's no render function defined then we're only going to render text.
+        isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}
-        {...rest}
-      >
-        {content}
-      </EuiTableRowCell>
-    );
-  }
-
-  renderItemComputedCell(itemId, item, column, columnIndex) {
-    const {
-      render,
-      dataType,
-      align,
-      name,
-      isExpander,
-      field, // eslint-disable-line no-unused-vars
-      description, // eslint-disable-line no-unused-vars
-      sortable, // eslint-disable-line no-unused-vars
-      ...rest
-    } = column;
-
-    const key = `_computed_column_${itemId}_${columnIndex}`;
-    const columnAlign = align || this.getAlignForDataType(dataType);
-    const contentRenderer = render || this.getRendererForDataType(dataType);
-    const content = contentRenderer(item);
-
-    return (
-      <EuiTableRowCell
-        key={key}
-        align={columnAlign}
-        header={name}
-        isExpander={isExpander}
         {...rest}
       >
         {content}
