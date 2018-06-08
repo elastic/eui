@@ -3,7 +3,7 @@
 exports[`EuiHideFor l is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFor euiHideFor--l testClass1 testClass2"
+  class="euiHideFor eui-hideFor--l testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
@@ -11,7 +11,7 @@ exports[`EuiHideFor l is rendered 1`] = `
 exports[`EuiHideFor m is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFor euiHideFor--m testClass1 testClass2"
+  class="euiHideFor eui-hideFor--m testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
@@ -19,7 +19,7 @@ exports[`EuiHideFor m is rendered 1`] = `
 exports[`EuiHideFor s is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFor euiHideFor--s testClass1 testClass2"
+  class="euiHideFor eui-hideFor--s testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
@@ -27,7 +27,7 @@ exports[`EuiHideFor s is rendered 1`] = `
 exports[`EuiHideFor xl is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFor euiHideFor--xl testClass1 testClass2"
+  class="euiHideFor eui-hideFor--xl testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
@@ -35,7 +35,7 @@ exports[`EuiHideFor xl is rendered 1`] = `
 exports[`EuiHideFor xs is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiHideFor euiHideFor--xs testClass1 testClass2"
+  class="euiHideFor eui-hideFor--xs testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
