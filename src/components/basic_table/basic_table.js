@@ -681,7 +681,7 @@ export class EuiBasicTable extends Component {
       render,
       dataType,
       align,
-      name, // eslint-disable-line no-unused-vars
+      name,
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       ...rest
@@ -700,7 +700,7 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={column.name}
+        header={name}
         // If there's no render function defined then we're only going to render text.
         textOnly={textOnly || !render}
         {...cellProps}
@@ -716,8 +716,9 @@ export class EuiBasicTable extends Component {
       render,
       dataType,
       align,
+      name,
+      isExpander,
       field, // eslint-disable-line no-unused-vars
-      name, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       ...rest
@@ -732,8 +733,8 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={column.name}
-        isExpander={column.isExpander}
+        header={name}
+        isExpander={isExpander}
         {...rest}
       >
         {content}
