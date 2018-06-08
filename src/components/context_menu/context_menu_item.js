@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import { EuiIcon } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 
+import { getSecureRelForTarget } from '../../services';
+
 export class EuiContextMenuItem extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -35,6 +37,9 @@ export class EuiContextMenuItem extends Component {
      * Dictates the position of the tooltip.
      */
     toolTipPosition: PropTypes.string,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    rel: PropTypes.string,
   };
 
   render() {
@@ -49,6 +54,9 @@ export class EuiContextMenuItem extends Component {
       toolTipTitle,
       toolTipContent,
       toolTipPosition,
+      href,
+      target,
+      rel,
       ...rest
     } = this.props;
 
@@ -90,23 +98,47 @@ export class EuiContextMenuItem extends Component {
       'euiContextMenuItem-isDisabled': disabled,
     });
 
-    const button = (
-      <button
-        className={classes}
-        type="button"
-        ref={buttonRef}
-        disabled={disabled}
-        {...rest}
-      >
-        <span className="euiContextMenu__itemLayout">
-          {iconInstance}
-          <span className="euiContextMenuItem__text">
-            {children}
-          </span>
-          {arrow}
+    const buttonInner = (
+      <span className="euiContextMenu__itemLayout">
+        {iconInstance}
+        <span className="euiContextMenuItem__text">
+          {children}
         </span>
-      </button>
+        {arrow}
+      </span>
     );
+
+    let button;
+    // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
+    // this is a button and piggyback off its disabled styles.
+    if (href && !disabled) {
+      const secureRel = getSecureRelForTarget(target, rel);
+
+      button = (
+        <a
+          className={classes}
+          href={href}
+          target={target}
+          rel={secureRel}
+          ref={buttonRef}
+          {...rest}
+        >
+          {buttonInner}
+        </a>
+      );
+    } else {
+      button = (
+        <button
+          disabled={disabled}
+          className={classes}
+          type="button"
+          ref={buttonRef}
+          {...rest}
+        >
+          {buttonInner}
+        </button>
+      );
+    }
 
     if (toolTipContent) {
       return (
