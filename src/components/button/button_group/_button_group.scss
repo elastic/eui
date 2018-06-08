@@ -60,7 +60,7 @@
     border-bottom-right-radius: $euiBorderRadius;
   }
 
-  @include screenXSmall(){
+  @include euiBreakpoint('xs','s'){
     flex: 1;
     min-width: 0;
 

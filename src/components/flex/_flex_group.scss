@@ -96,7 +96,7 @@ $gutterTypes: (
   flex-wrap: wrap;
 }
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiFlexGroup--responsive {
     flex-wrap: wrap;
     margin-left: 0;

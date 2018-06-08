@@ -307,3 +307,9 @@ export {
   EuiIconTip,
   EuiToolTip,
 } from './tool_tip';
+
+export {
+  EuiHideFor,
+  EuiShowFor,
+} from './responsive';
+

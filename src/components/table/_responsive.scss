@@ -1,6 +1,6 @@
 @import '../panel/mixins';
 
-@include screenXSmall(){
+@include euiBreakpoint('xs','s'){
 
   .euiTable.euiTable--responsive {
     // Not allowing compressed styles in mobile view (for now)

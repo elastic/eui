@@ -5,7 +5,7 @@
   min-height: 400px; // Temporary till we have a better doc system.
 }
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiPageBody {
     flex-direction: column;
   }

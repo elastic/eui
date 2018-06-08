@@ -40,3 +40,24 @@
   white-space: nowrap !important;
   word-wrap: normal !important; /* 2 */
 }
+
+/**
+ *  Responsive
+ *
+ *  3. Be sure to hide/show the element initially
+ */
+[class*="eui-hideFor"] {
+  display: initial !important; /* 3 */
+}
+[class*="eui-showFor"] {
+ display: none !important; /* 3 */
+}
+
+@each $size in $euiBreakpointKeys {
+  .eui-hideFor--#{$size} {
+    @include euiBreakpoint($size) { display: none !important; }
+  }
+  .eui-showFor--#{$size} {
+    @include  euiBreakpoint($size) { display: initial !important; }
+  }
+}

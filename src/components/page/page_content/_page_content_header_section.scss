@@ -5,7 +5,7 @@
   }
 }
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
 
   .euiPageContentHeaderSection {
     width: 100%;

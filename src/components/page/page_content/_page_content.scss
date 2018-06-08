@@ -13,7 +13,7 @@
 }
 
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiPageContent {
     border-radius: 0;
     border: none;

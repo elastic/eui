@@ -13,7 +13,7 @@
 }
 
 // Compressed styles not for mobile
-@include screenSmallMediumLarge {
+@include euiBreakpoint('m','l','xl') {
   .euiTable--compressed {
     .euiTableCellContent {
       @include euiFontSizeXS;

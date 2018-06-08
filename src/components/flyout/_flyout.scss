@@ -21,15 +21,15 @@ $euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // m
  */
 $flyoutSizes: (
   "small": (
-    min: map-get($breakpoints, "small") * .5, /* 1 */
+    min: map-get($euiBreakpoints, "m") * .5, /* 1 */
     width: 25vw
   ),
   "medium": (
-    min:  map-get($breakpoints, "small") * .7, /* 1 */
+    min:  map-get($euiBreakpoints, "m") * .7, /* 1 */
     width: 50vw
   ),
   "large": (
-    min:  map-get($breakpoints, "small") * .9, /* 1 */
+    min:  map-get($euiBreakpoints, "m") * .9, /* 1 */
     width: 75vw
   )
 );
@@ -52,7 +52,7 @@ $flyoutSizes: (
   }
 }
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiFlyout:not(.euiFlyout--small) {  /* 2 */
     left: 0;
     min-width: 0;

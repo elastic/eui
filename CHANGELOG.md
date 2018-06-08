@@ -10,6 +10,12 @@
 - Added more color options to `EuiButtonIcon` ([#907](https://github.com/elastic/eui/pull/907))
 - Added icon for EMS (Elastic Map Service) (`emsApp`) ([#914](https://github.com/elastic/eui/pull/914))
 - Added support for `href`, `target`, and `rel` properties for `EuiContextMenu` items ([#911](https://github.com/elastic/eui/pull/911))
+- Added responsive helpers in the form of `EuiShowFor` and `EuiHideFor` components and corresponding CSS classes. ([#909](https://github.com/elastic/eui/pull/909))
+
+**Deprecations**
+
+- Replaced `$breakpoints` in favor of better named `$euiBreakpoints` ([#909](https://github.com/elastic/eui/pull/909))
+- Replaced the following mixin `screenXSmall()`, `screenSmall()`, `screenMedium()`, `screenLarge()`, `screenSmallMediumLarge()` in favor of a single `euiBreakpoint()`. ([#909](https://github.com/elastic/eui/pull/909))
 
 **Bug fixes**
 

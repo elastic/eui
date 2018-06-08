@@ -132,7 +132,7 @@
 }
 
 // RESPONSIVE
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiStepHorizontal {
     // reduce top padding and shift lines
     padding-top: $euiSize;

@@ -39,7 +39,7 @@
     }
   }
 
-  @include screenXSmall {
+  @include euiBreakpoint('xs','s') {
     .euiDescribedFormGroup__fields {
       padding-top: 0;
 

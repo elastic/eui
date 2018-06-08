@@ -84,7 +84,7 @@ $euiModalBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // ma
 }
 
 // On mobile we fix modals as a takeover.
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
   .euiModal {
     position: fixed;
     width: calc(100vw + 2px);

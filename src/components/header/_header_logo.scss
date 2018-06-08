@@ -28,7 +28,7 @@
     padding-left: $euiSize;
     font-weight: $euiFontWeightLight;
 
-    @include screenXSmall() {
+    @include euiBreakpoint('xs','s') {
       @include euiTitle("xxs");
       font-weight: $euiFontWeightLight;
     }

@@ -174,7 +174,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @import "guide_section/index";
 @import "guide_rule/index";
 
-@include screenXSmall {
+@include euiBreakpoint('xs','s') {
 
   .guideBody {
     background: none;
