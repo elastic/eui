@@ -32,7 +32,6 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
-    "brace": "^0.10.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
     "focus-trap-react": "^3.0.4",
