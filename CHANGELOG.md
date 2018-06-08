@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.1.0`.
+No public interface changes since `0.0.52`.
 
 ## [`0.0.52`](https://github.com/elastic/eui/tree/v0.0.52)
 
