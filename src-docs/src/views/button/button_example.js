@@ -164,7 +164,10 @@ export const ButtonExample = {
     }],
     text: (
       <p>
-        Button icons are buttons that only contain an icon (no text).
+        Button icons are buttons that only contain an icon
+        (no text). <strong>Note:</strong> the
+        the dark background on the <EuiCode>ghost</EuiCode> example is used
+        only for illustrative purposes.
       </p>
     ),
     props: { EuiButtonIcon },

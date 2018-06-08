@@ -32,11 +32,14 @@
 
 // Modifier naming and colors.
 $buttonTypes: (
-  primary: $euiColorPrimary,
   danger: $euiColorDanger,
-  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  disabled: $euiButtonColorDisabled,
   ghost: $euiColorGhost,
+  primary: $euiColorPrimary,
+  subdued: $euiColorDarkShade,
+  success: $euiColorSuccess,
   text: $euiTextColor,
+  warning: $euiColorWarning,
 );
 
 // Create button modifiders based upon the map.

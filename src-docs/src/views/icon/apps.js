@@ -16,6 +16,7 @@ const iconTypes = [
   'dashboardApp',
   'devToolsApp',
   'discoverApp',
+  'emsApp',
   'graphApp',
   'grokApp',
   'indexPatternApp',
