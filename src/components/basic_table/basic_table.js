@@ -665,11 +665,11 @@ export class EuiBasicTable extends Component {
   renderItemFieldDataCell(itemId, item, column, columnIndex) {
     const {
       field,
-      render,
       textOnly,
+      render,
+      dataType,
       name, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
-      dataType, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
@@ -677,7 +677,7 @@ export class EuiBasicTable extends Component {
     const key = `_data_column_${field}_${itemId}_${columnIndex}`;
     const align = this.resolveColumnAlign(column);
     const value = get(item, field);
-    const contentRenderer = this.resolveContentRenderer(column);
+    const contentRenderer = render || this.getRendererForDataType(dataType);
     const content = contentRenderer(value, item);
 
     const { cellProps: cellPropsCallback } = this.props;
@@ -700,18 +700,18 @@ export class EuiBasicTable extends Component {
 
   renderItemComputedCell(itemId, item, column, columnIndex) {
     const {
+      render,
+      dataType,
       field, // eslint-disable-line no-unused-vars
-      render, // eslint-disable-line no-unused-vars
       name, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
-      dataType, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
 
     const key = `_computed_column_${itemId}_${columnIndex}`;
     const align = this.resolveColumnAlign(column);
-    const contentRenderer = this.resolveContentRenderer(column);
+    const contentRenderer = render || this.getRendererForDataType(dataType);
     const content = contentRenderer(item);
     return (
       <EuiTableRowCell
@@ -760,11 +760,7 @@ export class EuiBasicTable extends Component {
     return () => this.onColumnSortChange(column);
   }
 
-  resolveContentRenderer(column) {
-    if (column.render) {
-      return column.render;
-    }
-    const dataType = column.dataType || 'auto';
+  getRendererForDataType(dataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
