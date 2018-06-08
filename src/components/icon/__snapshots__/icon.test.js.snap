@@ -1691,6 +1691,40 @@ exports[`EuiIcon props type empty is rendered 1`] = `
 />
 `;
 
+exports[`EuiIcon props type emsApp is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fill-rule="evenodd"
+  >
+    <path
+      d="M19.015 6.57l13 7.43-16 9.143L.016 14l13.001-7.429a3 3 0 0 0 5.999 0z"
+      fill="#00BEB2"
+    />
+    <path
+      d="M16.016 12.848L32.03 22l-16.015 9.152L0 22l16.016-9.152zm0 2.304L4.03 22l11.985 6.848L28 22l-11.984-6.848z"
+      fill="#00BEB2"
+      fill-rule="nonzero"
+    />
+    <path
+      d="M16.016 15.5c-4.334-3.333-6.5-6.333-6.5-9 0-4 2.91-6.5 6.5-6.5s6.5 2.5 6.5 6.5c0 2.667-2.167 5.667-6.5 9zm0-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+      fill="#00A8E4"
+    />
+    <path
+      d="M19.015 6.57l3.162 1.808c-.763 2.175-2.817 4.55-6.161 7.122-3.345-2.573-5.399-4.947-6.162-7.122l3.162-1.807a3 3 0 0 0 5.999 0z"
+      fill="#007899"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type exit is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"

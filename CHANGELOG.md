@@ -8,6 +8,7 @@
 - Shifted `readOnly` inputs to not have left padding unless it has an icon ([#894](https://github.com/elastic/eui/pull/894))
 - Added more customization options to `EuiAvatar` ([#903](https://github.com/elastic/eui/pull/903))
 - Added more color options to `EuiButtonIcon` ([#907](https://github.com/elastic/eui/pull/907))
+- Added icon for EMS (Elastic Map Service) (`emsApp`) ([#914](https://github.com/elastic/eui/pull/914))
 
 **Bug fixes**
 
