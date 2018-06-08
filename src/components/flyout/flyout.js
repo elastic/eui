@@ -46,6 +46,7 @@ export class EuiFlyout extends Component {
 
     const flyoutContent = (
       <div
+        role="dialog"
         ref={node => { this.flyout = node; }}
         className={classes}
         tabIndex={0}

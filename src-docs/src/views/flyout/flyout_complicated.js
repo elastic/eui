@@ -139,16 +139,18 @@ export class FlyoutComplicated extends Component {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
+          aria-labelledby="flyoutComplicatedTitle"
+          aria-describedby="flyoutComplicatedDescription"
         >
           <EuiFlyoutHeader>
             <EuiTitle>
-              <h2>
+              <h2 id="flyoutComplicatedTitle">
                 Flyout header
               </h2>
             </EuiTitle>
             <EuiSpacer size="s" />
             <EuiTextColor color="subdued">
-              <EuiText>
+              <EuiText id="flyoutComplicatedDescription">
                 <p>Put navigation items in the header, and cross tab actions in a footer.</p>
               </EuiText>
             </EuiTextColor>
@@ -184,6 +186,7 @@ export class FlyoutComplicated extends Component {
         </EuiFlyout>
       );
     }
+
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
