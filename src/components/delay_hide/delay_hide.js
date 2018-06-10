@@ -18,10 +18,8 @@ export class EuiDelayHide extends Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    // if the component should be visible (nextProps.hide === false)
-    // but we're currently suppresing it, update state.countdownExpired
     const isBecomingVisible = isComponentBecomingVisible(prevState.prevHide, nextProps.hide);
-    if (isBecomingVisible && prevState.countdownExpired === true) {
+    if (isBecomingVisible) {
       return {
         prevHide: false,
         countdownExpired: false,
@@ -31,17 +29,10 @@ export class EuiDelayHide extends Component {
     return null;
   }
 
-  constructor(...args) {
-    super(...args);
-
-    this.timeoutId = null; // track timeout so it can be referenced / cleared
-
-    this.state = {
-      // start countdownExpired based on the hide prop
-      countdownExpired: this.props.hide,
-      prevHide: this.props.hide,
-    };
-  }
+  state = {
+    countdownExpired: this.props.hide,
+    prevHide: this.props.hide,
+  };
 
   componentDidMount() {
     // if the component begins visible start counting
