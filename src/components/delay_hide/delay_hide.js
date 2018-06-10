@@ -1,23 +1,29 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+function isComponentBecomingVisible(prevHide, nextHide) {
+  return prevHide === true && nextHide === false;
+}
+
 export class EuiDelayHide extends Component {
   static propTypes = {
     hide: PropTypes.bool,
     minimumDuration: PropTypes.number,
-    render: PropTypes.func.isRequired
+    render: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     hide: false,
-    minimumDuration: 1000
+    minimumDuration: 1000,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // if the component should be visible (nextProps.hide === false)
     // but we're currently suppresing it, update state.countdownExpired
-    if (nextProps.hide === false && prevState.countdownExpired === true) {
+    const isBecomingVisible = isComponentBecomingVisible(prevState.prevHide, nextProps.hide);
+    if (isBecomingVisible && prevState.countdownExpired === true) {
       return {
+        prevHide: false,
         countdownExpired: false,
       };
     }
@@ -33,6 +39,7 @@ export class EuiDelayHide extends Component {
     this.state = {
       // start countdownExpired based on the hide prop
       countdownExpired: this.props.hide,
+      prevHide: this.props.hide,
     };
   }
 
@@ -44,8 +51,8 @@ export class EuiDelayHide extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const isComponentBecomingVisible = prevProps.hide === true && this.props.hide === false;
-    if (isComponentBecomingVisible) {
+    const isBecomingVisible = isComponentBecomingVisible(prevProps.hide, this.props.hide);
+    if (isBecomingVisible) {
       this.startCountdown();
     }
   }
@@ -61,12 +68,12 @@ export class EuiDelayHide extends Component {
     if (this.timeoutId == null) {
       this.timeoutId = setTimeout(this.finishCountdown, this.props.minimumDuration);
     }
-  }
+  };
 
   finishCountdown = () => {
     this.timeoutId = null;
     this.setState({ countdownExpired: true });
-  }
+  };
 
   render() {
     const shouldHideContent = this.props.hide === true && this.state.countdownExpired;
