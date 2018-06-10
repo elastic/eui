@@ -127,3 +127,28 @@ describe('when EuiDelayHide is visible initially and has a minimumDuration of 20
     expect(wrapper.html()).toEqual(null);
   });
 });
+
+describe('when EuiDelayHide has been visible and become hidden', () => {
+  it('should still be visible for the minimum duration the second time', () => {
+    jest.useFakeTimers();
+    const wrapper = mount(
+      <EuiDelayHide
+        hide={true}
+        render={() => <div>Hello World</div>}
+      />
+    );
+
+    wrapper.setProps({ hide: false });
+    jest.advanceTimersByTime(1100);
+    wrapper.setProps({ hide: true });
+    jest.advanceTimersByTime(100);
+    wrapper.setProps({ hide: false });
+    wrapper.setProps({ hide: true });
+
+    expect(wrapper.html()).toEqual('<div>Hello World</div>');
+
+    jest.advanceTimersByTime(1100);
+
+    expect(wrapper.html()).toEqual(null);
+  });
+});

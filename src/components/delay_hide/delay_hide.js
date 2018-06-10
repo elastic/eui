@@ -19,14 +19,10 @@ export class EuiDelayHide extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const isBecomingVisible = isComponentBecomingVisible(prevState.prevHide, nextProps.hide);
-    if (isBecomingVisible) {
-      return {
-        prevHide: false,
-        countdownExpired: false,
-      };
-    }
-
-    return null;
+    return {
+      prevHide: nextProps.hide,
+      countdownExpired: isBecomingVisible ? false : prevState.countdownExpired
+    };
   }
 
   state = {
