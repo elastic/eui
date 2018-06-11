@@ -412,31 +412,43 @@ export class EuiBasicTable extends Component {
     }
 
     columns.forEach((column, index) => {
+      const {
+        actions,
+        width,
+        name,
+        field,
+        align,
+        dataType,
+        sortable,
+        isMobileHeader,
+        hideForMobile,
+      } = column;
+
+      const columnAlign = align || this.getAlignForDataType(dataType);
+
       // actions column
-      if (column.actions) {
+      if (actions) {
         headers.push(
           <EuiTableHeaderCell
             key={`_actions_h_${index}`}
             align="right"
-            width={column.width}
+            width={width}
           >
-            {column.name}
+            {name}
           </EuiTableHeaderCell>
         );
         return;
       }
 
-      const align = this.resolveColumnAlign(column);
-
       // computed column
-      if (!column.field) {
+      if (!field) {
         headers.push(
           <EuiTableHeaderCell
             key={`_computed_column_h_${index}`}
-            align={align}
-            width={column.width}
+            align={columnAlign}
+            width={width}
           >
-            {column.name}
+            {name}
           </EuiTableHeaderCell>
         );
         return;
@@ -444,7 +456,7 @@ export class EuiBasicTable extends Component {
 
       // field data column
       const sorting = {};
-      if (this.props.sorting && column.sortable) {
+      if (this.props.sorting && sortable) {
         const sortDirection = this.resolveColumnSortDirection(column);
         sorting.isSorted = !!sortDirection;
         sorting.isSortAscending = sortDirection ? SortDirection.isAsc(sortDirection) : undefined;
@@ -452,14 +464,14 @@ export class EuiBasicTable extends Component {
       }
       headers.push(
         <EuiTableHeaderCell
-          key={`_data_h_${column.field}_${index}`}
-          align={align}
-          width={column.width}
-          isMobileHeader={column.isMobileHeader}
-          hideForMobile={column.hideForMobile}
+          key={`_data_h_${field}_${index}`}
+          align={columnAlign}
+          width={width}
+          isMobileHeader={isMobileHeader}
+          hideForMobile={hideForMobile}
           {...sorting}
         >
-          {column.name}
+          {name}
         </EuiTableHeaderCell>
       );
     });
@@ -656,39 +668,62 @@ export class EuiBasicTable extends Component {
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
-      <EuiTableRowCell showOnHover={true} key={key} align="right" textOnly={false} hasActions={true}  >
+      <EuiTableRowCell
+        showOnHover={true}
+        key={key}
+        align="right"
+        textOnly={false}
+        hasActions={true}
+      >
         {tools}
       </EuiTableRowCell>
     );
   }
 
   renderItemFieldDataCell(itemId, item, column, columnIndex) {
+    const { field, render, dataType } = column;
+
+    const key = `_data_column_${field}_${itemId}_${columnIndex}`;
+    const contentRenderer = render || this.getRendererForDataType(dataType);
+    const value = get(item, field);
+    const content = contentRenderer(value, item);
+
+    return this.renderItemCell(item, column, key, content);
+  }
+
+  renderItemComputedCell(itemId, item, column, columnIndex) {
+    const { render, dataType } = column;
+
+    const key = `_computed_column_${itemId}_${columnIndex}`;
+    const contentRenderer = render || this.getRendererForDataType(dataType);
+    const content = contentRenderer(item);
+
+    return this.renderItemCell(item, column, key, content);
+  }
+
+  renderItemCell(item, column, key, content) {
     const {
-      field,
+      align,
       render,
+      dataType,
+      isExpander,
+      name,
       textOnly,
-      name, // eslint-disable-line no-unused-vars
+      field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
-      dataType, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
-
-    const key = `_data_column_${field}_${itemId}_${columnIndex}`;
-    const align = this.resolveColumnAlign(column);
-    const value = get(item, field);
-    const contentRenderer = this.resolveContentRenderer(column);
-    const content = contentRenderer(value, item);
-
+    const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
 
     return (
       <EuiTableRowCell
         key={key}
-        align={align}
-        header={column.name}
-        // If there's no render function defined then we're only going to render text.
+        align={columnAlign}
+        header={name}
+        isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}
         {...rest}
@@ -696,46 +731,6 @@ export class EuiBasicTable extends Component {
         {content}
       </EuiTableRowCell>
     );
-  }
-
-  renderItemComputedCell(itemId, item, column, columnIndex) {
-    const {
-      field, // eslint-disable-line no-unused-vars
-      render, // eslint-disable-line no-unused-vars
-      name, // eslint-disable-line no-unused-vars
-      description, // eslint-disable-line no-unused-vars
-      dataType, // eslint-disable-line no-unused-vars
-      sortable, // eslint-disable-line no-unused-vars
-      ...rest
-    } = column;
-
-    const key = `_computed_column_${itemId}_${columnIndex}`;
-    const align = this.resolveColumnAlign(column);
-    const contentRenderer = this.resolveContentRenderer(column);
-    const content = contentRenderer(item);
-    return (
-      <EuiTableRowCell
-        key={key}
-        align={align}
-        header={column.name}
-        isExpander={column.isExpander}
-        {...rest}
-      >
-        {content}
-      </EuiTableRowCell>
-    );
-  }
-
-  resolveColumnAlign(column) {
-    if (column.align) {
-      return column.align;
-    }
-    const dataType = column.dataType || 'auto';
-    const profile = dataTypesProfiles[dataType];
-    if (!profile) {
-      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
-    }
-    return profile.align;
   }
 
   resolveColumnSortDirection = (column) => {
@@ -760,16 +755,20 @@ export class EuiBasicTable extends Component {
     return () => this.onColumnSortChange(column);
   }
 
-  resolveContentRenderer(column) {
-    if (column.render) {
-      return column.render;
-    }
-    const dataType = column.dataType || 'auto';
+  getRendererForDataType(dataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
       throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
     }
     return profile.render;
+  }
+
+  getAlignForDataType(dataType = 'auto') {
+    const profile = dataTypesProfiles[dataType];
+    if (!profile) {
+      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
+    }
+    return profile.align;
   }
 
   renderPaginationBar() {

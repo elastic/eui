@@ -5,17 +5,17 @@ import { AST } from './ast';
 
 const EXPLAIN_FIELD = '__explain';
 
-const operators = {
+const nameToOperatorMap = {
   [AST.Operator.EQ]: eq,
   [AST.Operator.GT]: gt,
   [AST.Operator.GTE]: gte,
   [AST.Operator.LT]: lt,
-  [AST.Operator.LTE]: lte
+  [AST.Operator.LTE]: lte,
 };
 
-const defaultIsClauseMatcher = (record, clause, explain) => {
+const defaultIsClauseMatcher = (item, clause, explain) => {
   const { type, flag, match } = clause;
-  const value = get(record, clause.flag);
+  const value = get(item, clause.flag);
   const must = AST.Match.isMustClause(clause);
   const hit = !!value === must;
   if (explain && hit) {
@@ -24,20 +24,20 @@ const defaultIsClauseMatcher = (record, clause, explain) => {
   return hit;
 };
 
-const fieldClauseMatcher = (record, field, clauses = [], explain) => {
+const fieldClauseMatcher = (item, field, clauses = [], explain) => {
   return clauses.every(clause => {
     const { type, value, match } = clause;
-    let operator = operators[clause.operator];
+    let operator = nameToOperatorMap[clause.operator];
     if (!operator) { // unknown matcher
       return true;
     }
     if (!AST.Match.isMust(match)) {
-      operator = (value, token) => !operators[clause.operator](value, token);
+      operator = (value, token) => !nameToOperatorMap[clause.operator](value, token);
     }
-    const recordValue = get(record, field);
+    const itemValue = get(item, field);
     const hit = isArray(value) ?
-      value.some(v => operator(recordValue, v)) :
-      operator(recordValue, value);
+      value.some(v => operator(itemValue, v)) :
+      operator(itemValue, value);
     if (explain && hit) {
       explain.push({ hit, type, field, value, match, operator });
     }
@@ -45,59 +45,81 @@ const fieldClauseMatcher = (record, field, clauses = [], explain) => {
   });
 };
 
-const resolveStringFields = (record) => {
-  return Object.keys(record).reduce((fields, key) => {
-    if (isString(record[key])) {
+const extractStringFieldsFromItem = (item) => {
+  return Object.keys(item).reduce((fields, key) => {
+    if (isString(item[key])) {
       fields.push(key);
     }
     return fields;
   }, []);
 };
 
-const termClauseMatcher = (record, fields, clauses = [], explain) => {
-  fields = fields || resolveStringFields(record);
+const termClauseMatcher = (item, fields, clauses = [], explain) => {
+  const searchableFields = fields || extractStringFieldsFromItem(item);
   return clauses.every(clause => {
     const { type, value, match } = clause;
-    const operator = operators[AST.Operator.EQ];
-    if (AST.Match.isMustClause(clause)) {
-      return fields.some(field => {
-        const recordValue = get(record, field);
-        const hit = operator(recordValue, value);
-        if (explain && hit) {
+    const isMustClause = AST.Match.isMustClause(clause);
+    const equals = nameToOperatorMap[AST.Operator.EQ];
+
+    const containsMatches = searchableFields.some(field => {
+      const itemValue = get(item, field);
+      const isMatch = equals(itemValue, value);
+
+      if (explain) {
+        // If testing for the presence of a term, then we record a match as a match.
+        // If testing for the absence of a term, then we invert this logic: we record a
+        // non-match as a match.
+        const hit = (isMustClause && isMatch) || (!isMustClause && !isMatch);
+        if (hit) {
           explain.push({ hit, type, field, match, value });
         }
-        return hit;
-      });
-    } else {
-      const notMatcher = (value, token) => !operator(value, token);
-      return fields.every(field => {
-        const recordValue = get(record, field);
-        const hit = notMatcher(recordValue, value);
-        if (explain && hit) {
-          explain.push({ hit, type, field, value, match });
-        }
-        return hit;
-      });
+      }
+
+      return isMatch;
+    });
+
+    if (isMustClause) {
+      // If we're testing for the presence of a term, then we only need 1 field to match.
+      return containsMatches;
     }
+
+    // If we're testing for the absence of a term, we can't have any matching fields at all.
+    return !containsMatches;
   });
 };
 
 export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClauseMatcher, explain = false) => {
-  return (record) => {
+  // Return items which pass ALL conditions: matches the terms entered, the specified field values,
+  // and the specified "is" clauses.
+  return (item) => {
     const explainLines = explain ? [] : undefined;
+
+    if (explainLines) {
+      item[EXPLAIN_FIELD] = explainLines;
+    }
+
     const termClauses = ast.getTermClauses();
     const fields = ast.getFieldNames();
     const isClauses = ast.getIsClauses();
-    const match = termClauseMatcher(record, defaultFields, termClauses, explainLines) &&
-      fields.every(field => fieldClauseMatcher(record, field, ast.getFieldClauses(field), explainLines)) &&
-      isClauses.every(clause => isClauseMatcher(record, clause, explainLines));
-    if (explainLines) {
-      record[EXPLAIN_FIELD] = explainLines;
+
+    const isTermMatch = termClauseMatcher(item, defaultFields, termClauses, explainLines);
+    if (!isTermMatch) {
+      return false;
     }
-    return match;
+
+    const isFieldsMatch = fields.every(field => fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines));
+    if (!isFieldsMatch) {
+      return false;
+    }
+
+    const isIsMatch = isClauses.every(clause => isClauseMatcher(item, clause, explainLines));
+    if (!isIsMatch) {
+      return false;
+    }
+
+    return true;
   };
 };
-
 
 export const executeAst = (ast, items, options = {}) => {
   const { isClauseMatcher, defaultFields, explain } = options;
