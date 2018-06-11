@@ -69,6 +69,8 @@ export class EuiFlyout extends Component {
     return (
       <span>
         {optionalOverlay}
+        {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
+            to the originating button */}
         <FocusTrap
           focusTrapOptions={{
             fallbackFocus: () => this.flyout,

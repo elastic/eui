@@ -44,7 +44,6 @@ export class Flyout extends Component {
         <EuiFlyout
           onClose={this.closeFlyout}
           aria-labelledby="flyoutTitle"
-          aria-describedby="flyoutDescription"
         >
           <EuiFlyoutBody>
             <EuiText>
@@ -52,7 +51,7 @@ export class Flyout extends Component {
                 A flyout
               </h3>
 
-              <p id="flyoutDescription">
+              <p>
                 You can use ESC to close this panel, but we could also pass in a close button like so.
               </p>
 
