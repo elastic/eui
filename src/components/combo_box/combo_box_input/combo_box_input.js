@@ -152,6 +152,7 @@ export class EuiComboBoxInput extends Component {
     if (!isDisabled && onClear && hasSelectedOptions) {
       clickProps.clear = {
         onClick: onClear,
+        'data-test-subj': 'comboBoxClearButton',
       };
     }
 
@@ -161,7 +162,8 @@ export class EuiComboBoxInput extends Component {
       onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
       ref: toggleButtonRef,
       'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
-      disabled: isDisabled
+      disabled: isDisabled,
+      'data-test-subj': 'comboBoxToggleListButton',
     };
 
     return (
@@ -188,6 +190,7 @@ export class EuiComboBoxInput extends Component {
             ref={autoSizeInputRef}
             inputRef={inputRef}
             disabled={isDisabled}
+            data-test-subj="comboBoxSearchInput"
           />
           {removeOptionMessage}
         </div>
