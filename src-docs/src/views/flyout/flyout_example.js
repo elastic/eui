@@ -41,6 +41,7 @@ export const FlyoutExample = {
             from the right side of the screen. It should be used any time you
             need to perform quick, individual actions to a larger page or list.
           </p>
+
           <ul>
             <li>
               <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l</EuiCode> and
@@ -52,6 +53,11 @@ export const FlyoutExample = {
               to within the flyout. It is off by default.
             </li>
           </ul>
+
+          <p>
+            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> and <EuiCode>aria-describedby</EuiCode> to
+            announce the flyout to screen readers when the user opens it.
+          </p>
         </div>
       ),
       props: { EuiFlyout },

@@ -37,16 +37,23 @@ export class Flyout extends Component {
   }
 
   render() {
-
     let flyout;
+
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
+          aria-labelledby="flyoutTitle"
         >
           <EuiFlyoutBody>
             <EuiText>
-              <p>You can use ESC to close this panel, but we could also pass in a close button like so.</p>
+              <h3 id="flyoutTitle">
+                A flyout
+              </h3>
+
+              <p>
+                You can use ESC to close this panel, but we could also pass in a close button like so.
+              </p>
 
               <EuiButton
                 iconType="cross"
@@ -59,6 +66,7 @@ export class Flyout extends Component {
         </EuiFlyout>
       );
     }
+
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>

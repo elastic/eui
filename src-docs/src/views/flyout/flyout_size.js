@@ -45,10 +45,17 @@ export class FlyoutSize extends Component {
           ownFocus
           onClose={this.closeFlyout}
           size="s"
+          aria-labelledby="flyoutSizeTitle"
         >
           <EuiFlyoutBody>
             <EuiText>
-              <p>You can use ESC to close this panel, but we could also pass in a close button like so.</p>
+              <h3 id="flyoutSizeTitle">
+                A flyout
+              </h3>
+
+              <p>
+                You can use ESC to close this panel, but we could also pass in a close button like so.
+              </p>
 
               <EuiButton
                 iconType="cross"

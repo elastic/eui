@@ -139,10 +139,11 @@ export class FlyoutComplicated extends Component {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
+          aria-labelledby="flyoutComplicatedTitle"
         >
           <EuiFlyoutHeader>
             <EuiTitle>
-              <h2>
+              <h2 id="flyoutComplicatedTitle">
                 Flyout header
               </h2>
             </EuiTitle>
@@ -184,6 +185,7 @@ export class FlyoutComplicated extends Component {
         </EuiFlyout>
       );
     }
+
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>

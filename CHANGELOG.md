@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.52`.
+**Bug fixes**
+
+- Added `role="dialog"` to `EuiFlyout` to improve screen reader accessibility ([#916](https://github.com/elastic/eui/pull/916))
 
 ## [`0.0.52`](https://github.com/elastic/eui/tree/v0.0.52)
 
