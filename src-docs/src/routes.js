@@ -234,6 +234,9 @@ import { XYChartLineExample }
 import { Changelog }
   from './views/package/changelog';
 
+import { SuperSelectExample }
+  from './views/super_select/super_select_example';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -353,6 +356,7 @@ const navigation = [{
     FormLayoutsExample,
     FormControlsExample,
     FormValidationExample,
+    SuperSelectExample,
     ComboBoxExample,
     ColorPickerExample,
     CodeEditorExample,

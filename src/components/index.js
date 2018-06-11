@@ -131,6 +131,7 @@ export {
   EuiRadioGroup,
   EuiRange,
   EuiSelect,
+  EuiSuperSelect,
   EuiSwitch,
   EuiTextArea,
   EuiValidatableControl,

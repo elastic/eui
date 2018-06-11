@@ -20,6 +20,7 @@ export {
 } from './radio';
 export { EuiRange } from './range';
 export { EuiSelect } from './select';
+export { EuiSuperSelect } from './super_select';
 export { EuiSwitch } from './switch';
 export { EuiTextArea } from './text_area';
 export { EuiValidatableControl } from './validatable_control';
