@@ -58,18 +58,27 @@ const termClauseMatcher = (item, fields, clauses = [], explain) => {
   const searchableFields = fields || extractStringFieldsFromItem(item);
   return clauses.every(clause => {
     const { type, value, match } = clause;
+    const isMustClause = AST.Match.isMustClause(clause);
     const equals = nameToOperatorMap[AST.Operator.EQ];
 
     const containsMatches = searchableFields.some(field => {
       const itemValue = get(item, field);
       const isMatch = equals(itemValue, value);
-      if (explain && isMatch) {
-        explain.push({ hit: isMatch, type, field, match, value });
+
+      if (explain) {
+        // If testing for the presence of a term, then we record a match as a match.
+        // If testing for the absence of a term, then we invert this logic: we record a
+        // non-match as a match.
+        const hit = (isMustClause && isMatch) || (!isMustClause && !isMatch);
+        if (hit) {
+          explain.push({ hit, type, field, match, value });
+        }
       }
+
       return isMatch;
     });
 
-    if (AST.Match.isMustClause(clause)) {
+    if (isMustClause) {
       // If we're testing for the presence of a term, then we only need 1 field to match.
       return containsMatches;
     }
