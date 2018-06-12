@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { EuiSuperSelectControl } from './super_select_control';
 import { EuiPopover } from '../../popover';
+import { EuiContextMenuItem } from '../../context_menu';
 
 export class EuiSuperSelect extends Component {
   constructor(props) {
@@ -28,40 +29,44 @@ export class EuiSuperSelect extends Component {
     });
   };
 
-  itemClicked = () => {
+  itemClicked = (value) => {
     this.setState({
       isPopoverOpen: false,
     });
-
-    this.props.onChange();
+    this.props.onChange(value);
   };
 
   render() {
     const {
-      children,
       className,
       options,
-      value,
+      valueOfSelected,
       onChange,
       isOpen,
+      hasDividers,
+      itemClassName,
       ...rest
     } = this.props;
-
-    const classes = classNames(
-      'euiSuperSelect',
-      className
-    );
 
     const buttonClasses = classNames(
       {
         'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
       },
+      className,
+    );
+
+    const itemClasses = classNames(
+      'euiSuperSelect__item',
+      {
+        'euiSuperSelect__item--hasDividers': hasDividers,
+      },
+      itemClassName,
     );
 
     const button = (
       <EuiSuperSelectControl
         options={options}
-        value={value}
+        value={valueOfSelected}
         onChange={onChange}
         onClick={this.onButtonClick}
         className={buttonClasses}
@@ -69,32 +74,70 @@ export class EuiSuperSelect extends Component {
       />
     );
 
-    return (
-      <div className={classes}>
-        <EuiPopover
-          style={{ width: '100%', maxWidth: '400px' }}
-          panelClassName="euiSuperSelect__popoverPanel"
-          id="singlePanel"
-          button={button}
-          isOpen={isOpen || this.state.isPopoverOpen}
-          closePopover={this.closePopover}
-          panelPaddingSize="none"
-          anchorPosition="downCenter"
+    const items = options.map((option, index) => {
+      return (
+        <EuiContextMenuItem
+          key={index}
+          className={itemClasses}
+          icon={valueOfSelected === option.value ? "check" : "empty"}
+          onClick={() => this.itemClicked(option.value)}
+          layoutAlign="top"
         >
-          {children}
-        </EuiPopover>
-      </div>
+          {option.dropdownDisplay || option.inputDisplay}
+        </EuiContextMenuItem>
+      );
+    });
+
+    return (
+      <EuiPopover
+        className="euiSuperSelect"
+        panelClassName="euiSuperSelect__popoverPanel"
+        button={button}
+        isOpen={isOpen || this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        panelPaddingSize="none"
+        anchorPosition="downCenter"
+      >
+        {items}
+      </EuiPopover>
     );
   }
 }
 
 EuiSuperSelect.propTypes = {
-  name: PropTypes.string,
   /**
-   * You must pass an onChange function to hande the update of the value
+   * Classes (and `...rest`) will be applied to the control
+   */
+  className: PropTypes.string,
+  /**
+   * Classes for the context menu item
+   */
+  itemClassName: PropTypes.string,
+  /**
+   * You must pass an `onChange` function to handle the update of the value
    */
   onChange: PropTypes.func,
+  /**
+   * Pass an array of options that must at least include:
+   * `value`: storing unique value of item,
+   * `inputDisplay`: what shows inside the form input when selected
+   * `dropdownDisplay` (optional): what shows for the item in the dropdown
+   */
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      inputDisplay: PropTypes.node,
+      dropdownDisplay: PropTypes.node,
+    }),
+  ).isRequired,
+  valueOfSelected: PropTypes.string,
+  /**
+   * Change to `true` if you want horizontal lines between options.
+   * This is best used when options are multi-line.
+   */
+  hasDividers: PropTypes.bool,
 };
 
 EuiSuperSelect.defaultProps = {
+  options: [],
 };

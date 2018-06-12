@@ -47,7 +47,7 @@ export const EuiSuperSelectControl = ({
   let selectedValue;
   if (value) {
     const selectedOption = options.find(option => option.value === value);
-    selectedValue = selectedOption.text;
+    selectedValue = selectedOption.inputDisplay;
   }
 
   const icon = {
@@ -103,7 +103,7 @@ EuiSuperSelectControl.propTypes = {
   id: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.node.isRequired,
-    text: PropTypes.node.isRequired
+    inputDisplay: PropTypes.node.isRequired
   })).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,

@@ -4,7 +4,12 @@
  * 3. Specificity to override default popover
  */
 
- .euiSuperSelect .euiSuperSelect__popoverPanel { /* 3 */
+.euiSuperSelect.euiPopover { /* 3 */
+  @include euiFormControlSize; /* 1 */
+  height: auto;
+}
+
+.euiSuperSelect.euiPopover .euiSuperSelect__popoverPanel { /* 3 */
   width: calc(100% + 2px); /* 1 */
 
   &::before,
@@ -13,12 +18,16 @@
   }
 }
 
-.euiSuperSelect .euiPopover--anchorDownCenter .euiSuperSelect__popoverPanel { /* 3 */
+.euiSuperSelect.euiPopover--anchorDownCenter .euiSuperSelect__popoverPanel { /* 3 */
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
   border-top-left-radius: 0; /* 2 */
 }
 
-.euiSuperSelect .euiPopover--anchorDownCenter.euiPopover-isOpen .euiSuperSelect__popoverPanel { /* 3 */
+.euiSuperSelect.euiPopover--anchorDownCenter.euiPopover-isOpen .euiSuperSelect__popoverPanel { /* 3 */
   transform: translateX(-50%) translateY(0) translateZ(0); /* 2 */
+}
+
+.euiSuperSelect__item--hasDividers:not(:last-of-type) {
+  border-bottom: $euiBorderThin;
 }

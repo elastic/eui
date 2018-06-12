@@ -8,8 +8,6 @@ import {
   EuiSpacer,
   EuiText,
   EuiIcon,
-  EuiContextMenuItem,
-  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -19,8 +17,8 @@ export default class extends Component {
     this.options = [
       {
         value: 'option_one',
-        text: 'Option one',
-        display: (
+        inputDisplay: 'Option one',
+        dropdownDisplay: (
           <Fragment>
             <strong>Option one</strong>
             <EuiSpacer size="xs" />
@@ -32,12 +30,12 @@ export default class extends Component {
       },
       {
         value: 'option_two',
-        text: (
+        inputDisplay: (
           <span>
             <EuiIcon type="alert" /> Option two
           </span>
         ),
-        display: (
+        dropdownDisplay: (
           <Fragment>
             <strong>Option two</strong>
             <EuiSpacer size="xs" />
@@ -49,8 +47,8 @@ export default class extends Component {
       },
       {
         value: 'option_three',
-        text: 'Option three has a super long text to see if it will truncate or what',
-        display: (
+        inputDisplay: 'Option three has a super long text to see if it will truncate or what',
+        dropdownDisplay: (
           <Fragment>
             <strong>Option three</strong>
             <EuiSpacer size="xs" />
@@ -64,101 +62,65 @@ export default class extends Component {
 
     this.state = {
       value: this.options[1].value,
-      isPopoverOpen: false,
     };
   }
 
-  onChange = e => {
-    this.setState({
-      value: e.target.value,
-    });
-  };
-
-  itemClicked = (value) => {
+  onChange = (value) => {
     this.setState({
       value: value,
-      isPopoverOpen: false,
     });
   };
 
   render() {
-    const items = this.options.map((option, index) => {
-      return (
-        <Fragment>
-          <EuiContextMenuItem
-            key={index}
-            icon={this.state.value === option.value ? "check" : "empty"}
-            onClick={() => this.itemClicked(option.value)}
-            layoutAlign="top"
-          >
-            {option.display}
-          </EuiContextMenuItem>
-          {index < this.options.length - 1 &&
-            <EuiHorizontalRule margin="none" />
-          }
-        </Fragment>
-      );
-    });
-
     return (
       <Fragment>
         <EuiSuperSelect
           options={this.options}
-          value={this.state.value}
+          valueOfSelected={this.state.value}
           onChange={this.onChange}
-          isOpen={this.state.isPopoverOpen}
+          hasDividers
           aria-label="Use aria labels when no actual label is in use"
-        >
-          {items}
-        </EuiSuperSelect>
+        />
 
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
           options={this.options}
-          value={this.state.value}
+          valueOfSelected={this.state.value}
           onChange={this.onChange}
           disabled
           aria-label="Use aria labels when no actual label is in use"
-        >
-          {items}
-        </EuiSuperSelect>
+        />
 
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
           options={this.options}
-          value={this.state.value}
+          valueOfSelected={this.state.value}
           onChange={this.onChange}
           isLoading
           aria-label="Use aria labels when no actual label is in use"
-        >
-          {items}
-        </EuiSuperSelect>
+        />
 
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
           options={this.options}
-          value={this.state.value}
+          valueOfSelected={this.state.value}
           onChange={this.onChange}
           isLoading
           disabled
           aria-label="Use aria labels when no actual label is in use"
-        >
-          {items}
-        </EuiSuperSelect>
+        />
 
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
           options={this.options}
-          value={this.state.value}
+          valueOfSelected={this.state.value}
           onChange={this.onChange}
           compressed
-        >
-          {items}
-        </EuiSuperSelect>
+        />
       </Fragment>
     );
   }
