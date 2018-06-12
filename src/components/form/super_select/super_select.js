@@ -45,6 +45,7 @@ export class EuiSuperSelect extends Component {
       isOpen,
       hasDividers,
       itemClassName,
+      itemLayoutAlign,
       ...rest
     } = this.props;
 
@@ -81,7 +82,7 @@ export class EuiSuperSelect extends Component {
           className={itemClasses}
           icon={valueOfSelected === option.value ? "check" : "empty"}
           onClick={() => this.itemClicked(option.value)}
-          layoutAlign="top"
+          layoutAlign={itemLayoutAlign}
         >
           {option.dropdownDisplay || option.inputDisplay}
         </EuiContextMenuItem>
@@ -136,6 +137,10 @@ EuiSuperSelect.propTypes = {
    * This is best used when options are multi-line.
    */
   hasDividers: PropTypes.bool,
+  /**
+   * Change `EuiContextMenuItem` layout position of icon
+   */
+  itemLayoutAlign: PropTypes.string,
 };
 
 EuiSuperSelect.defaultProps = {
