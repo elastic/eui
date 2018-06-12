@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { mount } from 'enzyme'
 import {
+  findPopoverPosition,
   getAvailableSpace,
   getElementBoundingBox,
   getPopoverScreenCoordinates
 } from './popover_positioning';
+
+function makeBB(top, right, bottom, left) {
+  return {
+    top,
+    right,
+    bottom,
+    left,
+    width: right - left,
+    height: bottom - top
+  };
+}
 
 describe('popover_positioning', () => {
   describe('getElementBoundingBox', () => {
@@ -50,7 +62,7 @@ describe('popover_positioning', () => {
     const containerBoundingBox = { top: 10, right: 90, bottom: 190, left: 25 };
 
     it('reports all empty space', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0)).toEqual({
+      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, 'top')).toEqual({
         top: 90,
         right: 30,
         bottom: 40,
@@ -59,7 +71,7 @@ describe('popover_positioning', () => {
     });
 
     it('respects buffer', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0)).toEqual({
+      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, 'right')).toEqual({
         top: 85,
         right: 25,
         bottom: 35,
@@ -68,36 +80,25 @@ describe('popover_positioning', () => {
     });
 
     it('respects offset', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5)).toEqual({
-        top: 85,
-        right: 25,
+      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, 'bottom')).toEqual({
+        top: 90,
+        right: 30,
         bottom: 35,
-        left: 0
+        left: 5
       });
     });
 
     it('respects buffer & offset', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1)).toEqual({
-        top: 86,
-        right: 26,
-        bottom: 36,
+      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, 'left')).toEqual({
+        top: 87,
+        right: 27,
+        bottom: 37,
         left: 1
       });
     });
   });
 
   describe('getPopoverScreenCoordinates', () => {
-    function makeBB(top, right, bottom, left) {
-      return {
-        top,
-        right,
-        bottom,
-        left,
-        width: right - left,
-        height: bottom - top
-      };
-    }
-
     describe('not enough space', () => {
       it('returns null when the window does not have space on the primary axis', () => {
         // no window space on top
@@ -223,6 +224,145 @@ describe('popover_positioning', () => {
             top: 215,
             left: 100
           });
+        });
+      });
+    });
+  });
+
+  describe('findPopoverPosition', () => {
+    beforeEach(() => {
+      // reset any scrolling before each test
+      document.body.scrollTop = 0;
+      document.body.scrollLeft = 0;
+    });
+
+    describe('placement in desired position', () => {
+      it('finds space in the requested position', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
+
+        expect(findPopoverPosition({
+          position: 'top',
+          anchor,
+          popover,
+          container,
+          offset: 7
+        })).toEqual({
+          relativePosition: 'topCenter',
+          top: 43,
+          left: 100
+        });
+      });
+    });
+
+    describe('placement falls back to position on same axis', () => {
+      it('finds space in the requested position', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        // give the container limited space on both left and top, forcing to bottom-right
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(100, 300, 768, 30);
+
+        expect(findPopoverPosition({
+          position: 'left',
+          anchor,
+          popover,
+          container,
+          offset: 5
+        })).toEqual({
+          relativePosition: 'rightBottom',
+          top: 125,
+          left: 155
+        });
+      });
+    });
+
+    describe('placement falls back to first complementary position', () => {
+      it('finds space in the requested position', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        // give the container limited space on both left and right, forcing to top
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
+
+        expect(findPopoverPosition({
+          position: 'right',
+          anchor,
+          popover,
+          container,
+          offset: 5
+        })).toEqual({
+          relativePosition: 'topCenter',
+          top: 45,
+          left: 100
+        });
+      });
+    });
+
+    describe('placement falls back to second complementary position', () => {
+      it('finds space in the requested position', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        // give the container limited space on both left, right, and top, forcing to bottom
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(100, 160, 768, 40);
+
+        expect(findPopoverPosition({
+          position: 'right',
+          anchor,
+          popover,
+          container,
+          offset: 5
+        })).toEqual({
+          relativePosition: 'bottomCenter',
+          top: 125,
+          left: 100
+        });
+      });
+    });
+
+    describe('scrolling', () => {
+      it('adds body scroll position to position values', () => {
+        document.body.scrollTop = 100;
+        document.body.scrollLeft = 15;
+
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
+
+        expect(findPopoverPosition({
+          position: 'top',
+          anchor,
+          popover,
+          container,
+          offset: 7
+        })).toEqual({
+          relativePosition: 'topCenter',
+          top: 143,
+          left: 115
         });
       });
     });

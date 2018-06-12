@@ -39,7 +39,8 @@ const positionSubstitues = {
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [container=document.body] {HTMLElement|React.Component} Element the popover must be constrained to fit within
  *
- * @returns {{top: number, left: number, position: string}} absolute coordinates for the popover,and the placements's relation to anchor
+ * @returns {{top: number, left: number, position: string}|null} absolute page coordinates for the popover,
+ * and the placements's relation to the anchor; if there's no room this returns null
  */
 export function findPopoverPosition({ anchor, popover, position, buffer=0, offset=0, container = document.body }) {
   container = findDOMNode(container); // resolve any React abstractions
@@ -56,40 +57,48 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
     height: window.innerHeight,
     width: window.innerWidth
   };
-  const availableWindowSpace = getAvailableSpace(anchorBoundingBox, windowBoundingBox, buffer, offset);
-  const availableContainerSpace = getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset);
 
-  let finalPosition = position;
+  let iterationPosition = position;
 
   // iterate over the four positions until there's room
   for (let iteration = 0; iteration <= 3; iteration++) {
+    const availableWindowSpace = getAvailableSpace(anchorBoundingBox, windowBoundingBox, buffer, offset, iterationPosition);
+    const availableContainerSpace = getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset, iterationPosition);
+
     const screenCoordinates = getPopoverScreenCoordinates({
-      position: finalPosition,
+      position: iterationPosition,
       anchorBoundingBox,
       popoverBoundingBox,
       availableWindowSpace,
-      availableContainerSpace
+      availableContainerSpace,
+      offset
     });
 
     if (screenCoordinates != null) {
       // this position works
-      return screenCoordinates;
+      return {
+        relativePosition: screenCoordinates.relativePosition,
+        top: screenCoordinates.top + document.body.scrollTop,
+        left: screenCoordinates.left + document.body.scrollLeft,
+      };
     }
 
     if (iteration === 0 || iteration === 2) {
       // iteration 0 checks for the user-desired position
       // iteration 2 is first check along the non-desired axis
       // the position didn't work, flip to the complimentary position
-      finalPosition = positionComplements[finalPosition];
+      iterationPosition = positionComplements[iterationPosition];
     } else if (iteration === 1) {
       // iteration 1 is the complement of the requested position,
       // the desired axis doesn't have room, try the opposite one
-      finalPosition = positionSubstitues[finalPosition];
+      iterationPosition = positionSubstitues[iterationPosition];
     } else if (iteration === 3) {
       // there's no room anywhere so go with the desired position...
-      finalPosition = position;
+      iterationPosition = position;
     }
   }
+
+  return null;
 }
 
 /**
@@ -136,8 +145,8 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
       const isShiftTowardFirstSide = spaceAvailableOnFirstSide > spaceAvailableOnSecondSide;
       const shiftDirection = isShiftTowardFirstSide ? -1 : 1;
 
-      const needsShift = (popoverSizeOnCrossAxis / 2) > leastAvailableSpace;
       const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2; // how much of the popover overflows past one side of the anchor
+      const needsShift = contentOverflowSize > leastAvailableSpace;
       const amountOfShiftNeeded = needsShift ? contentOverflowSize - leastAvailableSpace : 0;
       const anchorHalfSize = anchorSizeOnCrossAxis / 2;
       const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide];
@@ -199,13 +208,14 @@ export function getElementBoundingBox(element) {
  * @param {Object} containerBoundingBox Client bounding box of the container element
  * @param {number} buffer Minimum distance between the popover and the bounding container
  * @param {number} offset Distance between the popover and the anchor
+ * @param {string} offset Side the offset needs to be applied to, one of ["top", "right", "bottom", "left"]
  * @returns {{top: number, right: number, bottom: number, left: number}}
  */
-export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset) {
+export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset, offsetSide) {
   return {
-    top: anchorBoundingBox.top - containerBoundingBox.top - buffer - offset,
-    right: containerBoundingBox.right - anchorBoundingBox.right - buffer - offset,
-    bottom: containerBoundingBox.bottom - anchorBoundingBox.bottom - buffer - offset,
-    left: anchorBoundingBox.left - containerBoundingBox.left - buffer - offset
+    top: anchorBoundingBox.top - containerBoundingBox.top - buffer - (offsetSide === 'top' ? offset : 0),
+    right: containerBoundingBox.right - anchorBoundingBox.right - buffer - (offsetSide === 'right' ? offset : 0),
+    bottom: containerBoundingBox.bottom - anchorBoundingBox.bottom - buffer - (offsetSide === 'bottom' ? offset : 0),
+    left: anchorBoundingBox.left - containerBoundingBox.left - buffer - (offsetSide === 'left' ? offset : 0),
   };
 }
