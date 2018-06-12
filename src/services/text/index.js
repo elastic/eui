@@ -1,0 +1,1 @@
+export { capitalizeWord } from './text';

@@ -61,3 +61,7 @@ export {
 export {
   calculatePopoverPosition,
 } from './popover';
+
+export {
+  capitalizeWord
+} from './text';
