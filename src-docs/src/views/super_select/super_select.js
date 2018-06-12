@@ -6,11 +6,10 @@ import React, {
 import {
   EuiSuperSelect,
   EuiSpacer,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
-  EuiPopover,
   EuiText,
   EuiIcon,
+  EuiContextMenuItem,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -23,9 +22,10 @@ export default class extends Component {
         text: 'Option one',
         display: (
           <Fragment>
-            <EuiText size="s">
-              <h3>Option one</h3>
-              <p>Has a short description giving more detail to the option.</p>
+            <strong>Option one</strong>
+            <EuiSpacer size="xs" />
+            <EuiText size="s" color="subdued">
+              <p className="euiTextColor--subdued">Has a short description giving more detail to the option.</p>
             </EuiText>
           </Fragment>
         ),
@@ -39,9 +39,10 @@ export default class extends Component {
         ),
         display: (
           <Fragment>
-            <EuiText size="s">
-              <h3>Option Two</h3>
-              <p>Has a short description giving more detail to the option.</p>
+            <strong>Option two</strong>
+            <EuiSpacer size="xs" />
+            <EuiText size="s" color="subdued">
+              <p className="euiTextColor--subdued">Has a short description giving more detail to the option.</p>
             </EuiText>
           </Fragment>
         ),
@@ -51,9 +52,10 @@ export default class extends Component {
         text: 'Option three has a super long text to see if it will truncate or what',
         display: (
           <Fragment>
-            <EuiText size="s">
-              <h3>Option Three</h3>
-              <p>Has a short description giving more detail to the option.</p>
+            <strong>Option three</strong>
+            <EuiSpacer size="xs" />
+            <EuiText size="s" color="subdued">
+              <p className="euiTextColor--subdued">Has a short description giving more detail to the option.</p>
             </EuiText>
           </Fragment>
         ),
@@ -65,18 +67,6 @@ export default class extends Component {
       isPopoverOpen: false,
     };
   }
-
-  onButtonClick = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
-  };
-
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
 
   onChange = e => {
     this.setState({
@@ -92,44 +82,35 @@ export default class extends Component {
   };
 
   render() {
-    const button = (
-      <EuiSuperSelect
-        options={this.options}
-        value={this.state.value}
-        onChange={this.onChange}
-        onClick={this.onButtonClick}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-    );
-
     const items = this.options.map((option, index) => {
       return (
-        <EuiContextMenuItem
-          key={index}
-          icon={this.state.value === option.value ? "check" : "empty"}
-          onClick={() => this.itemClicked(option.value)}
-        >
-          {option.display}
-        </EuiContextMenuItem>
+        <Fragment>
+          <EuiContextMenuItem
+            key={index}
+            icon={this.state.value === option.value ? "check" : "empty"}
+            onClick={() => this.itemClicked(option.value)}
+            layoutAlign="top"
+          >
+            {option.display}
+          </EuiContextMenuItem>
+          {index < this.options.length - 1 &&
+            <EuiHorizontalRule margin="none" />
+          }
+        </Fragment>
       );
     });
 
     return (
       <Fragment>
-        <EuiPopover
-          style={{ width: '100%', maxWidth: '400px' }}
-          id="singlePanel"
-          button={button}
+        <EuiSuperSelect
+          options={this.options}
+          value={this.state.value}
+          onChange={this.onChange}
           isOpen={this.state.isPopoverOpen}
-          closePopover={this.closePopover}
-          panelPaddingSize="none"
-          anchorPosition="downRight"
+          aria-label="Use aria labels when no actual label is in use"
         >
-          <EuiContextMenuPanel
-            items={items}
-            style={{ width: '100%' }}
-          />
-        </EuiPopover>
+          {items}
+        </EuiSuperSelect>
 
         <EuiSpacer size="m" />
 
@@ -139,7 +120,9 @@ export default class extends Component {
           onChange={this.onChange}
           disabled
           aria-label="Use aria labels when no actual label is in use"
-        />
+        >
+          {items}
+        </EuiSuperSelect>
 
         <EuiSpacer size="m" />
 
@@ -149,7 +132,9 @@ export default class extends Component {
           onChange={this.onChange}
           isLoading
           aria-label="Use aria labels when no actual label is in use"
-        />
+        >
+          {items}
+        </EuiSuperSelect>
 
         <EuiSpacer size="m" />
 
@@ -160,7 +145,9 @@ export default class extends Component {
           isLoading
           disabled
           aria-label="Use aria labels when no actual label is in use"
-        />
+        >
+          {items}
+        </EuiSuperSelect>
 
         <EuiSpacer size="m" />
 
@@ -169,7 +156,9 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
-        />
+        >
+          {items}
+        </EuiSuperSelect>
       </Fragment>
     );
   }

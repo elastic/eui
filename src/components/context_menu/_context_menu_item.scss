@@ -34,3 +34,19 @@
   .euiContextMenuItem__arrow {
     align-self: flex-end;
   }
+
+  .euiContextMenu__itemLayout {
+    display: flex;
+    align-items: center;
+
+    &.euiContextMenu__itemLayout--bottom {
+      align-items: flex-end;
+    }
+    &.euiContextMenu__itemLayout--top {
+      align-items: flex-start;
+    }
+
+    .euiContextMenu__icon {
+      flex-shrink: 0;
+    }
+  }

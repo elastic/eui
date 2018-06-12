@@ -1,36 +1,24 @@
-/**
- * 1. Leave room for caret.
- * 2. Ensure the descenders don't get cut off
+/*
+ * 1. Make popover the same width as the form control
+ * 2. Style popover similar to combobox
+ * 3. Specificity to override default popover
  */
 
- .euiSuperSelect {
-  @include euiFormControlStyle;
-  @include euiFormControlWithIcon($side: "right"); /* 1 */
-  @include euiFormControlIsLoading($isNextToIcon: true);
-  text-align: left;
+ .euiSuperSelect .euiSuperSelect__popoverPanel { /* 3 */
+  width: calc(100% + 2px); /* 1 */
 
-  line-height: $euiFormControlHeight; /* 2 */
-  padding-top: 0; /* 2 */
-  padding-bottom: 0; /* 2 */
-
-  &--compressed {
-    line-height: $euiFormControlHeight--compressed; /* 2 */
-    padding-top: 0; /* 2 */
-    padding-bottom: 0; /* 2 */
-  }
-
-  // Truncate the text
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  &:active { // since this is a button, we also want the visual indicator of active when options are shown
-    @include euiFormControlFocusStyle;
+  &::before,
+  &::after {
+    content: none; /* 2 */
   }
 }
 
-.euiSuperSelect__hiddenField {
-  // This should be completely hidden even from screen readers,
-  // it's meant only to allow submission of a form.
-  display: none;
+.euiSuperSelect .euiPopover--anchorDownCenter .euiSuperSelect__popoverPanel { /* 3 */
+  border-top-color: transparentize($euiBorderColor, .2);
+  border-top-right-radius: 0; /* 2 */
+  border-top-left-radius: 0; /* 2 */
+}
+
+.euiSuperSelect .euiPopover--anchorDownCenter.euiPopover-isOpen .euiSuperSelect__popoverPanel { /* 3 */
+  transform: translateX(-50%) translateY(0) translateZ(0); /* 2 */
 }

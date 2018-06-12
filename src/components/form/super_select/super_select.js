@@ -1,127 +1,100 @@
-import React, { Fragment } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiSuperSelectControl } from './super_select_control';
+import { EuiPopover } from '../../popover';
 
-export const EuiSuperSelect = ({
-  className,
-  options,
-  id,
-  name,
-  inputRef,
-  fullWidth,
-  isLoading,
-  hasNoInitialSelection,
-  defaultValue,
-  compressed,
-  value,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiSuperSelect',
-    {
-      'euiSuperSelect--fullWidth': fullWidth,
-      'euiSuperSelect--compressed': compressed,
-      'euiSuperSelect-isLoading': isLoading,
-    },
-    className
-  );
+export class EuiSuperSelect extends Component {
+  constructor(props) {
+    super(props);
 
-  let emptyOptionNode;
-  if (hasNoInitialSelection) {
-    emptyOptionNode = (
-      <option value="" disabled hidden style={{ display: 'none' }}>&nbsp;</option>
-    );
+    this.state = {
+      isPopoverOpen: props.isOpen || false,
+    };
   }
 
-  // React HTML input can not have both value and defaultValue properties.
-  // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue;
-  if (!value) {
-    selectDefaultValue = defaultValue || '';
-  }
-
-  let selectedValue;
-  if (value) {
-    const selectedOption = options.find(option => option.value === value);
-    selectedValue = selectedOption.text;
-  }
-
-  const icon = {
-    type: 'arrowDown',
-    side: 'right',
+  onButtonClick = () => {
+    this.setState(prevState => ({
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
   };
 
-  return (
-    <Fragment>
-      <select
-        id={id}
-        name={name}
-        className="euiSuperSelect__hiddenField"
-        ref={inputRef}
-        defaultValue={selectDefaultValue}
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  };
+
+  itemClicked = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+
+    this.props.onChange();
+  };
+
+  render() {
+    const {
+      children,
+      className,
+      options,
+      value,
+      onChange,
+      isOpen,
+      ...rest
+    } = this.props;
+
+    const classes = classNames(
+      'euiSuperSelect',
+      className
+    );
+
+    const buttonClasses = classNames(
+      {
+        'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
+      },
+    );
+
+    const button = (
+      <EuiSuperSelectControl
+        options={options}
         value={value}
-        aria-hidden="true"
+        onChange={onChange}
+        onClick={this.onButtonClick}
+        className={buttonClasses}
         {...rest}
-      >
-        {emptyOptionNode}
-        {options.map((option, index) => {
-          const {
-            text, // eslint-disable-line no-unused-vars
-            ...rest
-          } = option;
-          return <option {...rest} key={index} />;
-        })}
-      </select>
+      />
+    );
 
-      <EuiFormControlLayout
-        icon={icon}
-        fullWidth={fullWidth}
-        isLoading={isLoading}
-        compressed={compressed}
-      >
-
-        <button
-          className={classes}
-          {...rest}
+    return (
+      <div className={classes}>
+        <EuiPopover
+          style={{ width: '100%', maxWidth: '400px' }}
+          panelClassName="euiSuperSelect__popoverPanel"
+          id="singlePanel"
+          button={button}
+          isOpen={isOpen || this.state.isPopoverOpen}
+          closePopover={this.closePopover}
+          panelPaddingSize="none"
+          anchorPosition="downCenter"
         >
-          {selectedValue}
-        </button>
-
-      </EuiFormControlLayout>
-    </Fragment>
-  );
-};
+          {children}
+        </EuiPopover>
+      </div>
+    );
+  }
+}
 
 EuiSuperSelect.propTypes = {
   name: PropTypes.string,
-  id: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.node.isRequired,
-    text: PropTypes.node.isRequired
-  })).isRequired,
-  isInvalid: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  isLoading: PropTypes.bool,
-
   /**
-   * Simulates no selection by creating an empty, selected, hidden first option
+   * You must pass an onChange function to hande the update of the value
    */
-  hasNoInitialSelection: PropTypes.bool,
-  inputRef: PropTypes.func,
-  /**
-   * when `true` creates a shorter height input
-   */
-  compressed: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 EuiSuperSelect.defaultProps = {
-  options: [],
-  fullWidth: false,
-  isLoading: false,
-  hasNoInitialSelection: false,
-  compressed: false,
 };
