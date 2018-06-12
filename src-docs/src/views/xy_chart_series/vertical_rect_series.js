@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiXYChart, EuiVerticalRectSeries } from '../../../../src/components';
+import {
+  EuiXYChart,
+  EuiVerticalRectSeries,
+  EuiDefaultAxis,
+} from '../../../../src/components';
 
 const data = [
   { x0: 0, x: 1, y: 1 },
@@ -19,5 +23,6 @@ export default () => (
       name="Bytes"
       data={data}
     />
+    <EuiDefaultAxis />
   </EuiXYChart>
 );

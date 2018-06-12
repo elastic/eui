@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiXYChart,
   EuiVerticalRectSeries,
+  EuiDefaultAxis,
 } from '../../../../src/components';
 
 const dataA = [
@@ -35,7 +36,6 @@ export default () => (
       name={`Tag B`}
       data={dataB}
     />
-
-
+    <EuiDefaultAxis />
   </EuiXYChart>
 );

@@ -6,7 +6,8 @@ import EuiVerticalBarSeries from './vertical_bar_series';
 import EuiHorizontalBarSeries from './horizontal_bar_series';
 import EuiVerticalRectSeries from './vertical_rect_series';
 import EuiHorizontalRectSeries from './horizontal_rect_series';
-import{ EuiArea } from './area';
+import EuiDefaultAxis from './default_axis';
+import { EuiArea } from './area';
 
 export {
   EuiXYChart,
@@ -16,6 +17,7 @@ export {
   EuiHorizontalBarSeries,
   EuiVerticalRectSeries,
   EuiHorizontalRectSeries,
+  EuiDefaultAxis,
   utils,
   asSeries
 };

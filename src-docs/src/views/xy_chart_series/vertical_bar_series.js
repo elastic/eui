@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiXYChart, EuiVerticalBarSeries } from '../../../../src/components';
+import {
+  EuiXYChart,
+  EuiVerticalBarSeries,
+  EuiDefaultAxis,
+} from '../../../../src/components';
 
 const data = [
   { x: 'A', y: 3 },
@@ -20,5 +24,6 @@ export default () => (
       name="Tags"
       data={data}
     />
+    <EuiDefaultAxis />
   </EuiXYChart>
 );

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { XYPlot, makeWidthFlexible, XAxis, YAxis, HorizontalGridLines, Crosshair } from 'react-vis';
+import { XYPlot, makeWidthFlexible, Crosshair } from 'react-vis';
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
 import Highlight from './highlight';
@@ -84,24 +84,6 @@ export class XYChart extends PureComponent {
     });
   }
 
-  _getTickLabels(ticks) {
-    if (!ticks) return;
-
-    return ticks.map(v => {
-      return v[1];
-    });
-  }
-
-  _getTicks(ticks) {
-    if (!ticks) return;
-
-    {
-      return ticks.map(v => {
-        return v[0];
-      });
-    }
-  }
-
   _renderChildren = (child, i) => {
     const props = {
       id: `chart-${i}`,
@@ -135,11 +117,6 @@ export class XYChart extends PureComponent {
       yType,
       stackBy,
       errorText,
-      xAxisLocation,
-      yAxisLocation,
-      showAxis,
-      yTicks,
-      xTicks,
       crosshairX,
       showTooltips,
       onSelectEnd,
@@ -173,28 +150,6 @@ export class XYChart extends PureComponent {
           stackBy={stackBy}
         >
 
-          {showAxis && [
-            <HorizontalGridLines
-              key="lines"
-              tickValues={this._getTicks(yTicks)}
-              style={{ strokeDasharray: '5 5' }}
-            />,
-            <XAxis
-              key="x"
-              orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
-              tickSize={1}
-              tickValues={this._getTicks(xTicks)}
-              tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
-            />,
-            <YAxis
-              key="Y"
-              tickSize={1}
-              orientation={yAxisLocation === 'right' ? 'right' : 'left'}
-              tickValues={this._getTicks(yTicks)}
-              tickFormat={yTicks ? v => this._getTickLabels(yTicks)[v] || v : undefined}
-            />
-          ]}
-
           {React.Children.map(children, this._renderChildren)}
 
           {showTooltips && (
@@ -226,7 +181,7 @@ XYChart.propTypes = {
   xTicks: PropTypes.array,
   yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
   truncateLegends: PropTypes.bool,
-  showAxis: PropTypes.bool,
+  // showAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
   showTooltips: PropTypes.bool,
@@ -237,7 +192,7 @@ XYChart.propTypes = {
 
 XYChart.defaultProps = {
   truncateLegends: false,
-  showAxis: true,
+  // showAxis: true,
   showTooltips: true,
 };
 

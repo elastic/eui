@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiArea } from '../../../../src/components';
+import { EuiXYChart, EuiArea, EuiDefaultAxis } from '../../../../src/components';
 
 export default () => (
   <EuiXYChart
@@ -8,5 +8,6 @@ export default () => (
     height={200}
   >
     <EuiArea name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+    <EuiDefaultAxis />
   </EuiXYChart>
 );

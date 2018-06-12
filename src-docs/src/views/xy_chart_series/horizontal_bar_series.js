@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiHorizontalBarSeries } from '../../../../src/components';
+import { EuiXYChart, EuiHorizontalBarSeries, EuiDefaultAxis } from '../../../../src/components';
 
 const data = [
   { x: 3, y: 'A' },
@@ -18,6 +18,9 @@ export default () => (
     <EuiHorizontalBarSeries
       name="Tag counts"
       data={data}
+    />
+    <EuiDefaultAxis
+      isHorizontal={true}
     />
   </EuiXYChart>
 );

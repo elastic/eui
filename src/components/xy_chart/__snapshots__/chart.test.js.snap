@@ -87,7 +87,6 @@ exports[`EuiXYChart passes handler functions 1`] = `
       onHover={[Function]}
       onMouseLeave={[Function]}
       onSelectEnd={[Function]}
-      showAxis={true}
       showTooltips={true}
       truncateLegends={false}
       width={600}

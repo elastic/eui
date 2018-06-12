@@ -4,6 +4,7 @@ import {
   EuiButton,
   EuiXYChart,
   EuiHorizontalBarSeries,
+  EuiDefaultAxis,
 } from '../../../../src/components';
 
 const dataA = [
@@ -60,6 +61,9 @@ export default class extends Component {
           <EuiHorizontalBarSeries
             name={`Tag B`}
             data={dataB}
+          />
+          <EuiDefaultAxis
+            isHorizontal={true}
           />
         </EuiXYChart>
 

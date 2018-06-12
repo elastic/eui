@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiXYChart,
   EuiHorizontalRectSeries,
+  EuiDefaultAxis,
 } from '../../../../src/components';
 
 const dataA = [
@@ -36,6 +37,9 @@ export default () => (
       name={`Tag B`}
       data={dataB}
       stack={true}
+    />
+    <EuiDefaultAxis
+      isHorizontal={true}
     />
   </EuiXYChart>
 );
