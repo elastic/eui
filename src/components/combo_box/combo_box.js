@@ -401,6 +401,9 @@ export class EuiComboBox extends Component {
 
   clearSelectedOptions = () => {
     this.props.onChange([]);
+    // Clicking the clear button will also cause it to disappear. This would result in focus
+    // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
+    this.searchInput.focus();
   }
 
   onComboBoxClick = () => {
