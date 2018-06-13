@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiXYChart, EuiBar } from '../../../../src/components';
+import {
+  EuiXYChart,
+  EuiVerticalBarSeries,
+  EuiDefaultAxis,
+} from '../../../../src/components';
 
 // eslint-disable-next-line
 export class ExampleCrosshair extends React.Component {
@@ -19,7 +23,8 @@ export class ExampleCrosshair extends React.Component {
           width={600}
           height={200}
         >
-          <EuiBar name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiVerticalBarSeries name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiDefaultAxis />
         </EuiXYChart>
         <br /><br />
         <EuiXYChart
@@ -28,7 +33,8 @@ export class ExampleCrosshair extends React.Component {
           width={600}
           height={200}
         >
-          <EuiBar name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiVerticalBarSeries name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiDefaultAxis />
         </EuiXYChart>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiBar, EuiArea, EuiLine } from '../../../../src/components';
+import { EuiXYChart, EuiVerticalBarSeries, EuiArea, EuiLine, EuiDefaultAxis } from '../../../../src/components';
 
 export default () => {
   const yTicks = [[0, 'zero'], [1, 'one']];
@@ -34,11 +34,7 @@ export default () => {
       xTicks={xTicks}
       yTicks={yTicks}
     >
-      <EuiLine 
-        name="Avg Winners" 
-        data={[{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} 
-        color={'#db1374'} 
-      />
+
       <EuiArea
         name="Quitters"
         onClick={() => {
@@ -46,9 +42,15 @@ export default () => {
         }}
         data={[{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 2, y: 1 }, { x: 3, y: 2 },{ x: 4, y: 1 }, { x: 10, y: 1 }, { x: 20, y: 2 } ]}
       />
+      <EuiLine
+        name="Avg Winners"
+        data={[{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
+        color={'#db1374'}
+      />
       {barData.map((data, index) => (
-        <EuiBar name={`User-${index}`} hasLineMarks={false} key={index} data={data}/>
+        <EuiVerticalBarSeries name={`User-${index}`} hasLineMarks={false} key={index} data={data}/>
       ))}
+      <EuiDefaultAxis />
     </EuiXYChart>
   )
 }
