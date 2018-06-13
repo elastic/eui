@@ -209,7 +209,7 @@ export function getElementBoundingBox(element) {
  * @param {Object} containerBoundingBox Client bounding box of the container element
  * @param {number} buffer Minimum distance between the popover and the bounding container
  * @param {number} offset Distance between the popover and the anchor
- * @param {string} offset Side the offset needs to be applied to, one of ["top", "right", "bottom", "left"]
+ * @param {string} offsetSide Side the offset needs to be applied to, one of ["top", "right", "bottom", "left"]
  * @returns {{top: number, right: number, bottom: number, left: number}}
  */
 export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset, offsetSide) {
