@@ -127,9 +127,13 @@ export const XYChartLineExample = {
       title: 'Custom style Line chart',
       text: (
         <div>
-          <p>
-            Use multiple <EuiCode>EuiLine</EuiCode> to display a milti-line chart.
-          </p>
+          <p>Use the following props to change the style of the Line Chart</p>
+          <ul>
+            <li><EuiCode>lineSize</EuiCode> to change the size/width of the line.</li>
+            <li><EuiCode>lineMarkSize</EuiCode> to change the size/radius of marks.</li>
+            <li><EuiCode>showLine</EuiCode> to show/hide the line.</li>
+            <li><EuiCode>showLineMarks</EuiCode> to show/hide the line marks.</li>
+          </ul>
         </div>
       ),
       props: { EuiLine },

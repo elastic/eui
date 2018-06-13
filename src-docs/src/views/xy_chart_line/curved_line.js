@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
 import {
+  EuiForm,
+  EuiFormRow,
   EuiSelect,
   EuiSpacer,
   EuiXYChart,
@@ -47,13 +49,20 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange}
-        />
+        <EuiForm>
+          <EuiFormRow
+            label="Line Mode"
+          >
+            <EuiSelect
+              options={this.options}
+              value={this.state.value}
+              onChange={this.onChange}
+            />
+          </EuiFormRow>
+        </EuiForm>
 
         <EuiSpacer size="xl" />
+
         <EuiXYChart
           width={600}
           height={200}
