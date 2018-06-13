@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EuiLine }  from './line';
 import { AreaSeries, AbstractSeries } from 'react-vis';
 
 export class EuiArea extends AbstractSeries {
@@ -9,7 +8,6 @@ export class EuiArea extends AbstractSeries {
     return (
       <g>
         <AreaSeries {...rest} key={`${name}-area`} curve={curve} _opacityValue={0.2} color={color} data={data} />
-        <EuiLine name={`${name}-line`} {...rest} key={`${name}`} curve={curve} color={color} data={data} />
       </g>
     );
   }

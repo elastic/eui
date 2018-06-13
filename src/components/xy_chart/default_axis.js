@@ -30,6 +30,8 @@ export default class DefaultAxis extends PureComponent {
       yAxisLocation,
       showGridLines,
       isHorizontal,
+      yOn0,
+      xOn0,
       ...rest } = this.props;
     return (
       <Fragment>
@@ -62,12 +64,14 @@ export default class DefaultAxis extends PureComponent {
           key="x"
           orientation={xAxisLocation === 'top' ? 'top' : 'bottom'}
           tickSize={1}
+          on0={xOn0}
           {...rest}
           tickValues={this._getTicks(xTicks)}
           tickFormat={xTicks ? v => this._getTickLabels(xTicks)[v] || v : undefined}
         />
         <YAxis
           key="Y"
+          on0={yOn0}
           tickSize={1}
           orientation={yAxisLocation === 'right' ? 'right' : 'left'}
           {...rest}
@@ -84,8 +88,10 @@ DefaultAxis.propTypes = {
   yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
-  isHorizontal: PropTypes.boolean,
-  showGridLines: PropTypes.boolean,
+  isHorizontal: PropTypes.bool,
+  showGridLines: PropTypes.bool,
+  yOn0: PropTypes.bool,
+  xOn0: PropTypes.bool,
 };
 
 DefaultAxis.defaultProps = {

@@ -5,34 +5,52 @@ import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 
 export class EuiLine extends AbstractSeries {
   render() {
-    const { 
-      data, 
-      name, 
-      curve, 
-      onClick, 
-      onMarkClick, 
-      hasLineMarks, 
-      lineMarkColor, 
-      lineMarkSize, 
-      color, 
-      ...rest 
+    const {
+      data,
+      name,
+      curve,
+      onClick,
+      onMarkClick,
+      showLine,
+      showLineMarks,
+      lineSize,
+      lineMarkColor,
+      lineMarkSize,
+      color,
+      ...rest
     } = this.props;
 
     return (
       <g>
-        <LineSeries
-          {...rest}
-          key={`${name}-border`}
-          curve={curve}
-          data={data}
-          opacity={1}
-          onSeriesClick={onClick}
-          style={{ strokeWidth: 4 }}
-          _colorValue={'white'}
-        />
-        <LineSeries {...rest} key={name} curve={curve} data={data} opacity={1} style={{ strokeWidth: 2 }} color={color} />
+        {showLine &&
+          <LineSeries
+            {...rest}
+            key={`${name}-border`}
+            curve={curve}
+            data={data}
+            opacity={1}
+            onSeriesClick={onClick}
+            style={{
+              strokeWidth: lineSize + 2, // border margin
+            }}
+            _colorValue={'white'}
+          />
+        }
+        {showLine &&
+          <LineSeries
+            {...rest}
+            key={name}
+            curve={curve}
+            data={data}
+            opacity={1}
+            style={{
+              strokeWidth: lineSize,
+            }}
+            color={color}
+          />
+        }
 
-        {hasLineMarks && (
+        {showLineMarks && (
           <MarkSeries
             {...rest}
             key={`${name}-mark`}
@@ -67,7 +85,9 @@ EuiLine.propTypes = {
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,
   curve: PropTypes.string,
-  hasLineMarks: PropTypes.bool,
+  showLine: PropTypes.bool,
+  showLineMarks: PropTypes.bool,
+  lineSize: PropTypes.number,
   lineMarkColor: PropTypes.string,
   lineMarkSize: PropTypes.number,
   onClick: PropTypes.func,
@@ -76,6 +96,8 @@ EuiLine.propTypes = {
 
 EuiLine.defaultProps = {
   curve: 'linear',
-  hasLineMarks: true,
+  showLine: true,
+  showLineMarks: true,
+  lineSize: 2,
   lineMarkSize: 5
 };

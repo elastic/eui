@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { XYPlot, makeWidthFlexible, Crosshair } from 'react-vis';
+import { XYPlot, makeWidthFlexible, Crosshair, AbstractSeries } from 'react-vis';
 import PropTypes from 'prop-types';
 import { getPlotValues } from './utils';
 import Highlight from './highlight';
@@ -85,6 +85,12 @@ export class XYChart extends PureComponent {
   }
 
   _renderChildren = (child, i) => {
+    const { prototype } = child.type;
+    // Avoid applying chart props to non series children
+    if (!(prototype instanceof AbstractSeries)) {
+      return child;
+    }
+
     const props = {
       id: `chart-${i}`,
     };
@@ -121,6 +127,8 @@ export class XYChart extends PureComponent {
       showTooltips,
       onSelectEnd,
       children,
+      xDomain,
+      yDomain,
       animation, // eslint-disable-line no-unused-vars
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
@@ -147,6 +155,8 @@ export class XYChart extends PureComponent {
           margin={2}
           xType={xType}
           yType={yType}
+          xDomain={xDomain}
+          yDomain={yDomain}
           stackBy={stackBy}
         >
 
@@ -188,6 +198,8 @@ XYChart.propTypes = {
   errorText: PropTypes.string,
   crosshairX: PropTypes.number,
   onCrosshairUpdate: PropTypes.func,
+  xDomain: PropTypes.array,
+  yDomain: PropTypes.array,
 };
 
 XYChart.defaultProps = {
