@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { calculatePopoverPosition } from '../../services';
+import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
 
@@ -34,18 +34,27 @@ export class EuiToolTip extends Component {
     };
   }
 
+  setPopoverRef = ref => {
+    this.popover = ref;
+  }
+
   showToolTip = () => {
     this.setState({ visible: true });
   };
 
-  positionToolTip = (toolTipBounds) => {
-    const anchorBounds = this.anchor.getBoundingClientRect();
+  positionToolTip = () => {
     const requestedPosition = this.props.position;
 
-    const { position, left, top } = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
+    const { position, left, top } = findPopoverPosition({
+      anchor: this.anchor,
+      popover: this.popover,
+      position: requestedPosition,
+      offset: 16, // offset popover 16px from the anchor
+      buffer: 4 // ensure at least 4px between popover and screen boundary
+    });
 
     const toolTipStyles = {
-      top: top + window.scrollY,
+      top,
       left,
     };
 
@@ -113,6 +122,7 @@ export class EuiToolTip extends Component {
             className={classes}
             style={this.state.toolTipStyles}
             positionToolTip={this.positionToolTip}
+            popoverRef={this.setPopoverRef}
             title={title}
             id={this.state.id}
             role="tooltip"

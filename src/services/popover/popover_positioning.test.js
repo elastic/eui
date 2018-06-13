@@ -158,7 +158,7 @@ describe('popover_positioning', () => {
           offset: 20
         })).toEqual({
           relativePosition: 'rightCenter',
-          top: 310,
+          top: 285,
           left: 220
         });
       });
@@ -175,7 +175,7 @@ describe('popover_positioning', () => {
             offset: 20
           })).toEqual({
             relativePosition: 'rightCenter',
-            top: 305,
+            top: 280,
             left: 220
           });
 
@@ -189,7 +189,7 @@ describe('popover_positioning', () => {
             offset: 20
           })).toEqual({
             relativePosition: 'rightBottom',
-            top: 325,
+            top: 300,
             left: 220
           });
         });
@@ -208,7 +208,7 @@ describe('popover_positioning', () => {
           })).toEqual({
             relativePosition: 'bottomRight',
             top: 435,
-            left: 115
+            left: 90
           });
 
           // right space is limited, should shift left to make the difference
@@ -222,7 +222,7 @@ describe('popover_positioning', () => {
           })).toEqual({
             relativePosition: 'topCenter',
             top: 215,
-            left: 100
+            left: 75
           });
         });
       });
@@ -232,8 +232,8 @@ describe('popover_positioning', () => {
   describe('findPopoverPosition', () => {
     beforeEach(() => {
       // reset any scrolling before each test
-      document.body.scrollTop = 0;
-      document.body.scrollLeft = 0;
+      window.scrollX = 0;
+      window.scrollY = 0;
     });
 
     describe('placement in desired position', () => {
@@ -254,9 +254,10 @@ describe('popover_positioning', () => {
           container,
           offset: 7
         })).toEqual({
+          position: 'top',
           relativePosition: 'topCenter',
           top: 43,
-          left: 100
+          left: 85
         });
       });
     });
@@ -280,8 +281,9 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          position: 'right',
           relativePosition: 'rightBottom',
-          top: 125,
+          top: 100,
           left: 155
         });
       });
@@ -306,9 +308,10 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          position: 'top',
           relativePosition: 'topCenter',
           top: 45,
-          left: 100
+          left: 85
         });
       });
     });
@@ -332,17 +335,18 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          position: 'bottom',
           relativePosition: 'bottomCenter',
           top: 125,
-          left: 100
+          left: 85
         });
       });
     });
 
     describe('scrolling', () => {
       it('adds body scroll position to position values', () => {
-        document.body.scrollTop = 100;
-        document.body.scrollLeft = 15;
+        window.scrollY = 100;
+        window.scrollX = 15;
 
         const anchor = document.createElement('div');
         anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
@@ -360,9 +364,10 @@ describe('popover_positioning', () => {
           container,
           offset: 7
         })).toEqual({
+          position: 'top',
           relativePosition: 'topCenter',
           top: 143,
-          left: 115
+          left: 100
         });
       });
     });

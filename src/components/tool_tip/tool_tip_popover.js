@@ -10,6 +10,7 @@ export class EuiToolTipPopover extends Component {
     className: PropTypes.string,
     title: PropTypes.node,
     positionToolTip: PropTypes.func.isRequired,
+    popoverRef: PropTypes.func,
   }
 
   updateDimensions = () => {
@@ -20,6 +21,13 @@ export class EuiToolTipPopover extends Component {
       }
     });
   };
+
+  setPopoverRef = ref => {
+    this.popover = ref;
+    if (this.props.popoverRef) {
+      this.props.popoverRef(ref);
+    }
+  }
 
   componentDidMount() {
     document.body.classList.add('euiBody-hasPortalContent');
@@ -39,6 +47,7 @@ export class EuiToolTipPopover extends Component {
       title,
       className,
       positionToolTip, // eslint-disable-line no-unused-vars
+      popoverRef, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -57,7 +66,7 @@ export class EuiToolTipPopover extends Component {
     return (
       <div
         className={classes}
-        ref={popover => this.popover = popover}
+        ref={this.setPopoverRef}
         {...rest}
       >
         {optionalTitle}

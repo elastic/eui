@@ -77,9 +77,10 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
     if (screenCoordinates != null) {
       // this position works
       return {
+        position: iterationPosition,
         relativePosition: screenCoordinates.relativePosition,
-        top: screenCoordinates.top + document.body.scrollTop,
-        left: screenCoordinates.left + document.body.scrollLeft,
+        top: screenCoordinates.top + window.scrollY,
+        left: screenCoordinates.left + window.scrollX,
       };
     }
 
@@ -149,7 +150,7 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
       const needsShift = contentOverflowSize > leastAvailableSpace;
       const amountOfShiftNeeded = needsShift ? contentOverflowSize - leastAvailableSpace : 0;
       const anchorHalfSize = anchorSizeOnCrossAxis / 2;
-      const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide];
+      const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide] - popoverSizeOnCrossAxis / 2;
 
       const isOffsetDecreasing = position === 'top' || position === 'left';
 
