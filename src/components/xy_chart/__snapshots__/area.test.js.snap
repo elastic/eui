@@ -19,6 +19,8 @@ exports[`EuiArea all props are rendered 1`] = `
       showTooltips={true}
       truncateLegends={false}
       width={600}
+      xPadding={0}
+      yPadding={0}
     >
       <div>
         <XYPlot
@@ -30,6 +32,8 @@ exports[`EuiArea all props are rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
+          xPadding={0}
+          yPadding={0}
         >
           <div
             className="rv-xy-plot "
@@ -168,6 +172,7 @@ exports[`EuiArea all props are rendered 1`] = `
                     1,
                   ]
                 }
+                xPadding={0}
                 xRange={
                   Array [
                     0,
@@ -180,6 +185,7 @@ exports[`EuiArea all props are rendered 1`] = `
                     15,
                   ]
                 }
+                yPadding={0}
                 yRange={
                   Array [
                     196,
@@ -307,6 +313,7 @@ exports[`EuiArea all props are rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -319,6 +326,7 @@ exports[`EuiArea all props are rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -482,6 +490,7 @@ exports[`EuiArea all props are rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -494,6 +503,7 @@ exports[`EuiArea all props are rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -639,6 +649,7 @@ exports[`EuiArea all props are rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -651,6 +662,7 @@ exports[`EuiArea all props are rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -773,6 +785,7 @@ exports[`EuiArea all props are rendered 1`] = `
                   1,
                 ]
               }
+              xPadding={0}
               xRange={
                 Array [
                   0,
@@ -785,6 +798,7 @@ exports[`EuiArea all props are rendered 1`] = `
                   15,
                 ]
               }
+              yPadding={0}
               yRange={
                 Array [
                   196,
@@ -825,6 +839,8 @@ exports[`EuiArea is rendered 1`] = `
       showTooltips={true}
       truncateLegends={false}
       width={600}
+      xPadding={0}
+      yPadding={0}
     >
       <div
         aria-label="aria-label"
@@ -840,6 +856,8 @@ exports[`EuiArea is rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
+          xPadding={0}
+          yPadding={0}
         >
           <div
             className="rv-xy-plot "
@@ -973,6 +991,7 @@ exports[`EuiArea is rendered 1`] = `
                     1,
                   ]
                 }
+                xPadding={0}
                 xRange={
                   Array [
                     0,
@@ -985,6 +1004,7 @@ exports[`EuiArea is rendered 1`] = `
                     15,
                   ]
                 }
+                yPadding={0}
                 yRange={
                   Array [
                     196,
@@ -1107,6 +1127,7 @@ exports[`EuiArea is rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -1119,6 +1140,7 @@ exports[`EuiArea is rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -1277,6 +1299,7 @@ exports[`EuiArea is rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -1289,6 +1312,7 @@ exports[`EuiArea is rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -1429,6 +1453,7 @@ exports[`EuiArea is rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -1441,6 +1466,7 @@ exports[`EuiArea is rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -1563,6 +1589,7 @@ exports[`EuiArea is rendered 1`] = `
                   1,
                 ]
               }
+              xPadding={0}
               xRange={
                 Array [
                   0,
@@ -1575,6 +1602,7 @@ exports[`EuiArea is rendered 1`] = `
                   15,
                 ]
               }
+              yPadding={0}
               yRange={
                 Array [
                   196,

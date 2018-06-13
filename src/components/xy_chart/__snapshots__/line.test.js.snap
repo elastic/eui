@@ -19,6 +19,8 @@ exports[`EuiLine all props are rendered 1`] = `
       showTooltips={true}
       truncateLegends={false}
       width={600}
+      xPadding={0}
+      yPadding={0}
     >
       <div>
         <XYPlot
@@ -30,6 +32,8 @@ exports[`EuiLine all props are rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
+          xPadding={0}
+          yPadding={0}
         >
           <div
             className="rv-xy-plot "
@@ -171,6 +175,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     1,
                   ]
                 }
+                xPadding={0}
                 xRange={
                   Array [
                     0,
@@ -183,6 +188,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     15,
                   ]
                 }
+                yPadding={0}
                 yRange={
                   Array [
                     196,
@@ -308,6 +314,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -320,6 +327,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -481,6 +489,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -493,6 +502,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -636,6 +646,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -648,6 +659,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -793,6 +805,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -805,6 +818,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -966,6 +980,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -978,6 +993,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -1121,6 +1137,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -1133,6 +1150,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -1273,6 +1291,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -1285,6 +1304,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -1441,6 +1461,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -1453,6 +1474,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -1591,6 +1613,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -1603,6 +1626,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -1749,6 +1773,7 @@ exports[`EuiLine all props are rendered 1`] = `
                   1,
                 ]
               }
+              xPadding={0}
               xRange={
                 Array [
                   0,
@@ -1761,6 +1786,7 @@ exports[`EuiLine all props are rendered 1`] = `
                   15,
                 ]
               }
+              yPadding={0}
               yRange={
                 Array [
                   196,
@@ -1801,6 +1827,8 @@ exports[`EuiLine is rendered 1`] = `
       showTooltips={true}
       truncateLegends={false}
       width={600}
+      xPadding={0}
+      yPadding={0}
     >
       <div
         aria-label="aria-label"
@@ -1816,6 +1844,8 @@ exports[`EuiLine is rendered 1`] = `
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           width={600}
+          xPadding={0}
+          yPadding={0}
         >
           <div
             className="rv-xy-plot "
@@ -1953,6 +1983,7 @@ exports[`EuiLine is rendered 1`] = `
                     1,
                   ]
                 }
+                xPadding={0}
                 xRange={
                   Array [
                     0,
@@ -1965,6 +1996,7 @@ exports[`EuiLine is rendered 1`] = `
                     15,
                   ]
                 }
+                yPadding={0}
                 yRange={
                   Array [
                     196,
@@ -2088,6 +2120,7 @@ exports[`EuiLine is rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -2100,6 +2133,7 @@ exports[`EuiLine is rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -2259,6 +2293,7 @@ exports[`EuiLine is rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -2271,6 +2306,7 @@ exports[`EuiLine is rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -2412,6 +2448,7 @@ exports[`EuiLine is rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -2424,6 +2461,7 @@ exports[`EuiLine is rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -2568,6 +2606,7 @@ exports[`EuiLine is rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -2580,6 +2619,7 @@ exports[`EuiLine is rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -2740,6 +2780,7 @@ exports[`EuiLine is rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -2752,6 +2793,7 @@ exports[`EuiLine is rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -2894,6 +2936,7 @@ exports[`EuiLine is rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -2906,6 +2949,7 @@ exports[`EuiLine is rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -3044,6 +3088,7 @@ exports[`EuiLine is rendered 1`] = `
                         1,
                       ]
                     }
+                    xPadding={0}
                     xRange={
                       Array [
                         0,
@@ -3056,6 +3101,7 @@ exports[`EuiLine is rendered 1`] = `
                         15,
                       ]
                     }
+                    yPadding={0}
                     yRange={
                       Array [
                         196,
@@ -3210,6 +3256,7 @@ exports[`EuiLine is rendered 1`] = `
                           1,
                         ]
                       }
+                      xPadding={0}
                       xRange={
                         Array [
                           0,
@@ -3222,6 +3269,7 @@ exports[`EuiLine is rendered 1`] = `
                           15,
                         ]
                       }
+                      yPadding={0}
                       yRange={
                         Array [
                           196,
@@ -3358,6 +3406,7 @@ exports[`EuiLine is rendered 1`] = `
                               1,
                             ]
                           }
+                          xPadding={0}
                           xRange={
                             Array [
                               0,
@@ -3370,6 +3419,7 @@ exports[`EuiLine is rendered 1`] = `
                               15,
                             ]
                           }
+                          yPadding={0}
                           yRange={
                             Array [
                               196,
@@ -3516,6 +3566,7 @@ exports[`EuiLine is rendered 1`] = `
                   1,
                 ]
               }
+              xPadding={0}
               xRange={
                 Array [
                   0,
@@ -3528,6 +3579,7 @@ exports[`EuiLine is rendered 1`] = `
                   15,
                 ]
               }
+              yPadding={0}
               yRange={
                 Array [
                   196,

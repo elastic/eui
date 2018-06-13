@@ -129,6 +129,8 @@ export class XYChart extends PureComponent {
       children,
       xDomain,
       yDomain,
+      yPadding,
+      xPadding,
       animation, // eslint-disable-line no-unused-vars
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
@@ -158,6 +160,8 @@ export class XYChart extends PureComponent {
           xDomain={xDomain}
           yDomain={yDomain}
           stackBy={stackBy}
+          yPadding={yPadding}
+          xPadding={xPadding}
         >
 
           {React.Children.map(children, this._renderChildren)}
@@ -200,12 +204,16 @@ XYChart.propTypes = {
   onCrosshairUpdate: PropTypes.func,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
+  xPadding: PropTypes.number,
+  yPadding: PropTypes.number,
 };
 
 XYChart.defaultProps = {
   truncateLegends: false,
   // showAxis: true,
   showTooltips: true,
+  yPadding: 0,
+  xPadding: 0,
 };
 
 export default makeWidthFlexible(XYChart);

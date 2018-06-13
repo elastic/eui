@@ -90,6 +90,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
       showTooltips={true}
       truncateLegends={false}
       width={600}
+      xPadding={0}
       xTicks={
         Array [
           Array [
@@ -104,6 +105,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
           ],
         ]
       }
+      yPadding={0}
       yTicks={
         Array [
           Array [
