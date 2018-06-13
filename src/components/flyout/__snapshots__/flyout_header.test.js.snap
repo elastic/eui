@@ -7,3 +7,9 @@ exports[`EuiFlyoutHeader is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiFlyoutHeader props border is rendered 1`] = `
+<div
+  class="euiFlyoutHeader euiFlyoutHeader--hasBorder"
+/>
+`;

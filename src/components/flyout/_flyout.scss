@@ -15,6 +15,16 @@ $euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // m
   align-items: stretch;
 }
 
+// The actual size of the X button in pixels is a bit fuzzy because of all the
+// button padding so there is some pixel pushing here.
+.euiFlyout__closeButton {
+  background-color: transparentize($euiColorEmptyShade, .1);
+  position: absolute;
+  right: $euiSizeL - 7px;
+  top: $euiSizeL - 7px;
+  z-index: 3;
+}
+
 /**
   * 1. Calculating the minimum width based on the screen takover breakpoint
   * 2. Only small flyouts should NOT takover the entire screen

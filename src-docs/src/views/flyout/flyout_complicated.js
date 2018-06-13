@@ -5,18 +5,18 @@ import React, {
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCodeBlock,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiFlyout,
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
-  EuiTitle,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiSpacer,
-  EuiTabs,
   EuiTab,
+  EuiTabs,
   EuiText,
-  EuiTextColor,
+  EuiTitle,
 } from '../../../../src/components';
 
 export class FlyoutComplicated extends Component {
@@ -132,6 +132,11 @@ export class FlyoutComplicated extends Component {
       </EuiText>
     );
 
+    const htmlCode = `<!--I'm an example of HTML-->
+<div>
+  asdf
+</div>
+`;
 
     let flyout;
 
@@ -139,27 +144,28 @@ export class FlyoutComplicated extends Component {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
+          hideCloseButton
           aria-labelledby="flyoutComplicatedTitle"
         >
-          <EuiFlyoutHeader>
-            <EuiTitle>
-              <h2 id="flyoutComplicatedTitle">
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h1 id="flyoutComplicatedTitle">
                 Flyout header
-              </h2>
+              </h1>
             </EuiTitle>
             <EuiSpacer size="s" />
-            <EuiTextColor color="subdued">
-              <EuiText>
-                <p>Put navigation items in the header, and cross tab actions in a footer.</p>
-              </EuiText>
-            </EuiTextColor>
-            <EuiSpacer size="s" />
-            <EuiTabs>
+            <EuiText color="subdued">
+              <p>Put navigation items in the header, and cross tab actions in a footer.</p>
+            </EuiText>
+            <EuiTabs style={{ marginBottom: "-25px" }}>
               {this.renderTabs()}
             </EuiTabs>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             {flyoutContent}
+            <EuiCodeBlock language="html">
+              {htmlCode}
+            </EuiCodeBlock>
           </EuiFlyoutBody>
           <EuiFlyoutFooter>
             <EuiFlexGroup justifyContent="spaceBetween">

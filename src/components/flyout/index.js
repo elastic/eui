@@ -1,5 +1,6 @@
 export {
   EuiFlyout,
+  SIZES,
 } from './flyout';
 
 export {

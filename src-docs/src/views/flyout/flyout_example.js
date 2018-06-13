@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutFooter,
 } from '../../../../src/components';
 
 import { Flyout } from './flyout';
@@ -55,12 +57,12 @@ export const FlyoutExample = {
           </ul>
 
           <p>
-            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> and <EuiCode>aria-describedby</EuiCode> to
+            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> to
             announce the flyout to screen readers when the user opens it.
           </p>
         </div>
       ),
-      props: { EuiFlyout },
+      props: { EuiFlyout, EuiFlyoutHeader },
       demo: <Flyout />,
     },
     {
@@ -80,6 +82,7 @@ export const FlyoutExample = {
           within <EuiCode>EuiContentBody</EuiCode> will automatcially overflow.
         </p>
       ),
+      props: { EuiFlyoutFooter },
       demo: <FlyoutComplicated />,
     },
     {
@@ -94,7 +97,7 @@ export const FlyoutExample = {
       text: (
         <p>
           In this example, we set <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode> and
-          aply the <EuiCode>ownFocus</EuiCode> prop. The later not only traps the
+          apply the <EuiCode>ownFocus</EuiCode> prop. The latter not only traps the
           focus of our flyout, but also adds background overlay to reinforce your
           boundries.
         </p>
