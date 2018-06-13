@@ -48,8 +48,8 @@ describe('comparators - property', () => {
 
 describe('default comparator', () => {
   test('null/undefined values are sorted to the end', () => {
-    const sorted = [undefined, '7', 3, undefined, 5, undefined].sort(Comparators.default());
-    expect(sorted).toEqual([3, 5, '7', undefined, undefined, undefined])
+    const sorted = [undefined, '7', 3, null, 5, undefined].sort(Comparators.default());
+    expect(sorted).toEqual([3, 5, '7', null, undefined, undefined])
   })
 });
 
