@@ -11,7 +11,7 @@ import {
 } from '../../../../src/components';
 
 export const XYChartAreaExample = {
-  title: 'XYChart Area',
+  title: 'Area chart',
   sections: [
     {
       title: 'Area Series',

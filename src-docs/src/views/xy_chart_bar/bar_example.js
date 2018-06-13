@@ -12,7 +12,7 @@ import {
 } from '../../../../src/components';
 
 export const XYChartBarExample = {
-  title: 'XYChart Bar Chart',
+  title: 'Bar chart',
   sections: [
     {
       title: 'Vertical Bar Chart',

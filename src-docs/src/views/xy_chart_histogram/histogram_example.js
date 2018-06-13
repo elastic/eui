@@ -12,7 +12,7 @@ import {
 } from '../../../../src/components';
 
 export const XYChartHistogramExample = {
-  title: 'XYChart Histogram',
+  title: 'Histogram',
   sections: [
     {
       title: 'Vertical Histogram',

@@ -7,7 +7,7 @@ import AutoAxisChartExampleCode from './example-auto-axis';
 import { ExampleCrosshair } from './example-crosshair';
 
 export const XYChartExample = {
-  title: 'XYChart',  
+  title: 'General',  
   sections: [
     {
       title: 'Complex example',
