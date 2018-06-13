@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
@@ -12,7 +12,7 @@ afterEach(unpatchRandom);
 
 describe('EuiVerticalRectSeries', () => {
   test('is rendered', () => {
-    const component = render(
+    const component = mount(
       <EuiXYChart width={600} height={200} {...requiredProps}>
         <EuiVerticalRectSeries
           name="test-chart"
@@ -21,7 +21,24 @@ describe('EuiVerticalRectSeries', () => {
       </EuiXYChart>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.find('.rv-xy-plot__series')).toHaveLength(1);
+
+    const rects = component.find('.rv-xy-plot__series--rect rect')
+    expect(rects).toHaveLength(2);
+
+    const firstRectProps = rects.at(0).props()
+    expect(firstRectProps.x).toBeDefined()
+    expect(firstRectProps.y).toBeDefined()
+    expect(firstRectProps.width).toBeDefined()
+    expect(firstRectProps.height).toBeDefined()
+
+    const secondRectProps = rects.at(1).props()
+    expect(secondRectProps.x).toBeDefined()
+    expect(secondRectProps.y).toBeDefined()
+    expect(secondRectProps.width).toBeDefined()
+    expect(secondRectProps.height).toBeDefined()
+
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('all props are rendered', () => {
@@ -61,6 +78,8 @@ describe('EuiVerticalRectSeries', () => {
         />
       </EuiXYChart>
     );
+    expect(component.find('.rv-xy-plot__series')).toHaveLength(2);
+    expect(component.find('.rv-xy-plot__series--rect rect')).toHaveLength(4);
 
     expect(component).toMatchSnapshot();
   });

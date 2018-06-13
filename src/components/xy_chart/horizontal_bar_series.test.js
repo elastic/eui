@@ -4,17 +4,16 @@ import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
 import EuiXYChart from './chart';
-import EuiVerticalBarSeries from './vertical_bar_series';
-import { benchmarkFunction } from '../../test/time_execution';
+import EuiHorizontalBarSeries from './horizontal_bar_series';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
-describe('EuiVerticalBarSeries', () => {
+describe('EuiHorizontalBarSeries', () => {
   test('is rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200} {...requiredProps}>
-        <EuiVerticalBarSeries
+        <EuiHorizontalBarSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
@@ -44,7 +43,7 @@ describe('EuiVerticalBarSeries', () => {
   test('all props are rendered', () => {
     const component = render(
       <EuiXYChart width={600} height={200}>
-        <EuiVerticalBarSeries
+        <EuiHorizontalBarSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           color="#ff0000"
@@ -64,13 +63,13 @@ describe('EuiVerticalBarSeries', () => {
         xType="ordinal"
         stackBy="y"
       >
-        <EuiVerticalBarSeries
+        <EuiHorizontalBarSeries
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}
           color="#ff0000"
           onClick={() => {}}
         />
-        <EuiVerticalBarSeries
+        <EuiHorizontalBarSeries
           name="test-series-b"
           data={[{ x: 0, y: 2 }, { x: 1, y: 7 }]}
           color="#00ff00"
@@ -81,73 +80,5 @@ describe('EuiVerticalBarSeries', () => {
     expect(component.find('.rv-xy-plot__series')).toHaveLength(2);
     expect(component.find('.rv-xy-plot__series--bar rect')).toHaveLength(4);
     expect(component).toMatchSnapshot();
-  });
-
-  describe.skip('performance', () => {
-    it('renders 1000 items in under 0.5 seconds', () => {
-      const yTicks = [[0, 'zero'], [1, 'one']];
-      const xTicks = [
-        [0, '0'],
-        [250, '250'],
-        [500, '500'],
-        [750, '750'],
-        [1000, '1000']
-      ];
-      const data = [];
-
-      for (let i = 0; i < 1000; i++) {
-        data.push({ x: i, y: Math.random() });
-      }
-
-      function renderChart() {
-        render(
-          <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiVerticalBarSeries name="barchart" data={data}/>
-          </EuiXYChart>
-        )
-      }
-
-      const runtime = benchmarkFunction(renderChart);
-      // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
-      // this is ~9ms on a MacBookPro
-      expect(runtime).toBeLessThan(500);
-    });
-
-    it('renders 30 lines of 500 items in under 3 seconds', () => {
-      const yTicks = [[0, 'zero'], [1, 'one']];
-      const xTicks = [
-        [0, '0'],
-        [125, '125'],
-        [250, '240'],
-        [375, '375'],
-        [500, '500']
-      ];
-
-      const linesData = [];
-      for (let i = 0; i < 30; i++) {
-        const data = [];
-
-        for (let i = 0; i < 500; i++) {
-          data.push({ x: i, y: Math.random() });
-        }
-
-        linesData.push(data);
-      }
-
-      function renderChart() {
-        render(
-          <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            {linesData.map((data, index) => (
-              <EuiVerticalBarSeries key={index} name={`barchart-${index}`} data={data}/>
-            ))}
-          </EuiXYChart>
-        )
-      }
-
-      const runtime = benchmarkFunction(renderChart);
-      // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
-      // this is ~1750 on a MacBookPro
-      expect(runtime).toBeLessThan(3000);
-    });
   });
 });

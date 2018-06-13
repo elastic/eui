@@ -41,7 +41,7 @@ exports[`EuiVerticalBarSeries all props are rendered 1`] = `
 
 exports[`EuiVerticalBarSeries is rendered 1`] = `
 <div
-  style="width:100%;height:100%"
+  style="width: 100%; height: 100%;"
 >
   <div
     aria-label="aria-label"
@@ -50,7 +50,7 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
   >
     <div
       class="rv-xy-plot "
-      style="width:600px;height:200px"
+      style="width: 600px; height: 200px;"
     >
       <svg
         class="rv-xy-plot__inner"
@@ -63,14 +63,14 @@ exports[`EuiVerticalBarSeries is rendered 1`] = `
         >
           <rect
             height="65.33333333333331"
-            style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1;"
             width="253.29999999999998"
             x="22.35000000000001"
             y="130.66666666666669"
           />
           <rect
             height="196"
-            style="opacity:1;stroke:white;fill:#00B3A4;stroke-width:1;rx:2px;ry:2px"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1;"
             width="253.29999999999998"
             x="320.35"
             y="0"
