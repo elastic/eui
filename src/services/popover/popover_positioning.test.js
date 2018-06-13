@@ -232,8 +232,8 @@ describe('popover_positioning', () => {
   describe('findPopoverPosition', () => {
     beforeEach(() => {
       // reset any scrolling before each test
-      window.scrollX = 0;
-      window.scrollY = 0;
+      window.pageXOffset = 0;
+      window.pageYOffset = 0;
     });
 
     describe('placement in desired position', () => {
@@ -345,8 +345,8 @@ describe('popover_positioning', () => {
 
     describe('scrolling', () => {
       it('adds body scroll position to position values', () => {
-        window.scrollY = 100;
-        window.scrollX = 15;
+        window.pageYOffset = 100;
+        window.pageXOffset = 15;
 
         const anchor = document.createElement('div');
         anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);

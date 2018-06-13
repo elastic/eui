@@ -79,8 +79,8 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
       return {
         position: iterationPosition,
         relativePosition: screenCoordinates.relativePosition,
-        top: screenCoordinates.top + window.scrollY,
-        left: screenCoordinates.left + window.scrollX,
+        top: screenCoordinates.top + window.pageYOffset,
+        left: screenCoordinates.left + window.pageXOffset,
       };
     }
 
