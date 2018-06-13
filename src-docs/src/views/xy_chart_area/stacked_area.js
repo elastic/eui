@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiLine, EuiDefaultAxis } from '../../../../src/components';
+import { EuiXYChart, EuiArea, EuiDefaultAxis } from '../../../../src/components';
 
 const dataA = [
   { x: 0, y: 3, },
@@ -24,10 +24,8 @@ export default () => (
     height={200}
     stackBy="y"
   >
-    {/* <EuiArea name="Tag A" data={dataA} />
-    <EuiArea name="Tag B" data={dataB} /> */}
-    <EuiLine data={dataA} stacked={false}/>
-    <EuiLine data={dataB} stacked={false}/>
+    <EuiArea name="Tag A" data={dataA} />
+    <EuiArea name="Tag B" data={dataB} />
     <EuiDefaultAxis />
   </EuiXYChart>
 );

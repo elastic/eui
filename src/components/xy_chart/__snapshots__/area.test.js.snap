@@ -206,7 +206,7 @@ exports[`EuiArea all props are rendered 1`] = `
                       ]
                     }
                     _colorValue="#ff0000"
-                    _opacityValue={0.2}
+                    _opacityValue={1}
                     angleDomain={Array []}
                     animation={true}
                     className=""
@@ -296,7 +296,11 @@ exports[`EuiArea all props are rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={Object {}}
+                    style={
+                      Object {
+                        "strokeWidth": 0,
+                      }
+                    }
                     xDomain={
                       Array [
                         0,
@@ -340,7 +344,7 @@ exports[`EuiArea all props are rendered 1`] = `
                         ]
                       }
                       _colorValue="#ff0000"
-                      _opacityValue={0.2}
+                      _opacityValue={1}
                       angleDomain={Array []}
                       animatedProps={
                         Array [
@@ -467,7 +471,11 @@ exports[`EuiArea all props are rendered 1`] = `
                           "#FF9833",
                         ]
                       }
-                      style={Object {}}
+                      style={
+                        Object {
+                          "strokeWidth": 0,
+                        }
+                      }
                       xDomain={
                         Array [
                           0,
@@ -531,7 +539,7 @@ exports[`EuiArea all props are rendered 1`] = `
                           }
                           _animation={0.00002}
                           _colorValue="#ff0000"
-                          _opacityValue={0.2}
+                          _opacityValue={1}
                           angleDomain={Array []}
                           animation={null}
                           className=""
@@ -620,7 +628,11 @@ exports[`EuiArea all props are rendered 1`] = `
                               "#FF9833",
                             ]
                           }
-                          style={Object {}}
+                          style={
+                            Object {
+                              "strokeWidth": 0,
+                            }
+                          }
                           xDomain={
                             Array [
                               0,
@@ -656,8 +668,9 @@ exports[`EuiArea all props are rendered 1`] = `
                             style={
                               Object {
                                 "fill": "#ff0000",
-                                "opacity": 0.2,
+                                "opacity": 1,
                                 "stroke": "#ff0000",
+                                "strokeWidth": 0,
                               }
                             }
                             transform="translate(2,2)"
@@ -925,12 +938,10 @@ exports[`EuiArea is rendered 1`] = `
                 getX0={[Function]}
                 getY={[Function]}
                 getY0={[Function]}
-                hasLineMarks={true}
                 id="chart-0"
                 innerHeight={196}
                 innerWidth={596}
                 key=".0:$.0"
-                lineMarkSize={5}
                 marginBottom={2}
                 marginLeft={2}
                 marginRight={2}
@@ -1000,7 +1011,7 @@ exports[`EuiArea is rendered 1`] = `
                       ]
                     }
                     _colorValue="#00B3A4"
-                    _opacityValue={0.2}
+                    _opacityValue={1}
                     angleDomain={Array []}
                     animation={true}
                     className=""
@@ -1056,12 +1067,10 @@ exports[`EuiArea is rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    hasLineMarks={true}
                     id="chart-0"
                     innerHeight={196}
                     innerWidth={596}
                     key="somename-area"
-                    lineMarkSize={5}
                     marginBottom={2}
                     marginLeft={2}
                     marginRight={2}
@@ -1087,7 +1096,11 @@ exports[`EuiArea is rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={Object {}}
+                    style={
+                      Object {
+                        "strokeWidth": 0,
+                      }
+                    }
                     xDomain={
                       Array [
                         0,
@@ -1131,7 +1144,7 @@ exports[`EuiArea is rendered 1`] = `
                         ]
                       }
                       _colorValue="#00B3A4"
-                      _opacityValue={0.2}
+                      _opacityValue={1}
                       angleDomain={Array []}
                       animatedProps={
                         Array [
@@ -1225,11 +1238,9 @@ exports[`EuiArea is rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      hasLineMarks={true}
                       id="chart-0"
                       innerHeight={196}
                       innerWidth={596}
-                      lineMarkSize={5}
                       marginBottom={2}
                       marginLeft={2}
                       marginRight={2}
@@ -1255,7 +1266,11 @@ exports[`EuiArea is rendered 1`] = `
                           "#FF9833",
                         ]
                       }
-                      style={Object {}}
+                      style={
+                        Object {
+                          "strokeWidth": 0,
+                        }
+                      }
                       xDomain={
                         Array [
                           0,
@@ -1319,7 +1334,7 @@ exports[`EuiArea is rendered 1`] = `
                           }
                           _animation={0.00002}
                           _colorValue="#00B3A4"
-                          _opacityValue={0.2}
+                          _opacityValue={1}
                           angleDomain={Array []}
                           animation={null}
                           className=""
@@ -1375,11 +1390,9 @@ exports[`EuiArea is rendered 1`] = `
                           getX0={[Function]}
                           getY={[Function]}
                           getY0={[Function]}
-                          hasLineMarks={true}
                           id="chart-0"
                           innerHeight={196}
                           innerWidth={596}
-                          lineMarkSize={5}
                           marginBottom={2}
                           marginLeft={2}
                           marginRight={2}
@@ -1405,7 +1418,11 @@ exports[`EuiArea is rendered 1`] = `
                               "#FF9833",
                             ]
                           }
-                          style={Object {}}
+                          style={
+                            Object {
+                              "strokeWidth": 0,
+                            }
+                          }
                           xDomain={
                             Array [
                               0,
@@ -1441,8 +1458,9 @@ exports[`EuiArea is rendered 1`] = `
                             style={
                               Object {
                                 "fill": "#00B3A4",
-                                "opacity": 0.2,
+                                "opacity": 1,
                                 "stroke": "#00B3A4",
+                                "strokeWidth": 0,
                               }
                             }
                             transform="translate(2,2)"

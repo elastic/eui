@@ -1,10 +1,13 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../components';
-import AreaSeriesExample from './area_series';
-import StackedAreaSeriesExample from './stacked_area_series';
+import AreaSeriesExample from './area';
+import StackedAreaSeriesExample from './stacked_area';
+import CurvedAreaExample from './curved_area';
+
 import {
   EuiCode,
   EuiArea,
+  EuiLink,
 } from '../../../../src/components';
 
 export const XYChartAreaExample = {
@@ -15,9 +18,7 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> to display line, bar, area, and stream charts. Note that charts are composed with{' '}
-            <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>, <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child
-            components.
+            Use <EuiCode>EuiArea</EuiCode> to display area charts.
           </p>
         </div>
       ),
@@ -25,7 +26,7 @@ export const XYChartAreaExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./area_series')
+          code: require('!!raw-loader!./area')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -43,7 +44,9 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            TODO
+            Use multiple <EuiCode>EuiArea</EuiCode> to display stacked area charts
+            specifying the <EuiCode>stackBy:y</EuiCode> prop on the <EuiCode>EuiXYChart</EuiCode>
+            to enable stacking.
           </p>
         </div>
       ),
@@ -51,7 +54,7 @@ export const XYChartAreaExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./stacked_area_series')
+          code: require('!!raw-loader!./stacked_area')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -64,5 +67,33 @@ export const XYChartAreaExample = {
         </div>
       )
     },
+    {
+      title: 'Curved Area Series',
+      text: (
+        <div>
+          <p>
+            Use the <EuiCode>curve</EuiCode> prop to change the curve representation.
+            Visit <EuiLink href="https://github.com/d3/d3-shape#curves" target="_blank">d3-shape#curves</EuiLink>
+            for available values (the bundle curve does not work with area chart).
+          </p>
+        </div>
+      ),
+      props: { EuiArea },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./curved_area')
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React'
+        }
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <CurvedAreaExample />
+        </div>
+      )
+    }
   ]
 };

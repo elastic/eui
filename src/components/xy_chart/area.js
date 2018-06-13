@@ -7,7 +7,16 @@ export class EuiArea extends AbstractSeries {
     const { name, data, curve, color, ...rest } = this.props;
     return (
       <g>
-        <AreaSeries {...rest} key={`${name}-area`} curve={curve} _opacityValue={0.2} color={color} data={data} />
+        <AreaSeries
+          {...rest}
+          key={`${name}-area`}
+          curve={curve}
+          color={color}
+          data={data}
+          style={{
+            strokeWidth: 0,
+          }}
+        />
       </g>
     );
   }
@@ -30,15 +39,10 @@ EuiArea.propTypes = {
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,
   curve: PropTypes.string,
-  hasLineMarks: PropTypes.bool,
-  lineMarkColor: PropTypes.string,
-  lineMarkSize: PropTypes.number,
   onClick: PropTypes.func,
   onMarkClick: PropTypes.func
 }
 
 EuiArea.defaultProps = {
   curve: 'linear',
-  hasLineMarks: true,
-  lineMarkSize: 5
 };
