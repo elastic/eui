@@ -5,8 +5,11 @@ import React, {
 import {
   EuiFlyout,
   EuiFlyoutBody,
+  EuiFlyoutHeader,
   EuiButton,
   EuiText,
+  EuiTitle,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 export class Flyout extends Component {
@@ -39,29 +42,41 @@ export class Flyout extends Component {
   render() {
     let flyout;
 
+    const htmlCode = `<EuiFlyout ...>
+  <EuiFlyoutHeader hasBorder>
+    <EuiTitle size="m">
+      <h1></h1>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    ...
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
           aria-labelledby="flyoutTitle"
         >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h1 id="flyoutTitle">
+                A typical flyout
+              </h1>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <h3 id="flyoutTitle">
-                A flyout
-              </h3>
-
               <p>
-                You can use ESC to close this panel, but we could also pass in a close button like so.
+                For consistency across the many flyouts, please utilize the following code for
+                implementing the flyout with a header.
               </p>
-
-              <EuiButton
-                iconType="cross"
-                onClick={this.closeFlyout}
-              >
-                Close me
-              </EuiButton>
             </EuiText>
+            <EuiCodeBlock language="html">
+              {htmlCode}
+            </EuiCodeBlock>
           </EuiFlyoutBody>
         </EuiFlyout>
       );

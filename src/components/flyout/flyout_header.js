@@ -5,9 +5,16 @@ import classNames from 'classnames';
 export const EuiFlyoutHeader = ({
   children,
   className,
+  hasBorder,
   ...rest,
 }) => {
-  const classes = classNames('euiFlyoutHeader', className);
+  const classes = classNames(
+    'euiFlyoutHeader',
+    {
+      'euiFlyoutHeader--hasBorder': hasBorder,
+    },
+    className
+  );
 
   return (
     <div
@@ -22,4 +29,12 @@ export const EuiFlyoutHeader = ({
 EuiFlyoutHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Adds a bottom border to the header to divide header from body
+   */
+  hasBorder: PropTypes.bool,
+};
+
+EuiFlyoutHeader.defaultProps = {
+  hasBorder: false,
 };

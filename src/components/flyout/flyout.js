@@ -7,9 +7,8 @@ import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
-import {
-  EuiOverlayMask,
-} from '../overlay_mask';
+import { EuiOverlayMask } from '../overlay_mask';
+import { EuiButtonIcon } from '../button';
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
@@ -32,6 +31,7 @@ export class EuiFlyout extends Component {
     const {
       className,
       children,
+      hideCloseButton,
       onClose,
       ownFocus,
       size,
@@ -44,6 +44,19 @@ export class EuiFlyout extends Component {
       className
     );
 
+    let closeButton;
+    if (onClose && !hideCloseButton) {
+      closeButton = (
+        <EuiButtonIcon
+          className="euiFlyout__closeButton"
+          iconType="cross"
+          color="text"
+          aria-label="Closes this dialog"
+          onClick={onClose}
+        />
+      );
+    }
+
     const flyoutContent = (
       <div
         role="dialog"
@@ -53,6 +66,7 @@ export class EuiFlyout extends Component {
         onKeyDown={this.onKeyDown}
         {...rest}
       >
+        {closeButton}
         {children}
       </div>
     );
@@ -89,8 +103,18 @@ EuiFlyout.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
   size: PropTypes.oneOf(SIZES),
+  /**
+   * Hides the default close button. You must provide another close button somewhere within the flyout.
+   */
+  hideCloseButton: PropTypes.bool,
+  /**
+   * Locks the mouse / keyboard focus to within the flyout
+   */
+  ownFocus: PropTypes.bool,
 };
 
 EuiFlyout.defaultProps = {
   size: 'm',
+  hideCloseButton: false,
+  ownFocus: false,
 };

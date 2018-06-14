@@ -4,9 +4,11 @@ import React, {
 
 import {
   EuiFlyout,
+  EuiFlyoutHeader,
   EuiFlyoutBody,
   EuiButton,
   EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 
 export class FlyoutSize extends Component {
@@ -47,22 +49,18 @@ export class FlyoutSize extends Component {
           size="s"
           aria-labelledby="flyoutSizeTitle"
         >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="s">
+              <h1 id="flyoutSizeTitle">
+                A small flyout
+              </h1>
+            </EuiTitle>
+          </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <h3 id="flyoutSizeTitle">
-                A flyout
-              </h3>
-
               <p>
-                You can use ESC to close this panel, but we could also pass in a close button like so.
+                In small flyouts, it is ok to reduce the header size to <code>s</code>.
               </p>
-
-              <EuiButton
-                iconType="cross"
-                onClick={this.closeFlyout}
-              >
-                Close me
-              </EuiButton>
             </EuiText>
           </EuiFlyoutBody>
         </EuiFlyout>

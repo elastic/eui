@@ -13,4 +13,17 @@ describe('EuiFlyoutHeader', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('border is rendered', () => {
+      const component = render(
+        <EuiFlyoutHeader
+          hasBorder
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+  });
 });
