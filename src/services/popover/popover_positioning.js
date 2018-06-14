@@ -60,29 +60,44 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
 
   let iterationPosition = position;
 
+  let bestFit = -Infinity;
+  let bestPosition = null;
+
   // iterate over the four positions until there's room
   for (let iteration = 0; iteration <= 3; iteration++) {
-    const availableWindowSpace = getAvailableSpace(anchorBoundingBox, windowBoundingBox, buffer, offset, iterationPosition);
-    const availableContainerSpace = getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset, iterationPosition);
-
     const screenCoordinates = getPopoverScreenCoordinates({
       position: iterationPosition,
       anchorBoundingBox,
       popoverBoundingBox,
-      availableWindowSpace,
-      availableContainerSpace,
-      offset
+      windowBoundingBox,
+      containerBoundingBox,
+      offset,
+      buffer
     });
 
-    if (screenCoordinates != null) {
-      // this position works
-      return {
+    if (screenCoordinates.fit > bestFit) {
+      bestFit = screenCoordinates.fit;
+
+      bestPosition = {
+        fit: screenCoordinates.fit,
         position: iterationPosition,
         relativePosition: screenCoordinates.relativePosition,
         top: screenCoordinates.top + window.pageYOffset,
         left: screenCoordinates.left + window.pageXOffset,
       };
+
+      if (bestFit === 1) return bestPosition;
     }
+
+    // if (screenCoordinates != null) {
+    //   // this position works
+    //   return {
+    //     position: iterationPosition,
+    //     relativePosition: screenCoordinates.relativePosition,
+    //     top: screenCoordinates.top + window.pageYOffset,
+    //     left: screenCoordinates.left + window.pageXOffset,
+    //   };
+    // }
 
     if (iteration === 0 || iteration === 2) {
       // iteration 0 checks for the user-desired position
@@ -99,7 +114,7 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
     }
   }
 
-  return null;
+  return bestPosition;
 }
 
 /**
@@ -109,76 +124,89 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
  * @param position {string} the target position, one of ["top", "right", "bottom", "left"]
  * @param anchorBoundingBox {Object} bounding box of the anchor element
  * @param popoverBoundingBox {Object} bounding box of the popover element
- * @param availableWindowSpace {Object} available between anchor and window elements
- * @param availableContainerSpace {Object} available space between anchor and container elements
+ * @param windowBoundingBox {Object} bounding box of the window
+ * @param containerBoundingBox {Object} bounding box of the container
  * @param [offset=0] {number} Distance between the popover and the anchor
+ * @param [buffer=0] {number} Minimum distance between the popover's placement and the container edge
  *
- * @returns {{top: number, left: number, relativePlacement: string}|null} object with top/left position
+ * @returns {{top: number, left: number, relativePlacement: string, fit: number}|null} object with top/left coordinates, the popover's relative position to the anchor, and how well the popover fits in the location (0.0 -> 1.0)
  * coordinates and the popover's relative position, if there is no room in this placement then null
  */
-export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popoverBoundingBox, availableWindowSpace, availableContainerSpace, offset=0 }) {
+export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popoverBoundingBox, windowBoundingBox, containerBoundingBox, offset=0, buffer=0 }) {
+  // To fit the content within both the window and container,
+  // compute the smaller of the two spaces on each edge
+  const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
+  const availableSpace = getAvailableSpace(anchorBoundingBox, combinedBoundingBox, buffer, offset, position);
+
   // ** check if the popover content fits in this position of the anchor
   const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
   const popoverSizeOnPrimaryAxis = popoverBoundingBox[primaryAxisDimension];
-  const fitsInWindow = availableWindowSpace[position] >= popoverSizeOnPrimaryAxis;
-  const fitsInContainer = availableContainerSpace[position] >= popoverSizeOnPrimaryAxis;
 
-  if (fitsInWindow && fitsInContainer) {
-    // ** check if popover content has room on the complementary sides
-    // e.g. if we're popping to top then make sure there's room on the left & right to display
-    const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
-    const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
-    const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
+  // ** check if popover content has room on the complementary sides
+  // e.g. if we're popping to top then make sure there's room on the left & right to display
+  const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
+  const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
+  const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
 
-    const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
-    const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
+  const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
+  const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
 
-    const availableWindowSpaceOnCrossAxis = availableWindowSpace[crossAxisFirstSide] + availableWindowSpace[crossAxisSecondSide];
-    const availableContainerSpaceOnCrossAxis = availableContainerSpace[crossAxisFirstSide] + availableContainerSpace[crossAxisSecondSide];
-    const availableSpaceOnCrossAxis = Math.min(availableWindowSpaceOnCrossAxis, availableContainerSpaceOnCrossAxis) + anchorSizeOnCrossAxis;
+  // there is room to display content in this position,
+  // but it may require an offset along the cross axis
+  const spaceAvailableOnFirstSide = availableSpace[crossAxisFirstSide];
+  const spaceAvailableOnSecondSide = availableSpace[crossAxisSecondSide];
+  const leastAvailableSpace = Math.min(spaceAvailableOnFirstSide, spaceAvailableOnSecondSide);
+  const isShiftTowardFirstSide = spaceAvailableOnFirstSide > spaceAvailableOnSecondSide;
+  const shiftDirection = isShiftTowardFirstSide ? -1 : 1;
 
-    if (availableSpaceOnCrossAxis >= popoverSizeOnCrossAxis) {
-      // there is room to display content in this position,
-      // but it may require an offset along the cross axis
-      const spaceAvailableOnFirstSide = Math.min(availableWindowSpace[crossAxisFirstSide], availableContainerSpace[crossAxisFirstSide]);
-      const spaceAvailableOnSecondSide = Math.min(availableWindowSpace[crossAxisSecondSide], availableContainerSpace[crossAxisSecondSide]);
-      const leastAvailableSpace = Math.min(spaceAvailableOnFirstSide, spaceAvailableOnSecondSide);
-      const isShiftTowardFirstSide = spaceAvailableOnFirstSide > spaceAvailableOnSecondSide;
-      const shiftDirection = isShiftTowardFirstSide ? -1 : 1;
+  const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2; // how much of the popover overflows past one side of the anchor
+  const needsShift = contentOverflowSize > leastAvailableSpace;
+  const amountOfShiftNeeded = needsShift ? contentOverflowSize - leastAvailableSpace : 0;
+  const anchorHalfSize = anchorSizeOnCrossAxis / 2;
+  const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide] - popoverSizeOnCrossAxis / 2;
 
-      const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2; // how much of the popover overflows past one side of the anchor
-      const needsShift = contentOverflowSize > leastAvailableSpace;
-      const amountOfShiftNeeded = needsShift ? contentOverflowSize - leastAvailableSpace : 0;
-      const anchorHalfSize = anchorSizeOnCrossAxis / 2;
-      const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide] - popoverSizeOnCrossAxis / 2;
+  const isOffsetDecreasing = position === 'top' || position === 'left';
 
-      const isOffsetDecreasing = position === 'top' || position === 'left';
+  // start at the top or left edge of the anchor element
+  const primaryAxisPositionName = dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
+  const anchorEdgeOrigin = anchorBoundingBox[primaryAxisPositionName];
 
-      // start at the top or left edge of the anchor element
-      const primaryAxisPositionName = dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
-      const anchorEdgeOrigin = anchorBoundingBox[primaryAxisPositionName];
+  const anchorSizeOnPrimaryAxis = anchorBoundingBox[primaryAxisDimension];
+  const primaryAxisOffset = isOffsetDecreasing ? popoverSizeOnPrimaryAxis : anchorSizeOnPrimaryAxis;
+  const contentOffset = (offset + primaryAxisOffset) * (isOffsetDecreasing ? -1 : 1);
+  const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
 
-      const anchorSizeOnPrimaryAxis = anchorBoundingBox[primaryAxisDimension];
-      const primaryAxisOffset = isOffsetDecreasing ? popoverSizeOnPrimaryAxis : anchorSizeOnPrimaryAxis;
-      const contentOffset = (offset + primaryAxisOffset) * (isOffsetDecreasing ? -1 : 1);
-      const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
-
-      // if the popover shifts too far its position relationship changes, e.g. "top" could become "topLeft"
-      let popoverAlignment = 'center'; // default to the center
-      if (needsShift && amountOfShiftNeeded > anchorHalfSize) {
-        popoverAlignment = shiftDirection === -1 ? crossAxisFirstSide : crossAxisSecondSide;
-      }
-
-      return {
-        relativePosition: `${position}${capitalizeWord(popoverAlignment)}`,
-        [crossAxisFirstSide]: crossAxisPosition,
-        [primaryAxisPositionName]: primaryAxisPosition
-      };
-    }
+  // if the popover shifts too far its position relationship changes, e.g. "top" could become "topLeft"
+  let popoverAlignment = 'center'; // default to the center
+  if (needsShift && amountOfShiftNeeded > anchorHalfSize) {
+    popoverAlignment = shiftDirection === -1 ? crossAxisFirstSide : crossAxisSecondSide;
   }
 
-  // position doesn't have room for content
-  return null;
+  const popoverPlacement = {
+    [crossAxisFirstSide]: crossAxisPosition,
+    [primaryAxisPositionName]: primaryAxisPosition
+  };
+
+  // calculate the fit of the popover in this location
+  // fit is in range 0.0 -> 1.0 and is the percentage of the popover which is visible in this location
+  const fit = getVisibleFit(
+    {
+      top: popoverPlacement.top,
+      right: popoverPlacement.left + popoverBoundingBox.width,
+      bottom: popoverPlacement.top + popoverBoundingBox.height,
+      left: popoverPlacement.left,
+      width: popoverBoundingBox.width,
+      height: popoverBoundingBox.height
+    },
+    combinedBoundingBox
+  );
+
+  return {
+    fit,
+    relativePosition: `${position}${capitalizeWord(popoverAlignment)}`,
+    top: popoverPlacement.top,
+    left: popoverPlacement.left
+  };
 }
 
 /**
@@ -219,4 +247,45 @@ export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffe
     bottom: containerBoundingBox.bottom - anchorBoundingBox.bottom - buffer - (offsetSide === 'bottom' ? offset : 0),
     left: anchorBoundingBox.left - containerBoundingBox.left - buffer - (offsetSide === 'left' ? offset : 0),
   };
+}
+
+/**
+ * Computes the fit (overlap) of the content within the container, fit is in range 0.0 => 1.0
+ * @param contentBoundingBox bounding box of content to calculate fit for
+ * @param containerBoundingBox bounding box of container
+ * @returns {number}
+ */
+export function getVisibleFit(contentBoundingBox, containerBoundingBox) {
+  const intersection = intersectBoundingBoxes(contentBoundingBox, containerBoundingBox);
+
+  if (intersection.left > intersection.right || intersection.top > intersection.top) {
+    // there is no intersection, the boxes are completely separated on at least one axis
+    return 0;
+  }
+
+  const intersectionArea = (intersection.right - intersection.left) * (intersection.bottom - intersection.top);
+  const contentArea = (contentBoundingBox.right - contentBoundingBox.left) * (contentBoundingBox.bottom - contentBoundingBox.top);
+
+  return intersectionArea / contentArea;
+}
+
+/**
+ * Calculates the intersection space between two bounding boxes
+ *
+ * @param firstBox
+ * @param secondBox
+ * @returns {{top: number, right: number, bottom: number, left: number, height: number, width: number}}
+ */
+export function intersectBoundingBoxes(firstBox, secondBox) {
+  const intersection = {
+    top: Math.max(firstBox.top, secondBox.top),
+    right: Math.min(firstBox.right, secondBox.right),
+    bottom: Math.min(firstBox.bottom, secondBox.bottom),
+    left: Math.max(firstBox.left, secondBox.left)
+  };
+
+  intersection.height = Math.max(intersection.bottom - intersection.top, 0);
+  intersection.width = Math.max(intersection.right - intersection.left, 0);
+
+  return intersection;
 }

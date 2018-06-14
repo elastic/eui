@@ -4,7 +4,8 @@ import {
   findPopoverPosition,
   getAvailableSpace,
   getElementBoundingBox,
-  getPopoverScreenCoordinates
+  getPopoverScreenCoordinates,
+  getVisibleFit
 } from './popover_positioning';
 
 function makeBB(top, right, bottom, left) {
@@ -98,39 +99,84 @@ describe('popover_positioning', () => {
     });
   });
 
+  describe('getVisibleFit', () => {
+    it('calculates full visibility when container is large', () => {
+      expect(getVisibleFit(
+        { top: 25, right: 50, bottom: 50, left: 25 },
+        { top: 0, right: 500, bottom: 500, left: 0 },
+      )).toBe(1);
+    });
+
+    it('calculates full visibility when container is the same size', () => {
+      expect(getVisibleFit(
+        { top: 25, right: 50, bottom: 50, left: 25 },
+        { top: 25, right: 50, bottom: 50, left: 25 },
+      )).toBe(1);
+    });
+
+    it('calculates partial visibility when content overflows out of container', () => {
+      expect(getVisibleFit(
+        { top: -5, right: 5, bottom: 5, left: -5 },
+        { top: 0, right: 10, bottom: 10, left: 0 },
+      )).toBe(0.25);
+    });
+
+    it('calculates zero visibility when content is not in the container', () => {
+      expect(getVisibleFit(
+        { top: -10, right: -5, bottom: -5, left: -10 },
+        { top: 0, right: 10, bottom: 10, left: 0 },
+      )).toBe(0);
+    });
+  });
+
   describe('getPopoverScreenCoordinates', () => {
     describe('not enough space', () => {
-      it('returns null when the window does not have space on the primary axis', () => {
+      it('returns correct fit when the window does not have space on the primary axis', () => {
         // no window space on top
         expect(getPopoverScreenCoordinates({
           position: 'top',
           anchorBoundingBox: makeBB(10, 500, 15, 450),
           popoverBoundingBox: makeBB(0, 50, 50, 0),
-          availableWindowSpace: { top: 0, right: 200, bottom: 200, left: 200 },
-          availableContainerSpace: { top: 200, right: 200, bottom: 200, left: 200 }
-        })).toBeNull();
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+        })).toEqual({
+          fit: 0.2,
+          relativePosition: 'topCenter',
+          top: -40,
+          left: 450
+        });
       });
 
-      it('returns null when the window does not have space on the cross-axis', () => {
+      it('returns correct fit when the window does not have space on the cross-axis', () => {
         // enough space on top, but anchor width + available window space isn't enough
         expect(getPopoverScreenCoordinates({
           position: 'top',
           anchorBoundingBox: makeBB(10, 500, 15, 450),
           popoverBoundingBox: makeBB(0, 100, 50, 0),
-          availableWindowSpace: { top: 50, right: 20, bottom: 200, left: 20 },
-          availableContainerSpace: { top: 200, right: 200, bottom: 200, left: 200 }
-        })).toBeNull();
+          windowBoundingBox: makeBB(0, 1024, 768, 430),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+        })).toEqual({
+          fit: 0.2,
+          relativePosition: 'topCenter',
+          top: -40,
+          left: 430
+        });
       });
 
-      it('returns null when the container does not have space on the primary axis', () => {
+      it('returns correct fit when the container does not have space on the primary axis', () => {
         // no window space on top
         expect(getPopoverScreenCoordinates({
           position: 'top',
           anchorBoundingBox: makeBB(10, 500, 15, 450),
           popoverBoundingBox: makeBB(0, 50, 50, 0),
-          availableWindowSpace: { top: 200, right: 200, bottom: 200, left: 200 },
-          availableContainerSpace: { top: 0, right: 200, bottom: 200, left: 200 }
-        })).toBeNull();
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+        })).toEqual({
+          fit: 0.2,
+          relativePosition: 'topCenter',
+          top: -40,
+          left: 450
+        });
       });
 
       it('returns null when the container does not have space on the cross-axis', () => {
@@ -139,9 +185,16 @@ describe('popover_positioning', () => {
           position: 'top',
           anchorBoundingBox: makeBB(10, 500, 15, 450),
           popoverBoundingBox: makeBB(0, 100, 50, 0),
+          windowBoundingBox: makeBB(0, 520, 768, 430),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
           availableWindowSpace: { top: 200, right: 200, bottom: 200, left: 200 },
           availableContainerSpace: { top: 50, right: 20, bottom: 200, left: 20 }
-        })).toBeNull();
+        })).toEqual({
+          fit: 0.18,
+          relativePosition: 'topCenter',
+          top: -40,
+          left: 430
+        });
       });
     });
 
@@ -153,10 +206,11 @@ describe('popover_positioning', () => {
           position: 'right',
           anchorBoundingBox: makeBB(300, 200, 320, 100),
           popoverBoundingBox: makeBB(0, 50, 50, 0),
-          availableWindowSpace: { top: 500, right: 500, bottom: 500, left: 500 },
-          availableContainerSpace: { top: 500, right: 500, bottom: 500, left: 500 },
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
           offset: 20
         })).toEqual({
+          fit: 1,
           relativePosition: 'rightCenter',
           top: 285,
           left: 220
@@ -170,10 +224,11 @@ describe('popover_positioning', () => {
             position: 'right',
             anchorBoundingBox: makeBB(300, 200, 320, 100),
             popoverBoundingBox: makeBB(0, 50, 50, 0),
-            availableWindowSpace: { top: 500, right: 500, bottom: 10, left: 500 },
-            availableContainerSpace: { top: 500, right: 500, bottom: 500, left: 500 },
+            windowBoundingBox: makeBB(0, 1024, 330, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
             offset: 20
           })).toEqual({
+            fit: 1,
             relativePosition: 'rightCenter',
             top: 280,
             left: 220
@@ -184,10 +239,11 @@ describe('popover_positioning', () => {
             position: 'right',
             anchorBoundingBox: makeBB(300, 200, 320, 100),
             popoverBoundingBox: makeBB(0, 50, 50, 0),
-            availableWindowSpace: { top: 0, right: 500, bottom: 500, left: 500 },
-            availableContainerSpace: { top: 500, right: 500, bottom: 500, left: 500 },
+            windowBoundingBox: makeBB(300, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
             offset: 20
           })).toEqual({
+            fit: 1,
             relativePosition: 'rightBottom',
             top: 300,
             left: 220
@@ -202,10 +258,11 @@ describe('popover_positioning', () => {
             position: 'bottom',
             anchorBoundingBox: makeBB(300, 110, 400, 100),
             popoverBoundingBox: makeBB(0, 50, 50, 0),
-            availableWindowSpace: { top: 500, right: 500, bottom: 500, left: 500 },
-            availableContainerSpace: { top: 500, right: 500, bottom: 500, left: 10 },
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 90),
             offset: 35
           })).toEqual({
+            fit: 1,
             relativePosition: 'bottomRight',
             top: 435,
             left: 90
@@ -216,10 +273,13 @@ describe('popover_positioning', () => {
             position: 'top',
             anchorBoundingBox: makeBB(300, 110, 400, 100),
             popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 125, 768, 0),
             availableWindowSpace: { top: 500, right: 500, bottom: 500, left: 500 },
             availableContainerSpace: { top: 500, right: 15, bottom: 500, left: 500 },
             offset: 35
           })).toEqual({
+            fit: 1,
             relativePosition: 'topCenter',
             top: 215,
             left: 75
@@ -254,6 +314,7 @@ describe('popover_positioning', () => {
           container,
           offset: 7
         })).toEqual({
+          fit: 1,
           position: 'top',
           relativePosition: 'topCenter',
           top: 43,
@@ -281,6 +342,7 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          fit: 1,
           position: 'right',
           relativePosition: 'rightBottom',
           top: 100,
@@ -308,6 +370,7 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          fit: 1,
           position: 'top',
           relativePosition: 'topCenter',
           top: 45,
@@ -335,6 +398,7 @@ describe('popover_positioning', () => {
           container,
           offset: 5
         })).toEqual({
+          fit: 1,
           position: 'bottom',
           relativePosition: 'bottomCenter',
           top: 125,
@@ -364,6 +428,7 @@ describe('popover_positioning', () => {
           container,
           offset: 7
         })).toEqual({
+          fit: 1,
           position: 'top',
           relativePosition: 'topCenter',
           top: 143,
