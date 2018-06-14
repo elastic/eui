@@ -115,4 +115,6 @@ EuiFlyout.propTypes = {
 
 EuiFlyout.defaultProps = {
   size: 'm',
+  hideCloseButton: false,
+  ownFocus: false,
 };

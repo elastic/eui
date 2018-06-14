@@ -3,6 +3,11 @@
 - `EuiComboBox` is now decorated with `data-test-subj` selectors for the search input (`comboxBoxSearchInput`), toggle button (`comboBoxToggleListButton`), and clear button (`comboBoxClearButton`) ([#918](https://github.com/elastic/eui/pull/918))
 - `EuiComboBox` now gives focus to the search input when the user clicks the clear button, to prevent focus from defaulting to the body ([#918](https://github.com/elastic/eui/pull/918))
 
+**Non-breaking major changes**
+
+- Added close (`cross`) button as default way to close to `EuiFlyout` when `onClose` is provided ([#925](https://github.com/elastic/eui/pull/925))
+- Fleshed out `EuiFlyoutHeader` for consistency (see docs) ([#925](https://github.com/elastic/eui/pull/925))
+
 **Bug fixes**
 
 - Added `role="dialog"` to `EuiFlyout` to improve screen reader accessibility ([#916](https://github.com/elastic/eui/pull/916))

@@ -34,3 +34,7 @@ EuiFlyoutHeader.propTypes = {
    */
   hasBorder: PropTypes.bool,
 };
+
+EuiFlyoutHeader.defaultProps = {
+  hasBorder: false,
+};
