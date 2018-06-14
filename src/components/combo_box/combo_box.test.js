@@ -6,14 +6,30 @@ import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
 
+let hasComboBoxLostFocus = false;
+
 // This module requires a browser environment, so we'll fake what it returns.
-jest.mock('tabbable', () => () => [{
-  focus: () => {},
-}, {
-  focus: () => {},
-}, {
-  focus: () => {},
-}]);
+jest.mock('tabbable', () => () => {
+  const proxy = new Proxy([], {
+    get: (target, prop) => {
+      // If the consumer is trying to access an element in the array, e.g. [-2], pretend there's
+      // a focusable element there. When it's focused, we're going to assume this means that
+      // the combo box has lost focus.
+      if (prop.match(/-?\d+/)) {
+        return {
+          focus: () => { hasComboBoxLostFocus = true; },
+        };
+      } else {
+        return target[prop];
+      }
+    },
+  });
+  return proxy;
+});
+
+beforeEach(() => {
+  hasComboBoxLostFocus = false;
+});
 
 const options = [{
   label: 'Titan',
@@ -122,7 +138,7 @@ describe('props', () => {
 
 describe('behavior', () => {
   describe('tabbing', () => {
-    test.skip(`off the search input closes the options list if the user isn't navigating the options`, () => {
+    test(`off the search input closes the options list if the user isn't navigating the options`, (done) => {
       const component = mount(
         <EuiComboBox
           options={options}
@@ -139,11 +155,14 @@ describe('behavior', () => {
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
-      // Losing focus will close the options list.
-      expect(findTestSubject(component, 'comboBoxOptionsList')).toBeUndefined();
+      // Losing focus will close the options list. Wait a bit for the list to be removed.
+      setTimeout(() => {
+        expect(hasComboBoxLostFocus).toBe(true);
+        done();
+      }, 10);
     });
 
-    test('off the search input does nothing if the user is navigating the options', () => {
+    test('off the search input does nothing if the user is navigating the options', (done) => {
       const component = mount(
         <EuiComboBox
           options={options}
@@ -164,7 +183,10 @@ describe('behavior', () => {
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
       // List remains open.
-      expect(findTestSubject(component, 'comboBoxOptionsList')).toBeDefined();
+      setTimeout(() => {
+        expect(hasComboBoxLostFocus).toBe(false);
+        done();
+      }, 10);
     });
   });
 

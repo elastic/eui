@@ -134,7 +134,7 @@ export class EuiComboBox extends Component {
     }
 
     const tabbableItems = tabbable(document);
-    console.log('tabbableItems', tabbableItems)
+
     if (document.activeElement === this.searchInput) {
       const searchInputIndex = tabbableItems.indexOf(this.searchInput);
 
