@@ -68,10 +68,9 @@
     background: $euiFormBackgroundColor;
     text-align: center;
     transition:
-      box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in,
-      background-color $euiAnimSpeedSlow ease-in,
-      border-color $euiAnimSpeedSlow ease-in,
-      color $euiAnimSpeedSlow ease-in;
+      box-shadow $euiAnimSpeedNormal ease-in,
+      background $euiAnimSpeedNormal ease-in,
+      color $euiAnimSpeedNormal ease-in;
 
     @at-root {
       .euiFilePicker--compressed#{&} {
