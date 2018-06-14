@@ -83,14 +83,14 @@ const SupportedItemActionType = PropTypes.oneOfType([
   CustomItemActionType
 ]);
 
-const ActionsColumnType = PropTypes.shape({
+export const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
   name: PropTypes.string,
   description: PropTypes.string,
   width: PropTypes.string
 });
 
-export const FieldDataColumnType = PropTypes.shape({
+export const FieldDataColumnTypeShape = {
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -100,7 +100,8 @@ export const FieldDataColumnType = PropTypes.shape({
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
   render: PropTypes.func // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
-});
+};
+export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
 export const ComputedColumnType = PropTypes.shape({
   render: PropTypes.func.isRequired, // (record) => PropTypes.node
