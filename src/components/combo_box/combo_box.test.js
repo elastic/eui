@@ -138,7 +138,7 @@ describe('props', () => {
 
 describe('behavior', () => {
   describe('tabbing', () => {
-    test(`off the search input closes the options list if the user isn't navigating the options`, (done) => {
+    test(`off the search input closes the options list if the user isn't navigating the options`, () => {
       const component = mount(
         <EuiComboBox
           options={options}
@@ -155,14 +155,11 @@ describe('behavior', () => {
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
-      // Losing focus will close the options list. Wait a bit for the list to be removed.
-      setTimeout(() => {
-        expect(hasComboBoxLostFocus).toBe(true);
-        done();
-      }, 10);
+      // Losing focus will close the options list.
+      expect(hasComboBoxLostFocus).toBe(true);
     });
 
-    test('off the search input does nothing if the user is navigating the options', (done) => {
+    test('off the search input does nothing if the user is navigating the options', () => {
       const component = mount(
         <EuiComboBox
           options={options}
@@ -183,10 +180,7 @@ describe('behavior', () => {
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
       // List remains open.
-      setTimeout(() => {
-        expect(hasComboBoxLostFocus).toBe(false);
-        done();
-      }, 10);
+      expect(hasComboBoxLostFocus).toBe(false);
     });
   });
 
