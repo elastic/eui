@@ -3,11 +3,11 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
 import ChartExampleCode from './examples';
 import EmptyExampleCode from './example-empty';
-import AutoAxisChartExampleCode from './example-auto-axis';
+import MultiAxisChartExampleCode from './example_dual_axis';
 import { ExampleCrosshair } from './example-crosshair';
 
 export const XYChartExample = {
-  title: 'General',  
+  title: 'General',
   sections: [
     {
       title: 'Complex example',
@@ -87,7 +87,7 @@ export const XYChartExample = {
       )
     },
     {
-      title: 'Auto Axis',
+      title: 'Multi Axis',
       text: (
         <div>
           <p>
@@ -98,7 +98,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-auto-axis')
+          code: require('!!raw-loader!./example_dual_axis')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -107,7 +107,7 @@ export const XYChartExample = {
       ],
       demo: (
         <div style={{ margin: 60 }}>
-          <AutoAxisChartExampleCode />
+          <MultiAxisChartExampleCode />
         </div>
       )
     }
