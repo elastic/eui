@@ -90,6 +90,7 @@
   font-size: $euiFontSizeS;
   font-family: $euiFontFamily;
   padding: $euiFormControlPadding;
+  line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
   background: $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
