@@ -10,8 +10,8 @@
     }
   },
   "extends": [
-    "@elastic/eslint-config-kibana",
-    "prettier"
+    "prettier",
+    "@elastic/eslint-config-kibana"
   ],
   "plugins": [
     "prettier"
