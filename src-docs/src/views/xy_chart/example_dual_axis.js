@@ -9,9 +9,11 @@ import {
 } from '../../../../src/components';
 import { VISUALIZATION_COLORS } from '../../../../src/services';
 
-const DATA_A = [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }];
-const DATA_B = [{ x: 0, y: 100 }, { x: 1, y: 200 }, { x: 2, y: 150 }, { x: 3, y: 55 }, { x: 5, y: 95 }];
-const DATA_C = [{ x: 0, y: 30 }, { x: 1, y: 45 }, { x: 2, y: 67 }, { x: 3, y: 22 }, { x: 5, y: 44 }];
+
+
+const DATA_A = [{ x: 'A', y: 0 }, { x: 'B', y: 1 }, { x: 'C', y: 2 }, { x: 'D', y: 1 }, { x: 'E', y: 2 }];
+const DATA_B = [{ x: 'A', y: 100 }, { x: 'B', y: 100 }, { x: 'C', y: 150 }, { x: 'D', y: 55 }, { x: 'E', y: 95 }];
+const DATA_C = [{ x: 'A', y: 30 }, { x: 'B', y: 45 }, { x: 'C', y: 67 }, { x: 'D', y: 22 }, { x: 'E', y: 44 }];
 
 const DATA_A_DOMAIN = [-0.5, 3];
 const DATA_B_DOMAIN = [0, 200];
@@ -22,6 +24,7 @@ export default () => (
     width={600}
     height={200}
     xPadding={5}
+    xType="ordinal"
   >
     <EuiLine
       name="DATA A"

@@ -37,12 +37,11 @@ export function getPlotValues(series, width) {
 
   const allCoordinates = _.flatten(series);
 
-  const xMin = d3.min(allCoordinates, d => d.x);
-  const xMax = d3.max(allCoordinates, d => d.x);
+  const xExtent = d3.extent(allCoordinates, d => d.x);
   const yMin = 0;
   const yMax = d3.max(allCoordinates, d => d.y);
 
-  const x = getXScale(xMin, xMax, width);
+  const x = getXScale(xExtent[0], xExtent[1], width);
   const y = getYScale(yMin, yMax);
   const yTickValues = getYTickValues(y.domain()[1]);
   const xTickValues = getYTickValues(x.domain()[1]);

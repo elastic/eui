@@ -20,7 +20,9 @@ exports[`EuiLine all props are rendered 1`] = `
       truncateLegends={false}
       width={600}
       xPadding={0}
+      xType="linear"
       yPadding={0}
+      yType="linear"
     >
       <div>
         <XYPlot
@@ -33,7 +35,9 @@ exports[`EuiLine all props are rendered 1`] = `
           onMouseMove={[Function]}
           width={600}
           xPadding={0}
+          xType="linear"
           yPadding={0}
+          yType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -182,6 +186,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     596,
                   ]
                 }
+                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -195,6 +200,7 @@ exports[`EuiLine all props are rendered 1`] = `
                     0,
                   ]
                 }
+                yType="linear"
               >
                 <g>
                   <LineSeries
@@ -321,6 +327,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -334,6 +341,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -496,6 +504,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -509,6 +518,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -653,6 +663,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -666,6 +677,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <path
                             className="rv-xy-plot__series rv-xy-plot__series--line "
@@ -812,6 +824,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -825,6 +838,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -987,6 +1001,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -1000,6 +1015,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -1144,6 +1160,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -1157,6 +1174,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <path
                             className="rv-xy-plot__series rv-xy-plot__series--line "
@@ -1298,6 +1316,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -1311,6 +1330,7 @@ exports[`EuiLine all props are rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -1468,6 +1488,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -1481,6 +1502,7 @@ exports[`EuiLine all props are rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -1620,6 +1642,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -1633,6 +1656,7 @@ exports[`EuiLine all props are rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <g
                             className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
@@ -1682,118 +1706,6 @@ exports[`EuiLine all props are rendered 1`] = `
                 </g>
               </AbstractSeries>
             </svg>
-            <Crosshair
-              _adjustBy={Array []}
-              _adjustWhat={Array []}
-              _allData={
-                Array [
-                  Array [
-                    Object {
-                      "x": 0,
-                      "y": 5,
-                    },
-                    Object {
-                      "x": 1,
-                      "y": 15,
-                    },
-                  ],
-                ]
-              }
-              angleDomain={Array []}
-              animation={true}
-              colorDomain={Array []}
-              colorRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              fillDomain={Array []}
-              fillRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              getAngle={[Function]}
-              getAngle0={[Function]}
-              getColor={[Function]}
-              getColor0={[Function]}
-              getFill={[Function]}
-              getFill0={[Function]}
-              getOpacity={[Function]}
-              getOpacity0={[Function]}
-              getRadius={[Function]}
-              getRadius0={[Function]}
-              getSize={[Function]}
-              getSize0={[Function]}
-              getStroke={[Function]}
-              getStroke0={[Function]}
-              getX={[Function]}
-              getX0={[Function]}
-              getY={[Function]}
-              getY0={[Function]}
-              innerHeight={196}
-              innerWidth={596}
-              itemsFormat={[Function]}
-              key=".1"
-              marginBottom={2}
-              marginLeft={2}
-              marginRight={2}
-              marginTop={2}
-              opacityDomain={Array []}
-              opacityType="literal"
-              radiusDomain={Array []}
-              sizeDomain={Array []}
-              sizeRange={
-                Array [
-                  1,
-                  10,
-                ]
-              }
-              strokeDomain={Array []}
-              strokeRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              style={
-                Object {
-                  "line": Object {
-                    "background": "rgb(218, 218, 218)",
-                  },
-                }
-              }
-              titleFormat={[Function]}
-              values={Array []}
-              xDomain={
-                Array [
-                  0,
-                  1,
-                ]
-              }
-              xPadding={0}
-              xRange={
-                Array [
-                  0,
-                  596,
-                ]
-              }
-              yDomain={
-                Array [
-                  5,
-                  15,
-                ]
-              }
-              yPadding={0}
-              yRange={
-                Array [
-                  196,
-                  0,
-                ]
-              }
-            />
           </div>
         </XYPlot>
       </div>
@@ -1828,7 +1740,9 @@ exports[`EuiLine is rendered 1`] = `
       truncateLegends={false}
       width={600}
       xPadding={0}
+      xType="linear"
       yPadding={0}
+      yType="linear"
     >
       <div
         aria-label="aria-label"
@@ -1845,7 +1759,9 @@ exports[`EuiLine is rendered 1`] = `
           onMouseMove={[Function]}
           width={600}
           xPadding={0}
+          xType="linear"
           yPadding={0}
+          yType="linear"
         >
           <div
             className="rv-xy-plot "
@@ -1990,6 +1906,7 @@ exports[`EuiLine is rendered 1`] = `
                     596,
                   ]
                 }
+                xType="linear"
                 yDomain={
                   Array [
                     5,
@@ -2003,6 +1920,7 @@ exports[`EuiLine is rendered 1`] = `
                     0,
                   ]
                 }
+                yType="linear"
               >
                 <g>
                   <LineSeries
@@ -2127,6 +2045,7 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -2140,6 +2059,7 @@ exports[`EuiLine is rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -2300,6 +2220,7 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -2313,6 +2234,7 @@ exports[`EuiLine is rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -2455,6 +2377,7 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -2468,6 +2391,7 @@ exports[`EuiLine is rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <path
                             className="rv-xy-plot__series rv-xy-plot__series--line "
@@ -2613,6 +2537,7 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -2626,6 +2551,7 @@ exports[`EuiLine is rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -2787,6 +2713,7 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -2800,6 +2727,7 @@ exports[`EuiLine is rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -2943,6 +2871,7 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -2956,6 +2885,7 @@ exports[`EuiLine is rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <path
                             className="rv-xy-plot__series rv-xy-plot__series--line "
@@ -3095,6 +3025,7 @@ exports[`EuiLine is rendered 1`] = `
                         596,
                       ]
                     }
+                    xType="linear"
                     yDomain={
                       Array [
                         5,
@@ -3108,6 +3039,7 @@ exports[`EuiLine is rendered 1`] = `
                         0,
                       ]
                     }
+                    yType="linear"
                   >
                     <Animation
                       _adjustBy={Array []}
@@ -3263,6 +3195,7 @@ exports[`EuiLine is rendered 1`] = `
                           596,
                         ]
                       }
+                      xType="linear"
                       yDomain={
                         Array [
                           5,
@@ -3276,6 +3209,7 @@ exports[`EuiLine is rendered 1`] = `
                           0,
                         ]
                       }
+                      yType="linear"
                     >
                       <Motion
                         defaultStyle={
@@ -3413,6 +3347,7 @@ exports[`EuiLine is rendered 1`] = `
                               596,
                             ]
                           }
+                          xType="linear"
                           yDomain={
                             Array [
                               5,
@@ -3426,6 +3361,7 @@ exports[`EuiLine is rendered 1`] = `
                               0,
                             ]
                           }
+                          yType="linear"
                         >
                           <g
                             className="rv-xy-plot__series rv-xy-plot__series--mark undefined"
@@ -3475,118 +3411,6 @@ exports[`EuiLine is rendered 1`] = `
                 </g>
               </AbstractSeries>
             </svg>
-            <Crosshair
-              _adjustBy={Array []}
-              _adjustWhat={Array []}
-              _allData={
-                Array [
-                  Array [
-                    Object {
-                      "x": 0,
-                      "y": 5,
-                    },
-                    Object {
-                      "x": 1,
-                      "y": 15,
-                    },
-                  ],
-                ]
-              }
-              angleDomain={Array []}
-              animation={true}
-              colorDomain={Array []}
-              colorRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              fillDomain={Array []}
-              fillRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              getAngle={[Function]}
-              getAngle0={[Function]}
-              getColor={[Function]}
-              getColor0={[Function]}
-              getFill={[Function]}
-              getFill0={[Function]}
-              getOpacity={[Function]}
-              getOpacity0={[Function]}
-              getRadius={[Function]}
-              getRadius0={[Function]}
-              getSize={[Function]}
-              getSize0={[Function]}
-              getStroke={[Function]}
-              getStroke0={[Function]}
-              getX={[Function]}
-              getX0={[Function]}
-              getY={[Function]}
-              getY0={[Function]}
-              innerHeight={196}
-              innerWidth={596}
-              itemsFormat={[Function]}
-              key=".1"
-              marginBottom={2}
-              marginLeft={2}
-              marginRight={2}
-              marginTop={2}
-              opacityDomain={Array []}
-              opacityType="literal"
-              radiusDomain={Array []}
-              sizeDomain={Array []}
-              sizeRange={
-                Array [
-                  1,
-                  10,
-                ]
-              }
-              strokeDomain={Array []}
-              strokeRange={
-                Array [
-                  "#EF5D28",
-                  "#FF9833",
-                ]
-              }
-              style={
-                Object {
-                  "line": Object {
-                    "background": "rgb(218, 218, 218)",
-                  },
-                }
-              }
-              titleFormat={[Function]}
-              values={Array []}
-              xDomain={
-                Array [
-                  0,
-                  1,
-                ]
-              }
-              xPadding={0}
-              xRange={
-                Array [
-                  0,
-                  596,
-                ]
-              }
-              yDomain={
-                Array [
-                  5,
-                  15,
-                ]
-              }
-              yPadding={0}
-              yRange={
-                Array [
-                  196,
-                  0,
-                ]
-              }
-            />
           </div>
         </XYPlot>
       </div>

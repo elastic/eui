@@ -1,87 +1,27 @@
 import React, { PureComponent } from 'react';
-import { XYPlot, makeWidthFlexible, Crosshair, AbstractSeries } from 'react-vis';
+import { XYPlot, makeWidthFlexible, AbstractSeries } from 'react-vis';
 import PropTypes from 'prop-types';
-import { getPlotValues } from './utils';
 import Highlight from './highlight';
+import { EuiCrosshair } from './crosshair';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 
-const NO_DATA_VALUE = '~~NODATATODISPLAY~~';
-
 export class XYChart extends PureComponent {
   state = {
-    crosshairValues: [],
+    mouseOver: false,
   };
-  seriesItems = [];
   colorIterator = 0;
-  lastCrosshairX = 0;
-  _xyPlotRef = React.createRef();;
+  _xyPlotRef = React.createRef();
 
   _onMouseLeave = () => {
-    this.setState({ crosshairValues: [], lastCrosshairIndex: null });
+    // TODO we need to find a better way to trigger a mouse leave event
+    // for the crosshair
+    this.setState({ mouseOver: false });
   }
 
   _onMouseMove = (e) => {
-    e.persist();
-    this._updateCrosshairValues({
-      boundingClientRect: e.currentTarget.getBoundingClientRect(),
-      clientX: e.clientX
-    });
-  }
-
-  _updateCrosshairValues = ({ boundingClientRect, clientX }) => {
-    // Calculate the range of the X axis
-    const chartData = this._xyPlotRef.current.state.data.filter(d => d !== undefined)
-    const plotValues = getPlotValues(chartData, this.props.width);
-    const xDomain = plotValues.x.domain();
-    const maxChartXValue = (xDomain[1] - xDomain[0]) + 1;
-
-    const innerChartWidth = this._xyPlotRef.current._getDefaultScaleProps(this._xyPlotRef.current.props).xRange[1]
-
-    const mouseX = clientX - boundingClientRect.left;
-    const xAxisesBucketWidth = innerChartWidth / maxChartXValue;
-    const bucketX = Math.floor(mouseX / xAxisesBucketWidth)
-
-    if (bucketX !== this.lastCrosshairX) {
-      if(this.props.onCrosshairUpdate) this.props.onCrosshairUpdate(bucketX)
-      if(!this.props.crosshairX) {
-        this.lastCrosshairX = bucketX;
-
-        const crosshairValues = this._getAllSeriesFromDataAtIndex(chartData, bucketX)
-
-        this.setState({
-          crosshairValues
-        });
-      }
-    }
-  }
-
-  _getAllSeriesFromDataAtIndex = (chartData, xBucket) => {
-    const chartDataForXValue = chartData.map(series => series.filter(seriesData => {
-      return seriesData.x === xBucket
-    })[0])
-
-    if(chartDataForXValue.length === 0) {
-      chartDataForXValue.push({ x: xBucket, y: NO_DATA_VALUE })
-    }
-
-    return chartDataForXValue;
-  };
-
-  _itemsFormat = (values) => {
-    return values.map((v, i) => {
-      if (v) {
-        if(v.y === NO_DATA_VALUE) {
-          return {
-            title: 'No Data',
-          };
-        }
-        return {
-          value: v.y,
-          title: this.seriesItems[i] || 'Other',
-        };
-      }
-    });
+    e.preventDefault();
+    this.setState({ mouseOver: true });
   }
 
   _renderChildren = (child, i) => {
@@ -95,8 +35,6 @@ export class XYChart extends PureComponent {
       id: `chart-${i}`,
     };
 
-    this.seriesItems.push(child.props.name);
-
     if (!child.props.color) {
       props.color = VISUALIZATION_COLORS[this.colorIterator];
 
@@ -107,14 +45,6 @@ export class XYChart extends PureComponent {
     return React.cloneElement(child, props);
   }
 
-  _getCrosshairValues = (crosshairX) => {
-    if(!crosshairX) return this.state.crosshairValues
-
-    const chartData = this._xyPlotRef.current.state.data.filter(d => d !== undefined)
-    return this._getAllSeriesFromDataAtIndex(chartData, crosshairX)
-  }
-
-
   render() {
     const {
       width,
@@ -123,7 +53,6 @@ export class XYChart extends PureComponent {
       yType,
       stackBy,
       errorText,
-      crosshairX,
       showTooltips,
       onSelectEnd,
       children,
@@ -166,13 +95,8 @@ export class XYChart extends PureComponent {
 
           {React.Children.map(children, this._renderChildren)}
 
-          {showTooltips && (
-            <Crosshair
-              values={this._getCrosshairValues(crosshairX)}
-              style={{ line: { background: 'rgb(218, 218, 218)' } }}
-              titleFormat={() => null}
-              itemsFormat={this._itemsFormat}
-            />
+          {showTooltips && this.state.mouseOver && (
+            <EuiCrosshair />
           )}
 
           {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
@@ -214,6 +138,8 @@ XYChart.defaultProps = {
   showTooltips: true,
   yPadding: 0,
   xPadding: 0,
+  xType: 'linear',
+  yType: 'linear',
 };
 
 export default makeWidthFlexible(XYChart);

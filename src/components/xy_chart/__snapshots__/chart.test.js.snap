@@ -105,6 +105,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
           ],
         ]
       }
+      xType="linear"
       yPadding={0}
       yTicks={
         Array [
@@ -118,6 +119,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
           ],
         ]
       }
+      yType="linear"
     >
       <StatusText
         height={200}
