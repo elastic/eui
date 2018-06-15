@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import {
   EuiBasicTable,
   SelectionType,
-  ItemIdType, FieldDataColumnTypeShape, ComputedColumnType, ActionsColumnType,
+  ItemIdType,
+  FieldDataColumnTypeShape,
+  ComputedColumnType,
+  ActionsColumnType,
 } from './basic_table';
 import {
   defaults as paginationBarDefaults
