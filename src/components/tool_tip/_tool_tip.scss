@@ -1,3 +1,7 @@
+/*
+ * 1. Shift arrow 1px more than half it's size to account for border radius
+ */
+
 .euiToolTip {
   @include euiBottomShadow;
   @include euiFontSizeS();
@@ -12,15 +16,21 @@
   animation: euiToolTipTop $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
   z-index: $euiZLevel9;
 
+  // Custom sizing
+  $arrowSize: $euiSizeM;
+  $arrowPlusSize: (($arrowSize/2) + 1px) * -1; /* 1 */
+  $arrowMinusSize: (($arrowSize/2) - 1px) * -1; /* 1 */
+
   .euiToolTip__arrow {
     content: "";
     position: absolute;
-    transform: translateY(-50%) rotateZ(45deg);
     transform-origin: center;
     border-radius: 2px;
     background-color: tintOrShade($euiColorFullShade, 25%, 90%);
-    width: $euiSize;
-    height: $euiSize;
+    width: $arrowSize;
+    height: $arrowSize;
+
+    transform: translateY($arrowPlusSize) rotateZ(45deg); /* 1 */
   }
 
   // Positions the arrow and animates in from the same side.
@@ -28,7 +38,7 @@
     animation-name: euiToolTipRight;
 
     .euiToolTip__arrow {
-      transform: translateX(-50%) rotateZ(45deg);
+      transform: translateX($arrowMinusSize) rotateZ(45deg); /* 1 */
     }
   }
 
@@ -36,7 +46,7 @@
     animation-name: euiToolTipBottom;
 
     .euiToolTip__arrow {
-      transform: translateY(-50%) rotateZ(45deg);
+      transform: translateY($arrowMinusSize) rotateZ(45deg); /* 1 */
     }
   }
 
@@ -44,7 +54,7 @@
     animation-name: euiToolTipLeft;
 
     .euiToolTip__arrow {
-      transform: translateX(-50%) rotateZ(45deg);
+      transform: translateX($arrowPlusSize) rotateZ(45deg); /* 1 */
     }
   }
 
