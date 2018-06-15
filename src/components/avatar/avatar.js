@@ -74,7 +74,7 @@ export const EuiAvatar = ({
   const textColor = isColorDark(...hexToRgb(assignedColor)) ? '#FFFFFF' : '#000000';
 
   const avatarStyle = {
-    backgroundImage: imageUrl ? 'url(' + imageUrl + ')' : 'none',
+    backgroundImage: imageUrl ? `url(${  imageUrl  })` : 'none',
     backgroundColor: assignedColor,
     color: textColor,
   };
