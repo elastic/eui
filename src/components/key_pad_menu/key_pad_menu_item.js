@@ -51,7 +51,8 @@ const commonPropTypes = {
   betaBadgeTooltipContent: PropTypes.node,
 };
 
-export const EuiKeyPadMenuItem = ({ href, label, children, className, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
+export const EuiKeyPadMenuItem = ({ href, label, children, className, betaBadgeLabel,
+  betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
@@ -76,7 +77,8 @@ EuiKeyPadMenuItem.propTypes = ({ ...{
   href: PropTypes.string,
 }, ...commonPropTypes });
 
-export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
+export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, betaBadgeLabel,
+  betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
   const classes = classNames(
     'euiKeyPadMenuItem',
     {

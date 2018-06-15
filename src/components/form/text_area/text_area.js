@@ -43,7 +43,7 @@ export const EuiTextArea = ({
 
   if (rows) {
     definedRows = rows;
-  } else if (compressed){
+  } else if (compressed) {
     definedRows = 3;
   } else {
     definedRows = 6;

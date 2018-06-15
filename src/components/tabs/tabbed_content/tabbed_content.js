@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
@@ -55,12 +55,12 @@ export class EuiTabbedContent extends Component {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
-      onTabClick(selectedTab)
+      onTabClick(selectedTab);
     }
 
     // Only track selection state if it's not controlled externally.
     if (!externalSelectedTab) {
-      this.setState({ selectedTab })
+      this.setState({ selectedTab });
     }
   };
 
@@ -76,12 +76,12 @@ export class EuiTabbedContent extends Component {
     } = this.props;
 
     // Allow the consumer to control tab selection.
-    const selectedTab = externalSelectedTab || this.state.selectedTab
+    const selectedTab = externalSelectedTab || this.state.selectedTab;
 
     const {
       content: selectedTabContent,
       id: selectedTabId,
-    } = selectedTab
+    } = selectedTab;
 
     return (
       <div className={className} {...rest}>
@@ -92,7 +92,7 @@ export class EuiTabbedContent extends Component {
               name,
               content, // eslint-disable-line no-unused-vars
               ...tabProps
-            } = tab
+            } = tab;
             const props = {
               key: id,
               id,
@@ -107,13 +107,13 @@ export class EuiTabbedContent extends Component {
         </EuiTabs>
 
         <div
-          role='tabpanel'
+          role="tabpanel"
           id={`${this.rootId}-${selectedTabId}`}
           aria-labelledby={selectedTabId}
         >
           {selectedTabContent}
         </div>
       </div>
-    )
+    );
   }
 }

@@ -42,7 +42,7 @@ export const AvatarExample = {
     ),
     props: { EuiAvatar },
     demo: <Avatar />,
-  },{
+  }, {
     title: 'Initials',
     source: [{
       type: GuideSectionTypes.JS,

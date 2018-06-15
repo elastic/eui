@@ -157,7 +157,7 @@ export class FlyoutComplicated extends Component {
             <EuiText color="subdued">
               <p>Put navigation items in the header, and cross tab actions in a footer.</p>
             </EuiText>
-            <EuiTabs style={{ marginBottom: "-25px" }}>
+            <EuiTabs style={{ marginBottom: '-25px' }}>
               {this.renderTabs()}
             </EuiTabs>
           </EuiFlyoutHeader>

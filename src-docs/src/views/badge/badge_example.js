@@ -107,7 +107,8 @@ export const BadgeExample = {
         </p>
         <p>
           They can also be used in conjunction
-          with <EuiLink href="/#/display/card">EuiCards</EuiLink> and <EuiLink href="/#/navigation/key-pad-menu">EuiKeyPadMenuItems</EuiLink>.
+          with <EuiLink href="/#/display/card">EuiCards</EuiLink>
+          and <EuiLink href="/#/navigation/key-pad-menu">EuiKeyPadMenuItems</EuiLink>.
         </p>
       </div>
     ),

@@ -108,7 +108,7 @@ export class EuiFilePicker extends Component {
               type="cross"
             />
           </button>
-        )
+        );
       } else {
         clearButton = (
           <EuiButtonEmpty

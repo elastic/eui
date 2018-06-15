@@ -29,7 +29,7 @@ export const EuiEmptyPrompt = ({
         <EuiIcon type={iconType} size="xxl" color={iconColor} />
         <EuiSpacer size="s" />
       </Fragment>
-    )
+    );
   }
 
   let content;
@@ -45,7 +45,7 @@ export const EuiEmptyPrompt = ({
           </EuiTitle>
           <EuiSpacer size="m" />
         </Fragment>
-      )
+      );
     }
 
     let bodyEl;
@@ -58,7 +58,7 @@ export const EuiEmptyPrompt = ({
           </EuiText>
           <EuiSpacer size="l" />
         </Fragment>
-      )
+      );
     }
 
     content = (
@@ -66,7 +66,7 @@ export const EuiEmptyPrompt = ({
         {titleEl}
         {bodyEl}
       </EuiTextColor>
-    )
+    );
   }
 
   let actionsEl;
@@ -88,9 +88,9 @@ export const EuiEmptyPrompt = ({
             </EuiFlexItem>
           ))}
         </EuiFlexGroup>
-      )
+      );
     } else {
-      actionsRow = actions
+      actionsRow = actions;
     }
 
     actionsEl = (
@@ -98,7 +98,7 @@ export const EuiEmptyPrompt = ({
         <EuiSpacer size="s" />
         {actionsRow}
       </Fragment>
-    )
+    );
   }
 
   return (
@@ -128,5 +128,5 @@ EuiEmptyPrompt.propTypes = {
 };
 
 EuiEmptyPrompt.defaultProps = {
-  iconColor: "subdued",
+  iconColor: 'subdued',
 };

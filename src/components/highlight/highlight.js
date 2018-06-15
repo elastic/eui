@@ -15,7 +15,7 @@ const highlight = (searchSubject, searchValue, isStrict = false) => {
   }
 
   const preMatch = searchSubject.substr(0, indexOfMatch);
-  const match = searchSubject.substr(indexOfMatch, searchValue.length)
+  const match = searchSubject.substr(indexOfMatch, searchValue.length);
   const postMatch = searchSubject.substr(indexOfMatch + searchValue.length);
 
   return (
@@ -23,7 +23,7 @@ const highlight = (searchSubject, searchValue, isStrict = false) => {
       {preMatch}<strong>{match}</strong>{postMatch}
     </Fragment>
   );
-}
+};
 
 export const EuiHighlight = ({
   children,

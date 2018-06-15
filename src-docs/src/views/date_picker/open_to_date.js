@@ -33,7 +33,7 @@ export default class extends Component {
         <EuiDatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
-          openToDate={moment("1993-09-28")}
+          openToDate={moment('1993-09-28')}
           placeholder="Back to 1993"
         />
       </EuiFormRow>

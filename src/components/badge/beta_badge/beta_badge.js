@@ -63,9 +63,9 @@ export const EuiBetaBadge = ({
       >
         {icon || label}
       </span>
-    )
+    );
   }
-}
+};
 
 EuiBetaBadge.propTypes = {
   className: PropTypes.string,
@@ -94,7 +94,7 @@ EuiBetaBadge.propTypes = {
    * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   title: PropTypes.string,
-}
+};
 
 EuiBetaBadge.defaultProps = {
   tooltipPosition: 'top',

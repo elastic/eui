@@ -132,14 +132,15 @@ export class Table extends Component {
       >
         Load Users
       </EuiButton>
-    ), (
-      <EuiButton
-        key="loadUsersError"
-        onClick={this.loadUsersWithError.bind(this)}
-        isDisabled={this.state.loading}
-      >
-        Load Users (Error)
-      </EuiButton>
+    ),
+      (
+        <EuiButton
+          key="loadUsersError"
+          onClick={this.loadUsersWithError.bind(this)}
+          isDisabled={this.state.loading}
+        >
+      Load Users (Error)
+        </EuiButton>
       )];
   }
 

@@ -26,6 +26,6 @@ describe('EuiText', () => {
 
         expect(component).toMatchSnapshot();
       });
-    })
+    });
   });
 });

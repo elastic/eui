@@ -31,7 +31,7 @@ export default class extends Component {
   render() {
 
     let button;
-    if (this.state.status === "incomplete") {
+    if (this.state.status === 'incomplete') {
       button = (
         <EuiButton onClick={this.handleComplete}>You complete me</EuiButton>
       );

@@ -233,27 +233,27 @@ export const DatePickerExample = {
       </p>
     ),
     demo: <Inline />,
+  }, {
+    title: 'Custom classes',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: classesSource,
     }, {
-      title: 'Custom classes',
-      source: [{
-        type: GuideSectionTypes.JS,
-        code: classesSource,
-      }, {
-        type: GuideSectionTypes.HTML,
-        code: classesHtml,
-      }],
-      text: (
-        <div>
-          <p>
+      type: GuideSectionTypes.HTML,
+      code: classesHtml,
+    }],
+    text: (
+      <div>
+        <p>
             Custom classes can be passed to various bits of the calendar and input.
-          </p>
-          <ul>
-            <li><EuiCode>className</EuiCode> will pass onto the input.</li>
-            <li><EuiCode>calendarClassName</EuiCode> will pass onto the calendar itself.</li>
-            <li><EuiCode>dayClassName</EuiCode> will pass onto specificed days.</li>
-          </ul>
-        </div>
-      ),
-      demo: <Classes />,
+        </p>
+        <ul>
+          <li><EuiCode>className</EuiCode> will pass onto the input.</li>
+          <li><EuiCode>calendarClassName</EuiCode> will pass onto the calendar itself.</li>
+          <li><EuiCode>dayClassName</EuiCode> will pass onto specificed days.</li>
+        </ul>
+      </div>
+    ),
+    demo: <Classes />,
   }],
 };

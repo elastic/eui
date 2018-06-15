@@ -47,7 +47,7 @@ export const EuiStepHorizontal = ({
     }
 
     onClick(e);
-  }
+  };
 
   const buttonTitle = `Step ${step}: ${title}${titleAppendix}`;
 

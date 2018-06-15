@@ -43,7 +43,7 @@ export default class extends Component {
         &emsp;
 
         <EuiButtonToggle
-          label={this.state.toggle1On ? "I'm a filled toggle" : "I'm a primary toggle"}
+          label={this.state.toggle1On ? 'I\'m a filled toggle' : 'I\'m a primary toggle'}
           fill={this.state.toggle1On}
           onChange={this.onToggle1Change}
         />

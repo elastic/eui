@@ -132,7 +132,7 @@ export const astToEsQueryString = (ast) => {
 
   return ast.clauses.map(clause => {
     if (AST.Field.isInstance(clause)) {
-      return emitFieldClause(clause)
+      return emitFieldClause(clause);
     }
     if (AST.Term.isInstance(clause)) {
       return emitTermClause(clause);

@@ -110,7 +110,7 @@ export class EuiComboBoxInput extends Component {
         >
           {label}
         </EuiComboBoxPill>
-      )
+      );
     });
 
     let removeOptionMessage;

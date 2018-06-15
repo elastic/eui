@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 const responsiveSizesToClassNameMap = {
   xs: 'eui-hideFor--xs',
-  s:  'eui-hideFor--s',
-  m:  'eui-hideFor--m',
-  l:  'eui-hideFor--l',
-  xl:  'eui-hideFor--xl',
-}
+  s: 'eui-hideFor--s',
+  m: 'eui-hideFor--m',
+  l: 'eui-hideFor--l',
+  xl: 'eui-hideFor--xl',
+};
 
 export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
@@ -19,7 +19,7 @@ export const EuiHideFor = ({
   ...rest,
 }) => {
 
-  const sizingClasses = sizes.map(function(item){
+  const sizingClasses = sizes.map(function (item) {
     return responsiveSizesToClassNameMap[item];
   });
 
