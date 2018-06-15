@@ -18,6 +18,7 @@ No public interface changes since `0.0.53`.
 
 - Added `role="dialog"` to `EuiFlyout` to improve screen reader accessibility ([#916](https://github.com/elastic/eui/pull/916))
 - Default sort comparator (used by `EuiInMemoryTable`) now handles `null` and `undefined` values ([#922](https://github.com/elastic/eui/pull/922))
+- `EuiTabbedContent` now updates dynamic tab content when used as an uncontrolled component ([#931](https://github.com/elastic/eui/pull/931))
 
 ## [`0.0.52`](https://github.com/elastic/eui/tree/v0.0.52)
 
