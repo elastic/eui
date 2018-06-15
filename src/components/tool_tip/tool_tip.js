@@ -30,6 +30,7 @@ export class EuiToolTip extends Component {
       hasFocus: false,
       calculatedPosition: this.props.position,
       toolTipStyles: {},
+      arrowStyles: {},
       id: this.props.id || makeId(),
     };
   }
@@ -45,12 +46,15 @@ export class EuiToolTip extends Component {
   positionToolTip = () => {
     const requestedPosition = this.props.position;
 
-    const { position, left, top } = findPopoverPosition({
+    const { position, left, top, arrow } = findPopoverPosition({
       anchor: this.anchor,
       popover: this.popover,
       position: requestedPosition,
       offset: 16, // offset popover 16px from the anchor
-      buffer: 4 // ensure at least 4px between popover and screen boundary
+      arrowConfig: {
+        arrowWidth: 14,
+        arrowBuffer: 4
+      }
     });
 
     const toolTipStyles = {
@@ -62,6 +66,7 @@ export class EuiToolTip extends Component {
       visible: true,
       calculatedPosition: position,
       toolTipStyles,
+      arrowStyles: arrow,
     });
   };
 
@@ -103,6 +108,8 @@ export class EuiToolTip extends Component {
       ...rest
     } = this.props;
 
+    const { arrowStyles, id, toolTipStyles, visible } = this.state;
+
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
@@ -115,19 +122,20 @@ export class EuiToolTip extends Component {
     );
 
     let tooltip;
-    if (this.state.visible) {
+    if (visible) {
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
             className={classes}
-            style={this.state.toolTipStyles}
+            style={toolTipStyles}
             positionToolTip={this.positionToolTip}
             popoverRef={this.setPopoverRef}
             title={title}
-            id={this.state.id}
+            id={id}
             role="tooltip"
             {...rest}
           >
+            <div style={arrowStyles} className="euiToolTip__arrow"/>
             {content}
           </EuiToolTipPopover>
         </EuiPortal>

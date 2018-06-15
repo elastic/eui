@@ -141,7 +141,6 @@ describe('popover_positioning', () => {
           containerBoundingBox: makeBB(0, 1024, 768, 0),
         })).toEqual({
           fit: 0.2,
-          relativePosition: 'topCenter',
           top: -40,
           left: 450
         });
@@ -157,7 +156,6 @@ describe('popover_positioning', () => {
           containerBoundingBox: makeBB(0, 1024, 768, 0),
         })).toEqual({
           fit: 0.2,
-          relativePosition: 'topCenter',
           top: -40,
           left: 430
         });
@@ -173,7 +171,6 @@ describe('popover_positioning', () => {
           containerBoundingBox: makeBB(0, 1024, 768, 0),
         })).toEqual({
           fit: 0.2,
-          relativePosition: 'topCenter',
           top: -40,
           left: 450
         });
@@ -191,7 +188,6 @@ describe('popover_positioning', () => {
           availableContainerSpace: { top: 50, right: 20, bottom: 200, left: 20 }
         })).toEqual({
           fit: 0.18,
-          relativePosition: 'topCenter',
           top: -40,
           left: 430
         });
@@ -211,7 +207,6 @@ describe('popover_positioning', () => {
           offset: 20
         })).toEqual({
           fit: 1,
-          relativePosition: 'rightCenter',
           top: 285,
           left: 220
         });
@@ -229,7 +224,6 @@ describe('popover_positioning', () => {
             offset: 20
           })).toEqual({
             fit: 1,
-            relativePosition: 'rightCenter',
             top: 280,
             left: 220
           });
@@ -244,7 +238,6 @@ describe('popover_positioning', () => {
             offset: 20
           })).toEqual({
             fit: 1,
-            relativePosition: 'rightBottom',
             top: 300,
             left: 220
           });
@@ -263,7 +256,6 @@ describe('popover_positioning', () => {
             offset: 35
           })).toEqual({
             fit: 1,
-            relativePosition: 'bottomRight',
             top: 435,
             left: 90
           });
@@ -275,15 +267,54 @@ describe('popover_positioning', () => {
             popoverBoundingBox: makeBB(0, 50, 50, 0),
             windowBoundingBox: makeBB(0, 1024, 768, 0),
             containerBoundingBox: makeBB(0, 125, 768, 0),
-            availableWindowSpace: { top: 500, right: 500, bottom: 500, left: 500 },
-            availableContainerSpace: { top: 500, right: 15, bottom: 500, left: 500 },
             offset: 35
           })).toEqual({
             fit: 1,
-            relativePosition: 'topCenter',
             top: 215,
             left: 75
           });
+        });
+      });
+    });
+
+    describe('arrow positioning', () => {
+      it('calculates the position for the arrow', () => {
+        expect(getPopoverScreenCoordinates({
+          position: 'top',
+          anchorBoundingBox: makeBB(100, 100, 100, 0),
+          popoverBoundingBox: makeBB(0, 50, 50, 0),
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+          offset: 10,
+          arrowConfig: { arrowWidth: 5, arrowBuffer: 0 }
+        })).toEqual({
+          fit: 1,
+          top: 40,
+          left: 25,
+          arrow: {
+            top: 50,
+            left: 22.5
+          }
+        });
+      });
+
+      it('respects the arrow buffer', () => {
+        expect(getPopoverScreenCoordinates({
+          position: 'top',
+          anchorBoundingBox: makeBB(45, 55, 55, 45),
+          popoverBoundingBox: makeBB(0, 50, 50, 0),
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 40),
+          offset: 10,
+          arrowConfig: { arrowWidth: 5, arrowBuffer: 10 }
+        })).toEqual({
+          fit: 0.63,
+          top: -15,
+          left: 35,
+          arrow: {
+            top: 50,
+            left: 12.5
+          }
         });
       });
     });
@@ -316,7 +347,6 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'top',
-          relativePosition: 'topCenter',
           top: 43,
           left: 85
         });
@@ -344,7 +374,6 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'right',
-          relativePosition: 'rightBottom',
           top: 100,
           left: 155
         });
@@ -372,7 +401,6 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'top',
-          relativePosition: 'topCenter',
           top: 45,
           left: 85
         });
@@ -400,7 +428,6 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'bottom',
-          relativePosition: 'bottomCenter',
           top: 125,
           left: 85
         });
@@ -430,7 +457,6 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'top',
-          relativePosition: 'topCenter',
           top: 143,
           left: 100
         });

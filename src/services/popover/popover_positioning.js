@@ -1,5 +1,4 @@
 import { findDOMNode } from 'react-dom';
-import { capitalizeWord } from '../text';
 
 const relatedDimension = {
   top: 'height',
@@ -35,14 +34,15 @@ const positionSubstitues = {
  * @param anchor {HTMLElement|React.Component} Element to anchor the popover to
  * @param popover {HTMLElement|React.Component} Element containing the popover content
  * @param position {string} Position the user wants. One of ["top", "right", "bottom", "left"]
- * @param [buffer=0] {number} Minimum distance between the popover and the bounding container
+ * @param [buffer=16] {number} Minimum distance between the popover and the bounding container
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [container=document.body] {HTMLElement|React.Component} Element the popover must be constrained to fit within
+ * * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
  *
- * @returns {{top: number, left: number, position: string}|null} absolute page coordinates for the popover,
+ * @returns {{top: number, left: number, position: string, fit: number, arrow?: {left: number, top: number}}|null} absolute page coordinates for the popover,
  * and the placements's relation to the anchor; if there's no room this returns null
  */
-export function findPopoverPosition({ anchor, popover, position, buffer=0, offset=0, container = document.body }) {
+export function findPopoverPosition({ anchor, popover, position, buffer=16, offset=0, container = document.body, arrowConfig }) {
   container = findDOMNode(container); // resolve any React abstractions
 
   const anchorBoundingBox = getElementBoundingBox(anchor);
@@ -72,7 +72,8 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
       windowBoundingBox,
       containerBoundingBox,
       offset,
-      buffer
+      buffer,
+      arrowConfig
     });
 
     if (screenCoordinates.fit > bestFit) {
@@ -81,23 +82,13 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
       bestPosition = {
         fit: screenCoordinates.fit,
         position: iterationPosition,
-        relativePosition: screenCoordinates.relativePosition,
         top: screenCoordinates.top + window.pageYOffset,
         left: screenCoordinates.left + window.pageXOffset,
+        arrow: screenCoordinates.arrow
       };
 
       if (bestFit === 1) return bestPosition;
     }
-
-    // if (screenCoordinates != null) {
-    //   // this position works
-    //   return {
-    //     position: iterationPosition,
-    //     relativePosition: screenCoordinates.relativePosition,
-    //     top: screenCoordinates.top + window.pageYOffset,
-    //     left: screenCoordinates.left + window.pageXOffset,
-    //   };
-    // }
 
     if (iteration === 0 || iteration === 2) {
       // iteration 0 checks for the user-desired position
@@ -126,27 +117,28 @@ export function findPopoverPosition({ anchor, popover, position, buffer=0, offse
  * @param popoverBoundingBox {Object} bounding box of the popover element
  * @param windowBoundingBox {Object} bounding box of the window
  * @param containerBoundingBox {Object} bounding box of the container
+ * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [buffer=0] {number} Minimum distance between the popover's placement and the container edge
  *
- * @returns {{top: number, left: number, relativePlacement: string, fit: number}|null} object with top/left coordinates, the popover's relative position to the anchor, and how well the popover fits in the location (0.0 -> 1.0)
+ * @returns {{top: number, left: number, relativePlacement: string, fit: number, arrow?: {top: number, left: number}}|null} object with top/left coordinates, the popover's relative position to the anchor, and how well the popover fits in the location (0.0 -> 1.0)
  * coordinates and the popover's relative position, if there is no room in this placement then null
  */
-export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popoverBoundingBox, windowBoundingBox, containerBoundingBox, offset=0, buffer=0 }) {
+export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popoverBoundingBox, windowBoundingBox, containerBoundingBox, arrowConfig, offset=0, buffer=0 }) {
+  const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
+  const popoverSizeOnPrimaryAxis = popoverBoundingBox[primaryAxisDimension];
+
+  const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
+  const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
+  const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
+
   // To fit the content within both the window and container,
   // compute the smaller of the two spaces on each edge
   const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
   const availableSpace = getAvailableSpace(anchorBoundingBox, combinedBoundingBox, buffer, offset, position);
-
-  // ** check if the popover content fits in this position of the anchor
-  const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
-  const popoverSizeOnPrimaryAxis = popoverBoundingBox[primaryAxisDimension];
-
-  // ** check if popover content has room on the complementary sides
-  // e.g. if we're popping to top then make sure there's room on the left & right to display
-  const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
-  const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
-  const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
+  const minimumSpaceOnCrossAxis = arrowConfig ? arrowConfig.arrowBuffer : 0;
+  availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpaceOnCrossAxis);
+  availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpaceOnCrossAxis);
 
   const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
   const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
@@ -176,12 +168,6 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   const contentOffset = (offset + primaryAxisOffset) * (isOffsetDecreasing ? -1 : 1);
   const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
 
-  // if the popover shifts too far its position relationship changes, e.g. "top" could become "topLeft"
-  let popoverAlignment = 'center'; // default to the center
-  if (needsShift && amountOfShiftNeeded > anchorHalfSize) {
-    popoverAlignment = shiftDirection === -1 ? crossAxisFirstSide : crossAxisSecondSide;
-  }
-
   const popoverPlacement = {
     [crossAxisFirstSide]: crossAxisPosition,
     [primaryAxisPositionName]: primaryAxisPosition
@@ -201,12 +187,26 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
     combinedBoundingBox
   );
 
-  return {
+  const positioning = {
     fit,
-    relativePosition: `${position}${capitalizeWord(popoverAlignment)}`,
     top: popoverPlacement.top,
     left: popoverPlacement.left
   };
+
+  // if there is an arrowConfig, calculate arrow positioning
+  if (arrowConfig) {
+    const { arrowWidth } = arrowConfig;
+
+    const primaryAxisPosition = positioning[primaryAxisPositionName] + (isOffsetDecreasing ? popoverSizeOnPrimaryAxis : 0);
+    const crossAxisPosition = anchorBoundingBox[crossAxisFirstSide] + anchorHalfSize - (arrowWidth / 2);
+
+    positioning.arrow = {
+      [primaryAxisPositionName]: primaryAxisPosition - positioning[primaryAxisPositionName],
+      [crossAxisFirstSide]: crossAxisPosition - positioning[crossAxisFirstSide]
+    };
+  }
+
+  return positioning;
 }
 
 /**
