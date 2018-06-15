@@ -38,15 +38,15 @@
 
 @mixin euiFormControlDefaultShadow {
   box-shadow:
-    0 2px 2px -1px rgba($euiShadowColor, 0.2),
-    0 0 0 1px transparentize($euiColorFullShade, .92),
+    0 3px 2px -2px rgba($euiShadowColor, 0.2),
+    inset 0 0 0 1px transparentize($euiColorFullShade, .9),
     inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
 }
 
 @mixin euiFormControlInvalidStyle {
   box-shadow:
     0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba($euiShadowColor, 0.2),
-    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 1px transparentize($euiColorFullShade, .84),
     inset 0 0 0 0 $euiColorEmptyShade,
     inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
 }
@@ -55,7 +55,7 @@
   background: tintOrShade($euiColorEmptyShade, 0%, 20%);
   box-shadow:
     0 4px 4px -2px rgba($euiShadowColor, 0.2),
-    0 0 0 1px transparentize($euiColorFullShade, .84),
+    inset 0 0 0 1px transparentize($euiColorFullShade, .84),
     inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
     inset 0 -2px 0 0 $euiColorPrimary;
 }
@@ -63,7 +63,7 @@
 @mixin euiFormControlDisabledStyle {
   cursor: not-allowed;
   background: darken($euiColorLightestShade, 2%);
-  box-shadow: 0 0 0 1px transparentize($euiColorFullShade, .92);
+  box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .92);
   color: $euiFormControlDisabledColor;
 
   &::placeholder {
@@ -90,6 +90,7 @@
   font-size: $euiFontSizeS;
   font-family: $euiFontFamily;
   padding: $euiFormControlPadding;
+  line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
   background: $euiFormBackgroundColor;
   transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
