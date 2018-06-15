@@ -1,30 +1,14 @@
-import { asSeries } from './as_series';
-import EuiXYChart from './chart';
-import * as utils from './utils/chart_utils';
+export { asSeries } from './as_series';
+export { EuiXYChart } from './chart';
 export { EuiLine } from './line';
-import EuiVerticalBarSeries from './vertical_bar_series';
-import EuiHorizontalBarSeries from './horizontal_bar_series';
-import EuiVerticalRectSeries from './vertical_rect_series';
-import EuiHorizontalRectSeries from './horizontal_rect_series';
-import EuiDefaultAxis from './axis/default_axis';
-import EuiXAxis from './axis/x_axis';
-import EuiYAxis from './axis/y_axis';
+export { EuiVerticalBarSeries } from './vertical_bar_series';
+export { EuiHorizontalBarSeries } from './horizontal_bar_series';
+export { EuiVerticalRectSeries } from './vertical_rect_series';
+export { EuiHorizontalRectSeries } from './horizontal_rect_series';
+export { EuiDefaultAxis } from './axis/default_axis';
+export { EuiXAxis } from './axis/x_axis';
+export { EuiYAxis } from './axis/y_axis';
 export { EuiArea } from './area';
-import * as EuiXYChartAxisUtils from './utils/axis_utils';
-import * as EuiXYChartTextUtils from './utils/text_utils';
+export { EuiXYChartAxisUtils } from './utils/axis_utils';
+export { EuiXYChartTextUtils } from './utils/text_utils';
 export { EuiCrosshair } from './crosshair';
-
-export {
-  EuiXYChart,
-  EuiVerticalBarSeries,
-  EuiHorizontalBarSeries,
-  EuiVerticalRectSeries,
-  EuiHorizontalRectSeries,
-  EuiDefaultAxis,
-  EuiXAxis,
-  EuiYAxis,
-  EuiXYChartAxisUtils,
-  EuiXYChartTextUtils,
-  utils,
-  asSeries
-};

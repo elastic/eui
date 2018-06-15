@@ -1,15 +1,21 @@
 import { AxisUtils } from 'react-vis';
 
-export const ORIENTATION = AxisUtils.ORIENTATION;
+const ORIENTATION = AxisUtils.ORIENTATION;
 
-export const TITLE_POSITION = {
+const TITLE_POSITION = {
   MIDDLE: 'middle',
   START: 'start',
   END: 'end',
 };
 
-export const GRID_TYPE = {
+const GRID_TYPE = {
   HORIZONTAL: 'horizontal',
   VERTICAL: 'vertical',
   BOTH: 'both',
-}
+};
+
+export const EuiXYChartAxisUtils = {
+  TITLE_POSITION,
+  GRID_TYPE,
+  ORIENTATION,
+};

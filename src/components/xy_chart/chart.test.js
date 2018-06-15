@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 
-import EuiXYChart from './chart';
+import { EuiXYChart } from './chart';
 import { requiredProps } from '../../test/required_props';
 
 describe('EuiXYChart', () => {

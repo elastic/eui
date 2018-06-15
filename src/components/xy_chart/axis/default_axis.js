@@ -1,11 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import EuiXAxis from './x_axis';
-import EuiYAxis from './y_axis';
-import EuiHorizontalGrid from './horizontal_grid';
-import EuiVerticalGrid from './vertical_grid';
+import { EuiXAxis } from './x_axis';
+import { EuiYAxis } from './y_axis';
+import { EuiHorizontalGrid } from './horizontal_grid';
+import { EuiVerticalGrid } from './vertical_grid';
 
-export default class EuiDefaultAxis extends PureComponent {
+export class EuiDefaultAxis extends PureComponent {
   _getTickLabels(ticks) {
     if (!ticks) return;
 

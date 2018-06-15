@@ -3,7 +3,7 @@ import { mount, render } from 'enzyme';
 import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
-import EuiXYChart from './chart';
+import { EuiXYChart } from './chart';
 import { EuiArea } from './area';
 import { benchmarkFunction } from '../../test/time_execution';
 

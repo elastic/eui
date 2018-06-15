@@ -3,8 +3,8 @@ import { render, mount } from 'enzyme';
 import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { requiredProps } from '../../test/required_props';
 
-import EuiXYChart from './chart';
-import EuiHorizontalRectSeries from './horizontal_rect_series';
+import { EuiXYChart } from './chart';
+import { EuiHorizontalRectSeries } from './horizontal_rect_series';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalRectSeries } from 'react-vis';
 
-export default class EuiVerticalRectSeries extends VerticalRectSeries {
+export class EuiVerticalRectSeries extends VerticalRectSeries {
   render() {
     const { name, data, color, onClick, ...rest } = this.props;
 

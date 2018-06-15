@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HorizontalBarSeries } from 'react-vis';
 
-class EuiHorizontalBarSeries extends HorizontalBarSeries {
+export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   render() {
     const { name, data, color, onClick, ...rest } = this.props;
 
@@ -25,7 +25,6 @@ class EuiHorizontalBarSeries extends HorizontalBarSeries {
     );
   }
 }
-export default EuiHorizontalBarSeries;
 
 EuiHorizontalBarSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */

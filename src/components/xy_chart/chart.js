@@ -6,7 +6,7 @@ import { EuiCrosshair } from './crosshair';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 
-export class XYChart extends PureComponent {
+class XYChart extends PureComponent {
   state = {
     mouseOver: false,
   };
@@ -142,4 +142,4 @@ XYChart.defaultProps = {
   yType: 'linear',
 };
 
-export default makeWidthFlexible(XYChart);
+export const EuiXYChart = makeWidthFlexible(XYChart);

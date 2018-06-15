@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { HorizontalGridLines } from 'react-vis';
 
-export default class EuiHorizontalGrid extends PureComponent {
+export class EuiHorizontalGrid extends PureComponent {
   render() {
     const style = {
       strokeDasharray: '5 5',

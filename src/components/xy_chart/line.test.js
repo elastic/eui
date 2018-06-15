@@ -4,7 +4,7 @@ import { patchRandom, unpatchRandom } from '../../test/patch_random';
 import { benchmarkFunction } from '../../test/time_execution';
 import { requiredProps } from '../../test/required_props';
 
-import EuiXYChart from './chart';
+import { EuiXYChart } from './chart';
 import { EuiLine } from './line';
 
 beforeEach(patchRandom);
