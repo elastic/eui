@@ -17,8 +17,6 @@
     "prettier"
   ],
   "rules": {
-    // This is a temporary rule that can be removed as soon as
-    // it is added into eslint-config-kibana
     "prefer-template": "error"
   },
   "env": {
