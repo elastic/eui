@@ -38,7 +38,7 @@ export const section = {
       <p>
         As an alternative to <EuiCode>EuiBasicTable</EuiCode> you can instead construct a table from
         individual <strong>low level, basic components</strong> like <EuiCode>EuiTableHeader</EuiCode>
-        and <EuiCode>EuiTableRowCell</EuiCode>.
+        &nbsp;and <EuiCode>EuiTableRowCell</EuiCode>.
         Below is one of many ways you might set this up on your own.
         Important to note are how you need to set individual props like
         the <EuiCode>truncateText</EuiCode> prop to cells to enforce a single-line behavior
@@ -58,7 +58,7 @@ export const section = {
         like selection and filtering. In order to add mobile support for these functions,
         you will need to implement the <EuiCode>EuiTableHeaderMobile</EuiCode> component
         as a wrapper around these and use <EuiCode>EuiTableSortMobile</EuiCode>
-        and <EuiCode>EuiTableSortMobileItem</EuiCode> components
+        &nbsp;and <EuiCode>EuiTableSortMobileItem</EuiCode> components
         to supply mobile sorting. See demo below.
       </p>
     </div>

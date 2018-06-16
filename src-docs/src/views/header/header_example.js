@@ -62,7 +62,7 @@ export const HeaderExample = {
     text: (
       <p>
         If you&rsquo;re using EUI in a one-off site or page, you can use <EuiCode>EuiHeaderLinks</EuiCode>,
-        <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
+        &nbsp;<EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
       </p>
     ),
     props: {

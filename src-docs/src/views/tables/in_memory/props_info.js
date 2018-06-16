@@ -17,13 +17,13 @@ export const propsInfo = {
         },
         message: {
           description: `A message to be shown by the table. When set, the message will be displayed 
-            instead of the configured items`,
+          instead of the configured items`,
           required: false,
           type: { name: 'string' }
         },
         error: {
           description: `An error message to be shown by the table. Takes precedence over the 
-            configured \`message\` or \`items\``,
+          configured \`message\` or \`items\``,
           required: false,
           type: { name: 'string' }
         },
