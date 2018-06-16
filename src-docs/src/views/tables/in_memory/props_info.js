@@ -88,7 +88,7 @@ export const propsInfo = {
         },
         onChange: {
           description: `Callback for when the search bar value changes. By default this will prevent in-memory 
-            searching. Return \`true\` to allow in-memory searching.`,
+          searching. Return \`true\` to allow in-memory searching.`,
           required: false,
           type: { name: 'function' }
         }
