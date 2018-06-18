@@ -593,4 +593,40 @@ describe('EuiInMemoryTable', () => {
       expect(component.find('.testTable EuiTableRow').length).toBe(1);
     });
   });
+
+  describe('custom column sorting', () => {
+    it('calls the sortable function and uses its return value for sorting', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: 7, name: 'Alfred' },
+          { id: 3, name: 'Betty' },
+          { id: 5, name: 'Charlie' }
+        ],
+        itemId: 'id',
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            sortable: ({ id }) => id
+          }
+        ],
+        sorting: {
+          sort: {
+            field: 'name',
+            direction: 'asc',
+          }
+        }
+      };
+      const component = mount(
+        <EuiInMemoryTable {...props} />
+      );
+
+      expect(component.find('EuiBasicTable').props().items).toEqual([
+        { id: 3, name: 'Betty' },
+        { id: 5, name: 'Charlie' },
+        { id: 7, name: 'Alfred' }
+      ]);
+    });
+  });
 });
