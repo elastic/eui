@@ -139,14 +139,27 @@ export function findPopoverPosition({ anchor, popover, position, buffer=16, offs
  * @param popoverBoundingBox {Object} bounding box of the popover element
  * @param windowBoundingBox {Object} bounding box of the window
  * @param containerBoundingBox {Object} bounding box of the container
- * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
+ * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size &
+ *  constraints for an arrow element, and the function return value will include an `arrow` param
+ *  with position details
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [buffer=0] {number} Minimum distance between the popover's placement and the container edge
  *
- * @returns {{top: number, left: number, relativePlacement: string, fit: number, arrow?: {top: number, left: number}}|null} object with top/left coordinates, the popover's relative position to the anchor, and how well the popover fits in the location (0.0 -> 1.0)
- * coordinates and the popover's relative position, if there is no room in this placement then null
+ * @returns {{top: number, left: number, relativePlacement: string, fit: number, arrow?: {top: number, left: number}}|null}
+ *  object with top/left coordinates, the popover's relative position to the anchor, and how well the
+ *  popover fits in the location (0.0 -> 1.0) oordinates and the popover's relative position, if
+ *  there is no room in this placement then null
  */
-export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popoverBoundingBox, windowBoundingBox, containerBoundingBox, arrowConfig, offset=0, buffer=0 }) {
+export function getPopoverScreenCoordinates({
+  position,
+  anchorBoundingBox,
+  popoverBoundingBox,
+  windowBoundingBox,
+  containerBoundingBox,
+  arrowConfig,
+  offset=0,
+  buffer=0,
+}) {
   /**
    * The goal is to find the best way to align the popover content
    * on the given side of the anchor element. The popover prefers
