@@ -211,7 +211,6 @@ export function getPopoverScreenCoordinates({
     containerBoundingBox,
     popoverBoundingBox,
     anchorBoundingBox,
-    minimumSpace: arrowConfig ? arrowConfig.arrowBuffer : 0,
     arrowConfig,
   });
 
@@ -274,7 +273,6 @@ function getCrossAxisPosition({
   popoverBoundingBox,
   anchorBoundingBox,
   arrowConfig,
-  minimumSpace = 0,
 }) {
   // how much of the popover overflows past either side of the anchor if its centered
   const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
@@ -291,6 +289,7 @@ function getCrossAxisPosition({
   // compute the smaller of the two spaces along each edge
   const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
   const availableSpace = getAvailableSpace(anchorBoundingBox, combinedBoundingBox, buffer, offset, position);
+  const minimumSpace = arrowConfig ? arrowConfig.arrowBuffer : 0;
   availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpace);
   availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpace);
 
