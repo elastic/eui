@@ -18,8 +18,8 @@ export default class extends Component {
     this.state = {
       startDate: moment(),
       startDate2: moment(),
-      startDate3: moment().add(1, "days"),
-      startDate4: moment().add(1, "days"),
+      startDate3: moment().add(1, 'days'),
+      startDate4: moment().add(1, 'days'),
       startDate5: moment(),
     };
 
@@ -63,7 +63,7 @@ export default class extends Component {
   isWeekday(date) {
     const day = date.day();
     return day !== 0 && day !== 6;
-  };
+  }
 
   render() {
     return (
@@ -73,8 +73,8 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate}
             onChange={this.handleChange}
-            minDate={moment().subtract(2, "days")}
-            maxDate={moment().add(5, "days")}
+            minDate={moment().subtract(2, 'days')}
+            maxDate={moment().add(5, 'days')}
           />
         </EuiFormRow>
 
@@ -97,7 +97,7 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate3}
             onChange={this.handleChange3}
-            excludeDates={[moment(), moment().subtract(1, "days")]}
+            excludeDates={[moment(), moment().subtract(1, 'days')]}
           />
         </EuiFormRow>
 

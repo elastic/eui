@@ -82,7 +82,7 @@ export class EuiContextMenu extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const { panels } = nextProps;
 
-    if ( prevState.prevProps.panels !== panels ) {
+    if (prevState.prevProps.panels !== panels) {
       return {
         prevProps: { panels },
         idToPanelMap: mapIdsToPanels(panels),

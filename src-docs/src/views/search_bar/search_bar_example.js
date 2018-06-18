@@ -108,7 +108,10 @@ export const SearchBarExample = {
       text: (
         <div>
           <p>
-            A <EuiCode>EuiSearchBar</EuiCode> can have its query controlled by a parent component by passing the <EuiCode>query</EuiCode> prop. Changes to the query will be passed back up through the <EuiCode>onChange</EuiCode> callback where the new Query must be stored in state and passed back into the search bar.
+            A <EuiCode>EuiSearchBar</EuiCode> can have its query controlled by a parent component by
+            passing the <EuiCode>query</EuiCode> prop. Changes to the query will be passed back up through
+            the <EuiCode>onChange</EuiCode> callback where the new Query must be stored in state and
+            passed back into the search bar.
           </p>
         </div>
       ),

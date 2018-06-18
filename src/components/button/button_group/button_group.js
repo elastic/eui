@@ -63,7 +63,7 @@ export const EuiButtonGroup = ({
         );
       })}
     </div>
-  )
+  );
 };
 
 EuiButtonGroup.propTypes = {

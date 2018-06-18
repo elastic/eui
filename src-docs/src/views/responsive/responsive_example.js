@@ -22,16 +22,16 @@ function renderSizes(size, index) {
   let code = `'${size}': ${sizes.euiBreakpoints[size]}px`;
 
   if (index < sizes.euiBreakpointKeys.length - 1) {
-    code += ` (to ${(sizes.euiBreakpoints[sizes.euiBreakpointKeys[index+1]] - 1)}px)`;
+    code += ` (to ${(sizes.euiBreakpoints[sizes.euiBreakpointKeys[index + 1]] - 1)}px)`;
   } else {
-  code += ` +`;
+    code += ` +`;
   }
 
   return (
     <div key={index}>
       {code}
     </div>
-  )
+  );
 }
 
 export const ResponsiveExample = {

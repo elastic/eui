@@ -50,8 +50,8 @@ export const HeaderExample = {
       EuiHeaderLogo,
     },
     demo: <Header />,
-  },{
-    title: "Links",
+  }, {
+    title: 'Links',
     source: [{
       type: GuideSectionTypes.JS,
       code: headerLinksSource,
@@ -61,7 +61,8 @@ export const HeaderExample = {
     }],
     text: (
       <p>
-        If you&rsquo;re using EUI in a one-off site or page, you can use <EuiCode>EuiHeaderLinks</EuiCode>, <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
+        If you&rsquo;re using EUI in a one-off site or page, you can use <EuiCode>EuiHeaderLinks</EuiCode>,
+        &nbsp;<EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
       </p>
     ),
     props: {

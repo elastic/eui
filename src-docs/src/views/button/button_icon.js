@@ -27,7 +27,7 @@ export default () => (
             onClick={() => window.alert('Button clicked')}
             iconType="arrowRight"
             aria-label="Next"
-            disabled={color === "disabled" ? true : false}
+            disabled={color === 'disabled' ? true : false}
           />
         </EuiFlexItem>
       ))

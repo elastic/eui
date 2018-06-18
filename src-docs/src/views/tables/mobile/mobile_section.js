@@ -46,7 +46,8 @@ export const section = {
         Custom mobile headers
       </h4>
       <p>
-        Add the following properties to your data and/or <EuiCode>&lt;EuiTableRowCell&gt;</EuiCode> and <EuiCode>&lt;EuiTableHeaderCell&gt;</EuiCode> to
+        Add the following properties to your data and/or <EuiCode>&lt;EuiTableRowCell&gt;</EuiCode>
+        &nbsp;and <EuiCode>&lt;EuiTableHeaderCell&gt;</EuiCode> to
         customize the look of the section header.
       </p>
       <ul>

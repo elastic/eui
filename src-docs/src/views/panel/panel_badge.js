@@ -13,7 +13,10 @@ const panelNodes = badges.map(function (item, index) {
     <EuiFlexItem key={index}>
       <EuiPanel
         betaBadgeLabel={badges[index]}
-        betaBadgeTooltipContent={badges[index] ? "This module is not GA. Please help us by reporting any bugs." : undefined}
+        betaBadgeTooltipContent={badges[index]
+          ? 'This module is not GA. Please help us by reporting any bugs.'
+          : undefined
+        }
         onClick={() => window.alert('Card clicked')}
       >
         I am some panel content

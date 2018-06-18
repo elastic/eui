@@ -53,7 +53,7 @@ export class EuiPopover extends Component {
 
     return null;
   }
-  
+
   constructor(props) {
     super(props);
 

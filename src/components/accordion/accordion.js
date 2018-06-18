@@ -37,7 +37,7 @@ export class EuiAccordion extends Component {
 
   setChildContentHeight = () => {
     requestAnimationFrame(() => {
-      const height = this.state.isOpen ? this.childContent.clientHeight: 0;
+      const height = this.state.isOpen ? this.childContent.clientHeight : 0;
       this.childWrapper.setAttribute('style', `height: ${height}px`);
     });
   }

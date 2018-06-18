@@ -10,12 +10,15 @@
     }
   },
   "extends": [
-    "@elastic/eslint-config-kibana",
-    "prettier"
+    "prettier",
+    "@elastic/eslint-config-kibana"
   ],
   "plugins": [
     "prettier"
   ],
+  "rules": {
+    "prefer-template": "error"
+  },
   "env": {
     "jest": true
   }

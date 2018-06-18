@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiFormControlLayoutIcons } from './form_control_layout_icons'
+import { EuiFormControlLayoutIcons } from './form_control_layout_icons';
 
 export const ICON_SIDES = ['left', 'right'];
 

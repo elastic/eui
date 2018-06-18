@@ -10,7 +10,7 @@ export const EuiTableRow = ({
   hasActions,
   isExpandedRow,
   isExpandable,
-   ...rest
+  ...rest
 }) => {
   const classes = classNames('euiTableRow', className, {
     'euiTableRow-isSelectable': isSelectable,

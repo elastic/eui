@@ -29,14 +29,14 @@ const limitBreadcrumbs = (breadcrumbs, max) => {
   }
 
   if (max < breadcrumbs.length) {
-    breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key='collapsed' />);
+    breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
   }
 
   return [
     ...breadcrumbsAtStart,
     ...breadcrumbsAtEnd,
   ];
-}
+};
 
 const EuiBreadcrumbCollapsed = () => (
   <Fragment>
@@ -45,7 +45,7 @@ const EuiBreadcrumbCollapsed = () => (
   </Fragment>
 );
 
-const EuiBreadcrumbSeparator = () => <div className='euiBreadcrumbSeparator' />;
+const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
 export const EuiBreadcrumbs = ({
   breadcrumbs,
@@ -86,7 +86,7 @@ export const EuiBreadcrumbs = ({
     } else {
       link = (
         <EuiLink
-          color='subdued'
+          color="subdued"
           href={href}
           onClick={onClick}
           className={breadcrumbClasses}
@@ -110,7 +110,7 @@ export const EuiBreadcrumbs = ({
         {separator}
       </Fragment>
     );
-  })
+  });
 
   const limitedBreadcrumbs = max ? limitBreadcrumbs(breadcrumbElements, max) : breadcrumbElements;
 

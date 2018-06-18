@@ -16,14 +16,14 @@ export const propsInfo = {
           type: { name: `object[]` }
         },
         message: {
-          description: 'A message to be shown by the table. When set, the message will be displayed instead of ' +
-          'the configured items',
+          description: `A message to be shown by the table. When set, the message will be displayed 
+          instead of the configured items`,
           required: false,
           type: { name: 'string' }
         },
         error: {
-          description: 'An error message to be shown by the table. Takes precedence over the configured `message` ' +
-                       'or `items`',
+          description: `An error message to be shown by the table. Takes precedence over the 
+          configured \`message\` or \`items\``,
           required: false,
           type: { name: 'string' }
         },
@@ -87,7 +87,8 @@ export const propsInfo = {
           type: { name: '#SearchFilters' }
         },
         onChange: {
-          description: 'Callback for when the search bar value changes. By default this will prevent in-memory searching. Return `true` to allow in-memory searching.',
+          description: `Callback for when the search bar value changes. By default this will prevent in-memory 
+          searching. Return \`true\` to allow in-memory searching.`,
           required: false,
           type: { name: 'function' }
         }

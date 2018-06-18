@@ -80,9 +80,9 @@ export class EuiDatePicker extends Component {
     if (inline || customInput) {
       optionalIcon = null;
     } else if (showTimeSelectOnly) {
-      optionalIcon = "clock";
+      optionalIcon = 'clock';
     } else {
-      optionalIcon = "calendar";
+      optionalIcon = 'calendar';
     }
 
     // EuiDatePicker only supports a subset of props from react-datepicker. Using any of
@@ -283,10 +283,10 @@ EuiDatePicker.propTypes = {
 };
 
 EuiDatePicker.defaultProps = {
-  dateFormat:"MM/DD/YYYY hh:mm A",
+  dateFormat: 'MM/DD/YYYY hh:mm A',
   fullWidth: false,
   isLoading: false,
   shadow: true,
   shouldCloseOnSelect: true,
-  timeFormat:"hh:mm A",
+  timeFormat: 'hh:mm A',
 };

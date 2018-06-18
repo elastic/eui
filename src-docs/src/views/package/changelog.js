@@ -2,8 +2,8 @@ import React from 'react';
 
 import MarkdownIt from 'markdown-it';
 
-import { EuiText } from '../../../..'
-import { GuidePage } from '../../components/guide_page'
+import { EuiText } from '../../../..';
+import { GuidePage } from '../../components/guide_page';
 
 const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md');
 const md = new MarkdownIt();

@@ -12,11 +12,11 @@ export default () => (
       Hiding from <EuiCode>xs</EuiCode> screens only
     </EuiHideFor>
     <br/>
-    <EuiHideFor sizes={['xs','s']}>
+    <EuiHideFor sizes={['xs', 's']}>
       Hiding from <EuiCode>xs, s</EuiCode> screens
     </EuiHideFor>
     <br/>
-    <EuiHideFor sizes={['xs','s','m', 'l']}>
+    <EuiHideFor sizes={['xs', 's', 'm', 'l']}>
       Hiding from <EuiCode>xs, s, m, l</EuiCode> screens
     </EuiHideFor>
     <br/>
@@ -31,11 +31,11 @@ export default () => (
       Showing for <EuiCode>xs</EuiCode> screens only
     </EuiShowFor>
     <br/>
-    <EuiShowFor sizes={['xs','s']}>
+    <EuiShowFor sizes={['xs', 's']}>
       Showing for <EuiCode>xs, s</EuiCode> screens
     </EuiShowFor>
     <br/>
-    <EuiShowFor sizes={['xs','s','m', 'l']}>
+    <EuiShowFor sizes={['xs', 's', 'm', 'l']}>
       Showing for <EuiCode>xs, s, m, l</EuiCode> screens
     </EuiShowFor>
     <br/>

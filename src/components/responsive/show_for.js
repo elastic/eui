@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 const responsiveSizesToClassNameMap = {
   xs: 'eui-showFor--xs',
-  s:  'eui-showFor--s',
-  m:  'eui-showFor--m',
-  l:  'eui-showFor--l',
+  s: 'eui-showFor--s',
+  m: 'eui-showFor--m',
+  l: 'eui-showFor--l',
   xl: 'eui-showFor--xl',
-}
+};
 
 export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
@@ -19,7 +19,7 @@ export const EuiShowFor = ({
   ...rest,
 }) => {
 
-  const sizingClasses = sizes.map(function(item){
+  const sizingClasses = sizes.map(function (item) {
     return responsiveSizesToClassNameMap[item];
   });
 
