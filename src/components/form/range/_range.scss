@@ -1,3 +1,26 @@
+.euiRange__wrapper {
+  @include euiFormControlSize();
+  display: flex;
+  align-items: center;
+
+  &--fullWidth {
+    max-width: 100%;
+  }
+
+  &--disabled {
+    .euiRange__minLabel,
+    .euiRange__maxLabel {
+      color: $euiFormControlDisabledColor;
+    }
+  }
+}
+
+.euiRange__minLabel,
+.euiRange__maxLabel {
+  margin-bottom: 0;
+}
+
+
 // The following code is inspired by...
 
 // Github: https://github.com/darlanrod/input-range-sass
@@ -10,31 +33,31 @@
 
 .euiRange {
   // Auto means the height isn't defined
-  @include euiFormControlSize(auto);
-
+  height: auto;
   appearance: none;
-  margin: $euiRangeThumbHeight / 2 0;
-
-  &.euiRange--fullWidth {
-    max-width: 100%;
-  }
+  margin: $euiRangeThumbHeight/2 $euiSizeS;
+  width: 100%; // ensures the slider expands to fill flex display
 
   &:disabled {
-    cursor: not-allowed;
 
     &::-webkit-slider-thumb {
       @include euiCustomControl--disabled;
+      cursor: not-allowed;
     }
 
     &::-moz-range-thumb {
       @include euiCustomControl--disabled;
+      cursor: not-allowed;
     }
 
     &::-ms-thumb {
       @include euiCustomControl--disabled;
+      cursor: not-allowed;
     }
+
     &::-webkit-slider-runnable-track {
       background-color: $euiColorLightShade;
+      cursor: not-allowed;
     }
   }
 
@@ -42,15 +65,19 @@
 
     &::-webkit-slider-thumb {
       @include euiCustomControl--focused;
+      @include euiFocusRing;
     }
 
     &::-moz-range-thumb {
       @include euiCustomControl--focused;
+      @include euiFocusRing;
     }
 
     &::-ms-thumb {
       @include euiCustomControl--focused;
+      @include euiFocusRing;
     }
+
     &::-webkit-slider-runnable-track {
       background-color: $euiColorPrimary;
     }

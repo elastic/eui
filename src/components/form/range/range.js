@@ -2,7 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiRange = ({ className, compressed, id, name, min, max, fullWidth, value, ...rest }) => {
+import { EuiFormLabel } from '../form_label';
+
+export const EuiRange = ({
+  className,
+  compressed,
+  disabled,
+  fullWidth,
+  id,
+  max,
+  min,
+  name,
+  showLabels,
+  value,
+  ...rest
+}) => {
   const classes = classNames(
     'euiRange',
     {
@@ -12,17 +26,49 @@ export const EuiRange = ({ className, compressed, id, name, min, max, fullWidth,
     className
   );
 
+  const wrapperClasses = classNames(
+    'euiRange__wrapper',
+    {
+      'euiRange__wrapper--fullWidth': fullWidth,
+      'euiRange__wrapper--compressed': compressed,
+      'euiRange__wrapper--disabled': disabled,
+    },
+  );
+
+  let minLabelNode;
+  let maxLabelNode;
+  if (showLabels) {
+    minLabelNode = (
+      <EuiFormLabel className="euiRange__minLabel">
+        {min}
+      </EuiFormLabel>
+    );
+
+    maxLabelNode = (
+      <EuiFormLabel className="euiRange__maxLabel">
+        {max}
+      </EuiFormLabel>
+    );
+  }
+
   return (
-    <input
-      type="range"
-      id={id}
-      name={name}
-      className={classes}
-      min={min}
-      max={max}
-      value={value}
-      {...rest}
-    />
+    <div
+      className={wrapperClasses}
+    >
+      {minLabelNode}
+      <input
+        type="range"
+        id={id}
+        name={name}
+        className={classes}
+        min={min}
+        max={max}
+        value={value}
+        disabled={disabled}
+        {...rest}
+      />
+      {maxLabelNode}
+    </div>
   );
 };
 
@@ -34,6 +80,10 @@ EuiRange.propTypes = {
   value: PropTypes.string,
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+  /**
+   * Shows static min/max labels on the sides of the range slider
+   */
+  showLabels: PropTypes.bool,
 };
 
 EuiRange.defaultProps = {
@@ -41,4 +91,5 @@ EuiRange.defaultProps = {
   max: 100,
   fullWidth: false,
   compressed: false,
+  showLabels: false,
 };

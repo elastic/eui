@@ -31,5 +31,23 @@ describe('EuiRange', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('compressed should render', () => {
+      const component = render(
+        <EuiRange compressed/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('labels should render', () => {
+      const component = render(
+        <EuiRange showLabels/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });

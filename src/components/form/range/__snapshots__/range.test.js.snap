@@ -1,24 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiRange is rendered 1`] = `
-<input
-  aria-label="aria-label"
-  class="euiRange testClass1 testClass2"
-  data-test-subj="test subject string"
-  id="id"
-  max="10"
-  min="1"
-  name="name"
-  type="range"
-  value="value"
-/>
+<div
+  class="euiRange__wrapper"
+>
+  <input
+    aria-label="aria-label"
+    class="euiRange testClass1 testClass2"
+    data-test-subj="test subject string"
+    id="id"
+    max="10"
+    min="1"
+    name="name"
+    type="range"
+    value="value"
+  />
+</div>
+`;
+
+exports[`EuiRange props compressed should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--compressed"
+>
+  <input
+    class="euiRange euiRange--compressed"
+    max="100"
+    min="1"
+    type="range"
+  />
+</div>
 `;
 
 exports[`EuiRange props fullWidth should render 1`] = `
-<input
-  class="euiRange euiRange--fullWidth"
-  max="100"
-  min="1"
-  type="range"
-/>
+<div
+  class="euiRange__wrapper euiRange__wrapper--fullWidth"
+>
+  <input
+    class="euiRange euiRange--fullWidth"
+    max="100"
+    min="1"
+    type="range"
+  />
+</div>
+`;
+
+exports[`EuiRange props labels should render 1`] = `
+<div
+  class="euiRange__wrapper"
+>
+  <label
+    class="euiFormLabel euiRange__minLabel"
+  >
+    1
+  </label>
+  <input
+    class="euiRange"
+    max="100"
+    min="1"
+    type="range"
+  />
+  <label
+    class="euiFormLabel euiRange__maxLabel"
+  >
+    100
+  </label>
+</div>
 `;
