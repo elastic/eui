@@ -77,12 +77,22 @@ export function findPopoverPosition({ anchor, popover, position, buffer=16, offs
    * if position = "right" the order is right, left, top, bottom
    */
 
-  let iterationPosition = position;
+  const iterationPositions = [
+    position,                                           // Try the user-desired position first.
+    positionComplements[position],                      // Try the complementary position.
+    positionSubstitutes[position],                      // Switch to the cross axis.
+    positionComplements[positionSubstitutes[position]], // Try the complementary position on the cross axis.
+  ];
 
-  let bestFit = -Infinity;
-  let bestPosition = null;
+  const {
+    bestPosition,
+  } = iterationPositions.reduce(({ bestFit, bestPosition }, iterationPosition) => {
+    // If we've already found the ideal fit, use that position.
+    if (bestFit === 1) {
+      return { bestFit, bestPosition };
+    }
 
-  for (let iteration = 0; iteration <= 3; iteration++) {
+    // Otherwise, see if we can find a position with a better fit than we've found so far.
     const screenCoordinates = getPopoverScreenCoordinates({
       position: iterationPosition,
       anchorBoundingBox,
@@ -95,35 +105,27 @@ export function findPopoverPosition({ anchor, popover, position, buffer=16, offs
     });
 
     if (screenCoordinates.fit > bestFit) {
-      // this position is the best seen so far, remember it
-      bestFit = screenCoordinates.fit;
-
-      bestPosition = {
-        fit: screenCoordinates.fit,
-        position: iterationPosition,
-        top: screenCoordinates.top + window.pageYOffset,
-        left: screenCoordinates.left + window.pageXOffset,
-        arrow: screenCoordinates.arrow
+      return {
+        bestFit: screenCoordinates.fit,
+        bestPosition: {
+          fit: screenCoordinates.fit,
+          position: iterationPosition,
+          top: screenCoordinates.top + window.pageYOffset,
+          left: screenCoordinates.left + window.pageXOffset,
+          arrow: screenCoordinates.arrow
+        },
       };
-
-      if (bestFit === 1) return bestPosition;
     }
 
-    // increment to the next position, see above comment block
-    // for a more detailed explanation
-    if (iteration === 0 || iteration === 2) {
-      // iteration 0 checks for the user-desired position
-      // iteration 2 is first check along the non-desired axis
-      // the position didn't work, flip to the complimentary position
-      // e.g. "top" -> "bottom" or "right" -> "left"
-      iterationPosition = positionComplements[iterationPosition];
-    } else if (iteration === 1) {
-      // iteration 1 is the complement of the requested position,
-      // the desired axis doesn't have room, try the opposite one
-      // e.g. "top" -> "left" or "right" -> "top"
-      iterationPosition = positionSubstitutes[iterationPosition];
-    }
-  }
+    // If we haven't improved the fit, then continue on and try a new position.
+    return {
+      bestFit,
+      bestPosition,
+    };
+  }, {
+    bestFit: -Infinity,
+    bestPosition: null,
+  });
 
   return bestPosition;
 }
