@@ -362,6 +362,13 @@ export class EuiComboBox extends Component {
         break;
 
       case TAB:
+        // Disallow tabbing when the user is navigating the options.
+        if (this.hasActiveOption()) {
+          e.preventDefault();
+          e.stopPropagation();
+          break;
+        }
+
         const amount = e.shiftKey ? -1 : 1;
         if (this.tabAway(amount)) {
           e.preventDefault();

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   EuiBasicTable,
-  ColumnType,
   SelectionType,
   ItemIdType,
+  FieldDataColumnTypeShape,
+  ComputedColumnType,
+  ActionsColumnType,
 } from './basic_table';
 import {
   defaults as paginationBarDefaults
@@ -17,6 +19,16 @@ import {
   SearchBoxConfigPropTypes, EuiSearchBar
 } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
+
+// same as ColumnType from EuiBasicTable, but need to modify the `sortable` type
+const ColumnType = PropTypes.oneOfType([
+  PropTypes.shape({
+    ...FieldDataColumnTypeShape,
+    sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func])
+  }),
+  ComputedColumnType,
+  ActionsColumnType
+]);
 
 const InMemoryTablePropTypes = {
   columns: PropTypes.arrayOf(ColumnType).isRequired,
@@ -225,6 +237,24 @@ export class EuiInMemoryTable extends Component {
     }, { strict: true, fields: {} });
   }
 
+  getItemSorter() {
+    const {
+      sortField,
+      sortDirection
+    } = this.state;
+
+    const { columns } = this.props;
+
+    const sortColumn = columns.find(({ field }) => field === sortField);
+    const { sortable } = sortColumn;
+
+    if (typeof sortable === 'function') {
+      return Comparators.value(sortable, Comparators.default(sortDirection));
+    }
+
+    return Comparators.property(sortField, Comparators.default(sortDirection));
+  }
+
   getItems() {
     const { prevProps: { items } } = this.state;
 
@@ -238,7 +268,6 @@ export class EuiInMemoryTable extends Component {
     const {
       query,
       sortField,
-      sortDirection,
       pageIndex,
       pageSize,
     } = this.state;
@@ -246,7 +275,7 @@ export class EuiInMemoryTable extends Component {
     const matchingItems = query ? EuiSearchBar.Query.execute(query, items) : items;
 
     const sortedItems =
-      sortField ? matchingItems.sort(Comparators.property(sortField, Comparators.default(sortDirection))) : matchingItems;
+      sortField ? matchingItems.sort(this.getItemSorter()) : matchingItems;
 
     const visibleItems = pageSize ? (() => {
       const startIndex = pageIndex * pageSize;
@@ -310,13 +339,20 @@ export class EuiInMemoryTable extends Component {
 
     const searchBar = this.renderSearchBar();
 
+    // EuiInMemoryTable's column type supports sortable as a function, but
+    // EuiBasicTable requires those functions to be cast to a boolean
+    const mappedColumns = columns.map(column => ({
+      ...column,
+      sortable: !!column.sortable
+    }));
+
     const table = (
       <EuiBasicTable
         items={items}
         itemId={itemId}
         rowProps={rowProps}
         cellProps={cellProps}
-        columns={columns}
+        columns={mappedColumns}
         pagination={pagination}
         sorting={sorting}
         selection={selection}

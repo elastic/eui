@@ -48,6 +48,101 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
 </div>
 `;
 
+exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should update if it receives new content 1`] = `
+<EuiTabbedContent
+  tabs={
+    Array [
+      Object {
+        "content": <p>
+          Elasticsearch content
+        </p>,
+        "id": "es",
+        "name": "Elasticsearch",
+      },
+      Object {
+        "content": <p>
+          updated Kibana content
+        </p>,
+        "data-test-subj": "kibanaTab",
+        "id": "kibana",
+        "name": "Kibana",
+      },
+    ]
+  }
+>
+  <div>
+    <EuiTabs>
+      <div
+        className="euiTabs"
+        role="tablist"
+      >
+        <EuiTab
+          aria-controls="42-es"
+          disabled={false}
+          id="es"
+          isSelected={false}
+          key="es"
+          onClick={[Function]}
+        >
+          <button
+            aria-controls="42-es"
+            aria-selected={false}
+            className="euiTab"
+            disabled={false}
+            id="es"
+            onClick={[Function]}
+            role="tab"
+            type="button"
+          >
+            <span
+              className="euiTab__content"
+            >
+              Elasticsearch
+            </span>
+          </button>
+        </EuiTab>
+        <EuiTab
+          aria-controls="42-kibana"
+          data-test-subj="kibanaTab"
+          disabled={false}
+          id="kibana"
+          isSelected={true}
+          key="kibana"
+          onClick={[Function]}
+        >
+          <button
+            aria-controls="42-kibana"
+            aria-selected={true}
+            className="euiTab euiTab-isSelected"
+            data-test-subj="kibanaTab"
+            disabled={false}
+            id="kibana"
+            onClick={[Function]}
+            role="tab"
+            type="button"
+          >
+            <span
+              className="euiTab__content"
+            >
+              Kibana
+            </span>
+          </button>
+        </EuiTab>
+      </div>
+    </EuiTabs>
+    <div
+      aria-labelledby="kibana"
+      id="42-kibana"
+      role="tabpanel"
+    >
+      <p>
+        updated Kibana content
+      </p>
+    </div>
+  </div>
+</EuiTabbedContent>
+`;
+
 exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 <div
   aria-label="aria-label"

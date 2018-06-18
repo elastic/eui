@@ -2,8 +2,34 @@ import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps, findTestSubject } from '../../test';
+import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
+
+let hasComboBoxLostFocus = false;
+
+// This module requires a browser environment, so we'll fake what it returns.
+jest.mock('tabbable', () => () => {
+  const proxy = new Proxy([], {
+    get: (target, prop) => {
+      // If the consumer is trying to access an element in the array, e.g. [-2], pretend there's
+      // a focusable element there. When it's focused, we're going to assume this means that
+      // the combo box has lost focus.
+      if (prop.match(/-?\d+/)) {
+        return {
+          focus: () => { hasComboBoxLostFocus = true; },
+        };
+      } else {
+        return target[prop];
+      }
+    },
+  });
+  return proxy;
+});
+
+beforeEach(() => {
+  hasComboBoxLostFocus = false;
+});
 
 const options = [{
   label: 'Titan',
@@ -111,6 +137,53 @@ describe('props', () => {
 });
 
 describe('behavior', () => {
+  describe('tabbing', () => {
+    test(`off the search input closes the options list if the user isn't navigating the options`, () => {
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+        />
+      );
+
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+
+      // Focusing the input should open the options list.
+      expect(findTestSubject(component, 'comboBoxOptionsList')).toBeDefined();
+
+      // Tab backwards to take focus off the combo box.
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
+
+      // Losing focus will close the options list.
+      expect(hasComboBoxLostFocus).toBe(true);
+    });
+
+    test('off the search input does nothing if the user is navigating the options', () => {
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+        />
+      );
+
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+
+      // Focusing the input should open the options list.
+      expect(findTestSubject(component, 'comboBoxOptionsList')).toBeDefined();
+
+      // Navigate to an option.
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.DOWN });
+
+      // Tab backwards to take focus off the combo box.
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
+
+      // List remains open.
+      expect(hasComboBoxLostFocus).toBe(false);
+    });
+  });
+
   describe('clear button', () => {
     test('calls onChange callback with empty array', () => {
       const onChangeHandler = sinon.spy();

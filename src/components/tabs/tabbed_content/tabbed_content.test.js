@@ -72,5 +72,29 @@ describe('EuiTabbedContent', () => {
       const component = render(<EuiTabbedContent tabs={tabs} />);
       expect(component).toMatchSnapshot();
     });
+
+    test('when uncontrolled, the selected tab should update if it receives new content', () => {
+      const tabs = [
+        elasticsearchTab,
+        {
+          ...kibanaTab
+        }
+      ];
+      const component = mount(<EuiTabbedContent tabs={tabs}/>);
+
+      component.find('EuiTab[id="kibana"] button').first().simulate('click');
+
+      component.setProps({
+        tabs: [
+          elasticsearchTab,
+          {
+            ...kibanaTab,
+            content: <p>updated Kibana content</p>
+          }
+        ]
+      });
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
