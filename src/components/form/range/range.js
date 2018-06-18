@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiFormLabel } from '../form_label';
+import { EuiFieldNumber } from '../field_number';
 
 export const EuiRange = ({
   className,
@@ -14,6 +14,7 @@ export const EuiRange = ({
   min,
   name,
   showLabels,
+  showInput,
   value,
   ...rest
 }) => {
@@ -39,15 +40,31 @@ export const EuiRange = ({
   let maxLabelNode;
   if (showLabels) {
     minLabelNode = (
-      <EuiFormLabel className="euiRange__minLabel">
+      <label className="euiRange__minLabel">
         {min}
-      </EuiFormLabel>
+      </label>
     );
 
     maxLabelNode = (
-      <EuiFormLabel className="euiRange__maxLabel">
+      <label className="euiRange__maxLabel">
         {max}
-      </EuiFormLabel>
+      </label>
+    );
+  }
+
+  let extraInputNode;
+  if (showInput) {
+    extraInputNode = (
+      <EuiFieldNumber
+        name={name}
+        className="euiRange__extraInput"
+        min={min}
+        max={max}
+        value={value}
+        disabled={disabled}
+        compressed={compressed}
+        {...rest}
+      />
     );
   }
 
@@ -68,6 +85,7 @@ export const EuiRange = ({
         {...rest}
       />
       {maxLabelNode}
+      {extraInputNode}
     </div>
   );
 };
@@ -84,6 +102,10 @@ EuiRange.propTypes = {
    * Shows static min/max labels on the sides of the range slider
    */
   showLabels: PropTypes.bool,
+  /**
+   * Displays an extra input control for direct manipulation
+   */
+  showInput: PropTypes.bool,
 };
 
 EuiRange.defaultProps = {
@@ -92,4 +114,5 @@ EuiRange.defaultProps = {
   fullWidth: false,
   compressed: false,
   showLabels: false,
+  showInput: false,
 };

@@ -31,6 +31,29 @@ exports[`EuiRange props compressed should render 1`] = `
 </div>
 `;
 
+exports[`EuiRange props extra input should render 1`] = `
+<div
+  class="euiRange__wrapper"
+>
+  <input
+    class="euiRange"
+    max="100"
+    min="1"
+    type="range"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <input
+      class="euiFieldNumber euiRange__extraInput"
+      max="100"
+      min="1"
+      type="number"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiRange props fullWidth should render 1`] = `
 <div
   class="euiRange__wrapper euiRange__wrapper--fullWidth"
@@ -49,7 +72,7 @@ exports[`EuiRange props labels should render 1`] = `
   class="euiRange__wrapper"
 >
   <label
-    class="euiFormLabel euiRange__minLabel"
+    class="euiRange__minLabel"
   >
     1
   </label>
@@ -60,7 +83,7 @@ exports[`EuiRange props labels should render 1`] = `
     type="range"
   />
   <label
-    class="euiFormLabel euiRange__maxLabel"
+    class="euiRange__maxLabel"
   >
     100
   </label>

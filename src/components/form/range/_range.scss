@@ -1,3 +1,9 @@
+/*
+ * 1. There's no way to target the layout of the extra input, so we must
+ *    use the descendant selector to allow the width to shrink.
+ * 2. Align extra input slightly better with slider labels, in an IE compliant way.
+ */
+
 .euiRange__wrapper {
   @include euiFormControlSize();
   display: flex;
@@ -10,11 +16,22 @@
   &--disabled {
     opacity: .25;
   }
+
+  > .euiFormControlLayout { /* 1 */
+    flex-basis: 0%;
+  }
 }
 
 .euiRange__minLabel,
 .euiRange__maxLabel {
-  margin-bottom: 0;
+  font-size: $euiFontSizeXS;
+}
+
+.euiRange__extraInput {
+  width: auto;
+  margin-left: $euiSize;
+  position: relative; /* 2 */
+  top: -2px; /* 2 */
 }
 
 

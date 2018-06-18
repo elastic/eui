@@ -240,12 +240,12 @@ export const FormControlsExample = {
     title: 'Range',
     text: (
       <Fragment>
-        <EuiCallOut color="warning" title="Use sparingly!">
+        <EuiCallOut color="warning" title="Understanding precision">
           <p>
             The base slider should only be used
             when <strong>the precise value is not considered important</strong>. If
-            the precise value does matter, use
-            the <code>EuiFieldNumber</code> instead.
+            the precise value does matter, add the <code>showInput</code> prop or use
+            a <code>EuiFieldNumber</code> instead.
           </p>
         </EuiCallOut>
         <br/>

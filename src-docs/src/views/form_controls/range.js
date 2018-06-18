@@ -50,6 +50,34 @@ export default class extends Component {
           aria-label="Use aria labels when no actual label is in use"
           showLabels
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiRange
+          id={makeId()}
+          min={100}
+          max={200}
+          value={this.state.value}
+          onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showLabels
+          showInput
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiRange
+          id={makeId()}
+          min={0}
+          max={2000}
+          step={50}
+          value={this.state.value}
+          onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showLabels
+          showInput
+          compressed
+        />
       </Fragment>
     );
   }
