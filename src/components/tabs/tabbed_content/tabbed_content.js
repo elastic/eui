@@ -46,7 +46,7 @@ export class EuiTabbedContent extends Component {
     // Only track selection state if it's not controlled externally.
     if (!selectedTab) {
       this.state = {
-        selectedTab: initialSelectedTab || tabs[0],
+        selectedTabId: (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
       };
     }
   }
@@ -60,7 +60,7 @@ export class EuiTabbedContent extends Component {
 
     // Only track selection state if it's not controlled externally.
     if (!externalSelectedTab) {
-      this.setState({ selectedTab })
+      this.setState({ selectedTabId: selectedTab.id })
     }
   };
 
@@ -76,7 +76,9 @@ export class EuiTabbedContent extends Component {
     } = this.props;
 
     // Allow the consumer to control tab selection.
-    const selectedTab = externalSelectedTab || this.state.selectedTab
+    const selectedTab = externalSelectedTab || tabs.find(
+      tab => tab.id === this.state.selectedTabId
+    );
 
     const {
       content: selectedTabContent,
