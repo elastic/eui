@@ -21,7 +21,7 @@ const positionComplements = {
 
 // always resolving to top/left is taken advantage of by knowing they are the
 // minimum edges of the bounding box
-const positionSubstitues = {
+const positionSubstitutes = {
   top: 'left',
   right: 'top',
   bottom: 'left',
@@ -121,7 +121,7 @@ export function findPopoverPosition({ anchor, popover, position, buffer=16, offs
       // iteration 1 is the complement of the requested position,
       // the desired axis doesn't have room, try the opposite one
       // e.g. "top" -> "left" or "right" -> "top"
-      iterationPosition = positionSubstitues[iterationPosition];
+      iterationPosition = positionSubstitutes[iterationPosition];
     }
   }
 
@@ -178,7 +178,7 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
    *
    */
 
-  const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
+  const crossAxisFirstSide = positionSubstitutes[position]; // "top" -> "left"
   const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
   const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
 
