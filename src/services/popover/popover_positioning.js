@@ -178,13 +178,20 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
    *
    */
 
-  // compute some oft-used values right away
-  const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
-  const popoverSizeOnPrimaryAxis = popoverBoundingBox[primaryAxisDimension];
-
   const crossAxisFirstSide = positionSubstitues[position]; // "top" -> "left"
   const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
   const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
+
+  // how much of the popover overflows past either side of the anchor if its centered
+  const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
+  const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
+  const anchorHalfSize = anchorSizeOnCrossAxis / 2;
+
+  // the popover's original position on the cross-axis is determined by:
+  const crossAxisPositionOriginal =
+    anchorBoundingBox[crossAxisFirstSide] // where the anchor is located
+    + anchorHalfSize                          // plus half anchor dimension
+    - popoverSizeOnCrossAxis / 2;           // less half the popover dimension
 
   // To fit the content within both the window and container,
   // compute the smaller of the two spaces along each edge
@@ -194,32 +201,28 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpaceOnCrossAxis);
   availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpaceOnCrossAxis);
 
-  const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
-  const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
-
   // shifting the popover to one side may yield a better fit
   const spaceAvailableOnFirstSide = availableSpace[crossAxisFirstSide];
   const spaceAvailableOnSecondSide = availableSpace[crossAxisSecondSide];
 
   // determine which direction has more room and the popover should shift to
   const leastAvailableSpace = Math.min(spaceAvailableOnFirstSide, spaceAvailableOnSecondSide);
-  const isShiftTowardFirstSide = spaceAvailableOnFirstSide > spaceAvailableOnSecondSide;
-  const shiftDirection = isShiftTowardFirstSide ? -1 : 1;
-
-  // how much of the popover overflows past either side of the anchor if its centered
   const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2;
-
   const needsShift = contentOverflowSize > leastAvailableSpace;
   const amountOfShiftNeeded = needsShift ? contentOverflowSize - leastAvailableSpace : 0;
-  const anchorHalfSize = anchorSizeOnCrossAxis / 2;
 
-  // the popover's position on the cross-axis is determined by
-  //                            how far it needs to shift       half anchor dimension      where the anchor is located        half the popover dimension
-  const crossAxisPosition = (amountOfShiftNeeded * shiftDirection) + anchorHalfSize + anchorBoundingBox[crossAxisFirstSide] - popoverSizeOnCrossAxis / 2;
+  // shift over the popover if necessary
+  const isShiftTowardFirstSide = spaceAvailableOnFirstSide > spaceAvailableOnSecondSide;
+  const shiftDirection = isShiftTowardFirstSide ? -1 : 1;
+  const shiftAmount = amountOfShiftNeeded * shiftDirection;
+  const crossAxisPosition = crossAxisPositionOriginal + shiftAmount;
 
   // if positioning to the top or left, the target position decreases
   // from the anchor's top or left, otherwise the position adds to the anchor's
   const isOffsetDecreasing = position === 'top' || position === 'left';
+
+  const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
+  const popoverSizeOnPrimaryAxis = popoverBoundingBox[primaryAxisDimension];
 
   // start at the top or left edge of the anchor element
   const primaryAxisPositionName = dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
