@@ -5,6 +5,7 @@ import { VerticalRectSeries } from 'react-vis';
 export class EuiVerticalRectSeries extends VerticalRectSeries {
   render() {
     const { name, data, color, onClick, ...rest } = this.props;
+    const isHighDataVolume = data.length > 80 ? true : false;
 
     return (
       <g>
@@ -13,10 +14,10 @@ export class EuiVerticalRectSeries extends VerticalRectSeries {
           onSeriesClick={onClick}
           color={color}
           style={{
-            strokeWidth: 1,
+            strokeWidth: isHighDataVolume ? 0 : 1,
             stroke: 'white',
-            rx: 2,
-            ry: 2,
+            rx: isHighDataVolume ? 0 : 2,
+            ry: isHighDataVolume ? 0 : 2,
           }}
           data={data}
           {...rest}

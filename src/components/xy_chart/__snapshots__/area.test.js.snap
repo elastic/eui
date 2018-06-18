@@ -31,8 +31,6 @@ exports[`EuiArea all props are rendered 1`] = `
           dontCheckIfEmpty={true}
           height={200}
           margin={2}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
           width={600}
           xPadding={0}
           xType="linear"
@@ -79,6 +77,7 @@ exports[`EuiArea all props are rendered 1`] = `
                         "y": 15,
                       },
                     ],
+                    undefined,
                   ]
                 }
                 _colorValue="#ff0000"
@@ -154,7 +153,7 @@ exports[`EuiArea all props are rendered 1`] = `
                 opacityType="literal"
                 radiusDomain={Array []}
                 sameTypeIndex={0}
-                sameTypeTotal={1}
+                sameTypeTotal={2}
                 seriesIndex={0}
                 sizeDomain={Array []}
                 sizeRange={
@@ -215,6 +214,7 @@ exports[`EuiArea all props are rendered 1`] = `
                             "y": 15,
                           },
                         ],
+                        undefined,
                       ]
                     }
                     _colorValue="#ff0000"
@@ -291,7 +291,7 @@ exports[`EuiArea all props are rendered 1`] = `
                     opacityType="literal"
                     radiusDomain={Array []}
                     sameTypeIndex={0}
-                    sameTypeTotal={1}
+                    sameTypeTotal={2}
                     seriesIndex={0}
                     sizeDomain={Array []}
                     sizeRange={
@@ -357,6 +357,7 @@ exports[`EuiArea all props are rendered 1`] = `
                               "y": 15,
                             },
                           ],
+                          undefined,
                         ]
                       }
                       _colorValue="#ff0000"
@@ -470,7 +471,7 @@ exports[`EuiArea all props are rendered 1`] = `
                       opacityType="literal"
                       radiusDomain={Array []}
                       sameTypeIndex={0}
-                      sameTypeTotal={1}
+                      sameTypeTotal={2}
                       seriesIndex={0}
                       sizeDomain={Array []}
                       sizeRange={
@@ -555,6 +556,7 @@ exports[`EuiArea all props are rendered 1`] = `
                                   "y": 15,
                                 },
                               ],
+                              undefined,
                             ]
                           }
                           _animation={0.00002}
@@ -631,7 +633,7 @@ exports[`EuiArea all props are rendered 1`] = `
                           opacityType="literal"
                           radiusDomain={Array []}
                           sameTypeIndex={0}
-                          sameTypeTotal={1}
+                          sameTypeTotal={2}
                           seriesIndex={0}
                           sizeDomain={Array []}
                           sizeRange={
@@ -706,6 +708,245 @@ exports[`EuiArea all props are rendered 1`] = `
                 </g>
               </AbstractSeries>
             </svg>
+            <AbstractSeries
+              _adjustBy={Array []}
+              _adjustWhat={Array []}
+              _allData={
+                Array [
+                  Array [
+                    Object {
+                      "x": 0,
+                      "y": 5,
+                    },
+                    Object {
+                      "x": 1,
+                      "y": 15,
+                    },
+                  ],
+                  undefined,
+                ]
+              }
+              _colorValue="#79C7E3"
+              _opacityValue={1}
+              angleDomain={Array []}
+              animation={true}
+              className=""
+              clusters={
+                Set {
+                  undefined,
+                }
+              }
+              colorDomain={Array []}
+              colorRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              fillDomain={Array []}
+              fillRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              getAngle={[Function]}
+              getAngle0={[Function]}
+              getColor={[Function]}
+              getColor0={[Function]}
+              getFill={[Function]}
+              getFill0={[Function]}
+              getOpacity={[Function]}
+              getOpacity0={[Function]}
+              getRadius={[Function]}
+              getRadius0={[Function]}
+              getSize={[Function]}
+              getSize0={[Function]}
+              getStroke={[Function]}
+              getStroke0={[Function]}
+              getX={[Function]}
+              getX0={[Function]}
+              getY={[Function]}
+              getY0={[Function]}
+              innerHeight={196}
+              innerWidth={596}
+              key=".1"
+              marginBottom={2}
+              marginLeft={2}
+              marginRight={2}
+              marginTop={2}
+              opacityDomain={Array []}
+              opacityType="literal"
+              radiusDomain={Array []}
+              sameTypeIndex={1}
+              sameTypeTotal={2}
+              seriesIndex={1}
+              sizeDomain={Array []}
+              sizeRange={
+                Array [
+                  1,
+                  10,
+                ]
+              }
+              stack={false}
+              strokeDomain={Array []}
+              strokeRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              style={Object {}}
+              xDomain={
+                Array [
+                  0,
+                  1,
+                ]
+              }
+              xPadding={0}
+              xRange={
+                Array [
+                  0,
+                  596,
+                ]
+              }
+              xType="linear"
+              yDomain={
+                Array [
+                  5,
+                  15,
+                ]
+              }
+              yPadding={0}
+              yRange={
+                Array [
+                  196,
+                  0,
+                ]
+              }
+              yType="linear"
+            >
+              <Crosshair
+                _adjustBy={Array []}
+                _adjustWhat={Array []}
+                _allData={
+                  Array [
+                    Array [
+                      Object {
+                        "x": 0,
+                        "y": 5,
+                      },
+                      Object {
+                        "x": 1,
+                        "y": 15,
+                      },
+                    ],
+                    undefined,
+                  ]
+                }
+                _colorValue="#79C7E3"
+                _opacityValue={1}
+                angleDomain={Array []}
+                animation={true}
+                className=""
+                clusters={
+                  Set {
+                    undefined,
+                  }
+                }
+                colorDomain={Array []}
+                colorRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                fillDomain={Array []}
+                fillRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                getAngle={[Function]}
+                getAngle0={[Function]}
+                getColor={[Function]}
+                getColor0={[Function]}
+                getFill={[Function]}
+                getFill0={[Function]}
+                getOpacity={[Function]}
+                getOpacity0={[Function]}
+                getRadius={[Function]}
+                getRadius0={[Function]}
+                getSize={[Function]}
+                getSize0={[Function]}
+                getStroke={[Function]}
+                getStroke0={[Function]}
+                getX={[Function]}
+                getX0={[Function]}
+                getY={[Function]}
+                getY0={[Function]}
+                innerHeight={196}
+                innerWidth={596}
+                itemsFormat={[Function]}
+                marginBottom={2}
+                marginLeft={2}
+                marginRight={2}
+                marginTop={2}
+                opacityDomain={Array []}
+                opacityType="literal"
+                radiusDomain={Array []}
+                sameTypeIndex={1}
+                sameTypeTotal={2}
+                seriesIndex={1}
+                sizeDomain={Array []}
+                sizeRange={
+                  Array [
+                    1,
+                    10,
+                  ]
+                }
+                stack={false}
+                strokeDomain={Array []}
+                strokeRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                style={Object {}}
+                titleFormat={[Function]}
+                values={Array []}
+                xDomain={
+                  Array [
+                    0,
+                    1,
+                  ]
+                }
+                xPadding={0}
+                xRange={
+                  Array [
+                    0,
+                    596,
+                  ]
+                }
+                xType="linear"
+                yDomain={
+                  Array [
+                    5,
+                    15,
+                  ]
+                }
+                yPadding={0}
+                yRange={
+                  Array [
+                    196,
+                    0,
+                  ]
+                }
+                yType="linear"
+              />
+            </AbstractSeries>
           </div>
         </XYPlot>
       </div>
@@ -755,8 +996,6 @@ exports[`EuiArea is rendered 1`] = `
           dontCheckIfEmpty={true}
           height={200}
           margin={2}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
           width={600}
           xPadding={0}
           xType="linear"
@@ -803,6 +1042,7 @@ exports[`EuiArea is rendered 1`] = `
                         "y": 15,
                       },
                     ],
+                    undefined,
                   ]
                 }
                 _colorValue="#00B3A4"
@@ -873,7 +1113,7 @@ exports[`EuiArea is rendered 1`] = `
                 opacityType="literal"
                 radiusDomain={Array []}
                 sameTypeIndex={0}
-                sameTypeTotal={1}
+                sameTypeTotal={2}
                 seriesIndex={0}
                 sizeDomain={Array []}
                 sizeRange={
@@ -934,6 +1174,7 @@ exports[`EuiArea is rendered 1`] = `
                             "y": 15,
                           },
                         ],
+                        undefined,
                       ]
                     }
                     _colorValue="#00B3A4"
@@ -1005,7 +1246,7 @@ exports[`EuiArea is rendered 1`] = `
                     opacityType="literal"
                     radiusDomain={Array []}
                     sameTypeIndex={0}
-                    sameTypeTotal={1}
+                    sameTypeTotal={2}
                     seriesIndex={0}
                     sizeDomain={Array []}
                     sizeRange={
@@ -1071,6 +1312,7 @@ exports[`EuiArea is rendered 1`] = `
                               "y": 15,
                             },
                           ],
+                          undefined,
                         ]
                       }
                       _colorValue="#00B3A4"
@@ -1179,7 +1421,7 @@ exports[`EuiArea is rendered 1`] = `
                       opacityType="literal"
                       radiusDomain={Array []}
                       sameTypeIndex={0}
-                      sameTypeTotal={1}
+                      sameTypeTotal={2}
                       seriesIndex={0}
                       sizeDomain={Array []}
                       sizeRange={
@@ -1264,6 +1506,7 @@ exports[`EuiArea is rendered 1`] = `
                                   "y": 15,
                                 },
                               ],
+                              undefined,
                             ]
                           }
                           _animation={0.00002}
@@ -1335,7 +1578,7 @@ exports[`EuiArea is rendered 1`] = `
                           opacityType="literal"
                           radiusDomain={Array []}
                           sameTypeIndex={0}
-                          sameTypeTotal={1}
+                          sameTypeTotal={2}
                           seriesIndex={0}
                           sizeDomain={Array []}
                           sizeRange={
@@ -1410,6 +1653,245 @@ exports[`EuiArea is rendered 1`] = `
                 </g>
               </AbstractSeries>
             </svg>
+            <AbstractSeries
+              _adjustBy={Array []}
+              _adjustWhat={Array []}
+              _allData={
+                Array [
+                  Array [
+                    Object {
+                      "x": 0,
+                      "y": 5,
+                    },
+                    Object {
+                      "x": 1,
+                      "y": 15,
+                    },
+                  ],
+                  undefined,
+                ]
+              }
+              _colorValue="#79C7E3"
+              _opacityValue={1}
+              angleDomain={Array []}
+              animation={true}
+              className=""
+              clusters={
+                Set {
+                  undefined,
+                }
+              }
+              colorDomain={Array []}
+              colorRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              fillDomain={Array []}
+              fillRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              getAngle={[Function]}
+              getAngle0={[Function]}
+              getColor={[Function]}
+              getColor0={[Function]}
+              getFill={[Function]}
+              getFill0={[Function]}
+              getOpacity={[Function]}
+              getOpacity0={[Function]}
+              getRadius={[Function]}
+              getRadius0={[Function]}
+              getSize={[Function]}
+              getSize0={[Function]}
+              getStroke={[Function]}
+              getStroke0={[Function]}
+              getX={[Function]}
+              getX0={[Function]}
+              getY={[Function]}
+              getY0={[Function]}
+              innerHeight={196}
+              innerWidth={596}
+              key=".1"
+              marginBottom={2}
+              marginLeft={2}
+              marginRight={2}
+              marginTop={2}
+              opacityDomain={Array []}
+              opacityType="literal"
+              radiusDomain={Array []}
+              sameTypeIndex={1}
+              sameTypeTotal={2}
+              seriesIndex={1}
+              sizeDomain={Array []}
+              sizeRange={
+                Array [
+                  1,
+                  10,
+                ]
+              }
+              stack={false}
+              strokeDomain={Array []}
+              strokeRange={
+                Array [
+                  "#EF5D28",
+                  "#FF9833",
+                ]
+              }
+              style={Object {}}
+              xDomain={
+                Array [
+                  0,
+                  1,
+                ]
+              }
+              xPadding={0}
+              xRange={
+                Array [
+                  0,
+                  596,
+                ]
+              }
+              xType="linear"
+              yDomain={
+                Array [
+                  5,
+                  15,
+                ]
+              }
+              yPadding={0}
+              yRange={
+                Array [
+                  196,
+                  0,
+                ]
+              }
+              yType="linear"
+            >
+              <Crosshair
+                _adjustBy={Array []}
+                _adjustWhat={Array []}
+                _allData={
+                  Array [
+                    Array [
+                      Object {
+                        "x": 0,
+                        "y": 5,
+                      },
+                      Object {
+                        "x": 1,
+                        "y": 15,
+                      },
+                    ],
+                    undefined,
+                  ]
+                }
+                _colorValue="#79C7E3"
+                _opacityValue={1}
+                angleDomain={Array []}
+                animation={true}
+                className=""
+                clusters={
+                  Set {
+                    undefined,
+                  }
+                }
+                colorDomain={Array []}
+                colorRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                fillDomain={Array []}
+                fillRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                getAngle={[Function]}
+                getAngle0={[Function]}
+                getColor={[Function]}
+                getColor0={[Function]}
+                getFill={[Function]}
+                getFill0={[Function]}
+                getOpacity={[Function]}
+                getOpacity0={[Function]}
+                getRadius={[Function]}
+                getRadius0={[Function]}
+                getSize={[Function]}
+                getSize0={[Function]}
+                getStroke={[Function]}
+                getStroke0={[Function]}
+                getX={[Function]}
+                getX0={[Function]}
+                getY={[Function]}
+                getY0={[Function]}
+                innerHeight={196}
+                innerWidth={596}
+                itemsFormat={[Function]}
+                marginBottom={2}
+                marginLeft={2}
+                marginRight={2}
+                marginTop={2}
+                opacityDomain={Array []}
+                opacityType="literal"
+                radiusDomain={Array []}
+                sameTypeIndex={1}
+                sameTypeTotal={2}
+                seriesIndex={1}
+                sizeDomain={Array []}
+                sizeRange={
+                  Array [
+                    1,
+                    10,
+                  ]
+                }
+                stack={false}
+                strokeDomain={Array []}
+                strokeRange={
+                  Array [
+                    "#EF5D28",
+                    "#FF9833",
+                  ]
+                }
+                style={Object {}}
+                titleFormat={[Function]}
+                values={Array []}
+                xDomain={
+                  Array [
+                    0,
+                    1,
+                  ]
+                }
+                xPadding={0}
+                xRange={
+                  Array [
+                    0,
+                    596,
+                  ]
+                }
+                xType="linear"
+                yDomain={
+                  Array [
+                    5,
+                    15,
+                  ]
+                }
+                yPadding={0}
+                yRange={
+                  Array [
+                    196,
+                    0,
+                  ]
+                }
+                yType="linear"
+              />
+            </AbstractSeries>
           </div>
         </XYPlot>
       </div>

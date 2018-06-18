@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { VerticalBarSeries } from 'react-vis';
 
 export class EuiVerticalBarSeries extends VerticalBarSeries {
+
   render() {
     const { name, data, color, onClick, ...rest } = this.props;
+    const isHighDataVolume = data.length > 80 ? true : false;
 
     return (
       <VerticalBarSeries
@@ -12,10 +14,10 @@ export class EuiVerticalBarSeries extends VerticalBarSeries {
         onSeriesClick={onClick}
         color={color}
         style={{
-          strokeWidth: 1,
+          strokeWidth: isHighDataVolume ? 0.25 : 1,
           stroke: 'white',
-          rx: 2,
-          ry: 2,
+          rx: isHighDataVolume ? 0.5 : 2,
+          ry: isHighDataVolume ? 0.5 : 2,
         }}
         data={data}
         {...rest}

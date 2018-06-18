@@ -1,10 +1,35 @@
 import React, { PureComponent } from 'react';
 import { XYPlot, makeWidthFlexible, AbstractSeries } from 'react-vis';
+
 import PropTypes from 'prop-types';
 import Highlight from './highlight';
-import { EuiCrosshair } from './crosshair';
+import { EuiCrosshairX } from './crosshair_x';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
+import { getSeriesChildren } from './utils/series_utils';
+
+class XYExtendedPlot extends XYPlot {
+  /**
+   * Trigger onMouseLeave handler if it was passed in props.
+   * @param {Event} event Native event.
+   * @private
+   */
+  _mouseLeaveHandler(event) {
+    const { onMouseLeave, children } = this.props;
+    console.log('parent mouse leaving')
+    if (onMouseLeave) {
+      super.onMouseLeave(event);
+    }
+    const seriesChildren = getSeriesChildren(children);
+    seriesChildren.forEach((child, index) => {
+      const component = this.refs[`series${index}`];
+      if (component && component.onParentMouseLeave) {
+        component.onParentMouseLeave(event);
+      }
+    });
+  }
+
+}
 
 class XYChart extends PureComponent {
   state = {
@@ -12,17 +37,6 @@ class XYChart extends PureComponent {
   };
   colorIterator = 0;
   _xyPlotRef = React.createRef();
-
-  _onMouseLeave = () => {
-    // TODO we need to find a better way to trigger a mouse leave event
-    // for the crosshair
-    this.setState({ mouseOver: false });
-  }
-
-  _onMouseMove = (e) => {
-    e.preventDefault();
-    this.setState({ mouseOver: true });
-  }
 
   _renderChildren = (child, i) => {
     const { prototype } = child.type;
@@ -44,6 +58,11 @@ class XYChart extends PureComponent {
 
     return React.cloneElement(child, props);
   }
+  // canShowCrosshair = () => {
+  //   const { crosshairX, showTooltips } = this.props;
+  //   const { mouseOver } = this.state;
+  //   return showTooltips && ( mouseOver || crosshairX !== undefined)
+  // }
 
   render() {
     const {
@@ -53,7 +72,6 @@ class XYChart extends PureComponent {
       yType,
       stackBy,
       errorText,
-      showTooltips,
       onSelectEnd,
       children,
       xDomain,
@@ -61,6 +79,8 @@ class XYChart extends PureComponent {
       yPadding,
       xPadding,
       animation, // eslint-disable-line no-unused-vars
+      showTooltips,
+      crosshairX,
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
       ...rest
@@ -75,7 +95,7 @@ class XYChart extends PureComponent {
 
     return (
       <div {...rest}>
-        <XYPlot
+        <XYExtendedPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty
           onMouseMove={this._onMouseMove}
@@ -95,12 +115,15 @@ class XYChart extends PureComponent {
 
           {React.Children.map(children, this._renderChildren)}
 
-          {showTooltips && this.state.mouseOver && (
-            <EuiCrosshair />
+          { showTooltips && (
+            <EuiCrosshairX
+              crosshairX={crosshairX}
+              onCrosshairUpdate={onCrosshairUpdate}
+            />
           )}
 
           {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
-        </XYPlot>
+        </XYExtendedPlot>
       </div>
     );
   }

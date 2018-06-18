@@ -9,10 +9,11 @@ import {
 // eslint-disable-next-line
 export class ExampleCrosshair extends React.Component {
   state = {
-    crosshairX: 0
+    crosshairX: 2,
   }
   _updateCrosshairLocation = (crosshairX) => {
-    this.setState({ crosshairX })
+    console.log('update crosshair x');
+    this.setState({ crosshairX });
   }
   render() {
     return (
@@ -23,7 +24,11 @@ export class ExampleCrosshair extends React.Component {
           width={600}
           height={200}
         >
-          <EuiVerticalBarSeries name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiVerticalBarSeries
+            name="Users"
+            data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
+            color={'#db1374'}
+          />
           <EuiDefaultAxis />
         </EuiXYChart>
         <br /><br />
@@ -33,7 +38,11 @@ export class ExampleCrosshair extends React.Component {
           width={600}
           height={200}
         >
-          <EuiVerticalBarSeries name="Users" data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]} color={'#db1374'} />
+          <EuiVerticalBarSeries
+            name="Users"
+            data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
+            color={'#db1374'}
+          />
           <EuiDefaultAxis />
         </EuiXYChart>
       </div>

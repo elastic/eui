@@ -11,4 +11,4 @@ export { EuiYAxis } from './axis/y_axis';
 export { EuiArea } from './area';
 export { EuiXYChartAxisUtils } from './utils/axis_utils';
 export { EuiXYChartTextUtils } from './utils/text_utils';
-export { EuiCrosshair } from './crosshair';
+export { EuiCrosshairX } from './crosshair_x';
