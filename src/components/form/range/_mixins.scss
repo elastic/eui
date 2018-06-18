@@ -1,0 +1,22 @@
+@mixin euiRange__track {
+  cursor: pointer;
+  height: $euiRangeTrackHeight;
+  transition: all $euiAnimSpeedNormal ease-in;
+  width: $euiRangeTrackWidth;
+}
+
+@mixin euiRange__thumb {
+  cursor: pointer;
+  @include euiCustomControl($type: 'round');
+  border-color: $euiRangeThumbBorderColor;
+  padding: 0;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbWidth;
+}
+
+@mixin euiRange__thumb--disabled {
+  cursor: not-allowed;
+  border-color: $euiRangeThumbBorderColor;
+  background-color: $euiRangeThumbBorderColor;
+  box-shadow: none;
+}
