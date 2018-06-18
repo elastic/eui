@@ -182,6 +182,85 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
   const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
 
+  const {
+    crossAxisPosition,
+    crossAxisArrowPosition,
+  } = getCrossAxisPosition({
+    crossAxisFirstSide,
+    crossAxisSecondSide,
+    crossAxisDimension,
+    position,
+    buffer,
+    offset,
+    windowBoundingBox,
+    containerBoundingBox,
+    popoverBoundingBox,
+    anchorBoundingBox,
+    minimumSpace: arrowConfig ? arrowConfig.arrowBuffer : 0,
+    arrowConfig,
+  });
+
+  const primaryAxisDimension = relatedDimension[position]; // "top" -> "height"
+  const primaryAxisPositionName = dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
+
+  const {
+    primaryAxisPosition,
+    primaryAxisArrowPosition,
+  } = getPrimaryAxisPosition({
+    position,
+    offset,
+    popoverBoundingBox,
+    anchorBoundingBox,
+    arrowConfig,
+  });
+
+  const popoverPlacement = {
+    [crossAxisFirstSide]: crossAxisPosition,
+    [primaryAxisPositionName]: primaryAxisPosition
+  };
+
+  // calculate the fit of the popover in this location
+  // fit is in range 0.0 -> 1.0 and is the percentage of the popover which is visible in this location
+  const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
+  const fit = getVisibleFit(
+    {
+      top: popoverPlacement.top,
+      right: popoverPlacement.left + popoverBoundingBox.width,
+      bottom: popoverPlacement.top + popoverBoundingBox.height,
+      left: popoverPlacement.left,
+      width: popoverBoundingBox.width,
+      height: popoverBoundingBox.height
+    },
+    combinedBoundingBox
+  );
+
+  const arrow = arrowConfig ? {
+    [crossAxisFirstSide]: crossAxisArrowPosition - popoverPlacement[crossAxisFirstSide],
+    [primaryAxisPositionName]: primaryAxisArrowPosition,
+  } : undefined;
+
+  return {
+    fit,
+    top: popoverPlacement.top,
+    left: popoverPlacement.left,
+    arrow,
+  };
+}
+
+function getCrossAxisPosition({
+  crossAxisFirstSide,
+  crossAxisSecondSide,
+  crossAxisDimension,
+  position,
+  buffer,
+  offset,
+  windowBoundingBox,
+  containerBoundingBox,
+  popoverBoundingBox,
+  anchorBoundingBox,
+  arrowConfig,
+  minimumSpace = 0,
+}) {
   // how much of the popover overflows past either side of the anchor if its centered
   const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
   const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
@@ -190,16 +269,15 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   // the popover's original position on the cross-axis is determined by:
   const crossAxisPositionOriginal =
     anchorBoundingBox[crossAxisFirstSide] // where the anchor is located
-    + anchorHalfSize                          // plus half anchor dimension
-    - popoverSizeOnCrossAxis / 2;           // less half the popover dimension
+    + anchorHalfSize                      // plus half anchor dimension
+    - popoverSizeOnCrossAxis / 2;         // less half the popover dimension
 
   // To fit the content within both the window and container,
   // compute the smaller of the two spaces along each edge
   const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
   const availableSpace = getAvailableSpace(anchorBoundingBox, combinedBoundingBox, buffer, offset, position);
-  const minimumSpaceOnCrossAxis = arrowConfig ? arrowConfig.arrowBuffer : 0;
-  availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpaceOnCrossAxis);
-  availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpaceOnCrossAxis);
+  availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpace);
+  availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpace);
 
   // shifting the popover to one side may yield a better fit
   const spaceAvailableOnFirstSide = availableSpace[crossAxisFirstSide];
@@ -217,6 +295,28 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   const shiftAmount = amountOfShiftNeeded * shiftDirection;
   const crossAxisPosition = crossAxisPositionOriginal + shiftAmount;
 
+  let crossAxisArrowPosition;
+
+  if (arrowConfig) {
+    const { arrowWidth } = arrowConfig;
+    const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
+    const anchorHalfSize = anchorSizeOnCrossAxis / 2;
+    crossAxisArrowPosition = anchorBoundingBox[crossAxisFirstSide] + anchorHalfSize - (arrowWidth / 2);
+  }
+
+  return {
+    crossAxisPosition,
+    crossAxisArrowPosition,
+  };
+}
+
+function getPrimaryAxisPosition({
+  position,
+  offset,
+  popoverBoundingBox,
+  anchorBoundingBox,
+  arrowConfig,
+}) {
   // if positioning to the top or left, the target position decreases
   // from the anchor's top or left, otherwise the position adds to the anchor's
   const isOffsetDecreasing = position === 'top' || position === 'left';
@@ -234,46 +334,16 @@ export function getPopoverScreenCoordinates({ position, anchorBoundingBox, popov
   const contentOffset = (offset + primaryAxisOffset) * (isOffsetDecreasing ? -1 : 1);
   const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
 
-  const popoverPlacement = {
-    [crossAxisFirstSide]: crossAxisPosition,
-    [primaryAxisPositionName]: primaryAxisPosition
-  };
+  let primaryAxisArrowPosition;
 
-  // calculate the fit of the popover in this location
-  // fit is in range 0.0 -> 1.0 and is the percentage of the popover which is visible in this location
-  const fit = getVisibleFit(
-    {
-      top: popoverPlacement.top,
-      right: popoverPlacement.left + popoverBoundingBox.width,
-      bottom: popoverPlacement.top + popoverBoundingBox.height,
-      left: popoverPlacement.left,
-      width: popoverBoundingBox.width,
-      height: popoverBoundingBox.height
-    },
-    combinedBoundingBox
-  );
-
-  const positioning = {
-    fit,
-    top: popoverPlacement.top,
-    left: popoverPlacement.left
-  };
-
-  // if there is an arrowConfig, calculate arrow positioning
-  // relative to the popover's top/left coordinates
   if (arrowConfig) {
-    const { arrowWidth } = arrowConfig;
-
-    const primaryAxisPosition = positioning[primaryAxisPositionName] + (isOffsetDecreasing ? popoverSizeOnPrimaryAxis : 0);
-    const crossAxisPosition = anchorBoundingBox[crossAxisFirstSide] + anchorHalfSize - (arrowWidth / 2);
-
-    positioning.arrow = {
-      [primaryAxisPositionName]: primaryAxisPosition - positioning[primaryAxisPositionName],
-      [crossAxisFirstSide]: crossAxisPosition - positioning[crossAxisFirstSide]
-    };
+    primaryAxisArrowPosition = isOffsetDecreasing ? popoverSizeOnPrimaryAxis : 0;
   }
 
-  return positioning;
+  return {
+    primaryAxisPosition,
+    primaryAxisArrowPosition,
+  };
 }
 
 /**
