@@ -15,8 +15,9 @@ exports[`EuiArea all props are rendered 1`] = `
   >
     <XYChart
       animation={null}
+      crosshairOrientation="vertical"
       height={200}
-      showTooltips={true}
+      showCrosshair={true}
       truncateLegends={false}
       width={600}
       xPadding={0}
@@ -975,9 +976,10 @@ exports[`EuiArea is rendered 1`] = `
       animation={null}
       aria-label="aria-label"
       className="testClass1 testClass2"
+      crosshairOrientation="vertical"
       data-test-subj="test subject string"
       height={200}
-      showTooltips={true}
+      showCrosshair={true}
       truncateLegends={false}
       width={600}
       xPadding={0}

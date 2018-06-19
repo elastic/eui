@@ -20,3 +20,14 @@ export function getSeriesChildren(children) {
   return React.Children.toArray(children).filter(child =>
   child && isSeriesChild(child));
 }
+
+export function rotateDataSeries(data) {
+  return data.map(d => {
+    return {
+      x: d.y,
+      y: d.x,
+      x0: d.y0,
+      y0: d.x0,
+    }
+  })
+}

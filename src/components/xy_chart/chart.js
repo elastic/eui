@@ -3,10 +3,12 @@ import { XYPlot, makeWidthFlexible, AbstractSeries } from 'react-vis';
 
 import PropTypes from 'prop-types';
 import Highlight from './highlight';
-import { EuiCrosshairX } from './crosshair_x';
+import { EuiCrosshairX } from './crosshairs/crosshair_x';
+import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
+import { EuiXYChartUtils } from './utils/chart_utils';
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -59,9 +61,9 @@ class XYChart extends PureComponent {
     return React.cloneElement(child, props);
   }
   // canShowCrosshair = () => {
-  //   const { crosshairX, showTooltips } = this.props;
+  //   const { crosshairValues, showCrosshair } = this.props;
   //   const { mouseOver } = this.state;
-  //   return showTooltips && ( mouseOver || crosshairX !== undefined)
+  //   return showCrosshair && ( mouseOver || crosshairValues !== undefined)
   // }
 
   render() {
@@ -79,8 +81,9 @@ class XYChart extends PureComponent {
       yPadding,
       xPadding,
       animation, // eslint-disable-line no-unused-vars
-      showTooltips,
-      crosshairX,
+      showCrosshair,
+      crosshairOrientation,
+      crosshairValues,
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
       ...rest
@@ -92,7 +95,9 @@ class XYChart extends PureComponent {
     }
 
     this.colorIterator = 0;
-
+    const Crosshair = crosshairOrientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL
+      ? EuiCrosshairY
+      : EuiCrosshairX
     return (
       <div {...rest}>
         <XYExtendedPlot
@@ -115,9 +120,9 @@ class XYChart extends PureComponent {
 
           {React.Children.map(children, this._renderChildren)}
 
-          { showTooltips && (
-            <EuiCrosshairX
-              crosshairX={crosshairX}
+          { showCrosshair && (
+            <Crosshair
+              crosshairValues={crosshairValues}
               onCrosshairUpdate={onCrosshairUpdate}
             />
           )}
@@ -145,9 +150,9 @@ XYChart.propTypes = {
   // showAxis: PropTypes.bool,
   xAxisLocation: PropTypes.string,
   yAxisLocation: PropTypes.string,
-  showTooltips: PropTypes.bool,
+  showCrosshair: PropTypes.bool,
   errorText: PropTypes.string,
-  crosshairX: PropTypes.number,
+  crosshairValues: PropTypes.number,
   onCrosshairUpdate: PropTypes.func,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
@@ -158,7 +163,8 @@ XYChart.propTypes = {
 XYChart.defaultProps = {
   truncateLegends: false,
   // showAxis: true,
-  showTooltips: true,
+  showCrosshair: true,
+  crosshairOrientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
   yPadding: 0,
   xPadding: 0,
   xType: 'linear',

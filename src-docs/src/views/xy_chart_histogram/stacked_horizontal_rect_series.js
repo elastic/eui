@@ -4,6 +4,7 @@ import {
   EuiXYChart,
   EuiHorizontalRectSeries,
   EuiDefaultAxis,
+  EuiXYChartUtils,
 } from '../../../../src/components';
 
 const dataA = [
@@ -27,6 +28,7 @@ export default () => (
     width={600}
     height={200}
     stackBy="x"
+    crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
   >
     <EuiHorizontalRectSeries
       name={`Tag A`}

@@ -1,7 +1,11 @@
 import React from 'react';
-import { AbstractSeries, Crosshair } from 'react-vis';
+import { AbstractSeries } from 'react-vis';
+import { CrosshairY } from './react_vis_crosshair_y';
 
-export class EuiCrosshairX extends AbstractSeries {
+/**
+ * The Crosshair used by the XYChart as main tooltip mechanism along X axis.
+ */
+export class EuiCrosshairY extends AbstractSeries {
   state = {
     crosshairValues: [],
   }
@@ -15,30 +19,30 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   static getDerivedStateFromProps(props) {
-    const { crosshairX, _allData } = props;
+    const { crosshairY, _allData } = props;
 
-    if (crosshairX !== undefined) {
+    if (crosshairY !== undefined) {
       return {
-        crosshairValues: EuiCrosshairX._computeDataFromXValue(_allData, crosshairX),
+        crosshairValues: EuiCrosshairY._computeDataFromYValue(_allData, crosshairY),
       };
     }
     return null;
   }
 
-  static _computeDataFromXValue(dataSeries, crosshairX) {
-    const filteredAndFlattenDataByX = dataSeries
+  static _computeDataFromYValue(dataSeries, crosshairY) {
+    const filteredAndFlattenDataByY = dataSeries
       .filter(series => series) // get only cleaned data series
       .map(series => {
         return series
-          .filter(dataPoint => dataPoint.x === crosshairX)
+          .filter(dataPoint => dataPoint.y === crosshairY)
           .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint } }));
       })
       .reduce((acc, val) => acc.concat(val), []);
-    return filteredAndFlattenDataByX;
+    return filteredAndFlattenDataByY;
   }
 
   onParentMouseMove(event) {
-    this._handleNearestX(event);
+    this._handleNearestY(event);
   }
 
   onParentMouseLeave() {
@@ -54,11 +58,11 @@ export class EuiCrosshairX extends AbstractSeries {
     if (dataPoints.length > 0) {
       const [ firstDataPoint ] = dataPoints
       const { originalValues } = firstDataPoint
-      const value = (typeof originalValues.x0 === 'number')
-        ? `${originalValues.x0} to ${originalValues.x}`
-        : originalValues.x;
+      const value = (typeof originalValues.y0 === 'number')
+        ? `${originalValues.y0} to ${originalValues.y}`
+        : originalValues.y;
       return {
-        title: 'X Value',
+        title: 'Y Value',
         value,
       }
     }
@@ -68,42 +72,49 @@ export class EuiCrosshairX extends AbstractSeries {
     return dataPoints.map((d, i) => {
       return {
         title: `series ${i}`, // TODO specify series title or default one
-        value: d.y,
+        value: d.x,
       };
     });
   }
 
-  _handleNearestX(event) {
+  _handleNearestY(event) {
     const cleanedDataSeries = this.props._allData.filter(dataSeries => dataSeries);
     if (cleanedDataSeries.length === 0) {
       return;
     }
     const containerCoordiante = super._getXYCoordinateInContainer(event);
-    this._findNearestXData(cleanedDataSeries, containerCoordiante.x);
+    this._findNearestYData(cleanedDataSeries, containerCoordiante.y);
   }
 
-  _findNearestXData(dataSeries, mouseXContainerCoords) {
-    const xScaleFn = super._getAttributeFunctor('x');
+  /**
+   * _findNearestYData - Find the nearest set of data in all existing series.
+   *
+   * @param  {type} dataSeries an array of dataseries
+   * @param  {type} mouseYContainerCoords the y coordinate of the mouse on the chart container
+   * @protected
+   */
+  _findNearestYData(dataSeries, mouseYContainerCoords) {
+    const yScaleFn = super._getAttributeFunctor('y');
     // keeping a global min distance to filter only elements with the same distance
     let globalMinDistance = Number.POSITIVE_INFINITY;
 
-    const nearestXData = dataSeries
+    const nearestYData = dataSeries
       .map(data => {
         let minDistance = Number.POSITIVE_INFINITY;
         let value = null;
         data.forEach((item) => {
-          let itemXCoords;
-          const xCoord = xScaleFn(item);
+          let itemYCoords;
+          const yCoord = yScaleFn(item);
           // check the right item coordinate if we use x0 and x value (e.g. on histograms)
-          if (typeof item.x0 === 'number') {
-            // we need to compute the scaled x0 using the xScale attribute functor
-            // we don't have access of the x0 attribute functor
-            const x0Coord = xScaleFn({ x: item.x0 });
-            itemXCoords = (xCoord - x0Coord) / 2 + x0Coord;
+          if (typeof item.y0 === 'number') {
+            // we need to compute the scaled y0 using the xScale attribute functor
+            // we don't have access of the y0 attribute functor
+            const y0Coord = yScaleFn({ x: item.y0 });
+            itemYCoords = (yCoord - y0Coord) / 2 + y0Coord;
           } else {
-            itemXCoords = xCoord;
+            itemYCoords = yCoord;
           }
-          const newDistance = Math.abs(mouseXContainerCoords - itemXCoords);
+          const newDistance = Math.abs(mouseYContainerCoords - itemYCoords);
           if (newDistance < minDistance) {
             minDistance = newDistance;
             value = item;
@@ -123,22 +134,22 @@ export class EuiCrosshairX extends AbstractSeries {
       .filter(d => d);
 
     // filter and map nearest X data per dataseries to get only the nearet onces
-    const crosshairValues = nearestXData
+    const crosshairValues = nearestYData
       .filter(value => value.minDistance === globalMinDistance)
       .map(value => {
         // check if we are on histograms and we need to show the right x and y values
         const d = value.value;
-        const x = typeof d.x0 === 'number'
-          ? (d.x - d.x0) / 2 + d.x0
-          : d.x;
         const y = typeof d.y0 === 'number'
-          ? (d.y - d.y0)
+          ? (d.y - d.y0) / 2 + d.y0
           : d.y;
+        const x = typeof d.x0 === 'number'
+          ? (d.x - d.x0)
+          : d.x;
         return { x, y, originalValues: d };
       });
 
     if (this.props.onCrosshairUpdate) {
-      this.props.onCrosshairUpdate(crosshairValues[0].x);
+      this.props.onCrosshairUpdate(crosshairValues[0].y);
     }
 
     this.setState({
@@ -149,7 +160,7 @@ export class EuiCrosshairX extends AbstractSeries {
   render() {
     const { crosshairValues } = this.state
     return (
-      <Crosshair
+      <CrosshairY
         values={crosshairValues}
         style={{ line: { background: 'rgb(218, 218, 218)' } }}
         itemsFormat={this._itemsFormat}

@@ -5,6 +5,7 @@ import {
   EuiXYChart,
   EuiHorizontalBarSeries,
   EuiDefaultAxis,
+  EuiXYChartUtils,
 } from '../../../../src/components';
 
 const dataA = [
@@ -51,6 +52,7 @@ export default class extends Component {
         <EuiXYChart
           width={600}
           height={200}
+          crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
           yType="ordinal"
           stackBy={stacked ? 'x' : null}
         >
