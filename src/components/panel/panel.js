@@ -56,9 +56,14 @@ export const EuiPanel = ({
   if (betaBadgeLabel) {
     optionalBetaBadge = (
       <span className="euiPanel__betaBadgeWrapper">
-        <EuiBetaBadge label={betaBadgeLabel} title={betaBadgeTitle} tooltipContent={betaBadgeTooltipContent} className="euiPanel__betaBadge" />
+        <EuiBetaBadge
+          label={betaBadgeLabel}
+          title={betaBadgeTitle}
+          tooltipContent={betaBadgeTooltipContent}
+          className="euiPanel__betaBadge"
+        />
       </span>
-    )
+    );
   }
 
   return (

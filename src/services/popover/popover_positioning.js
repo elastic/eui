@@ -42,7 +42,7 @@ const positionSubstitutes = {
  * @returns {{top: number, left: number, position: string, fit: number, arrow?: {left: number, top: number}}|null} absolute page coordinates for the popover,
  * and the placements's relation to the anchor; if there's no room this returns null
  */
-export function findPopoverPosition({ anchor, popover, position, buffer=16, offset=0, container = document.body, arrowConfig }) {
+export function findPopoverPosition({ anchor, popover, position, buffer = 16, offset = 0, container = document.body, arrowConfig }) {
   container = findDOMNode(container); // resolve any React abstractions
 
   // find the screen-relative bounding boxes of the anchor, popover, and container
@@ -157,8 +157,8 @@ export function getPopoverScreenCoordinates({
   windowBoundingBox,
   containerBoundingBox,
   arrowConfig,
-  offset=0,
-  buffer=0,
+  offset = 0,
+  buffer = 0,
 }) {
   /**
    * The goal is to find the best way to align the popover content

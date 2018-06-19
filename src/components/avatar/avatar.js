@@ -43,7 +43,7 @@ export const EuiAvatar = ({
   let optionalInitial;
   if (name && !imageUrl) {
     // Calculate the number of initials to show, maxing out at 2
-    let calculatedInitialsLength = initials ? initials.split(" ").length : name.split(" ").length;
+    let calculatedInitialsLength = initials ? initials.split(' ').length : name.split(' ').length;
     calculatedInitialsLength = calculatedInitialsLength > 2 ? 2 : calculatedInitialsLength;
 
     // Check if initialsLength was passed and set to calculated, unless greater than 2
@@ -56,7 +56,7 @@ export const EuiAvatar = ({
     if (initials) {
       calculatedInitials = initials.substring(0, calculatedInitialsLength);
     } else {
-      if (name.split(" ").length > 1) {
+      if (name.split(' ').length > 1) {
         // B. If there are any spaces in the name, set to first letter of each word
         calculatedInitials = name.match(/\b(\w)/g).join('').substring(0, calculatedInitialsLength);
       } else {
@@ -74,7 +74,7 @@ export const EuiAvatar = ({
   const textColor = isColorDark(...hexToRgb(assignedColor)) ? '#FFFFFF' : '#000000';
 
   const avatarStyle = {
-    backgroundImage: imageUrl ? 'url(' + imageUrl + ')' : 'none',
+    backgroundImage: imageUrl ? `url(${  imageUrl  })` : 'none',
     backgroundColor: assignedColor,
     color: textColor,
   };

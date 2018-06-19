@@ -60,8 +60,8 @@ export default class extends Component {
 
   onCheckboxChange = optionId => {
     const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
-        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-      } });
+      [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
+    } });
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,

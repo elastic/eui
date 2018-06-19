@@ -15,7 +15,7 @@ import {
 // eslint-disable-next-line react/prefer-stateless-function
 class ExampleCustomInput extends React.Component {
 
-  render () {
+  render() {
     return (
       <EuiButton
         className="example-custom-input"
@@ -23,7 +23,7 @@ class ExampleCustomInput extends React.Component {
       >
         {this.props.value}
       </EuiButton>
-    )
+    );
   }
 }
 

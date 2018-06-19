@@ -2,6 +2,8 @@
 
 - Added `getPopoverScreenCoordinates` service function for positioining popover/tooltip content, updated `EuiToolTip` to use it ([#924](https://github.com/elastic/eui/pull/924))
 
+## [`0.0.54`](https://github.com/elastic/eui/tree/v0.0.54)
+
 **Bug fixes**
 
 - `EuiTabbedContent` now updates dynamic tab content when used as an uncontrolled component ([#931](https://github.com/elastic/eui/pull/931))

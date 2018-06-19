@@ -36,7 +36,8 @@ export const ToggleExample = {
         </p>
         <p>
           By default, the children will be wrapped in a block element. To change the display you can
-          simply use one of the <EuiLink href="/#/utilities/css-utility-classes">utility classes</EuiLink> like <EuiCode>.eui-displayInlineBlock</EuiCode>.
+          simply use one of the <EuiLink href="/#/utilities/css-utility-classes">utility classes</EuiLink>
+          like <EuiCode>.eui-displayInlineBlock</EuiCode>.
         </p>
         <EuiCallOut title="Accessibility">
           <p>

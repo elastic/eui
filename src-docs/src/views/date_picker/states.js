@@ -28,9 +28,9 @@ export default class extends Component {
 
   render() {
     const errors = [
-        'Here\'s an example of an error',
-        'You might have more than one error, so pass an array.',
-      ];
+      'Here\'s an example of an error',
+      'You might have more than one error, so pass an array.',
+    ];
 
     return (
       <div>

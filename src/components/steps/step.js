@@ -27,15 +27,15 @@ export const EuiStep = ({
   const circleClasses = classNames(
     'euiStep__circle',
     {
-      'euiStep__circle--complete': (status === "complete"),
-      'euiStep__circle--incomplete': (status === "incomplete"),
+      'euiStep__circle--complete': (status === 'complete'),
+      'euiStep__circle--incomplete': (status === 'incomplete'),
     }
   );
 
   let numberOrIcon;
-  if (status === "complete") {
-      numberOrIcon = <EuiIcon type="check" color="ghost" className="euiStep__circleIcon" />;
-  } else if (status !== "incomplete") {
+  if (status === 'complete') {
+    numberOrIcon = <EuiIcon type="check" color="ghost" className="euiStep__circleIcon" />;
+  } else if (status !== 'incomplete') {
     numberOrIcon = step;
   }
 

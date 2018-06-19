@@ -20,7 +20,7 @@ export class EuiBottomBar extends Component {
 
   componentDidMount() {
     const height = this.bar.clientHeight;
-    document.body.style.paddingBottom= `${height}px`;
+    document.body.style.paddingBottom = `${height}px`;
     if (this.props.bodyClassName) {
       document.body.classList.add(this.props.bodyClassName);
     }
@@ -65,7 +65,7 @@ export class EuiBottomBar extends Component {
         </div>
       </EuiPortal>
     );
-  };
+  }
 }
 
 EuiBottomBar.propTypes = {

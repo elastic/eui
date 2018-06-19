@@ -26,7 +26,7 @@ const cardLayout = (props, propName, componentName, ...rest) => {
   const oneOfResult = oneOfLayouts(props, propName, componentName, ...rest);
   if (oneOfResult) return oneOfResult;
 
-  if (props[propName] === 'horizontal' ) {
+  if (props[propName] === 'horizontal') {
     if (props.image || props.footer) {
       return new Error(
         `${componentName}: '${propName} = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'.`
@@ -100,9 +100,14 @@ export const EuiCard = ({
   if (betaBadgeLabel) {
     optionalBetaBadge = (
       <span className="euiCard__betaBadgeWrapper">
-        <EuiBetaBadge label={betaBadgeLabel} title={betaBadgeTitle} tooltipContent={betaBadgeTooltipContent} className="euiCard__betaBadge" />
+        <EuiBetaBadge
+          label={betaBadgeLabel}
+          title={betaBadgeTitle}
+          tooltipContent={betaBadgeTooltipContent}
+          className="euiCard__betaBadge"
+        />
       </span>
-    )
+    );
   }
 
   return (

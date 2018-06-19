@@ -52,7 +52,8 @@ const positionToPositionerMap = {
  *
  * @returns {Object} With properties position (one of ["top", "right", "bottom", "left"]), left, top, width, and height.
  */
-export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition, buffer = 16, positions = ['top', 'right', 'bottom', 'left']) {
+export function calculatePopoverPosition(anchorBounds, popoverBounds, requestedPosition,
+  buffer = 16, positions = ['top', 'right', 'bottom', 'left']) {
   if (typeof buffer !== 'number') {
     throw new Error(`calculatePopoverPosition received a buffer argument of ${buffer}' but expected a number`);
   }

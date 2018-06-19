@@ -22,8 +22,8 @@ export const withRequiredProp = (proptype, requiredPropName, messageDescription)
       // if this property was passed, check that the required property also exists
       if (props[propName] != null && props[requiredPropName] == null) {
         result = new Error(
-          `Property "${propName}" was passed without corresponding property "${requiredPropName}"` +
-          (messageDescription ? `; ${messageDescription}` : '')
+          `Property "${propName}" was passed without corresponding property "${requiredPropName}"${
+            messageDescription ? `; ${messageDescription}` : ''}`
         );
       }
     }

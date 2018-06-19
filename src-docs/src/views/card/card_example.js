@@ -72,11 +72,16 @@ export const CardExample = {
       <div>
         <p>
           Most of the time, cards should read from top to bottom (vertical). However, in some cases, you may
-          want the icon to be to the left of the content. In this case, add the prop <EuiCode>layout=&quot;horizontal&quot;</EuiCode>.
+          want the icon to be to the left of the content. In this case, add
+          the prop <EuiCode>layout=&quot;horizontal&quot;</EuiCode>.
         </p>
         <EuiCallOut
           color="danger"
-          title={<span>Horizontal layouts <strong>do not</strong> work with images, footers or <EuiCode>textAlign</EuiCode>. Therefore, these properties will be ignored.</span>}
+          title={
+            <span>Horizontal layouts <strong>do not</strong> work with images,
+            footers or <EuiCode>textAlign</EuiCode>. Therefore, these properties will be ignored.
+            </span>
+          }
         />
       </div>
     ),
@@ -99,7 +104,11 @@ export const CardExample = {
           Just pass a url into the <EuiCode>image</EuiCode> prop and it will expand to to edges of the card.
         </p>
         <EuiCallOut
-          title={<span>Make sure that all images are the <strong>same proportions</strong> when used in a singular row.</span>}
+          title={
+            <span>Make sure that all images are the <strong>same proportions</strong> when
+              used in a singular row.
+            </span>
+          }
         />
       </div>
     ),

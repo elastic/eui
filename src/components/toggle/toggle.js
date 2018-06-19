@@ -7,7 +7,7 @@ const typeToInputTypeMap = {
   'multi': 'checkbox',
 };
 
-export const TYPES = Object.keys(typeToInputTypeMap);;
+export const TYPES = Object.keys(typeToInputTypeMap);
 
 export const EuiToggle = ({
   id,

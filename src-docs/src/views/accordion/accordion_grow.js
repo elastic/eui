@@ -27,7 +27,7 @@ class AccordionGrow extends Component {
         paddingSize="l"
       >
         <EuiText>
-          <EuiSpacer size='s' />
+          <EuiSpacer size="s" />
           <p>
             <EuiButton onClick={() => this.onIncrease()}>Increase height</EuiButton>
             {' '}

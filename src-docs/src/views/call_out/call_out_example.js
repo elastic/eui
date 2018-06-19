@@ -67,7 +67,7 @@ export const CallOutExample = {
       </EuiText>
       <EuiSpacer size="l"/>
     </Fragment>
- ),
+  ),
   sections: [{
     title: 'Info',
     source: [{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { mount } from 'enzyme'
+import { mount } from 'enzyme';
 import {
   findPopoverPosition,
   getAvailableSpace,
@@ -46,7 +46,7 @@ describe('popover_positioning', () => {
               <span ref="spanRef"/>
               {nested ? <App nested={false} ref="appRef"/> : null}
             </div>
-          )
+          );
         }
       }
       const component = mount(<App nested={true}/>);

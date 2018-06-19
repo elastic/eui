@@ -10,7 +10,7 @@ export default class extends Component {
 
     this.options = [];
     let groupOptions = [];
-    for (let i=1; i < 5000; i++) {
+    for (let i = 1; i < 5000; i++) {
       groupOptions.push({ label: `option${i}` });
       if (i % 25 === 0) {
         this.options.push({

@@ -84,7 +84,7 @@ describe('EuiContextMenuItem', () => {
     describe('href', () => {
       test('renders a link', () => {
         const component = render(
-          <EuiContextMenuItem {...requiredProps} href='url' />
+          <EuiContextMenuItem {...requiredProps} href="url" />
         );
 
         expect(component).toMatchSnapshot();
@@ -94,7 +94,7 @@ describe('EuiContextMenuItem', () => {
     describe('rel', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiContextMenuItem {...requiredProps} href='url' rel='help' />
+          <EuiContextMenuItem {...requiredProps} href="url" rel="help" />
         );
 
         expect(component).toMatchSnapshot();
@@ -104,7 +104,7 @@ describe('EuiContextMenuItem', () => {
     describe('target', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiContextMenuItem {...requiredProps} href='url' target='_blank' />
+          <EuiContextMenuItem {...requiredProps} href="url" target="_blank" />
         );
 
         expect(component).toMatchSnapshot();
