@@ -86,8 +86,6 @@ export const EuiRange = ({
   if (showTicks) {
     // Set the interval for which to show the tick marks
     const interval = tickInterval || step || 1;
-    // Loop from min to max, creating ticks at each interval
-    const sequence = range(min, max, interval);
     // Calculate the width of each tick mark
     const width = (interval / (rangeTotal + interval)) * 100;
 
@@ -95,6 +93,10 @@ export const EuiRange = ({
     // left and right padding that is half of the tick marks
     style = style || {};
     style.padding = `0 ${(width) / 2}%`;
+
+    // Loop from min to max, creating ticks at each interval
+    // * adds 1 to max to ensure that the max number is also included
+    const sequence = range(min, max + 1, interval);
 
     tickMarksNode = (
       <div className="euiRange__ticks">

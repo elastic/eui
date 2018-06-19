@@ -118,7 +118,7 @@ export default class extends Component {
           aria-label="Use aria labels when no actual label is in use"
           showTicks
           showInput
-          tickInterval={300}
+          tickInterval={500}
           levels={this.levels}
         />
       </Fragment>
