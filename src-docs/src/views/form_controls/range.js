@@ -54,7 +54,7 @@ export default class extends Component {
           name="firstRange"
         />
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
@@ -67,7 +67,7 @@ export default class extends Component {
           showLabels
         />
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
@@ -81,7 +81,7 @@ export default class extends Component {
           showRange
         />
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
@@ -99,7 +99,7 @@ export default class extends Component {
         />
         <EuiFormHelpText id="levelsHelp">Recommended levels are 600 and above.</EuiFormHelpText>
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
@@ -115,7 +115,7 @@ export default class extends Component {
           tickInterval={300}
         />
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
