@@ -1737,7 +1737,6 @@ exports[`EuiLine all props are rendered 1`] = `
               _opacityValue={1}
               angleDomain={Array []}
               animation={true}
-              className=""
               clusters={
                 Set {
                   undefined,
@@ -1795,7 +1794,6 @@ exports[`EuiLine all props are rendered 1`] = `
                   10,
                 ]
               }
-              stack={false}
               strokeDomain={Array []}
               strokeRange={
                 Array [
@@ -1803,7 +1801,6 @@ exports[`EuiLine all props are rendered 1`] = `
                   "#FF9833",
                 ]
               }
-              style={Object {}}
               xDomain={
                 Array [
                   0,
@@ -1855,7 +1852,6 @@ exports[`EuiLine all props are rendered 1`] = `
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
-                className=""
                 clusters={
                   Set {
                     undefined,
@@ -1913,7 +1909,6 @@ exports[`EuiLine all props are rendered 1`] = `
                     10,
                   ]
                 }
-                stack={false}
                 strokeDomain={Array []}
                 strokeRange={
                   Array [
@@ -1921,7 +1916,13 @@ exports[`EuiLine all props are rendered 1`] = `
                     "#FF9833",
                   ]
                 }
-                style={Object {}}
+                style={
+                  Object {
+                    "line": Object {
+                      "background": "rgb(218, 218, 218)",
+                    },
+                  }
+                }
                 titleFormat={[Function]}
                 values={Array []}
                 xDomain={
@@ -3690,7 +3691,6 @@ exports[`EuiLine is rendered 1`] = `
               _opacityValue={1}
               angleDomain={Array []}
               animation={true}
-              className=""
               clusters={
                 Set {
                   undefined,
@@ -3748,7 +3748,6 @@ exports[`EuiLine is rendered 1`] = `
                   10,
                 ]
               }
-              stack={false}
               strokeDomain={Array []}
               strokeRange={
                 Array [
@@ -3756,7 +3755,6 @@ exports[`EuiLine is rendered 1`] = `
                   "#FF9833",
                 ]
               }
-              style={Object {}}
               xDomain={
                 Array [
                   0,
@@ -3808,7 +3806,6 @@ exports[`EuiLine is rendered 1`] = `
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
-                className=""
                 clusters={
                   Set {
                     undefined,
@@ -3866,7 +3863,6 @@ exports[`EuiLine is rendered 1`] = `
                     10,
                   ]
                 }
-                stack={false}
                 strokeDomain={Array []}
                 strokeRange={
                   Array [
@@ -3874,7 +3870,13 @@ exports[`EuiLine is rendered 1`] = `
                     "#FF9833",
                   ]
                 }
-                style={Object {}}
+                style={
+                  Object {
+                    "line": Object {
+                      "background": "rgb(218, 218, 218)",
+                    },
+                  }
+                }
                 titleFormat={[Function]}
                 values={Array []}
                 xDomain={

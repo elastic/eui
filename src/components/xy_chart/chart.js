@@ -61,9 +61,9 @@ class XYChart extends PureComponent {
     return React.cloneElement(child, props);
   }
   // canShowCrosshair = () => {
-  //   const { crosshairValues, showCrosshair } = this.props;
+  //   const { crosshairValue, showCrosshair } = this.props;
   //   const { mouseOver } = this.state;
-  //   return showCrosshair && ( mouseOver || crosshairValues !== undefined)
+  //   return showCrosshair && ( mouseOver || crosshairValue !== undefined)
   // }
 
   render() {
@@ -83,7 +83,7 @@ class XYChart extends PureComponent {
       animation, // eslint-disable-line no-unused-vars
       showCrosshair,
       crosshairOrientation,
-      crosshairValues,
+      crosshairValue,
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
       ...rest
@@ -122,7 +122,7 @@ class XYChart extends PureComponent {
 
           { showCrosshair && (
             <Crosshair
-              crosshairValues={crosshairValues}
+              crosshairValue={crosshairValue}
               onCrosshairUpdate={onCrosshairUpdate}
             />
           )}
@@ -140,35 +140,32 @@ XYChart.propTypes = {
   stackBy: PropTypes.string,
   xType: PropTypes.string,
   yType: PropTypes.string,
-  onHover: PropTypes.func,
-  onMouseLeave: PropTypes.func,
-  onSelectEnd: PropTypes.func,
-  hoverIndex: PropTypes.number,
-  xTicks: PropTypes.array,
-  yTicks: PropTypes.array, // [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
-  truncateLegends: PropTypes.bool,
-  // showAxis: PropTypes.bool,
-  xAxisLocation: PropTypes.string,
-  yAxisLocation: PropTypes.string,
-  showCrosshair: PropTypes.bool,
-  errorText: PropTypes.string,
-  crosshairValues: PropTypes.number,
-  onCrosshairUpdate: PropTypes.func,
   xDomain: PropTypes.array,
   yDomain: PropTypes.array,
   xPadding: PropTypes.number,
   yPadding: PropTypes.number,
+  onHover: PropTypes.func,
+  onSelectEnd: PropTypes.func,
+  truncateLegends: PropTypes.bool,
+  errorText: PropTypes.string,
+  showCrosshair: PropTypes.bool,
+  crosshairOrientation: PropTypes.string,
+  crosshairValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  onCrosshairUpdate: PropTypes.func,
 };
 
 XYChart.defaultProps = {
-  truncateLegends: false,
-  // showAxis: true,
-  showCrosshair: true,
-  crosshairOrientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
-  yPadding: 0,
-  xPadding: 0,
   xType: 'linear',
   yType: 'linear',
+  yPadding: 0,
+  xPadding: 0,
+  truncateLegends: false,
+  showCrosshair: true,
+  crosshairOrientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+
 };
 
 export const EuiXYChart = makeWidthFlexible(XYChart);

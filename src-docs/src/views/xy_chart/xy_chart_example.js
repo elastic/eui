@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
-import ChartExampleCode from './examples';
+import ComplexChartExampleCode from './example-complex';
 import EmptyExampleCode from './example-empty';
 import MultiAxisChartExampleCode from './example_dual_axis';
 import { ExampleCrosshair } from './example-crosshair';
@@ -23,7 +23,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./examples')
+          code: require('!!raw-loader!./example-complex')
         },
         {
           type: GuideSectionTypes.HTML,
@@ -32,7 +32,7 @@ export const XYChartExample = {
       ],
       demo: (
         <div style={{ margin: 60 }}>
-          <ChartExampleCode />
+          <ComplexChartExampleCode />
         </div>
       )
     },

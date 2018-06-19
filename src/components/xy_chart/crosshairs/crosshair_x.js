@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AbstractSeries, Crosshair } from 'react-vis';
 
 /**
@@ -6,7 +7,7 @@ import { AbstractSeries, Crosshair } from 'react-vis';
  */
 export class EuiCrosshairX extends AbstractSeries {
   state = {
-    crosshairValues: [],
+    values: [],
   }
 
   static get requiresSVG() {
@@ -18,11 +19,11 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   static getDerivedStateFromProps(props) {
-    const { crosshairX, _allData } = props;
+    const { crosshairValue, _allData } = props;
 
-    if (crosshairX !== undefined) {
+    if (crosshairValue !== undefined) {
       return {
-        crosshairValues: EuiCrosshairX._computeDataFromXValue(_allData, crosshairX),
+        values: EuiCrosshairX._computeDataFromXValue(_allData, crosshairValue),
       };
     }
     return null;
@@ -31,10 +32,10 @@ export class EuiCrosshairX extends AbstractSeries {
   static _computeDataFromXValue(dataSeries, crosshairX) {
     const filteredAndFlattenDataByX = dataSeries
       .filter(series => series) // get only cleaned data series
-      .map(series => {
+      .map((series, seriesIndex) => {
         return series
           .filter(dataPoint => dataPoint.x === crosshairX)
-          .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint } }));
+          .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint }, seriesIndex }));
       })
       .reduce((acc, val) => acc.concat(val), []);
     return filteredAndFlattenDataByX;
@@ -49,7 +50,7 @@ export class EuiCrosshairX extends AbstractSeries {
       this.props.onCrosshairUpdate(null);
     }
     this.setState({
-      crosshairValues: []
+      values: []
     })
   }
 
@@ -68,9 +69,9 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   _itemsFormat = (dataPoints) => {
-    return dataPoints.map((d, i) => {
+    return dataPoints.map(d => {
       return {
-        title: `series ${i}`, // TODO specify series title or default one
+        title: `series ${d.seriesIndex}`, // TODO specify series title or default one
         value: d.y,
       };
     });
@@ -98,7 +99,7 @@ export class EuiCrosshairX extends AbstractSeries {
     let globalMinDistance = Number.POSITIVE_INFINITY;
 
     const nearestXData = dataSeries
-      .map(data => {
+      .map((data, seriesIndex) => {
         let minDistance = Number.POSITIVE_INFINITY;
         let value = null;
         data.forEach((item) => {
@@ -128,12 +129,13 @@ export class EuiCrosshairX extends AbstractSeries {
         return {
           minDistance,
           value,
+          seriesIndex,
         };
       })
       .filter(d => d);
 
     // filter and map nearest X data per dataseries to get only the nearet onces
-    const crosshairValues = nearestXData
+    const values = nearestXData
       .filter(value => value.minDistance === globalMinDistance)
       .map(value => {
         // check if we are on histograms and we need to show the right x and y values
@@ -144,23 +146,23 @@ export class EuiCrosshairX extends AbstractSeries {
         const y = typeof d.y0 === 'number'
           ? (d.y - d.y0)
           : d.y;
-        return { x, y, originalValues: d };
+        return { x, y, originalValues: d, seriesIndex: value.seriesIndex };
       });
 
     if (this.props.onCrosshairUpdate) {
-      this.props.onCrosshairUpdate(crosshairValues[0].x);
+      this.props.onCrosshairUpdate(values[0].x);
     }
 
     this.setState({
-      crosshairValues,
+      values,
     });
   }
 
   render() {
-    const { crosshairValues } = this.state
+    const { values } = this.state
     return (
       <Crosshair
-        values={crosshairValues}
+        values={values}
         style={{ line: { background: 'rgb(218, 218, 218)' } }}
         itemsFormat={this._itemsFormat}
         titleFormat={this._titleFormat}
@@ -169,3 +171,12 @@ export class EuiCrosshairX extends AbstractSeries {
     )
   }
 }
+
+EuiCrosshairX.propTypes = {
+  ... AbstractSeries.propTypes,
+  crosshairValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+}
+EuiCrosshairX.defaultProps = {};

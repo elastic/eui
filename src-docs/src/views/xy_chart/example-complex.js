@@ -9,8 +9,6 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const yTicks = [[0, 'zero'], [1, 'one']];
-  const xTicks = [[0, '0'], [5, '5'], [10, '10'], [15, '15'], [20, '20']];
 
   const barData = [];
   for (let i = 0; i < 10; i++) {
@@ -31,8 +29,6 @@ export default () => {
       }}
       width={600}
       height={200}
-      xTicks={xTicks}
-      yTicks={yTicks}
     >
       <EuiArea
         name="Quitters"

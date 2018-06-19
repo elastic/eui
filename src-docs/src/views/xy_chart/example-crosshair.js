@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  EuiSpacer,
   EuiXYChart,
   EuiVerticalBarSeries,
   EuiDefaultAxis,
@@ -9,18 +10,17 @@ import {
 // eslint-disable-next-line
 export class ExampleCrosshair extends React.Component {
   state = {
-    crosshairX: 2,
+    crosshairValue: 2,
   }
-  _updateCrosshairLocation = (crosshairX) => {
-    console.log('update crosshair x');
-    this.setState({ crosshairX });
+  _updateCrosshairLocation = (crosshairValue) => {
+    this.setState({ crosshairValue });
   }
   render() {
     return (
       <div>
         <EuiXYChart
           onCrosshairUpdate={this._updateCrosshairLocation}
-          crosshairX={this.state.crosshairX}
+          crosshairValue={this.state.crosshairValue}
           width={600}
           height={200}
         >
@@ -31,10 +31,10 @@ export class ExampleCrosshair extends React.Component {
           />
           <EuiDefaultAxis />
         </EuiXYChart>
-        <br /><br />
+        <EuiSpacer size="xl" />
         <EuiXYChart
           onCrosshairUpdate={this._updateCrosshairLocation}
-          crosshairX={this.state.crosshairX}
+          crosshairValue={this.state.crosshairValue}
           width={600}
           height={200}
         >

@@ -731,7 +731,6 @@ exports[`EuiArea all props are rendered 1`] = `
               _opacityValue={1}
               angleDomain={Array []}
               animation={true}
-              className=""
               clusters={
                 Set {
                   undefined,
@@ -789,7 +788,6 @@ exports[`EuiArea all props are rendered 1`] = `
                   10,
                 ]
               }
-              stack={false}
               strokeDomain={Array []}
               strokeRange={
                 Array [
@@ -797,7 +795,6 @@ exports[`EuiArea all props are rendered 1`] = `
                   "#FF9833",
                 ]
               }
-              style={Object {}}
               xDomain={
                 Array [
                   0,
@@ -849,7 +846,6 @@ exports[`EuiArea all props are rendered 1`] = `
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
-                className=""
                 clusters={
                   Set {
                     undefined,
@@ -907,7 +903,6 @@ exports[`EuiArea all props are rendered 1`] = `
                     10,
                   ]
                 }
-                stack={false}
                 strokeDomain={Array []}
                 strokeRange={
                   Array [
@@ -915,7 +910,13 @@ exports[`EuiArea all props are rendered 1`] = `
                     "#FF9833",
                   ]
                 }
-                style={Object {}}
+                style={
+                  Object {
+                    "line": Object {
+                      "background": "rgb(218, 218, 218)",
+                    },
+                  }
+                }
                 titleFormat={[Function]}
                 values={Array []}
                 xDomain={
@@ -1677,7 +1678,6 @@ exports[`EuiArea is rendered 1`] = `
               _opacityValue={1}
               angleDomain={Array []}
               animation={true}
-              className=""
               clusters={
                 Set {
                   undefined,
@@ -1735,7 +1735,6 @@ exports[`EuiArea is rendered 1`] = `
                   10,
                 ]
               }
-              stack={false}
               strokeDomain={Array []}
               strokeRange={
                 Array [
@@ -1743,7 +1742,6 @@ exports[`EuiArea is rendered 1`] = `
                   "#FF9833",
                 ]
               }
-              style={Object {}}
               xDomain={
                 Array [
                   0,
@@ -1795,7 +1793,6 @@ exports[`EuiArea is rendered 1`] = `
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
-                className=""
                 clusters={
                   Set {
                     undefined,
@@ -1853,7 +1850,6 @@ exports[`EuiArea is rendered 1`] = `
                     10,
                   ]
                 }
-                stack={false}
                 strokeDomain={Array []}
                 strokeRange={
                   Array [
@@ -1861,7 +1857,13 @@ exports[`EuiArea is rendered 1`] = `
                     "#FF9833",
                   ]
                 }
-                style={Object {}}
+                style={
+                  Object {
+                    "line": Object {
+                      "background": "rgb(218, 218, 218)",
+                    },
+                  }
+                }
                 titleFormat={[Function]}
                 values={Array []}
                 xDomain={
