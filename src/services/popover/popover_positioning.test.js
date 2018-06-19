@@ -62,70 +62,78 @@ describe('popover_positioning', () => {
     // 80h x 65w
     const containerBoundingBox = { top: 10, right: 90, bottom: 190, left: 25 };
 
-    it('reports all empty space', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, 'top')).toEqual({
-        top: 90,
-        right: 30,
-        bottom: 40,
-        left: 5
+    const expectedAvailableSpace = {
+      top: 90,
+      right: 30,
+      bottom: 40,
+      left: 5,
+    };
+
+    it('returns the distance from each side of the anchor to each side of the container', () => {
+      ['top', 'right', 'bottom', 'left'].forEach(side => {
+        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, side)).toEqual(
+          expectedAvailableSpace);
       });
     });
 
-    it('respects buffer', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, 'right')).toEqual({
-        top: 85,
-        right: 25,
-        bottom: 35,
-        left: 0
+    it('subtracts the buffer amount from the returned distances', () => {
+      ['top', 'right', 'bottom', 'left'].forEach(side => {
+        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, side)).toEqual({
+          top: expectedAvailableSpace.top - 5,
+          right: expectedAvailableSpace.right - 5,
+          bottom: expectedAvailableSpace.bottom - 5,
+          left: expectedAvailableSpace.left - 5,
+        });
       });
     });
 
-    it('respects offset', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, 'bottom')).toEqual({
-        top: 90,
-        right: 30,
-        bottom: 35,
-        left: 5
+    it('subtracts the offset from the specified offsetSide', () => {
+      ['top', 'right', 'bottom', 'left'].forEach(side => {
+        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, side)).toEqual({
+          ...expectedAvailableSpace,
+          [side]: expectedAvailableSpace[side] - 5,
+        });
       });
     });
 
-    it('respects buffer & offset', () => {
-      expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, 'left')).toEqual({
-        top: 87,
-        right: 27,
-        bottom: 37,
-        left: 1
+    it('subtracts the buffer and the offset from the specified offsetSide', () => {
+      ['top', 'right', 'bottom', 'left'].forEach(side => {
+        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, side)).toEqual({
+          // apply buffer space
+          top: expectedAvailableSpace.top - 3,
+          right: expectedAvailableSpace.right - 3,
+          bottom: expectedAvailableSpace.bottom - 3,
+          left: expectedAvailableSpace.left - 3,
+          // additionally, overwrite the current side with buffer & offset
+          [side]: expectedAvailableSpace[side] - 3 - 1,
+        });
       });
     });
   });
 
   describe('getVisibleFit', () => {
-    it('calculates full visibility when container is large', () => {
-      expect(getVisibleFit(
-        { top: 25, right: 50, bottom: 50, left: 25 },
-        { top: 0, right: 500, bottom: 500, left: 0 },
-      )).toBe(1);
+    it('calculates full visibility when content is fully enclosed by container', () => {
+      const content = { top: 25, right: 50, bottom: 50, left: 25 };
+      const container = { top: 0, right: 500, bottom: 500, left: 0 };
+      expect(getVisibleFit(content, container)).toBe(1);
     });
 
     it('calculates full visibility when container is the same size', () => {
-      expect(getVisibleFit(
-        { top: 25, right: 50, bottom: 50, left: 25 },
-        { top: 25, right: 50, bottom: 50, left: 25 },
-      )).toBe(1);
+      const content = { top: 25, right: 50, bottom: 50, left: 25 };
+      const container = { top: 25, right: 50, bottom: 50, left: 25 };
+      expect(getVisibleFit(content, container)).toBe(1);
     });
 
     it('calculates partial visibility when content overflows out of container', () => {
-      expect(getVisibleFit(
-        { top: -5, right: 5, bottom: 5, left: -5 },
-        { top: 0, right: 10, bottom: 10, left: 0 },
-      )).toBe(0.25);
+      const content = { top: -5, right: 5, bottom: 5, left: -5 };
+      const container = { top: 0, right: 10, bottom: 10, left: 0 };
+      expect(getVisibleFit(content, container)).toBe(0.25);
     });
 
     it('calculates zero visibility when content is not in the container', () => {
-      expect(getVisibleFit(
-        { top: -10, right: -5, bottom: -5, left: -10 },
-        { top: 0, right: 10, bottom: 10, left: 0 },
-      )).toBe(0);
+      const content = { top: -10, right: -5, bottom: -5, left: -10 };
+      const container = { top: 0, right: 10, bottom: 10, left: 0 };
+      expect(getVisibleFit(content, container)).toBe(0);
     });
   });
 
