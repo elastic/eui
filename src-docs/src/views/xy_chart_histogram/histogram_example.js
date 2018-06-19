@@ -4,6 +4,8 @@ import VerticalRectSeriesExample from './vertical_rect_series';
 import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
 import HorizontalRectSeriesExample from './horizontal_rect_series';
 import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series';
+import TimeSeriesExample from './time_series';
+import TimeHistogramSeriesExample from './time_histogram_series';
 
 import {
   EuiCode,
@@ -131,6 +133,61 @@ export const XYChartHistogramExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <StackedHorizontalRectSeriesExample />
+        </div>
+      ),
+    },
+    {
+      title: 'Time Series',
+      text: (
+        <div>
+          <p>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalBarSeries</EuiCode>
+            with the
+            <EuiCode>xType=&apos;time&apos;</EuiCode>.
+          </p>
+        </div>
+      ),
+      props: { EuiVerticalRectSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./time_series'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <TimeSeriesExample />
+        </div>
+      ),
+    },
+    {
+      title: 'Time Series Histogram version',
+      text: (
+        <div>
+          <p>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode>
+            with the <EuiCode>xType=&apos;time&apos;</EuiCode> and a moderate number of elements.
+          </p>
+        </div>
+      ),
+      props: { EuiVerticalRectSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./time_histogram_series'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <TimeHistogramSeriesExample />
         </div>
       ),
     },
