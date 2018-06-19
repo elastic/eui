@@ -76,6 +76,7 @@ export default class extends Component {
           aria-label="Use aria labels when no actual label is in use"
           showLabels
           showInput
+          showRange
         />
 
         <EuiSpacer size="m" />
@@ -88,7 +89,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
-          aria-describedBy="levelsHelp"
+          aria-describedby="levelsHelp"
           showLabels
           showInput
           compressed
@@ -120,7 +121,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
-          aria-describedBy="levelsHelp"
+          aria-describedby="levelsHelp"
           showTicks
           showInput
           tickInterval={500}

@@ -149,6 +149,31 @@ exports[`EuiRange props levels should render 1`] = `
 </div>
 `;
 
+exports[`EuiRange props range should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasRange"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__range"
+    >
+      <div
+        class="euiRange__range__progress"
+        style="width:NaN%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiRange props ticks should render 1`] = `
 <div
   class="euiRange__wrapper euiRange__wrapper--hasTicks"
@@ -169,6 +194,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        type="button"
         value="1"
       >
         1
@@ -176,6 +202,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        type="button"
         value="21"
       >
         21
@@ -183,6 +210,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        type="button"
         value="41"
       >
         41
@@ -190,6 +218,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        type="button"
         value="61"
       >
         61
@@ -197,6 +226,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        type="button"
         value="81"
       >
         81

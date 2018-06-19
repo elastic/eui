@@ -23,6 +23,7 @@ export const EuiRange = ({
   showTicks,
   tickInterval,
   levels,
+  showRange,
   onChange,
   value,
   style,
@@ -45,6 +46,7 @@ export const EuiRange = ({
       'euiRange__wrapper--disabled': disabled,
       'euiRange__wrapper--hasTicks': showTicks,
       'euiRange__wrapper--hasLevels': levels.length,
+      'euiRange__wrapper--hasRange': showRange,
     },
   );
 
@@ -68,7 +70,7 @@ export const EuiRange = ({
 
   let extraInputNode;
   if (showInput) {
-    // Chrom will properly size the input based on the max value, but FF & IE does not.
+    // Chrome will properly size the input based on the max value, but FF & IE does not.
     // Calculate the max-width of the input based on number of characters in max unit
     // Add 2 to accomodate for input stepper
     const maxWidthStyle = { maxWidth: `${String(max).length + 2}em` };
@@ -116,6 +118,7 @@ export const EuiRange = ({
 
           return (
             <button
+              type="button"
               className={tickClasses}
               key={index}
               disabled={disabled}
@@ -147,6 +150,19 @@ export const EuiRange = ({
     );
   }
 
+  let rangeNode;
+  if (showRange) {
+    // Calculate the width the range based on value
+    const rangeWidth = (value - min) / rangeTotal;
+    const rangeWidthStyle = { width: `${rangeWidth * 100}%` };
+
+    rangeNode = (
+      <div className="euiRange__range" style={style}>
+        <div className="euiRange__range__progress" style={rangeWidthStyle} />
+      </div>
+    );
+  }
+
   return (
     <div className={wrapperClasses}>
       {minLabelNode}
@@ -166,6 +182,7 @@ export const EuiRange = ({
           style={style}
           {...rest}
         />
+        {rangeNode}
         {tickMarksNode}
         {levelsNode}
       </div>
@@ -211,7 +228,11 @@ EuiRange.propTypes = {
       max: PropTypes.number,
       color: PropTypes.oneOf(LEVEL_COLORS),
     }),
-  ).isRequired,
+  ),
+  /**
+   * Shows a thick line from min to value
+   */
+  showRange: PropTypes.bool,
 };
 
 EuiRange.defaultProps = {

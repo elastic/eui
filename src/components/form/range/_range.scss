@@ -15,7 +15,11 @@
   }
 
   &--disabled {
-    opacity: .25;
+    .euiRange__minLabel,
+    .euiRange__maxLabel,
+    .euiRange__inputWrapper {
+      opacity: .25;
+    }
   }
 
   > .euiFormControlLayout { /* 1 */
@@ -58,7 +62,7 @@
     left: calc(50% - #{($euiSizeXS/2)});
   }
 
-  &:focus,
+  &:enabled:hover,
   &:focus,
   &--selected {
     color: $euiColorPrimary;
@@ -66,6 +70,10 @@
 
   &--selected {
     font-weight: $euiFontWeightMedium;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -97,6 +105,12 @@ $euiRange__levelColors: (
   }
 }
 
+.euiRange__range__progress {
+  height: 4px;
+  border-radius: 4px;
+  background-color: $euiRangeTrackColor;
+}
+
 /*
  *  Positioning
  */
@@ -107,6 +121,17 @@ $euiRange__levelColors: (
     left: $euiSizeS;
     right: $euiSizeS;
     top: ($euiFormControlHeight/2) + 2px;
+  }
+}
+
+.euiRange__wrapper--hasRange {
+  .euiRange__range {
+    position: absolute;
+    left: $euiSizeS;
+    right: $euiSizeS;
+    top: ($euiFormControlHeight/2) - 2px;
+    z-index: $euiZLevel0;
+    overflow: hidden;
   }
 }
 
@@ -124,6 +149,13 @@ $euiRange__levelColors: (
   .euiRange__levels {
     top: ($euiFormControlHeight/4) + 2px;
     margin-left: $euiRangeThumbWidth * -1;
+  }
+
+  .euiRange__range {
+    top: ($euiFormControlHeight/4) - 2px;
+    left: 0;
+    right: 0;
+    margin-left: $euiRangeThumbWidth/2 * -1;
   }
 
   .euiRange__extraInput {
@@ -166,6 +198,8 @@ $euiRange__levelColors: (
   cursor: pointer; // Keep cursor to full range bounds
 
   &:disabled {
+    cursor: not-allowed;
+
     @include euiRange__thumb__perBrowser{
       cursor: not-allowed;
       border-color: $euiRangeThumbBorderColor;
@@ -182,6 +216,10 @@ $euiRange__levelColors: (
     @include euiRange__track__perBrowser{
       background-color: $euiColorPrimary;
       border-color: $euiColorPrimary;
+    }
+
+    + .euiRange__range .euiRange__range__progress {
+      background-color: $euiColorPrimary;
     }
   }
 
@@ -221,6 +259,7 @@ $euiRange__levelColors: (
   }
 }
 
+.euiRange__wrapper--hasRange .euiRange,
 .euiRange__wrapper--hasTicks .euiRange {
   @include euiRange__track__perBrowser {
     background-color: transparentize($euiRangeTrackColor, .6);

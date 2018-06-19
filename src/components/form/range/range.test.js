@@ -59,6 +59,15 @@ describe('EuiRange', () => {
         .toMatchSnapshot();
     });
 
+    test('range should render', () => {
+      const component = render(
+        <EuiRange showRange />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('extra input should render', () => {
       const component = render(
         <EuiRange
