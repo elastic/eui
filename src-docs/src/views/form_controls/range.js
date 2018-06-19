@@ -50,6 +50,8 @@ export default class extends Component {
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showLabels
+          showValue
+          name="firstRange"
         />
 
         <EuiSpacer size="m" />
@@ -108,6 +110,8 @@ export default class extends Component {
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showTicks
+          showRange
+          showValue
           tickInterval={300}
         />
 

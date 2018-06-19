@@ -235,3 +235,24 @@ exports[`EuiRange props ticks should render 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiRange props value should render 1`] = `
+<div
+  class="euiRange__wrapper"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <output
+      class="euiRange__value euiRange__value--left"
+      style="left:100%"
+    />
+  </div>
+</div>
+`;

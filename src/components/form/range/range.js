@@ -24,6 +24,7 @@ export const EuiRange = ({
   tickInterval,
   levels,
   showRange,
+  showValue,
   onChange,
   value,
   style,
@@ -92,17 +93,19 @@ export const EuiRange = ({
     );
   }
 
+  let tickWidth;
   let tickMarksNode;
   if (showTicks) {
     // Set the interval for which to show the tick marks
     const interval = tickInterval || step || 1;
     // Calculate the width of each tick mark
-    const width = (interval / (rangeTotal + interval)) * 100;
+    tickWidth = (interval / (rangeTotal + interval));
+    const tickWidthPercentage = tickWidth * 100;
 
     // Align with item labels across the range by adding
     // left and right padding that is half of the tick marks
     style = style || {};
-    style.padding = `0 ${(width) / 2}%`;
+    style.padding = `0 ${(tickWidthPercentage) / 2}%`;
 
     // Loop from min to max, creating ticks at each interval
     // * adds 1 to max to ensure that the max tick is also included
@@ -124,7 +127,7 @@ export const EuiRange = ({
               disabled={disabled}
               value={tickValue}
               onClick={onChange}
-              style={{ width: `${width}%` }}
+              style={{ width: `${tickWidthPercentage}%` }}
             >
               {tickValue}
             </button>
@@ -163,6 +166,38 @@ export const EuiRange = ({
     );
   }
 
+  let valueNode;
+  if (showValue) {
+    // Calculate the left position based on value
+    // Must be between 0-100%
+    const decimal = (value - min) / rangeTotal;
+    let valuePosition = decimal <= 1 ? decimal : 1;
+    valuePosition = valuePosition >= 0 ? valuePosition : 0;
+
+    let valuePositionSide;
+    if (valuePosition > .5) {
+      valuePositionSide = 'left';
+      valuePosition = tickWidth ? valuePosition - (tickWidth / 4) : valuePosition;
+    } else {
+      valuePositionSide = 'right';
+      valuePosition = tickWidth ? valuePosition + (tickWidth / 4) : valuePosition;
+    }
+
+    const valuePositionStyle = { left: `${valuePosition * 100}%` };
+
+    // Change left/right position based on value (half way point)
+    const valueClasses = classNames(
+      'euiRange__value',
+      `euiRange__value--${valuePositionSide}`,
+    );
+
+    valueNode = (
+      <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
+        {value}
+      </output>
+    );
+  }
+
   return (
     <div className={wrapperClasses}>
       {minLabelNode}
@@ -182,6 +217,7 @@ export const EuiRange = ({
           style={style}
           {...rest}
         />
+        {valueNode}
         {rangeNode}
         {tickMarksNode}
         {levelsNode}
@@ -233,6 +269,10 @@ EuiRange.propTypes = {
    * Shows a thick line from min to value
    */
   showRange: PropTypes.bool,
+  /**
+   * Shows a tooltip styled value
+   */
+  showValue: PropTypes.bool,
 };
 
 EuiRange.defaultProps = {
@@ -243,5 +283,6 @@ EuiRange.defaultProps = {
   showLabels: false,
   showInput: false,
   showTicks: false,
+  showValue: false,
   levels: [],
 };

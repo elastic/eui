@@ -38,6 +38,14 @@
   font-size: $euiFontSizeXS;
 }
 
+.euiRange__minLabel {
+  margin-right: $euiSizeS;
+}
+
+.euiRange__maxLabel {
+  margin-left: $euiSizeS;
+}
+
 .euiRange__extraInput {
   width: auto;
   margin-left: $euiSize;
@@ -111,6 +119,78 @@ $euiRange__levelColors: (
   background-color: $euiRangeTrackColor;
 }
 
+.euiRange__value {
+  @include euiFontSizeS;
+  border: 1px solid transparentize($euiColorDarkestShade, .8);
+  position: absolute;
+  border-radius: $euiBorderRadius;
+  padding: $euiSizeXS $euiSizeS + 2px;
+  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+  color: $euiColorGhost;
+  max-width: 256px;
+  z-index: $euiZLevel4;
+  top: $euiFormControlHeight/2 - 1px;
+  transition:
+    box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
+    transform $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  // Custom sizing
+  $arrowSize: $euiSizeM;
+  $arrowMinusSize: (($arrowSize/2) - 1px) * -1;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -$arrowSize/2;
+    left: 50%;
+    transform-origin: center;
+    background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+    width: $arrowSize;
+    height: $arrowSize;
+    border-radius: 2px;
+  }
+
+  &::before {
+    background-color: transparentize($euiColorDarkestShade, .8);
+  }
+
+  // Positions the arrow and animates in from the same side.
+  &.euiRange__value--right {
+    transform: translateX(0) translateY(-50%);
+    margin-left: $euiSizeL;
+
+    &:before,
+    &:after {
+      bottom: 50%;
+      left: $arrowMinusSize;
+      transform: translateY(50%) rotateZ(45deg);
+    }
+
+    &::before {
+      margin-left: -1px;
+    }
+  }
+
+  &.euiRange__value--left {
+    transform: translateX(-100%) translateY(-50%);
+    margin-left: -$euiSizeL;
+
+    &:before,
+    &:after {
+      bottom: 50%;
+      left: auto;
+      right: $arrowMinusSize;
+      transform: translateY(50%) rotateZ(45deg);
+    }
+
+    &::before {
+      margin-right: -1px;
+    }
+  }
+}
+
+
 /*
  *  Positioning
  */
@@ -118,8 +198,8 @@ $euiRange__levelColors: (
 .euiRange__wrapper--hasLevels {
   .euiRange__levels {
     position: absolute;
-    left: $euiSizeS;
-    right: $euiSizeS;
+    left: 0;
+    right: 0;
     top: ($euiFormControlHeight/2) + 2px;
   }
 }
@@ -127,8 +207,8 @@ $euiRange__levelColors: (
 .euiRange__wrapper--hasRange {
   .euiRange__range {
     position: absolute;
-    left: $euiSizeS;
-    right: $euiSizeS;
+    left: 0;
+    width: 100%;
     top: ($euiFormControlHeight/2) - 2px;
     z-index: $euiZLevel0;
     overflow: hidden;
@@ -137,25 +217,27 @@ $euiRange__levelColors: (
 
 .euiRange__wrapper--hasTicks {
   .euiRange,
-  .euiRange__levels {
+  .euiRange__levels,
+  .euiRange__range {
     width: calc(100% + #{$euiRangeThumbWidth});
+    margin-left: $euiRangeThumbWidth/2 * -1;
   }
 
   .euiRange {
     height: $euiFormControlHeight/2; /* 3 */
-    margin: 0 $euiRangeThumbWidth/2 * -1;
   }
 
   .euiRange__levels {
     top: ($euiFormControlHeight/4) + 2px;
-    margin-left: $euiRangeThumbWidth * -1;
   }
 
   .euiRange__range {
     top: ($euiFormControlHeight/4) - 2px;
     left: 0;
-    right: 0;
-    margin-left: $euiRangeThumbWidth/2 * -1;
+  }
+
+  .euiRange__value {
+    top: ($euiFormControlHeight/4) - 1px;
   }
 
   .euiRange__extraInput {
@@ -191,8 +273,8 @@ $euiRange__levelColors: (
   height: $euiFormControlHeight;
   appearance: none;
   background: transparent; // Otherwise white in Chrome
-  margin: 0 $euiSizeS;
-  width: calc(100% - #{$euiSizeS * 2}); // ensures the slider expands to fill flex display
+  //margin: 0 $euiSizeS;
+  width: 100%; // ensures the slider expands to fill flex display
   position: relative;
   z-index: $euiZLevel2; // stay above tick marks
   cursor: pointer; // Keep cursor to full range bounds
@@ -218,8 +300,20 @@ $euiRange__levelColors: (
       border-color: $euiColorPrimary;
     }
 
-    + .euiRange__range .euiRange__range__progress {
+    ~ .euiRange__range .euiRange__range__progress {
       background-color: $euiColorPrimary;
+    }
+
+    ~ .euiRange__value {
+      @include euiBottomShadow;
+
+      &.euiRange__value--right {
+        transform: translateX(0) translateY(-50%) scale(1.1);
+      }
+
+      &.euiRange__value--left {
+        transform: translateX(-100%) translateY(-50%) scale(1.1);
+      }
     }
   }
 
