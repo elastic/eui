@@ -23,6 +23,7 @@ export const EuiRange = ({
   levels,
   onChange,
   value,
+  style,
   ...rest
 }) => {
   const classes = classNames(
@@ -81,7 +82,6 @@ export const EuiRange = ({
   }
 
   let tickMarksNode;
-  let wrapperStyle;
   if (showTicks) {
     // Set the interval for which to show the tick marks
     const interval = tickInterval || step || 1;
@@ -90,11 +90,10 @@ export const EuiRange = ({
     // Calculate the width of each tick mark
     const width = (interval / (rangeTotal + interval)) * 100;
 
-    // Align with item labels across the range
-    const sliderPadding = (
-      (width) / 2 // applied to left and right
-    );
-    wrapperStyle = { padding: `0 ${sliderPadding}%` };
+    // Align with item labels across the range by adding
+    // left and right padding that is half of the tick marks
+    style = style || {};
+    style.padding = `0 ${(width) / 2}%`;
 
     tickMarksNode = (
       <div className="euiRange__ticks">
@@ -140,7 +139,6 @@ export const EuiRange = ({
   return (
     <div
       className={wrapperClasses}
-      style={wrapperStyle}
     >
       {minLabelNode}
       <input
@@ -154,6 +152,7 @@ export const EuiRange = ({
         value={value}
         disabled={disabled}
         onChange={onChange}
+        style={style}
         {...rest}
       />
       {maxLabelNode}
