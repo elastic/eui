@@ -76,5 +76,27 @@ describe('EuiRange', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('levels should render', () => {
+      const component = render(
+        <EuiRange
+          levels={[
+            {
+              min: 0,
+              max: 600,
+              color: 'danger'
+            },
+            {
+              min: 600,
+              max: 2000,
+              color: 'success'
+            }
+          ]}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });

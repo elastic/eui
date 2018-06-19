@@ -68,6 +68,7 @@ exports[`EuiRange props extra input should render 1`] = `
       max="10"
       min="1"
       name="name"
+      style="max-width:4em"
       type="number"
       value="8"
     />
@@ -116,6 +117,35 @@ exports[`EuiRange props labels should render 1`] = `
   >
     100
   </label>
+</div>
+`;
+
+exports[`EuiRange props levels should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasLevels"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__levels"
+    >
+      <span
+        class="euiRange__level--danger"
+        style="width:606.060606060606%"
+      />
+      <span
+        class="euiRange__level--success"
+        style="width:1414.141414141414%"
+      />
+    </div>
+  </div>
 </div>
 `;
 

@@ -2,6 +2,7 @@
  * 1. There's no way to target the layout of the extra input, so we must
  *    use the descendant selector to allow the width to shrink.
  * 2. Align extra input slightly better with slider labels, in an IE compliant way.
+ * 3. Adjust vertical alignment of input based on extras
  */
 
 .euiRange__wrapper {
@@ -18,14 +19,14 @@
   }
 
   > .euiFormControlLayout { /* 1 */
-    flex-basis: 0%;
+    width: auto;
   }
 }
 
 .euiRange__inputWrapper {
-  @include euiFormControlSize();
-  padding: ($euiSizeS - 1px) 0; // adjusts for border of input
-  position: relative; // for positioning ticks
+  flex-grow: 1;
+  position: relative; // for positioning ticks/levels
+  align-self: flex-start; /* 3 */
 }
 
 .euiRange__minLabel,
@@ -40,21 +41,12 @@
   top: -2px; /* 2 */
 }
 
-.euiRange__ticks {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 18px;
-  display: flex;
-  z-index: $euiZLevel1;
-}
-
 .euiRange__tick {
   overflow-x: hidden;
   text-overflow: ellipsis;
   font-size: $euiFontSizeXS;
   position: relative;
-  padding-top: 18px;
+  padding-top: $euiSize;
 
   &::before {
     content: "";
@@ -63,7 +55,7 @@
     border-radius: 100%;
     position: absolute;
     top: 0;
-    left: calc(50% - 2px);
+    left: calc(50% - #{($euiSizeXS/2)});
   }
 
   &:focus,
@@ -78,10 +70,6 @@
 }
 
 .euiRange__levels {
-  position: absolute;
-  left: $euiSizeS;
-  right: $euiSizeS;
-  top: 24px;
   display: flex;
   justify-content: stretch;
   z-index: $euiZLevel0;
@@ -94,13 +82,67 @@
   margin: 2px;
 }
 
-.euiRange__level--success {
-  background-color: transparentize($euiColorSuccess, .7);
+// Modifier naming and colors.
+$euiRange__levelColors: (
+  primary: $euiColorPrimary,
+  success: $euiColorSuccess,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+);
+
+// Create level modifiers based upon the map.
+@each $name, $color in $euiRange__levelColors {
+  .euiRange__level--#{$name} {
+    background-color: transparentize($color, .7);
+  }
 }
 
-.euiRange__level--danger {
-  background-color: transparentize($euiColorDanger, .7);
+/*
+ *  Positioning
+ */
+
+.euiRange__wrapper--hasLevels {
+  .euiRange__levels {
+    position: absolute;
+    left: $euiSizeS;
+    right: $euiSizeS;
+    top: ($euiFormControlHeight/2) + 2px;
+  }
 }
+
+.euiRange__wrapper--hasTicks {
+  .euiRange,
+  .euiRange__levels {
+    width: calc(100% + #{$euiRangeThumbWidth});
+  }
+
+  .euiRange {
+    height: $euiFormControlHeight/2; /* 3 */
+    margin: 0 $euiRangeThumbWidth/2 * -1;
+  }
+
+  .euiRange__levels {
+    top: ($euiFormControlHeight/4) + 2px;
+    margin-left: $euiRangeThumbWidth * -1;
+  }
+
+  .euiRange__extraInput {
+    margin-top: 0;
+  }
+
+  .euiRange__ticks {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $euiSizeS;
+    display: flex;
+    z-index: $euiZLevel1;
+  }
+}
+
+/*
+ *  Input Range Customization by browser
+ */
 
 // The following code is inspired by...
 
@@ -114,136 +156,74 @@
 
 .euiRange {
   // Auto means the height isn't defined
-  height: auto;
+  height: $euiFormControlHeight;
   appearance: none;
-  background: transparent; /* Otherwise white in Chrome */
-  margin: $euiRangeThumbHeight/2 $euiSizeS;
+  background: transparent; // Otherwise white in Chrome
+  margin: 0 $euiSizeS;
   width: calc(100% - #{$euiSizeS * 2}); // ensures the slider expands to fill flex display
   position: relative;
   z-index: $euiZLevel2; // stay above tick marks
+  cursor: pointer; // Keep cursor to full range bounds
 
   &:disabled {
-
-    &::-webkit-slider-thumb {
-      @include euiRange__thumb--disabled;
-    }
-
-    &::-moz-range-thumb {
-      @include euiRange__thumb--disabled;
-    }
-
-    &::-ms-thumb {
-      @include euiRange__thumb--disabled;
-    }
-
-    &::-webkit-slider-runnable-track {
+    @include euiRange__thumb__perBrowser{
       cursor: not-allowed;
+      border-color: $euiRangeThumbBorderColor;
+      background-color: $euiRangeThumbBorderColor;
+      box-shadow: none;
     }
   }
 
   &:focus {
-
-    &::-webkit-slider-thumb {
+    @include euiRange__thumb__perBrowser{
       @include euiCustomControl--focused;
     }
 
-    &::-moz-range-thumb {
-      @include euiCustomControl--focused;
-    }
-
-    &::-ms-thumb {
-      @include euiCustomControl--focused;
-    }
-
-    &::-webkit-slider-runnable-track {
+    @include euiRange__track__perBrowser{
       background-color: $euiColorPrimary;
+      border-color: $euiColorPrimary;
     }
-
   }
 
-  &::-webkit-slider-runnable-track {
-    @include euiRange__track;
+  @include euiRange__thumb__perBrowser {
+    cursor: pointer;
+    @include euiCustomControl($type: 'round');
+    border-color: $euiRangeThumbBorderColor;
+    padding: 0;
+    height: $euiRangeThumbHeight;
+    width: $euiRangeThumbWidth;
+  }
+
+  @include euiRange__track__perBrowser {
+    @include euiRange__trackSize;
     background: $euiRangeTrackColor;
     border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
     border-radius: $euiRangeTrackRadius;
   }
 
+  // Resets
+
   &::-webkit-slider-thumb {
-    @include euiRange__thumb;
     -webkit-appearance: none;
     margin-top: ((-$euiRangeTrackBorderWidth * 2 + $euiRangeTrackHeight) / 2) - ($euiRangeThumbHeight / 2);
   }
 
-  &::-moz-range-track {
-    @include euiRange__track;
-    background: $euiRangeTrackColor;
-    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
-    border-radius: $euiRangeTrackRadius;
-  }
-
-  &::-moz-range-thumb {
-    @include euiRange__thumb;
+  &::-ms-thumb {
+    margin-top: 0;
   }
 
   &::-ms-track {
-    @include euiRange__track;
+    @include euiRange__trackSize;
     background: transparent;
     border-color: transparent;
     border-width: ($euiRangeThumbHeight / 2) 0;
     color: transparent;
   }
-
-  &::-ms-fill-lower {
-    background: $euiRangeTrackColor;
-    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
-    border-radius: $euiRangeTrackRadius * 2;
-  }
-
-  &::-ms-fill-upper {
-    background: $euiRangeTrackColor;
-    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
-    border-radius: $euiRangeTrackRadius * 2;
-  }
-
-  &::-ms-thumb {
-    @include euiRange__thumb;
-    margin-top: 0;
-  }
 }
 
-.euiRange__wrapper--hasTicks {
-  .euiRange__levels {
-    padding-left: $euiRangeThumbWidth/2;
-    padding-right: $euiRangeThumbWidth/2;
-  }
-
-  .euiRange__extraInput {
-    margin-top: $euiSizeL;
-  }
-
-  .euiRange {
-    width: calc(100% + #{$euiRangeThumbWidth});
-    margin-left: $euiRangeThumbWidth/2 * -1;
-    margin-right: $euiRangeThumbWidth/2 * -1;
-
-    &::-webkit-slider-runnable-track {
-      background: transparentize($euiRangeTrackColor, .6);
-      border-color: transparentize($euiRangeTrackBorderColor, .6);
-    }
-
-    &::-moz-range-track {
-      background: transparentize($euiRangeTrackColor, .6);
-      border-color: transparentize($euiRangeTrackBorderColor, .6);
-    }
-
-    &::-ms-fill-lower {
-      background: transparentize($euiRangeTrackColor, .6);
-      border-color: transparentize($euiRangeTrackBorderColor, .6);
-    }
-
-    &::-ms-fill-upper {
-      background: transparentize($euiRangeTrackColor, .6);
-      border-color: transparentize($euiRangeTrackBorderColor, .6);
-    }
+.euiRange__wrapper--hasTicks .euiRange {
+  @include euiRange__track__perBrowser {
+    background-color: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 }

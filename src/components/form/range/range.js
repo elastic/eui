@@ -6,6 +6,8 @@ import { range } from 'lodash';
 
 import { EuiFieldNumber } from '../field_number';
 
+export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
+
 export const EuiRange = ({
   className,
   compressed,
@@ -66,6 +68,11 @@ export const EuiRange = ({
 
   let extraInputNode;
   if (showInput) {
+    // Chrom will properly size the input based on the max value, but FF & IE does not.
+    // Calculate the max-width of the input based on number of characters in max unit
+    // Add 2 to accomodate for input stepper
+    const maxWidthStyle = { maxWidth: `${String(max).length + 2}em` };
+
     extraInputNode = (
       <EuiFieldNumber
         name={name}
@@ -77,6 +84,7 @@ export const EuiRange = ({
         disabled={disabled}
         compressed={compressed}
         onChange={onChange}
+        style={maxWidthStyle}
         {...rest}
       />
     );
@@ -95,7 +103,7 @@ export const EuiRange = ({
     style.padding = `0 ${(width) / 2}%`;
 
     // Loop from min to max, creating ticks at each interval
-    // * adds 1 to max to ensure that the max number is also included
+    // * adds 1 to max to ensure that the max tick is also included
     const sequence = range(min, max + 1, interval);
 
     tickMarksNode = (
@@ -126,7 +134,7 @@ export const EuiRange = ({
   let levelsNode;
   if (levels.length) {
     levelsNode = (
-      <div className="euiRange__levels">
+      <div className="euiRange__levels" style={style}>
         {levels.map((level, index) => {
           const range = level.max - level.min;
           const width = (range / rangeTotal) * 100;
@@ -197,7 +205,13 @@ EuiRange.propTypes = {
   /**
    * Create colored indicators for certain intervals
    */
-  levels: PropTypes.array,
+  levels: PropTypes.arrayOf(
+    PropTypes.shape({
+      min: PropTypes.number,
+      max: PropTypes.number,
+      color: PropTypes.oneOf(LEVEL_COLORS),
+    }),
+  ).isRequired,
 };
 
 EuiRange.defaultProps = {

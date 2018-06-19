@@ -6,6 +6,7 @@ import React, {
 import {
   EuiRange,
   EuiSpacer,
+  EuiFormHelpText,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -87,10 +88,13 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
+          aria-describedBy="levelsHelp"
           showLabels
           showInput
           compressed
+          levels={this.levels}
         />
+        <EuiFormHelpText id="levelsHelp">Recommended levels are 600 and above.</EuiFormHelpText>
 
         <EuiSpacer size="m" />
 
@@ -116,6 +120,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
+          aria-describedBy="levelsHelp"
           showTicks
           showInput
           tickInterval={500}

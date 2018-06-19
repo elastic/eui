@@ -1,22 +1,18 @@
-@mixin euiRange__track {
-  cursor: pointer;
+@mixin euiRange__trackSize {
   height: $euiRangeTrackHeight;
   transition: all $euiAnimSpeedNormal ease-in;
   width: $euiRangeTrackWidth;
 }
 
-@mixin euiRange__thumb {
-  cursor: pointer;
-  @include euiCustomControl($type: 'round');
-  border-color: $euiRangeThumbBorderColor;
-  padding: 0;
-  height: $euiRangeThumbHeight;
-  width: $euiRangeThumbWidth;
+@mixin euiRange__track__perBrowser {
+  &::-webkit-slider-runnable-track { @content; }
+  &::-moz-range-track { @content; }
+  &::-ms-fill-lower { @content; }
+  &::-ms-fill-upper { @content; }
 }
 
-@mixin euiRange__thumb--disabled {
-  cursor: not-allowed;
-  border-color: $euiRangeThumbBorderColor;
-  background-color: $euiRangeThumbBorderColor;
-  box-shadow: none;
+@mixin euiRange__thumb__perBrowser {
+  &::-webkit-slider-thumb { @content; }
+  &::-moz-range-thumb { @content; }
+  &::-ms-thumb { @content; }
 }
