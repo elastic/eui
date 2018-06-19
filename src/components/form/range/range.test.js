@@ -50,6 +50,15 @@ describe('EuiRange', () => {
         .toMatchSnapshot();
     });
 
+    test('ticks should render', () => {
+      const component = render(
+        <EuiRange showTicks tickInterval={20}/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('extra input should render', () => {
       const component = render(
         <EuiRange

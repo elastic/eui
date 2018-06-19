@@ -42,6 +42,7 @@ export const EuiRange = ({
       'euiRange__wrapper--compressed': compressed,
       'euiRange__wrapper--disabled': disabled,
       'euiRange__wrapper--hasTicks': showTicks,
+      'euiRange__wrapper--hasLevels': levels.length,
     },
   );
 
@@ -137,28 +138,30 @@ export const EuiRange = ({
   }
 
   return (
-    <div
-      className={wrapperClasses}
-    >
+    <div className={wrapperClasses}>
       {minLabelNode}
-      <input
-        type="range"
-        id={id}
-        name={name}
-        className={classes}
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        disabled={disabled}
-        onChange={onChange}
-        style={style}
-        {...rest}
-      />
+
+      <div className="euiRange__inputWrapper">
+        <input
+          type="range"
+          id={id}
+          name={name}
+          className={classes}
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          disabled={disabled}
+          onChange={onChange}
+          style={style}
+          {...rest}
+        />
+        {tickMarksNode}
+        {levelsNode}
+      </div>
+
       {maxLabelNode}
       {extraInputNode}
-      {tickMarksNode}
-      {levelsNode}
     </div>
   );
 };

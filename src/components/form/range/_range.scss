@@ -8,7 +8,6 @@
   @include euiFormControlSize();
   display: flex;
   align-items: center;
-  position: relative; // for positioning ticks
 
   &--fullWidth {
     max-width: 100%;
@@ -21,6 +20,12 @@
   > .euiFormControlLayout { /* 1 */
     flex-basis: 0%;
   }
+}
+
+.euiRange__inputWrapper {
+  @include euiFormControlSize();
+  padding: ($euiSizeS - 1px) 0; // adjusts for border of input
+  position: relative; // for positioning ticks
 }
 
 .euiRange__minLabel,
@@ -113,7 +118,8 @@
   appearance: none;
   background: transparent; /* Otherwise white in Chrome */
   margin: $euiRangeThumbHeight/2 $euiSizeS;
-  width: 100%; // ensures the slider expands to fill flex display
+  width: calc(100% - #{$euiSizeS * 2}); // ensures the slider expands to fill flex display
+  position: relative;
   z-index: $euiZLevel2; // stay above tick marks
 
   &:disabled {
@@ -209,6 +215,10 @@
   .euiRange__levels {
     padding-left: $euiRangeThumbWidth/2;
     padding-right: $euiRangeThumbWidth/2;
+  }
+
+  .euiRange__extraInput {
+    margin-top: $euiSizeL;
   }
 
   .euiRange {

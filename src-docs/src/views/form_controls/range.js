@@ -117,6 +117,7 @@ export default class extends Component {
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showTicks
+          showInput
           tickInterval={300}
           levels={this.levels}
         />
