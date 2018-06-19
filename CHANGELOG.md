@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `0.0.54`.
+
+## [`0.0.54`](https://github.com/elastic/eui/tree/v0.0.54)
+
 **Bug fixes**
 
 - `EuiTabbedContent` now updates dynamic tab content when used as an uncontrolled component ([#931](https://github.com/elastic/eui/pull/931))
