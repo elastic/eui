@@ -18,7 +18,6 @@ class XYExtendedPlot extends XYPlot {
    */
   _mouseLeaveHandler(event) {
     const { onMouseLeave, children } = this.props;
-    console.log('parent mouse leaving')
     if (onMouseLeave) {
       super.onMouseLeave(event);
     }
