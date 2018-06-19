@@ -8,6 +8,7 @@
   @include euiFormControlSize();
   display: flex;
   align-items: center;
+  position: relative; // for positioning ticks
 
   &--fullWidth {
     max-width: 100%;
@@ -34,6 +35,43 @@
   top: -2px; /* 2 */
 }
 
+.euiRange__ticks {
+  position: absolute;
+  left: $euiSizeS;
+  right: 0;
+  top: 18px;
+  display: flex;
+  justify-content: space-between;
+  z-index: $euiZLevel0;
+}
+
+.euiRange__tick {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  font-size: $euiFontSizeXS;
+  position: relative;
+  padding-top: 18px;
+
+  &::before {
+    content: "";
+    @include size($euiSizeXS);
+    background-color: $euiColorDarkShade;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 2px);
+  }
+
+  &:focus,
+  &:focus,
+  &--selected {
+    color: $euiColorPrimary;
+  }
+
+  &--selected {
+    font-weight: $euiFontWeightMedium;
+  }
+}
 
 // The following code is inspired by...
 
@@ -49,8 +87,10 @@
   // Auto means the height isn't defined
   height: auto;
   appearance: none;
+  background: transparent; /* Otherwise white in Chrome */
   margin: $euiRangeThumbHeight/2 $euiSizeS;
   width: 100%; // ensures the slider expands to fill flex display
+  z-index: $euiZLevel1; // stay above tick marks
 
   &:disabled {
 
@@ -138,5 +178,27 @@
   &::-ms-thumb {
     @include euiRange__thumb;
     margin-top: 0;
+  }
+}
+
+.euiRange__wrapper--hasTicks .euiRange {
+  &::-webkit-slider-runnable-track {
+    background: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
+  }
+
+  &::-moz-range-track {
+    background: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
+  }
+
+  &::-ms-fill-lower {
+    background: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
+  }
+
+  &::-ms-fill-upper {
+    background: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 }

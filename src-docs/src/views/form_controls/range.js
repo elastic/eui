@@ -78,6 +78,20 @@ export default class extends Component {
           showInput
           compressed
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiRange
+          id={makeId()}
+          min={0}
+          max={2000}
+          step={50}
+          value={this.state.value}
+          onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showTicks
+          tickInterval={300}
+        />
       </Fragment>
     );
   }
