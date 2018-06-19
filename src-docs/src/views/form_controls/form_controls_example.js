@@ -20,7 +20,6 @@ import {
   EuiLink,
   EuiRadio,
   EuiRange,
-  EuiRangeStepped,
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
@@ -73,10 +72,6 @@ const radioGroupHtml = renderToHtml(RadioGroup);
 import RangeExample from './range';
 const rangeSource = require('!!raw-loader!./range');
 const rangeHtml = renderToHtml(RangeExample);
-
-import RangeStepped from './range_stepped';
-const rangeSteppedSource = require('!!raw-loader!./range_stepped');
-const rangeSteppedHtml = renderToHtml(RangeStepped);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
@@ -271,19 +266,6 @@ export const FormControlsExample = {
       EuiRange,
     },
     demo: <RangeExample />,
-  }, {
-    title: 'Stepped range',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: rangeSteppedSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: rangeSteppedHtml,
-    }],
-    props: {
-      EuiRangeStepped,
-    },
-    demo: <RangeStepped />,
   }, {
     title: 'Switch',
     source: [{
