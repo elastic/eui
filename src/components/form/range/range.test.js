@@ -12,7 +12,7 @@ describe('EuiRange', () => {
         id="id"
         min={1}
         max={10}
-        value="value"
+        value="8"
         onChange={() => {}}
         {...requiredProps}
       />
@@ -52,7 +52,16 @@ describe('EuiRange', () => {
 
     test('extra input should render', () => {
       const component = render(
-        <EuiRange showInput/>
+        <EuiRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value="8"
+          onChange={() => {}}
+          showInput
+          {...requiredProps}
+        />
       );
 
       expect(component)

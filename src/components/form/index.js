@@ -18,7 +18,10 @@ export {
   EuiRadio,
   EuiRadioGroup,
 } from './radio';
-export { EuiRange } from './range';
+export {
+  EuiRange,
+  EuiRangeStepped,
+} from './range';
 export { EuiSelect } from './select';
 export { EuiSwitch } from './switch';
 export { EuiTextArea } from './text_area';

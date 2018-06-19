@@ -60,7 +60,7 @@ export const EuiRange = ({
         className="euiRange__extraInput"
         min={min}
         max={max}
-        value={value}
+        value={Number(value)}
         disabled={disabled}
         compressed={compressed}
         {...rest}

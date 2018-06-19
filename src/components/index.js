@@ -128,6 +128,7 @@ export {
   EuiRadio,
   EuiRadioGroup,
   EuiRange,
+  EuiRangeStepped,
   EuiSelect,
   EuiSwitch,
   EuiTextArea,

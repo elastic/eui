@@ -13,7 +13,7 @@ exports[`EuiRange is rendered 1`] = `
     min="1"
     name="name"
     type="range"
-    value="value"
+    value="8"
   />
 </div>
 `;
@@ -36,19 +36,28 @@ exports[`EuiRange props extra input should render 1`] = `
   class="euiRange__wrapper"
 >
   <input
-    class="euiRange"
-    max="100"
+    aria-label="aria-label"
+    class="euiRange testClass1 testClass2"
+    data-test-subj="test subject string"
+    id="id"
+    max="10"
     min="1"
+    name="name"
     type="range"
+    value="8"
   />
   <div
     class="euiFormControlLayout"
   >
     <input
+      aria-label="aria-label"
       class="euiFieldNumber euiRange__extraInput"
-      max="100"
+      data-test-subj="test subject string"
+      max="10"
       min="1"
+      name="name"
       type="number"
+      value="8"
     />
   </div>
 </div>
