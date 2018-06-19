@@ -1,12 +1,12 @@
-$euiRangeTrackColor: $euiColorDarkShade;
+$euiRangeTrackColor: $euiColorDarkShade !default;
 
-$euiRangeThumbRadius: 50%;
-$euiRangeThumbHeight: $euiSize;
-$euiRangeThumbWidth: $euiSize;
-$euiRangeThumbBorderColor: $euiRangeTrackColor;
+$euiRangeThumbRadius: 50% !default;
+$euiRangeThumbHeight: $euiSize !default;
+$euiRangeThumbWidth: $euiSize !default;
+$euiRangeThumbBorderColor: $euiRangeTrackColor !default;
 
-$euiRangeTrackWidth: 100%;
-$euiRangeTrackHeight: 2px;
-$euiRangeTrackBorderWidth: 0;
-$euiRangeTrackBorderColor: $euiRangeTrackColor;
-$euiRangeTrackRadius: $euiBorderRadius;
+$euiRangeTrackWidth: 100% !default;
+$euiRangeTrackHeight: 2px !default;
+$euiRangeTrackBorderWidth: 0 !default;
+$euiRangeTrackBorderColor: $euiRangeTrackColor !default;
+$euiRangeTrackRadius: $euiBorderRadius !default;
