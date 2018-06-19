@@ -1,27 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-  EuiSwitch,
-  EuiXYChart,
-  EuiBarSeries,
-  EuiSpacer,
-  EuiDefaultAxis,
-} from '../../../../src/components';
-
-const horizontalData = [
-  { x: 3, y: 'A' },
-  { x: 1, y: 'B' },
-  { x: 5, y: 'C' },
-  { x: 2, y: 'D' },
-  { x: 1, y: 'E' }
-]
-const verticalData = [
-  { x: 'A', y: 3 },
-  { x: 'B', y: 1 },
-  { x: 'C', y: 5 },
-  { x: 'D', y: 2 },
-  { x: 'E', y: 1 },
-]
+import { EuiSwitch, EuiXYChart, EuiSpacer } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -39,33 +18,28 @@ export default class extends Component {
   };
 
   render() {
-    const { isHorizontal } = this.state
+    const { isHorizontal } = this.state;
     return (
       <div>
-        <EuiSwitch
-          label="Is Horizontal"
-          checked={this.state.checked}
-          onChange={this.onChange}
-        />
+        <EuiSwitch label="Is Horizontal" checked={this.state.checked} onChange={this.onChange} />
         <EuiSpacer size="m" />
 
         <EuiXYChart
           width={600}
           height={200}
           xType={!isHorizontal ? 'ordinal' : undefined}
-          yType={isHorizontal ? 'ordinal': undefined}
+          yType={isHorizontal ? 'ordinal' : undefined}
         >
-          <EuiBarSeries
+          {/* <EuiBarSeries
             name={`Tag A`}
             data={isHorizontal ? horizontalData : verticalData}
             isHorizontal={isHorizontal}
-          />
-          <EuiDefaultAxis
+            />
+            <EuiDefaultAxis
             isHorizontal={isHorizontal}
-          />
+          /> */}
         </EuiXYChart>
-
       </div>
-    )
+    );
   }
 }

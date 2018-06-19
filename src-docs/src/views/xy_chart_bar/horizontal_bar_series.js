@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiXYChart,
-  EuiHorizontalBarSeries,
-  EuiDefaultAxis,
-  EuiXYChartUtils,
-} from '../../../../src/components';
+import { EuiXYChart, EuiHorizontalBarSeries, EuiXYChartUtils } from '../../../../src/components';
 
 const data = [
   { x: 3, y: 'A' },
@@ -19,9 +14,8 @@ export default () => (
     width={600}
     height={200}
     yType="ordinal"
-    crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
+    orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
   >
     <EuiHorizontalBarSeries name="Tag counts" data={data} />
-    <EuiDefaultAxis isHorizontal={true} />
   </EuiXYChart>
 );

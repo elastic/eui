@@ -7,20 +7,12 @@ import {
   EuiSpacer,
   EuiXYChart,
   EuiLine,
-  EuiDefaultAxis,
   EuiCheckboxGroup,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
-
-const DATA_A = [
-  { x: 0, y: 1 },
-  { x: 1, y: 1 },
-  { x: 2, y: 2 },
-  { x: 3, y: -1 },
-  { x: 5, y: 2 },
-];
+const DATA_A = [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: -1 }, { x: 5, y: 2 }];
 
 export default class extends Component {
   constructor(props) {
@@ -44,12 +36,15 @@ export default class extends Component {
         showLineMarks: true,
       },
     };
-  };
+  }
 
   onLinePropsChange = optionId => {
-    const newLinePropsIdToSelectedMap = ({ ...this.state.linePropsIdToSelectedMap, ...{
-      [optionId]: !this.state.linePropsIdToSelectedMap[optionId],
-    } });
+    const newLinePropsIdToSelectedMap = {
+      ...this.state.linePropsIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.linePropsIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       linePropsIdToSelectedMap: newLinePropsIdToSelectedMap,
@@ -69,13 +64,15 @@ export default class extends Component {
   };
 
   render() {
-    const { linePropsIdToSelectedMap: { showLine, showLineMarks }, lineSize, lineMarkSize } = this.state
+    const {
+      linePropsIdToSelectedMap: { showLine, showLineMarks },
+      lineSize,
+      lineMarkSize,
+    } = this.state;
     return (
       <Fragment>
         <EuiForm>
-          <EuiFormRow
-            label="Line Size"
-          >
+          <EuiFormRow label="Line Size">
             <EuiRange
               id={makeId()}
               min={0.5}
@@ -84,9 +81,7 @@ export default class extends Component {
               onChange={this.onChangeLineSize}
             />
           </EuiFormRow>
-          <EuiFormRow
-            label="Line Mark Size"
-          >
+          <EuiFormRow label="Line Mark Size">
             <EuiRange
               id={makeId()}
               min={0.5}
@@ -95,9 +90,7 @@ export default class extends Component {
               onChange={this.onChangeLineMarkSize}
             />
           </EuiFormRow>
-          <EuiFormRow
-            label="Show/Hide"
-          >
+          <EuiFormRow label="Show/Hide">
             <EuiCheckboxGroup
               options={this.state.lineProps}
               idToSelectedMap={this.state.linePropsIdToSelectedMap}
@@ -106,11 +99,7 @@ export default class extends Component {
           </EuiFormRow>
         </EuiForm>
         <EuiSpacer size="xl" />
-        <EuiXYChart
-          width={600}
-          height={200}
-        >
-          <EuiDefaultAxis />
+        <EuiXYChart width={600} height={200}>
           <EuiLine
             name="Total Bytes"
             data={DATA_A}
@@ -119,9 +108,8 @@ export default class extends Component {
             showLine={showLine}
             showLineMarks={showLineMarks}
           />
-
         </EuiXYChart>
       </Fragment>
-    )
+    );
   }
 }

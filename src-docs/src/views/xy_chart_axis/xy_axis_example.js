@@ -11,9 +11,9 @@ export const XYChartAxisExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiYAxis</EuiCode> and <EuiCode>EuiXAxis</EuiCode> can be used
-            instead of the <EuiCode>EuiDefaultAxis</EuiCode> to allow higher
-            axis customization. See the JS example to check the available properties.
+            <EuiCode>EuiYAxis</EuiCode> and <EuiCode>EuiXAxis</EuiCode> can be used instead of the{' '}
+            <EuiCode>EuiDefaultAxis</EuiCode> to allow higher axis customization. See the JS example
+            to check the available properties.
           </p>
         </div>
       ),
@@ -21,18 +21,18 @@ export const XYChartAxisExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./simple_axis')
+          code: require('!!raw-loader!./simple_axis'),
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React'
-        }
+          code: 'This component can only be used from React',
+        },
       ],
       demo: (
         <div style={{ margin: 60 }}>
           <SimpleAxisExampleCode />
         </div>
-      )
+      ),
     },
-  ]
+  ],
 };

@@ -14,52 +14,50 @@ export const XYChartExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> to display line, bar, area, and stream charts. Note that charts are composed with{' '}
-            <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>, <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child
-            components.
+            Use <EuiCode>EuiXYChart</EuiCode> to display line, bar, area, and stream charts. Note
+            that charts are composed with <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>,{' '}
+            <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child components.
           </p>
         </div>
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-complex')
+          code: require('!!raw-loader!./example-complex'),
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React'
-        }
+          code: 'This component can only be used from React',
+        },
       ],
       demo: (
         <div style={{ margin: 60 }}>
           <ComplexChartExampleCode />
         </div>
-      )
+      ),
     },
     {
       title: 'Empty Chart',
       text: (
         <div>
-          <p>
-            When no data is provided to EuiXYChart, an empty state is displayed
-          </p>
+          <p>When no data is provided to EuiXYChart, an empty state is displayed</p>
         </div>
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-empty')
+          code: require('!!raw-loader!./example-empty'),
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React'
-        }
+          code: 'This component can only be used from React',
+        },
       ],
       demo: (
         <div style={{ margin: 60 }}>
           <EmptyExampleCode />
         </div>
-      )
+      ),
     },
     {
       title: 'Keep cross-hair in sync',
@@ -73,43 +71,41 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-empty')
+          code: require('!!raw-loader!./example-empty'),
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React'
-        }
+          code: 'This component can only be used from React',
+        },
       ],
       demo: (
         <div style={{ margin: 60 }}>
           <ExampleCrosshair />
         </div>
-      )
+      ),
     },
     {
       title: 'Multi Axis',
       text: (
         <div>
-          <p>
-            If just displaying values is enough, then you can let the chart auto label axis
-          </p>
+          <p>If just displaying values is enough, then you can let the chart auto label axis</p>
         </div>
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example_dual_axis')
+          code: require('!!raw-loader!./example_dual_axis'),
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React'
-        }
+          code: 'This component can only be used from React',
+        },
       ],
       demo: (
         <div style={{ margin: 60 }}>
           <MultiAxisChartExampleCode />
         </div>
-      )
-    }
-  ]
+      ),
+    },
+  ],
 };

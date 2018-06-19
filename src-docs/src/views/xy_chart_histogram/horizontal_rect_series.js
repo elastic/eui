@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiXYChart,
-  EuiHorizontalRectSeries,
-  EuiDefaultAxis,
-  EuiXYChartUtils,
-} from '../../../../src/components';
+import { EuiXYChart, EuiHorizontalRectSeries, EuiXYChartUtils } from '../../../../src/components';
 
 const data = [
   { x: 3, y: 0, y0: 1 },
@@ -15,12 +10,7 @@ const data = [
   { x: 1, y: 4, y0: 5 },
 ];
 export default () => (
-  <EuiXYChart
-    width={600}
-    height={200}
-    crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
-  >
+  <EuiXYChart width={600} height={200} orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}>
     <EuiHorizontalRectSeries name="Bytes" data={data} />
-    <EuiDefaultAxis isHorizontal={true} />
   </EuiXYChart>
 );

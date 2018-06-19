@@ -83,12 +83,13 @@ exports[`EuiXYChart passes handler functions 1`] = `
   >
     <XYChart
       animation={null}
-      crosshairOrientation="vertical"
       height={200}
       onHover={[Function]}
       onMouseLeave={[Function]}
       onSelectEnd={[Function]}
+      orientation="vertical"
       showCrosshair={true}
+      showDefaultAxis={true}
       truncateLegends={false}
       width={600}
       xPadding={0}

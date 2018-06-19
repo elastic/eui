@@ -5,7 +5,6 @@ import {
   EuiVerticalBarSeries,
   EuiArea,
   EuiLine,
-  EuiDefaultAxis,
 } from '../../../../src/components';
 
 export default () => {
@@ -60,7 +59,6 @@ export default () => {
         data={[{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
         color={'#db1374'}
       />
-      <EuiDefaultAxis />
     </EuiXYChart>
   );
 };

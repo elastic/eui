@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiXYChart,
-  EuiHorizontalRectSeries,
-  EuiDefaultAxis,
-  EuiXYChartUtils,
-} from '../../../../src/components';
+import { EuiXYChart, EuiHorizontalRectSeries, EuiXYChartUtils } from '../../../../src/components';
 
 const dataA = [
   { y: 0, y0: 1, x: 1 },
@@ -28,20 +23,9 @@ export default () => (
     width={600}
     height={200}
     stackBy="x"
-    crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
+    orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
   >
-    <EuiHorizontalRectSeries
-      name={`Tag A`}
-      data={dataA}
-      stack={true}
-    />
-    <EuiHorizontalRectSeries
-      name={`Tag B`}
-      data={dataB}
-      stack={true}
-    />
-    <EuiDefaultAxis
-      isHorizontal={true}
-    />
+    <EuiHorizontalRectSeries name={`Tag A`} data={dataA} stack={true} />
+    <EuiHorizontalRectSeries name={`Tag B`} data={dataB} stack={true} />
   </EuiXYChart>
 );

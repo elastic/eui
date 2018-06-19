@@ -25,6 +25,7 @@ export default () => (
     height={200}
     xPadding={5}
     xType="ordinal"
+    showDefaultAxis={false}
   >
     <EuiLine
       name="DATA A"

@@ -11,9 +11,9 @@ function tspanTextWrapper(texts) {
   return (
     <tspan>
       {
-        texts.map((piece) => {
+        texts.map((piece, i) => {
           return (
-            <tspan x={0} dy="1em">{piece}</tspan>
+            <tspan x={0} dy="1em" key={`text-span-${i}`}>{piece}</tspan>
           )
         })
       }

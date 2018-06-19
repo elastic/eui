@@ -4,7 +4,6 @@ import {
   EuiButton,
   EuiXYChart,
   EuiHorizontalBarSeries,
-  EuiDefaultAxis,
   EuiXYChartUtils,
 } from '../../../../src/components';
 
@@ -36,40 +35,26 @@ export default class extends Component {
     this.setState({
       stacked: !this.state.stacked,
     });
-  }
+  };
 
   render() {
-    const { stacked } = this.state
+    const { stacked } = this.state;
     return (
       <div>
-        <EuiButton
-          color="primary"
-          onClick={this.onSwitchStacked}
-          style={{ marginBottom: '2em' }}
-        >
+        <EuiButton color="primary" onClick={this.onSwitchStacked} style={{ marginBottom: '2em' }}>
           Toggle stacked
         </EuiButton>
         <EuiXYChart
           width={600}
           height={200}
-          crosshairOrientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
+          orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
           yType="ordinal"
           stackBy={stacked ? 'x' : null}
         >
-          <EuiHorizontalBarSeries
-            name={`Tag A`}
-            data={dataA}
-          />
-          <EuiHorizontalBarSeries
-            name={`Tag B`}
-            data={dataB}
-          />
-          <EuiDefaultAxis
-            isHorizontal={true}
-          />
+          <EuiHorizontalBarSeries name={`Tag A`} data={dataA} />
+          <EuiHorizontalBarSeries name={`Tag B`} data={dataB} />
         </EuiXYChart>
-
       </div>
-    )
+    );
   }
 }

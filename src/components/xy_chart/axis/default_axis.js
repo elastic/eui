@@ -4,7 +4,7 @@ import { EuiXAxis } from './x_axis';
 import { EuiYAxis } from './y_axis';
 import { EuiHorizontalGrid } from './horizontal_grid';
 import { EuiVerticalGrid } from './vertical_grid';
-
+import { EuiXYChartUtils } from '../utils/chart_utils';
 export class EuiDefaultAxis extends PureComponent {
   _getTickLabels(ticks) {
     if (!ticks) return;
@@ -25,11 +25,14 @@ export class EuiDefaultAxis extends PureComponent {
   }
 
   render() {
-    const { showGridLines, isHorizontal, ...rest } = this.props;
+    const { showGridLines, orientation, ...rest } = this.props;
+
     return (
       <Fragment>
-        {showGridLines && !isHorizontal && <EuiHorizontalGrid {...rest} />}
-        {showGridLines && isHorizontal && <EuiVerticalGrid {...rest} />}
+        {showGridLines &&
+          orientation === EuiXYChartUtils.ORIENTATION.VERTICAL && <EuiHorizontalGrid {...rest} />}
+        {showGridLines &&
+          orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
 
         <EuiXAxis tickSize={0} {...rest} />
         <EuiYAxis tickSize={0} {...rest} />
@@ -39,14 +42,14 @@ export class EuiDefaultAxis extends PureComponent {
 }
 
 EuiDefaultAxis.propTypes = {
-  isHorizontal: PropTypes.bool,
+  orientation: PropTypes.string,
   showGridLines: PropTypes.bool,
   yOn0: PropTypes.bool,
   xOn0: PropTypes.bool,
 };
 
 EuiDefaultAxis.defaultProps = {
-  isHorizontal: false,
+  orientation: false,
   showGridLines: true,
 };
 

@@ -3,6 +3,7 @@ import { XYPlot, makeWidthFlexible, AbstractSeries } from 'react-vis';
 
 import PropTypes from 'prop-types';
 import Highlight from './highlight';
+import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
@@ -80,8 +81,9 @@ class XYChart extends PureComponent {
       yPadding,
       xPadding,
       animation, // eslint-disable-line no-unused-vars
+      showDefaultAxis,
       showCrosshair,
-      crosshairOrientation,
+      orientation,
       crosshairValue,
       onCrosshairUpdate, // eslint-disable-line no-unused-vars
       truncateLegends, // eslint-disable-line no-unused-vars
@@ -94,7 +96,7 @@ class XYChart extends PureComponent {
     }
 
     this.colorIterator = 0;
-    const Crosshair = crosshairOrientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL
+    const Crosshair = orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL
       ? EuiCrosshairY
       : EuiCrosshairX
     return (
@@ -118,7 +120,9 @@ class XYChart extends PureComponent {
         >
 
           {React.Children.map(children, this._renderChildren)}
-
+          {
+            showDefaultAxis && <EuiDefaultAxis orientation={orientation} />
+          }
           { showCrosshair && (
             <Crosshair
               crosshairValue={crosshairValue}
@@ -136,6 +140,7 @@ class XYChart extends PureComponent {
 XYChart.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  orientation: PropTypes.string,
   stackBy: PropTypes.string,
   xType: PropTypes.string,
   yType: PropTypes.string,
@@ -148,12 +153,12 @@ XYChart.propTypes = {
   truncateLegends: PropTypes.bool,
   errorText: PropTypes.string,
   showCrosshair: PropTypes.bool,
-  crosshairOrientation: PropTypes.string,
   crosshairValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
   onCrosshairUpdate: PropTypes.func,
+  showDefaultAxis: PropTypes.bool,
 };
 
 XYChart.defaultProps = {
@@ -163,7 +168,8 @@ XYChart.defaultProps = {
   xPadding: 0,
   truncateLegends: false,
   showCrosshair: true,
-  crosshairOrientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+  orientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+  showDefaultAxis: true,
 
 };
 
