@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { calculatePopoverPosition } from '../../services';
+import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
 
@@ -30,22 +30,35 @@ export class EuiToolTip extends Component {
       hasFocus: false,
       calculatedPosition: this.props.position,
       toolTipStyles: {},
+      arrowStyles: {},
       id: this.props.id || makeId(),
     };
+  }
+
+  setPopoverRef = ref => {
+    this.popover = ref;
   }
 
   showToolTip = () => {
     this.setState({ visible: true });
   };
 
-  positionToolTip = (toolTipBounds) => {
-    const anchorBounds = this.anchor.getBoundingClientRect();
+  positionToolTip = () => {
     const requestedPosition = this.props.position;
 
-    const { position, left, top } = calculatePopoverPosition(anchorBounds, toolTipBounds, requestedPosition);
+    const { position, left, top, arrow } = findPopoverPosition({
+      anchor: this.anchor,
+      popover: this.popover,
+      position: requestedPosition,
+      offset: 16, // offset popover 16px from the anchor
+      arrowConfig: {
+        arrowWidth: 14,
+        arrowBuffer: 4
+      }
+    });
 
     const toolTipStyles = {
-      top: top + window.scrollY,
+      top,
       left,
     };
 
@@ -53,6 +66,7 @@ export class EuiToolTip extends Component {
       visible: true,
       calculatedPosition: position,
       toolTipStyles,
+      arrowStyles: arrow,
     });
   };
 
@@ -94,6 +108,8 @@ export class EuiToolTip extends Component {
       ...rest
     } = this.props;
 
+    const { arrowStyles, id, toolTipStyles, visible } = this.state;
+
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
@@ -106,18 +122,20 @@ export class EuiToolTip extends Component {
     );
 
     let tooltip;
-    if (this.state.visible) {
+    if (visible) {
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
             className={classes}
-            style={this.state.toolTipStyles}
+            style={toolTipStyles}
             positionToolTip={this.positionToolTip}
+            popoverRef={this.setPopoverRef}
             title={title}
-            id={this.state.id}
+            id={id}
             role="tooltip"
             {...rest}
           >
+            <div style={arrowStyles} className="euiToolTip__arrow"/>
             {content}
           </EuiToolTipPopover>
         </EuiPortal>

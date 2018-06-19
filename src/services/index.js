@@ -60,4 +60,5 @@ export {
 
 export {
   calculatePopoverPosition,
+  findPopoverPosition,
 } from './popover';
