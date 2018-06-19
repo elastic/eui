@@ -37,12 +37,11 @@
 
 .euiRange__ticks {
   position: absolute;
-  left: $euiSizeS;
+  left: 0;
   right: 0;
   top: 18px;
   display: flex;
-  justify-content: space-between;
-  z-index: $euiZLevel0;
+  z-index: $euiZLevel1;
 }
 
 .euiRange__tick {
@@ -73,6 +72,31 @@
   }
 }
 
+.euiRange__levels {
+  position: absolute;
+  left: $euiSizeS;
+  right: $euiSizeS;
+  top: 24px;
+  display: flex;
+  justify-content: stretch;
+  z-index: $euiZLevel0;
+}
+
+[class*="euiRange__level--"] {
+  display: block;
+  height: 6px;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+.euiRange__level--success {
+  background-color: transparentize($euiColorSuccess, .7);
+}
+
+.euiRange__level--danger {
+  background-color: transparentize($euiColorDanger, .7);
+}
+
 // The following code is inspired by...
 
 // Github: https://github.com/darlanrod/input-range-sass
@@ -90,7 +114,7 @@
   background: transparent; /* Otherwise white in Chrome */
   margin: $euiRangeThumbHeight/2 $euiSizeS;
   width: 100%; // ensures the slider expands to fill flex display
-  z-index: $euiZLevel1; // stay above tick marks
+  z-index: $euiZLevel2; // stay above tick marks
 
   &:disabled {
 
@@ -181,24 +205,35 @@
   }
 }
 
-.euiRange__wrapper--hasTicks .euiRange {
-  &::-webkit-slider-runnable-track {
-    background: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
+.euiRange__wrapper--hasTicks {
+  .euiRange__levels {
+    padding-left: $euiRangeThumbWidth/2;
+    padding-right: $euiRangeThumbWidth/2;
   }
 
-  &::-moz-range-track {
-    background: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
-  }
+  .euiRange {
+    width: calc(100% + #{$euiRangeThumbWidth});
+    margin-left: $euiRangeThumbWidth/2 * -1;
+    margin-right: $euiRangeThumbWidth/2 * -1;
 
-  &::-ms-fill-lower {
-    background: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
-  }
+    &::-webkit-slider-runnable-track {
+      background: transparentize($euiRangeTrackColor, .6);
+      border-color: transparentize($euiRangeTrackBorderColor, .6);
+    }
 
-  &::-ms-fill-upper {
-    background: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
+    &::-moz-range-track {
+      background: transparentize($euiRangeTrackColor, .6);
+      border-color: transparentize($euiRangeTrackBorderColor, .6);
+    }
+
+    &::-ms-fill-lower {
+      background: transparentize($euiRangeTrackColor, .6);
+      border-color: transparentize($euiRangeTrackBorderColor, .6);
+    }
+
+    &::-ms-fill-upper {
+      background: transparentize($euiRangeTrackColor, .6);
+      border-color: transparentize($euiRangeTrackBorderColor, .6);
+    }
   }
 }

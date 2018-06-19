@@ -20,6 +20,7 @@ export const EuiRange = ({
   showInput,
   showTicks,
   tickInterval,
+  levels,
   onChange,
   value,
   ...rest
@@ -42,6 +43,8 @@ export const EuiRange = ({
       'euiRange__wrapper--hasTicks': showTicks,
     },
   );
+
+  const rangeTotal = (max - min);
 
   let minLabelNode;
   let maxLabelNode;
@@ -78,11 +81,21 @@ export const EuiRange = ({
   }
 
   let tickMarksNode;
+  let wrapperStyle;
   if (showTicks) {
     // Set the interval for which to show the tick marks
     const interval = tickInterval || step || 1;
     // Loop from min to max, creating ticks at each interval
     const sequence = range(min, max, interval);
+    // Calculate the width of each tick mark
+    const width = (interval / (rangeTotal + interval)) * 100;
+
+    // Align with item labels across the range
+    const sliderPadding = (
+      (width) / 2 // applied to left and right
+    );
+    wrapperStyle = { padding: `0 ${sliderPadding}%` };
+
     tickMarksNode = (
       <div className="euiRange__ticks">
         {sequence.map((tickValue, index) => {
@@ -90,6 +103,7 @@ export const EuiRange = ({
             'euiRange__tick',
             { 'euiRange__tick--selected': value === tickValue, }
           );
+
           return (
             <button
               className={tickClasses}
@@ -97,6 +111,7 @@ export const EuiRange = ({
               disabled={disabled}
               value={tickValue}
               onClick={onChange}
+              style={{ width: `${width}%` }}
             >
               {tickValue}
             </button>
@@ -106,9 +121,26 @@ export const EuiRange = ({
     );
   }
 
+  let levelsNode;
+  if (levels.length) {
+    levelsNode = (
+      <div className="euiRange__levels">
+        {levels.map((level, index) => {
+          const range = level.max - level.min;
+          const width = (range / rangeTotal) * 100;
+
+          return (
+            <span key={index} style={{ width: `${width}%` }} className={`euiRange__level--${level.color}`} />
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div
       className={wrapperClasses}
+      style={wrapperStyle}
     >
       {minLabelNode}
       <input
@@ -127,6 +159,7 @@ export const EuiRange = ({
       {maxLabelNode}
       {extraInputNode}
       {tickMarksNode}
+      {levelsNode}
     </div>
   );
 };
@@ -157,6 +190,10 @@ EuiRange.propTypes = {
    */
   tickInterval: PropTypes.number,
   onChange: PropTypes.func,
+  /**
+   * Create colored indicators for certain intervals
+   */
+  levels: PropTypes.array,
 };
 
 EuiRange.defaultProps = {
@@ -167,4 +204,5 @@ EuiRange.defaultProps = {
   showLabels: false,
   showInput: false,
   showTicks: false,
+  levels: [],
 };
