@@ -47,6 +47,16 @@ fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
+### Testing the component with Kibana
+
+1. In the `eui` folder, run `yarn link` to create the `@elastic/eui` link package.
+
+2. In the `kibana` folder (and potentially the `x-pack` sub-folder as well, if you are working in x-pack code), run `yarn link @elastic/eui` to install the link package you just created.
+
+3. Start up the Kibana server.
+
+4. Back in the `eui` folder, run `yarn build`. Repeat (just) this step any time you make changes to your EUI component.
+
 ## Principles
 
 ### Logically-grouped components
