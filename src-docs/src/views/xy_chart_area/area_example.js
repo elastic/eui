@@ -4,7 +4,7 @@ import AreaSeriesExample from './area';
 import StackedAreaSeriesExample from './stacked_area';
 import CurvedAreaExample from './curved_area';
 
-import { EuiCode, EuiArea, EuiLink } from '../../../../src/components';
+import { EuiCode, EuiAreaSeries, EuiLink } from '../../../../src/components';
 
 export const XYChartAreaExample = {
   title: 'Area chart',
@@ -14,11 +14,11 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiArea</EuiCode> to display area charts.
+            Use <EuiCode>EuiAreaSeries</EuiCode> to display area charts.
           </p>
         </div>
       ),
-      props: { EuiArea },
+      props: { EuiAreaSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -40,13 +40,13 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            Use multiple <EuiCode>EuiArea</EuiCode> to display stacked area charts specifying the{' '}
+            Use multiple <EuiCode>EuiAreaSeries</EuiCode> to display stacked area charts specifying the{' '}
             <EuiCode>stackBy:y</EuiCode> prop on the <EuiCode>EuiXYChart</EuiCode>
             to enable stacking.
           </p>
         </div>
       ),
-      props: { EuiArea },
+      props: { EuiAreaSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -76,7 +76,7 @@ export const XYChartAreaExample = {
           </p>
         </div>
       ),
-      props: { EuiArea },
+      props: { EuiAreaSeries },
       source: [
         {
           type: GuideSectionTypes.JS,

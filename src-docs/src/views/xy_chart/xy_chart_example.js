@@ -1,10 +1,10 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
-import ComplexChartExampleCode from './example-complex';
-import EmptyExampleCode from './example-empty';
-import MultiAxisChartExampleCode from './example_dual_axis';
-import { ExampleCrosshair } from './example-crosshair';
+import ComplexChartExampleCode from './complex';
+import EmptyExampleCode from './empty';
+import MultiAxisChartExampleCode from './multi_axis';
+import { ExampleCrosshair } from './crosshair_sync';
 
 export const XYChartExample = {
   title: 'General',
@@ -15,7 +15,7 @@ export const XYChartExample = {
         <div>
           <p>
             Use <EuiCode>EuiXYChart</EuiCode> to display line, bar, area, and stream charts. Note
-            that charts are composed with <EuiCode>EuiLine</EuiCode>, <EuiCode>EuiArea</EuiCode>,{' '}
+            that charts are composed with <EuiCode>EuiLineSeries</EuiCode>, <EuiCode>EuiAreaSeries</EuiCode>,{' '}
             <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child components.
           </p>
         </div>
@@ -23,7 +23,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-complex'),
+          code: require('!!raw-loader!./complex'),
         },
         {
           type: GuideSectionTypes.HTML,
@@ -46,7 +46,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-empty'),
+          code: require('!!raw-loader!./empty'),
         },
         {
           type: GuideSectionTypes.HTML,
@@ -71,7 +71,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example-empty'),
+          code: require('!!raw-loader!./crosshair_sync'),
         },
         {
           type: GuideSectionTypes.HTML,
@@ -94,7 +94,7 @@ export const XYChartExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./example_dual_axis'),
+          code: require('!!raw-loader!./multi_axis'),
         },
         {
           type: GuideSectionTypes.HTML,

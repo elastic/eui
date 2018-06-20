@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { patchRandom, unpatchRandom } from '../../test/patch_random';
-import { requiredProps } from '../../test/required_props';
+import { patchRandom, unpatchRandom } from '../../../test/patch_random';
+import { requiredProps } from '../../../test/required_props';
 
-import { EuiXYChart } from './chart';
+import { EuiXYChart } from '../xy_chart';
 import { EuiHorizontalBarSeries } from './horizontal_bar_series';
 
 beforeEach(patchRandom);

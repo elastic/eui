@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiLine } from '../../../../src/components';
+import { EuiXYChart, EuiLineSeries } from '../../../../src/components';
 
 const DATA_A = [
   { x: 0, y: 1 },
@@ -13,6 +13,6 @@ const DATA_A = [
 
 export default () => (
   <EuiXYChart width={600} height={200}>
-    <EuiLine name="Total Bytes" data={DATA_A} />
+    <EuiLineSeries name="Total Bytes" data={DATA_A} />
   </EuiXYChart>
 );

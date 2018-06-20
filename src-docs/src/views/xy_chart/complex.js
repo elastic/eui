@@ -3,8 +3,8 @@ import React from 'react';
 import {
   EuiXYChart,
   EuiVerticalBarSeries,
-  EuiArea,
-  EuiLine,
+  EuiAreaSeries,
+  EuiLineSeries,
 } from '../../../../src/components';
 
 export default () => {
@@ -29,7 +29,7 @@ export default () => {
       width={600}
       height={200}
     >
-      <EuiArea
+      <EuiAreaSeries
         name="Quitters"
         onClick={() => {
           alert('clicked!');
@@ -54,7 +54,7 @@ export default () => {
             data={data}
           />
         ))}
-      <EuiLine
+      <EuiLineSeries
         name="Avg Winners"
         data={[{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
         color={'#db1374'}

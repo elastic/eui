@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiLine all props are rendered 1`] = `
+exports[`EuiLineSeries all props are rendered 1`] = `
 <FlexibleXYChart
   height={200}
   width={600}
@@ -4623,7 +4623,7 @@ exports[`EuiLine all props are rendered 1`] = `
 </FlexibleXYChart>
 `;
 
-exports[`EuiLine is rendered 1`] = `
+exports[`EuiLineSeries is rendered 1`] = `
 <FlexibleXYChart
   aria-label="aria-label"
   className="testClass1 testClass2"

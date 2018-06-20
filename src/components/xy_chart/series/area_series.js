@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries } from 'react-vis';
 
-export class EuiArea extends AbstractSeries {
+export class EuiAreaSeries extends AbstractSeries {
   render() {
     const { name, data, curve, color, ...rest } = this.props;
     return (
@@ -22,7 +22,7 @@ export class EuiArea extends AbstractSeries {
   }
 }
 
-EuiArea.propTypes = {
+EuiAreaSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
@@ -43,6 +43,6 @@ EuiArea.propTypes = {
   onMarkClick: PropTypes.func
 }
 
-EuiArea.defaultProps = {
+EuiAreaSeries.defaultProps = {
   curve: 'linear',
 };

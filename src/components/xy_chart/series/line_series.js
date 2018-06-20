@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 
-export class EuiLine extends AbstractSeries {
+export class EuiLineSeries extends AbstractSeries {
   render() {
     const {
       data,
@@ -68,7 +68,7 @@ export class EuiLine extends AbstractSeries {
   }
 }
 
-EuiLine.propTypes = {
+EuiLineSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
@@ -94,7 +94,7 @@ EuiLine.propTypes = {
   onMarkClick: PropTypes.func
 };
 
-EuiLine.defaultProps = {
+EuiLineSeries.defaultProps = {
   curve: 'linear',
   showLine: true,
   showLineMarks: true,

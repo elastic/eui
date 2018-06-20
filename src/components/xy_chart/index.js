@@ -1,17 +1,13 @@
-export { asSeries } from './as_series';
-export { EuiXYChart } from './chart';
-export { EuiLine } from './line';
-export { EuiBarSeries } from './bar_series';
-export { EuiVerticalBarSeries } from './vertical_bar_series';
-export { EuiHorizontalBarSeries } from './horizontal_bar_series';
-export { EuiVerticalRectSeries } from './vertical_rect_series';
-export { EuiHorizontalRectSeries } from './horizontal_rect_series';
-export { EuiDefaultAxis } from './axis/default_axis';
-export { EuiXAxis } from './axis/x_axis';
-export { EuiYAxis } from './axis/y_axis';
-export { EuiArea } from './area';
-export { EuiXYChartUtils } from './utils/chart_utils';
-export { EuiXYChartAxisUtils } from './utils/axis_utils';
-export { EuiXYChartTextUtils } from './utils/text_utils';
-export { EuiCrosshairX } from './crosshairs/crosshair_x';
-export { EuiCrosshairY } from './crosshairs/crosshair_y';
+export { EuiXYChart } from './xy_chart';
+
+// XY chart data series
+export * from './series';
+
+// XY chart axis components
+export * from './axis';
+
+// XY chart utility classes
+export * from './utils';
+
+// XY chart crosshairs
+export * from './crosshairs';

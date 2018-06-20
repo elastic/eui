@@ -6,7 +6,7 @@ import {
   EuiSelect,
   EuiSpacer,
   EuiXYChart,
-  EuiArea,
+  EuiAreaSeries,
 } from '../../../../src/components';
 
 const DATA_A = [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: -1 }, { x: 5, y: 2 }];
@@ -52,8 +52,8 @@ export default class extends Component {
         <EuiSpacer size="xl" />
 
         <EuiXYChart width={600} height={200} stackBy="y">
-          <EuiArea name="Total Bytes A" data={DATA_A} curve={this.state.value} />
-          <EuiArea name="Total Bytes B" data={DATA_B} curve={this.state.value} />
+          <EuiAreaSeries name="Total Bytes A" data={DATA_A} curve={this.state.value} />
+          <EuiAreaSeries name="Total Bytes B" data={DATA_B} curve={this.state.value} />
         </EuiXYChart>
       </Fragment>
     );

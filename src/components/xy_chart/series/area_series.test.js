@@ -1,21 +1,21 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
-import { patchRandom, unpatchRandom } from '../../test/patch_random';
-import { benchmarkFunction } from '../../test/time_execution';
-import { requiredProps } from '../../test/required_props';
+import { patchRandom, unpatchRandom } from '../../../test/patch_random';
+import { requiredProps } from '../../../test/required_props';
 
-import { EuiXYChart } from './chart';
-import { EuiLine } from './line';
+import { EuiXYChart } from '../xy_chart';
+import { EuiAreaSeries } from './area_series';
+import { benchmarkFunction } from '../../../test/time_execution';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
-describe('EuiLine', () => {
+describe('EuiAreaSeries', () => {
   test('is rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200} {...requiredProps}>
-        <EuiLine
-          name="test"
+        <EuiAreaSeries
+          name="somename"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
         />
       </EuiXYChart>
@@ -27,7 +27,7 @@ describe('EuiLine', () => {
   test('all props are rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200}>
-        <EuiLine
+        <EuiAreaSeries
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           name="test-chart"
           color="#ff0000"
@@ -43,7 +43,6 @@ describe('EuiLine', () => {
 
     expect(component).toMatchSnapshot();
   });
-
 
   describe('performance', () => {
     it.skip('renders 1000 items in under 1 second', () => {
@@ -64,14 +63,14 @@ describe('EuiLine', () => {
       function renderChart() {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiLine name="test" data={data}/>
+            <EuiAreaSeries name="somename" data={data}/>
           </EuiXYChart>
         )
       }
 
       const runtime = benchmarkFunction(renderChart);
       // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
-      // this is ~120ms on a MacBookPro
+      // this is ~150ms on a MacBookPro
       expect(runtime).toBeLessThan(1000);
     });
 
@@ -100,7 +99,7 @@ describe('EuiLine', () => {
         render(
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiLine name="test" key={index} data={data}/>
+              <EuiAreaSeries name={`somename-${index}`} key={index} data={data}/>
             ))}
           </EuiXYChart>
         )
@@ -108,7 +107,7 @@ describe('EuiLine', () => {
 
       const runtime = benchmarkFunction(renderChart);
       // as of 2018-05-011 / git 00cfbb94d2fcb08aeeed2bb8f4ed0b94eb08307b
-      // this is ~1700ms on a MacBookPro
+      // this is ~2150 on a MacBookPro
       expect(runtime).toBeLessThan(3000);
     });
   });

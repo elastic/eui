@@ -5,7 +5,7 @@ import CustomDomainLineChartExample from './custom_domain_line';
 import MultiLineChartExample from './multi_line';
 import CurvedLineChartExample from './curved_line';
 import CustomStyleLineChartExample from './custom_style_line';
-import { EuiCode, EuiLine, EuiLink } from '../../../../src/components';
+import { EuiCode, EuiLineSeries, EuiLink } from '../../../../src/components';
 
 export const XYChartLineExample = {
   title: 'Line chart',
@@ -15,12 +15,12 @@ export const XYChartLineExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiLine</EuiCode> to display line charts. The chart domain will cover the
+            Use <EuiCode>EuiLineSeries</EuiCode> to display line charts. The chart domain will cover the
             whole extent and doesn&apos;t add any padding.
           </p>
         </div>
       ),
-      props: { EuiLine },
+      props: { EuiLineSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -42,13 +42,13 @@ export const XYChartLineExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiLine</EuiCode> to display line charts. Specify{' '}
+            Use <EuiCode>EuiLineSeries</EuiCode> to display line charts. Specify{' '}
             <EuiCode>xDomain</EuiCode> and/or <EuiCode>yDomain</EuiCode>
             props to use custom domains.
           </p>
         </div>
       ),
-      props: { EuiLine },
+      props: { EuiLineSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -70,11 +70,11 @@ export const XYChartLineExample = {
       text: (
         <div>
           <p>
-            Use multiple <EuiCode>EuiLine</EuiCode> to display a milti-line chart.
+            Use multiple <EuiCode>EuiLineSeries</EuiCode> to display a milti-line chart.
           </p>
         </div>
       ),
-      props: { EuiLine },
+      props: { EuiLineSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -104,7 +104,7 @@ export const XYChartLineExample = {
           </p>
         </div>
       ),
-      props: { EuiLine },
+      props: { EuiLineSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -142,7 +142,7 @@ export const XYChartLineExample = {
           </ul>
         </div>
       ),
-      props: { EuiLine },
+      props: { EuiLineSeries },
       source: [
         {
           type: GuideSectionTypes.JS,

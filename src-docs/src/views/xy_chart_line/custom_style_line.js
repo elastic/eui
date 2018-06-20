@@ -6,7 +6,7 @@ import {
   EuiRange,
   EuiSpacer,
   EuiXYChart,
-  EuiLine,
+  EuiLineSeries,
   EuiCheckboxGroup,
 } from '../../../../src/components';
 
@@ -100,7 +100,7 @@ export default class extends Component {
         </EuiForm>
         <EuiSpacer size="xl" />
         <EuiXYChart width={600} height={200}>
-          <EuiLine
+          <EuiLineSeries
             name="Total Bytes"
             data={DATA_A}
             lineSize={Number(lineSize)}

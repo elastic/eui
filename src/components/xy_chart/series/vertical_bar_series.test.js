@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { patchRandom, unpatchRandom } from '../../test/patch_random';
-import { requiredProps } from '../../test/required_props';
+import { patchRandom, unpatchRandom } from '../../../test/patch_random';
+import { requiredProps } from '../../../test/required_props';
 
-import { EuiXYChart } from './chart';
+import { EuiXYChart } from '../xy_chart';
 import { EuiVerticalBarSeries } from './vertical_bar_series';
-import { benchmarkFunction } from '../../test/time_execution';
+import { benchmarkFunction } from '../../../test/time_execution';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);

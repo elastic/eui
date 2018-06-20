@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   EuiXYChart,
-  EuiLine,
+  EuiLineSeries,
   EuiXAxis,
   EuiYAxis,
   EuiXYChartAxisUtils,
@@ -27,17 +27,17 @@ export default () => (
     xType="ordinal"
     showDefaultAxis={false}
   >
-    <EuiLine
+    <EuiLineSeries
       name="DATA A"
       data={DATA_A}
       yDomain={DATA_A_DOMAIN}
     />
-    <EuiLine
+    <EuiLineSeries
       name="DATA B"
       data={DATA_B}
       yDomain={DATA_B_DOMAIN}
     />
-    <EuiLine
+    <EuiLineSeries
       name="DATA C"
       data={DATA_C}
       yDomain={DATA_C_DOMAIN}

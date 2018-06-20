@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { EuiButton, EuiSpacer, EuiXYChart, EuiLine, EuiVerticalBarSeries } from '../../../../src/components';
+import { EuiButton, EuiSpacer, EuiXYChart, EuiLineSeries, EuiVerticalBarSeries } from '../../../../src/components';
 
 const timestamp = Date.now();
 const ONE_HOUR = 3600000;
@@ -42,7 +42,7 @@ export default class Example extends Component {
         <EuiSpacer size="xl" />
         <EuiXYChart width={600} height={200} xType="time">
           { data.map((d, i) => (<EuiVerticalBarSeries key={i} name={`Chart ${i}`} data={d} />))}
-          { data.map((d, i) => (<EuiLine key={i} name={`Chart ${i}`} data={d} showLineMarks={false} />))}
+          { data.map((d, i) => (<EuiLineSeries key={i} name={`Chart ${i}`} data={d} showLineMarks={false} />))}
         </EuiXYChart>
       </Fragment>
     );
