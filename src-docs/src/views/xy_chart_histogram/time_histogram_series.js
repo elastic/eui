@@ -41,7 +41,7 @@ export default class Example extends Component {
         </EuiButton>
 
         <EuiSpacer size="xl" />
-        <EuiXYChart width={600} height={200} xType="time" >
+        <EuiXYChart width={600} height={200} xType="time" stackBy="y">
           { data.map((d, i) => (<EuiVerticalRectSeries key={i} name={`Chart ${i}`} data={d} />))}
         </EuiXYChart>
       </Fragment>
