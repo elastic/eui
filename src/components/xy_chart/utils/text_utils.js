@@ -7,7 +7,7 @@ import React from 'react'
  * @return {Object} Returns an Object to use with dangerouslySetInnerHTML
  * with the rendered markdown HTML
  */
-export function tspanTextWrapper(texts) {
+function tspanTextWrapper(texts) {
   return (
     <tspan>
       {
@@ -19,4 +19,8 @@ export function tspanTextWrapper(texts) {
       }
     </tspan>
   )
+}
+
+export const EuiXYChartTextUtils = {
+  tspanTextWrapper,
 }

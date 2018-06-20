@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { XAxis } from 'react-vis';
-import { TITLE_POSITION, ORIENTATION } from '../utils/axis_utils';
+import { EuiXYChartAxisUtils } from '../utils/axis_utils';
+
+const { TITLE_POSITION, ORIENTATION } = EuiXYChartAxisUtils;
 
 export class EuiXAxis extends PureComponent {
   render() {

@@ -4,7 +4,7 @@ import { EuiXAxis } from './x_axis';
 import { EuiYAxis } from './y_axis';
 import { EuiHorizontalGrid } from './horizontal_grid';
 import { EuiVerticalGrid } from './vertical_grid';
-import { ORIENTATION } from '../utils/chart_utils';
+import { EuiXYChartUtils } from '../utils/chart_utils';
 export class EuiDefaultAxis extends PureComponent {
   _getTickLabels(ticks) {
     if (!ticks) return;
@@ -30,9 +30,9 @@ export class EuiDefaultAxis extends PureComponent {
     return (
       <Fragment>
         {showGridLines &&
-          orientation === ORIENTATION.VERTICAL && <EuiHorizontalGrid {...rest} />}
+          orientation === EuiXYChartUtils.ORIENTATION.VERTICAL && <EuiHorizontalGrid {...rest} />}
         {showGridLines &&
-          orientation === ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
+          orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
 
         <EuiXAxis tickSize={0} {...rest} />
         <EuiYAxis tickSize={0} {...rest} />
