@@ -371,7 +371,7 @@ describe('popover_positioning', () => {
 
         // give the container limited space on both left and top, forcing to bottom-right
         const container = document.createElement('div');
-        container.getBoundingClientRect = () => makeBB(100, 300, 768, 30);
+        container.getBoundingClientRect = () => makeBB(50, 300, 768, 30);
 
         expect(findPopoverPosition({
           position: 'left',
@@ -382,7 +382,7 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           position: 'right',
-          top: 100,
+          top: 85,
           left: 155
         });
       });

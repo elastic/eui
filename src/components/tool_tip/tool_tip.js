@@ -37,6 +37,15 @@ export class EuiToolTip extends Component {
 
   setPopoverRef = ref => {
     this.popover = ref;
+
+    // if the popover has been unmounted, clear
+    // any previous knowledge about its size
+    if (ref == null) {
+      this.setState({
+        toolTipStyles: {},
+        arrowStyles: {}
+      });
+    }
   }
 
   showToolTip = () => {
@@ -52,7 +61,7 @@ export class EuiToolTip extends Component {
       position: requestedPosition,
       offset: 16, // offset popover 16px from the anchor
       arrowConfig: {
-        arrowWidth: 14,
+        arrowWidth: 12,
         arrowBuffer: 4
       }
     });

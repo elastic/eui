@@ -51,13 +51,17 @@ export function findPopoverPosition({ anchor, popover, position, buffer = 16, of
   const containerBoundingBox = getElementBoundingBox(container);
 
   // calculate the window's bounds
+  // window.(innerWidth|innerHeight) do not account for scrollbars
+  // so prefer the clientWidth/clientHeight of the DOM if available
+  const documentWidth = document.documentElement.clientWidth || window.innerWidth;
+  const documentHeight = document.documentElement.clientHeight || window.innerHeight;
   const windowBoundingBox = {
     top: 0,
-    right: window.innerWidth,
-    bottom: window.innerHeight,
+    right: documentWidth,
+    bottom: documentHeight,
     left: 0,
-    height: window.innerHeight,
-    width: window.innerWidth
+    height: documentHeight,
+    width: documentWidth
   };
 
   /**
@@ -236,6 +240,14 @@ export function getPopoverScreenCoordinates({
   // calculate the fit of the popover in this location
   // fit is in range 0.0 -> 1.0 and is the percentage of the popover which is visible in this location
   const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
+
+  // shrink the visible bounding box by `buffer`
+  // to compute a fit value
+  combinedBoundingBox.top += buffer;
+  combinedBoundingBox.right -= buffer;
+  combinedBoundingBox.bottom -= buffer;
+  combinedBoundingBox.left += buffer;
+
   const fit = getVisibleFit(
     {
       top: popoverPlacement.top,
