@@ -30,7 +30,6 @@ class XYExtendedPlot extends XYPlot {
       }
     });
   }
-
 }
 
 class XYChart extends PureComponent {
@@ -59,7 +58,7 @@ class XYChart extends PureComponent {
     }
 
     return React.cloneElement(child, props);
-  }
+  };
   // canShowCrosshair = () => {
   //   const { crosshairValue, showCrosshair } = this.props;
   //   const { mouseOver } = this.state;
@@ -90,15 +89,13 @@ class XYChart extends PureComponent {
       ...rest
     } = this.props;
 
-
     if (!children || errorText) {
       return <StatusText text={errorText} width={width} height={height} />;
     }
 
     this.colorIterator = 0;
-    const Crosshair = orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL
-      ? EuiCrosshairY
-      : EuiCrosshairX
+    const Crosshair =
+      orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
     return (
       <div {...rest}>
         <XYExtendedPlot
@@ -118,16 +115,10 @@ class XYChart extends PureComponent {
           yPadding={yPadding}
           xPadding={xPadding}
         >
-
           {React.Children.map(children, this._renderChildren)}
-          {
-            showDefaultAxis && <EuiDefaultAxis orientation={orientation} />
-          }
-          { showCrosshair && (
-            <Crosshair
-              crosshairValue={crosshairValue}
-              onCrosshairUpdate={onCrosshairUpdate}
-            />
+          {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
+          {showCrosshair && (
+            <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
           {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
@@ -153,10 +144,7 @@ XYChart.propTypes = {
   truncateLegends: PropTypes.bool,
   errorText: PropTypes.string,
   showCrosshair: PropTypes.bool,
-  crosshairValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  crosshairValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onCrosshairUpdate: PropTypes.func,
   showDefaultAxis: PropTypes.bool,
 };
@@ -170,7 +158,6 @@ XYChart.defaultProps = {
   showCrosshair: true,
   orientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
   showDefaultAxis: true,
-
 };
 
 export const EuiXYChart = makeWidthFlexible(XYChart);

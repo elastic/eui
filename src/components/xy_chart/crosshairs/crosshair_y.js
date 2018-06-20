@@ -109,7 +109,7 @@ export class EuiCrosshairY extends AbstractSeries {
           if (typeof item.y0 === 'number') {
             // we need to compute the scaled y0 using the xScale attribute functor
             // we don't have access of the y0 attribute functor
-            const y0Coord = yScaleFn({ x: item.y0 });
+            const y0Coord = yScaleFn({ y: item.y0 });
             itemYCoords = (yCoord - y0Coord) / 2 + y0Coord;
           } else {
             itemYCoords = yCoord;
@@ -132,7 +132,6 @@ export class EuiCrosshairY extends AbstractSeries {
         };
       })
       .filter(d => d);
-
     // filter and map nearest X data per dataseries to get only the nearet onces
     const crosshairValues = nearestYData
       .filter(value => value.minDistance === globalMinDistance)
