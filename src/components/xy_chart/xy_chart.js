@@ -9,7 +9,7 @@ import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
-import { EuiXYChartUtils } from './utils/chart_utils';
+import { ORIENTATION } from './utils/chart_utils';
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -96,7 +96,7 @@ class XYChart extends PureComponent {
     }
 
     this.colorIterator = 0;
-    const Crosshair = orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL
+    const Crosshair = orientation === ORIENTATION.HORIZONTAL
       ? EuiCrosshairY
       : EuiCrosshairX
     return (
@@ -168,7 +168,7 @@ XYChart.defaultProps = {
   xPadding: 0,
   truncateLegends: false,
   showCrosshair: true,
-  orientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+  orientation: ORIENTATION.VERTICAL,
   showDefaultAxis: true,
 
 };
