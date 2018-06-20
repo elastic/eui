@@ -179,6 +179,10 @@ EuiCodeEditor.propTypes = {
   isReadOnly: PropTypes.bool,
   setOptions: PropTypes.object,
   cursorStart: PropTypes.number,
+
+  /**
+   * Use string for a built-in mode or object for a custom mode
+   */
   mode: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
