@@ -19,6 +19,10 @@ import ReadOnly from './read_only';
 const readOnlySource = require('!!raw-loader!./read_only');
 const readOnlyrHtml = renderToHtml(ReadOnly);
 
+import CustomMode from './custom_mode';
+const customModeSource = require('!!raw-loader!./custom_mode');
+const customModeHtml = renderToHtml(CustomMode);
+
 export const CodeEditorExample = {
   title: 'Code Editor',
   sections: [{
@@ -54,5 +58,15 @@ export const CodeEditorExample = {
       code: readOnlyrHtml,
     }],
     demo: <ReadOnly />,
+  }, {
+    title: 'Custom mode',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: customModeSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: customModeHtml,
+    }],
+    demo: <CustomMode />,
   }],
 };

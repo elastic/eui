@@ -72,6 +72,26 @@ export class EuiCodeEditor extends Component {
     });
   }
 
+  isCustomMode() {
+    return typeof this.props.mode === 'object';
+  }
+
+  setCustomMode() {
+    this.aceEditor.editor.getSession().setMode(this.props.mode);
+  }
+
+  componentDidMount() {
+    if (this.isCustomMode()) {
+      this.setCustomMode();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((this.props.mode !== prevProps.mode) && this.isCustomMode()) {
+      this.setCustomMode();
+    }
+  }
+
   render() {
     const {
       width,
@@ -136,6 +156,10 @@ export class EuiCodeEditor extends Component {
       </div>
     );
 
+    if (this.isCustomMode()) {
+      delete rest.mode; // Otherwise, the AceEditor component will complain about wanting a string value for the mode prop.
+    }
+
     return (
       <div
         className={classes}
@@ -165,6 +189,14 @@ EuiCodeEditor.propTypes = {
   isReadOnly: PropTypes.bool,
   setOptions: PropTypes.object,
   cursorStart: PropTypes.number,
+
+  /**
+   * Use string for a built-in mode or object for a custom mode
+   */
+  mode: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
 };
 
 EuiCodeEditor.defaultProps = {
