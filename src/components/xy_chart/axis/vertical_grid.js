@@ -17,4 +17,6 @@ export class EuiVerticalGrid extends PureComponent {
   }
 }
 
+EuiVerticalGrid.displayName = 'EuiVerticalGrid';
+
 EuiVerticalGrid.requiresSVG = true;

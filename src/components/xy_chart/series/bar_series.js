@@ -25,6 +25,8 @@ export class EuiBarSeries extends AbstractSeries {
   }
 }
 
+EuiBarSeries.displayName = 'EuiBarSeries';
+
 EuiBarSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,

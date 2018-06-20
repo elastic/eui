@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { XYPlot, makeWidthFlexible, AbstractSeries } from 'react-vis';
+import { XYPlot, makeVisFlexible, AbstractSeries } from 'react-vis';
 
 import PropTypes from 'prop-types';
-import Highlight from './highlight';
+import { EuiHighlight } from './highlight';
 import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
@@ -10,6 +10,7 @@ import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
 import { EuiXYChartUtils } from './utils/chart_utils';
+const { HORIZONTAL, VERTICAL } = EuiXYChartUtils.ORIENTATION
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -79,13 +80,12 @@ class XYChart extends PureComponent {
       yDomain,
       yPadding,
       xPadding,
-      animation, // eslint-disable-line no-unused-vars
+      animation,
       showDefaultAxis,
       showCrosshair,
       orientation,
       crosshairValue,
-      onCrosshairUpdate, // eslint-disable-line no-unused-vars
-      truncateLegends, // eslint-disable-line no-unused-vars
+      onCrosshairUpdate,
       ...rest
     } = this.props;
 
@@ -104,7 +104,7 @@ class XYChart extends PureComponent {
           onMouseMove={this._onMouseMove}
           onMouseLeave={this._onMouseLeave}
           width={width}
-          animation={true}
+          animation={animation}
           height={height}
           margin={2}
           xType={xType}
@@ -121,43 +121,64 @@ class XYChart extends PureComponent {
             <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
-          {onSelectEnd && <Highlight onSelectEnd={onSelectEnd} />}
+          {onSelectEnd && <EuiHighlight onSelectEnd={onSelectEnd} />}
         </XYExtendedPlot>
       </div>
     );
   }
 }
+XYChart.displayName = 'EuiXYChart';
 
 XYChart.propTypes = {
+  /** The initial width of the chart. */
   width: PropTypes.number.isRequired,
+  /** The initial height of the chart. */
   height: PropTypes.number.isRequired,
-  orientation: PropTypes.string,
+  /** The orientation of the chart. */
+  orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL ]),
+  /** If the chart animates on data changes. */
+  animation:  PropTypes.bool,
+  /** TODO */
   stackBy: PropTypes.string,
+  /** The main x axis scale type. */
   xType: PropTypes.string,
+  /** The main y axis scale type. */
   yType: PropTypes.string,
+  /** Manually specify the domain of x axis. */
   xDomain: PropTypes.array,
+  /** Manually specify the domain of y axis. */
   yDomain: PropTypes.array,
+  /** The horizontal padding between the chart borders and chart elements. */
   xPadding: PropTypes.number,
+  /** The vertical padding between the chart borders and chart elements. */
   yPadding: PropTypes.number,
+  /** TODO */
   onHover: PropTypes.func,
+  /** Activate the brush tool and callback on brush end event. */
   onSelectEnd: PropTypes.func,
+  /** TODO */
   truncateLegends: PropTypes.bool,
+  /** TODO */
   errorText: PropTypes.string,
+  /** Shows the crosshair tooltip on mouse move.*/
   showCrosshair: PropTypes.bool,
+  /**  Specify an X or Y axis value to display a crosshair. */
   crosshairValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Callback when the crosshair position is updated. */
   onCrosshairUpdate: PropTypes.func,
+  /** Show the default X and Y axis. */
   showDefaultAxis: PropTypes.bool,
 };
 
 XYChart.defaultProps = {
+  animation: true,
   xType: 'linear',
   yType: 'linear',
   yPadding: 0,
   xPadding: 0,
-  truncateLegends: false,
-  showCrosshair: true,
   orientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+  showCrosshair: true,
   showDefaultAxis: true,
 };
 
-export const EuiXYChart = makeWidthFlexible(XYChart);
+export const EuiXYChart = makeVisFlexible(XYChart);

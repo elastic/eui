@@ -169,3 +169,5 @@ export class EuiCrosshairY extends AbstractSeries {
     )
   }
 }
+
+EuiCrosshairY.displayName = 'EuiCrosshairY';

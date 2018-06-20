@@ -172,6 +172,8 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 }
 
+EuiCrosshairX.displayName = 'EuiCrosshairX';
+
 EuiCrosshairX.propTypes = {
   ... AbstractSeries.propTypes,
   crosshairValue: PropTypes.oneOfType([

@@ -34,6 +34,8 @@ export class EuiYAxis extends PureComponent {
   }
 }
 
+EuiYAxis.displayName = 'EuiYAxis';
+
 EuiYAxis.propTypes = {
   title: PropTypes.string,
   titlePosition: PropTypes.oneOf([TITLE_POSITION.START, TITLE_POSITION.MIDDLE, TITLE_POSITION.END]),

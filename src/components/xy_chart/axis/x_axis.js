@@ -35,6 +35,8 @@ export class EuiXAxis extends PureComponent {
   }
 }
 
+EuiXAxis.displayName = 'EuiXAxis';
+
 EuiXAxis.propTypes = {
   title: PropTypes.string, /** The axis title */
   /** The axis title position */

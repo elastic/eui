@@ -41,6 +41,8 @@ export class EuiDefaultAxis extends PureComponent {
   }
 }
 
+EuiDefaultAxis.displayName = 'EuiDefaultAxis';
+
 EuiDefaultAxis.propTypes = {
   orientation: PropTypes.string,
   showGridLines: PropTypes.bool,

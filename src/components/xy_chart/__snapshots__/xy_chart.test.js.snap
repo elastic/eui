@@ -40,7 +40,7 @@ exports[`EuiXYChart is rendered (empty) 1`] = `
 `;
 
 exports[`EuiXYChart passes handler functions 1`] = `
-<FlexibleXYChart
+<FlexibleEuiXYChart
   height={200}
   onHover={[Function]}
   onMouseLeave={[Function]}
@@ -81,7 +81,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
       }
     }
   >
-    <XYChart
+    <EuiXYChart
       animation={null}
       height={200}
       onHover={[Function]}
@@ -90,7 +90,6 @@ exports[`EuiXYChart passes handler functions 1`] = `
       orientation="vertical"
       showCrosshair={true}
       showDefaultAxis={true}
-      truncateLegends={false}
       width={600}
       xPadding={0}
       xTicks={
@@ -189,7 +188,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
           </div>
         </div>
       </StatusText>
-    </XYChart>
+    </EuiXYChart>
   </div>
-</FlexibleXYChart>
+</FlexibleEuiXYChart>
 `;

@@ -68,6 +68,8 @@ export class EuiLineSeries extends AbstractSeries {
   }
 }
 
+EuiLineSeries.displayName = 'EuiLineSeries';
+
 EuiLineSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,

@@ -26,6 +26,8 @@ export class EuiHorizontalRectSeries extends HorizontalRectSeries {
   }
 }
 
+EuiHorizontalRectSeries.displayName = 'EuiHorizontalRectSeries';
+
 EuiHorizontalRectSeries.propTypes = {
   /** The name used to define the data in tooltips and ledgends */
   name: PropTypes.string.isRequired,

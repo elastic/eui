@@ -17,4 +17,6 @@ export class EuiHorizontalGrid extends PureComponent {
   }
 }
 
+EuiHorizontalGrid.displayName = 'EuiHorizontalGrid';
+
 EuiHorizontalGrid.requiresSVG = true;

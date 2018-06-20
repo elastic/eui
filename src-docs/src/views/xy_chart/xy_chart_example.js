@@ -1,6 +1,6 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode } from '../../../../src/components';
+import { EuiCode, EuiXYChart } from '../../../../src/components';
 import ComplexChartExampleCode from './complex';
 import EmptyExampleCode from './empty';
 import MultiAxisChartExampleCode from './multi_axis';
@@ -20,6 +20,7 @@ export const XYChartExample = {
           </p>
         </div>
       ),
+      props: { EuiXYChart },
       source: [
         {
           type: GuideSectionTypes.JS,
