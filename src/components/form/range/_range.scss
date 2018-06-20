@@ -155,7 +155,7 @@ $euiRange__levelColors: (
     background-color: transparentize($euiColorDarkestShade, .8);
   }
 
-  // Positions the arrow and animates in from the same side.
+  // Positions the arrow
   &.euiRange__value--right {
     transform: translateX(0) translateY(-50%);
     margin-left: $euiSizeL;
@@ -219,8 +219,8 @@ $euiRange__levelColors: (
   .euiRange,
   .euiRange__levels,
   .euiRange__range {
-    width: calc(100% + #{$euiRangeThumbWidth});
-    margin-left: $euiRangeThumbWidth/2 * -1;
+    //width: calc(100% + #{$euiRangeThumbWidth});
+    //margin-left: $euiRangeThumbWidth/2 * -1;
   }
 
   .euiRange {

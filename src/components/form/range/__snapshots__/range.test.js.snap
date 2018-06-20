@@ -185,11 +185,11 @@ exports[`EuiRange props ticks should render 1`] = `
       class="euiRange"
       max="100"
       min="1"
-      style="padding:0 8.403361344537815%"
       type="range"
     />
     <div
       class="euiRange__ticks"
+      style="margin:0 -8.403361344537815%"
     >
       <button
         class="euiRange__tick"

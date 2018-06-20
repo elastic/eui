@@ -93,6 +93,7 @@ export const EuiRange = ({
     );
   }
 
+  const inputWrapperStyle = {};
   let tickWidth;
   let tickMarksNode;
   if (showTicks) {
@@ -103,16 +104,26 @@ export const EuiRange = ({
     const tickWidthPercentage = tickWidth * 100;
 
     // Align with item labels across the range by adding
-    // left and right padding that is half of the tick marks
-    style = style || {};
-    style.padding = `0 ${(tickWidthPercentage) / 2}%`;
+    // left and right negative margins that is half of the tick marks
+    const ticksStyle = { margin: `0 ${tickWidthPercentage / -2}%` };
 
     // Loop from min to max, creating ticks at each interval
-    // * adds 1 to max to ensure that the max tick is also included
+    // (adds 1 to max to ensure that the max tick is also included)
     const sequence = range(min, max + 1, interval);
 
+    // Calculate if any extra margin should be added to the inputWrapper
+    // because of longer tick labels on the ends
+    const minLength = String(sequence[0]).length;
+    const maxLength = String(sequence[sequence.length - 1]).length;
+    if (minLength > 2) {
+      inputWrapperStyle.marginLeft = `${(minLength / 5)}em`;
+    }
+    if (maxLength > 2) {
+      inputWrapperStyle.marginRight = `${(maxLength / 5)}em`;
+    }
+
     tickMarksNode = (
-      <div className="euiRange__ticks">
+      <div className="euiRange__ticks" style={ticksStyle}>
         {sequence.map((tickValue, index) => {
           const tickClasses = classNames(
             'euiRange__tick',
@@ -177,10 +188,8 @@ export const EuiRange = ({
     let valuePositionSide;
     if (valuePosition > .5) {
       valuePositionSide = 'left';
-      valuePosition = tickWidth ? valuePosition - (tickWidth / 4) : valuePosition;
     } else {
       valuePositionSide = 'right';
-      valuePosition = tickWidth ? valuePosition + (tickWidth / 4) : valuePosition;
     }
 
     const valuePositionStyle = { left: `${valuePosition * 100}%` };
@@ -202,7 +211,7 @@ export const EuiRange = ({
     <div className={wrapperClasses}>
       {minLabelNode}
 
-      <div className="euiRange__inputWrapper">
+      <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
         <input
           type="range"
           id={id}
