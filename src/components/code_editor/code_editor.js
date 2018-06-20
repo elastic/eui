@@ -150,6 +150,10 @@ export class EuiCodeEditor extends Component {
       </div>
     );
 
+    if (this.isCustomMode()) {
+      delete rest.mode; // Otherwise, the AceEditor component will complain about wanting a string value for the mode prop.
+    }
+
     return (
       <div
         className={classes}
