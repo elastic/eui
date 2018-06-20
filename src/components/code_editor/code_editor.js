@@ -86,6 +86,12 @@ export class EuiCodeEditor extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if ((this.props.mode !== prevProps.mode) && this.isCustomMode()) {
+      this.setCustomMode();
+    }
+  }
+
   render() {
     const {
       width,
