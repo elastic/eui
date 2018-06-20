@@ -179,6 +179,10 @@ EuiCodeEditor.propTypes = {
   isReadOnly: PropTypes.bool,
   setOptions: PropTypes.object,
   cursorStart: PropTypes.number,
+  mode: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
 };
 
 EuiCodeEditor.defaultProps = {
