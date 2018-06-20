@@ -72,6 +72,20 @@ export class EuiCodeEditor extends Component {
     });
   }
 
+  isCustomMode() {
+    return typeof this.props.mode === 'object';
+  }
+
+  setCustomMode() {
+    this.aceEditor.editor.getSession().setMode(this.props.mode);
+  }
+
+  componentDidMount() {
+    if (this.isCustomMode()) {
+      this.setCustomMode();
+    }
+  }
+
   render() {
     const {
       width,
