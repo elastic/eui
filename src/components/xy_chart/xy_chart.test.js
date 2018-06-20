@@ -26,7 +26,7 @@ describe('EuiXYChart', () => {
         height={200}
         onHover={() => {}}
         onMouseLeave={() => {}}
-        onSelectEnd={() => {}}
+        onBrushEnd={() => {}}
         yTicks={[[0, 'zero'], [100, 'one hundred']]}
         xTicks={[[0, 'zero', 5, 'five'], [10, '10']]}
       />

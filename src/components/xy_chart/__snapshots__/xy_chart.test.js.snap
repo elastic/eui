@@ -42,9 +42,9 @@ exports[`EuiXYChart is rendered (empty) 1`] = `
 exports[`EuiXYChart passes handler functions 1`] = `
 <FlexibleEuiXYChart
   height={200}
+  onBrushEnd={[Function]}
   onHover={[Function]}
   onMouseLeave={[Function]}
-  onSelectEnd={[Function]}
   width={600}
   xTicks={
     Array [
@@ -83,11 +83,13 @@ exports[`EuiXYChart passes handler functions 1`] = `
   >
     <EuiXYChart
       animation={null}
+      brushOrientation="horizontal"
       height={200}
+      onBrushEnd={[Function]}
       onHover={[Function]}
       onMouseLeave={[Function]}
-      onSelectEnd={[Function]}
       orientation="vertical"
+      showBrush={false}
       showCrosshair={true}
       showDefaultAxis={true}
       width={600}

@@ -15,8 +15,11 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
   >
     <EuiXYChart
       animation={null}
+      brushOrientation="horizontal"
       height={200}
+      onBrushEnd={[Function]}
       orientation="vertical"
+      showBrush={false}
       showCrosshair={true}
       showDefaultAxis={true}
       width={600}
@@ -2487,10 +2490,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
     <EuiXYChart
       animation={null}
       aria-label="aria-label"
+      brushOrientation="horizontal"
       className="testClass1 testClass2"
       data-test-subj="test subject string"
       height={200}
+      onBrushEnd={[Function]}
       orientation="vertical"
+      showBrush={false}
       showCrosshair={true}
       showDefaultAxis={true}
       width={600}

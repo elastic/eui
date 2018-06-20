@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { XYPlot, makeVisFlexible, AbstractSeries } from 'react-vis';
 
 import PropTypes from 'prop-types';
-import { EuiHighlight } from './highlight';
+import { EuiBrush } from './brush';
 import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
@@ -10,7 +10,7 @@ import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
 import { EuiXYChartUtils } from './utils/chart_utils';
-const { HORIZONTAL, VERTICAL } = EuiXYChartUtils.ORIENTATION
+const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -74,7 +74,6 @@ class XYChart extends PureComponent {
       yType,
       stackBy,
       errorText,
-      onSelectEnd,
       children,
       xDomain,
       yDomain,
@@ -83,6 +82,9 @@ class XYChart extends PureComponent {
       animation,
       showDefaultAxis,
       showCrosshair,
+      showBrush,
+      brushOrientation,
+      onBrushEnd,
       orientation,
       crosshairValue,
       onCrosshairUpdate,
@@ -121,7 +123,7 @@ class XYChart extends PureComponent {
             <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
-          {onSelectEnd && <EuiHighlight onSelectEnd={onSelectEnd} />}
+          {showBrush && <EuiBrush onBrushEnd={onBrushEnd} orientation={brushOrientation}/>}
         </XYExtendedPlot>
       </div>
     );
@@ -154,8 +156,6 @@ XYChart.propTypes = {
   yPadding: PropTypes.number,
   /** TODO */
   onHover: PropTypes.func,
-  /** Activate the brush tool and callback on brush end event. */
-  onSelectEnd: PropTypes.func,
   /** TODO */
   truncateLegends: PropTypes.bool,
   /** TODO */
@@ -168,6 +168,12 @@ XYChart.propTypes = {
   onCrosshairUpdate: PropTypes.func,
   /** Show the default X and Y axis. */
   showDefaultAxis: PropTypes.bool,
+  /** Enable the brush tool */
+  showBrush: PropTypes.bool,
+  /** Specify the brush orientation */
+  brushOrientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL, BOTH ]),
+  /** Callback on brush end event with { begin, end } object returned. */
+  onBrushEnd: PropTypes.func,
 };
 
 XYChart.defaultProps = {
@@ -176,9 +182,12 @@ XYChart.defaultProps = {
   yType: 'linear',
   yPadding: 0,
   xPadding: 0,
-  orientation: EuiXYChartUtils.ORIENTATION.VERTICAL,
+  orientation: VERTICAL,
   showCrosshair: true,
   showDefaultAxis: true,
+  showBrush: false,
+  brushOrientation: HORIZONTAL,
+  onBrushEnd: () => ({}),
 };
 
 export const EuiXYChart = makeVisFlexible(XYChart);
