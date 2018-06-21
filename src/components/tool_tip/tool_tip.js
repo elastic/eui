@@ -24,6 +24,7 @@ export const POSITIONS = Object.keys(positionsToClassNameMap);
 const DEFAULT_TOOLTIP_STYLES = {
   // position the tooltip content near the top-left
   // corner of the window so it can't create scrollbars
+  // 50,50 because who knows what negative margins, padding, etc
   top: 50,
   left: 50,
   // just in case, avoid any potential flicker by hiding
