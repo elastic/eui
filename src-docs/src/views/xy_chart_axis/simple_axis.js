@@ -33,7 +33,7 @@ export default () => (
       title="Top X Axis"
       titlePosition={EuiXYChartAxisUtils.TITLE_POSITION.END}
       orientation={EuiXYChartAxisUtils.ORIENTATION.TOP}
-      tickLabelAngle={-180}
+      tickLabelAngle={-45}
     />
   </EuiXYChart>
 );
