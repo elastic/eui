@@ -11,6 +11,15 @@ import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
 import { EuiXYChartUtils } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION
+const {
+  LINEAR,
+  ORDINAL,
+  CATEGORY,
+  TIME,
+  TIME_UTC,
+  LOG,
+  LITERAL,
+} = EuiXYChartUtils.SCALE_TYPE;
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -142,10 +151,10 @@ XYChart.propTypes = {
   animation:  PropTypes.bool,
   /** TODO */
   stackBy: PropTypes.string,
-  /** The main x axis scale type. */
-  xType: PropTypes.string,
-  /** The main y axis scale type. */
-  yType: PropTypes.string,
+  /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
+  xType: PropTypes.oneOf([ LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL ]),
+  /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
+  xType: PropTypes.oneOf([ LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL ]),
   /** Manually specify the domain of x axis. */
   xDomain: PropTypes.array,
   /** Manually specify the domain of y axis. */
