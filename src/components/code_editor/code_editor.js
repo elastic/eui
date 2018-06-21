@@ -164,6 +164,7 @@ export class EuiCodeEditor extends Component {
       <div
         className={classes}
         style={{ width, height }}
+        data-test-subj="codeEditorContainer"
       >
         {prompt}
 
