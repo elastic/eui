@@ -175,6 +175,9 @@ export class EuiCodeEditor extends Component {
           onFocus={this.onFocusAce}
           onBlur={this.onBlurAce}
           setOptions={options}
+          editorProps={{
+            $blockScrolling: Infinity
+          }}
           cursorStart={filteredCursorStart}
           {...rest}
         />
