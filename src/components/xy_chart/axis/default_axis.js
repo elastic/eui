@@ -6,24 +6,6 @@ import { EuiHorizontalGrid } from './horizontal_grid';
 import { EuiVerticalGrid } from './vertical_grid';
 import { EuiXYChartUtils } from '../utils/chart_utils';
 export class EuiDefaultAxis extends PureComponent {
-  _getTickLabels(ticks) {
-    if (!ticks) return;
-
-    return ticks.map(v => {
-      return v[1];
-    });
-  }
-
-  _getTicks(ticks) {
-    if (!ticks) return;
-
-    {
-      return ticks.map(v => {
-        return v[0];
-      });
-    }
-  }
-
   render() {
     const { showGridLines, orientation, ...rest } = this.props;
 
