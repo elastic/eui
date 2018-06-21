@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,127 +8,171 @@ import { EuiFieldNumber } from '../field_number';
 
 export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
 
-export const EuiRange = ({
-  className,
-  compressed,
-  disabled,
-  fullWidth,
-  id,
-  max,
-  min,
-  name,
-  step,
-  showLabels,
-  showInput,
-  showTicks,
-  tickInterval,
-  levels,
-  showRange,
-  showValue,
-  onChange,
-  value,
-  style,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiRange',
-    {
-      'euiRange--fullWidth': fullWidth,
-      'euiRange--compressed': compressed,
-    },
-    className
-  );
+export class EuiRange extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const wrapperClasses = classNames(
-    'euiRange__wrapper',
-    {
-      'euiRange__wrapper--fullWidth': fullWidth,
-      'euiRange__wrapper--compressed': compressed,
-      'euiRange__wrapper--disabled': disabled,
-      'euiRange__wrapper--hasTicks': showTicks,
-      'euiRange__wrapper--hasLevels': levels.length,
-      'euiRange__wrapper--hasRange': showRange,
-      'euiRange__wrapper--hasValue': showValue,
-    },
-  );
+  render() {
+    const {
+      className,
+      compressed,
+      disabled,
+      fullWidth,
+      id,
+      max,
+      min,
+      name,
+      step,
+      showLabels,
+      showInput,
+      showTicks,
+      tickInterval,
+      levels,
+      showRange,
+      showValue,
+      onChange,
+      value,
+      style,
+      ...rest
+    } = this.props;
 
-  const rangeTotal = (max - min);
-
-  let minLabelNode;
-  let maxLabelNode;
-  if (showLabels) {
-    minLabelNode = (
-      <label className="euiRange__minLabel">
-        {min}
-      </label>
+    const classes = classNames(
+      'euiRange',
+      {
+        'euiRange--fullWidth': fullWidth,
+        'euiRange--compressed': compressed,
+      },
+      className
     );
 
-    maxLabelNode = (
-      <label className="euiRange__maxLabel">
-        {max}
-      </label>
+    const wrapperClasses = classNames(
+      'euiRange__wrapper',
+      {
+        'euiRange__wrapper--fullWidth': fullWidth,
+        'euiRange__wrapper--compressed': compressed,
+        'euiRange__wrapper--disabled': disabled,
+        'euiRange__wrapper--hasLabels': showLabels,
+        'euiRange__wrapper--hasLevels': levels.length,
+        'euiRange__wrapper--hasRange': showRange,
+        'euiRange__wrapper--hasTicks': showTicks,
+        'euiRange__wrapper--hasValue': showValue,
+      },
+    );
+
+    let sliderTabIndex;
+    let extraInputNode;
+    if (showInput) {
+      // Chrome will properly size the input based on the max value, but FF & IE does not.
+      // Calculate the max-width of the input based on number of characters in max unit
+      // Add 2 to accomodate for input stepper
+      const maxWidthStyle = { maxWidth: `${String(max).length + 2}em` };
+
+      // Make this input the main control by disabling screen reader access to slider control
+      sliderTabIndex = '-1';
+
+      extraInputNode = (
+        <EuiFieldNumber
+          name={name}
+          className="euiRange__extraInput"
+          min={min}
+          max={max}
+          step={step}
+          value={Number(value)}
+          disabled={disabled}
+          compressed={compressed}
+          onChange={onChange}
+          style={maxWidthStyle}
+          {...rest}
+        />
+      );
+    }
+
+    let tickObject;
+    const inputWrapperStyle = {};
+    if (showTicks) {
+      tickObject = calculateTicksObject(min, max, tickInterval || step || 1);
+
+      // Calculate if any extra margin should be added to the inputWrapper
+      // because of longer tick labels on the ends
+      const lengthOfMinLabel = String(tickObject.sequence[0]).length;
+      const lenghtOfMaxLabel = String(tickObject.sequence[tickObject.sequence.length - 1]).length;
+      const isLastTickTheMax = tickObject.sequence[tickObject.sequence.length - 1] === max;
+      if (lengthOfMinLabel > 2) {
+        inputWrapperStyle.marginLeft = `${(lengthOfMinLabel / 5)}em`;
+      }
+      if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
+        inputWrapperStyle.marginRight = `${(lenghtOfMaxLabel / 5)}em`;
+      }
+    }
+
+    return (
+      <div className={wrapperClasses}>
+        {this.renderLabel('min')}
+
+        <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
+          <input
+            type="range"
+            id={id}
+            name={name}
+            className={classes}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            style={style}
+            tabIndex={sliderTabIndex}
+            {...rest}
+          />
+
+          {this.renderValue()}
+          {this.renderRange()}
+          {this.renderLevels()}
+          {this.renderTicks(tickObject)}
+        </div>
+
+        {this.renderLabel('max')}
+        {extraInputNode}
+      </div>
     );
   }
 
-  let extraInputNode;
-  if (showInput) {
-    // Chrome will properly size the input based on the max value, but FF & IE does not.
-    // Calculate the max-width of the input based on number of characters in max unit
-    // Add 2 to accomodate for input stepper
-    const maxWidthStyle = { maxWidth: `${String(max).length + 2}em` };
+  renderLabel = (side) => {
+    const {
+      showLabels,
+    } = this.props;
 
-    extraInputNode = (
-      <EuiFieldNumber
-        name={name}
-        className="euiRange__extraInput"
-        min={min}
-        max={max}
-        step={step}
-        value={Number(value)}
-        disabled={disabled}
-        compressed={compressed}
-        onChange={onChange}
-        style={maxWidthStyle}
-        {...rest}
-      />
+    if (!showLabels) { return; }
+
+    return (
+      <label className={`euiRange__${side}Label`}>
+        {this.props[side]}
+      </label>
     );
+
   }
 
-  const inputWrapperStyle = {};
-  let tickWidth; // TODO: Move to scope & change name
-  let tickMarksNode;
-  if (showTicks) {
-    // Set the interval for which to show the tick marks
-    const interval = tickInterval || step || 1;
-    // Calculate the width of each tick mark
-    tickWidth = (interval / (rangeTotal + interval));
-    const tickWidthPercentage = tickWidth * 100;
+  renderTicks = (tickObject) => {
+    const {
+      disabled,
+      onChange,
+      showTicks,
+      value
+    } = this.props;
+
+    if (!showTicks) {
+      return;
+    }
 
     // Align with item labels across the range by adding
     // left and right negative margins that is half of the tick marks
-    const ticksStyle = { margin: `0 ${tickWidthPercentage / -2}%` };
+    const ticksStyle = { margin: `0 ${tickObject.percentageWidth / -2}%` };
 
-    // Loop from min to max, creating ticks at each interval
-    // (adds 1 to max to ensure that the max tick is also included) TODO: add more about +1 for length
-    const toBeInclusive = .000000001;
-    const sequence = range(min, max + toBeInclusive, interval);
-    console.log(sequence);
-
-    // Calculate if any extra margin should be added to the inputWrapper
-    // because of longer tick labels on the ends
-    const minLength = String(sequence[0]).length;
-    const maxLength = String(sequence[sequence.length - 1]).length;
-    const lastTickIsMax = sequence[sequence.length - 1] === max;
-    if (lastTickIsMax && minLength > 2) {
-      inputWrapperStyle.marginLeft = `${(minLength / 5)}em`;
-    }
-    if (lastTickIsMax && maxLength > 2) {
-      inputWrapperStyle.marginRight = `${(maxLength / 5)}em`;
-    }
-
-    tickMarksNode = (
+    return (
       <div className="euiRange__ticks" style={ticksStyle}>
-        {sequence.map((tickValue, index) => {
+        {tickObject.sequence.map((tickValue, index) => {
           const tickClasses = classNames(
             'euiRange__tick',
             { 'euiRange__tick--selected': value === tickValue, }
@@ -142,7 +186,9 @@ export const EuiRange = ({
               disabled={disabled}
               value={tickValue}
               onClick={onChange}
-              style={{ width: `${tickWidthPercentage}%` }}
+              style={{ width: `${tickObject.percentageWidth}%` }}
+              // Don't allow tabbing and just let the range to do the work for non-sighted users
+              tabIndex="-1"
             >
               {tickValue}
             </button>
@@ -152,39 +198,44 @@ export const EuiRange = ({
     );
   }
 
-  let levelsNode;
-  if (levels.length) {
-    levelsNode = (
-      <div className="euiRange__levels" style={style}>
-        {levels.map((level, index) => {
-          const range = level.max - level.min;
-          const width = (range / rangeTotal) * 100;
+  renderRange = () => {
+    const {
+      showRange,
+      value,
+      max,
+      min,
+    } = this.props;
 
-          return (
-            <span key={index} style={{ width: `${width}%` }} className={`euiRange__level--${level.color}`} />
-          );
-        })}
-      </div>
-    );
-  }
+    if (!showRange) {
+      return;
+    }
 
-  let rangeNode;
-  if (showRange) {
     // Calculate the width the range based on value
-    const rangeWidth = (value - min) / rangeTotal;
+    const rangeWidth = (value - min) / (max - min);
     const rangeWidthStyle = { width: `${rangeWidth * 100}%` };
 
-    rangeNode = (
-      <div className="euiRange__range" style={style}>
+    return (
+      <div className="euiRange__range">
         <div className="euiRange__range__progress" style={rangeWidthStyle} />
       </div>
     );
   }
 
-  let valueNode;
-  if (showValue) {
+  renderValue = () => {
+    const {
+      showValue,
+      value,
+      max,
+      min,
+      name,
+    } = this.props;
+
+    if (!showValue) {
+      return;
+    }
+
     // Calculate the left position based on value
-    const decimal = (value - min) / rangeTotal;
+    const decimal = (value - min) / (max - min);
     // Must be between 0-100%
     let valuePosition = decimal <= 1 ? decimal : 1;
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
@@ -204,7 +255,7 @@ export const EuiRange = ({
       `euiRange__value--${valuePositionSide}`,
     );
 
-    valueNode = (
+    return (
       <div className="euiRange__valueWrapper">
         <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
           {value}
@@ -213,38 +264,50 @@ export const EuiRange = ({
     );
   }
 
-  return (
-    <div className={wrapperClasses}>
-      {minLabelNode}
+  renderLevels = () => {
+    const {
+      levels,
+      max,
+      min,
+    } = this.props;
 
-      <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
-        <input
-          type="range"
-          id={id}
-          name={name}
-          className={classes}
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          disabled={disabled}
-          onChange={onChange}
-          style={style}
-          {...rest}
-        />
+    if (levels.length < 1) {
+      return;
+    }
 
-        {valueNode}
-        {rangeNode}
-        {tickMarksNode}
-        {levelsNode}
+    return (
+      <div className="euiRange__levels">
+        {levels.map((level, index) => {
+          const range = level.max - level.min;
+          const width = (range / (max - min)) * 100;
 
+          return (
+            <span key={index} style={{ width: `${width}%` }} className={`euiRange__level--${level.color}`} />
+          );
+        })}
       </div>
+    );
+  }
+}
 
-      {maxLabelNode}
-      {extraInputNode}
-    </div>
+function calculateTicksObject(min, max, interval) {
+  // Calculate the width of each tick mark
+  const tickWidthDecimal = (interval / ((max - min) + interval));
+  const tickWidthPercentage = tickWidthDecimal * 100;
+
+  // Loop from min to max, creating ticks at each interval
+  // (adds a very small number to the max since `range` is not inclusive of the max value)
+  const toBeInclusive = .000000001;
+  const sequence = range(min, max + toBeInclusive, interval);
+
+  return (
+    {
+      decimalWidth: tickWidthDecimal,
+      percentageWidth: tickWidthPercentage,
+      sequence: sequence,
+    }
   );
-};
+}
 
 EuiRange.propTypes = {
   name: PropTypes.string,

@@ -54,6 +54,7 @@ exports[`EuiRange props extra input should render 1`] = `
       max="10"
       min="1"
       name="name"
+      tabindex="-1"
       type="range"
       value="8"
     />
@@ -95,7 +96,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props labels should render 1`] = `
 <div
-  class="euiRange__wrapper"
+  class="euiRange__wrapper euiRange__wrapper--hasLabels"
 >
   <label
     class="euiRange__minLabel"
@@ -194,6 +195,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        tabindex="-1"
         type="button"
         value="1"
       >
@@ -202,6 +204,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        tabindex="-1"
         type="button"
         value="21"
       >
@@ -210,6 +213,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        tabindex="-1"
         type="button"
         value="41"
       >
@@ -218,6 +222,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        tabindex="-1"
         type="button"
         value="61"
       >
@@ -226,6 +231,7 @@ exports[`EuiRange props ticks should render 1`] = `
       <button
         class="euiRange__tick"
         style="width:16.80672268907563%"
+        tabindex="-1"
         type="button"
         value="81"
       >
