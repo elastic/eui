@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 /**
  * Simplified version of tspan wrapper that takes an array of Strings.
@@ -9,7 +9,7 @@ import React from 'react'
  */
 function tspanTextWrapper(texts) {
   return (
-    <tspan>
+    <Fragment>
       {
         texts.map((piece, i) => {
           return (
@@ -17,7 +17,7 @@ function tspanTextWrapper(texts) {
           )
         })
       }
-    </tspan>
+    </Fragment>
   )
 }
 
