@@ -21,6 +21,16 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
+const DEFAULT_TOOLTIP_STYLES = {
+  // position the tooltip content near the top-left
+  // corner of the window so it can't create scrollbars
+  top: 50,
+  left: 50,
+  // just in case, avoid any potential flicker by hiding
+  // the tooltip before it is positioned
+  opacity: 0
+};
+
 export class EuiToolTip extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +39,7 @@ export class EuiToolTip extends Component {
       visible: false,
       hasFocus: false,
       calculatedPosition: this.props.position,
-      toolTipStyles: {},
+      toolTipStyles: DEFAULT_TOOLTIP_STYLES,
       arrowStyles: {},
       id: this.props.id || makeId(),
     };
@@ -42,7 +52,7 @@ export class EuiToolTip extends Component {
     // any previous knowledge about its size
     if (ref == null) {
       this.setState({
-        toolTipStyles: {},
+        toolTipStyles: DEFAULT_TOOLTIP_STYLES,
         arrowStyles: {}
       });
     }
