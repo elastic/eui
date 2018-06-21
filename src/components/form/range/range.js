@@ -48,6 +48,7 @@ export const EuiRange = ({
       'euiRange__wrapper--hasTicks': showTicks,
       'euiRange__wrapper--hasLevels': levels.length,
       'euiRange__wrapper--hasRange': showRange,
+      'euiRange__wrapper--hasValue': showValue,
     },
   );
 
@@ -94,7 +95,7 @@ export const EuiRange = ({
   }
 
   const inputWrapperStyle = {};
-  let tickWidth;
+  let tickWidth; // TODO: Move to scope & change name
   let tickMarksNode;
   if (showTicks) {
     // Set the interval for which to show the tick marks
@@ -108,17 +109,20 @@ export const EuiRange = ({
     const ticksStyle = { margin: `0 ${tickWidthPercentage / -2}%` };
 
     // Loop from min to max, creating ticks at each interval
-    // (adds 1 to max to ensure that the max tick is also included)
-    const sequence = range(min, max + 1, interval);
+    // (adds 1 to max to ensure that the max tick is also included) TODO: add more about +1 for length
+    const toBeInclusive = .000000001;
+    const sequence = range(min, max + toBeInclusive, interval);
+    console.log(sequence);
 
     // Calculate if any extra margin should be added to the inputWrapper
     // because of longer tick labels on the ends
     const minLength = String(sequence[0]).length;
     const maxLength = String(sequence[sequence.length - 1]).length;
-    if (minLength > 2) {
+    const lastTickIsMax = sequence[sequence.length - 1] === max;
+    if (lastTickIsMax && minLength > 2) {
       inputWrapperStyle.marginLeft = `${(minLength / 5)}em`;
     }
-    if (maxLength > 2) {
+    if (lastTickIsMax && maxLength > 2) {
       inputWrapperStyle.marginRight = `${(maxLength / 5)}em`;
     }
 
@@ -180,8 +184,8 @@ export const EuiRange = ({
   let valueNode;
   if (showValue) {
     // Calculate the left position based on value
-    // Must be between 0-100%
     const decimal = (value - min) / rangeTotal;
+    // Must be between 0-100%
     let valuePosition = decimal <= 1 ? decimal : 1;
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
@@ -201,9 +205,11 @@ export const EuiRange = ({
     );
 
     valueNode = (
-      <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
-        {value}
-      </output>
+      <div className="euiRange__valueWrapper">
+        <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
+          {value}
+        </output>
+      </div>
     );
   }
 
@@ -226,10 +232,12 @@ export const EuiRange = ({
           style={style}
           {...rest}
         />
+
         {valueNode}
         {rangeNode}
         {tickMarksNode}
         {levelsNode}
+
       </div>
 
       {maxLabelNode}

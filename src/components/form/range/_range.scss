@@ -216,13 +216,6 @@ $euiRange__levelColors: (
 }
 
 .euiRange__wrapper--hasTicks {
-  .euiRange,
-  .euiRange__levels,
-  .euiRange__range {
-    //width: calc(100% + #{$euiRangeThumbWidth});
-    //margin-left: $euiRangeThumbWidth/2 * -1;
-  }
-
   .euiRange {
     height: $euiFormControlHeight/2; /* 3 */
   }
@@ -254,6 +247,17 @@ $euiRange__levelColors: (
   }
 }
 
+.euiRange__valueWrapper {
+  // Keeps tooltip (value) aligned to percentage of actual slider
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(100% - #{$euiRangeThumbWidth});
+  margin-left: $euiRangeThumbWidth/2;
+}
+
 /*
  *  Input Range Customization by browser
  */
@@ -273,7 +277,6 @@ $euiRange__levelColors: (
   height: $euiFormControlHeight;
   appearance: none;
   background: transparent; // Otherwise white in Chrome
-  //margin: 0 $euiSizeS;
   width: 100%; // ensures the slider expands to fill flex display
   position: relative;
   z-index: $euiZLevel2; // stay above tick marks
@@ -304,7 +307,7 @@ $euiRange__levelColors: (
       background-color: $euiColorPrimary;
     }
 
-    ~ .euiRange__value {
+    ~ .euiRange__valueWrapper .euiRange__value {
       @include euiBottomShadow;
 
       &.euiRange__value--right {
