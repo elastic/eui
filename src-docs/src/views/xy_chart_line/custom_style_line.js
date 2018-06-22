@@ -65,7 +65,7 @@ export default class extends Component {
 
   render() {
     const {
-      linePropsIdToSelectedMap: { showLine, showLineMarks },
+      linePropsIdToSelectedMap: { showLineMarks },
       lineSize,
       lineMarkSize,
     } = this.state;
@@ -105,7 +105,6 @@ export default class extends Component {
             data={DATA_A}
             lineSize={Number(lineSize)}
             lineMarkSize={Number(lineMarkSize)}
-            showLine={showLine}
             showLineMarks={showLineMarks}
           />
         </EuiXYChart>

@@ -39,7 +39,7 @@ export default class ComplexDemo extends Component {
         </EuiCodeBlock>
         <EuiSpacer size="xl"/>
         <EuiXYChart
-          showSelectionBrush={true}
+          enableSelectionBrush={true}
           onSelectionBrushEnd={this.handleSelectionBrushEnd}
           selectionBrushOrientation={EuiXYChartUtils.ORIENTATION.BOTH}
           width={600}
