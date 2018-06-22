@@ -21,6 +21,17 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
+const DEFAULT_TOOLTIP_STYLES = {
+  // position the tooltip content near the top-left
+  // corner of the window so it can't create scrollbars
+  // 50,50 because who knows what negative margins, padding, etc
+  top: 50,
+  left: 50,
+  // just in case, avoid any potential flicker by hiding
+  // the tooltip before it is positioned
+  opacity: 0
+};
+
 export class EuiToolTip extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +40,7 @@ export class EuiToolTip extends Component {
       visible: false,
       hasFocus: false,
       calculatedPosition: this.props.position,
-      toolTipStyles: {},
+      toolTipStyles: DEFAULT_TOOLTIP_STYLES,
       arrowStyles: {},
       id: this.props.id || makeId(),
     };
@@ -37,6 +48,15 @@ export class EuiToolTip extends Component {
 
   setPopoverRef = ref => {
     this.popover = ref;
+
+    // if the popover has been unmounted, clear
+    // any previous knowledge about its size
+    if (ref == null) {
+      this.setState({
+        toolTipStyles: DEFAULT_TOOLTIP_STYLES,
+        arrowStyles: {}
+      });
+    }
   }
 
   showToolTip = () => {
@@ -52,7 +72,7 @@ export class EuiToolTip extends Component {
       position: requestedPosition,
       offset: 16, // offset popover 16px from the anchor
       arrowConfig: {
-        arrowWidth: 14,
+        arrowWidth: 12,
         arrowBuffer: 4
       }
     });
