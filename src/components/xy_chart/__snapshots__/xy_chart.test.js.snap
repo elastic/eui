@@ -82,6 +82,7 @@ exports[`EuiXYChart passes handler functions 1`] = `
     }
   >
     <EuiXYChart
+      animateData={true}
       animation={null}
       brushOrientation="horizontal"
       height={200}

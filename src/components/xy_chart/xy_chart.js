@@ -88,7 +88,7 @@ class XYChart extends PureComponent {
       yDomain,
       yPadding,
       xPadding,
-      animation,
+      animateData,
       showDefaultAxis,
       showCrosshair,
       showBrush,
@@ -115,7 +115,7 @@ class XYChart extends PureComponent {
           onMouseMove={this._onMouseMove}
           onMouseLeave={this._onMouseLeave}
           width={width}
-          animation={animation}
+          animation={animateData}
           height={height}
           margin={2}
           xType={xType}
@@ -148,7 +148,7 @@ XYChart.propTypes = {
   /** The orientation of the chart. */
   orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL ]),
   /** If the chart animates on data changes. */
-  animation:  PropTypes.bool,
+  animateData:  PropTypes.bool,
   /** TODO */
   stackBy: PropTypes.string,
   /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
@@ -186,7 +186,7 @@ XYChart.propTypes = {
 };
 
 XYChart.defaultProps = {
-  animation: true,
+  animateData: true,
   xType: 'linear',
   yType: 'linear',
   yPadding: 0,
