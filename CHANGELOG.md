@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reduced font sizes of `EuiAvatar` ([#945](https://github.com/elastic/eui/pull/945))
+
 **Bug fixes**
 
 - `EuiTooltip` re-positions content correctly after the window is resized ([#936](https://github.com/elastic/eui/pull/936))
