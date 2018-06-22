@@ -78,6 +78,7 @@ exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
 exports[`EuiCodeEditor is rendered 1`] = `
 <div
   class="euiCodeEditorWrapper"
+  data-test-subj="codeEditorContainer"
 >
   <div
     class="euiCodeEditorKeyboardHint"
@@ -192,6 +193,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
 exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
 <div
   class="euiCodeEditorWrapper"
+  data-test-subj="codeEditorContainer"
 >
   <div
     class="euiCodeEditorKeyboardHint"
