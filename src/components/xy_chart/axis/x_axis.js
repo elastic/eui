@@ -15,7 +15,7 @@ export class EuiXAxis extends PureComponent {
       tickLabelAngle,
       tickFormat,
       tickValues,
-      on0,
+      onZero,
       ...rest
     } = this.props;
     return (
@@ -23,7 +23,7 @@ export class EuiXAxis extends PureComponent {
         title={title}
         position={titlePosition}
         orientation={orientation}
-        on0={on0}
+        on0={onZero}
         tickSize={tickSize}
         tickFormat={tickFormat}
         tickValues={tickValues}
@@ -51,7 +51,7 @@ EuiXAxis.propTypes = {
     ORIENTATION.BOTTOM,
   ]),
   /** Fix the axis at zero value */
-  on0: PropTypes.bool,
+  onZero: PropTypes.bool,
   /** An array of ticks values */
   ticks: PropTypes.array,
   /** The height of the ticks in pixels */
@@ -65,10 +65,10 @@ EuiXAxis.propTypes = {
 };
 
 EuiXAxis.defaultProps = {
-  on0: false,
+  onZero: false,
   titlePosition: TITLE_POSITION.MIDDLE,
   orientation: ORIENTATION.BOTTOM,
   tickSize: 5,
-}
+};
 
 EuiXAxis.requiresSVG = true;

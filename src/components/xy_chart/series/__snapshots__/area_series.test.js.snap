@@ -450,6 +450,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     1,
                   ]
                 }
+                xOnZero={false}
                 xPadding={0}
                 xRange={
                   Array [
@@ -464,6 +465,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     15,
                   ]
                 }
+                yOnZero={false}
                 yPadding={0}
                 yRange={
                   Array [
@@ -937,7 +939,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="bottom"
@@ -1680,7 +1682,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="left"
@@ -2921,6 +2923,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     1,
                   ]
                 }
+                xOnZero={false}
                 xPadding={0}
                 xRange={
                   Array [
@@ -2935,6 +2938,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     15,
                   ]
                 }
+                yOnZero={false}
                 yPadding={0}
                 yRange={
                   Array [
@@ -3408,7 +3412,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="bottom"
@@ -4151,7 +4155,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="left"

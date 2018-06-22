@@ -787,6 +787,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     1,
                   ]
                 }
+                xOnZero={false}
                 xPadding={0}
                 xRange={
                   Array [
@@ -801,6 +802,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     15,
                   ]
                 }
+                yOnZero={false}
                 yPadding={0}
                 yRange={
                   Array [
@@ -1274,7 +1276,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="bottom"
@@ -2017,7 +2019,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="left"
@@ -3596,6 +3598,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                     1,
                   ]
                 }
+                xOnZero={false}
                 xPadding={0}
                 xRange={
                   Array [
@@ -3610,6 +3613,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                     15,
                   ]
                 }
+                yOnZero={false}
                 yPadding={0}
                 yRange={
                   Array [
@@ -4083,7 +4087,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="bottom"
@@ -4826,7 +4830,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                   marginLeft={2}
                   marginRight={2}
                   marginTop={2}
-                  on0={false}
+                  onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
                   orientation="left"

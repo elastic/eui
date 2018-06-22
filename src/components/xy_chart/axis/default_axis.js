@@ -7,7 +7,7 @@ import { EuiVerticalGrid } from './vertical_grid';
 import { EuiXYChartUtils } from '../utils/chart_utils';
 export class EuiDefaultAxis extends PureComponent {
   render() {
-    const { showGridLines, orientation, ...rest } = this.props;
+    const { showGridLines, orientation, xOnZero, yOnZero, ...rest } = this.props;
 
     return (
       <Fragment>
@@ -16,8 +16,8 @@ export class EuiDefaultAxis extends PureComponent {
         {showGridLines &&
           orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
 
-        <EuiXAxis tickSize={0} {...rest} />
-        <EuiYAxis tickSize={0} {...rest} />
+        <EuiXAxis onZero={xOnZero} tickSize={0} {...rest} />
+        <EuiYAxis onZero={yOnZero} tickSize={0} {...rest} />
       </Fragment>
     );
   }
@@ -28,13 +28,15 @@ EuiDefaultAxis.displayName = 'EuiDefaultAxis';
 EuiDefaultAxis.propTypes = {
   orientation: PropTypes.string,
   showGridLines: PropTypes.bool,
-  yOn0: PropTypes.bool,
-  xOn0: PropTypes.bool,
+  yOnZero: PropTypes.bool,
+  xOnZero: PropTypes.bool,
 };
 
 EuiDefaultAxis.defaultProps = {
   orientation: false,
   showGridLines: true,
+  xOnZero: false,
+  yOnZero: false,
 };
 
 EuiDefaultAxis.requiresSVG = true;

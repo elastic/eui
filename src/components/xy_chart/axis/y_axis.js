@@ -15,7 +15,7 @@ export class EuiYAxis extends PureComponent {
       tickLabelAngle,
       tickFormat,
       tickValues,
-      on0,
+      onZero,
       ...rest
     } = this.props;
     return (
@@ -23,7 +23,7 @@ export class EuiYAxis extends PureComponent {
         title={title}
         position={titlePosition}
         orientation={orientation}
-        on0={on0}
+        on0={onZero}
         tickSize={tickSize}
         tickFormat={tickFormat}
         tickValues={tickValues}
@@ -40,7 +40,7 @@ EuiYAxis.propTypes = {
   title: PropTypes.string,
   titlePosition: PropTypes.oneOf([TITLE_POSITION.START, TITLE_POSITION.MIDDLE, TITLE_POSITION.END]),
   orientation: PropTypes.oneOf([ORIENTATION.LEFT, ORIENTATION.RIGHT]),
-  on0: PropTypes.bool,
+  onZero: PropTypes.bool,
   ticks: PropTypes.array,
   tickSize: PropTypes.number,
   tickValues: PropTypes.array,
@@ -49,7 +49,7 @@ EuiYAxis.propTypes = {
 };
 
 EuiYAxis.defaultProps = {
-  on0: false,
+  onZero: false,
   titlePosition: TITLE_POSITION.MIDDLE,
   orientation: ORIENTATION.LEFT,
   tickSize: 5,
