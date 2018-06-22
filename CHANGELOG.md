@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `0.0.55`.
+**Bug fixes**
+
+- `EuiTooltip` re-positions content correctly after the window is resized ([#936](https://github.com/elastic/eui/pull/936))
 
 ## [`0.0.55`](https://github.com/elastic/eui/tree/v0.0.55)
 
@@ -8,10 +10,6 @@ No public interface changes since `0.0.55`.
 - Allow `mode` prop in `EuiCodeEditor` to take custom mode object ([#935](https://github.com/elastic/eui/pull/935))
 - `EuiCodeEditor` is now decorated with a `data-test-subj` selector (`codeEditorContainer`) ([#939](https://github.com/elastic/eui/pull/939))
 - `EuiCodeEditor` no longer automatically scrolls cursor into view on selection change ([#940](https://github.com/elastic/eui/pull/940))
-
-**Bug fixes**
-
-- `EuiTooltip` re-positions content correctly after the window is resized ([#936](https://github.com/elastic/eui/pull/936))
 
 ## [`0.0.54`](https://github.com/elastic/eui/tree/v0.0.54)
 
