@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { XYPlot, makeVisFlexible, AbstractSeries } from 'react-vis';
 
 import PropTypes from 'prop-types';
-import { EuiBrush } from './brush';
+import { EuiSelectionBrush } from './brush';
 import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
@@ -132,7 +132,7 @@ class XYChart extends PureComponent {
             <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
-          {showBrush && <EuiBrush onBrushEnd={onBrushEnd} orientation={brushOrientation}/>}
+          {showBrush && <EuiSelectionBrush onBrushEnd={onBrushEnd} orientation={brushOrientation}/>}
         </XYExtendedPlot>
       </div>
     );

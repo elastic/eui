@@ -19,7 +19,7 @@ const DEFAULT_AREAS = {
   }
 };
 
-export class EuiBrush extends AbstractSeries {
+export class EuiSelectionBrush extends AbstractSeries {
   state = {
     drawing: false,
     ...DEFAULT_AREAS,
@@ -127,7 +127,7 @@ export class EuiBrush extends AbstractSeries {
     return (
       <g
         transform={`translate(${marginLeft}, ${marginTop})`}
-        className="highlight-container"
+        className="selection-brush-container"
         onMouseUp={this.stopDrawing}
         onMouseLeave={this.stopDrawing}
       >
@@ -141,7 +141,7 @@ export class EuiBrush extends AbstractSeries {
           height={innerHeight}
         />
         <rect
-          className="highlight"
+          className="selection-brush"
           pointerEvents="none"
           opacity={opacity}
           fill={color}
@@ -155,9 +155,9 @@ export class EuiBrush extends AbstractSeries {
   }
 }
 
-EuiBrush.displayName = 'EuiBrush';
+EuiSelectionBrush.displayName = 'EuiSelectionBrush';
 
-EuiBrush.propTypes = {
+EuiSelectionBrush.propTypes = {
   /** Specify the brush orientation */
   orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL, BOTH ]),
   /** Callback on brush end event with { begin, end } object returned. */
@@ -166,7 +166,7 @@ EuiBrush.propTypes = {
   opacity: PropTypes.number,
 };
 
-EuiBrush.defaultProps = {
+EuiSelectionBrush.defaultProps = {
   orientation: HORIZONTAL,
   color: 'rgb(0,0, 0)',
   opacity: 0.2,
