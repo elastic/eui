@@ -5,6 +5,7 @@
   vertical-align: middle;
   overflow-x: hidden;
   cursor: default; // Make sure we don't get the text cursor
+  font-weight: $euiFontWeightRegular; // Explicitly state so it doesn't get overridden by inheritence
 }
 
 .euiAvatar--user {
@@ -21,19 +22,19 @@
 $avatarSizing: (
   s: (
     size: $euiSizeL,
-    font-size: $euiSizeM
+    font-size: $euiSizeM*.9
   ),
   m: (
     size: $euiSizeXL,
-    font-size: $euiSize
+    font-size: $euiSize*.9
   ),
   l: (
     size: $euiSizeXXL,
-    font-size: $euiSizeL
+    font-size: $euiSizeL*.8
   ),
   xl: (
     size: ($euiSize * 4),
-    font-size: $euiSizeXL
+    font-size: $euiSizeXL*.8
   ),
 );
 
