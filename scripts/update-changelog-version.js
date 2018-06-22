@@ -17,12 +17,6 @@ if (changelogContents.indexOf(masterHeading) !== 0) {
   process.exit(1);
 }
 
-// sanity check, if there are "No public interface changes" then what are we releasing?
-if (changelogContents.indexOf("No public interface changes") !== -1) {
-  console.error(`Cannot update CHANGELOG.md: "No public interface changes"`);
-  process.exit(1);
-}
-
 // Insert the changelog template after the master header
 changelogContents = changelogContents.replace(
   masterHeading,

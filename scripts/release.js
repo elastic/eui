@@ -20,28 +20,28 @@ const humanReadableTypes = {
 
 (async function () {
   // ensure git is on the master branch
-  // await ensureMasterBranch();
+  await ensureMasterBranch();
 
   // run linting and unit tests
-  // execSync('npm test', execOptions);
+  execSync('npm test', execOptions);
 
   // (trans|com)pile `src` into `lib` and `dist`
-  // execSync('npm run build', execOptions);
+  execSync('npm run build', execOptions);
 
   // prompt user for what type of version bump to make (major|minor|patch)
   const versionTarget = await getVersionTypeFromChangelog();
 
   // update package.json & package-lock.json version, git commit, git tag
-  execSync(`npm --no-git-tag-version version ${versionTarget}`, execOptions);
+  execSync(`npm version ${versionTarget}`, execOptions);
 
   // push the version commit & tag to upstream
-  // execSync('git push upstream --tags', execOptions);
+  execSync('git push upstream --tags', execOptions);
 
   // publish new version to npm
-  // execSync('npm publish', execOptions);
+  execSync('npm publish', execOptions);
 
   // update docs, git commit, git push
-  // execSync('npm run sync-docs', execOptions);
+  execSync('npm run sync-docs', execOptions);
 }()).catch(e => console.error(e));
 
 async function ensureMasterBranch() {
@@ -59,6 +59,12 @@ async function getVersionTypeFromChangelog() {
   const pathToChangelog = path.resolve(cwd, 'CHANGELOG.md');
 
   const changelog = fs.readFileSync(pathToChangelog).toString();
+
+  // Sanity check, if the changelog contains "No public interface changes"then we shouldn't be releasing
+  if (changelog.indexOf('No public interface changes') !== -1) {
+    console.error(`Unable to release: CHANGELOG.md indicates "No public interface changes"`);
+    process.exit(1);
+  }
 
   // get contents between the first two headings
   // changelog headings always use ##, this matches:
