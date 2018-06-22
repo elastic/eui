@@ -1,4 +1,3 @@
-// npm test && npm run build && npm version patch && git push upstream --tags && npm publish && npm run sync-docs
 const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
@@ -19,55 +18,63 @@ const humanReadableTypes = {
 };
 
 (async function () {
-  // execSync('npm test', execOptions);
-  //
-  // execSync('npm run build', execOptions);
+  // run linting and unit tests
+  execSync('npm test', execOptions);
 
+  // (trans|com)pile `src` into `lib` and `dist`
+  execSync('npm run build', execOptions);
+
+  // prompt user for what type of version bump to make (major|minor|patch)
   const versionTarget = await getVersionTypeFromChangelog();
+
+  // update package.json & package-lock.json version, git commit, git tag
   execSync(`npm version ${versionTarget}`, execOptions);
+
+  // push the version commit & tag to upstream
+  execSync('git push upstream --tags', execOptions);
+
+  // publish new version to npm
+  execSync('npm publish', execOptions);
+
+  // update docs, git commit, git push
+  execSync('npm run sync-docs', execOptions);
 }()).catch(e => console.error(e));
 
 async function getVersionTypeFromChangelog() {
   const pathToChangelog = path.resolve(cwd, 'CHANGELOG.md');
 
-  let changelog;
-  try {
-    changelog = fs.readFileSync(pathToChangelog).toString();
+  const changelog = fs.readFileSync(pathToChangelog).toString();
 
-    // get contents between the first two headings
-    const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##/su);
+  // get contents between the first two headings
+  const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##/su);
 
-    const hasBugFixes = unreleasedchanges.toLowerCase().indexOf('**bug fixes**') !== -1;
-    const hasFeaturesWithBugFixes = !!unreleasedchanges.match(/.*-.*Bug fixes/isu);
+  const hasBugFixes = unreleasedchanges.toLowerCase().indexOf('**bug fixes**') !== -1;
+  const hasFeaturesWithBugFixes = !!unreleasedchanges.match(/.*-.*Bug fixes/isu);
 
-    const hasBreakingChanges = unreleasedchanges.toLowerCase().indexOf('**breaking changes**') !== -1;
+  const hasBreakingChanges = unreleasedchanges.toLowerCase().indexOf('**breaking changes**') !== -1;
 
-    // default to a MINOR bump (new features, maybe bug fixes, no breaking changes)
-    let recommendedType = TYPE_MINOR;
+  // default to a MINOR bump (new features, maybe bug fixes, no breaking changes)
+  let recommendedType = TYPE_MINOR;
 
-    if (hasBugFixes && !hasFeaturesWithBugFixes) {
-      // there are bug fixes with no minor features
-      recommendedType = TYPE_PATCH;
-    }
-
-    if (hasBreakingChanges) {
-      // detected breaking changes
-      recommendedType = TYPE_MAJOR;
-    }
-
-    const humanReadableRecommendation = humanReadableTypes[recommendedType];
-    console.log(chalk.magenta('Detected the following unreleased changes from CHANGELOG.md'));
-    console.log('');
-    console.log(chalk.gray(unreleasedchanges));
-    console.log('');
-    console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
-    console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
-
-    return await promptUserForVersionType();
-  } catch (e) {
-    console.log(`Unable to read CHANGELOG.md at ${pathToChangelog}`);
-    throw e;
+  if (hasBugFixes && !hasFeaturesWithBugFixes) {
+    // there are bug fixes with no minor features
+    recommendedType = TYPE_PATCH;
   }
+
+  if (hasBreakingChanges) {
+    // detected breaking changes
+    recommendedType = TYPE_MAJOR;
+  }
+
+  const humanReadableRecommendation = humanReadableTypes[recommendedType];
+  console.log(chalk.magenta('Detected the following unreleased changes from CHANGELOG.md'));
+  console.log('');
+  console.log(chalk.gray(unreleasedchanges));
+  console.log('');
+  console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
+  console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
+
+  return await promptUserForVersionType();
 }
 
 async function promptUserForVersionType() {
