@@ -44,20 +44,47 @@ const humanReadableTypes = {
   execSync('npm run sync-docs', execOptions);
 }()).catch(e => console.error(e));
 
+async function ensureMasterBranch() {
+  const repo = await git.Repository.open(cwd);
+  const currentBranch = await repo.getCurrentBranch();
+  const currentBranchName = currentBranch.shorthand();
+
+  if (currentBranchName !== 'master') {
+    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "master"`);
+    process.exit(1);
+  }
+}
+
 async function getVersionTypeFromChangelog() {
   const pathToChangelog = path.resolve(cwd, 'CHANGELOG.md');
 
   const changelog = fs.readFileSync(pathToChangelog).toString();
 
   // get contents between the first two headings
+  // changelog headings always use ##, this matches:
+  //
+  // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the master branch
+  // "(.+?)" capture (non-greedy) all changes until the rest of the regex matches
+  // "[\r\n]+##" any linebreak(s) leading up to the next ## heading
+  //
+  // regex flags "su" enable dotAll (s) and unicode-character matching (u)
+  //
+  // effectively capturing pending changes in the capture group
+  // which is stored as the second item in the returned array from `changelog.match()`
   const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##/su);
 
+  // these changes contain bug fixes if the string "**bug fixes**" exists
   const hasBugFixes = unreleasedchanges.toLowerCase().indexOf('**bug fixes**') !== -1;
-  const hasFeaturesWithBugFixes = !!unreleasedchanges.match(/.*-.*Bug fixes/isu);
 
+  // by convention, non-bug changes are listed first
+  // this checks if a markdown list character "-" exists before the "bug fixes" string,
+  // which indicates that there are other changes than bug fixes
+  const hasFeaturesWithBugFixes = !!unreleasedchanges.match(/.*-.*bug fixes/isu);
+
+  // breaking changes are described under a "**breaking changes**" string
   const hasBreakingChanges = unreleasedchanges.toLowerCase().indexOf('**breaking changes**') !== -1;
 
-  // default to a MINOR bump (new features, maybe bug fixes, no breaking changes)
+  // default to a MINOR bump (new features, may have bug fixes, no breaking changes)
   let recommendedType = TYPE_MINOR;
 
   if (hasBugFixes && !hasFeaturesWithBugFixes) {
@@ -79,17 +106,6 @@ async function getVersionTypeFromChangelog() {
   console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
 
   return await promptUserForVersionType();
-}
-
-async function ensureMasterBranch() {
-  const repo = await git.Repository.open(cwd);
-  const currentBranch = await repo.getCurrentBranch();
-  const currentBranchName = currentBranch.shorthand();
-
-  if (currentBranchName !== 'master') {
-    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "master"`);
-    process.exit(1);
-  }
 }
 
 async function promptUserForVersionType() {
