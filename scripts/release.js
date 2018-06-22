@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const fs = require('fs');
+const git = require('nodegit');
 const path = require('path');
 const prompt = require('prompt');
 const { execSync } = require('child_process');
@@ -18,6 +19,9 @@ const humanReadableTypes = {
 };
 
 (async function () {
+  // ensure git is on the master branch
+  await ensureMasterBranch();
+
   // run linting and unit tests
   execSync('npm test', execOptions);
 
@@ -75,6 +79,17 @@ async function getVersionTypeFromChangelog() {
   console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
 
   return await promptUserForVersionType();
+}
+
+async function ensureMasterBranch() {
+  const repo = await git.Repository.open(cwd);
+  const currentBranch = await repo.getCurrentBranch();
+  const currentBranchName = currentBranch.shorthand();
+
+  if (currentBranchName !== 'master') {
+    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "master"`);
+    process.exit(1);
+  }
 }
 
 async function promptUserForVersionType() {
