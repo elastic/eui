@@ -84,13 +84,14 @@ exports[`EuiXYChart passes handler functions 1`] = `
     <EuiXYChart
       animateData={true}
       animation={null}
-      brushOrientation="horizontal"
+      enableSelectionBrush={false}
       height={200}
       onBrushEnd={[Function]}
       onHover={[Function]}
       onMouseLeave={[Function]}
+      onSelectionBrushEnd={[Function]}
       orientation="vertical"
-      showBrush={false}
+      selectionBrushOrientation="horizontal"
       showCrosshair={true}
       showDefaultAxis={true}
       width={600}

@@ -25,7 +25,7 @@ export default class ComplexDemo extends Component {
   state = {
     brushOutput: 'Please drag your mouse to select an area'
   }
-  onHandleBrushEnd = (area) => {
+  handleSelectionBrushEnd = (area) => {
     this.setState(() => ({
       brushOutput: JSON.stringify(area, null, 2),
     }));
@@ -39,9 +39,9 @@ export default class ComplexDemo extends Component {
         </EuiCodeBlock>
         <EuiSpacer size="xl"/>
         <EuiXYChart
-          showBrush={true}
-          onBrushEnd={this.onHandleBrushEnd}
-          brushOrientation={EuiXYChartUtils.ORIENTATION.BOTH}
+          showSelectionBrush={true}
+          onSelectionBrushEnd={this.handleSelectionBrushEnd}
+          selectionBrushOrientation={EuiXYChartUtils.ORIENTATION.BOTH}
           width={600}
           height={200}
         >
