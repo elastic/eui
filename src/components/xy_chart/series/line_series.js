@@ -11,7 +11,6 @@ export class EuiLineSeries extends AbstractSeries {
       curve,
       onClick,
       onMarkClick,
-      showLine,
       showLineMarks,
       lineSize,
       lineMarkColor,
@@ -22,33 +21,29 @@ export class EuiLineSeries extends AbstractSeries {
 
     return (
       <g>
-        {showLine &&
-          <LineSeries
-            {...rest}
-            key={`${name}-border`}
-            curve={curve}
-            data={data}
-            opacity={1}
-            onSeriesClick={onClick}
-            style={{
+        <LineSeries
+          {...rest}
+          key={`${name}-border`}
+          curve={curve}
+          data={data}
+          opacity={1}
+          onSeriesClick={onClick}
+          style={{
               strokeWidth: lineSize + 2, // border margin
-            }}
-            _colorValue={'white'}
-          />
-        }
-        {showLine &&
-          <LineSeries
-            {...rest}
-            key={name}
-            curve={curve}
-            data={data}
-            opacity={1}
-            style={{
+          }}
+          _colorValue={'white'}
+        />
+        <LineSeries
+          {...rest}
+          key={name}
+          curve={curve}
+          data={data}
+          opacity={1}
+          style={{
               strokeWidth: lineSize,
-            }}
-            color={color}
-          />
-        }
+          }}
+          color={color}
+        />
 
         {showLineMarks && (
           <MarkSeries
@@ -87,7 +82,6 @@ EuiLineSeries.propTypes = {
   /** Without a color set, a random EUI color palette color will be chosen */
   color: PropTypes.string,
   curve: PropTypes.string,
-  showLine: PropTypes.bool,
   showLineMarks: PropTypes.bool,
   lineSize: PropTypes.number,
   lineMarkColor: PropTypes.string,
@@ -98,7 +92,6 @@ EuiLineSeries.propTypes = {
 
 EuiLineSeries.defaultProps = {
   curve: 'linear',
-  showLine: true,
   showLineMarks: true,
   lineSize: 2,
   lineMarkSize: 5
