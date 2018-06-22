@@ -54,17 +54,9 @@ Once you're ready to ship a new release, run the following command.
 npm run release
 ```
 
-This command will make sure to run tests, update the [documentation site][docs], bump the version patch number (`MAJOR.MINOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
+This command will make sure to run tests, update the [documentation site][docs], ask what version component to bump (`MAJOR.MINOR.PATCH`), create a new tag on `git`, upload it to GitHub, and ship the new version to `npm`.
 
 The command will prompt you for your git credentials. If you are using 2FA for git (which you should be) then your git password must be a [one time token](https://github.com/settings/tokens).
-
-If you want to bump the minor or major version numbers, just add a `BUMP` environment variable to the command, as shown below:
-
-```shell
-BUMP=patch npm run release # default
-BUMP=minor npm run release
-BUMP=major npm run release
-```
 
 That's it. The latest changes were published to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
 
