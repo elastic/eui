@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reduced font sizes of `EuiAvatar` ([#945](https://github.com/elastic/eui/pull/945))
+- Changed release process to be fully automated by script ([#944](https://github.com/elastic/eui/pull/944))
 
 **Bug fixes**
 
