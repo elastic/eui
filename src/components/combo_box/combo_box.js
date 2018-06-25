@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { comboBoxKeyCodes, calculatePopoverPosition } from '../../services';
+import { comboBoxKeyCodes, findPopoverPosition } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiPortal } from '../portal';
 import { EuiComboBoxInput } from './combo_box_input';
@@ -59,7 +59,7 @@ export class EuiComboBox extends Component {
 
     this.state = {
       matchingOptions: getMatchingOptions(options, selectedOptions, initialSearchValue, props.async),
-      listBounds: undefined,
+      listElement: undefined,
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
@@ -87,7 +87,9 @@ export class EuiComboBox extends Component {
     });
   };
 
-  updateListPosition = (listBounds = this.state.listBounds) => {
+  updateListPosition = (
+    listElement = this.state.listElement
+  ) => {
     if (!this._isMounted) {
       return;
     }
@@ -96,33 +98,29 @@ export class EuiComboBox extends Component {
       return;
     }
 
-    if (!listBounds) {
+    if (!listElement) {
       return;
     }
 
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
 
-    listBounds = {
-      bottom: listBounds.bottom,
-      height: listBounds.height,
-      left: comboBoxBounds.left,
-      right: comboBoxBounds.right,
-      top: listBounds.top,
-      width: comboBoxBounds.width,
-      x: listBounds.x,
-      y: listBounds.y,
-    };
+    const { position, top } = findPopoverPosition({
+      anchor: this.comboBox,
+      popover: listElement,
+      position: 'bottom',
+      allowCrossAxis: false
+    });
 
-    const { position, left, top } = calculatePopoverPosition(comboBoxBounds, listBounds, 'bottom', 0, ['bottom', 'top']);
-
-    this.optionsList.style.top = `${top + window.scrollY}px`;
-    this.optionsList.style.left = `${left}px`;
+    this.optionsList.style.top = `${top}px`;
+    // listElement doesn't have its width set until after updating the position
+    // which means the popover service won't know about the correct width
+    // however, we already know where to position the element
+    this.optionsList.style.left = `${comboBoxBounds.left + window.pageXOffset}px`;
     this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
-    // Cache for future calls. Assign values directly instead of destructuring because listBounds is
-    // a DOMRect, not a JS object.
+    // Cache for future calls.
     this.setState({
-      listBounds,
+      listElement,
       width: comboBoxBounds.width,
       listPosition: position,
     });

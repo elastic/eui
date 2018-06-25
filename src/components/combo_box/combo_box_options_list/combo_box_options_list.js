@@ -51,7 +51,7 @@ export class EuiComboBoxOptionsList extends Component {
   updatePosition = () => {
     // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
     requestAnimationFrame(() => {
-      this.props.updatePosition(this.list.getBoundingClientRect());
+      this.props.updatePosition(this.list);
     });
   };
 

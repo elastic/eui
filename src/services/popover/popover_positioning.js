@@ -36,13 +36,14 @@ const positionSubstitutes = {
  * @param position {string} Position the user wants. One of ["top", "right", "bottom", "left"]
  * @param [buffer=16] {number} Minimum distance between the popover and the bounding container
  * @param [offset=0] {number} Distance between the popover and the anchor
+ * @param [allowCrossAxis=true] {boolean} Whether to allow the popover to be positioned on the cross-axis
  * @param [container] {HTMLElement|React.Component} Element the popover must be constrained to fit within
  * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
  *
  * @returns {{top: number, left: number, position: string, fit: number, arrow?: {left: number, top: number}}|null} absolute page coordinates for the popover,
  * and the placements's relation to the anchor; if there's no room this returns null
  */
-export function findPopoverPosition({ anchor, popover, position, buffer = 16, offset = 0, container, arrowConfig }) {
+export function findPopoverPosition({ anchor, popover, position, buffer = 16, offset = 0, allowCrossAxis = true, container, arrowConfig }) {
   container = findDOMNode(container); // resolve any React abstractions
 
   // find the screen-relative bounding boxes of the anchor, popover, and container
@@ -84,11 +85,15 @@ export function findPopoverPosition({ anchor, popover, position, buffer = 16, of
    */
 
   const iterationPositions = [
-    position,                                           // Try the user-desired position first.
-    positionComplements[position],                      // Try the complementary position.
-    positionSubstitutes[position],                      // Switch to the cross axis.
-    positionComplements[positionSubstitutes[position]], // Try the complementary position on the cross axis.
+    position,                       // Try the user-desired position first.
+    positionComplements[position],  // Try the complementary position.
   ];
+  if (allowCrossAxis) {
+    iterationPositions.push(
+      positionSubstitutes[position],                      // Switch to the cross axis.
+      positionComplements[positionSubstitutes[position]]  // Try the complementary position on the cross axis.
+    );
+  }
 
   const {
     bestPosition,
