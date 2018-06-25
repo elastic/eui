@@ -125,7 +125,7 @@ async function promptUserForVersionType() {
           version: {
             description: 'choice:',
             pattern: /^(major|minor|patch)$/,
-            message: 'Version must be major, minor, or patch',
+            message: 'Your choice must be major, minor or patch',
             required: true
           },
         }
