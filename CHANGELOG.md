@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - `EuiTooltip` re-positions content correctly after the window is resized ([#936](https://github.com/elastic/eui/pull/936))
+- `EuiComboBox` list is positioned correctly in IE ([#946](https://github.com/elastic/eui/pull/946))
 
 ## [`0.0.55`](https://github.com/elastic/eui/tree/v0.0.55)
 
