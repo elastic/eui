@@ -23,16 +23,11 @@ export default class extends Component {
       lineSize: '2',
       lineProps: [
         {
-          id: `showLine`,
-          label: 'Show Line',
-        },
-        {
           id: `showLineMarks`,
           label: 'Show Line Marks',
         },
       ],
       linePropsIdToSelectedMap: {
-        showLine: true,
         showLineMarks: true,
       },
     };
