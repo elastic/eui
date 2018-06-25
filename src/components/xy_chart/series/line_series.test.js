@@ -6,6 +6,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiXYChart } from '../xy_chart';
 import { EuiLineSeries } from './line_series';
+import { VISUALIZATION_COLORS } from '../../../services';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
@@ -30,7 +31,7 @@ describe('EuiLineSeries', () => {
         <EuiLineSeries
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           name="test-chart"
-          color="#ff0000"
+          color={VISUALIZATION_COLORS[2]}
           curve="curveCatmullRom"
           hasLineMarks={true}
           lineMarkColor="#00ff00"

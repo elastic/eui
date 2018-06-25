@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { AbstractSeries } from 'react-vis';
 import { EuiVerticalBarSeries } from './vertical_bar_series'
 import { EuiHorizontalBarSeries } from './horizontal_bar_series'
+import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiBarSeries extends AbstractSeries {
   static getParentConfig(attr, props)  {
@@ -42,8 +43,8 @@ EuiBarSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** Without a color set, a random EUI color palette color will be chosen */
-  color: PropTypes.string,
+  /** An EUI visualization color, the default value is enforced by EuiXYChart */
+  color: PropTypes.oneOf(VISUALIZATION_COLORS),
   onClick: PropTypes.func
 };
 

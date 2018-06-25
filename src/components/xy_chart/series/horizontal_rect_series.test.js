@@ -5,6 +5,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiXYChart } from '../xy_chart';
 import { EuiHorizontalRectSeries } from './horizontal_rect_series';
+import { VISUALIZATION_COLORS } from '../../../services';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
@@ -46,7 +47,7 @@ describe('EuiHorizontalRectSeries', () => {
         <EuiHorizontalRectSeries
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
-          color="#ff0000"
+          color={VISUALIZATION_COLORS[2]}
           onClick={() => {}}
         />
       </EuiXYChart>
@@ -66,13 +67,13 @@ describe('EuiHorizontalRectSeries', () => {
         <EuiHorizontalRectSeries
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}
-          color="#ff0000"
+          color={VISUALIZATION_COLORS[2]}
           onClick={() => {}}
         />
         <EuiHorizontalRectSeries
           name="test-series-b"
           data={[{ x: 0, y: 2 }, { x: 1, y: 7 }]}
-          color="#00ff00"
+          color={VISUALIZATION_COLORS[1]}
           onClick={() => {}}
         />
       </EuiXYChart>

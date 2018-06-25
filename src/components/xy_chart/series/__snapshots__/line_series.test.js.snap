@@ -87,7 +87,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     undefined,
                   ]
                 }
-                _colorValue="#ff0000"
+                _colorValue="#DB1374"
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
@@ -96,7 +96,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     undefined,
                   }
                 }
-                color="#ff0000"
+                color="#DB1374"
                 colorDomain={Array []}
                 colorRange={
                   Array [
@@ -726,7 +726,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         undefined,
                       ]
                     }
-                    _colorValue="#ff0000"
+                    _colorValue="#DB1374"
                     _opacityValue={1}
                     angleDomain={Array []}
                     animation={true}
@@ -736,7 +736,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         undefined,
                       }
                     }
-                    color="#ff0000"
+                    color="#DB1374"
                     colorDomain={Array []}
                     colorRange={
                       Array [
@@ -867,7 +867,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                           undefined,
                         ]
                       }
-                      _colorValue="#ff0000"
+                      _colorValue="#DB1374"
                       _opacityValue={1}
                       angleDomain={Array []}
                       animatedProps={
@@ -915,7 +915,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                           undefined,
                         }
                       }
-                      color="#ff0000"
+                      color="#DB1374"
                       colorDomain={Array []}
                       colorRange={
                         Array [
@@ -1065,7 +1065,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                             ]
                           }
                           _animation={0.00004}
-                          _colorValue="#ff0000"
+                          _colorValue="#DB1374"
                           _opacityValue={1}
                           angleDomain={Array []}
                           animation={null}
@@ -1075,7 +1075,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               undefined,
                             }
                           }
-                          color="#ff0000"
+                          color="#DB1374"
                           colorDomain={Array []}
                           colorRange={
                             Array [
@@ -1197,7 +1197,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                             style={
                               Object {
                                 "opacity": 1,
-                                "stroke": "#ff0000",
+                                "stroke": "#DB1374",
                                 "strokeDasharray": undefined,
                                 "strokeWidth": 2,
                               }
@@ -1226,7 +1226,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         undefined,
                       ]
                     }
-                    _colorValue="#ff0000"
+                    _colorValue="#DB1374"
                     _opacityValue={1}
                     angleDomain={Array []}
                     animation={true}
@@ -1235,7 +1235,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         undefined,
                       }
                     }
-                    color="#ff0000"
+                    color="#DB1374"
                     colorDomain={Array []}
                     colorRange={
                       Array [
@@ -1362,7 +1362,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                           undefined,
                         ]
                       }
-                      _colorValue="#ff0000"
+                      _colorValue="#DB1374"
                       _opacityValue={1}
                       angleDomain={Array []}
                       animatedProps={
@@ -1409,7 +1409,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                           undefined,
                         }
                       }
-                      color="#ff0000"
+                      color="#DB1374"
                       colorDomain={Array []}
                       colorRange={
                         Array [
@@ -1555,7 +1555,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                             ]
                           }
                           _animation={0.00006}
-                          _colorValue="#ff0000"
+                          _colorValue="#DB1374"
                           _opacityValue={1}
                           angleDomain={Array []}
                           animation={null}
@@ -1564,7 +1564,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               undefined,
                             }
                           }
-                          color="#ff0000"
+                          color="#DB1374"
                           colorDomain={Array []}
                           colorRange={
                             Array [
@@ -1687,7 +1687,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               r={13}
                               style={
                                 Object {
-                                  "fill": "#ff0000",
+                                  "fill": "#DB1374",
                                   "opacity": 1,
                                   "stroke": "white",
                                   "strokeWidth": 2,
@@ -1705,7 +1705,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               r={13}
                               style={
                                 Object {
-                                  "fill": "#ff0000",
+                                  "fill": "#DB1374",
                                   "opacity": 1,
                                   "stroke": "white",
                                   "strokeWidth": 2,

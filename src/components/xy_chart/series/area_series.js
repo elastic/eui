@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries } from 'react-vis';
-
+import { VISUALIZATION_COLORS } from '../../../services';
 export class EuiAreaSeries extends AbstractSeries {
   render() {
     const { name, data, curve, color, ...rest } = this.props;
@@ -32,8 +32,8 @@ EuiAreaSeries.propTypes = {
       y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ).isRequired,
-  /** Without a color set, a random EUI color palette color will be chosen */
-  color: PropTypes.string,
+  /** An EUI visualization color, the default value is enforced by EuiXYChart */
+  color: PropTypes.oneOf(VISUALIZATION_COLORS),
   curve: PropTypes.string,
   onClick: PropTypes.func,
   onMarkClick: PropTypes.func,

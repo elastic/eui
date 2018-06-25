@@ -87,7 +87,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     undefined,
                   ]
                 }
-                _colorValue="#ff0000"
+                _colorValue="#DB1374"
                 _opacityValue={1}
                 angleDomain={Array []}
                 animation={true}
@@ -96,7 +96,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     undefined,
                   }
                 }
-                color="#ff0000"
+                color="#DB1374"
                 colorDomain={Array []}
                 colorRange={
                   Array [
@@ -224,7 +224,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         undefined,
                       ]
                     }
-                    _colorValue="#ff0000"
+                    _colorValue="#DB1374"
                     _opacityValue={1}
                     angleDomain={Array []}
                     animation={true}
@@ -234,7 +234,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         undefined,
                       }
                     }
-                    color="#ff0000"
+                    color="#DB1374"
                     colorDomain={Array []}
                     colorRange={
                       Array [
@@ -367,7 +367,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                           undefined,
                         ]
                       }
-                      _colorValue="#ff0000"
+                      _colorValue="#DB1374"
                       _opacityValue={1}
                       angleDomain={Array []}
                       animatedProps={
@@ -415,7 +415,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                           undefined,
                         }
                       }
-                      color="#ff0000"
+                      color="#DB1374"
                       colorDomain={Array []}
                       colorRange={
                         Array [
@@ -567,7 +567,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             ]
                           }
                           _animation={0.00002}
-                          _colorValue="#ff0000"
+                          _colorValue="#DB1374"
                           _opacityValue={1}
                           angleDomain={Array []}
                           animation={null}
@@ -577,7 +577,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               undefined,
                             }
                           }
-                          color="#ff0000"
+                          color="#DB1374"
                           colorDomain={Array []}
                           colorRange={
                             Array [
@@ -700,9 +700,9 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             onMouseOver={[Function]}
                             style={
                               Object {
-                                "fill": "#ff0000",
+                                "fill": "#DB1374",
                                 "opacity": 1,
-                                "stroke": "#ff0000",
+                                "stroke": "#DB1374",
                                 "strokeWidth": 0,
                               }
                             }

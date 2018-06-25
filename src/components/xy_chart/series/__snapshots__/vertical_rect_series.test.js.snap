@@ -21,14 +21,14 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           >
             <rect
               height="65.33333333333331"
-              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px"
               width="0"
               x="0"
               y="130.66666666666669"
             />
             <rect
               height="196"
-              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px"
               width="596"
               x="0"
               y="0"
@@ -1073,14 +1073,14 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           >
             <rect
               height="98"
-              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px"
               width="0"
               x="149"
               y="98"
             />
             <rect
               height="58.80000000000001"
-              style="opacity:1;stroke:white;fill:#ff0000;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px"
               width="298"
               x="149"
               y="137.2"
@@ -1094,14 +1094,14 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           >
             <rect
               height="39.19999999999999"
-              style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px"
               width="0"
               x="149"
               y="58.80000000000001"
             />
             <rect
               height="137.2"
-              style="opacity:1;stroke:white;fill:#00ff00;stroke-width:1;rx:2px;ry:2px"
+              style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px"
               width="298"
               x="149"
               y="0"

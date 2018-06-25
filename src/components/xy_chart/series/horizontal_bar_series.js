@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HorizontalBarSeries } from 'react-vis';
+import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   render() {
@@ -39,8 +40,8 @@ EuiHorizontalBarSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** Without a color set, a random EUI color palette color will be chosen */
-  color: PropTypes.string,
+  /** An EUI visualization color, the default value is enforced by EuiXYChart */
+  color: PropTypes.oneOf(VISUALIZATION_COLORS),
   onClick: PropTypes.func
 };
 
