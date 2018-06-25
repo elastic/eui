@@ -1,4 +1,5 @@
 export { EuiXYChart } from './xy_chart';
+export { EuiLineAnnotation } from './line_annotation';
 
 // XY chart data series
 export * from './series';
