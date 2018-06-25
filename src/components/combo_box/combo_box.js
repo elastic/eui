@@ -88,7 +88,6 @@ export class EuiComboBox extends Component {
   };
 
   updateListPosition = (
-    listBounds,
     listElement = this.state.listElement
   ) => {
     if (!this._isMounted) {
