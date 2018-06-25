@@ -19,6 +19,14 @@ const humanReadableTypes = {
 };
 
 (async function () {
+  // make sure the release script is being run by npm (required for `npm publish` step)
+  // https://github.com/yarnpkg/yarn/issues/5063
+  const packageManagerScript = path.basename(process.env.npm_execpath);
+  if (packageManagerScript !== 'npm-cli.js') {
+    console.error('The release script must be run with npm: npm run release');
+    process.exit(1);
+  }
+
   // ensure git is on the master branch
   await ensureMasterBranch();
 
