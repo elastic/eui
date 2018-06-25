@@ -470,5 +470,31 @@ describe('popover_positioning', () => {
         });
       });
     });
+
+    describe('disable positioning on the cross-axis', () => {
+      it('forces the popover to stay on the primary axis', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(450, 150, 550, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 100, 0);
+
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(400, 1024, 600, 0);
+
+        expect(findPopoverPosition({
+          position: 'top',
+          anchor,
+          popover,
+          container,
+          allowCrossAxis: false
+        })).toEqual({
+          fit: 0.34,
+          position: 'top',
+          top: 350,
+          left: 85
+        });
+      });
+    });
   });
 });
