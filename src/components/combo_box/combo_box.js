@@ -115,7 +115,7 @@ export class EuiComboBox extends Component {
     // listElement doesn't have its width set until after updating the position
     // which means the popover service won't know about the correct width
     // however, we already know where to position the element
-    this.optionsList.style.left = `${comboBoxBounds.left}px`;
+    this.optionsList.style.left = `${comboBoxBounds.left + window.pageXOffset}px`;
     this.optionsList.style.width = `${comboBoxBounds.width}px`;
 
     // Cache for future calls.
