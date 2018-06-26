@@ -7,7 +7,22 @@ import {
   EuiSpacer,
   EuiXYChart,
   EuiLineSeries,
+  EuiXYChartUtils,
 } from '../../../../src/components';
+
+const {
+  LINEAR,
+  CURVE_CARDINAL,
+  CURVE_NATURAL,
+  CURVE_MONOTONE_X,
+  CURVE_MONOTONE_Y,
+  CURVE_BASIS,
+  CURVE_BUNDLE,
+  CURVE_CATMULL_ROM,
+  CURVE_STEP,
+  CURVE_STEP_AFTER,
+  CURVE_STEP_BEFORE,
+} = EuiXYChartUtils.CURVES;
 
 const DATA_A = [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: -1 }, { x: 5, y: 2 }];
 
@@ -16,17 +31,17 @@ export default class extends Component {
     super(props);
 
     this.options = [
-      { value: 'linear', text: 'Linear' },
-      { value: 'curveCardinal', text: 'Curve Cardinal' },
-      { value: 'curveNatural', text: 'Curve Natural' },
-      { value: 'curveMonotoneX', text: 'Curve Monotone X' },
-      { value: 'curveMonotoneY', text: 'Curve Monotone Y' },
-      { value: 'curveBasis', text: 'Curve Basis' },
-      { value: 'curveBundle', text: 'Curve Bundle' },
-      { value: 'curveCatmullRom', text: 'Curve Catmull Rom' },
-      { value: 'curveStep', text: 'Curve Step' },
-      { value: 'curveStepAfter', text: 'Curve Step After' },
-      { value: 'curveStepBefore', text: 'Curve Step Before' },
+      { value: LINEAR, text: 'Linear' },
+      { value: CURVE_CARDINAL, text: 'Curve Cardinal' },
+      { value: CURVE_NATURAL, text: 'Curve Natural' },
+      { value: CURVE_MONOTONE_X, text: 'Curve Monotone X' },
+      { value: CURVE_MONOTONE_Y, text: 'Curve Monotone Y' },
+      { value: CURVE_BASIS, text: 'Curve Basis' },
+      { value: CURVE_BUNDLE, text: 'Curve Bundle' },
+      { value: CURVE_CATMULL_ROM, text: 'Curve Catmull Rom' },
+      { value: CURVE_STEP, text: 'Curve Step' },
+      { value: CURVE_STEP_AFTER, text: 'Curve Step After' },
+      { value: CURVE_STEP_BEFORE, text: 'Curve Step Before' },
     ];
 
     this.state = {

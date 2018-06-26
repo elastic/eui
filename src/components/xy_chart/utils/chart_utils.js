@@ -1,10 +1,10 @@
-const ORIENTATION = {
+export const ORIENTATION = {
   HORIZONTAL: 'horizontal',
   VERTICAL: 'vertical',
   BOTH: 'both',
 };
 
-const SCALE_TYPE = {
+export const SCALE_TYPE = {
   LINEAR: 'linear',
   ORDINAL: 'ordinal',
   CATEGORY: 'category',
@@ -13,8 +13,22 @@ const SCALE_TYPE = {
   LOG: 'log',
   LITERA: 'literal'
 };
+export const CURVES = {
+  'LINEAR': 'linear',
+  'CURVE_CARDINAL': 'curveCardinal',
+  'CURVE_NATURAL': 'curveNatural',
+  'CURVE_MONOTONE_X': 'curveMonotoneX',
+  'CURVE_MONOTONE_Y': 'curveMonotoneY',
+  'CURVE_BASIS': 'curveBasis',
+  'CURVE_BUNDLE': 'curveBundle',
+  'CURVE_CATMULL_ROM': 'curveCatmullRom',
+  'CURVE_STEP': 'curveStep',
+  'CURVE_STEP_AFTER': 'curveStepAfter',
+  'CURVE_STEP_BEFORE': 'curveStepBefore',
+}
 
 export const EuiXYChartUtils = {
   ORIENTATION,
   SCALE_TYPE,
+  CURVES,
 }

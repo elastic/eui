@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
+import { CURVES } from '../utils/chart_utils';
+
 export class EuiAreaSeries extends AbstractSeries {
   state = {
     isMouseOverSeries: false,
@@ -47,11 +49,11 @@ EuiAreaSeries.propTypes = {
   ).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  curve: PropTypes.string,
+  curve: PropTypes.oneOf(Object.values(CURVES)),
   onSeriesClick: PropTypes.func,
   onMarkClick: PropTypes.func,
 };
 
 EuiAreaSeries.defaultProps = {
-  curve: 'linear',
+  curve: CURVES.LINEAR,
 };
