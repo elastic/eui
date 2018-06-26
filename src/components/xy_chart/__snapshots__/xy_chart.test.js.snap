@@ -5,34 +5,40 @@ exports[`EuiXYChart is rendered (empty) 1`] = `
   style="width:100%;height:100%"
 >
   <div
-    class="euixychart-error-nodata"
-    style="width:600px;height:200px"
+    aria-label="aria-label"
+    class="testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <div
-      style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);color:rgb(53, 129, 255)"
+      class="euixychart-error-nodata"
+      style="width:600px;height:200px"
     >
       <div
-        class="euiToastHeader--withBody"
+        style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);color:rgb(53, 129, 255)"
       >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiToastHeader__icon euiIcon--medium"
-          height="16"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="euiToastHeader--withBody"
         >
-          <path
-            d="M8 14v-4h1v4h5V5h1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2h1v2h6zm4.853-10.146l-2.999 3a1.5 1.5 0 0 1-2.538 1.568l-2.714.904L4 9.527a1.5 1.5 0 1 1-.316-.948L7 7.473a1.5 1.5 0 0 1 2.146-1.327l3-3a1.5 1.5 0 1 1 .707.707z"
-            fill="#3F3F3F"
-            fill-rule="evenodd"
-          />
-        </svg>
-        <span
-          class="euiToastHeader__title"
-        >
-          Graph not avaliable
-        </span>
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiToastHeader__icon"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 14v-4h1v4h5V5h1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2h1v2h6zm4.853-10.146l-2.999 3a1.5 1.5 0 0 1-2.538 1.568l-2.714.904L4 9.527a1.5 1.5 0 1 1-.316-.948L7 7.473a1.5 1.5 0 0 1 2.146-1.327l3-3a1.5 1.5 0 1 1 .707.707z"
+              fill="#3F3F3F"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <span
+            class="euiToastHeader__title"
+          >
+            Graph not avaliable
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -42,36 +48,7 @@ exports[`EuiXYChart is rendered (empty) 1`] = `
 exports[`EuiXYChart passes handler functions 1`] = `
 <FlexibleEuiXYChart
   height={200}
-  onBrushEnd={[Function]}
-  onHover={[Function]}
-  onMouseLeave={[Function]}
   width={600}
-  xTicks={
-    Array [
-      Array [
-        0,
-        "zero",
-        5,
-        "five",
-      ],
-      Array [
-        10,
-        "10",
-      ],
-    ]
-  }
-  yTicks={
-    Array [
-      Array [
-        0,
-        "zero",
-      ],
-      Array [
-        100,
-        "one hundred",
-      ],
-    ]
-  }
 >
   <div
     style={
@@ -86,9 +63,6 @@ exports[`EuiXYChart passes handler functions 1`] = `
       animation={null}
       enableSelectionBrush={false}
       height={200}
-      onBrushEnd={[Function]}
-      onHover={[Function]}
-      onMouseLeave={[Function]}
       onSelectionBrushEnd={[Function]}
       orientation="vertical"
       selectionBrushOrientation="horizontal"
@@ -96,102 +70,102 @@ exports[`EuiXYChart passes handler functions 1`] = `
       showDefaultAxis={true}
       width={600}
       xPadding={0}
-      xTicks={
-        Array [
-          Array [
-            0,
-            "zero",
-            5,
-            "five",
-          ],
-          Array [
-            10,
-            "10",
-          ],
-        ]
-      }
       xType="linear"
       yPadding={0}
-      yTicks={
-        Array [
-          Array [
-            0,
-            "zero",
-          ],
-          Array [
-            100,
-            "one hundred",
-          ],
-        ]
-      }
       yType="linear"
     >
-      <StatusText
-        height={200}
-        width={600}
+      <div
+        animation={null}
       >
-        <div
-          className="euixychart-error-nodata"
-          style={
-            Object {
-              "height": 200,
-              "width": 600,
-            }
-          }
+        <XYPlot
+          animation={true}
+          className=""
+          height={200}
+          margin={0}
+          width={600}
+          xPadding={0}
+          xType="linear"
+          yPadding={0}
+          yType="linear"
         >
-          <div
-            style={
-              Object {
-                "color": "rgb(53, 129, 255)",
-                "left": "50%",
-                "position": "absolute",
-                "top": "50%",
-                "transform": "translate(-50%, -50%)",
-              }
-            }
+          <StatusText
+            height={200}
+            width={600}
           >
             <div
-              className="euiToastHeader--withBody"
+              className="euixychart-error-nodata"
+              style={
+                Object {
+                  "height": 200,
+                  "width": 600,
+                }
+              }
             >
-              <EuiIcon
-                aria-hidden="true"
-                className="euiToastHeader__icon"
-                size="m"
-                type="stats"
+              <div
+                style={
+                  Object {
+                    "color": "rgb(53, 129, 255)",
+                    "left": "50%",
+                    "position": "absolute",
+                    "top": "50%",
+                    "transform": "translate(-50%, -50%)",
+                  }
+                }
               >
-                <stats
-                  aria-hidden="true"
-                  className="euiIcon euiToastHeader__icon euiIcon--medium"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="euiToastHeader--withBody"
                 >
-                  <svg
+                  <EuiIcon
                     aria-hidden="true"
-                    className="euiIcon euiToastHeader__icon euiIcon--medium"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="euiToastHeader__icon"
+                    size="m"
+                    type="stats"
                   >
-                    <path
-                      d="M8 14v-4h1v4h5V5h1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2h1v2h6zm4.853-10.146l-2.999 3a1.5 1.5 0 0 1-2.538 1.568l-2.714.904L4 9.527a1.5 1.5 0 1 1-.316-.948L7 7.473a1.5 1.5 0 0 1 2.146-1.327l3-3a1.5 1.5 0 1 1 .707.707z"
-                      fill="#3F3F3F"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </stats>
-              </EuiIcon>
-              <span
-                className="euiToastHeader__title"
-              >
-                Graph not avaliable
-              </span>
+                    <stats
+                      aria-hidden="true"
+                      className="euiIcon euiIcon--medium euiToastHeader__icon"
+                      height="16"
+                      style={
+                        Object {
+                          "fill": undefined,
+                        }
+                      }
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="euiIcon euiIcon--medium euiToastHeader__icon"
+                        height="16"
+                        style={
+                          Object {
+                            "fill": undefined,
+                          }
+                        }
+                        viewBox="0 0 16 16"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 14v-4h1v4h5V5h1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2h1v2h6zm4.853-10.146l-2.999 3a1.5 1.5 0 0 1-2.538 1.568l-2.714.904L4 9.527a1.5 1.5 0 1 1-.316-.948L7 7.473a1.5 1.5 0 0 1 2.146-1.327l3-3a1.5 1.5 0 1 1 .707.707z"
+                          fill="#3F3F3F"
+                          fillRule="evenodd"
+                        />
+                      </svg>
+                    </stats>
+                  </EuiIcon>
+                  <span
+                    className="euiToastHeader__title"
+                  >
+                    Graph not avaliable
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </StatusText>
+          </StatusText>
+        </XYPlot>
+      </div>
     </EuiXYChart>
   </div>
 </FlexibleEuiXYChart>

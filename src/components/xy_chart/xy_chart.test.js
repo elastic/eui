@@ -10,8 +10,6 @@ describe('EuiXYChart', () => {
       <EuiXYChart
         width={600}
         height={200}
-        yTicks={[[0, 'zero'], [100, 'one hundred']]}
-        xTicks={[[0, 'zero', 5, 'five'], [10, '10']]}
         {...requiredProps}
       />
     );
@@ -24,11 +22,6 @@ describe('EuiXYChart', () => {
       <EuiXYChart
         width={600}
         height={200}
-        onHover={() => {}}
-        onMouseLeave={() => {}}
-        onBrushEnd={() => {}}
-        yTicks={[[0, 'zero'], [100, 'one hundred']]}
-        xTicks={[[0, 'zero', 5, 'five'], [10, '10']]}
       />
     );
 

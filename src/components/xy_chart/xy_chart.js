@@ -126,7 +126,9 @@ class XYChart extends PureComponent {
       props.color = VISUALIZATION_COLORS[this.colorIterator];
 
       this.colorIterator++;
-      if (this.colorIterator > VISUALIZATION_COLORS.length - 1) this.colorIterator = 0;
+      if (this.colorIterator > VISUALIZATION_COLORS.length - 1) {
+        this.colorIterator = 0;
+      }
     }
 
     return React.cloneElement(child, props);
@@ -158,8 +160,8 @@ class XYChart extends PureComponent {
     } = this.props;
 
     this.colorIterator = 0;
-    const Crosshair =
-      orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
+    const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
+
     return (
       <div {...rest}>
         <XYExtendedPlot
@@ -168,7 +170,7 @@ class XYChart extends PureComponent {
           width={width}
           animation={animateData}
           height={height}
-          margin={2}
+          margin={0}
           xType={xType}
           yType={yType}
           xDomain={xDomain}
