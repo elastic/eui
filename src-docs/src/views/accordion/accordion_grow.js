@@ -10,8 +10,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-// because it grows like a weed and naming is hard
-class Weed extends Component {
+class Rows extends Component {
   state = {
     counter: 1
   }
@@ -56,7 +55,7 @@ class AccordionGrow extends Component {
         initialIsOpen={true}
         paddingSize="l"
       >
-        <Weed/>
+        <Rows/>
       </EuiAccordion>
     );
   }
