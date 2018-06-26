@@ -5,6 +5,7 @@ import { EuiXYChartUtils } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION
 
 const DEFAULT_AREAS = {
+  areaSize: 0,
   drawArea: {
     x0: 0,
     x1: 0,
@@ -23,7 +24,23 @@ export class EuiSelectionBrush extends AbstractSeries {
   state = {
     drawing: false,
     ...DEFAULT_AREAS,
-  };
+  }
+
+  onParentMouseDown(e) {
+    this._startDrawing(e);
+  }
+
+  onParentMouseMove(e) {
+    this._brushing(e);
+  }
+
+  onParentMouseUp() {
+    this._stopDrawing();
+  }
+
+  onParentMouseLeave() {
+    this._stopDrawing();
+  }
 
   _getDrawArea(offsetX, offsetY, isStartingPoint) {
     const { orientation, marginTop, marginLeft, innerHeight, innerWidth } = this.props;
@@ -40,7 +57,9 @@ export class EuiSelectionBrush extends AbstractSeries {
     }
     const x1 = orientation === VERTICAL ? innerWidth : xLocation;
     const y1 = orientation === HORIZONTAL ? innerHeight : yLocation;
+    const areaSize = Math.abs(x0 - x1) * Math.abs(y0 - y1);
     return {
+      areaSize,
       drawArea: {
         x0,
         x1,
@@ -56,8 +75,8 @@ export class EuiSelectionBrush extends AbstractSeries {
     };
   }
 
-  onParentMouseDown(e) {
-    const { onSelectStart } = this.props;
+  _startDrawing = (e) => {
+    const { onBrushStart } = this.props;
     const { offsetX, offsetY } = e.nativeEvent;
     const drawAndRectAreas = this._getDrawArea(offsetX, offsetY, true);
     this.setState(() => ({
@@ -65,47 +84,57 @@ export class EuiSelectionBrush extends AbstractSeries {
       ...drawAndRectAreas,
     }));
 
-    if (onSelectStart) {
-      onSelectStart(e);
+    if (onBrushStart) {
+      onBrushStart(drawAndRectAreas);
     }
   }
 
-  onParentMouseMove(e) {
-    const { onSelect } = this.props;
+  _brushing = (e) => {
+    const { onBrushing } = this.props;
     const { drawing } = this.state;
     const { offsetX, offsetY } = e.nativeEvent;
-
     if (drawing) {
       const drawAndRectAreas = this._getDrawArea(offsetX, offsetY);
-      this.setState(() => ({ ...drawAndRectAreas }));
+      this.setState(() => ({
+        ...drawAndRectAreas
+      }));
 
-      if (onSelect) {
-        onSelect(e);
+      if (onBrushing) {
+        onBrushing(drawAndRectAreas);
       }
+    } else {
+        this.setState(() => ({
+          drawing: false,
+          ...DEFAULT_AREAS,
+        }));
     }
   }
 
-  stopDrawing = () => {
+  _stopDrawing = () => {
     // Quickly short-circuit if the user isn't drawing in our component
-    if (!this.state.drawing) {
+    const { drawing } = this.state;
+    if (!drawing) {
       return;
     }
-
-    const { onBrushEnd } = this.props;
-    const { x0, y0, x1, y1 } = this.state.drawArea;
-    const xScale = ScaleUtils.getAttributeScale(this.props, 'x');
-    const yScale = ScaleUtils.getAttributeScale(this.props, 'y');
 
     // Clear the draw area
     this.setState(() => ({
       drawing: false,
       ...DEFAULT_AREAS,
     }));
-    // Don't invoke the callback if the selected area was < 5px.
+
+
+    // Don't invoke the callback if the selected area was < 25 square px.
     // This is a click not a select
-    if (Math.abs(x0 - x1) < 5 || Math.abs(y0 - y1) < 5) {
+    const { areaSize } = this.state;
+    if (areaSize < 25) {
       return;
     }
+    const { drawArea } = this.state;
+    const { x0, y0, x1, y1 } = drawArea;
+    const { onBrushEnd } = this.props;
+    const xScale = ScaleUtils.getAttributeScale(this.props, 'x');
+    const yScale = ScaleUtils.getAttributeScale(this.props, 'y');
 
     // Compute the corresponding domain drawn
     const domainArea = {
@@ -116,33 +145,25 @@ export class EuiSelectionBrush extends AbstractSeries {
     };
 
     if (onBrushEnd) {
-      onBrushEnd(domainArea);
+      onBrushEnd({
+        domainArea,
+        drawArea,
+      });
     }
   }
 
   render() {
-    const { marginLeft, marginTop, innerWidth, innerHeight, color, opacity } = this.props;
+    const { marginLeft, marginTop, color, opacity } = this.props;
     const { rectArea: { x, y, width, height } } = this.state;
 
     return (
       <g
         transform={`translate(${marginLeft}, ${marginTop})`}
-        className="selection-brush-container"
-        onMouseUp={this.stopDrawing}
-        onMouseLeave={this.stopDrawing}
+        style={{
+          pointerEvents: 'none',
+        }}
       >
         <rect
-          className="mouse-target"
-          fill="black"
-          opacity="0"
-          x={0}
-          y={0}
-          width={innerWidth}
-          height={innerHeight}
-        />
-        <rect
-          className="selection-brush"
-          pointerEvents="none"
           opacity={opacity}
           fill={color}
           x={x}
@@ -160,14 +181,20 @@ EuiSelectionBrush.displayName = 'EuiSelectionBrush';
 EuiSelectionBrush.propTypes = {
   /** Specify the brush orientation */
   orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL, BOTH ]),
-  /** Callback on brush end event with { begin, end } object returned. */
+  /** Callback on brush start event. */
+  onBrushStart: PropTypes.func,
+  /** Callback on every mouse move event. */
+  onBrushing: PropTypes.func,
+  /** Callback on brush end event. */
   onBrushEnd: PropTypes.func.isRequired,
+  /** The color of the brush rectangle */
   color: PropTypes.string,
+  /** The opacity of the brush rectangle*/
   opacity: PropTypes.number,
 };
 
 EuiSelectionBrush.defaultProps = {
   orientation: HORIZONTAL,
-  color: 'rgb(0,0, 0)',
+  color: 'black',
   opacity: 0.2,
 }

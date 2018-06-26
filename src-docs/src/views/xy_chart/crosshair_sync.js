@@ -22,7 +22,6 @@ export class ExampleCrosshair extends React.Component {
           <EuiVerticalBarSeries
             name="Users"
             data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
-            color={'#db1374'}
           />
         </EuiXYChart>
         <EuiSpacer size="xl" />
@@ -35,7 +34,6 @@ export class ExampleCrosshair extends React.Component {
           <EuiVerticalBarSeries
             name="Users"
             data={[{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 5, y: 2 }]}
-            color={'#db1374'}
           />
         </EuiXYChart>
       </div>

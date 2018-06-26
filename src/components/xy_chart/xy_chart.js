@@ -10,16 +10,8 @@ import { VISUALIZATION_COLORS } from '../../services';
 import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
 import { EuiXYChartUtils } from './utils/chart_utils';
-const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION
-const {
-  LINEAR,
-  ORDINAL,
-  CATEGORY,
-  TIME,
-  TIME_UTC,
-  LOG,
-  LITERAL,
-} = EuiXYChartUtils.SCALE_TYPE;
+const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION;
+const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = EuiXYChartUtils.SCALE_TYPE;
 
 class XYExtendedPlot extends XYPlot {
   /**
@@ -39,6 +31,76 @@ class XYExtendedPlot extends XYPlot {
         component.onParentMouseLeave(event);
       }
     });
+  }
+
+  /**
+   * Trigger onMouseUp handler if it was passed in props.
+   * @param {Event} event Native event.
+   * @private
+   */
+  _mouseUpHandler = (event) => {
+    const { onMouseUp, children } = this.props;
+    if (onMouseUp) {
+      super.onMouseUp(event);
+    }
+    const seriesChildren = getSeriesChildren(children);
+    seriesChildren.forEach((child, index) => {
+      const component = this.refs[`series${index}`];
+      if (component && component.onParentMouseUp) {
+        component.onParentMouseUp(event);
+      }
+    });
+  }
+
+  render() {
+    const {
+      className,
+      dontCheckIfEmpty,
+      style,
+      width,
+      height,
+      errorText,
+    } = this.props;
+
+    if (!dontCheckIfEmpty && this._isPlotEmpty()) {
+      return (
+        <StatusText text={errorText} width={width} height={height} />
+      );
+    }
+    const components = this._getClonedChildComponents();
+
+    return (
+      <div
+        style={{
+          width: `${width}px`,
+          height: `${height}px`
+        }}
+        className={`rv-xy-plot ${className}`}
+      >
+        <svg
+          className="rv-xy-plot__inner"
+          width={width}
+          height={height}
+          style={style}
+          onClick={this._clickHandler}
+          onDoubleClick={this._doubleClickHandler}
+          onMouseDown={this._mouseDownHandler}
+          onMouseMove={this._mouseMoveHandler}
+          onMouseLeave={this._mouseLeaveHandler}
+          onMouseEnter={this._mouseEnterHandler}
+          onMouseUp={this._mouseUpHandler}
+          onTouchStart={this._mouseDownHandler}
+          onTouchMove={this._touchMoveHandler}
+          onTouchEnd={this._touchEndHandler}
+          onTouchCancel={this._touchCancelHandler}
+          onWheel={this._wheelHandler}
+        >
+          {components.filter(c => c && c.type.requiresSVG)}
+        </svg>
+        {this.renderCanvasComponents(components, this.props)}
+        {components.filter(c => c && !c.type.requiresSVG && !c.type.isCanvas)}
+      </div>
+    );
   }
 }
 
@@ -69,11 +131,6 @@ class XYChart extends PureComponent {
 
     return React.cloneElement(child, props);
   };
-  // canShowCrosshair = () => {
-  //   const { crosshairValue, showCrosshair } = this.props;
-  //   const { mouseOver } = this.state;
-  //   return showCrosshair && ( mouseOver || crosshairValue !== undefined)
-  // }
 
   render() {
     const {
@@ -100,10 +157,6 @@ class XYChart extends PureComponent {
       ...rest
     } = this.props;
 
-    if (!children || errorText) {
-      return <StatusText text={errorText} width={width} height={height} />;
-    }
-
     this.colorIterator = 0;
     const Crosshair =
       orientation === EuiXYChartUtils.ORIENTATION.HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
@@ -111,9 +164,7 @@ class XYChart extends PureComponent {
       <div {...rest}>
         <XYExtendedPlot
           ref={this._xyPlotRef}
-          dontCheckIfEmpty
-          onMouseMove={this._onMouseMove}
-          onMouseLeave={this._onMouseLeave}
+          errorText={errorText}
           width={width}
           animation={animateData}
           height={height}
@@ -132,7 +183,12 @@ class XYChart extends PureComponent {
             <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
-          {enableSelectionBrush && <EuiSelectionBrush onBrushEnd={onSelectionBrushEnd} orientation={selectionBrushOrientation}/>}
+          {enableSelectionBrush && (
+            <EuiSelectionBrush
+              onBrushEnd={onSelectionBrushEnd}
+              orientation={selectionBrushOrientation}
+            />
+          )}
         </XYExtendedPlot>
       </div>
     );
@@ -146,15 +202,15 @@ XYChart.propTypes = {
   /** The initial height of the chart. */
   height: PropTypes.number.isRequired,
   /** The orientation of the chart. */
-  orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL ]),
+  orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
   /** If the chart animates on data changes. */
-  animateData:  PropTypes.bool,
+  animateData: PropTypes.bool,
   /** TODO */
   stackBy: PropTypes.string,
   /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
-  xType: PropTypes.oneOf([ LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL ]),
+  xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
-  xType: PropTypes.oneOf([ LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL ]),
+  xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** Manually specify the domain of x axis. */
   xDomain: PropTypes.array,
   /** Manually specify the domain of y axis. */
@@ -163,11 +219,7 @@ XYChart.propTypes = {
   xPadding: PropTypes.number,
   /** The vertical padding between the chart borders and chart elements. */
   yPadding: PropTypes.number,
-  /** TODO */
-  onHover: PropTypes.func,
-  /** TODO */
-  truncateLegends: PropTypes.bool,
-  /** TODO */
+  /** Add a text to show an error on the chart */
   errorText: PropTypes.string,
   /** Shows the crosshair tooltip on mouse move.*/
   showCrosshair: PropTypes.bool,
@@ -180,7 +232,7 @@ XYChart.propTypes = {
   /** Enable the brush tool */
   enableSelectionBrush: PropTypes.bool,
   /** Specify the brush orientation */
-  selectionBrushOrientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL, BOTH ]),
+  selectionBrushOrientation: PropTypes.oneOf([HORIZONTAL, VERTICAL, BOTH]),
   /** Callback on brush end event with { begin, end } object returned. */
   onSelectionBrushEnd: PropTypes.func,
 };

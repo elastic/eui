@@ -5,24 +5,22 @@ import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   render() {
-    const { name, data, color, onClick, ...rest } = this.props;
+    const { name, data, color, onValueClick, ...rest } = this.props;
 
     return (
-      <g>
-        <HorizontalBarSeries
-          key={name}
-          onSeriesClick={onClick}
-          color={color}
-          style={{
-            strokeWidth: 1,
-            stroke: 'white',
-            rx: 2,
-            ry: 2,
-          }}
-          data={data}
-          {...rest}
-        />
-      </g>
+      <HorizontalBarSeries
+        key={name}
+        onValueClick={onValueClick}
+        color={color}
+        style={{
+          strokeWidth: 1,
+          stroke: 'white',
+          rx: 2,
+          ry: 2,
+        }}
+        data={data}
+        {...rest}
+      />
     );
   }
 }
@@ -42,7 +40,8 @@ EuiHorizontalBarSeries.propTypes = {
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  onClick: PropTypes.func
+  /** Callback when clicking on a single bar */
+  onValueClick: PropTypes.func
 };
 
 EuiHorizontalBarSeries.defaultProps = {};

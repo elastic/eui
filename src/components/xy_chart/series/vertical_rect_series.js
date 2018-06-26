@@ -5,25 +5,23 @@ import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiVerticalRectSeries extends VerticalRectSeries {
   render() {
-    const { name, data, color, onClick, ...rest } = this.props;
+    const { name, data, color, onValueClick, ...rest } = this.props;
     const isHighDataVolume = data.length > 80 ? true : false;
 
     return (
-      <g>
-        <VerticalRectSeries
-          key={name}
-          onSeriesClick={onClick}
-          color={color}
-          style={{
-            strokeWidth: isHighDataVolume ? 0 : 1,
-            stroke: 'white',
-            rx: isHighDataVolume ? 0 : 2,
-            ry: isHighDataVolume ? 0 : 2,
-          }}
-          data={data}
-          {...rest}
-        />
-      </g>
+      <VerticalRectSeries
+        key={name}
+        onValueClick={onValueClick}
+        color={color}
+        style={{
+          strokeWidth: isHighDataVolume ? 0 : 1,
+          stroke: 'white',
+          rx: isHighDataVolume ? 0 : 2,
+          ry: isHighDataVolume ? 0 : 2,
+        }}
+        data={data}
+        {...rest}
+      />
     );
   }
 }
@@ -41,7 +39,8 @@ EuiVerticalRectSeries.propTypes = {
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  onClick: PropTypes.func
+  /** Callback when clicking on a single rect */
+  onValueClick: PropTypes.func
 };
 
 EuiVerticalRectSeries.defaultProps = {};

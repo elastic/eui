@@ -4,7 +4,7 @@ import { AreaSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
 export class EuiAreaSeries extends AbstractSeries {
   render() {
-    const { name, data, curve, color, ...rest } = this.props;
+    const { name, data, curve, color, onSeriesClick, ...rest } = this.props;
     return (
       <g>
         <AreaSeries
@@ -13,6 +13,7 @@ export class EuiAreaSeries extends AbstractSeries {
           curve={curve}
           color={color}
           data={data}
+          onSeriesClick={onSeriesClick}
           style={{
             strokeWidth: 0,
           }}
@@ -35,7 +36,7 @@ EuiAreaSeries.propTypes = {
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
   curve: PropTypes.string,
-  onClick: PropTypes.func,
+  onSeriesClick: PropTypes.func,
   onMarkClick: PropTypes.func,
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
@@ -9,7 +9,7 @@ export class EuiLineSeries extends AbstractSeries {
       data,
       name,
       curve,
-      onClick,
+      onSeriesClick,
       onMarkClick,
       showLineMarks,
       lineSize,
@@ -20,16 +20,17 @@ export class EuiLineSeries extends AbstractSeries {
     } = this.props;
 
     return (
-      <g>
+      <Fragment>
         <LineSeries
           {...rest}
           key={`${name}-border`}
           curve={curve}
           data={data}
           opacity={1}
-          onSeriesClick={onClick}
+          onSeriesClick={onSeriesClick}
           style={{
-              strokeWidth: lineSize + 2, // border margin
+            pointerEvents: 'visiblestroke',
+            strokeWidth: lineSize + 2, // border margin
           }}
           _colorValue={'white'}
         />
@@ -40,7 +41,8 @@ export class EuiLineSeries extends AbstractSeries {
           data={data}
           opacity={1}
           style={{
-              strokeWidth: lineSize,
+            pointerEvents: 'visiblestroke',
+            strokeWidth: lineSize,
           }}
           color={color}
         />
@@ -54,11 +56,11 @@ export class EuiLineSeries extends AbstractSeries {
             size={lineMarkSize}
             stroke={'white'}
             opacity={1}
-            onSeriesClick={onMarkClick || onClick}
+            onSeriesClick={onMarkClick || onSeriesClick}
             strokeWidth={2}
           />
         )}
-      </g>
+      </Fragment>
     )
   }
 }
@@ -86,7 +88,7 @@ EuiLineSeries.propTypes = {
   lineSize: PropTypes.number,
   lineMarkColor: PropTypes.string,
   lineMarkSize: PropTypes.number,
-  onClick: PropTypes.func,
+  onSeriesClick: PropTypes.func,
   onMarkClick: PropTypes.func
 };
 
