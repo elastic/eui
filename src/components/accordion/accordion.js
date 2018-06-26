@@ -45,10 +45,8 @@ export class EuiAccordion extends Component {
   componentDidMount() {
     this.setChildContentHeight();
 
-    requestAnimationFrame(() => {
-      this.observer = new MutationObserver(this.setChildContentHeight);
-      this.observer.observe(this.childContent, { childList: true, subtree: true });
-    });
+    this.observer = new MutationObserver(this.setChildContentHeight);
+    this.observer.observe(this.childContent, { childList: true, subtree: true });
   }
 
   componentWillUnmount() {

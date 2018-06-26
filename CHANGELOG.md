@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `1.0.0`.
+- `EuiAccordion` use MutationObserver to re-calculate height when children DOM changes ([#947](https://github.com/elastic/eui/pull/947))
 
 ## [`1.0.0`](https://github.com/elastic/eui/tree/v1.0.0)
 
