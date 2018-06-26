@@ -5,33 +5,34 @@ import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiVerticalBarSeries extends VerticalBarSeries {
   state = {
-    hoverBars: false,
+    isMouseOverValue: false,
   }
-  _handleOnSeriesOver = () => {
-    this.setState(() => { hoverBars: true })
+
+  _onValueMouseOver = () => {
+    this.setState(() => ({ isMouseOverValue: true }));
   }
-  _handleOnSeriesOut = () => {
-    this.setState(() => { hoverBars: false })
+
+  _onValueMouseOut = () => {
+    this.setState(() => ({ isMouseOverValue: false }));
   }
+
   render() {
+    const { isMouseOverValue } = this.state
     const { name, data, color, onValueClick, ...rest } = this.props;
-    const { hoverBars } = this.state
     const isHighDataVolume = data.length > 80 ? true : false;
-    const canHover = hoverBars && onValueClick
-    console.log('canHover',canHover)
     return (
       <VerticalBarSeries
         key={name}
         onValueClick={onValueClick}
-        onValueMouseOver={this._handleOnSeriesOver}
-        onValueMouseOut={this._handleOnSeriesOut}
+        onValueMouseOver={this._onValueMouseOver}
+        onValueMouseOut={this._onValueMouseOut}
         color={color}
         style={{
           strokeWidth: isHighDataVolume ? 0.25 : 1,
           stroke: 'white',
           rx: isHighDataVolume ? 0.5 : 2,
           ry: isHighDataVolume ? 0.5 : 2,
-          cursor: canHover ? 'pointer' : 'default',
+          cursor: isMouseOverValue && onValueClick ? 'pointer' : 'default',
         }}
         data={data}
         {...rest}

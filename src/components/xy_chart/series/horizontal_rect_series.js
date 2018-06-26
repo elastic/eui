@@ -4,7 +4,20 @@ import { HorizontalRectSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiHorizontalRectSeries extends HorizontalRectSeries {
+  state = {
+    isMouseOverValue: false,
+  }
+
+  _onValueMouseOver = () => {
+    this.setState(() => ({ isMouseOverValue: true }));
+  }
+
+  _onValueMouseOut = () => {
+    this.setState(() => ({ isMouseOverValue: false }));
+  }
+
   render() {
+    const { isMouseOverValue } = this.state;
     const { name, data, color, onValueClick, ...rest } = this.props;
 
     return (
@@ -17,6 +30,7 @@ export class EuiHorizontalRectSeries extends HorizontalRectSeries {
           stroke: 'white',
           rx: 2,
           ry: 2,
+          cursor: isMouseOverValue && onValueClick ? 'pointer' : 'default',
         }}
         data={data}
         {...rest}

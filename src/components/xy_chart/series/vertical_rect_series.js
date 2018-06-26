@@ -4,7 +4,20 @@ import { VerticalRectSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
 
 export class EuiVerticalRectSeries extends VerticalRectSeries {
+  state = {
+    isMouseOverValue: false,
+  }
+
+  _onValueMouseOver = () => {
+    this.setState(() => ({ isMouseOverValue: true }));
+  }
+
+  _onValueMouseOut = () => {
+    this.setState(() => ({ isMouseOverValue: false }));
+  }
+
   render() {
+    const { isMouseOverValue } = this.state;
     const { name, data, color, onValueClick, ...rest } = this.props;
     const isHighDataVolume = data.length > 80 ? true : false;
 
@@ -12,12 +25,15 @@ export class EuiVerticalRectSeries extends VerticalRectSeries {
       <VerticalRectSeries
         key={name}
         onValueClick={onValueClick}
+        onValueMouseOver={this._onValueMouseOver}
+        onValueMouseOut={this._onValueMouseOut}
         color={color}
         style={{
           strokeWidth: isHighDataVolume ? 0 : 1,
           stroke: 'white',
           rx: isHighDataVolume ? 0 : 2,
           ry: isHighDataVolume ? 0 : 2,
+          cursor: isMouseOverValue && onValueClick ? 'pointer' : 'default',
         }}
         data={data}
         {...rest}
