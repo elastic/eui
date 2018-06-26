@@ -1,26 +1,50 @@
-/**
- * 1. We don't want any of the animations that come inherited from the mixin.
- *    These should act like normal links instead.
- */
-.euiFilterButton {
-  @include euiButton;
+@import '../form/variables';
+@import '../form/mixins';
 
-  line-height: 40px;
-  border-color: transparent;
-  background-color: transparent;
-  box-shadow: none;
-  transform: none !important; // 1
-  animation: none !important; // 1
+/**
+ * 1. Only add the border style drop shadow
+ */
+
+.euiFilterButton {
+
+  @include euiFormControlStyle();
+  width: auto;
+  max-width: none;
+  box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
+  text-align: center;
+
+  &:hover:not(:disabled) {
+    .euiFilterButton__textShift {
+      text-decoration: underline;
+    }
+  }
+
+  &:focus {
+    background-color: $euiFormBackgroundColor;
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
+  }
+
+  &:disabled {
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor--disabled; /* 1 */
+  }
+
+  &.euiFilterButton--wide {
+    width: 100%;
+    text-align: left;
+  }
 
   .euiFilterButton__content {
     @include euiButtonContent;
+  }
 
-    padding: 0 $euiSizeS;
-
+  &.euiFilterButton--iconRight {
+    .euiFilterButton__content {
+      @include euiButtonContent($isReverse: true);
+      justify-content: space-between;
+    }
   }
 
   .euiFilterButton__textShift {
-    text-align: center;
     display: inline-block;
 
     &::after {
@@ -30,31 +54,6 @@
       height: 0;
       overflow: hidden;
       visibility: hidden;
-    }
-  }
-
-  &.euiFilterButton--iconRight {
-    .euiFilterButton__content {
-      @include euiButtonContent($isReverse: true);
-    }
-  }
-
-  &:disabled {
-    color: $euiButtonColorDisabled;
-    pointer-events: none;
-
-    .euiFilterButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiFilterButton__icon {
-      fill: $euiButtonColorDisabled;
-    }
-
-    &:hover, &:focus {
-      background-color: $euiColorEmptyShade;
-      text-decoration: none;
     }
   }
 
@@ -80,17 +79,5 @@ $buttonTypes: (
 @each $name, $color in $buttonTypes {
   .euiFilterButton--#{$name} {
     color: $color;
-
-    .euiFilterButton__icon {
-      fill: $color;
-    }
-
-    &:hover {
-      background-color: transparent;
-
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
-      }
-    }
   }
 }

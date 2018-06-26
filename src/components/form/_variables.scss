@@ -1,5 +1,7 @@
 $euiFormMaxWidth: 400px;
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
+$euiFormBorderColor: transparentize($euiColorFullShade, .9);
+$euiFormBorderColor--disabled: transparentize($euiColorFullShade, .92);
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%); // exact 508c foreground for $euiColorLightShade
 
 $euiRadioSize: $euiSize;

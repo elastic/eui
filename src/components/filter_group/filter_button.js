@@ -67,6 +67,13 @@ export const EuiFilterButton = ({
     );
   }
 
+  const buttonContents = (
+    <span className="euiFilterButton__content">
+      {buttonIcon}
+      <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
+    </span>
+  );
+
   if (href) {
     const secureRel = getSecureRelForTarget(target, rel);
 
@@ -78,10 +85,7 @@ export const EuiFilterButton = ({
         rel={secureRel}
         {...rest}
       >
-        <span className="euiFilterButton__content">
-          {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
-        </span>
+        {buttonContents}
       </a>
     );
   } else {
@@ -92,10 +96,7 @@ export const EuiFilterButton = ({
         type={type}
         {...rest}
       >
-        <span className="euiFilterButton__content">
-          {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
-        </span>
+        {buttonContents}
       </button>
     );
   }

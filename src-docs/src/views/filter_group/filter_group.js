@@ -21,7 +21,14 @@ export default class extends Component {
 
     this.state = {
       isPopoverOpen: false,
+      isFilterOn: false,
     };
+  }
+
+  toggleFilter = () => {
+    this.setState({
+      isFilterOn: !this.state.isFilterOn,
+    });
   }
 
   onButtonClick() {
@@ -66,6 +73,7 @@ export default class extends Component {
         onClick={this.onButtonClick.bind(this)}
         isSelected={this.state.isPopoverOpen}
         hasActiveFilters={true}
+        className="euiFilterButton--wide"
       >
         Composers
       </EuiFilterButton>
@@ -73,11 +81,11 @@ export default class extends Component {
 
     return (
       <EuiFilterGroup>
-        <EuiFilterButton>
-          Filter on
+        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+          Filter
         </EuiFilterButton>
-        <EuiFilterButton>
-          Filter off
+        <EuiFilterButton color="primary" isDisabled hasActiveFilters={this.state.isFilterOn}>
+          Filter Disabled
         </EuiFilterButton>
         <EuiPopover
           id="popover"
@@ -88,6 +96,7 @@ export default class extends Component {
           panelPaddingSize="none"
           withTitle
           panelClassName="euiFilterGroup__popoverPanel"
+          style={{ flexGrow: '1', fontSize: '0' }}
         >
           <EuiPopoverTitle>
             <EuiFieldSearch />
