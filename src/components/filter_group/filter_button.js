@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../services';
+import { EuiFormControlLayout } from '../form/form_control_layout';
+import { EuiHeaderNotification } from '../header/header_notification';
 
 import {
   ICON_TYPES,
-  EuiIcon,
 } from '../icon';
 
 const colorToClassNameMap = {
@@ -33,12 +34,14 @@ export const EuiFilterButton = ({
   iconSide,
   color,
   hasActiveFilters,
+  numFilters,
   isDisabled,
   isSelected,
   href,
   target,
   rel,
   type,
+  grow,
   ...rest
 }) => {
 
@@ -49,29 +52,28 @@ export const EuiFilterButton = ({
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
+      'euiFilterButton-grow': grow,
     },
     className,
   );
 
-  // Add an icon to the button if one exists.
-  let buttonIcon;
-
-  if (iconType) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiFilterButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
-  }
+  const icon = iconType ? {
+    type: iconType,
+    side: iconSide,
+  } : undefined;
 
   const buttonContents = (
-    <span className="euiFilterButton__content">
-      {buttonIcon}
-      <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
-    </span>
+    <EuiFormControlLayout
+      className="euiFilterButton__content"
+      icon={icon}
+    >
+      <span className="euiFilterButton__textShift" data-text={children}>
+        {children}
+        {numFilters &&
+          <EuiHeaderNotification className="euiFilterButton__notification">{numFilters}</EuiHeaderNotification>
+        }
+      </span>
+    </EuiFormControlLayout>
   );
 
   if (href) {
@@ -117,6 +119,10 @@ EuiFilterButton.propTypes = {
    */
   hasActiveFilters: PropTypes.bool,
   /**
+   * Adds a notification with number
+   */
+  numFilters: PropTypes.number,
+  /**
    * Applies a visual state to the button useful when using with a popover.
    */
   isSelected: PropTypes.bool,
@@ -137,10 +143,15 @@ EuiFilterButton.propTypes = {
    * Defines html button input type
    */
   type: PropTypes.string,
+  /**
+   * Should the button grow to fill it's container, best used for dropdown buttons
+   */
+  grow: PropTypes.bool,
 };
 
 EuiFilterButton.defaultProps = {
   type: 'button',
   iconSide: 'right',
   color: 'text',
+  grow: false,
 };

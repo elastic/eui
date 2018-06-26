@@ -7,12 +7,12 @@ exports[`EuiFilterButton is rendered 1`] = `
   data-test-subj="test subject string"
   type="button"
 >
-  <span
-    class="euiFilterButton__content"
+  <div
+    class="euiFormControlLayout euiFilterButton__content"
   >
     <span
       class="euiFilterButton__textShift"
     />
-  </span>
+  </div>
 </button>
 `;

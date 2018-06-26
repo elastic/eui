@@ -6,46 +6,31 @@
  */
 
 .euiFilterButton {
+  flex-grow: 0; // Shrink by default
 
-  @include euiFormControlStyle();
-  width: auto;
-  max-width: none;
-  box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
-  text-align: center;
-
-  &:hover:not(:disabled) {
-    .euiFilterButton__textShift {
-      text-decoration: underline;
-    }
+  .euiFilterButton__content {
+    @include euiFormControlStyle();
+    width: auto;
+    max-width: none;
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
   }
 
-  &:focus {
+  &:focus .euiFilterButton__content {
+    @include euiFormControlFocusStyle;
     background-color: $euiFormBackgroundColor;
     box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
   }
 
-  &:disabled {
+  &:disabled .euiFilterButton__content {
+    @include euiFormControlDisabledStyle;
     box-shadow: inset 0 0 0 1px $euiFormBorderColor--disabled; /* 1 */
-  }
-
-  &.euiFilterButton--wide {
-    width: 100%;
-    text-align: left;
-  }
-
-  .euiFilterButton__content {
-    @include euiButtonContent;
-  }
-
-  &.euiFilterButton--iconRight {
-    .euiFilterButton__content {
-      @include euiButtonContent($isReverse: true);
-      justify-content: space-between;
-    }
+    font-style: italic;
   }
 
   .euiFilterButton__textShift {
     display: inline-block;
+    text-align: center;
+    vertical-align: middle;
 
     &::after {
       display: block;
@@ -57,8 +42,26 @@
     }
   }
 
-  &.euiFilterButton-isSelected {
-    text-decoration: underline;
+  .euiFilterButton__notification {
+    margin-left: $euiSizeS;
+    vertical-align: text-bottom;
+  }
+
+  &.euiFilterButton-isSelected,
+  &:hover:not(:disabled) {
+    .euiFilterButton__textShift {
+      text-decoration: underline;
+    }
+  }
+
+  &.euiFilterButton-grow {
+    flex-grow: 1;
+    width: 100%;
+
+    .euiFilterButton__content {
+      width: 100%;
+      text-align: left;
+    }
   }
 
   &.euiFilterButton-hasActiveFilters {

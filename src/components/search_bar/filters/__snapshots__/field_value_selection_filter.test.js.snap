@@ -6,6 +6,7 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
   button={
     <EuiFilterButton
       color="text"
+      grow={false}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -50,6 +51,7 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
   button={
     <EuiFilterButton
       color="text"
+      grow={false}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -94,6 +96,7 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
   button={
     <EuiFilterButton
       color="text"
+      grow={false}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -138,6 +141,7 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   button={
     <EuiFilterButton
       color="text"
+      grow={false}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"

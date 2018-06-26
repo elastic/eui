@@ -73,7 +73,8 @@ export default class extends Component {
         onClick={this.onButtonClick.bind(this)}
         isSelected={this.state.isPopoverOpen}
         hasActiveFilters={true}
-        className="euiFilterButton--wide"
+        numFilters={2}
+        grow={true}
       >
         Composers
       </EuiFilterButton>
@@ -96,7 +97,7 @@ export default class extends Component {
           panelPaddingSize="none"
           withTitle
           panelClassName="euiFilterGroup__popoverPanel"
-          style={{ flexGrow: '1', fontSize: '0' }}
+          style={{ fontSize: '0' }}
         >
           <EuiPopoverTitle>
             <EuiFieldSearch />

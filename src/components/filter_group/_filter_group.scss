@@ -3,6 +3,11 @@
   // Match just the regular box-shadow of inputs
   box-shadow: 0 3px 2px -2px rgba($euiShadowColor, 0.2);
 
+  > * {
+    // defaults to growing children though filter buttons don't grow by default
+    flex-grow: 1;
+  }
+
   > * + * {
     margin-left: -1px;
   }
