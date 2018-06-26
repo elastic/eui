@@ -21,7 +21,7 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const iconSideToClassNameMap = {
-  left: '',
+  left: 'euiFilterButton--iconLeft',
   right: 'euiFilterButton--iconRight',
 };
 
@@ -45,10 +45,12 @@ export const EuiFilterButton = ({
   ...rest
 }) => {
 
+  const iconClasses = iconType ? iconSideToClassNameMap[iconSide] : undefined;
+
   const classes = classNames(
     'euiFilterButton',
     colorToClassNameMap[color],
-    iconSideToClassNameMap[iconSide],
+    iconClasses,
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,

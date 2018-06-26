@@ -1,5 +1,6 @@
 @import '../form/variables';
 @import '../form/mixins';
+@import '../form/form_control_layout/mixins';
 
 /**
  * 1. Only add the border style drop shadow
@@ -13,6 +14,7 @@
     width: auto;
     max-width: none;
     box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
+    white-space: nowrap;
   }
 
   &:focus .euiFilterButton__content {
@@ -82,5 +84,18 @@ $buttonTypes: (
 @each $name, $color in $buttonTypes {
   .euiFilterButton--#{$name} {
     color: $color;
+  }
+}
+
+// Icon padding
+.euiFilterButton--iconLeft {
+  .euiFilterButton__content {
+    @include euiFormControlLayout__padding(1, "left");
+  }
+}
+
+.euiFilterButton--iconRight {
+  .euiFilterButton__content {
+    @include euiFormControlLayout__padding(1);
   }
 }
