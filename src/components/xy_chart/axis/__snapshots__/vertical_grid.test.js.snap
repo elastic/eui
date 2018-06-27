@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiVerticalGrid render the vertical grid 1`] = `
+<div
+  style="width: 100%; height: 100%;"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="rv-xy-plot "
+      style="width: 600px; height: 200px;"
+    >
+      <svg
+        class="rv-xy-plot__inner"
+        height="200"
+        width="600"
+      >
+        <g
+          class="rv-xy-plot__grid-lines"
+          transform="translate(0,0)"
+        >
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="0"
+            x2="0"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="60"
+            x2="60"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="120"
+            x2="120"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="180"
+            x2="180"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="240"
+            x2="240"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="300"
+            x2="300"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="360"
+            x2="360"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="420"
+            x2="420"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="480"
+            x2="480"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="540"
+            x2="540"
+            y1="0"
+            y2="200"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
+            x1="600"
+            x2="600"
+            y1="0"
+            y2="200"
+          />
+        </g>
+        <path
+          class="rv-xy-plot__series rv-xy-plot__series--line "
+          d="M0,200L600,0"
+          style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
+          transform="translate(0,0)"
+        />
+        <path
+          class="rv-xy-plot__series rv-xy-plot__series--line "
+          d="M0,200L600,0"
+          style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
+          transform="translate(0,0)"
+        />
+        <g
+          class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
+          transform="translate(0,0)"
+        >
+          <circle
+            cx="0"
+            cy="200"
+            r="5"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
+          />
+          <circle
+            cx="600"
+            cy="0"
+            r="5"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+`;

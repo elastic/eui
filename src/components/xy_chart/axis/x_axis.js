@@ -30,26 +30,19 @@ export class EuiXAxis extends PureComponent {
         tickLabelAngle={tickLabelAngle}
         {...rest}
       />
-    )
-
+    );
   }
 }
 
 EuiXAxis.displayName = 'EuiXAxis';
 
 EuiXAxis.propTypes = {
-  title: PropTypes.string, /** The axis title */
+  /** The axis title */
+  title: PropTypes.string,
   /** The axis title position */
-  titlePosition: PropTypes.oneOf([
-    TITLE_POSITION.START,
-    TITLE_POSITION.MIDDLE,
-    TITLE_POSITION.END,
-  ]),
+  titlePosition: PropTypes.oneOf([TITLE_POSITION.START, TITLE_POSITION.MIDDLE, TITLE_POSITION.END]),
   /** The axis orientation */
-  orientation: PropTypes.oneOf([
-    ORIENTATION.TOP,
-    ORIENTATION.BOTTOM,
-  ]),
+  orientation: PropTypes.oneOf([ORIENTATION.TOP, ORIENTATION.BOTTOM]),
   /** Fix the axis at zero value */
   onZero: PropTypes.bool,
   /** An array of ticks values */
@@ -68,7 +61,7 @@ EuiXAxis.defaultProps = {
   onZero: false,
   titlePosition: TITLE_POSITION.MIDDLE,
   orientation: ORIENTATION.BOTTOM,
-  tickSize: 5,
+  tickSize: 0,
 };
 
 EuiXAxis.requiresSVG = true;

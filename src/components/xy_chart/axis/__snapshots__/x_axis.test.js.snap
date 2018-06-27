@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiXAxis render the x axis 1`] = `
+<div
+  style="width: 100%; height: 100%;"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="rv-xy-plot "
+      style="width: 600px; height: 200px;"
+    >
+      <svg
+        class="rv-xy-plot__inner"
+        height="200"
+        width="600"
+      >
+        <g
+          class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
+          transform="translate(0,200)"
+        >
+          <line
+            class="rv-xy-plot__axis__line"
+            x1="0"
+            x2="600"
+            y1="0"
+            y2="0"
+          />
+          <g
+            class="rv-xy-plot__axis__ticks"
+            transform="translate(0, 0)"
+          >
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.0
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(60, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.1
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(120, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.2
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(180, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.3
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(240, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.4
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(300, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(360, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.6
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(420, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.7
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(480, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.8
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(540, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                0.9
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(600, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                1.0
+              </text>
+            </g>
+          </g>
+        </g>
+        <path
+          class="rv-xy-plot__series rv-xy-plot__series--line "
+          d="M0,200L600,0"
+          style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
+          transform="translate(0,0)"
+        />
+        <path
+          class="rv-xy-plot__series rv-xy-plot__series--line "
+          d="M0,200L600,0"
+          style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
+          transform="translate(0,0)"
+        />
+        <g
+          class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
+          transform="translate(0,0)"
+        >
+          <circle
+            cx="0"
+            cy="200"
+            r="5"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
+          />
+          <circle
+            cx="600"
+            cy="0"
+            r="5"
+            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+`;

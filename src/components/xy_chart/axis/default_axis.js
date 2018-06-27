@@ -6,6 +6,11 @@ import { EuiHorizontalGrid } from './horizontal_grid';
 import { EuiVerticalGrid } from './vertical_grid';
 import { ORIENTATION } from '../utils/chart_utils';
 
+
+/**
+ * The Default Axis component, with X and Y axis on the bottom and left position respectively,
+ * and horiznontal or vertical grid depending on the orientation prop.
+ */
 export class EuiDefaultAxis extends PureComponent {
   render() {
     const { showGridLines, orientation, xOnZero, yOnZero, ...rest } = this.props;
@@ -14,11 +19,12 @@ export class EuiDefaultAxis extends PureComponent {
       <Fragment>
         {showGridLines &&
           orientation === ORIENTATION.VERTICAL && <EuiHorizontalGrid {...rest} />}
+
         {showGridLines &&
           orientation === ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
 
-        <EuiXAxis onZero={xOnZero} tickSize={0} {...rest} />
-        <EuiYAxis onZero={yOnZero} tickSize={0} {...rest} />
+        <EuiXAxis onZero={xOnZero} {...rest} />
+        <EuiYAxis onZero={yOnZero} {...rest} />
       </Fragment>
     );
   }
@@ -27,14 +33,18 @@ export class EuiDefaultAxis extends PureComponent {
 EuiDefaultAxis.displayName = 'EuiDefaultAxis';
 
 EuiDefaultAxis.propTypes = {
+  /** The orientation of the chart, used to determine the correct orientation of grids */
   orientation: PropTypes.string,
+  /** Show/Hide the background grids */
   showGridLines: PropTypes.bool,
-  yOnZero: PropTypes.bool,
+  /** Specify if the x axis lay on 0, otherwise lyed on min x */
   xOnZero: PropTypes.bool,
+  /** Specify if the y axis lay on 0, otherwise layd on min y */
+  yOnZero: PropTypes.bool,
 };
 
 EuiDefaultAxis.defaultProps = {
-  orientation: false,
+  orientation: ORIENTATION.VERTICAL,
   showGridLines: true,
   xOnZero: false,
   yOnZero: false,
