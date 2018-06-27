@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScaleUtils, AbstractSeries } from 'react-vis';
-import { EuiXYChartUtils } from './utils/chart_utils';
-const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION
+import { ORIENTATION, SCALE_TYPE } from './utils/chart_utils';
+const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
 
 const DEFAULT_AREAS = {
   areaSize: 0,
@@ -75,6 +75,20 @@ export class EuiSelectionBrush extends AbstractSeries {
     };
   }
 
+  _getScaledValue(scale, scaleType, value0, value1) {
+    switch(scaleType) {
+      case SCALE_TYPE.ORDINAL:
+        return [0, 0];
+      default:
+        return [
+          scale.invert(value0 < value1 ? value0 : value1),
+          scale.invert(value0 < value1 ? value1 : value0),
+        ];
+        break;
+
+    }
+  }
+
   _startDrawing = (e) => {
     const { onBrushStart } = this.props;
     const { offsetX, offsetY } = e.nativeEvent;
@@ -132,16 +146,19 @@ export class EuiSelectionBrush extends AbstractSeries {
     }
     const { drawArea } = this.state;
     const { x0, y0, x1, y1 } = drawArea;
-    const { onBrushEnd } = this.props;
+    const { xType, yType, onBrushEnd } = this.props;
     const xScale = ScaleUtils.getAttributeScale(this.props, 'x');
     const yScale = ScaleUtils.getAttributeScale(this.props, 'y');
 
+    const xValues = this._getScaledValue(xScale, xType, x0, x1);
+    const yValues = this._getScaledValue(yScale, yType, y0, y1);
+
     // Compute the corresponding domain drawn
     const domainArea = {
-      startX: xScale.invert(x0 < x1 ? x0 : x1),
-      endX: xScale.invert(x0 < x1 ? x1 : x0),
-      startY: yScale.invert(y0 < y1 ? y1 : y0),
-      endY: yScale.invert(y0 < y1 ? y0 : y1),
+      startX: xValues[0],
+      endX: xValues[1],
+      startY: yValues[1],
+      endY: yValues[0],
     };
 
     if (onBrushEnd) {
