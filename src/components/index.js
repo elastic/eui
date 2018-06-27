@@ -120,6 +120,7 @@ export {
   EuiFieldText,
   EuiFilePicker,
   EuiForm,
+  EuiFormControlGroup,
   EuiFormControlLayout,
   EuiFormErrorText,
   EuiFormHelpText,

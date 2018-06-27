@@ -12,6 +12,7 @@ import {
   EuiFormRow,
   EuiDescribedFormGroup,
   EuiFieldText,
+  EuiFormControlGroup,
   EuiPopover,
   EuiRange,
   EuiSwitch,
@@ -48,6 +49,10 @@ const inlinePopoverHtml = renderToHtml(InlinePopover);
 import FormCompressed from './form_compressed';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
 const formCompressedHtml = renderToHtml(FormCompressed);
+
+import ControlGroup from './control_group';
+const controlGroupSource = require('!!raw-loader!./control_group');
+const controlGroupHtml = renderToHtml(ControlGroup);
 
 export const FormLayoutsExample = {
   title: 'Form layouts',
@@ -215,5 +220,21 @@ export const FormLayoutsExample = {
       </p>
     ),
     demo: <InlinePopover />,
+  }, {
+    title: 'Groups',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: controlGroupSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: controlGroupHtml,
+    }],
+    text: (
+      <p>
+        For use in confined spaces.
+      </p>
+    ),
+    demo: <ControlGroup />,
+    props: { EuiFormControlGroup }
   }],
 };
