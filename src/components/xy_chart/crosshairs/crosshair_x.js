@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AbstractSeries, Crosshair } from 'react-vis';
 
 /**
- * The Crosshair used by the XYChart as main tooltip mechanism along X axis.
+ * The Crosshair used by the XYChart as main tooltip mechanism along X axis (vertical).
  */
 export class EuiCrosshairX extends AbstractSeries {
   state = {
@@ -29,12 +29,12 @@ export class EuiCrosshairX extends AbstractSeries {
     return null;
   }
 
-  static _computeDataFromXValue(dataSeries, crosshairX) {
+  static _computeDataFromXValue(dataSeries, crosshairValue) {
     const filteredAndFlattenDataByX = dataSeries
       .filter(series => series) // get only cleaned data series
       .map((series, seriesIndex) => {
         return series
-          .filter(dataPoint => dataPoint.x === crosshairX)
+          .filter(dataPoint => dataPoint.x === crosshairValue)
           .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint }, seriesIndex }));
       })
       .reduce((acc, val) => acc.concat(val), []);
@@ -102,6 +102,10 @@ export class EuiCrosshairX extends AbstractSeries {
       .map((data, seriesIndex) => {
         let minDistance = Number.POSITIVE_INFINITY;
         let value = null;
+        // TODO to increase the performance, it's better to use a search algorithm like bisect
+        // starting from the assumption that we will always have the same length for
+        // for each series and we can assume that the scale x index can reflect more or less
+        // the position of the mouse inside the array.
         data.forEach((item) => {
           let itemXCoords;
           const xCoord = xScaleFn(item);
@@ -148,14 +152,14 @@ export class EuiCrosshairX extends AbstractSeries {
           : d.y;
         return { x, y, originalValues: d, seriesIndex: value.seriesIndex };
       });
-
-    if (this.props.onCrosshairUpdate) {
-      this.props.onCrosshairUpdate(values[0].x);
+    const { onCrosshairUpdate } = this.props;
+    if (onCrosshairUpdate) {
+      onCrosshairUpdate(values[0].x);
     }
 
-    this.setState({
+    this.setState(() => ({
       values,
-    });
+    }));
   }
 
   render() {
@@ -175,7 +179,7 @@ export class EuiCrosshairX extends AbstractSeries {
 EuiCrosshairX.displayName = 'EuiCrosshairX';
 
 EuiCrosshairX.propTypes = {
-  ... AbstractSeries.propTypes,
+  /** The crosshair value used to display this crosshair (doesn't depend on mouse position) */
   crosshairValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number

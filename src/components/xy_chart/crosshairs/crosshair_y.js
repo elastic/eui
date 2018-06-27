@@ -1,13 +1,195 @@
-import React from 'react';
-import { AbstractSeries } from 'react-vis';
-import { CrosshairY } from './react_vis_crosshair_y';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+// Copyright (c) 2016 - 2017 Uber Technologies, Inc.
+//
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { AbstractSeries, ScaleUtils } from 'react-vis';
 
 /**
- * The Crosshair used by the XYChart as main tooltip mechanism along X axis.
+ * Format title by detault.
+ * @param {Array} values List of values.
+ * @returns {*} Formatted value or undefined.
+ */
+function defaultTitleFormat(values) {
+  const value = getFirstNonEmptyValue(values);
+  if (value) {
+    return {
+      title: 'x',
+      value: value.x
+    };
+  }
+}
+
+/**
+ * Format items by default.
+ * @param {Array} values Array of values.
+ * @returns {*} Formatted list of items.
+ */
+function defaultItemsFormat(values) {
+  return values.map((v, i) => {
+    if (v) {
+      return { value: v.y, title: i };
+    }
+  });
+}
+
+/**
+ * Get the first non-empty item from an array.
+ * @param {Array} values Array of values.
+ * @returns {*} First non-empty value or undefined.
+ */
+function getFirstNonEmptyValue(values) {
+  return (values || []).find(v => Boolean(v));
+}
+
+export class CrosshairY extends PureComponent {
+
+  static get propTypes() {
+    return {
+      className: PropTypes.string,
+      values: PropTypes.array,
+      series: PropTypes.object,
+      innerWidth: PropTypes.number,
+      innerHeight: PropTypes.number,
+      marginLeft: PropTypes.number,
+      marginTop: PropTypes.number,
+      orientation: PropTypes.oneOf(['left', 'right']),
+      itemsFormat: PropTypes.func,
+      titleFormat: PropTypes.func,
+      style: PropTypes.shape({
+        line: PropTypes.object,
+        title: PropTypes.object,
+        box: PropTypes.object
+      })
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      titleFormat: defaultTitleFormat,
+      itemsFormat: defaultItemsFormat,
+      style: {
+        line: {},
+        title: {},
+        box: {}
+      }
+    };
+  }
+
+  /**
+   * Render crosshair title.
+   * @returns {*} Container with the crosshair title.
+   * @private
+   */
+  _renderCrosshairTitle() {
+    const { values, titleFormat, style } = this.props;
+    const titleItem = titleFormat(values);
+    if (!titleItem) {
+      return null;
+    }
+    return (
+      <div className="rv-crosshair__title" key="title" style={style.title}>
+        <span className="rv-crosshair__title__title">{titleItem.title}</span>
+        {': '}
+        <span className="rv-crosshair__title__value">{titleItem.value}</span>
+      </div>
+    );
+  }
+
+  /**
+   * Render crosshair items (title + value for each series).
+   * @returns {*} Array of React classes with the crosshair values.
+   * @private
+   */
+  _renderCrosshairItems() {
+    const { values, itemsFormat } = this.props;
+    const items = itemsFormat(values);
+    if (!items) {
+      return null;
+    }
+    return items.filter(i => i).map(function renderValue(item, i) {
+      return (
+        <div className="rv-crosshair__item" key={`item${i}`}>
+          <span className="rv-crosshair__item__title">{item.title}</span>
+          {': '}
+          <span className="rv-crosshair__item__value">{item.value}</span>
+        </div>
+      );
+    });
+  }
+
+  render() {
+    const {
+      children,
+      className,
+      values,
+      marginTop,
+      marginLeft,
+      innerWidth,
+      style } = this.props;
+    const value = getFirstNonEmptyValue(values);
+    if (!value) {
+      return null;
+    }
+    const y = ScaleUtils.getAttributeFunctor(this.props, 'y');
+    const innerTop = y(value);
+
+    const left = marginLeft;
+    const top = marginTop + innerTop;
+    const innerClassName = `rv-crosshair__inner rv-crosshair__inner--left`;
+    return (
+      <div
+        className={`rv-crosshair ${className}`}
+        style={{ left: `${left}px`, top: `${top}px` }}
+      >
+
+        <div
+          className="rv-crosshair__line"
+          style={{ width: `${innerWidth}px`, height: '1px', ...style.line }}
+        />
+
+        <div className={innerClassName}>
+          {children ?
+          children :
+          <div className="rv-crosshair__inner__content" style={style.box}>
+            <div>
+              {this._renderCrosshairTitle()}
+              {this._renderCrosshairItems()}
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    );
+  }
+}
+
+CrosshairY.displayName = 'CrosshairY';
+
+/**
+ * The Crosshair used by the XYChart as main tooltip mechanism along Y axis (horizontal).
  */
 export class EuiCrosshairY extends AbstractSeries {
   state = {
-    crosshairValues: [],
+    values: [],
   }
 
   static get requiresSVG() {
@@ -19,23 +201,23 @@ export class EuiCrosshairY extends AbstractSeries {
   }
 
   static getDerivedStateFromProps(props) {
-    const { crosshairY, _allData } = props;
+    const { crosshairValue, _allData } = props;
 
-    if (crosshairY !== undefined) {
+    if (crosshairValue !== undefined) {
       return {
-        crosshairValues: EuiCrosshairY._computeDataFromYValue(_allData, crosshairY),
+        values: EuiCrosshairY._computeDataFromYValue(_allData, crosshairValue),
       };
     }
     return null;
   }
 
-  static _computeDataFromYValue(dataSeries, crosshairY) {
+  static _computeDataFromYValue(dataSeries, crosshairValue) {
     const filteredAndFlattenDataByY = dataSeries
       .filter(series => series) // get only cleaned data series
-      .map(series => {
+      .map((series, seriesIndex) => {
         return series
-          .filter(dataPoint => dataPoint.y === crosshairY)
-          .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint } }));
+          .filter(dataPoint => dataPoint.y === crosshairValue)
+          .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint }, seriesIndex }));
       })
       .reduce((acc, val) => acc.concat(val), []);
     return filteredAndFlattenDataByY;
@@ -50,7 +232,7 @@ export class EuiCrosshairY extends AbstractSeries {
       this.props.onCrosshairUpdate(null);
     }
     this.setState({
-      crosshairValues: []
+      values: []
     })
   }
 
@@ -69,9 +251,9 @@ export class EuiCrosshairY extends AbstractSeries {
   }
 
   _itemsFormat = (dataPoints) => {
-    return dataPoints.map((d, i) => {
+    return dataPoints.map(d => {
       return {
-        title: `series ${i}`, // TODO specify series title or default one
+        title: `series ${d.seriesIndex}`, // TODO specify series title or default one
         value: d.x,
       };
     });
@@ -99,9 +281,13 @@ export class EuiCrosshairY extends AbstractSeries {
     let globalMinDistance = Number.POSITIVE_INFINITY;
 
     const nearestYData = dataSeries
-      .map(data => {
+      .map((data, seriesIndex) => {
         let minDistance = Number.POSITIVE_INFINITY;
         let value = null;
+        // TODO to increase the performance, it's better to use a search algorithm like bisect
+        // starting from the assumption that we will always have the same length for
+        // for each series and we can assume that the scale y index can reflect more or less
+        // the position of the mouse inside the array.
         data.forEach((item) => {
           let itemYCoords;
           const yCoord = yScaleFn(item);
@@ -129,11 +315,13 @@ export class EuiCrosshairY extends AbstractSeries {
         return {
           minDistance,
           value,
+          seriesIndex,
         };
       })
       .filter(d => d);
+
     // filter and map nearest X data per dataseries to get only the nearet onces
-    const crosshairValues = nearestYData
+    const values = nearestYData
       .filter(value => value.minDistance === globalMinDistance)
       .map(value => {
         // check if we are on histograms and we need to show the right x and y values
@@ -144,23 +332,23 @@ export class EuiCrosshairY extends AbstractSeries {
         const x = typeof d.x0 === 'number'
           ? (d.x - d.x0)
           : d.x;
-        return { x, y, originalValues: d };
+        return { x, y, originalValues: d, seriesIndex: value.seriesIndex };
       });
-
-    if (this.props.onCrosshairUpdate) {
-      this.props.onCrosshairUpdate(crosshairValues[0].y);
+    const { onCrosshairUpdate } = this.props;
+    if (onCrosshairUpdate) {
+      onCrosshairUpdate(values[0].y);
     }
 
-    this.setState({
-      crosshairValues,
-    });
+    this.setState(() => ({
+      values,
+    }));
   }
 
   render() {
-    const { crosshairValues } = this.state
+    const { values } = this.state
     return (
       <CrosshairY
-        values={crosshairValues}
+        values={values}
         style={{ line: { background: 'rgb(218, 218, 218)' } }}
         itemsFormat={this._itemsFormat}
         titleFormat={this._titleFormat}
@@ -171,3 +359,12 @@ export class EuiCrosshairY extends AbstractSeries {
 }
 
 EuiCrosshairY.displayName = 'EuiCrosshairY';
+
+EuiCrosshairY.propTypes = {
+  /** The crosshair value used to display this crosshair (doesn't depend on mouse position) */
+  crosshairValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+}
+EuiCrosshairY.defaultProps = {};
