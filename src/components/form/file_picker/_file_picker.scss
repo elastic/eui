@@ -63,14 +63,8 @@
     position: relative; /* 2 */
     z-index: 1; /* 2 */
     display: block;
-    background: $euiColorLightestShade;
     padding: $euiSizeL;
-    background: $euiFormBackgroundColor;
     text-align: center;
-    transition:
-      box-shadow $euiAnimSpeedNormal ease-in,
-      background $euiAnimSpeedNormal ease-in,
-      color $euiAnimSpeedNormal ease-in;
 
     @at-root {
       .euiFilePicker--compressed#{&} {

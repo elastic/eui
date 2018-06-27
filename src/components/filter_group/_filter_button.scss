@@ -10,22 +10,14 @@
   flex-grow: 0; // Shrink by default
 
   .euiFilterButton__content {
-    @include euiFormControlStyle();
+    @include euiFormControlStyle($borderOnly: true, $includeStates: false);
     width: auto;
     max-width: none;
-    box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
     white-space: nowrap;
-  }
-
-  &:focus .euiFilterButton__content {
-    @include euiFormControlFocusStyle;
-    background-color: $euiFormBackgroundColor;
-    box-shadow: inset 0 0 0 1px $euiFormBorderColor; /* 1 */
   }
 
   &:disabled .euiFilterButton__content {
     @include euiFormControlDisabledStyle;
-    box-shadow: inset 0 0 0 1px $euiFormBorderColor--disabled; /* 1 */
     font-style: italic;
   }
 
@@ -50,7 +42,8 @@
   }
 
   &.euiFilterButton-isSelected,
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     .euiFilterButton__textShift {
       text-decoration: underline;
     }
