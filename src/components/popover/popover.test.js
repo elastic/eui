@@ -7,6 +7,13 @@ import { EuiPopover } from './popover';
 
 import { keyCodes } from '../../services';
 
+jest.mock(
+  '../portal',
+  () => ({
+    EuiPortal: ({ children }) => children
+  })
+);
+
 let id = 0;
 const getId = () => (`${id++}`);
 

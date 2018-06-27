@@ -14,6 +14,21 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiPanel, SIZES } from '../panel';
 
+import { EuiPortal } from '../portal';
+
+import { findPopoverPosition } from '../../services/popover/popover_positioning';
+
+const anchorPositionToPopoverPositionMap = {
+  'up': 'top',
+  'right': 'right',
+  'down': 'bottom',
+  'left': 'left'
+};
+function getPopoverPositionFromAnchorPosition(anchorPosition) {
+  const [, primaryPosition] = anchorPosition.match(/^(.*?)[A-Z]/);
+  return anchorPositionToPopoverPositionMap[primaryPosition];
+}
+
 const anchorPositionToClassNameMap = {
   'upCenter': 'euiPopover--anchorUpCenter',
   'upLeft': 'euiPopover--anchorUpLeft',
@@ -30,6 +45,11 @@ const anchorPositionToClassNameMap = {
 };
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
+
+const DEFAULT_POPOVER_STYLES = {
+  top: 50,
+  left: 50,
+};
 
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -58,6 +78,8 @@ export class EuiPopover extends Component {
     super(props);
 
     this.closingTransitionTimeout = undefined;
+    this.portal = null;
+    this.button = null;
 
     this.state = {
       prevProps: {
@@ -65,6 +87,9 @@ export class EuiPopover extends Component {
       },
       isClosing: false,
       isOpening: false,
+      popoverStyles: DEFAULT_POPOVER_STYLES,
+      arrowStyles: {},
+      arrowPosition: null,
     };
   }
 
@@ -135,7 +160,36 @@ export class EuiPopover extends Component {
     if (this.props.ownFocus) {
       this.panel = node;
     }
+
+    let popoverStyles = DEFAULT_POPOVER_STYLES;
+    let arrowStyles = {};
+    let arrowPosition = null;
+    if (node != null) {
+      // panel is coming into existance
+      const { top, left, position, arrow } = findPopoverPosition({
+        position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
+        anchor: this.button,
+        popover: node,
+        offset: 16,
+        arrowConfig: {
+          arrowWidth: 32,
+          arrowBuffer: 20,
+        }
+      });
+
+      popoverStyles = {
+        top,
+        left,
+      };
+
+      arrowStyles = arrow;
+      arrowPosition = position;
+    }
+
+    this.setState({ popoverStyles, arrowStyles, arrowPosition });
   };
+
+  buttonRef = node => this.button = node;
 
   render() {
     const {
@@ -163,7 +217,12 @@ export class EuiPopover extends Component {
       },
     );
 
-    const panelClasses = classNames('euiPopover__panel', panelClassName);
+    const panelClasses = classNames(
+      'euiPopover__panel',
+      { 'euiPopover__panel-isOpen': this.state.isOpening },
+      { 'euiPopover__panel-withTitle': withTitle },
+      panelClassName
+    );
 
     let panel;
 
@@ -190,26 +249,35 @@ export class EuiPopover extends Component {
         );
       }
 
+      const arrowClassNames = classNames(
+        'euiPopover__panel__arrow',
+        `euiPopover__panel__arrow-${this.state.arrowPosition}`
+      );
+
       panel = (
-        <FocusTrap
-          active={ownFocus}
-          focusTrapOptions={{
-            clickOutsideDeactivates: true,
-            initialFocus,
-          }}
-        >
-          {focusTrapScreenReaderText}
-          <EuiPanel
-            panelRef={this.panelRef}
-            className={panelClasses}
-            paddingSize={panelPaddingSize}
-            tabIndex={tabIndex}
-            hasShadow
-            aria-live={ariaLive}
+        <EuiPortal>
+          <FocusTrap
+            active={ownFocus}
+            focusTrapOptions={{
+              clickOutsideDeactivates: true,
+              initialFocus,
+            }}
           >
-            {children}
-          </EuiPanel>
-        </FocusTrap>
+            {focusTrapScreenReaderText}
+            <EuiPanel
+              panelRef={this.panelRef}
+              className={panelClasses}
+              paddingSize={panelPaddingSize}
+              tabIndex={tabIndex}
+              hasShadow
+              aria-live={ariaLive}
+              style={this.state.popoverStyles}
+            >
+              <div className={arrowClassNames} style={this.state.arrowStyles}/>
+              {children}
+            </EuiPanel>
+          </FocusTrap>
+        </EuiPortal>
       );
     }
 
@@ -221,7 +289,9 @@ export class EuiPopover extends Component {
           ref={popoverRef}
           {...rest}
         >
-          {button}
+          <div ref={this.buttonRef}>
+            {button}
+          </div>
           {panel}
         </div>
       </EuiOutsideClickDetector>
