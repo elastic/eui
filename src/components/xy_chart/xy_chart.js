@@ -1,18 +1,23 @@
-import React, { PureComponent } from 'react';
-import { XYPlot, makeVisFlexible, AbstractSeries } from 'react-vis';
+import React, { PureComponent, Fragment } from 'react';
+import { XYPlot, AbstractSeries, makeVisFlexible  } from 'react-vis';
 
 import PropTypes from 'prop-types';
+import { EuiEmptyPrompt } from '../empty_prompt';
 import { EuiSelectionBrush } from './brush';
 import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
-import StatusText from './status-text';
 import { getSeriesChildren } from './utils/series_utils';
-import { EuiXYChartUtils } from './utils/chart_utils';
-const { HORIZONTAL, VERTICAL, BOTH } = EuiXYChartUtils.ORIENTATION;
-const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = EuiXYChartUtils.SCALE_TYPE;
+import { ORIENTATION, SCALE_TYPE } from './utils/chart_utils';
+const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
+const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = SCALE_TYPE;
 
+
+/**
+ * The extended version of the react-vis XYPlot with the mouseLeave and mouseUp handlers.
+ * TODO: send a PR to react-vis for incorporate these two changes directly into XYPlot class.
+ */
 class XYExtendedPlot extends XYPlot {
   /**
    * Trigger onMouseLeave handler if it was passed in props.
@@ -59,12 +64,18 @@ class XYExtendedPlot extends XYPlot {
       style,
       width,
       height,
-      errorText,
     } = this.props;
 
     if (!dontCheckIfEmpty && this._isPlotEmpty()) {
       return (
-        <StatusText text={errorText} width={width} height={height} />
+        <div
+          className={`rv-xy-plot ${className}`}
+          style={{
+            width: `${width}px`,
+            height: `${height}px`,
+            ...this.props.style
+          }}
+        />
       );
     }
     const components = this._getClonedChildComponents();
@@ -104,6 +115,12 @@ class XYExtendedPlot extends XYPlot {
   }
 }
 
+
+/**
+ * The root component of any XY chart.
+ * It renders an react-vis XYPlot including default axis and a valid crosshair.
+ * You can also enable the Selection Brush.
+ */
 class XYChart extends PureComponent {
   state = {
     mouseOver: false,
@@ -111,38 +128,64 @@ class XYChart extends PureComponent {
   colorIterator = 0;
   _xyPlotRef = React.createRef();
 
-  _renderChildren = (child, i) => {
+
+  /**
+   * Checks if the plot is empty, looking at existing series and data props.
+   */
+  _isEmptyPlot(children) {
+    return React.Children
+      .toArray(children)
+      .filter(this._isAbstractSeries)
+      .filter(child => {
+        return child.props.data && child.props.data.length > 0
+      })
+      .length === 0
+  }
+
+  /**
+   * Checks if a react child is an AbstractSeries
+   */
+  _isAbstractSeries(child) {
     const { prototype } = child.type;
     // Avoid applying chart props to non series children
-    if (!(prototype instanceof AbstractSeries)) {
-      return child;
-    }
+    return prototype instanceof AbstractSeries
+  }
 
-    const props = {
-      id: `chart-${i}`,
-    };
 
-    if (!child.props.color) {
-      props.color = VISUALIZATION_COLORS[this.colorIterator];
+  /**
+   * Render children adding a valid EUI visualization color if the color prop is not specified.
+   */
+  _renderChildren (children) {
+    let colorIterator = 0;
 
-      this.colorIterator++;
-      if (this.colorIterator > VISUALIZATION_COLORS.length - 1) {
-        this.colorIterator = 0;
+    return  React.Children.map(children, (child, i) => {
+      // Avoid applying color props to non series children
+      if (!this._isAbstractSeries(child)) {
+        return child;
       }
-    }
 
-    return React.cloneElement(child, props);
-  };
+      const props = {
+        id: `chart-${i}`,
+      };
+
+      if (!child.props.color) {
+        props.color = VISUALIZATION_COLORS[colorIterator % VISUALIZATION_COLORS.length];
+        colorIterator++;
+      }
+
+      return React.cloneElement(child, props);
+    });
+  }
 
   render() {
     const {
+      children,
       width,
       height,
       xType,
       yType,
       stackBy,
-      errorText,
-      children,
+      statusText,
       xDomain,
       yDomain,
       yPadding,
@@ -159,14 +202,27 @@ class XYChart extends PureComponent {
       ...rest
     } = this.props;
 
-    this.colorIterator = 0;
+    if (this._isEmptyPlot(children)) {
+      return (
+        <EuiEmptyPrompt
+          iconType="stats"
+          title={<h2>Chart not available</h2>}
+          body={
+            <Fragment>
+              <p>{ statusText }</p>
+            </Fragment>
+          }
+        />
+      )
+    }
+
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
 
     return (
       <div {...rest}>
         <XYExtendedPlot
           ref={this._xyPlotRef}
-          errorText={errorText}
+          dontCheckIfEmpty
           width={width}
           animation={animateData}
           height={height}
@@ -179,7 +235,7 @@ class XYChart extends PureComponent {
           yPadding={yPadding}
           xPadding={xPadding}
         >
-          {React.Children.map(children, this._renderChildren)}
+          {this._renderChildren(children)}
           {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
           {showCrosshair && (
             <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
@@ -203,7 +259,7 @@ XYChart.propTypes = {
   width: PropTypes.number.isRequired,
   /** The initial height of the chart. */
   height: PropTypes.number.isRequired,
-  /** The orientation of the chart. */
+  /** The orientation of the chart. Used by grids and crosshair. */
   orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
   /** If the chart animates on data changes. */
   animateData: PropTypes.bool,
@@ -221,11 +277,11 @@ XYChart.propTypes = {
   xPadding: PropTypes.number,
   /** The vertical padding between the chart borders and chart elements. */
   yPadding: PropTypes.number,
-  /** Add a text to show an error on the chart */
-  errorText: PropTypes.string,
+  /** Add an additional status text above the graph status message*/
+  statusText: PropTypes.string,
   /** Shows the crosshair tooltip on mouse move.*/
   showCrosshair: PropTypes.bool,
-  /**  Specify an X or Y axis value to display a crosshair. */
+  /** Specify the axis value where to display crosshair based on chart orientation value. */
   crosshairValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Callback when the crosshair position is updated. */
   onCrosshairUpdate: PropTypes.func,
@@ -250,7 +306,6 @@ XYChart.defaultProps = {
   showDefaultAxis: true,
   enableSelectionBrush: false,
   selectionBrushOrientation: HORIZONTAL,
-  onSelectionBrushEnd: () => ({}),
 };
 
 export const EuiXYChart = makeVisFlexible(XYChart);
