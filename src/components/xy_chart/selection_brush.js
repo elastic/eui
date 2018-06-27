@@ -155,7 +155,6 @@ export class EuiSelectionBrush extends AbstractSeries {
   render() {
     const { marginLeft, marginTop, color, opacity } = this.props;
     const { rectArea: { x, y, width, height } } = this.state;
-
     return (
       <g
         transform={`translate(${marginLeft}, ${marginTop})`}

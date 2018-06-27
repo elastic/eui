@@ -3,7 +3,7 @@ import { XYPlot, AbstractSeries, makeVisFlexible  } from 'react-vis';
 
 import PropTypes from 'prop-types';
 import { EuiEmptyPrompt } from '../empty_prompt';
-import { EuiSelectionBrush } from './brush';
+import { EuiSelectionBrush } from './selection_brush';
 import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
