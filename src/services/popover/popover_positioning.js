@@ -328,7 +328,6 @@ function getCrossAxisPosition({
   availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpace);
   availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpace);
 
-
   const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2;
 
   let alignAmount = 0;
@@ -337,13 +336,13 @@ function getCrossAxisPosition({
   let shiftDirection = 1;
 
   if (align != null) {
+    // no alignment, find how much the container boundary requires the content to shift
     alignDirection = (align === 'top' || align === 'left') ? 1 : -1;
     alignAmount = contentOverflowSize;
 
     const alignedOverflowAmount = contentOverflowSize + alignAmount;
     const needsShift = alignedOverflowAmount > availableSpace[positionComplements[align]];
     amountOfShiftNeeded = needsShift ? alignedOverflowAmount - availableSpace[positionComplements[align]] : 0;
-    amountOfShiftNeeded = Math.max(amountOfShiftNeeded, minimumSpace);
     shiftDirection = -1 * alignDirection;
   } else {
     // shifting the popover to one side may yield a better fit
@@ -362,15 +361,29 @@ function getCrossAxisPosition({
 
   // shift over the popover if necessary
   const shiftAmount = amountOfShiftNeeded * shiftDirection;
-  const crossAxisPosition = crossAxisPositionOriginal + shiftAmount + (alignAmount * alignDirection);
+  let crossAxisPosition = crossAxisPositionOriginal + shiftAmount + (alignAmount * alignDirection);
 
+  // if an `arrowConfig` is specified, find where to position the arrow
   let crossAxisArrowPosition;
-
   if (arrowConfig) {
     const { arrowWidth } = arrowConfig;
     const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
     const anchorHalfSize = anchorSizeOnCrossAxis / 2;
     crossAxisArrowPosition = anchorBoundingBox[crossAxisFirstSide] + anchorHalfSize - (arrowWidth / 2);
+
+    // make sure there's enough buffer around the arrow
+    // by calculating how how much the arrow would need to move
+    // but instead of moving the arrow, shift the popover content
+    if (crossAxisArrowPosition < crossAxisPosition + minimumSpace) {
+      // arrow is too close to the minimum side
+      const difference = crossAxisPosition + minimumSpace - crossAxisArrowPosition;
+      crossAxisPosition -= difference;
+    } else if (crossAxisArrowPosition + minimumSpace + arrowWidth > crossAxisPosition + popoverSizeOnCrossAxis) {
+      // arrow is too close to the maximum side
+      const edge = crossAxisPosition + popoverSizeOnCrossAxis;
+      const difference = crossAxisArrowPosition - (edge - minimumSpace - arrowWidth);
+      crossAxisPosition += difference;
+    }
   }
 
   return {

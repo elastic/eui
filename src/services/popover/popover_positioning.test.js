@@ -340,10 +340,10 @@ describe('popover_positioning', () => {
         })).toEqual({
           fit: 1,
           top: 50,
-          left: 65,
+          left: 75,
           arrow: {
             top: 50,
-            left: 32
+            left: 22
           }
         });
 
@@ -354,14 +354,14 @@ describe('popover_positioning', () => {
           popoverBoundingBox: makeBB(0, 100, 50, 0),
           windowBoundingBox: makeBB(0, 1024, 768, 0),
           containerBoundingBox: makeBB(0, 1024, 768, 0),
-          arrowConfig: { arrowWidth: 6, arrowBuffer: 10 }
+          arrowConfig: { arrowWidth: 6, arrowBuffer: 20 }
         })).toEqual({
           fit: 1,
           top: 110,
-          left: 35,
+          left: 25,
           arrow: {
             top: 0,
-            left: 62
+            left: 72
           }
         });
       });
@@ -377,10 +377,10 @@ describe('popover_positioning', () => {
           arrowConfig: { arrowWidth: 6, arrowBuffer: 10 }
         })).toEqual({
           fit: 1,
-          top: -80,
+          top: -82,
           left: 125,
           arrow: {
-            top: 182,
+            top: 184,
             left: 0
           }
         });
