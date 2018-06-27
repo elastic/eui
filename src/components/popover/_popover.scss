@@ -11,29 +11,50 @@
   max-width: 100%;
 }
 
-  /**
-   * 1. Can expand further, but it looks weird if it's smaller than the originating button.
-   * 2. Animation happens on the panel.
-   */
-  .euiPopover__panel {
-    position: absolute;
-    z-index: $euiZContentMenu;
-    min-width: $euiButtonMinWidth; /* 1 */
-    backface-visibility: hidden;
-    pointer-events: none;
-    transition: /* 2 */
-      opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
-      visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
-      transform $euiAnimSlightBounce $euiAnimSpeedSlow;
-    opacity: 0; /* 2 */
-    visibility: hidden; /* 2 */
-    transform: translateY(0) translateZ(0); /* 2 */
+/**
+ * 1. Can expand further, but it looks weird if it's smaller than the originating button.
+ * 2. Animation happens on the panel.
+ */
+.euiPopover__panel {
+  position: absolute;
+  z-index: $euiZContentMenu;
+  min-width: $euiButtonMinWidth; /* 1 */
+  backface-visibility: hidden;
+  pointer-events: none;
+  transition: /* 2 */
+    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+    visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
+    transform $euiAnimSlightBounce $euiAnimSpeedSlow;
+  opacity: 0; /* 2 */
+  visibility: hidden; /* 2 */
+  transform: translateY(0) translateZ(0); /* 2 */
 
-    &.euiPopover__panel-isOpen {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
+  &.euiPopover__panel-isOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  // This fakes a border on the arrow.
+  &:before {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  // This part of the arrow matches the panel.
+  &:after {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  .euiPopover__panel__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
 
     // This fakes a border on the arrow.
     &:before {
@@ -51,96 +72,82 @@
       width: 0;
     }
 
-    .euiPopover__panel__arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
-
-      // This fakes a border on the arrow.
+    &.euiPopover__panel__arrow-top {
       &:before {
-        position: absolute;
-        content: "";
-        height: 0;
-        width: 0;
+        bottom: -$euiSize + 1;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-top: $euiSize solid $euiBorderColor;
       }
 
-      // This part of the arrow matches the panel.
       &:after {
-        position: absolute;
-        content: "";
-        height: 0;
-        width: 0;
+        bottom: -$euiSize + 2;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-top: $euiSize solid $euiColorEmptyShade;
+      }
+    }
+
+    &.euiPopover__panel__arrow-right {
+      &:before {
+        left: -$euiSize;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-right: $euiSize solid $euiBorderColor;
       }
 
-      &.euiPopover__panel__arrow-top {
-        &:before {
-          bottom: -$euiSize + 1;
-          border-left: $euiSize solid transparent;
-          border-right: $euiSize solid transparent;
-          border-top: $euiSize solid $euiBorderColor;
-        }
+      &:after {
+        left: -$euiSize + 1;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-right: $euiSize solid $euiColorEmptyShade;
+      }
+    }
 
-        &:after {
-          bottom: -$euiSize + 2;
-          border-left: $euiSize solid transparent;
-          border-right: $euiSize solid transparent;
-          border-top: $euiSize solid $euiColorEmptyShade;
-        }
+    &.euiPopover__panel__arrow-bottom {
+      &:before {
+        top: -$euiSize;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-bottom: $euiSize solid $euiBorderColor;
       }
 
-      &.euiPopover__panel__arrow-right {
-        &:before {
-          left: -$euiSize;
-          top: 50%;
-          border-top: $euiSize solid transparent;
-          border-bottom: $euiSize solid transparent;
-          border-right: $euiSize solid $euiBorderColor;
-        }
+      &:after {
+        top: -$euiSize + 1;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-bottom: $euiSize solid $euiColorEmptyShade;
+      }
+    }
 
-        &:after {
-          left: -$euiSize + 1;
-          top: 50%;
-          border-top: $euiSize solid transparent;
-          border-bottom: $euiSize solid transparent;
-          border-right: $euiSize solid $euiColorEmptyShade;
-        }
+    &.euiPopover__panel__arrow-left {
+      &:before {
+        right: -$euiSize + 1;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-left: $euiSize solid $euiBorderColor;
       }
 
-      &.euiPopover__panel__arrow-bottom {
-        &:before {
-          top: -$euiSize;
-          border-left: $euiSize solid transparent;
-          border-right: $euiSize solid transparent;
-          border-bottom: $euiSize solid $euiBorderColor;
-        }
-
-        &:after {
-          top: -$euiSize + 1;
-          border-left: $euiSize solid transparent;
-          border-right: $euiSize solid transparent;
-          border-bottom: $euiSize solid $euiColorEmptyShade;
-        }
-      }
-
-      &.euiPopover__panel__arrow-left {
-        &:before {
-          right: -$euiSize + 1;
-          top: 50%;
-          border-top: $euiSize solid transparent;
-          border-bottom: $euiSize solid transparent;
-          border-left: $euiSize solid $euiBorderColor;
-        }
-
-        &:after {
-          right: -$euiSize + 2;
-          top: 50%;
-          border-top: $euiSize solid transparent;
-          border-bottom: $euiSize solid transparent;
-          border-left: $euiSize solid $euiColorEmptyShade;
-        }
+      &:after {
+        right: -$euiSize + 2;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-left: $euiSize solid $euiColorEmptyShade;
       }
     }
   }
+}
+
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpLeft,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpRight
+{
+  transform: translateY($euiSizeS) translateZ(0);
+}
 
 // Anchor DOWN
 // Anchor DOWN
@@ -162,6 +169,13 @@
       border-left-color: $euiColorLightestShade;
     }
   }
+}
+
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownLeft,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownRight
+{
+  transform: translateY(-$euiSizeS) translateZ(0);
 }
 
 // Anchor LEFT
@@ -189,6 +203,13 @@
   }
 }
 
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftUp,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftDown
+{
+  transform: translateX($euiSizeS) translateZ(0);
+}
+
 // Anchor RIGHT
 // Anchor RIGHT
 // Anchor RIGHT
@@ -212,4 +233,12 @@
   &:after {
     top: $euiSizeXS;
   }
+}
+
+
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightUp,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightDown
+{
+  transform: translateX(-$euiSizeS) translateZ(0);
 }

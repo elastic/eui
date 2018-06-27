@@ -79,7 +79,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
   <div>
     <div
       aria-live="assertive"
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover--anchorDownCenter"
       style="top:50px;left:50px"
     >
       <div
@@ -101,7 +101,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
   <div>
     <div
       aria-live="assertive"
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover--anchorDownCenter"
       style="top:50px;left:50px"
     >
       <div
@@ -129,7 +129,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
     </p>
     <div
       aria-live="off"
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel"
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover--anchorDownCenter"
       style="top:50px;left:50px"
       tabindex="0"
     >
@@ -152,7 +152,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
   <div>
     <div
       aria-live="assertive"
-      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel test"
+      class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover--anchorDownCenter test"
       style="top:50px;left:50px"
     >
       <div
@@ -174,7 +174,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
   <div>
     <div
       aria-live="assertive"
-      class="euiPanel euiPanel--paddingSmall euiPanel--shadow euiPopover__panel"
+      class="euiPanel euiPanel--paddingSmall euiPanel--shadow euiPopover__panel euiPopover--anchorDownCenter"
       style="top:50px;left:50px"
     >
       <div

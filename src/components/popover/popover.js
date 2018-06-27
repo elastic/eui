@@ -28,6 +28,14 @@ function getPopoverPositionFromAnchorPosition(anchorPosition) {
   const [, primaryPosition] = anchorPosition.match(/^(.*?)[A-Z]/);
   return anchorPositionToPopoverPositionMap[primaryPosition];
 }
+function getPopoverAlignFromAnchorPosition(anchorPosition) {
+  const [, align] = anchorPosition.match(/([A-Z].*?)$/);
+
+  // this performs two tasks:
+  // 1. normalizes the align position by lowercasing it
+  // 2. `center` doesn't exist in the lookup map which converts it to `undefined` meaning no align
+  return anchorPositionToPopoverPositionMap[align.toLowerCase()];
+}
 
 const anchorPositionToClassNameMap = {
   'upCenter': 'euiPopover--anchorUpCenter',
@@ -168,12 +176,13 @@ export class EuiPopover extends Component {
       // panel is coming into existance
       const { top, left, position, arrow } = findPopoverPosition({
         position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
+        align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
         anchor: this.button,
         popover: node,
         offset: 16,
         arrowConfig: {
           arrowWidth: 32,
-          arrowBuffer: 20,
+          arrowBuffer: 5,
         }
       });
 
@@ -219,6 +228,7 @@ export class EuiPopover extends Component {
 
     const panelClasses = classNames(
       'euiPopover__panel',
+      anchorPositionToClassNameMap[anchorPosition],
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
       panelClassName
