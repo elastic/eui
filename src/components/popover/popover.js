@@ -86,7 +86,6 @@ export class EuiPopover extends Component {
     super(props);
 
     this.closingTransitionTimeout = undefined;
-    this.portal = null;
     this.button = null;
 
     this.state = {
