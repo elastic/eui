@@ -56,6 +56,20 @@ export class EuiAccordion extends Component {
     }));
   }
 
+  setChildContentRef = (node) => {
+    this.childContent = node;
+
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+
+    if (node) {
+      this.observer = new MutationObserver(this.setChildContentHeight);
+      this.observer.observe(this.childContent, { childList: true, subtree: true });
+    }
+  }
+
   render() {
     const {
       children,
@@ -140,7 +154,7 @@ export class EuiAccordion extends Component {
           ref={node => { this.childWrapper = node; }}
           id={id}
         >
-          <div ref={node => { this.childContent = node; }}>
+          <div ref={this.setChildContentRef}>
             <div className={paddingClass}>
               {children}
             </div>

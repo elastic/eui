@@ -1,15 +1,16 @@
-/*
- * 1. Ensure the icon padding remains when in readOnly mode
- */
 
 @function euiFormControlGradient($color: $euiColorPrimary) {
   @return linear-gradient(to top,
     $color,
-    $color ($euiSizeXS / 2),
-    transparent ($euiSizeXS / 2),
+    $color 2px,
+    transparent 2px,
     transparent 100%
   );
 }
+
+/**
+ * 1. Ensure the icon padding remains when in readOnly mode
+ */
 
 @mixin euiFormControlSize($height: $euiFormControlHeight) {
   max-width: $euiFormMaxWidth;
@@ -89,8 +90,8 @@
 @mixin euiFormControlDisabledStyle() {
   cursor: not-allowed;
   color: $euiFormControlDisabledColor;
-  background: $euiFormBackgroundColor--disabled;
-  box-shadow: inset 0 0 0 1px $euiFormBorderColor--disabled;
+  background: $euiFormBackgroundDisabledColor;
+  box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
   &::placeholder {
     color: $euiFormControlDisabledColor;
@@ -106,8 +107,9 @@
 }
 
 /**
- * 1. Override invalid state with focus state.
+ * 2. Override invalid state with focus state.
  */
+
 @mixin euiFormControlStyle($borderOnly: false, $includeStates: true) {
   @include euiFormControlSize;
   @include euiFormControlDefaultShadow($borderOnly);
@@ -125,17 +127,17 @@
   }
 
   &--compressed {
-    padding-top: $euiFormControlPadding--compressed;
-    padding-bottom: $euiFormControlPadding--compressed;
-    height: $euiFormControlHeight--compressed;
+    padding-top: $euiFormControlCompressedPadding;
+    padding-bottom: $euiFormControlCompressedPadding;
+    height: $euiFormControlCompressedHeight;
   }
 
   @if ($includeStates) {
-    &:invalid { /* 1 */
+    &:invalid { /* 2 */
       @include euiFormControlInvalidStyle;
     }
 
-    &:focus { /* 1 */
+    &:focus { /* 2 */
       @include euiFormControlFocusStyle($borderOnly);
     }
 
@@ -150,9 +152,7 @@
 
 }
 
-//
 // Custom styles and states for checkboxes and radios
-//
 
 @mixin euiCustomControl($type: null, $size: $euiSize){
 

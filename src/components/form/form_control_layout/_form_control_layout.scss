@@ -35,7 +35,7 @@
     border-right: 1px solid $euiFormBorderColor;
 
     &:disabled {
-      background-color: $euiFormBackgroundColor--disabled;
+      background-color: $euiFormBackgroundDisabledColor;
       color: $euiFormControlDisabledColor; // ensures established contrast
     }
 
@@ -46,7 +46,7 @@
       margin-bottom: 0;
       padding: $euiFormControlPadding;
       border: none;
-      background-color: $euiFormBackgroundColor--disabled;
+      background-color: $euiFormBackgroundDisabledColor;
       line-height: $euiFontSize;
     }
 
