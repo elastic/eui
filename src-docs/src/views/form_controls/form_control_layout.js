@@ -115,7 +115,7 @@ export default () => (
     <EuiFormControlLayout
       prepend={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}
     >
-      <input type="text" className="euiFieldText" id="textField19" />
+      <input type="text" className="euiFieldText euiFieldText--inGroup" id="textField19" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -123,7 +123,7 @@ export default () => (
     <EuiFormControlLayout
       append={<EuiText size="xs"><strong>%</strong></EuiText>}
     >
-      <input type="number" className="euiFieldNumber" />
+      <input type="number" className="euiFieldNumber euiFieldNumber--inGroup" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -133,7 +133,7 @@ export default () => (
       clear={{ onClick: () => {} }}
       prepend={<EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">Button</EuiButtonEmpty>}
     >
-      <input type="text" className="euiFieldText" />
+      <input type="text" className="euiFieldText euiFieldText--inGroup" />
     </EuiFormControlLayout>
   </Fragment>
 );

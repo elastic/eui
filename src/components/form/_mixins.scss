@@ -10,6 +10,7 @@
 
 /**
  * 1. Ensure the icon padding remains when in readOnly mode
+ * 2. Account for inner box-shadow style border when in group
  */
 
 @mixin euiFormControlSize(
@@ -28,6 +29,14 @@
 
     &--compressed {
       height: $euiFormControlCompressedHeight;
+    }
+
+    &--inGroup {
+      height: $euiFormControlHeight - 2px; /* 2 */
+    }
+
+    &--inGroup#{&}--compressed {
+      height: $euiFormControlCompressedHeight - 2px; /* 2 */
     }
   }
 }
@@ -140,6 +149,10 @@
     &--compressed {
       padding-top: $euiFormControlCompressedPadding;
       padding-bottom: $euiFormControlCompressedPadding;
+    }
+
+    &--inGroup {
+      box-shadow: none !important;
     }
   }
 
