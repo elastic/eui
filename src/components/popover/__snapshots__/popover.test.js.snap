@@ -5,7 +5,9 @@ exports[`EuiPopover children is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="1"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -18,7 +20,9 @@ exports[`EuiPopover is rendered 1`] = `
   data-test-subj="test subject string"
   id="0"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -29,7 +33,9 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="4"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -40,7 +46,9 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownRight"
   id="6"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -51,7 +59,9 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
   class="euiPopover euiPopover--anchorLeftCenter"
   id="5"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -62,7 +72,9 @@ exports[`EuiPopover props isOpen defaults to false 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="7"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>
@@ -73,7 +85,9 @@ exports[`EuiPopover props isOpen renders true 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="8"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
   <div>
@@ -95,7 +109,9 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="9"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
   <div>
@@ -117,7 +133,9 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="10"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
   <div>
@@ -146,7 +164,9 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="11"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
   <div>
@@ -168,7 +188,9 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter"
   id="12"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
   <div>
@@ -190,7 +212,9 @@ exports[`EuiPopover props withTitle is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiPopover--withTitle"
   id="2"
 >
-  <div>
+  <div
+    class="euiPopover__anchor"
+  >
     <button />
   </div>
 </div>

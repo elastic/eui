@@ -14,7 +14,9 @@ exports[`EuiHeaderLinks is rendered 1`] = `
     class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
     id="headerListMenu"
   >
-    <div>
+    <div
+      class="euiPopover__anchor"
+    >
       <div
         class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
       >

@@ -313,7 +313,7 @@ export class EuiPopover extends Component {
           ref={popoverRef}
           {...rest}
         >
-          <div ref={this.buttonRef}>
+          <div className="euiPopover__anchor" ref={this.buttonRef}>
             {button}
           </div>
           {panel}

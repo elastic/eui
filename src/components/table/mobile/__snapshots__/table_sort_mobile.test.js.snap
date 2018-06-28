@@ -10,7 +10,9 @@ exports[`EuiTableSortMobile is rendered 1`] = `
     data-test-subj="test subject string"
     id="sortPopover"
   >
-    <div>
+    <div
+      class="euiPopover__anchor"
+    >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--iconRight euiButtonEmpty--flushRight"
         type="button"
