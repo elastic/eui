@@ -2,37 +2,38 @@
 
 .euiFormControlLayout {
   // Let the height expand as needed
-  @include euiFormControlSize(auto);
+  @include euiFormControlSize(auto, $includeAlternates: true);
+}
 
-  display: inline-block;
+.euiFormControlLayout__childrenWrapper {
   position: relative;
 }
 
-.euiFormControlLayout--fullWidth {
-  width: 100%;
-  max-width: 100%;
-}
+/**
+ * 1. Account for inner box-shadow style border
+ */
 
-// If it contains any inline labels,
-// make the whole layout have the form control style
-
-.euiFormControlLayout--hasLabel {
-  // Match just the regular box-shadow of inputs
-  @include euiFormControlStyle();
+.euiFormControlLayout--group {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow();
   display: flex;
   padding: 1px; /* 1 */
 
-  .euiFormControlLayout__child--noStyle {
+  .euiFormControlLayout__childrenWrapper {
     flex-grow: 1;
+  }
+
+  // Change the height and remove drop shadow of the input
+  .euiFormControlLayout__child--noStyle {
     height: $euiFormControlHeight - 2px; /* 1 */
     box-shadow: none !important;
   }
 
-  .euiFormControlLayout__inlineLabel {
+  .euiFormControlLayout__prepend,
+  .euiFormControlLayout__append {
     flex-shrink: 0;
     height: $euiFormControlHeight - 2px; /* 1 */
     line-height: $euiFontSize;
-    border-right: 1px solid $euiFormBorderColor;
 
     &:disabled {
       background-color: $euiFormBackgroundDisabledColor;
@@ -49,9 +50,36 @@
       background-color: $euiFormBackgroundDisabledColor;
       line-height: $euiFontSize;
     }
+  }
 
-    &.euiText {
-      line-height: 1em;
+  //
+  // Borders
+
+  .euiFormControlLayout__prepend {
+    border-right: 1px solid $euiFormBorderColor;
+  }
+
+  .euiFormControlLayout__append {
+    border-left: 1px solid $euiFormBorderColor;
+  }
+
+  //
+  // Compressed alterations
+
+  &.euiFormControlLayout--compressed {
+    .euiFormControlLayout__child--noStyle {
+      height: $euiFormControlCompressedHeight - 2px; /* 1 */
+    }
+
+    .euiFormControlLayout__prepend,
+    .euiFormControlLayout__append {
+      height: $euiFormControlCompressedHeight - 2px; /* 1 */
+
+      &.euiFormLabel,
+      &.euiText {
+        padding-top: $euiFormControlCompressedPadding;
+        padding-bottom: $euiFormControlCompressedPadding;
+      }
     }
   }
 }

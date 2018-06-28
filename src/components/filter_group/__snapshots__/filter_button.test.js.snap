@@ -10,9 +10,13 @@ exports[`EuiFilterButton is rendered 1`] = `
   <div
     class="euiFormControlLayout euiFilterButton__content"
   >
-    <span
-      class="euiFilterButton__textShift"
-    />
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiFilterButton__textShift"
+      />
+    </div>
   </div>
 </button>
 `;

@@ -12,10 +12,24 @@
  * 1. Ensure the icon padding remains when in readOnly mode
  */
 
-@mixin euiFormControlSize($height: $euiFormControlHeight) {
+@mixin euiFormControlSize(
+  $height: $euiFormControlHeight,
+  $includeAlternates: false
+) {
+  // Default
   max-width: $euiFormMaxWidth;
   width: 100%;
   height: $height;
+
+  @if ($includeAlternates) {
+    &--fullWidth {
+      max-width: 100%;
+    }
+
+    &--compressed {
+      height: $euiFormControlCompressedHeight;
+    }
+  }
 }
 
 @mixin euiFormControlWithIcon($isIconOptional: false, $side: "left") {
@@ -110,9 +124,9 @@
  * 2. Override invalid state with focus state.
  */
 
-@mixin euiFormControlStyle($borderOnly: false, $includeStates: true) {
-  @include euiFormControlSize;
-  @include euiFormControlDefaultShadow($borderOnly);
+@mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
+  @include euiFormControlSize($includeAlternates: $includeSizes);
+  @include euiFormControlDefaultShadow();
 
   border: none;
   font-size: $euiFontSizeS;
@@ -122,14 +136,11 @@
   color: $euiTextColor;
   border-radius: 0;
 
-  &--fullWidth {
-    max-width: 100%;
-  }
-
-  &--compressed {
-    padding-top: $euiFormControlCompressedPadding;
-    padding-bottom: $euiFormControlCompressedPadding;
-    height: $euiFormControlCompressedHeight;
+  @if ($includeSizes) {
+    &--compressed {
+      padding-top: $euiFormControlCompressedPadding;
+      padding-bottom: $euiFormControlCompressedPadding;
+    }
   }
 
   @if ($includeStates) {
@@ -138,7 +149,7 @@
     }
 
     &:focus { /* 2 */
-      @include euiFormControlFocusStyle($borderOnly);
+      @include euiFormControlFocusStyle();
     }
 
     &:disabled {
@@ -149,7 +160,6 @@
       @include euiFormControlReadOnlyStyle;
     }
   }
-
 }
 
 // Custom styles and states for checkboxes and radios

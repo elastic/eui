@@ -113,20 +113,17 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
-      inlineLabel={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}
+      prepend={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}
     >
-      <input type="text" className="euiFieldText euiFieldText--noOuterStyle" id="textField19" placeholder="Placeholder" />
+      <input type="text" className="euiFieldText" id="textField19" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
-      inlineLabel={{
-        node: <EuiText size="xs" htmlFor="textField20"><strong>%</strong></EuiText>,
-        side: 'right'
-      }}
+      append={<EuiText size="xs"><strong>%</strong></EuiText>}
     >
-      <input type="number" className="euiFieldNumber" id="textField20" defaultValue="3" step="1" min="0" max="100" />
+      <input type="number" className="euiFieldNumber" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -134,9 +131,9 @@ export default () => (
     <EuiFormControlLayout
       isLoading
       clear={{ onClick: () => {} }}
-      inlineLabel={<EuiButtonEmpty>Button</EuiButtonEmpty>}
+      prepend={<EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">Button</EuiButtonEmpty>}
     >
-      <input type="text" className="euiFieldText euiFieldText--noOuterStyle" id="textField21" defaultValue="Disabled" />
+      <input type="text" className="euiFieldText" />
     </EuiFormControlLayout>
   </Fragment>
 );
