@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Add `inspect` type option to icon typedef file. ([#950](https://github.com/elastic/eui/pull/950))
+
 - `EuiAccordion` use MutationObserver to re-calculate height when children DOM changes ([#947](https://github.com/elastic/eui/pull/947))
 
 ## [`1.0.0`](https://github.com/elastic/eui/tree/v1.0.0)
