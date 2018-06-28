@@ -15,19 +15,19 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
+          class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
           transform="translate(0,0)"
         >
           <rect
             height="85"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
             x="0"
             y="107.5"
           />
           <rect
             height="85"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="600"
             x="0"
             y="7.5"
@@ -39,7 +39,6 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="200"
@@ -47,7 +46,6 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="150"
@@ -55,7 +53,6 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="100"
@@ -63,7 +60,6 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="50"
@@ -71,7 +67,6 @@ exports[`EuiHorizontalBarSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="0"
@@ -457,19 +452,19 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
+          class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
           transform="translate(0,0)"
         >
           <rect
             height="85"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
             width="0"
             x="0"
             y="107.5"
           />
           <rect
             height="85"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
             width="600"
             x="0"
             y="7.5"
@@ -481,7 +476,6 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="200"
@@ -489,7 +483,6 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="150"
@@ -497,7 +490,6 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="100"
@@ -505,7 +497,6 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="50"
@@ -513,7 +504,6 @@ exports[`EuiHorizontalBarSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="0"
@@ -895,38 +885,38 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
+          class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
           transform="translate(0,0)"
         >
           <rect
             height="34"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
             x="150"
             y="96"
           />
           <rect
             height="34"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="300"
             x="150"
             y="136"
           />
         </g>
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
+          class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
           transform="translate(0,0)"
         >
           <rect
             height="34"
-            style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#3185FC;fill:#3185FC"
             width="0"
             x="150"
             y="89.99999999999999"
           />
           <rect
             height="34"
-            style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#3185FC;fill:#3185FC"
             width="300"
             x="150"
             y="30"
@@ -938,7 +928,6 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="190"
@@ -946,7 +935,6 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="150"
@@ -954,7 +942,6 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="110"
@@ -962,7 +949,6 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="70"
@@ -970,7 +956,6 @@ exports[`EuiHorizontalBarSeries renders stacked bar chart 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="30"

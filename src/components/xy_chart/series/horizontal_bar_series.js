@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HorizontalBarSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
+import classNames from 'classnames';
 
 export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   state = {
@@ -19,19 +20,20 @@ export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   render() {
     const { isMouseOverValue } = this.state;
     const { name, data, color, onValueClick, ...rest } = this.props;
-
+    const isHighDataVolume = data.length > 80 ? true : false;
+    const classes = classNames(
+      'euiBarSeries',
+      isHighDataVolume && 'euiBarSeries--highDataVolume',
+      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled',
+    );
     return (
       <HorizontalBarSeries
         key={name}
+        className={classes}
         onValueClick={onValueClick}
+        onValueMouseOver={this._onValueMouseOver}
+        onValueMouseOut={this._onValueMouseOut}
         color={color}
-        style={{
-          strokeWidth: 1,
-          stroke: 'white',
-          rx: 2,
-          ry: 2,
-          cursor: isMouseOverValue && onValueClick ? 'pointer' : 'default',
-        }}
         data={data}
         {...rest}
       />

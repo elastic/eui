@@ -12,6 +12,6 @@ const data = [
 
 export default () => (
   <EuiXYChart width={600} height={200} xType="ordinal">
-    <EuiVerticalBarSeries name="Tags" data={data} />
+    <EuiVerticalBarSeries name="Tags" data={data} onValueClick={(data) => { console.log({ data }) }} />
   </EuiXYChart>
 );

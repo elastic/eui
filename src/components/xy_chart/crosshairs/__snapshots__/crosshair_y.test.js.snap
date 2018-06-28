@@ -19,19 +19,19 @@ exports[`EuiCrosshairY render the Y crosshair 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--bar "
+          class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
           transform="translate(0,0)"
         >
           <rect
             height="85"
-            style="opacity: 1; stroke: white; fill: #3185FC; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #3185FC; fill: #3185FC;"
             width="450"
             x="0"
             y="107.5"
           />
           <rect
             height="85"
-            style="opacity: 1; stroke: white; fill: #3185FC; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #3185FC; fill: #3185FC;"
             width="600"
             x="0"
             y="7.5"

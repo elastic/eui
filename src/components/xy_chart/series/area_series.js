@@ -23,12 +23,14 @@ export class EuiAreaSeries extends AbstractSeries {
     return (
       <AreaSeries
         key={`${name}-area`}
+        className="euiAreaSeries"
         curve={curve}
         color={color}
         data={data}
         onSeriesClick={onSeriesClick}
+        onSeriesMouseOver={this._onSeriesMouseOver}
+        onSeriesMouseOut={this._onSeriesMouseOut}
         style={{
-          strokeWidth: 0,
           cursor: isMouseOverSeries && onSeriesClick ? 'pointer' : 'default',
         }}
         {...rest}

@@ -15,19 +15,19 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect "
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
           transform="translate(0,0)"
         >
           <rect
             height="66.66666666666666"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
             x="0"
             y="133.33333333333334"
           />
           <rect
             height="200"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="600"
             x="0"
             y="0"
@@ -39,7 +39,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="200"
@@ -47,7 +46,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="173.33333333333334"
@@ -55,7 +53,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="146.66666666666666"
@@ -63,7 +60,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="120"
@@ -71,7 +67,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="93.33333333333333"
@@ -79,7 +74,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="66.66666666666669"
@@ -87,7 +81,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="40"
@@ -95,7 +88,6 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="13.333333333333343"
@@ -541,19 +533,19 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect "
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
           transform="translate(0,0)"
         >
           <rect
             height="66.66666666666666"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
             width="0"
             x="0"
             y="133.33333333333334"
           />
           <rect
             height="200"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 1; cursor: default;"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
             width="600"
             x="0"
             y="0"
@@ -565,7 +557,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="200"
@@ -573,7 +564,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="173.33333333333334"
@@ -581,7 +571,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="146.66666666666666"
@@ -589,7 +578,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="120"
@@ -597,7 +585,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="93.33333333333333"
@@ -605,7 +592,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="66.66666666666669"
@@ -613,7 +599,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="40"
@@ -621,7 +606,6 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="13.333333333333343"
@@ -1063,38 +1047,38 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect "
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
           transform="translate(0,0)"
         >
           <rect
             height="100"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
             x="150"
             y="100"
           />
           <rect
             height="60"
-            style="opacity:1;stroke:white;fill:#DB1374;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="300"
             x="150"
             y="140"
           />
         </g>
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect "
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
           transform="translate(0,0)"
         >
           <rect
             height="40"
-            style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#3185FC;fill:#3185FC"
             width="0"
             x="150"
             y="60"
           />
           <rect
             height="140"
-            style="opacity:1;stroke:white;fill:#3185FC;stroke-width:1;rx:2px;ry:2px;cursor:default"
+            style="opacity:1;stroke:#3185FC;fill:#3185FC"
             width="300"
             x="150"
             y="0"
@@ -1106,7 +1090,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="200"
@@ -1114,7 +1097,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="160"
@@ -1122,7 +1104,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="120"
@@ -1130,7 +1111,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="80"
@@ -1138,7 +1118,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="40"
@@ -1146,7 +1125,6 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray:5 5;stroke-opacity:0.3"
             x1="0"
             x2="600"
             y1="0"

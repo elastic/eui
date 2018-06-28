@@ -227,7 +227,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   _opacityValue={1}
                   angleDomain={Array []}
                   animation={true}
-                  className=""
+                  className="euiAreaSeries"
                   clusters={
                     Set {
                       undefined,
@@ -293,6 +293,8 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   marginTop={0}
                   onClick={[Function]}
                   onMarkClick={[Function]}
+                  onSeriesMouseOut={[Function]}
+                  onSeriesMouseOver={[Function]}
                   opacityDomain={Array []}
                   opacityType="literal"
                   radiusDomain={Array []}
@@ -317,7 +319,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   style={
                     Object {
                       "cursor": "default",
-                      "strokeWidth": 0,
                     }
                   }
                   xDomain={
@@ -409,7 +410,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       ]
                     }
                     animation={true}
-                    className=""
+                    className="euiAreaSeries"
                     clusters={
                       Set {
                         undefined,
@@ -474,6 +475,8 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     marginTop={0}
                     onClick={[Function]}
                     onMarkClick={[Function]}
+                    onSeriesMouseOut={[Function]}
+                    onSeriesMouseOver={[Function]}
                     opacityDomain={Array []}
                     opacityType="literal"
                     radiusDomain={Array []}
@@ -498,7 +501,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     style={
                       Object {
                         "cursor": "default",
-                        "strokeWidth": 0,
                       }
                     }
                     xDomain={
@@ -572,7 +574,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         _opacityValue={1}
                         angleDomain={Array []}
                         animation={null}
-                        className=""
+                        className="euiAreaSeries"
                         clusters={
                           Set {
                             undefined,
@@ -637,6 +639,8 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         marginTop={0}
                         onClick={[Function]}
                         onMarkClick={[Function]}
+                        onSeriesMouseOut={[Function]}
+                        onSeriesMouseOver={[Function]}
                         opacityDomain={Array []}
                         opacityType="literal"
                         radiusDomain={Array []}
@@ -661,7 +665,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         style={
                           Object {
                             "cursor": "default",
-                            "strokeWidth": 0,
                           }
                         }
                         xDomain={
@@ -694,7 +697,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         yType="linear"
                       >
                         <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
+                          className="rv-xy-plot__series rv-xy-plot__series--line euiAreaSeries"
                           d="M0,200L600,0L600,200L0,200Z"
                           onClick={[Function]}
                           onContextMenu={[Function]}
@@ -706,7 +709,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               "fill": "#DB1374",
                               "opacity": 1,
                               "stroke": "#DB1374",
-                              "strokeWidth": 0,
                             }
                           }
                           transform="translate(0,0)"
@@ -1006,12 +1008,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={
-                      Object {
-                        "strokeDasharray": "5 5",
-                        "strokeOpacity": 0.3,
-                      }
-                    }
                     xDomain={
                       Array [
                         0,
@@ -1117,12 +1113,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                           "#EF5D28",
                           "#FF9833",
                         ]
-                      }
-                      style={
-                        Object {
-                          "strokeDasharray": "5 5",
-                          "strokeOpacity": 0.3,
-                        }
                       }
                       xDomain={
                         Array [
@@ -1244,12 +1234,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             "#EF5D28",
                             "#FF9833",
                           ]
-                        }
-                        style={
-                          Object {
-                            "strokeDasharray": "5 5",
-                            "strokeOpacity": 0.3,
-                          }
                         }
                         xDomain={
                           Array [
@@ -1378,12 +1362,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 "#FF9833",
                               ]
                             }
-                            style={
-                              Object {
-                                "strokeDasharray": "5 5",
-                                "strokeOpacity": 0.3,
-                              }
-                            }
                             xDomain={
                               Array [
                                 0,
@@ -1420,12 +1398,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={180}
@@ -1434,12 +1406,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={140}
@@ -1448,12 +1414,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={100}
@@ -1462,12 +1422,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={60}
@@ -1476,12 +1430,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={20}
@@ -3857,7 +3805,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   _opacityValue={1}
                   angleDomain={Array []}
                   animation={true}
-                  className=""
+                  className="euiAreaSeries"
                   clusters={
                     Set {
                       undefined,
@@ -3918,6 +3866,8 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   marginLeft={0}
                   marginRight={0}
                   marginTop={0}
+                  onSeriesMouseOut={[Function]}
+                  onSeriesMouseOver={[Function]}
                   opacityDomain={Array []}
                   opacityType="literal"
                   radiusDomain={Array []}
@@ -3942,7 +3892,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   style={
                     Object {
                       "cursor": "default",
-                      "strokeWidth": 0,
                     }
                   }
                   xDomain={
@@ -4034,7 +3983,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       ]
                     }
                     animation={true}
-                    className=""
+                    className="euiAreaSeries"
                     clusters={
                       Set {
                         undefined,
@@ -4094,6 +4043,8 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     marginLeft={0}
                     marginRight={0}
                     marginTop={0}
+                    onSeriesMouseOut={[Function]}
+                    onSeriesMouseOver={[Function]}
                     opacityDomain={Array []}
                     opacityType="literal"
                     radiusDomain={Array []}
@@ -4118,7 +4069,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     style={
                       Object {
                         "cursor": "default",
-                        "strokeWidth": 0,
                       }
                     }
                     xDomain={
@@ -4192,7 +4142,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         _opacityValue={1}
                         angleDomain={Array []}
                         animation={null}
-                        className=""
+                        className="euiAreaSeries"
                         clusters={
                           Set {
                             undefined,
@@ -4252,6 +4202,8 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         marginLeft={0}
                         marginRight={0}
                         marginTop={0}
+                        onSeriesMouseOut={[Function]}
+                        onSeriesMouseOver={[Function]}
                         opacityDomain={Array []}
                         opacityType="literal"
                         radiusDomain={Array []}
@@ -4276,7 +4228,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         style={
                           Object {
                             "cursor": "default",
-                            "strokeWidth": 0,
                           }
                         }
                         xDomain={
@@ -4309,7 +4260,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         yType="linear"
                       >
                         <path
-                          className="rv-xy-plot__series rv-xy-plot__series--line "
+                          className="rv-xy-plot__series rv-xy-plot__series--line euiAreaSeries"
                           d="M0,200L600,0L600,200L0,200Z"
                           onClick={[Function]}
                           onContextMenu={[Function]}
@@ -4321,7 +4272,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               "fill": "#00B3A4",
                               "opacity": 1,
                               "stroke": "#00B3A4",
-                              "strokeWidth": 0,
                             }
                           }
                           transform="translate(0,0)"
@@ -4621,12 +4571,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={
-                      Object {
-                        "strokeDasharray": "5 5",
-                        "strokeOpacity": 0.3,
-                      }
-                    }
                     xDomain={
                       Array [
                         0,
@@ -4732,12 +4676,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                           "#EF5D28",
                           "#FF9833",
                         ]
-                      }
-                      style={
-                        Object {
-                          "strokeDasharray": "5 5",
-                          "strokeOpacity": 0.3,
-                        }
                       }
                       xDomain={
                         Array [
@@ -4859,12 +4797,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             "#EF5D28",
                             "#FF9833",
                           ]
-                        }
-                        style={
-                          Object {
-                            "strokeDasharray": "5 5",
-                            "strokeOpacity": 0.3,
-                          }
                         }
                         xDomain={
                           Array [
@@ -4993,12 +4925,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 "#FF9833",
                               ]
                             }
-                            style={
-                              Object {
-                                "strokeDasharray": "5 5",
-                                "strokeOpacity": 0.3,
-                              }
-                            }
                             xDomain={
                               Array [
                                 0,
@@ -5035,12 +4961,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={180}
@@ -5049,12 +4969,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={140}
@@ -5063,12 +4977,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={100}
@@ -5077,12 +4985,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={60}
@@ -5091,12 +4993,6 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={20}

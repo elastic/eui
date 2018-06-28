@@ -2021,12 +2021,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={
-                      Object {
-                        "strokeDasharray": "5 5",
-                        "strokeOpacity": 0.3,
-                      }
-                    }
                     xDomain={
                       Array [
                         0,
@@ -2132,12 +2126,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                           "#EF5D28",
                           "#FF9833",
                         ]
-                      }
-                      style={
-                        Object {
-                          "strokeDasharray": "5 5",
-                          "strokeOpacity": 0.3,
-                        }
                       }
                       xDomain={
                         Array [
@@ -2259,12 +2247,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                             "#EF5D28",
                             "#FF9833",
                           ]
-                        }
-                        style={
-                          Object {
-                            "strokeDasharray": "5 5",
-                            "strokeOpacity": 0.3,
-                          }
                         }
                         xDomain={
                           Array [
@@ -2393,12 +2375,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                                 "#FF9833",
                               ]
                             }
-                            style={
-                              Object {
-                                "strokeDasharray": "5 5",
-                                "strokeOpacity": 0.3,
-                              }
-                            }
                             xDomain={
                               Array [
                                 0,
@@ -2435,12 +2411,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={180}
@@ -2449,12 +2419,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={140}
@@ -2463,12 +2427,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={100}
@@ -2477,12 +2435,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={60}
@@ -2491,12 +2443,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={20}
@@ -6646,12 +6592,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                         "#FF9833",
                       ]
                     }
-                    style={
-                      Object {
-                        "strokeDasharray": "5 5",
-                        "strokeOpacity": 0.3,
-                      }
-                    }
                     xDomain={
                       Array [
                         0,
@@ -6757,12 +6697,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                           "#EF5D28",
                           "#FF9833",
                         ]
-                      }
-                      style={
-                        Object {
-                          "strokeDasharray": "5 5",
-                          "strokeOpacity": 0.3,
-                        }
                       }
                       xDomain={
                         Array [
@@ -6884,12 +6818,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                             "#EF5D28",
                             "#FF9833",
                           ]
-                        }
-                        style={
-                          Object {
-                            "strokeDasharray": "5 5",
-                            "strokeOpacity": 0.3,
-                          }
                         }
                         xDomain={
                           Array [
@@ -7018,12 +6946,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                                 "#FF9833",
                               ]
                             }
-                            style={
-                              Object {
-                                "strokeDasharray": "5 5",
-                                "strokeOpacity": 0.3,
-                              }
-                            }
                             xDomain={
                               Array [
                                 0,
@@ -7060,12 +6982,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={180}
@@ -7074,12 +6990,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={140}
@@ -7088,12 +6998,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={100}
@@ -7102,12 +7006,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={60}
@@ -7116,12 +7014,6 @@ exports[`EuiLineSeries is rendered 1`] = `
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
-                                style={
-                                  Object {
-                                    "strokeDasharray": "5 5",
-                                    "strokeOpacity": 0.3,
-                                  }
-                                }
                                 x1={0}
                                 x2={600}
                                 y1={20}

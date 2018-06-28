@@ -24,7 +24,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="0"
             y1="0"
@@ -32,7 +31,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="60"
             x2="60"
             y1="0"
@@ -40,7 +38,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="120"
             x2="120"
             y1="0"
@@ -48,7 +45,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="180"
             x2="180"
             y1="0"
@@ -56,7 +52,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="240"
             x2="240"
             y1="0"
@@ -64,7 +59,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="300"
             x2="300"
             y1="0"
@@ -72,7 +66,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="360"
             x2="360"
             y1="0"
@@ -80,7 +73,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="420"
             x2="420"
             y1="0"
@@ -88,7 +80,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="480"
             x2="480"
             y1="0"
@@ -96,7 +87,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="540"
             x2="540"
             y1="0"
@@ -104,7 +94,6 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="600"
             x2="600"
             y1="0"

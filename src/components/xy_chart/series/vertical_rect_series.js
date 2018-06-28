@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalRectSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
+import classNames from 'classnames';
 
 export class EuiVerticalRectSeries extends VerticalRectSeries {
   state = {
@@ -20,21 +21,19 @@ export class EuiVerticalRectSeries extends VerticalRectSeries {
     const { isMouseOverValue } = this.state;
     const { name, data, color, onValueClick, ...rest } = this.props;
     const isHighDataVolume = data.length > 80 ? true : false;
-
+    const classes = classNames(
+      'euiRectSeries',
+      isHighDataVolume && 'euiRectSeries--highDataVolume',
+      isMouseOverValue && onValueClick && 'euiRectSeries--hoverEnabled',
+    );
     return (
       <VerticalRectSeries
         key={name}
+        className={classes}
         onValueClick={onValueClick}
         onValueMouseOver={this._onValueMouseOver}
         onValueMouseOut={this._onValueMouseOut}
         color={color}
-        style={{
-          strokeWidth: isHighDataVolume ? 0 : 1,
-          stroke: 'white',
-          rx: isHighDataVolume ? 0 : 2,
-          ry: isHighDataVolume ? 0 : 2,
-          cursor: isMouseOverValue && onValueClick ? 'pointer' : 'default',
-        }}
         data={data}
         {...rest}
       />

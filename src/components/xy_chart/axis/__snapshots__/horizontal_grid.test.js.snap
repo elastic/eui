@@ -24,7 +24,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
         >
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="200"
@@ -32,7 +31,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="160"
@@ -40,7 +38,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="120.00000000000001"
@@ -48,7 +45,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="79.99999999999999"
@@ -56,7 +52,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="40"
@@ -64,7 +59,6 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            style="stroke-dasharray: 5 5; stroke-opacity: 0.3;"
             x1="0"
             x2="600"
             y1="0"
