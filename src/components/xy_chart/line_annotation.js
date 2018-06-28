@@ -42,72 +42,64 @@ export class EuiLineAnnotation extends AbstractSeries {
     }
   }
   render() {
-    const { data, orientation, textPosition, innerHeight, innerWidth, marginLeft, marginTop } = this.props;
+    const {
+      data,
+      orientation,
+      textPosition,
+      innerHeight,
+      innerWidth,
+      marginLeft,
+      marginTop,
+    } = this.props;
     const axis = orientation === HORIZONTAL ? 'y' : 'x';
     const scale = this._getAttributeFunctor(axis);
 
     return (
-      <g
-        className="euiLineAnnotations"
-        transform={`translate(${marginLeft},${marginTop})`}
-      >
-        <g className="lines">
-          {
-            data.map((d, i) => {
-              const { value } = d;
-              const position = scale({ [axis] : value });
-              return (
-                <line
-                  key={`annotation-${i}`}
-
-                  stroke="rgb(200, 0, 0)"
-                  strokeWidth="2px"
-                  opacity="0.3"
-                  x1={orientation === VERTICAL ? position : 0}
-                  y1={orientation === VERTICAL ? 0 : position}
-                  x2={orientation === VERTICAL ? position : innerWidth}
-                  y2={orientation === VERTICAL ? innerHeight : position}
-                />
-              )
-            })
-          }
+      <g className="euiLineAnnotations" transform={`translate(${marginLeft},${marginTop})`}>
+        <g className="euiLineAnnotations__linesGroup">
+          {data.map((d, i) => {
+            const { value } = d;
+            const position = scale({ [axis]: value });
+            return (
+              <line
+                key={`annotation-${i}`}
+                className="euiLineAnnotations__line"
+                x1={orientation === VERTICAL ? position : 0}
+                y1={orientation === VERTICAL ? 0 : position}
+                x2={orientation === VERTICAL ? position : innerWidth}
+                y2={orientation === VERTICAL ? innerHeight : position}
+              />
+            );
+          })}
         </g>
-        <g className="text">
-          {
-            data
-            .filter(d => d.text)
-            .map((d, i) => {
-              const { value } = d;
-              let x = 0;
-              let y = 0;
-              let rotation = 0;
-              if (orientation === VERTICAL) {
-                x = scale({ [axis] : value });
-                y = this._getTextXY(textPosition, 0 , innerHeight);
-                rotation = '-90'
-              } else {
-                x = this._getTextXY(textPosition, innerWidth, 0);
-                y = scale({ [axis] : value });
-              }
+        <g className="euiLineAnnotations__textGroup">
+          {data.filter(d => d.text).map((d, i) => {
+            const { value } = d;
+            let x = 0;
+            let y = 0;
+            let rotation = 0;
+            if (orientation === VERTICAL) {
+              x = scale({ [axis]: value });
+              y = this._getTextXY(textPosition, 0, innerHeight);
+              rotation = '-90';
+            } else {
+              x = this._getTextXY(textPosition, innerWidth, 0);
+              y = scale({ [axis]: value });
+            }
 
-              return (
-                <text
-                  className="euiLineAnnotationText"
-                  key={`annotation-${i}`}
-                  fill="rgb(200, 0, 0)"
-                  strokeWidth="0"
-                  opacity="0.3"
-                  x={0}
-                  y={0}
-                  textAnchor={textPosition}
-                  alignmentBaseline="text-after-edge"
-                  transform={`translate(${x},${y}) rotate(${rotation})`}
-                >
-                  {d.text}
-                </text>
-              )
-            })
-          }
+            return (
+              <text
+                key={`annotation-${i}`}
+                className="euiLineAnnotations__text"
+                x={0}
+                y={0}
+                textAnchor={textPosition}
+                transform={`translate(${x},${y}) rotate(${rotation})`}
+              >
+                {d.text}
+              </text>
+            );
+          })}
         </g>
       </g>
     );
@@ -120,11 +112,11 @@ EuiLineAnnotation.propTypes = {
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       text: PropTypes.string,
-    }),
+    })
   ).isRequired,
   /** The orientation of the annotation. */
-  orientation: PropTypes.oneOf([ HORIZONTAL, VERTICAL ]),
-  textPosition: PropTypes.oneOf([ START, MIDDLE, END ])
+  orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
+  textPosition: PropTypes.oneOf([START, MIDDLE, END]),
 };
 
 EuiLineAnnotation.defaultProps = {
