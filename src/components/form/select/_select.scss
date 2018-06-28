@@ -22,4 +22,9 @@
   &::-ms-expand {
     display: none;
   }
+
+  &:focus::-ms-value {
+    color: $euiTextColor;
+    background: transparent;
+  }
 }
