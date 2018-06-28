@@ -1,3 +1,10 @@
 .euiFormControlLayoutClearButton {
   @include euiFormControlLayoutClearIcon('.euiFormControlLayoutClearButton__icon');
 }
+
+// The 1px padding throws off the times icon
+.euiFormControlLayout--hasLabel {
+  .euiFormControlLayoutClearButton .euiFormControlLayoutClearButton__icon {
+    top: -1px;
+  }
+}

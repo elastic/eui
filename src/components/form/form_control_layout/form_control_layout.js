@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiFormControlLayoutIcons } from './form_control_layout_icons';
+import { EuiFormControlLayoutChildren } from './form_control_layout_children';
 
 export const ICON_SIDES = ['left', 'right'];
+export const LABEL_SIDES = ['left', 'right'];
 
 export const EuiFormControlLayout = ({
   children,
@@ -14,6 +16,7 @@ export const EuiFormControlLayout = ({
   isLoading,
   compressed,
   className,
+  inlineLabel,
   ...rest
 }) => {
   const classes = classNames(
@@ -21,13 +24,17 @@ export const EuiFormControlLayout = ({
     {
       'euiFormControlLayout--fullWidth': fullWidth,
       'euiFormControlLayout--compressed': compressed,
+      'euiFormControlLayout--hasLabel': inlineLabel,
     },
     className
   );
 
   return (
     <div className={classes} {...rest}>
-      {children}
+      <EuiFormControlLayoutChildren
+        children={children}
+        inlineLabel={inlineLabel}
+      />
 
       <EuiFormControlLayoutIcons
         icon={icon}
@@ -55,6 +62,16 @@ EuiFormControlLayout.propTypes = {
   isLoading: PropTypes.bool,
   className: PropTypes.string,
   compressed: PropTypes.bool,
+  /**
+   * Creates an input group with an inline label
+   */
+  inlineLabel: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.shape({
+      label: PropTypes.node,
+      side: PropTypes.oneOf(LABEL_SIDES),
+    }),
+  ]),
 };
 
 EuiFormControlLayout.defaultProps = {

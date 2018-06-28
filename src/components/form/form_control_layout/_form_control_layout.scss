@@ -12,3 +12,46 @@
   width: 100%;
   max-width: 100%;
 }
+
+// If it contains any inline labels,
+// make the whole layout have the form control style
+
+.euiFormControlLayout--hasLabel {
+  // Match just the regular box-shadow of inputs
+  @include euiFormControlStyle();
+  display: flex;
+  padding: 1px; /* 1 */
+
+  .euiFormControlLayout__child--noStyle {
+    flex-grow: 1;
+    height: $euiFormControlHeight - 2px; /* 1 */
+    box-shadow: none !important;
+  }
+
+  .euiFormControlLayout__inlineLabel {
+    flex-shrink: 0;
+    height: $euiFormControlHeight - 2px; /* 1 */
+    line-height: $euiFontSize;
+    border-right: 1px solid $euiFormBorderColor;
+
+    &:disabled {
+      background-color: $euiFormBackgroundColor--disabled;
+      color: $euiFormControlDisabledColor; // ensures established contrast
+    }
+
+    // This is the only way to target specific components to override styling
+    &.euiFormLabel,
+    &.euiText {
+      white-space: nowrap;
+      margin-bottom: 0;
+      padding: $euiFormControlPadding;
+      border: none;
+      background-color: $euiFormBackgroundColor--disabled;
+      line-height: $euiFontSize;
+    }
+
+    &.euiText {
+      line-height: 1em;
+    }
+  }
+}
