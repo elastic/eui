@@ -1,27 +1,30 @@
-/**
- * 1. We don't want any of the animations that come inherited from the mixin.
- *    These should act like normal links instead.
- */
-.euiFilterButton {
-  @include euiButton;
+@import '../form/variables';
+@import '../form/mixins';
+@import '../form/form_control_layout/mixins';
 
-  line-height: 40px;
-  border-color: transparent;
-  background-color: transparent;
-  box-shadow: none;
-  transform: none !important; // 1
-  animation: none !important; // 1
+/**
+ * 1. Only add the border style drop shadow
+ */
+
+.euiFilterButton {
+  flex-grow: 0; // Shrink by default
 
   .euiFilterButton__content {
-    @include euiButtonContent;
+    @include euiFormControlStyle($borderOnly: true, $includeStates: false);
+    width: auto;
+    max-width: none;
+    white-space: nowrap;
+  }
 
-    padding: 0 $euiSizeS;
-
+  &:disabled .euiFilterButton__content {
+    @include euiFormControlDisabledStyle;
+    font-style: italic;
   }
 
   .euiFilterButton__textShift {
-    text-align: center;
     display: inline-block;
+    text-align: center;
+    vertical-align: middle;
 
     &::after {
       display: block;
@@ -33,33 +36,27 @@
     }
   }
 
-  &.euiFilterButton--iconRight {
-    .euiFilterButton__content {
-      @include euiButtonContent($isReverse: true);
+  .euiFilterButton__notification {
+    margin-left: $euiSizeS;
+    vertical-align: text-bottom;
+  }
+
+  &.euiFilterButton-isSelected,
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    .euiFilterButton__textShift {
+      text-decoration: underline;
     }
   }
 
-  &:disabled {
-    color: $euiButtonColorDisabled;
-    pointer-events: none;
+  &.euiFilterButton-grow {
+    flex-grow: 1;
+    width: 100%;
 
     .euiFilterButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
+      width: 100%;
+      text-align: left;
     }
-
-    .euiFilterButton__icon {
-      fill: $euiButtonColorDisabled;
-    }
-
-    &:hover, &:focus {
-      background-color: $euiColorEmptyShade;
-      text-decoration: none;
-    }
-  }
-
-  &.euiFilterButton-isSelected {
-    text-decoration: underline;
   }
 
   &.euiFilterButton-hasActiveFilters {
@@ -80,17 +77,18 @@ $buttonTypes: (
 @each $name, $color in $buttonTypes {
   .euiFilterButton--#{$name} {
     color: $color;
+  }
+}
 
-    .euiFilterButton__icon {
-      fill: $color;
-    }
+// Icon padding
+.euiFilterButton--iconLeft {
+  .euiFilterButton__content {
+    @include euiFormControlLayout__padding(1, "left");
+  }
+}
 
-    &:hover {
-      background-color: transparent;
-
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
-      }
-    }
+.euiFilterButton--iconRight {
+  .euiFilterButton__content {
+    @include euiFormControlLayout__padding(1);
   }
 }
