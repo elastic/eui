@@ -88,6 +88,7 @@ declare module '@elastic/eui' {
     | 'indexOpen'
     | 'indexPatternApp'
     | 'indexSettings'
+    | 'inspect'
     | 'invert'
     | 'inputOutput'
     | 'kqlField'
