@@ -3,9 +3,6 @@ import React from 'react';
 import {
   EuiXYChart,
   EuiLineSeries,
-  EuiLineAnnotation,
-  EuiXYChartUtils,
-  EuiXYChartAxisUtils,
 } from '../../../../src/components';
 
 const DATA_A = [
@@ -20,32 +17,5 @@ const DATA_A = [
 export default () => (
   <EuiXYChart width={600} height={200}>
     <EuiLineSeries name="Total Bytes" data={DATA_A} />
-    <EuiLineAnnotation
-      data={[{ value: 0.5, text: 'Start' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.START}
-    />
-    <EuiLineAnnotation
-      data={[{ value: 1, text: 'Middle' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.MIDDLE}
-    />
-    <EuiLineAnnotation
-      data={[{ value: 1.5, text: 'End' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.END}
-    />
-    <EuiLineAnnotation
-      data={[{ value: -0.5, text: 'Start' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.START}
-      orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
-    />
-    <EuiLineAnnotation
-      data={[{ value: 0.5, text: 'Middle' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.MIDDLE}
-      orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
-    />
-    <EuiLineAnnotation
-      data={[{ value: 1.5, text: 'End' }]}
-      textPosition={EuiXYChartAxisUtils.TITLE_POSITION.END}
-      orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
-    />
   </EuiXYChart>
 );

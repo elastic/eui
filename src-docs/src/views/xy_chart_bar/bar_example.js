@@ -4,6 +4,7 @@ import VerticalBarSeriesExample from './vertical_bar_series';
 import HorizontalBarSeriesExample from './horizontal_bar_series';
 import StackedVerticalBarSeriesExample from './stacked_vertical_bar_series';
 import StackedHorizontalBarSeriesExample from './stacked_horizontal_bar_series';
+import TimeSeriesExample from './time_series';
 
 import { EuiCode, EuiVerticalBarSeries, EuiHorizontalBarSeries } from '../../../../src/components';
 
@@ -153,6 +154,35 @@ export const XYChartBarExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <StackedHorizontalBarSeriesExample />
+        </div>
+      ),
+    },
+
+    {
+      title: 'Time Series',
+      text: (
+        <div>
+          <p>
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalBarSeries</EuiCode>
+            with the
+            <EuiCode>xType=&apos;time&apos;</EuiCode>.
+          </p>
+        </div>
+      ),
+      props: { EuiVerticalBarSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./time_series'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <TimeSeriesExample />
         </div>
       ),
     },
