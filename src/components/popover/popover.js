@@ -24,12 +24,19 @@ const anchorPositionToPopoverPositionMap = {
   'down': 'bottom',
   'left': 'left'
 };
-function getPopoverPositionFromAnchorPosition(anchorPosition) {
+export function getPopoverPositionFromAnchorPosition(anchorPosition) {
+  // extract the first positional word from anchorPosition:
+  // starts at the beginning (" ^ ") of anchorPosition and
+  // captures all of the characters (" (.*?) ") until the
+  // first capital letter (" [A-Z] ") is encountered
   const [, primaryPosition] = anchorPosition.match(/^(.*?)[A-Z]/);
   return anchorPositionToPopoverPositionMap[primaryPosition];
 }
-function getPopoverAlignFromAnchorPosition(anchorPosition) {
-  const [, align] = anchorPosition.match(/([A-Z].*?)$/);
+export function getPopoverAlignFromAnchorPosition(anchorPosition) {
+  // extract the second positional word from anchorPosition:
+  // starts a capture group at the first capital letter
+  // and includes everything after it
+  const [, align] = anchorPosition.match(/([A-Z].*)/);
 
   // this performs two tasks:
   // 1. normalizes the align position by lowercasing it
@@ -111,7 +118,7 @@ export class EuiPopover extends Component {
   updateFocus() {
     // Wait for the DOM to update.
     window.requestAnimationFrame(() => {
-      if (!this.panel) {
+      if (!this.props.ownFocus || !this.panel) {
         return;
       }
 
@@ -163,38 +170,46 @@ export class EuiPopover extends Component {
     clearTimeout(this.closingTransitionTimeout);
   }
 
-  panelRef = node => {
-    if (this.props.ownFocus) {
-      this.panel = node;
-    }
+  positionPopover = () => {
+    const { top, left, position, arrow } = findPopoverPosition({
+      position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
+      align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
+      anchor: this.button,
+      popover: this.panel,
+      offset: 16,
+      arrowConfig: {
+        arrowWidth: 32,
+        arrowBuffer: 5,
+      }
+    });
 
-    let popoverStyles = DEFAULT_POPOVER_STYLES;
-    let arrowStyles = {};
-    let arrowPosition = null;
-    if (node != null) {
-      // panel is coming into existance
-      const { top, left, position, arrow } = findPopoverPosition({
-        position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
-        align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
-        anchor: this.button,
-        popover: node,
-        offset: 16,
-        arrowConfig: {
-          arrowWidth: 32,
-          arrowBuffer: 5,
-        }
-      });
+    const popoverStyles = {
+      top,
+      left,
+    };
 
-      popoverStyles = {
-        top,
-        left,
-      };
-
-      arrowStyles = arrow;
-      arrowPosition = position;
-    }
+    const arrowStyles = arrow;
+    const arrowPosition = position;
 
     this.setState({ popoverStyles, arrowStyles, arrowPosition });
+  }
+
+  panelRef = node => {
+    this.panel = node;
+
+    if (node == null) {
+      // panel has unmounted, restore the state defaults
+      this.setState({
+        popoverStyles: DEFAULT_POPOVER_STYLES,
+        arrowStyles: {},
+        arrowPosition: null,
+      });
+      window.removeEventListener('resize', this.positionPopover);
+    } else {
+      // panel is coming into existence
+      this.positionPopover();
+      window.addEventListener('resize', this.positionPopover);
+    }
   };
 
   buttonRef = node => this.button = node;
