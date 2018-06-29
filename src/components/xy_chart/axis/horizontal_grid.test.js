@@ -26,7 +26,7 @@ describe('EuiHorizontalGrid', () => {
     const firstLineProps = horizontalGridComponent.find('line').at(0).props();
     expect(firstLineProps.y1).toEqual(firstLineProps.y2);
     expect(firstLineProps.x1).toEqual(0);
-    expect(firstLineProps.x2).toEqual(width);
+    expect(firstLineProps.x2).toEqual(width - 50); // right + left default xychart margin
     expect(component.render()).toMatchSnapshot();
   });
 });

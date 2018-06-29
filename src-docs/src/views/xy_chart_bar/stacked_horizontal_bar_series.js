@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
+  EuiSpacer,
   EuiButton,
   EuiXYChart,
-  EuiHorizontalBarSeries,
+  EuiBarSeries,
   EuiXYChartUtils,
 } from '../../../../src/components';
+
+const { ORIENTATION, SCALE } = EuiXYChartUtils;
 
 const dataA = [
   { x: 1, y: 'A' },
@@ -40,21 +43,22 @@ export default class extends Component {
   render() {
     const { stacked } = this.state;
     return (
-      <div>
-        <EuiButton color="primary" onClick={this.onSwitchStacked} style={{ marginBottom: '2em' }}>
+      <Fragment>
+        <EuiButton color="primary" onClick={this.onSwitchStacked}>
           Toggle stacked
         </EuiButton>
+        <EuiSpacer size="l" />
         <EuiXYChart
           width={600}
           height={200}
-          orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
-          yType="ordinal"
+          orientation={ORIENTATION.HORIZONTAL}
+          yType={SCALE.ORDINAL}
           stackBy={stacked ? 'x' : null}
         >
-          <EuiHorizontalBarSeries name={`Tag A`} data={dataA} />
-          <EuiHorizontalBarSeries name={`Tag B`} data={dataB} />
+          <EuiBarSeries name={`Tag A`} data={dataA} />
+          <EuiBarSeries name={`Tag B`} data={dataB} />
         </EuiXYChart>
-      </div>
+      </Fragment>
     );
   }
 }

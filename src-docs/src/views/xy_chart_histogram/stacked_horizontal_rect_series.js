@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiHorizontalRectSeries, EuiXYChartUtils } from '../../../../src/components';
+import { EuiXYChart, EuiHistogramSeries, EuiXYChartUtils } from '../../../../src/components';
 
 const dataA = [
   { y: 0, y0: 1, x: 1 },
@@ -25,7 +25,7 @@ export default () => (
     stackBy="x"
     orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
   >
-    <EuiHorizontalRectSeries name={`Tag A`} data={dataA} stack={true} />
-    <EuiHorizontalRectSeries name={`Tag B`} data={dataB} stack={true} />
+    <EuiHistogramSeries name={`Tag A`} data={dataA} stack={true} />
+    <EuiHistogramSeries name={`Tag B`} data={dataB} stack={true} />
   </EuiXYChart>
 );

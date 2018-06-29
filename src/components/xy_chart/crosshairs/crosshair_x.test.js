@@ -27,14 +27,14 @@ describe('EuiCrosshairX', () => {
     expect(component.render()).toMatchSnapshot();
     expect(component.find('rect')).toHaveLength(2);
 
-    component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 0, clientY: 100 } });
+    component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 50, clientY: 100 } });
     expect(component.find(Crosshair).children()).toHaveLength(1);
     const crosshair = component.find('.rv-crosshair')
     expect(crosshair).toHaveLength(1);
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__title__value').text()).toBe('0');
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__item__value').text()).toBe('1.5');
 
-    component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 301, clientY: 100 } });
+    component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     expect(crosshair).toHaveLength(1);
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__title__value').text()).toBe('1');
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__item__value').text()).toBe('2');

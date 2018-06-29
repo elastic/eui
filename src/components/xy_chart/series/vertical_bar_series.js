@@ -44,7 +44,7 @@ export class EuiVerticalBarSeries extends VerticalBarSeries {
 EuiVerticalBarSeries.displayName = 'EuiVerticalBarSeries';
 
 EuiVerticalBarSeries.propTypes = {
-  /** The name used to define the data in tooltips and ledgends */
+  /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: number}> */
   data: PropTypes.arrayOf(PropTypes.shape({

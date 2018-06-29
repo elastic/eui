@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
-import { CURVES } from '../utils/chart_utils';
+import { CURVE } from '../utils/chart_utils';
 
 export class EuiLineSeries extends AbstractSeries {
   render() {
@@ -69,7 +69,7 @@ export class EuiLineSeries extends AbstractSeries {
 EuiLineSeries.displayName = 'EuiLineSeries';
 
 EuiLineSeries.propTypes = {
-  /** The name used to define the data in tooltips and ledgends */
+  /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
   data: PropTypes.arrayOf(PropTypes.shape({
@@ -84,7 +84,7 @@ EuiLineSeries.propTypes = {
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  curve: PropTypes.oneOf(Object.values(CURVES)),
+  curve: PropTypes.oneOf(Object.values(CURVE)),
   showLineMarks: PropTypes.bool,
   lineSize: PropTypes.number,
   lineMarkColor: PropTypes.string,
@@ -94,7 +94,7 @@ EuiLineSeries.propTypes = {
 };
 
 EuiLineSeries.defaultProps = {
-  curve: CURVES.LINEAR,
+  curve: CURVE.LINEAR,
   showLineMarks: true,
   lineSize: 2,
   lineMarkSize: 5

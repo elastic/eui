@@ -9,10 +9,16 @@ import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
 import { getSeriesChildren } from './utils/series_utils';
-import { ORIENTATION, SCALE_TYPE } from './utils/chart_utils';
+import { ORIENTATION, SCALE } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
-const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = SCALE_TYPE;
+const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = SCALE;
 
+const DEFAULT_MARGINS = {
+  left: 40,
+  right: 10,
+  top: 10,
+  bottom: 40
+};
 
 /**
  * The extended version of the react-vis XYPlot with the mouseLeave and mouseUp handlers.
@@ -167,11 +173,11 @@ class XYChart extends PureComponent {
       const props = {
         id: `chart-${i}`,
       };
-
       if (!child.props.color) {
         props.color = VISUALIZATION_COLORS[colorIterator % VISUALIZATION_COLORS.length];
         colorIterator++;
       }
+      props._orientation = this.props.orientation;
 
       return React.cloneElement(child, props);
     });
@@ -226,7 +232,7 @@ class XYChart extends PureComponent {
           width={width}
           animation={animateData}
           height={height}
-          margin={0}
+          margin={DEFAULT_MARGINS}
           xType={xType}
           yType={yType}
           xDomain={xDomain}

@@ -20,75 +20,75 @@ exports[`EuiHorizontalGrid render the horizontal grid 1`] = `
       >
         <g
           class="rv-xy-plot__grid-lines"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="200"
-            y2="200"
+            x2="550"
+            y1="150"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="160"
-            y2="160"
+            x2="550"
+            y1="120"
+            y2="120"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="120.00000000000001"
-            y2="120.00000000000001"
+            x2="550"
+            y1="90.00000000000001"
+            y2="90.00000000000001"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="79.99999999999999"
-            y2="79.99999999999999"
+            x2="550"
+            y1="59.999999999999986"
+            y2="59.999999999999986"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="40"
-            y2="40"
+            x2="550"
+            y1="30"
+            y2="30"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
+            x2="550"
             y1="0"
             y2="0"
           />
         </g>
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <g
           class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <circle
             cx="0"
-            cy="200"
+            cy="150"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
           />
           <circle
-            cx="600"
+            cx="550"
             cy="0"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"

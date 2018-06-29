@@ -20,110 +20,110 @@ exports[`EuiVerticalGrid render the vertical grid 1`] = `
       >
         <g
           class="rv-xy-plot__grid-lines"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
             x2="0"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="60"
-            x2="60"
+            x1="55"
+            x2="55"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="120"
-            x2="120"
+            x1="110"
+            x2="110"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="180"
-            x2="180"
+            x1="165"
+            x2="165"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="240"
-            x2="240"
+            x1="220"
+            x2="220"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="300"
-            x2="300"
+            x1="275"
+            x2="275"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="360"
-            x2="360"
+            x1="330"
+            x2="330"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="420"
-            x2="420"
+            x1="385"
+            x2="385"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="480"
-            x2="480"
+            x1="440"
+            x2="440"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="540"
-            x2="540"
+            x1="495"
+            x2="495"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
-            x1="600"
-            x2="600"
+            x1="550"
+            x2="550"
             y1="0"
-            y2="200"
+            y2="150"
           />
         </g>
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <g
           class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <circle
             cx="0"
-            cy="200"
+            cy="150"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
           />
           <circle
-            cx="600"
+            cx="550"
             cy="0"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"

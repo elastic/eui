@@ -15,7 +15,7 @@ export const ORIENTATION = {
 /**
  * Type of scales used in charts.
  */
-export const SCALE_TYPE = {
+export const SCALE = {
   /** Continuous scale, that works with numbers.
    * Similar to [d3.scaleLinear](https://github.com/d3/d3-scale/blob/master/README.md#scaleLinear). */
   LINEAR: 'linear',
@@ -42,22 +42,22 @@ export const SCALE_TYPE = {
  * Differnet types of curves that can be used on lines and areas series.
  * See [d3-shape#curves](https://github.com/d3/d3-shape#curves)
  */
-export const CURVES = {
-  'LINEAR': 'linear',
-  'CURVE_CARDINAL': 'curveCardinal',
-  'CURVE_NATURAL': 'curveNatural',
-  'CURVE_MONOTONE_X': 'curveMonotoneX',
-  'CURVE_MONOTONE_Y': 'curveMonotoneY',
-  'CURVE_BASIS': 'curveBasis',
-  'CURVE_BUNDLE': 'curveBundle',
-  'CURVE_CATMULL_ROM': 'curveCatmullRom',
-  'CURVE_STEP': 'curveStep',
-  'CURVE_STEP_AFTER': 'curveStepAfter',
-  'CURVE_STEP_BEFORE': 'curveStepBefore',
+export const CURVE = {
+  LINEAR: 'linear',
+  CURVE_CARDINAL: 'curveCardinal',
+  CURVE_NATURAL: 'curveNatural',
+  CURVE_MONOTONE_X: 'curveMonotoneX',
+  CURVE_MONOTONE_Y: 'curveMonotoneY',
+  CURVE_BASIS: 'curveBasis',
+  CURVE_BUNDLE: 'curveBundle',
+  CURVE_CATMULL_ROM: 'curveCatmullRom',
+  CURVE_STEP: 'curveStep',
+  CURVE_STEP_AFTER: 'curveStepAfter',
+  CURVE_STEP_BEFORE: 'curveStepBefore',
 }
 
 export const EuiXYChartUtils = {
   ORIENTATION,
-  SCALE_TYPE,
-  CURVES,
+  SCALE,
+  CURVE,
 }

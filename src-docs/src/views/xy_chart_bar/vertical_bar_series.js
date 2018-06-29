@@ -1,17 +1,23 @@
 import React from 'react';
 
-import { EuiXYChart, EuiVerticalBarSeries } from '../../../../src/components';
-
+import { EuiXYChart, EuiBarSeries, EuiXYChartUtils } from '../../../../src/components';
+const { SCALE } = EuiXYChartUtils;
 const data = [
-  { x: 'A', y: 3, color: 'red' },
-  { x: 'B', y: 1, color: 'red' },
-  { x: 'C', y: 5, color: 'red' },
-  { x: 'D', y: 2, color: 'red' },
-  { x: 'E', y: 1, color: 'red' },
+  { x: 'A', y: 3 },
+  { x: 'B', y: 1 },
+  { x: 'C', y: 5 },
+  { x: 'D', y: 2 },
+  { x: 'E', y: 1 },
 ];
 
 export default () => (
-  <EuiXYChart width={600} height={200} xType="ordinal">
-    <EuiVerticalBarSeries name="Tags" data={data} onValueClick={(data) => { console.log({ data }) }} />
+  <EuiXYChart width={600} height={200} xType={SCALE.ORDINAL}>
+    <EuiBarSeries
+      name="Tags"
+      data={data}
+      onValueClick={singleBarData => {
+        console.log({ singleBarData });
+      }}
+    />
   </EuiXYChart>
 );

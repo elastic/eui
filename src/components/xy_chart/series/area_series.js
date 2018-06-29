@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
-import { CURVES } from '../utils/chart_utils';
+import { CURVE } from '../utils/chart_utils';
 
 export class EuiAreaSeries extends AbstractSeries {
   state = {
@@ -40,7 +40,7 @@ export class EuiAreaSeries extends AbstractSeries {
 }
 EuiAreaSeries.displayName = 'EuiAreaSeries';
 EuiAreaSeries.propTypes = {
-  /** The name used to define the data in tooltips and ledgends */
+  /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
   data: PropTypes.arrayOf(
@@ -51,11 +51,11 @@ EuiAreaSeries.propTypes = {
   ).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  curve: PropTypes.oneOf(Object.values(CURVES)),
+  curve: PropTypes.oneOf(Object.values(CURVE)),
   onSeriesClick: PropTypes.func,
   onMarkClick: PropTypes.func,
 };
 
 EuiAreaSeries.defaultProps = {
-  curve: CURVES.LINEAR,
+  curve: CURVE.LINEAR,
 };

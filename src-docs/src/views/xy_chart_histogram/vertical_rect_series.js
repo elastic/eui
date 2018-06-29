@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiVerticalRectSeries } from '../../../../src/components';
+import { EuiXYChart, EuiHistogramSeries } from '../../../../src/components';
 
 const data = [
   { x0: 0, x: 1, y: 1 },
@@ -12,6 +12,6 @@ const data = [
 
 export default () => (
   <EuiXYChart width={600} height={200}>
-    <EuiVerticalRectSeries name="Bytes" data={data} />
+    <EuiHistogramSeries name="Bytes" data={data} />
   </EuiXYChart>
 );

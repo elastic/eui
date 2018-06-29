@@ -22,9 +22,9 @@ export class EuiVerticalRectSeries extends VerticalRectSeries {
     const { name, data, color, onValueClick, ...rest } = this.props;
     const isHighDataVolume = data.length > 80 ? true : false;
     const classes = classNames(
-      'euiRectSeries',
-      isHighDataVolume && 'euiRectSeries--highDataVolume',
-      isMouseOverValue && onValueClick && 'euiRectSeries--hoverEnabled',
+      'euiHistogramSeries',
+      isHighDataVolume && 'euiHistogramSeries--highDataVolume',
+      isMouseOverValue && onValueClick && 'euiHistogramSeries--hoverEnabled',
     );
     return (
       <VerticalRectSeries
@@ -44,7 +44,7 @@ export class EuiVerticalRectSeries extends VerticalRectSeries {
 EuiVerticalRectSeries.displayName = 'EuiVerticalRectSeries';
 
 EuiVerticalRectSeries.propTypes = {
-  /** The name used to define the data in tooltips and ledgends */
+  /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x0: number, x: number, y: number}> */
   data: PropTypes.arrayOf(PropTypes.shape({

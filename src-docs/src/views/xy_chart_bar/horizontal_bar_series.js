@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { EuiXYChart, EuiHorizontalBarSeries, EuiXYChartUtils } from '../../../../src/components';
+import { EuiXYChart, EuiBarSeries, EuiXYChartUtils } from '../../../../src/components';
 
+const { SCALE, ORIENTATION } = EuiXYChartUtils;
 const data = [
   { x: 3, y: 'A' },
   { x: 1, y: 'B' },
@@ -12,10 +13,10 @@ const data = [
 export default () => (
   <EuiXYChart
     width={600}
-    height={200}
-    yType="ordinal"
-    orientation={EuiXYChartUtils.ORIENTATION.HORIZONTAL}
+    height={300}
+    yType={SCALE.ORDINAL}
+    orientation={ORIENTATION.HORIZONTAL}
   >
-    <EuiHorizontalBarSeries name="Tag counts" data={data} />
+    <EuiBarSeries name="Tag counts" data={data} />
   </EuiXYChart>
 );

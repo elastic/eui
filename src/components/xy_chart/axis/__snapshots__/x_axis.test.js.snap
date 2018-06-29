@@ -20,12 +20,12 @@ exports[`EuiXAxis render the x axis 1`] = `
       >
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
-          transform="translate(0,200)"
+          transform="translate(40,160)"
         >
           <line
             class="rv-xy-plot__axis__line"
             x1="0"
-            x2="600"
+            x2="550"
             y1="0"
             y2="0"
           />
@@ -55,7 +55,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(60, 0)"
+              transform="translate(55, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -75,7 +75,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(120, 0)"
+              transform="translate(110, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -95,7 +95,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(180, 0)"
+              transform="translate(165, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -115,7 +115,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(240, 0)"
+              transform="translate(220, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -135,7 +135,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(300, 0)"
+              transform="translate(275, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -155,7 +155,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(360, 0)"
+              transform="translate(330, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -175,7 +175,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(420, 0)"
+              transform="translate(385, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -195,7 +195,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(480, 0)"
+              transform="translate(440, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -215,7 +215,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(540, 0)"
+              transform="translate(495, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -235,7 +235,7 @@ exports[`EuiXAxis render the x axis 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(600, 0)"
+              transform="translate(550, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -257,28 +257,28 @@ exports[`EuiXAxis render the x axis 1`] = `
         </g>
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
-          d="M0,200L600,0"
+          d="M0,150L550,0"
           style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         />
         <g
           class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <circle
             cx="0"
-            cy="200"
+            cy="150"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
           />
           <circle
-            cx="600"
+            cx="550"
             cy="0"
             r="5"
             style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"

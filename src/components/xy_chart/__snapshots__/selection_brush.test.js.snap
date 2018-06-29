@@ -69,13 +69,13 @@ exports[`EuiSelectionBrush renders an horizontal selection brush 1`] = `
   getX0={[Function]}
   getY={[Function]}
   getY0={[Function]}
-  innerHeight={200}
-  innerWidth={600}
+  innerHeight={150}
+  innerWidth={550}
   key=".3"
-  marginBottom={0}
-  marginLeft={0}
-  marginRight={0}
-  marginTop={0}
+  marginBottom={40}
+  marginLeft={40}
+  marginRight={10}
+  marginTop={10}
   onBrushEnd={[Function]}
   opacity={0.2}
   opacityDomain={Array []}
@@ -109,7 +109,7 @@ exports[`EuiSelectionBrush renders an horizontal selection brush 1`] = `
   xRange={
     Array [
       0,
-      600,
+      550,
     ]
   }
   xType="linear"
@@ -123,7 +123,7 @@ exports[`EuiSelectionBrush renders an horizontal selection brush 1`] = `
   yPadding={0}
   yRange={
     Array [
-      200,
+      150,
       0,
     ]
   }
@@ -135,11 +135,11 @@ exports[`EuiSelectionBrush renders an horizontal selection brush 1`] = `
         "pointerEvents": "none",
       }
     }
-    transform="translate(0, 0)"
+    transform="translate(40, 10)"
   >
     <rect
       fill="black"
-      height={200}
+      height={150}
       opacity={0.2}
       width={50}
       x={50}
@@ -218,13 +218,13 @@ exports[`EuiSelectionBrush renders an vertical selection brush 1`] = `
   getX0={[Function]}
   getY={[Function]}
   getY0={[Function]}
-  innerHeight={200}
-  innerWidth={600}
+  innerHeight={150}
+  innerWidth={550}
   key=".3"
-  marginBottom={0}
-  marginLeft={0}
-  marginRight={0}
-  marginTop={0}
+  marginBottom={40}
+  marginLeft={40}
+  marginRight={10}
+  marginTop={10}
   onBrushEnd={[Function]}
   opacity={0.2}
   opacityDomain={Array []}
@@ -258,7 +258,7 @@ exports[`EuiSelectionBrush renders an vertical selection brush 1`] = `
   xRange={
     Array [
       0,
-      600,
+      550,
     ]
   }
   xType="linear"
@@ -272,7 +272,7 @@ exports[`EuiSelectionBrush renders an vertical selection brush 1`] = `
   yPadding={0}
   yRange={
     Array [
-      200,
+      150,
       0,
     ]
   }
@@ -284,13 +284,13 @@ exports[`EuiSelectionBrush renders an vertical selection brush 1`] = `
         "pointerEvents": "none",
       }
     }
-    transform="translate(0, 0)"
+    transform="translate(40, 10)"
   >
     <rect
       fill="black"
       height={50}
       opacity={0.2}
-      width={600}
+      width={550}
       x={0}
       y={50}
     />
@@ -367,13 +367,13 @@ exports[`EuiSelectionBrush renders free form selection brush 1`] = `
   getX0={[Function]}
   getY={[Function]}
   getY0={[Function]}
-  innerHeight={200}
-  innerWidth={600}
+  innerHeight={150}
+  innerWidth={550}
   key=".3"
-  marginBottom={0}
-  marginLeft={0}
-  marginRight={0}
-  marginTop={0}
+  marginBottom={40}
+  marginLeft={40}
+  marginRight={10}
+  marginTop={10}
   onBrushEnd={[Function]}
   opacity={0.2}
   opacityDomain={Array []}
@@ -407,7 +407,7 @@ exports[`EuiSelectionBrush renders free form selection brush 1`] = `
   xRange={
     Array [
       0,
-      600,
+      550,
     ]
   }
   xType="linear"
@@ -421,7 +421,7 @@ exports[`EuiSelectionBrush renders free form selection brush 1`] = `
   yPadding={0}
   yRange={
     Array [
-      200,
+      150,
       0,
     ]
   }
@@ -433,7 +433,7 @@ exports[`EuiSelectionBrush renders free form selection brush 1`] = `
         "pointerEvents": "none",
       }
     }
-    transform="translate(0, 0)"
+    transform="translate(40, 10)"
   >
     <rect
       fill="black"

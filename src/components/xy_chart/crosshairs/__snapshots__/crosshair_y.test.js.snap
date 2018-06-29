@@ -20,21 +20,21 @@ exports[`EuiCrosshairY render the Y crosshair 1`] = `
       >
         <g
           class="rv-xy-plot__series rv-xy-plot__series--bar euiBarSeries"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <rect
-            height="85"
+            height="63.75"
             style="opacity: 1; stroke: #3185FC; fill: #3185FC;"
-            width="450"
+            width="412.5"
             x="0"
-            y="107.5"
+            y="80.625"
           />
           <rect
-            height="85"
+            height="63.75"
             style="opacity: 1; stroke: #3185FC; fill: #3185FC;"
-            width="600"
+            width="550"
             x="0"
-            y="7.5"
+            y="5.625"
           />
         </g>
       </svg>

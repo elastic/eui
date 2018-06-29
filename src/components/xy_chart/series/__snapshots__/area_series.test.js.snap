@@ -36,7 +36,14 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
           className=""
           dontCheckIfEmpty={true}
           height={200}
-          margin={0}
+          margin={
+            Object {
+              "bottom": 40,
+              "left": 40,
+              "right": 10,
+              "top": 10,
+            }
+          }
           width={600}
           xPadding={0}
           xType="linear"
@@ -89,6 +96,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 }
                 _colorValue="#DB1374"
                 _opacityValue={1}
+                _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
                 clusters={
@@ -144,15 +152,15 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 getY0={[Function]}
                 hasLineMarks={true}
                 id="chart-0"
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 key=".0:$.0"
                 lineMarkColor="#00ff00"
                 lineMarkSize={13}
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 name="test-chart"
                 onClick={[Function]}
                 onMarkClick={[Function]}
@@ -186,7 +194,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -199,7 +207,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }
@@ -225,6 +233,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   }
                   _colorValue="#DB1374"
                   _opacityValue={1}
+                  _orientation="vertical"
                   angleDomain={Array []}
                   animation={true}
                   className="euiAreaSeries"
@@ -282,15 +291,15 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   getY0={[Function]}
                   hasLineMarks={true}
                   id="chart-0"
-                  innerHeight={200}
-                  innerWidth={600}
+                  innerHeight={150}
+                  innerWidth={550}
                   key="test-chart-area"
                   lineMarkColor="#00ff00"
                   lineMarkSize={13}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onClick={[Function]}
                   onMarkClick={[Function]}
                   onSeriesMouseOut={[Function]}
@@ -331,7 +340,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -344,7 +353,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -370,6 +379,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     }
                     _colorValue="#DB1374"
                     _opacityValue={1}
+                    _orientation="vertical"
                     angleDomain={Array []}
                     animatedProps={
                       Array [
@@ -465,14 +475,14 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     getY0={[Function]}
                     hasLineMarks={true}
                     id="chart-0"
-                    innerHeight={200}
-                    innerWidth={600}
+                    innerHeight={150}
+                    innerWidth={550}
                     lineMarkColor="#00ff00"
                     lineMarkSize={13}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     onClick={[Function]}
                     onMarkClick={[Function]}
                     onSeriesMouseOut={[Function]}
@@ -513,7 +523,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -526,7 +536,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -572,6 +582,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         _animation={0.00002}
                         _colorValue="#DB1374"
                         _opacityValue={1}
+                        _orientation="vertical"
                         angleDomain={Array []}
                         animation={null}
                         className="euiAreaSeries"
@@ -629,14 +640,14 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         getY0={[Function]}
                         hasLineMarks={true}
                         id="chart-0"
-                        innerHeight={200}
-                        innerWidth={600}
+                        innerHeight={150}
+                        innerWidth={550}
                         lineMarkColor="#00ff00"
                         lineMarkSize={13}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         onClick={[Function]}
                         onMarkClick={[Function]}
                         onSeriesMouseOut={[Function]}
@@ -677,7 +688,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -690,7 +701,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -698,7 +709,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       >
                         <path
                           className="rv-xy-plot__series rv-xy-plot__series--line euiAreaSeries"
-                          d="M0,200L600,0L600,200L0,200Z"
+                          d="M0,150L550,0L550,150L0,150Z"
                           onClick={[Function]}
                           onContextMenu={[Function]}
                           onMouseOut={[Function]}
@@ -711,7 +722,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               "stroke": "#DB1374",
                             }
                           }
-                          transform="translate(0,0)"
+                          transform="translate(40,10)"
                         />
                       </AreaSeries>
                     </Motion>
@@ -770,13 +781,13 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 getX0={[Function]}
                 getY={[Function]}
                 getY0={[Function]}
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 key=".1"
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 opacityDomain={Array []}
                 opacityType="literal"
                 orientation="vertical"
@@ -807,7 +818,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -821,7 +832,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }
@@ -879,12 +890,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   opacityDomain={Array []}
                   opacityType="literal"
                   radiusDomain={Array []}
@@ -912,7 +923,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -925,7 +936,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -985,12 +996,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     opacityDomain={Array []}
                     opacityType="literal"
                     radiusDomain={Array []}
@@ -1018,7 +1029,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -1031,7 +1042,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -1091,12 +1102,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       opacityDomain={Array []}
                       opacityType="literal"
                       radiusDomain={Array []}
@@ -1124,7 +1135,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -1137,7 +1148,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -1212,12 +1223,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         opacityDomain={Array []}
                         opacityType="literal"
                         radiusDomain={Array []}
@@ -1245,7 +1256,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -1258,7 +1269,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -1339,12 +1350,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             opacityDomain={Array []}
                             opacityType="literal"
                             radiusDomain={Array []}
@@ -1372,7 +1383,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -1385,7 +1396,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -1393,47 +1404,47 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                           >
                             <g
                               className="rv-xy-plot__grid-lines"
-                              transform="translate(0,0)"
+                              transform="translate(40,10)"
                             >
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
                                 x1={0}
-                                x2={600}
-                                y1={180}
-                                y2={180}
+                                x2={550}
+                                y1={135}
+                                y2={135}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
                                 x1={0}
-                                x2={600}
-                                y1={140}
-                                y2={140}
+                                x2={550}
+                                y1={105}
+                                y2={105}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
                                 x1={0}
-                                x2={600}
-                                y1={100}
-                                y2={100}
+                                x2={550}
+                                y1={75}
+                                y2={75}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
                                 x1={0}
-                                x2={600}
-                                y1={60}
-                                y2={60}
+                                x2={550}
+                                y1={45}
+                                y2={45}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
                                 x1={0}
-                                x2={600}
-                                y1={20}
-                                y2={20}
+                                x2={550}
+                                y1={15}
+                                y2={15}
                               />
                             </g>
                           </GridLines>
@@ -1494,12 +1505,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
@@ -1531,7 +1542,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -1544,7 +1555,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -1604,12 +1615,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     on0={false}
                     opacityDomain={Array []}
                     opacityType="literal"
@@ -1641,7 +1652,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -1654,7 +1665,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -1715,12 +1726,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       on0={false}
                       opacityDomain={Array []}
                       opacityType="literal"
@@ -1754,7 +1765,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -1767,7 +1778,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -1846,12 +1857,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         on0={false}
                         opacityDomain={Array []}
                         opacityType="literal"
@@ -1885,7 +1896,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -1898,7 +1909,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -1980,12 +1991,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             on0={false}
                             opacityDomain={Array []}
                             opacityType="literal"
@@ -2019,7 +2030,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -2032,7 +2043,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -2041,19 +2052,19 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             <g
                               className="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
                               style={Object {}}
-                              transform="translate(0,200)"
+                              transform="translate(40,160)"
                             >
                               <AxisLine
-                                height={0}
+                                height={40}
                                 orientation="bottom"
                                 style={Object {}}
-                                width={600}
+                                width={550}
                               >
                                 <line
                                   className="rv-xy-plot__axis__line"
                                   style={Object {}}
                                   x1={0}
-                                  x2={600}
+                                  x2={550}
                                   y1={0}
                                   y2={0}
                                 />
@@ -2115,14 +2126,14 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 getX0={[Function]}
                                 getY={[Function]}
                                 getY0={[Function]}
-                                height={0}
-                                innerHeight={200}
-                                innerWidth={600}
-                                left={0}
-                                marginBottom={0}
-                                marginLeft={0}
-                                marginRight={0}
-                                marginTop={0}
+                                height={40}
+                                innerHeight={150}
+                                innerWidth={550}
+                                left={40}
+                                marginBottom={40}
+                                marginLeft={40}
+                                marginRight={10}
+                                marginTop={10}
                                 on0={false}
                                 opacityDomain={Array []}
                                 opacityType="literal"
@@ -2147,8 +2158,8 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 tickPadding={8}
                                 tickSize={0}
                                 tickTotal={10}
-                                top={200}
-                                width={600}
+                                top={160}
+                                width={550}
                                 xDomain={
                                   Array [
                                     0,
@@ -2159,7 +2170,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 xRange={
                                   Array [
                                     0,
-                                    600,
+                                    550,
                                   ]
                                 }
                                 xType="linear"
@@ -2172,7 +2183,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 yPadding={0}
                                 yRange={
                                   Array [
-                                    200,
+                                    150,
                                     0,
                                   ]
                                 }
@@ -2210,7 +2221,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="1"
                                     style={Object {}}
-                                    transform="translate(60, 0)"
+                                    transform="translate(55, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2234,7 +2245,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="2"
                                     style={Object {}}
-                                    transform="translate(120, 0)"
+                                    transform="translate(110, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2258,7 +2269,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="3"
                                     style={Object {}}
-                                    transform="translate(180, 0)"
+                                    transform="translate(165, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2282,7 +2293,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="4"
                                     style={Object {}}
-                                    transform="translate(240, 0)"
+                                    transform="translate(220, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2306,7 +2317,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="5"
                                     style={Object {}}
-                                    transform="translate(300, 0)"
+                                    transform="translate(275, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2330,7 +2341,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="6"
                                     style={Object {}}
-                                    transform="translate(360, 0)"
+                                    transform="translate(330, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2354,7 +2365,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="7"
                                     style={Object {}}
-                                    transform="translate(420, 0)"
+                                    transform="translate(385, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2378,7 +2389,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="8"
                                     style={Object {}}
-                                    transform="translate(480, 0)"
+                                    transform="translate(440, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2402,7 +2413,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="9"
                                     style={Object {}}
-                                    transform="translate(540, 0)"
+                                    transform="translate(495, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2426,7 +2437,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="10"
                                     style={Object {}}
-                                    transform="translate(600, 0)"
+                                    transform="translate(550, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -2507,12 +2518,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
@@ -2544,7 +2555,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -2557,7 +2568,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -2617,12 +2628,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     on0={false}
                     opacityDomain={Array []}
                     opacityType="literal"
@@ -2654,7 +2665,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -2667,7 +2678,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -2728,12 +2739,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       on0={false}
                       opacityDomain={Array []}
                       opacityType="literal"
@@ -2767,7 +2778,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -2780,7 +2791,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -2859,12 +2870,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         on0={false}
                         opacityDomain={Array []}
                         opacityType="literal"
@@ -2898,7 +2909,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -2911,7 +2922,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -2993,12 +3004,12 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             on0={false}
                             opacityDomain={Array []}
                             opacityType="literal"
@@ -3032,7 +3043,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -3045,7 +3056,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -3054,21 +3065,21 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                             <g
                               className="rv-xy-plot__axis rv-xy-plot__axis--vertical "
                               style={Object {}}
-                              transform="translate(0,0)"
+                              transform="translate(0,10)"
                             >
                               <AxisLine
-                                height={200}
+                                height={150}
                                 orientation="left"
                                 style={Object {}}
-                                width={0}
+                                width={40}
                               >
                                 <line
                                   className="rv-xy-plot__axis__line"
                                   style={Object {}}
-                                  x1={0}
-                                  x2={0}
+                                  x1={40}
+                                  x2={40}
                                   y1={0}
-                                  y2={200}
+                                  y2={150}
                                 />
                               </AxisLine>
                               <AxisTicks
@@ -3128,14 +3139,14 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 getX0={[Function]}
                                 getY={[Function]}
                                 getY0={[Function]}
-                                height={200}
-                                innerHeight={200}
-                                innerWidth={600}
+                                height={150}
+                                innerHeight={150}
+                                innerWidth={550}
                                 left={0}
-                                marginBottom={0}
-                                marginLeft={0}
-                                marginRight={0}
-                                marginTop={0}
+                                marginBottom={40}
+                                marginLeft={40}
+                                marginRight={10}
+                                marginTop={10}
                                 on0={false}
                                 opacityDomain={Array []}
                                 opacityType="literal"
@@ -3160,8 +3171,8 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 tickPadding={8}
                                 tickSize={0}
                                 tickTotal={5}
-                                top={0}
-                                width={0}
+                                top={10}
+                                width={40}
                                 xDomain={
                                   Array [
                                     0,
@@ -3172,7 +3183,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 xRange={
                                   Array [
                                     0,
-                                    600,
+                                    550,
                                   ]
                                 }
                                 xType="linear"
@@ -3185,7 +3196,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                 yPadding={0}
                                 yRange={
                                   Array [
-                                    200,
+                                    150,
                                     0,
                                   ]
                                 }
@@ -3193,13 +3204,13 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                               >
                                 <g
                                   className="rv-xy-plot__axis__ticks"
-                                  transform="translate(0, 0)"
+                                  transform="translate(40, 0)"
                                 >
                                   <g
                                     className="rv-xy-plot__axis__tick"
                                     key="0"
                                     style={Object {}}
-                                    transform="translate(0, 180)"
+                                    transform="translate(0, 135)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -3223,7 +3234,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="1"
                                     style={Object {}}
-                                    transform="translate(0, 140)"
+                                    transform="translate(0, 105)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -3247,7 +3258,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="2"
                                     style={Object {}}
-                                    transform="translate(0, 100)"
+                                    transform="translate(0, 75)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -3271,7 +3282,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="3"
                                     style={Object {}}
-                                    transform="translate(0, 60)"
+                                    transform="translate(0, 45)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -3295,7 +3306,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="4"
                                     style={Object {}}
-                                    transform="translate(0, 20)"
+                                    transform="translate(0, 15)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -3385,13 +3396,13 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
               getX0={[Function]}
               getY={[Function]}
               getY0={[Function]}
-              innerHeight={200}
-              innerWidth={600}
+              innerHeight={150}
+              innerWidth={550}
               key=".2"
-              marginBottom={0}
-              marginLeft={0}
-              marginRight={0}
-              marginTop={0}
+              marginBottom={40}
+              marginLeft={40}
+              marginRight={10}
+              marginTop={10}
               opacityDomain={Array []}
               opacityType="literal"
               radiusDomain={Array []}
@@ -3422,7 +3433,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
               xRange={
                 Array [
                   0,
-                  600,
+                  550,
                 ]
               }
               xType="linear"
@@ -3435,7 +3446,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
               yPadding={0}
               yRange={
                 Array [
-                  200,
+                  150,
                   0,
                 ]
               }
@@ -3500,13 +3511,13 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 getX0={[Function]}
                 getY={[Function]}
                 getY0={[Function]}
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 itemsFormat={[Function]}
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 opacityDomain={Array []}
                 opacityType="literal"
                 radiusDomain={Array []}
@@ -3546,7 +3557,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -3559,7 +3570,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }
@@ -3619,7 +3630,14 @@ exports[`EuiAreaSeries is rendered 1`] = `
           className=""
           dontCheckIfEmpty={true}
           height={200}
-          margin={0}
+          margin={
+            Object {
+              "bottom": 40,
+              "left": 40,
+              "right": 10,
+              "top": 10,
+            }
+          }
           width={600}
           xPadding={0}
           xType="linear"
@@ -3672,6 +3690,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 }
                 _colorValue="#00B3A4"
                 _opacityValue={1}
+                _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
                 clusters={
@@ -3726,13 +3745,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 getY={[Function]}
                 getY0={[Function]}
                 id="chart-0"
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 key=".0:$.0"
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 name="somename"
                 opacityDomain={Array []}
                 opacityType="literal"
@@ -3764,7 +3783,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -3777,7 +3796,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }
@@ -3803,6 +3822,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   }
                   _colorValue="#00B3A4"
                   _opacityValue={1}
+                  _orientation="vertical"
                   angleDomain={Array []}
                   animation={true}
                   className="euiAreaSeries"
@@ -3859,13 +3879,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   getY={[Function]}
                   getY0={[Function]}
                   id="chart-0"
-                  innerHeight={200}
-                  innerWidth={600}
+                  innerHeight={150}
+                  innerWidth={550}
                   key="somename-area"
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onSeriesMouseOut={[Function]}
                   onSeriesMouseOver={[Function]}
                   opacityDomain={Array []}
@@ -3904,7 +3924,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -3917,7 +3937,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -3943,6 +3963,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     }
                     _colorValue="#00B3A4"
                     _opacityValue={1}
+                    _orientation="vertical"
                     angleDomain={Array []}
                     animatedProps={
                       Array [
@@ -4037,12 +4058,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     getY={[Function]}
                     getY0={[Function]}
                     id="chart-0"
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     onSeriesMouseOut={[Function]}
                     onSeriesMouseOver={[Function]}
                     opacityDomain={Array []}
@@ -4081,7 +4102,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -4094,7 +4115,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -4140,6 +4161,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         _animation={0.00002}
                         _colorValue="#00B3A4"
                         _opacityValue={1}
+                        _orientation="vertical"
                         angleDomain={Array []}
                         animation={null}
                         className="euiAreaSeries"
@@ -4196,12 +4218,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         getY={[Function]}
                         getY0={[Function]}
                         id="chart-0"
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         onSeriesMouseOut={[Function]}
                         onSeriesMouseOver={[Function]}
                         opacityDomain={Array []}
@@ -4240,7 +4262,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -4253,7 +4275,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -4261,7 +4283,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       >
                         <path
                           className="rv-xy-plot__series rv-xy-plot__series--line euiAreaSeries"
-                          d="M0,200L600,0L600,200L0,200Z"
+                          d="M0,150L550,0L550,150L0,150Z"
                           onClick={[Function]}
                           onContextMenu={[Function]}
                           onMouseOut={[Function]}
@@ -4274,7 +4296,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               "stroke": "#00B3A4",
                             }
                           }
-                          transform="translate(0,0)"
+                          transform="translate(40,10)"
                         />
                       </AreaSeries>
                     </Motion>
@@ -4333,13 +4355,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 getX0={[Function]}
                 getY={[Function]}
                 getY0={[Function]}
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 key=".1"
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 opacityDomain={Array []}
                 opacityType="literal"
                 orientation="vertical"
@@ -4370,7 +4392,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -4384,7 +4406,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }
@@ -4442,12 +4464,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   opacityDomain={Array []}
                   opacityType="literal"
                   radiusDomain={Array []}
@@ -4475,7 +4497,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -4488,7 +4510,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -4548,12 +4570,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     opacityDomain={Array []}
                     opacityType="literal"
                     radiusDomain={Array []}
@@ -4581,7 +4603,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -4594,7 +4616,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -4654,12 +4676,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       opacityDomain={Array []}
                       opacityType="literal"
                       radiusDomain={Array []}
@@ -4687,7 +4709,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -4700,7 +4722,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -4775,12 +4797,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         opacityDomain={Array []}
                         opacityType="literal"
                         radiusDomain={Array []}
@@ -4808,7 +4830,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -4821,7 +4843,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -4902,12 +4924,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             opacityDomain={Array []}
                             opacityType="literal"
                             radiusDomain={Array []}
@@ -4935,7 +4957,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -4948,7 +4970,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -4956,47 +4978,47 @@ exports[`EuiAreaSeries is rendered 1`] = `
                           >
                             <g
                               className="rv-xy-plot__grid-lines"
-                              transform="translate(0,0)"
+                              transform="translate(40,10)"
                             >
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="0"
                                 x1={0}
-                                x2={600}
-                                y1={180}
-                                y2={180}
+                                x2={550}
+                                y1={135}
+                                y2={135}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="1"
                                 x1={0}
-                                x2={600}
-                                y1={140}
-                                y2={140}
+                                x2={550}
+                                y1={105}
+                                y2={105}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="2"
                                 x1={0}
-                                x2={600}
-                                y1={100}
-                                y2={100}
+                                x2={550}
+                                y1={75}
+                                y2={75}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="3"
                                 x1={0}
-                                x2={600}
-                                y1={60}
-                                y2={60}
+                                x2={550}
+                                y1={45}
+                                y2={45}
                               />
                               <line
                                 className="rv-xy-plot__grid-lines__line"
                                 key="4"
                                 x1={0}
-                                x2={600}
-                                y1={20}
-                                y2={20}
+                                x2={550}
+                                y1={15}
+                                y2={15}
                               />
                             </g>
                           </GridLines>
@@ -5057,12 +5079,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
@@ -5094,7 +5116,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -5107,7 +5129,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -5167,12 +5189,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     on0={false}
                     opacityDomain={Array []}
                     opacityType="literal"
@@ -5204,7 +5226,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -5217,7 +5239,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -5278,12 +5300,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       on0={false}
                       opacityDomain={Array []}
                       opacityType="literal"
@@ -5317,7 +5339,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -5330,7 +5352,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -5409,12 +5431,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         on0={false}
                         opacityDomain={Array []}
                         opacityType="literal"
@@ -5448,7 +5470,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -5461,7 +5483,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -5543,12 +5565,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             on0={false}
                             opacityDomain={Array []}
                             opacityType="literal"
@@ -5582,7 +5604,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -5595,7 +5617,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -5604,19 +5626,19 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             <g
                               className="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
                               style={Object {}}
-                              transform="translate(0,200)"
+                              transform="translate(40,160)"
                             >
                               <AxisLine
-                                height={0}
+                                height={40}
                                 orientation="bottom"
                                 style={Object {}}
-                                width={600}
+                                width={550}
                               >
                                 <line
                                   className="rv-xy-plot__axis__line"
                                   style={Object {}}
                                   x1={0}
-                                  x2={600}
+                                  x2={550}
                                   y1={0}
                                   y2={0}
                                 />
@@ -5678,14 +5700,14 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 getX0={[Function]}
                                 getY={[Function]}
                                 getY0={[Function]}
-                                height={0}
-                                innerHeight={200}
-                                innerWidth={600}
-                                left={0}
-                                marginBottom={0}
-                                marginLeft={0}
-                                marginRight={0}
-                                marginTop={0}
+                                height={40}
+                                innerHeight={150}
+                                innerWidth={550}
+                                left={40}
+                                marginBottom={40}
+                                marginLeft={40}
+                                marginRight={10}
+                                marginTop={10}
                                 on0={false}
                                 opacityDomain={Array []}
                                 opacityType="literal"
@@ -5710,8 +5732,8 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 tickPadding={8}
                                 tickSize={0}
                                 tickTotal={10}
-                                top={200}
-                                width={600}
+                                top={160}
+                                width={550}
                                 xDomain={
                                   Array [
                                     0,
@@ -5722,7 +5744,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 xRange={
                                   Array [
                                     0,
-                                    600,
+                                    550,
                                   ]
                                 }
                                 xType="linear"
@@ -5735,7 +5757,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 yPadding={0}
                                 yRange={
                                   Array [
-                                    200,
+                                    150,
                                     0,
                                   ]
                                 }
@@ -5773,7 +5795,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="1"
                                     style={Object {}}
-                                    transform="translate(60, 0)"
+                                    transform="translate(55, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5797,7 +5819,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="2"
                                     style={Object {}}
-                                    transform="translate(120, 0)"
+                                    transform="translate(110, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5821,7 +5843,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="3"
                                     style={Object {}}
-                                    transform="translate(180, 0)"
+                                    transform="translate(165, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5845,7 +5867,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="4"
                                     style={Object {}}
-                                    transform="translate(240, 0)"
+                                    transform="translate(220, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5869,7 +5891,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="5"
                                     style={Object {}}
-                                    transform="translate(300, 0)"
+                                    transform="translate(275, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5893,7 +5915,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="6"
                                     style={Object {}}
-                                    transform="translate(360, 0)"
+                                    transform="translate(330, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5917,7 +5939,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="7"
                                     style={Object {}}
-                                    transform="translate(420, 0)"
+                                    transform="translate(385, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5941,7 +5963,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="8"
                                     style={Object {}}
-                                    transform="translate(480, 0)"
+                                    transform="translate(440, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5965,7 +5987,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="9"
                                     style={Object {}}
-                                    transform="translate(540, 0)"
+                                    transform="translate(495, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -5989,7 +6011,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="10"
                                     style={Object {}}
-                                    transform="translate(600, 0)"
+                                    transform="translate(550, 0)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6070,12 +6092,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   getX0={[Function]}
                   getY={[Function]}
                   getY0={[Function]}
-                  innerHeight={200}
-                  innerWidth={600}
-                  marginBottom={0}
-                  marginLeft={0}
-                  marginRight={0}
-                  marginTop={0}
+                  innerHeight={150}
+                  innerWidth={550}
+                  marginBottom={40}
+                  marginLeft={40}
+                  marginRight={10}
+                  marginTop={10}
                   onZero={false}
                   opacityDomain={Array []}
                   opacityType="literal"
@@ -6107,7 +6129,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   xRange={
                     Array [
                       0,
-                      600,
+                      550,
                     ]
                   }
                   xType="linear"
@@ -6120,7 +6142,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                   yPadding={0}
                   yRange={
                     Array [
-                      200,
+                      150,
                       0,
                     ]
                   }
@@ -6180,12 +6202,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     getX0={[Function]}
                     getY={[Function]}
                     getY0={[Function]}
-                    innerHeight={200}
-                    innerWidth={600}
-                    marginBottom={0}
-                    marginLeft={0}
-                    marginRight={0}
-                    marginTop={0}
+                    innerHeight={150}
+                    innerWidth={550}
+                    marginBottom={40}
+                    marginLeft={40}
+                    marginRight={10}
+                    marginTop={10}
                     on0={false}
                     opacityDomain={Array []}
                     opacityType="literal"
@@ -6217,7 +6239,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     xRange={
                       Array [
                         0,
-                        600,
+                        550,
                       ]
                     }
                     xType="linear"
@@ -6230,7 +6252,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                     yPadding={0}
                     yRange={
                       Array [
-                        200,
+                        150,
                         0,
                       ]
                     }
@@ -6291,12 +6313,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       getX0={[Function]}
                       getY={[Function]}
                       getY0={[Function]}
-                      innerHeight={200}
-                      innerWidth={600}
-                      marginBottom={0}
-                      marginLeft={0}
-                      marginRight={0}
-                      marginTop={0}
+                      innerHeight={150}
+                      innerWidth={550}
+                      marginBottom={40}
+                      marginLeft={40}
+                      marginRight={10}
+                      marginTop={10}
                       on0={false}
                       opacityDomain={Array []}
                       opacityType="literal"
@@ -6330,7 +6352,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       xRange={
                         Array [
                           0,
-                          600,
+                          550,
                         ]
                       }
                       xType="linear"
@@ -6343,7 +6365,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                       yPadding={0}
                       yRange={
                         Array [
-                          200,
+                          150,
                           0,
                         ]
                       }
@@ -6422,12 +6444,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         getX0={[Function]}
                         getY={[Function]}
                         getY0={[Function]}
-                        innerHeight={200}
-                        innerWidth={600}
-                        marginBottom={0}
-                        marginLeft={0}
-                        marginRight={0}
-                        marginTop={0}
+                        innerHeight={150}
+                        innerWidth={550}
+                        marginBottom={40}
+                        marginLeft={40}
+                        marginRight={10}
+                        marginTop={10}
                         on0={false}
                         opacityDomain={Array []}
                         opacityType="literal"
@@ -6461,7 +6483,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         xRange={
                           Array [
                             0,
-                            600,
+                            550,
                           ]
                         }
                         xType="linear"
@@ -6474,7 +6496,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                         yPadding={0}
                         yRange={
                           Array [
-                            200,
+                            150,
                             0,
                           ]
                         }
@@ -6556,12 +6578,12 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             getX0={[Function]}
                             getY={[Function]}
                             getY0={[Function]}
-                            innerHeight={200}
-                            innerWidth={600}
-                            marginBottom={0}
-                            marginLeft={0}
-                            marginRight={0}
-                            marginTop={0}
+                            innerHeight={150}
+                            innerWidth={550}
+                            marginBottom={40}
+                            marginLeft={40}
+                            marginRight={10}
+                            marginTop={10}
                             on0={false}
                             opacityDomain={Array []}
                             opacityType="literal"
@@ -6595,7 +6617,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             xRange={
                               Array [
                                 0,
-                                600,
+                                550,
                               ]
                             }
                             xType="linear"
@@ -6608,7 +6630,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             yPadding={0}
                             yRange={
                               Array [
-                                200,
+                                150,
                                 0,
                               ]
                             }
@@ -6617,21 +6639,21 @@ exports[`EuiAreaSeries is rendered 1`] = `
                             <g
                               className="rv-xy-plot__axis rv-xy-plot__axis--vertical "
                               style={Object {}}
-                              transform="translate(0,0)"
+                              transform="translate(0,10)"
                             >
                               <AxisLine
-                                height={200}
+                                height={150}
                                 orientation="left"
                                 style={Object {}}
-                                width={0}
+                                width={40}
                               >
                                 <line
                                   className="rv-xy-plot__axis__line"
                                   style={Object {}}
-                                  x1={0}
-                                  x2={0}
+                                  x1={40}
+                                  x2={40}
                                   y1={0}
-                                  y2={200}
+                                  y2={150}
                                 />
                               </AxisLine>
                               <AxisTicks
@@ -6691,14 +6713,14 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 getX0={[Function]}
                                 getY={[Function]}
                                 getY0={[Function]}
-                                height={200}
-                                innerHeight={200}
-                                innerWidth={600}
+                                height={150}
+                                innerHeight={150}
+                                innerWidth={550}
                                 left={0}
-                                marginBottom={0}
-                                marginLeft={0}
-                                marginRight={0}
-                                marginTop={0}
+                                marginBottom={40}
+                                marginLeft={40}
+                                marginRight={10}
+                                marginTop={10}
                                 on0={false}
                                 opacityDomain={Array []}
                                 opacityType="literal"
@@ -6723,8 +6745,8 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 tickPadding={8}
                                 tickSize={0}
                                 tickTotal={5}
-                                top={0}
-                                width={0}
+                                top={10}
+                                width={40}
                                 xDomain={
                                   Array [
                                     0,
@@ -6735,7 +6757,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 xRange={
                                   Array [
                                     0,
-                                    600,
+                                    550,
                                   ]
                                 }
                                 xType="linear"
@@ -6748,7 +6770,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                 yPadding={0}
                                 yRange={
                                   Array [
-                                    200,
+                                    150,
                                     0,
                                   ]
                                 }
@@ -6756,13 +6778,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
                               >
                                 <g
                                   className="rv-xy-plot__axis__ticks"
-                                  transform="translate(0, 0)"
+                                  transform="translate(40, 0)"
                                 >
                                   <g
                                     className="rv-xy-plot__axis__tick"
                                     key="0"
                                     style={Object {}}
-                                    transform="translate(0, 180)"
+                                    transform="translate(0, 135)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6786,7 +6808,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="1"
                                     style={Object {}}
-                                    transform="translate(0, 140)"
+                                    transform="translate(0, 105)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6810,7 +6832,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="2"
                                     style={Object {}}
-                                    transform="translate(0, 100)"
+                                    transform="translate(0, 75)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6834,7 +6856,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="3"
                                     style={Object {}}
-                                    transform="translate(0, 60)"
+                                    transform="translate(0, 45)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6858,7 +6880,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                                     className="rv-xy-plot__axis__tick"
                                     key="4"
                                     style={Object {}}
-                                    transform="translate(0, 20)"
+                                    transform="translate(0, 15)"
                                   >
                                     <line
                                       className="rv-xy-plot__axis__tick__line"
@@ -6948,13 +6970,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
               getX0={[Function]}
               getY={[Function]}
               getY0={[Function]}
-              innerHeight={200}
-              innerWidth={600}
+              innerHeight={150}
+              innerWidth={550}
               key=".2"
-              marginBottom={0}
-              marginLeft={0}
-              marginRight={0}
-              marginTop={0}
+              marginBottom={40}
+              marginLeft={40}
+              marginRight={10}
+              marginTop={10}
               opacityDomain={Array []}
               opacityType="literal"
               radiusDomain={Array []}
@@ -6985,7 +7007,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
               xRange={
                 Array [
                   0,
-                  600,
+                  550,
                 ]
               }
               xType="linear"
@@ -6998,7 +7020,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
               yPadding={0}
               yRange={
                 Array [
-                  200,
+                  150,
                   0,
                 ]
               }
@@ -7063,13 +7085,13 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 getX0={[Function]}
                 getY={[Function]}
                 getY0={[Function]}
-                innerHeight={200}
-                innerWidth={600}
+                innerHeight={150}
+                innerWidth={550}
                 itemsFormat={[Function]}
-                marginBottom={0}
-                marginLeft={0}
-                marginRight={0}
-                marginTop={0}
+                marginBottom={40}
+                marginLeft={40}
+                marginRight={10}
+                marginTop={10}
                 opacityDomain={Array []}
                 opacityType="literal"
                 radiusDomain={Array []}
@@ -7109,7 +7131,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 xRange={
                   Array [
                     0,
-                    600,
+                    550,
                   ]
                 }
                 xType="linear"
@@ -7122,7 +7144,7 @@ exports[`EuiAreaSeries is rendered 1`] = `
                 yPadding={0}
                 yRange={
                   Array [
-                    200,
+                    150,
                     0,
                   ]
                 }

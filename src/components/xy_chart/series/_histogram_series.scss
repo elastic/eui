@@ -2,7 +2,7 @@
 // we can overwrite and add !important for force svg styled component
 // or overwrite style by code.
 
-.euiRectSeries {
+.euiHistogramSeries {
   rect {
     stroke-width: 1;
     stroke: white !important;
@@ -11,14 +11,14 @@
   }
 }
 
-.euiRectSeries--highDataVolume {
+.euiHistogramSeries--highDataVolume {
   rect {
     stroke-width: 0;
     rx: 0;
     ry: 0;
   }
 }
-.euiRectSeries--hoverEnabled {
+.euiHistogramSeries--hoverEnabled {
   rect{
     &:hover {
       cursor: pointer;

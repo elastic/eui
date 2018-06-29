@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import VerticalRectSeriesExample from './vertical_rect_series';
 import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
@@ -7,27 +7,65 @@ import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series
 import TimeHistogramSeriesExample from './time_histogram_series';
 
 import {
+  EuiSpacer,
   EuiCode,
-  EuiVerticalRectSeries,
-  EuiHorizontalRectSeries,
+  EuiCallOut,
+  EuiLink,
+  EuiHistogramSeries,
 } from '../../../../src/components';
 
 export const XYChartHistogramExample = {
-  title: 'Histogram',
+  title: 'Histograms',
+  intro: (
+    <Fragment>
+      <p>
+        You can use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHistogramSeries</EuiCode> to
+        displaying histogram charts.
+      </p>
+      <EuiSpacer size="l" />
+      <p>
+        The <EuiCode>EuiXYChart</EuiCode> component pass the <EuiCode>orientation</EuiCode> prop to every component child
+        to accomodate <EuiCode>vertical</EuiCode> and <EuiCode>horizontal</EuiCode> use cases.
+        The default orientation is <EuiCode>vertical</EuiCode>.
+      </p>
+      <EuiSpacer size="l" />
+      <p>
+        You can specify the <EuiCode>EuiXYChart</EuiCode> prop <EuiCode>xType</EuiCode> and
+        <EuiCode>yType</EuiCode> to one of the following scales: <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
+        <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
+        The use of <EuiCode>ordinal</EuiCode> and <EuiCode>category</EuiCode> is not supported.
+      </p>
+      <EuiSpacer size="l" />
+      <EuiCallOut
+        title="What is an histogram?"
+        iconType="pin"
+      >
+        <Fragment>
+          <p>
+            A histogram is an accurate representation of the distribution of numerical data. [...]
+          </p>
+          <p>
+            To construct a histogram, the first step is to <em>bin</em> the range of values—that is,
+            divide the entire range of values into a series of intervals—and then count how many values fall into each interval.
+            The bins are usually specified as consecutive, non-overlapping intervals of a variable.
+            The bins (intervals) must be adjacent, and are often (but are not required to be) of equal size
+          </p>
+          <EuiLink href="https://en.wikipedia.org/wiki/Histogram">Wikipedia</EuiLink>
+        </Fragment>
+      </EuiCallOut>
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [
     {
       title: 'Vertical Histogram',
       text: (
-        <div>
-          <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode> for
-            displaying vertical histograms. The Y-Axis needs can be configured with{' '}
-            <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
-            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>. The same for X-Axis.
-          </p>
-        </div>
+        <p>
+          You can create out-of-the-box vertical histograms just adding a <EuiCode>EuiHistogramSeries</EuiCode>
+          component into your <EuiCode>EuiXYChart</EuiCode>.
+        </p>
       ),
-      props: { EuiVerticalRectSeries },
+      props: { EuiHistogramSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -38,27 +76,28 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <VerticalRectSeriesExample />
-        </div>
-      ),
+      demo: (<VerticalRectSeriesExample />),
     },
     {
       title: 'Stacked Vertical Histogram',
       text: (
-        <div>
+        <Fragment>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode> for
-            displaying stacked vedrtical histograms.
+            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHistogramSeries</EuiCode> for
+            displaying stacked vertical histograms.
           </p>
           <p>
             Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars together.
           </p>
-          <p>Note: Is not possible to &quot;cluster&quot; bars by the same X value.</p>
-        </div>
+          <EuiCallOut
+            size="s"
+            title="Is not possible to &quot;cluster&quot; bars by the same X value as in bar charts"
+            color="warning"
+            iconType="help"
+          />
+        </Fragment>
       ),
-      props: { EuiVerticalRectSeries },
+      props: { EuiHistogramSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -69,25 +108,17 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <StackedVerticalRectSeriesExample />
-        </div>
-      ),
+      demo: (<StackedVerticalRectSeriesExample />),
     },
     {
       title: 'Horizontal Histogram',
       text: (
-        <div>
-          <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalRectSeries</EuiCode> for
-            displaying horizontal histograms. The Y-Axis needs can be configured as{' '}
-            <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
-            <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>. The same for X-Axis.
-          </p>
-        </div>
+        <p>
+          You can create horizontal histograms specifing <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
+          Since you are rotating the histogram, you also have to invert your data.
+        </p>
       ),
-      props: { EuiHorizontalRectSeries },
+      props: { EuiHistogramSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -98,27 +129,24 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <HorizontalRectSeriesExample />
-        </div>
-      ),
+      demo: (<HorizontalRectSeriesExample />),
     },
     {
       title: 'Stacked Horizontal Histogram',
       text: (
-        <div>
+        <Fragment>
           <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiHorizontalRectSeries</EuiCode> to
-            display stacked horizontal histograms.
+            To display an horizontal stacked histograms specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>.
           </p>
-          <p>
-            Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars together.
-          </p>
-          <p>Note: Is not possible to &quot;cluster&quot; bars by the same Y value.</p>
-        </div>
+          <EuiCallOut
+            size="s"
+            title="Is not possible to &quot;cluster&quot; bars by the same Y value as in bar charts"
+            color="warning"
+            iconType="help"
+          />
+        </Fragment>
       ),
-      props: { EuiHorizontalRectSeries },
+      props: { EuiHistogramSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -129,23 +157,17 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <StackedHorizontalRectSeriesExample />
-        </div>
-      ),
+      demo: (<StackedHorizontalRectSeriesExample />),
     },
     {
       title: 'Time Series Histogram version',
       text: (
-        <div>
-          <p>
-            Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>EuiVerticalRectSeries</EuiCode>
-            with the <EuiCode>xType=&apos;time&apos;</EuiCode> and a moderate number of elements.
-          </p>
-        </div>
+        <p>
+          Use <EuiCode>EuiXYChart</EuiCode> with <EuiCode>xType=&apos;time&apos;</EuiCode>
+          to display a time series histogram.
+        </p>
       ),
-      props: { EuiVerticalRectSeries },
+      props: { EuiHistogramSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -156,11 +178,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <TimeHistogramSeriesExample />
-        </div>
-      ),
+      demo: (<TimeHistogramSeriesExample />),
     },
   ],
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScaleUtils, AbstractSeries } from 'react-vis';
-import { ORIENTATION, SCALE_TYPE } from './utils/chart_utils';
+import { ORIENTATION, SCALE } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
 
 const DEFAULT_AREAS = {
@@ -77,7 +77,7 @@ export class EuiSelectionBrush extends AbstractSeries {
 
   _getScaledValue(scale, scaleType, value0, value1) {
     switch(scaleType) {
-      case SCALE_TYPE.ORDINAL:
+      case SCALE.ORDINAL:
         return [0, 0];
       default:
         return [

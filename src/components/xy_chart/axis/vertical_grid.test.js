@@ -26,7 +26,7 @@ describe('EuiVerticalGrid', () => {
     const firstLineProps = verticalGridComponent.find('line').at(0).props();
     expect(firstLineProps.x1).toEqual(firstLineProps.x2);
     expect(firstLineProps.y1).toEqual(0);
-    expect(firstLineProps.y2).toEqual(height);
+    expect(firstLineProps.y2).toEqual(height - 50); // top + bottom default xychart margin
     expect(component.render()).toMatchSnapshot();
   });
 });

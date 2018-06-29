@@ -1,24 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AbstractSeries } from 'react-vis';
-import { EuiVerticalBarSeries } from './vertical_bar_series'
-import { EuiHorizontalBarSeries } from './horizontal_bar_series'
+import { VerticalBarSeries, HorizontalBarSeries, AbstractSeries } from 'react-vis';
+import { ORIENTATION } from '../utils/chart_utils';
 import { VISUALIZATION_COLORS } from '../../../services';
+import classNames from 'classnames';
 
 export class EuiBarSeries extends AbstractSeries {
+  state = {
+    isMouseOverValue: false,
+  }
   static getParentConfig(attr, props)  {
-      const { isHorizontal } = props;
-      return isHorizontal
-        ? EuiHorizontalBarSeries.getParentConfig(attr)
-        : EuiVerticalBarSeries.getParentConfig(attr);
+      const { _orientation } = props;
+      return _orientation === ORIENTATION.HORIZONTAL
+        ? HorizontalBarSeries.getParentConfig(attr)
+        : VerticalBarSeries.getParentConfig(attr);
+  }
+  _onValueMouseOver = () => {
+    this.setState(() => ({ isMouseOverValue: true }));
+  }
+
+  _onValueMouseOut = () => {
+    this.setState(() => ({ isMouseOverValue: false }));
   }
   render() {
-    const { isHorizontal, data, ...rest } = this.props;
-    const BarSeriesComponent = isHorizontal ? EuiHorizontalBarSeries : EuiVerticalBarSeries;
-    // const seriesData = isHorizontal ? rotateDataSeries(data) : data;
+    const { _orientation, name, data, color, onValueClick, ...rest } = this.props;
+    const { isMouseOverValue } = this.state;
+    const isHighDataVolume = data.length > 80 ? true : false;
+    const classes = classNames(
+      'euiBarSeries',
+      isHighDataVolume && 'euiBarSeries--highDataVolume',
+      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled',
+    );
+    const BarSeriesComponent = _orientation === ORIENTATION.HORIZONTAL ? HorizontalBarSeries : VerticalBarSeries;
     return (
       <BarSeriesComponent
-        name={'bar-series'}
+        name={name}
+        className={classes}
+        onValueClick={onValueClick}
+        onValueMouseOver={this._onValueMouseOver}
+        onValueMouseOut={this._onValueMouseOut}
+        color={color}
         data={data}
         {...rest}
       />
@@ -29,10 +50,13 @@ export class EuiBarSeries extends AbstractSeries {
 EuiBarSeries.displayName = 'EuiBarSeries';
 
 EuiBarSeries.propTypes = {
-  /** The name used to define the data in tooltips and ledgends */
+  /**
+   * The name used to define the data in tooltips and legends
+   */
   name: PropTypes.string.isRequired,
-  isHorizontal: PropTypes.bool,
-  /** Array<{x: number, y: string|number}> */
+  /**
+   * Array<{x: string|number, y: string|number}> depending on XYChart xType scale and yType scale
+   */
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.oneOfType([
       PropTypes.string,
@@ -43,11 +67,14 @@ EuiBarSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiXYChart */
+  /**
+   * An EUI visualization color, the default value is passed through EuiXYChart
+   */
   color: PropTypes.oneOf(VISUALIZATION_COLORS),
-  onClick: PropTypes.func
+  /**
+   * @private passed via XYChart
+   */
+  _orientation: PropTypes.string,
 };
 
-EuiBarSeries.defaultProps = {
-  isHorizontal: false,
-};
+EuiBarSeries.defaultProps = {};

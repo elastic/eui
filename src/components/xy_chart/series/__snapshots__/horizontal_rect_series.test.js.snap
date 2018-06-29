@@ -15,72 +15,72 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
-          transform="translate(0,0)"
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
         >
           <rect
             height="0"
             style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
             x="0"
-            y="200"
+            y="150"
           />
           <rect
-            height="200"
+            height="150"
             style="opacity:1;stroke:#DB1374;fill:#DB1374"
-            width="600"
+            width="550"
             x="0"
-            y="200"
+            y="150"
           />
         </g>
         <g
           class="rv-xy-plot__grid-lines"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="180"
-            y2="180"
+            x2="550"
+            y1="135"
+            y2="135"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="140"
-            y2="140"
+            x2="550"
+            y1="105"
+            y2="105"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="100"
-            y2="100"
+            x2="550"
+            y1="75"
+            y2="75"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="60"
-            y2="60"
+            x2="550"
+            y1="45"
+            y2="45"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="20"
-            y2="20"
+            x2="550"
+            y1="15"
+            y2="15"
           />
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
-          transform="translate(0,200)"
+          transform="translate(40,160)"
         >
           <line
             class="rv-xy-plot__axis__line"
             x1="0"
-            x2="600"
+            x2="550"
             y1="0"
             y2="0"
           />
@@ -110,7 +110,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(60, 0)"
+              transform="translate(55, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -130,7 +130,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(120, 0)"
+              transform="translate(110, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -150,7 +150,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(180, 0)"
+              transform="translate(165, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -170,7 +170,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(240, 0)"
+              transform="translate(220, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -190,7 +190,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(300, 0)"
+              transform="translate(275, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -210,7 +210,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(360, 0)"
+              transform="translate(330, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -230,7 +230,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(420, 0)"
+              transform="translate(385, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -250,7 +250,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(480, 0)"
+              transform="translate(440, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -270,7 +270,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(540, 0)"
+              transform="translate(495, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -290,7 +290,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(600, 0)"
+              transform="translate(550, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -312,22 +312,22 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
-          transform="translate(0,0)"
+          transform="translate(0,10)"
         >
           <line
             class="rv-xy-plot__axis__line"
-            x1="0"
-            x2="0"
+            x1="40"
+            x2="40"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <g
             class="rv-xy-plot__axis__ticks"
-            transform="translate(0, 0)"
+            transform="translate(40, 0)"
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 180)"
+              transform="translate(0, 135)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -347,7 +347,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 140)"
+              transform="translate(0, 105)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -367,7 +367,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 100)"
+              transform="translate(0, 75)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -387,7 +387,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 60)"
+              transform="translate(0, 45)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -407,7 +407,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 20)"
+              transform="translate(0, 15)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -452,72 +452,72 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
-          transform="translate(0,0)"
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
         >
           <rect
             height="0"
             style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
             width="0"
             x="0"
-            y="200"
+            y="150"
           />
           <rect
-            height="200"
+            height="150"
             style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
-            width="600"
+            width="550"
             x="0"
-            y="200"
+            y="150"
           />
         </g>
         <g
           class="rv-xy-plot__grid-lines"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="180"
-            y2="180"
+            x2="550"
+            y1="135"
+            y2="135"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="140"
-            y2="140"
+            x2="550"
+            y1="105"
+            y2="105"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="100"
-            y2="100"
+            x2="550"
+            y1="75"
+            y2="75"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="60"
-            y2="60"
+            x2="550"
+            y1="45"
+            y2="45"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="20"
-            y2="20"
+            x2="550"
+            y1="15"
+            y2="15"
           />
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
-          transform="translate(0,200)"
+          transform="translate(40,160)"
         >
           <line
             class="rv-xy-plot__axis__line"
             x1="0"
-            x2="600"
+            x2="550"
             y1="0"
             y2="0"
           />
@@ -547,7 +547,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(60, 0)"
+              transform="translate(55, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -567,7 +567,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(120, 0)"
+              transform="translate(110, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -587,7 +587,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(180, 0)"
+              transform="translate(165, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -607,7 +607,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(240, 0)"
+              transform="translate(220, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -627,7 +627,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(300, 0)"
+              transform="translate(275, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -647,7 +647,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(360, 0)"
+              transform="translate(330, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -667,7 +667,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(420, 0)"
+              transform="translate(385, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -687,7 +687,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(480, 0)"
+              transform="translate(440, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -707,7 +707,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(540, 0)"
+              transform="translate(495, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -727,7 +727,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(600, 0)"
+              transform="translate(550, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -749,22 +749,22 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
-          transform="translate(0,0)"
+          transform="translate(0,10)"
         >
           <line
             class="rv-xy-plot__axis__line"
-            x1="0"
-            x2="0"
+            x1="40"
+            x2="40"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <g
             class="rv-xy-plot__axis__ticks"
-            transform="translate(0, 0)"
+            transform="translate(40, 0)"
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 180)"
+              transform="translate(0, 135)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -784,7 +784,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 140)"
+              transform="translate(0, 105)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -804,7 +804,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 100)"
+              transform="translate(0, 75)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -824,7 +824,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 60)"
+              transform="translate(0, 45)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -844,7 +844,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 20)"
+              transform="translate(0, 15)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -885,112 +885,112 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
         width="600"
       >
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
-          transform="translate(0,0)"
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
         >
           <rect
-            height="57.14285714285714"
+            height="42.85714285714286"
             style="opacity:1;stroke:#DB1374;fill:#DB1374"
             width="0"
-            x="150"
-            y="200"
+            x="137.5"
+            y="150"
           />
           <rect
             height="0"
             style="opacity:1;stroke:#DB1374;fill:#DB1374"
-            width="300"
-            x="150"
-            y="200"
+            width="275"
+            x="137.5"
+            y="150"
           />
         </g>
         <g
-          class="rv-xy-plot__series rv-xy-plot__series--rect euiRectSeries"
-          transform="translate(0,0)"
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
         >
           <rect
-            height="57.14285714285714"
+            height="42.85714285714285"
             style="opacity:1;stroke:#3185FC;fill:#3185FC"
             width="0"
-            x="150"
-            y="142.85714285714286"
+            x="137.5"
+            y="107.14285714285714"
           />
           <rect
-            height="200"
+            height="150"
             style="opacity:1;stroke:#3185FC;fill:#3185FC"
-            width="300"
-            x="150"
-            y="200"
+            width="275"
+            x="137.5"
+            y="150"
           />
         </g>
         <g
           class="rv-xy-plot__grid-lines"
-          transform="translate(0,0)"
+          transform="translate(40,10)"
         >
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="200"
-            y2="200"
+            x2="550"
+            y1="150"
+            y2="150"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="171.42857142857144"
-            y2="171.42857142857144"
+            x2="550"
+            y1="128.57142857142858"
+            y2="128.57142857142858"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="142.85714285714286"
-            y2="142.85714285714286"
+            x2="550"
+            y1="107.14285714285714"
+            y2="107.14285714285714"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="114.28571428571429"
-            y2="114.28571428571429"
-          />
-          <line
-            class="rv-xy-plot__grid-lines__line"
-            x1="0"
-            x2="600"
+            x2="550"
             y1="85.71428571428572"
             y2="85.71428571428572"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="57.14285714285714"
-            y2="57.14285714285714"
+            x2="550"
+            y1="64.28571428571429"
+            y2="64.28571428571429"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
-            y1="28.571428571428584"
-            y2="28.571428571428584"
+            x2="550"
+            y1="42.85714285714286"
+            y2="42.85714285714286"
           />
           <line
             class="rv-xy-plot__grid-lines__line"
             x1="0"
-            x2="600"
+            x2="550"
+            y1="21.428571428571445"
+            y2="21.428571428571445"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
             y1="0"
             y2="0"
           />
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
-          transform="translate(0,200)"
+          transform="translate(40,160)"
         >
           <line
             class="rv-xy-plot__axis__line"
             x1="0"
-            x2="600"
+            x2="550"
             y1="0"
             y2="0"
           />
@@ -1000,7 +1000,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(150, 0)"
+              transform="translate(137.5, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1020,7 +1020,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(450, 0)"
+              transform="translate(412.5, 0)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1042,22 +1042,22 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
         </g>
         <g
           class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
-          transform="translate(0,0)"
+          transform="translate(0,10)"
         >
           <line
             class="rv-xy-plot__axis__line"
-            x1="0"
-            x2="0"
+            x1="40"
+            x2="40"
             y1="0"
-            y2="200"
+            y2="150"
           />
           <g
             class="rv-xy-plot__axis__ticks"
-            transform="translate(0, 0)"
+            transform="translate(40, 0)"
           >
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 200)"
+              transform="translate(0, 150)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1077,7 +1077,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 171.42857142857144)"
+              transform="translate(0, 128.57142857142858)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1097,7 +1097,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 142.85714285714286)"
+              transform="translate(0, 107.14285714285714)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1117,7 +1117,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 114.28571428571429)"
+              transform="translate(0, 85.71428571428572)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1137,7 +1137,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 85.71428571428572)"
+              transform="translate(0, 64.28571428571429)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1157,7 +1157,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 57.14285714285714)"
+              transform="translate(0, 42.85714285714286)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
@@ -1177,7 +1177,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
             </g>
             <g
               class="rv-xy-plot__axis__tick"
-              transform="translate(0, 28.571428571428584)"
+              transform="translate(0, 21.428571428571445)"
             >
               <line
                 class="rv-xy-plot__axis__tick__line"
