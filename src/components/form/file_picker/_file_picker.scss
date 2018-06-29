@@ -55,6 +55,7 @@
    * 1. Don't block the user from dropping files onto the filepicker.
    * 2. Put prompt on top of input, so the clear button can intercept the click.
    * 3. Ensure space for import icon and clear button (only if it has files)
+   * 4. Delay focus gradient or else it will only partially transition while file chooser opens
    */
   .euiFilePicker__prompt {
     @include euiFormControlDefaultShadow;
@@ -63,19 +64,19 @@
     position: relative; /* 2 */
     z-index: 1; /* 2 */
     display: block;
-    background: $euiColorLightestShade;
     padding: $euiSizeL;
-    background: $euiFormBackgroundColor;
     text-align: center;
+
     transition:
-      box-shadow $euiAnimSpeedNormal ease-in,
-      background $euiAnimSpeedNormal ease-in,
-      color $euiAnimSpeedNormal ease-in;
+      box-shadow $euiAnimSpeedFast ease-in,
+      background-color $euiAnimSpeedFast ease-in,
+      background-image $euiAnimSpeedFast ease-in,
+      background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
 
     @at-root {
       .euiFilePicker--compressed#{&} {
-        height: $euiFormControlHeight--compressed;
-        padding: $euiFormControlPadding--compressed;
+        height: $euiFormControlCompressedHeight;
+        padding: $euiFormControlCompressedPadding;
         @include euiFormControlWithIcon(); /* 3 */
         text-align: left;
       }
@@ -117,7 +118,11 @@
   // Hover and focus
   .euiFilePicker__input:hover:not(:disabled) + .euiFilePicker__prompt,
   .euiFilePicker__input:focus + .euiFilePicker__prompt {
-    text-decoration: underline;
+    .euiFilePicker__promptText {
+      // Adding the underline to the prompt text ensures the underline
+      // color is the same as the current text color
+      text-decoration: underline;
+    }
 
     .euiFilePicker__icon {
       transform: scale(1.1);

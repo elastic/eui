@@ -1,19 +1,42 @@
-$euiFormMaxWidth: 400px;
-$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%);
-$euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%); // exact 508c foreground for $euiColorLightShade
+// Sizing
+$euiFormMaxWidth: $euiSizeXXL * 10 !default;
+$euiFormControlHeight: $euiSizeXXL !default;
+$euiFormControlCompressedHeight: $euiSizeXL !default;
+$euiFormControlPadding: $euiSizeM !default;
+$euiFormControlCompressedPadding: $euiSizeS !default;
 
-$euiRadioSize: $euiSize;
-$euiCheckBoxSize: $euiSize;
+$euiRadioSize: $euiSize !default;
+$euiCheckBoxSize: $euiSize !default;
 
-$euiSwitchHeight: $euiSize * 1.25;
-$euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS;
-$euiSwitchThumbSize: $euiSwitchHeight;
-$euiSwitchIconHeight: $euiSize;
+$euiSwitchHeight: $euiSize * 1.25 !default;
+$euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS !default;
+$euiSwitchThumbSize: $euiSwitchHeight !default;
+$euiSwitchIconHeight: $euiSize !default;
 
-$euiFormControlHeight: $euiSizeXXL;
-$euiFormControlHeight--compressed: $euiSizeXL;
+// Coloring
+$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%) !default;
+$euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
+$euiFormBorderColor: transparentize($euiColorFullShade, .9) !default;
+$euiFormBorderDisabledColor: transparentize($euiColorFullShade, .92) !default;
+$euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
+$euiFormControlDisabledColor: $euiColorMediumShade !default;
 
-$euiFormControlPadding: $euiSizeM;
-$euiFormControlPadding--compressed: $euiSizeS;
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
 
-$euiFormControlDisabledColor: $euiColorMediumShade;
+@if variable-exists(euiFormControlHeight--compressed) {
+  $euiFormControlCompressedHeight: $euiFormControlHeight--compressed !global;
+  @warn '`$euiFormControlHeight--compressed` is deprecated. Please use `$euiFormControlCompressedHeight` instead';
+}
+
+@if variable-exists(euiFormControlPadding--compressed) {
+  $euiFormControlCompressedPadding: $euiFormControlPadding--compressed !global;
+  @warn '`$euiFormControlPadding--compressed` is deprecated. Please use `$euiFormControlCompressedPadding` instead';
+}
+
+@if variable-exists(euiFormBorderColor--disabled) {
+  $euiFormBorderDisabledColor: $euiFormBorderColor--disabled !global;
+  @warn '`$euiFormBorderColor--disabled` is deprecated. Please use `$euiFormBorderDisabledColor` instead';
+}
