@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Add `inspect` type option to icon typedef file. ([#952](https://github.com/elastic/eui/pull/952))
-
 - `EuiAccordion` use MutationObserver to re-calculate height when children DOM changes ([#947](https://github.com/elastic/eui/pull/947))
+
+**Bug fixes**
+
+- `EuiPopover` now positions popover content over all other elements, instead of sometimes clipping ([#948](https://github.com/elastic/eui/pull/948))
+- `EuiOnClickOutside` works with child components rendered via React portals ([#948](https://github.com/elastic/eui/pull/948))
 
 ## [`1.0.0`](https://github.com/elastic/eui/tree/v1.0.0)
 
