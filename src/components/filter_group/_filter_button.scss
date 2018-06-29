@@ -3,92 +3,52 @@
 @import '../form/form_control_layout/mixins';
 
 /**
- * 1. Only add the border style drop shadow
+ * 1. Account for inner box-shadow style border
  */
 
 .euiFilterButton {
   flex-grow: 0; // Shrink by default
+  height: $euiFormControlHeight - 2px; /* 1 */
+  font-size: $euiFontSizeS;
 
-  .euiFilterButton__content {
-    @include euiFormControlStyle($borderOnly: true, $includeStates: false);
-    width: auto;
-    max-width: none;
-    white-space: nowrap;
+  &:not(:last-child):not(.euiFilterButton--noDivider) {
+    border-right: 1px solid $euiFormBorderColor;
   }
 
-  &:disabled .euiFilterButton__content {
-    @include euiFormControlDisabledStyle;
+  &:disabled {
     font-style: italic;
   }
 
-  .euiFilterButton__textShift {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
+  &.euiFilterButton--grow {
+    flex-grow: 1;
+    width: 100%;
+    text-align: left;
 
-    &::after {
-      display: block;
-      content: attr(data-text);
-      font-weight: $euiFontWeightBold;
-      height: 0;
-      overflow: hidden;
-      visibility: hidden;
+    // Force content to space out icon
+    .euiButtonEmpty__content {
+      justify-content: space-between;
     }
+  }
+
+  &.euiFilterButton-hasActiveFilters {
+    font-weight: $euiFontWeightMedium;
   }
 
   .euiFilterButton__notification {
     margin-left: $euiSizeS;
     vertical-align: text-bottom;
   }
+}
 
-  &.euiFilterButton-isSelected,
-  &:hover:not(:disabled),
-  &:focus:not(:disabled) {
-    .euiFilterButton__textShift {
-      text-decoration: underline;
-    }
-  }
+.euiFilterButton__textShift {
+  vertical-align: middle;
 
-  &.euiFilterButton-grow {
-    flex-grow: 1;
-    width: 100%;
-
-    .euiFilterButton__content {
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  &.euiFilterButton-hasActiveFilters {
+  &::after {
+    display: block;
+    content: attr(data-text);
     font-weight: $euiFontWeightBold;
-  }
-}
-
-// Modifier naming and colors.
-$buttonTypes: (
-  primary: $euiColorPrimary,
-  danger: $euiColorDanger,
-  disabled: tintOrShade($euiTextColor, 70%, 80%),
-  ghost: $euiColorGhost,
-  text: $euiTextColor,
-);
-
-// Create button modifiders based upon the map.
-@each $name, $color in $buttonTypes {
-  .euiFilterButton--#{$name} {
-    color: $color;
-  }
-}
-
-// Icon padding
-.euiFilterButton--iconLeft {
-  .euiFilterButton__content {
-    @include euiFormControlLayout__padding(1, "left");
-  }
-}
-
-.euiFilterButton--iconRight {
-  .euiFilterButton__content {
-    @include euiFormControlLayout__padding(1);
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
 }

@@ -2,30 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget } from '../../services';
-import { EuiFormControlLayout } from '../form/form_control_layout';
+// import { getSecureRelForTarget } from '../../services';
 import { EuiHeaderNotification } from '../header/header_notification';
+import {
+  COLORS,
+  ICON_SIDES,
+  EuiButtonEmpty,
+} from '../button/button_empty';
 
 import {
   ICON_TYPES,
 } from '../icon';
-
-const colorToClassNameMap = {
-  primary: 'euiFilterButton--primary',
-  danger: 'euiFilterButton--danger',
-  disabled: 'euiFilterButton--disabled',
-  text: 'euiFilterButton--text',
-  ghost: 'euiFilterButton--ghost',
-};
-
-export const COLORS = Object.keys(colorToClassNameMap);
-
-const iconSideToClassNameMap = {
-  left: 'euiFilterButton--iconLeft',
-  right: 'euiFilterButton--iconRight',
-};
-
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 export const EuiFilterButton = ({
   children,
@@ -37,73 +24,55 @@ export const EuiFilterButton = ({
   numFilters,
   isDisabled,
   isSelected,
-  href,
-  target,
-  rel,
+  // href,
+  // target,
+  // rel,
   type,
   grow,
+  noDivider,
   ...rest
 }) => {
 
-  const iconClasses = iconType ? iconSideToClassNameMap[iconSide] : undefined;
-
   const classes = classNames(
     'euiFilterButton',
-    colorToClassNameMap[color],
-    iconClasses,
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
-      'euiFilterButton-grow': grow,
+      'euiFilterButton--grow': grow,
+      'euiFilterButton--noDivider': noDivider,
     },
     className,
   );
 
-  const icon = iconType ? {
-    type: iconType,
-    side: iconSide,
-  } : undefined;
-
   const buttonContents = (
-    <EuiFormControlLayout
-      className="euiFilterButton__content"
-      icon={icon}
-    >
-      <span className="euiFilterButton__textShift" data-text={children}>
-        {children}
-        {numFilters &&
-          <EuiHeaderNotification className="euiFilterButton__notification">{numFilters}</EuiHeaderNotification>
-        }
-      </span>
-    </EuiFormControlLayout>
+    <span className="euiFilterButton__textShift" data-text={children}>
+      {children}
+      {numFilters &&
+        <EuiHeaderNotification className="euiFilterButton__notification">{numFilters}</EuiHeaderNotification>
+      }
+    </span>
   );
 
-  if (href) {
-    const secureRel = getSecureRelForTarget(target, rel);
+  // let secureRel;
+  // if (href) {
+  //   secureRel = getSecureRelForTarget(target, rel);
+  // }
 
-    return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        {...rest}
-      >
-        {buttonContents}
-      </a>
-    );
-  } else {
-    return (
-      <button
-        disabled={isDisabled}
-        className={classes}
-        type={type}
-        {...rest}
-      >
-        {buttonContents}
-      </button>
-    );
-  }
+  return (
+    <EuiButtonEmpty
+      className={classes}
+      color={color}
+      isDisabled={isDisabled}
+      iconSide={iconSide}
+      iconType={iconType}
+      // rel={secureRel}
+      // target={target}
+      type={type}
+      {...rest}
+    >
+      {buttonContents}
+    </EuiButtonEmpty>
+  );
 };
 
 EuiFilterButton.propTypes = {
@@ -149,6 +118,10 @@ EuiFilterButton.propTypes = {
    * Should the button grow to fill it's container, best used for dropdown buttons
    */
   grow: PropTypes.bool,
+  /**
+   * Remove border after button, good for opposite filters
+   */
+  noDivider: PropTypes.bool,
 };
 
 EuiFilterButton.defaultProps = {

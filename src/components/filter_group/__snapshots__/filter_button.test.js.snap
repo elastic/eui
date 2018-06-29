@@ -3,20 +3,18 @@
 exports[`EuiFilterButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFilterButton euiFilterButton--text testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >
-  <div
-    class="euiFormControlLayout euiFilterButton__content"
+  <span
+    class="euiButtonEmpty__content"
   >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
+    <span>
       <span
         class="euiFilterButton__textShift"
       />
-    </div>
-  </div>
+    </span>
+  </span>
 </button>
 `;

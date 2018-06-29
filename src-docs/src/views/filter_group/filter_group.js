@@ -22,13 +22,29 @@ export default class extends Component {
     this.state = {
       isPopoverOpen: false,
       isFilterOn: false,
+      isOnFilterOn: false,
+      isOffFilterOn: false,
     };
   }
 
   toggleFilter = () => {
-    this.setState({
-      isFilterOn: !this.state.isFilterOn,
-    });
+    this.setState(prevState => ({
+      isFilterOn: !prevState.isFilterOn,
+    }));
+  }
+
+  toggleOnFilter = () => {
+    this.setState(prevState => ({
+      isOnFilterOn: !prevState.isOnFilterOn,
+      isOffFilterOn: prevState.isOffFilterOn && !prevState.isOnFilterOn ? false : prevState.isOffFilterOn,
+    }));
+  }
+
+  toggleOffFilter = () => {
+    this.setState(prevState => ({
+      isOffFilterOn: !prevState.isOffFilterOn,
+      isOnFilterOn: prevState.isOnFilterOn && !prevState.isOffFilterOn ? false : prevState.isOnFilterOn,
+    }));
   }
 
   onButtonClick() {
@@ -85,8 +101,11 @@ export default class extends Component {
         <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Filter
         </EuiFilterButton>
-        <EuiFilterButton color="primary" isDisabled hasActiveFilters={this.state.isFilterOn}>
-          Filter Disabled
+        <EuiFilterButton noDivider hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+          On
+        </EuiFilterButton>
+        <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+          Off
         </EuiFilterButton>
         <EuiPopover
           id="popover"
@@ -97,7 +116,6 @@ export default class extends Component {
           panelPaddingSize="none"
           withTitle
           panelClassName="euiFilterGroup__popoverPanel"
-          style={{ fontSize: '0' }}
         >
           <EuiPopoverTitle>
             <EuiFieldSearch />
