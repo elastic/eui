@@ -1,4 +1,14 @@
-/*
+
+@function euiFormControlGradient($color: $euiColorPrimary) {
+  @return linear-gradient(to top,
+    $color,
+    $color 2px,
+    transparent 2px,
+    transparent 100%
+  );
+}
+
+/**
  * 1. Ensure the icon padding remains when in readOnly mode
  */
 
@@ -36,35 +46,52 @@
   }
 }
 
-@mixin euiFormControlDefaultShadow {
-  box-shadow:
-    0 3px 2px -2px rgba($euiShadowColor, 0.2),
-    inset 0 0 0 1px transparentize($euiColorFullShade, .9),
-    inset #{-$euiFormMaxWidth} 0 0 0 $euiFormBackgroundColor;
+@mixin euiFormControlDefaultShadow($borderOnly: false) {
+  background-color: $euiFormBackgroundColor;
+  background-repeat: no-repeat;
+  background-size: 0%;
+
+  @if ($borderOnly) {
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
+  } @else {
+    box-shadow:
+      0 1px 1px -1px rgba($euiShadowColor, 0.2),
+      0 3px 2px -2px rgba($euiShadowColor, 0.2),
+      inset 0 0 0 1px $euiFormBorderColor;
+  }
+
+  transition:
+    box-shadow $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in,
+    background-image $euiAnimSpeedFast ease-in,
+    background-size $euiAnimSpeedFast ease-in;
 }
 
-@mixin euiFormControlInvalidStyle {
-  box-shadow:
-    0 $euiSizeXS $euiSizeXS (-$euiSizeXS / 2) rgba($euiShadowColor, 0.2),
-    inset 0 0 0 1px transparentize($euiColorFullShade, .84),
-    inset 0 0 0 0 $euiColorEmptyShade,
-    inset 0 (-$euiSizeXS / 2) 0 0 $euiColorDanger;
+@mixin euiFormControlFocusStyle($borderOnly: false) {
+  background-color: tintOrShade($euiColorEmptyShade, 0%, 50%);
+  background-image: euiFormControlGradient();
+  background-size: 100%;
+
+  @if ($borderOnly) {
+    box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .84);
+  } @else {
+    box-shadow:
+      0 1px 1px -1px rgba($euiShadowColor, 0.2),
+      0 4px 4px -2px rgba($euiShadowColor, 0.2),
+      inset 0 0 0 1px transparentize($euiColorFullShade, .84);
+  }
 }
 
-@mixin euiFormControlFocusStyle {
-  background: tintOrShade($euiColorEmptyShade, 0%, 20%);
-  box-shadow:
-    0 4px 4px -2px rgba($euiShadowColor, 0.2),
-    inset 0 0 0 1px transparentize($euiColorFullShade, .84),
-    inset 0 0 0 0 tintOrShade($euiColorEmptyShade, 0%, 20%),
-    inset 0 -2px 0 0 $euiColorPrimary;
+@mixin euiFormControlInvalidStyle() {
+  background-image: euiFormControlGradient($euiColorDanger);
+  background-size: 100%;
 }
 
-@mixin euiFormControlDisabledStyle {
+@mixin euiFormControlDisabledStyle() {
   cursor: not-allowed;
-  background: darken($euiColorLightestShade, 2%);
-  box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .92);
   color: $euiFormControlDisabledColor;
+  background: $euiFormBackgroundDisabledColor;
+  box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
   &::placeholder {
     color: $euiFormControlDisabledColor;
@@ -80,11 +107,12 @@
 }
 
 /**
- * 1. Override invalid state with focus state.
+ * 2. Override invalid state with focus state.
  */
-@mixin euiFormControlStyle {
+
+@mixin euiFormControlStyle($borderOnly: false, $includeStates: true) {
   @include euiFormControlSize;
-  @include euiFormControlDefaultShadow;
+  @include euiFormControlDefaultShadow($borderOnly);
 
   border: none;
   font-size: $euiFontSizeS;
@@ -92,8 +120,6 @@
   padding: $euiFormControlPadding;
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
-  background: $euiFormBackgroundColor;
-  transition: box-shadow $euiAnimSpeedNormal ease-in, background $euiAnimSpeedNormal ease-in;
   border-radius: 0;
 
   &--fullWidth {
@@ -101,31 +127,32 @@
   }
 
   &--compressed {
-    padding-top: $euiFormControlPadding--compressed;
-    padding-bottom: $euiFormControlPadding--compressed;
-    height: $euiFormControlHeight--compressed;
+    padding-top: $euiFormControlCompressedPadding;
+    padding-bottom: $euiFormControlCompressedPadding;
+    height: $euiFormControlCompressedHeight;
   }
 
-  &:invalid { /* 1 */
-    @include euiFormControlInvalidStyle;
+  @if ($includeStates) {
+    &:invalid { /* 2 */
+      @include euiFormControlInvalidStyle;
+    }
+
+    &:focus { /* 2 */
+      @include euiFormControlFocusStyle($borderOnly);
+    }
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
+
+    &[readOnly] {
+      @include euiFormControlReadOnlyStyle;
+    }
   }
 
-  &:focus { /* 1 */
-    @include euiFormControlFocusStyle;
-  }
-
-  &:disabled {
-    @include euiFormControlDisabledStyle;
-  }
-
-  &[readOnly] {
-    @include euiFormControlReadOnlyStyle;
-  }
 }
 
-//
 // Custom styles and states for checkboxes and radios
-//
 
 @mixin euiCustomControl($type: null, $size: $euiSize){
 
