@@ -4,6 +4,11 @@
 - Add `inspect` type option to icon typedef file. ([#952](https://github.com/elastic/eui/pull/952))
 - Simplified form control styles. ([#954](https://github.com/elastic/eui/pull/954))
 
+**Bug fixes**
+
+- `EuiPopover` now positions popover content over all other elements, instead of sometimes clipping ([#948](https://github.com/elastic/eui/pull/948))
+- `EuiOnClickOutside` works with child components rendered via React portals ([#948](https://github.com/elastic/eui/pull/948))
+
 **Deprecations**
 
 - Replaced the following SASS variables have been replaced `$euiFormControlHeight--compressed`, `$euiFormControlPadding--compressed`, `euiFormBorderColor--disabled`. ([#954](https://github.com/elastic/eui/pull/954))

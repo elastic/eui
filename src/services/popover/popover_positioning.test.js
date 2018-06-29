@@ -326,6 +326,66 @@ describe('popover_positioning', () => {
         });
       });
     });
+
+    describe('align position', () => {
+      it('aligns the cross-axis position to align with the anchor boundary', () => {
+        expect(getPopoverScreenCoordinates({
+          position: 'top',
+          align: 'left',
+          anchorBoundingBox: makeBB(100, 125, 110, 75),
+          popoverBoundingBox: makeBB(0, 100, 50, 0),
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+          arrowConfig: { arrowWidth: 6, arrowBuffer: 10 }
+        })).toEqual({
+          fit: 1,
+          top: 50,
+          left: 75,
+          arrow: {
+            top: 50,
+            left: 22
+          }
+        });
+
+        expect(getPopoverScreenCoordinates({
+          position: 'bottom',
+          align: 'right',
+          anchorBoundingBox: makeBB(100, 125, 110, 75),
+          popoverBoundingBox: makeBB(0, 100, 50, 0),
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 0),
+          arrowConfig: { arrowWidth: 6, arrowBuffer: 20 }
+        })).toEqual({
+          fit: 1,
+          top: 110,
+          left: 25,
+          arrow: {
+            top: 0,
+            left: 72
+          }
+        });
+      });
+
+      it('aligns content best as possible in limited space', () => {
+        expect(getPopoverScreenCoordinates({
+          position: 'right',
+          align: 'bottom',
+          anchorBoundingBox: makeBB(100, 125, 110, 75),
+          popoverBoundingBox: makeBB(0, 100, 200, 0),
+          windowBoundingBox: makeBB(-200, 1024, 768, 0),
+          containerBoundingBox: makeBB(-200, 1024, 768, 0),
+          arrowConfig: { arrowWidth: 6, arrowBuffer: 10 }
+        })).toEqual({
+          fit: 1,
+          top: -82,
+          left: 125,
+          arrow: {
+            top: 184,
+            left: 0
+          }
+        });
+      });
+    });
   });
 
   describe('findPopoverPosition', () => {

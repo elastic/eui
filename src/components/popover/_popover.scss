@@ -9,34 +9,56 @@
   position: relative;
   vertical-align: middle;
   max-width: 100%;
-
-  // Open state happens on the wrapper and applies to the panel.
-  &.euiPopover-isOpen {
-    .euiPopover__panel {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-  }
 }
 
-  /**
-   * 1. Can expand further, but it looks weird if it's smaller than the originating button.
-   * 2. Animation happens on the panel.
-   */
-  .euiPopover__panel {
+.euiPopover__anchor {
+  display: inline-block;
+}
+
+/**
+ * 1. Can expand further, but it looks weird if it's smaller than the originating button.
+ * 2. Animation happens on the panel.
+ */
+.euiPopover__panel {
+  position: absolute;
+  z-index: $euiZContentMenu;
+  min-width: $euiButtonMinWidth; /* 1 */
+  backface-visibility: hidden;
+  pointer-events: none;
+  transition: /* 2 */
+    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+    visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
+    transform $euiAnimSlightBounce $euiAnimSpeedSlow;
+  opacity: 0; /* 2 */
+  visibility: hidden; /* 2 */
+  transform: translateY(0) translateZ(0); /* 2 */
+
+  &.euiPopover__panel-isOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  // This fakes a border on the arrow.
+  &:before {
     position: absolute;
-    z-index: $euiZContentMenu;
-    min-width: $euiButtonMinWidth; /* 1 */
-    backface-visibility: hidden;
-    pointer-events: none;
-    transition: /* 2 */
-      opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
-      visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
-      transform $euiAnimSlightBounce $euiAnimSpeedSlow;
-    opacity: 0; /* 2 */
-    visibility: hidden; /* 2 */
-    transform: translateY(0) translateZ(0); /* 2 */
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  // This part of the arrow matches the panel.
+  &:after {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  .euiPopover__panel__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
 
     // This fakes a border on the arrow.
     &:before {
@@ -53,214 +75,111 @@
       height: 0;
       width: 0;
     }
+
+    &.euiPopover__panel__arrow-top {
+      &:before {
+        bottom: -$euiSize + 1;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-top: $euiSize solid $euiBorderColor;
+      }
+
+      &:after {
+        bottom: -$euiSize + 2;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-top: $euiSize solid $euiColorEmptyShade;
+      }
+    }
+
+    &.euiPopover__panel__arrow-right {
+      &:before {
+        left: -$euiSize;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-right: $euiSize solid $euiBorderColor;
+      }
+
+      &:after {
+        left: -$euiSize + 1;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-right: $euiSize solid $euiColorEmptyShade;
+      }
+    }
+
+    &.euiPopover__panel__arrow-bottom {
+      &:before {
+        top: -$euiSize;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-bottom: $euiSize solid $euiBorderColor;
+      }
+
+      &:after {
+        top: -$euiSize + 1;
+        border-left: $euiSize solid transparent;
+        border-right: $euiSize solid transparent;
+        border-bottom: $euiSize solid $euiColorEmptyShade;
+      }
+    }
+
+    &.euiPopover__panel__arrow-left {
+      &:before {
+        right: -$euiSize + 1;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-left: $euiSize solid $euiBorderColor;
+      }
+
+      &:after {
+        right: -$euiSize + 2;
+        top: 50%;
+        border-top: $euiSize solid transparent;
+        border-bottom: $euiSize solid transparent;
+        border-left: $euiSize solid $euiColorEmptyShade;
+      }
+    }
   }
+}
 
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
-
-.euiPopover--withTitle.euiPopover--anchorDownCenter .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorDownLeft .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorDownRight .euiPopover__panel:after
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpLeft,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpRight
 {
-  border-bottom-color: $euiColorLightestShade;
+  transform: translateY($euiSizeS) translateZ(0);
 }
 
-.euiPopover--anchorDownCenter.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-50%) translateY($euiSizeS) translateZ(0);
-}
+// Anchor DOWN
+// Anchor DOWN
+// Anchor DOWN
+// Anchor DOWN
+// Anchor DOWN
 
-.euiPopover--anchorDownLeft.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(0%) translateY($euiSizeS) translateZ(0);
-}
-
-.euiPopover--anchorDownRight.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-100%) translateY($euiSizeS) translateZ(0);
-}
-
-.euiPopover--anchorDownCenter {
-  .euiPopover__panel {
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%) translateY($euiSizeL) translateZ(0);
-
-    &:before {
-      top: -$euiSize;
-      left: 50%;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiBorderColor;
+.euiPopover__panel.euiPopover__panel-withTitle {
+  .euiPopover__panel__arrow {
+    &.euiPopover__panel__arrow-bottom:after {
+      border-bottom-color: $euiColorLightestShade;
     }
 
-    &:after {
-      top: -$euiSize + 1;
-      right: 0;
-      left: 50%;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiColorEmptyShade;
+    &.euiPopover__panel__arrow-right:after {
+      border-right-color: $euiColorLightestShade;
+    }
+
+    &.euiPopover__panel__arrow-left:after {
+      border-left-color: $euiColorLightestShade;
     }
   }
 }
 
-// Positions the menu and arrow to the left of the parent.
-.euiPopover--anchorDownLeft {
-  .euiPopover__panel {
-    left: 0;
-    transform: translateX(0%) translateY($euiSizeL) translateZ(0);
-
-    &:before {
-      top: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiBorderColor;
-      right: auto;
-      left: $euiSize;
-    }
-
-    &:after {
-      top: -$euiSize + 1;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiColorEmptyShade;
-      right: auto;
-      left: $euiSize;
-    }
-  }
-}
-
-// Positions the menu and arrow to the right of the parent.
-.euiPopover--anchorDownRight {
-  .euiPopover__panel {
-    left: 100%;
-    transform: translateX(-100%) translateY($euiSizeL) translateZ(0);
-
-    &:before {
-      top: -$euiSize;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiBorderColor;
-      right: $euiSize;
-      left: auto;
-    }
-
-    &:after {
-      top: -$euiSize + 1;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-bottom: $euiSize solid $euiColorEmptyShade;
-      right: $euiSize;
-      left: auto;
-    }
-  }
-}
-
-
-// Anchor UP
-// Anchor UP
-// Anchor UP
-// Anchor UP
-// Anchor UP
-
-.euiPopover--anchorUpCenter.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-50%) translateY(-$euiSizeS) translateZ(0);
-}
-
-.euiPopover--anchorUpLeft.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(0%) translateY(-$euiSizeS) translateZ(0);
-}
-
-.euiPopover--anchorUpRight.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-100%) translateY(-$euiSizeS) translateZ(0);
-}
-
-.euiPopover--anchorUpCenter {
-  .euiPopover__panel {
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-$euiSizeL) translateZ(0);
-
-    &:before {
-      bottom: -$euiSize;
-      left: 50%;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      bottom: -$euiSize + 1;
-      right: 0;
-      left: 50%;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiColorEmptyShade;
-    }
-  }
-}
-
-// Positions the menu and arrow to the left of the parent.
-.euiPopover--anchorUpLeft {
-  .euiPopover__panel {
-    bottom: 100%;
-    left: 0;
-    transform: translateX(0%) translateY(-$euiSizeL) translateZ(0);
-
-    &:before {
-      bottom: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiBorderColor;
-      right: auto;
-      left: $euiSize;
-    }
-
-    &:after {
-      bottom: -$euiSize + 1;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiColorEmptyShade;
-      right: auto;
-      left: $euiSize;
-    }
-  }
-}
-
-// Positions the menu and arrow to the right of the parent.
-.euiPopover--anchorUpRight {
-  .euiPopover__panel {
-    bottom: 100%;
-    left: 100%;
-    transform: translateX(-100%) translateY(-$euiSizeL) translateZ(0);
-
-    &:before {
-      bottom: -$euiSize;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiBorderColor;
-      right: $euiSize;
-      left: auto;
-    }
-
-    &:after {
-      bottom: -$euiSize + 1;
-      margin-left: -$euiSize;
-      border-left: $euiSize solid transparent;
-      border-right: $euiSize solid transparent;
-      border-top: $euiSize solid $euiColorEmptyShade;
-      right: $euiSize;
-      left: auto;
-    }
-  }
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownLeft,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownRight
+{
+  transform: translateY(-$euiSizeS) translateZ(0);
 }
 
 // Anchor LEFT
@@ -288,92 +207,11 @@
   }
 }
 
-.euiPopover--anchorLeftCenter.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-$euiSizeS) translateY(-50%) translateZ(0);
-}
-
-.euiPopover--anchorLeftUp.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-$euiSizeS) translateY(0) translateZ(0);
-}
-
-.euiPopover--anchorLeftDown.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX(-$euiSizeS) translateY(-100%) translateZ(0);
-}
-
-.euiPopover--anchorLeftCenter {
-  .euiPopover__panel {
-    top: 50%;
-    right: 100%;
-    transform: translateX(-$euiSizeL) translateY(-50%) translateZ(0);
-
-    &:before {
-      right: -$euiSize;
-      top: 50%;
-      margin-top: -$euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      right: -$euiSize + 1;
-      top: 50%;
-      margin-top: -$euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiColorEmptyShade;
-    }
-  }
-}
-
-// Positions the menu and arrow to the left of the parent.
-.euiPopover--anchorLeftUp {
-  .euiPopover__panel {
-    top: -$euiSizeM;
-    right: 100%;
-    transform: translateX(-$euiSizeL) translateY(0) translateZ(0);
-
-    &:before {
-      right: -$euiSize;
-      top: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      right: -$euiSize + 1;
-      top: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiColorEmptyShade;
-    }
-  }
-}
-
-// Positions the menu and arrow to the right of the parent.
-.euiPopover--anchorLeftDown {
-  .euiPopover__panel {
-    top: calc(100% + #{$euiSizeM});
-    right: 100%;
-    transform: translateX(-$euiSizeL) translateY(-100%) translateZ(0);
-
-    &:before {
-      right: -$euiSize;
-      bottom: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      right: -$euiSize + 1;
-      bottom: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-left: $euiSize solid $euiColorEmptyShade;
-    }
-  }
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftUp,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftDown
+{
+  transform: translateX($euiSizeS) translateZ(0);
 }
 
 // Anchor RIGHT
@@ -401,90 +239,10 @@
   }
 }
 
-.euiPopover--anchorRightCenter.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX($euiSizeS) translateY(-50%) translateZ(0);
-}
 
-.euiPopover--anchorRightUp.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX($euiSizeS) translateY(0) translateZ(0);
-}
-
-.euiPopover--anchorRightDown.euiPopover-isOpen .euiPopover__panel {
-  transform: translateX($euiSizeS) translateY(-100%) translateZ(0);
-}
-
-.euiPopover--anchorRightCenter {
-  .euiPopover__panel {
-    top: 50%;
-    left: 100%;
-    transform: translateX($euiSizeL) translateY(-50%) translateZ(0);
-
-    &:before {
-      left: -$euiSize;
-      top: 50%;
-      margin-top: -$euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      left: -$euiSize + 1;
-      top: 50%;
-      margin-top: -$euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiColorEmptyShade;
-    }
-  }
-}
-
-// Positions the menu and arrow to the left of the parent.
-.euiPopover--anchorRightUp {
-  .euiPopover__panel {
-    top: -$euiSizeM;
-    left: 100%;
-    transform: translateX($euiSizeL) translateY(0) translateZ(0);
-
-    &:before {
-      left: -$euiSize;
-      top: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      left: -$euiSize + 1;
-      top: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiColorEmptyShade;
-    }
-  }
-}
-
-// Positions the menu and arrow to the right of the parent.
-.euiPopover--anchorRightDown {
-  .euiPopover__panel {
-    top: calc(100% + #{$euiSizeM});
-    left: 100%;
-    transform: translateX($euiSizeL) translateY(-100%) translateZ(0);
-
-    &:before {
-      left: -$euiSize;
-      bottom: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiBorderColor;
-    }
-
-    &:after {
-      left: -$euiSize + 1;
-      bottom: $euiSize;
-      border-top: $euiSize solid transparent;
-      border-bottom: $euiSize solid transparent;
-      border-right: $euiSize solid $euiColorEmptyShade;
-    }
-  }
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightCenter,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightUp,
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightDown
+{
+  transform: translateX(-$euiSizeS) translateZ(0);
 }
