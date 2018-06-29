@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Add `inspect` type option to icon typedef file. ([#952](https://github.com/elastic/eui/pull/952))
-
 - `EuiAccordion` use MutationObserver to re-calculate height when children DOM changes ([#947](https://github.com/elastic/eui/pull/947))
+- Add `inspect` type option to icon typedef file. ([#952](https://github.com/elastic/eui/pull/952))
+- Simplified form control styles. ([#954](https://github.com/elastic/eui/pull/954))
+
+**Deprecations**
+
+- Replaced the following SASS variables have been replaced `$euiFormControlHeight--compressed`, `$euiFormControlPadding--compressed`, `euiFormBorderColor--disabled`. ([#954](https://github.com/elastic/eui/pull/954))
 
 ## [`1.0.0`](https://github.com/elastic/eui/tree/v1.0.0)
 
