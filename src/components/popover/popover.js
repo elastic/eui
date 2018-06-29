@@ -25,6 +25,9 @@ const anchorPositionToPopoverPositionMap = {
   'left': 'left'
 };
 export function getPopoverPositionFromAnchorPosition(anchorPosition) {
+  // maps the anchor position to the matching popover position
+  // e.g. "upLeft" -> "top", "downRight" -> "bottom"
+
   // extract the first positional word from anchorPosition:
   // starts at the beginning (" ^ ") of anchorPosition and
   // captures all of the characters (" (.*?) ") until the
@@ -33,6 +36,9 @@ export function getPopoverPositionFromAnchorPosition(anchorPosition) {
   return anchorPositionToPopoverPositionMap[primaryPosition];
 }
 export function getPopoverAlignFromAnchorPosition(anchorPosition) {
+  // maps the gravity to the matching popover position
+  // e.g. "upLeft" -> "left", "rightDown" -> "bottom"
+
   // extract the second positional word from anchorPosition:
   // starts a capture group at the first capital letter
   // and includes everything after it
