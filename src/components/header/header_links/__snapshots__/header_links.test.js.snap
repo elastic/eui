@@ -15,33 +15,37 @@ exports[`EuiHeaderLinks is rendered 1`] = `
     id="headerListMenu"
   >
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiPopover__anchor"
     >
-      <button
-        aria-label="Open navigation menu"
-        class="euiHeaderSectionItem__button"
-        type="button"
+      <div
+        class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
       >
-        <svg
-          class="euiIcon euiIcon--medium"
-          focusable="false"
-          height="16"
-          viewBox="0 0 16 16"
-          width="16"
-          xlink="http://www.w3.org/1999/xlink"
-          xmlns="http://www.w3.org/2000/svg"
+        <button
+          aria-label="Open navigation menu"
+          class="euiHeaderSectionItem__button"
+          type="button"
         >
-          <defs>
-            <path
-              d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
-              id="apps-a"
+          <svg
+            class="euiIcon euiIcon--medium"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+                id="apps-a"
+              />
+            </defs>
+            <use
+              href="#apps-a"
             />
-          </defs>
-          <use
-            href="#apps-a"
-          />
-        </svg>
-      </button>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>

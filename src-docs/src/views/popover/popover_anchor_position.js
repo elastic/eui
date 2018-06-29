@@ -298,7 +298,7 @@ export default class extends Component {
               anchorPosition="leftUp"
             >
               <EuiText>
-                <p>
+                <p style={{ width: 150 }}>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
@@ -337,7 +337,7 @@ export default class extends Component {
               anchorPosition="leftDown"
             >
               <EuiText>
-                <p>
+                <p style={{ width: 150 }}>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
@@ -363,7 +363,7 @@ export default class extends Component {
               anchorPosition="rightUp"
             >
               <EuiText>
-                <p>
+                <p style={{ width: 150 }}>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>
@@ -402,7 +402,7 @@ export default class extends Component {
               anchorPosition="rightDown"
             >
               <EuiText>
-                <p>
+                <p style={{ width: 150 }}>
                   Be careful with content within left or right aligned popovers. There needs to be
                   enough content to make make enough height for the arrow positioning.
                 </p>

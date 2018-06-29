@@ -3,9 +3,20 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPopover } from './popover';
+import {
+  EuiPopover,
+  getPopoverPositionFromAnchorPosition,
+  getPopoverAlignFromAnchorPosition,
+} from './popover';
 
 import { keyCodes } from '../../services';
+
+jest.mock(
+  '../portal',
+  () => ({
+    EuiPortal: ({ children }) => children
+  })
+);
 
 let id = 0;
 const getId = () => (`${id++}`);
@@ -211,5 +222,31 @@ describe('EuiPopover', () => {
           .toMatchSnapshot();
       });
     });
+  });
+});
+
+describe('getPopoverPositionFromAnchorPosition', () => {
+  it('maps the first anchor position in a camel-cased string to a popover position', () => {
+    expect(getPopoverPositionFromAnchorPosition('upLeft')).toBe('top');
+    expect(getPopoverPositionFromAnchorPosition('rightDown')).toBe('right');
+    expect(getPopoverPositionFromAnchorPosition('downRight')).toBe('bottom');
+    expect(getPopoverPositionFromAnchorPosition('leftTop')).toBe('left');
+  });
+
+  it('returns undefined when an invalid position is extracted', () => {
+    expect(getPopoverPositionFromAnchorPosition('nowhereNohow')).toBeUndefined();
+  });
+});
+
+describe('getPopoverAlignFromAnchorPosition', () => {
+  it('maps the second anchor position in a camel-cased string to a popover position', () => {
+    expect(getPopoverAlignFromAnchorPosition('upLeft')).toBe('left');
+    expect(getPopoverAlignFromAnchorPosition('rightDown')).toBe('bottom');
+    expect(getPopoverAlignFromAnchorPosition('downRight')).toBe('right');
+    expect(getPopoverAlignFromAnchorPosition('leftUp')).toBe('top');
+  });
+
+  it('returns undefined when an invalid position is extracted', () => {
+    expect(getPopoverAlignFromAnchorPosition('nowhereNohow')).toBeUndefined();
   });
 });
