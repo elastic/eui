@@ -2,6 +2,10 @@
 
 - Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
 
+**Bug fixes**
+
+- Added word-break fallback for FF & IE in table cell ([#962](https://github.com/elastic/eui/pull/962))
+
 ## [`1.0.1`](https://github.com/elastic/eui/tree/v1.0.1)
 
 - `EuiAccordion` use MutationObserver to re-calculate height when children DOM changes ([#947](https://github.com/elastic/eui/pull/947))
