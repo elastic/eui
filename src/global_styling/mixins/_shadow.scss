@@ -1,7 +1,6 @@
 $euiShadowColor: $euiColorMediumShade !default;
 $euiShadowColorLarge: $euiColorSlightHue !default;
 
-
 @mixin euiSlightShadow($color: $euiShadowColor, $opacity: .3) {
   box-shadow: 0 2px 2px -1px rgba($color, $opacity);
 }

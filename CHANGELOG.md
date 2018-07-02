@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `1.0.1`.
+- Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
 
 ## [`1.0.1`](https://github.com/elastic/eui/tree/v1.0.1)
 

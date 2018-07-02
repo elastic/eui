@@ -77,7 +77,7 @@ $buttonTypes: (
   text: $euiColorDarkShade, // Reserved for special use cases
 );
 
-// Create button modifiders based upon the map.
+// Create button modifiers based upon the map.
 @each $name, $color in $buttonTypes {
   .euiButton--#{$name} {
 
