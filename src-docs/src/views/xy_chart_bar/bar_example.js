@@ -6,7 +6,7 @@ import StackedVerticalBarSeriesExample from './stacked_vertical_bar_series';
 import StackedHorizontalBarSeriesExample from './stacked_horizontal_bar_series';
 import TimeSeriesExample from './time_series';
 
-import { EuiCallOut, EuiSpacer, EuiLink, EuiCode, EuiBarSeries } from '../../../../src/components';
+import { EuiBadge, EuiCallOut, EuiSpacer, EuiLink, EuiCode, EuiBarSeries } from '../../../../src/components';
 
 export const XYChartBarExample = {
   title: 'Bar charts',
@@ -106,7 +106,9 @@ export const XYChartBarExample = {
       title: 'Horizontal Bar Chart',
       text: (
         <p>
-          To display an horizontal bar chart specify <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
+          <EuiBadge color="warning">
+            experimental
+          </EuiBadge> To display an horizontal bar chart specify <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
           Since you are rotating the chart, you also have to invert <EuiCode>x</EuiCode> and <EuiCode>y</EuiCode>
           values in your data. The <EuiCode>y</EuiCode> becomes your ordinal/categorial axis and the
           <EuiCode>x</EuiCode> becomes your measure/value axis.
@@ -129,7 +131,10 @@ export const XYChartBarExample = {
       title: 'Stacked Horizontal Bar Chart',
       text: (
         <p>
-          To display an horizontal stacked bar charts specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>.
+          <EuiBadge color="warning">
+            experimental
+          </EuiBadge> To display an horizontal stacked bar charts specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>
+          together with <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
           If <EuiCode>stackBy</EuiCode> is not specified, bars are clustered together depending on
           the Y value.
         </p>

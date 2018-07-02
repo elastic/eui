@@ -265,7 +265,7 @@ XYChart.propTypes = {
   width: PropTypes.number.isRequired,
   /** The initial height of the chart. */
   height: PropTypes.number.isRequired,
-  /** The orientation of the chart. Used by grids and crosshair. */
+  /** **experimental** The orientation of the chart. */
   orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
   /** If the chart animates on data changes. */
   animateData: PropTypes.bool,

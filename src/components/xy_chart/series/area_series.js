@@ -4,6 +4,30 @@ import { AreaSeries, AbstractSeries } from 'react-vis';
 import { VISUALIZATION_COLORS } from '../../../services';
 import { CURVE } from '../utils/chart_utils';
 
+// TODO: needs to send a PR to react-vis for incorporate these changes into AreaSeries class for vertical
+// area chart visualizations.
+// class ExtendedAreaSeries extends AreaSeries {
+//   _renderArea(data, x, y0, y, curve, getNull) {
+//     const x0 = this._getAttr0Functor('x');
+//     let area = d3Area();
+//     if (curve !== null) {
+//       if (typeof curve === 'string' && curves[curve]) {
+//         area = area.curve(curves[curve]);
+//       } else if (typeof curve === 'function') {
+//         area = area.curve(curve);
+//       }
+//     }
+//     console.log(Object.getPrototypeOf(this))
+//     area = area.defined(getNull);
+//     area = area
+//       .x1(x)
+//       .x0(x0) // this is required for displaying vertical area charts.
+//       .y0(y0)
+//       .y1(y);
+//     return area(data);
+//   }
+// }
+
 export class EuiAreaSeries extends AbstractSeries {
   state = {
     isMouseOverSeries: false,

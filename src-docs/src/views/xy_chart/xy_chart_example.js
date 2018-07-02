@@ -108,5 +108,30 @@ export const XYChartExample = {
         </div>
       ),
     },
+    // TODO include the following example when AreasSeries PR (create vertical areachart)
+    // will be merged into react-vis and orientation prop semantic will be solved.
+    // {
+    //   title: 'Horizontal chart',
+    //   text: (
+    //     <div>
+    //       <p>If just displaying values is enough, then you can let the chart auto label axis</p>
+    //     </div>
+    //   ),
+    //   source: [
+    //     {
+    //       type: GuideSectionTypes.JS,
+    //       code: require('!!raw-loader!./horizontal'),
+    //     },
+    //     {
+    //       type: GuideSectionTypes.HTML,
+    //       code: 'This component can only be used from React',
+    //     },
+    //   ],
+    //   demo: (
+    //     <div style={{ margin: 60 }}>
+    //       <HorizontalExampleCode />
+    //     </div>
+    //   ),
+    // },
   ],
 };

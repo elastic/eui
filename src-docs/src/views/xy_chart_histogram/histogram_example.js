@@ -7,6 +7,7 @@ import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series
 import TimeHistogramSeriesExample from './time_histogram_series';
 
 import {
+  EuiBadge,
   EuiSpacer,
   EuiCode,
   EuiCallOut,
@@ -114,7 +115,9 @@ export const XYChartHistogramExample = {
       title: 'Horizontal Histogram',
       text: (
         <p>
-          You can create horizontal histograms specifing <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
+          <EuiBadge color="warning">
+            experimental
+          </EuiBadge> You can create horizontal histograms specifing <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
           Since you are rotating the histogram, you also have to invert your data.
         </p>
       ),
@@ -136,7 +139,10 @@ export const XYChartHistogramExample = {
       text: (
         <Fragment>
           <p>
-            To display an horizontal stacked histograms specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>.
+            <EuiBadge color="warning">
+              experimental
+            </EuiBadge> To display an horizontal stacked histograms specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>
+            together with <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
           </p>
           <EuiCallOut
             size="s"
