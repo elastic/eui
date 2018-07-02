@@ -3,6 +3,7 @@ import { GuideSectionTypes } from '../../components';
 import AreaSeriesExample from './area';
 import StackedAreaSeriesExample from './stacked_area';
 import CurvedAreaExample from './curved_area';
+import RangeAreaExample from './range_area';
 
 import { EuiCode, EuiAreaSeries, EuiLink } from '../../../../src/components';
 
@@ -90,6 +91,31 @@ export const XYChartAreaExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <CurvedAreaExample />
+        </div>
+      ),
+    },
+    {
+      title: 'Range area chart',
+      text: (
+        <p>
+          Each point in the chart is specified by two y values <EuiCode>y0</EuiCode> (lower value) and
+          <EuiCode>y</EuiCode> (upper value) to display a range area chart.
+        </p>
+      ),
+      props: { EuiAreaSeries },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./range_area'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <RangeAreaExample/>
         </div>
       ),
     },
