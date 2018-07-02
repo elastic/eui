@@ -95,7 +95,7 @@ EuiLineSeries.propTypes = {
 
 EuiLineSeries.defaultProps = {
   curve: CURVE.LINEAR,
-  showLineMarks: true,
-  lineSize: 2,
-  lineMarkSize: 5
+  showLineMarks: false,
+  lineSize: 1,
+  lineMarkSize: 0
 };

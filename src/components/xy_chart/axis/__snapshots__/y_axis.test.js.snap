@@ -158,32 +158,15 @@ exports[`EuiYAxis render the y axis 1`] = `
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
           d="M0,150L550,0"
-          style="opacity: 1; stroke-width: 4; stroke: white; pointer-events: visiblestroke;"
+          style="opacity: 1; stroke-width: 3; stroke: white; pointer-events: visiblestroke;"
           transform="translate(40,10)"
         />
         <path
           class="rv-xy-plot__series rv-xy-plot__series--line "
           d="M0,150L550,0"
-          style="opacity: 1; stroke-width: 2; stroke: #00B3A4; pointer-events: visiblestroke;"
+          style="opacity: 1; stroke-width: 1; stroke: #00B3A4; pointer-events: visiblestroke;"
           transform="translate(40,10)"
         />
-        <g
-          class="rv-xy-plot__series rv-xy-plot__series--mark undefined"
-          transform="translate(40,10)"
-        >
-          <circle
-            cx="0"
-            cy="150"
-            r="5"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
-          />
-          <circle
-            cx="550"
-            cy="0"
-            r="5"
-            style="opacity: 1; stroke: white; fill: #00B3A4; stroke-width: 2;"
-          />
-        </g>
       </svg>
     </div>
   </div>
