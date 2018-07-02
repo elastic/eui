@@ -1,26 +1,34 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
 /**
- * Simplified version of tspan wrapper that takes an array of Strings.
+ * Word wrapper that takes a long text and wrap words into lines of the same length.
  * and return a SVG component composed by tspan tags.
+ * source: https://j11y.io/snippets/wordwrap-for-javascript/
  * @param {Array of Strings} texts - an array of splitted text, one per line
- * @return {Object} Returns an Object to use with dangerouslySetInnerHTML
- * with the rendered markdown HTML
+ * @return {Object} Return a Fragment of SVG tspan elements to be used inside axis label formatter.
  */
-function tspanTextWrapper(texts) {
+function labelWordWrap(text, width) {
+  const pieces = wordWrap(text, width);
   return (
     <Fragment>
-      {
-        texts.map((piece, i) => {
-          return (
-            <tspan x={0} dy="1em" key={`text-span-${i}`}>{piece}</tspan>
-          )
-        })
-      }
+      {pieces.map((piece, i) => {
+        return (
+          <tspan x={0} dy="1em" key={`text-span-${i}`}>
+            {piece}
+          </tspan>
+        );
+      })}
     </Fragment>
-  )
+  );
 }
 
-export const EuiXYChartTextUtils = {
-  tspanTextWrapper,
+function wordWrap(text, width = 75, cut = false) {
+  if (!text) {
+    return text;
+  }
+  const regex = '.{1,' + width + '}(s|$)' + (cut ? '|.{' + width + '}|.+$' : '|S+?(s|$)');
+  return text.match(RegExp(regex, 'g'));
 }
+export const EuiXYChartTextUtils = {
+  labelWordWrap,
+};

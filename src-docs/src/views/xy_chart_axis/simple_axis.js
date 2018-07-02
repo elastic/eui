@@ -12,7 +12,7 @@ import {
 const DATA = [{ x: 0, y: 5 }, { x: 1, y: 3 }, { x: 2, y: 2 }, { x: 3, y: 3 }];
 
 function xAxisTickFormatter(value) {
-  return EuiXYChartTextUtils.tspanTextWrapper(['MY VALUE', value]);
+  return EuiXYChartTextUtils.labelWordWrap(`Axis value is ${value}`, 10);
 }
 
 export default () => (
