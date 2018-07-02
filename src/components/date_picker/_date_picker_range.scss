@@ -1,0 +1,34 @@
+@import '../form/variables';
+@import '../form/mixins';
+
+/**
+ * 1. Account for inner box-shadow style border
+ */
+
+ .euiDatePickerRange {
+  @include euiFormControlSize(auto, $includeAlternates: true);
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow();
+  display: flex;
+  align-items: center;
+  padding: 1px; /* 1 */
+
+  > span {
+    flex-grow: 1;
+  }
+
+  .euiDatePicker {
+    box-shadow: none !important; // including all states
+    text-align: center;
+  }
+}
+
+.euiDatePickerRange__icon {
+  padding-left: $euiFormControlPadding;
+  padding-right: $euiFormControlPadding;
+}
+
+.euiDatePickerRange__delimeter {
+  padding-left: $euiFormControlPadding/2;
+  padding-right: $euiFormControlPadding/2;
+}
