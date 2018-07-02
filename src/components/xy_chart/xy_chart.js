@@ -274,7 +274,7 @@ XYChart.propTypes = {
   /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
   xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
-  xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
+  yType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** Manually specify the domain of x axis. */
   xDomain: PropTypes.array,
   /** Manually specify the domain of y axis. */
