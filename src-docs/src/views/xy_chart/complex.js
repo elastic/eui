@@ -5,7 +5,7 @@ import {
   EuiCodeBlock,
   EuiSpacer,
   EuiXYChart,
-  EuiVerticalBarSeries,
+  EuiBarSeries,
   EuiAreaSeries,
   EuiLineSeries,
 } from '../../../../src/components';
@@ -58,11 +58,10 @@ export default class ComplexDemo extends Component {
           />
           {barSeries
             .map((data, index) => (
-              <EuiVerticalBarSeries
+              <EuiBarSeries
                 key={index}
                 name={`User-${index}`}
                 data={data}
-                hasLineMarks={false}
                 onValueClick={this.handleOnValueClick}
               />
             ))}
