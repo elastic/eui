@@ -24,7 +24,7 @@
     }
 
     &:hover, &:focus {
-      background-color: $euiColorEmptyShade;
+      background-color: transparent;
       text-decoration: none;
     }
   }
