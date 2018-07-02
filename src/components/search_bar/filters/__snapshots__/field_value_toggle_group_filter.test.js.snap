@@ -8,6 +8,7 @@ Array [
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
+    noDivider={true}
     onClick={[Function]}
     type="button"
   />,
@@ -17,6 +18,7 @@ Array [
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
+    noDivider={false}
     onClick={[Function]}
     type="button"
   />,
@@ -31,6 +33,7 @@ Array [
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
+    noDivider={true}
     onClick={[Function]}
     type="button"
   />,
@@ -40,6 +43,7 @@ Array [
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
+    noDivider={false}
     onClick={[Function]}
     type="button"
   />,
@@ -54,6 +58,7 @@ Array [
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
+    noDivider={true}
     onClick={[Function]}
     type="button"
   />,
@@ -63,6 +68,7 @@ Array [
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
+    noDivider={false}
     onClick={[Function]}
     type="button"
   />,
@@ -77,6 +83,7 @@ Array [
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
+    noDivider={true}
     onClick={[Function]}
     type="button"
   />,
@@ -86,6 +93,7 @@ Array [
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
+    noDivider={false}
     onClick={[Function]}
     type="button"
   />,
