@@ -69,7 +69,7 @@ EuiHistogramSeries.propTypes = {
   /**
    * @private passed via XYChart
    */
-  _orientation: PropTypes.string,
+  // _orientation: PropTypes.string,
 };
 
 EuiHistogramSeries.defaultProps = {};
