@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed disabled states of icon buttons ([#963](https://github.com/elastic/eui/pull/963))
+- Added word-break fallback for FF & IE in table cell ([#962](https://github.com/elastic/eui/pull/962))
 
 ## [`1.0.1`](https://github.com/elastic/eui/tree/v1.0.1)
 

@@ -132,6 +132,7 @@
   .euiTableCellContent__text {
     min-width: 0;
     text-overflow: ellipsis;
+    word-break: break-all; /* 1 */ // Fallback for FF and IE
     word-break: break-word; /* 1 */
   }
 
