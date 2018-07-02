@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalRectSeries } from 'react-vis';
-import { VISUALIZATION_COLORS } from '../../../services';
 import classNames from 'classnames';
+
+import { VisualizationColorType } from '../utils/visualization_color_type';
 
 export class EuiVerticalRectSeries extends VerticalRectSeries {
   state = {
@@ -53,7 +54,7 @@ EuiVerticalRectSeries.propTypes = {
     y: PropTypes.number,
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
-  color: PropTypes.oneOf(VISUALIZATION_COLORS),
+  color: VisualizationColorType,
   /** Callback when clicking on a single rect */
   onValueClick: PropTypes.func
 };

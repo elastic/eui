@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries } from 'react-vis';
-import { VISUALIZATION_COLORS } from '../../../services';
 import { CURVE } from '../utils/chart_utils';
+
+import { VisualizationColorType } from '../utils/visualization_color_type';
 
 // TODO: needs to send a PR to react-vis for incorporate these changes into AreaSeries class for vertical
 // area chart visualizations.
@@ -74,7 +75,7 @@ EuiAreaSeries.propTypes = {
     })
   ).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
-  color: PropTypes.oneOf(VISUALIZATION_COLORS),
+  color: VisualizationColorType,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   onSeriesClick: PropTypes.func,
   onMarkClick: PropTypes.func,

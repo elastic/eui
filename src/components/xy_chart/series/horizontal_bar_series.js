@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HorizontalBarSeries } from 'react-vis';
-import { VISUALIZATION_COLORS } from '../../../services';
 import classNames from 'classnames';
+
+import { VisualizationColorType } from '../utils/visualization_color_type';
 
 export class EuiHorizontalBarSeries extends HorizontalBarSeries {
   state = {
@@ -55,7 +56,7 @@ EuiHorizontalBarSeries.propTypes = {
     ]),
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
-  color: PropTypes.oneOf(VISUALIZATION_COLORS),
+  color: VisualizationColorType,
   /** Callback when clicking on a single bar */
   onValueClick: PropTypes.func
 };

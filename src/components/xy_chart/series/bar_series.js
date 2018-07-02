@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalBarSeries, HorizontalBarSeries, AbstractSeries } from 'react-vis';
 import { ORIENTATION } from '../utils/chart_utils';
-import { VISUALIZATION_COLORS } from '../../../services';
 import classNames from 'classnames';
+
+import { VisualizationColorType } from '../utils/visualization_color_type';
 
 export class EuiBarSeries extends AbstractSeries {
   state = {
@@ -70,7 +71,7 @@ EuiBarSeries.propTypes = {
   /**
    * An EUI visualization color, the default value is passed through EuiXYChart
    */
-  color: PropTypes.oneOf(VISUALIZATION_COLORS),
+  color: VisualizationColorType,
   /**
    * @private passed via XYChart
    */
