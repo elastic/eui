@@ -55,7 +55,9 @@ EuiVerticalRectSeries.propTypes = {
   })).isRequired,
   /** An EUI visualization color, the default value is enforced by EuiXYChart */
   color: VisualizationColorType,
-  /** Callback when clicking on a single rect */
+  /**
+   * Callback when clicking on a bar. Returns { x, y } object.
+   */
   onValueClick: PropTypes.func
 };
 

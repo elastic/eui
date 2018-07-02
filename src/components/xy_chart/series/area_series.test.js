@@ -5,19 +5,27 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiXYChart } from '../xy_chart';
 import { EuiAreaSeries } from './area_series';
+import { CURVE } from '../utils/chart_utils';
 import { benchmarkFunction } from '../../../test/time_execution';
 import { VISUALIZATION_COLORS } from '../../../services';
 
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
+const AREA_SERIES_PROPS =  {
+  name: 'name',
+  data: [{ x: 0, y: 5 }, { x: 1, y: 10 }],
+  color: VISUALIZATION_COLORS[0],
+  curve: CURVE.NATURAL,
+  onSeriesClick: jest.fn(),
+};
+
 describe('EuiAreaSeries', () => {
-  test('is rendered', () => {
+  test('all props are rendered', () => {
     const component = mount(
       <EuiXYChart width={600} height={200} {...requiredProps}>
         <EuiAreaSeries
-          name="somename"
-          data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
+          {...AREA_SERIES_PROPS}
         />
       </EuiXYChart>
     );
@@ -25,24 +33,24 @@ describe('EuiAreaSeries', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('all props are rendered', () => {
+  test('call onSeriesClick', () => {
+    const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
+    const onSeriesClick = jest.fn();
     const component = mount(
-      <EuiXYChart width={600} height={200}>
+      <EuiXYChart
+        width={600}
+        height={200}
+      >
         <EuiAreaSeries
-          data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
-          name="test-chart"
+          name="test-series-a"
+          data={data}
           color={VISUALIZATION_COLORS[2]}
-          curve="curveCatmullRom"
-          hasLineMarks={true}
-          lineMarkColor="#00ff00"
-          lineMarkSize={13}
-          onClick={() => {}}
-          onMarkClick={() => {}}
+          onSeriesClick={onSeriesClick}
         />
       </EuiXYChart>
     );
-
-    expect(component).toMatchSnapshot();
+    component.find('path').at(0).simulate('click');
+    expect(onSeriesClick.mock.calls).toHaveLength(1);
   });
 
   describe('performance', () => {

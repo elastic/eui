@@ -36,13 +36,41 @@ describe('EuiLineSeries', () => {
           hasLineMarks={true}
           lineMarkColor="#00ff00"
           lineMarkSize={13}
-          onClick={() => {}}
-          onMarkClick={() => {}}
+          onSeriesClick={() => {}}
+          onValueClick={() => {}}
         />
       </EuiXYChart>
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  test('call onValueClick and onSeriesClick', () => {
+    const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
+    const onValueClick = jest.fn();
+    const onSeriesClick = jest.fn();
+    const component = mount(
+      <EuiXYChart
+        width={600}
+        height={200}
+      >
+        <EuiLineSeries
+          name="test-series-a"
+          data={data}
+          color={VISUALIZATION_COLORS[2]}
+          onValueClick={onValueClick}
+          onSeriesClick={onSeriesClick}
+          showLineMarks={true}
+        />
+      </EuiXYChart>
+    );
+    component.find('path').at(0).simulate('click');
+    expect(onSeriesClick.mock.calls).toHaveLength(1);
+    component.find('circle').at(0).simulate('click');
+    expect(onValueClick.mock.calls).toHaveLength(1);
+    expect(onValueClick.mock.calls[0][0]).toEqual(data[0]);
+    // check if onSeriesClick is fired after clicking on marker
+    expect(onSeriesClick.mock.calls).toHaveLength(1);
   });
 
 

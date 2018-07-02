@@ -41,6 +41,27 @@ describe('EuiHorizontalBarSeries', () => {
     expect(component.render()).toMatchSnapshot();
   });
 
+  test('call onValueClick', () => {
+    const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
+    const onValueClick = jest.fn();
+    const component = mount(
+      <EuiXYChart
+        width={600}
+        height={200}
+      >
+        <EuiHorizontalBarSeries
+          name="test-series-a"
+          data={data}
+          color={VISUALIZATION_COLORS[2]}
+          onValueClick={onValueClick}
+        />
+      </EuiXYChart>
+    );
+    component.find('rect').at(0).simulate('click');
+    expect(onValueClick.mock.calls).toHaveLength(1);
+    expect(onValueClick.mock.calls[0][0]).toEqual(data[0]);
+  });
+
   test('all props are rendered', () => {
     const component = render(
       <EuiXYChart width={600} height={200}>
@@ -48,7 +69,7 @@ describe('EuiHorizontalBarSeries', () => {
           name="test-chart"
           data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
           color={VISUALIZATION_COLORS[2]}
-          onClick={() => {}}
+          onSeriesClick={() => {}}
         />
       </EuiXYChart>
     );
@@ -68,13 +89,13 @@ describe('EuiHorizontalBarSeries', () => {
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}
           color={VISUALIZATION_COLORS[2]}
-          onClick={() => {}}
+          onSeriesClick={() => {}}
         />
         <EuiHorizontalBarSeries
           name="test-series-b"
           data={[{ x: 0, y: 2 }, { x: 1, y: 7 }]}
           color={VISUALIZATION_COLORS[1]}
-          onClick={() => {}}
+          onSeriesClick={() => {}}
         />
       </EuiXYChart>
     );

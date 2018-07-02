@@ -76,6 +76,11 @@ EuiBarSeries.propTypes = {
    * @private passed via XYChart
    */
   // _orientation: PropTypes.string,
+
+  /**
+   * Callback when clicking on a bar. Returns { x, y } object.
+   */
+  onValueClick: PropTypes.func,
 };
 
 EuiBarSeries.defaultProps = {};

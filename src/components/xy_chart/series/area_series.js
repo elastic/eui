@@ -78,7 +78,6 @@ EuiAreaSeries.propTypes = {
   color: VisualizationColorType,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   onSeriesClick: PropTypes.func,
-  onMarkClick: PropTypes.func,
 };
 
 EuiAreaSeries.defaultProps = {
