@@ -1,24 +1,268 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiRange is rendered 1`] = `
-<input
-  aria-label="aria-label"
-  class="euiRange testClass1 testClass2"
-  data-test-subj="test subject string"
-  id="id"
-  max="10"
-  min="1"
-  name="name"
-  type="range"
-  value="value"
-/>
+<div
+  class="euiRange__wrapper"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      aria-label="aria-label"
+      class="euiRange testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      type="range"
+      value="8"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props compressed should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--compressed"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange euiRange--compressed"
+      max="100"
+      min="1"
+      type="range"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props extra input should render 1`] = `
+<div
+  class="euiRange__wrapper"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      aria-label="aria-label"
+      class="euiRange testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="id"
+      max="10"
+      min="1"
+      name="name"
+      tabindex="-1"
+      type="range"
+      value="8"
+    />
+  </div>
+  <div
+    class="euiFormControlLayout"
+  >
+    <input
+      aria-label="aria-label"
+      class="euiFieldNumber euiRange__extraInput"
+      data-test-subj="test subject string"
+      max="10"
+      min="1"
+      name="name"
+      style="max-width:4em"
+      type="number"
+      value="8"
+    />
+  </div>
+</div>
 `;
 
 exports[`EuiRange props fullWidth should render 1`] = `
-<input
-  class="euiRange euiRange--fullWidth"
-  max="100"
-  min="1"
-  type="range"
-/>
+<div
+  class="euiRange__wrapper euiRange__wrapper--fullWidth"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange euiRange--fullWidth"
+      max="100"
+      min="1"
+      type="range"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props labels should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasLabels"
+>
+  <label
+    class="euiRange__minLabel"
+  >
+    1
+  </label>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+  </div>
+  <label
+    class="euiRange__maxLabel"
+  >
+    100
+  </label>
+</div>
+`;
+
+exports[`EuiRange props levels should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasLevels"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__levels"
+    >
+      <span
+        class="euiRange__level--danger"
+        style="width:606.060606060606%"
+      />
+      <span
+        class="euiRange__level--success"
+        style="width:1414.141414141414%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiRange props range should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasRange"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__range"
+    >
+      <div
+        class="euiRange__range__progress"
+        style="width:NaN%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiRange props ticks should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasTicks"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__ticks"
+      style="margin:0 -8.403361344537815%"
+    >
+      <button
+        class="euiRange__tick"
+        style="width:16.80672268907563%"
+        tabindex="-1"
+        type="button"
+        value="1"
+      >
+        1
+      </button>
+      <button
+        class="euiRange__tick"
+        style="width:16.80672268907563%"
+        tabindex="-1"
+        type="button"
+        value="21"
+      >
+        21
+      </button>
+      <button
+        class="euiRange__tick"
+        style="width:16.80672268907563%"
+        tabindex="-1"
+        type="button"
+        value="41"
+      >
+        41
+      </button>
+      <button
+        class="euiRange__tick"
+        style="width:16.80672268907563%"
+        tabindex="-1"
+        type="button"
+        value="61"
+      >
+        61
+      </button>
+      <button
+        class="euiRange__tick"
+        style="width:16.80672268907563%"
+        tabindex="-1"
+        type="button"
+        value="81"
+      >
+        81
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiRange props value should render 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasValue"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+    />
+    <div
+      class="euiRange__valueWrapper"
+    >
+      <output
+        class="euiRange__value euiRange__value--left"
+        style="left:100%"
+      />
+    </div>
+  </div>
+</div>
 `;

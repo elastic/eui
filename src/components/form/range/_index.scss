@@ -1,28 +1,3 @@
-$euiRangeTrackColor: $euiColorLightShade;
-
-$euiRangeThumbRadius: 50%;
-$euiRangeThumbHeight: $euiSize;
-$euiRangeThumbWidth: $euiSize;
-
-$euiRangeTrackWidth: 100%;
-$euiRangeTrackHeight: 2px;
-$euiRangeTrackBorderWidth: 0;
-$euiRangeTrackBorderColor: $euiColorLightShade;
-$euiRangeTrackRadius: $euiBorderRadius;
-
-@mixin track {
-  cursor: pointer;
-  height: $euiRangeTrackHeight;
-  transition: all $euiAnimSpeedNormal ease-in;
-  width: $euiRangeTrackWidth;
-}
-
-@mixin thumb {
-  cursor: pointer;
-  @include euiCustomControl($type: 'round');
-  padding: 0;
-  height: $euiRangeThumbHeight;
-  width: $euiRangeThumbWidth;
-}
-
+@import 'variables';
+@import 'mixins';
 @import 'range';

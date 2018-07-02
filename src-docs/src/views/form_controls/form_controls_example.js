@@ -69,9 +69,9 @@ import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
 const radioGroupHtml = renderToHtml(RadioGroup);
 
-import Range from './range';
+import RangeExample from './range';
 const rangeSource = require('!!raw-loader!./range');
-const rangeHtml = renderToHtml(Range);
+const rangeHtml = renderToHtml(RangeExample);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
@@ -238,6 +238,23 @@ export const FormControlsExample = {
     demo: <RadioGroup />,
   }, {
     title: 'Range',
+    text: (
+      <Fragment>
+        <EuiCallOut color="warning" title="Understanding precision">
+          <p>
+            The base slider should only be used
+            when <strong>the precise value is not considered important</strong>. If
+            the precise value does matter, add the <code>showInput</code> prop or use
+            a <code>EuiFieldNumber</code> instead.
+          </p>
+        </EuiCallOut>
+        <br/>
+        <p>
+          While currently considered optional, the <code>showLabels</code> property should
+          be added to explicitly state the range to the user.
+        </p>
+      </Fragment>
+    ),
     source: [{
       type: GuideSectionTypes.JS,
       code: rangeSource,
@@ -248,7 +265,7 @@ export const FormControlsExample = {
     props: {
       EuiRange,
     },
-    demo: <Range />,
+    demo: <RangeExample />,
   }, {
     title: 'Switch',
     source: [{
