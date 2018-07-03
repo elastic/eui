@@ -508,3 +508,19 @@ export function intersectBoundingBoxes(firstBox, secondBox) {
 
   return intersection;
 }
+
+
+/**
+ * Returns the nearest defined z-index for an element, or 0 if there isn't any
+ * starts at the element and recursively walks up its offsetParent tree
+ * @param element {HTMLElement|React.Component}
+ * @returns {string}
+ */
+export function getElementZIndex(element) {
+  element = findDOMNode(element);
+  const zIndex = window.document.defaultView.getComputedStyle(element).getPropertyValue('z-index');
+  if (isNaN(zIndex)) {
+    return element.offsetParent ? getElementZIndex(element.offsetParent) : '0';
+  }
+  return zIndex;
+}
