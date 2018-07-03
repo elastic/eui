@@ -13,6 +13,10 @@ import {
   EuiFlexItem,
 } from '../flex';
 
+import {
+  EuiMutationObserver,
+} from '../../utils/mutation_observer';
+
 const paddingSizeToClassNameMap = {
   none: null,
   xs: 'euiAccordion__padding--xs',
@@ -58,16 +62,16 @@ export class EuiAccordion extends Component {
 
   setChildContentRef = (node) => {
     this.childContent = node;
-
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
-    }
-
-    if (node) {
-      this.observer = new MutationObserver(this.setChildContentHeight);
-      this.observer.observe(this.childContent, { childList: true, subtree: true });
-    }
+    //
+    // if (this.observer) {
+    //   this.observer.disconnect();
+    //   this.observer = null;
+    // }
+    //
+    // if (node) {
+    //   this.observer = new MutationObserver(this.setChildContentHeight);
+    //   this.observer.observe(this.childContent, { childList: true, subtree: true });
+    // }
   }
 
   render() {
@@ -154,11 +158,16 @@ export class EuiAccordion extends Component {
           ref={node => { this.childWrapper = node; }}
           id={id}
         >
-          <div ref={this.setChildContentRef}>
-            <div className={paddingClass}>
-              {children}
+          <EuiMutationObserver
+            observerOptions={{ childList: true, subtree: true }}
+            onMutation={this.setChildContentHeight}
+          >
+            <div ref={this.setChildContentRef}>
+              <div className={paddingClass}>
+                {children}
+              </div>
             </div>
-          </div>
+          </EuiMutationObserver>
         </div>
       </div>
     );

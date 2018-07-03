@@ -16,6 +16,8 @@ import { EuiPanel, SIZES } from '../panel';
 
 import { EuiPortal } from '../portal';
 
+import { EuiMutationObserver } from '../../utils/mutation_observer';
+
 import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
 
 const anchorPositionToPopoverPositionMap = {
@@ -328,7 +330,18 @@ export class EuiPopover extends Component {
           <div className="euiPopover__anchor" ref={this.buttonRef}>
             {button}
           </div>
-          {panel}
+          {
+            panel
+              ? (
+                <EuiMutationObserver
+                  observerOptions={{ childList: true, subtree: true }}
+                  onMutation={this.positionPopover}
+                >
+                  {panel}
+                </EuiMutationObserver>
+              )
+              : null
+          }
         </div>
       </EuiOutsideClickDetector>
     );
