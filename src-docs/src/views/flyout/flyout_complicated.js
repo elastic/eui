@@ -57,6 +57,10 @@ export class FlyoutComplicated extends Component {
     this.setState({ isFlyoutVisible: true });
   }
 
+  closePopover = () => {
+    this.setState({ isPopoverOpen: false });
+  }
+
   togglePopover = () => {
     this.setState(({ isPopoverOpen }) => ({ isPopoverOpen: !isPopoverOpen }));
   }
@@ -163,18 +167,18 @@ export class FlyoutComplicated extends Component {
             <EuiText color="subdued">
               <p>Put navigation items in the header, and cross tab actions in a footer.</p>
             </EuiText>
-            <EuiPopover
-              closePopover={this.togglePopover}
-              button={<EuiButton onClick={this.togglePopover}>Even popovers can be included</EuiButton>}
-              isOpen={this.state.isPopoverOpen}
-            >
-              <p>This is the popover content, notice how it can overflow the flyout!</p>
-            </EuiPopover>
             <EuiTabs style={{ marginBottom: '-25px' }}>
               {this.renderTabs()}
             </EuiTabs>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
+            <EuiPopover
+              closePopover={this.closePopover}
+              button={<EuiButton onClick={this.togglePopover}>Even popovers can be included</EuiButton>}
+              isOpen={this.state.isPopoverOpen}
+            >
+              <p>This is the popover content, notice how it can overflow the flyout!</p>
+            </EuiPopover>
             {flyoutContent}
             <EuiCodeBlock language="html">
               {htmlCode}
