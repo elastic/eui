@@ -48,10 +48,10 @@ export default class Example extends Component {
         <EuiSpacer size="xl" />
         <EuiXYChart width={600} height={200} xType={SCALE.TIME}>
           {data.map((d, i) => (
-            <EuiBarSeries key={i} name={`Chart ${i}`} data={d} />
+            <EuiBarSeries key={i} name={`Bars ${i}`} data={d} />
           ))}
           {data.map((d, i) => (
-            <EuiLineSeries key={i} name={`Chart ${i}`} data={d} showLineMarks={false} />
+            <EuiLineSeries key={i} name={`Lines ${i}`} data={d} showLineMarks={false} />
           ))}
         </EuiXYChart>
       </Fragment>

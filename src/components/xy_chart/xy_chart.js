@@ -182,6 +182,11 @@ class XYChart extends PureComponent {
       return React.cloneElement(child, props);
     });
   }
+  _getSeriesNames = (children) => {
+    return  React.Children.toArray(children)
+    .filter(this._isAbstractSeries)
+    .map(({ props: { name } }) => (name));
+  }
 
   render() {
     const {
@@ -223,7 +228,7 @@ class XYChart extends PureComponent {
     }
 
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
-
+    const seriesNames = this._getSeriesNames(children);
     return (
       <div {...rest}>
         <XYExtendedPlot
@@ -244,7 +249,7 @@ class XYChart extends PureComponent {
           {this._renderChildren(children)}
           {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
           {showCrosshair && (
-            <Crosshair crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
+            <Crosshair seriesNames={seriesNames} crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
           )}
 
           {enableSelectionBrush && (

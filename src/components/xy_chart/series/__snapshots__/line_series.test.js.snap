@@ -3910,6 +3910,11 @@ exports[`EuiLineSeries all props are rendered 1`] = `
               sameTypeIndex={0}
               sameTypeTotal={1}
               seriesIndex={1}
+              seriesNames={
+                Array [
+                  "test-chart",
+                ]
+              }
               sizeDomain={Array []}
               sizeRange={
                 Array [
@@ -4025,6 +4030,11 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                 sameTypeIndex={0}
                 sameTypeTotal={1}
                 seriesIndex={1}
+                seriesNames={
+                  Array [
+                    "test-chart",
+                  ]
+                }
                 sizeDomain={Array []}
                 sizeRange={
                   Array [
@@ -7992,6 +8002,11 @@ exports[`EuiLineSeries is rendered 1`] = `
               sameTypeIndex={0}
               sameTypeTotal={1}
               seriesIndex={1}
+              seriesNames={
+                Array [
+                  "test",
+                ]
+              }
               sizeDomain={Array []}
               sizeRange={
                 Array [
@@ -8107,6 +8122,11 @@ exports[`EuiLineSeries is rendered 1`] = `
                 sameTypeIndex={0}
                 sameTypeTotal={1}
                 seriesIndex={1}
+                seriesNames={
+                  Array [
+                    "test",
+                  ]
+                }
                 sizeDomain={Array []}
                 sizeRange={
                   Array [

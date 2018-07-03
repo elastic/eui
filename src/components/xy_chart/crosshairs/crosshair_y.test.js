@@ -18,7 +18,7 @@ describe('EuiCrosshairY', () => {
         showCrosshair={false}
         {...requiredProps}
       >
-        <EuiCrosshairY />
+        <EuiCrosshairY seriesNames={['Test Series']}/>
         <EuiHorizontalBarSeries name="Test Series" data={data} />
       </EuiXYChart>
     );

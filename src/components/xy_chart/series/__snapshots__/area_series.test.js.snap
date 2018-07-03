@@ -3434,6 +3434,11 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
               sameTypeIndex={0}
               sameTypeTotal={1}
               seriesIndex={1}
+              seriesNames={
+                Array [
+                  "name",
+                ]
+              }
               sizeDomain={Array []}
               sizeRange={
                 Array [
@@ -3549,6 +3554,11 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                 sameTypeIndex={0}
                 sameTypeTotal={1}
                 seriesIndex={1}
+                seriesNames={
+                  Array [
+                    "name",
+                  ]
+                }
                 sizeDomain={Array []}
                 sizeRange={
                   Array [

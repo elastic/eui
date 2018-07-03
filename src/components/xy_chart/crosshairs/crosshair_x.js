@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AbstractSeries, Crosshair } from 'react-vis';
-
+import { SCALE } from '../utils/chart_utils';
 /**
  * The Crosshair used by the XYChart as main tooltip mechanism along X axis (vertical).
  */
@@ -54,13 +54,22 @@ export class EuiCrosshairX extends AbstractSeries {
     })
   }
 
+  _formatXValue = (x) => {
+    const { xType } = this.props;
+    if (xType === SCALE.TIME || xType === SCALE.TIME_UTC) {
+      return new Date(x).toISOString(); // TODO add a props for time formatting
+    } else {
+      return x
+    }
+  }
+
   _titleFormat = (dataPoints = []) => {
     if (dataPoints.length > 0) {
-      const [ firstDataPoint ] = dataPoints
-      const { originalValues } = firstDataPoint
+      const [ firstDataPoint ] = dataPoints;
+      const { originalValues } = firstDataPoint;
       const value = (typeof originalValues.x0 === 'number')
-        ? `${originalValues.x0} to ${originalValues.x}`
-        : originalValues.x;
+        ? `${this._formatXValue(originalValues.x0)} to ${this._formatXValue(originalValues.x)}`
+        : this._formatXValue(originalValues.x);
       return {
         title: 'X Value',
         value,
@@ -69,9 +78,11 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   _itemsFormat = (dataPoints) => {
+    const { seriesNames } = this.props;
+
     return dataPoints.map(d => {
       return {
-        title: `series ${d.seriesIndex}`, // TODO specify series title or default one
+        title: seriesNames[d.seriesIndex],
         value: d.y,
       };
     });
@@ -179,10 +190,16 @@ export class EuiCrosshairX extends AbstractSeries {
 EuiCrosshairX.displayName = 'EuiCrosshairX';
 
 EuiCrosshairX.propTypes = {
-  /** The crosshair value used to display this crosshair (doesn't depend on mouse position) */
+  /**
+   * The crosshair value used to display this crosshair (doesn't depend on mouse position)
+   */
   crosshairValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
+  /**
+   * The ordered array of series names
+   */
+  seriesNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 EuiCrosshairX.defaultProps = {};
