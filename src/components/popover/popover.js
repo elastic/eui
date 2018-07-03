@@ -16,7 +16,7 @@ import { EuiPanel, SIZES } from '../panel';
 
 import { EuiPortal } from '../portal';
 
-import { findPopoverPosition } from '../../services/popover/popover_positioning';
+import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
 
 const anchorPositionToPopoverPositionMap = {
   'up': 'top',
@@ -189,9 +189,15 @@ export class EuiPopover extends Component {
       }
     });
 
+    // the popver's z-index must inherit from the button
+    // this keeps a button's popver under a flyover that would cover the button
+    // but a popover triggered inside a flyover will appear over that flyover
+    const zIndex = getElementZIndex(this.button, this.panel);
+
     const popoverStyles = {
       top,
       left,
+      zIndex,
     };
 
     const arrowStyles = arrow;
