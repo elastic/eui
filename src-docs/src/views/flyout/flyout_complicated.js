@@ -12,6 +12,7 @@ import {
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
+  EuiPopover,
   EuiSpacer,
   EuiTab,
   EuiTabs,
@@ -27,6 +28,7 @@ export class FlyoutComplicated extends Component {
       isFlyoutVisible: false,
       isSwitchChecked: true,
       selectedTabId: '1',
+      isPopoverOpen: false,
     };
 
     this.tabs = [{
@@ -53,6 +55,10 @@ export class FlyoutComplicated extends Component {
 
   showFlyout() {
     this.setState({ isFlyoutVisible: true });
+  }
+
+  togglePopover = () => {
+    this.setState(({ isPopoverOpen }) => ({ isPopoverOpen: !isPopoverOpen }));
   }
 
   onSelectedTabChanged = id => {
@@ -156,6 +162,13 @@ export class FlyoutComplicated extends Component {
             <EuiSpacer size="s" />
             <EuiText color="subdued">
               <p>Put navigation items in the header, and cross tab actions in a footer.</p>
+              <EuiPopover
+                closePopover={this.togglePopover}
+                button={<EuiButton onClick={this.togglePopover}>Even popovers can be included</EuiButton>}
+                isOpen={this.state.isPopoverOpen}
+              >
+                <p>This is the popover content, notice how it can overflow the flyout!</p>
+              </EuiPopover>
             </EuiText>
             <EuiTabs style={{ marginBottom: '-25px' }}>
               {this.renderTabs()}
