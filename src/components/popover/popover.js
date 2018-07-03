@@ -192,7 +192,7 @@ export class EuiPopover extends Component {
     // the popver's z-index must inherit from the button
     // this keeps a button's popver under a flyover that would covert the button
     // but a popover triggered inside a flyover will appear over that flyover
-    const zIndex = getElementZIndex(this.button);
+    const zIndex = getElementZIndex(this.button, this.panel);
 
     const popoverStyles = {
       top,
