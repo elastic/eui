@@ -1,12 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
+- Cleaned up some `EuiPopover` styles ([#969](https://github.com/elastic/eui/pull/969))
 
 **Bug fixes**
 
 - Fixed disabled states of icon buttons ([#963](https://github.com/elastic/eui/pull/963))
 - Added word-break fallback for FF & IE in table cell ([#962](https://github.com/elastic/eui/pull/962))
 - Fixed `EuiPopover` to show content over modals, flyouts, etc ([#967](https://github.com/elastic/eui/pull/967))
+- Fixed background transition on inputs ([#969](https://github.com/elastic/eui/pull/969))
 
 ## [`1.0.1`](https://github.com/elastic/eui/tree/v1.0.1)
 
