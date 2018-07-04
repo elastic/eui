@@ -28,31 +28,15 @@
   transition: /* 2 */
     opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
     visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
-    transform $euiAnimSlightBounce $euiAnimSpeedSlow;
+    transform $euiAnimSlightBounce ($euiAnimSpeedSlow + 100ms);
   opacity: 0; /* 2 */
   visibility: hidden; /* 2 */
-  transform: translateY(0) translateZ(0); /* 2 */
+  transform: translateY(0) translateX(0) translateZ(0); /* 2 */
 
   &.euiPopover__panel-isOpen {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-  }
-
-  // This fakes a border on the arrow.
-  &:before {
-    position: absolute;
-    content: "";
-    height: 0;
-    width: 0;
-  }
-
-  // This part of the arrow matches the panel.
-  &:after {
-    position: absolute;
-    content: "";
-    height: 0;
-    width: 0;
   }
 
   .euiPopover__panel__arrow {
@@ -78,86 +62,73 @@
 
     &.euiPopover__panel__arrow-top {
       &:before {
-        bottom: -$euiSize + 1;
-        border-left: $euiSize solid transparent;
-        border-right: $euiSize solid transparent;
-        border-top: $euiSize solid $euiBorderColor;
+        bottom: -$euiPopoverArrowSize + 1;
+        border-left: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid transparent;
+        border-top: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        bottom: -$euiSize + 2;
-        border-left: $euiSize solid transparent;
-        border-right: $euiSize solid transparent;
-        border-top: $euiSize solid $euiColorEmptyShade;
+        bottom: -$euiPopoverArrowSize + 2;
+        border-left: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid transparent;
+        border-top: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
     &.euiPopover__panel__arrow-right {
       &:before {
-        left: -$euiSize;
+        left: -$euiPopoverArrowSize;
         top: 50%;
-        border-top: $euiSize solid transparent;
-        border-bottom: $euiSize solid transparent;
-        border-right: $euiSize solid $euiBorderColor;
+        border-top: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        left: -$euiSize + 1;
+        left: -$euiPopoverArrowSize + 1;
         top: 50%;
-        border-top: $euiSize solid transparent;
-        border-bottom: $euiSize solid transparent;
-        border-right: $euiSize solid $euiColorEmptyShade;
+        border-top: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
     &.euiPopover__panel__arrow-bottom {
       &:before {
-        top: -$euiSize;
-        border-left: $euiSize solid transparent;
-        border-right: $euiSize solid transparent;
-        border-bottom: $euiSize solid $euiBorderColor;
+        top: -$euiPopoverArrowSize;
+        border-left: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        top: -$euiSize + 1;
-        border-left: $euiSize solid transparent;
-        border-right: $euiSize solid transparent;
-        border-bottom: $euiSize solid $euiColorEmptyShade;
+        top: -$euiPopoverArrowSize + 1;
+        border-left: $euiPopoverArrowSize solid transparent;
+        border-right: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
 
     &.euiPopover__panel__arrow-left {
       &:before {
-        right: -$euiSize + 1;
+        right: -$euiPopoverArrowSize + 1;
         top: 50%;
-        border-top: $euiSize solid transparent;
-        border-bottom: $euiSize solid transparent;
-        border-left: $euiSize solid $euiBorderColor;
+        border-top: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid transparent;
+        border-left: $euiPopoverArrowSize solid $euiBorderColor;
       }
 
       &:after {
-        right: -$euiSize + 2;
+        right: -$euiPopoverArrowSize + 2;
         top: 50%;
-        border-top: $euiSize solid transparent;
-        border-bottom: $euiSize solid transparent;
-        border-left: $euiSize solid $euiColorEmptyShade;
+        border-top: $euiPopoverArrowSize solid transparent;
+        border-bottom: $euiPopoverArrowSize solid transparent;
+        border-left: $euiPopoverArrowSize solid $euiColorEmptyShade;
       }
     }
   }
 }
-
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpCenter,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpLeft,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorUpRight
-{
-  transform: translateY($euiSizeS) translateZ(0);
-}
-
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
-// Anchor DOWN
 
 .euiPopover__panel.euiPopover__panel-withTitle {
   .euiPopover__panel__arrow {
@@ -175,74 +146,18 @@
   }
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownCenter,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownLeft,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorDownRight
-{
-  transform: translateY(-$euiSizeS) translateZ(0);
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-top {
+  transform: translateY($euiPopoverTranslateDistance) translateZ(0);
 }
 
-// Anchor LEFT
-// Anchor LEFT
-// Anchor LEFT
-// Anchor LEFT
-// Anchor LEFT
-
-.euiPopover--withTitle.euiPopover--anchorLeftCenter .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorLeftUp .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorLeftDown .euiPopover__panel:after
-{
-  border-left-color: $euiColorLightestShade;
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-bottom {
+  transform: translateY(-$euiPopoverTranslateDistance) translateZ(0);
 }
 
-.euiPopover--withTitle.euiPopover--anchorLeftUp .euiPopover__panel {
-  top: 0;
-
-  &:before {
-    top: $euiSizeXS;
-  }
-
-  &:after {
-    top: $euiSizeXS;
-  }
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-left {
+  transform: translateX($euiPopoverTranslateDistance) translateZ(0);
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftCenter,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftUp,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorLeftDown
-{
-  transform: translateX($euiSizeS) translateZ(0);
-}
-
-// Anchor RIGHT
-// Anchor RIGHT
-// Anchor RIGHT
-// Anchor RIGHT
-// Anchor RIGHT
-
-.euiPopover--withTitle.euiPopover--anchorRightCenter .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorRightUp .euiPopover__panel:after,
-.euiPopover--withTitle.euiPopover--anchorRightDown .euiPopover__panel:after
-{
-  border-right-color: $euiColorLightestShade;
-}
-
-.euiPopover--withTitle.euiPopover--anchorRightUp .euiPopover__panel {
-  top: 0;
-
-  &:before {
-    top: $euiSizeXS;
-  }
-
-  &:after {
-    top: $euiSizeXS;
-  }
-}
-
-
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightCenter,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightUp,
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover--anchorRightDown
-{
-  transform: translateX(-$euiSizeS) translateZ(0);
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-right {
+  transform: translateX(-$euiPopoverTranslateDistance) translateZ(0);
 }

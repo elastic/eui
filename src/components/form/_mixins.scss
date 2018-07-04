@@ -10,6 +10,7 @@
 
 /**
  * 1. Ensure the icon padding remains when in readOnly mode
+ * 2. Must supply both values to background-size or some browsers apply the single value to both directions
  */
 
 @mixin euiFormControlSize($height: $euiFormControlHeight) {
@@ -49,7 +50,7 @@
 @mixin euiFormControlDefaultShadow($borderOnly: false) {
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
-  background-size: 0%;
+  background-size: 0% 100%; /* 2 */
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
@@ -70,7 +71,7 @@
 @mixin euiFormControlFocusStyle($borderOnly: false) {
   background-color: tintOrShade($euiColorEmptyShade, 0%, 50%);
   background-image: euiFormControlGradient();
-  background-size: 100%;
+  background-size: 100% 100%; /* 2 */
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .84);
