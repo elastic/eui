@@ -185,6 +185,7 @@ export class EuiPopover extends Component {
       offset: 16,
       arrowConfig: {
         arrowWidth: 24,
+        arrowBuffer: 0,
       }
     });
 

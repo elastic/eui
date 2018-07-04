@@ -26,9 +26,9 @@
   backface-visibility: hidden;
   pointer-events: none;
   transition: /* 2 */
-    opacity $euiAnimSlightBounce $euiAnimSpeedNormal,
-    visibility $euiAnimSlightBounce $euiAnimSpeedNormal,
-    transform $euiAnimSlightBounce $euiAnimSpeedSlow;
+    opacity $euiAnimSlightBounce $euiAnimSpeedSlow,
+    visibility $euiAnimSlightBounce $euiAnimSpeedSlow,
+    transform $euiAnimSlightBounce ($euiAnimSpeedSlow + 100ms);
   opacity: 0; /* 2 */
   visibility: hidden; /* 2 */
   transform: translateY(0) translateX(0) translateZ(0); /* 2 */
