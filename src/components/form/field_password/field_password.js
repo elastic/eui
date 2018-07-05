@@ -20,6 +20,7 @@ export const EuiFieldPassword = ({
   fullWidth,
   isLoading,
   compressed,
+  inputRef,
   ...rest
 }) => {
   const classes = classNames(
@@ -47,6 +48,7 @@ export const EuiFieldPassword = ({
           placeholder={placeholder}
           className={classes}
           value={value}
+          ref={inputRef}
           {...rest}
         />
       </EuiValidatableControl>
@@ -61,6 +63,7 @@ EuiFieldPassword.propTypes = {
   value: PropTypes.string,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  inputRef: PropTypes.func,
   isLoading: PropTypes.bool,
   /**
    * when `true` creates a shorter height input
