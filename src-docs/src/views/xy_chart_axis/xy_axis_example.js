@@ -13,7 +13,7 @@ export const XYChartAxisExample = {
         color="warning"
       >
         <p>
-          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implament it,
+          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implement it,
           but please be aware that breaking changes can come at any time with this component as such changes on beta
           components does not necessitate a major version bump.
         </p>
