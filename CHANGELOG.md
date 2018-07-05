@@ -2,6 +2,7 @@
 
 - Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
 - Cleaned up some `EuiPopover` styles ([#969](https://github.com/elastic/eui/pull/969))
+- Added `inputRef` prop to `EuiFieldPassword` ([#970](https://github.com/elastic/eui/pull/970))
 
 **Bug fixes**
 
