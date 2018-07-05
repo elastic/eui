@@ -18,7 +18,7 @@ export function isSeriesChild(child) {
  */
 export function getSeriesChildren(children) {
   return React.Children.toArray(children).filter(child =>
-  child && isSeriesChild(child));
+    child && isSeriesChild(child));
 }
 
 export function rotateDataSeries(data) {
@@ -28,6 +28,6 @@ export function rotateDataSeries(data) {
       y: d.x,
       x0: d.y0,
       y0: d.x0,
-    }
-  })
+    };
+  });
 }

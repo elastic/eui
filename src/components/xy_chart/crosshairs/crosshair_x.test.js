@@ -8,7 +8,7 @@ import { requiredProps } from '../../../test/required_props';
 import { Crosshair } from 'react-vis';
 describe('EuiCrosshairX', () => {
   test('render the X crosshair', () => {
-    const data = [ { x:0, y: 1.5 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1.5 }, { x: 1, y: 2 }];
     const component = mount(
       <EuiXYChart
         width={600}
@@ -29,7 +29,7 @@ describe('EuiCrosshairX', () => {
 
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 50, clientY: 100 } });
     expect(component.find(Crosshair).children()).toHaveLength(1);
-    const crosshair = component.find('.rv-crosshair')
+    const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__title__value').text()).toBe('0');
     expect(crosshair.find('.rv-crosshair__inner__content .rv-crosshair__item__value').text()).toBe('1.5');

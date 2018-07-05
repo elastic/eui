@@ -8,7 +8,7 @@ import { requiredProps } from '../../../test/required_props';
 
 describe('EuiXAxis', () => {
   test('render the x axis', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const height = 200;
     const component = mount(
       <EuiXYChart

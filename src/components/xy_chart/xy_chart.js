@@ -143,9 +143,9 @@ class XYChart extends PureComponent {
       .toArray(children)
       .filter(this._isAbstractSeries)
       .filter(child => {
-        return child.props.data && child.props.data.length > 0
+        return child.props.data && child.props.data.length > 0;
       })
-      .length === 0
+      .length === 0;
   }
 
   /**
@@ -154,14 +154,14 @@ class XYChart extends PureComponent {
   _isAbstractSeries(child) {
     const { prototype } = child.type;
     // Avoid applying chart props to non series children
-    return prototype instanceof AbstractSeries
+    return prototype instanceof AbstractSeries;
   }
 
 
   /**
    * Render children adding a valid EUI visualization color if the color prop is not specified.
    */
-  _renderChildren (children) {
+  _renderChildren(children) {
     let colorIterator = 0;
 
     return  React.Children.map(children, (child, i) => {
@@ -184,8 +184,8 @@ class XYChart extends PureComponent {
   }
   _getSeriesNames = (children) => {
     return  React.Children.toArray(children)
-    .filter(this._isAbstractSeries)
-    .map(({ props: { name } }) => (name));
+      .filter(this._isAbstractSeries)
+      .map(({ props: { name } }) => (name));
   }
 
   render() {
@@ -224,7 +224,7 @@ class XYChart extends PureComponent {
             </Fragment>
           }
         />
-      )
+      );
     }
 
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;

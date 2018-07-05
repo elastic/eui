@@ -10,7 +10,7 @@ export class EuiVerticalGrid extends PureComponent {
       <VerticalGridLines
         {...this.props}
       />
-    )
+    );
   }
 }
 

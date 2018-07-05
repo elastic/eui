@@ -45,7 +45,7 @@ describe('EuiXYChart', () => {
   });
 
   test('renders an empty chart', () => {
-    const EMPTY_CHART_MESSAGE = '~~Empty Chart~~'
+    const EMPTY_CHART_MESSAGE = '~~Empty Chart~~';
     const component = mount(
       <EuiXYChart
         width={600}
@@ -63,7 +63,7 @@ describe('EuiXYChart', () => {
   });
 
   test('renders right default colors', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const series = new Array(VISUALIZATION_COLORS.length * 2)
       .fill(0)
       .map((color, i) => {
@@ -81,15 +81,15 @@ describe('EuiXYChart', () => {
       </EuiXYChart>
     );
 
-    expect(component.find(EuiLineSeries)).toHaveLength(VISUALIZATION_COLORS.length * 2)
+    expect(component.find(EuiLineSeries)).toHaveLength(VISUALIZATION_COLORS.length * 2);
     VISUALIZATION_COLORS.forEach((color, i) => {
       expect(component.find(EuiLineSeries).at(i).props().color).toBe(color);
       expect(component.find(EuiLineSeries).at(i + VISUALIZATION_COLORS.length).props().color).toBe(color);
-    })
+    });
   });
 
   test('renders default colors together with existing series colors', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const AVAILABLE_COLORS = VISUALIZATION_COLORS.length;
     const series = new Array(AVAILABLE_COLORS * 2)
       .fill(0)
@@ -109,8 +109,8 @@ describe('EuiXYChart', () => {
         }
       </EuiXYChart>
     );
-    const lineComponents = component.find(EuiLineSeries)
-    expect(lineComponents).toHaveLength(AVAILABLE_COLORS * 2 + 1)
+    const lineComponents = component.find(EuiLineSeries);
+    expect(lineComponents).toHaveLength(AVAILABLE_COLORS * 2 + 1);
     // check before
     expect(lineComponents.at(0).props().color).toBe(VISUALIZATION_COLORS[0]);
     // check if the inserted element maintain its own color
@@ -121,8 +121,8 @@ describe('EuiXYChart', () => {
   });
 
   test(`Check wrong EUI color warning`, () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
-    const original = console.warn
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
+    const original = console.warn;
     const mock = jest.fn();
     console.warn = mock;
     mount(

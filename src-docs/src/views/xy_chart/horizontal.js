@@ -12,13 +12,13 @@ const data = new Array(80).fill(0).map((d, i) => {
   const data = {
     y: i,
     y0: i,
-    x: Number((Math.random() * 4 +4).toFixed(2)),
+    x: Number((Math.random() * 4 + 4).toFixed(2)),
     x0: 0,
-  }
-  return data
+  };
+  return data;
 });
 
-export default function() {
+export default function () {
   return (
     <EuiXYChart
       width={600}
@@ -36,4 +36,4 @@ export default function() {
       />
     </EuiXYChart>
   );
-};
+}

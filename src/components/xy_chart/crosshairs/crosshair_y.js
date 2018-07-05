@@ -169,13 +169,13 @@ export class CrosshairY extends PureComponent {
 
         <div className={innerClassName}>
           {children ?
-          children :
-          <div className="rv-crosshair__inner__content" style={style.box}>
-            <div>
-              {this._renderCrosshairTitle()}
-              {this._renderCrosshairItems()}
+            children :
+            <div className="rv-crosshair__inner__content" style={style.box}>
+              <div>
+                {this._renderCrosshairTitle()}
+                {this._renderCrosshairItems()}
+              </div>
             </div>
-          </div>
           }
         </div>
       </div>
@@ -234,28 +234,28 @@ export class EuiCrosshairY extends AbstractSeries {
     }
     this.setState({
       values: []
-    })
+    });
   }
   _formatYValue = (y) => {
     const { yType } = this.props;
-    if ( yType === SCALE.TIME || yType === SCALE.TIME_UTC) {
+    if (yType === SCALE.TIME || yType === SCALE.TIME_UTC) {
       return new Date(y).toISOString(); // TODO add a props for time formatting
     } else {
-      return y
+      return y;
     }
   }
 
   _titleFormat = (dataPoints = []) => {
     if (dataPoints.length > 0) {
-      const [ firstDataPoint ] = dataPoints
-      const { originalValues } = firstDataPoint
+      const [ firstDataPoint ] = dataPoints;
+      const { originalValues } = firstDataPoint;
       const value = (typeof originalValues.y0 === 'number')
         ? `${this._formatYValue(originalValues.y0)} to ${this._formatYValue(originalValues.y)}`
         : this._formatYValue(originalValues.y);
       return {
         title: 'Y Value',
         value,
-      }
+      };
     }
   }
 
@@ -315,7 +315,7 @@ export class EuiCrosshairY extends AbstractSeries {
             minDistance = newDistance;
             value = item;
           }
-          globalMinDistance = Math.min(globalMinDistance, minDistance)
+          globalMinDistance = Math.min(globalMinDistance, minDistance);
         });
 
         if (!value) {
@@ -355,7 +355,7 @@ export class EuiCrosshairY extends AbstractSeries {
   }
 
   render() {
-    const { values } = this.state
+    const { values } = this.state;
     return (
       <CrosshairY
         values={values}
@@ -364,7 +364,7 @@ export class EuiCrosshairY extends AbstractSeries {
         titleFormat={this._titleFormat}
         {...this.props}
       />
-    )
+    );
   }
 }
 
@@ -382,5 +382,5 @@ EuiCrosshairY.propTypes = {
    * The ordered array of series names
    */
   seriesNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-}
+};
 EuiCrosshairY.defaultProps = {};

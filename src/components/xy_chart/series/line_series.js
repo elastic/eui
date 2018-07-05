@@ -62,7 +62,7 @@ export class EuiLineSeries extends AbstractSeries {
           />
         )}
       </Fragment>
-    )
+    );
   }
 }
 

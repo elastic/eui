@@ -51,7 +51,7 @@ export class EuiCrosshairX extends AbstractSeries {
     }
     this.setState({
       values: []
-    })
+    });
   }
 
   _formatXValue = (x) => {
@@ -59,7 +59,7 @@ export class EuiCrosshairX extends AbstractSeries {
     if (xType === SCALE.TIME || xType === SCALE.TIME_UTC) {
       return new Date(x).toISOString(); // TODO add a props for time formatting
     } else {
-      return x
+      return x;
     }
   }
 
@@ -73,7 +73,7 @@ export class EuiCrosshairX extends AbstractSeries {
       return {
         title: 'X Value',
         value,
-      }
+      };
     }
   }
 
@@ -134,7 +134,7 @@ export class EuiCrosshairX extends AbstractSeries {
             minDistance = newDistance;
             value = item;
           }
-          globalMinDistance = Math.min(globalMinDistance, minDistance)
+          globalMinDistance = Math.min(globalMinDistance, minDistance);
         });
 
         if (!value) {
@@ -174,7 +174,7 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   render() {
-    const { values } = this.state
+    const { values } = this.state;
     return (
       <Crosshair
         values={values}
@@ -183,7 +183,7 @@ export class EuiCrosshairX extends AbstractSeries {
         titleFormat={this._titleFormat}
         {...this.props}
       />
-    )
+    );
   }
 }
 
@@ -201,5 +201,5 @@ EuiCrosshairX.propTypes = {
    * The ordered array of series names
    */
   seriesNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-}
+};
 EuiCrosshairX.defaultProps = {};

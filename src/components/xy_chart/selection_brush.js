@@ -117,10 +117,10 @@ export class EuiSelectionBrush extends AbstractSeries {
         onBrushing(drawAndRectAreas);
       }
     } else {
-        this.setState(() => ({
-          drawing: false,
-          ...DEFAULT_AREAS,
-        }));
+      this.setState(() => ({
+        drawing: false,
+        ...DEFAULT_AREAS,
+      }));
     }
   }
 
@@ -213,4 +213,4 @@ EuiSelectionBrush.defaultProps = {
   orientation: HORIZONTAL,
   color: 'black',
   opacity: 0.2,
-}
+};

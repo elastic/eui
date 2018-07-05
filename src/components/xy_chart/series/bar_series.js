@@ -11,10 +11,10 @@ export class EuiBarSeries extends AbstractSeries {
     isMouseOverValue: false,
   }
   static getParentConfig(attr, props)  {
-      const { _orientation } = props;
-      return _orientation === ORIENTATION.HORIZONTAL
-        ? HorizontalBarSeries.getParentConfig(attr)
-        : VerticalBarSeries.getParentConfig(attr);
+    const { _orientation } = props;
+    return _orientation === ORIENTATION.HORIZONTAL
+      ? HorizontalBarSeries.getParentConfig(attr)
+      : VerticalBarSeries.getParentConfig(attr);
   }
   _onValueMouseOver = () => {
     this.setState(() => ({ isMouseOverValue: true }));

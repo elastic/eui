@@ -33,9 +33,15 @@ describe('EuiSelectionBrush', () => {
 
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousedown', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 } });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousedown', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
@@ -68,9 +74,15 @@ describe('EuiSelectionBrush', () => {
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top +50 } });
-    component.find('svg').at(0).simulate('mousedown', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top +50 } });
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top +100 } });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousedown', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100
+      } });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
@@ -78,7 +90,9 @@ describe('EuiSelectionBrush', () => {
     expect(selectionBrush.find('rect').at(0).props().y).toBe(50);
     expect(selectionBrush.find('rect').at(0).props().width).toBe(600 - DEFAULT_MARGINS.left - DEFAULT_MARGINS.right);
     expect(selectionBrush.find('rect').at(0).props().height).toBe(50);
-    component.find('svg').at(0).simulate('mouseup', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top +100 } });
+    component.find('svg').at(0).simulate('mouseup', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
     selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
     expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
@@ -102,9 +116,15 @@ describe('EuiSelectionBrush', () => {
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousedown', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 } });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousedown', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
@@ -112,7 +132,9 @@ describe('EuiSelectionBrush', () => {
     expect(selectionBrush.find('rect').at(0).props().y).toBe(50);
     expect(selectionBrush.find('rect').at(0).props().width).toBe(50);
     expect(selectionBrush.find('rect').at(0).props().height).toBe(50);
-    component.find('svg').at(0).simulate('mouseup', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 } });
+    component.find('svg').at(0).simulate('mouseup', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
     selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
     expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
@@ -138,10 +160,18 @@ describe('EuiSelectionBrush', () => {
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousedown', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 } });
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 } });
-    component.find('svg').at(0).simulate('mouseup', { nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 } });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousedown', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
+    });
+    component.find('svg').at(0).simulate('mousemove', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
+    component.find('svg').at(0).simulate('mouseup', {
+      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
+    });
     selectionBrush = component.find(EuiSelectionBrush);
     expect(onSelectionBrushEndMock.mock.calls.length).toBe(1);
     const expectedBrush = {
@@ -158,7 +188,7 @@ describe('EuiSelectionBrush', () => {
         y1: 100,
       }
     };
-    expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush)
+    expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush);
   });
   test.skip(`get onSelectionBrushEnd call on ordinal x scale`, () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
@@ -200,6 +230,6 @@ describe('EuiSelectionBrush', () => {
         y1: 100,
       }
     };
-    expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush)
+    expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush);
   });
 });

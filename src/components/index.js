@@ -37,16 +37,8 @@ export {
 } from './call_out';
 
 export {
-<<<<<<< HEAD
   EuiCard,
 } from './card';
-=======
-  EuiChart,
-  EuiLine,
-  EuiArea,
-  EuiBar
-} from './chart';
->>>>>>> finish commit
 
 export {
   EuiCode,
@@ -315,6 +307,27 @@ export {
   EuiIconTip,
   EuiToolTip,
 } from './tool_tip';
+
+export {
+  EuiXYChart,
+  EuiXYChartUtils,
+  EuiXYChartAxisUtils,
+  EuiXYChartTextUtils,
+  EuiLineSeries,
+  EuiAreaSeries,
+  EuiBarSeries,
+  EuiHistogramSeries,
+  EuiVerticalBarSeries,
+  EuiHorizontalBarSeries,
+  EuiVerticalRectSeries,
+  EuiHorizontalRectSeries,
+  EuiDefaultAxis,
+  EuiXAxis,
+  EuiYAxis,
+  EuiCrosshairX,
+  EuiCrosshairY,
+  EuiLineAnnotation,
+} from './xy_chart';
 
 export {
   EuiHideFor,

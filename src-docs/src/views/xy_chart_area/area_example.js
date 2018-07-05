@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import AreaSeriesExample from './area';
 import StackedAreaSeriesExample from './stacked_area';
 import CurvedAreaExample from './curved_area';
 import RangeAreaExample from './range_area';
-
-import { EuiCode, EuiAreaSeries, EuiLink } from '../../../../src/components';
+import { EuiCode, EuiAreaSeries, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
 
 export const XYChartAreaExample = {
   title: 'Area chart',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="Beta Component"
+        color="warning"
+      >
+        <p>
+          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implament it,
+          but please be aware that breaking changes can come at any time with this component as such changes on beta
+          components does not necessitate a major version bump.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [
     {
       title: 'Area Series',

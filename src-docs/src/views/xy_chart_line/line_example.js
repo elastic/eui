@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import LineChartExample from './line';
 import CustomDomainLineChartExample from './custom_domain_line';
 import MultiLineChartExample from './multi_line';
 import CurvedLineChartExample from './curved_line';
 import CustomStyleLineChartExample from './custom_style_line';
-import { EuiCode, EuiLineSeries, EuiLink } from '../../../../src/components';
+import { EuiCode, EuiLineSeries, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
 
 export const XYChartLineExample = {
   title: 'Line chart',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="Beta Component"
+        color="warning"
+      >
+        <p>
+          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implament it,
+          but please be aware that breaking changes can come at any time with this component as such changes on beta
+          components does not necessitate a major version bump.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [
     {
       title: 'Line chart',

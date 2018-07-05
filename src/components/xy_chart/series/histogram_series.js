@@ -10,10 +10,10 @@ export class EuiHistogramSeries extends AbstractSeries {
     isMouseOverValue: false,
   }
   static getParentConfig(attr, props)  {
-      const { _orientation } = props;
-      return _orientation === ORIENTATION.HORIZONTAL
-        ? HorizontalRectSeries.getParentConfig(attr)
-        : VerticalRectSeries.getParentConfig(attr);
+    const { _orientation } = props;
+    return _orientation === ORIENTATION.HORIZONTAL
+      ? HorizontalRectSeries.getParentConfig(attr)
+      : VerticalRectSeries.getParentConfig(attr);
   }
   _onValueMouseOver = () => {
     this.setState(() => ({ isMouseOverValue: true }));

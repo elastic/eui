@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiXYChart } from '../../../../src/components';
+import { EuiCode, EuiXYChart, EuiCallOut, EuiSpacer } from '../../../../src/components';
 import ComplexChartExampleCode from './complex';
 import EmptyExampleCode from './empty';
 import MultiAxisChartExampleCode from './multi_axis';
@@ -8,6 +8,22 @@ import { ExampleCrosshair } from './crosshair_sync';
 
 export const XYChartExample = {
   title: 'General',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="Beta Component"
+        color="warning"
+      >
+        <p>
+          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implament it,
+          but please be aware that breaking changes can come at any time with this component as such changes on beta
+          components does not necessitate a major version bump.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [
     {
       title: 'Complex example',

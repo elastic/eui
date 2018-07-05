@@ -9,7 +9,7 @@ import { ORIENTATION } from '../utils/chart_utils';
 
 describe('EuiDefaultAxis', () => {
   test('render default axis', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const component = mount(
       <EuiXYChart
         width={600}
@@ -27,7 +27,7 @@ describe('EuiDefaultAxis', () => {
     expect(component.render()).toMatchSnapshot();
   });
   test('render rotated 90deg default axis', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const component = mount(
       <EuiXYChart
         width={600}
@@ -42,5 +42,5 @@ describe('EuiDefaultAxis', () => {
     expect(component.find(EuiVerticalGrid)).toHaveLength(1);
     expect(component.find(EuiHorizontalGrid)).toHaveLength(0);
     expect(component.render()).toMatchSnapshot();
-  })
+  });
 });

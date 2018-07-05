@@ -10,7 +10,7 @@ export class EuiHorizontalGrid extends PureComponent {
       <HorizontalGridLines
         {...this.props}
       />
-    )
+    );
   }
 }
 

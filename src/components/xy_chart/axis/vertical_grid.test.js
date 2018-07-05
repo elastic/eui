@@ -8,7 +8,7 @@ import { requiredProps } from '../../../test/required_props';
 
 describe('EuiVerticalGrid', () => {
   test('render the vertical grid', () => {
-    const data = [ { x:0, y: 1 }, { x:1, y: 2 }];
+    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
     const height = 200;
     const component = mount(
       <EuiXYChart
@@ -21,7 +21,7 @@ describe('EuiVerticalGrid', () => {
         <EuiLineSeries name="Test Series" data={data} />
       </EuiXYChart>
     );
-    const verticalGridComponent = component.find(EuiVerticalGrid)
+    const verticalGridComponent = component.find(EuiVerticalGrid);
     expect(verticalGridComponent).toHaveLength(1);
     const firstLineProps = verticalGridComponent.find('line').at(0).props();
     expect(firstLineProps.x1).toEqual(firstLineProps.x2);

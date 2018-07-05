@@ -41,7 +41,7 @@ export default class ComplexDemo extends Component {
     }));
   }
   render() {
-    const { eventName, json } = this.state
+    const { eventName, json } = this.state;
     return (
       <Fragment>
         <EuiXYChart
@@ -84,4 +84,4 @@ export default class ComplexDemo extends Component {
       </Fragment>
     );
   }
-};
+}

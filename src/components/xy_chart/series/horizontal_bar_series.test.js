@@ -23,20 +23,20 @@ describe('EuiHorizontalBarSeries', () => {
 
     expect(component.find('.rv-xy-plot__series')).toHaveLength(1);
 
-    const rects = component.find('.rv-xy-plot__series--bar rect')
+    const rects = component.find('.rv-xy-plot__series--bar rect');
     expect(rects).toHaveLength(2);
 
-    const firstRectProps = rects.at(0).props()
-    expect(firstRectProps.x).toBeDefined()
-    expect(firstRectProps.y).toBeDefined()
-    expect(firstRectProps.width).toBeDefined()
-    expect(firstRectProps.height).toBeDefined()
+    const firstRectProps = rects.at(0).props();
+    expect(firstRectProps.x).toBeDefined();
+    expect(firstRectProps.y).toBeDefined();
+    expect(firstRectProps.width).toBeDefined();
+    expect(firstRectProps.height).toBeDefined();
 
-    const secondRectProps = rects.at(1).props()
-    expect(secondRectProps.x).toBeDefined()
-    expect(secondRectProps.y).toBeDefined()
-    expect(secondRectProps.width).toBeDefined()
-    expect(secondRectProps.height).toBeDefined()
+    const secondRectProps = rects.at(1).props();
+    expect(secondRectProps.x).toBeDefined();
+    expect(secondRectProps.y).toBeDefined();
+    expect(secondRectProps.width).toBeDefined();
+    expect(secondRectProps.height).toBeDefined();
 
     expect(component.render()).toMatchSnapshot();
   });

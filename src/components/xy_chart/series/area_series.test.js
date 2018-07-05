@@ -74,7 +74,7 @@ describe('EuiAreaSeries', () => {
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             <EuiAreaSeries name="somename" data={data}/>
           </EuiXYChart>
-        )
+        );
       }
 
       const runtime = benchmarkFunction(renderChart);
@@ -111,7 +111,7 @@ describe('EuiAreaSeries', () => {
               <EuiAreaSeries name={`somename-${index}`} key={index} data={data}/>
             ))}
           </EuiXYChart>
-        )
+        );
       }
 
       const runtime = benchmarkFunction(renderChart);

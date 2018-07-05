@@ -54,10 +54,10 @@ export const CURVE = {
   CURVE_STEP: 'curveStep',
   CURVE_STEP_AFTER: 'curveStepAfter',
   CURVE_STEP_BEFORE: 'curveStepBefore',
-}
+};
 
 export const EuiXYChartUtils = {
   ORIENTATION,
   SCALE,
   CURVE,
-}
+};

@@ -95,7 +95,7 @@ describe('EuiLineSeries', () => {
           <EuiXYChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
             <EuiLineSeries name="test" data={data}/>
           </EuiXYChart>
-        )
+        );
       }
 
       const runtime = benchmarkFunction(renderChart);
@@ -132,7 +132,7 @@ describe('EuiLineSeries', () => {
               <EuiLineSeries name="test" key={index} data={data}/>
             ))}
           </EuiXYChart>
-        )
+        );
       }
 
       const runtime = benchmarkFunction(renderChart);

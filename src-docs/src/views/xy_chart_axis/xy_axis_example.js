@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiXAxis, EuiYAxis, EuiLineAnnotation } from '../../../../src/components';
+import { EuiCode, EuiXAxis, EuiYAxis, EuiLineAnnotation, EuiCallOut, EuiSpacer } from '../../../../src/components';
 import SimpleAxisExampleCode from './simple_axis';
 import AnnotationExampleCode from './annotations';
 
 export const XYChartAxisExample = {
   title: 'Axis',
+  intro: (
+    <Fragment>
+      <EuiCallOut
+        title="Beta Component"
+        color="warning"
+      >
+        <p>
+          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implament it,
+          but please be aware that breaking changes can come at any time with this component as such changes on beta
+          components does not necessitate a major version bump.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="l" />
+    </Fragment>
+  ),
   sections: [
     {
       title: 'Complex Axis example',

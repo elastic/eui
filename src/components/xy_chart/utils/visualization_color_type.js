@@ -3,7 +3,7 @@ import { VISUALIZATION_COLORS } from '../../../services';
 export function VisualizationColorType(props, propName) {
   const color = props[propName];
   if (color === undefined) {
-    return
+    return;
   }
   // TODO upgrade this to check all possible color string formats
   // using libs like colorjs
@@ -13,4 +13,4 @@ export function VisualizationColorType(props, propName) {
   if (!VISUALIZATION_COLORS.includes(color.toUpperCase())) {
     console.warn('Prefer safe EUI Visualization Colors.');
   }
-};
+}

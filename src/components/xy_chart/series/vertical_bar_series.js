@@ -19,7 +19,7 @@ export class EuiVerticalBarSeries extends VerticalBarSeries {
   }
 
   render() {
-    const { isMouseOverValue } = this.state
+    const { isMouseOverValue } = this.state;
     const { name, data, color, onValueClick, ...rest } = this.props;
     const isHighDataVolume = data.length > 80 ? true : false;
     const classes = classNames(
