@@ -37,7 +37,7 @@ class XYExtendedPlot extends XYPlot {
     }
     const seriesChildren = getSeriesChildren(children);
     seriesChildren.forEach((child, index) => {
-      const component = this.refs[`series${index}`];
+      const component = this[`series${index}`];
       if (component && component.onParentMouseLeave) {
         component.onParentMouseLeave(event);
       }
@@ -56,7 +56,7 @@ class XYExtendedPlot extends XYPlot {
     }
     const seriesChildren = getSeriesChildren(children);
     seriesChildren.forEach((child, index) => {
-      const component = this.refs[`series${index}`];
+      const component = this[`series${index}`];
       if (component && component.onParentMouseUp) {
         component.onParentMouseUp(event);
       }
