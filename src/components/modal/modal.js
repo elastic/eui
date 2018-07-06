@@ -52,7 +52,9 @@ export class EuiModal extends Component {
             color="text"
             aria-label="Closes this modal window"
           />
-          {children}
+          <div className="euiModal__flex">
+            {children}
+          </div>
         </div>
       </FocusTrap>
     );

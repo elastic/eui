@@ -35,7 +35,11 @@ exports[`renders EuiModal 1`] = `
         />
       </svg>
     </button>
-    children
+    <div
+      class="euiModal__flex"
+    >
+      children
+    </div>
   </div>
 </div>
 `;

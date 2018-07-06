@@ -61,3 +61,14 @@
     @include  euiBreakpoint($size) { display: initial !important; }
   }
 }
+
+/**
+  * IE doesn't properly wrap groups if it is within a flex-item of a flex-group.
+  * Adding the following styles to the flex-item that contains the wrapping group, will fix IE.
+  * https://github.com/philipwalton/flexbugs/issues/104
+  */
+.euiIEFlexWrapFix {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
