@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `1.1.0`.
+**Bug fixes**
+
+- Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
 
 ## [`1.1.0`](https://github.com/elastic/eui/tree/v1.1.0)
 
