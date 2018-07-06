@@ -182,7 +182,7 @@ export class EuiPopover extends Component {
     const waitDuration = records.reduce(
       (waitDuration, record) => {
         const computedDuration = window.getComputedStyle(record.target).getPropertyValue('transition-duration');
-        const durationMatch = computedDuration.match(/^([\d\.]+)/);
+        const durationMatch = computedDuration.match(/^([\d.]+)/);
         if (durationMatch != null) {
           waitDuration = Math.max(waitDuration, parseFloat(durationMatch[1]) * 1000);
         }
@@ -193,10 +193,18 @@ export class EuiPopover extends Component {
     this.positionPopover();
 
     if (waitDuration > 0) {
-      setTimeout(
-        this.positionPopover,
-        waitDuration
-      );
+      const startTime = Date.now();
+      const endTime = startTime + waitDuration;
+
+      const onFrame = () => {
+        this.positionPopover();
+
+        if (endTime > Date.now()) {
+          requestAnimationFrame(onFrame);
+        }
+      };
+
+      requestAnimationFrame(onFrame);
     }
   }
 
@@ -344,7 +352,7 @@ export class EuiPopover extends Component {
                 children
                   ? (
                     <EuiMutationObserver
-                      observerOptions={{ attributes: true, attributeOldValue: true, childList: true, subtree: true }}
+                      observerOptions={{ attributes: true, childList: true, subtree: true }}
                       onMutation={this.onMutation}
                     >
                       {children}

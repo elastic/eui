@@ -124,30 +124,6 @@ export class EuiContextMenu extends Component {
     }
   }
 
-  // updateTransitionCount = () => {
-  //   const transitionCount = this.menu.hasAttribute('data-transitioncount')
-  //     ? parseInt(this.menu.getAttribute('data-transitioncount'), 10)
-  //     : 0;
-  //   this.menu.setAttribute('data-transitioncount', transitionCount + 1);
-  // }
-  //
-  // onFrameAnimation = () => {
-  //   this.updateTransitionCount();
-  //   if (this._isTransitioning) {
-  //     requestAnimationFrame(this.onFrameAnimation);
-  //   }
-  // }
-  //
-  // onTransitionStart = () => {
-  //   this._isTransitioning = true;
-  //   this.onFrameAnimation();
-  // }
-  //
-  // onTransitionEnd = () => {
-  //   this.updateTransitionCount();
-  //   this._isTransitioning = false;
-  // }
-
   hasPreviousPanel = panelId => {
     const previousPanelId = this.state.idToPreviousPanelIdMap[panelId];
     return typeof previousPanelId !== 'undefined';
@@ -230,16 +206,6 @@ export class EuiContextMenu extends Component {
     });
 
     this.setState({ idToRenderedItemsMap });
-  };
-
-  setMenuRef = node => {
-    // if (node != null) {
-    //   node.addEventListener('transitionend', this.onTransitionEnd);
-    // } else {
-    //   this.menu.removeEventListener('transitionend', this.onTransitionEnd);
-    // }
-
-    this.menu = node;
   };
 
   renderItems(items = []) {
@@ -338,7 +304,6 @@ export class EuiContextMenu extends Component {
 
     return (
       <div
-        ref={this.setMenuRef}
         className={classes}
         style={{ height: this.state.height }}
         {...rest}
