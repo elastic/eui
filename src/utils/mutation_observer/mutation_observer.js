@@ -10,7 +10,6 @@ class EuiMutationObserver extends Component {
   }
 
   onMutation = (...args) => {
-    console.log('::onMutation');
     this.props.onMutation(...args);
   }
 

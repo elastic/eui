@@ -11,6 +11,7 @@ exports[`EuiContextMenu is rendered 1`] = `
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
 <div
   class="euiContextMenu"
+  data-transitioncount="2"
   style="height: 0px;"
 >
   <div
@@ -65,6 +66,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 2`] = `
 <div
   class="euiContextMenu"
+  data-transitioncount="4"
   style="height: 0px;"
 >
   <div

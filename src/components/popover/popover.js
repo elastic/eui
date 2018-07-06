@@ -205,7 +205,13 @@ export class EuiPopover extends Component {
     const arrowStyles = arrow;
     const arrowPosition = position;
 
-    this.setState({ popoverStyles, arrowStyles, arrowPosition });
+    this.setState(({ popoverStyles: lastPosition }) => {
+      // only call setState if the top or left values have changed
+      if (lastPosition.top === popoverStyles.top && lastPosition.left === popoverStyles.left) {
+        return null;
+      }
+      return { popoverStyles, arrowStyles, arrowPosition };
+    });
   }
 
   panelRef = node => {
@@ -312,7 +318,19 @@ export class EuiPopover extends Component {
               style={this.state.popoverStyles}
             >
               <div className={arrowClassNames} style={this.state.arrowStyles}/>
-              {children}
+              {
+                children
+                  ? (
+                    <EuiMutationObserver
+                      observerOptions={{ attributes: true, attributeOldValue: true, childList: true, subtree: true }}
+                      onMutation={this.positionPopover}
+                    >
+                      {children}
+                    </EuiMutationObserver>
+                  )
+                  : null
+
+              }
             </EuiPanel>
           </FocusTrap>
         </EuiPortal>
@@ -330,18 +348,7 @@ export class EuiPopover extends Component {
           <div className="euiPopover__anchor" ref={this.buttonRef}>
             {button}
           </div>
-          {
-            panel
-              ? (
-                <EuiMutationObserver
-                  observerOptions={{ childList: true, subtree: true }}
-                  onMutation={this.positionPopover}
-                >
-                  {panel}
-                </EuiMutationObserver>
-              )
-              : null
-          }
+          {panel}
         </div>
       </EuiOutsideClickDetector>
     );
