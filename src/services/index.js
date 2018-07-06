@@ -22,6 +22,7 @@ export {
   hexToRgb,
   rgbToHex,
   VISUALIZATION_COLORS,
+  DEFAULT_VISUALIZATION_COLOR,
 } from './color';
 
 export {
