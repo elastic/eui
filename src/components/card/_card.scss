@@ -22,6 +22,8 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   flex-direction: column;
   padding: $euiCardSpacing;
   overflow: visible; /* 2 */
+  min-height: 1px; /* 3 */
+
 
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing);
 

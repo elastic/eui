@@ -15,6 +15,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlexGrid,
+  EuiLink,
 } from '../../../../src/components';
 
 import FlexGroup from './flex_group';
@@ -121,11 +122,21 @@ export const FlexExample = {
       code: flexGroupWrapHtml,
     }],
     text: (
-      <p>
-        You can set <EuiCode>wrap</EuiCode> on <EuiCode>FlexGroup</EuiCode> if it
-        contains <EuiCode>FlexItem</EuiCode>s with minimum widths, which you want to wrap as
-        the container becomes narrower.
-      </p>
+      <Fragment>
+        <p>
+          You can set <EuiCode>wrap</EuiCode> on <EuiCode>FlexGroup</EuiCode> if it
+          contains <EuiCode>FlexItem</EuiCode>s with minimum widths, which you want to wrap as
+          the container becomes narrower.
+        </p>
+        <EuiCallOut color="warning" title="IE Warning">
+          <p>
+            IE11 does not properly wrap flex items if the <strong>group</strong> is also within a flex item.
+            To fix this rendering issue, you need to add a class of <EuiCode>.euiIEFlexWrapFix</EuiCode> to the flex-item
+            that <strong>contains</strong> the wrapping group.
+          </p>
+        </EuiCallOut>
+      </Fragment>
+
     ),
     demo: <div className="guideDemo__highlightGrid"><FlexGroupWrap /></div>,
   }, {
@@ -286,11 +297,21 @@ export const FlexExample = {
       code: flexNestHtml,
     }],
     text: (
-      <p>
-        <EuiCode>FlexGroup</EuiCode> and <EuiCode>FlexGrid</EuiCode> can nest
-        within themselves indefinitely. For example, here we turn off the growth on a
-        <EuiCode>FlexGroup</EuiCode>, then nest a grid inside of it.
-      </p>
+      <Fragment>
+        <p>
+          <EuiCode>FlexGroup</EuiCode> and <EuiCode>FlexGrid</EuiCode> can nest
+      within themselves indefinitely. For example, here we turn off the growth on a
+          <EuiCode>FlexGroup</EuiCode>, then nest a grid inside of it.
+        </p>
+        <EuiCallOut color="warning" title="IE11 Warning">
+          <p>
+            Nesting can cause some nasty bugs in IE11. There is no generalized way to fix IE
+            without knowing the exact intention of the layout. Please refer
+            to <EuiLink href="https://github.com/philipwalton/flexbugs">Flexbugs</EuiLink> if
+            you see rendering issues in IE.
+          </p>
+        </EuiCallOut>
+      </Fragment>
     ),
     demo: <div className="guideDemo__highlightGrid"><FlexNest /></div>,
   }, {

@@ -8,10 +8,6 @@ import imageFlexgrid from '../../images/flexgrid.svg';
 import imageCards from '../../images/cards.svg';
 
 import {
-  Link,
-} from 'react-router';
-
-import {
   EuiCard,
   EuiFlexGrid,
   EuiFlexGroup,
@@ -92,70 +88,64 @@ export const HomeView = () => (
     <EuiSpacer />
     <EuiFlexGrid gutterSize="l" columns={3}>
       <EuiFlexItem>
-        <Link to="/display/icons">
-          <EuiCard
-            textAlign="left"
-            image={imageIcons}
-            isClickable
-            title="Icons"
-            description="Our SVG icon library gives you full control over size and color"
-          />
-        </Link>
+        <EuiCard
+          href="#/display/icons"
+          textAlign="left"
+          image={imageIcons}
+          isClickable
+          title="Icons"
+          description="Our SVG icon library gives you full control over size and color"
+        />
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/navigation/button">
-          <EuiCard
-            textAlign="left"
-            image={imageButtons}
-            title="Buttons"
-            isClickable
-            description="Buttons for every usage you might need."
-          />
-        </Link>
+        <EuiCard
+          href="#/navigation/button"
+          textAlign="left"
+          image={imageButtons}
+          title="Buttons"
+          isClickable
+          description="Buttons for every usage you might need."
+        />
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/layout/flex">
-          <EuiCard
-            textAlign="left"
-            image={imageFlexgrid}
-            title="Flexible layouts"
-            description="Create layouts by using flex groups, grids and items"
-            isClickable
-          />
-        </Link>
+        <EuiCard
+          href="#/layout/flex"
+          textAlign="left"
+          image={imageFlexgrid}
+          title="Flexible layouts"
+          description="Create layouts by using flex groups, grids and items"
+          isClickable
+        />
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/display/tables">
-          <EuiCard
-            textAlign="left"
-            image={imageTables}
-            title="Tables"
-            isClickable
-            description="Build tables from individual components or high level wrappers"
-          />
-        </Link>
+        <EuiCard
+          href="#/display/tables"
+          textAlign="left"
+          image={imageTables}
+          title="Tables"
+          isClickable
+          description="Build tables from individual components or high level wrappers"
+        />
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/display/card">
-          <EuiCard
-            textAlign="left"
-            image={imageCards}
-            title="Cards"
-            description="Cards like these help you make repeatable content more presentable"
-            isClickable
-          />
-        </Link>
+        <EuiCard
+          href="#/display/card"
+          textAlign="left"
+          image={imageCards}
+          title="Cards"
+          description="Cards like these help you make repeatable content more presentable"
+          isClickable
+        />
       </EuiFlexItem>
       <EuiFlexItem>
-        <Link to="/forms/form-layouts">
-          <EuiCard
-            textAlign="left"
-            image={imageForms}
-            title="Forms"
-            isClickable
-            description="Input tags, layouts and validation for your forms"
-          />
-        </Link>
+        <EuiCard
+          href="#/forms/form-layouts"
+          textAlign="left"
+          image={imageForms}
+          title="Forms"
+          isClickable
+          description="Input tags, layouts and validation for your forms"
+        />
       </EuiFlexItem>
     </EuiFlexGrid>
     <EuiSpacer />
