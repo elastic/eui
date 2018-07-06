@@ -124,29 +124,29 @@ export class EuiContextMenu extends Component {
     }
   }
 
-  updateTransitionCount = () => {
-    const transitionCount = this.menu.hasAttribute('data-transitioncount')
-      ? parseInt(this.menu.getAttribute('data-transitioncount'), 10)
-      : 0;
-    this.menu.setAttribute('data-transitioncount', transitionCount + 1);
-  }
-
-  onFrameAnimation = () => {
-    this.updateTransitionCount();
-    if (this._isTransitioning) {
-      requestAnimationFrame(this.onFrameAnimation);
-    }
-  }
-
-  onTransitionStart = () => {
-    this._isTransitioning = true;
-    this.onFrameAnimation();
-  }
-
-  onTransitionEnd = () => {
-    this.updateTransitionCount();
-    this._isTransitioning = false;
-  }
+  // updateTransitionCount = () => {
+  //   const transitionCount = this.menu.hasAttribute('data-transitioncount')
+  //     ? parseInt(this.menu.getAttribute('data-transitioncount'), 10)
+  //     : 0;
+  //   this.menu.setAttribute('data-transitioncount', transitionCount + 1);
+  // }
+  //
+  // onFrameAnimation = () => {
+  //   this.updateTransitionCount();
+  //   if (this._isTransitioning) {
+  //     requestAnimationFrame(this.onFrameAnimation);
+  //   }
+  // }
+  //
+  // onTransitionStart = () => {
+  //   this._isTransitioning = true;
+  //   this.onFrameAnimation();
+  // }
+  //
+  // onTransitionEnd = () => {
+  //   this.updateTransitionCount();
+  //   this._isTransitioning = false;
+  // }
 
   hasPreviousPanel = panelId => {
     const previousPanelId = this.state.idToPreviousPanelIdMap[panelId];
@@ -201,7 +201,7 @@ export class EuiContextMenu extends Component {
       if (height === prevHeight) {
         return null;
       } else {
-        this.onTransitionStart();
+        // this.onTransitionStart();
         return { height };
       }
     });
@@ -233,11 +233,11 @@ export class EuiContextMenu extends Component {
   };
 
   setMenuRef = node => {
-    if (node != null) {
-      node.addEventListener('transitionend', this.onTransitionEnd);
-    } else {
-      this.menu.removeEventListener('transitionend', this.onTransitionEnd);
-    }
+    // if (node != null) {
+    //   node.addEventListener('transitionend', this.onTransitionEnd);
+    // } else {
+    //   this.menu.removeEventListener('transitionend', this.onTransitionEnd);
+    // }
 
     this.menu = node;
   };

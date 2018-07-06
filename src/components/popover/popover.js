@@ -178,6 +178,28 @@ export class EuiPopover extends Component {
     clearTimeout(this.closingTransitionTimeout);
   }
 
+  onMutation = (records) => {
+    const waitDuration = records.reduce(
+      (waitDuration, record) => {
+        const computedDuration = window.getComputedStyle(record.target).getPropertyValue('transition-duration');
+        const durationMatch = computedDuration.match(/^([\d\.]+)/);
+        if (durationMatch != null) {
+          waitDuration = Math.max(waitDuration, parseFloat(durationMatch[1]) * 1000);
+        }
+        return waitDuration;
+      },
+      0
+    );
+    this.positionPopover();
+
+    if (waitDuration > 0) {
+      setTimeout(
+        this.positionPopover,
+        waitDuration
+      );
+    }
+  }
+
   positionPopover = () => {
     const { top, left, position, arrow } = findPopoverPosition({
       position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
@@ -323,7 +345,7 @@ export class EuiPopover extends Component {
                   ? (
                     <EuiMutationObserver
                       observerOptions={{ attributes: true, attributeOldValue: true, childList: true, subtree: true }}
-                      onMutation={this.positionPopover}
+                      onMutation={this.onMutation}
                     >
                       {children}
                     </EuiMutationObserver>
