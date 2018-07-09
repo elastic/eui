@@ -7,7 +7,7 @@ import {
   EuiXYChart,
   EuiXYChartAxisUtils,
   EuiXYChartTextUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 
 const DATA = [{ x: 0, y: 5 }, { x: 1, y: 3 }, { x: 2, y: 2 }, { x: 3, y: 3 }];
 

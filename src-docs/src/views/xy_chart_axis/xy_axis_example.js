@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiXAxis, EuiYAxis, EuiLineAnnotation, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiXAxis, EuiYAxis, EuiLineAnnotation } from '../../../../src/experimental';
 import SimpleAxisExampleCode from './simple_axis';
 import AnnotationExampleCode from './annotations';
 
