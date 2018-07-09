@@ -74,6 +74,8 @@ const DEFAULT_POPOVER_STYLES = {
   left: 50,
 };
 
+const GROUP_MUMERIC = /^([\d.]+)/;
+
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevProps.isOpen && !nextProps.isOpen) {
@@ -181,11 +183,17 @@ export class EuiPopover extends Component {
   onMutation = (records) => {
     const waitDuration = records.reduce(
       (waitDuration, record) => {
-        const computedDuration = window.getComputedStyle(record.target).getPropertyValue('transition-duration');
-        const durationMatch = computedDuration.match(/^([\d.]+)/);
-        if (durationMatch != null) {
-          waitDuration = Math.max(waitDuration, parseFloat(durationMatch[1]) * 1000);
-        }
+        const computedStyle = window.getComputedStyle(record.target);
+
+        const computedDuration = computedStyle.getPropertyValue('transition-duration');
+        let durationMatch = computedDuration.match(GROUP_MUMERIC);
+        durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
+
+        const computedDelay = computedStyle.getPropertyValue('transition-delay');
+        let delayMatch = computedDelay.match(GROUP_MUMERIC);
+        delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
+
+        waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
         return waitDuration;
       },
       0
@@ -209,6 +217,8 @@ export class EuiPopover extends Component {
   }
 
   positionPopover = () => {
+    if (this.button == null || this.panel == null) return;
+
     const { top, left, position, arrow } = findPopoverPosition({
       position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
