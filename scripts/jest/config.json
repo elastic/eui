@@ -17,6 +17,7 @@
     "\\.(css|less|scss)$": "<rootDir>/scripts/jest/mocks/style_mock.js"
   },
   "setupFiles": [
+    "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/enzyme.js",
     "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
   ],
