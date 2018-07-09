@@ -4,7 +4,8 @@ import AreaSeriesExample from './area';
 import StackedAreaSeriesExample from './stacked_area';
 import CurvedAreaExample from './curved_area';
 import RangeAreaExample from './range_area';
-import { EuiCode, EuiAreaSeries, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiCode, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiAreaSeries } from '../../../../src/experimental';
 
 export const XYChartAreaExample = {
   title: 'Area chart',

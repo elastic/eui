@@ -3,11 +3,13 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiButton,
   EuiSpacer,
+} from '../../../../src/components';
+import {
   EuiXYChart,
   EuiLineSeries,
   EuiBarSeries,
   EuiXYChartUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 
 const { SCALE } = EuiXYChartUtils;
 const timestamp = Date.now();

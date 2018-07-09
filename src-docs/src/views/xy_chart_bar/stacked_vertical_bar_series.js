@@ -3,10 +3,13 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiSpacer,
   EuiButton,
+} from '../../../../src/components';
+
+import {
   EuiXYChart,
   EuiBarSeries,
   EuiXYChartUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 
 const { SCALE } = EuiXYChartUtils;
 

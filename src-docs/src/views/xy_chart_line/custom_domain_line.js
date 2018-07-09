@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiLineSeries } from '../../../../src/components';
+import { EuiXYChart, EuiLineSeries } from '../../../../src/experimental';
 
 const X_DOMAIN = [-1, 6];
 const Y_DOMAIN = [0, 3];

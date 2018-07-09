@@ -5,10 +5,12 @@ import {
   EuiFormRow,
   EuiRange,
   EuiSpacer,
-  EuiXYChart,
-  EuiLineSeries,
   EuiCheckboxGroup,
 } from '../../../../src/components';
+import {
+  EuiXYChart,
+  EuiLineSeries,
+} from '../../../../src/experimental';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
