@@ -36,5 +36,16 @@ describe('EuiIconTip', () => {
           .toMatchSnapshot();
       });
     });
+
+    describe('size', () => {
+      test('is rendered as the icon size', () => {
+        const component = render(
+          <EuiIconTip size="xl" id="id" content="content" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });

@@ -6,7 +6,7 @@ import {
   EuiXAxis,
   EuiYAxis,
   EuiXYChartAxisUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 import { VISUALIZATION_COLORS } from '../../../../src/services';
 
 

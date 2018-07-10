@@ -5,7 +5,8 @@ import CustomDomainLineChartExample from './custom_domain_line';
 import MultiLineChartExample from './multi_line';
 import CurvedLineChartExample from './curved_line';
 import CustomStyleLineChartExample from './custom_style_line';
-import { EuiCode, EuiLineSeries, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiCode, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiLineSeries } from '../../../../src/experimental';
 
 export const XYChartLineExample = {
   title: 'Line chart',

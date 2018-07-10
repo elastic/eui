@@ -309,28 +309,6 @@ export {
 } from './tool_tip';
 
 export {
-  EuiXYChart,
-  EuiXYChartUtils,
-  EuiXYChartAxisUtils,
-  EuiXYChartTextUtils,
-  EuiLineSeries,
-  EuiAreaSeries,
-  EuiBarSeries,
-  EuiHistogramSeries,
-  EuiVerticalBarSeries,
-  EuiHorizontalBarSeries,
-  EuiVerticalRectSeries,
-  EuiHorizontalRectSeries,
-  EuiDefaultAxis,
-  EuiXAxis,
-  EuiYAxis,
-  EuiCrosshairX,
-  EuiCrosshairY,
-  EuiLineAnnotation,
-} from './xy_chart';
-
-export {
   EuiHideFor,
   EuiShowFor,
 } from './responsive';
-

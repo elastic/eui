@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { EuiSpacer, EuiXYChart, EuiBarSeries } from '../../../../src/components';
+import { EuiSpacer } from '../../../../src/components';
+import { EuiXYChart, EuiBarSeries } from '../../../../src/experimental';
 
 // eslint-disable-next-line
 export class ExampleCrosshair extends React.Component {

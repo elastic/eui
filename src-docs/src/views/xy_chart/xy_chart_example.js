@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiXYChart, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import { EuiXYChart } from '../../../../src/experimental';
 import ComplexChartExampleCode from './complex';
 import EmptyExampleCode from './empty';
 import MultiAxisChartExampleCode from './multi_axis';

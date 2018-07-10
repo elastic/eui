@@ -3,7 +3,7 @@ import React from 'react';
 import {
   EuiXYChart,
   EuiLineSeries,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 
 const DATA_A = [
   { x: 0, y: 1 },

@@ -1,13 +1,15 @@
 import React, { Fragment, Component } from 'react';
 
 import {
-  EuiText,
-  EuiCodeBlock,
-  EuiSpacer,
   EuiXYChart,
   EuiBarSeries,
   EuiAreaSeries,
   EuiLineSeries,
+} from '../../../../src/experimental';
+import {
+  EuiText,
+  EuiCodeBlock,
+  EuiSpacer,
 } from '../../../../src/components';
 
 const barSeries = [];

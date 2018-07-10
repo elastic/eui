@@ -5,10 +5,12 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiSpacer,
+} from '../../../../src/components';
+import {
   EuiXYChart,
   EuiLineSeries,
   EuiXYChartUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 
 const {
   LINEAR,
