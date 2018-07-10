@@ -35,6 +35,7 @@ import createPopulationJob from './assets/ml_create_population_job.svg';
 import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import dashboardApp from './assets/app_dashboard.svg';
+import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
@@ -209,6 +210,7 @@ const typeToIconMap = {
   createSingleMetricJob,
   cross,
   dashboardApp,
+  database,
   dataVisualizer,
   devToolsApp,
   discoverApp,

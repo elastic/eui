@@ -43,6 +43,7 @@ declare module '@elastic/eui' {
     | 'createSingleMetricJob'
     | 'cross'
     | 'dashboardApp'
+    | 'database'
     | 'dataVisualizer'
     | 'devToolsApp'
     | 'discoverApp'

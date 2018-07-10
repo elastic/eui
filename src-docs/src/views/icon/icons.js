@@ -33,6 +33,7 @@ const iconTypes = [
   'copy',
   'copyClipboard',
   'cross',
+  'database',
   'document',
   'dot',
   'editorAlignCenter',
