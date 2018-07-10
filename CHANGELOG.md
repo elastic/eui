@@ -1,8 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added typings for keyCodes
 - Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
 - Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
-
 **Bug fixes**
 
 - Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
