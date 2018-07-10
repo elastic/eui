@@ -10,6 +10,7 @@
 
 - Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
 - Fixed white square that show in double scollbar via `euiScrollBar()` ([989](https://github.com/elastic/eui/pull/989))
+- Fixed issue with Accordion would attempt to use properties and accessors on null ([#982](https://github.com/elastic/eui/pull/982))
 
 ## [`1.1.0`](https://github.com/elastic/eui/tree/v1.1.0)
 
