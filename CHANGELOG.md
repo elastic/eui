@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `1.2.0`.
+
+## [`1.2.0`](https://github.com/elastic/eui/tree/v1.2.0)
+
 - Added typings for keyCodes ([#988](https://github.com/elastic/eui/pull/988))
 - Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
 - Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
