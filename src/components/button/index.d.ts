@@ -1,7 +1,7 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -20,17 +20,17 @@ declare module '@elastic/eui' {
   export type ButtonSize = 's' | 'l';
 
   export interface EuiButtonProps {
-    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType;
     iconSide?: ButtonIconSide;
     fill?: boolean;
     color?: ButtonColor;
     size?: ButtonSize;
+    isLoading?: boolean;
     isDisabled?: boolean;
+    href?: string;
   }
-
   export const EuiButton: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonProps
+    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonProps
   >;
 
   /**
@@ -47,15 +47,15 @@ declare module '@elastic/eui' {
     | 'text';
 
   export interface EuiButtonIconProps {
-    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType;
     color?: ButtonIconColor;
-    isDisabled?: boolean;
     'aria-label'?: string;
     'aria-labelledby'?: string;
+    isDisabled?: boolean;
+    href?: string;
   }
   export const EuiButtonIcon: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonIconProps
+    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonIconProps
   >;
 
   /**
@@ -80,12 +80,12 @@ declare module '@elastic/eui' {
     color?: EmptyButtonColor;
     size?: EmptyButtonSizes;
     flush?: EmptyButtonFlush;
-    isDisabled?: boolean;
     isLoading?: boolean;
+    isDisabled?: boolean;
     href?: string;
   }
 
   export const EuiButtonEmpty: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonEmptyProps
+    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonEmptyProps
   >;
 }
