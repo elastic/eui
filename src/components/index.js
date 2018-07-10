@@ -196,6 +196,10 @@ export {
 } from './modal';
 
 export {
+  EuiMutationObserver,
+} from './mutation_observer';
+
+export {
   EuiOutsideClickDetector,
 } from './outside_click_detector';
 

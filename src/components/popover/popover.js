@@ -16,7 +16,7 @@ import { EuiPanel, SIZES } from '../panel';
 
 import { EuiPortal } from '../portal';
 
-import { EuiMutationObserver } from '../../utils/mutation_observer';
+import { EuiMutationObserver } from '../mutation_observer';
 
 import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
 
