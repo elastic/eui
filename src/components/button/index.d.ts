@@ -81,6 +81,8 @@ declare module '@elastic/eui' {
     size?: EmptyButtonSizes;
     flush?: EmptyButtonFlush;
     isDisabled?: boolean;
+    isLoading?: boolean;
+    href?: string;
   }
 
   export const EuiButtonEmpty: SFC<
