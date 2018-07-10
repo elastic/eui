@@ -74,7 +74,7 @@ const DEFAULT_POPOVER_STYLES = {
   left: 50,
 };
 
-const GROUP_MUMERIC = /^([\d.]+)/;
+const GROUP_NUMERIC = /^([\d.]+)/;
 
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -186,11 +186,11 @@ export class EuiPopover extends Component {
         const computedStyle = window.getComputedStyle(record.target);
 
         const computedDuration = computedStyle.getPropertyValue('transition-duration');
-        let durationMatch = computedDuration.match(GROUP_MUMERIC);
+        let durationMatch = computedDuration.match(GROUP_NUMERIC);
         durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
 
         const computedDelay = computedStyle.getPropertyValue('transition-delay');
-        let delayMatch = computedDelay.match(GROUP_MUMERIC);
+        let delayMatch = computedDelay.match(GROUP_NUMERIC);
         delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
 
         waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
