@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { getSecureRelForTarget } from '../../services';
 
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
@@ -44,6 +45,8 @@ export const EuiCard = ({
   footer,
   onClick,
   href,
+  rel,
+  target,
   textAlign,
   isClickable,
   betaBadgeLabel,
@@ -63,6 +66,11 @@ export const EuiCard = ({
     },
     className,
   );
+
+  let secureRel;
+  if (href) {
+    secureRel = getSecureRelForTarget(target, rel);
+  }
 
   let imageNode;
   if (image && layout === 'vertical') {
@@ -115,6 +123,8 @@ export const EuiCard = ({
       onClick={onClick}
       className={classes}
       href={href}
+      target={target}
+      rel={secureRel}
       {...rest}
     >
       {optionalBetaBadge}
@@ -165,6 +175,8 @@ EuiCard.propTypes = {
    */
   onClick: PropTypes.func,
   href: PropTypes.string,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   textAlign: PropTypes.oneOf(ALIGNMENTS),
 
   /**

@@ -508,3 +508,67 @@ export function intersectBoundingBoxes(firstBox, secondBox) {
 
   return intersection;
 }
+
+
+/**
+ * Returns the top-most defined z-index in the element's ancestor hierarchy
+ * relative to the `target` element; if no z-index is defined, returns "0"
+ * @param element {HTMLElement|React.Component}
+ * @param cousin {HTMLElement|React.Component}
+ * @returns {string}
+ */
+export function getElementZIndex(element, cousin) {
+  element = findDOMNode(element);
+  cousin = findDOMNode(cousin);
+
+  /**
+   * finding the z-index of `element` is not the full story
+   * its the CSS stacking context that is important
+   * take this DOM for example:
+   * body
+   *   section[z-index: 1000]
+   *     p[z-index: 500]
+   *       button
+   *   div
+   *
+   * what z-index does the `div` need to display next to `button`?
+   * the `div` and `section` are where the stacking context splits
+   * so `div` needs to copy `section`'s z-index in order to
+   * appear next to / over `button`
+   *
+   * calculate this by starting at `button` and finding its offsetParents
+   * then walk the parents from top -> down until the stacking context
+   * split is found, or if there is no split then a specific z-index is unimportant
+   */
+
+  // build the array of the element + its offset parents
+  const nodesToInspect = [];
+  while (true) {
+    nodesToInspect.push(element);
+
+    element = element.offsetParent;
+
+    // stop if there is no parent
+    if (element == null) break;
+
+    // stop if the parent contains the related element
+    // as this is the z-index ancestor
+    if (element.contains(cousin)) break;
+  }
+
+  // reverse the nodes to walk from top -> element
+  nodesToInspect.reverse();
+
+  return nodesToInspect.reduce(
+    (foundZIndex, node) => {
+      if (foundZIndex != null) return foundZIndex;
+
+      // get this node's z-index css value
+      const zIndex = window.document.defaultView.getComputedStyle(node).getPropertyValue('z-index');
+
+      // if the z-index is not a number (e.g. "auto") return null, else the value
+      return isNaN(zIndex) ? null : zIndex;
+    },
+    null
+  ) || '0';
+}

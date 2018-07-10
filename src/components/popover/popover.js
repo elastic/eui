@@ -16,7 +16,7 @@ import { EuiPanel, SIZES } from '../panel';
 
 import { EuiPortal } from '../portal';
 
-import { findPopoverPosition } from '../../services/popover/popover_positioning';
+import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
 
 const anchorPositionToPopoverPositionMap = {
   'up': 'top',
@@ -184,14 +184,20 @@ export class EuiPopover extends Component {
       popover: this.panel,
       offset: 16,
       arrowConfig: {
-        arrowWidth: 32,
-        arrowBuffer: 5,
+        arrowWidth: 24,
+        arrowBuffer: 0,
       }
     });
+
+    // the popver's z-index must inherit from the button
+    // this keeps a button's popover under a flyout that would cover the button
+    // but a popover triggered inside a flyout will appear over that flyout
+    const zIndex = getElementZIndex(this.button, this.panel);
 
     const popoverStyles = {
       top,
       left,
+      zIndex,
     };
 
     const arrowStyles = arrow;
@@ -239,16 +245,16 @@ export class EuiPopover extends Component {
     const classes = classNames(
       'euiPopover',
       anchorPositionToClassNameMap[anchorPosition],
-      className,
       {
         'euiPopover-isOpen': this.state.isOpening,
         'euiPopover--withTitle': withTitle,
       },
+      className,
     );
 
     const panelClasses = classNames(
       'euiPopover__panel',
-      anchorPositionToClassNameMap[anchorPosition],
+      `euiPopover__panel-${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
       panelClassName
@@ -274,7 +280,7 @@ export class EuiPopover extends Component {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">You are in a popup menu. To exit this menu hit escape.</p>
+            <p role="alert">You are in a popup. To exit this popup, hit escape.</p>
           </EuiScreenReaderOnly>
         );
       }

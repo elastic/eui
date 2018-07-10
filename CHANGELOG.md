@@ -1,9 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
+- Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
 - Added `prepend` and `append` props to `EuiFormControlLayout` ([#961](https://github.com/elastic/eui/pull/961))
 - Updated style implementation of `EuiFilterGroup` and `EuiFilterGroupButton` ([#961](https://github.com/elastic/eui/pull/961))
 - Added `EuiDatePickerRange` as a way to layout two `EuiDatePicker`s. ([#961](https://github.com/elastic/eui/pull/961))
+
+**Bug fixes**
+
+- Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
+
+## [`1.1.0`](https://github.com/elastic/eui/tree/v1.1.0)
+
+- Added more (mainly style) options to `EuiRange` ([#932](https://github.com/elastic/eui/pull/932))
+- Cleaned up some `EuiPopover` styles ([#969](https://github.com/elastic/eui/pull/969))
+- Added `inputRef` prop to `EuiFieldPassword` ([#970](https://github.com/elastic/eui/pull/970))
+
+**Bug fixes**
+
+- Fixed disabled states of icon buttons ([#963](https://github.com/elastic/eui/pull/963))
+- Added word-break fallback for FF & IE in table cell ([#962](https://github.com/elastic/eui/pull/962))
+- Fixed `EuiPopover` to show content over modals, flyouts, etc ([#967](https://github.com/elastic/eui/pull/967))
+- Fixed background transition on inputs ([#969](https://github.com/elastic/eui/pull/969))
 
 ## [`1.0.1`](https://github.com/elastic/eui/tree/v1.0.1)
 
