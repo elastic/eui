@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
 - Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
+- Added `size` prop to `EuiIconTip` ([987](https://github.com/elastic/eui/pull/987))
 
 **Bug fixes**
 

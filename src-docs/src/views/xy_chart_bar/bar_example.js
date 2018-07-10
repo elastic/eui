@@ -6,7 +6,8 @@ import StackedVerticalBarSeriesExample from './stacked_vertical_bar_series';
 import StackedHorizontalBarSeriesExample from './stacked_horizontal_bar_series';
 import TimeSeriesExample from './time_series';
 
-import { EuiBadge, EuiCallOut, EuiSpacer, EuiLink, EuiCode, EuiBarSeries } from '../../../../src/components';
+import { EuiBadge, EuiCallOut, EuiSpacer, EuiLink, EuiCode } from '../../../../src/components';
+import { EuiBarSeries } from '../../../../src/experimental';
 
 export const XYChartBarExample = {
   title: 'Bar charts',
