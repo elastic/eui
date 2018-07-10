@@ -12,8 +12,8 @@ import {
   EuiCode,
   EuiCallOut,
   EuiLink,
-  EuiHistogramSeries,
 } from '../../../../src/components';
+import { EuiHistogramSeries } from '../../../../src/experimental';
 
 export const XYChartHistogramExample = {
   title: 'Histograms',

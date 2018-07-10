@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiXYChart, EuiBarSeries, EuiXYChartUtils } from '../../../../src/components';
+import { EuiXYChart, EuiBarSeries, EuiXYChartUtils } from '../../../../src/experimental';
 const { SCALE } = EuiXYChartUtils;
 const data = [
   { x: 'A', y: 3 },

@@ -5,7 +5,7 @@ import {
   EuiAreaSeries,
   EuiLineSeries,
   EuiXYChartUtils,
-} from '../../../../src/components';
+} from '../../../../src/experimental';
 const { ORIENTATION } = EuiXYChartUtils;
 
 const data = new Array(80).fill(0).map((d, i) => {
