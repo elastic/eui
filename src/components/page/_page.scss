@@ -1,4 +1,6 @@
 .euiPage {
+  display: flex;
+  flex-direction: column;
   padding: $euiSize;
   background-color: $euiColorLightestShade;
 
@@ -10,5 +12,9 @@
 
   &--restrictWidth-default {
     max-width: 1000px;
+  }
+
+  @include euiBreakpoint('xs', 's') {
+    padding: 0;
   }
 }

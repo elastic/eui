@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  min-height: 400px; // Temporary till we have a better doc system.
+  flex-grow: 1;
 }
 
 @include euiBreakpoint('xs','s') {

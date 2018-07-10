@@ -3,7 +3,7 @@
 exports[`EuiPageContentHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageContentHeader testClass1 testClass2"
+  class="euiPageContentHeader euiPageContentHeader--responsive testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
