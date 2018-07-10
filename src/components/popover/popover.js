@@ -183,17 +183,21 @@ export class EuiPopover extends Component {
   onMutation = (records) => {
     const waitDuration = records.reduce(
       (waitDuration, record) => {
-        const computedStyle = window.getComputedStyle(record.target);
+        // only check for CSS transition values for ELEMENT nodes
+        if (record.nodeType === document.ELEMENT_NODE) {
+          const computedStyle = window.getComputedStyle(record.target);
 
-        const computedDuration = computedStyle.getPropertyValue('transition-duration');
-        let durationMatch = computedDuration.match(GROUP_NUMERIC);
-        durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
+          const computedDuration = computedStyle.getPropertyValue('transition-duration');
+          let durationMatch = computedDuration.match(GROUP_NUMERIC);
+          durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
 
-        const computedDelay = computedStyle.getPropertyValue('transition-delay');
-        let delayMatch = computedDelay.match(GROUP_NUMERIC);
-        delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
+          const computedDelay = computedStyle.getPropertyValue('transition-delay');
+          let delayMatch = computedDelay.match(GROUP_NUMERIC);
+          delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
 
-        waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
+          waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
+        }
+
         return waitDuration;
       },
       0
@@ -362,7 +366,12 @@ export class EuiPopover extends Component {
                 children
                   ? (
                     <EuiMutationObserver
-                      observerOptions={{ attributes: true, childList: true, subtree: true }}
+                      observerOptions={{
+                        attributes: true, // element attribute changes
+                        childList: true, // added/removed elements
+                        characterData: true, // text changes
+                        subtree: true // watch all child elements
+                      }}
                       onMutation={this.onMutation}
                     >
                       {children}
