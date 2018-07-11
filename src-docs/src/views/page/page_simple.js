@@ -14,14 +14,14 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageHeader>
-      <EuiPageHeaderSection>
-        <EuiTitle size="l">
-          <h1>Page title</h1>
-        </EuiTitle>
-      </EuiPageHeaderSection>
-    </EuiPageHeader>
     <EuiPageBody>
+      <EuiPageHeader>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+      </EuiPageHeader>
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
