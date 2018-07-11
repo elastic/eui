@@ -184,7 +184,7 @@ export class EuiPopover extends Component {
     const waitDuration = records.reduce(
       (waitDuration, record) => {
         // only check for CSS transition values for ELEMENT nodes
-        if (record.nodeType === document.ELEMENT_NODE) {
+        if (record.target.nodeType === document.ELEMENT_NODE) {
           const computedStyle = window.getComputedStyle(record.target);
 
           const computedDuration = computedStyle.getPropertyValue('transition-duration');
@@ -249,13 +249,7 @@ export class EuiPopover extends Component {
     const arrowStyles = arrow;
     const arrowPosition = position;
 
-    this.setState(({ popoverStyles: lastPosition }) => {
-      // only call setState if the top or left values have changed
-      if (lastPosition.top === popoverStyles.top && lastPosition.left === popoverStyles.left) {
-        return null;
-      }
-      return { popoverStyles, arrowStyles, arrowPosition };
-    });
+    this.setState({ popoverStyles, arrowStyles, arrowPosition });
   }
 
   panelRef = node => {

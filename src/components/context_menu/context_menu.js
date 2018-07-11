@@ -177,7 +177,6 @@ export class EuiContextMenu extends Component {
       if (height === prevHeight) {
         return null;
       } else {
-        // this.onTransitionStart();
         return { height };
       }
     });

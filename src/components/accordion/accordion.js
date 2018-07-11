@@ -62,16 +62,6 @@ export class EuiAccordion extends Component {
 
   setChildContentRef = (node) => {
     this.childContent = node;
-    //
-    // if (this.observer) {
-    //   this.observer.disconnect();
-    //   this.observer = null;
-    // }
-    //
-    // if (node) {
-    //   this.observer = new MutationObserver(this.setChildContentHeight);
-    //   this.observer.observe(this.childContent, { childList: true, subtree: true });
-    // }
   }
 
   render() {
