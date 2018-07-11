@@ -395,7 +395,7 @@ export class EuiPopover extends Component {
           {...rest}
         >
           <div className="euiPopover__anchor" ref={this.buttonRef}>
-            {button}
+            {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
         </div>
@@ -409,7 +409,10 @@ EuiPopover.propTypes = {
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
-  button: PropTypes.node.isRequired,
+  button: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.instanceOf(HTMLElement),
+  ]).isRequired,
   children: PropTypes.node,
   anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,

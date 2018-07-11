@@ -231,6 +231,7 @@ export {
 export {
   EuiPopover,
   EuiPopoverTitle,
+  EuiWrappingPopover,
 } from './popover';
 
 export {

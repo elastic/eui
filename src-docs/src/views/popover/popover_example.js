@@ -36,6 +36,11 @@ import PopoverWithTitlePadding from './popover_with_title_padding';
 const popoverWithTitlePaddingSource = require('!!raw-loader!./popover_with_title_padding');
 const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
 
+import PopoverHTMLElementAnchor from './popover_htmlelement_anchor';
+const popoverHTMLElementAnchorSource = require('!!raw-loader!./popover_htmlelement_anchor');
+const popoverHTMLElementAnchorHtml = renderToHtml(PopoverHTMLElementAnchor);
+
+
 export const PopoverExample = {
   title: 'Popover',
   sections: [{
@@ -158,5 +163,23 @@ export const PopoverExample = {
       </div>
     ),
     demo: <PopoverWithTitlePadding />,
+  }, {
+    title: 'Popover using an HTMLElement as the anchor',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverHTMLElementAnchorSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverHTMLElementAnchorHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          <EuiCode>EuiWrappingPopover</EuiCode> is an extra popover component that allows
+          any existing DOM element to be passed as the <EuiCode>button</EuiCode> prop.
+        </p>
+      </div>
+    ),
+    demo: <PopoverHTMLElementAnchor />,
   }],
 };

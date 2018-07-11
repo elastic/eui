@@ -37,9 +37,20 @@ export class EuiPortal extends Component {
     }
   }
 
+  componentDidMount() {
+    this.updatePortalRef();
+  }
+
   componentWillUnmount() {
     this.portalNode.parentNode.removeChild(this.portalNode);
     this.portalNode = null;
+    this.updatePortalRef();
+  }
+
+  updatePortalRef() {
+    if (this.props.portalRef) {
+      this.props.portalRef(this.portalNode);
+    }
   }
 
   render() {
@@ -57,6 +68,7 @@ EuiPortal.propTypes = {
       PropTypes.node,
       PropTypes.instanceOf(HTMLElement)
     ]).isRequired,
-    position: PropTypes.oneOf(INSERT_POSITIONS)
+    position: PropTypes.oneOf(INSERT_POSITIONS),
+    portalRef: PropTypes.func,
   })
 };
