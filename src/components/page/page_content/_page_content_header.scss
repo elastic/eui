@@ -17,6 +17,6 @@
 @include euiBreakpoint('xs','s') {
   .euiPageContentHeader--responsive {
     flex-direction: column;
-    align-items: unset;
+    align-items: flex-start;
   }
 }
