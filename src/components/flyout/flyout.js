@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
@@ -28,21 +26,9 @@ export class EuiFlyout extends Component {
   };
 
   render() {
-    const {
-      className,
-      children,
-      hideCloseButton,
-      onClose,
-      ownFocus,
-      size,
-      ...rest
-    } = this.props;
+    const { className, children, hideCloseButton, onClose, ownFocus, size, ...rest } = this.props;
 
-    const classes = classnames(
-      'euiFlyout',
-      sizeToClassNameMap[size],
-      className
-    );
+    const classes = classnames('euiFlyout', sizeToClassNameMap[size], className);
 
     let closeButton;
     if (onClose && !hideCloseButton) {
@@ -53,6 +39,7 @@ export class EuiFlyout extends Component {
           color="text"
           aria-label="Closes this dialog"
           onClick={onClose}
+          data-test-subj="euiFlyoutCloseButton"
         />
       );
     }
@@ -60,7 +47,9 @@ export class EuiFlyout extends Component {
     const flyoutContent = (
       <div
         role="dialog"
-        ref={node => { this.flyout = node; }}
+        ref={node => {
+          this.flyout = node;
+        }}
         className={classes}
         tabIndex={0}
         onKeyDown={this.onKeyDown}
@@ -75,9 +64,7 @@ export class EuiFlyout extends Component {
     // to click it to close it.
     let optionalOverlay;
     if (ownFocus) {
-      optionalOverlay = (
-        <EuiOverlayMask onClick={onClose} />
-      );
+      optionalOverlay = <EuiOverlayMask onClick={onClose} />;
     }
 
     return (

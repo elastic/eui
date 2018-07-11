@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `1.2.1`.
+- Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000/files))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 
