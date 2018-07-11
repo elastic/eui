@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Make some proprties of `EuiFlyout` optional ([#1002](https://github.com/elastic/eui/pull/1002))
+- Make some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
 
