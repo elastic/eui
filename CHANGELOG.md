@@ -3,6 +3,12 @@
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000/files))
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 
+**Breaking changes**
+
+- Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
+  - `EuiPageHeader` must now be contained within `EuiPageBody`
+  - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
+
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 
 **Bug fixes**
@@ -11,7 +17,7 @@
 
 ## [`1.2.0`](https://github.com/elastic/eui/tree/v1.2.0)
 
-**Note: this release creates a minor regression to the sizing of `EuiTitle`s. This is fixed in `master`.**
+**Note: this release creates a minor regression to the sizing of `EuiTitle`s. This is fixed in `1.2.1`.**
 
 - Added typings for keyCodes ([#988](https://github.com/elastic/eui/pull/988))
 - Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
