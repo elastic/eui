@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import { EuiPopover } from './popover';
 import { EuiPortal } from '../portal';
 
@@ -55,3 +56,7 @@ export class EuiWrappingPopover extends Component {
     );
   }
 }
+
+EuiWrappingPopover.propTypes = {
+  button: PropTypes.instanceOf(HTMLElement),
+};

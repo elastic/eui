@@ -224,6 +224,7 @@ export class EuiPopover extends Component {
     if (this.button == null || this.panel == null) return;
 
     const { top, left, position, arrow } = findPopoverPosition({
+      container: this.props.container,
       position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
@@ -235,7 +236,7 @@ export class EuiPopover extends Component {
       }
     });
 
-    // the popver's z-index must inherit from the button
+    // the popover's z-index must inherit from the button
     // this keeps a button's popover under a flyout that would cover the button
     // but a popover triggered inside a flyout will appear over that flyout
     const zIndex = getElementZIndex(this.button, this.panel);
@@ -403,15 +404,16 @@ EuiPopover.propTypes = {
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
-  button: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.instanceOf(HTMLElement),
-  ]).isRequired,
+  button: PropTypes.node.isRequired,
   children: PropTypes.node,
   anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
-  popoverRef: PropTypes.func
+  popoverRef: PropTypes.func,
+  container: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.instanceOf(HTMLElement)
+  ]),
 };
 
 EuiPopover.defaultProps = {

@@ -40,6 +40,10 @@ import PopoverHTMLElementAnchor from './popover_htmlelement_anchor';
 const popoverHTMLElementAnchorSource = require('!!raw-loader!./popover_htmlelement_anchor');
 const popoverHTMLElementAnchorHtml = renderToHtml(PopoverHTMLElementAnchor);
 
+import PopoverContainer from './popover_container';
+const popoverContainerSource = require('!!raw-loader!./popover_htmlelement_anchor');
+const popoverContainerHtml = renderToHtml(PopoverHTMLElementAnchor);
+
 
 export const PopoverExample = {
   title: 'Popover',
@@ -163,6 +167,25 @@ export const PopoverExample = {
       </div>
     ),
     demo: <PopoverWithTitlePadding />,
+  }, {
+    title: 'Constraining a popover inside a container',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverContainerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverContainerHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          <EuiCode>EuiPopover</EuiCode> can accept a React or DOM element as
+          a <EuiCode>container</EuiCode> prop and restrict the popover from
+          overflowing that container.
+        </p>
+      </div>
+    ),
+    demo: <PopoverContainer />,
   }, {
     title: 'Popover using an HTMLElement as the anchor',
     source: [{
