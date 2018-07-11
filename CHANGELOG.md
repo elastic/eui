@@ -2,6 +2,7 @@
 
 - Added `EuiMutationObserver` to expose Mutation Observer API to React components ([#966](https://github.com/elastic/eui/pull/966))
 - Added `EuiWrappingPopover` which allows existing non-React elements to be popover anchors ([#966](https://github.com/elastic/eui/pull/966))
+- `EuiPopover` accepts a `container` prop to further restrict popover placement ([#966](https://github.com/elastic/eui/pull/966))
 - `EuiPortal` can inject content at arbitrary DOM locations, added `portalRef` prop ([#966](https://github.com/elastic/eui/pull/966))
 
 **Bug fixes**
