@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000/files))
+- Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 
