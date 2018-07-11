@@ -27,7 +27,6 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     isLoading?: boolean;
     isDisabled?: boolean;
-    href?: string;
   }
   export const EuiButton: SFC<
     CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonProps
@@ -52,7 +51,6 @@ declare module '@elastic/eui' {
     'aria-label'?: string;
     'aria-labelledby'?: string;
     isDisabled?: boolean;
-    href?: string;
   }
   export const EuiButtonIcon: SFC<
     CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonIconProps
@@ -82,7 +80,6 @@ declare module '@elastic/eui' {
     flush?: EmptyButtonFlush;
     isLoading?: boolean;
     isDisabled?: boolean;
-    href?: string;
   }
 
   export const EuiButtonEmpty: SFC<
