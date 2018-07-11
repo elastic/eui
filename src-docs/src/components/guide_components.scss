@@ -9,6 +9,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guidePage {
   padding: 0;
+
+  @include euiBreakpoint('xs', 's') {
+    display: block; // Fixes IE
+  }
 }
 
 .guideSideNav {
@@ -39,7 +43,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .guidePageContent {
-  flex: 1 1 0%;
+  flex: 1 1 auto;
   padding: $euiSize $euiSizeXL;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
@@ -49,6 +53,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .guideDemo__highlightLayout {
+  .euiPageBody {
+    min-height: 460px;
+  }
+
   div {
     background: transparentize(#0096CC, .9);
   }

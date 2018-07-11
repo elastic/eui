@@ -1,15 +1,14 @@
 .euiPageHeaderSection {
-
   & + & {
     margin-left: $euiSizeXL;
   }
 }
-@include euiBreakpoint('xs','s') {
 
-  .euiPageHeaderSection {
+@include euiBreakpoint('xs','s') {
+  .euiPageHeader--responsive .euiPageHeaderSection {
     width: 100%;
 
-    & + & {
+    + .euiPageHeaderSection {
       margin-left: 0;
       margin-top: $euiSize;
     }

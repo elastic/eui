@@ -1,13 +1,7 @@
 .euiPageBody {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: stretch;
-  min-height: 400px; // Temporary till we have a better doc system.
-}
-
-@include euiBreakpoint('xs','s') {
-  .euiPageBody {
-    flex-direction: column;
-  }
+  flex: 1 1 0%;
 }
 

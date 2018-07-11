@@ -7,15 +7,18 @@
 
   &.euiPageContent--horizontalCenter {
     width: auto;
+    max-width: 100%; // Fixes IE
     margin: auto;
     flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
   }
-}
 
-
-@include euiBreakpoint('xs','s') {
-  .euiPageContent {
-    border-radius: 0;
-    border: none;
+  // At small screens, the content extends edge to edge, so remove the side borders and shadow
+  @include euiBreakpoint('xs', 's') {
+    &.euiPanel:not(.euiPageContent--horizontalCenter) { // Override panel styles without the need for !important
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      box-shadow: none;
+    }
   }
 }
