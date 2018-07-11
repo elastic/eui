@@ -17,6 +17,7 @@ No public interface changes since `1.2.1`.
 - Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
 - Added `size` prop to `EuiIconTip` ([987](https://github.com/elastic/eui/pull/987))
 - Added `database`, `filter`, `globe`, and `save` icons ([990](https://github.com/elastic/eui/pull/990))
+- Updated typings for `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` to include `<a>` tag attributes like `href` ([#992](https://github.com/elastic/eui/pull/992))
 
 **Bug fixes**
 
