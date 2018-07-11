@@ -35,6 +35,7 @@ import createPopulationJob from './assets/ml_create_population_job.svg';
 import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import dashboardApp from './assets/app_dashboard.svg';
+import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
@@ -64,8 +65,10 @@ import eyeClosed from './assets/eye_closed.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
+import filter from './assets/filter.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
+import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
@@ -140,6 +143,7 @@ import popout from './assets/popout.svg';
 import questionInCircle from './assets/question_in_circle.svg';
 import refresh from './assets/refresh.svg';
 import reportingApp from './assets/app_reporting.svg';
+import save from './assets/save.svg';
 import savedObjectsApp from './assets/app_saved_objects.svg';
 import scale from './assets/scale.svg';
 import search from './assets/search.svg';
@@ -206,6 +210,7 @@ const typeToIconMap = {
   createSingleMetricJob,
   cross,
   dashboardApp,
+  database,
   dataVisualizer,
   devToolsApp,
   discoverApp,
@@ -235,8 +240,10 @@ const typeToIconMap = {
   faceHappy,
   faceNeutral,
   faceSad,
+  filter,
   fullScreen,
   gear,
+  globe,
   grab,
   graphApp,
   grid,
@@ -311,6 +318,7 @@ const typeToIconMap = {
   questionInCircle,
   refresh,
   reportingApp,
+  save,
   savedObjectsApp,
   scale,
   search,

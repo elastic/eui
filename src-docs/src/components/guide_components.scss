@@ -1,34 +1,7 @@
+@import '../../src/global_styling/mixins/_helpers.scss';
+
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
-
-@mixin whenNarrowerThan($browserWidth) {
-  @media only screen and (max-width: #{$browserWidth}) {
-    @content;
-  }
-}
-
-@mixin whenWiderThan($browserWidth) {
-  @media only screen and (min-width: #{$browserWidth}) {
-    @content;
-  }
-}
-
-@mixin scrollbar($color: rgba(#454D58, 0.4)) {
-  &::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $color;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-}
 
 .guideBody {
   background: linear-gradient(90deg, $euiColorLightestShade 50%, $euiColorEmptyShade 50%);
@@ -60,7 +33,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     position: absolute;
     bottom: 0;
     top: 132px;
-    @include scrollbar;
+    @include euiScrollBar;
     overflow-y: auto;
   }
 }

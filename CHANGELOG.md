@@ -1,12 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Gave Flyout close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000/files))
+
+## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
+
+**Bug fixes**
+
+- Removed global manipulation of `EuiTitle` sizing in XYCharts ([#997](https://github.com/elastic/eui/pull/997))
+
+## [`1.2.0`](https://github.com/elastic/eui/tree/v1.2.0)
+
+**Note: this release creates a minor regression to the sizing of `EuiTitle`s. This is fixed in `master`.**
+
+- Added typings for keyCodes ([#988](https://github.com/elastic/eui/pull/988))
 - Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
 - Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
+- Added `size` prop to `EuiIconTip` ([987](https://github.com/elastic/eui/pull/987))
+- Added `database`, `filter`, `globe`, and `save` icons ([990](https://github.com/elastic/eui/pull/990))
+- Updated typings for `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` to include `<a>` tag attributes like `href` ([#992](https://github.com/elastic/eui/pull/992))
 
 **Bug fixes**
 
 - Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
+- Fixed white square that show in double scollbar via `euiScrollBar()` ([989](https://github.com/elastic/eui/pull/989))
+- Fixed issue with Accordion would attempt to use properties and accessors on null ([#982](https://github.com/elastic/eui/pull/982))
 
 ## [`1.1.0`](https://github.com/elastic/eui/tree/v1.1.0)
 
