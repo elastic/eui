@@ -1,9 +1,15 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler } from 'react';
 
 declare module '@elastic/eui' {
+  type EuiButtonPropsForButtonOrLink<Props> = (
+    (Props & { onClick: MouseEventHandler<HTMLButtonElement> } & ButtonHTMLAttributes<HTMLButtonElement>) |
+    (Props & { href: string; onClick: MouseEventHandler<HTMLAnchorElement> } & AnchorHTMLAttributes<HTMLAnchorElement>) |
+    (Props & AnchorHTMLAttributes<HTMLAnchorElement> & ButtonHTMLAttributes<HTMLButtonElement>)
+  )
+
   /**
    * Normal button type defs
    *
@@ -29,7 +35,7 @@ declare module '@elastic/eui' {
     isDisabled?: boolean;
   }
   export const EuiButton: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
   >;
 
   /**
@@ -53,7 +59,7 @@ declare module '@elastic/eui' {
     isDisabled?: boolean;
   }
   export const EuiButtonIcon: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonIconProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
   >;
 
   /**
@@ -83,6 +89,6 @@ declare module '@elastic/eui' {
   }
 
   export const EuiButtonEmpty: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement> & EuiButtonEmptyProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonEmptyProps>
   >;
 }
