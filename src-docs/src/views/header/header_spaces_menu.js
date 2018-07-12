@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 
 import {
-  EuiIcon,
   EuiHeaderSectionItemButton,
   EuiContextMenuPanel,
   EuiContextMenuItem,
@@ -42,7 +41,7 @@ export default class extends Component {
         aria-label="Apps menu"
         onClick={this.onMenuButtonClick}
       >
-        <EuiAvatar type="space" name="Sales Team" />
+        <EuiAvatar type="space" size="s" name="Sales Team" />
       </EuiHeaderSectionItemButton>
     );
 
@@ -55,7 +54,7 @@ export default class extends Component {
         >
           Sales Team
         </EuiContextMenuItem>
-      ),(
+      ), (
         <EuiContextMenuItem
           key="Engineering"
           icon={(<EuiAvatar type="space" name="Engineering" size="s" />)}
@@ -63,7 +62,7 @@ export default class extends Component {
         >
           Engineering
         </EuiContextMenuItem>
-      ),(
+      ), (
         <EuiContextMenuItem
           key="Security"
           icon={(<EuiAvatar type="space" name="Security" size="s" initialsLength={2} />)}
@@ -71,12 +70,12 @@ export default class extends Component {
         >
           Security
         </EuiContextMenuItem>
-      ),(
+      ), (
         <div className="euiContextMenuItem">
           <EuiButton size="s" style={{ width: `100%` }}>Manage spaces</EuiButton>
         </div>
       )
-    ]
+    ];
 
     return (
       <EuiPopover

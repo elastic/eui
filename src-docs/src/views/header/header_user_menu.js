@@ -45,7 +45,7 @@ export default class extends Component {
         aria-label="Account menu"
         onClick={this.onMenuButtonClick}
       >
-        <EuiAvatar name="John Username" />
+        <EuiAvatar name="John Username" size="s" />
 
         <EuiNotificationBadge className="euiHeaderNotification">3</EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
@@ -62,7 +62,7 @@ export default class extends Component {
         panelPaddingSize="none"
       >
         <div style={{ width: 320 }}>
-          <EuiFlexGroup gutterSize="m" className="euiHeaderProfile">
+          <EuiFlexGroup gutterSize="m" className="euiHeaderProfile" responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiAvatar name="John Username" size="xl" />
             </EuiFlexItem>

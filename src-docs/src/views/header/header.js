@@ -23,7 +23,7 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <EuiHeaderLogo href="#" aria-label="Go to home page" />
+      <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />
     );
   }
 
