@@ -57,10 +57,12 @@ export const PortalExample = {
           update.
         </p>
         <p>
-          <EuiCode>insert</EuiCode> is an object with two key/values: <EuiCode>sibling</EuiCode>
-          and <EuiCode>position</EuiCode>. sibling is either the React node or HTMLElement
-          the portal should be inserted next to, and position specifies the portals relative
-          position, either <EuiCode>before</EuiCode> or <EuiCode>after</EuiCode>.
+          <EuiCode>insert</EuiCode> is an object with two key-value
+          pairs: <EuiCode>sibling</EuiCode> and <EuiCode>position</EuiCode>.
+          <EuiCode>sibling</EuiCode> is the React node or HTMLElement to
+          insert the portal next to, and <EuiCode>position</EuiCode> specifies
+          the portal&apos;s relative position, either <EuiCode>before</EuiCode> or
+          <EuiCode>after</EuiCode>.
         </p>
       </React.Fragment>
     ),
