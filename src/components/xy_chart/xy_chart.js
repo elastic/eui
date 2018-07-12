@@ -107,6 +107,7 @@ class XYChart extends PureComponent {
       orientation,
       crosshairValue,
       onCrosshairUpdate,
+      ...rest
     } = this.props;
 
     if (this._isEmptyPlot(children)) {
@@ -126,34 +127,36 @@ class XYChart extends PureComponent {
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
     const seriesNames = this._getSeriesNames(children);
     return (
-      <XYPlot
-        ref={this._xyPlotRef}
-        dontCheckIfEmpty
-        width={width}
-        animation={animateData}
-        height={height}
-        margin={DEFAULT_MARGINS}
-        xType={xType}
-        yType={yType}
-        xDomain={xDomain}
-        yDomain={yDomain}
-        stackBy={stackBy}
-        yPadding={yPadding}
-        xPadding={xPadding}
-      >
-        {this._renderChildren(children)}
-        {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
-        {showCrosshair && (
-          <Crosshair seriesNames={seriesNames} crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
-        )}
+      <div {...rest}>
+        <XYPlot
+          ref={this._xyPlotRef}
+          dontCheckIfEmpty
+          width={width}
+          animation={animateData}
+          height={height}
+          margin={DEFAULT_MARGINS}
+          xType={xType}
+          yType={yType}
+          xDomain={xDomain}
+          yDomain={yDomain}
+          stackBy={stackBy}
+          yPadding={yPadding}
+          xPadding={xPadding}
+        >
+          {this._renderChildren(children)}
+          {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
+          {showCrosshair && (
+            <Crosshair seriesNames={seriesNames} crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
+          )}
 
-        {enableSelectionBrush && (
-          <EuiSelectionBrush
-            onBrushEnd={onSelectionBrushEnd}
-            orientation={selectionBrushOrientation}
-          />
-        )}
-      </XYPlot>
+          {enableSelectionBrush && (
+            <EuiSelectionBrush
+              onBrushEnd={onSelectionBrushEnd}
+              orientation={selectionBrushOrientation}
+            />
+          )}
+        </XYPlot>
+      </div>
     );
   }
 }
