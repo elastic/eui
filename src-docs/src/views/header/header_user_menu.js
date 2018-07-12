@@ -8,7 +8,7 @@ import {
   EuiFlexItem,
   EuiHeaderAlert,
   EuiHeaderSectionItemButton,
-  EuiHeaderNotification,
+  EuiNotificationBadge,
   EuiIcon,
   EuiLink,
   EuiText,
@@ -51,7 +51,7 @@ export default class extends Component {
           size="m"
         />
 
-        <EuiHeaderNotification>3</EuiHeaderNotification>
+        <EuiNotificationBadge>3</EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
     );
 

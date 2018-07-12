@@ -1,7 +1,6 @@
 // Themable colors
 $euiHeaderBackgroundColor: $euiColorEmptyShade;
 $euiHeaderBreadcrumbColor: $euiColorDarkestShade;
-$euiHeaderNotificationBackgroundColor: $euiColorAccent;
 
 // Layout vars
 $euiHeaderChildSize: $euiSizeXXL + $euiSizeL;
@@ -12,7 +11,6 @@ $euiHeaderChildSize: $euiSizeXXL + $euiSizeL;
 @import 'header_profile';
 @import 'header_links/index';
 @import 'header_logo';
-@import 'header_notification';
 @import 'header_alert/index';
 @import 'header_breadcrumbs/index';
 @import 'header_section/index';
