@@ -19,11 +19,11 @@ export class PortalInsert extends Component {
     };
   }
 
-  setButtonRef = node => this.buttonRef = node
+  setButtonRef = node => this.buttonRef = node;
 
   togglePortal = () => {
     this.setState(prevState => ({ isPortalVisible: !prevState.isPortalVisible }));
-  }
+  };
 
   render() {
 

@@ -49,13 +49,22 @@ export const PortalExample = {
       code: portalInsertHtml,
     }],
     text: (
-      <p>
-        There is an optional <EuiCode>insert</EuiCode> prop that can specify the portal&quot;s
-        location in the DOM. When used, it is important to consider how the location relates
-        to the component lifecycle, as it could be removed from the DOM by another component
-        update.
-      </p>
+      <React.Fragment>
+        <p>
+          There is an optional <EuiCode>insert</EuiCode> prop that can specify the portal&apos;s
+          location in the DOM. When used, it is important to consider how the location relates
+          to the component lifecycle, as it could be removed from the DOM by another component
+          update.
+        </p>
+        <p>
+          <EuiCode>insert</EuiCode> is an object with two key/values: <EuiCode>sibling</EuiCode>
+          and <EuiCode>position</EuiCode>. sibling is either the React node or HTMLElement
+          the portal should be inserted next to, and position specifies the portals relative
+          position, either <EuiCode>before</EuiCode> or <EuiCode>after</EuiCode>.
+        </p>
+      </React.Fragment>
     ),
+    props: { EuiPortal },
     demo: <PortalInsert />,
   }],
 };

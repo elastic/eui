@@ -41,8 +41,8 @@ const popoverHTMLElementAnchorSource = require('!!raw-loader!./popover_htmleleme
 const popoverHTMLElementAnchorHtml = renderToHtml(PopoverHTMLElementAnchor);
 
 import PopoverContainer from './popover_container';
-const popoverContainerSource = require('!!raw-loader!./popover_htmlelement_anchor');
-const popoverContainerHtml = renderToHtml(PopoverHTMLElementAnchor);
+const popoverContainerSource = require('!!raw-loader!./popover_container');
+const popoverContainerHtml = renderToHtml(PopoverContainer);
 
 
 export const PopoverExample = {

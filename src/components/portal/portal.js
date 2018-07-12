@@ -63,12 +63,13 @@ export class EuiPortal extends Component {
 
 EuiPortal.propTypes = {
   children: PropTypes.node,
+  /** `{sibling: ReactNode|HTMLElement, position: 'before'|'after'}` */
   insert: PropTypes.shape({
     sibling: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.instanceOf(HTMLElement)
     ]).isRequired,
     position: PropTypes.oneOf(INSERT_POSITIONS),
-    portalRef: PropTypes.func,
-  })
+  }),
+  portalRef: PropTypes.func,
 };
