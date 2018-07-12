@@ -55,7 +55,7 @@ declare module '@elastic/eui' {
 
   export type EuiContextMenuItemIcon = ReactElement<any> | string;
 
-  export interface EuiContextMenuItemProps {
+  export interface EuiContextMenuItemProps extends CommonProps {
     icon?: EuiContextMenuItemIcon;
     hasPanel?: boolean;
     disabled?: boolean;
