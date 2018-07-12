@@ -4,6 +4,10 @@
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
 
+**Bug fixes**
+
+- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
+
 **Breaking changes**
 
 - Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
