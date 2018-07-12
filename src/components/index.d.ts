@@ -21,3 +21,4 @@
 /// <reference path="./horizontal_rule/index.d.ts" />
 /// <reference path="./page/index.d.ts" />
 /// <reference path="./flyout/index.d.ts" />
+/// <reference path="./empty_prompt/index.d.ts" />
