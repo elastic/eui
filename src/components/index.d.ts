@@ -22,3 +22,4 @@
 /// <reference path="./page/index.d.ts" />
 /// <reference path="./flyout/index.d.ts" />
 /// <reference path="./empty_prompt/index.d.ts" />
+/// <reference path="./code/index.d.ts" />
