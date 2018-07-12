@@ -9,7 +9,6 @@ import {
   EuiHeaderAlert,
   EuiHeaderSectionItemButton,
   EuiNotificationBadge,
-  EuiIcon,
   EuiLink,
   EuiText,
   EuiSpacer,
@@ -46,12 +45,9 @@ export default class extends Component {
         aria-label="Account menu"
         onClick={this.onMenuButtonClick}
       >
-        <EuiIcon
-          type="user"
-          size="m"
-        />
+        <EuiAvatar name="John Username" />
 
-        <EuiNotificationBadge>3</EuiNotificationBadge>
+        <EuiNotificationBadge className="euiHeaderNotification">3</EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
     );
 

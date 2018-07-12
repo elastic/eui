@@ -15,6 +15,13 @@
     background: $euiBorderColor;
     left: 0;
   }
+
+  .euiHeaderNotification {
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeM;
+    box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
+  }
 }
 
   .euiHeaderSectionItem__button {
