@@ -58,6 +58,8 @@ declare module '@elastic/eui' {
   export interface EuiContextMenuItemProps {
     icon?: EuiContextMenuItemIcon;
     hasPanel?: boolean;
+    disabled?: boolean;
+    onClick?: () => void;
     buttonRef?: RefCallback<HTMLButtonElement>;
   }
 
