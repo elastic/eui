@@ -15,6 +15,7 @@
 **Bug fixes**
 
 - Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 
