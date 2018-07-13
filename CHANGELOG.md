@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `2.0.0`.
+**Bug fixes**
+
+- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
 
 ## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
 
