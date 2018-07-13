@@ -4,6 +4,7 @@
 - Make some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
+- Updated `react-vis` version to `1.10.2`. ([#999](https://github.com/elastic/eui/pull/999))
 
 **Breaking changes**
 
