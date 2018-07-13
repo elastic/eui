@@ -47,7 +47,7 @@
  *  3. Be sure to hide/show the element initially
  */
 [class*="eui-hideFor"] {
-  display: initial !important; /* 3 */
+  display: inline !important; /* 3 */
 }
 [class*="eui-showFor"] {
  display: none !important; /* 3 */
@@ -58,7 +58,7 @@
     @include euiBreakpoint($size) { display: none !important; }
   }
   .eui-showFor--#{$size} {
-    @include  euiBreakpoint($size) { display: initial !important; }
+    @include  euiBreakpoint($size) { display: inline !important; }
   }
 }
 

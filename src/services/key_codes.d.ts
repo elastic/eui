@@ -11,5 +11,5 @@ declare module '@elastic/eui' {
     UP = 38,
     LEFT = 37,
     RIGHT = 39,
-  };
+  }
  }

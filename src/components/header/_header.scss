@@ -1,21 +1,11 @@
 // Header. Includes breadcrumbs of nav buttons.
 
 .euiHeader {
+  position: relative;
+  z-index: $euiZHeader; // ensure the shadow shows above content
   @include euiBottomShadowSmall;
 
   display: flex;
   background: $euiHeaderBackgroundColor;
   border-bottom: $euiBorderThin;
 }
-
-  .euiHeader__notification {
-    display: inline-block;
-    border-radius: $euiBorderRadius;
-    background: $euiHeaderNotificationBackgroundColor;
-    color: $euiColorEmptyShade;
-    font-size: $euiFontSizeXS;
-    line-height: $euiSize;
-    height: $euiSize;
-    min-width: $euiSize;
-    vertical-align: middle;
-  }

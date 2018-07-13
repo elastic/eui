@@ -7,9 +7,7 @@ import moment from 'moment';
 
 import {
   EuiDatePicker,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiFormRow,
+  EuiDatePickerRange,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -39,30 +37,30 @@ export default class extends Component {
 
   render() {
     return (
-      <EuiFlexGroup gutterSize="none">
-        <EuiFlexItem grow={false}>
-          <EuiFormRow label="Start date">
-            <EuiDatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChangeStart}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              showTimeSelect
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiFormRow label="End date">
-            <EuiDatePicker
-              selected={this.state.endDate}
-              onChange={this.handleChangeEnd}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              showTimeSelect
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiDatePickerRange
+        startDateControl={
+          <EuiDatePicker
+            selected={this.state.startDate}
+            onChange={this.handleChangeStart}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            isInvalid={this.state.startDate > this.state.endDate}
+            aria-label="Start date"
+            showTimeSelect
+          />
+        }
+        endDateControl={
+          <EuiDatePicker
+            selected={this.state.endDate}
+            onChange={this.handleChangeEnd}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            isInvalid={this.state.startDate > this.state.endDate}
+            aria-label="End date"
+            showTimeSelect
+          />
+        }
+      />
     );
   }
 }

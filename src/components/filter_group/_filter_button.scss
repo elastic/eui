@@ -1,96 +1,54 @@
+@import '../form/variables';
+@import '../form/mixins';
+@import '../form/form_control_layout/mixins';
+
 /**
- * 1. We don't want any of the animations that come inherited from the mixin.
- *    These should act like normal links instead.
+ * 1. Account for inner box-shadow style border
  */
+
 .euiFilterButton {
-  @include euiButton;
+  flex-grow: 0; // Shrink by default
+  height: $euiFormControlHeight - 2px; /* 1 */
+  font-size: $euiFontSizeS;
 
-  line-height: 40px;
-  border-color: transparent;
-  background-color: transparent;
-  box-shadow: none;
-  transform: none !important; // 1
-  animation: none !important; // 1
-
-  .euiFilterButton__content {
-    @include euiButtonContent;
-
-    padding: 0 $euiSizeS;
-
-  }
-
-  .euiFilterButton__textShift {
-    text-align: center;
-    display: inline-block;
-
-    &::after {
-      display: block;
-      content: attr(data-text);
-      font-weight: $euiFontWeightBold;
-      height: 0;
-      overflow: hidden;
-      visibility: hidden;
-    }
-  }
-
-  &.euiFilterButton--iconRight {
-    .euiFilterButton__content {
-      @include euiButtonContent($isReverse: true);
-    }
+  &:not(:last-child):not(.euiFilterButton--noDivider) {
+    border-right: 1px solid $euiFormBorderColor;
   }
 
   &:disabled {
-    color: $euiButtonColorDisabled;
-    pointer-events: none;
-
-    .euiFilterButton__content {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    .euiFilterButton__icon {
-      fill: $euiButtonColorDisabled;
-    }
-
-    &:hover, &:focus {
-      background-color: $euiColorEmptyShade;
-      text-decoration: none;
-    }
+    font-style: italic;
   }
 
-  &.euiFilterButton-isSelected {
-    text-decoration: underline;
+  &.euiFilterButton--grow {
+    flex-grow: 1;
+    width: 100%;
+    text-align: left;
+
+    // Force content to space out icon
+    .euiButtonEmpty__content {
+      justify-content: space-between;
+    }
   }
 
   &.euiFilterButton-hasActiveFilters {
-    font-weight: $euiFontWeightBold;
+    font-weight: $euiFontWeightMedium;
+  }
+
+  .euiFilterButton__notification {
+    margin-left: $euiSizeS;
+    vertical-align: text-bottom;
   }
 }
 
-// Modifier naming and colors.
-$buttonTypes: (
-  primary: $euiColorPrimary,
-  danger: $euiColorDanger,
-  disabled: tintOrShade($euiTextColor, 70%, 80%),
-  ghost: $euiColorGhost,
-  text: $euiTextColor,
-);
+.euiFilterButton__textShift {
+  vertical-align: middle;
 
-// Create button modifiders based upon the map.
-@each $name, $color in $buttonTypes {
-  .euiFilterButton--#{$name} {
-    color: $color;
-
-    .euiFilterButton__icon {
-      fill: $color;
-    }
-
-    &:hover {
-      background-color: transparent;
-
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
-      }
-    }
+  &::after {
+    display: block;
+    content: attr(data-text);
+    font-weight: $euiFontWeightBold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
 }

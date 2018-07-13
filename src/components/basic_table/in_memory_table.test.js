@@ -629,4 +629,40 @@ describe('EuiInMemoryTable', () => {
       ]);
     });
   });
+
+  describe('behavior', () => {
+    test('pagination', async () => {
+
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+          { id: '4', name: 'name4' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description'
+          }
+        ],
+        pagination: {
+          pageSizeOptions: [2, 4, 6]
+        },
+      };
+      const component = mount(
+        <EuiInMemoryTable {...props} />
+      );
+
+      component.find('[data-test-subj="pagination-button-1"]').first().simulate('click');
+
+      // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
+      // this is specifically testing regression against https://github.com/elastic/eui/issues/1007
+      component.setProps();
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

@@ -1,20 +1,15 @@
 .euiHeaderAlert {
-  text-align: left;
   min-width: 300px;
   position: relative;
-  margin: 0 (-$euiSize);
   padding: $euiSize;
   border-top: $euiBorderThin;
 
   .euiHeaderAlert__dismiss {
     opacity: 0;
     position: absolute;
-    right: $euiSize;
-    top: $euiSize;
+    right: $euiSize - 4px;
+    top: $euiSize - 4px;
     transition: opacity $euiAnimSpeedNormal ease-in;
-    cursor: pointer;
-    height: auto;
-    width: auto;
   }
 
   &:hover .euiHeaderAlert__dismiss,
@@ -23,8 +18,7 @@
   }
 
   .euiHeaderAlert__title {
-    font-weight: $euiFontWeightMedium;
-    @include euiFontSize;
+    @include euiTitle("xs");
     padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 
@@ -35,11 +29,6 @@
 
   .euiHeaderAlert__action {
     @include euiFontSizeXS;
-    color: $euiLinkColor;
-
-    &:focus {
-      outline: solid $euiFontSizeXS / 2 $euiFocusBackgroundColor;
-    }
   }
 
   .euiHeaderAlert__date {

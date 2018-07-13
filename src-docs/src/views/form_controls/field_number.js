@@ -6,6 +6,7 @@ import React, {
 import {
   EuiFieldNumber,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -82,6 +83,17 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiFieldNumber
+          style={{ textAlign: 'right' }}
+          append={<EuiText size="xs"><strong>%</strong></EuiText>}
+          placeholder="0 - 100"
+          value={this.state.value}
+          onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
         />
       </Fragment>
     );

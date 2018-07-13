@@ -2,29 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget } from '../../services';
+// import { getSecureRelForTarget } from '../../services';
+import { EuiNotificationBadge } from '../badge/notification_badge';
+import {
+  COLORS,
+  ICON_SIDES,
+  EuiButtonEmpty,
+} from '../button/button_empty';
 
 import {
   ICON_TYPES,
-  EuiIcon,
 } from '../icon';
-
-const colorToClassNameMap = {
-  primary: 'euiFilterButton--primary',
-  danger: 'euiFilterButton--danger',
-  disabled: 'euiFilterButton--disabled',
-  text: 'euiFilterButton--text',
-  ghost: 'euiFilterButton--ghost',
-};
-
-export const COLORS = Object.keys(colorToClassNameMap);
-
-const iconSideToClassNameMap = {
-  left: '',
-  right: 'euiFilterButton--iconRight',
-};
-
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 export const EuiFilterButton = ({
   children,
@@ -33,72 +21,48 @@ export const EuiFilterButton = ({
   iconSide,
   color,
   hasActiveFilters,
+  numFilters,
   isDisabled,
   isSelected,
-  href,
-  target,
-  rel,
   type,
+  grow,
+  noDivider,
   ...rest
 }) => {
 
   const classes = classNames(
     'euiFilterButton',
-    colorToClassNameMap[color],
-    iconSideToClassNameMap[iconSide],
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
+      'euiFilterButton--grow': grow,
+      'euiFilterButton--noDivider': noDivider,
     },
     className,
   );
 
-  // Add an icon to the button if one exists.
-  let buttonIcon;
+  const buttonContents = (
+    <span className="euiFilterButton__textShift" data-text={children}>
+      {children}
+      {numFilters &&
+        <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
+      }
+    </span>
+  );
 
-  if (iconType) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiFilterButton__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
-  }
-
-  if (href) {
-    const secureRel = getSecureRelForTarget(target, rel);
-
-    return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        {...rest}
-      >
-        <span className="euiFilterButton__content">
-          {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
-        </span>
-      </a>
-    );
-  } else {
-    return (
-      <button
-        disabled={isDisabled}
-        className={classes}
-        type={type}
-        {...rest}
-      >
-        <span className="euiFilterButton__content">
-          {buttonIcon}
-          <span className="euiFilterButton__textShift" data-text={children}>{children}</span>
-        </span>
-      </button>
-    );
-  }
+  return (
+    <EuiButtonEmpty
+      className={classes}
+      color={color}
+      isDisabled={isDisabled}
+      iconSide={iconSide}
+      iconType={iconType}
+      type={type}
+      {...rest}
+    >
+      {buttonContents}
+    </EuiButtonEmpty>
+  );
 };
 
 EuiFilterButton.propTypes = {
@@ -116,30 +80,31 @@ EuiFilterButton.propTypes = {
    */
   hasActiveFilters: PropTypes.bool,
   /**
+   * Adds a notification with number
+   */
+  numFilters: PropTypes.number,
+  /**
    * Applies a visual state to the button useful when using with a popover.
    */
   isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
   /**
-   * If passed, changes the button to an anchor tag
-   */
-  href: PropTypes.string,
-  /**
-   * Used along with href
-   */
-  target: PropTypes.string,
-  /**
-   * Used along with href
-   */
-  rel: PropTypes.string,
-  /**
    * Defines html button input type
    */
   type: PropTypes.string,
+  /**
+   * Should the button grow to fill it's container, best used for dropdown buttons
+   */
+  grow: PropTypes.bool,
+  /**
+   * Remove border after button, good for opposite filters
+   */
+  noDivider: PropTypes.bool,
 };
 
 EuiFilterButton.defaultProps = {
   type: 'button',
   iconSide: 'right',
   color: 'text',
+  grow: false,
 };
