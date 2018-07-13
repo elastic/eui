@@ -8,7 +8,7 @@
 
 @include euiBreakpoint('xs','s') {
   .euiPageHeader {
-    padding: $euiSize;
+    padding: $euiSize 0;
     margin-bottom: 0;
   }
 

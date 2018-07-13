@@ -15,10 +15,11 @@
   // At small screens, the content extends edge to edge, so remove the side borders and shadow
   @include euiBreakpoint('xs', 's') {
     &.euiPanel:not(.euiPageContent--horizontalCenter) { // Override panel styles without the need for !important
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
-      box-shadow: none;
+      // Temporarily removing
+      // border-radius: 0;
+      // border-left: none;
+      // border-right: none;
+      // box-shadow: none;
     }
   }
 }
