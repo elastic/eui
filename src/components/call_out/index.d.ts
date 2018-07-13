@@ -21,6 +21,6 @@ declare module '@elastic/eui' {
   }
 
   export const EuiCallOut: SFC<
-    CommonProps & EuiCallOutProps & HTMLAttributes<HTMLDivElement>
+    CommonProps & EuiCallOutProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
   >;
 }
