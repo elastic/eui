@@ -138,7 +138,7 @@ export class EuiInMemoryTable extends Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.items !== prevState.items) {
+    if (nextProps.items !== prevState.prevProps.items) {
       // We have new items because an external search has completed, so reset pagination state.
       return {
         prevProps: {

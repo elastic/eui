@@ -20,10 +20,6 @@ export {
 } from './header_logo';
 
 export {
-  EuiHeaderNotification,
-} from './header_notification';
-
-export {
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,

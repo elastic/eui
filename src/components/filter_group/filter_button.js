@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 // import { getSecureRelForTarget } from '../../services';
-import { EuiHeaderNotification } from '../header/header_notification';
+import { EuiNotificationBadge } from '../badge/notification_badge';
 import {
   COLORS,
   ICON_SIDES,
@@ -48,7 +48,7 @@ export const EuiFilterButton = ({
     <span className="euiFilterButton__textShift" data-text={children}>
       {children}
       {numFilters &&
-        <EuiHeaderNotification className="euiFilterButton__notification">{numFilters}</EuiHeaderNotification>
+        <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
       }
     </span>
   );

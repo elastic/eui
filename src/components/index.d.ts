@@ -20,3 +20,4 @@
 /// <reference path="./overlay_mask/index.d.ts" />
 /// <reference path="./horizontal_rule/index.d.ts" />
 /// <reference path="./page/index.d.ts" />
+/// <reference path="./flyout/index.d.ts" />

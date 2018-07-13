@@ -1,13 +1,14 @@
-
-.euiHeaderNotification {
+.euiNotificationBadge {
   display: inline-block;
   border-radius: $euiBorderRadius;
-  background: $euiHeaderNotificationBackgroundColor;
-  color: $euiColorEmptyShade;
+  background: $euiColorAccent;
+  color: lightOrDarkTheme($euiColorEmptyShade, $euiColorFullShade);
   font-size: $euiFontSizeXS;
   line-height: $euiSize;
   height: $euiSize;
   min-width: $euiSize;
+  padding-left: $euiSizeXS;
+  padding-right: $euiSizeXS;
   vertical-align: middle;
   text-align: center;
 }

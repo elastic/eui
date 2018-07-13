@@ -1,9 +1,15 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler } from 'react';
 
 declare module '@elastic/eui' {
+  type EuiButtonPropsForButtonOrLink<Props> = (
+    (Props & { onClick: MouseEventHandler<HTMLButtonElement> } & ButtonHTMLAttributes<HTMLButtonElement>) |
+    (Props & { href: string; onClick: MouseEventHandler<HTMLAnchorElement> } & AnchorHTMLAttributes<HTMLAnchorElement>) |
+    (Props & AnchorHTMLAttributes<HTMLAnchorElement> & ButtonHTMLAttributes<HTMLButtonElement>)
+  )
+
   /**
    * Normal button type defs
    *
@@ -20,17 +26,16 @@ declare module '@elastic/eui' {
   export type ButtonSize = 's' | 'l';
 
   export interface EuiButtonProps {
-    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType;
     iconSide?: ButtonIconSide;
     fill?: boolean;
     color?: ButtonColor;
     size?: ButtonSize;
+    isLoading?: boolean;
     isDisabled?: boolean;
   }
-
   export const EuiButton: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
   >;
 
   /**
@@ -47,15 +52,14 @@ declare module '@elastic/eui' {
     | 'text';
 
   export interface EuiButtonIconProps {
-    onClick: MouseEventHandler<HTMLButtonElement>; //overriding DOMAttributes to make this required
     iconType?: IconType;
     color?: ButtonIconColor;
-    isDisabled?: boolean;
     'aria-label'?: string;
     'aria-labelledby'?: string;
+    isDisabled?: boolean;
   }
   export const EuiButtonIcon: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonIconProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
   >;
 
   /**
@@ -80,10 +84,11 @@ declare module '@elastic/eui' {
     color?: EmptyButtonColor;
     size?: EmptyButtonSizes;
     flush?: EmptyButtonFlush;
+    isLoading?: boolean;
     isDisabled?: boolean;
   }
 
   export const EuiButtonEmpty: SFC<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiButtonEmptyProps
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonEmptyProps>
   >;
 }

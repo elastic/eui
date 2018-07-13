@@ -14,6 +14,7 @@ export {
 export {
   EuiBadge,
   EuiBetaBadge,
+  EuiNotificationBadge,
 } from './badge';
 
 export {
@@ -142,7 +143,6 @@ export {
   EuiHeaderLink,
   EuiHeaderLinks,
   EuiHeaderLogo,
-  EuiHeaderNotification,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,

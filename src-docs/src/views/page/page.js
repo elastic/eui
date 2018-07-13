@@ -15,20 +15,20 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageHeader>
-      <EuiPageHeaderSection>
-        <EuiTitle size="l">
-          <h1>Page title</h1>
-        </EuiTitle>
-      </EuiPageHeaderSection>
-      <EuiPageHeaderSection>
-        Page abilities
-      </EuiPageHeaderSection>
-    </EuiPageHeader>
+    <EuiPageSideBar>
+      SideBar nav
+    </EuiPageSideBar>
     <EuiPageBody>
-      <EuiPageSideBar>
-        SideBar nav
-      </EuiPageSideBar>
+      <EuiPageHeader>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>
+          Page abilities
+        </EuiPageHeaderSection>
+      </EuiPageHeader>
       <EuiPageContent>
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>

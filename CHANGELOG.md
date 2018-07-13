@@ -1,15 +1,56 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
-- Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
-- Added `size` prop to `EuiIconTip` ([987](https://github.com/elastic/eui/pull/987))
+- Fixed `EuiHeader` responsive styles ([#1009](https://github.com/elastic/eui/pull/1009))
 - Added `prepend` and `append` props to `EuiFormControlLayout` ([#961](https://github.com/elastic/eui/pull/961))
 - Updated style implementation of `EuiFilterGroup` and `EuiFilterGroupButton` ([#961](https://github.com/elastic/eui/pull/961))
 - Added `EuiDatePickerRange` as a way to layout two `EuiDatePicker`s. ([#961](https://github.com/elastic/eui/pull/961))
 
+**Breaking changes**
+
+- Moved `EuiHeaderNotification` to a generic `EuiNotificationBadge` component ([#1009](https://github.com/elastic/eui/pull/1009))
+
+**Bug fixes**
+
+- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
+- Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
+
+## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
+
+- Added more typings to `EuiContextMenuItemProps` ([#1006](https://github.com/elastic/eui/pull/1006))
+- Made some properties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
+- Added typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
+- Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
+- Updated `react-vis` version to `1.10.2`. ([#999](https://github.com/elastic/eui/pull/999))
+
+**Breaking changes**
+
+- Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
+  - `EuiPageHeader` must now be contained within `EuiPageBody`
+  - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
+
+## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
+
+**Bug fixes**
+
+- Removed global manipulation of `EuiTitle` sizing in XYCharts ([#997](https://github.com/elastic/eui/pull/997))
+
+## [`1.2.0`](https://github.com/elastic/eui/tree/v1.2.0)
+
+**Note: this release creates a minor regression to the sizing of `EuiTitle`s. This is fixed in `1.2.1`.**
+
+- Added typings for keyCodes ([#988](https://github.com/elastic/eui/pull/988))
+- Changed `EuiXYChart` components exports to `/experimental` subfolder ([#975](https://github.com/elastic/eui/pull/975))
+- Added beta version of `EuiXYChart` and associated components ([#309](https://github.com/elastic/eui/pull/309))
+- Added `size` prop to `EuiIconTip` ([987](https://github.com/elastic/eui/pull/987))
+- Added `database`, `filter`, `globe`, and `save` icons ([990](https://github.com/elastic/eui/pull/990))
+- Updated typings for `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon` to include `<a>` tag attributes like `href` ([#992](https://github.com/elastic/eui/pull/992))
+
 **Bug fixes**
 
 - Fixed some IE11 flex box bugs and documented others (modal overflowing, image shrinking, and flex group wrapping) ([#973](https://github.com/elastic/eui/pull/973))
+- Fixed white square that show in double scollbar via `euiScrollBar()` ([989](https://github.com/elastic/eui/pull/989))
+- Fixed issue with Accordion would attempt to use properties and accessors on null ([#982](https://github.com/elastic/eui/pull/982))
 
 ## [`1.1.0`](https://github.com/elastic/eui/tree/v1.1.0)
 

@@ -11,6 +11,7 @@ import {
   EuiCode,
   EuiBetaBadge,
   EuiLink,
+  EuiNotificationBadge,
 } from '../../../../src/components';
 
 import Badge from './badge';
@@ -28,6 +29,10 @@ const badgeButtonHtml = renderToHtml(BadgeButton);
 import BetaBadge from './beta_badge';
 const betaBadgeSource = require('!!raw-loader!./beta_badge');
 const betaBadgeHtml = renderToHtml(BetaBadge);
+
+import NotificationBadge from './notification_badge';
+const notificationBadgeSource = require('!!raw-loader!./notification_badge');
+const notificationBadgeHtml = renderToHtml(NotificationBadge);
 
 export const BadgeExample = {
   title: 'Badge',
@@ -113,5 +118,23 @@ export const BadgeExample = {
     ),
     props: { EuiBetaBadge },
     demo: <BetaBadge />,
+  }, {
+    title: 'Notification badge type',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: notificationBadgeSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: notificationBadgeHtml,
+    }],
+    text: (
+      <p>
+        Used to showcase the number of notifications, alerts or hidden selections.
+        Typically used in <EuiLink href="/#/layout/header">EuiHeader</EuiLink> or
+        (eventually) <EuiLink href="/#/forms/filter-group">EuiFilterButtons</EuiLink>.
+      </p>
+    ),
+    props: { EuiNotificationBadge },
+    demo: <NotificationBadge />,
   }],
 };

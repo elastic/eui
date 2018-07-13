@@ -8,7 +8,6 @@ import { EuiDefaultAxis } from './axis/default_axis';
 import { EuiCrosshairX } from './crosshairs/crosshair_x';
 import { EuiCrosshairY } from './crosshairs/crosshair_y';
 import { VISUALIZATION_COLORS } from '../../services';
-import { getSeriesChildren } from './utils/series_utils';
 import { ORIENTATION, SCALE } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
 const { LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL } = SCALE;
@@ -19,108 +18,6 @@ const DEFAULT_MARGINS = {
   top: 10,
   bottom: 40
 };
-
-/**
- * The extended version of the react-vis XYPlot with the mouseLeave and mouseUp handlers.
- * TODO: send a PR to react-vis for incorporate these two changes directly into XYPlot class.
- */
-class XYExtendedPlot extends XYPlot {
-  /**
-   * Trigger onMouseLeave handler if it was passed in props.
-   * @param {Event} event Native event.
-   * @private
-   */
-  _mouseLeaveHandler(event) {
-    const { onMouseLeave, children } = this.props;
-    if (onMouseLeave) {
-      super.onMouseLeave(event);
-    }
-    const seriesChildren = getSeriesChildren(children);
-    seriesChildren.forEach((child, index) => {
-      const component = this[`series${index}`];
-      if (component && component.onParentMouseLeave) {
-        component.onParentMouseLeave(event);
-      }
-    });
-  }
-
-  /**
-   * Trigger onMouseUp handler if it was passed in props.
-   * @param {Event} event Native event.
-   * @private
-   */
-  _mouseUpHandler = (event) => {
-    const { onMouseUp, children } = this.props;
-    if (onMouseUp) {
-      super.onMouseUp(event);
-    }
-    const seriesChildren = getSeriesChildren(children);
-    seriesChildren.forEach((child, index) => {
-      const component = this[`series${index}`];
-      if (component && component.onParentMouseUp) {
-        component.onParentMouseUp(event);
-      }
-    });
-  }
-
-  render() {
-    const {
-      className,
-      dontCheckIfEmpty,
-      style,
-      width,
-      height,
-    } = this.props;
-
-    if (!dontCheckIfEmpty && this._isPlotEmpty()) {
-      return (
-        <div
-          className={`rv-xy-plot ${className}`}
-          style={{
-            width: `${width}px`,
-            height: `${height}px`,
-            ...this.props.style
-          }}
-        />
-      );
-    }
-    const components = this._getClonedChildComponents();
-
-    return (
-      <div
-        style={{
-          width: `${width}px`,
-          height: `${height}px`
-        }}
-        className={`rv-xy-plot ${className}`}
-      >
-        <svg
-          className="rv-xy-plot__inner"
-          width={width}
-          height={height}
-          style={style}
-          onClick={this._clickHandler}
-          onDoubleClick={this._doubleClickHandler}
-          onMouseDown={this._mouseDownHandler}
-          onMouseMove={this._mouseMoveHandler}
-          onMouseLeave={this._mouseLeaveHandler}
-          onMouseEnter={this._mouseEnterHandler}
-          onMouseUp={this._mouseUpHandler}
-          onTouchStart={this._mouseDownHandler}
-          onTouchMove={this._touchMoveHandler}
-          onTouchEnd={this._touchEndHandler}
-          onTouchCancel={this._touchCancelHandler}
-          onWheel={this._wheelHandler}
-        >
-          {components.filter(c => c && c.type.requiresSVG)}
-        </svg>
-        {this.renderCanvasComponents(components, this.props)}
-        {components.filter(c => c && !c.type.requiresSVG && !c.type.isCanvas)}
-      </div>
-    );
-  }
-}
-
 
 /**
  * The root component of any XY chart.
@@ -231,7 +128,7 @@ class XYChart extends PureComponent {
     const seriesNames = this._getSeriesNames(children);
     return (
       <div {...rest}>
-        <XYExtendedPlot
+        <XYPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty
           width={width}
@@ -258,7 +155,7 @@ class XYChart extends PureComponent {
               orientation={selectionBrushOrientation}
             />
           )}
-        </XYExtendedPlot>
+        </XYPlot>
       </div>
     );
   }

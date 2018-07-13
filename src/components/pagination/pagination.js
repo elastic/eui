@@ -30,6 +30,7 @@ export const EuiPagination = ({
         onClick={onPageClick.bind(null, i)}
         hideOnMobile
         aria-label={`Page ${i + 1} of ${lastPageInRange}`}
+        data-test-subj={`pagination-button-${i}`}
       >
         {i + 1}
       </EuiPaginationButton>

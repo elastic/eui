@@ -1,18 +1,19 @@
-.euiPageContentHeaderSection {
+@import '../../panel/variables';
 
+.euiPageContentHeaderSection {
   & + & {
     margin-left: $euiSizeXL;
   }
 }
 
+// Adjust vertical spacing based on content padding prop
 @include euiBreakpoint('xs','s') {
-
-  .euiPageContentHeaderSection {
-    width: 100%;
-
-    & + & {
-      margin-left: 0;
-      margin-top: $euiSize;
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    .euiPageContent[class*="#{$modifier}"] .euiPageContentHeader--responsive {
+      .euiPageContentHeaderSection + .euiPageContentHeaderSection {
+        margin-left: 0;
+        margin-top: $amount/2;
+      }
     }
   }
 }

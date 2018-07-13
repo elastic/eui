@@ -52,9 +52,8 @@ export default class extends Component {
         isOpen={this.state.isOpen}
         anchorPosition="downRight"
         closePopover={this.closeMenu}
-        panelClassName="euiHeaderPopover"
       >
-        <EuiKeyPadMenu id="keyPadMenu">
+        <EuiKeyPadMenu id="keyPadMenu" style={{ width: 288 }}>
           <EuiKeyPadMenuItem
             label="Discover"
             href="#"

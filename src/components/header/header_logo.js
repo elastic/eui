@@ -28,8 +28,11 @@ export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, 
 EuiHeaderLogo.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node,
+  iconType: PropTypes.string,
+  iconTitle: PropTypes.string,
 };
 
 EuiHeaderLogo.defaultProps = {
-  iconType: 'logoElastic'
+  iconType: 'logoElastic',
+  iconTitle: 'Elastic',
 };
