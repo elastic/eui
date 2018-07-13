@@ -41,6 +41,10 @@ EuiTextColor.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.oneOf(COLORS),
+
+  /**
+   * Determines the root element
+   */
   component: PropTypes.oneOf(['div', 'span']),
 };
 
