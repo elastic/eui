@@ -4,13 +4,18 @@
 - Make some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
-- Updated `react-vis` version to `1.10.2`. ([#999](https://github.com/elastic/eui/pull/999))
+- Updated `react-vis` version to `1.10.2` ([#999](https://github.com/elastic/eui/pull/999))
+- Added `component` prop to `EuiTextColor` ([#1011](https://github.com/elastic/eui/pull/1011))
 
 **Breaking changes**
 
 - Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
   - `EuiPageHeader` must now be contained within `EuiPageBody`
   - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
+
+**Bug fixes**
+
+- `EuiDescribedFormGroup` now renders its `description` inside of a `div` instead of a `span` ([#1011](https://github.com/elastic/eui/pull/1011))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 

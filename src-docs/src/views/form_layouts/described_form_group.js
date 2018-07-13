@@ -1,5 +1,6 @@
 import React, {
   Component,
+  Fragment,
 } from 'react';
 
 import {
@@ -81,11 +82,11 @@ export default class extends Component {
           idAria="single-example-aria"
           title={<h3>Single text field</h3>}
           description={
-            <span>
+            <Fragment>
               When using this with a single form row where this text serves as the help text for the input,
               it is a good idea to pass <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and pass
               <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form row.
-            </span>
+            </Fragment>
           }
         >
           <EuiFormRow
@@ -141,11 +142,11 @@ export default class extends Component {
           title={<h2>Full width</h2>}
           titleSize="xxxs"
           description={
-            <span>
+            <Fragment>
               By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be double the default width of form elements.
               However, you can pass <EuiCode>fullWidth</EuiCode> prop to this, the individual field and row components
               to expand to their container.
-            </span>
+            </Fragment>
           }
           fullWidth
         >

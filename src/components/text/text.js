@@ -32,7 +32,7 @@ export const EuiText = ({ size, color, grow, textAlign, children, className, ...
   let optionallyAlteredText;
   if (color) {
     optionallyAlteredText = (
-      <EuiTextColor color={color}>
+      <EuiTextColor color={color} component="div">
         {children}
       </EuiTextColor>
     );
