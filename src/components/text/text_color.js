@@ -18,6 +18,7 @@ export const EuiTextColor = ({
   children,
   color,
   className,
+  component: Component,
   ...rest
 }) => {
   const classes = classNames(
@@ -27,12 +28,12 @@ export const EuiTextColor = ({
   );
 
   return (
-    <span
+    <Component
       className={classes}
       {...rest}
     >
       {children}
-    </span>
+    </Component>
   );
 };
 
@@ -40,8 +41,14 @@ EuiTextColor.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.oneOf(COLORS),
+
+  /**
+   * Determines the root element
+   */
+  component: PropTypes.oneOf(['div', 'span']),
 };
 
 EuiTextColor.defaultProps = {
   color: 'default',
+  component: 'span',
 };

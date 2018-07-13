@@ -300,12 +300,13 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
               >
                 <EuiTextColor
                   color="subdued"
+                  component="div"
                 >
-                  <span
+                  <div
                     className="euiTextColor euiTextColor--subdued"
                   >
                     Test description
-                  </span>
+                  </div>
                 </EuiTextColor>
               </div>
             </EuiText>
