@@ -1,16 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
-- Added typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
-- Made some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
 - Fixed `EuiHeader` responsive styles ([#1009](https://github.com/elastic/eui/pull/1009))
+
+**Breaking changes**
+
+- Moved `EuiHeaderNotification` to a generic `EuiNotificationBadge` component ([#1009](https://github.com/elastic/eui/pull/1009))
+
+**Bug fixes**
+
+- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
+
+## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
+
+- Added more typings to `EuiContextMenuItemProps` ([#1006](https://github.com/elastic/eui/pull/1006))
+- Made some properties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
+- Added typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
+- Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
+- Updated `react-vis` version to `1.10.2`. ([#999](https://github.com/elastic/eui/pull/999))
 
 **Breaking changes**
 
 - Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
   - `EuiPageHeader` must now be contained within `EuiPageBody`
   - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
-- Moved `EuiHeaderNotification` to a generic `EuiNotificationBadge` component ([#1009](https://github.com/elastic/eui/pull/1009))
 
 **Bug fixes**
 
