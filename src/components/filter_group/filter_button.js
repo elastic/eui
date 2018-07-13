@@ -24,9 +24,6 @@ export const EuiFilterButton = ({
   numFilters,
   isDisabled,
   isSelected,
-  // href,
-  // target,
-  // rel,
   type,
   grow,
   noDivider,
@@ -53,11 +50,6 @@ export const EuiFilterButton = ({
     </span>
   );
 
-  // let secureRel;
-  // if (href) {
-  //   secureRel = getSecureRelForTarget(target, rel);
-  // }
-
   return (
     <EuiButtonEmpty
       className={classes}
@@ -65,8 +57,6 @@ export const EuiFilterButton = ({
       isDisabled={isDisabled}
       iconSide={iconSide}
       iconType={iconType}
-      // rel={secureRel}
-      // target={target}
       type={type}
       {...rest}
     >
@@ -98,18 +88,6 @@ EuiFilterButton.propTypes = {
    */
   isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  /**
-   * If passed, changes the button to an anchor tag
-   */
-  href: PropTypes.string,
-  /**
-   * Used along with href
-   */
-  target: PropTypes.string,
-  /**
-   * Used along with href
-   */
-  rel: PropTypes.string,
   /**
    * Defines html button input type
    */

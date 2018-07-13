@@ -44,6 +44,7 @@ export default class extends Component {
             onChange={this.handleChangeStart}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
+            isInvalid={this.state.startDate > this.state.endDate}
             aria-label="Start date"
             showTimeSelect
           />
@@ -54,6 +55,7 @@ export default class extends Component {
             onChange={this.handleChangeEnd}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
+            isInvalid={this.state.startDate > this.state.endDate}
             aria-label="End date"
             showTimeSelect
           />
