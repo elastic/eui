@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.0.0`.
+
+## [`3.0.0`](https://github.com/elastic/eui/tree/v3.0.0)
+
 - Fixed `EuiHeader` responsive styles ([#1009](https://github.com/elastic/eui/pull/1009))
 - Added `prepend` and `append` props to `EuiFormControlLayout` ([#961](https://github.com/elastic/eui/pull/961))
 - Updated style implementation of `EuiFilterGroup` and `EuiFilterGroupButton` ([#961](https://github.com/elastic/eui/pull/961))
