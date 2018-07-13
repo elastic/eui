@@ -2,7 +2,7 @@
 /// <reference path="../icon/index.d.ts" />
 /// <reference path="../title/index.d.ts" />
 
-import { SFC, ReactNode } from 'react';
+import { SFC, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -21,7 +21,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiEmptyPrompt: SFC<
-    CommonProps & EuiEmptyPromptProps
+    CommonProps & EuiEmptyPromptProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
   >;
 
 
