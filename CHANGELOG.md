@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `2.0.0`.
+
+## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
+
 - Add more typings to `EuiContextMenuItemProps` ([#1006](https://github.com/elastic/eui/pull/1006))
 - Make some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
 - Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
