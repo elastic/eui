@@ -14,31 +14,16 @@ import {
 
 import HeaderAppMenu from './header_app_menu';
 import HeaderUserMenu from './header_user_menu';
+import HeaderSpacesMenu from './header_spaces_menu';
 
 export default class extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isAppMenuOpen: false,
-    };
-  }
-
-  onAppMenuButtonClick() {
-    this.setState({
-      isAppMenuOpen: !this.state.isAppMenuOpen,
-    });
-  }
-
-  closeAppMenu() {
-    this.setState({
-      isAppMenuOpen: false,
-    });
   }
 
   renderLogo() {
     return (
-      <EuiHeaderLogo href="#" aria-label="Go to home page" />
+      <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />
     );
   }
 
@@ -87,6 +72,9 @@ export default class extends Component {
         <EuiHeaderSection>
           <EuiHeaderSectionItem border="right">
             {this.renderLogo()}
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem border="right">
+            <HeaderSpacesMenu />
           </EuiHeaderSectionItem>
 
           {this.renderBreadcrumbs()}

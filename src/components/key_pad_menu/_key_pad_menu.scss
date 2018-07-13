@@ -18,7 +18,7 @@
  */
 .euiKeyPadMenuItem {
   display: block;
-  padding: $euiSize;
+  padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
   width: $euiKeyPadMenuSize;
   color: $euiColorDarkShade;
@@ -26,6 +26,9 @@
   border-color: transparent;
   border-radius: $euiBorderRadius;
   font-family: $euiFontFamily; /* 1 */
+  transition:
+    border-color $euiAnimSpeedFast ease-in,
+    box-shadow $euiAnimSpeedFast ease-in;
 
   &:hover, &:focus {
     border-color: $euiBorderColor;
@@ -33,14 +36,6 @@
 
     .euiKeyPadMenuItem__icon {
       transform: translateY(0);
-    }
-  }
-
-  &:focus {
-    background: $euiFocusBackgroundColor;
-
-    .euiKeyPadMenuItem__label {
-      text-decoration: underline;
     }
   }
 }
@@ -58,8 +53,8 @@
 
       .euiKeyPadMenuItem__betaBadgeWrapper {
         position: absolute;
-        top: $euiSizeM * -.5;
-        right: $euiSizeM * -.5;
+        top: $euiSizeS;
+        right: $euiSizeS;
         z-index: 3;
 
         .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
@@ -73,12 +68,14 @@
   }
 
   .euiKeyPadMenuItem__icon {
-    transition: transform $euiAnimSlightBounce $euiAnimSpeedNormal;
-    transform: translateY($euiSizeXS);
-    margin-bottom: $euiSizeS;
+    transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    transform: translateY(2px);
+    margin-bottom: $euiSizeM;
   }
 
   .euiKeyPadMenuItem__label {
-    @include euiFontSizeS;
+    font-size: $euiFontSizeXS;
+    font-weight: $euiFontWeightMedium;
+    line-height: $euiSize;
     text-align: center;
   }

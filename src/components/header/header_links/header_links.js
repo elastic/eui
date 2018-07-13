@@ -64,13 +64,13 @@ export class EuiHeaderLinks extends Component {
 
         <EuiPopover
           className="euiHeaderLinks__mobile"
-          id="headerListMenu"
           ownFocus
           button={button}
           isOpen={this.state.isOpen}
           anchorPosition="downRight"
           closePopover={this.closeMenu}
-          panelClassName="euiHeaderPopover"
+          panelClassName="euiHeaderLinks__mobileList"
+          panelPaddingSize="none"
         >
           {children}
         </EuiPopover>

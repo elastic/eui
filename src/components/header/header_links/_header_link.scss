@@ -3,15 +3,11 @@
   display: inline-block;
   height: $euiHeaderChildSize;
   line-height: $euiHeaderChildSize;
-  padding: 0 $euiSize;
+  padding: 0 $euiSizeS;
   text-align: left;
-
-  &.euiHeaderLink-isActive {
-    color: $euiColorPrimary;
-  }
 }
 
-.euiHeaderLinks__mobile {
+.euiHeaderLinks__mobileList {
   .euiHeaderLink {
     display: block;
     height: auto;

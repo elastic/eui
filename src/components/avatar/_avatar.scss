@@ -4,7 +4,6 @@
   text-align: center;
   vertical-align: middle;
   overflow-x: hidden;
-  cursor: default; // Make sure we don't get the text cursor
   font-weight: $euiFontWeightRegular; // Explicitly state so it doesn't get overridden by inheritence
 }
 
