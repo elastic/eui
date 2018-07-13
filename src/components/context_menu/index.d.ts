@@ -61,7 +61,6 @@ declare module '@elastic/eui' {
     disabled?: boolean;
     onClick?: () => void;
     buttonRef?: RefCallback<HTMLButtonElement>;
-    hasPanel?: boolean;
     toolTipContent?: ReactNode;
     toolTipTitle?: ReactNode;
     toolTipPosition?: string;

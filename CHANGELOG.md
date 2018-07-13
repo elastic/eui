@@ -14,6 +14,7 @@
 - `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
 - Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
 - Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed syntax errors in `keyCodes`'s and `EuiContextMenu`'s typescript definition ([#1012](https://github.com/elastic/eui/pull/1012))
 
 ## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
 
