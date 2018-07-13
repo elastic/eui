@@ -67,6 +67,7 @@ export {
 
 export {
   EuiDatePicker,
+  EuiDatePickerRange,
 } from './date_picker';
 
 export {

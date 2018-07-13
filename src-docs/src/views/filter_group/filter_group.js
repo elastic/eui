@@ -21,7 +21,30 @@ export default class extends Component {
 
     this.state = {
       isPopoverOpen: false,
+      isFilterOn: false,
+      isOnFilterOn: false,
+      isOffFilterOn: false,
     };
+  }
+
+  toggleFilter = () => {
+    this.setState(prevState => ({
+      isFilterOn: !prevState.isFilterOn,
+    }));
+  }
+
+  toggleOnFilter = () => {
+    this.setState(prevState => ({
+      isOnFilterOn: !prevState.isOnFilterOn,
+      isOffFilterOn: prevState.isOffFilterOn && !prevState.isOnFilterOn ? false : prevState.isOffFilterOn,
+    }));
+  }
+
+  toggleOffFilter = () => {
+    this.setState(prevState => ({
+      isOffFilterOn: !prevState.isOffFilterOn,
+      isOnFilterOn: prevState.isOnFilterOn && !prevState.isOffFilterOn ? false : prevState.isOnFilterOn,
+    }));
   }
 
   onButtonClick() {
@@ -66,6 +89,8 @@ export default class extends Component {
         onClick={this.onButtonClick.bind(this)}
         isSelected={this.state.isPopoverOpen}
         hasActiveFilters={true}
+        numFilters={2}
+        grow={true}
       >
         Composers
       </EuiFilterButton>
@@ -73,11 +98,14 @@ export default class extends Component {
 
     return (
       <EuiFilterGroup>
-        <EuiFilterButton>
-          Filter on
+        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+          Filter
         </EuiFilterButton>
-        <EuiFilterButton>
-          Filter off
+        <EuiFilterButton noDivider hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+          On
+        </EuiFilterButton>
+        <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+          Off
         </EuiFilterButton>
         <EuiPopover
           id="popover"

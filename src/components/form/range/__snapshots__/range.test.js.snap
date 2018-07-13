@@ -62,17 +62,21 @@ exports[`EuiRange props extra input should render 1`] = `
   <div
     class="euiFormControlLayout"
   >
-    <input
-      aria-label="aria-label"
-      class="euiFieldNumber euiRange__extraInput"
-      data-test-subj="test subject string"
-      max="10"
-      min="1"
-      name="name"
-      style="max-width:4em"
-      type="number"
-      value="8"
-    />
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="aria-label"
+        class="euiFieldNumber euiRange__extraInput"
+        data-test-subj="test subject string"
+        max="10"
+        min="1"
+        name="name"
+        style="max-width:4em"
+        type="number"
+        value="8"
+      />
+    </div>
   </div>
 </div>
 `;

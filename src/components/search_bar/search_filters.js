@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { createFilter, FilterConfigType } from './filters';
 import { Query } from './query';
@@ -31,9 +31,9 @@ export class EuiSearchFilters extends Component {
       const key = `filter_${index}`;
       const control = createFilter(index, filterConfig, query, onChange);
       controls.push(
-        <div key={key} style={{ display: 'inline-block' }}>
+        <Fragment key={key}>
           {control}
-        </div>
+        </Fragment>
       );
       return controls;
     }, []);

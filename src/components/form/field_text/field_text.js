@@ -22,12 +22,15 @@ export const EuiFieldText = ({
   fullWidth,
   isLoading,
   compressed,
+  prepend,
+  append,
   ...rest
 }) => {
   const classes = classNames('euiFieldText', className, {
     'euiFieldText--withIcon': icon,
     'euiFieldText--fullWidth': fullWidth,
     'euiFieldText--compressed': compressed,
+    'euiFieldText--inGroup': prepend || append,
     'euiFieldText-isLoading': isLoading,
   });
 
@@ -37,6 +40,8 @@ export const EuiFieldText = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
+      prepend={prepend}
+      append={append}
     >
       <EuiValidatableControl
         isInvalid={isInvalid}
@@ -70,6 +75,20 @@ EuiFieldText.propTypes = {
    * when `true` creates a shorter height input
    */
   compressed: PropTypes.bool,
+  /**
+   * Creates an input group with element(s) coming before input
+   */
+  prepend: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * Creates an input group with element(s) coming after input
+   */
+  append: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 EuiFieldText.defaultProps = {

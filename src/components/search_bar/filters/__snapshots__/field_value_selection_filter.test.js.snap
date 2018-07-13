@@ -2,10 +2,11 @@
 
 exports[`FieldValueSelectionFilter render - all configurations 1`] = `
 <EuiPopover
-  anchorPosition="downRight"
+  anchorPosition="downCenter"
   button={
     <EuiFilterButton
       color="text"
+      grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -46,10 +47,11 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
 
 exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
 <EuiPopover
-  anchorPosition="downRight"
+  anchorPosition="downCenter"
   button={
     <EuiFilterButton
       color="text"
+      grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -90,10 +92,11 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
 
 exports[`FieldValueSelectionFilter render - options as a function 1`] = `
 <EuiPopover
-  anchorPosition="downRight"
+  anchorPosition="downCenter"
   button={
     <EuiFilterButton
       color="text"
+      grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
@@ -134,10 +137,11 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
 
 exports[`FieldValueSelectionFilter render - options as an array 1`] = `
 <EuiPopover
-  anchorPosition="downRight"
+  anchorPosition="downCenter"
   button={
     <EuiFilterButton
       color="text"
+      grow={true}
       hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"

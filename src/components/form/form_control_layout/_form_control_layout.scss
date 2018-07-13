@@ -1,14 +1,77 @@
 @import '../variables';
+@import '../mixins';
 
 .euiFormControlLayout {
   // Let the height expand as needed
-  @include euiFormControlSize(auto);
+  @include euiFormControlSize(auto, $includeAlternates: true);
+}
 
-  display: inline-block;
+.euiFormControlLayout__childrenWrapper {
   position: relative;
 }
 
-.euiFormControlLayout--fullWidth {
-  width: 100%;
-  max-width: 100%;
+/**
+ * 1. Account for inner box-shadow style border
+ */
+
+.euiFormControlLayout--group {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow();
+  display: flex;
+  align-items: center;
+  padding: 1px; /* 1 */
+
+  .euiFormControlLayout__childrenWrapper {
+    flex-grow: 1;
+  }
+
+  .euiFormControlLayout__prepend,
+  .euiFormControlLayout__append {
+    flex-shrink: 0;
+    height: $euiFormControlHeight - 2px; /* 1 */
+    line-height: $euiFontSize;
+
+    &:disabled {
+      background-color: $euiFormBackgroundDisabledColor;
+      color: $euiFormControlDisabledColor; // ensures established contrast
+    }
+
+    // This is the only way to target specific components to override styling
+    &.euiFormLabel,
+    &.euiText {
+      white-space: nowrap;
+      margin-bottom: 0;
+      padding: $euiFormControlPadding;
+      border: none;
+      background-color: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%);
+      line-height: $euiFontSize;
+    }
+  }
+
+  //
+  // Borders
+
+  .euiFormControlLayout__prepend {
+    border-right: 1px solid $euiFormBorderColor;
+  }
+
+  .euiFormControlLayout__append {
+    border-left: 1px solid $euiFormBorderColor;
+  }
+
+  //
+  // Compressed alterations
+
+  &.euiFormControlLayout--compressed {
+    .euiFormControlLayout__prepend,
+    .euiFormControlLayout__append {
+      height: $euiFormControlCompressedHeight - 2px; /* 1 */
+
+      &.euiFormLabel,
+      &.euiText {
+        padding-top: $euiFormControlCompressedPadding;
+        padding-bottom: $euiFormControlCompressedPadding;
+      }
+    }
+  }
 }

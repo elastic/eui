@@ -135,5 +135,51 @@ describe('EuiFormControlLayout', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('one prepend is rendered', () => {
+      const component = render(
+        <EuiFormControlLayout
+          prepend={<span>1</span>}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('one append is rendered', () => {
+      const component = render(
+        <EuiFormControlLayout
+          append={<span>1</span>}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('multiple prepends are rendered', () => {
+      const component = render(
+        <EuiFormControlLayout
+          prepend={[
+            <span>1</span>,
+            <span>2</span>
+          ]}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('multiple appends are rendered', () => {
+      const component = render(
+        <EuiFormControlLayout
+          append={[
+            <span>1</span>,
+            <span>2</span>
+          ]}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
