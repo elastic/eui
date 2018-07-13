@@ -9,6 +9,8 @@
 **Bug fixes**
 
 - `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
+- Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
 
 ## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
 
@@ -23,11 +25,6 @@
 - Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
   - `EuiPageHeader` must now be contained within `EuiPageBody`
   - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
-
-**Bug fixes**
-
-- Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
-- Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 
