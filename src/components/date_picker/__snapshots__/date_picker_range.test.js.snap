@@ -55,11 +55,11 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   <div
     class="euiText euiText--small euiDatePickerRange__delimeter"
   >
-    <span
+    <div
       class="euiTextColor euiTextColor--subdued"
     >
       →
-    </span>
+    </div>
   </div>
   <span>
     <span
