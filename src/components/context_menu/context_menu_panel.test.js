@@ -11,6 +11,8 @@ import {
   EuiContextMenuItem,
 } from './context_menu_item';
 
+import { tick } from './context_menu.test';
+
 import { keyCodes } from '../../services';
 
 const items = [
@@ -162,13 +164,15 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('initialFocusedItemIndex', () => {
-      it('sets focus on the item occupying that index', () => {
+      it('sets focus on the item occupying that index', async () => {
         const component = mount(
           <EuiContextMenuPanel
             items={items}
             initialFocusedItemIndex={1}
           />
         );
+
+        await tick(20);
 
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
       });
