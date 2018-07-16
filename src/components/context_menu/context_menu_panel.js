@@ -154,47 +154,50 @@ export class EuiContextMenuPanel extends Component {
   };
 
   updateFocus() {
-    // If this panel has lost focus, then none of its content should be focused.
-    if (!this.props.hasFocus) {
-      if (this.panel.contains(document.activeElement)) {
-        document.activeElement.blur();
-      }
-      return;
-    }
-
-    // Setting focus while transitioning causes the animation to glitch, so we have to wait
-    // until it's finished before we focus anything.
-    if (this.state.isTransitioning) {
-      return;
-    }
-
-    // If there aren't any items then this is probably a form or something.
-    if (!this.state.menuItems.length) {
-      // If we've already focused on something inside the panel, everything's fine.
-      if (this.panel.contains(document.activeElement)) {
+    // Give positioning time to render before focus is applied. Otherwise page jumps.
+    requestAnimationFrame(() => {
+      // If this panel has lost focus, then none of its content should be focused.
+      if (!this.props.hasFocus) {
+        if (this.panel.contains(document.activeElement)) {
+          document.activeElement.blur();
+        }
         return;
       }
 
-      // Otherwise let's focus the first tabbable item and expedite input from the user.
-      if (this.content) {
-        const tabbableItems = tabbable(this.content);
-        if (tabbableItems.length) {
-          tabbableItems[0].focus();
-        }
+      // Setting focus while transitioning causes the animation to glitch, so we have to wait
+      // until it's finished before we focus anything.
+      if (this.state.isTransitioning) {
+        return;
       }
-      return;
-    }
 
-    // If an item is focused, focus it.
-    if (this.state.focusedItemIndex !== undefined) {
-      this.state.menuItems[this.state.focusedItemIndex].focus();
-      return;
-    }
+      // If there aren't any items then this is probably a form or something.
+      if (!this.state.menuItems.length) {
+        // If we've already focused on something inside the panel, everything's fine.
+        if (this.panel.contains(document.activeElement)) {
+          return;
+        }
 
-    // Focus on the panel as a last resort.
-    if (!this.panel.contains(document.activeElement)) {
-      this.panel.focus();
-    }
+        // Otherwise let's focus the first tabbable item and expedite input from the user.
+        if (this.content) {
+          const tabbableItems = tabbable(this.content);
+          if (tabbableItems.length) {
+            tabbableItems[0].focus();
+          }
+        }
+        return;
+      }
+
+      // If an item is focused, focus it.
+      if (this.state.focusedItemIndex !== undefined) {
+        this.state.menuItems[this.state.focusedItemIndex].focus();
+        return;
+      }
+
+      // Focus on the panel as a last resort.
+      if (!this.panel.contains(document.activeElement)) {
+        this.panel.focus();
+      }
+    });
   }
 
   onTransitionComplete = () => {
