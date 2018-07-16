@@ -109,6 +109,7 @@ export class EuiPopover extends Component {
       prevProps: {
         isOpen: props.isOpen
       },
+      suppressingPopover: this.props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
       isOpening: false,
       popoverStyles: DEFAULT_POPOVER_STYLES,
@@ -146,6 +147,12 @@ export class EuiPopover extends Component {
   }
 
   componentDidMount() {
+    if (this.state.suppressingPopover) {
+      // component was created with isOpen=true; now that it's mounted
+      // stop suppressing and start opening
+      this.setState({ suppressingPopover: false, isOpening: true }); // eslint-disable-line react/no-did-mount-set-state
+    }
+
     this.updateFocus();
   }
 
@@ -309,7 +316,7 @@ export class EuiPopover extends Component {
 
     let panel;
 
-    if (isOpen || this.state.isClosing) {
+    if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex;
       let initialFocus;
       let ariaLive;
