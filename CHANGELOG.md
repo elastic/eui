@@ -2,6 +2,10 @@
 
 - Added typings for `EuiEmptyPrompt`, `EuiCode`, `EuiCodeBlock`, and `EuiCallOut` ([#1010](https://github.com/elastic/eui/pull/1010))
 
+**Bug fixes**
+
+- Fixed `EuiContextMenu` causing scroll-jumps because of premature browser focus. ([#1018](https://github.com/elastic/eui/pull/1018))
+
 ## [`3.0.0`](https://github.com/elastic/eui/tree/v3.0.0)
 
 - Fixed `EuiHeader` responsive styles ([#1009](https://github.com/elastic/eui/pull/1009))
