@@ -174,6 +174,24 @@ import vector from './assets/vector.svg';
 import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
+import visArea from './assets/vis_area.svg';
+import visBarHorizontal from './assets/vis_bar_horizontal.svg';
+import visBarVertical from './assets/vis_bar_vertical.svg';
+import visControls from './assets/vis_controls.svg';
+import visGauge from './assets/vis_gauge.svg';
+import visGoal from './assets/vis_goal.svg';
+import visHeatmap from './assets/vis_heatmap.svg';
+import visLine from './assets/vis_line.svg';
+import visMapCoordinate from './assets/vis_map_coordinate.svg';
+import visMapRegion from './assets/vis_map_region.svg';
+import visMetric from './assets/vis_metric.svg';
+import visPie from './assets/vis_pie.svg';
+import visTable from './assets/vis_table.svg';
+import visTagCloud from './assets/vis_tag_cloud.svg';
+import visText from './assets/vis_text.svg';
+import visTimelion from './assets/vis_timelion.svg';
+import visVega from './assets/vis_vega.svg';
+import visVisualBuilder from './assets/vis_visual_builder.svg';
 
 
 const typeToIconMap = {
@@ -349,6 +367,24 @@ const typeToIconMap = {
   visualizeApp,
   watchesApp,
   wrench,
+  visArea,
+  visBarHorizontal,
+  visBarVertical,
+  visControls,
+  visGauge,
+  visGoal,
+  visHeatmap,
+  visLine,
+  visMapCoordinate,
+  visMapRegion,
+  visMetric,
+  visPie,
+  visTable,
+  visTagCloud,
+  visText,
+  visTimelion,
+  visVega,
+  visVisualBuilder,
 };
 
 export const TYPES = Object.keys(typeToIconMap);
