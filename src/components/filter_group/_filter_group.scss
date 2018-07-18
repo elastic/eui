@@ -1,15 +1,26 @@
-.euiFilterGroup {
-  @include euiFormControlStyle;
-  height: 40px;
-  padding: 0px;
-  width: auto;
-  display: inline-block;
+@import '../form/mixins';
 
-  > * + * {
-    border-left: $euiBorderThin;
+.euiFilterGroup {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow;
+  @include euiFormControlSize;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  padding: 1px; /* 1 */
+
+  > * {
+    // defaults to growing children
+    // though filter buttons don't grow by default
+    flex-grow: 1;
+  }
+
+  // Force popover anchors to expand for now
+  .euiPopover__anchor {
+    display: block;
   }
 }
 
 .euiFilterGroup__popoverPanel {
-  width: $euiSize * 20;
+  max-width: $euiSize * 20;
 }

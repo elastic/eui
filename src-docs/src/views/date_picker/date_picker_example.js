@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiLink,
   EuiDatePicker,
+  EuiDatePickerRange,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -144,10 +145,14 @@ export const DatePickerExample = {
     text: (
       <p>
         By passing <EuiCode>startDate</EuiCode> and <EuiCode>endDate</EuiCode> props
-        you can provide styling the range in between two dates.
+        you can provide styling the range in between two dates. To further style the
+        group as a single control, use <EuiCode>EuiDatePickerRange</EuiCode> and pass
+        the date picker controls into
+        the <EuiCode>startDateControl</EuiCode> and <EuiCode>endDateControl</EuiCode> props.
       </p>
     ),
     demo: <Range />,
+    props: { EuiDatePickerRange },
   }, {
     title: 'Only allow specific dates and times',
     source: [{

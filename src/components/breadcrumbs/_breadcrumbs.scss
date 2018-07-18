@@ -28,6 +28,12 @@
   background: $euiColorLightShade;
 }
 
+/**
+ * 1. Can't target separator vs breadcrumb with -of-type because it takes
+ *    the dom element into consideration too and there could be divs, or spans, or a's
+ *    as breadcrumbs.
+ */
+
 .euiBreadcrumbs--responsive {
   // Laptop
   @include euiBreakpoint('l') {
@@ -36,7 +42,7 @@
       display: none;
 
       // Only show last 4 breadcrumbs
-      &:nth-last-of-type(-n+3) {
+      &:nth-last-child(-n+7) { /* 1 */
         display: inline-block;
       }
     }
@@ -49,7 +55,7 @@
       display: none;
 
       // Only show last 2 breadcrumbs
-      &:nth-last-of-type(-n+1) {
+      &:nth-last-child(-n+3) { /* 1 */
         display: inline-block;
       }
     }

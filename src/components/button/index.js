@@ -1,4 +1,7 @@
-export { EuiButton } from './button';
+export {
+  COLORS,
+  EuiButton
+} from './button';
 
 export {
   EuiButtonEmpty,

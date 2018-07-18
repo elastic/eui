@@ -68,6 +68,7 @@ export class EuiFilterSelectItem extends Component {
           alignItems="center"
           gutterSize="s"
           component="span"
+          responsive={false}
         >
           <EuiFlexItem grow={false}>
             <EuiIcon color={color} type={icon}/>

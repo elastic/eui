@@ -8,8 +8,7 @@ import {
   EuiFlexItem,
   EuiHeaderAlert,
   EuiHeaderSectionItemButton,
-  EuiHeaderNotification,
-  EuiIcon,
+  EuiNotificationBadge,
   EuiLink,
   EuiText,
   EuiSpacer,
@@ -46,12 +45,9 @@ export default class extends Component {
         aria-label="Account menu"
         onClick={this.onMenuButtonClick}
       >
-        <EuiIcon
-          type="user"
-          size="m"
-        />
+        <EuiAvatar name="John Username" size="s" />
 
-        <EuiHeaderNotification>3</EuiHeaderNotification>
+        <EuiNotificationBadge className="euiHeaderNotification">3</EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
     );
 
@@ -63,55 +59,57 @@ export default class extends Component {
         isOpen={this.state.isOpen}
         anchorPosition="downRight"
         closePopover={this.closeMenu}
-        panelClassName="euiHeaderPopover"
+        panelPaddingSize="none"
       >
-        <EuiFlexGroup gutterSize="m" className="euiHeaderProfile eui--flexRow eui--flexAlignItemsCenter">
-          <EuiFlexItem grow={false}>
-            <EuiAvatar name="John Username" size="xl" />
-          </EuiFlexItem>
+        <div style={{ width: 320 }}>
+          <EuiFlexGroup gutterSize="m" className="euiHeaderProfile" responsive={false}>
+            <EuiFlexItem grow={false}>
+              <EuiAvatar name="John Username" size="xl" />
+            </EuiFlexItem>
 
-          <EuiFlexItem>
-            <EuiText>
-              <p>John Username</p>
-            </EuiText>
+            <EuiFlexItem>
+              <EuiText>
+                <p>John Username</p>
+              </EuiText>
 
-            <EuiSpacer size="m" />
+              <EuiSpacer size="m" />
 
-            <EuiFlexGroup>
-              <EuiFlexItem>
-                <EuiFlexGroup justifyContent="spaceBetween">
-                  <EuiFlexItem grow={false}>
-                    <EuiLink href="">Edit profile</EuiLink>
-                  </EuiFlexItem>
+              <EuiFlexGroup>
+                <EuiFlexItem>
+                  <EuiFlexGroup justifyContent="spaceBetween">
+                    <EuiFlexItem grow={false}>
+                      <EuiLink href="">Edit profile</EuiLink>
+                    </EuiFlexItem>
 
-                  <EuiFlexItem grow={false}>
-                    <EuiLink href="">Log out</EuiLink>
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+                    <EuiFlexItem grow={false}>
+                      <EuiLink href="">Log out</EuiLink>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
-        <EuiHeaderAlert
-          title="Here&rsquo;s a notification title"
-          text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          date="Nov. 14, 02:14PM."
-        />
+          <EuiHeaderAlert
+            title="Here&rsquo;s a notification title"
+            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
+            date="Nov. 14, 02:14PM."
+          />
 
-        <EuiHeaderAlert
-          title="Here&rsquo;s a notification title that is extremely long and will wrap"
-          text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<EuiLink href="#">Download your thing here</EuiLink>}
-          date="Nov. 14, 02:14PM."
-        />
+          <EuiHeaderAlert
+            title="Here&rsquo;s a notification title that is extremely long and will wrap"
+            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
+            action={<EuiLink href="#">Download your thing here</EuiLink>}
+            date="Nov. 14, 02:14PM."
+          />
 
-        <EuiHeaderAlert
-          title="Here&rsquo;s a notification title"
-          text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
-          action={<EuiLink href="#">Download your thing here</EuiLink>}
-          date="Nov. 14, 02:14PM."
-        />
+          <EuiHeaderAlert
+            title="Here&rsquo;s a notification title"
+            text="I am the hat judge. Show me a hat and I will tell you if it&rsquo;s a good hat or bad hat."
+            action={<EuiLink href="#">Download your thing here</EuiLink>}
+            date="Nov. 14, 02:14PM."
+          />
+        </div>
       </EuiPopover>
     );
   }

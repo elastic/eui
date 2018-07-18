@@ -10,13 +10,36 @@
 
 /**
  * 1. Ensure the icon padding remains when in readOnly mode
- * 2. Must supply both values to background-size or some browsers apply the single value to both directions
+ * 2. Account for inner box-shadow style border when in group
+ * 3. Must supply both values to background-size or some browsers apply the single value to both directions
  */
 
-@mixin euiFormControlSize($height: $euiFormControlHeight) {
+@mixin euiFormControlSize(
+  $height: $euiFormControlHeight,
+  $includeAlternates: false
+) {
+  // Default
   max-width: $euiFormMaxWidth;
   width: 100%;
   height: $height;
+
+  @if ($includeAlternates) {
+    &--fullWidth {
+      max-width: 100%;
+    }
+
+    &--compressed {
+      height: $euiFormControlCompressedHeight;
+    }
+
+    &--inGroup {
+      height: $euiFormControlHeight - 2px; /* 2 */
+    }
+
+    &--inGroup#{&}--compressed {
+      height: $euiFormControlCompressedHeight - 2px; /* 2 */
+    }
+  }
 }
 
 @mixin euiFormControlWithIcon($isIconOptional: false, $side: "left") {
@@ -50,7 +73,7 @@
 @mixin euiFormControlDefaultShadow($borderOnly: false) {
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
-  background-size: 0% 100%; /* 2 */
+  background-size: 0% 100%; /* 3 */
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
@@ -71,7 +94,7 @@
 @mixin euiFormControlFocusStyle($borderOnly: false) {
   background-color: tintOrShade($euiColorEmptyShade, 0%, 50%);
   background-image: euiFormControlGradient();
-  background-size: 100% 100%; /* 2 */
+  background-size: 100% 100%; /* 3 */
 
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px transparentize($euiColorFullShade, .84);
@@ -108,12 +131,12 @@
 }
 
 /**
- * 2. Override invalid state with focus state.
+ * 4. Override invalid state with focus state.
  */
 
-@mixin euiFormControlStyle($borderOnly: false, $includeStates: true) {
-  @include euiFormControlSize;
-  @include euiFormControlDefaultShadow($borderOnly);
+@mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
+  @include euiFormControlSize($includeAlternates: $includeSizes);
+  @include euiFormControlDefaultShadow();
 
   border: none;
   font-size: $euiFontSizeS;
@@ -123,23 +146,24 @@
   color: $euiTextColor;
   border-radius: 0;
 
-  &--fullWidth {
-    max-width: 100%;
-  }
+  @if ($includeSizes) {
+    &--compressed {
+      padding-top: $euiFormControlCompressedPadding;
+      padding-bottom: $euiFormControlCompressedPadding;
+    }
 
-  &--compressed {
-    padding-top: $euiFormControlCompressedPadding;
-    padding-bottom: $euiFormControlCompressedPadding;
-    height: $euiFormControlCompressedHeight;
+    &--inGroup {
+      box-shadow: none !important;
+    }
   }
 
   @if ($includeStates) {
-    &:invalid { /* 2 */
+    &:invalid { /* 4 */
       @include euiFormControlInvalidStyle;
     }
 
-    &:focus { /* 2 */
-      @include euiFormControlFocusStyle($borderOnly);
+    &:focus { /* 4 */
+      @include euiFormControlFocusStyle();
     }
 
     &:disabled {

@@ -8,7 +8,7 @@
    * 3. The height on combo can be larger than normal text inputs.
    */
   .euiComboBox__inputWrap {
-    @include euiFormControlStyle($includeStates: false);
+    @include euiFormControlStyle($includeStates: false, $includeSizes:false);
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto); /* 3 */
 

@@ -19,6 +19,14 @@
     padding-bottom: 0; /* 2 */
   }
 
+  &--inGroup {
+    line-height: $euiFormControlHeight - 2px; /* 2 */
+  }
+
+  &--inGroup#{&}--compressed {
+    line-height: $euiFormControlCompressedHeight - 2px; /* 2 */
+  }
+
   &::-ms-expand {
     display: none;
   }

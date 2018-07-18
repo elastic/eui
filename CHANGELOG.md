@@ -7,22 +7,63 @@
 
 **Bug fixes**
 
-- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
+
+## [`3.0.2`](https://github.com/elastic/eui/tree/v3.0.2)
+
+- Added `restrictWidth` option to `EuiPageBody` ([#1024](https://github.com/elastic/eui/pull/1024))
+
+**Bug fixes**
+
+- Fixed `EuiPageContent` centered layouts ([#1024](https://github.com/elastic/eui/pull/1024))
+
+## [`3.0.1`](https://github.com/elastic/eui/tree/v3.0.1)
+
+- Added typings for `EuiEmptyPrompt`, `EuiCode`, `EuiCodeBlock`, and `EuiCallOut` ([#1010](https://github.com/elastic/eui/pull/1010))
+- Make utility type `Omit` compatible with new `keyof` behaviour introduced in TypeScript 2.9 ([#1017](https://github.com/elastic/eui/pull/1017))
+- Added visualization chart type icons ([#1020](https://github.com/elastic/eui/pull/1020))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenu` causing scroll-jumps because of premature browser focus. ([#1018](https://github.com/elastic/eui/pull/1018))
+
+## [`3.0.0`](https://github.com/elastic/eui/tree/v3.0.0)
+
+- Fixed `EuiHeader` responsive styles ([#1009](https://github.com/elastic/eui/pull/1009))
+- Added `prepend` and `append` props to `EuiFormControlLayout` ([#961](https://github.com/elastic/eui/pull/961))
+- Updated style implementation of `EuiFilterGroup` and `EuiFilterGroupButton` ([#961](https://github.com/elastic/eui/pull/961))
+- Added `EuiDatePickerRange` as a way to layout two `EuiDatePicker`s. ([#961](https://github.com/elastic/eui/pull/961))
+- Temporarily removed `EuiPage` responsive styles ([#1014](https://github.com/elastic/eui/pull/1014))
+
+**Breaking changes**
+
+- Moved `EuiHeaderNotification` to a generic `EuiNotificationBadge` component ([#1009](https://github.com/elastic/eui/pull/1009))
+
+**Bug fixes**
+
+- `EuiInMemoryTable` no longer resets to the first page on prop update when `items` remains the same ([#1008](https://github.com/elastic/eui/pull/1008))
+- Fixed css selector for hiding responsive `EuiBreadcrumb`'s ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed responsive utility classes for IE ([#1009](https://github.com/elastic/eui/pull/1009))
+- Fixed syntax errors in `keyCodes`'s and `EuiContextMenu`'s typescript definition ([#1012](https://github.com/elastic/eui/pull/1012))
 
 ## [`2.0.0`](https://github.com/elastic/eui/tree/v2.0.0)
 
-- Add more typings to `EuiContextMenuItemProps` ([#1006](https://github.com/elastic/eui/pull/1006))
-- Make some proprties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
-- Add typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
+- Added more typings to `EuiContextMenuItemProps` ([#1006](https://github.com/elastic/eui/pull/1006))
+- Made some properties of `EuiFlyout` optional ([#1003](https://github.com/elastic/eui/pull/1003))
+- Added typings for `EuiFlyout`, `EuiFlyoutBody`, `EuiFlyoutHeader`, and `EuiFlyoutFooter` ([#1001](https://github.com/elastic/eui/pull/1001))
 - Gave `EuiFlyout` close button a data-test-subj ([#1000](https://github.com/elastic/eui/pull/1000))
-- Updated `react-vis` version to `1.10.2`. ([#999](https://github.com/elastic/eui/pull/999))
+- Updated `react-vis` version to `1.10.2` ([#999](https://github.com/elastic/eui/pull/999))
+- Added `component` prop to `EuiTextColor` ([#1011](https://github.com/elastic/eui/pull/1011))
 
 **Breaking changes**
 
 - Altered `EuiPage` and sub-component layout ([#998](https://github.com/elastic/eui/pull/998))
   - `EuiPageHeader` must now be contained within `EuiPageBody`
   - `EuiPageSideBar` must now be **outside** of `EuiPageBody`
+
+**Bug fixes**
+
+- `EuiDescribedFormGroup` now renders its `description` inside of a `div` instead of a `span` ([#1011](https://github.com/elastic/eui/pull/1011))
 
 ## [`1.2.1`](https://github.com/elastic/eui/tree/v1.2.1)
 

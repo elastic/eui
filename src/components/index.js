@@ -14,6 +14,7 @@ export {
 export {
   EuiBadge,
   EuiBetaBadge,
+  EuiNotificationBadge,
 } from './badge';
 
 export {
@@ -66,6 +67,7 @@ export {
 
 export {
   EuiDatePicker,
+  EuiDatePickerRange,
 } from './date_picker';
 
 export {
@@ -141,7 +143,6 @@ export {
   EuiHeaderLink,
   EuiHeaderLinks,
   EuiHeaderLogo,
-  EuiHeaderNotification,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,

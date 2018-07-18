@@ -11,6 +11,8 @@ import {
   EuiContextMenuItem,
 } from './context_menu_item';
 
+import { tick } from './context_menu.test';
+
 import { keyCodes } from '../../services';
 
 const items = [
@@ -162,13 +164,15 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('initialFocusedItemIndex', () => {
-      it('sets focus on the item occupying that index', () => {
+      it('sets focus on the item occupying that index', async () => {
         const component = mount(
           <EuiContextMenuPanel
             items={items}
             initialFocusedItemIndex={1}
           />
         );
+
+        await tick(20);
 
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
       });
@@ -269,12 +273,14 @@ describe('EuiContextMenuPanel', () => {
 
   describe('behavior', () => {
     describe('focus', () => {
-      it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
+      it('is set on the first focusable element by default if there are no items and hasFocus is true', async () => {
         const component = mount(
           <EuiContextMenuPanel>
             <button data-test-subj="button" />
           </EuiContextMenuPanel>
         );
+
+        await tick(20);
 
         expect(findTestSubject(component, 'button').getDOMNode()).toBe(document.activeElement);
       });
@@ -308,47 +314,55 @@ describe('EuiContextMenuPanel', () => {
         );
       });
 
-      it(`focuses the panel by default`, () => {
+      it(`focuses the panel by default`, async () => {
+        await tick(20);
+
         expect(component.getDOMNode()).toBe(document.activeElement);
       });
 
-      it('down arrow key focuses the first menu item', () => {
+      it('down arrow key focuses the first menu item',  async () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(document.activeElement);
       });
 
-      it('subsequently, down arrow key focuses the next menu item', () => {
+      it('subsequently, down arrow key focuses the next menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
       });
 
-      it('down arrow key wraps to first menu item', () => {
+      it('down arrow key wraps to first menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(document.activeElement);
       });
 
-      it('up arrow key focuses the last menu item', () => {
+      it('up arrow key focuses the last menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(document.activeElement);
       });
 
-      it('subsequently, up arrow key focuses the previous menu item', () => {
+      it('subsequently, up arrow key focuses the previous menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
       });
 
-      it('up arrow key wraps to last menu item', () => {
+      it('up arrow key wraps to last menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
+        await tick(20);
         expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(document.activeElement);
       });
 

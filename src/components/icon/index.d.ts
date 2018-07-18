@@ -177,7 +177,25 @@ declare module '@elastic/eui' {
     | 'vector'
     | 'visualizeApp'
     | 'watchesApp'
-    | 'wrench';
+    | 'wrench'
+    | 'visArea'
+    | 'visBarHorizontal'
+    | 'visBarVertical'
+    | 'visControls'
+    | 'visGauge'
+    | 'visGoal'
+    | 'visHeatmap'
+    | 'visLine'
+    | 'visMapCoordinate'
+    | 'visMapRegion'
+    | 'visMetric'
+    | 'visPie'
+    | 'visTable'
+    | 'visTagCloud'
+    | 'visText'
+    | 'visTimelion'
+    | 'visVega'
+    | 'visVisualBuilder';
 
   export type IconSize = 'original' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 

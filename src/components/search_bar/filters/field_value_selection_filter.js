@@ -218,6 +218,7 @@ export class FieldValueSelectionFilter extends Component {
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
+        grow
       >
         {config.name}
       </EuiFilterButton>
@@ -238,7 +239,7 @@ export class FieldValueSelectionFilter extends Component {
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
         withTitle={withTitle}
-        anchorPosition="downRight"
+        anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel"
       >
         {searchBox}

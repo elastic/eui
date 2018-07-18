@@ -60,11 +60,13 @@ export class FieldValueToggleGroupFilter extends Component {
         this.valueChanged(item, active);
       };
       const key = `field_value_toggle_filter_item_${index}`;
+      const isLastItem = index === config.items.length - 1;
       return (
         <EuiFilterButton
           key={key}
           onClick={onClick}
           hasActiveFilters={active}
+          noDivider={!isLastItem}
         >
           {name}
         </EuiFilterButton>

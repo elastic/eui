@@ -23,6 +23,8 @@ export const EuiSelect = ({
   defaultValue,
   compressed,
   value,
+  prepend,
+  append,
   ...rest
 }) => {
   const classes = classNames(
@@ -30,6 +32,7 @@ export const EuiSelect = ({
     {
       'euiSelect--fullWidth': fullWidth,
       'euiSelect--compressed': compressed,
+      'euiSelect--inGroup': prepend || append,
       'euiSelect-isLoading': isLoading,
     },
     className
@@ -60,6 +63,8 @@ export const EuiSelect = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
+      prepend={prepend}
+      append={append}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
@@ -104,6 +109,20 @@ EuiSelect.propTypes = {
    * when `true` creates a shorter height input
    */
   compressed: PropTypes.bool,
+  /**
+   * Creates an input group with element(s) coming before select
+   */
+  prepend: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * Creates an input group with element(s) coming after select
+   */
+  append: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 EuiSelect.defaultProps = {

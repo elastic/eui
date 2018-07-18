@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   EuiBreadcrumbs,
+  EuiShowFor,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => {
@@ -30,5 +32,15 @@ export default () => {
     text: 'Nebulosa subspecies',
   }];
 
-  return <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={null} />;
+  return (
+    <Fragment>
+      <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={null} />
+
+      <EuiShowFor sizes={['xs', 's']}>
+        <EuiText size="s" color="subdued">
+          <p><em>Responsive breadcrumbs do not show at all on small (mobile) screens.</em></p>
+        </EuiText>
+      </EuiShowFor>
+    </Fragment>
+  );
 };
