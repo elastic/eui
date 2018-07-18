@@ -21,11 +21,14 @@ const columnsToClassNameMap = {
 
 export const COLUMNS = Object.keys(columnsToClassNameMap).map(columns => parseInt(columns, 10));
 
-export const EuiFlexGrid = ({ children, className, gutterSize, columns, ...rest }) => {
+export const EuiFlexGrid = ({ children, className, gutterSize, responsive, columns, ...rest }) => {
   const classes = classNames(
     'euiFlexGrid',
     gutterSizeToClassNameMap[gutterSize],
     columnsToClassNameMap[columns],
+    {
+      'euiFlexGrid--responsive': responsive,
+    },
     className
   );
 
@@ -44,10 +47,12 @@ EuiFlexGrid.propTypes = {
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   columns: PropTypes.oneOf(COLUMNS).isRequired,
+  responsive: PropTypes.bool,
 };
 
 EuiFlexGrid.defaultProps = {
   gutterSize: 'l',
   columns: 0,
+  responsive: true,
 };
 

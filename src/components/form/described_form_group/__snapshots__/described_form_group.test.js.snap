@@ -34,6 +34,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
+        columns="0"
         grow={true}
         id="generated-id"
         size="s"
@@ -92,6 +93,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
+        columns="0"
         grow={true}
         id="generated-id"
         size="s"
@@ -150,6 +152,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
+        columns="0"
         grow={true}
         id="generated-id"
         size="s"
@@ -208,6 +211,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
+        columns="0"
         grow={true}
         id="generated-id"
         size="s"
@@ -290,6 +294,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             <EuiText
               className="euiDescribedFormGroup__description"
               color="subdued"
+              columns="0"
               grow={true}
               id="test-id"
               size="s"

@@ -11,6 +11,8 @@ import {
   EuiLink,
   EuiDatePicker,
   EuiDatePickerRange,
+  EuiBadge,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -56,6 +58,10 @@ const customInputHtml = renderToHtml(CustomInput);
 import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
+
+import GlobalDatePicker from './global_date_picker';
+const globalDatePickerSource = require('!!raw-loader!./global_date_picker');
+const globalDatePickerHtml = renderToHtml(GlobalDatePicker);
 
 export const DatePickerExample = {
   title: 'DatePicker',
@@ -260,5 +266,25 @@ export const DatePickerExample = {
       </div>
     ),
     demo: <Classes />,
+  }, {
+    title: 'Global date picker',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: globalDatePickerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: globalDatePickerHtml,
+    }],
+    text: (
+      <div>
+        <EuiBadge color="warning">Pattern only</EuiBadge>
+        <EuiSpacer />
+        <p>
+            This pattern showcases how to setup the components for Kibana&apos;s
+            global date picker. None of the functionality is actually hooked up.
+        </p>
+      </div>
+    ),
+    demo: <GlobalDatePicker />,
   }],
 };

@@ -10,6 +10,7 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 
 export const EuiTabs = ({
   size,
+  expand,
   children,
   className,
   ...rest
@@ -17,6 +18,9 @@ export const EuiTabs = ({
   const classes = classNames(
     'euiTabs',
     sizeToClassNameMap[size],
+    {
+      'euiTabs--expand': expand,
+    },
     className
   );
 
@@ -35,4 +39,5 @@ EuiTabs.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
+  expand: PropTypes.bool,
 };

@@ -15,11 +15,15 @@ export const EuiDatePickerRange = ({
   startDateControl,
   endDateControl,
   iconType,
+  fullWidth,
   ...rest
 }) => {
 
   const classes = classNames(
     'euiDatePickerRange',
+    {
+      'euiDatePickerRange--fullWidth': fullWidth,
+    },
     className
   );
 
@@ -71,6 +75,7 @@ EuiDatePickerRange.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(ICON_TYPES),
   ]),
+  fullWidth: PropTypes.bool,
 };
 
 EuiDatePickerRange.defaultProps = {

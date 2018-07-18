@@ -24,6 +24,7 @@ export class EuiDatePicker extends Component {
   render() {
     const {
       calendarClassName,
+      calendarContainer,
       className,
       customInput,
       dateFormat,
@@ -136,6 +137,7 @@ export class EuiDatePicker extends Component {
             >
               <DatePicker
                 calendarClassName={calendarClassName}
+                calendarContainer={calendarContainer}
                 className={datePickerClasses}
                 customInput={customInput}
                 dateFormat={dateFormat}

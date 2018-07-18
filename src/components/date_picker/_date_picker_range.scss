@@ -21,6 +21,15 @@
     box-shadow: none !important; // including all states
     text-align: center;
   }
+
+  &--inGroup {
+    box-shadow: none;
+    padding: 0;
+
+    .euiDatePicker {
+      height: $euiFormControlHeight - 2px;
+    }
+  }
 }
 
 .euiDatePickerRange__icon {

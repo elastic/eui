@@ -86,8 +86,8 @@ export class EuiTabbedContent extends Component {
     } = selectedTab;
 
     return (
-      <div className={className} {...rest}>
-        <EuiTabs size={size}>
+      <div className={className}>
+        <EuiTabs size={size} {...rest}>
           {tabs.map((tab) => {
             const {
               id,
