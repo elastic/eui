@@ -201,49 +201,38 @@ export default class extends Component {
     );
 
     return (
-      <Fragment>
-        <EuiFormControlLayout
-          fullWidth
-          prepend={quickSelectPopover}
-        >
-          {/* <input type="text" className="euiFieldText euiFieldText--inGroup" /> */}
-          <EuiDatePickerRange
-            fullWidth
-            className="euiDatePickerRange--inGroup"
-            iconType={false}
-            startDateControl={
-              <EuiDatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChangeStart}
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                isInvalid={this.state.startDate > this.state.endDate}
-                aria-label="Start date"
-                calendarContainer={GlobalDatePopover}
-                showTimeSelect
-              />
-            }
-            endDateControl={
-              <EuiDatePicker
-                selected={this.state.endDate}
-                onChange={this.handleChangeEnd}
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                isInvalid={this.state.startDate > this.state.endDate}
-                aria-label="End date"
-                showTimeSelect
-                popperModifiers={{
-                  preventOverflow: {
-                    enabled: true,
-                    escapeWithReference: false, // force popper to stay in viewport (even when input is scrolled out of view)
-                    boundariesElement: 'viewport'
-                  }
-                }}
-              />
-            }
-          />
-        </EuiFormControlLayout>
-      </Fragment>
+      <EuiFormControlLayout
+        prepend={quickSelectPopover}
+      >
+        <EuiDatePickerRange
+          className="euiDatePickerRange--inGroup"
+          iconType={false}
+          startDateControl={
+            <EuiDatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChangeStart}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              isInvalid={this.state.startDate > this.state.endDate}
+              aria-label="Start date"
+              calendarContainer={GlobalDatePopover}
+              showTimeSelect
+            />
+          }
+          endDateControl={
+            <EuiDatePicker
+              selected={this.state.endDate}
+              onChange={this.handleChangeEnd}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              isInvalid={this.state.startDate > this.state.endDate}
+              aria-label="End date"
+              calendarContainer={GlobalDatePopover}
+              showTimeSelect
+            />
+          }
+        />
+      </EuiFormControlLayout>
     );
   }
 
