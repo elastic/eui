@@ -36,6 +36,15 @@ import PopoverWithTitlePadding from './popover_with_title_padding';
 const popoverWithTitlePaddingSource = require('!!raw-loader!./popover_with_title_padding');
 const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
 
+import PopoverHTMLElementAnchor from './popover_htmlelement_anchor';
+const popoverHTMLElementAnchorSource = require('!!raw-loader!./popover_htmlelement_anchor');
+const popoverHTMLElementAnchorHtml = renderToHtml(PopoverHTMLElementAnchor);
+
+import PopoverContainer from './popover_container';
+const popoverContainerSource = require('!!raw-loader!./popover_container');
+const popoverContainerHtml = renderToHtml(PopoverContainer);
+
+
 export const PopoverExample = {
   title: 'Popover',
   sections: [{
@@ -158,5 +167,42 @@ export const PopoverExample = {
       </div>
     ),
     demo: <PopoverWithTitlePadding />,
+  }, {
+    title: 'Constraining a popover inside a container',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverContainerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverContainerHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          <EuiCode>EuiPopover</EuiCode> can accept a React or DOM element as
+          a <EuiCode>container</EuiCode> prop and restrict the popover from
+          overflowing that container.
+        </p>
+      </div>
+    ),
+    demo: <PopoverContainer />,
+  }, {
+    title: 'Popover using an HTMLElement as the anchor',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverHTMLElementAnchorSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverHTMLElementAnchorHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          <EuiCode>EuiWrappingPopover</EuiCode> is an extra popover component that allows
+          any existing DOM element to be passed as the <EuiCode>button</EuiCode> prop.
+        </p>
+      </div>
+    ),
+    demo: <PopoverHTMLElementAnchor />,
   }],
 };

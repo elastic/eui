@@ -173,8 +173,12 @@ export class EuiContextMenu extends Component {
   };
 
   onIncomingPanelHeightChange = height => {
-    this.setState({
-      height,
+    this.setState(({ height: prevHeight }) => {
+      if (height === prevHeight) {
+        return null;
+      } else {
+        return { height };
+      }
     });
   };
 
@@ -299,7 +303,6 @@ export class EuiContextMenu extends Component {
 
     return (
       <div
-        ref={node => { this.menu = node; }}
         className={classes}
         style={{ height: this.state.height }}
         {...rest}

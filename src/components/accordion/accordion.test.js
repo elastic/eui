@@ -81,18 +81,6 @@ describe('EuiAccordion', () => {
   });
 
   describe('behavior', () => {
-    beforeAll(() => {
-      global.MutationObserver = class {
-        constructor() {}
-        disconnect() {}
-        observe() {}
-      };
-    });
-
-    afterAll(() => {
-      delete global.MutationObserver;
-    });
-
     it('opens when clicked once', () => {
       const component = mount(
         <EuiAccordion
