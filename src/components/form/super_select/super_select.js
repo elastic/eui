@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import tabbable from 'tabbable';
 
 import { EuiSuperSelectControl } from './super_select_control';
 import { EuiPopover } from '../../popover';
@@ -17,10 +18,18 @@ export class EuiSuperSelect extends Component {
     };
   }
 
-  onButtonClick = () => {
-    this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  setItemNode = (node, index) => {
+
+  };
+
+  openPopover = () => {
+    this.setState({
+      isPopoverOpen: true,
+    });
+
+    requestAnimationFrame(() => {
+      tabbable();
+    });
   };
 
   closePopover = () => {
@@ -69,7 +78,7 @@ export class EuiSuperSelect extends Component {
         options={options}
         value={valueOfSelected}
         onChange={onChange}
-        onClick={this.onButtonClick}
+        onClick={this.state.isPopoverOpen ? this.closePopover : this.openPopover}
         className={buttonClasses}
         {...rest}
       />
@@ -80,9 +89,10 @@ export class EuiSuperSelect extends Component {
         <EuiContextMenuItem
           key={index}
           className={itemClasses}
-          icon={valueOfSelected === option.value ? "check" : "empty"}
+          icon={valueOfSelected === option.value ? 'check' : 'empty'}
           onClick={() => this.itemClicked(option.value)}
           layoutAlign={itemLayoutAlign}
+          buttonRef={node => this.setItemNode(node, index)}
         >
           {option.dropdownDisplay || option.inputDisplay}
         </EuiContextMenuItem>
@@ -98,6 +108,7 @@ export class EuiSuperSelect extends Component {
         closePopover={this.closePopover}
         panelPaddingSize="none"
         anchorPosition="downCenter"
+        ownFocus={true}
       >
         {items}
       </EuiPopover>

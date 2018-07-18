@@ -176,6 +176,6 @@ export class EuiContextMenuItem extends Component {
 }
 
 EuiContextMenuItem.defaultProps = {
-  toolTipPosition: "right",
-  layoutAlign: "center",
+  toolTipPosition: 'right',
+  layoutAlign: 'center',
 };
