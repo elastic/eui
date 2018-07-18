@@ -79,7 +79,7 @@ class GlobalDatePopover extends Component {
             </EuiFlexItem>
           </EuiFlexGroup>
           <EuiFormRow>
-            <EuiDatePicker disabled />
+            <EuiDatePicker selected={moment().subtract(3, 'day')} disabled />
           </EuiFormRow>
           <EuiFormRow>
             <EuiSwitch label="Round to the day" />
