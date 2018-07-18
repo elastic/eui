@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.0.2`.
+
+## [`3.0.2`](https://github.com/elastic/eui/tree/v3.0.2)
+
 - Added `restrictWidth` option to `EuiPageBody` ([#1024](https://github.com/elastic/eui/pull/1024))
 
 **Bug fixes**
