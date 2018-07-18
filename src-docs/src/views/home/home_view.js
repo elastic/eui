@@ -156,13 +156,13 @@ export const HomeView = () => (
         <dt>EUI is accessible to everyone.</dt>
         <dd>Use high contrast, color-blind safe palettes and proper aria labels.</dd>
         <dt>EUI is themable.</dt>
-        <dd>Theming should involve changingless than a dozen lines of code. This means strict variable usage.</dd>
+        <dd>Theming should involve changing less than a dozen lines of code. This means strict variable usage.</dd>
         <dt>EUI is responsive.</dt>
         <dd>Currently we target mobile, laptop, desktop and wide desktop breakpoints.</dd>
         <dt>EUI is playful.</dt>
         <dd>Consistent use of animation can bring life to our design.</dd>
         <dt>EUI is documented and has tests.</dt>
-        <dd>Make sure Make sure the code is friendly to the novice and expert alike.</dd>
+        <dd>Make sure the code is friendly to the novice and expert alike.</dd>
       </dl>
     </EuiText>
   </div>
