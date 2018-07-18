@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.0.1`.
+- Added `restrictWidth` option to `EuiPageBody` ([#1024](https://github.com/elastic/eui/pull/1024))
+
+**Bug fixes**
+
+- Fixed `EuiPageContent` centered layouts ([#1024](https://github.com/elastic/eui/pull/1024))
 
 ## [`3.0.1`](https://github.com/elastic/eui/tree/v3.0.1)
 
