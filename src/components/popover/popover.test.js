@@ -144,81 +144,93 @@ describe('EuiPopover', () => {
       });
 
       test('renders true', () => {
-        const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-            isOpen
-          />
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              isOpen
+            />
+          </div>
         );
 
-        expect(component)
+        // console.log(component.debug());
+
+        expect(component.render())
           .toMatchSnapshot();
       });
     });
 
     describe('ownFocus', () => {
       test('defaults to false', () => {
-        const component = render(
-          <EuiPopover
-            id={getId()}
-            isOpen
-            button={<button />}
-            closePopover={() => {}}
-          />
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              isOpen
+              button={<button />}
+              closePopover={() => {}}
+            />
+          </div>
         );
 
-        expect(component)
+        expect(component.render())
           .toMatchSnapshot();
       });
 
       test('renders true', () => {
-        const component = render(
-          <EuiPopover
-            id={getId()}
-            isOpen
-            ownFocus
-            button={<button />}
-            closePopover={() => {}}
-          />
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              isOpen
+              ownFocus
+              button={<button />}
+              closePopover={() => {}}
+            />
+          </div>
         );
 
-        expect(component)
+        expect(component.render())
           .toMatchSnapshot();
       });
     });
 
     describe('panelClassName', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-            panelClassName="test"
-            isOpen
-          />
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              panelClassName="test"
+              isOpen
+            />
+          </div>
         );
 
-        expect(component)
+        expect(component.render())
           .toMatchSnapshot();
       });
     });
 
     describe('panelPaddingSize', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiPopover
-            id={getId()}
-            button={<button />}
-            closePopover={() => {}}
-            panelPaddingSize="s"
-            isOpen
-          />
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              panelPaddingSize="s"
+              isOpen
+            />
+          </div>
         );
 
-        expect(component)
+        expect(component.render())
           .toMatchSnapshot();
       });
     });
