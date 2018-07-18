@@ -20,6 +20,12 @@
   .euiDatePicker {
     box-shadow: none !important; // including all states
     text-align: center;
+
+    .euiDatePicker,
+    .react-datepicker-popper {
+      // set any subsequent children and popper back to left align
+      text-align: left;
+    }
   }
 
   &--inGroup {
