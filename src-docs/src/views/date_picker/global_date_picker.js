@@ -6,8 +6,6 @@ import React, {
 import moment from 'moment';
 import { CalendarContainer } from 'react-datepicker';
 
-console.log(CalendarContainer);
-
 import {
   EuiDatePicker,
   EuiDatePickerRange,
@@ -34,27 +32,26 @@ const commonDates = [
   'Today', 'Yesterday', 'This week', 'Week to date', 'This month', 'Month to date', 'This year', 'Year to date',
 ];
 
-// eslint-disable-next-line react/prefer-stateless-function
+const relativeSelectOptions = [
+  { text: 'Seconds ago', value: 'string:s' },
+  { text: 'Minutes ago', value: 'string:m' },
+  { text: 'Hours ago', value: 'string:h' },
+  { text: 'Days ago', value: 'string:d' },
+  { text: 'Weeks ago', value: 'string:w' },
+  { text: 'Months ago', value: 'string:M' },
+  { text: 'Years ago', value: 'string:y' },
+  { text: 'Seconds from now', value: 'string:s+' },
+  { text: 'Minutes from now', value: 'string:m+' },
+  { text: 'Hours from now', value: 'string:h+' },
+  { text: 'Days from now', value: 'string:d+' },
+  { text: 'Weeks from now', value: 'string:w+' },
+  { text: 'Months from now', value: 'string:M+' },
+  { text: 'Years from now', value: 'string:y+' },
+];
+
 class GlobalDatePopover extends Component {
   constructor(props) {
     super(props);
-
-    const relativeSelectOptions = [
-      { text: 'Seconds ago', value: 'string:s' },
-      { text: 'Minutes ago', value: 'string:m' },
-      { text: 'Hours ago', value: 'string:h' },
-      { text: 'Days ago', value: 'string:d' },
-      { text: 'Weeks ago', value: 'string:w' },
-      { text: 'Months ago', value: 'string:M' },
-      { text: 'Years ago', value: 'string:y' },
-      { text: 'Seconds from now', value: 'string:s+' },
-      { text: 'Minutes from now', value: 'string:m+' },
-      { text: 'Hours from now', value: 'string:h+' },
-      { text: 'Days from now', value: 'string:d+' },
-      { text: 'Weeks from now', value: 'string:w+' },
-      { text: 'Months from now', value: 'string:M+' },
-      { text: 'Years from now', value: 'string:y+' },
-    ];
 
     this.tabs = [{
       id: 'absolute',
