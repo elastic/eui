@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.0.1`.
+
+## [`3.0.1`](https://github.com/elastic/eui/tree/v3.0.1)
+
 - Added typings for `EuiEmptyPrompt`, `EuiCode`, `EuiCodeBlock`, and `EuiCallOut` ([#1010](https://github.com/elastic/eui/pull/1010))
 - Make utility type `Omit` compatible with new `keyof` behaviour introduced in TypeScript 2.9 ([#1017](https://github.com/elastic/eui/pull/1017))
 - Added visualization chart type icons ([#1020](https://github.com/elastic/eui/pull/1020))
