@@ -65,3 +65,9 @@ exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
   class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap euiFlexGrid--responsive"
 />
 `;
+
+exports[`EuiFlexGrid props responsive is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+/>
+`;

@@ -19,25 +19,14 @@ const textSizeToClassNameMap = {
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
 
-const columnsToClassNameMap = {
-  0: null,
-  2: 'euiText--columns2',
-  3: 'euiText--columns3',
-  4: 'euiText--columns4',
-  5: 'euiText--columns5',
-};
-
-export const COLUMNS = Object.keys(columnsToClassNameMap);
-
-export const EuiText = ({ size, color, grow, textAlign, columns, children, className, ...rest }) => {
+export const EuiText = ({ size, color, grow, textAlign, children, className, ...rest }) => {
 
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
-    columnsToClassNameMap[columns],
     className, {
-      'euiText--constrainedWidth': !grow,
-    },
+      'euiText--constrainedWidth': !grow
+    }
   );
 
   let optionallyAlteredText;
@@ -70,11 +59,9 @@ EuiText.propTypes = {
   size: PropTypes.oneOf(TEXT_SIZES),
   color: PropTypes.oneOf(COLORS),
   textAlign: PropTypes.oneOf(ALIGNMENTS),
-  columns: PropTypes.oneOf(COLUMNS),
   grow: PropTypes.bool,
 };
 
 EuiText.defaultProps = {
   grow: true,
-  columns: '0',
 };

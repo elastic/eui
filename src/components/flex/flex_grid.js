@@ -47,6 +47,9 @@ EuiFlexGrid.propTypes = {
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
   columns: PropTypes.oneOf(COLUMNS).isRequired,
+  /**
+   * Allow grid items display at block level on small screens
+   */
   responsive: PropTypes.bool,
 };
 
