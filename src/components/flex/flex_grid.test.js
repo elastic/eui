@@ -46,5 +46,16 @@ describe('EuiFlexGrid', () => {
         });
       });
     });
+
+    describe('responsive', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiFlexGrid responsive={false} />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
   });
 });
