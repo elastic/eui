@@ -34,9 +34,9 @@ export class EuiSwitch extends Component {
 
     const classes = classNames(
       'euiSwitch',
-        {
-          'euiSwitch--compressed': compressed,
-        },
+      {
+        'euiSwitch--compressed': compressed,
+      },
       className
     );
 
