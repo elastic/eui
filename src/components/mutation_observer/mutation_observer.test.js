@@ -9,6 +9,7 @@ async function sleep(duration) {
 }
 
 export async function waitforMutationObserver(period = 30) {
+  // `period` defaults to 30 because its the delay used by the MutationObserver polyfill
   await sleep(period);
 }
 
