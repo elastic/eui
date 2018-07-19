@@ -2,7 +2,8 @@
 
 **Bug fixes**
 
-- `EuiOutsideClickDetector` can support nested detectors in the DOM tree ([#1039](https://github.com/elastic/eui/pull/1039))
+- Fixed `EuiContextMenuPanel` calling `ref` after being unmounted ([#1038](https://github.com/elastic/eui/pull/1038))
+- `EuiOutsideClickDetector` supports nested detectors in the DOM tree ([#1039](https://github.com/elastic/eui/pull/1039))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
