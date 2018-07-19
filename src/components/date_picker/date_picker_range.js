@@ -40,10 +40,12 @@ export const EuiDatePickerRange = ({
 
   const clonedStartDate = cloneElement(startDateControl, {
     showIcon: false,
+    fullWidth: fullWidth,
   });
 
   const clonedEndDate = cloneElement(endDateControl, {
     showIcon: false,
+    fullWidth: fullWidth,
   });
 
   return (
