@@ -44,7 +44,7 @@ describe('EuiFlyout', () => {
         expect(label).toBe('Closes this dialog');
       });
 
-      test('has a default label for the close button', () => {
+      test('sets a custom label for the close button', () => {
         const component = render(
           <EuiFlyout
             onClose={() => {}}
