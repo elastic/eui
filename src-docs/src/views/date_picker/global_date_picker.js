@@ -189,6 +189,7 @@ export default class extends Component {
         button={quickSelectButton}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
+        anchorPosition="downLeft"
       >
         <div style={{ width: '400px' }}>
           {this.renderQuickSelect()}
