@@ -8,7 +8,10 @@
   /*
    * 1. We need the extra specificity here to override the FlexGroup > FlexItem styles.
    * 2. FlexItem can be manually set to not grow if needed.
+   * 3. Fix for IE or else flex item never shows
    */
+  .euiFlexGroup--directionColumn &, /* 3 */
+  .euiFlexGroup--directionColumnReverse &, /* 3 */
   &.euiFlexItem--flexGrowZero { /* 1 */
     flex-grow: 0; /* 2 */
     flex-basis: auto; /* 2 */
@@ -24,7 +27,7 @@
 // On mobile we force them to stack and act the same.
 @include euiBreakpoint('xs','s') {
   .euiFlexGroup--responsive > .euiFlexItem,
-  .euiFlexGrid > .euiFlexItem {
+  .euiFlexGrid--responsive > .euiFlexItem {
     width: 100% !important;
     flex-basis: 100% !important;
     margin-left: 0 !important;

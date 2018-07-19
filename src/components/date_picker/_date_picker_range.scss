@@ -14,12 +14,27 @@
   padding: 1px; /* 1 */
 
   > span {
-    flex-grow: 1;
+    flex: 1 1 0%; // All values necessary for IE support
   }
 
-  .euiDatePicker {
+  .euiFieldText.euiDatePicker {
     box-shadow: none !important; // including all states
     text-align: center;
+
+  }
+
+  .react-datepicker-popper .euiFieldText.euiDatePicker {
+    // set any subsequent children in popper back to left align
+    text-align: left;
+  }
+
+  &--inGroup {
+    box-shadow: none;
+    padding: 0;
+
+    .euiDatePicker {
+      height: $euiFormControlHeight - 2px;
+    }
   }
 }
 

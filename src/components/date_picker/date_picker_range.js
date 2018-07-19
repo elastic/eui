@@ -15,11 +15,15 @@ export const EuiDatePickerRange = ({
   startDateControl,
   endDateControl,
   iconType,
+  fullWidth,
   ...rest
 }) => {
 
   const classes = classNames(
     'euiDatePickerRange',
+    {
+      'euiDatePickerRange--fullWidth': fullWidth,
+    },
     className
   );
 
@@ -36,10 +40,12 @@ export const EuiDatePickerRange = ({
 
   const clonedStartDate = cloneElement(startDateControl, {
     showIcon: false,
+    fullWidth: fullWidth,
   });
 
   const clonedEndDate = cloneElement(endDateControl, {
     showIcon: false,
+    fullWidth: fullWidth,
   });
 
   return (
@@ -71,6 +77,7 @@ EuiDatePickerRange.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(ICON_TYPES),
   ]),
+  fullWidth: PropTypes.bool,
 };
 
 EuiDatePickerRange.defaultProps = {

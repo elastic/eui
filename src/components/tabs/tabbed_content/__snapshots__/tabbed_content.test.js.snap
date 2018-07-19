@@ -71,7 +71,10 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
   }
 >
   <div>
-    <EuiTabs>
+    <EuiTabs
+      expand={false}
+      size="m"
+    >
       <div
         className="euiTabs"
         role="tablist"
