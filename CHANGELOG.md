@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added typings for 'Euibadge' ([#1034](https://github.com/elastic/eui/pull/1034))
+- Added typings for 'EuiBadge' ([#1034](https://github.com/elastic/eui/pull/1034))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
