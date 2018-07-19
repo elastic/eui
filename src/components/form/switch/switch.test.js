@@ -7,7 +7,7 @@ import { EuiSwitch } from './switch';
 describe('EuiSwitch', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSwitch {...requiredProps} />
+      <EuiSwitch id="test" {...requiredProps} />
     );
 
     expect(component)
