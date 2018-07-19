@@ -8,27 +8,9 @@ async function sleep(duration) {
   });
 }
 
-/**
- * Helper method to execute - and wait for - any mutation observers within a components's tree
- * @param component {EnzymeComponent} mounted component to find and run observers in
- * @returns {Promise<any[]>}
- */
-export async function runObserversOnComponent(component) {
-  const observerPromises = [];
-
-  component.find('EuiMutationObserver').forEach(
-    mutationObserver => {
-      const observer = mutationObserver.instance().observer;
-      if (observer != null) {
-        // `observer` is an instance of a polyfill (polyfills/mutation_observer.js
-        // which has an internal method to force it to update
-        observer._notifyListener();
-        observerPromises.push(sleep(observer._period));
-      }
-    }
-  );
-
-  return Promise.all(observerPromises);
+export async function waitforMutationObserver(period = 30) {
+  // `period` defaults to 30 because its the delay used by the MutationObserver polyfill
+  await sleep(period);
 }
 
 describe('EuiMutationObserver', () => {
@@ -53,7 +35,7 @@ describe('EuiMutationObserver', () => {
 
     component.setProps({ value: 6 });
 
-    await runObserversOnComponent(component);
+    await waitforMutationObserver();
 
     expect(onMutation).toHaveBeenCalledTimes(1);
   });
@@ -81,7 +63,7 @@ describe('EuiMutationObserver', () => {
 
     component.setProps({ value: 6 });
 
-    await runObserversOnComponent(component);
+    await waitforMutationObserver();
 
     expect(onMutation).toHaveBeenCalledTimes(1);
   });
