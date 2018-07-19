@@ -18,6 +18,6 @@ declare module '@elastic/eui' {
   }
 
   export const EuiBadge: SFC<
-    CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBadgeProps
+    CommonProps & HTMLAttributes<HTMLSpanElement> & HTMLAttributes<HTMLButtonElement> & EuiBadgeProps
   >;
 }
