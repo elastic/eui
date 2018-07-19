@@ -33,7 +33,7 @@ export class EuiFlyout extends Component {
       onClose,
       ownFocus,
       size,
-      closeButtonLabel,
+      closeButtonAriaLabel,
       ...rest
     } = this.props;
 
@@ -46,7 +46,7 @@ export class EuiFlyout extends Component {
           className="euiFlyout__closeButton"
           iconType="cross"
           color="text"
-          aria-label={closeButtonLabel}
+          aria-label={closeButtonAriaLabel}
           onClick={onClose}
           data-test-subj="euiFlyoutCloseButton"
         />
@@ -108,14 +108,14 @@ EuiFlyout.propTypes = {
    */
   ownFocus: PropTypes.bool,
   /**
-   * Specify an aria-label for the close button of the flyout.
+   * Specify an aria-label for the close button of the flyout
    */
-  closeButtonLabel: PropTypes.string,
+  closeButtonAriaLabel: PropTypes.string,
 };
 
 EuiFlyout.defaultProps = {
   size: 'm',
   hideCloseButton: false,
   ownFocus: false,
-  closeButtonLabel: 'Closes this dialog',
+  closeButtonAriaLabel: 'Closes this dialog',
 };

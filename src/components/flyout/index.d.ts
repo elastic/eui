@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
     /**
      * Specify an aria-label for the close button of the flyout.
      */
-    closeButtonLabel?: string;
+    closeButtonAriaLabel?: string;
   }
 
   export const EuiFlyout: React.SFC<

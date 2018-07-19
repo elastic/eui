@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `closeButtonLabel` property to `EuiFlyout` ([#1031](https://github.com/elastic/eui/pull/1031))
+- Added `closeButtonAriaLabel` property to `EuiFlyout` ([#1031](https://github.com/elastic/eui/pull/1031))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 

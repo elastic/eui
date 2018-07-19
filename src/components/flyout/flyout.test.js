@@ -48,7 +48,7 @@ describe('EuiFlyout', () => {
         const component = render(
           <EuiFlyout
             onClose={() => {}}
-            closeButtonLabel="Closes specific flyout"
+            closeButtonAriaLabel="Closes specific flyout"
           />
         );
         const label = component.find('[data-test-subj="euiFlyoutCloseButton"]').prop('aria-label');
