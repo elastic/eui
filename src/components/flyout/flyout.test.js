@@ -32,7 +32,31 @@ describe('EuiFlyout', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    describe('closeButtonLabel', () => {
+      test('has a default label for the close button', () => {
+        const component = render(
+          <EuiFlyout
+            onClose={() => {}}
+          />
+        );
+        const label = component.find('[data-test-subj="euiFlyoutCloseButton"]').prop('aria-label');
+        expect(label).toBe('Closes this dialog');
+      });
+
+      test('has a default label for the close button', () => {
+        const component = render(
+          <EuiFlyout
+            onClose={() => {}}
+            closeButtonLabel="Closes specific flyout"
+          />
+        );
+        const label = component.find('[data-test-subj="euiFlyoutCloseButton"]').prop('aria-label');
+        expect(label).toBe('Closes specific flyout');
+      });
+    });
   });
+
 
   describe('size', () => {
     SIZES.forEach(size => {
