@@ -156,6 +156,10 @@ export class EuiContextMenuPanel extends Component {
   updateFocus() {
     // Give positioning time to render before focus is applied. Otherwise page jumps.
     requestAnimationFrame(() => {
+      if (!this._isMounted) {
+        return;
+      }
+
       // If this panel has lost focus, then none of its content should be focused.
       if (!this.props.hasFocus) {
         if (this.panel.contains(document.activeElement)) {
@@ -212,6 +216,11 @@ export class EuiContextMenuPanel extends Component {
 
   componentDidMount() {
     this.updateFocus();
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
