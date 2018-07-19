@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.1.0`.
+**Bug fixes**
+
+- `EuiOutsideClickDetector` can support nested detectors in the DOM tree ([#1039](https://github.com/elastic/eui/pull/1039))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
