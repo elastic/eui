@@ -90,6 +90,7 @@ class XYChart extends PureComponent {
       children,
       width,
       height,
+      margins,
       xType,
       yType,
       stackBy,
@@ -134,7 +135,7 @@ class XYChart extends PureComponent {
           width={width}
           animation={animateData}
           height={height}
-          margin={DEFAULT_MARGINS}
+          margin={margins}
           xType={xType}
           yType={yType}
           xDomain={xDomain}
@@ -214,6 +215,7 @@ XYChart.defaultProps = {
   showDefaultAxis: true,
   enableSelectionBrush: false,
   selectionBrushOrientation: HORIZONTAL,
+  margins: DEFAULT_MARGINS,
 };
 
 export const EuiXYChart = makeVisFlexible(XYChart);
