@@ -18,6 +18,14 @@ exports[`EuiLineSeries all props are rendered 1`] = `
       animation={null}
       enableSelectionBrush={false}
       height={200}
+      margins={
+        Object {
+          "bottom": 40,
+          "left": 40,
+          "right": 10,
+          "top": 10,
+        }
+      }
       orientation="vertical"
       selectionBrushOrientation="horizontal"
       showCrosshair={true}
@@ -4120,6 +4128,14 @@ exports[`EuiLineSeries is rendered 1`] = `
       data-test-subj="test subject string"
       enableSelectionBrush={false}
       height={200}
+      margins={
+        Object {
+          "bottom": 40,
+          "left": 40,
+          "right": 10,
+          "top": 10,
+        }
+      }
       orientation="vertical"
       selectionBrushOrientation="horizontal"
       showCrosshair={true}
