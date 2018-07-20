@@ -40,6 +40,7 @@ export const EuiCard = ({
   className,
   description,
   title,
+  titleElement,
   icon,
   image,
   footer,
@@ -94,6 +95,11 @@ export const EuiCard = ({
     OuterElement = 'button';
   }
 
+  let TitleElement = titleElement;
+  if (OuterElement === 'button') {
+    TitleElement = 'span';
+  }
+
   let optionalCardTop;
   if (imageNode || iconNode) {
     optionalCardTop = (
@@ -133,7 +139,7 @@ export const EuiCard = ({
 
       <span className="euiCard__content">
         <EuiTitle className="euiCard__title">
-          <span>{title}</span>
+          <TitleElement>{title}</TitleElement>
         </EuiTitle>
 
         <EuiText size="s" className="euiCard__description">
@@ -153,6 +159,11 @@ export const EuiCard = ({
 EuiCard.propTypes = {
   className: PropTypes.string,
   title: PropTypes.node.isRequired,
+  /**
+   * Determines the title's heading element. Will force to 'span' if
+   * the card is a button.
+   */
+  titleElement: PropTypes.oneOf(['h2', 'h3', 'h4', 'h5', 'h6', 'span']),
   description: PropTypes.node.isRequired,
 
   /**
@@ -203,4 +214,5 @@ EuiCard.propTypes = {
 EuiCard.defaultProps = {
   textAlign: 'center',
   layout: 'vertical',
+  titleElement: 'span',
 };
