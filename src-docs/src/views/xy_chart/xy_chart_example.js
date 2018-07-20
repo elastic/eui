@@ -115,10 +115,10 @@ export const XYChartExample = {
       text: (
         <div>
           <p>
-            You can omit <EuiCode>width</EuiCode> ando/or <EuiCode>height</EuiCode>
+            You can omit <EuiCode>width</EuiCode> and/or <EuiCode>height</EuiCode>
             prop and the chart takes the full width and/or height of it&apos;s parent.
           </p>
-          <p>The parent container needs to have computed a height and or width.</p>
+          <p>The parent container needs to have computed a height and/or width.</p>
         </div>
       ),
       source: [
