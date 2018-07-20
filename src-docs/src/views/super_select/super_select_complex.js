@@ -29,7 +29,7 @@ export default class extends Component {
       },
       {
         value: 'option_two',
-        inputDisplay: "Option two",
+        inputDisplay: 'Option two',
         dropdownDisplay: (
           <Fragment>
             <strong>Option two</strong>

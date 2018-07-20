@@ -19,7 +19,7 @@ export default class extends Component {
       },
       {
         value: 'option_two',
-        inputDisplay: "Option two",
+        inputDisplay: 'Option two',
       },
       {
         value: 'option_three',
