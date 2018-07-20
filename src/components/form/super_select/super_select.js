@@ -31,7 +31,7 @@ export class EuiSuperSelect extends Component {
       isPopoverOpen: true,
     });
 
-    function focusSelected() {
+    const focusSelected = () => {
       const indexOfSelected = this.props.options.reduce(
         (indexOfSelected, option, index) => {
           if (indexOfSelected != null) return indexOfSelected;
@@ -46,7 +46,7 @@ export class EuiSuperSelect extends Component {
       } else {
         requestAnimationFrame(focusSelected);
       }
-    }
+    };
 
     requestAnimationFrame(focusSelected);
   };
