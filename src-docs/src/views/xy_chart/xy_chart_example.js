@@ -5,6 +5,7 @@ import { EuiXYChart } from '../../../../src/experimental';
 import ComplexChartExampleCode from './complex';
 import EmptyExampleCode from './empty';
 import MultiAxisChartExampleCode from './multi_axis';
+import ResponsiveChartExample from './responsive_chart';
 import { ExampleCrosshair } from './crosshair_sync';
 
 export const XYChartExample = {
@@ -122,6 +123,33 @@ export const XYChartExample = {
       demo: (
         <div style={{ margin: 60 }}>
           <MultiAxisChartExampleCode />
+        </div>
+      ),
+    },
+    {
+      title: 'Responsive chart',
+      text: (
+        <div>
+          <p>
+            You can omit <EuiCode>width</EuiCode> ando/or <EuiCode>height</EuiCode>
+            prop and the chart takes the full width and/or height of it&apos;s parent.
+          </p>
+          <p>The parent container needs to have computed a height and or width.</p>
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./responsive_chart'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: (
+        <div style={{ margin: 60 }}>
+          <ResponsiveChartExample />
         </div>
       ),
     },
