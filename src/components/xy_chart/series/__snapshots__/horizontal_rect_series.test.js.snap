@@ -12,6 +12,7 @@ exports[`EuiHorizontalRectSeries all props are rendered 1`] = `
       <svg
         class="rv-xy-plot__inner"
         height="200"
+        style="width:100%;height:100%"
         width="600"
       >
         <g
@@ -449,6 +450,7 @@ exports[`EuiHorizontalRectSeries is rendered 1`] = `
       <svg
         class="rv-xy-plot__inner"
         height="200"
+        style="width: 100%; height: 100%;"
         width="600"
       >
         <g
@@ -882,6 +884,7 @@ exports[`EuiHorizontalRectSeries renders stacked bar chart 1`] = `
       <svg
         class="rv-xy-plot__inner"
         height="200"
+        style="width:100%;height:100%"
         width="600"
       >
         <g

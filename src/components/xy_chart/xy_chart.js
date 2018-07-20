@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
-import { XYPlot, AbstractSeries, makeVisFlexible  } from 'react-vis';
-
+import { XYPlot, AbstractSeries  } from 'react-vis';
+import { makeFlexible } from './utils/flexible';
 import PropTypes from 'prop-types';
 import { EuiEmptyPrompt } from '../empty_prompt';
 import { EuiSelectionBrush } from './selection_brush';
@@ -143,6 +143,7 @@ class XYChart extends PureComponent {
           stackBy={stackBy}
           yPadding={yPadding}
           xPadding={xPadding}
+          style={{ width: '100%', height: '100%' }}
         >
           {this._renderChildren(children)}
           {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
@@ -218,4 +219,4 @@ XYChart.defaultProps = {
   margins: DEFAULT_MARGINS,
 };
 
-export const EuiXYChart = makeVisFlexible(XYChart);
+export const EuiXYChart = makeFlexible(XYChart);
