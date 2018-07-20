@@ -46,11 +46,7 @@ export const XYChartAxisExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <SimpleAxisExampleCode />
-        </div>
-      ),
+      demo: <SimpleAxisExampleCode />,
     },
     {
       title: 'Annotations',
@@ -73,11 +69,7 @@ export const XYChartAxisExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <AnnotationExampleCode />
-        </div>
-      ),
+      demo: <AnnotationExampleCode />,
     },
   ],
 };

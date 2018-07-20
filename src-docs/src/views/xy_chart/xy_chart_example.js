@@ -49,11 +49,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <ComplexChartExampleCode />
-        </div>
-      ),
+      demo: <ComplexChartExampleCode />,
     },
     {
       title: 'Empty Chart',
@@ -72,11 +68,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <EmptyExampleCode />
-        </div>
-      ),
+      demo: <EmptyExampleCode />,
     },
     {
       title: 'Keep cross-hair in sync',
@@ -97,11 +89,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <ExampleCrosshair />
-        </div>
-      ),
+      demo: <ExampleCrosshair />,
     },
     {
       title: 'Multi Axis',
@@ -120,11 +108,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <MultiAxisChartExampleCode />
-        </div>
-      ),
+      demo: <MultiAxisChartExampleCode />,
     },
     {
       title: 'Responsive chart',
@@ -147,11 +131,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <ResponsiveChartExample />
-        </div>
-      ),
+      demo: <ResponsiveChartExample />,
     },
     // TODO include the following example when AreasSeries PR (create vertical areachart)
     // will be merged into react-vis and orientation prop semantic will be solved.

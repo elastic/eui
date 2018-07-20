@@ -48,11 +48,7 @@ export const XYChartLineExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <LineChartExample />
-        </div>
-      ),
+      demo: <LineChartExample />,
     },
     {
       title: 'Custom domain line chart',
@@ -76,11 +72,7 @@ export const XYChartLineExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <CustomDomainLineChartExample />
-        </div>
-      ),
+      demo: <CustomDomainLineChartExample />,
     },
     {
       title: 'Multi Line chart',
@@ -102,11 +94,7 @@ export const XYChartLineExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <MultiLineChartExample />
-        </div>
-      ),
+      demo: <MultiLineChartExample />,
     },
     {
       title: 'Curved Line chart',
@@ -132,11 +120,7 @@ export const XYChartLineExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <CurvedLineChartExample />
-        </div>
-      ),
+      demo: <CurvedLineChartExample />,
     },
     {
       title: 'Custom style Line chart',
@@ -170,11 +154,7 @@ export const XYChartLineExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <CustomStyleLineChartExample />
-        </div>
-      ),
+      demo: <CustomStyleLineChartExample />,
     },
   ],
 };
