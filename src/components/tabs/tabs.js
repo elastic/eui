@@ -4,12 +4,14 @@ import classNames from 'classnames';
 
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
+  m: null,
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
 export const EuiTabs = ({
   size,
+  expand,
   children,
   className,
   ...rest
@@ -17,6 +19,9 @@ export const EuiTabs = ({
   const classes = classNames(
     'euiTabs',
     sizeToClassNameMap[size],
+    {
+      'euiTabs--expand': expand,
+    },
     className
   );
 
@@ -35,4 +40,14 @@ EuiTabs.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(SIZES),
+  /**
+   * Evenly stretches each tab to fill the
+   * horizontal space
+   */
+  expand: PropTypes.bool,
+};
+
+EuiTabs.defaultProps = {
+  size: 'm',
+  expand: false,
 };

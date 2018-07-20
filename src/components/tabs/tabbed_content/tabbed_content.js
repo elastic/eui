@@ -34,6 +34,10 @@ export class EuiTabbedContent extends Component {
      */
     initialSelectedTab: PropTypes.object,
     size: PropTypes.oneOf(SIZES),
+    /**
+     * Evenly stretches each tab to fill the horizontal space
+     */
+    expand: PropTypes.bool,
   };
 
   constructor(props) {
@@ -72,6 +76,7 @@ export class EuiTabbedContent extends Component {
       initialSelectedTab, // eslint-disable-line no-unused-vars
       selectedTab: externalSelectedTab,
       size,
+      expand,
       ...rest
     } = this.props;
 
@@ -87,7 +92,7 @@ export class EuiTabbedContent extends Component {
 
     return (
       <div className={className} {...rest}>
-        <EuiTabs size={size}>
+        <EuiTabs size={size} expand={expand}>
           {tabs.map((tab) => {
             const {
               id,

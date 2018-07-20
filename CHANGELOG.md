@@ -1,6 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added typings for 'EuiBadge' ([#1034](https://github.com/elastic/eui/pull/1034))
+- Added a visual pattern for Kibana's Global Date Picker ([#1026](https://github.com/elastic/eui/pull/1026))
+- Added `responsive` prop to `EuiFlexGrid` ([#1026](https://github.com/elastic/eui/pull/1026))
+- Added `expand` prop to `EuiTabs` and `EuiTabbedContent` ([#1026](https://github.com/elastic/eui/pull/1026))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenuPanel` calling `ref` after being unmounted ([#1038](https://github.com/elastic/eui/pull/1038))
+- `EuiOutsideClickDetector` supports nested detectors in the DOM tree ([#1039](https://github.com/elastic/eui/pull/1039))
+
+**Bug Fixes**
+
+- To make it more accessible, added a random id to `EuiSwitch`'s id prop if none is passed.  ([#779](https://github.com/elastic/eui/pull/779))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
