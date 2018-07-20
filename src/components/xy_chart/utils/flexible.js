@@ -11,7 +11,7 @@ export function makeFlexible(WrappedComponent) {
         width: 0,
       };
       this.containerRef = React.createRef();
-      this.ro = new ResizeObserver(this.createResizeObserver);
+      this.ro = new ResizeObserver(this.onResize);
     }
 
     componentDidMount() {
@@ -22,7 +22,7 @@ export function makeFlexible(WrappedComponent) {
       this.ro.unobserve(this.containerRef.current);
     }
 
-    createResizeObserver = (entries) => {
+    onResize = (entries) => {
       entries.forEach((entry) => {
         const { width, height } = entry.contentRect;
         const notifyWidth = this.state.width !== width;
