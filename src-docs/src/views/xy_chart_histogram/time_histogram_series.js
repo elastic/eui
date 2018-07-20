@@ -13,7 +13,12 @@ import {
 const { SCALE } = EuiXYChartUtils;
 const timestamp = Date.now();
 const ONE_HOUR = 3600000;
-
+const margins = {
+  top: 10,
+  left: 80,
+  right: 0,
+  bottom: 20,
+};
 
 function randomizeData(size = 24, max = 15) {
   return new Array(size)
@@ -50,7 +55,7 @@ export default class Example extends Component {
         <EuiButton onClick={this.handleRandomize}>Randomize data</EuiButton>
 
         <EuiSpacer size="xl" />
-        <EuiXYChart width={600} height={200} xType={SCALE.TIME} stackBy="y">
+        <EuiXYChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
           {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} />)}
         </EuiXYChart>
       </Fragment>
