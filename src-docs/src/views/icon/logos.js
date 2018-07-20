@@ -9,25 +9,14 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
-  'logoApache',
   'logoBeats',
   'logoCloud',
   'logoCloudEnterprise',
-  'logoDocker',
   'logoElastic',
   'logoElasticsearch',
   'logoElasticStack',
-  'logoGithub',
-  'logoGmail',
   'logoKibana',
-  'logoKubernetes',
   'logoLogstash',
-  'logoMySQL',
-  'logoNginx',
-  'logoRedis',
-  'logoSketch',
-  'logoSlack',
-  'logoWebhook',
   'logoXpack',
 ].sort();
 

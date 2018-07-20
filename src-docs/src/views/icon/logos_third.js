@@ -26,7 +26,6 @@ const iconTypes = [
   'logoDocker',
   'logoGithub',
   'logoGmail',
-  'logoKibana',
   'logoKubernetes',
   'logoLogstash',
   'logoMySQL',
