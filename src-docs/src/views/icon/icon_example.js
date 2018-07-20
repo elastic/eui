@@ -27,6 +27,10 @@ import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
 const logosHtml = renderToHtml(Logos);
 
+import LogosThird from './logos_third';
+const logosThirdSource = require('!!raw-loader!./logos_third');
+const logosThirdHtml = renderToHtml(LogosThird);
+
 import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
 const iconSizesHtml = renderToHtml(IconSizes);
@@ -106,7 +110,7 @@ export const IconExample = {
     ),
     demo: <Ml />,
   }, {
-    title: 'Logos',
+    title: 'Elastic logos',
     source: [{
       type: GuideSectionTypes.JS,
       code: logosSource,
@@ -120,6 +124,21 @@ export const IconExample = {
       </p>
     ),
     demo: <Logos />,
+  }, {
+    title: 'Third party logos',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: logosThirdSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: logosThirdHtml,
+    }],
+    text: (
+      <p>
+        Product logos follow similar rules as app logos.
+      </p>
+    ),
+    demo: <LogosThird />,
   }, {
     title: 'Sizes',
     source: [{

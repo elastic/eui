@@ -97,25 +97,38 @@ import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import loggingApp from './assets/app_logging.svg';
+import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
+import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
+import logoCouncbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
+import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
+import logoEtcd from './assets/logo_etcd.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
+import logoHaproxy from './assets/logo_haproxy.svg';
+import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
+import logoMemcached from './assets/logo_memcached.svg';
+import logoMongodb from './assets/logo_mongodb.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
+import logoOsquery from './assets/logo_osquery.svg';
+import logoPhp from './assets/logo_php.svg';
+import logoRabbitmq from './assets/logo_rabbitmq.svg';
 import logoRedis from './assets/logo_redis.svg';
 import logoSketch from './assets/logo_sketch.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
+import logoWindows from './assets/logo_windows.svg';
 import logoXpack from './assets/logo_xpack.svg';
 import logstashFilter from './assets/logstash_filter.svg';
 import logstashIf from './assets/logstash_if.svg';
@@ -290,25 +303,38 @@ const typeToIconMap = {
   listAdd,
   lock,
   loggingApp,
+  logoAerospike,
   logoApache,
   logoBeats,
+  logoCeph,
   logoCloud,
   logoCloudEnterprise,
+  logoCouncbase,
   logoDocker,
+  logoDropwizard,
   logoElastic,
   logoElasticsearch,
   logoElasticStack,
-  logoGmail,
+  logoEtcd,
   logoGithub,
+  logoGmail,
+  logoHaproxy,
+  logoKafka,
   logoKibana,
   logoKubernetes,
   logoLogstash,
+  logoMemcached,
+  logoMongodb,
   logoMySQL,
   logoNginx,
+  logoOsquery,
+  logoPhp,
+  logoRabbitmq,
   logoRedis,
   logoSketch,
   logoSlack,
   logoWebhook,
+  logoWindows,
   logoXpack,
   logstashFilter,
   logstashIf,
