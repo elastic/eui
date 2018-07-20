@@ -103,7 +103,7 @@ import logoBeats from './assets/logo_beats.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
-import logoCouncbase from './assets/logo_couchbase.svg';
+import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
@@ -112,7 +112,7 @@ import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
-import logoHaproxy from './assets/logo_haproxy.svg';
+import logoHAproxy from './assets/logo_haproxy.svg';
 import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
@@ -309,7 +309,7 @@ const typeToIconMap = {
   logoCeph,
   logoCloud,
   logoCloudEnterprise,
-  logoCouncbase,
+  logoCouchbase,
   logoDocker,
   logoDropwizard,
   logoElastic,
@@ -318,7 +318,7 @@ const typeToIconMap = {
   logoEtcd,
   logoGithub,
   logoGmail,
-  logoHaproxy,
+  logoHAproxy,
   logoKafka,
   logoKibana,
   logoKubernetes,

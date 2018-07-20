@@ -2851,7 +2851,7 @@ exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type logoCouncbase is rendered 1`] = `
+exports[`EuiIcon props type logoCouchbase is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   focusable="false"
@@ -3102,7 +3102,7 @@ exports[`EuiIcon props type logoGmail is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type logoHaproxy is rendered 1`] = `
+exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
   focusable="false"
