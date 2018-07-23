@@ -312,7 +312,7 @@ export default class extends Component {
       }
 
       return (
-        <EuiFlexItem key={date}><EuiLink onClick={this.closePopover}>{dateRange || date}</EuiLink></EuiFlexItem>
+        <EuiFlexItem grow={false} key={date}><EuiLink onClick={this.closePopover}>{dateRange || date}</EuiLink></EuiFlexItem>
       );
     });
 
