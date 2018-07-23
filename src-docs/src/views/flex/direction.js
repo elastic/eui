@@ -7,8 +7,8 @@ import {
 
 export default () => (
   <EuiFlexGroup direction="column">
-    <EuiFlexItem>Content grid item</EuiFlexItem>
-    <EuiFlexItem>Another content grid item</EuiFlexItem>
-    <EuiFlexItem>Using the column direction</EuiFlexItem>
+    <EuiFlexItem grow={false}>Content grid item</EuiFlexItem>
+    <EuiFlexItem grow={false}>Another content grid item</EuiFlexItem>
+    <EuiFlexItem grow={false}>Using the column direction</EuiFlexItem>
   </EuiFlexGroup>
 );

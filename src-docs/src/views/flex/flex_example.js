@@ -249,9 +249,20 @@ export const FlexExample = {
       code: directionHtml,
     }],
     text: (
-      <p>
-        You can change direction using the <EuiCode>direction</EuiCode> prop.
-      </p>
+      <div>
+        <p>
+          You can change direction using the <EuiCode>direction</EuiCode> prop.
+        </p>
+        <EuiCallOut color="warning" title="IE11 Warning">
+          <p>
+            Depending on the nested structure of your flex groups, it is possible that
+            flex-items inside a column directed flex group will not show. To counter this,
+            add the <code>grow</code> prop and set to either <code>false</code> or a number.
+            Setting <code>grow</code> to <code>true</code> will not suffice. You may also need
+            to adjust the <code>flex-basis</code> value.
+          </p>
+        </EuiCallOut>
+      </div>
     ),
     demo: <div className="guideDemo__highlightGrid"><Direction /></div>,
   }, {
