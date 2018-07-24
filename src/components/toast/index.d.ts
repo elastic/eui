@@ -14,7 +14,7 @@ declare module '@elastic/eui' {
     color?: 'primary' | 'success' | 'warning' | 'danger',
     iconType?: IconType,
     onClose?: () => void,
-  };
+  }
 
   export const EuiToast: SFC<EuiToastProps>;
 
@@ -37,8 +37,8 @@ declare module '@elastic/eui' {
    *
    * @see './global_toast_list.js'
    */
-  export interface Toast extends Omit<EuiToastProps, 'id'> {
-    id: string | number,
+  export interface Toast extends EuiToastProps {
+    id: string,
     text?: ReactChild,
   }
 
