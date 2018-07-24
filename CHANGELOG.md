@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added types for `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` ([#1045](https://github.com/elastic/eui/pull/1045))
+
 **Bug fixes**
 
 - Removed IE flex column fix in favor of forcing the consumer to add a `grow` prop. ([#1044](https://github.com/elastic/eui/pull/1044))
