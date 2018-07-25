@@ -1,6 +1,6 @@
 /// <reference path="../icon/index.d.ts" />
 
-import { HTMLAttributes, MouseEventHandler } from 'react';
+import { HTMLAttributes, MouseEventHandler, SFC } from 'react';
 
 declare module '@elastic/eui' {
 
