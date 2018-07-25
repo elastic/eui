@@ -20,6 +20,7 @@ import {
   EuiFormControlLayout,
   EuiLink,
   EuiRadio,
+  EuiRadioGroup,
   EuiRange,
   EuiSelect,
   EuiSwitch,
@@ -234,7 +235,7 @@ export const FormControlsExample = {
       code: radioGroupHtml,
     }],
     props: {
-      EuiRadio,
+      EuiRadioGroup,
     },
     demo: <RadioGroup />,
   }, {
