@@ -7,14 +7,17 @@
 .euiSuperSelect.euiPopover { /* 3 */
   @include euiFormControlSize; /* 1 */
   height: auto;
+
+  .euiPopover__anchor {
+    display: block;
+  }
 }
 
-.euiSuperSelect.euiPopover .euiSuperSelect__popoverPanel { /* 3 */
-  width: calc(100% + 2px); /* 1 */
+.euiSuperSelect__popoverPanel { /* 3 */
+  //width: calc(100% + 2px); /* 1 */
 
-  &::before,
-  &::after {
-    content: none; /* 2 */
+  .euiPopover__panel__arrow {
+    display: none; /* 2 */
   }
 }
 
