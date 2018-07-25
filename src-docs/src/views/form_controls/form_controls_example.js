@@ -12,6 +12,7 @@ import {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
+  EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
@@ -19,6 +20,7 @@ import {
   EuiFormControlLayout,
   EuiLink,
   EuiRadio,
+  EuiRadioGroup,
   EuiRange,
   EuiSelect,
   EuiSwitch,
@@ -119,7 +121,7 @@ export const FormControlsExample = {
       code: fieldNumberHtml,
     }],
     props: {
-      EuiFieldText,
+      EuiFieldNumber,
     },
     demo: <FieldNumber />,
   }, {
@@ -233,7 +235,7 @@ export const FormControlsExample = {
       code: radioGroupHtml,
     }],
     props: {
-      EuiRadio,
+      EuiRadioGroup,
     },
     demo: <RadioGroup />,
   }, {
