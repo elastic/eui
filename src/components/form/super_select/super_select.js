@@ -41,8 +41,10 @@ export class EuiSuperSelect extends Component {
         null
       );
 
+      // valueOfSelected is optional, and options may not exist yet
       if (indexOfSelected != null) {
-        this.focusItemAt(indexOfSelected);
+        // wait for the CSS classes to be applied, removing visibility: hidden
+        requestAnimationFrame(() => this.focusItemAt(indexOfSelected));
       } else {
         requestAnimationFrame(focusSelected);
       }
