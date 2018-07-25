@@ -210,7 +210,7 @@ declare module '@elastic/eui' {
     | 'visTimelion'
     | 'visualizeApp'
     | 'visVega'
-    | 'visVisualBuilder';
+    | 'visVisualBuilder'
     | 'watchesApp'
     | 'wrench'
 
