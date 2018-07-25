@@ -19,12 +19,17 @@ export class EuiSuperSelect extends Component {
     this.itemNodes = [];
     this.state = {
       isPopoverOpen: props.isOpen || false,
+      menuWidth: null,
     };
   }
 
   setItemNode = (node, index) => {
     this.itemNodes[index] = node;
   };
+
+  setPopoverRef = ref => {
+    this.popoverRef = ref;
+  }
 
   openPopover = () => {
     this.setState({
@@ -44,7 +49,13 @@ export class EuiSuperSelect extends Component {
       // valueOfSelected is optional, and options may not exist yet
       if (indexOfSelected != null) {
         // wait for the CSS classes to be applied, removing visibility: hidden
-        requestAnimationFrame(() => this.focusItemAt(indexOfSelected));
+        requestAnimationFrame(() => {
+          this.focusItemAt(indexOfSelected);
+
+          this.setState({
+            menuWidth: this.popoverRef.getBoundingClientRect().width,
+          });
+        });
       } else {
         requestAnimationFrame(focusSelected);
       }
@@ -56,6 +67,7 @@ export class EuiSuperSelect extends Component {
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
+      menuWidth: null,
     });
   };
 
@@ -170,6 +182,7 @@ export class EuiSuperSelect extends Component {
           onKeyDown={this.onItemKeyDown}
           layoutAlign={itemLayoutAlign}
           buttonRef={node => this.setItemNode(node, index)}
+          style={{ width: this.state.menuWidth }}
         >
           {option.dropdownDisplay || option.inputDisplay}
         </EuiContextMenuItem>
@@ -186,6 +199,7 @@ export class EuiSuperSelect extends Component {
         panelPaddingSize="none"
         anchorPosition="downCenter"
         ownFocus={false}
+        popoverRef={this.setPopoverRef}
       >
         {items}
       </EuiPopover>
