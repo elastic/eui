@@ -12,6 +12,7 @@ import {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
+  EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,
   EuiFieldText,
@@ -119,7 +120,7 @@ export const FormControlsExample = {
       code: fieldNumberHtml,
     }],
     props: {
-      EuiFieldText,
+      EuiFieldNumber,
     },
     demo: <FieldNumber />,
   }, {
