@@ -26,7 +26,16 @@ export class EuiFlyout extends Component {
   };
 
   render() {
-    const { className, children, hideCloseButton, onClose, ownFocus, size, ...rest } = this.props;
+    const {
+      className,
+      children,
+      hideCloseButton,
+      onClose,
+      ownFocus,
+      size,
+      closeButtonAriaLabel,
+      ...rest
+    } = this.props;
 
     const classes = classnames('euiFlyout', sizeToClassNameMap[size], className);
 
@@ -37,7 +46,7 @@ export class EuiFlyout extends Component {
           className="euiFlyout__closeButton"
           iconType="cross"
           color="text"
-          aria-label="Closes this dialog"
+          aria-label={closeButtonAriaLabel}
           onClick={onClose}
           data-test-subj="euiFlyoutCloseButton"
         />
@@ -71,7 +80,7 @@ export class EuiFlyout extends Component {
       <span>
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
-            to the originating button */}
+        to the originating button */}
         <FocusTrap
           focusTrapOptions={{
             fallbackFocus: () => this.flyout,
@@ -98,10 +107,15 @@ EuiFlyout.propTypes = {
    * Locks the mouse / keyboard focus to within the flyout
    */
   ownFocus: PropTypes.bool,
+  /**
+   * Specify an aria-label for the close button of the flyout
+   */
+  closeButtonAriaLabel: PropTypes.string,
 };
 
 EuiFlyout.defaultProps = {
   size: 'm',
   hideCloseButton: false,
   ownFocus: false,
+  closeButtonAriaLabel: 'Closes this dialog',
 };
