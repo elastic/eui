@@ -14,4 +14,20 @@ describe('EuiTabs', () => {
 
     expect(render(component)).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('size', () => {
+      test('is rendered', () => {
+        const component = render(<EuiTabs size="s" />);
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('expand', () => {
+      test('is rendered', () => {
+        const component = render(<EuiTabs expand />);
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
 });

@@ -19,6 +19,7 @@ const iconTypes = [
   'emsApp',
   'graphApp',
   'grokApp',
+  'indexManagementApp',
   'indexPatternApp',
   'loggingApp',
   'machineLearningApp',

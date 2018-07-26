@@ -32,7 +32,7 @@ export class EuiOutsideClickDetector extends Component {
     // virtual DOM and executes EuiClickDetector's onClick handler,
     // stamping the id even though the event originates outside
     // this component's reified DOM tree.
-    this.id = htmlIdGenerator();
+    this.id = htmlIdGenerator()();
   }
 
   onClickOutside = event => {
@@ -45,7 +45,7 @@ export class EuiOutsideClickDetector extends Component {
       return;
     }
 
-    if (event.euiGeneratedBy === this.id) {
+    if (event.euiGeneratedBy && event.euiGeneratedBy.includes(this.id)) {
       return;
     }
 
@@ -61,7 +61,13 @@ export class EuiOutsideClickDetector extends Component {
   }
 
   onChildClick = event => {
-    event.nativeEvent.euiGeneratedBy = this.id;
+    // to support nested click detectors, build an array
+    // of detector ids that have been encountered
+    if (event.nativeEvent.hasOwnProperty('euiGeneratedBy')) {
+      event.nativeEvent.euiGeneratedBy.push(this.id);
+    } else {
+      event.nativeEvent.euiGeneratedBy = [this.id];
+    }
     if (this.props.onClick) this.props.onClick(event);
   }
 

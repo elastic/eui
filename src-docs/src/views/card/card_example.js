@@ -51,6 +51,11 @@ export const CardExample = {
           clickable by giving it an <EuiCode>onClick</EuiCode> handler.
         </p>
         <p>
+          By default a card&apos;s title element is a <EuiCode>span</EuiCode>. This can be changed via
+          the <EuiCode>titleElement</EuiCode> prop. However, if an <EuiCode>onClick</EuiCode> function is
+          also passed, the title element will be forced back to a span.
+        </p>
+        <p>
           By default a card&apos;s content is center aligned. To change the alignment
           set <EuiCode>textAlign</EuiCode> to <EuiCode>left</EuiCode> or <EuiCode>right</EuiCode>.
         </p>

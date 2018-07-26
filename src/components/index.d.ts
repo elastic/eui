@@ -24,3 +24,5 @@
 /// <reference path="./empty_prompt/index.d.ts" />
 /// <reference path="./code/index.d.ts" />
 /// <reference path="./call_out/index.d.ts" />
+/// <reference path="./badge/index.d.ts" />
+/// <reference path="./toast/index.d.ts" />

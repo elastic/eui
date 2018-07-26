@@ -50,10 +50,10 @@ import editorComment from './assets/editor_comment.svg';
 import editorHeading from './assets/editor_heading.svg';
 import editorItalic from './assets/editor_italic.svg';
 import editorLink from './assets/editor_link.svg';
+import editorOrderedList from './assets/editor_ordered_list.svg';
 import editorStrike from './assets/editor_strike.svg';
 import editorTable from './assets/editor_table.svg';
 import editorUnderline from './assets/editor_underline.svg';
-import editorOrderedList from './assets/editor_ordered_list.svg';
 import editorUnorderedList from './assets/editor_unordered_list.svg';
 import empty from './assets/empty.svg';
 import emsApp from './assets/app_ems.svg';
@@ -80,42 +80,59 @@ import importAction from './assets/import.svg';
 import indexClose from './assets/index_close.svg';
 import indexEdit from './assets/index_edit.svg';
 import indexFlush from './assets/index_flush.svg';
+import indexManagementApp from './assets/app_index_management.svg';
 import indexMapping from './assets/index_mapping.svg';
 import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
+import inputOutput from './assets/inputOutput.svg';
 import inspect from './assets/inspect.svg';
 import invert from './assets/invert.svg';
-import inputOutput from './assets/inputOutput.svg';
 import kqlField from './assets/kql_field.svg';
-import kqlOperand from './assets/kql_operand.svg';
-import kqlValue from './assets/kql_value.svg';
 import kqlFunction from './assets/kql_function.svg';
+import kqlOperand from './assets/kql_operand.svg';
 import kqlSelector from './assets/kql_selector.svg';
+import kqlValue from './assets/kql_value.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import loggingApp from './assets/app_logging.svg';
+import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
+import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
+import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
+import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
+import logoEtcd from './assets/logo_etcd.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
+import logoGolang from './assets/logo_golang.svg';
+import logoHAproxy from './assets/logo_haproxy.svg';
+import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
+import logoMemcached from './assets/logo_memcached.svg';
+import logoMongodb from './assets/logo_mongodb.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
+import logoOsquery from './assets/logo_osquery.svg';
+import logoPhp from './assets/logo_php.svg';
+import logoPostgres from './assets/logo_postgres.svg';
+import logoPrometheus from './assets/logo_prometheus.svg';
+import logoRabbitmq from './assets/logo_rabbitmq.svg';
 import logoRedis from './assets/logo_redis.svg';
 import logoSketch from './assets/logo_sketch.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
+import logoWindows from './assets/logo_windows.svg';
 import logoXpack from './assets/logo_xpack.svg';
 import logstashFilter from './assets/logstash_filter.svg';
 import logstashIf from './assets/logstash_if.svg';
@@ -162,18 +179,15 @@ import stop from './assets/stop.svg';
 import stopFilled from './assets/stop_filled.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
-import temperature from './assets/temperature.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tear from './assets/tear.svg';
+import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
 import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
 import vector from './assets/vector.svg';
-import visualizeApp from './assets/app_visualize.svg';
-import watchesApp from './assets/app_watches.svg';
-import wrench from './assets/wrench.svg';
 import visArea from './assets/vis_area.svg';
 import visBarHorizontal from './assets/vis_bar_horizontal.svg';
 import visBarVertical from './assets/vis_bar_vertical.svg';
@@ -190,8 +204,11 @@ import visTable from './assets/vis_table.svg';
 import visTagCloud from './assets/vis_tag_cloud.svg';
 import visText from './assets/vis_text.svg';
 import visTimelion from './assets/vis_timelion.svg';
+import visualizeApp from './assets/app_visualize.svg';
 import visVega from './assets/vis_vega.svg';
 import visVisualBuilder from './assets/vis_visual_builder.svg';
+import watchesApp from './assets/app_watches.svg';
+import wrench from './assets/wrench.svg';
 
 
 const typeToIconMap = {
@@ -243,18 +260,18 @@ const typeToIconMap = {
   editorHeading,
   editorItalic,
   editorLink,
+  editorOrderedList,
   editorStrike,
   editorTable,
   editorUnderline,
-  editorOrderedList,
   editorUnorderedList,
   empty,
   emsApp,
   exit,
   expand,
   exportAction,
-  eyeClosed,
   eye,
+  eyeClosed,
   faceHappy,
   faceNeutral,
   faceSad,
@@ -273,42 +290,59 @@ const typeToIconMap = {
   indexClose,
   indexEdit,
   indexFlush,
+  indexManagementApp,
   indexMapping,
   indexOpen,
   indexPatternApp,
   indexSettings,
+  inputOutput,
   inspect,
   invert,
-  inputOutput,
   kqlField,
-  kqlOperand,
-  kqlValue,
   kqlFunction,
+  kqlOperand,
   kqlSelector,
+  kqlValue,
   link,
   list,
   listAdd,
   lock,
   loggingApp,
+  logoAerospike,
   logoApache,
   logoBeats,
+  logoCeph,
   logoCloud,
   logoCloudEnterprise,
+  logoCouchbase,
   logoDocker,
+  logoDropwizard,
   logoElastic,
   logoElasticsearch,
   logoElasticStack,
-  logoGmail,
+  logoEtcd,
   logoGithub,
+  logoGmail,
+  logoGolang,
+  logoHAproxy,
+  logoKafka,
   logoKibana,
   logoKubernetes,
   logoLogstash,
+  logoMemcached,
+  logoMongodb,
   logoMySQL,
   logoNginx,
+  logoOsquery,
+  logoPhp,
+  logoPostgres,
+  logoPrometheus,
+  logoRabbitmq,
   logoRedis,
   logoSketch,
   logoSlack,
   logoWebhook,
+  logoWindows,
   logoXpack,
   logstashFilter,
   logstashIf,
@@ -355,18 +389,15 @@ const typeToIconMap = {
   stopFilled,
   storage,
   string,
-  temperature,
   tableOfContents,
   tear,
+  temperature,
   timelionApp,
   trash,
   upgradeAssistantApp,
   user,
   usersRolesApp,
   vector,
-  visualizeApp,
-  watchesApp,
-  wrench,
   visArea,
   visBarHorizontal,
   visBarVertical,
@@ -383,8 +414,11 @@ const typeToIconMap = {
   visTagCloud,
   visText,
   visTimelion,
+  visualizeApp,
   visVega,
   visVisualBuilder,
+  watchesApp,
+  wrench,
 };
 
 export const TYPES = Object.keys(typeToIconMap);

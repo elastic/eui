@@ -1,6 +1,31 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `closeButtonAriaLabel` property to `EuiFlyout` ([#1031](https://github.com/elastic/eui/pull/1031))
+- Added types for `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` ([#1045](https://github.com/elastic/eui/pull/1045))
+- Added a handful of third-party logos to `EuiIcon` ([#1033](https://github.com/elastic/eui/pull/1033))
+
+**Bug fixes**
+
+- Removed IE flex column fix in favor of forcing the consumer to add a `grow` prop. ([#1044](https://github.com/elastic/eui/pull/1044))
+- Removed max-width to children of `EuiPopover`. ([#1044](https://github.com/elastic/eui/pull/1044))
+
+## [`3.2.0`](https://github.com/elastic/eui/tree/v3.2.0)
+
+**Note: this release creates a minor regression to the display of `EuiFlexItem`s inside a `column` `EuiFlexGroup`. This is fixed in `master`.**
+**Note: this release creates a minor regression to the display of `EuiPopoverTitle`. This is fixed in `master`.**
+
+- Added typings for 'EuiBadge' ([#1034](https://github.com/elastic/eui/pull/1034))
+- Added a visual pattern for Kibana's Global Date Picker ([#1026](https://github.com/elastic/eui/pull/1026))
+- Added `responsive` prop to `EuiFlexGrid` ([#1026](https://github.com/elastic/eui/pull/1026))
+- Added `expand` prop to `EuiTabs` and `EuiTabbedContent` ([#1026](https://github.com/elastic/eui/pull/1026))
+- Allow `titleElement` to be passed to `EuiCard` ([#1032](https://github.com/elastic/eui/pull/1032))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenuPanel` calling `ref` after being unmounted ([#1038](https://github.com/elastic/eui/pull/1038))
+- `EuiOutsideClickDetector` supports nested detectors in the DOM tree ([#1039](https://github.com/elastic/eui/pull/1039))
+- To make it more accessible, added a random id to `EuiSwitch`'s id prop if none is passed.  ([#779](https://github.com/elastic/eui/pull/779))
+- `BetaBadge` now shows outside of `EuiPanel` bounds in IE ([#1032](https://github.com/elastic/eui/pull/1032))
 
 ## [`3.1.0`](https://github.com/elastic/eui/tree/v3.1.0)
 
