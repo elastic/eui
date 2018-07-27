@@ -4,6 +4,10 @@ No public interface changes since `3.0.3`.
 
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
+No public interface changes since `3.0.3`.
+
+## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
+
 - Fixed `EuiContextMenuPanel` calling `ref` after being unmounted ([#1038](https://github.com/elastic/eui/pull/1038))
 
 ## [`3.0.2`](https://github.com/elastic/eui/tree/v3.0.2)
