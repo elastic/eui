@@ -4,6 +4,10 @@
 - Added types for `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` ([#1045](https://github.com/elastic/eui/pull/1045))
 - Added a handful of third-party logos to `EuiIcon` ([#1033](https://github.com/elastic/eui/pull/1033))
 
+**Breaking changes**
+
+- `EuiComboBox` now applies the provided `data-test-subj` to its options list element with the suffix `-optionsList` so you can find a specific combo box instance's options list. This wasn't previously possible because the options list is attached to the body element, not the combo box element. This is a break from the previous `data-test-subj` which was simply `comboBoxOptionsList`
+
 **Bug fixes**
 
 - Removed IE flex column fix in favor of forcing the consumer to add a `grow` prop. ([#1044](https://github.com/elastic/eui/pull/1044))

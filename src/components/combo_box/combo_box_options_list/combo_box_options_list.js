@@ -212,7 +212,6 @@ export class EuiComboBoxOptionsList extends Component {
       <EuiPanel
         paddingSize="none"
         className={classes}
-        data-test-subj="comboBoxOptionsList"
         panelRef={this.listRef}
         {...rest}
       >
