@@ -11,8 +11,8 @@
 
 ## [`3.2.0`](https://github.com/elastic/eui/tree/v3.2.0)
 
-**Note: this release creates a minor regression to the display of `EuiFlexItem`s inside a `column` `EuiFlexGroup`. This is fixed in `master`.**
-**Note: this release creates a minor regression to the display of `EuiPopoverTitle`. This is fixed in `master`.**
+**Note: this release creates a minor regression to the display of `EuiFlexItem`s inside a `column` `EuiFlexGroup`. This is fixed in `3.2.1`.**
+**Note: this release creates a minor regression to the display of `EuiPopoverTitle`. This is fixed in `3.2.1`.**
 
 - Added typings for 'EuiBadge' ([#1034](https://github.com/elastic/eui/pull/1034))
 - Added a visual pattern for Kibana's Global Date Picker ([#1026](https://github.com/elastic/eui/pull/1026))
