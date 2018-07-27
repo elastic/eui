@@ -229,7 +229,7 @@ exports[`props options list is rendered 1`] = `
   </div>
   <div
     class="euiPanel euiComboBoxOptionsList euiComboBoxOptionsList--bottom"
-    data-test-subj="alsoGetsAppliedToOptionsList-optionsList"
+    data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
   >
     <div
       class="euiComboBoxOptionsList__rowWrap"

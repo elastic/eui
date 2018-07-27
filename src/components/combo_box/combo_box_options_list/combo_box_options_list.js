@@ -46,6 +46,7 @@ export class EuiComboBoxOptionsList extends Component {
 
   static defaultProps = {
     rowHeight: 27, // row height of default option renderer
+    'data-test-subj': '',
   }
 
   updatePosition = () => {
@@ -109,6 +110,7 @@ export class EuiComboBoxOptionsList extends Component {
       scrollToIndex,
       onScroll,
       rowHeight,
+      'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
 
@@ -213,6 +215,7 @@ export class EuiComboBoxOptionsList extends Component {
         paddingSize="none"
         className={classes}
         panelRef={this.listRef}
+        data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         {...rest}
       >
         <div className="euiComboBoxOptionsList__rowWrap">
