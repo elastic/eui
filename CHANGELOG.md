@@ -38,6 +38,14 @@
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
 
+## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
+
+**Note: this release is a backport bugfix release containing changes original made in `3.2.0` **
+
+**Bug fixes**
+
+- Fixed `EuiContextMenuPanel` calling `ref` after being unmounted ([#1038](https://github.com/elastic/eui/pull/1038))
+
 ## [`3.0.2`](https://github.com/elastic/eui/tree/v3.0.2)
 
 - Added `restrictWidth` option to `EuiPageBody` ([#1024](https://github.com/elastic/eui/pull/1024))
