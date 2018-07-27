@@ -2,6 +2,7 @@
   @include euiTitle("xs");
   background-color: $euiColorLightestShade;
   padding: $euiSizeM;
+  max-width: none !important; // Popovers often have negative margins and can't max-width: 100%.
 
   // Subtract 1px from the border radius since it's inside another container that also has the border radius
   // -- makes for better rounded corners
