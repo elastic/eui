@@ -40,7 +40,7 @@
 
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
-**Note: this release is a backport bugfix release containing changes original made in `3.2.0` **
+**Note: this release is a backport bugfix release containing changes original made in `3.2.0`**
 
 **Bug fixes**
 
