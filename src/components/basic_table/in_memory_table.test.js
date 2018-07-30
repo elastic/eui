@@ -257,13 +257,18 @@ describe('EuiInMemoryTable', () => {
 
   test('with initial sorting', () => {
 
+    const items = [
+      { id: '1', name: 'name1' },
+      { id: '2', name: 'name2' },
+      { id: '3', name: 'name3' }
+    ];
+
+    // copy the array to ensure the `items` prop doesn't mutate
+    const itemsProp = items.slice(0);
+
     const props = {
       ...requiredProps,
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
-      ],
+      items: itemsProp,
       columns: [
         {
           field: 'name',
@@ -284,6 +289,7 @@ describe('EuiInMemoryTable', () => {
     );
 
     expect(component).toMatchSnapshot();
+    expect(itemsProp).toEqual(items);
   });
 
   test('with pagination and selection', () => {
