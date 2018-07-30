@@ -153,6 +153,8 @@ export class EuiPopover extends Component {
       this.setState({ suppressingPopover: false, isOpening: true }); // eslint-disable-line react/no-did-mount-set-state
     }
 
+    window.addEventListener('scroll', this.positionPopover);
+
     this.updateFocus();
   }
 
@@ -184,6 +186,7 @@ export class EuiPopover extends Component {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this.positionPopover);
     clearTimeout(this.closingTransitionTimeout);
   }
 
