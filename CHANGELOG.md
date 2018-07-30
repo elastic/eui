@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiComboBox` now applies the provided `data-test-subj` to its options list element with the suffix `-optionsList` so you can find a specific combo box instance's options list. This wasn't previously possible because the options list is attached to the body element, not the combo box element. This is in addition to the existing `data-test-subj="comboBoxOptionsList"`. ([#1054](https://github.com/elastic/eui/pull/1054))
+
 **Bug fixes**
 
 - Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
