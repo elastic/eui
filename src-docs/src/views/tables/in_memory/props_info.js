@@ -49,6 +49,13 @@ export const propsInfo = {
           type: { name: 'boolean | #Search' }
         },
         selection: basicPropsInfo.EuiBasicTable.__docgenInfo.props.selection,
+        onTableChange: {
+          description: `Callback for when table pagination or sorting is changed. This is meant to
+          be informational only, and not used to set any state as the in-memory table already
+          manages this state.`,
+          required: false,
+          type: { name: 'function' }
+        },
       }
     }
   },
