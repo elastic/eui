@@ -124,6 +124,7 @@
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "resize-observer-polyfill": "^1.5.0",
     "rimraf": "^2.6.2",
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.3.0",

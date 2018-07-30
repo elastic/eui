@@ -15,7 +15,6 @@ exports[`EuiLineSeries all props are rendered 1`] = `
   >
     <EuiXYChart
       animateData={true}
-      animation={null}
       enableSelectionBrush={false}
       height={200}
       margins={
@@ -36,9 +35,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
       yPadding={0}
       yType="linear"
     >
-      <div
-        animation={null}
-      >
+      <div>
         <XYPlot
           animation={true}
           className=""
@@ -50,6 +47,12 @@ exports[`EuiLineSeries all props are rendered 1`] = `
               "left": 40,
               "right": 10,
               "top": 10,
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
             }
           }
           width={600}
@@ -82,6 +85,12 @@ exports[`EuiLineSeries all props are rendered 1`] = `
               onTouchMove={[Function]}
               onTouchStart={[Function]}
               onWheel={[Function]}
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
               width={600}
             >
               <EuiLineSeries
@@ -4122,7 +4131,6 @@ exports[`EuiLineSeries is rendered 1`] = `
   >
     <EuiXYChart
       animateData={true}
-      animation={null}
       aria-label="aria-label"
       className="testClass1 testClass2"
       data-test-subj="test subject string"
@@ -4147,7 +4155,6 @@ exports[`EuiLineSeries is rendered 1`] = `
       yType="linear"
     >
       <div
-        animation={null}
         aria-label="aria-label"
         className="testClass1 testClass2"
         data-test-subj="test subject string"
@@ -4163,6 +4170,12 @@ exports[`EuiLineSeries is rendered 1`] = `
               "left": 40,
               "right": 10,
               "top": 10,
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
             }
           }
           width={600}
@@ -4195,6 +4208,12 @@ exports[`EuiLineSeries is rendered 1`] = `
               onTouchMove={[Function]}
               onTouchStart={[Function]}
               onWheel={[Function]}
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
               width={600}
             >
               <EuiLineSeries

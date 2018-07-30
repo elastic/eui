@@ -16,6 +16,7 @@ exports[`EuiYAxis render the y axis 1`] = `
       <svg
         class="rv-xy-plot__inner"
         height="200"
+        style="width: 100%; height: 100%;"
         width="600"
       >
         <g

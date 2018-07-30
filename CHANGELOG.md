@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.2.1`.
+**Bug fixes**
+
+- Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 
