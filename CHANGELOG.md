@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `onTableChange` callback to `EuiInMemoryTable` which notifies on sorting and pagination changes. ([#1060](https://github.com/elastic/eui/pull/1060))
+
 **Bug fixes**
 
 - Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
