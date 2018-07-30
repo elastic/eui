@@ -661,6 +661,38 @@ describe('defaultSyntax', () => {
     expect(clause.value).toBe('truest');
   });
 
+  describe('wordChar', () => {
+    test('alphanumeric characters', () => {
+      const ast = defaultSyntax.parse('logstash');
+      const clauses = ast.getTermClauses();
+      expect(clauses).toEqual([{
+        type: 'term',
+        value: 'logstash',
+        match: 'must',
+      }]);
+    });
+
+    test('escaped characters', () => {
+      const ast = defaultSyntax.parse('\\-');
+      const clauses = ast.getTermClauses();
+      expect(clauses).toEqual([{
+        type: 'term',
+        value: '-',
+        match: 'must',
+      }]);
+    });
+
+    test('special characters', () => {
+      const ast = defaultSyntax.parse('*_-');
+      const clauses = ast.getTermClauses();
+      expect(clauses).toEqual([{
+        type: 'term',
+        value: '*_-',
+        match: 'must',
+      }]);
+    });
+  });
+
   test('number range expressions', () => {
 
     const query = `num1>6 -num2>=8 num3<4 -num4<=2`;
