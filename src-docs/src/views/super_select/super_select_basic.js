@@ -16,7 +16,7 @@ export default class extends Component {
       {
         value: 'warning',
         inputDisplay: (
-          <EuiHealth color="subdued">
+          <EuiHealth color="subdued" style={{ lineHeight: 'inherit' }}>
             Warning
           </EuiHealth>
         ),
@@ -24,7 +24,7 @@ export default class extends Component {
       {
         value: 'minor',
         inputDisplay: (
-          <EuiHealth color="warning">
+          <EuiHealth color="warning" style={{ lineHeight: 'inherit' }}>
             Minor
           </EuiHealth>
         ),
@@ -32,7 +32,7 @@ export default class extends Component {
       {
         value: 'critical',
         inputDisplay: (
-          <EuiHealth color="danger">
+          <EuiHealth color="danger" style={{ lineHeight: 'inherit' }}>
             Critical
           </EuiHealth>
         ),

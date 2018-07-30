@@ -1,7 +1,6 @@
 /*
  * 1. Make popover the same width as the form control
  * 2. Style popover similar to combobox
- * 3. Specificity to override default popover
  */
 
 .euiSuperSelect.euiPopover { /* 3 */
@@ -13,18 +12,17 @@
   }
 }
 
-.euiSuperSelect__popoverPanel { /* 3 */
-  //width: calc(100% + 2px); /* 1 */
-
-  .euiPopover__panel__arrow {
-    display: none; /* 2 */
-  }
-}
-
-.euiSuperSelect.euiPopover--anchorDownCenter .euiSuperSelect__popoverPanel { /* 3 */
+.euiSuperSelect__popoverPanel[class*="bottom"] {
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
   border-top-left-radius: 0; /* 2 */
+}
+
+.euiSuperSelect__popoverPanel[class*="top"].euiPanel--shadow {
+  border-bottom-color: transparentize($euiBorderColor, .2);
+  border-bottom-right-radius: 0; /* 2 */
+  border-bottom-left-radius: 0; /* 2 */
+  @include euiBottomShadowFlat; /* 2 */
 }
 
 .euiSuperSelect.euiPopover--anchorDownCenter.euiPopover-isOpen .euiSuperSelect__popoverPanel { /* 3 */

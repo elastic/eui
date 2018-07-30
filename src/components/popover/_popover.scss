@@ -131,6 +131,11 @@
       }
     }
   }
+
+
+  &.euiPopover__panel-noArrow .euiPopover__panel__arrow {
+    display: none;
+  }
 }
 
 .euiPopover__panel.euiPopover__panel-withTitle {

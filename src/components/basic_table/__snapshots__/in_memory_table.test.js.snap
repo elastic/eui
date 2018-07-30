@@ -270,6 +270,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         </EuiButtonEmpty>
                       }
                       closePopover={[Function]}
+                      hasArrow={true}
                       id="customizablePagination"
                       isOpen={false}
                       ownFocus={false}

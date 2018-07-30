@@ -53,7 +53,7 @@ export class EuiSuperSelect extends Component {
           this.focusItemAt(indexOfSelected);
 
           this.setState({
-            menuWidth: this.popoverRef.getBoundingClientRect().width,
+            menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
           });
         });
       } else {
@@ -200,6 +200,7 @@ export class EuiSuperSelect extends Component {
         anchorPosition="downCenter"
         ownFocus={false}
         popoverRef={this.setPopoverRef}
+        hasArrow={false}
       >
         {items}
       </EuiPopover>

@@ -31,6 +31,7 @@ declare module '@elastic/eui' {
     withTitle?: boolean;
     isOpen?: boolean;
     ownFocus?: boolean;
+    hasArrow?: boolean;
     anchorPosition?: PopoverAnchorPosition;
     panelClassName?: string;
     panelPaddingSize?: PanelPaddingSize;
