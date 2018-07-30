@@ -46,11 +46,7 @@ export const XYChartAreaExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <AreaSeriesExample />
-        </div>
-      ),
+      demo: <AreaSeriesExample />,
     },
     {
       title: 'Stacked Area Series',
@@ -74,11 +70,7 @@ export const XYChartAreaExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <StackedAreaSeriesExample />
-        </div>
-      ),
+      demo: <StackedAreaSeriesExample />,
     },
     {
       title: 'Curved Area Series',
@@ -104,11 +96,7 @@ export const XYChartAreaExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <CurvedAreaExample />
-        </div>
-      ),
+      demo: <CurvedAreaExample />,
     },
     {
       title: 'Range area chart',
@@ -129,11 +117,7 @@ export const XYChartAreaExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <RangeAreaExample/>
-        </div>
-      ),
+      demo: <RangeAreaExample/>,
     },
   ],
 };

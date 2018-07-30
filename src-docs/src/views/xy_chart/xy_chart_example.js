@@ -5,6 +5,7 @@ import { EuiXYChart } from '../../../../src/experimental';
 import ComplexChartExampleCode from './complex';
 import EmptyExampleCode from './empty';
 import MultiAxisChartExampleCode from './multi_axis';
+import ResponsiveChartExample from './responsive_chart';
 import { ExampleCrosshair } from './crosshair_sync';
 
 export const XYChartExample = {
@@ -48,11 +49,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <ComplexChartExampleCode />
-        </div>
-      ),
+      demo: <ComplexChartExampleCode />,
     },
     {
       title: 'Empty Chart',
@@ -71,11 +68,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <EmptyExampleCode />
-        </div>
-      ),
+      demo: <EmptyExampleCode />,
     },
     {
       title: 'Keep cross-hair in sync',
@@ -96,11 +89,7 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <ExampleCrosshair />
-        </div>
-      ),
+      demo: <ExampleCrosshair />,
     },
     {
       title: 'Multi Axis',
@@ -119,11 +108,30 @@ export const XYChartExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (
-        <div style={{ margin: 60 }}>
-          <MultiAxisChartExampleCode />
+      demo: <MultiAxisChartExampleCode />,
+    },
+    {
+      title: 'Responsive chart',
+      text: (
+        <div>
+          <p>
+            You can omit <EuiCode>width</EuiCode> and/or <EuiCode>height</EuiCode>
+            prop and the chart takes the full width and/or height of it&apos;s parent.
+          </p>
+          <p>The parent container needs to have computed a height and/or width.</p>
         </div>
       ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./responsive_chart'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: <ResponsiveChartExample />,
     },
     // TODO include the following example when AreasSeries PR (create vertical areachart)
     // will be merged into react-vis and orientation prop semantic will be solved.

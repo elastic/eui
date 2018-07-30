@@ -89,7 +89,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<VerticalRectSeriesExample />),
+      demo: <VerticalRectSeriesExample />,
     },
     {
       title: 'Stacked Vertical Histogram',
@@ -121,7 +121,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<StackedVerticalRectSeriesExample />),
+      demo: <StackedVerticalRectSeriesExample />,
     },
     {
       title: 'Horizontal Histogram',
@@ -144,7 +144,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<HorizontalRectSeriesExample />),
+      demo: <HorizontalRectSeriesExample />,
     },
     {
       title: 'Stacked Horizontal Histogram',
@@ -175,7 +175,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<StackedHorizontalRectSeriesExample />),
+      demo: <StackedHorizontalRectSeriesExample />,
     },
     {
       title: 'Time Series Histogram version',
@@ -196,7 +196,7 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<TimeHistogramSeriesExample />),
+      demo: <TimeHistogramSeriesExample />,
     },
   ],
 };

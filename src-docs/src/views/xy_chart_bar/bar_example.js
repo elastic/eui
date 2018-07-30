@@ -91,7 +91,7 @@ export const XYChartBarExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<VerticalBarSeriesExample />),
+      demo: <VerticalBarSeriesExample />,
     },
     {
       title: 'Stacked Vertical Bar Chart',
@@ -113,7 +113,7 @@ export const XYChartBarExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<StackedVerticalBarSeriesExample />),
+      demo: <StackedVerticalBarSeriesExample />,
     },
     {
       title: 'Horizontal Bar Chart',
@@ -138,7 +138,7 @@ export const XYChartBarExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<HorizontalBarSeriesExample />),
+      demo: <HorizontalBarSeriesExample />,
     },
     {
       title: 'Stacked Horizontal Bar Chart',
@@ -163,7 +163,7 @@ export const XYChartBarExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<StackedHorizontalBarSeriesExample />),
+      demo: <StackedHorizontalBarSeriesExample />,
     },
 
     {
@@ -185,7 +185,7 @@ export const XYChartBarExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: (<TimeSeriesExample />),
+      demo: <TimeSeriesExample />,
     },
   ],
 };
