@@ -71,6 +71,7 @@ export const EuiTableHeaderCell = ({
           className={buttonClasses}
           onClick={onSort}
           aria-label={statefulAriaLabel}
+          data-test-subj="tableHeaderButton"
         >
           <span className={contentClasses}>
             <span className="euiTableCellContent__text">{children}</span>
