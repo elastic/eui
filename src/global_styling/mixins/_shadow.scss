@@ -26,22 +26,22 @@
 
 // adjustBorder allows the border color to match the drop shadow better so that there's better
 // distinction between element bounds and the shadow (crisper borders)
-@mixin euiBottomShadow($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: true) {
+@mixin euiBottomShadow($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
   box-shadow:
     0 12px 24px 0 rgba($color, $opacity),
     0 6px 12px 0 rgba($color, $opacity),
     0 4px 4px 0 rgba($color, $opacity),
     0 2px 2px 0 rgba($color, $opacity);
 
-  @if ($adjustBorders) {
-    $border-color: transparentize($color, .3);
-    border-color: tintOrShade($border-color, 60%, 0%);
-    border-top-color: tintOrShade($border-color, 70%, 0%);
-    border-bottom-color: tintOrShade($border-color, 40%, 0%);
+  // Never adjust borders if the border color is already on the dark side (dark theme)
+  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
+    border-color: tint($color, 75%);
+    border-top-color: tint($color, 80%);
+    border-bottom-color: tint($color, 55%);
   }
 }
 
-@mixin euiBottomShadowLarge($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: true) {
+@mixin euiBottomShadowLarge($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
   box-shadow:
     0 40px 64px 0 rgba($color, $opacity),
     0 24px 32px 0 rgba($color, $opacity),
@@ -50,11 +50,11 @@
     0 4px 4px 0 rgba($color, $opacity),
     0 2px 2px 0 rgba($color, $opacity);
 
-  @if ($adjustBorders) {
-    $border-color: transparentize($color, .3);
-    border-color: tintOrShade($border-color, 50%, 0%);
-    border-top-color: tintOrShade($border-color, 70%, 0%);
-    border-bottom-color: tintOrShade($border-color, 40%, 0%);
+  // Never adjust borders if the border color is already on the dark side (dark theme)
+  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
+    border-color: tint($color, 70%);
+    border-top-color: tint($color, 85%);
+    border-bottom-color: tint($color, 55%);
   }
 }
 

@@ -4,8 +4,8 @@
  */
 
 .euiModal {
-  border: 1px solid transparent; // let the shadow colorize the border
-  @include euiBottomShadowLarge;
+  border: $euiBorderThin;
+  @include euiBottomShadowLarge($adjustBorders: true);
   display: flex; /* 1 */
 
   position: relative;

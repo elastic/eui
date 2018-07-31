@@ -48,7 +48,7 @@
 
         &.#{$selector}--isClickable:hover,
         &.#{$selector}--isClickable:focus {
-          @include euiBottomShadow($color: $euiShadowColor, $opacity: .2, $adjustBorders: false);
+          @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
         }
       }
     }
