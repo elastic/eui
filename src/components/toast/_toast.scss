@@ -1,13 +1,14 @@
 .euiToast {
+  border: 1px solid transparent; // let the shadow colorize the border
   @include euiBottomShadowLarge;
 
   position: relative;
   padding: $euiSize;
   background-color: $euiColorEmptyShade;
-  border: $euiBorderThin;
-  @if (lightness($euiTextColor) < 50) {
-    border-bottom-color: rgba($euiShadowColor, .6);
-  }
+  // border: $euiBorderThin;
+  // @if (lightness($euiTextColor) < 50) {
+  //   border-bottom-color: rgba($euiShadowColor, .6);
+  // }
   width: 100%;
 
   &:hover .euiToast__closeButton,

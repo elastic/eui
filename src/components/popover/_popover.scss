@@ -35,6 +35,12 @@
   visibility: hidden; /* 2 */
   transform: translateY(0) translateX(0) translateZ(0); /* 2 */
 
+  @if (lightness($euiTextColor) < 50) {
+    @include euiBottomShadow;
+  } @else {
+    @include euiBottomShadow($adjustBorders: false);
+  }
+
   &.euiPopover__panel-isOpen {
     opacity: 1;
     visibility: visible;
