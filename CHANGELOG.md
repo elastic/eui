@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
+- `EuiInMemoryTable` no longer mutates the `items` prop array when sorting, adding deterministic sorting ([#1057](https://github.com/elastic/eui/pull/1057))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 
