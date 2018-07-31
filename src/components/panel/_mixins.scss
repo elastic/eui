@@ -41,6 +41,9 @@
 
         @if (lightness($euiTextColor) < 50) {
           border-bottom-color: rgba($euiShadowColor, .5);
+        } @else {
+          // Applied again here in case dark theme overrides light
+          border-bottom-color: $euiBorderColor;
         }
 
         &.#{$selector}--isClickable:hover,
