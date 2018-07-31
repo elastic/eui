@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `onTableChange` callback to `EuiInMemoryTable` which notifies on sorting and pagination changes. ([#1060](https://github.com/elastic/eui/pull/1060))
+- `EuiComboBox` now applies the provided `data-test-subj` to its options list element with the suffix `-optionsList` so you can find a specific combo box instance's options list. This wasn't previously possible because the options list is attached to the body element, not the combo box element. This is in addition to the existing `data-test-subj="comboBoxOptionsList"`. ([#1054](https://github.com/elastic/eui/pull/1054))
 
 **Bug fixes**
 
 - Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
+- `EuiInMemoryTable` no longer mutates the `items` prop array when sorting, adding deterministic sorting ([#1057](https://github.com/elastic/eui/pull/1057))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 

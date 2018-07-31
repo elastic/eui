@@ -164,31 +164,86 @@ exports[`props isDisabled is rendered 1`] = `
 </div>
 `;
 
-exports[`props options are rendered 1`] = `
+exports[`props options list is rendered 1`] = `
 <div
-  className="euiComboBox"
-  onFocus={[Function]}
-  onKeyDown={[Function]}
+  class="euiComboBox euiComboBox-isOpen"
+  data-test-subj="alsoGetsAppliedToOptionsList"
 >
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    hasSelectedOptions={false}
-    inputRef={[Function]}
-    isListOpen={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    searchValue=""
-    selectedOptions={Array []}
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value=""
-  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiComboBox__inputWrap"
+        data-test-subj="comboBoxInput"
+      >
+        <div
+          class="euiComboBox__input"
+          style="font-size: 14px; display: inline-block;"
+        >
+          <input
+            aria-hidden="true"
+            data-test-subj="comboBoxSearchInput"
+            style="box-sizing: content-box; width: 2px;"
+            value=""
+          />
+          <div
+            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+          />
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <button
+          aria-label="Close list of options"
+          class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+          data-test-subj="comboBoxToggleListButton"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#arrow_down-a"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPanel euiComboBoxOptionsList euiComboBoxOptionsList--bottom"
+    data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
+  >
+    <div
+      class="euiComboBoxOptionsList__rowWrap"
+    >
+      <div
+        aria-label="grid"
+        aria-readonly="true"
+        class="ReactVirtualized__Grid ReactVirtualized__List"
+        role="grid"
+        style="box-sizing: border-box; direction: ltr; height: 189px; position: relative; width: 0px; overflow-x: hidden; overflow-y: auto;"
+        tabindex="-1"
+      />
+    </div>
+  </div>
 </div>
 `;
 
