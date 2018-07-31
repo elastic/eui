@@ -705,7 +705,7 @@ describe('EuiInMemoryTable', () => {
       });
 
       props.onTableChange.mockClear();
-      component.find('[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderButton"]').simulate('click');
+      component.find('[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderSortButton"]').simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenCalledWith({
         sort: {
