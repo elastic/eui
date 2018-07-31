@@ -172,6 +172,7 @@ import sortDown from './assets/sort_down.svg';
 import sortLeft from './assets/sortLeft.svg';
 import sortRight from './assets/sortRight.svg';
 import sortUp from './assets/sort_up.svg';
+import spacesApp from './assets/app_spaces.svg';
 import starEmpty from './assets/star_empty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
@@ -382,6 +383,7 @@ const typeToIconMap = {
   sortLeft,
   sortRight,
   sortUp,
+  spacesApp,
   starEmpty,
   starPlusFilled,
   stats,
