@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `spacesApp` logo to `EuiIcon` set ([#1065](https://github.com/elastic/eui/pull/1065))
+
 **Bug fixes**
 
 - `EuiMutationObserver`'s `children` prop is no longer marked as required ([#1076](https://github.com/elastic/eui/pull/1076))
