@@ -13,6 +13,14 @@ const writeFile = util.promisify(fs.writeFile);
 const mkdir = util.promisify(fs.mkdir);
 const glob = util.promisify(globModule);
 
+const postcssConfigurationWithMinification = {
+  ...postcssConfiguration,
+  plugins: [
+    ...postcssConfiguration.plugins,
+    require('cssnano')({ preset: 'default' })
+  ],
+};
+
 async function compileScssFiles(sourcePattern, destinationDirectory) {
   try {
     await mkdir(destinationDirectory);
@@ -49,6 +57,8 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
 }
 
 async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilename) {
+  const outputCssMinifiedFilename = outputCssFilename.replace(/\.css$/, '.min.css');
+
   const { css: renderedCss, vars: extractedVars } = await sassExtract.render(
     {
       file: inputFilename,
@@ -64,8 +74,14 @@ async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilen
     to: outputCssFilename,
   });
 
+  const { css: postprocessedMinifiedCss } = await postcss(postcssConfigurationWithMinification).process(renderedCss, {
+    from: outputCssFilename,
+    to: outputCssMinifiedFilename,
+  });
+
   await Promise.all([
     writeFile(outputCssFilename, postprocessedCss),
+    writeFile(outputCssMinifiedFilename, postprocessedMinifiedCss),
     writeFile(outputVarsFilename, JSON.stringify(extractedVars, undefined, 2)),
   ]);
 
