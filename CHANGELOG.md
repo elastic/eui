@@ -2,7 +2,7 @@
 
 - `EuiComboBox` now applies the provided `data-test-subj` to its options list element with the suffix `-optionsList` so you can find a specific combo box instance's options list. This wasn't previously possible because the options list is attached to the body element, not the combo box element. This is in addition to the existing `data-test-subj="comboBoxOptionsList"`. ([#1054](https://github.com/elastic/eui/pull/1054))
 - EUI now provides minified versions of the themes' CSS files. ([#1070](https://github.com/elastic/eui/pull/1070))
-- Add `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1062](https://github.com/elastic/eui/pull/1062))
+- Add `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1064](https://github.com/elastic/eui/pull/1064))
 
 **Bug fixes**
 
