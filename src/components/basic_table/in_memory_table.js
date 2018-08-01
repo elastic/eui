@@ -71,6 +71,7 @@ const InMemoryTablePropTypes = {
   itemId: ItemIdType,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  onTableChange: PropTypes.func,
 };
 
 const getInitialQuery = (search) => {
@@ -172,6 +173,10 @@ export class EuiInMemoryTable extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
+    if (this.props.onTableChange) {
+      this.props.onTableChange({ page, sort });
+    }
+
     const {
       index: pageIndex,
       size: pageSize
@@ -310,6 +315,7 @@ export class EuiInMemoryTable extends Component {
       cellProps,
       items: _unuseditems, // eslint-disable-line no-unused-vars
       search, // eslint-disable-line no-unused-vars
+      onTableChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

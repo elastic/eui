@@ -470,6 +470,7 @@ export class EuiBasicTable extends Component {
           width={width}
           isMobileHeader={isMobileHeader}
           hideForMobile={hideForMobile}
+          data-test-subj={`tableHeaderCell_${field}_${index}`}
           {...sorting}
         >
           {name}

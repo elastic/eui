@@ -110,11 +110,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 <tr>
                   <EuiTableHeaderCell
                     align="left"
+                    data-test-subj="tableHeaderCell_name_0"
                     key="_data_h_name_0"
                     scope="col"
                   >
                     <th
                       className="euiTableHeaderCell"
+                      data-test-subj="tableHeaderCell_name_0"
                       scope="col"
                     >
                       <div
