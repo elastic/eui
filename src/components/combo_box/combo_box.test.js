@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import sinon from 'sinon';
-import { requiredProps, findTestSubject } from '../../test';
+import { requiredProps, findTestSubject, takeMountedSnapshot } from '../../test';
 import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
@@ -26,6 +26,13 @@ jest.mock('tabbable', () => () => {
   });
   return proxy;
 });
+
+jest.mock(
+  '../portal',
+  () => ({
+    EuiPortal: ({ children }) => children
+  })
+);
 
 beforeEach(() => {
   hasComboBoxLostFocus = false;
@@ -65,14 +72,13 @@ describe('EuiComboBox', () => {
 });
 
 describe('props', () => {
-  test('options are rendered', () => {
-    // NOTE: It's tough to test this because the dropdown containing the options opens up in
-    // a portal.
-    const component = shallow(
-      <EuiComboBox options={options} />
+  test('options list is rendered', () => {
+    const component = mount(
+      <EuiComboBox options={options} data-test-subj="alsoGetsAppliedToOptionsList" />
     );
 
-    expect(component).toMatchSnapshot();
+    component.setState({ isListOpen: true });
+    expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 
   test('selectedOptions are rendered', () => {

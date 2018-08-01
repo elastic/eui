@@ -1,8 +1,8 @@
 export {
-  EuiXYChart,
-  EuiXYChartUtils,
-  EuiXYChartAxisUtils,
-  EuiXYChartTextUtils,
+  EuiSeriesChart,
+  EuiSeriesChartUtils,
+  EuiSeriesChartAxisUtils,
+  EuiSeriesChartTextUtils,
   EuiLineSeries,
   EuiAreaSeries,
   EuiBarSeries,
@@ -17,4 +17,4 @@ export {
   EuiCrosshairX,
   EuiCrosshairY,
   EuiLineAnnotation,
-} from '../components/xy_chart';
+} from '../components/series_chart';

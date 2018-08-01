@@ -275,7 +275,11 @@ export class EuiInMemoryTable extends Component {
     const matchingItems = query ? EuiSearchBar.Query.execute(query, items) : items;
 
     const sortedItems =
-      sortField ? matchingItems.sort(this.getItemSorter()) : matchingItems;
+      sortField
+        ? matchingItems
+          .slice(0) // avoid mutating the source array
+          .sort(this.getItemSorter()) // sort, causes mutation
+        : matchingItems;
 
     const visibleItems = pageSize ? (() => {
       const startIndex = pageIndex * pageSize;

@@ -1,10 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- `EuiComboBox` now applies the provided `data-test-subj` to its options list element with the suffix `-optionsList` so you can find a specific combo box instance's options list. This wasn't previously possible because the options list is attached to the body element, not the combo box element. This is in addition to the existing `data-test-subj="comboBoxOptionsList"`. ([#1054](https://github.com/elastic/eui/pull/1054))
+- EUI now provides minified versions of the themes' CSS files. ([#1070](https://github.com/elastic/eui/pull/1070))
 - Add `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1062](https://github.com/elastic/eui/pull/1062))
 
 **Bug fixes**
 
-- Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
+- Fixed `EuiSeriesChart` (previously `EuiXYChart`) responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
+- `EuiInMemoryTable` no longer mutates the `items` prop array when sorting, adding deterministic sorting ([#1057](https://github.com/elastic/eui/pull/1057))
+- `EuiBasicTable` actions now close their context menu when clicked ([#1069](https://github.com/elastic/eui/pull/1069))
+
+**Experimental breaking change**
+
+ - Renamed `EuiXYChart` to `EuiSeriesChart`, `EuiXYChartUtils` to `EuiSeriesChartUtils`, `EuiXYChartAxisUtils` to `EuiSeriesChartAxisUtils`, and  `EuiXYChartTextUtils` to `EuiSeriesChartTextUtils` ([#1066](https://github.com/elastic/eui/pull/1066))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 
