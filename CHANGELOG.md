@@ -1,9 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Add `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1062](https://github.com/elastic/eui/pull/1062))
+
 **Bug fixes**
 
 - Fixed `EuiXYChart` responsive resize in a flexbox layout ([#1041](https://github.com/elastic/eui/pull/1041))
-- Updated `EuiPopover` to reposition content when the window is scrolled. ([#1062](https://github.com/elastic/eui/pull/1062))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 

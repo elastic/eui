@@ -48,6 +48,7 @@ export default class PopoverContainer extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         style={{ position: 'fixed', bottom: 50, right: 50 }}
+        repositionOnScroll={true}
       >
         <div>
           This popover scrolls with the button element!
