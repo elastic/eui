@@ -21,7 +21,6 @@ const iconHtmlWarning = () => (
 
 const iconsHtml = renderToHtml(iconHtmlWarning);
 
-
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
 
