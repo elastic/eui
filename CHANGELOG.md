@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - `EuiMutationObserver`'s `children` prop is no longer marked as required ([#1076](https://github.com/elastic/eui/pull/1076))
+- Fixed width of `EuiFilterGroup`'s popover ([#1078](https://github.com/elastic/eui/pull/1078))
 
 ## [`3.3.0`](https://github.com/elastic/eui/tree/v3.3.0)
 
