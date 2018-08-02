@@ -34,6 +34,7 @@
   opacity: 0; /* 2 */
   visibility: hidden; /* 2 */
   transform: translateY(0) translateX(0) translateZ(0); /* 2 */
+  @include euiBottomShadow($adjustBorders: true);
 
   &.euiPopover__panel-isOpen {
     opacity: 1;

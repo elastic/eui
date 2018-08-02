@@ -308,7 +308,7 @@ $euiRange__levelColors: (
     }
 
     ~ .euiRange__valueWrapper .euiRange__value {
-      @include euiBottomShadow;
+      @include euiBottomShadowMedium;
 
       &.euiRange__value--right {
         transform: translateX(0) translateY(-50%) scale(1.1);

@@ -1,12 +1,10 @@
-$euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
-
 .euiFlyout {
-  @include euiBottomShadowLarge;
+  border-left: $euiBorderThin;
+  @include euiBottomShadowLarge($adjustBorders: true);
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  border-left: 1px solid $euiFlyoutBorderColor;
   z-index: $euiZModal;
   background: $euiColorEmptyShade;
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
