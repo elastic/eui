@@ -11,37 +11,40 @@ import {
   EuiIcon,
 } from '../../../../src/components';
 
+const iconHtmlWarning = () => (
+  <p>
+    HTML preview disabled. Icons use SVG and are not usable
+    usable without React unless you load the icons manually through a
+    separate asset loader.
+  </p>
+);
+
+const iconsHtml = renderToHtml(iconHtmlWarning);
+
+
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
-const iconsHtml = renderToHtml(Icons);
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
-const appsHtml = renderToHtml(Apps);
 
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
-const mlHtml = renderToHtml(Ml);
 
 import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
-const logosHtml = renderToHtml(Logos);
 
 import LogosThird from './logos_third';
 const logosThirdSource = require('!!raw-loader!./logos_third');
-const logosThirdHtml = renderToHtml(LogosThird);
 
 import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
-const iconSizesHtml = renderToHtml(IconSizes);
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
-const iconColorsHtml = renderToHtml(IconColors);
 
 import Accessibility from './accessibility';
 const accessibilitySource = require('!!raw-loader!./accessibility');
-const accessibilityHtml = renderToHtml(Accessibility);
 
 export const IconExample = {
   title: 'Icons',
@@ -84,7 +87,7 @@ export const IconExample = {
       code: appsSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: appsHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -100,7 +103,7 @@ export const IconExample = {
       code: mlSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: mlHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -116,7 +119,7 @@ export const IconExample = {
       code: logosSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: logosHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -131,7 +134,7 @@ export const IconExample = {
       code: logosThirdSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: logosThirdHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -146,7 +149,7 @@ export const IconExample = {
       code: iconSizesSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: iconSizesHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -162,7 +165,7 @@ export const IconExample = {
       code: iconColorsSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: iconColorsHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
@@ -180,7 +183,7 @@ export const IconExample = {
       code: accessibilitySource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: accessibilityHtml,
+      code: iconsHtml,
     }],
     text: (
       <p>
