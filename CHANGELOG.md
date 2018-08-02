@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `spacesApp` logo to `EuiIcon` set ([#1065](https://github.com/elastic/eui/pull/1065))
 - Added `!default` to border SASS props ([#1079](https://github.com/elastic/eui/pull/1079))
 
 **Bug fixes**
