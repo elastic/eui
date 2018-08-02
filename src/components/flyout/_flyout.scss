@@ -1,5 +1,3 @@
-$euiFlyoutBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
-
 .euiFlyout {
   border-left: $euiBorderThin;
   @include euiBottomShadowLarge($adjustBorders: true);
