@@ -92,7 +92,7 @@ EuiMutationObserver.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
+  ]),
   observerOptions: PropTypes.shape({ // matches a [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
     attributeFilter: PropTypes.arrayOf(PropTypes.string),
     attributeOldValue: PropTypes.bool,

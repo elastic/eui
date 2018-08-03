@@ -38,6 +38,7 @@ export default class extends Component {
           label="Toggle Me"
           iconType={this.state.toggle0On ? 'check' : 'cross'}
           onChange={this.onToggle0Change}
+          isSelected={this.state.toggle0On}
         />
 
         &emsp;
@@ -46,6 +47,7 @@ export default class extends Component {
           label={this.state.toggle1On ? 'I\'m a filled toggle' : 'I\'m a primary toggle'}
           fill={this.state.toggle1On}
           onChange={this.onToggle1Change}
+          isSelected={this.state.toggle1On}
         />
 
         &emsp;
@@ -54,6 +56,7 @@ export default class extends Component {
           label="Toggle Me"
           iconType={this.state.toggle4On ? 'eye' : 'eyeClosed'}
           onChange={this.onToggle4Change}
+          isSelected={this.state.toggle4On}
           isEmpty
           isIconOnly
         />
@@ -68,6 +71,7 @@ export default class extends Component {
           isDisabled
           label="Can't toggle this"
           fill={this.state.toggle2On}
+          isSelected={this.state.toggle2On}
         />
 
         &emsp;
@@ -76,6 +80,7 @@ export default class extends Component {
           isDisabled
           label="Can't toggle this either"
           fill={this.state.toggle3On}
+          isSelected={this.state.toggle3On}
         />
       </div>
     );

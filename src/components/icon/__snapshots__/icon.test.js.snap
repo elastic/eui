@@ -4697,6 +4697,59 @@ exports[`EuiIcon props type sortUp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type spacesApp is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    transform="translate(2 2)"
+  >
+    <rect
+      fill="#00BFB3"
+      height="12"
+      rx="2"
+      width="12"
+      x="16"
+    />
+    <rect
+      fill="#00A9E5"
+      height="12"
+      rx="2"
+      width="12"
+    />
+    <path
+      d="M2 0h8a2 2 0 0 1 2 2v1H0V2a2 2 0 0 1 2-2zm16 0h8a2 2 0 0 1 2 2v1H16V2a2 2 0 0 1 2-2z"
+      fill="#0078A0"
+    />
+    <rect
+      fill="#00BFB3"
+      height="12"
+      rx="2"
+      width="12"
+      y="16"
+    />
+    <rect
+      fill="#00A9E5"
+      height="12"
+      rx="2"
+      width="12"
+      x="16"
+      y="16"
+    />
+    <path
+      d="M2 16h8a2 2 0 0 1 2 2v1H0v-1a2 2 0 0 1 2-2zm16 0h8a2 2 0 0 1 2 2v1H16v-1a2 2 0 0 1 2-2z"
+      fill="#0078A0"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type starEmpty is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"

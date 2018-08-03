@@ -12,6 +12,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -94,6 +95,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -178,6 +180,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -213,6 +216,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -256,6 +260,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -291,6 +296,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -379,6 +385,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -461,6 +468,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -543,6 +551,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -611,6 +620,7 @@ exports[`EuiBasicTable with pagination 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -695,6 +705,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -752,6 +763,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -908,6 +920,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -1067,6 +1080,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -1317,6 +1331,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="right"
+          data-test-subj="tableHeaderCell_count_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
@@ -1476,6 +1491,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -1635,6 +1651,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -1879,6 +1896,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="right"
+          data-test-subj="tableHeaderCell_count_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
@@ -2008,6 +2026,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
           scope="col"
         >
@@ -2095,6 +2114,7 @@ exports[`EuiBasicTable with sorting 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
+          data-test-subj="tableHeaderCell_name_0"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
