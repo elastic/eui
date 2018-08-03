@@ -16,11 +16,24 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/
+    }, {
+      test: /\.tsx?$/,
+      exclude: /\/nodes_modules\//,
+      loaders: [
+        'babel-loader',
+        {
+          loader: 'ts-loader',
+        }
+      ],
     }, {
       test: /\.scss$/,
       loaders: ['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],

@@ -38,6 +38,10 @@ module.exports = {
     filename: `eui${isProduction ? '.min' : ''}.js`
   },
 
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+
   // Specify where these libraries should be found
   externals: {
     'moment': 'window.moment',
@@ -51,6 +55,15 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/
+    }, {
+      test: /\.tsx?$/,
+      exclude: /\/nodes_modules\//,
+      loaders: [
+        'babel-loader',
+        {
+          loader: 'ts-loader',
+        }
+      ],
     }, {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
