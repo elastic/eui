@@ -67,7 +67,6 @@ export class EuiSuperSelect extends Component {
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
-      menuWidth: null,
     });
   };
 
