@@ -7,6 +7,8 @@
 
 - `EuiMutationObserver`'s `children` prop is no longer marked as required ([#1076](https://github.com/elastic/eui/pull/1076))
 - Fixed large drop shadows so they work on darker backgrounds ([#1079](https://github.com/elastic/eui/pull/1079))
+- Added `resize-observer-polyfill` as a dependency (was previously a devDependency) ([#1085](https://github.com/elastic/eui/pull/1085))
+
 
 ## [`3.3.0`](https://github.com/elastic/eui/tree/v3.3.0)
 
