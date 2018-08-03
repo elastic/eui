@@ -434,6 +434,7 @@ EuiPopover.propTypes = {
     PropTypes.node,
     PropTypes.instanceOf(HTMLElement)
   ]),
+  /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
 };
 

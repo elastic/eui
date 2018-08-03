@@ -12,9 +12,12 @@ export default class PopoverContainer extends Component {
     super(props);
 
     this.state = {
+      isExampleShown: false,
       isPopoverOpen: false,
     };
   }
+
+  toggleExample = () => this.setState(({ isExampleShown }) => ({ isExampleShown: !isExampleShown }))
 
   onButtonClick = () => {
     this.setState({
@@ -43,17 +46,22 @@ export default class PopoverContainer extends Component {
     );
 
     return (
-      <EuiPopover
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        style={{ position: 'fixed', bottom: 50, right: 50 }}
-        repositionOnScroll={true}
-      >
-        <div>
-          This popover scrolls with the button element!
-        </div>
-      </EuiPopover>
+      <React.Fragment>
+        <EuiButton onClick={this.toggleExample}>Toggle Example</EuiButton>
+        {this.state.isExampleShown && (
+          <EuiPopover
+            button={button}
+            isOpen={this.state.isPopoverOpen}
+            closePopover={this.closePopover}
+            style={{ position: 'fixed', bottom: 50, right: 50 }}
+            repositionOnScroll={true}
+          >
+            <div>
+              This popover scrolls with the button element!
+            </div>
+          </EuiPopover>
+        )}
+      </React.Fragment>
     );
   }
 }

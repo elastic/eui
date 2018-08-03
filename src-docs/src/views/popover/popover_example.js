@@ -208,7 +208,7 @@ export const PopoverExample = {
     ),
     demo: <PopoverHTMLElementAnchor />,
   }, {
-    title: 'Popover on a static element',
+    title: 'Popover on a fixed element',
     source: [{
       type: GuideSectionTypes.JS,
       code: popoverFixedSource,
@@ -219,7 +219,7 @@ export const PopoverExample = {
     text: (
       <div>
         <p>
-          Popover content even works on <EuiCode>position: static;</EuiCode> elements.
+          Popover content even works on <EuiCode>position: fixed;</EuiCode> elements.
         </p>
       </div>
     ),
