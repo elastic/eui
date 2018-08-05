@@ -44,7 +44,7 @@ export const ToolTipExample = {
         The <EuiCode>position</EuiCode> prop will take a suggested position, but will
         change it if the tool tip gets too close to the edge of the screen. You can use
         the <EuiCode>clickOnly</EuiCode> prop to tell the too tip to only appear on click
-        wrather than on hover.
+        rather than on hover.
       </EuiText>
 
       <EuiSpacer size="l" />
