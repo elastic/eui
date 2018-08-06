@@ -57,8 +57,6 @@ export class Flyout extends Component {
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
-          maxWidth={320}
-          size="s"
           onClose={this.closeFlyout}
           aria-labelledby="flyoutTitle"
         >
