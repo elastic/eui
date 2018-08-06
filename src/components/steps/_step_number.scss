@@ -7,7 +7,8 @@
   }
 
   &--complete {
-    .euiStepNumber__icon path {
+    // Thicken the checkmark but adding a slight stroke.
+    .euiStepNumber__icon {
       stroke: currentColor;
       stroke-width: .5px;
     }

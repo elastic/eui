@@ -14,6 +14,10 @@ import {
   EuiStepsHorizontal,
 } from '../../../../src/components';
 
+import {
+  EuiStepHorizontal,
+} from '../../../../src/components/steps/step_horizontal';
+
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
@@ -106,8 +110,9 @@ export const StepsExample = {
     }],
     text: (
       <p>
-        Steps can optionally include <EuiCode>status</EuiCode> prop with
-        a value of <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>, <EuiCode>warning</EuiCode> or <EuiCode>danger</EuiCode>.
+        Steps can optionally include <EuiCode>status</EuiCode> prop that will alter the look of the number prefix.
+        The options
+        are <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>, <EuiCode>warning</EuiCode> and <EuiCode>danger</EuiCode>.
         This is used mostly as a final step when you need to make some sort of final check.
       </p>
     ),
@@ -126,6 +131,6 @@ export const StepsExample = {
       <p>For use when forms/setup instructions can and should be split into multiple pages.</p>
     ),
     demo: <StepsHorizontal />,
-    props: { EuiStepsHorizontal },
+    props: { EuiStepsHorizontal, EuiStepHorizontal },
   }],
 };

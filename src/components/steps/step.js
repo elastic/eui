@@ -56,7 +56,8 @@ export const EuiStep = ({
 EuiStep.propTypes = {
   children: PropTypes.node.isRequired,
   /**
-   * Will replace the number provided in props.step with alternate styling
+   * Will replace the number provided in props.step with alternate styling.
+   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`
    */
   status: PropTypes.oneOf(STATUS),
   /**

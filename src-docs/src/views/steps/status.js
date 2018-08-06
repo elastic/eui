@@ -22,7 +22,7 @@ export default class extends Component {
     this.handleComplete = this.handleComplete.bind(this);
     this.handleWarning = this.handleWarning.bind(this);
     this.handleDanger = this.handleDanger.bind(this);
-    this.handleUncomplete = this.handleUncomplete.bind(this);
+    this.makeIncomplete = this.makeIncomplete.bind(this);
   }
 
   handleComplete() {
@@ -43,7 +43,7 @@ export default class extends Component {
     });
   }
 
-  handleUncomplete() {
+  makeIncomplete() {
     this.setState({
       status: 'incomplete',
     });
@@ -58,7 +58,7 @@ export default class extends Component {
       );
     } else {
       completeButton = (
-        <EuiButton onClick={this.handleUncomplete}>Reset</EuiButton>
+        <EuiButton onClick={this.makeIncomplete}>Reset</EuiButton>
       );
     }
 
@@ -69,7 +69,7 @@ export default class extends Component {
       );
     } else {
       warningButton = (
-        <EuiButton color="warning" onClick={this.handleUncomplete}>Reset</EuiButton>
+        <EuiButton color="warning" onClick={this.makeIncomplete}>Reset</EuiButton>
       );
     }
 
@@ -80,7 +80,7 @@ export default class extends Component {
       );
     } else {
       dangerButton = (
-        <EuiButton color="danger" onClick={this.handleUncomplete}>Reset</EuiButton>
+        <EuiButton color="danger" onClick={this.makeIncomplete}>Reset</EuiButton>
       );
     }
 

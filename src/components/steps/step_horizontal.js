@@ -87,7 +87,9 @@ EuiStepHorizontal.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   /**
-   * Will replace the number provided in props.step with alternate styling
+   * Will replace the number provided in props.step with alternate styling.
+   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`.
+   * The `isSelected`, `isComplete`, and `disabled` props will override these.
    */
   status: PropTypes.oneOf(STATUS),
 };
