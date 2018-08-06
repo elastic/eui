@@ -1,6 +1,3 @@
-$euiShadowColor: $euiColorMediumShade !default;
-$euiShadowColorLarge: $euiColorSlightHue !default;
-
 @mixin euiSlightShadow($color: $euiShadowColor, $opacity: .3) {
   box-shadow: 0 2px 2px -1px rgba($color, $opacity);
 }
@@ -27,22 +24,38 @@ $euiShadowColorLarge: $euiColorSlightHue !default;
     0 0px 2px 0 rgba($color, $opacity);
 }
 
-@mixin euiBottomShadow($color: $euiShadowColor, $opacity: .2) {
+// adjustBorder allows the border color to match the drop shadow better so that there's better
+// distinction between element bounds and the shadow (crisper borders)
+@mixin euiBottomShadow($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
   box-shadow:
     0 12px 24px 0 rgba($color, $opacity),
     0 6px 12px 0 rgba($color, $opacity),
     0 4px 4px 0 rgba($color, $opacity),
     0 2px 2px 0 rgba($color, $opacity);
+
+  // Never adjust borders if the border color is already on the dark side (dark theme)
+  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
+    border-color: tint($color, 75%);
+    border-top-color: tint($color, 80%);
+    border-bottom-color: tint($color, 55%);
+  }
 }
 
-@mixin euiBottomShadowLarge($color: $euiShadowColorLarge, $opacity: .2) {
+@mixin euiBottomShadowLarge($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
   box-shadow:
-    0 64px 64px 0 rgba($color, $opacity),
-    0 32px 32px 0 rgba($color, $opacity),
+    0 40px 64px 0 rgba($color, $opacity),
+    0 24px 32px 0 rgba($color, $opacity),
     0 16px 16px 0 rgba($color, $opacity),
     0 8px 8px 0 rgba($color, $opacity),
     0 4px 4px 0 rgba($color, $opacity),
     0 2px 2px 0 rgba($color, $opacity);
+
+  // Never adjust borders if the border color is already on the dark side (dark theme)
+  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
+    border-color: tint($color, 70%);
+    border-top-color: tint($color, 85%);
+    border-bottom-color: tint($color, 55%);
+  }
 }
 
 @mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
@@ -55,6 +68,8 @@ $euiShadowColorLarge: $euiColorSlightHue !default;
   @include euiSlightShadowHover($color, $opacity);
 }
 
+// Overflow shadows are useful when a middle element scrolls independently from
+// any top and/or bottom elements
 @mixin euiOverflowShadowTop {
   box-shadow: 0 ($euiSize *-1) $euiSize (-$euiSize / 2) $euiColorEmptyShade;
   z-index: 2;

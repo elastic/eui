@@ -127,7 +127,7 @@ word
 
 wordChar
   = alnum
-  / [-]
+  / [-_*]
   / escapedChar
 
 escapedChar

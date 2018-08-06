@@ -30,6 +30,7 @@ const iconTypes = [
   'savedObjectsApp',
   'searchProfilerApp',
   'securityApp',
+  'spacesApp',
   'timelionApp',
   'upgradeAssistantApp',
   'usersRolesApp',

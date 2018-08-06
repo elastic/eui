@@ -44,6 +44,9 @@ import PopoverContainer from './popover_container';
 const popoverContainerSource = require('!!raw-loader!./popover_container');
 const popoverContainerHtml = renderToHtml(PopoverContainer);
 
+import PopoverFixed from './popover_fixed';
+const popoverFixedSource = require('!!raw-loader!./popover_fixed');
+const popoverFixedHtml = renderToHtml(PopoverFixed);
 
 export const PopoverExample = {
   title: 'Popover',
@@ -204,5 +207,22 @@ export const PopoverExample = {
       </div>
     ),
     demo: <PopoverHTMLElementAnchor />,
+  }, {
+    title: 'Popover on a fixed element',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: popoverFixedSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: popoverFixedHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Popover content even works on <EuiCode>position: fixed;</EuiCode> elements.
+        </p>
+      </div>
+    ),
+    demo: <PopoverFixed />,
   }],
 };
