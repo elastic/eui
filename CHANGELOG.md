@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `spacesApp` logo to `EuiIcon` set ([#1065](https://github.com/elastic/eui/pull/1065))
+- Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
 
 **Bug fixes**
 
 - `EuiMutationObserver`'s `children` prop is no longer marked as required ([#1076](https://github.com/elastic/eui/pull/1076))
+- Fixed `EuiStepsHorizontal`'s title wrapping in IE ([#1088](https://github.com/elastic/eui/pull/1088))
 
 ## [`3.3.0`](https://github.com/elastic/eui/tree/v3.3.0)
 
