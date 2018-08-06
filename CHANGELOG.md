@@ -1,10 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.0.3`.
+No public interface changes since `3.0.4`.
 
-## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
+## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 
-No public interface changes since `3.0.3`.
+- Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
