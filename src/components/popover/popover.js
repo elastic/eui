@@ -153,6 +153,10 @@ export class EuiPopover extends Component {
       this.setState({ suppressingPopover: false, isOpening: true }); // eslint-disable-line react/no-did-mount-set-state
     }
 
+    if (this.props.repositionOnScroll) {
+      window.addEventListener('scroll', this.positionPopover);
+    }
+
     this.updateFocus();
   }
 
@@ -167,6 +171,15 @@ export class EuiPopover extends Component {
           isOpening: true,
         });
       });
+    }
+
+    // update scroll listener
+    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
+      if (this.props.repositionOnScroll) {
+        window.addEventListener('scroll', this.positionPopover);
+      } else {
+        window.removeEventListener('scroll', this.positionPopover);
+      }
     }
 
     // The popover is being closed.
@@ -184,6 +197,7 @@ export class EuiPopover extends Component {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this.positionPopover);
     clearTimeout(this.closingTransitionTimeout);
   }
 
@@ -420,6 +434,8 @@ EuiPopover.propTypes = {
     PropTypes.node,
     PropTypes.instanceOf(HTMLElement)
   ]),
+  /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
+  repositionOnScroll: PropTypes.bool,
 };
 
 EuiPopover.defaultProps = {
