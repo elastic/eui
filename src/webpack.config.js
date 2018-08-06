@@ -62,6 +62,9 @@ module.exports = {
         'babel-loader',
         {
           loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
         }
       ],
     }, {

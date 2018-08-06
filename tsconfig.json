@@ -8,6 +8,10 @@
     // Enables all strict type checking options.
     "strict": true,
 
+    // Don't emit any files, TypeScript is only used for type checking/linting
+    // webpack is responsible for writing output
+    "noEmit": true,
+
     // Output as ES Modules, webpack will handle further conversion
     "module": "es6",
 

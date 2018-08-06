@@ -26,6 +26,8 @@
     "html"
   ],
   "moduleFileExtensions": [
+    "ts",
+    "tsx",
     "js",
     "json"
   ],
@@ -40,6 +42,10 @@
   "transformIgnorePatterns": [
     "[/\\\\]node_modules[/\\\\].+\\.js$"
   ],
+  "transform": {
+    "^.+\\.js$": "babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
+  },
   "snapshotSerializers": [
     "<rootDir>/node_modules/enzyme-to-json/serializer"
   ]
