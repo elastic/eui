@@ -11,6 +11,9 @@
   .euiFlexItem {
     flex-grow: 1;
     flex-basis: 0%; /* 2 */
+    @include internetExplorerOnly {
+      min-width: 1px;
+    }
   }
 }
 
