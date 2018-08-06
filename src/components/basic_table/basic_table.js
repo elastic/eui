@@ -199,7 +199,15 @@ export class EuiBasicTable extends Component {
       nextProps.items.findIndex(item => getItemId(item, itemId) === getItemId(selectedItem, itemId)) !== -1
     ));
 
-    return { selection };
+    if (selection.length !== prevState.selection.length) {
+      if (nextProps.selection.onSelectionChange) {
+        nextProps.selection.onSelectionChange(selection);
+      }
+
+      return { selection };
+    }
+
+    return null;
   }
 
   constructor(props) {
@@ -470,6 +478,7 @@ export class EuiBasicTable extends Component {
           width={width}
           isMobileHeader={isMobileHeader}
           hideForMobile={hideForMobile}
+          data-test-subj={`tableHeaderCell_${field}_${index}`}
           {...sorting}
         >
           {name}

@@ -176,6 +176,7 @@ declare module '@elastic/eui' {
     | 'sortLeft'
     | 'sortRight'
     | 'sortUp'
+    | 'spacesApp'
     | 'starEmpty'
     | 'starPlusFilled'
     | 'stats'

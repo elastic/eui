@@ -569,6 +569,7 @@ export class EuiComboBox extends Component {
       isInvalid,
       rowHeight,
       isClearable,
+      'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
 
@@ -585,6 +586,7 @@ export class EuiComboBox extends Component {
     let optionsList;
 
     if (!noSuggestions && isListOpen) {
+      const optionsListDataTestSubj = dataTestSubj ? `${dataTestSubj}-optionsList` : undefined;
       optionsList = (
         <EuiPortal>
           <EuiComboBoxOptionsList
@@ -607,6 +609,7 @@ export class EuiComboBox extends Component {
             scrollToIndex={activeOptionIndex}
             onScroll={this.focusActiveOption}
             rowHeight={rowHeight}
+            data-test-subj={optionsListDataTestSubj}
           />
         </EuiPortal>
       );
@@ -618,6 +621,7 @@ export class EuiComboBox extends Component {
         onFocus={this.onComboBoxFocus}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
+        data-test-subj={dataTestSubj}
         {...rest}
       >
         <EuiComboBoxInput

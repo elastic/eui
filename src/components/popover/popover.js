@@ -359,7 +359,6 @@ export class EuiPopover extends Component {
               className={panelClasses}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
-              hasShadow
               aria-live={ariaLive}
               style={this.state.popoverStyles}
             >

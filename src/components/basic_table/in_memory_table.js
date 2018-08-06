@@ -71,6 +71,7 @@ const InMemoryTablePropTypes = {
   itemId: ItemIdType,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  onTableChange: PropTypes.func,
 };
 
 const getInitialQuery = (search) => {
@@ -172,6 +173,10 @@ export class EuiInMemoryTable extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
+    if (this.props.onTableChange) {
+      this.props.onTableChange({ page, sort });
+    }
+
     const {
       index: pageIndex,
       size: pageSize
@@ -275,7 +280,11 @@ export class EuiInMemoryTable extends Component {
     const matchingItems = query ? EuiSearchBar.Query.execute(query, items) : items;
 
     const sortedItems =
-      sortField ? matchingItems.sort(this.getItemSorter()) : matchingItems;
+      sortField
+        ? matchingItems
+          .slice(0) // avoid mutating the source array
+          .sort(this.getItemSorter()) // sort, causes mutation
+        : matchingItems;
 
     const visibleItems = pageSize ? (() => {
       const startIndex = pageIndex * pageSize;
@@ -306,6 +315,7 @@ export class EuiInMemoryTable extends Component {
       cellProps,
       items: _unuseditems, // eslint-disable-line no-unused-vars
       search, // eslint-disable-line no-unused-vars
+      onTableChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "main": "lib",
   "module": "src",
   "types": "src/index.d.ts",
@@ -52,6 +52,7 @@
     "react-input-autosize": "^2.2.1",
     "react-virtualized": "^9.18.5",
     "react-vis": "1.10.2",
+    "resize-observer-polyfill": "^1.5.0",
     "tabbable": "^1.1.0",
     "uuid": "^3.1.0"
   },
@@ -79,6 +80,7 @@
     "chromedriver": "2.37.0",
     "circular-dependency-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
+    "cssnano": "^4.0.5",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "enzyme-to-json": "^3.3.0",
@@ -124,7 +126,6 @@
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "resize-observer-polyfill": "^1.5.0",
     "rimraf": "^2.6.2",
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.3.0",

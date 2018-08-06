@@ -43,6 +43,11 @@ export class CollapsedItemActions extends Component {
     }
   }
 
+  onClickItem = (onClickAction) => {
+    this.closePopover();
+    onClickAction();
+  }
+
   render() {
 
     const { actions, itemId, item, actionEnabled, onFocus, className } = this.props;
@@ -72,7 +77,7 @@ export class CollapsedItemActions extends Component {
             key={key}
             disabled={!enabled}
             icon={action.icon}
-            onClick={action.onClick.bind(null, item)}
+            onClick={this.onClickItem.bind(null, action.onClick.bind(null, item))}
           >
             {action.name}
           </EuiContextMenuItem>

@@ -94,7 +94,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
     <div>
       <div
         aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
+        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
         style="top: 16px; left: -22px; z-index: 0;"
       >
         <div
@@ -121,7 +121,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
     <div>
       <div
         aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
+        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
         style="top: 16px; left: -22px; z-index: 0;"
       >
         <div
@@ -154,7 +154,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
       </p>
       <div
         aria-live="off"
-        class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
+        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
         style="top: 16px; left: -22px; z-index: 0;"
         tabindex="0"
       >
@@ -182,7 +182,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
     <div>
       <div
         aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPanel--shadow euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen test"
+        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen test"
         style="top: 16px; left: -22px; z-index: 0;"
       >
         <div
@@ -209,7 +209,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
     <div>
       <div
         aria-live="assertive"
-        class="euiPanel euiPanel--paddingSmall euiPanel--shadow euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
+        class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel-bottom euiPopover__panel-isOpen"
         style="top: 16px; left: -22px; z-index: 0;"
       >
         <div

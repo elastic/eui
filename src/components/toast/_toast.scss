@@ -1,13 +1,10 @@
 .euiToast {
-  @include euiBottomShadowLarge;
+  border: $euiBorderThin;
+  @include euiBottomShadowLarge($adjustBorders: true);
 
   position: relative;
   padding: $euiSize;
   background-color: $euiColorEmptyShade;
-  border: $euiBorderThin;
-  @if (lightness($euiTextColor) < 50) {
-    border-bottom-color: rgba($euiShadowColor, .6);
-  }
   width: 100%;
 
   &:hover .euiToast__closeButton,

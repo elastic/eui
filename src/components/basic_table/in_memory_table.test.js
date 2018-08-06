@@ -257,13 +257,18 @@ describe('EuiInMemoryTable', () => {
 
   test('with initial sorting', () => {
 
+    const items = [
+      { id: '1', name: 'name1' },
+      { id: '2', name: 'name2' },
+      { id: '3', name: 'name3' }
+    ];
+
+    // copy the array to ensure the `items` prop doesn't mutate
+    const itemsProp = items.slice(0);
+
     const props = {
       ...requiredProps,
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
-      ],
+      items: itemsProp,
       columns: [
         {
           field: 'name',
@@ -284,6 +289,7 @@ describe('EuiInMemoryTable', () => {
     );
 
     expect(component).toMatchSnapshot();
+    expect(itemsProp).toEqual(items);
   });
 
   test('with pagination and selection', () => {
@@ -663,6 +669,60 @@ describe('EuiInMemoryTable', () => {
       component.setProps();
 
       expect(component).toMatchSnapshot();
+    });
+
+    test('onTableChange callback', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+          { id: '4', name: 'name4' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          }
+        ],
+        sorting: true,
+        pagination: {
+          pageSizeOptions: [2, 4, 6],
+        },
+        onTableChange: jest.fn(),
+      };
+
+      const component = mount(
+        <EuiInMemoryTable {...props}/>
+      );
+
+      expect(props.onTableChange).toHaveBeenCalledTimes(0);
+      component.find('EuiPaginationButton[data-test-subj="pagination-button-1"]').simulate('click');
+      expect(props.onTableChange).toHaveBeenCalledTimes(1);
+      expect(props.onTableChange).toHaveBeenCalledWith({
+        sort: {},
+        page: {
+          index: 1,
+          size: 2,
+        },
+      });
+
+      props.onTableChange.mockClear();
+      component.find('[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderSortButton"]').simulate('click');
+      expect(props.onTableChange).toHaveBeenCalledTimes(1);
+      expect(props.onTableChange).toHaveBeenCalledWith({
+        sort: {
+          direction: 'asc',
+          field: 'name',
+        },
+        page: {
+          index: 0,
+          size: 2,
+        },
+      });
     });
   });
 });

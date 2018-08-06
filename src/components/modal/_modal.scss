@@ -1,18 +1,15 @@
-$euiModalBorderColor: tintOrShade($euiShadowColorLarge, 50%, 0%) !default; // match shadow
-
 /**
  * 1. Fix IE overflow issue (min-height) by adding a separate wrapper for the
  *    flex display. https://github.com/philipwalton/flexbugs#flexbug-3
  */
 
 .euiModal {
-  @include euiBottomShadowLarge;
+  border: $euiBorderThin;
+  @include euiBottomShadowLarge($adjustBorders: true);
   display: flex; /* 1 */
 
   position: relative;
   background-color: $euiColorEmptyShade;
-  border: 1px solid $euiModalBorderColor;
-  border-top-color: tintOrShade($euiModalBorderColor, 50%, 0%);
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
   min-width: 50%;
