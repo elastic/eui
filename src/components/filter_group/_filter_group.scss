@@ -20,3 +20,9 @@
     display: block;
   }
 }
+
+// A fixed width is required in IE11 because of the shift in widths that can be caused
+// by the loading animation that precedes the results.
+.euiFilterGroup__popoverPanel {
+  width: $euiSize * 18;
+}

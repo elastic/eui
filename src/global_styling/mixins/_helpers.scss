@@ -49,3 +49,13 @@
     background-color: transparent;
   }
 }
+
+
+/**
+ * Specifically target IE11, but not Edge.
+ */
+@mixin internetExplorerOnly {
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @content;
+  }
+}
