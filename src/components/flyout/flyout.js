@@ -34,10 +34,28 @@ export class EuiFlyout extends Component {
       ownFocus,
       size,
       closeButtonAriaLabel,
+      maxWidth,
+      style,
       ...rest
     } = this.props;
 
-    const classes = classnames('euiFlyout', sizeToClassNameMap[size], className);
+    let newStyle;
+    let widthClassName;
+    if (maxWidth === true) {
+      widthClassName = 'euiFlyout--maxWidth-default';
+    } else if (maxWidth !== false) {
+      // if style has been passed as a prop, add to it
+      if (style) {
+        newStyle = style;
+        newStyle.maxWidth = `${maxWidth}px`;
+      }
+      // otherwise create a new object
+      else {
+        newStyle = { maxWidth: `${maxWidth}px` };
+      }
+    }
+
+    const classes = classnames('euiFlyout', sizeToClassNameMap[size], widthClassName, className);
 
     let closeButton;
     if (onClose && !hideCloseButton) {
@@ -62,6 +80,7 @@ export class EuiFlyout extends Component {
         className={classes}
         tabIndex={0}
         onKeyDown={this.onKeyDown}
+        style={newStyle}
         {...rest}
       >
         {closeButton}
@@ -111,6 +130,16 @@ EuiFlyout.propTypes = {
    * Specify an aria-label for the close button of the flyout
    */
   closeButtonAriaLabel: PropTypes.string,
+  /**
+   * Sets the max-width of the page,
+   * set to `true` to use the default size,
+   * set to `false` to not restrict the width,
+   * set to a number for a custom width.
+   */
+  maxWidth: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number
+  ]),
 };
 
 EuiFlyout.defaultProps = {
@@ -118,4 +147,5 @@ EuiFlyout.defaultProps = {
   hideCloseButton: false,
   ownFocus: false,
   closeButtonAriaLabel: 'Closes this dialog',
+  maxWidth: false,
 };
