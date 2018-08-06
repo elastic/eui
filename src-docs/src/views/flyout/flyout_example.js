@@ -52,7 +52,7 @@ export const FlyoutExample = {
             <li>
               <EuiCode>maxWidth</EuiCode> accepts a boolean or number. When set to{' '}
               <EuiCode>true</EuiCode>, it adds a predefined maxWidth or you can pass an integer set
-              the max width to a custom size.
+              the max width to a custom pixel value or a string to set it to a custom measurement.
             </li>
           </ul>
 

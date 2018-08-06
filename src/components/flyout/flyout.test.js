@@ -97,5 +97,17 @@ describe('EuiFlyout', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('can be set to a custom value and measurement', () => {
+      const component = render(
+        <EuiFlyout
+          onClose={() => {}}
+          maxWidth="24rem"
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });

@@ -14,6 +14,14 @@ declare module '@elastic/eui' {
      * Specify an aria-label for the close button of the flyout.
      */
     closeButtonAriaLabel?: string;
+    /**
+     * Sets the max-width of the page,
+     * set to `true` to use the default size,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    maxWidth?: boolean | number | string;
   }
 
   export const EuiFlyout: React.SFC<
