@@ -323,7 +323,7 @@ export class EuiPopover extends Component {
 
     const panelClasses = classNames(
       'euiPopover__panel',
-      `euiPopover__panel-${this.state.arrowPosition}`,
+      `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow },
@@ -356,8 +356,8 @@ export class EuiPopover extends Component {
       }
 
       const arrowClassNames = classNames(
-        'euiPopover__panel__arrow',
-        `euiPopover__panel__arrow-${this.state.arrowPosition}`
+        'euiPopover__panelArrow',
+        `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
       panel = (
