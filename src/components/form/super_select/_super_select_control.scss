@@ -3,7 +3,7 @@
  * 2. Ensure the descenders don't get cut off
  */
 
- .euiSuperSelectControl {
+.euiSuperSelectControl {
   @include euiFormControlStyle;
   @include euiFormControlWithIcon($side: "right"); /* 1 */
   @include euiFormControlIsLoading($isNextToIcon: true);

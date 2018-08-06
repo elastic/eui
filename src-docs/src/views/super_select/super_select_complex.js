@@ -68,16 +68,14 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          itemLayoutAlign="top"
-          hasDividers
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </Fragment>
+      <EuiSuperSelect
+        options={this.options}
+        valueOfSelected={this.state.value}
+        onChange={this.onChange}
+        itemLayoutAlign="top"
+        hasDividers
+        aria-label="Use aria labels when no actual label is in use"
+      />
     );
   }
 }

@@ -1,6 +1,5 @@
 import React, {
   Component,
-  Fragment,
 } from 'react';
 
 import {
@@ -52,14 +51,12 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          aria-label="Health levels"
-        />
-      </Fragment>
+      <EuiSuperSelect
+        options={this.options}
+        valueOfSelected={this.state.value}
+        onChange={this.onChange}
+        aria-label="Health levels"
+      />
     );
   }
 }

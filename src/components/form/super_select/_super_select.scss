@@ -1,6 +1,8 @@
 /*
  * 1. Make popover the same width as the form control
  * 2. Style popover similar to combobox
+ * 3. Need specificity to override default popover styles
+ * 4. Use attribute selector to match popover position without needing the full popover class name
  */
 
 .euiSuperSelect.euiPopover { /* 3 */
@@ -12,21 +14,17 @@
   }
 }
 
-.euiSuperSelect__popoverPanel[class*="bottom"] {
+.euiSuperSelect__popoverPanel[class*="bottom"] { /* 4 */
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
   border-top-left-radius: 0; /* 2 */
 }
 
-.euiSuperSelect__popoverPanel[class*="top"] {
+.euiSuperSelect__popoverPanel[class*="top"] { /* 4 */
   border-bottom-color: transparentize($euiBorderColor, .2);
   border-bottom-right-radius: 0; /* 2 */
   border-bottom-left-radius: 0; /* 2 */
   @include euiBottomShadowFlat; /* 2 */
-}
-
-.euiSuperSelect.euiPopover--anchorDownCenter.euiPopover-isOpen .euiSuperSelect__popoverPanel { /* 3 */
-  transform: translateX(-50%) translateY(0) translateZ(0); /* 2 */
 }
 
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {
