@@ -10,6 +10,8 @@ import {
   EuiCode,
   EuiSteps,
   EuiStep,
+  EuiSubSteps,
+  EuiStepsHorizontal,
 } from '../../../../src/components';
 
 import Steps from './steps';
@@ -67,6 +69,7 @@ export const StepsExample = {
       </p>
     ),
     demo: <StepsComplex />,
+    props: { EuiSubSteps },
   },
   {
     title: 'Heading elements',
@@ -104,8 +107,8 @@ export const StepsExample = {
     text: (
       <p>
         Steps can optionally include <EuiCode>status</EuiCode> prop with
-        a value of <EuiCode>complete</EuiCode> or <EuiCode>incomplete</EuiCode>. This
-        is used mostly as a final step when you need to make some sort of final check.
+        a value of <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>, <EuiCode>warning</EuiCode> or <EuiCode>danger</EuiCode>.
+        This is used mostly as a final step when you need to make some sort of final check.
       </p>
     ),
     demo: <Status />,
@@ -122,6 +125,7 @@ export const StepsExample = {
     text: (
       <p>For use when forms/setup instructions can and should be split into multiple pages.</p>
     ),
-    demo: <StepsHorizontal />
+    demo: <StepsHorizontal />,
+    props: { EuiStepsHorizontal },
   }],
 };
