@@ -115,7 +115,6 @@ export default class extends Component {
           closePopover={this.closePopover.bind(this)}
           panelPaddingSize="none"
           withTitle
-          panelClassName="euiFilterGroup__popoverPanel"
         >
           <EuiPopoverTitle>
             <EuiFieldSearch />
