@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added typings for `EuiToolTip` and `EuiIconTip` ([#1087](https://github.com/elastic/eui/pull/1087))
 - Added `spacesApp` logo to `EuiIcon` set ([#1065](https://github.com/elastic/eui/pull/1065))
 - Added `!default` to border SASS props ([#1079](https://github.com/elastic/eui/pull/1079))
 - Added `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1064](https://github.com/elastic/eui/pull/1064))
