@@ -8,6 +8,7 @@
 - Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
 - Added `maxWidth` prop `EuiFlyout` ([#1090](https://github.com/elastic/eui/pull/1090))
 - Added `string` to allowed `restrictWidth` prop type of `EuiPage` and `EuiPageBody` ([#1090](https://github.com/elastic/eui/pull/1090))
+- Added `.eui-textBreakNormal` and `@mixin euiTextTruncate` as CSS/SASS utilities ([#1092](https://github.com/elastic/eui/pull/1092))
 
 **Bug fixes**
 
