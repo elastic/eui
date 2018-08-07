@@ -32,8 +32,6 @@
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {
-      background: $euiColorPrimary;
-      color: $euiColorEmptyShade;
       transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
                   color $euiAnimSpeedNormal $euiAnimSlightResistance;
       @include euiFocusRing(large);
@@ -81,16 +79,9 @@
 }
 
 .euiStepHorizontal__number {
-  @include createStepsNumber;
   position: relative; /* 1 */
   z-index: $euiZLevel1; /* 1 */
   transition: all $euiAnimSpeedFast ease-in-out;
-
-  // if it contains an icon, it needs to shift up a couple px
-  > .euiIcon {
-    position: relative;
-    top: -2px;
-  }
 }
 
 .euiStepHorizontal__title {
@@ -98,16 +89,9 @@
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
   text-align: center;
+  max-width: 100%; // IE Fix for wrapping text
 
   .euiStepHorizontal-isDisabled & {
-    color: $euiColorDarkShade;
-  }
-}
-
-// Incomplete state
-.euiStepHorizontal-isIncomplete {
-  .euiStepHorizontal__number {
-    background-color: $euiColorLightShade;
     color: $euiColorDarkShade;
   }
 }
@@ -122,7 +106,7 @@
 
 // Selected state
 .euiStepHorizontal-isSelected {
-  .euiStepHorizontal__number {
+  .euiStepHorizontal__number:not([class*="danger"]):not([class*="warning"]) {
     @include euiSlightShadow(desaturate($euiColorPrimary, 20%));
   }
 

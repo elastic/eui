@@ -162,24 +162,28 @@ export class GuideSection extends Component {
       } = props[propName];
 
       let humanizedName = (
-        <strong>{propName}</strong>
+        <strong className="eui-textNoWrap">{propName}</strong>
       );
 
       if (required) {
         humanizedName = (
           <span>
-            <strong>{humanizedName}</strong> <EuiTextColor color="danger">(required)</EuiTextColor>
+            {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
           </span>
         );
       }
 
       const humanizedType = humanizeType(type);
 
-      const typeMarkup = markup(humanizedType);
+      const typeMarkup = (<span className="eui-textNoWrap">{markup(humanizedType)}</span>);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
-        defaultValueMarkup = [ <EuiCode key={`defaultValue-${propName}`}>{defaultValue.value}</EuiCode> ];
+        defaultValueMarkup = [(
+          <EuiCode key={`defaultValue-${propName}`}>
+            <span className="eui-textNoWrap">{defaultValue.value}</span>
+          </EuiCode>
+        )];
         if (defaultValue.comment) {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
         }

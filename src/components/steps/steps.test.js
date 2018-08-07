@@ -15,7 +15,8 @@ const steps = [
   },
   {
     title: 'third title',
-    children: <p>And finally, do this</p>
+    children: <p>And finally, do this</p>,
+    status: 'incomplete',
   },
 ];
 
