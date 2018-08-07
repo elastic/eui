@@ -335,16 +335,19 @@ export default class extends Component {
   };
 
   closePopover = itemId => {
-    this.setState(previousState => {
-      const newItemIdToOpenActionsPopoverMap = {
-        ...previousState.itemIdToOpenActionsPopoverMap,
-        [itemId]: false,
-      };
+    // only update the state if this item's popover is open
+    if (this.isPopoverOpen(itemId)) {
+      this.setState(previousState => {
+        const newItemIdToOpenActionsPopoverMap = {
+          ...previousState.itemIdToOpenActionsPopoverMap,
+          [itemId]: false,
+        };
 
-      return {
-        itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
-      };
-    });
+        return {
+          itemIdToOpenActionsPopoverMap: newItemIdToOpenActionsPopoverMap,
+        };
+      });
+    }
   };
 
   isPopoverOpen = itemId => {
