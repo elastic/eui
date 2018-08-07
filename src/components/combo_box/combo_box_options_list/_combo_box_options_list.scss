@@ -6,7 +6,7 @@
  * 3. The height can expand, hence auto
  */
 .euiComboBoxOptionsList {
-  @include euiFormControlSize(auto); /* 3 */
+  @include euiFormControlSize(auto, $includeAlternates: true); /* 3 */
   z-index: $euiZComboBox;
   position: absolute; /* 2 */
   top: 0; /* 2 */
