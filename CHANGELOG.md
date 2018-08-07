@@ -6,6 +6,7 @@
 - Added `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1064](https://github.com/elastic/eui/pull/1064))
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 - Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
+- Added more `.eui-textBreakNormal` and `@mixin euiTextTruncate` as CSS/SASS utilities ([#1092](https://github.com/elastic/eui/pull/1092))
 
 **Bug fixes**
 
