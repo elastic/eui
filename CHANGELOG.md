@@ -8,6 +8,7 @@
 - Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
 - Added `maxWidth` prop `EuiFlyout` ([#1090](https://github.com/elastic/eui/pull/1090))
 - Added `string` to allowed `restrictWidth` prop type of `EuiPage` and `EuiPageBody` ([#1090](https://github.com/elastic/eui/pull/1090))
+- Added `fullWidth` support to `EuiComboBox` ([#1095](https://github.com/elastic/eui/pull/1095))
 
 **Bug fixes**
 
