@@ -57,7 +57,6 @@ describe('EuiFlyout', () => {
     });
   });
 
-
   describe('size', () => {
     SIZES.forEach(size => {
       it(`${size} is rendered`, () => {
@@ -71,6 +70,44 @@ describe('EuiFlyout', () => {
         expect(component)
           .toMatchSnapshot();
       });
+    });
+  });
+
+  describe('max width', () => {
+    test('can be set to a default', () => {
+      const component = render(
+        <EuiFlyout
+          onClose={() => {}}
+          maxWidth={true}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('can be set to a custom number', () => {
+      const component = render(
+        <EuiFlyout
+          onClose={() => {}}
+          maxWidth={1024}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('can be set to a custom value and measurement', () => {
+      const component = render(
+        <EuiFlyout
+          onClose={() => {}}
+          maxWidth="24rem"
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
     });
   });
 });

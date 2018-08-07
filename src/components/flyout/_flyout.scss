@@ -30,15 +30,18 @@
 $flyoutSizes: (
   "small": (
     min: map-get($euiBreakpoints, "m") * .5, /* 1 */
-    width: 25vw
+    width: 25vw,
+    max: map-get($euiBreakpoints, "s"),
   ),
   "medium": (
     min:  map-get($euiBreakpoints, "m") * .7, /* 1 */
-    width: 50vw
+    width: 50vw,
+    max: map-get($euiBreakpoints, "m"),
   ),
   "large": (
     min:  map-get($euiBreakpoints, "m") * .9, /* 1 */
-    width: 75vw
+    width: 75vw,
+    max: map-get($euiBreakpoints, "l"),
   )
 );
 
@@ -46,6 +49,10 @@ $flyoutSizes: (
   .euiFlyout--#{$name} {
     min-width: map-get($sizing, min);
     width: map-get($sizing, width);
+
+    &.euiFlyout--maxWidth-default {
+      max-width: map-get($sizing, max);
+    }
   }
 }
 

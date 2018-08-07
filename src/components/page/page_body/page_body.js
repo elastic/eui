@@ -5,21 +5,14 @@ import classNames from 'classnames';
 export const EuiPageBody = ({ children, restrictWidth, style, className, ...rest }) => {
 
   let widthClassname;
-  if (restrictWidth === true) {
-    widthClassname = 'euiPage--restrictWidth-default';
-  } else if (restrictWidth === false) {
-    widthClassname = 'euiPage--widthIsNotRestricted';
-  } else {
-    widthClassname = 'euiPage--restrictWidth-custom';
+  let newStyle;
 
-    // if style has been passed as a prop, add to it
-    if (style) {
-      style.maxWidth = `${restrictWidth}px`;
-    }
-    // otherwise create a new object
-    else {
-      style = { maxWidth: `${restrictWidth}px` };
-    }
+  if (restrictWidth === true) {
+    widthClassname = 'euiPageBody--restrictWidth-default';
+  } else if (restrictWidth !== false) {
+    widthClassname = 'euiPageBody--restrictWidth-custom';
+    const value = typeof maxWidth === 'number' ? `${restrictWidth}px` : restrictWidth;
+    newStyle = { ...style, maxWidth: value };
   }
 
   const classes = classNames('euiPageBody', widthClassname, className);
@@ -27,7 +20,7 @@ export const EuiPageBody = ({ children, restrictWidth, style, className, ...rest
   return (
     <div
       className={classes}
-      style={style}
+      style={newStyle || style}
       {...rest}
     >
       {children}
@@ -43,11 +36,13 @@ EuiPageBody.propTypes = {
    * Sets the max-width of the page,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
-   * set to a number for a custom width.
+   * set to a number for a custom width in px,
+   * set to a string for a custom width in custom measurement.
    */
   restrictWidth: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.string,
   ]),
 };
 

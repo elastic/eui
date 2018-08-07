@@ -6,6 +6,8 @@
 - Added `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1064](https://github.com/elastic/eui/pull/1064))
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 - Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
+- Added `maxWidth` prop `EuiFlyout` ([#1090](https://github.com/elastic/eui/pull/1090))
+- Added `string` to allowed `restrictWidth` prop type of `EuiPage` and `EuiPageBody` ([#1090](https://github.com/elastic/eui/pull/1090))
 
 **Bug fixes**
 
@@ -15,6 +17,7 @@
 - Fixed `EuiBasicTable` to inform its parent about a selection change triggered by a different set of `items` ([#1086](https://github.com/elastic/eui/pull/1086))
 - Fixed width of `EuiFilterGroup`'s popover ([#1078](https://github.com/elastic/eui/pull/1078))
 - Fixed `EuiStepsHorizontal`'s title wrapping in IE ([#1088](https://github.com/elastic/eui/pull/1088))
+- Fixed wrong class name being added to `EuiPageBody` when `restrictWidth !== false` ([#1090](https://github.com/elastic/eui/pull/1090))
 
 ## [`3.3.0`](https://github.com/elastic/eui/tree/v3.3.0)
 
