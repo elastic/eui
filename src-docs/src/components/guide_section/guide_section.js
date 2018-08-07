@@ -162,7 +162,7 @@ export class GuideSection extends Component {
       } = props[propName];
 
       let humanizedName = (
-        <strong className="eui-textNoWrap">{propName}</strong>
+        <strong className="eui-textBreakNormal">{propName}</strong>
       );
 
       if (required) {
@@ -175,13 +175,13 @@ export class GuideSection extends Component {
 
       const humanizedType = humanizeType(type);
 
-      const typeMarkup = (<span className="eui-textNoWrap">{markup(humanizedType)}</span>);
+      const typeMarkup = (<span className="eui-textBreakNormal">{markup(humanizedType)}</span>);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
         defaultValueMarkup = [(
           <EuiCode key={`defaultValue-${propName}`}>
-            <span className="eui-textNoWrap">{defaultValue.value}</span>
+            <span className="eui-textBreakNormal">{defaultValue.value}</span>
           </EuiCode>
         )];
         if (defaultValue.comment) {

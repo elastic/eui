@@ -16,29 +16,15 @@
 .eui-textNoWrap {white-space: nowrap !important;}
 .eui-textInheritColor {color: inherit !important;}
 
-.eui-textBreakAll {word-break: break-all !important;}
 .eui-textBreakWord {
   word-break: break-all !important; // Fallback for FF and IE
   word-break: break-word !important;
 }
+.eui-textBreakAll {word-break: break-all !important;}
+.eui-textBreakNormal {word-break: normal !important;}
 
-/**
- * Text truncation
- *
- * Prevent text from wrapping onto multiple lines, and truncate with an
- * ellipsis.
- *
- * 1. Ensure that the node has a maximum width after which truncation can
- *    occur.
- * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
- *    nodes.
- */
 .eui-textTruncate {
-  max-width: 100%; /* 1 */
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  word-wrap: normal !important; /* 2 */
+  @include euiTextTruncate;
 }
 
 /**
