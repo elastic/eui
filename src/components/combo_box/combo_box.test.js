@@ -140,6 +140,18 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('full width is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        options={options}
+        selectedOptions={[options[2]]}
+        fullWidth={true}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
 
 describe('behavior', () => {

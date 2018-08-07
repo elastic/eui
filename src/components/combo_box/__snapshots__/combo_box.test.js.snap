@@ -67,6 +67,41 @@ exports[`EuiComboBox is rendered 1`] = `
 </div>
 `;
 
+exports[`props full width is rendered 1`] = `
+<div
+  className="euiComboBox euiComboBox--fullWidth"
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    fullWidth={true}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+</div>
+`;
+
 exports[`props isClearable=false disallows user from clearing input when no options are selected 1`] = `
 <div
   className="euiComboBox"
@@ -75,6 +110,7 @@ exports[`props isClearable=false disallows user from clearing input when no opti
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    fullWidth={false}
     hasSelectedOptions={false}
     inputRef={[Function]}
     isListOpen={false}
@@ -102,6 +138,7 @@ exports[`props isClearable=false disallows user from clearing input when options
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
@@ -138,6 +175,7 @@ exports[`props isDisabled is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isDisabled={true}
@@ -255,6 +293,7 @@ exports[`props selectedOptions are rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}
@@ -292,6 +331,7 @@ exports[`props singleSelection is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
     isListOpen={false}

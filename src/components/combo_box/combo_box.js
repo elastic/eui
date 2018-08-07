@@ -42,6 +42,7 @@ export class EuiComboBox extends Component {
     isInvalid: PropTypes.bool,
     rowHeight: PropTypes.number,
     isClearable: PropTypes.bool,
+    fullWidth: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -49,6 +50,7 @@ export class EuiComboBox extends Component {
     selectedOptions: [],
     isClearable: true,
     singleSelection: false,
+    fullWidth: false,
   }
 
   constructor(props) {
@@ -569,6 +571,7 @@ export class EuiComboBox extends Component {
       isInvalid,
       rowHeight,
       isClearable,
+      fullWidth,
       'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
@@ -579,6 +582,7 @@ export class EuiComboBox extends Component {
       'euiComboBox-isOpen': isListOpen,
       'euiComboBox-isInvalid': isInvalid,
       'euiComboBox-isDisabled': isDisabled,
+      'euiComboBox--fullWidth': fullWidth,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
@@ -610,6 +614,7 @@ export class EuiComboBox extends Component {
             onScroll={this.focusActiveOption}
             rowHeight={rowHeight}
             data-test-subj={optionsListDataTestSubj}
+            fullWidth={fullWidth}
           />
         </EuiPortal>
       );
@@ -645,6 +650,7 @@ export class EuiComboBox extends Component {
           singleSelection={singleSelection}
           isDisabled={isDisabled}
           toggleButtonRef={this.toggleButtonRef}
+          fullWidth={fullWidth}
         />
 
         {optionsList}

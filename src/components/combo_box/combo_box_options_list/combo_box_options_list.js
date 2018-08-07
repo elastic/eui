@@ -42,6 +42,7 @@ export class EuiComboBoxOptionsList extends Component {
     scrollToIndex: PropTypes.number,
     onScroll: PropTypes.func,
     rowHeight: PropTypes.number,
+    fullWidth: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -110,6 +111,7 @@ export class EuiComboBoxOptionsList extends Component {
       scrollToIndex,
       onScroll,
       rowHeight,
+      fullWidth,
       'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
@@ -208,7 +210,9 @@ export class EuiComboBoxOptionsList extends Component {
       />
     );
 
-    const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position]);
+    const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position], {
+      'euiComboBoxOptionsList--fullWidth': fullWidth,
+    });
 
     return (
       <EuiPanel

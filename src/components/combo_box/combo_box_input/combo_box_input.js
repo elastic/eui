@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
 
@@ -31,6 +32,7 @@ export class EuiComboBoxInput extends Component {
     singleSelection: PropTypes.bool,
     isDisabled: PropTypes.bool,
     toggleButtonRef: PropTypes.func,
+    fullWidth: PropTypes.bool,
   }
 
   constructor(props) {
@@ -91,6 +93,7 @@ export class EuiComboBoxInput extends Component {
       singleSelection,
       isDisabled,
       toggleButtonRef,
+      fullWidth,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -166,13 +169,18 @@ export class EuiComboBoxInput extends Component {
       'data-test-subj': 'comboBoxToggleListButton',
     };
 
+    const wrapClasses = classNames('euiComboBox__inputWrap', {
+      'euiComboBox__inputWrap--fullWidth': fullWidth,
+    });
+
     return (
       <EuiFormControlLayout
         icon={icon}
         {...clickProps}
+        fullWidth={fullWidth}
       >
         <div
-          className="euiComboBox__inputWrap"
+          className={wrapClasses}
           onClick={onClick}
           data-test-subj="comboBoxInput"
         >
