@@ -1,0 +1,40 @@
+.euiStepNumber {
+  @include createStepsNumber();
+
+  .euiStepNumber__icon {
+    position: relative;
+    top: -2px;
+  }
+
+  &--complete {
+    // Thicken the checkmark but adding a slight stroke.
+    .euiStepNumber__icon {
+      stroke: currentColor;
+      stroke-width: .5px;
+    }
+  }
+
+  &.euiStepNumber-isHollow {
+    background-color: transparent;
+    border: 2px solid $euiColorPrimary;
+  }
+
+  // Create modifiers based upon the map
+  @each $name, $color in $euiStepStatusColorsToFade {
+    &--#{$name} {
+      $backgroundColor: $color;
+      @if (saturation($color) > 0%) {
+        $backgroundColor: tintOrShade($color, 90%, 70%);
+      }
+
+      $textColor: makeHighContrastColor($color, $backgroundColor);
+
+      color: $textColor;
+      background-color: $backgroundColor;
+
+      &.euiStepNumber-isHollow {
+        border-color: $color;
+      }
+    }
+  }
+}

@@ -11,8 +11,9 @@ import {
 } from '../title';
 
 import {
-  EuiIcon,
-} from '../icon';
+  STATUS,
+  EuiStepNumber,
+} from './step_number';
 
 export const EuiStep = ({
   className,
@@ -24,19 +25,10 @@ export const EuiStep = ({
   ...rest
 }) => {
   const classes = classNames('euiStep', className);
-  const circleClasses = classNames(
-    'euiStep__circle',
-    {
-      'euiStep__circle--complete': (status === 'complete'),
-      'euiStep__circle--incomplete': (status === 'incomplete'),
-    }
-  );
 
-  let numberOrIcon;
-  if (status === 'complete') {
-    numberOrIcon = <EuiIcon type="check" color="ghost" className="euiStep__circleIcon" />;
-  } else if (status !== 'incomplete') {
-    numberOrIcon = step;
+  let screenReaderPrefix;
+  if (status === 'incomplete') {
+    screenReaderPrefix = 'Incomplete';
   }
 
   return (
@@ -45,11 +37,9 @@ export const EuiStep = ({
       {...rest}
     >
 
-      <EuiScreenReaderOnly><span>Step</span></EuiScreenReaderOnly>
+      <EuiScreenReaderOnly><span>{screenReaderPrefix} Step </span></EuiScreenReaderOnly>
 
-      <div className={circleClasses}>
-        {numberOrIcon}
-      </div>
+      <EuiStepNumber className="euiStep__circle" number={step} status={status} isHollow={status === 'incomplete'}/>
 
       <EuiTitle size="s" className="euiStep__title">
         {React.createElement(headingElement, null, title)}
@@ -66,9 +56,10 @@ export const EuiStep = ({
 EuiStep.propTypes = {
   children: PropTypes.node.isRequired,
   /**
-   * Will replace the number provided in props.step with alternate styling
+   * Will replace the number provided in props.step with alternate styling.
+   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`
    */
-  status: PropTypes.oneOf(['complete', 'incomplete']),
+  status: PropTypes.oneOf(STATUS),
   /**
    * The number of the step in the list of steps
    */

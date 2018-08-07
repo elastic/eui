@@ -5,6 +5,7 @@
 - Added `!default` to border SASS props ([#1079](https://github.com/elastic/eui/pull/1079))
 - Added `repositionOnScroll` prop to `EuiPopover` which enables repositioning the popover when the window is scrolled. ([#1064](https://github.com/elastic/eui/pull/1064))
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
+- Added more `status` options for `EuiSteps` ([#1088](https://github.com/elastic/eui/pull/1088))
 
 **Bug fixes**
 
@@ -13,6 +14,7 @@
 - Added `resize-observer-polyfill` as a dependency (was previously a devDependency) ([#1085](https://github.com/elastic/eui/pull/1085))
 - Fixed `EuiBasicTable` to inform its parent about a selection change triggered by a different set of `items` ([#1086](https://github.com/elastic/eui/pull/1086))
 - Fixed width of `EuiFilterGroup`'s popover ([#1078](https://github.com/elastic/eui/pull/1078))
+- Fixed `EuiStepsHorizontal`'s title wrapping in IE ([#1088](https://github.com/elastic/eui/pull/1088))
 
 ## [`3.3.0`](https://github.com/elastic/eui/tree/v3.3.0)
 

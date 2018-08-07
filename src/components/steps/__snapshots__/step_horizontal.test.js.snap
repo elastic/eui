@@ -17,7 +17,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     Step
   </div>
   <div
-    class="euiStepHorizontal__number"
+    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     1
   </div>

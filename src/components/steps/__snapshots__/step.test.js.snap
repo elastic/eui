@@ -9,10 +9,10 @@ exports[`EuiStep is rendered 1`] = `
   <span
     class="euiScreenReaderOnly"
   >
-    Step
+     Step 
   </span>
   <div
-    class="euiStep__circle"
+    class="euiStepNumber euiStep__circle"
   >
     1
   </div>

@@ -7,7 +7,10 @@ import {
   EuiKeyboardAccessible,
 } from '../accessibility';
 
-import { EuiIcon } from '../icon';
+import {
+  STATUS,
+  EuiStepNumber,
+} from './step_number';
 
 export const EuiStepHorizontal = ({
   className,
@@ -17,6 +20,7 @@ export const EuiStepHorizontal = ({
   isComplete,
   onClick,
   disabled,
+  status,
   ...rest
 }) => {
   const classes = classNames('euiStepHorizontal', className, {
@@ -26,19 +30,18 @@ export const EuiStepHorizontal = ({
     'euiStepHorizontal-isDisabled': disabled,
   });
 
-  let numberNode;
   let titleAppendix = '';
 
   if (disabled) {
-    numberNode = step;
+    status = 'disabled';
     titleAppendix = ' is disabled';
   } else if (isComplete) {
-    numberNode = (
-      <EuiIcon type="check" color="ghost" />
-    );
+    status = 'complete';
     titleAppendix = ' is complete';
-  } else {
-    numberNode = step;
+  } else if (isSelected) {
+    status = status;
+  } else if (!isComplete && !status) {
+    status = 'incomplete';
   }
 
   const onStepClick = e => {
@@ -65,9 +68,7 @@ export const EuiStepHorizontal = ({
       >
         <EuiScreenReaderOnly><div>Step</div></EuiScreenReaderOnly>
 
-        <div className="euiStepHorizontal__number">
-          {numberNode}
-        </div>
+        <EuiStepNumber className="euiStepHorizontal__number" status={status} number={step} />
 
         <div className="euiStepHorizontal__title">
           {title}
@@ -85,6 +86,12 @@ EuiStepHorizontal.propTypes = {
   title: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  /**
+   * Will replace the number provided in props.step with alternate styling.
+   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`.
+   * The `isSelected`, `isComplete`, and `disabled` props will override these.
+   */
+  status: PropTypes.oneOf(STATUS),
 };
 
 EuiStepHorizontal.defaultProps = {

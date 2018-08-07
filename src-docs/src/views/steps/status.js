@@ -20,6 +20,9 @@ export default class extends Component {
     };
 
     this.handleComplete = this.handleComplete.bind(this);
+    this.handleWarning = this.handleWarning.bind(this);
+    this.handleDanger = this.handleDanger.bind(this);
+    this.makeIncomplete = this.makeIncomplete.bind(this);
   }
 
   handleComplete() {
@@ -28,12 +31,56 @@ export default class extends Component {
     });
   }
 
+  handleWarning() {
+    this.setState({
+      status: 'warning',
+    });
+  }
+
+  handleDanger() {
+    this.setState({
+      status: 'danger',
+    });
+  }
+
+  makeIncomplete() {
+    this.setState({
+      status: 'incomplete',
+    });
+  }
+
   render() {
 
-    let button;
-    if (this.state.status === 'incomplete') {
-      button = (
+    let completeButton;
+    if (this.state.status !== 'complete') {
+      completeButton = (
         <EuiButton onClick={this.handleComplete}>You complete me</EuiButton>
+      );
+    } else {
+      completeButton = (
+        <EuiButton onClick={this.makeIncomplete}>Reset</EuiButton>
+      );
+    }
+
+    let warningButton;
+    if (this.state.status !== 'warning') {
+      warningButton = (
+        <EuiButton color="warning" onClick={this.handleWarning}>Uh oh!</EuiButton>
+      );
+    } else {
+      warningButton = (
+        <EuiButton color="warning" onClick={this.makeIncomplete}>Reset</EuiButton>
+      );
+    }
+
+    let dangerButton;
+    if (this.state.status !== 'danger') {
+      dangerButton = (
+        <EuiButton color="danger" onClick={this.handleDanger}>Something terrible</EuiButton>
+      );
+    } else {
+      dangerButton = (
+        <EuiButton color="danger" onClick={this.makeIncomplete}>Reset</EuiButton>
       );
     }
 
@@ -47,10 +94,10 @@ export default class extends Component {
         children: (
           <Fragment>
             <p>
-              I am a fancy button just waiting to be pushed!
+              We are fancy buttons just waiting to be pushed!
             </p>
             <EuiSpacer />
-            {button}
+            {completeButton} {warningButton} {dangerButton}
           </Fragment>
         ),
         status: this.state.status,
