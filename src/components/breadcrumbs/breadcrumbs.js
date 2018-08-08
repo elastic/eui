@@ -71,8 +71,9 @@ export const EuiBreadcrumbs = ({
     });
 
     let link;
-
-    if (isLastBreadcrumb) {
+    if (breadcrumb.component) {
+      link = breadcrumb.component;
+    } else if (isLastBreadcrumb) {
       link = (
         <span
           className={breadcrumbClasses}

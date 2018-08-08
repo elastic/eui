@@ -3,6 +3,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiBreadcrumbs } from './breadcrumbs';
+import { EuiPopover } from '../popover';
 
 describe('EuiBreadcrumbs', () => {
   test('is rendered', () => {
@@ -72,6 +73,41 @@ describe('EuiBreadcrumbs', () => {
 
       test(`doesn't break when max exceeds the number of breadcrumbs`, () => {
         const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} max={20} />);
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('mutiple popover', () => {
+      const breadcrumbsWithDropdowns = [{
+        text: 'Animals',
+      }, {
+        text: '',
+        component: (
+          <EuiPopover
+            closePopover={() => {}}
+            button={<button />}
+            {...requiredProps}
+          >
+            Reptiles
+          </EuiPopover>
+        ),
+      }, {
+        text: 'Boa constrictor',
+      }, {
+        text: '',
+        component: (
+          <EuiPopover
+            closePopover={() => {}}
+            button={<button />}
+            {...requiredProps}
+          >
+            Edit
+          </EuiPopover>
+        ),
+      }];
+
+      test('is rendered', () => {
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbsWithDropdowns} />);
         expect(component).toMatchSnapshot();
       });
     });
