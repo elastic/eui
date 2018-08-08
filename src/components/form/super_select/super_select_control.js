@@ -65,7 +65,6 @@ export const EuiSuperSelectControl = ({
         defaultValue={selectDefaultValue}
         value={value}
         aria-hidden="true"
-        {...rest}
       >
         {emptyOptionNode}
         {options.map((option, index) => {
@@ -88,6 +87,8 @@ export const EuiSuperSelectControl = ({
           role="option"
           type="button"
           className={classes}
+          aria-haspopup="true"
+          aria-label={`Select an option: ${value} selected.`}
           {...rest}
         >
           {selectedValue}

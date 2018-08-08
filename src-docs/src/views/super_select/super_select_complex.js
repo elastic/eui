@@ -57,12 +57,14 @@ export default class extends Component {
 
     this.state = {
       value: this.options[1].value,
+      inputDisplay: this.options[1].inputDisplay,
     };
   }
 
   onChange = (value) => {
     this.setState({
       value: value,
+      inputDisplay: this.options.inputDisplay,
     });
   };
 
@@ -74,7 +76,6 @@ export default class extends Component {
         onChange={this.onChange}
         itemLayoutAlign="top"
         hasDividers
-        aria-label="Use aria labels when no actual label is in use"
       />
     );
   }

@@ -4,9 +4,7 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
 Array [
   <select
     aria-hidden="true"
-    aria-label="aria-label"
     class="euiSuperSelectControl__hiddenField"
-    data-test-subj="test subject string"
   />,
   <div
     class="euiFormControlLayout"
@@ -15,6 +13,7 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
         aria-label="aria-label"
         class="euiSuperSelectControl testClass1 testClass2"
         data-test-subj="test subject string"
@@ -68,6 +67,8 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
+        aria-label="Select an option: undefined selected."
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
         role="option"
         type="button"
@@ -126,6 +127,8 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
+        aria-label="Select an option: undefined selected."
         class="euiSuperSelectControl"
         role="option"
         type="button"
@@ -177,6 +180,8 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
+        aria-label="Select an option: undefined selected."
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
         role="option"
         type="button"
@@ -228,6 +233,8 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
+        aria-label="Select an option: undefined selected."
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
         role="option"
         type="button"
@@ -289,6 +296,8 @@ Array [
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
+        aria-haspopup="true"
+        aria-label="Select an option: undefined selected."
         class="euiSuperSelectControl"
         role="option"
         type="button"

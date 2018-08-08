@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiSuperSelectControl } from './super_select_control';
 import { EuiPopover } from '../../popover';
 import { EuiContextMenuItem } from '../../context_menu';
@@ -182,6 +183,8 @@ export class EuiSuperSelect extends Component {
           layoutAlign={itemLayoutAlign}
           buttonRef={node => this.setItemNode(node, index)}
           style={{ width: this.state.menuWidth }}
+          role="option"
+          id={option.value}
         >
           {option.dropdownDisplay || option.inputDisplay}
         </EuiContextMenuItem>
@@ -201,7 +204,12 @@ export class EuiSuperSelect extends Component {
         popoverRef={this.setPopoverRef}
         hasArrow={false}
       >
-        {items}
+        <EuiScreenReaderOnly>
+          <p role="alert">You are in a popup. To exit this popup, hit escape.</p>
+        </EuiScreenReaderOnly>
+        <div role="listbox" aria-activedescendant={valueOfSelected}>
+          {items}
+        </div>
       </EuiPopover>
     );
   }

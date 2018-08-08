@@ -55,7 +55,6 @@ export default class extends Component {
         options={this.options}
         valueOfSelected={this.state.value}
         onChange={this.onChange}
-        aria-label="Health levels"
       />
     );
   }

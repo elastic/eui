@@ -9,9 +9,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
   >
     <select
       aria-hidden="true"
-      aria-label="aria-label"
       class="euiSuperSelectControl__hiddenField"
-      data-test-subj="test subject string"
     />
     <div
       class="euiFormControlLayout"
@@ -20,6 +18,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <button
+          aria-haspopup="true"
           aria-label="aria-label"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
@@ -86,6 +85,8 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <button
+          aria-haspopup="true"
+          aria-label="Select an option: undefined selected."
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -150,6 +151,8 @@ exports[`EuiSuperSelect props options are rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <button
+          aria-haspopup="true"
+          aria-label="Select an option: undefined selected."
           class="euiSuperSelectControl"
           role="option"
           type="button"
