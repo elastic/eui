@@ -33,11 +33,12 @@ export class EuiOverlayMask extends Component {
       }
       this.overlayMaskNode.setAttribute(key, rest[key]);
     });
+
+    document.body.appendChild(this.overlayMaskNode);
   }
 
   componentDidMount() {
     document.body.classList.add('euiBody-hasOverlayMask');
-    document.body.appendChild(this.overlayMaskNode);
   }
 
   componentWillUnmount() {

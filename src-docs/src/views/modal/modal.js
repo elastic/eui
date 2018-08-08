@@ -88,6 +88,7 @@ export class Modal extends Component {
           <EuiModal
             onClose={this.closeModal}
             style={{ width: '800px' }}
+            initialFocus="[name=popswitch]"
           >
             <EuiModalHeader>
               <EuiModalHeaderTitle >

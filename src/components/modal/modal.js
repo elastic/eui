@@ -22,6 +22,7 @@ export class EuiModal extends Component {
     const {
       className,
       children,
+      initialFocus,
       onClose, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -32,6 +33,7 @@ export class EuiModal extends Component {
       <FocusTrap
         focusTrapOptions={{
           fallbackFocus: () => this.modal,
+          initialFocus: initialFocus,
         }}
       >
         {
@@ -65,4 +67,10 @@ EuiModal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
+  /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
+  initialFocus: PropTypes.oneOfType([
+    PropTypes.instanceOf(HTMLElement),
+    PropTypes.func,
+    PropTypes.string,
+  ]),
 };
