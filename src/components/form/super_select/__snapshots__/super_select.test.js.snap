@@ -7,11 +7,9 @@ exports[`EuiSuperSelect is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <select
-      aria-hidden="true"
-      aria-label="aria-label"
-      class="euiSuperSelectControl__hiddenField"
-      data-test-subj="test subject string"
+    <input
+      type="hidden"
+      value=""
     />
     <div
       class="euiFormControlLayout"
@@ -76,17 +74,10 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <select
-      aria-hidden="true"
-      class="euiSuperSelectControl__hiddenField"
-    >
-      <option
-        value="1"
-      />
-      <option
-        value="2"
-      />
-    </select>
+    <input
+      type="hidden"
+      value=""
+    />
     <div
       class="euiFormControlLayout"
     >
@@ -148,18 +139,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <select
-      aria-hidden="true"
-      class="euiSuperSelectControl__hiddenField"
-    >
-      <option
-        selected=""
-        value="1"
-      />
-      <option
-        value="2"
-      />
-    </select>
+    <input
+      type="hidden"
+      value="1"
+    />
     <div
       class="euiFormControlLayout"
     >
@@ -223,17 +206,10 @@ exports[`EuiSuperSelect props options are rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <select
-      aria-hidden="true"
-      class="euiSuperSelectControl__hiddenField"
-    >
-      <option
-        value="1"
-      />
-      <option
-        value="2"
-      />
-    </select>
+    <input
+      type="hidden"
+      value=""
+    />
     <div
       class="euiFormControlLayout"
     >

@@ -2,11 +2,9 @@
 
 exports[`EuiSuperSelectControl is rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    aria-label="aria-label"
-    class="euiSuperSelectControl__hiddenField"
-    data-test-subj="test subject string"
+  <input
+    type="hidden"
+    value=""
   />,
   <div
     class="euiFormControlLayout"
@@ -65,9 +63,9 @@ Array [
 
 exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
+  <input
+    type="hidden"
+    value=""
   />,
   <div
     class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -124,17 +122,10 @@ Array [
 
 exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
-  >
-    <option
-      value="1"
-    />
-    <option
-      value="2"
-    />
-  </select>,
+  <input
+    type="hidden"
+    value=""
+  />,
   <div
     class="euiFormControlLayout"
   >
@@ -190,9 +181,9 @@ Array [
 
 exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
+  <input
+    type="hidden"
+    value=""
   />,
   <div
     class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -249,9 +240,9 @@ Array [
 
 exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
+  <input
+    type="hidden"
+    value=""
   />,
   <div
     class="euiFormControlLayout"
@@ -311,17 +302,10 @@ Array [
 
 exports[`EuiSuperSelectControl props options are rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
-  >
-    <option
-      value="1"
-    />
-    <option
-      value="2"
-    />
-  </select>,
+  <input
+    type="hidden"
+    value=""
+  />,
   <div
     class="euiFormControlLayout"
   >
@@ -377,18 +361,10 @@ Array [
 
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
 Array [
-  <select
-    aria-hidden="true"
-    class="euiSuperSelectControl__hiddenField"
-  >
-    <option
-      selected=""
-      value="1"
-    />
-    <option
-      value="2"
-    />
-  </select>,
+  <input
+    type="hidden"
+    value="1"
+  />,
   <div
     class="euiFormControlLayout"
   >
