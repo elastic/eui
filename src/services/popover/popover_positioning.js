@@ -515,7 +515,7 @@ export function intersectBoundingBoxes(firstBox, secondBox) {
  * relative to the `target` element; if no z-index is defined, returns "0"
  * @param element {HTMLElement|React.Component}
  * @param cousin {HTMLElement|React.Component}
- * @returns {string}
+ * @returns {number}
  */
 export function getElementZIndex(element, cousin) {
   element = findDOMNode(element);
@@ -567,8 +567,8 @@ export function getElementZIndex(element, cousin) {
       const zIndex = window.document.defaultView.getComputedStyle(node).getPropertyValue('z-index');
 
       // if the z-index is not a number (e.g. "auto") return null, else the value
-      return isNaN(zIndex) ? null : zIndex;
+      return isNaN(zIndex) ? null : parseInt(zIndex, 10);
     },
     null
-  ) || '0';
+  ) || 0;
 }

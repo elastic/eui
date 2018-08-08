@@ -275,6 +275,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       ownFocus={false}
                       panelPaddingSize="none"
                       withTitle={true}
+                      zIndexAdjustment={0}
                     >
                       <EuiOutsideClickDetector
                         onOutsideClick={[Function]}

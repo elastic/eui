@@ -21,6 +21,7 @@ exports[`CollapsedItemActions render 1`] = `
   ownFocus={false}
   panelPaddingSize="none"
   popoverRef={[Function]}
+  zIndexAdjustment={0}
 >
   <EuiContextMenuPanel
     hasFocus={true}
