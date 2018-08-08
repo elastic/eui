@@ -1817,8 +1817,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 actions={
                   Array [
                     Object {
-                      "name": "Actions",
-                      "render": [Function],
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                    Object {
+                      "description": "delete",
+                      "name": "Delete",
+                      "onClick": [Function],
+                      "type": "button",
                     },
                   ]
                 }
@@ -1874,8 +1882,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 actions={
                   Array [
                     Object {
-                      "name": "Actions",
-                      "render": [Function],
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                    Object {
+                      "description": "delete",
+                      "name": "Delete",
+                      "onClick": [Function],
+                      "type": "button",
                     },
                   ]
                 }
@@ -1931,8 +1947,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 actions={
                   Array [
                     Object {
-                      "name": "Actions",
-                      "render": [Function],
+                      "description": "edit",
+                      "name": "Edit",
+                      "onClick": [Function],
+                      "type": "button",
+                    },
+                    Object {
+                      "description": "delete",
+                      "name": "Delete",
+                      "onClick": [Function],
+                      "type": "button",
                     },
                   ]
                 }

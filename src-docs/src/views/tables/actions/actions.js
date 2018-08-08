@@ -169,7 +169,23 @@ export class Table extends Component {
           description: 'Delete this person',
           icon: 'trash',
           color: 'danger',
-          onClick: this.deleteUser
+          type: 'icon',
+          onClick: this.deleteUser,
+          isPrimary: true,
+        }, {
+          name: 'Edit',
+          isPrimary: true,
+          description: 'Edit this person',
+          icon: 'pencil',
+          type: 'icon',
+          onClick: () => {},
+        }, {
+          name: 'Share',
+          isPrimary: true,
+          description: 'Share this person',
+          icon: 'share',
+          type: 'icon',
+          onClick: () => {},
         }];
     } else {
       actions = customAction

@@ -6,21 +6,21 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
-import { section as basicSection } from './basic';
-import { section as paginatedSection } from './paginated';
-import { section as sortingSection } from './sorting';
-import { section as selectionSection } from './selection';
-import { section as expandingRowsSection } from './expanding_rows';
+// import { section as basicSection } from './basic';
+// import { section as paginatedSection } from './paginated';
+// import { section as sortingSection } from './sorting';
+// import { section as selectionSection } from './selection';
+// import { section as expandingRowsSection } from './expanding_rows';
 import { section as actionsSection } from './actions';
-import {
-  section as inMemorySection,
-  selectionSection as inMemorySelectionSection,
-  searchSection as inMemorySearchSection,
-  searchCallbackSection as inMemorySearchCallbackSection,
-  customSortingSection as inMemoryCustomSortingSection,
-} from './in_memory';
-import { section as customSection } from './custom';
-import { section as mobileSection } from './mobile';
+// import {
+//   section as inMemorySection,
+//   selectionSection as inMemorySelectionSection,
+//   searchSection as inMemorySearchSection,
+//   searchCallbackSection as inMemorySearchCallbackSection,
+//   customSortingSection as inMemoryCustomSortingSection,
+// } from './in_memory';
+// import { section as customSection } from './custom';
+// import { section as mobileSection } from './mobile';
 
 export const TableExample = {
   title: 'Tables',
@@ -44,18 +44,18 @@ export const TableExample = {
     </div>
   ),
   sections: [
-    basicSection,
-    paginatedSection,
-    sortingSection,
-    selectionSection,
-    expandingRowsSection,
+    // basicSection,
+    // paginatedSection,
+    // sortingSection,
+    // selectionSection,
+    // expandingRowsSection,
     actionsSection,
-    inMemorySection,
-    inMemorySelectionSection,
-    inMemorySearchSection,
-    inMemorySearchCallbackSection,
-    inMemoryCustomSortingSection,
-    mobileSection,
-    customSection,
+    // inMemorySection,
+    // inMemorySelectionSection,
+    // inMemorySearchSection,
+    // inMemorySearchCallbackSection,
+    // inMemoryCustomSortingSection,
+    // mobileSection,
+    // customSection,
   ],
 };

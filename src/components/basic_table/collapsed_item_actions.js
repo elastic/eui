@@ -90,7 +90,7 @@ export class CollapsedItemActions extends Component {
       <EuiButtonIcon
         className={className}
         aria-label="actions"
-        iconType="gear"
+        iconType="boxesHorizontal"
         color="text"
         isDisabled={allDisabled}
         onClick={this.togglePopover.bind(this)}

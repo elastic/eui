@@ -171,12 +171,24 @@
 
 .euiTableCellContent--showOnHover {
   .euiTableCellContent__hoverItem {
-    opacity: 0;
+    margin-left: $euiSizeS;
+    flex-shrink: 0;
+    opacity: 0.25;
+    filter: grayscale(100%);
+    transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
 
-    .euiTableRow:hover &,
-    &:hover, &:focus {
+    .euiTableRow:hover &:not(:disabled),
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       opacity: 1;
+      filter: grayscale(0%);
     }
+  }
+
+  .euiTableCellContent__hoverItem:disabled,
+  .euiTableCellContent__hoverItem button:disabled,
+  .expandedItemActions__completelyHide {
+    opacity: 0;
   }
 }
 
