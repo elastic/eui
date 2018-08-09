@@ -23,7 +23,6 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
-  zIndexAdjustment={0}
 >
   <div
     className="euiFilterSelect__note"
@@ -69,7 +68,6 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
-  zIndexAdjustment={0}
 >
   <div
     className="euiFilterSelect__note"
@@ -115,7 +113,6 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
-  zIndexAdjustment={0}
 >
   <div
     className="euiFilterSelect__note"
@@ -161,7 +158,6 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
   withTitle={null}
-  zIndexAdjustment={0}
 >
   <div
     className="euiFilterSelect__note"
