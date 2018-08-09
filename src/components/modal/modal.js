@@ -33,7 +33,7 @@ export class EuiModal extends Component {
       <FocusTrap
         focusTrapOptions={{
           fallbackFocus: () => this.modal,
-          initialFocus: initialFocus,
+          initialFocus,
         }}
       >
         {

@@ -208,9 +208,7 @@ export class EuiPopover extends Component {
       }, 250);
     }
 
-    this.updateFocus(
-      !prevProps.isOpen && this.props.isOpen ? this.props.initialFocus : null
-    );
+    this.updateFocus();
   }
 
   componentWillUnmount() {
