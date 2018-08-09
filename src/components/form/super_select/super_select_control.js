@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -55,6 +56,10 @@ export const EuiSuperSelectControl = ({
     side: 'right',
   };
 
+  // In the case the inputDisplay is a react element, make it a string, then strip the HTML
+  // This is used to read only the text for a screenreader.
+  const selectedValueAsString = renderToString(selectedValue).replace(/<\/?[^>]+(>|$)/g, '');
+
   return (
     <Fragment>
       <select
@@ -65,6 +70,7 @@ export const EuiSuperSelectControl = ({
         defaultValue={selectDefaultValue}
         value={value}
         aria-hidden="true"
+        {...rest}
       >
         {emptyOptionNode}
         {options.map((option, index) => {
@@ -88,7 +94,7 @@ export const EuiSuperSelectControl = ({
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-label={`Select an option: ${value} selected.`}
+          aria-label={`Select an option: ${selectedValueAsString} selected`}
           {...rest}
         >
           {selectedValue}

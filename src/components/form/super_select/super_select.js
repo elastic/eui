@@ -205,7 +205,10 @@ export class EuiSuperSelect extends Component {
         hasArrow={false}
       >
         <EuiScreenReaderOnly>
-          <p role="alert">You are in a popup. To exit this popup, hit escape.</p>
+          <p role="alert">
+            You are in a form selector of {options.length} items and must select a single option.
+            Use the up and down keys to navigate or escape to close.
+          </p>
         </EuiScreenReaderOnly>
         <div role="listbox" aria-activedescendant={valueOfSelected}>
           {items}
