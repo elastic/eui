@@ -173,21 +173,25 @@
   .euiTableCellContent__hoverItem {
     margin-left: $euiSizeS;
     flex-shrink: 0;
-    opacity: 0.25;
+    opacity: 0.5;
     filter: grayscale(100%);
     transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
 
-    .euiTableRow:hover &:not(:disabled),
-    &:hover:not(:disabled),
-    &:focus:not(:disabled) {
+    .euiTableRow:hover &,
+    &:disabled,
+    &:hover,
+    &:focus {
       opacity: 1;
       filter: grayscale(0%);
     }
   }
 
-  .euiTableCellContent__hoverItem:disabled,
-  .euiTableCellContent__hoverItem button:disabled,
-  .expandedItemActions__completelyHide {
+  .expandedItemActions__completelyHide,
+  .expandedItemActions__completelyHide:disabled,
+  .expandedItemActions__completelyHide:disabled:hover,
+  .expandedItemActions__completelyHide:disabled:focus,
+  .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
+    filter: grayscale(0%);
     opacity: 0;
   }
 }

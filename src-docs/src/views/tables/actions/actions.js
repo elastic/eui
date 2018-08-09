@@ -11,7 +11,6 @@ import {
   EuiFlexItem,
   EuiSwitch,
   EuiSpacer,
-  EuiText,
 } from '../../../../../src/components';
 
 /*
@@ -145,17 +144,17 @@ export class Table extends Component {
         ? [{
           render: (item) => {
             return (
-              <EuiText color="secondary" onClick={() => this.cloneUser(item)}>
+              <EuiLink color="secondary" onClick={() => this.cloneUser(item)}>
                 Clone
-              </EuiText>
+              </EuiLink>
             );
           }
         }, {
           render: (item) => {
             return (
-              <EuiText color="danger" onClick={() => this.deleteUser(item)}>
+              <EuiLink color="danger" onClick={() => this.deleteUser(item)}>
                 Delete
-              </EuiText>
+              </EuiLink>
             );
           }
         }]
