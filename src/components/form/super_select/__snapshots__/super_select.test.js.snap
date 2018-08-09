@@ -19,9 +19,16 @@ exports[`EuiSuperSelect is rendered 1`] = `
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: , is selected
+        </span>
         <button
           aria-haspopup="true"
           aria-label="aria-label"
+          aria-labelledby="generated-id"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
           role="option"
@@ -86,9 +93,15 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: , is selected
+        </span>
         <button
           aria-haspopup="true"
-          aria-label="Select an option:  selected"
+          aria-labelledby="generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -152,9 +165,15 @@ exports[`EuiSuperSelect props options are rendered 1`] = `
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: , is selected
+        </span>
         <button
           aria-haspopup="true"
-          aria-label="Select an option:  selected"
+          aria-labelledby="generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -219,9 +238,15 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: Option #1, is selected
+        </span>
         <button
           aria-haspopup="true"
-          aria-label="Select an option: Option #1 selected"
+          aria-labelledby="generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"

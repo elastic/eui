@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
-import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiScreenReaderOnly } from '../../accessibility';
+import makeId from '../form_row/make_id';
 import {
   EuiFormControlLayout,
 } from '../form_control_layout';
@@ -56,9 +57,7 @@ export const EuiSuperSelectControl = ({
     side: 'right',
   };
 
-  // In the case the inputDisplay is a react element, make it a string, then strip the HTML
-  // This is used to read only the text for a screenreader.
-  const selectedValueAsString = renderToString(selectedValue).replace(/<\/?[^>]+(>|$)/g, '');
+  const screenReaderId = makeId();
 
   return (
     <Fragment>
@@ -89,12 +88,22 @@ export const EuiSuperSelectControl = ({
         compressed={compressed}
       >
 
+        {/*
+          This is read when the user tabs in. The comma is important,
+          otherwise the screen reader often combines the text.
+        */}
+        <EuiScreenReaderOnly>
+          <span id={screenReaderId}>
+            Select an option: {selectedValue}, is selected
+          </span>
+        </EuiScreenReaderOnly>
+
         <button
           role="option"
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-label={`Select an option: ${selectedValueAsString} selected`}
+          aria-labelledby={screenReaderId}
           {...rest}
         >
           {selectedValue}

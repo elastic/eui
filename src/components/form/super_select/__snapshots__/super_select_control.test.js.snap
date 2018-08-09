@@ -14,9 +14,16 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
         aria-label="aria-label"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl testClass1 testClass2"
         data-test-subj="test subject string"
         role="option"
@@ -68,9 +75,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option:  selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
         role="option"
         type="button"
@@ -128,9 +141,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option:  selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         role="option"
         type="button"
@@ -181,9 +200,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option:  selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
         role="option"
         type="button"
@@ -234,9 +259,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option:  selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
         role="option"
         type="button"
@@ -297,9 +328,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option:  selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         role="option"
         type="button"
@@ -358,9 +395,15 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: Option #1, is selected
+      </span>
       <button
         aria-haspopup="true"
-        aria-label="Select an option: Option #1 selected"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         role="option"
         type="button"
