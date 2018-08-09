@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.4.0`.
+
+## [`3.4.0`](https://github.com/elastic/eui/tree/v3.4.0)
+
 - Added typings for `EuiToolTip` and `EuiIconTip` ([#1087](https://github.com/elastic/eui/pull/1087))
 - Added `spacesApp` logo to `EuiIcon` set ([#1065](https://github.com/elastic/eui/pull/1065))
 - Added `!default` to border SASS props ([#1079](https://github.com/elastic/eui/pull/1079))
