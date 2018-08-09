@@ -81,6 +81,12 @@ No public interface changes since `3.4.0`.
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
 
+## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
+
+**Note: this release is a backport containing changes original made in `3.4.0`**
+
+- Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
+
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
 **Note: this release is a backport bugfix release containing changes original made in `3.2.0`**
