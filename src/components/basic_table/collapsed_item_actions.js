@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
+import { EuiToolTip } from '../tool_tip';
 
 export class CollapsedItemActions extends Component {
 
@@ -89,7 +90,7 @@ export class CollapsedItemActions extends Component {
     const popoverButton = (
       <EuiButtonIcon
         className={className}
-        aria-label="actions"
+        aria-label="All actions"
         iconType="boxesHorizontal"
         color="text"
         isDisabled={allDisabled}
@@ -98,13 +99,19 @@ export class CollapsedItemActions extends Component {
       />
     );
 
+    const withTooltip = !allDisabled && (
+      <EuiToolTip content="All actions" delay="long">
+        {popoverButton}
+      </EuiToolTip>
+    );
+
     return (
       <EuiPopover
         className={className}
         popoverRef={this.registerPopoverDiv}
         id={`${itemId}-actions`}
         isOpen={isOpen}
-        button={popoverButton}
+        button={withTooltip || popoverButton}
         closePopover={this.closePopover}
         panelPaddingSize="none"
         anchorPosition="leftCenter"
