@@ -17,6 +17,8 @@ export default class extends Component {
       {
         value: 'option_one',
         inputDisplay: 'Option one',
+        disabled: true,
+        'data-test-subj': 'option one',
       },
       {
         value: 'option_two',

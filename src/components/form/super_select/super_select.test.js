@@ -62,5 +62,21 @@ describe('EuiSuperSelect', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('more props are propogated to each option', () => {
+      const component = render(
+        <EuiSuperSelect
+          options={[
+            { value: '1', inputDisplay: 'Option #1', disabled: true },
+            { value: '2', inputDisplay: 'Option #2', 'data-test-subj': 'option two', }
+          ]}
+          valueOfSelected="1"
+          onChange={() => {}}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });

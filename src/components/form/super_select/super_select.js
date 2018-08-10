@@ -173,20 +173,28 @@ export class EuiSuperSelect extends Component {
     );
 
     const items = options.map((option, index) => {
+      const {
+        value,
+        dropdownDisplay,
+        inputDisplay,
+        ...optionRest
+      } = option;
+
       return (
         <EuiContextMenuItem
           key={index}
           className={itemClasses}
-          icon={valueOfSelected === option.value ? 'check' : 'empty'}
-          onClick={() => this.itemClicked(option.value)}
+          icon={valueOfSelected === value ? 'check' : 'empty'}
+          onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
           layoutAlign={itemLayoutAlign}
           buttonRef={node => this.setItemNode(node, index)}
           style={{ width: this.state.menuWidth }}
           role="option"
-          id={option.value}
+          id={value}
+          {...optionRest}
         >
-          {option.dropdownDisplay || option.inputDisplay}
+          {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
       );
     });

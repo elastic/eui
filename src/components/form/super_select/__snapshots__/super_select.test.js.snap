@@ -141,6 +141,81 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 </div>
 `;
 
+exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <select
+      aria-hidden="true"
+      class="euiSuperSelectControl__hiddenField"
+    >
+      <option
+        selected=""
+        value="1"
+      />
+      <option
+        value="2"
+      />
+    </select>
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+           Select an option: Option #1, is selected
+        </span>
+        <button
+          aria-haspopup="true"
+          aria-labelledby="generated-id"
+          class="euiSuperSelectControl"
+          role="option"
+          type="button"
+        >
+          Option #1
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xlink="http://www.w3.org/1999/xlink"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_down-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                href="#arrow_down-a"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSuperSelect props options are rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
