@@ -258,7 +258,7 @@ export const ButtonExample = {
     }],
     text: (
       <p>
-        Copy text to clipboard
+        Button for copying text to clipboard
       </p>
     ),
     demo: <ButtonCopy />,
