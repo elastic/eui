@@ -30,6 +30,11 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
     </EuiFormLabel>
     <input
       id="generated-id"
+      label={
+        <span>
+          Label
+        </span>
+      }
       onBlur={[Function]}
       onFocus={[Function]}
     />
@@ -67,6 +72,11 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
     </EuiFormLabel>
     <input
       id="generated-id"
+      label={
+        <span>
+          Label
+        </span>
+      }
       onBlur={[Function]}
       onFocus={[Function]}
     />
@@ -104,6 +114,11 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
     </EuiFormLabel>
     <input
       id="generated-id"
+      label={
+        <span>
+          Label
+        </span>
+      }
       onBlur={[Function]}
       onFocus={[Function]}
     />
@@ -141,6 +156,11 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
     </EuiFormLabel>
     <input
       id="generated-id"
+      label={
+        <span>
+          Label
+        </span>
+      }
       onBlur={[Function]}
       onFocus={[Function]}
     />
@@ -298,6 +318,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
   </label>
   <input
     id="generated-id"
+    label="label"
   />
 </div>
 `;
@@ -315,6 +336,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
   </EuiFormLabel>
   <input
     id="generated-id"
+    label="label"
     onBlur={[Function]}
     onFocus={[Function]}
   />

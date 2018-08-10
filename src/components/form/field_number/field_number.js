@@ -25,6 +25,7 @@ export const EuiFieldNumber = ({
   compressed,
   prepend,
   append,
+  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {

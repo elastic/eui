@@ -34,6 +34,7 @@ export class EuiRange extends Component {
       onChange,
       value,
       style,
+      label, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

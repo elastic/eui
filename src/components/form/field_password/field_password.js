@@ -21,6 +21,7 @@ export const EuiFieldPassword = ({
   isLoading,
   compressed,
   inputRef,
+  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames(

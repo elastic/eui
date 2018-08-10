@@ -23,7 +23,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           class="euiScreenReaderOnly"
           id="generated-id"
         >
-          Select an option: , is selected
+           Select an option: , is selected
         </span>
         <button
           aria-haspopup="true"
@@ -97,7 +97,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           class="euiScreenReaderOnly"
           id="generated-id"
         >
-          Select an option: , is selected
+           Select an option: , is selected
         </span>
         <button
           aria-haspopup="true"
@@ -169,7 +169,7 @@ exports[`EuiSuperSelect props options are rendered 1`] = `
           class="euiScreenReaderOnly"
           id="generated-id"
         >
-          Select an option: , is selected
+           Select an option: , is selected
         </span>
         <button
           aria-haspopup="true"
@@ -242,7 +242,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           class="euiScreenReaderOnly"
           id="generated-id"
         >
-          Select an option: Option #1, is selected
+           Select an option: Option #1, is selected
         </span>
         <button
           aria-haspopup="true"

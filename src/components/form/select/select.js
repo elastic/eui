@@ -25,6 +25,7 @@ export const EuiSelect = ({
   value,
   prepend,
   append,
+  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames(

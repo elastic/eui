@@ -10,6 +10,7 @@ export const EuiCheckboxGroup = ({
   className,
   disabled,
   compressed,
+  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => (
   <div className={className} {...rest}>

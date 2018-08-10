@@ -20,6 +20,7 @@ export const EuiSuperSelectControl = ({
   defaultValue,
   compressed,
   value,
+  label,
   ...rest
 }) => {
   const classes = classNames(
@@ -94,6 +95,7 @@ export const EuiSuperSelectControl = ({
         */}
         <EuiScreenReaderOnly>
           <span id={screenReaderId}>
+            {label ? `${label}, ` : null}{' '}
             Select an option: {selectedValue}, is selected
           </span>
         </EuiScreenReaderOnly>

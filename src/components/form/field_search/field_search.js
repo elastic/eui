@@ -100,6 +100,7 @@ export class EuiFieldSearch extends Component {
       incremental,
       compressed,
       onSearch,
+      label, // eslint-disable-line no-unused-vars
       ...rest } = this.props;
 
     const classes = classNames(

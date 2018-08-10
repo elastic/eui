@@ -27,6 +27,7 @@ export const EuiTextArea = ({
   placeholder,
   resize,
   rows,
+  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames(
