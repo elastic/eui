@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,60 +8,89 @@ const typeToClassNameMap = {
 
 export const TYPES = Object.keys(typeToClassNameMap);
 
-export const EuiCheckbox = ({
-  className,
-  id,
-  checked,
-  label,
-  onChange,
-  type,
-  disabled,
-  compressed,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiCheckbox',
-    typeToClassNameMap[type],
-    {
-      'euiCheckbox--noLabel': !label,
-      'euiCheckbox--compressed': compressed
-    },
-    className
-  );
+export class EuiCheckbox extends Component {
+  componentDidMount() {
+    this.invalidateIndeterminate(this.props);
+  }
 
-  let optionalLabel;
+  componentWillReceiveProps(nextProps) {
+    this.invalidateIndeterminate(nextProps);
+  }
 
-  if (label) {
-    optionalLabel = (
-      <label
-        className="euiCheckbox__label"
-        htmlFor={id}
+  render() {
+    const {
+      className,
+      id,
+      checked,
+      label,
+      onChange,
+      type,
+      disabled,
+      compressed,
+      ...rest
+    } = this.props;
+
+    const classes = classNames(
+      'euiCheckbox',
+      typeToClassNameMap[type],
+      {
+        'euiCheckbox--noLabel': !label,
+        'euiCheckbox--compressed': compressed
+      },
+      className
+    );
+
+    let optionalLabel;
+
+    if (label) {
+      optionalLabel = (
+        <label
+          className="euiCheckbox__label"
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      );
+    }
+
+    return (
+      <div
+        className={classes}
       >
-        {label}
-      </label>
+        <input
+          className="euiCheckbox__input"
+          type="checkbox"
+          id={id}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          ref={this.setInputRef}
+          {...rest}
+        />
+
+        <div className="euiCheckbox__square" />
+
+        {optionalLabel}
+      </div>
     );
   }
 
-  return (
-    <div
-      className={classes}
-    >
-      <input
-        className="euiCheckbox__input"
-        type="checkbox"
-        id={id}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        {...rest}
-      />
+  setInputRef = (input) => {
+    this.inputRef = input;
 
-      <div className="euiCheckbox__square" />
+    if (this.props.inputRef) {
+      this.props.inputRef(input);
+    }
 
-      {optionalLabel}
-    </div>
-  );
-};
+    if (input) {
+      this.invalidateIndeterminate(this.props);
+    }
+  }
+
+  invalidateIndeterminate({ indeterminate }) {
+    this.inputRef.indeterminate = indeterminate;
+  }
+}
 
 EuiCheckbox.propTypes = {
   className: PropTypes.string,
