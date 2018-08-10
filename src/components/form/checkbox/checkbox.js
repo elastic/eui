@@ -10,11 +10,11 @@ export const TYPES = Object.keys(typeToClassNameMap);
 
 export class EuiCheckbox extends Component {
   componentDidMount() {
-    this.invalidateIndeterminate(this.props);
+    this.invalidateIndeterminate();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.invalidateIndeterminate(nextProps);
+  componentDidUpdate() {
+    this.invalidateIndeterminate();
   }
 
   render() {
@@ -83,12 +83,12 @@ export class EuiCheckbox extends Component {
     }
 
     if (input) {
-      this.invalidateIndeterminate(this.props);
+      this.invalidateIndeterminate();
     }
   }
 
-  invalidateIndeterminate({ indeterminate }) {
-    this.inputRef.indeterminate = indeterminate;
+  invalidateIndeterminate() {
+    this.inputRef.indeterminate = this.props.indeterminate;
   }
 }
 
