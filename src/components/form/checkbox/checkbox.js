@@ -103,6 +103,7 @@ EuiCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(TYPES),
   disabled: PropTypes.bool,
+  indeterminate: PropTypes.bool,
   /**
    * when `true` creates a shorter height checkbox row
    */
@@ -112,5 +113,6 @@ EuiCheckbox.propTypes = {
 EuiCheckbox.defaultProps = {
   checked: false,
   disabled: false,
+  indeterminate: false,
   compressed: false,
 };
