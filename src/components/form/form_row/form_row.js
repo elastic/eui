@@ -132,7 +132,6 @@ export class EuiFormRow extends Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       compressed: compressed,
-      label: label,
       ...optionalProps
     });
 

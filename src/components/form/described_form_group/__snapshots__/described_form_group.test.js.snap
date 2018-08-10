@@ -359,7 +359,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 <input
                   aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
                   id="generated-id"
-                  label="Label"
                   onBlur={[Function]}
                   onFocus={[Function]}
                 />

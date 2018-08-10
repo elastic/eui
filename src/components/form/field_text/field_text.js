@@ -24,7 +24,6 @@ export const EuiFieldText = ({
   compressed,
   prepend,
   append,
-  label, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames('euiFieldText', className, {

@@ -6,7 +6,6 @@ import React, {
 import {
   EuiSuperSelect,
   EuiSpacer,
-  EuiFormRow,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -86,16 +85,6 @@ export default class extends Component {
           onChange={this.onChange}
           compressed
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiFormRow label="With label">
-          <EuiSuperSelect
-            options={this.options}
-            valueOfSelected={this.state.value}
-            onChange={this.onChange}
-          />
-        </EuiFormRow>
       </Fragment>
     );
   }
