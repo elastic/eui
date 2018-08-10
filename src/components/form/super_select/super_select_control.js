@@ -103,7 +103,7 @@ export const EuiSuperSelectControl = ({
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-labelledby={screenReaderId}
+          aria-labelledby={`${id} ${screenReaderId}`}
           {...rest}
         >
           {selectedValue}

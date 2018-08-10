@@ -28,7 +28,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
         <button
           aria-haspopup="true"
           aria-label="aria-label"
-          aria-labelledby="generated-id"
+          aria-labelledby="undefined generated-id"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
           role="option"
@@ -101,7 +101,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         </span>
         <button
           aria-haspopup="true"
-          aria-labelledby="generated-id"
+          aria-labelledby="undefined generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -170,11 +170,11 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           class="euiScreenReaderOnly"
           id="generated-id"
         >
-           Select an option: Option #1, is selected
+          Select an option: Option #1, is selected
         </span>
         <button
           aria-haspopup="true"
-          aria-labelledby="generated-id"
+          aria-labelledby="undefined generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -248,7 +248,7 @@ exports[`EuiSuperSelect props options are rendered 1`] = `
         </span>
         <button
           aria-haspopup="true"
-          aria-labelledby="generated-id"
+          aria-labelledby="undefined generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -321,7 +321,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
         </span>
         <button
           aria-haspopup="true"
-          aria-labelledby="generated-id"
+          aria-labelledby="undefined generated-id"
           class="euiSuperSelectControl"
           role="option"
           type="button"
