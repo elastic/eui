@@ -16,12 +16,19 @@ export default class extends Component {
 
     this.state = {
       checked: false,
+      indeterminate: true,
     };
   }
 
   onChange = e => {
     this.setState({
       checked: e.target.checked,
+    });
+  };
+
+  onChangeIndeterminate = () => {
+    this.setState({
+      indeterminate: !this.state.indeterminate,
     });
   };
 
@@ -33,6 +40,15 @@ export default class extends Component {
           label="I am a checkbox"
           checked={this.state.checked}
           onChange={this.onChange}
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiCheckbox
+          id={makeId()}
+          label="I am an indeterminate checkbox"
+          indeterminate={this.state.indeterminate}
+          onChange={this.onChangeIndeterminate}
         />
 
         <EuiSpacer size="m" />

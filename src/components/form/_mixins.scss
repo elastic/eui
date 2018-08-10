@@ -197,8 +197,7 @@
   }
 
   transition: background-color $euiAnimSpeedFast ease-in,
-              border-color $euiAnimSpeedFast ease-in,
-              background-image 0s ease-out $euiAnimSpeedFast;
+              border-color $euiAnimSpeedFast ease-in;
 }
 
 @mixin euiCustomControl--selected($type: null){
