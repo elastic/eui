@@ -85,13 +85,13 @@ export class EuiCheckbox extends Component {
       this.props.inputRef(input);
     }
 
-    if (input) {
-      this.invalidateIndeterminate();
-    }
+    this.invalidateIndeterminate();
   }
 
   invalidateIndeterminate() {
-    this.inputRef.indeterminate = this.props.indeterminate;
+    if (this.inputRef) {
+      this.inputRef.indeterminate = this.props.indeterminate;
+    }
   }
 }
 
