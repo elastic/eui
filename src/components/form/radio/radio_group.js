@@ -24,7 +24,7 @@ export const EuiRadioGroup = ({
           checked={option.id === idSelected}
           label={option.label}
           value={option.value}
-          disabled={disabled}
+          disabled={disabled || option.disabled}
           onChange={onChange.bind(null, option.id, option.value)}
           compressed={compressed}
         />
