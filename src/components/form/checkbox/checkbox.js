@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { omit } from 'lodash';
 
 const typeToClassNameMap = {
   inList: 'euiCheckbox--inList',
@@ -29,6 +30,8 @@ export class EuiCheckbox extends Component {
       compressed,
       ...rest
     } = this.props;
+
+    const inputProps = omit(rest, 'indeterminate');
 
     const classes = classNames(
       'euiCheckbox',
@@ -65,7 +68,7 @@ export class EuiCheckbox extends Component {
           onChange={onChange}
           disabled={disabled}
           ref={this.setInputRef}
-          {...rest}
+          {...inputProps}
         />
 
         <div className="euiCheckbox__square" />
