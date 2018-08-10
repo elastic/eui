@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.5.0`.
+
+## [`3.5.0`](https://github.com/elastic/eui/tree/v3.5.0)
+
 - Added support for `indeterminate` to `EuiCheckbox` ([#1108](https://github.com/elastic/eui/pull/1108))
 
 ## [`3.4.0`](https://github.com/elastic/eui/tree/v3.4.0)
