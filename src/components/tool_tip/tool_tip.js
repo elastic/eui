@@ -116,6 +116,10 @@ export class EuiToolTip extends Component {
         this.hideToolTip();
       }
     }
+
+    if (this.props.onMouseOut) {
+      this.props.onMouseOut();
+    }
   };
 
   render() {

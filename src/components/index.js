@@ -31,6 +31,7 @@ export {
   EuiButtonIcon,
   EuiButtonToggle,
   EuiButtonGroup,
+  EuiButtonCopy,
 } from './button';
 
 export {
