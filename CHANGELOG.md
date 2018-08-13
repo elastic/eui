@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.5.1`.
+- Added `disabled` to `EuiRadioGroup.options` ([#1111](https://github.com/elastic/eui/pull/1111))
 
 ## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
 
