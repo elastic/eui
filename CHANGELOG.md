@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiButtonCopy` ([#1112](https://github.com/elastic/eui/pull/1112))
+- Added `disabled` to `EuiRadioGroup.options` ([#1111](https://github.com/elastic/eui/pull/1111))
 
 ## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
 

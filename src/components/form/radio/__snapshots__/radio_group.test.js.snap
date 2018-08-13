@@ -118,6 +118,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
   >
     <input
       class="euiRadio__input"
+      disabled=""
       id="2"
       type="radio"
     />

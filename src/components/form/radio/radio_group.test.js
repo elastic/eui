@@ -22,7 +22,7 @@ describe('EuiRadioGroup', () => {
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
+            { id: '2', label: 'Option #2', disabled: true }
           ]}
           onChange={() => {}}
         />
