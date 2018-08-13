@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip } from '../tool_tip';
 
-const UNCOPIED_MSG = 'Copy';
-const COPIED_MSG = 'Copied';
-
 export class EuiCopy extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      tooltipText: UNCOPIED_MSG
+      tooltipText: this.props.beforeCopyMsg
     };
   }
 
@@ -20,14 +17,14 @@ export class EuiCopy extends React.Component {
     const isCopied = copyToClipboard(this.props.textToCopy);
     if (isCopied) {
       this.setState({
-        tooltipText: COPIED_MSG,
+        tooltipText: this.props.afterCopyMsg,
       });
     }
   }
 
   resetTooltipText = () => {
     this.setState({
-      tooltipText: UNCOPIED_MSG,
+      tooltipText: this.props.beforeCopyMsg,
     });
   }
 
@@ -49,6 +46,13 @@ export class EuiCopy extends React.Component {
 
 EuiCopy.propTypes = {
   textToCopy: PropTypes.string.isRequired,
+  beforeCopyMsg: PropTypes.string,
+  afterCopyMsg: PropTypes.string,
   children: PropTypes.func.isRequired,
+};
+
+EuiCopy.defaultProps = {
+  beforeCopyMsg: 'Copy',
+  afterCopyMsg: 'Copied',
 };
 
