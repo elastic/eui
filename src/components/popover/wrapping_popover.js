@@ -28,10 +28,12 @@ export class EuiWrappingPopover extends Component {
   }
 
   componentWillUnmount() {
-    this.portal.insertAdjacentElement(
-      'beforebegin',
-      this.props.button
-    );
+    if (this.props.button.parentNode) {
+      this.portal.insertAdjacentElement(
+        'beforebegin',
+        this.props.button
+      );
+    }
   }
 
   setPortalRef = node => {
