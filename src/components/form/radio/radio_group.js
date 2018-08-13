@@ -39,6 +39,7 @@ EuiRadioGroup.propTypes = {
       id: PropTypes.string.isRequired,
       label: PropTypes.node,
       value: PropTypes.string,
+      disabled: PropTypes.bool,
     }),
   ).isRequired,
   idSelected: PropTypes.string,
