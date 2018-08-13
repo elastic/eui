@@ -18,7 +18,3 @@ export {
 export {
   EuiButtonGroup,
 } from './button_group';
-
-export {
-  EuiButtonCopy,
-} from './button_copy';

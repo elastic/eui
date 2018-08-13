@@ -56,10 +56,6 @@ import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
 
-import ButtonCopy from './button_copy';
-const buttonCopySource = require('!!raw-loader!./button_copy');
-const buttonCopyHtml = renderToHtml(ButtonCopy);
-
 export const ButtonExample = {
   title: 'Button',
   sections: [{
@@ -247,20 +243,5 @@ export const ButtonExample = {
       </p>
     ),
     demo: <ButtonGhost />,
-  }, {
-    title: 'ButtonCopy',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: buttonCopySource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: buttonCopyHtml,
-    }],
-    text: (
-      <p>
-        Button for copying text to clipboard
-      </p>
-    ),
-    demo: <ButtonCopy />,
   }],
 };

@@ -31,7 +31,6 @@ export {
   EuiButtonIcon,
   EuiButtonToggle,
   EuiButtonGroup,
-  EuiButtonCopy,
 } from './button';
 
 export {
@@ -65,6 +64,10 @@ export {
   EuiContextMenuPanel,
   EuiContextMenuItem,
 } from './context_menu';
+
+export {
+  EuiCopy,
+} from './copy';
 
 export {
   EuiDatePicker,

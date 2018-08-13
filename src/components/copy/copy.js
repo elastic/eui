@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { copyToClipboard } from '../../../services';
-import { EuiButton } from '../button';
-import { EuiToolTip } from '../../tool_tip';
+import { copyToClipboard } from '../../services';
+import { EuiToolTip } from '../tool_tip';
 
-const UNCOPIED_MSG = 'Copy to clipboard';
+const UNCOPIED_MSG = 'Copy';
 const COPIED_MSG = 'Copied';
 
-export class EuiButtonCopy extends React.Component {
+export class EuiCopy extends React.Component {
 
   constructor(props) {
     super(props);
@@ -35,9 +34,6 @@ export class EuiButtonCopy extends React.Component {
   render() {
     const {
       children,
-      textToCopy, // eslint-disable-line no-unused-vars
-      onClick, // eslint-disable-line no-unused-vars
-      ...rest
     } = this.props;
 
     return (
@@ -45,18 +41,15 @@ export class EuiButtonCopy extends React.Component {
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
       >
-        <EuiButton
-          onClick={this.copySnippet}
-          {...rest}
-        >
+        <span onClick={this.copySnippet}>
           {children}
-        </EuiButton>
+        </span>
       </EuiToolTip>
     );
   }
 }
 
-EuiButtonCopy.propTypes = {
+EuiCopy.propTypes = {
   textToCopy: PropTypes.string.isRequired,
 };
 
