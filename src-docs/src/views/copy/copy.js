@@ -31,9 +31,11 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiCopy textToCopy={this.state.copyText}>
-          <EuiButton>
-            Click to copy input text
-          </EuiButton>
+          {(copy) => (
+            <EuiButton onClick={copy}>
+              Click to copy input text
+            </EuiButton>
+          )}
         </EuiCopy>
       </div>
     );

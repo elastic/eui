@@ -16,7 +16,7 @@ export class EuiCopy extends React.Component {
     };
   }
 
-  copySnippet = () => {
+  copy = () => {
     const isCopied = copyToClipboard(this.props.textToCopy);
     if (isCopied) {
       this.setState({
@@ -41,9 +41,7 @@ export class EuiCopy extends React.Component {
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
       >
-        <span onClick={this.copySnippet}>
-          {children}
-        </span>
+        {children(this.copy)}
       </EuiToolTip>
     );
   }
@@ -51,5 +49,6 @@ export class EuiCopy extends React.Component {
 
 EuiCopy.propTypes = {
   textToCopy: PropTypes.string.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
