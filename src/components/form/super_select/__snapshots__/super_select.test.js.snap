@@ -271,18 +271,10 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <select
-      aria-hidden="true"
-      class="euiSuperSelectControl__hiddenField"
-    >
-      <option
-        selected=""
-        value="1"
-      />
-      <option
-        value="2"
-      />
-    </select>
+    <input
+      type="hidden"
+      value="1"
+    />
     <div
       class="euiFormControlLayout"
     >
