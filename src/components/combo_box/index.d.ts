@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode, SFC } from 'react';
-// import { ListProps } from 'react-virtualized';
+import { ListProps } from 'react-virtualized';
 import {
   EuiComboBoxOption,
   EuiComboBoxOptionProps,
@@ -43,7 +43,7 @@ declare module '@elastic/eui' {
     renderOption?: (option: EuiComboBoxOptionProps, searchValue: string, OPTION_CONTENT_CLASSNAME: string) => ReactNode,
     width?: number,
     scrollToIndex?: number,
-    // onScroll?: ListProps['onScroll'],
+    onScroll?: ListProps['onScroll'],
     rowHeight?: number,
     fullWidth?: boolean,
   }
