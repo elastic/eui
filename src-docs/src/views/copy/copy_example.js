@@ -27,7 +27,8 @@ export const CopyExample = {
     }],
     text: (
       <p>
-        The <EuiCode>EuiCopy</EuiCode> component is a simplified utility for copying text to clipboard.
+        The <EuiCode>EuiCopy</EuiCode> component is a utility for copying text to clipboard.
+        Wrap a function that returns a Component. The first argument will be a `copy` function.
       </p>
     ),
     components: { EuiCopy },

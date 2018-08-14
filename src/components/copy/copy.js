@@ -9,7 +9,7 @@ export class EuiCopy extends React.Component {
     super(props);
 
     this.state = {
-      tooltipText: this.props.beforeCopyMsg
+      tooltipText: this.props.beforeMessage
     };
   }
 
@@ -17,26 +17,31 @@ export class EuiCopy extends React.Component {
     const isCopied = copyToClipboard(this.props.textToCopy);
     if (isCopied) {
       this.setState({
-        tooltipText: this.props.afterCopyMsg,
+        tooltipText: this.props.afterMessage,
       });
     }
   }
 
   resetTooltipText = () => {
     this.setState({
-      tooltipText: this.props.beforeCopyMsg,
+      tooltipText: this.props.beforeMessage,
     });
   }
 
   render() {
     const {
       children,
+      textToCopy, // eslint-disable-line no-unused-vars
+      beforeMessage, // eslint-disable-line no-unused-vars
+      afterMessage, // eslint-disable-line no-unused-vars
+      ...rest
     } = this.props;
 
     return (
       <EuiToolTip
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
+        {...rest}
       >
         {children(this.copy)}
       </EuiToolTip>
@@ -45,14 +50,32 @@ export class EuiCopy extends React.Component {
 }
 
 EuiCopy.propTypes = {
+
+  /**
+   * Text that will be copied to clipboard when copy function is executed.
+   */
   textToCopy: PropTypes.string.isRequired,
-  beforeCopyMsg: PropTypes.string,
-  afterCopyMsg: PropTypes.string,
+
+  /**
+   * Tooltip message displayed before copy function is called.
+   */
+  beforeMessage: PropTypes.string,
+
+  /**
+   * Tooltip message displayed after copy function is called that lets the user know that
+   * 'textToCopy' has been copied to the clipboard.
+   */
+  afterMessage: PropTypes.string,
+
+  /**
+   * Function that must return a Component. First argument is 'copy' function.
+   * Use your own logic to create the component that user's interactact with when triggering copy.
+   */
   children: PropTypes.func.isRequired,
 };
 
 EuiCopy.defaultProps = {
-  beforeCopyMsg: 'Copy',
-  afterCopyMsg: 'Copied',
+  beforeMessage: 'Copy',
+  afterMessage: 'Copied',
 };
 
