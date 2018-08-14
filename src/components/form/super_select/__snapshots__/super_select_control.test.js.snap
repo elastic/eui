@@ -321,7 +321,8 @@ Array [
       <button
         aria-haspopup="true"
         aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl"
+        class="euiSuperSelectControl customSelect"
+        data-test-subj="selectbox"
         role="option"
         type="button"
       />

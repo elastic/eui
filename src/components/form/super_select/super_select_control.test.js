@@ -24,6 +24,8 @@ describe('EuiSuperSelectControl', () => {
             { value: '1', inputDisplay: 'Option #1' },
             { value: '2', inputDisplay: 'Option #2' }
           ]}
+          data-test-subj="selectbox"
+          className="customSelect"
         />
       );
 
