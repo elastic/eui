@@ -1,5 +1,11 @@
-import { ButtonHTMLAttributes, ReactElement, ReactNode, SFC } from 'react';
-import { EuiComboBoxOption, EuiComboBoxOptionProps } from '@elastic/eui';
+import { ButtonHTMLAttributes, ReactNode, SFC } from 'react';
+// import { ListProps } from 'react-virtualized';
+import {
+  EuiComboBoxOption,
+  EuiComboBoxOptionProps,
+  EuiComboBoxOptionsListPosition,
+  EuiComboBoxOptionsListProps,
+} from '@elastic/eui';
 
 declare module '@elastic/eui' {
   export type EuiComboBoxOptionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -7,11 +13,13 @@ declare module '@elastic/eui' {
     isGroupLabelOption: boolean,
   }
 
+  export type EuiComboBoxOptionsListPosition = 'top' | 'bottom'
+
   export interface EuiComboBoxOption {
     option: EuiComboBoxOptionProps,
     children?: ReactNode,
     className?: string,
-    optionRef?: (ref: HTMLButtonElement) => any,
+    optionRef?: RefCallback<HTMLButtonElement>,
     onClick: (option: EuiComboBoxOptionProps) => any,
     onEnterKey: (option: EuiComboBoxOptionProps) => any,
     disabled?: boolean,
@@ -29,13 +37,13 @@ declare module '@elastic/eui' {
     onOptionEnterKey?: EuiComboBoxOption['onEnterKey'],
     areAllOptionsSelected?: boolean,
     getSelectedOptionForSearchValue?: (searchValue: string, selectedOptions: Array<any>) => EuiComboBoxOptionProps,
-    updatePosition: PropTypes.func.isRequired,
-    position?: PropTypes.oneOf(POSITIONS),
-    listRef: PropTypes.func.isRequired,
-    renderOption?: PropTypes.func,
+    updatePosition: (parameter?: UIEvent | EuiPanelProps['panelRef']) => any,
+    position?: EuiComboBoxOptionsListPosition,
+    listRef: EuiPanelProps['panelRef'],
+    renderOption?: (option: EuiComboBoxOptionProps, searchValue: string, OPTION_CONTENT_CLASSNAME: string) => ReactNode,
     width?: number,
     scrollToIndex?: number,
-    onScroll?: PropTypes.func,
+    // onScroll?: ListProps['onScroll'],
     rowHeight?: number,
     fullWidth?: boolean,
   }
@@ -50,12 +58,12 @@ declare module '@elastic/eui' {
     async?: boolean,
     singleSelection?: boolean,
     noSuggestions?: boolean,
-    options?: array,
-    selectedOptions?: array,
-    onChange?: func,
-    onSearchChange?: func,
-    onCreateOption?: func,
-    renderOption?: func,
+    options?: EuiComboBoxOptionsListProps['options'],
+    selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
+    onChange?: (options: Array<EuiComboBoxOptionProps>) => any,
+    onSearchChange?: (searchValue: string) => any,
+    onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'],
+    renderOption?: EuiComboBoxOptionsListProps['renderOption'],
     isInvalid?: boolean,
     rowHeight?: number,
     isClearable?: boolean,
