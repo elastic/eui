@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.6.0`.
+
+## [`3.6.0`](https://github.com/elastic/eui/tree/v3.6.0)
+
 - Added `EuiCopy` ([#1112](https://github.com/elastic/eui/pull/1112))
 - Added `disabled` to `EuiRadioGroup.options` ([#1111](https://github.com/elastic/eui/pull/1111))
 
