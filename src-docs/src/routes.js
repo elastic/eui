@@ -87,6 +87,9 @@ import { ComboBoxExample }
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
+import { CopyExample }
+  from './views/copy/copy_example';
+
 import { DatePickerExample }
   from './views/date_picker/date_picker_example';
 
@@ -377,6 +380,7 @@ const navigation = [{
   name: 'Utilities',
   items: [
     AccessibilityExample,
+    CopyExample,
     ResponsiveExample,
     DelayHideExample,
     ErrorBoundaryExample,

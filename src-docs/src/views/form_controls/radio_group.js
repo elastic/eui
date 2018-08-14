@@ -26,6 +26,7 @@ export default class extends Component {
     }, {
       id: `${idPrefix}2`,
       label: 'Option three',
+      disabled: true,
     }];
 
     this.state = {

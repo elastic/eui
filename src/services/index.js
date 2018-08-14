@@ -26,6 +26,10 @@ export {
 } from './color';
 
 export {
+  copyToClipboard
+} from './copy_to_clipboard';
+
+export {
   formatAuto,
   formatBoolean,
   formatDate,

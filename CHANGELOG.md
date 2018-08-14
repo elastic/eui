@@ -2,6 +2,24 @@
 
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
 
+## [`3.6.0`](https://github.com/elastic/eui/tree/v3.6.0)
+
+- Added `EuiCopy` ([#1112](https://github.com/elastic/eui/pull/1112))
+- Added `disabled` to `EuiRadioGroup.options` ([#1111](https://github.com/elastic/eui/pull/1111))
+
+**Bug fixes**
+
+- `EuiWrappingPopover` only re-attach anchor element on unmount if anchor element is still attached to DOM
+([#1114](https://github.com/elastic/eui/pull/1114))
+
+## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
+
+- Fixed a bug around `indeterminate` checkboxes ([#1110](https://github.com/elastic/eui/pull/1110))
+
+## [`3.5.0`](https://github.com/elastic/eui/tree/v3.5.0)
+
+- Added support for `indeterminate` to `EuiCheckbox` ([#1108](https://github.com/elastic/eui/pull/1108))
+
 ## [`3.4.0`](https://github.com/elastic/eui/tree/v3.4.0)
 
 - Added typings for `EuiToolTip` and `EuiIconTip` ([#1087](https://github.com/elastic/eui/pull/1087))

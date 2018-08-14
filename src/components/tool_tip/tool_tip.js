@@ -116,6 +116,10 @@ export class EuiToolTip extends Component {
         this.hideToolTip();
       }
     }
+
+    if (this.props.onMouseOut) {
+      this.props.onMouseOut();
+    }
   };
 
   render() {
@@ -142,7 +146,7 @@ export class EuiToolTip extends Component {
     );
 
     let tooltip;
-    if (visible) {
+    if (visible && (content || title)) {
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
@@ -201,7 +205,7 @@ EuiToolTip.propTypes = {
   /**
    * The main content of your tooltip.
    */
-  content: PropTypes.node.isRequired,
+  content: PropTypes.node,
 
   /**
    * An optional title for your tooltip.
