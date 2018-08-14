@@ -13,10 +13,8 @@ export const EuiSuperSelectControl = ({
   options,
   id,
   name,
-  inputRef,
   fullWidth,
   isLoading,
-  hasNoInitialSelection,
   defaultValue,
   compressed,
   value,
@@ -31,13 +29,6 @@ export const EuiSuperSelectControl = ({
     },
     className
   );
-
-  let emptyOptionNode;
-  if (hasNoInitialSelection) {
-    emptyOptionNode = (
-      <option value="" disabled hidden style={{ display: 'none' }}>&nbsp;</option>
-    );
-  }
 
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
@@ -61,25 +52,13 @@ export const EuiSuperSelectControl = ({
 
   return (
     <Fragment>
-      <select
+      <input
+        type="hidden"
         id={id}
         name={name}
-        className="euiSuperSelectControl__hiddenField"
-        ref={inputRef}
         defaultValue={selectDefaultValue}
         value={value}
-        aria-hidden="true"
-        {...rest}
-      >
-        {emptyOptionNode}
-        {options.map((option, index) => {
-          const {
-            text, // eslint-disable-line no-unused-vars
-            value,
-          } = option;
-          return <option value={value} key={index} />;
-        })}
-      </select>
+      />
 
       <EuiFormControlLayout
         icon={icon}
@@ -124,12 +103,6 @@ EuiSuperSelectControl.propTypes = {
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
-
-  /**
-   * Simulates no selection by creating an empty, selected, hidden first option
-   */
-  hasNoInitialSelection: PropTypes.bool,
-  inputRef: PropTypes.func,
   /**
    * when `true` creates a shorter height input
    */
@@ -140,6 +113,5 @@ EuiSuperSelectControl.defaultProps = {
   options: [],
   fullWidth: false,
   isLoading: false,
-  hasNoInitialSelection: false,
   compressed: false,
 };

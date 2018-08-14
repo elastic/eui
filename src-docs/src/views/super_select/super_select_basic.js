@@ -19,6 +19,8 @@ export default class extends Component {
             Warning
           </EuiHealth>
         ),
+        'data-test-subj': 'option-warning',
+        disabled: true,
       },
       {
         value: 'minor',
@@ -27,6 +29,7 @@ export default class extends Component {
             Minor
           </EuiHealth>
         ),
+        'data-test-subj': 'option-minor',
       },
       {
         value: 'critical',
@@ -35,6 +38,7 @@ export default class extends Component {
             Critical
           </EuiHealth>
         ),
+        'data-test-subj': 'option-critical',
       },
     ];
 

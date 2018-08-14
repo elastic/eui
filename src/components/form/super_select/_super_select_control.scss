@@ -28,9 +28,3 @@
     @include euiFormControlFocusStyle;
   }
 }
-
-.euiSuperSelectControl__hiddenField {
-  // This should be completely hidden even from screen readers,
-  // it's meant only to allow submission of a form.
-  display: none;
-}

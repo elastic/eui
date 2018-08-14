@@ -87,23 +87,31 @@ export class EuiSuperSelect extends Component {
   }
 
   onItemKeyDown = e => {
-    if (e.keyCode === keyCodes.ESCAPE) {
-      // close the popover and prevent ancestors from handling
-      e.preventDefault();
-      e.stopPropagation();
-      this.closePopover();
-    } else if (e.keyCode === keyCodes.TAB) {
-      // no-op
-      e.preventDefault();
-      e.stopPropagation();
-    } else if (e.keyCode === keyCodes.UP) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.shiftFocus(SHIFT_BACK);
-    } else if (e.keyCode === keyCodes.DOWN) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.shiftFocus(SHIFT_FORWARD);
+    switch (e.keyCode) {
+      case keyCodes.ESCAPE:
+        // close the popover and prevent ancestors from handling
+        e.preventDefault();
+        e.stopPropagation();
+        this.closePopover();
+        break;
+
+      case keyCodes.TAB:
+        // no-op
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+
+      case keyCodes.UP:
+        e.preventDefault();
+        e.stopPropagation();
+        this.shiftFocus(SHIFT_BACK);
+        break;
+
+      case keyCodes.DOWN:
+        e.preventDefault();
+        e.stopPropagation();
+        this.shiftFocus(SHIFT_FORWARD);
+        break;
     }
   }
 
