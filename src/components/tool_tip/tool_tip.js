@@ -146,7 +146,7 @@ export class EuiToolTip extends Component {
     );
 
     let tooltip;
-    if (visible && content) {
+    if (visible && (content || title)) {
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
