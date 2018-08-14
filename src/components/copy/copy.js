@@ -65,7 +65,7 @@ EuiCopy.propTypes = {
    * Tooltip message displayed after copy function is called that lets the user know that
    * 'textToCopy' has been copied to the clipboard.
    */
-  afterMessage: PropTypes.string,
+  afterMessage: PropTypes.string.isRequired,
 
   /**
    * Function that must return a Component. First argument is 'copy' function.
@@ -75,7 +75,6 @@ EuiCopy.propTypes = {
 };
 
 EuiCopy.defaultProps = {
-  beforeMessage: 'Copy',
   afterMessage: 'Copied',
 };
 
