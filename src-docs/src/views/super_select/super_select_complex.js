@@ -57,15 +57,11 @@ export default class extends Component {
 
     this.state = {
       value: this.options[1].value,
-      inputDisplay: this.options[1].inputDisplay,
     };
   }
 
   onChange = (value) => {
-    this.setState({
-      value: value,
-      inputDisplay: this.options.inputDisplay,
-    });
+    this.setState({ value });
   };
 
   render() {
