@@ -46,6 +46,24 @@ export class EuiToolTip extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.visible === false && this.state.visible === true) {
+      requestAnimationFrame(this.testAnchor);
+    }
+  }
+
+  testAnchor = () => {
+    if (document.contains(this.anchor) === false) {
+      // the anchor is no longer part of `document`
+      this.hideToolTip();
+    } else {
+      if (this.state.visible) {
+        // if still visible, keep checking
+        requestAnimationFrame(this.testAnchor);
+      }
+    }
+  }
+
   setPopoverRef = ref => {
     this.popover = ref;
 
