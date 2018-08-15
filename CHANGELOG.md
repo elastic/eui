@@ -103,6 +103,14 @@
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
 
+## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
+
+**Note: this release is a backport containing changes original made in `3.6.1`**
+
+**Bug fixes**
+
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
+
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 
 **Note: this release is a backport containing changes original made in `3.4.0`**
