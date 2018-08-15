@@ -40,6 +40,7 @@ No public interface changes since `3.6.1`.
 - Added `string` to allowed `restrictWidth` prop type of `EuiPage` and `EuiPageBody` ([#1090](https://github.com/elastic/eui/pull/1090))
 - Added `.eui-textBreakNormal` and `@mixin euiTextTruncate` as CSS/SASS utilities ([#1092](https://github.com/elastic/eui/pull/1092))
 - Added `fullWidth` support to `EuiComboBox` ([#1095](https://github.com/elastic/eui/pull/1095))
+- Added `zIndexAdjustment` to `EuiPopover` which allows tweaking the popover content's `z-index` ([#1097](https://github.com/elastic/eui/pull/1097))
 
 **Bug fixes**
 

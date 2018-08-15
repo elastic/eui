@@ -260,7 +260,8 @@ export class EuiPopover extends Component {
     // the popover's z-index must inherit from the button
     // this keeps a button's popover under a flyout that would cover the button
     // but a popover triggered inside a flyout will appear over that flyout
-    const zIndex = getElementZIndex(this.button, this.panel);
+    const { zIndex: zIndexProp } = this.props;
+    const zIndex = zIndexProp == null ? getElementZIndex(this.button, this.panel) : zIndexProp;
 
     const popoverStyles = {
       top,
@@ -307,6 +308,8 @@ export class EuiPopover extends Component {
       panelClassName,
       panelPaddingSize,
       popoverRef,
+      repositionOnScroll, // eslint-disable-line no-unused-vars
+      zIndex, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -436,6 +439,8 @@ EuiPopover.propTypes = {
   ]),
   /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
+  /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
+  zIndex: PropTypes.number,
 };
 
 EuiPopover.defaultProps = {
