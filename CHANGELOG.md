@@ -2,6 +2,10 @@
 
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
 
+**Bug fixes**
+
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
+
 ## [`3.6.0`](https://github.com/elastic/eui/tree/v3.6.0)
 
 - Added `EuiCopy` ([#1112](https://github.com/elastic/eui/pull/1112))
