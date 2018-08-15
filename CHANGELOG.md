@@ -4,6 +4,10 @@ No public interface changes since `3.0.5`.
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
+No public interface changes since `3.0.5`.
+
+## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
+
 **Bug fixes**
 
 - Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
