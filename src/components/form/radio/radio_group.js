@@ -15,19 +15,28 @@ export const EuiRadioGroup = ({
 }) => (
   <div className={className} {...rest}>
     {options.map((option, index) => {
+      const {
+        id,
+        label,
+        value,
+        disabled: isOptionDisabled,
+        autoFocus,
+        ...optionRest
+      } = option;
       return (
         <EuiRadio
           className="euiRadioGroup__item"
           key={index}
-          id={option.id}
+          id={id}
           name={name}
-          checked={option.id === idSelected}
-          label={option.label}
-          value={option.value}
-          disabled={disabled || option.disabled}
-          onChange={onChange.bind(null, option.id, option.value)}
+          checked={id === idSelected}
+          label={label}
+          value={value}
+          disabled={disabled || isOptionDisabled}
+          onChange={onChange.bind(null, id, value)}
           compressed={compressed}
-          autoFocus={option.autofocus}
+          autoFocus={autoFocus}
+          {...optionRest}
         />
       );
     })}
