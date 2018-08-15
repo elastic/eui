@@ -20,7 +20,6 @@ export const EuiRadioGroup = ({
         label,
         value,
         disabled: isOptionDisabled,
-        autoFocus,
         ...optionRest
       } = option;
       return (
@@ -35,7 +34,6 @@ export const EuiRadioGroup = ({
           disabled={disabled || isOptionDisabled}
           onChange={onChange.bind(null, id, value)}
           compressed={compressed}
-          autoFocus={autoFocus}
           {...optionRest}
         />
       );
@@ -50,7 +48,6 @@ EuiRadioGroup.propTypes = {
       label: PropTypes.node,
       value: PropTypes.string,
       disabled: PropTypes.bool,
-      autoFocus: PropTypes.bool,
     }),
   ).isRequired,
   idSelected: PropTypes.string,
