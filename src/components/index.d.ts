@@ -28,3 +28,4 @@
 /// <reference path="./badge/index.d.ts" />
 /// <reference path="./toast/index.d.ts" />
 /// <reference path="./tool_tip/index.d.ts" />
+/// <reference path="./combo_box/index.d.ts" />
