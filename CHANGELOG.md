@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.6.1`.
+
+## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
+
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
 
 **Bug fixes**
