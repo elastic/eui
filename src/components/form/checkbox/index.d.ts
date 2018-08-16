@@ -18,6 +18,7 @@ declare module '@elastic/eui' {
     label?: ReactNode;
     type?: EuiCheckboxType;
     disabled?: boolean;
+    indeterminate?: boolean;
   }
 
   export const EuiCheckbox: SFC<

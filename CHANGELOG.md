@@ -1,6 +1,32 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.4.0`.
+- Added `zIndexAdjustment` to `EuiPopover` which allows tweaking the popover content's `z-index` ([#1097](https://github.com/elastic/eui/pull/1097))
+
+## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
+
+- Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
+
+**Bug fixes**
+
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
+
+## [`3.6.0`](https://github.com/elastic/eui/tree/v3.6.0)
+
+- Added `EuiCopy` ([#1112](https://github.com/elastic/eui/pull/1112))
+- Added `disabled` to `EuiRadioGroup.options` ([#1111](https://github.com/elastic/eui/pull/1111))
+
+**Bug fixes**
+
+- `EuiWrappingPopover` only re-attach anchor element on unmount if anchor element is still attached to DOM
+([#1114](https://github.com/elastic/eui/pull/1114))
+
+## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
+
+- Fixed a bug around `indeterminate` checkboxes ([#1110](https://github.com/elastic/eui/pull/1110))
+
+## [`3.5.0`](https://github.com/elastic/eui/tree/v3.5.0)
+
+- Added support for `indeterminate` to `EuiCheckbox` ([#1108](https://github.com/elastic/eui/pull/1108))
 
 ## [`3.4.0`](https://github.com/elastic/eui/tree/v3.4.0)
 
@@ -80,6 +106,14 @@ No public interface changes since `3.4.0`.
 **Bug fixes**
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
+
+## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
+
+**Note: this release is a backport containing changes original made in `3.6.1`**
+
+**Bug fixes**
+
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
 
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 

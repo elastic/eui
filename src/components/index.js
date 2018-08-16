@@ -66,6 +66,10 @@ export {
 } from './context_menu';
 
 export {
+  EuiCopy,
+} from './copy';
+
+export {
   EuiDatePicker,
   EuiDatePickerRange,
 } from './date_picker';

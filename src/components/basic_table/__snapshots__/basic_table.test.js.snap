@@ -757,6 +757,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -787,6 +788,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -817,6 +819,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -847,6 +850,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -914,6 +918,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -947,6 +952,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -977,6 +983,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1007,6 +1014,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1074,6 +1082,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -1114,6 +1123,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1172,6 +1182,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1230,6 +1241,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1325,6 +1337,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -1358,6 +1371,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1388,6 +1402,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1418,6 +1433,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1485,6 +1501,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -1518,6 +1535,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1548,6 +1566,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1578,6 +1597,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1645,6 +1665,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -1685,6 +1706,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1741,6 +1763,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1797,6 +1820,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1890,6 +1914,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             data-test-subj="checkboxSelectAll"
             disabled={false}
             id="_selection_column-checkbox"
+            indeterminate={false}
             onChange={[Function]}
             type="inList"
           />
@@ -1923,6 +1948,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 data-test-subj="checkboxSelectRow-1"
                 disabled={false}
                 id="_selection_column_1-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1953,6 +1979,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 data-test-subj="checkboxSelectRow-2"
                 disabled={false}
                 id="_selection_column_2-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />
@@ -1983,6 +2010,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
                 data-test-subj="checkboxSelectRow-3"
                 disabled={false}
                 id="_selection_column_3-checkbox"
+                indeterminate={false}
                 onChange={[Function]}
                 type="inList"
               />

@@ -46,6 +46,27 @@ export class EuiToolTip extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.visible === false && this.state.visible === true) {
+      requestAnimationFrame(this.testAnchor);
+    }
+  }
+
+  testAnchor = () => {
+    // when the tooltip is visible, this checks if the anchor is still part of document
+    // this fixes when the react root is removed from the dom without unmounting
+    // https://github.com/elastic/eui/issues/1105
+    if (document.contains(this.anchor) === false) {
+      // the anchor is no longer part of `document`
+      this.hideToolTip();
+    } else {
+      if (this.state.visible) {
+        // if still visible, keep checking
+        requestAnimationFrame(this.testAnchor);
+      }
+    }
+  }
+
   setPopoverRef = ref => {
     this.popover = ref;
 
@@ -116,6 +137,10 @@ export class EuiToolTip extends Component {
         this.hideToolTip();
       }
     }
+
+    if (this.props.onMouseOut) {
+      this.props.onMouseOut();
+    }
   };
 
   render() {
@@ -142,7 +167,7 @@ export class EuiToolTip extends Component {
     );
 
     let tooltip;
-    if (visible) {
+    if (visible && (content || title)) {
       tooltip = (
         <EuiPortal>
           <EuiToolTipPopover
@@ -201,7 +226,7 @@ EuiToolTip.propTypes = {
   /**
    * The main content of your tooltip.
    */
-  content: PropTypes.node.isRequired,
+  content: PropTypes.node,
 
   /**
    * An optional title for your tooltip.
