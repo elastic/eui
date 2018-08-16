@@ -17,22 +17,6 @@ describe('EuiSuperSelectControl', () => {
   });
 
   describe('props', () => {
-    test('options are rendered', () => {
-      const component = render(
-        <EuiSuperSelectControl
-          options={[
-            { value: '1', inputDisplay: 'Option #1' },
-            { value: '2', inputDisplay: 'Option #2' }
-          ]}
-          data-test-subj="selectbox"
-          className="customSelect"
-        />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
     test('fullWidth is rendered', () => {
       const component = render(
         <EuiSuperSelectControl fullWidth/>
