@@ -1,4 +1,5 @@
 /// <reference path="./common.d.ts" />
+/// <reference path="./avatar/index.d.ts" />
 /// <reference path="./button/index.d.ts" />
 /// <reference path="./context_menu/index.d.ts" />
 /// <reference path="./flex/index.d.ts" />
