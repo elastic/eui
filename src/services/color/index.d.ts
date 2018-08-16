@@ -7,7 +7,7 @@ declare module '@elastic/eui' {
   type rgbDef = [number, number, number];
 
   export const hexToRbg: (hex: string) => rgbDef;
-  export const rbgToHex: (rbg: string) => string;
+  export const rgbToHex: (rgb: string) => string;
 
   export const isColorDark: (red: number, green: number, blue: number) => boolean;
 
