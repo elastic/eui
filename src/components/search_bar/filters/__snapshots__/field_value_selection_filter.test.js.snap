@@ -17,6 +17,7 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
     </EuiFilterButton>
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
@@ -62,6 +63,7 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
     </EuiFilterButton>
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
@@ -107,6 +109,7 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
     </EuiFilterButton>
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}
@@ -152,6 +155,7 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
     </EuiFilterButton>
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="field_value_selection_0"
   isOpen={false}
   ownFocus={true}

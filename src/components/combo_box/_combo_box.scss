@@ -1,6 +1,7 @@
 .euiComboBox {
   @include euiFormControlSize(auto, $includeAlternates: true);
   position: relative;
+  z-index: $euiZComboBox + 1; // Ensures the dropdown's shadow is hidden behind the input on top
 
   /**
    * 1. Allow pills to truncate their text with an ellipsis.

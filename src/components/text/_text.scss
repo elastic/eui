@@ -224,7 +224,8 @@
     @include euiScaleText($euiFontSizeXS);
   }
 
-  > :last-child {
+  > :last-child,
+  .euiTextColor > :last-child {
     margin-bottom: 0 !important;
   }
 }

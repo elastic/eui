@@ -250,7 +250,7 @@ export class EuiPopover extends Component {
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: 16,
+      offset: this.props.hasArrow ? 16 : 8,
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
@@ -269,7 +269,7 @@ export class EuiPopover extends Component {
       zIndex,
     };
 
-    const arrowStyles = arrow;
+    const arrowStyles = this.props.hasArrow ? arrow : null;
     const arrowPosition = position;
 
     this.setState({ popoverStyles, arrowStyles, arrowPosition });
@@ -308,6 +308,7 @@ export class EuiPopover extends Component {
       panelClassName,
       panelPaddingSize,
       popoverRef,
+      hasArrow,
       repositionOnScroll, // eslint-disable-line no-unused-vars
       zIndex, // eslint-disable-line no-unused-vars
       ...rest
@@ -325,9 +326,10 @@ export class EuiPopover extends Component {
 
     const panelClasses = classNames(
       'euiPopover__panel',
-      `euiPopover__panel-${this.state.arrowPosition}`,
+      `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
+      { 'euiPopover__panel-noArrow': !hasArrow },
       panelClassName
     );
 
@@ -357,8 +359,8 @@ export class EuiPopover extends Component {
       }
 
       const arrowClassNames = classNames(
-        'euiPopover__panel__arrow',
-        `euiPopover__panel__arrow-${this.state.arrowPosition}`
+        'euiPopover__panelArrow',
+        `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
       panel = (
@@ -433,6 +435,7 @@ EuiPopover.propTypes = {
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,
+  hasArrow: PropTypes.bool,
   container: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.instanceOf(HTMLElement)
@@ -448,4 +451,5 @@ EuiPopover.defaultProps = {
   ownFocus: false,
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',
+  hasArrow: true,
 };
