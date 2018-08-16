@@ -6,6 +6,7 @@ export class SvgTextBBoxCalculator {
     const xmlns = 'http://www.w3.org/2000/svg';
     this.svgElem = document.createElementNS(xmlns, 'svg');
     this.textElem = document.createElementNS(xmlns, 'text');
+    this.textElem.setAttribute('class', 'euiSeriesChartAxis_tickLabel');
     this.svgElem.appendChild(this.textElem);
 
     this.attachedRoot = rootElement || document.documentElement;

@@ -110,14 +110,18 @@ export class ChartSpecStore {
     let sumHorizontal = 0;
     axisSpecs.forEach((spec) => {
       const { scale } = spec.dimensions;
+      let firstTickPosition;
       if (spec.orientation === 'vertical') {
         scale.range([height, 0]);
+        firstTickPosition = scale(scale.domain()[scale.domain().length - 1]);
       } else {
         scale.range([0, width]);
+        firstTickPosition = scale(scale.domain()[0]);
       }
       // remove ticks thats overlap
-      let previousOccupiedSpace = 0;
+      let previousOccupiedSpace = firstTickPosition;
       spec.ticks = [];
+      console.log(spec.dimensions.maxTickWidth)
       for(let i = 0; i < spec.dimensions.tickValues.length; i++) {
         const tickValue = spec.dimensions.tickValues[i];
         const tickPosition = scale(tickValue);
@@ -130,13 +134,21 @@ export class ChartSpecStore {
             position: tickPosition,
             label: spec.tickFormat(tickValue),
           });
-          previousOccupiedSpace = requiredSpace;
+          previousOccupiedSpace = firstTickPosition + requiredSpace;
         } else if ((relativeTickPosition - requiredSpace) >= previousOccupiedSpace) {
           spec.ticks.push({
             position: tickPosition,
             label: spec.tickFormat(tickValue),
           });
           previousOccupiedSpace = relativeTickPosition + requiredSpace;
+        } else {
+          // still add the tick but without a label
+          if (spec.showOverlappingTicks || spec.showOverlappingLabels) {
+            spec.ticks.push({
+              position: tickPosition,
+              label: spec.showOverlappingLabels ? spec.tickFormat(tickValue) : null,
+            });
+          }
         }
       }
 
