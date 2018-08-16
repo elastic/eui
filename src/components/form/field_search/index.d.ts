@@ -22,5 +22,5 @@ declare module '@elastic/eui' {
 
   export const EuiFieldSearch: SFC<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps
-    >;
+  >;
 }
