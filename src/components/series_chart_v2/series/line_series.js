@@ -1,27 +1,15 @@
 import React, { PureComponent } from 'react';
 // import { NodeGroup } from "react-move";
 // import { easeExpInOut } from "d3-ease";
-import { plotLineSeriesData } from '../state/utils';
 
 export class LineSeries extends PureComponent {
   renderLine = () => {
     const {
-      data,
-      xScale,
-      yScale,
-      xAccessor,
-      yAccessor
+      d,
     } = this.props;
-    const d = plotLineSeriesData(
-      data,
-      xScale,
-      yScale,
-      xAccessor,
-      yAccessor,
-    );
     return (
-      <g className="euiLineSeries">
-        <path d={d} fill="none" strokeWidth={1} stroke="black"/>
+      <g className="euiSeriesChartSeries_lineGroup">
+        <path className="euiSeriesChartSeries_line" d={d} fill="none" strokeWidth={1} stroke="black"/>
       </g>
     );
   };

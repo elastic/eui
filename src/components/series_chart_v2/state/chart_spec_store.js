@@ -2,6 +2,9 @@ import { computed, action, observable } from 'mobx';
 import { capitalize } from 'lodash';
 import { getDomain, mergeGlobalDomains, computeAxisDimensions, computeChartDimensions } from './utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
+import { computeLineSeriesDataPoint } from './line_series_utils';
+import { computePointSeriesDataPoint } from './point_series_utils';
+import { computeBarSeriesDataPoint } from './bar_series_utils';
 
 export class ChartSpecStore {
   specsInitialized = observable.box(false)
@@ -17,6 +20,10 @@ export class ChartSpecStore {
     width: null,
     height: null,
   })
+  chartDimensions = observable({
+    width: null,
+    height: null,
+  })
 
   updateParentChartSize = action((width, height) => {
     this.parentDimensions.width = width;
@@ -27,6 +34,7 @@ export class ChartSpecStore {
 
   groupDomains = observable.map()
   lineSeriesSpecs = observable.map()
+  pointSeriesSpecs = observable.map()
   areaSeriesSpecs = observable.map()
   barSeriesSpecs = observable.map()
   histogramSeriesSpecs = observable.map()
@@ -62,9 +70,13 @@ export class ChartSpecStore {
 
       this.groupDomains.set(groupId, seriesGroupDomain);
     }
+
     switch(spec.type) {
       case 'line':
         this.lineSeriesSpecs.set(id, config);
+        break;
+      case 'point':
+        this.pointSeriesSpecs.set(id, config);
         break;
       case 'area':
         this.areaSeriesSpecs.set(id, config);
@@ -96,6 +108,39 @@ export class ChartSpecStore {
       ...spec
     });
   })
+  updateLineSeriesDataPoints = action(() => {
+    this.lineSeriesSpecs.forEach(spec => {
+      const { id, groupId } = spec;
+      const currentDomain = this.groupDomains.get(groupId);
+      const dataPoints = computeLineSeriesDataPoint(spec, currentDomain, this.chartDimensions);
+      this.lineSeriesSpecs.set(id, {
+        ...spec,
+        ...dataPoints,
+      });
+    });
+  })
+  updatePointSeriesDataPoints = action(() => {
+    this.pointSeriesSpecs.forEach(spec => {
+      const { id, groupId } = spec;
+      const currentDomain = this.groupDomains.get(groupId);
+      const dataPoints = computePointSeriesDataPoint(spec, currentDomain, this.chartDimensions);
+      this.pointSeriesSpecs.set(id, {
+        ...spec,
+        ...dataPoints,
+      });
+    });
+  })
+  updateBarSeriesDataPoints = action(() => {
+    this.barSeriesSpecs.forEach(spec => {
+      const { id, groupId } = spec;
+      const currentDomain = this.groupDomains.get(groupId);
+      const dataPoints = computeBarSeriesDataPoint(spec, currentDomain, this.chartDimensions);
+      this.barSeriesSpecs.set(id, {
+        ...spec,
+        ...dataPoints,
+      });
+    });
+  })
 
   updateAxisDimension = (axisSpecs, bboxCalculator) => {
     axisSpecs.forEach((spec) => {
@@ -121,7 +166,7 @@ export class ChartSpecStore {
       // remove ticks thats overlap
       let previousOccupiedSpace = firstTickPosition;
       spec.ticks = [];
-      console.log(spec.dimensions.maxTickWidth)
+      console.log(spec.dimensions.maxTickWidth);
       for(let i = 0; i < spec.dimensions.tickValues.length; i++) {
         const tickValue = spec.dimensions.tickValues[i];
         const tickPosition = scale(tickValue);
@@ -204,6 +249,9 @@ export class ChartSpecStore {
     this.updateAxisTicksPositions(this.hTopAxisSpec);
     this.updateAxisTicksPositions(this.hBottomAxisSpec);
 
+    this.updateLineSeriesDataPoints();
+    this.updatePointSeriesDataPoints();
+    this.updateBarSeriesDataPoints();
 
     this.dataInitialized.set(true);
   })

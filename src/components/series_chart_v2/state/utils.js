@@ -1,6 +1,5 @@
 import { scaleLinear, scaleBand, scaleLog, scaleSqrt } from 'd3-scale';
 import { capitalize, sortedUniq, uniq } from 'lodash';
-import { line } from 'd3-shape';
 import { max, extent } from 'd3-array';
 
 const SCALES = {
@@ -55,13 +54,6 @@ export function plotPointSeriesData(data, xScale, yScale, xAccessor, yAccessor) 
       y: yScale(yAccessor(d)),
     };
   });
-}
-
-export function plotLineSeriesData(data, xScale, yScale, xAccessor, yAccessor) {
-  const lineGenerator = line()
-    .x(d => xScale(xAccessor(d)))
-    .y(d => yScale(yAccessor(d)));
-  return lineGenerator(data);
 }
 
 export function getScaleTicks(scaleType, domain) {

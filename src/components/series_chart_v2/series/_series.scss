@@ -1,0 +1,44 @@
+$euiColorVisList:
+  $euiColorVis1,
+  $euiColorVis0,
+  $euiColorVis2,
+  $euiColorVis3,
+  $euiColorVis4,
+  $euiColorVis5,
+  $euiColorVis6,
+  $euiColorVis7,
+  $euiColorVis8,
+  $euiColorVis9;
+
+.euiSeriesChartSeries_line {
+  stroke-width: 1px;
+}
+.euiSeriesChartSeries_point{
+  stroke-width: 0;
+  opacity: 0.7;
+}
+.euiSeriesChartSeries_bar {
+  opacity: 0.7;
+}
+
+@for $i from 1 through 10 {
+  .euiSeriesChartSeries_pointGroup:nth-child(10n + #{$i}) {
+    .euiSeriesChartSeries_point {
+      fill: nth($euiColorVisList, $i);
+    }
+  }
+}
+@for $i from 1 through 10 {
+  .euiSeriesChartSeries_lineGroup:nth-child(10n + #{$i}) {
+    .euiSeriesChartSeries_line {
+      stroke: nth($euiColorVisList, $i);
+    }
+  }
+}
+@for $i from 1 through 10 {
+  .euiSeriesChartSeries_barGroup:nth-child(10n + #{$i}) {
+    .euiSeriesChartSeries_bar {
+      fill: nth($euiColorVisList, $i);
+    }
+  }
+}
