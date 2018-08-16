@@ -31,7 +31,7 @@ class Sizer extends React.Component {
         ref={this.containerRef}
         style={{
           position: 'absolute',
-          background: 'red',
+          // background: 'red',
           bottom: 0,
           top: 0,
           left: 0,

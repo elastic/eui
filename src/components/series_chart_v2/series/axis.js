@@ -63,7 +63,6 @@ export class Axis extends PureComponent {
       dimensions,
     } = this.props;
 
-    // TODO remove in favour of css
     const props = {};
 
     if (orientation === 'vertical') {

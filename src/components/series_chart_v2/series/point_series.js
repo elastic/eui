@@ -34,25 +34,19 @@ export class PointSeries extends PureComponent {
   renderPoints = () => {
     const {
       // chartDimensions: { height },
-      data,
-      xScale,
-      yScale,
-      xAccessor,
-      yAccessor,
+      points,
     } = this.props;
     return (
-      <g className="euiPointSeries">
-        {data.map((d, i) => {
-          const x = xScale(xAccessor(d));
-          const y = yScale(yAccessor(d));
+      <g className="euiSeriesChartSeries_pointGroup">
+        {points.map((point, i) => {
+          const { x, y, r } = point;
           return (
             <circle
               key={i}
-              className="euiPointSeries_point"
+              className="euiSeriesChartSeries_point"
               cx={x}
               cy={y}
-              r={3}
-              fillOpacity={0.5}
+              r={r}
               onMouseEnter={this.onMouseEnter}
               onMouseLeave={this.onMouseLeave}
             />
