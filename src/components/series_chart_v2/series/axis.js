@@ -102,7 +102,8 @@ export class Axis extends PureComponent {
         </g>
         <g className="euiSeriesChartAxis_tickLabelsGroup">
           {
-            ticks.map(this.renderTickLabel)
+            ticks.filter(tick => tick.label !== null)
+              .map(this.renderTickLabel)
           }
         </g>
       </g>

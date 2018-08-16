@@ -1,4 +1,4 @@
-import { scaleLinear, scaleOrdinal, scaleLog, scaleSqrt } from 'd3-scale';
+import { scaleLinear, scaleBand, scaleLog, scaleSqrt } from 'd3-scale';
 import { capitalize, sortedUniq, uniq } from 'lodash';
 import { line } from 'd3-shape';
 import { max, extent } from 'd3-array';
@@ -7,10 +7,44 @@ const SCALES = {
   linear: scaleLinear,
   log: scaleLog,
   sqrt: scaleSqrt,
-  ordinal: scaleOrdinal,
+  ordinal: scaleBand,
 };
 
+function createOrdinalScale() {
+  return function () {
+    const _scale = scaleBand();
+    function scale(value) {
+      return _scale(value) + (_scale.bandwidth() / 2);
+    }
+    scale.domain = (domain) => {
+      if (domain) {
+        _scale.domain(domain);
+        return scale;
+      }
+      return _scale.domain();
+    };
+    scale.range = (range) => {
+      if (range) {
+        _scale.range(range);
+        return scale;
+      }
+      return _scale.range();
+    };
+    scale.ticks = () => {
+      return _scale.domain();
+    };
+    scale.bandwidth = () => {
+      return _scale.bandwidth();
+    };
+    return scale;
+  };
+}
+
 export function getScaleFromType(scaleType) {
+  if (scaleType === 'ordinal') {
+    const scale = createOrdinalScale()();
+    return scale;
+  }
   return SCALES[scaleType]();
 }
 
