@@ -39,24 +39,6 @@ describe('EuiSuperSelect', () => {
         .toMatchSnapshot();
     });
 
-    test('options are rendered when select is open', () => {
-      const component = mount(
-        <EuiSuperSelect
-          options={[
-            { value: '1', inputDisplay: 'Option #1' },
-            { value: '2', inputDisplay: 'Option #2' }
-          ]}
-          onChange={() => {}}
-          data-test-subj="superSelect"
-        />
-      );
-
-      component.find('button[data-test-subj="superSelect"]').simulate('click');
-
-      expect(takeMountedSnapshot(component))
-        .toMatchSnapshot();
-    });
-
     test('valueSelected is rendered', () => {
       const component = render(
         <EuiSuperSelect
