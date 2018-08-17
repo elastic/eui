@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { LineSeries } from '../series/line_series';
 import { PointSeries } from '../series/point_series';
 import { BarSeries } from '../series/bar_series';
+import { AreaSeries } from '../series/area_series';
 import { Axis } from '../series/axis';
 
 
@@ -78,6 +79,21 @@ class Chart extends React.Component {
     });
     return points;
   }
+  renderAreaSeries = () => {
+    const {
+      areaSeriesSpecs,
+    } = this.props.chartStore;
+    const points = [];
+    areaSeriesSpecs.forEach(spec => {
+      points.push((
+        <AreaSeries
+          key={`point-series:${spec.id}`}
+          d={spec.d}
+        />
+      ));
+    });
+    return points;
+  }
   render() {
     const { initialized } = this.props.chartStore;
     if (!initialized.get()) {
@@ -143,6 +159,11 @@ class Chart extends React.Component {
             <g className="euiSeriesChartSeries_barSeries">
               {
                 this.renderBarSeries()
+              }
+            </g>
+            <g className="euiSeriesChartSeries_areaSeries">
+              {
+                this.renderAreaSeries()
               }
             </g>
           </g>
