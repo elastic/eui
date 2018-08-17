@@ -9,7 +9,6 @@ export class Axis extends PureComponent {
       orientation,
       dimensions,
     } = this.props;
-    console.log(dimensions);
     const range = dimensions.scale.range();
     const props = {};
     if (orientation === 'vertical') {

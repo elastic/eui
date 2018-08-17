@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { inject } from 'mobx-react';
 
-class LineSeriesSpec extends React.PureComponent {
+class AreaSeriesSpec extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
@@ -24,15 +24,15 @@ class LineSeriesSpec extends React.PureComponent {
   };
   componentDidMount() {
     const { chartStore, ...config } = this.props;
-    chartStore.addSeriesSpec({ type: 'line', ...config });
+    chartStore.addSeriesSpec({ type: 'area', ...config });
   }
   componentDidUpdate() {
-    // this.updateLineSeriesStore();
+    // this.updateAreaSeriesStore();
   }
   componentWillUnmount() {
     // this.props.chartStore.removeSeries(id);
   }
-  updateLineSeriesStore = () => {
+  updateAreaSeriesStore = () => {
     // chartStore.updateSeries(id, { type: 'line', ...config });
   }
   render() {
@@ -40,4 +40,4 @@ class LineSeriesSpec extends React.PureComponent {
   }
 }
 
-export const LineSeries = inject('chartStore')(LineSeriesSpec);
+export const AreaSeries = inject('chartStore')(AreaSeriesSpec);

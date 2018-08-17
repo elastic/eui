@@ -5,6 +5,7 @@ import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 import { computeLineSeriesDataPoint } from './line_series_utils';
 import { computePointSeriesDataPoint } from './point_series_utils';
 import { computeBarSeriesDataPoint } from './bar_series_utils';
+import { computeAreaSeriesDataPoint } from './area_series_utils';
 
 export class ChartSpecStore {
   specsInitialized = observable.box(false)
@@ -119,6 +120,17 @@ export class ChartSpecStore {
       });
     });
   })
+  updateAreaSeriesDataPoints = action(() => {
+    this.areaSeriesSpecs.forEach(spec => {
+      const { id, groupId } = spec;
+      const currentDomain = this.groupDomains.get(groupId);
+      const dataPoints = computeAreaSeriesDataPoint(spec, currentDomain, this.chartDimensions);
+      this.areaSeriesSpecs.set(id, {
+        ...spec,
+        ...dataPoints,
+      });
+    });
+  })
   updatePointSeriesDataPoints = action(() => {
     this.pointSeriesSpecs.forEach(spec => {
       const { id, groupId } = spec;
@@ -166,7 +178,6 @@ export class ChartSpecStore {
       // remove ticks thats overlap
       let previousOccupiedSpace = firstTickPosition;
       spec.ticks = [];
-      console.log(spec.dimensions.maxTickWidth);
       for(let i = 0; i < spec.dimensions.tickValues.length; i++) {
         const tickValue = spec.dimensions.tickValues[i];
         const tickPosition = scale(tickValue);
@@ -252,6 +263,7 @@ export class ChartSpecStore {
     this.updateLineSeriesDataPoints();
     this.updatePointSeriesDataPoints();
     this.updateBarSeriesDataPoints();
+    this.updateAreaSeriesDataPoints();
 
     this.dataInitialized.set(true);
   })

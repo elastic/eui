@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 
 export class BarSeries extends PureComponent {
   renderBars = () => {
-    const {
-      bars,
-    } = this.props;
+    const { bars } = this.props;
     return (
       <g className="euiSeriesChartSeries_barGroup">
         {
