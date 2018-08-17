@@ -53,7 +53,7 @@ export class FlyoutMaxWidth extends Component {
         <EuiFlyout
           onClose={this.closeFlyout}
           aria-labelledby="flyoutMaxWidthTitle"
-          maxWidth="448px"
+          maxWidth={448}
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
