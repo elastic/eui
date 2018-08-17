@@ -150,8 +150,8 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>maxWidth</EuiCode> to <EuiCode>33vw</EuiCode>, to
-          set the width of the flyout at 33% the width of the viewport.
+          In this example, we set <EuiCode>maxWidth</EuiCode> to <EuiCode>448px</EuiCode>, to
+          set the width of the flyout at the ideal width for a form.
         </p>
       ),
       demo: <FlyoutMaxWidth />,
