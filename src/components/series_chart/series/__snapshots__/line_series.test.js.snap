@@ -35,7 +35,9 @@ exports[`EuiLineSeries all props are rendered 1`] = `
       yPadding={0}
       yType="linear"
     >
-      <div>
+      <div
+        className="euiSeriesChartContainer"
+      >
         <XYPlot
           animation={true}
           className=""

@@ -128,7 +128,10 @@ class XYChart extends PureComponent {
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
     const seriesNames = this._getSeriesNames(children);
     return (
-      <div {...rest}>
+      <div
+        className="euiSeriesChartContainer"
+        {...rest}
+      >
         <XYPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty
