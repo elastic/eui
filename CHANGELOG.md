@@ -5,7 +5,7 @@
 
 **Bug fixes**
 
-- `EuiFlyout` responsive mode now gracefully overrides a custom `maxWidth` ([]()
+- `EuiFlyout` responsive mode now gracefully overrides a custom `maxWidth` ([#1124](https://github.com/elastic/eui/pull/1124)
 
 ## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
 
