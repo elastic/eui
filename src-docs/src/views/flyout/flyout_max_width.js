@@ -12,7 +12,7 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
-export class Flyout extends Component {
+export class FlyoutMaxWidth extends Component {
   constructor(props) {
     super(props);
 
@@ -58,12 +58,13 @@ export class Flyout extends Component {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
-          aria-labelledby="flyoutTitle"
+          aria-labelledby="flyoutMaxWidthTitle"
+          maxWidth="33vw"
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutTitle">
-                A typical flyout
+              <h2 id="flyoutMaxWidthTitle">
+                33% wide flyout
               </h2>
             </EuiTitle>
           </EuiFlyoutHeader>
@@ -85,7 +86,7 @@ export class Flyout extends Component {
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
-          Show flyout
+          Show max-width flyout
         </EuiButton>
 
         {flyout}

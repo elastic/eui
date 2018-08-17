@@ -159,9 +159,9 @@ export class FlyoutComplicated extends Component {
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h1 id="flyoutComplicatedTitle">
+              <h2 id="flyoutComplicatedTitle">
                 Flyout header
-              </h1>
+              </h2>
             </EuiTitle>
             <EuiSpacer size="s" />
             <EuiText color="subdued">
@@ -212,7 +212,7 @@ export class FlyoutComplicated extends Component {
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
-          Show Flyout
+          Show flyout
         </EuiButton>
 
         {flyout}
