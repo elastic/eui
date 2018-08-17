@@ -68,7 +68,7 @@ class App extends Component {
     }).isRequired,
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.registerRouter();
   }
 
@@ -170,7 +170,7 @@ class App extends Component {
     }).isRequired
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.registerRouter();
   }
 
