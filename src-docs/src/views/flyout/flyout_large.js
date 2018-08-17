@@ -4,15 +4,14 @@ import React, {
 
 import {
   EuiFlyout,
-  EuiFlyoutBody,
   EuiFlyoutHeader,
+  EuiFlyoutBody,
   EuiButton,
   EuiText,
   EuiTitle,
-  EuiCodeBlock,
 } from '../../../../src/components';
 
-export class Flyout extends Component {
+export class FlyoutLarge extends Component {
   constructor(props) {
     super(props);
 
@@ -40,52 +39,36 @@ export class Flyout extends Component {
   }
 
   render() {
+
     let flyout;
-
-    const htmlCode = `<EuiFlyout ...>
-  <EuiFlyoutHeader hasBorder>
-    <EuiTitle size="m">
-      <h2></h2>
-    </EuiTitle>
-  </EuiFlyoutHeader>
-  <EuiFlyoutBody>
-    ...
-  </EuiFlyoutBody>
-</EuiFlyout>
-`;
-
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
-          aria-labelledby="flyoutTitle"
+          size="l"
+          aria-labelledby="flyoutLargeTitle"
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutTitle">
-                A typical flyout
+              <h2 id="flyoutLargeTitle">
+                A large flyout
               </h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>
-                For consistency across the many flyouts, please utilize the following code for
-                implementing the flyout with a header.
+                The large flyout is very wide.
               </p>
             </EuiText>
-            <EuiCodeBlock language="html">
-              {htmlCode}
-            </EuiCodeBlock>
           </EuiFlyoutBody>
         </EuiFlyout>
       );
     }
-
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
-          Show flyout
+          Show large flyout
         </EuiButton>
 
         {flyout}

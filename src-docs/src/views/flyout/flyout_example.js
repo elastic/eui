@@ -14,9 +14,17 @@ import { FlyoutComplicated } from './flyout_complicated';
 const flyoutComplicatedSource = require('!!raw-loader!./flyout_complicated');
 const flyoutComplicatedHtml = renderToHtml(FlyoutComplicated);
 
-import { FlyoutSize } from './flyout_size';
-const flyoutSizeSource = require('!!raw-loader!./flyout_size');
-const flyoutSizeHtml = renderToHtml(FlyoutSize);
+import { FlyoutSmall } from './flyout_small';
+const flyoutSmallSource = require('!!raw-loader!./flyout_small');
+const flyoutSmallHtml = renderToHtml(FlyoutSmall);
+
+import { FlyoutLarge } from './flyout_large';
+const flyoutLargeSource = require('!!raw-loader!./flyout_large');
+const flyoutLargeHtml = renderToHtml(FlyoutLarge);
+
+import { FlyoutMaxWidth } from './flyout_max_width';
+const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
+const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
 export const FlyoutExample = {
   title: 'Flyout',
@@ -89,15 +97,15 @@ export const FlyoutExample = {
       demo: <FlyoutComplicated />,
     },
     {
-      title: 'Flyout sizing and focus',
+      title: 'Small flyout, ownFocus',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: flyoutSizeSource,
+          code: flyoutSmallSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: flyoutSizeHtml,
+          code: flyoutSmallHtml,
         },
       ],
       text: (
@@ -107,7 +115,46 @@ export const FlyoutExample = {
           also adds background overlay to reinforce your boundries.
         </p>
       ),
-      demo: <FlyoutSize />,
+      demo: <FlyoutSmall />,
+    },
+    {
+      title: 'Large flyout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutLargeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutLargeHtml,
+        },
+      ],
+      text: (
+        <p>
+          In this example, we set <EuiCode>size</EuiCode> to <EuiCode>l</EuiCode>.
+        </p>
+      ),
+      demo: <FlyoutLarge />,
+    },
+    {
+      title: 'maxWidth',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutMaxWidthSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flyoutMaxWidthHtml,
+        },
+      ],
+      text: (
+        <p>
+          In this example, we set <EuiCode>maxWidth</EuiCode> to <EuiCode>448px</EuiCode>, to
+          set the width of the flyout at the ideal width for a form.
+        </p>
+      ),
+      demo: <FlyoutMaxWidth />,
     },
   ],
 };
