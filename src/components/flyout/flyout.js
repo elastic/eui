@@ -72,7 +72,6 @@ export class EuiFlyout extends Component {
         }}
         className={classes}
         tabIndex={0}
-        onKeyDown={this.onKeyDown}
         style={newStyle || style}
         {...rest}
       >
