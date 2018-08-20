@@ -16,9 +16,8 @@ const source = require('!!raw-loader!./window_event');
 const html = renderToHtml(WindowEvent);
 
 export const WindowEventExample = {
-  title: 'Window Event',
+  title: 'Window Events',
   sections: [{
-    title: 'Window Event',
     source: [{
       type: GuideSectionTypes.JS,
       code: source,
@@ -27,9 +26,16 @@ export const WindowEventExample = {
       code: html,
     }],
     text: (
-      <p>
-        Use an <EuiCode>EuiWindowEvent</EuiCode> to safely manage adding and auto-removing event listeners to <EuiCode>window</EuiCode>.
-      </p>
+      <div>
+        <p>
+          Use an <EuiCode>EuiWindowEvent</EuiCode> to safely and declaratively manage adding and auto-removing
+          event listeners to the <EuiCode>window</EuiCode>.
+        </p>
+        <p>
+          This is preferable to setting up your own window event listeners because it will remove old
+          events when your component unmounts, preventing you from accidentally leaving them around forever.
+        </p>
+      </div>
     ),
     components: { EuiWindowEvent },
     demo: <WindowEvent />,
