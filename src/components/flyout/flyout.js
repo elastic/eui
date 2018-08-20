@@ -7,6 +7,7 @@ import { keyCodes } from '../../services';
 
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
+import { EuiWindowEvent } from '../window_event';
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
@@ -20,7 +21,6 @@ export class EuiFlyout extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
-      event.stopPropagation();
       this.props.onClose();
     }
   };
@@ -90,6 +90,7 @@ export class EuiFlyout extends Component {
 
     return (
       <span>
+        <EuiWindowEvent event="keydown" handler={this.onKeyDown} />
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
