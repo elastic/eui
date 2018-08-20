@@ -193,6 +193,59 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
 </nav>
 `;
 
+exports[`EuiBreadcrumbs props mutiple popover is rendered 1`] = `
+<nav
+  aria-label="breadcrumb"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+>
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
+    type="button"
+  >
+    Animals
+  </button>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <div
+    aria-label="aria-label"
+    class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button />
+    </div>
+  </div>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Boa constrictor"
+    type="button"
+  >
+    Boa constrictor
+  </button>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <div
+    aria-label="aria-label"
+    class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button />
+    </div>
+  </div>
+</nav>
+`;
+
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 <nav
   aria-label="breadcrumb"
