@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
 import {
-  EuiWindowEvent,
   EuiIcon,
   EuiButton,
   EuiSpacer,
 } from '../../../../src/components';
+
+import {
+  EuiWindowEvent,
+} from '../../../../src/services';
 
 export class WindowEvent extends Component {
   constructor(props) {

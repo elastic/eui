@@ -67,3 +67,7 @@ export {
   calculatePopoverPosition,
   findPopoverPosition,
 } from './popover';
+
+export {
+  EuiWindowEvent
+} from './window_event';

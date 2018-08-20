@@ -321,10 +321,6 @@ export {
 } from './tool_tip';
 
 export {
-  EuiWindowEvent
-} from './window_event';
-
-export {
   EuiHideFor,
   EuiShowFor,
 } from './responsive';

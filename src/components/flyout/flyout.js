@@ -3,11 +3,10 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
 
-import { keyCodes } from '../../services';
+import { keyCodes, EuiWindowEvent } from '../../services';
 
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
-import { EuiWindowEvent } from '../window_event';
 
 const sizeToClassNameMap = {
   s: 'euiFlyout--small',
