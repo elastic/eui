@@ -7,8 +7,11 @@ import {
 } from '../../components';
 
 import {
+  EuiWindowEvent
+} from '../../../../src/services';
+
+import {
   EuiCode,
-  EuiWindowEvent,
 } from '../../../../src/components';
 
 import { WindowEvent } from './window_event';
@@ -28,12 +31,13 @@ export const WindowEventExample = {
     text: (
       <div>
         <p>
-          Use an <EuiCode>EuiWindowEvent</EuiCode> to safely and declaratively manage adding and auto-removing
-          event listeners to the <EuiCode>window</EuiCode>.
+          Use an <EuiCode>EuiWindowEvent</EuiCode> to safely and declaratively manage adding and auto-removing event listeners
+          to the <EuiCode>window</EuiCode>. This is preferable to setting up your own window event listeners because it will remove
+          old listeners when your component unmounts, preventing you from accidentally leaving them around forever.
         </p>
         <p>
-          This is preferable to setting up your own window event listeners because it will remove old
-          events when your component unmounts, preventing you from accidentally leaving them around forever.
+          To add a window event listener, render this component with two props: the DOM event name (e.g. click, keydown)
+          and a handler function that will be called when the event is triggered on the window element.
         </p>
       </div>
     ),
