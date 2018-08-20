@@ -6,7 +6,7 @@ exports[`EuiDefaultAxis render default axis 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="testClass1 testClass2"
+    class="testClass1 testClass2 euiSeriesChartContainer"
     data-test-subj="test subject string"
   >
     <div
@@ -464,7 +464,7 @@ exports[`EuiDefaultAxis render rotated 90deg default axis 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="testClass1 testClass2"
+    class="testClass1 testClass2 euiSeriesChartContainer"
     data-test-subj="test subject string"
   >
     <div
