@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
+import classNames from 'classnames';
 import { XYPlot, AbstractSeries  } from 'react-vis';
 import { makeFlexible } from './utils/flexible';
 import PropTypes from 'prop-types';
@@ -108,6 +109,7 @@ class XYChart extends PureComponent {
       orientation,
       crosshairValue,
       onCrosshairUpdate,
+      className,
       ...rest
     } = this.props;
 
@@ -127,8 +129,12 @@ class XYChart extends PureComponent {
 
     const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
     const seriesNames = this._getSeriesNames(children);
+    const classes = classNames(className, 'euiSeriesChartContainer');
     return (
-      <div {...rest}>
+      <div
+        className={classes}
+        {...rest}
+      >
         <XYPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty

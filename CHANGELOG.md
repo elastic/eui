@@ -25,6 +25,8 @@
 - `EuiWrappingPopover` only re-attach anchor element on unmount if anchor element is still attached to DOM
 ([#1114](https://github.com/elastic/eui/pull/1114))
 
+- Fixed `EuiSeriesChart` overrides `react-vis` classes.([#1123](https://github.com/elastic/eui/pull/1123))
+
 ## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
 
 - Fixed a bug around `indeterminate` checkboxes ([#1110](https://github.com/elastic/eui/pull/1110))

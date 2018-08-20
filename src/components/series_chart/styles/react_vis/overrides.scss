@@ -1,3 +1,8 @@
+.rv-xy-plot {
+  width: 100% !important;  // this because react-vis fix the width of the container in px
+  height: 100% !important; // avoid a correct computation of the component size
+}
+
 // NOTE: the current implementation of react-vis doesn't supports
 // adding classes to grid lines but only a style prop is supported.
 // We can overwrite here the original react-vis class or overwrite
