@@ -1029,6 +1029,56 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
 />
 `;
 
+exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": false,
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  pagination={
+    Object {
+      "disablePerPageOptions": true,
+      "pageIndex": 0,
+      "pageSize": 10,
+      "pageSizeOptions": Array [
+        10,
+        25,
+        50,
+      ],
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+/>
+`;
+
 exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
