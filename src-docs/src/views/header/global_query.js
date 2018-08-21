@@ -16,6 +16,7 @@ import {
   EuiFormRow,
   EuiComboBox,
   EuiButton,
+  EuiLink,
 } from '../../../../src/components';
 
 const fieldOptions = [
@@ -179,7 +180,8 @@ export default class extends Component {
     });
   };
 
-  onSearchChange = () => {
+  // eslint-disable-next-line no-unused-vars
+  onSearchChange = searchValue => {
     // let options = this.state.comboBoxOptions;
     // this.setState({
     //   isComboBoxLoading: true,
@@ -245,7 +247,7 @@ export default class extends Component {
                 grow={false}
                 style={{ background: 'aquamarine', padding: 4 }}
               >
-                <EuiFlexGroup justifyContent="flexStart" gutterSize="xs">
+                <EuiFlexGroup justifyContent="flexStart" gutterSize="xs" wrap={true}>
                   <EuiFlexItem grow={false}>
                     <EuiToolTip content="Unpin all">
                       <EuiButtonIcon style={{ margin: '-2px 0' }} color="text" iconType="pin" />
@@ -446,9 +448,7 @@ export default class extends Component {
       <EuiFlexGroup alignItems="baseline">
         <EuiFlexItem>Field, Operator, Value(s)</EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <EuiButtonEmpty size="xs" flush="right">
-            Edit as Query DSL
-          </EuiButtonEmpty>
+          <EuiLink>Edit as Query DSL</EuiLink>
         </EuiFlexItem>
       </EuiFlexGroup>
     );
