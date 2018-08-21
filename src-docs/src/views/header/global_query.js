@@ -8,7 +8,24 @@ import {
   EuiBadge,
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiPopover,
+  EuiContextMenu,
 } from '../../../../src/components';
+
+function flattenPanelTree(tree, array = []) {
+  array.push(tree);
+
+  if (tree.items) {
+    tree.items.forEach(item => {
+      if (item.panel) {
+        flattenPanelTree(item.panel, array);
+        item.panel = item.panel.id;
+      }
+    });
+  }
+
+  return array;
+}
 
 export default class extends Component {
   constructor(props) {
@@ -16,8 +33,39 @@ export default class extends Component {
 
     this.state = {
       isFiltersVisible: true,
-      filters: [1, 2, 3, 4, 5, 6],
+      filters: [
+        {
+          id: 'filter0',
+          field: '@tags.keyword',
+          value: 'value',
+          disabled: false,
+          pinned: true,
+          excluded: false,
+        }, {
+          id: 'filter1',
+          field: '@tags.keyword',
+          value: 'value',
+          disabled: true,
+          pinned: false,
+          excluded: false,
+        }, {
+          id: 'filter2',
+          field: '@tags.keyword',
+          value: 'value',
+          disabled: false,
+          pinned: true,
+          excluded: true,
+        }, {
+          id: 'filter3',
+          field: '@tags.keyword',
+          value: 'value',
+          disabled: false,
+          pinned: false,
+          excluded: false,
+        },
+      ],
       query: '',
+      idOfOpenPopover: null,
     };
   }
 
@@ -33,6 +81,16 @@ export default class extends Component {
     });
   };
 
+  togglePopover = (id) => {
+    this.setState(prevState => ({
+      idOfOpenPopover: prevState.idOfOpenPopover === null || prevState.idOfOpenPopover !== id  ? id : null
+    }));
+  }
+
+  closePopover = () => {
+    //this.setState({ idOfOpenPopover: null });
+  }
+
   render() {
     const filterTriggerButton = (
       <EuiFilterButton
@@ -45,6 +103,9 @@ export default class extends Component {
       </EuiFilterButton>
     );
 
+    const pinnedFilters = this.state.filters.filter(filter => filter.pinned);
+    const unpinnedFilters = this.state.filters.filter(filter => !filter.pinned);
+
     return (
       <React.Fragment>
         <EuiFieldText
@@ -55,21 +116,114 @@ export default class extends Component {
           fullWidth
           icon="console"
         />
-        {this.state.isFiltersVisible && <GlobalFilterGroup filters={this.state.filters} />}
+        {this.state.isFiltersVisible &&
+          <GlobalFilterGroup>
+            {pinnedFilters.length && // Show pinned filters first and in a specific group
+              <EuiFlexItem title="This group is pinned" grow={false} style={{ background: 'aquamarine', padding: 4 }}>
+                <EuiFlexGroup justifyContent="flexStart" gutterSize="xs">
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon style={{ margin: '-3px 0' }} color="text" iconType="pin" />
+                  </EuiFlexItem>
+
+                  {this.renderFilterItems(pinnedFilters)}
+
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            }
+            {this.renderFilterItems(unpinnedFilters)}
+          </GlobalFilterGroup>
+        }
       </React.Fragment>
+    );
+  }
+
+  /**
+   * Rendering of items
+   */
+
+  renderFilterItems = (filters) => {
+    return filters.map((filter, index) => {
+      let icon;
+      let badgeColor = 'hollow';
+
+      if (filter.disabled) {
+        icon = 'eyeClosed';
+        badgeColor = 'default';
+      } else if (filter.excluded) {
+        icon = 'minusInCircle';
+        badgeColor = 'danger';
+      }
+
+      const badge = (
+        <EuiBadge iconType={icon} color={badgeColor} onClick={() => this.togglePopover(filter.id)}>
+          <span>{filter.field}: </span>
+          <span>&quot;{filter.value}&quot;</span>
+        </EuiBadge>
+      );
+
+      return (
+        <EuiFlexItem key={index} grow={false}>
+          {this._createFilterContextMenu(filter, index, badge)}
+        </EuiFlexItem>
+      );
+    });
+  }
+
+  _createFilterContextMenu = (filter, index, button) => {
+    const panelTree = {
+      id: 0,
+      items: [{
+        name: `${filter.disabled ? 'Enable' : 'Disable'}`,
+        icon: `${filter.disabled ? 'eye' : 'eyeClosed'}`,
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: `${filter.pinned ? 'Unpin' : 'Pin'}`,
+        icon: 'pin',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: `${filter.excluded ? 'Include' : 'Exclude'}`,
+        icon: `${filter.excluded ? 'plusInCircle' : 'minusInCircle'}`,
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Remove',
+        icon: 'trash',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Edit',
+        icon: 'pencil',
+        panel: {
+          id: 1,
+          content: (
+            <div style={{ padding: 16 }}>
+              Form here
+            </div>
+          ),
+        },
+      }],
+    };
+
+    const panels = flattenPanelTree(panelTree);
+
+    return (
+      <EuiPopover
+        key={index}
+        id={filter.id}
+        isOpen={this.state.idOfOpenPopover === filter.id}
+        closePopover={this.closePopover}
+        button={button}
+        anchorPosition="downCenter"
+        panelPaddingSize="none"
+      >
+        <EuiContextMenu
+          initialPanelId={0}
+          panels={panels}
+        />
+      </EuiPopover>
     );
   }
 }
 
-function GlobalFilterGroup({ filters }) {
-  const filterItems = filters.map((filter, index) => {
-    return (
-      <EuiFlexItem key={index} grow={false}>
-        <EuiBadge color="hollow">@tags.keyword: &quot;late&quot;</EuiBadge>
-      </EuiFlexItem>
-    );
-  });
-
+function GlobalFilterGroup({ children }) {
   return (
     <EuiFlexGroup gutterSize="none" alignItems="flexStart">
       <EuiFlexItem grow={false}>
@@ -89,21 +243,7 @@ function GlobalFilterGroup({ filters }) {
           style={{ marginTop: 8 }}
         >
 
-          <EuiFlexItem title="This group is pinned" grow={false} style={{ background: 'aquamarine', padding: 4 }}>
-            <EuiFlexGroup justifyContent="flexStart" gutterSize="xs">
-              <EuiFlexItem grow={false}>
-                <EuiButtonIcon style={{ margin: '-3px 0' }} color="text" iconType="pin" />
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiBadge color="hollow">@tags.keyword: &quot;late&quot;</EuiBadge>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiBadge color="hollow">@tags.keyword: &quot;late&quot;</EuiBadge>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiFlexItem>
-
-          {filterItems}
+          {children}
 
           <EuiFlexItem>
             <EuiFlexGroup justifyContent="spaceBetween" gutterSize="xs">
