@@ -94,10 +94,11 @@ const getInitialPagination = (pagination) => {
   const {
     initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
+    disablePerPageOptions
   } = pagination;
 
 
-  if (initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
+  if (!disablePerPageOptions && initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
     throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
   }
 
@@ -107,6 +108,7 @@ const getInitialPagination = (pagination) => {
     pageIndex: 0,
     pageSize: initialPageSize || defaultPageSize,
     pageSizeOptions,
+    disablePerPageOptions
   };
 };
 
@@ -156,7 +158,7 @@ export class EuiInMemoryTable extends Component {
     super(props);
 
     const { search, pagination, sorting } = props;
-    const { pageIndex, pageSize, pageSizeOptions } = getInitialPagination(pagination);
+    const { pageIndex, pageSize, pageSizeOptions, disablePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
@@ -169,6 +171,7 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
+      disablePerPageOptions
     };
   }
 
@@ -325,6 +328,7 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
+      disablePerPageOptions
     } = this.state;
 
     const { items, totalItemCount } = this.getItems();
@@ -334,6 +338,7 @@ export class EuiInMemoryTable extends Component {
       pageSize,
       pageSizeOptions,
       totalItemCount,
+      disablePerPageOptions
     };
 
     // Data loaded from a server can have a default sort order which is meaningful to the
@@ -385,7 +390,7 @@ export class EuiInMemoryTable extends Component {
     return (
       <div>
         {searchBar}
-        <EuiSpacer size="l"/>
+        <EuiSpacer size="l" />
         {table}
       </div>
     );

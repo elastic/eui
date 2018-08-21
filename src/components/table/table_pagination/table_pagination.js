@@ -35,6 +35,7 @@ export class EuiTablePagination extends Component {
       activePage,
       itemsPerPage,
       itemsPerPageOptions,
+      disablePerPageOptions,
       onChangeItemsPerPage,
       onChangePage,
       pageCount,
@@ -62,22 +63,26 @@ export class EuiTablePagination extends Component {
       </EuiContextMenuItem>
     ));
 
+    const itemsPerPagePopover = (
+      <EuiPopover
+        id="customizablePagination"
+        button={button}
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        panelPaddingSize="none"
+        withTitle
+        anchorPosition="upRight"
+      >
+        <EuiContextMenuPanel
+          items={items}
+        />
+      </EuiPopover>
+    );
+
     return (
       <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
-          <EuiPopover
-            id="customizablePagination"
-            button={button}
-            isOpen={this.state.isPopoverOpen}
-            closePopover={this.closePopover}
-            panelPaddingSize="none"
-            withTitle
-            anchorPosition="upRight"
-          >
-            <EuiContextMenuPanel
-              items={items}
-            />
-          </EuiPopover>
+          {disablePerPageOptions ? null : itemsPerPagePopover}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
@@ -104,4 +109,5 @@ EuiTablePagination.propTypes = {
 EuiTablePagination.defaultProps = {
   itemsPerPage: 50,
   itemsPerPageOptions: [10, 20, 50, 100],
+  disablePerPageOptions: false
 };

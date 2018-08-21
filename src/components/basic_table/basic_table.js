@@ -56,7 +56,7 @@ const dataTypesProfiles = {
 const DATA_TYPES = Object.keys(dataTypesProfiles);
 
 const DefaultItemActionType = PropTypes.shape({
-  type: PropTypes.oneOf([ 'icon', 'button' ]), // default is 'button'
+  type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired, // (item) => void,
@@ -362,7 +362,7 @@ export class EuiBasicTable extends Component {
     }
 
     columns.forEach((column, index) => {
-      if(!column.sortable || column.hideForMobile) {
+      if (!column.sortable || column.hideForMobile) {
         return;
       }
 
@@ -497,6 +497,7 @@ export class EuiBasicTable extends Component {
     if (items.length === 0) {
       return this.renderEmptyBody();
     }
+
     const rows = items.map((item, index) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
       const tableItemIndex = this.props.pagination ?
@@ -516,7 +517,7 @@ export class EuiBasicTable extends Component {
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell align="center" colSpan={colSpan} isMobileFullWidth={true}>
-            <EuiIcon type="minusInCircle" color="danger"/> {error}
+            <EuiIcon type="minusInCircle" color="danger" /> {error}
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
