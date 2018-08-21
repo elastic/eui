@@ -16,6 +16,7 @@ import {
   EuiCode,
   EuiHeaderLinks,
   EuiHeaderLink,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Header from './header';
@@ -25,6 +26,10 @@ const headerHtml = renderToHtml(Header);
 import HeaderLinks from './header_links';
 const headerLinksSource = require('!!raw-loader!./header_links');
 const headerLinksHtml = renderToHtml(HeaderLinks);
+
+import GlobalQuery from './global_query';
+const globalQuerySource = require('!!raw-loader!./global_query');
+const globalQueryHtml = renderToHtml(GlobalQuery);
 
 export const HeaderExample = {
   title: 'Header',
@@ -70,5 +75,26 @@ export const HeaderExample = {
       EuiHeaderLink
     },
     demo: <HeaderLinks />,
+  }, {
+    title: 'Global query and filters',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: globalQuerySource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: globalQueryHtml,
+    }],
+    text: (
+      <div>
+        <EuiCallOut color="warning" title="Demo of visual pattern only">
+          <p>
+            This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
+            global query and filter bars. It uses all EUI components without any custom styles.
+          </p>
+        </EuiCallOut>
+      </div>
+    ),
+    // props: { },
+    demo: <GlobalQuery />,
   }],
 };

@@ -6,3 +6,13 @@
 .euiForm__errors {
   margin-bottom: $euiSize;
 }
+
+.euiGenericFormStyle {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  min-height: $euiFormControlHeight;
+  margin: 0;
+}
