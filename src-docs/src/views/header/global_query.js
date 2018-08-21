@@ -10,6 +10,8 @@ import {
   EuiButtonIcon,
   EuiPopover,
   EuiContextMenu,
+  EuiToolTip,
+  EuiPopoverTitle,
 } from '../../../../src/components';
 
 function flattenPanelTree(tree, array = []) {
@@ -117,12 +119,14 @@ export default class extends Component {
           icon="console"
         />
         {this.state.isFiltersVisible &&
-          <GlobalFilterGroup>
+          <GlobalFilterGroup allFiltersButton={this._createFilterBarContextMenu()}>
             {pinnedFilters.length && // Show pinned filters first and in a specific group
               <EuiFlexItem title="This group is pinned" grow={false} style={{ background: 'aquamarine', padding: 4 }}>
                 <EuiFlexGroup justifyContent="flexStart" gutterSize="xs">
                   <EuiFlexItem grow={false}>
-                    <EuiButtonIcon style={{ margin: '-3px 0' }} color="text" iconType="pin" />
+                    <EuiToolTip content="Unpin all">
+                      <EuiButtonIcon style={{ margin: '-2px 0' }} color="text" iconType="pin" />
+                    </EuiToolTip>
                   </EuiFlexItem>
 
                   {this.renderFilterItems(pinnedFilters)}
@@ -145,17 +149,20 @@ export default class extends Component {
     return filters.map((filter, index) => {
       let icon;
       let badgeColor = 'hollow';
+      const style = {};
 
       if (filter.disabled) {
         icon = 'eyeClosed';
         badgeColor = 'default';
+        style.fontStyle = 'italic';
+        style.fontWeight = '400';
       } else if (filter.excluded) {
         icon = 'minusInCircle';
-        badgeColor = 'danger';
+        style.textDecoration = 'line-through';
       }
 
       const badge = (
-        <EuiBadge iconType={icon} color={badgeColor} onClick={() => this.togglePopover(filter.id)}>
+        <EuiBadge iconType={icon} color={badgeColor} style={style} onClick={() => this.togglePopover(filter.id)}>
           <span>{filter.field}: </span>
           <span>&quot;{filter.value}&quot;</span>
         </EuiBadge>
@@ -202,8 +209,6 @@ export default class extends Component {
       }],
     };
 
-    const panels = flattenPanelTree(panelTree);
-
     return (
       <EuiPopover
         key={index}
@@ -216,14 +221,68 @@ export default class extends Component {
       >
         <EuiContextMenu
           initialPanelId={0}
-          panels={panels}
+          panels={flattenPanelTree(panelTree)}
+        />
+      </EuiPopover>
+    );
+  }
+
+  _createFilterBarContextMenu = () => {
+    const menuId = 'GlobalFilterBarContextMenu';
+    const panelTree = {
+      id: 0,
+      items: [{
+        name: 'Enable',
+        icon: 'eye',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Disable',
+        icon: 'eyeClosed',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Pin',
+        icon: 'pin',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Unpin',
+        icon: 'pin',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Invert',
+        icon: 'invert',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Toggle visibility',
+        icon: 'eye',
+        onClick: () => { this.closePopover(); },
+      }, {
+        name: 'Remove all',
+        icon: 'trash',
+        onClick: () => { this.closePopover(); },
+      }]
+    };
+
+    return (
+      <EuiPopover
+        id={menuId}
+        isOpen={this.state.idOfOpenPopover === menuId}
+        closePopover={this.closePopover}
+        button={<EuiButtonIcon onClick={() => this.togglePopover(menuId)} color="text" iconType="gear" aria-label="Change all filters" />}
+        anchorPosition="downCenter"
+        panelPaddingSize="none"
+        withTitle
+      >
+        <EuiPopoverTitle>Change all filters</EuiPopoverTitle>
+        <EuiContextMenu
+          initialPanelId={0}
+          panels={flattenPanelTree(panelTree)}
         />
       </EuiPopover>
     );
   }
 }
 
-function GlobalFilterGroup({ children }) {
+function GlobalFilterGroup({ children, allFiltersButton }) {
   return (
     <EuiFlexGroup gutterSize="none" alignItems="flexStart">
       <EuiFlexItem grow={false}>
@@ -251,7 +310,7 @@ function GlobalFilterGroup({ children }) {
                 <EuiButtonEmpty iconType="arrowDown" iconSide="right" size="xs">Add filter</EuiButtonEmpty>
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
-                <EuiButtonIcon color="text" iconType="gear" />
+                {allFiltersButton}
               </EuiFlexItem>
             </EuiFlexGroup>
           </EuiFlexItem>
