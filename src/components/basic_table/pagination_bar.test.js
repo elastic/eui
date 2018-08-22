@@ -14,8 +14,8 @@ describe('PaginationBar', () => {
         pageSize: 5,
         totalItemCount: 0
       },
-      onPageSizeChange: () => {},
-      onPageChange: () => {}
+      onPageSizeChange: () => { },
+      onPageChange: () => { }
     };
 
     const component = shallow(
@@ -36,8 +36,30 @@ describe('PaginationBar', () => {
         totalItemCount: 0,
         pageSizeOptions: [1, 2, 3]
       },
-      onPageSizeChange: () => {},
-      onPageChange: () => {}
+      onPageSizeChange: () => { },
+      onPageChange: () => { }
+    };
+
+    const component = shallow(
+      <PaginationBar {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+
+  });
+
+  test('render - hiding per page options', () => {
+
+    const props = {
+      ...requiredProps,
+      pagination: {
+        pageIndex: 0,
+        pageSize: 5,
+        totalItemCount: 0,
+        hidePerPageOptions: true
+      },
+      onPageSizeChange: () => { },
+      onPageChange: () => { }
     };
 
     const component = shallow(

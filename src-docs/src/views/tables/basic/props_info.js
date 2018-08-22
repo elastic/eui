@@ -39,7 +39,7 @@ export const propsInfo = {
         },
         onChange: {
           description: 'Called whenever pagination or sorting changes (this property is required when either' +
-                       'pagination or sorting is configured',
+            'pagination or sorting is configured',
           required: false,
           type: { name: '(criteria: #Criteria) => void' }
         }
@@ -71,6 +71,12 @@ export const propsInfo = {
           required: false,
           defaultValue: { value: '[5, 10, 20]' },
           type: { name: 'number[]' }
+        },
+        hidePerPageOptions: {
+          description: 'Hides the page size dropdown',
+          required: false,
+          defaultValue: { value: 'false' },
+          type: { name: 'bool' }
         }
       }
     }
@@ -105,7 +111,7 @@ export const propsInfo = {
         },
         selectableMessage: {
           description: 'A callback that is called per item to retrieve a message for its selectable state.' +
-                       'We display these messages as a tooltip on an unselectable checkbox',
+            'We display these messages as a tooltip on an unselectable checkbox',
           required: false,
           type: { name: '(selectable, item) => string' }
         }
@@ -312,7 +318,7 @@ export const propsInfo = {
       props: {
         render: {
           description: 'The function that renders the action. Note that the returned node is ' +
-                       'expected to have`onFocus` and `onBlur` functions',
+            'expected to have`onFocus` and `onBlur` functions',
           required: true,
           type: { name: '(item, enabled) => PropTypes.node' }
         },

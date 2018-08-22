@@ -7,6 +7,7 @@ import {
   EuiTableHeader,
   EuiTableHeaderCell,
   EuiTableHeaderCellCheckbox,
+  EuiTablePagination,
   EuiTableRow,
   EuiTableRowCell,
   EuiTableRowCellCheckbox,
@@ -70,6 +71,7 @@ export const section = {
     EuiTableHeader,
     EuiTableHeaderCell,
     EuiTableHeaderCellCheckbox,
+    EuiTablePagination,
     EuiTableRow,
     EuiTableRowCell,
     EuiTableRowCellCheckbox,
@@ -77,5 +79,5 @@ export const section = {
     EuiTableSortMobile,
     EuiTableSortMobileItem,
   },
-  demo: <Custom/>,
+  demo: <Custom />,
 };
