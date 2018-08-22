@@ -1,11 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-/**
- * Adds and removes window events for you (renders null)
- * Usage:
- * <WindowEvent event='keydown' handler={this.handleKeyDown} />
- */
 export default class WindowEvent extends Component {
 
   componentDidMount() {
@@ -41,7 +36,7 @@ WindowEvent.displayName = 'WindowEvent';
 
 WindowEvent.propTypes = {
   /**
-   * Type of event
+   * Type of valid DOM event
    */
   event: PropTypes.string.isRequired,
   /**

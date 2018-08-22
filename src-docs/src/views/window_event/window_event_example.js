@@ -54,6 +54,7 @@ export const WindowEventExample = {
         </div>
       ),
       components: { EuiWindowEvent },
+      props: { EuiWindowEvent },
       demo: <BasicWindowEvent />,
     },
     {
