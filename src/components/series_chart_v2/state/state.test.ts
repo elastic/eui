@@ -1,11 +1,7 @@
 import { ScaleType } from '../commons/scales';
 import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec } from '../commons/specs';
 import { ChartStore } from './state';
-declare global {
-  interface SVGElement {
-    getBBox(): SVGRect;
-  }
-}
+
 describe('Chart Store', () => {
   const mockedRect = {
     x: 0,
@@ -14,14 +10,13 @@ describe('Chart Store', () => {
     left: 0,
     right: 0,
     top: 0,
-    width: 100,
+    width: 10,
     height: 12,
     toJSON: () => '',
   };
   const originalGetBBox = SVGElement.prototype.getBBox;
-  beforeEach(() => SVGElement.prototype.getBBox = function() {
-    const text = this.textContent || '';
-    return { ...mockedRect, width: text.length * 10 };
+  beforeEach(() => SVGElement.prototype.getBBox = () => {
+    return mockedRect;
   });
   afterEach(() => (SVGElement.prototype.getBBox = originalGetBBox));
 
@@ -58,11 +53,14 @@ describe('Chart Store', () => {
       showOverlappingLabels: false,
       position: AxisPosition.Left,
       orientation: AxisOrientation.Vertical,
-      tickSize: 10,
+      tickSize: 30,
       tickPadding: 10,
       tickFormat: (value: any) => `value ${value}`,
     };
     store.addAxis(axisSpec);
     store.computeChart();
+    // console.log(JSON.stringify([...store.axisVisibleTicks], null, 2));
+    // console.log(JSON.stringify([...store.axisTicks], null, 2));
+    // console.log(JSON.stringify([...store.axisPositions], null, 2));
   });
 });

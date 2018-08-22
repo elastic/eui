@@ -1,12 +1,18 @@
-import { createContinuousScale, ScaleType } from '../commons/scales';
+import { ScaleType } from '../commons/scales';
 import { AxisDimensions } from '../state/axis_utils';
 import { computeChartDimensions } from './dimensions';
 import { AxisOrientation, AxisPosition, AxisSpec } from './specs';
 
 describe('Computed chart dimensions', () => {
-  const parentDim = { width: 100, height: 100 };
+  const parentDim = {
+    width: 100,
+    height: 100,
+    top: 0,
+    left: 0,
+  };
   const axis1Dims = {
-    scale: createContinuousScale(ScaleType.Linear, [0, 1], 0, 100),
+    axisScaleType: ScaleType.Linear,
+    axisScaleDomain: [0, 1],
     tickValues: [0, 1],
     ticksDimensions: [{ width: 50, height: 20 }, { width: 50, height: 20 }],
     tickLabels: ['first', 'second'],

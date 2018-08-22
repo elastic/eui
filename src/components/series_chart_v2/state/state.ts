@@ -7,25 +7,33 @@ import {
   SpecId,
 } from '../commons/specs';
 
-import { Dimensions } from '../commons/dimensions';
-import { AxisDimensions, computeAxisDimensions } from './axis_utils';
+import { computeChartDimensions, Dimensions } from '../commons/dimensions';
+import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
 import { computeSeriesDomains } from './series_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export class ChartStore {
-  public parentDimensions: Dimensions = {  // updated from jsx
+  public parentDimensions: Dimensions = {
     width: 0,
     height: 0,
-  };
-  public chartDimensions: Dimensions = {  // updated from jsx
+    top: 0,
+    left: 0,
+  };  // updated from jsx
+  public chartDimensions: Dimensions = {
     width: 0,
     height: 0,
-  };
+    top: 0,
+    left: 0,
+  };  // updated from jsx
   public axisSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
-  public axisDimensions: Map<AxisId, AxisDimensions> = new Map();
+  public axisDimensions: Map<AxisId, AxisDimensions> = new Map(); // computed
+  public axisPositions: Map<string, Dimensions> = new Map(); // computed
+  public axisVisibleTicks: Map<string, AxisTick[]> = new Map(); // computed
+  public axisTicks: Map<string, AxisTick[]> = new Map(); // computed
   public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
   public seriesScales: Map<SpecId, SeriesScales> = new Map(); // computed
   public chartScales: Map<GroupId, SeriesScales> = new Map(); // computed
+
   public chart: any; // computed
 
   /**
@@ -71,6 +79,13 @@ export class ChartStore {
     bboxCalculator.destroy();
 
     // compute chart dimensions
+    this.chartDimensions = computeChartDimensions(this.parentDimensions, this.axisDimensions, this.axisSpecs);
+
+    // compute visible ticks and their positions
+    const axisTicksPositions = getAxisTicksPositions(this.chartDimensions, this.axisSpecs, this.axisDimensions);
+    this.axisPositions = axisTicksPositions.axisPositions;
+    this.axisTicks = axisTicksPositions.axisTicks;
+    this.axisVisibleTicks = axisTicksPositions.axisVisibleTicks;
   }
 
   private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales) {
