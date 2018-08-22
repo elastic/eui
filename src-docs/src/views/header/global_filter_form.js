@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { pull } from 'lodash';
+// import { pull } from 'lodash';
 
 import {
   EuiFlexGroup,
@@ -9,7 +9,9 @@ import {
   EuiFormRow,
   EuiComboBox,
   EuiButton,
-  EuiLink,
+  EuiSpacer,
+  EuiSwitch,
+  EuiFieldText,
 } from '../../../../src/components';
 
 const fieldOptions = [
@@ -71,90 +73,91 @@ export default class GlobalFilterForm extends Component {
   static propTypes = {
     onAdd: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    selectedObject: PropTypes.array,
+    selectedObject: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      isComboBoxLoading: false,
-      selectedComboBoxOptions: [],
-      comboBoxOptions: [],
-      editingOption: null,
+      selectedField: this.props.selectedObject ? this.props.selectedObject.field : [],
+      selectedOperand: this.props.selectedObject ? this.props.selectedObject.operand : [],
+      selectedValues: this.props.selectedObject ? this.props.selectedObject.values : [],
+      useCustomLabel: false,
+      customLabel: null,
     };
   }
 
-  onComboBoxChange = selectedComboBoxOptions => {
-    const selectedOptions = selectedComboBoxOptions || [];
-    const numOfSelections = selectedOptions.length;
-    const lastUpdate = selectedOptions[selectedOptions.length - 1];
-    const current = {};
+  // onComboBoxChange = selectedComboBoxOptions => {
+  //   const selectedOptions = selectedComboBoxOptions || [];
+  //   const numOfSelections = selectedOptions.length;
+  //   const lastUpdate = selectedOptions[selectedOptions.length - 1];
+  //   const current = {};
 
-    // If length is less than 3, then move on to the next
-    if (numOfSelections < 3) {
-      switch (numOfSelections) {
-        case 0:
-          current.selectedComboBoxOptions = [];
-          current.editingOption = 'field';
-          current.comboBoxOptions = fieldOptions;
-          break;
-        case 1:
-          current.selectedComboBoxOptions = selectedOptions;
-          current.editingOption = 'operator';
-          current.comboBoxOptions = operatorOptions;
-          break;
-        default:
-          // 2 or more
-          current.selectedComboBoxOptions = selectedOptions;
-          current.editingOption = 'value';
-          current.comboBoxOptions = valueOptions;
-          break;
-      }
-    } else {
-      // else stay on and just update the value
-      switch (this.state.editingOption) {
-        case 'field':
-          pull(selectedOptions, lastUpdate);
-          selectedOptions[0] = lastUpdate;
-          break;
-        case 'operator':
-          pull(selectedOptions, lastUpdate);
-          selectedOptions[1] = lastUpdate;
-          break;
-        default:
-          // 'value'
-          break;
-      }
+  //   // If length is less than 3, then move on to the next
+  //   if (numOfSelections < 3) {
+  //     switch (numOfSelections) {
+  //       case 0:
+  //         current.selectedComboBoxOptions = [];
+  //         current.editingOption = 'field';
+  //         current.comboBoxOptions = fieldOptions;
+  //         break;
+  //       case 1:
+  //         current.selectedComboBoxOptions = selectedOptions;
+  //         current.editingOption = 'operator';
+  //         current.comboBoxOptions = operatorOptions;
+  //         break;
+  //       default:
+  //         // 2 or more
+  //         current.selectedComboBoxOptions = selectedOptions;
+  //         current.editingOption = 'value';
+  //         current.comboBoxOptions = valueOptions;
+  //         break;
+  //     }
+  //   } else {
+  //     // else stay on and just update the value
+  //     switch (this.state.editingOption) {
+  //       case 'field':
+  //         pull(selectedOptions, lastUpdate);
+  //         selectedOptions[0] = lastUpdate;
+  //         break;
+  //       case 'operator':
+  //         pull(selectedOptions, lastUpdate);
+  //         selectedOptions[1] = lastUpdate;
+  //         break;
+  //       default:
+  //         // 'value'
+  //         break;
+  //     }
 
-      current.selectedComboBoxOptions = selectedOptions;
-    }
+  //     current.selectedComboBoxOptions = selectedOptions;
+  //   }
 
-    // Add the appropriate click handlers to the first two selected options
-    // (if they exist)
-    if (numOfSelections > 0) {
-      current.selectedComboBoxOptions[0].onClick = this.fieldClicked;
-    }
-    if (numOfSelections > 1) {
-      current.selectedComboBoxOptions[1].onClick = this.opClicked;
-    }
+  //   // Add the appropriate click handlers to the first two selected options
+  //   // (if they exist)
+  //   if (numOfSelections > 0) {
+  //     current.selectedComboBoxOptions[0].onClick = this.fieldClicked;
+  //   }
+  //   if (numOfSelections > 1) {
+  //     current.selectedComboBoxOptions[1].onClick = this.opClicked;
+  //   }
 
-    this.setState({ ...current });
-  };
+  //   this.setState({ ...current });
+  // };
 
-  fieldClicked = () => {
-    this.setState({
-      comboBoxOptions: fieldOptions,
-      editingOption: 'field',
-    });
-  };
+  // fieldClicked = () => {
+  //   this.setState({
+  //     comboBoxOptions: fieldOptions,
+  //     editingOption: 'field',
+  //   });
+  // };
 
-  opClicked = () => {
-    this.setState({
-      comboBoxOptions: operatorOptions,
-      editingOption: 'operator',
-    });
-  };
+  // opClicked = () => {
+  //   this.setState({
+  //     comboBoxOptions: operatorOptions,
+  //     editingOption: 'operator',
+  //   });
+  // };
 
   // eslint-disable-next-line no-unused-vars
   onSearchChange = searchValue => {
@@ -178,46 +181,128 @@ export default class GlobalFilterForm extends Component {
     // }, 200);
   };
 
+  onFieldChange = selectedOptions => {
+    // We should only get back either 0 or 1 options.
+    this.setState({
+      selectedField: selectedOptions,
+    });
+  };
+
+  onOperandChange = selectedOptions => {
+    // We should only get back either 0 or 1 options.
+    this.setState({
+      selectedOperand: selectedOptions,
+    });
+  };
+
+  onValuesChange = selectedOptions => {
+    this.setState({
+      selectedValues: selectedOptions,
+    });
+  };
+
+  onCustomLabelSwitchChange = e => {
+    this.setState({
+      useCustomLabel: e.target.checked,
+    });
+  };
+
+  resetForm = () => {
+    this.setState({
+      selectedField: [],
+      selectedOperand: [],
+      selectedValues: [],
+      useCustomLabel: false,
+      customLabel: null,
+    });
+  }
+
   componentDidMount() {
     // Simulate initial load.
     //this.onSearchChange('');
-    this.onComboBoxChange(this.props.selectedObject);
+    // this.onComboBoxChange(this.props.selectedObject);
   }
 
   render() {
     const {
       onAdd,
       onCancel,
-      selectedObject, // eslint-disable-line no-unused-vars
+      selectedObject,
       ...rest
     } = this.props;
 
-    const label = (
-      <EuiFlexGroup alignItems="baseline">
-        <EuiFlexItem>Field, Operator, Value(s)</EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiLink>Edit as Query DSL</EuiLink>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-
     return (
       <div {...rest}>
-        <EuiFormRow label={label}>
-          <EuiComboBox
-            placeholder="Start by selecting a field"
-            async
-            options={this.state.comboBoxOptions}
-            selectedOptions={this.state.selectedComboBoxOptions}
-            isLoading={this.state.isComboBoxLoading}
-            onChange={this.onComboBoxChange}
-            onSearchChange={this.onSearchChange}
-          />
-        </EuiFormRow>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiFormRow label="Field">
+              <EuiComboBox
+                placeholder={this.state.selectedOperand.length < 1 ? 'Start here' : 'Select a field'}
+                options={fieldOptions}
+                selectedOptions={this.state.selectedField}
+                onChange={this.onFieldChange}
+                onSearchChange={this.onFieldSearchChange}
+                singleSelection={{ asPlainText: true }}
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFormRow label="Operand">
+              <EuiComboBox
+                placeholder={
+                  this.state.selectedField.length < 1 ? 'Select a field first' : 'Select an operand'
+                }
+                isDisabled={this.state.selectedField.length < 1}
+                options={operatorOptions}
+                selectedOptions={this.state.selectedOperand}
+                onChange={this.onOperandChange}
+                onSearchChange={this.onOperandSearchChange}
+                singleSelection={{ asPlainText: true }}
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="m" />
+
+        <div>
+          <EuiFormRow label="Value(s)">
+            <EuiComboBox
+              placeholder={
+                this.state.selectedField.length < 1 && this.state.selectedOperand.length < 1
+                  ? 'Waiting on previous selections'
+                  : 'Select one or more values'
+              }
+              isDisabled={this.state.selectedField.length < 1 || this.state.selectedOperand.length < 1}
+              options={valueOptions}
+              selectedOptions={this.state.selectedValues}
+              onChange={this.onValuesChange}
+              onSearchChange={this.onValuesSearchChange}
+            />
+          </EuiFormRow>
+        </div>
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch label="Create custom label?" checked={this.state.useCustomLabel} onChange={this.onCustomLabelSwitchChange} />
+
+        {this.state.useCustomLabel &&
+          <div>
+            <EuiSpacer size="m"/>
+            <EuiFormRow label="Custom label">
+              <EuiFieldText
+                value={this.state.customLabel}
+                onChange={this.onCustomLabelChange}
+              />
+            </EuiFormRow>
+          </div>
+        }
+
+        <EuiSpacer size="m" />
 
         <EuiFlexGroup direction="rowReverse" alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiButton fill onClick={onAdd}>
+            <EuiButton  isDisabled={this.state.selectedValues.length < 1}  fill onClick={onAdd}>
               Add
             </EuiButton>
           </EuiFlexItem>
@@ -225,6 +310,11 @@ export default class GlobalFilterForm extends Component {
             <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem />
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty flush="left" onClick={selectedObject ? null : this.resetForm} color={selectedObject ? 'danger' : 'primary'}>
+              {selectedObject ? 'Delete' : 'Reset form'}
+            </EuiButtonEmpty>
+          </EuiFlexItem>
         </EuiFlexGroup>
       </div>
     );

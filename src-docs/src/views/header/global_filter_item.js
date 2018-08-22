@@ -104,17 +104,11 @@ export class GlobalFilterItem extends Component {
   }
 
   _createFilterContextMenu = (filter, button) => {
-    const selectedObject = [
-      {
-        label: filter.field,
-      },
-      {
-        label: filter.operator,
-      },
-      {
-        label: filter.value,
-      },
-    ];
+    const selectedObject = {
+      field: [{ label: filter.field }],
+      operand: [{ label: filter.operator }],
+      values: [{ label: filter.value }],
+    };
 
     const panelTree = {
       id: 0,
