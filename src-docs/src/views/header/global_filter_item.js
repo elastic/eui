@@ -114,40 +114,19 @@ export class GlobalFilterItem extends Component {
       id: 0,
       items: [
         {
-          name: `${filter.isDisabled ? 'Enable' : 'Disable'}`,
-          icon: `${filter.isDisabled ? 'eye' : 'eyeClosed'}`,
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: `${filter.isPinned ? 'Unpin' : 'Pin'}`,
+          name: `${filter.isPinned ? 'Unpin' : 'Pin across all apps'}`,
           icon: 'pin',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: `${filter.isExcluded ? 'Include' : 'Exclude'}`,
-          icon: `${filter.isExcluded ? 'plusInCircle' : 'minusInCircle'}`,
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Remove',
-          icon: 'trash',
-          onClick: () => {
-            this.closePopover();
-          },
-        },
-        {
-          name: 'Edit',
+          name: 'Edit filter query',
           icon: 'pencil',
           panel: {
             id: 1,
             content: (
-              <div style={{ padding: 16 }}>
+              <div style={{ padding: 16, maxWidth: 400 }}>
                 <GlobalFilterForm
                   selectedObject={selectedObject}
                   onAdd={this.closePopover}
@@ -155,6 +134,27 @@ export class GlobalFilterItem extends Component {
                 />
               </div>
             ),
+          },
+        },
+        {
+          name: `${filter.isExcluded ? 'Include results' : 'Exclude results'}`,
+          icon: `${filter.isExcluded ? 'plusInCircle' : 'minusInCircle'}`,
+          onClick: () => {
+            this.closePopover();
+          },
+        },
+        {
+          name: `${filter.isDisabled ? 'Re-enable' : 'Temporarily disable'}`,
+          icon: `${filter.isDisabled ? 'eye' : 'eyeClosed'}`,
+          onClick: () => {
+            this.closePopover();
+          },
+        },
+        {
+          name: 'Delete',
+          icon: 'trash',
+          onClick: () => {
+            this.closePopover();
           },
         },
       ],

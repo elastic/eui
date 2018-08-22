@@ -307,13 +307,13 @@ export default class GlobalFilterForm extends Component {
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+            <EuiButtonEmpty flush="right" onClick={selectedObject ? onCancel : this.resetForm}>
+              {selectedObject ? 'Cancel' : 'Reset form'}
+            </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem />
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty flush="left" onClick={selectedObject ? null : this.resetForm} color={selectedObject ? 'danger' : 'primary'}>
-              {selectedObject ? 'Delete' : 'Reset form'}
-            </EuiButtonEmpty>
+            {selectedObject && <EuiButtonEmpty flush="left" color="danger">Delete</EuiButtonEmpty>}
           </EuiFlexItem>
         </EuiFlexGroup>
       </div>
