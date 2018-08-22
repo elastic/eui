@@ -20,9 +20,11 @@ export interface DataSeriesSpec extends GeneralSpec {
   groupAccessors: Accessor[];
 }
 
+export type Domain = number[] | string[] | [number, number] | [undefined, undefined];
+
 export interface SeriesDomains {
-  xDomain: number[] | string[] | [number, number] | [undefined, undefined];
-  yDomain: number[] | string[] | [number, number] | [undefined, undefined];
+  xDomain: Domain;
+  yDomain: Domain;
 }
 export interface SeriesScaleTypes {
   xScaleType: ScaleType;

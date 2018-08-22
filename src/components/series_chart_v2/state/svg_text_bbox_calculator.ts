@@ -1,3 +1,10 @@
+// not sure where to specify this, required for tests
+declare global {
+  interface SVGElement {
+    getBBox(): SVGRect;
+  }
+}
+
 export class SvgTextBBoxCalculator {
   public svgElem: SVGSVGElement;
   public textElem: SVGTextElement;

@@ -24,8 +24,8 @@ export interface ScaleConfig {
 
 export interface ScaleOrdinal {
   (value: string): number;
-  domain(domain?: string[]): string[] | this;
-  range(range?: [number, number]): [number, number] | this;
+  domain: (domain?: string[]) => string[] | this;
+  range: (range?: [number, number]) => [number, number] | this;
   ticks(): string[];
   bandwidth(): number;
 }
@@ -43,7 +43,7 @@ export function createScaleOrdinal(): ScaleOrdinal {
     }
     return d3ScaleBand.domain();
   };
-  ordinalScale.range = (range: [number, number]) => {
+  ordinalScale.range = (range?: [number, number]) => {
     if (range) {
       d3ScaleBand.range(range);
       return ordinalScale;

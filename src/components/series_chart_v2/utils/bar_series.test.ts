@@ -29,6 +29,8 @@ describe('Bar Series', () => {
     const seriesDimensions = {
       width: 100,
       height: 100,
+      top: 0,
+      left: 0,
     };
     const dataPoints = computeDataPoints(data, xScaleConfig, yScaleConfig, seriesDimensions);
     const expectedBandwidth = 25 / 2;
@@ -67,6 +69,8 @@ describe('Bar Series', () => {
     const seriesDimensions = {
       width: 100,
       height: 100,
+      top: 0,
+      left: 0,
     };
     const dataPoints = computeDataPoints(data, xScaleConfig, yScaleConfig, seriesDimensions);
     const expectedDataPoints = [
@@ -107,6 +111,8 @@ describe('Bar Series', () => {
     const seriesDimensions = {
       width: 100,
       height: 100,
+      top: 0,
+      left: 0,
     };
     const dataPoints = computeDataPoints(data, xScaleConfig, yScaleConfig, seriesDimensions);
     const expectedDataPoints = [
