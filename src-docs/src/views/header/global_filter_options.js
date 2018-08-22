@@ -51,42 +51,42 @@ export default class GlobalFilterOptions extends Component {
       id: 0,
       items: [
         {
-          name: 'Enable',
+          name: 'Enable all',
           icon: 'eye',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: 'Disable',
+          name: 'Disable all',
           icon: 'eyeClosed',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: 'Pin',
+          name: 'Pin all',
           icon: 'pin',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: 'Unpin',
+          name: 'Unpin all',
           icon: 'pin',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: 'Invert',
+          name: 'Invert inclusion',
           icon: 'invert',
           onClick: () => {
             this.closePopover();
           },
         },
         {
-          name: 'Toggle visibility',
+          name: 'Invert visibility',
           icon: 'eye',
           onClick: () => {
             this.closePopover();

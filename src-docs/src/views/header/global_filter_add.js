@@ -18,7 +18,7 @@ export default class GlobalFilterAdd extends Component {
     super(props);
 
     this.state = {
-      isPopoverOpen: true,
+      isPopoverOpen: false,
     };
   }
 
