@@ -1,7 +1,7 @@
 import { computed, action, observable } from 'mobx';
 import { capitalize } from 'lodash';
 import { getDomain, mergeGlobalDomains, computeAxisDimensions, computeChartDimensions } from './utils';
-import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
+import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator.ts';
 import { computeLineSeriesDataPoint } from './line_series_utils';
 import { computePointSeriesDataPoint } from './point_series_utils';
 import { computeBarSeriesDataPoint } from './bar_series_utils';

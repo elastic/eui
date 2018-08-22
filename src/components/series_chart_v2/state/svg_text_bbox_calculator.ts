@@ -1,29 +1,27 @@
 export class SvgTextBBoxCalculator {
+  public svgElem: SVGSVGElement;
+  public textElem: SVGTextElement;
+  public attachedRoot: HTMLElement;
+  public textNode: Text;
   // TODO specify styles for text
   // TODO specify how to hide the svg from the current dom view
   // like moving it a -9999999px
-  constructor(rootElement) {
+  constructor(rootElement?: HTMLElement) {
     const xmlns = 'http://www.w3.org/2000/svg';
     this.svgElem = document.createElementNS(xmlns, 'svg');
     this.textElem = document.createElementNS(xmlns, 'text');
     this.textElem.setAttribute('class', 'euiSeriesChartAxis_tickLabel');
     this.svgElem.appendChild(this.textElem);
-
+    this.textNode = document.createTextNode('');
+    this.textElem.appendChild(this.textNode);
     this.attachedRoot = rootElement || document.documentElement;
     this.attachedRoot.appendChild(this.svgElem);
   }
-  compute(text) {
-    this.initTextNode();
+  public compute(text: string): SVGRect {
     this.textNode.textContent = text;
     return this.textElem.getBBox();
   }
-  initTextNode(text) {
-    if (!this.textNode) {
-      this.textNode = document.createTextNode(text);
-      this.textElem.appendChild(this.textNode);
-    }
-  }
-  destroy() {
+  public destroy(): void {
     this.attachedRoot.removeChild(this.svgElem);
   }
 }

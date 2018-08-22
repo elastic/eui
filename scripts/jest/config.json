@@ -6,6 +6,7 @@
   ],
   "collectCoverageFrom": [
     "src/components/**/*.js",
+    "src/components/**/*.ts",
     "!src/components/index.js",
     "!src/components/**/*/index.js",
     "src/services/**/*.js",
@@ -22,21 +23,31 @@
     "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
   ],
   "coverageDirectory": "<rootDir>/reports/jest-coverage",
+  "coveragePathIgnorePatterns": [
+    ".*\\.d\\.ts",
+    "<rootDir>/node_modules/"
+  ],
   "coverageReporters": [
     "html"
   ],
   "moduleFileExtensions": [
     "js",
-    "json"
+    "json",
+    "ts"
   ],
   "testMatch": [
-    "**/*.test.js"
+    "**/*.test.js",
+    "**/*.test.ts"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/scripts/",
     "<rootDir>/docs/",
     "<rootDir>/node_modules/"
   ],
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
+  },
   "transformIgnorePatterns": [
     "[/\\\\]node_modules[/\\\\].+\\.js$"
   ],

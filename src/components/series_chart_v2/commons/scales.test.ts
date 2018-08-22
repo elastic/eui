@@ -1,0 +1,78 @@
+import { getScaleFromType, ScaleType } from './scales';
+
+describe('Scale Test', () => {
+  test('Create an ordinal scale', () => {
+    const data = ['a', 'b', 'c', 'd', 'a', 'b', 'c'];
+    const rangeMin = 0;
+    const rangeMax = 100;
+    const ordinalScale = getScaleFromType(ScaleType.Ordinal);
+    ordinalScale.domain(data);
+    const domain = ordinalScale.domain();
+    expect(domain).toEqual(['a', 'b', 'c', 'd']);
+    ordinalScale.range([rangeMin, rangeMax]);
+    const rangeValue = ordinalScale.range();
+    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    const bandwidth = ordinalScale.bandwidth();
+    expect(bandwidth).toEqual(rangeMax / domain.length);
+    const scaledValue1 = ordinalScale('a');
+    expect(scaledValue1).toBe(bandwidth / 2);
+    const scaledValue2 = ordinalScale('b');
+    expect(scaledValue2).toBe(bandwidth / 2 + bandwidth);
+    const scaledValue3 = ordinalScale('c');
+    expect(scaledValue3).toBe(bandwidth / 2 + bandwidth * 2);
+    const scaledValue4 = ordinalScale('d');
+    expect(scaledValue4).toBe(bandwidth / 2 + bandwidth * 3);
+  });
+  test('Create an linear scale', () => {
+    const data = [0, 10];
+    const rangeMin = 0;
+    const rangeMax = 100;
+    const linearScale = getScaleFromType(ScaleType.Linear);
+    linearScale.domain(data);
+    const domain = linearScale.domain();
+    expect(domain).toEqual([0, 10]);
+    linearScale.range([rangeMin, rangeMax]);
+    const rangeValue = linearScale.range();
+    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    const scaledValue1 = linearScale(0);
+    expect(scaledValue1).toBe(0);
+    const scaledValue2 = linearScale(1);
+    expect(scaledValue2).toBe(10);
+    const scaledValue3 = linearScale(5);
+    expect(scaledValue3).toBe(50);
+    const scaledValue4 = linearScale(10);
+    expect(scaledValue4).toBe(100);
+  });
+  test('Create an log scale', () => {
+    const data = [1, 10];
+    const rangeMin = 0;
+    const rangeMax = 100;
+    const logScale = getScaleFromType(ScaleType.Log);
+    logScale.domain(data);
+    const domain = logScale.domain();
+    expect(domain).toEqual([1, 10]);
+    logScale.range([rangeMin, rangeMax]);
+    const rangeValue = logScale.range();
+    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    const scaledValue1 = logScale(1);
+    expect(scaledValue1).toBe(0);
+    const scaledValue3 = logScale(5);
+    expect(scaledValue3).toBe(Math.log(5) / Math.log(10) * 100);
+  });
+  test('Create an sqrt scale', () => {
+    const data = [0, 10];
+    const rangeMin = 0;
+    const rangeMax = 100;
+    const sqrtScale = getScaleFromType(ScaleType.Sqrt);
+    sqrtScale.domain(data);
+    const domain = sqrtScale.domain();
+    expect(domain).toEqual([0, 10]);
+    sqrtScale.range([rangeMin, rangeMax]);
+    const rangeValue = sqrtScale.range();
+    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    const scaledValue1 = sqrtScale(0);
+    expect(scaledValue1).toBe(0);
+    const scaledValue3 = sqrtScale(5);
+    expect(scaledValue3).toBe(Math.sqrt(5) / Math.sqrt(10) * 100);
+  });
+});

@@ -11,6 +11,7 @@ class BarSeriesSpec extends React.PureComponent {
     xAccessor: PropTypes.func,
     yAccessor: PropTypes.func,
     scaleToExtent: PropTypes.bool,
+    grouping: PropTypes.object,
   };
   static defaultProps = {
     groupId: '__global__',
@@ -21,7 +22,19 @@ class BarSeriesSpec extends React.PureComponent {
     scaleToExtent: false,
     onMouseOver: () => {},
     onMouseOut: () => {},
-  };
+    grouping: {
+      xAccessor: ({ group }) => group,
+      type: 'group',
+      subElements: {
+        xAccessor: ({ level1 }) => level1,
+        type: 'group',
+        subElements: {
+          yAccessor: ({ y }) => y,
+          type: 'stack',
+        }
+      }
+    },
+  }
   componentDidMount() {
     const { chartStore, ...config } = this.props;
     chartStore.addSeriesSpec({ type: 'bar', ...config });
