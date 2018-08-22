@@ -9,3 +9,8 @@
 .globalFilterGroup__branch {
   fill: $euiColorLightShade;
 }
+
+.globalFilterGroup__wrapper {
+  overflow: hidden;
+  transition: height $euiAnimSpeedNormal $euiAnimSlightResistance;
+}

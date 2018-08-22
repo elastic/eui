@@ -56,7 +56,7 @@ export const GlobalFilterBar = ({
           <EuiFlexGroup justifyContent="flexStart" gutterSize="xs" wrap={true} responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiToolTip content="Unpin all">
-                <EuiButtonIcon className="globalFilterBar__pinnedIcon" color="text" iconType="pin" />
+                <EuiButtonIcon aria-label="Unpin all" className="globalFilterBar__pinnedIcon" color="text" iconType="pin" />
               </EuiToolTip>
             </EuiFlexItem>
 
