@@ -5,7 +5,12 @@ export interface Dimensions {
   width: number;
   height: number;
 }
-
+/**
+ * Compute the chart dimension padding the parent dimension by the specified set of axis
+ * @param parentDimensions the parent dimension
+ * @param axisDimensions the axis dimensions
+ * @param axisSpecs the axis specs
+ */
 export function computeChartDimensions(
   parentDimensions: Dimensions,
   axisDimensions: Map<AxisId, AxisDimensions>,
@@ -24,15 +29,15 @@ export function computeChartDimensions(
     const { orientation, position, tickSize, tickPadding } = axisSpec;
     if (orientation === AxisOrientation.Horizontal) {
       if (position === AxisPosition.Top) {
-        hTopAxisSpecHeight += maxTickWidth + tickSize + tickPadding;
+        hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding;
       } else if (position === AxisPosition.Bottom) {
-        hBottomAxisSpecHeight += maxTickWidth + tickSize + tickPadding;
+        hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding;
       }
     } else {
       if (position === AxisPosition.Left) {
-        vLeftAxisSpecWidth += maxTickHeight + tickSize + tickPadding;
-      } else if (position === AxisPosition.Top) {
-        vRightAxisSpecWidth += maxTickHeight + tickSize + tickPadding;
+        vLeftAxisSpecWidth += maxTickWidth + tickSize + tickPadding;
+      } else if (position === AxisPosition.Right) {
+        vRightAxisSpecWidth += maxTickWidth + tickSize + tickPadding;
       }
     }
   });
@@ -47,17 +52,3 @@ export function computeChartDimensions(
     height: chartHeight,
   };
 }
-
-// function maxTickDimension(axisSpec, dimensionName) {
-//   let max = 0;
-//   let total = 0;
-//   axisSpec.forEach(spec => {
-//     const maxTickDimension = spec.dimensions[`maxTick${capitalize(dimensionName)}`];
-//     max = Math.max(max, maxTickDimension);
-//     total += maxTickDimension + spec.tickSize + spec.tickPadding;
-//   });
-//   return {
-//     max,
-//     total
-//   };
-// }
