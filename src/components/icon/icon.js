@@ -100,6 +100,8 @@ import lock from './assets/lock.svg';
 import loggingApp from './assets/app_logging.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
+import logoAWS from './assets/logo_aws.svg';
+import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
@@ -111,6 +113,8 @@ import logoElastic from './assets/logo_elastic.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoEtcd from './assets/logo_etcd.svg';
+import logoGCP from './assets/logo_gcp.svg';
+import logoGCPMono from './assets/logo_gcp_mono.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoGolang from './assets/logo_golang.svg';
@@ -311,6 +315,8 @@ const typeToIconMap = {
   loggingApp,
   logoAerospike,
   logoApache,
+  logoAWS,
+  logoAWSMono,
   logoBeats,
   logoCeph,
   logoCloud,
@@ -322,6 +328,8 @@ const typeToIconMap = {
   logoElasticsearch,
   logoElasticStack,
   logoEtcd,
+  logoGCP,
+  logoGCPMono,
   logoGithub,
   logoGmail,
   logoGolang,
