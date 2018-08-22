@@ -2,6 +2,8 @@
 
 - Added `zIndexAdjustment` to `EuiPopover` which allows tweaking the popover content's `z-index` ([#1097](https://github.com/elastic/eui/pull/1097))
 - Added new `EuiSuperSelect` component and `hasArrow` prop to `EuiPopover` ([#921](https://github.com/elastic/eui/pull/921))
+- Added a new `EuiWindowEvent` component for declarative, safe management of `window` event listeners ([#1127](https://github.com/elastic/eui/pull/1127))
+- Changed `Flyout` component to close on ESC keypress even if the flyout does not have focus, using new Window Event component ([#1127](https://github.com/elastic/eui/pull/1127))
 
 **Bug fixes**
 

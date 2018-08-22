@@ -216,6 +216,9 @@ import { ToolTipExample }
 import { ToggleExample }
   from './views/toggle/toggle_example';
 
+import { WindowEventExample }
+  from './views/window_event/window_event_example';
+
 import { XYChartExample }
   from './views/series_chart/series_chart_example';
 
@@ -395,6 +398,7 @@ const navigation = [{
     ToggleExample,
     UtilityClassesExample,
     MutationObserverExample,
+    WindowEventExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Package',

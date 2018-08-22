@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
 
-import { keyCodes } from '../../services';
+import { keyCodes, EuiWindowEvent } from '../../services';
 
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
@@ -20,7 +20,6 @@ export class EuiFlyout extends Component {
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
-      event.stopPropagation();
       this.props.onClose();
     }
   };
@@ -72,7 +71,6 @@ export class EuiFlyout extends Component {
         }}
         className={classes}
         tabIndex={0}
-        onKeyDown={this.onKeyDown}
         style={newStyle || style}
         {...rest}
       >
@@ -90,6 +88,7 @@ export class EuiFlyout extends Component {
 
     return (
       <span>
+        <EuiWindowEvent event="keydown" handler={this.onKeyDown} />
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
