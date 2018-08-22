@@ -141,16 +141,16 @@ export class Table extends Component {
 
     return (
       <div>
+        <EuiSwitch
+          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
+          onChange={this.togglePerPageOptions}
+        />
+        <EuiSpacer size="xl" />
         <EuiBasicTable
           items={pageOfItems}
           columns={columns}
           pagination={pagination}
           onChange={this.onTableChange}
-        />
-        <EuiSpacer size="xl" />
-        <EuiSwitch
-          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
-          onChange={this.togglePerPageOptions}
         />
       </div>
     );

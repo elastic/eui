@@ -8,7 +8,6 @@ import {
   EuiButton,
   EuiButtonIcon,
   EuiCheckbox,
-  EuiCode,
   EuiContextMenuItem,
   EuiContextMenuPanel,
   EuiFieldSearch,
@@ -18,7 +17,6 @@ import {
   EuiLink,
   EuiPopover,
   EuiSpacer,
-  EuiSwitch,
   EuiTable,
   EuiTableBody,
   EuiTableHeader,
@@ -47,8 +45,7 @@ export default class extends Component {
       itemIdToSelectedMap: {},
       itemIdToOpenActionsPopoverMap: {},
       sortedColumn: 'title',
-      itemsPerPage: 10,
-      showPerPageOptions: true
+      itemsPerPage: 10
     };
 
     this.items = [{
@@ -549,8 +546,6 @@ export default class extends Component {
     return rows;
   }
 
-  togglePerPageOptions = () => this.setState((state) => ({ showPerPageOptions: !state.showPerPageOptions }));
-
   render() {
     let optionalActionButtons;
 
@@ -600,16 +595,8 @@ export default class extends Component {
           itemsPerPage={this.state.itemsPerPage}
           itemsPerPageOptions={[5, 10, 20]}
           pageCount={this.pager.getTotalPages()}
-          hidePerPageOptions={!this.state.showPerPageOptions}
           onChangeItemsPerPage={this.onChangeItemsPerPage}
           onChangePage={this.onChangePage}
-        />
-
-        <EuiSpacer size="xl" />
-
-        <EuiSwitch
-          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
-          onChange={this.togglePerPageOptions}
         />
       </div>
     );

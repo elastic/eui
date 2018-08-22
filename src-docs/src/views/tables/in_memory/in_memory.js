@@ -83,7 +83,7 @@ export const Table = () => {
     <EuiInMemoryTable
       items={store.users}
       columns={columns}
-      pagination={{ hidePerPageOptions: true }}
+      pagination={true}
       sorting={sorting}
     />
   );
