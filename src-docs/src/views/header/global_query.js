@@ -19,7 +19,7 @@ export default class extends Component {
         {
           id: 'filter0',
           field: '@tags.keyword',
-          operator: 'AND',
+          operator: 'IS',
           value: 'value',
           isDisabled: false,
           isPinned: true,
@@ -28,7 +28,7 @@ export default class extends Component {
         {
           id: 'filter1',
           field: '@tags.keyword',
-          operator: 'AND',
+          operator: 'IS',
           value: 'value',
           isDisabled: true,
           isPinned: false,
@@ -37,7 +37,7 @@ export default class extends Component {
         {
           id: 'filter2',
           field: '@tags.keyword',
-          operator: 'AND',
+          operator: 'IS NOT',
           value: 'value',
           isDisabled: false,
           isPinned: true,
@@ -46,7 +46,7 @@ export default class extends Component {
         {
           id: 'filter3',
           field: '@tags.keyword',
-          operator: 'AND',
+          operator: 'IS',
           value: 'value',
           isDisabled: false,
           isPinned: false,

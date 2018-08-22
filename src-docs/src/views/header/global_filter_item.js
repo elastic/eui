@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiBadge,
-  EuiPopover,
-  EuiContextMenu,
-} from '../../../../src/components';
+import { EuiBadge, EuiPopover, EuiContextMenu } from '../../../../src/components';
 import GlobalFilterForm from './global_filter_form';
 
 function flattenPanelTree(tree, array = []) {
@@ -34,7 +30,7 @@ export class GlobalFilterItem extends Component {
     isDisabled: PropTypes.bool.isRequired,
     isPinned: PropTypes.bool.isRequired,
     isExcluded: PropTypes.bool.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -48,14 +44,13 @@ export class GlobalFilterItem extends Component {
     this.setState(prevState => ({
       isPopoverOpen: !prevState.isPopoverOpen,
     }));
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
-
+  };
 
   render() {
     const {
@@ -77,7 +72,7 @@ export class GlobalFilterItem extends Component {
         'globalFilterItem-isPinned': isPinned,
         'globalFilterItem-isExcluded': isExcluded,
       },
-      className,
+      className
     );
 
     let icon;
@@ -109,6 +104,18 @@ export class GlobalFilterItem extends Component {
   }
 
   _createFilterContextMenu = (filter, button) => {
+    const selectedObject = [
+      {
+        label: filter.field,
+      },
+      {
+        label: filter.operator,
+      },
+      {
+        label: filter.value,
+      },
+    ];
+
     const panelTree = {
       id: 0,
       items: [
@@ -145,7 +152,15 @@ export class GlobalFilterItem extends Component {
           icon: 'pencil',
           panel: {
             id: 1,
-            content: <div style={{ padding: 16 }}><GlobalFilterForm onAdd={this.closePopover} onCancel={this.closePopover} /></div>,
+            content: (
+              <div style={{ padding: 16 }}>
+                <GlobalFilterForm
+                  selectedObject={selectedObject}
+                  onAdd={this.closePopover}
+                  onCancel={this.closePopover}
+                />
+              </div>
+            ),
           },
         },
       ],

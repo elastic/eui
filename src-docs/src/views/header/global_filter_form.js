@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { pull } from 'lodash';
 
 import {
   EuiFlexGroup,
@@ -70,7 +71,8 @@ export default class GlobalFilterForm extends Component {
   static propTypes = {
     onAdd: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-  }
+    selectedObject: PropTypes.array,
+  };
 
   constructor(props) {
     super(props);
@@ -78,27 +80,85 @@ export default class GlobalFilterForm extends Component {
     this.state = {
       isComboBoxLoading: false,
       selectedComboBoxOptions: [],
-      comboBoxOptions: fieldOptions,
+      comboBoxOptions: [],
+      editingOption: null,
     };
   }
 
   onComboBoxChange = selectedComboBoxOptions => {
-    let options = fieldOptions;
-    if (selectedComboBoxOptions.length === 1) {
-      options = operatorOptions;
-    } else if (selectedComboBoxOptions.length > 1) {
-      options = valueOptions;
+    const selectedOptions = selectedComboBoxOptions || [];
+    const numOfSelections = selectedOptions.length;
+    const lastUpdate = selectedOptions[selectedOptions.length - 1];
+    const current = {};
+
+    // If length is less than 3, then move on to the next
+    if (numOfSelections < 3) {
+      switch (numOfSelections) {
+        case 0:
+          current.selectedComboBoxOptions = [];
+          current.editingOption = 'field';
+          current.comboBoxOptions = fieldOptions;
+          break;
+        case 1:
+          current.selectedComboBoxOptions = selectedOptions;
+          current.editingOption = 'operator';
+          current.comboBoxOptions = operatorOptions;
+          break;
+        default:
+          // 2 or more
+          current.selectedComboBoxOptions = selectedOptions;
+          current.editingOption = 'value';
+          current.comboBoxOptions = valueOptions;
+          break;
+      }
+    } else {
+      // else stay on and just update the value
+      switch (this.state.editingOption) {
+        case 'field':
+          pull(selectedOptions, lastUpdate);
+          selectedOptions[0] = lastUpdate;
+          break;
+        case 'operator':
+          pull(selectedOptions, lastUpdate);
+          selectedOptions[1] = lastUpdate;
+          break;
+        default:
+          // 'value'
+          break;
+      }
+
+      current.selectedComboBoxOptions = selectedOptions;
     }
 
+    // Add the appropriate click handlers to the first two selected options
+    // (if they exist)
+    if (numOfSelections > 0) {
+      current.selectedComboBoxOptions[0].onClick = this.fieldClicked;
+    }
+    if (numOfSelections > 1) {
+      current.selectedComboBoxOptions[1].onClick = this.opClicked;
+    }
+
+    this.setState({ ...current });
+  };
+
+  fieldClicked = () => {
     this.setState({
-      selectedComboBoxOptions,
-      comboBoxOptions: options,
+      comboBoxOptions: fieldOptions,
+      editingOption: 'field',
+    });
+  };
+
+  opClicked = () => {
+    this.setState({
+      comboBoxOptions: operatorOptions,
+      editingOption: 'operator',
     });
   };
 
   // eslint-disable-next-line no-unused-vars
   onSearchChange = searchValue => {
-    // let options = this.state.comboBoxOptions;
+    //const options = this.state.comboBoxOptions;
     // this.setState({
     //   isComboBoxLoading: true,
     //   comboBoxOptions: [],
@@ -111,20 +171,26 @@ export default class GlobalFilterForm extends Component {
     // }
     // this.searchTimeout = setTimeout(() => {
     //   // Simulate a remotely-executed search.
-    //   this.setState({
-    //     isComboBoxLoading: false,
-    //     comboBoxOptions: options.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
-    //   });
+    //this.setState({
+    // isComboBoxLoading: false,
+    //comboBoxOptions: options.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+    //});
     // }, 200);
   };
 
   componentDidMount() {
     // Simulate initial load.
-    this.onSearchChange('');
+    //this.onSearchChange('');
+    this.onComboBoxChange(this.props.selectedObject);
   }
 
   render() {
-    const { onAdd, onCancel, ...rest } = this.props;
+    const {
+      onAdd,
+      onCancel,
+      selectedObject, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
 
     const label = (
       <EuiFlexGroup alignItems="baseline">
@@ -151,7 +217,9 @@ export default class GlobalFilterForm extends Component {
 
         <EuiFlexGroup direction="rowReverse" alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiButton fill onClick={onAdd}>Add</EuiButton>
+            <EuiButton fill onClick={onAdd}>
+              Add
+            </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
