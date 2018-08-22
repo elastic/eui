@@ -1,0 +1,12 @@
+.globalFilterItem {
+
+}
+
+.globalFilterItem-isDisabled {
+  font-weight: $euiFontWeightRegular;
+  font-style: italic;
+}
+
+.globalFilterItem-isExcluded {
+  text-decoration: line-through;
+}

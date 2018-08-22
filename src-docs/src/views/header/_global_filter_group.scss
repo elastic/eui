@@ -1,0 +1,11 @@
+@import 'global_filter_bar';
+@import 'global_filter_item';
+@import 'global_filter_form';
+
+.globalFilterGroup__filterBar {
+  margin-top: 8px;
+}
+
+.globalFilterGroup__branch {
+  fill: $euiColorLightShade;
+}
