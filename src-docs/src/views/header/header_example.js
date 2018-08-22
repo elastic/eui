@@ -19,6 +19,12 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
+import { GlobalFilterBar } from './global_filter_bar';
+import GlobalFilterAdd from './global_filter_add';
+import GlobalFilterOptions from './global_filter_options';
+import GlobalFilterForm from './global_filter_form';
+import { GlobalFilterItem } from './global_filter_item';
+
 import Header from './header';
 const headerSource = require('!!raw-loader!./header');
 const headerHtml = renderToHtml(Header);
@@ -89,12 +95,20 @@ export const HeaderExample = {
         <EuiCallOut color="warning" title="Demo of visual pattern only">
           <p>
             This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global query and filter bars. It uses all EUI components without any custom styles.
+            global query and filter bars. The filter bar has been broken down into multiple components. There
+            are still bugs and not all the logical is well-formed.
           </p>
         </EuiCallOut>
       </div>
     ),
-    // props: { },
+    props: {
+      GlobalQuery,
+      GlobalFilterBar,
+      GlobalFilterOptions,
+      GlobalFilterAdd,
+      GlobalFilterForm,
+      GlobalFilterItem,
+    },
     demo: <GlobalQuery />,
   }],
 };
