@@ -72,7 +72,7 @@ export const propsInfo = {
           defaultValue: { value: '[5, 10, 20]' },
           type: { name: 'number[]' }
         },
-        disablePerPageOptions: {
+        hidePerPageOptions: {
           description: 'Hides the page size dropdown',
           required: false,
           defaultValue: { value: 'false' },

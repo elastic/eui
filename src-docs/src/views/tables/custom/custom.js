@@ -600,7 +600,7 @@ export default class extends Component {
           itemsPerPage={this.state.itemsPerPage}
           itemsPerPageOptions={[5, 10, 20]}
           pageCount={this.pager.getTotalPages()}
-          disablePerPageOptions={!this.state.showPerPageOptions}
+          hidePerPageOptions={!this.state.showPerPageOptions}
           onChangeItemsPerPage={this.onChangeItemsPerPage}
           onChangePage={this.onChangePage}
         />
@@ -608,7 +608,7 @@ export default class extends Component {
         <EuiSpacer size="xl" />
 
         <EuiSwitch
-          label={<span>Hide per page options with <EuiCode>pagination.disablePerPageOptions = true</EuiCode></span>}
+          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
           onChange={this.togglePerPageOptions}
         />
       </div>

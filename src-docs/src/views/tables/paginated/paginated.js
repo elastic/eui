@@ -136,7 +136,7 @@ export class Table extends Component {
       pageSize,
       totalItemCount,
       pageSizeOptions: [3, 5, 8],
-      disablePerPageOptions: !showPerPageOptions
+      hidePerPageOptions: !showPerPageOptions
     };
 
     return (
@@ -149,7 +149,7 @@ export class Table extends Component {
         />
         <EuiSpacer size="xl" />
         <EuiSwitch
-          label={<span>Hide per page options with <EuiCode>pagination.disablePerPageOptions = true</EuiCode></span>}
+          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
           onChange={this.togglePerPageOptions}
         />
       </div>

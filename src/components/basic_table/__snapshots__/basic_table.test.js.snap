@@ -958,7 +958,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     onPageSizeChange={[Function]}
     pagination={
       Object {
-        "disablePerPageOptions": true,
+        "hidePerPageOptions": true,
         "pageIndex": 0,
         "pageSize": 3,
         "totalItemCount": 5,

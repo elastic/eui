@@ -246,7 +246,7 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
-        disablePerPageOptions: true
+        hidePerPageOptions: true
       }
     };
     const component = shallow(

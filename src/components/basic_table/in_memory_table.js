@@ -94,11 +94,11 @@ const getInitialPagination = (pagination) => {
   const {
     initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
-    disablePerPageOptions
+    hidePerPageOptions
   } = pagination;
 
 
-  if (!disablePerPageOptions && initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
+  if (!hidePerPageOptions && initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
     throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
   }
 
@@ -108,7 +108,7 @@ const getInitialPagination = (pagination) => {
     pageIndex: 0,
     pageSize: initialPageSize || defaultPageSize,
     pageSizeOptions,
-    disablePerPageOptions
+    hidePerPageOptions
   };
 };
 
@@ -158,7 +158,7 @@ export class EuiInMemoryTable extends Component {
     super(props);
 
     const { search, pagination, sorting } = props;
-    const { pageIndex, pageSize, pageSizeOptions, disablePerPageOptions } = getInitialPagination(pagination);
+    const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
     this.state = {
@@ -171,7 +171,7 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
-      disablePerPageOptions
+      hidePerPageOptions
     };
   }
 
@@ -328,7 +328,7 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
-      disablePerPageOptions
+      hidePerPageOptions
     } = this.state;
 
     const { items, totalItemCount } = this.getItems();
@@ -338,7 +338,7 @@ export class EuiInMemoryTable extends Component {
       pageSize,
       pageSizeOptions,
       totalItemCount,
-      disablePerPageOptions
+      hidePerPageOptions
     };
 
     // Data loaded from a server can have a default sort order which is meaningful to the

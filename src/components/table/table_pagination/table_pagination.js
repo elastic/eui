@@ -35,7 +35,7 @@ export class EuiTablePagination extends Component {
       activePage,
       itemsPerPage,
       itemsPerPageOptions,
-      disablePerPageOptions,
+      hidePerPageOptions,
       onChangeItemsPerPage,
       onChangePage,
       pageCount,
@@ -82,7 +82,7 @@ export class EuiTablePagination extends Component {
     return (
       <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
-          {disablePerPageOptions ? null : itemsPerPagePopover}
+          {hidePerPageOptions ? null : itemsPerPagePopover}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
@@ -101,6 +101,7 @@ EuiTablePagination.propTypes = {
   activePage: PropTypes.number,
   itemsPerPage: PropTypes.number,
   itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+  hidePerPageOptions: PropTypes.bool,
   onChangeItemsPerPage: PropTypes.func,
   onChangePage: PropTypes.func,
   pageCount: PropTypes.number,
@@ -109,5 +110,5 @@ EuiTablePagination.propTypes = {
 EuiTablePagination.defaultProps = {
   itemsPerPage: 50,
   itemsPerPageOptions: [10, 20, 50, 100],
-  disablePerPageOptions: false
+  hidePerPageOptions: false
 };

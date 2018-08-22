@@ -24,7 +24,7 @@ export const PaginationBar = ({ pagination, onPageSizeChange, onPageChange }) =>
       <EuiSpacer size="m" />
       <EuiTablePagination
         activePage={pagination.pageIndex}
-        disablePerPageOptions={pagination.disablePerPageOptions}
+        hidePerPageOptions={pagination.hidePerPageOptions}
         itemsPerPage={pagination.pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}

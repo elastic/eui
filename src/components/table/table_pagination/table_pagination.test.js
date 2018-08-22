@@ -28,7 +28,7 @@ describe('EuiTablePagination', () => {
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
-        disablePerPageOptions={true}
+        hidePerPageOptions={true}
       />
     );
 
