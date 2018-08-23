@@ -100,15 +100,18 @@ export class EuiComboBoxInput extends Component {
       const {
         label,
         color,
+        onClick,
         ...rest
       } = option;
 
       return (
         <EuiComboBoxPill
           option={option}
-          onClose={(isDisabled || singleSelection) ? null : onRemoveOption}
+          onClose={(isDisabled || singleSelection || onClick) ? null : onRemoveOption}
           key={label.toLowerCase()}
           color={color}
+          onClick={onClick}
+          onClickAriaLabel={onClick ? 'Change' : null}
           {...rest}
         >
           {label}
