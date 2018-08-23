@@ -13,7 +13,11 @@
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize();
     padding: $euiSizeXS;
-    @include euiFormControlLayout__padding(2); /* 2 */
+    @include euiFormControlLayout__padding(1); /* 2 */
+
+    &.euiComboBox__inputWrap-isClearable {
+      @include euiFormControlLayout__padding(2); /* 2 */
+    }
 
     &:not(.euiComboBox__inputWrap--noWrap) {
       height: auto;  /* 3 */
