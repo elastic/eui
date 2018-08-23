@@ -1,4 +1,4 @@
-import { getScaleFromType } from './utils';
+import { getScaleFromType } from '../../state/old/utils';
 
 
 export function computePointSeriesDataPoint(spec, domain, chartDimensions) {

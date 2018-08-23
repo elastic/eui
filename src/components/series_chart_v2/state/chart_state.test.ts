@@ -1,6 +1,7 @@
+import { getAxisId, getGroupId, getSpecId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
 import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec } from '../commons/specs';
-import { ChartStore } from './state';
+import { ChartStore } from './chart_state';
 
 describe('Chart Store', () => {
   const mockedRect = {
@@ -22,8 +23,8 @@ describe('Chart Store', () => {
 
   const store = new ChartStore();
   const spec: DataSeriesSpec = {
-    id: 'spec_1',
-    groupId: 'group_1',
+    id: getSpecId('spec_1'),
+    groupId: getGroupId('group_1'),
     data: [
       { x: 1, y: 1 },
       { x: 2, y: 2 },
@@ -38,16 +39,16 @@ describe('Chart Store', () => {
   test('can add a single spec', () => {
     store.addSeriesSpecs(spec);
     const { seriesScales, seriesSpecs } = store;
-    const computedSpecScale = seriesScales.get('spec_1');
+    const computedSpecScale = seriesScales.get(getSpecId('spec_1'));
     expect(computedSpecScale).not.toBeUndefined();
     expect(computedSpecScale!.domains.xDomain).toEqual([ 1, 3 ]);
-    const addesSeriesSpec = seriesSpecs.get('spec_1');
+    const addesSeriesSpec = seriesSpecs.get(getSpecId('spec_1'));
     expect(addesSeriesSpec).toEqual(spec);
   });
   test('can add an axis', () => {
     const axisSpec: AxisSpec = {
-      id: 'axis_1',
-      groupId: 'group_1',
+      id: getAxisId('axis_1'),
+      groupId: getGroupId('group_1'),
       hide: false,
       showOverlappingTicks: false,
       showOverlappingLabels: false,

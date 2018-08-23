@@ -1,17 +1,12 @@
 import { Accessor } from './domain';
+import { AxisId, GroupId, SpecId } from './ids';
 import { ScaleType } from './scales';
+
 type Datum = any;
 
-export type SpecId = string;
-export type GroupId = string;
-export type AxisId = string;
-
-export interface GeneralSpec {
+export interface DataSeriesSpec {
   id: SpecId;
   groupId: GroupId;
-}
-
-export interface DataSeriesSpec extends GeneralSpec {
   data: Datum[];
   xAccessor: Accessor;
   yAccessor: Accessor;
@@ -35,7 +30,9 @@ export interface SeriesScales {
   scaleTypes: SeriesScaleTypes;
 }
 
-export interface AxisSpec extends GeneralSpec {
+export interface AxisSpec {
+  id: AxisId;
+  groupId: GroupId;
   hide: boolean;
   showOverlappingTicks: boolean;
   showOverlappingLabels: boolean;

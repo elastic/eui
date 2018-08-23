@@ -1,3 +1,4 @@
+import { getAxisId, getGroupId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
 import { AxisOrientation, AxisPosition } from '../commons/specs';
 import { computeAxisDimensions, getAvailableTicks, getVisibleTicks } from '../state/axis_utils';
@@ -50,8 +51,8 @@ describe('Axis computational utils', () => {
     maxTickHeight: 10,
   };
   const axis1Spec = {
-    id: 'axis_1',
-    groupId: 'group_1',
+    id: getAxisId('axis_1'),
+    groupId: getGroupId('group_1'),
     hide: false,
     showOverlappingTicks: false,
     showOverlappingLabels: false,
