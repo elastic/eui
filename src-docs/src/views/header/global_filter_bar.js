@@ -5,11 +5,8 @@ import classNames from 'classnames';
 import {
   EuiFlexGroup,
   EuiFlexItem,
-  EuiToolTip,
-  EuiButtonIcon,
 } from '../../../../src/components';
 import GlobalFilterAdd from './global_filter_add';
-import GlobalFilterOptions from './global_filter_options';
 import { GlobalFilterItem } from './global_filter_item';
 
 export const GlobalFilterBar = ({
@@ -45,35 +42,15 @@ export const GlobalFilterBar = ({
       wrap={true}
       responsive={false}
       gutterSize="xs"
+      alignItems="center"
       {...rest}
     >
-      {pinnedFilters.length && ( // Show pinned filters first and in a specific group
-        <EuiFlexItem
-          className="globalFilterBar__pinned"
-          title="This group is pinned"
-          grow={false}
-        >
-          <EuiFlexGroup justifyContent="flexStart" gutterSize="xs" wrap={true} responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiToolTip content="Unpin all">
-                <EuiButtonIcon aria-label="Unpin all" className="globalFilterBar__pinnedIcon" color="text" iconType="pin" />
-              </EuiToolTip>
-            </EuiFlexItem>
 
-            {pinnedFilters}
-
-          </EuiFlexGroup>
-        </EuiFlexItem>
-      )}
-
+      {/* Show pinned filters first and in a specific group */}
+      {pinnedFilters}
       {unpinnedFilters}
 
-      <EuiFlexItem>
-        <EuiFlexGroup justifyContent="spaceBetween" gutterSize="xs" responsive={false}>
-          <EuiFlexItem grow={false}><GlobalFilterAdd /></EuiFlexItem>
-          <EuiFlexItem grow={false}><GlobalFilterOptions /></EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiFlexItem>
+      <EuiFlexItem grow={false}><GlobalFilterAdd /></EuiFlexItem>
     </EuiFlexGroup>
   );
 };

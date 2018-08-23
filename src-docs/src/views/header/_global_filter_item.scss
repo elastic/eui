@@ -1,12 +1,20 @@
 .globalFilterItem {
+  line-height: $euiSizeL + $euiSizeXS;
+  border: none;
+  color: $euiTextColor;
 
+  &:not(.globalFilterItem-isDisabled) {
+    @include euiFormControlDefaultShadow;
+  }
 }
 
 .globalFilterItem-isDisabled {
+  background-color: transparentize($euiColorLightShade, .4);
+  text-decoration: line-through;
   font-weight: $euiFontWeightRegular;
   font-style: italic;
 }
 
-.globalFilterItem-isExcluded {
-  text-decoration: line-through;
+.globalFilterItem-isPinned {
+  border-left: $euiSizeXS solid $euiColorSuccess;
 }

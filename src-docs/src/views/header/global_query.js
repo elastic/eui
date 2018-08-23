@@ -10,6 +10,7 @@ import {
 } from '../../../../src/components';
 
 import { GlobalFilterBar } from './global_filter_bar';
+import GlobalFilterOptions from './global_filter_options';
 
 export default class extends Component {
   constructor(props) {
@@ -90,7 +91,10 @@ export default class extends Component {
     this.filterBar = node;
   }
 
+
   render() {
+    const filterButtonTitle = `${this.state.filters.length} filters applied. Select to ${this.state.isFiltersVisible ? 'hide' : 'show'}.`;
+
     const filterTriggerButton = (
       <EuiFilterButton
         onClick={this.toggleFilterVisibility}
@@ -99,6 +103,7 @@ export default class extends Component {
         numFilters={this.state.filters.length > 0 ? this.state.filters.length : null}
         aria-controls="GlobalFilterGroup"
         aria-expanded={!!this.state.isFiltersVisible}
+        title={filterButtonTitle}
       >
         Filters
       </EuiFilterButton>
@@ -138,11 +143,8 @@ export default class extends Component {
                 alignItems="flexStart"
                 responsive={false}
               >
-                <EuiFlexItem grow={false}>
-                  <svg className="globalFilterGroup__branch" width="33" height="48" viewBox="0 0 33 48" xmlns="http://www.w3.org/2000/svg">
-                    <rect fillOpacity="0" width="33" height="48" />
-                    <path d="M17,28 L17,-9.18485099e-17 L18,9.18485099e-17 L18,28 L33,28 L33,29 L17,29 L17,28 Z" />
-                  </svg>
+                <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
+                  <GlobalFilterOptions />
                 </EuiFlexItem>
 
                 <EuiFlexItem>

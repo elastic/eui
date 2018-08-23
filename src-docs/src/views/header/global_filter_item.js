@@ -52,6 +52,13 @@ export class GlobalFilterItem extends Component {
     });
   };
 
+  deleteFilter = (e) => {
+    window.alert('Filter would have been deleted.');
+    // Make sure it doesn't also trigger the onclick for the whole badge
+    e.stopPropagation();
+  }
+
+
   render() {
     const {
       className,
@@ -75,26 +82,37 @@ export class GlobalFilterItem extends Component {
       className
     );
 
-    let icon;
-    let badgeColor = 'hollow';
+    let prefix = null;
+    if (isExcluded) {
+      prefix = <span>NOT </span>;
+    }
 
-    if (isDisabled) {
-      icon = 'eyeClosed';
-      badgeColor = 'default';
-    } else if (isExcluded) {
-      icon = 'minusInCircle';
+    let title = `Filter: ${field}: "${value}". Select for more filter actions.`;
+    if (isPinned) {
+      title = `Pinned ${title}`;
+    } else if (isDisabled) {
+      title = `Disabled ${title}`;
     }
 
     const badge = (
       <EuiBadge
         id={id}
         className={classes}
-        iconType={icon}
-        color={badgeColor}
+        title={title}
+        iconOnClick={this.deleteFilter}
+        iconOnClickAriaLabel={`Delete filter`}
+        iconType="cross"
+        iconSide="right"
         onClick={this.togglePopover}
-        onClickAriaLabel="Filter options"
+        onClickAriaLabel="Filter actions"
+        closeButtonProps={{
+          // Removing tab focus on close button because the same option can be optained through the context menu
+          // Also, we may want to add a `DEL` keyboard press functionality
+          tabIndex: '-1'
+        }}
         {...rest}
       >
+        {prefix}
         <span>{field}: </span>
         <span>&quot;{value}&quot;</span>
       </EuiBadge>

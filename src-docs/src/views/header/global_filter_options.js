@@ -112,6 +112,7 @@ export default class GlobalFilterOptions extends Component {
             color="text"
             iconType="gear"
             aria-label="Change all filters"
+            title="Change all filters"
           />
         }
         anchorPosition="downCenter"
