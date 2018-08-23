@@ -6,10 +6,13 @@ import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
+  EuiCode,
   EuiLink,
   EuiHealth,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
+  EuiSwitch
 } from '../../../../../src/components';
 
 /*
@@ -43,6 +46,7 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
+      showPerPageOptions: true
     };
   }
 
@@ -64,10 +68,13 @@ export class Table extends Component {
     return <EuiHealth color={color}>{label}</EuiHealth>;
   }
 
+  togglePerPageOptions = () => this.setState((state) => ({ showPerPageOptions: !state.showPerPageOptions }));
+
   render() {
     const {
       pageIndex,
       pageSize,
+      showPerPageOptions
     } = this.state;
 
     const {
@@ -125,19 +132,27 @@ export class Table extends Component {
     }];
 
     const pagination = {
-      pageIndex: pageIndex,
-      pageSize: pageSize,
-      totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8]
+      pageIndex,
+      pageSize,
+      totalItemCount,
+      pageSizeOptions: [3, 5, 8],
+      hidePerPageOptions: !showPerPageOptions
     };
 
     return (
-      <EuiBasicTable
-        items={pageOfItems}
-        columns={columns}
-        pagination={pagination}
-        onChange={this.onTableChange}
-      />
+      <div>
+        <EuiSwitch
+          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
+          onChange={this.togglePerPageOptions}
+        />
+        <EuiSpacer size="xl" />
+        <EuiBasicTable
+          items={pageOfItems}
+          columns={columns}
+          pagination={pagination}
+          onChange={this.onTableChange}
+        />
+      </div>
     );
   }
 }
