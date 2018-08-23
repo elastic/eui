@@ -1,4 +1,4 @@
-import { line,
+import { area,
   curveLinear,
   curveCardinal,
   curveNatural,
@@ -11,11 +11,11 @@ import { line,
   curveStepAfter,
   curveStepBefore,
 } from 'd3-shape';
-import { getScaleFromType } from './utils';
-import { CURVE_TYPE } from '../utils/chart_utils';
+import { getScaleFromType } from '../../state/old/utils';
+import { CURVE_TYPE } from '../../utils/old/chart_utils';
 
 
-export function computeLineSeriesDataPoint(spec, domain, chartDimensions) {
+export function computeAreaSeriesDataPoint(spec, domain, chartDimensions) {
   const {
     xScaleType,
     yScaleType,
@@ -29,19 +29,22 @@ export function computeLineSeriesDataPoint(spec, domain, chartDimensions) {
     .range([0, chartDimensions.width]);
   const yScale = getScaleFromType(yScaleType)
     .domain(domain.y.domain)
-    .range([chartDimensions.height, 0]);
-
-  const lineGenerator = line()
-    .x(d => xScale(xAccessor(d)))
-    .y(d => yScale(yAccessor(d)))
-    .curve(getLineCurve(curveType));
+    .range([0, chartDimensions.height]);
+  // TODO defined
+  // TODO add rotation
+  const areaGenerator = area()
+    .x0(d => xScale(xAccessor(d)))
+    .x1(d => xScale(xAccessor(d)))
+    .y1(chartDimensions.height)
+    .y0(d => chartDimensions.height - yScale(yAccessor(d)))
+    .curve(getAreaCurve(curveType));
   const dataPoint = {
-    d: lineGenerator(data)
+    d: areaGenerator(data)
   };
   return dataPoint;
 }
 
-export function getLineCurve(curveType) {
+export function getAreaCurve(curveType) {
   switch(curveType) {
     case CURVE_TYPE.CURVE_CARDINAL:
       return curveCardinal;

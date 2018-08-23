@@ -7,15 +7,26 @@ import {
   ScaleFunction,
   ScaleType,
 } from '../commons/scales';
-import { BarSeriesGlyph } from '../commons/series/bar_series';
+
 export const DEFAULT_BAR_WIDTH = 10;
 
 /**
- *
+ * A single bar glyph representation
+ */
+export interface BarSeriesGlyph {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+/**
+ * This compute an array of BarSeriesGlyphs that can be used to
+ * draw an svg rect for the dataset provided
  * @param data The data array
  * @param xScaleConfig the x scale configuration
  * @param yScaleConfig the y scale configuration
- * @param seriesDimensions the dimension of the series
+ * @param seriesDimensions the dimension of the series (not necessary the chart)
  */
 export function computeDataPoints(
   data: any[],

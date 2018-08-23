@@ -1,6 +1,6 @@
 import { computeDataDomain } from '../commons/domain';
 import { ScaleType } from '../commons/scales';
-import { computeDataPoints, DEFAULT_BAR_WIDTH } from './bar_series';
+import { computeDataPoints, DEFAULT_BAR_WIDTH } from './bar_series_utils';
 
 describe('Bar Series', () => {
   test('Compute a simple ordinal bar series', () => {

@@ -1,5 +1,6 @@
 import { max } from 'd3-array';
 import { Dimensions } from '../commons/dimensions';
+import { AxisId } from '../commons/ids';
 import {
   createContinuousScale,
   createOrdinalScale,
@@ -181,12 +182,12 @@ export function getAxisPosition(
 
 export function getAxisTicksPositions(
   chartDimensions: Dimensions,
-  axisSpecs: Map<string, AxisSpec>,
-  axisDimensions: Map<string, AxisDimensions>,
+  axisSpecs: Map<AxisId, AxisSpec>,
+  axisDimensions: Map<AxisId, AxisDimensions>,
 ) {
-  const axisPositions: Map<string, Dimensions> = new Map();
-  const axisVisibleTicks: Map<string, AxisTick[]> = new Map();
-  const axisTicks: Map<string, AxisTick[]> = new Map();
+  const axisPositions: Map<AxisId, Dimensions> = new Map();
+  const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
+  const axisTicks: Map<AxisId, AxisTick[]> = new Map();
   let cumVerticalSum = 0;
   let cumHorizontalSum = 0;
   axisDimensions.forEach((axisDim, id) => {

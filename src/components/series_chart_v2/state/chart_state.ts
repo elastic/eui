@@ -1,15 +1,17 @@
 import {
   AxisId,
+  GroupId,
+  SpecId,
+} from '../commons/ids';
+import {
   AxisSpec,
   DataSeriesSpec,
-  GroupId,
   SeriesScales,
-  SpecId,
 } from '../commons/specs';
 
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
+import { computeSeriesDomains } from '../commons/domain';
 import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
-import { computeSeriesDomains } from './series_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export class ChartStore {
@@ -27,9 +29,9 @@ export class ChartStore {
   };  // updated from jsx
   public axisSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axisDimensions: Map<AxisId, AxisDimensions> = new Map(); // computed
-  public axisPositions: Map<string, Dimensions> = new Map(); // computed
-  public axisVisibleTicks: Map<string, AxisTick[]> = new Map(); // computed
-  public axisTicks: Map<string, AxisTick[]> = new Map(); // computed
+  public axisPositions: Map<AxisId, Dimensions> = new Map(); // computed
+  public axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
+  public axisTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
   public seriesScales: Map<SpecId, SeriesScales> = new Map(); // computed
   public chartScales: Map<GroupId, SeriesScales> = new Map(); // computed
@@ -57,14 +59,32 @@ export class ChartStore {
     this.seriesScales.set(seriesSpec.id, seriesScales);
     // merge to global domains
     this.mergeChartScales(seriesSpec.groupId, seriesScales);
-
   }
 
+  /**
+   * Remove a series spec from the store
+   * @param specId the id of the spec
+   */
+  public removeSeriesSpecs(specId: SpecId) {
+    this.seriesSpecs.delete(specId);
+  }
+
+  /**
+   * Add an axis spec to the store
+   * @param axisSpec an axis spec
+   */
   public addAxis(axisSpec: AxisSpec) {
     this.axisSpecs.set(axisSpec.id, axisSpec);
   }
 
+  public removeAxisSpec(axisId: AxisId) {
+    this.axisSpecs.delete(axisId);
+  }
+
   public computeChart() {
+
+    // TODO merge series domains
+
     // compute axis dimensions
     const bboxCalculator = new SvgTextBBoxCalculator();
     this.axisDimensions.clear();
@@ -86,6 +106,12 @@ export class ChartStore {
     this.axisPositions = axisTicksPositions.axisPositions;
     this.axisTicks = axisTicksPositions.axisTicks;
     this.axisVisibleTicks = axisTicksPositions.axisVisibleTicks;
+
+    // compute series glyphs
+    this.seriesSpecs.forEach((seriesSpec, id) => {
+      // compute single series glyphs
+      // save glyphs to store
+    });
   }
 
   private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales) {

@@ -1,11 +1,11 @@
 import { computed, action, observable } from 'mobx';
 import { capitalize } from 'lodash';
 import { getDomain, mergeGlobalDomains, computeAxisDimensions, computeChartDimensions } from './utils';
-import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator.ts';
-import { computeLineSeriesDataPoint } from './line_series_utils';
-import { computePointSeriesDataPoint } from './point_series_utils';
-import { computeBarSeriesDataPoint } from './bar_series_utils';
-import { computeAreaSeriesDataPoint } from './area_series_utils';
+import { SvgTextBBoxCalculator } from '../svg_text_bbox_calculator.ts';
+import { computeLineSeriesDataPoint } from '../../utils/old/line_series_utils';
+import { computePointSeriesDataPoint } from '../../utils/old/point_series_utils';
+import { computeBarSeriesDataPoint } from '../../utils/old/bar_series_utils';
+import { computeAreaSeriesDataPoint } from '../../utils/old/area_series_utils';
 
 export class ChartSpecStore {
   specsInitialized = observable.box(false)
