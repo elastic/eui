@@ -2,6 +2,8 @@
 
 No public interface changes since `3.7.0`.
 
+- Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
+
 ## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
 
 - Added `zIndexAdjustment` to `EuiPopover` which allows tweaking the popover content's `z-index` ([#1097](https://github.com/elastic/eui/pull/1097))
