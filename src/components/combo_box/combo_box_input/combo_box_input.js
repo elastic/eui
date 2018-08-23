@@ -29,7 +29,10 @@ export class EuiComboBoxInput extends Component {
     isListOpen: PropTypes.bool.isRequired,
     onOpenListClick: PropTypes.func.isRequired,
     onCloseListClick: PropTypes.func.isRequired,
-    singleSelection: PropTypes.bool,
+    singleSelection: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.object,
+    ]),
     isDisabled: PropTypes.bool,
     toggleButtonRef: PropTypes.func,
     fullWidth: PropTypes.bool,
@@ -104,6 +107,8 @@ export class EuiComboBoxInput extends Component {
         ...rest
       } = option;
 
+      const asPlainText = singleSelection && singleSelection.asPlainText;
+
       return (
         <EuiComboBoxPill
           option={option}
@@ -112,6 +117,7 @@ export class EuiComboBoxInput extends Component {
           color={color}
           onClick={onClick}
           onClickAriaLabel={onClick ? 'Change' : null}
+          asPlainText={asPlainText}
           {...rest}
         >
           {label}
@@ -174,6 +180,7 @@ export class EuiComboBoxInput extends Component {
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
       'euiComboBox__inputWrap--fullWidth': fullWidth,
+      'euiComboBox__inputWrap--noWrap': singleSelection,
     });
 
     return (

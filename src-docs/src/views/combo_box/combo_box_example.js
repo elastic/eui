@@ -224,8 +224,10 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        To only allow the user to select a single option, provide
-        the <EuiCode>singleSelection</EuiCode> prop.
+        To only allow the user to select a single option, provide the{' '}
+        <EuiCode>singleSelection</EuiCode> prop. You may want to render the selected option as
+        plain text instead of pill form. To do this, pass{' '}
+        <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
       </p>
     ),
     props: { EuiComboBox },
