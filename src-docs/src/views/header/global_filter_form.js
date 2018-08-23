@@ -80,106 +80,16 @@ export default class GlobalFilterForm extends Component {
     super(props);
 
     this.state = {
+      fieldOptions: fieldOptions,
+      operandOptions: operatorOptions,
+      valueOptions: valueOptions,
       selectedField: this.props.selectedObject ? this.props.selectedObject.field : [],
       selectedOperand: this.props.selectedObject ? this.props.selectedObject.operand : [],
       selectedValues: this.props.selectedObject ? this.props.selectedObject.values : [],
       useCustomLabel: false,
-      customLabel: null,
+      customLabel: '',
     };
   }
-
-  // onComboBoxChange = selectedComboBoxOptions => {
-  //   const selectedOptions = selectedComboBoxOptions || [];
-  //   const numOfSelections = selectedOptions.length;
-  //   const lastUpdate = selectedOptions[selectedOptions.length - 1];
-  //   const current = {};
-
-  //   // If length is less than 3, then move on to the next
-  //   if (numOfSelections < 3) {
-  //     switch (numOfSelections) {
-  //       case 0:
-  //         current.selectedComboBoxOptions = [];
-  //         current.editingOption = 'field';
-  //         current.comboBoxOptions = fieldOptions;
-  //         break;
-  //       case 1:
-  //         current.selectedComboBoxOptions = selectedOptions;
-  //         current.editingOption = 'operator';
-  //         current.comboBoxOptions = operatorOptions;
-  //         break;
-  //       default:
-  //         // 2 or more
-  //         current.selectedComboBoxOptions = selectedOptions;
-  //         current.editingOption = 'value';
-  //         current.comboBoxOptions = valueOptions;
-  //         break;
-  //     }
-  //   } else {
-  //     // else stay on and just update the value
-  //     switch (this.state.editingOption) {
-  //       case 'field':
-  //         pull(selectedOptions, lastUpdate);
-  //         selectedOptions[0] = lastUpdate;
-  //         break;
-  //       case 'operator':
-  //         pull(selectedOptions, lastUpdate);
-  //         selectedOptions[1] = lastUpdate;
-  //         break;
-  //       default:
-  //         // 'value'
-  //         break;
-  //     }
-
-  //     current.selectedComboBoxOptions = selectedOptions;
-  //   }
-
-  //   // Add the appropriate click handlers to the first two selected options
-  //   // (if they exist)
-  //   if (numOfSelections > 0) {
-  //     current.selectedComboBoxOptions[0].onClick = this.fieldClicked;
-  //   }
-  //   if (numOfSelections > 1) {
-  //     current.selectedComboBoxOptions[1].onClick = this.opClicked;
-  //   }
-
-  //   this.setState({ ...current });
-  // };
-
-  // fieldClicked = () => {
-  //   this.setState({
-  //     comboBoxOptions: fieldOptions,
-  //     editingOption: 'field',
-  //   });
-  // };
-
-  // opClicked = () => {
-  //   this.setState({
-  //     comboBoxOptions: operatorOptions,
-  //     editingOption: 'operator',
-  //   });
-  // };
-
-  // eslint-disable-next-line no-unused-vars
-  onSearchChange = searchValue => {
-    //const options = this.state.comboBoxOptions;
-    // this.setState({
-    //   isComboBoxLoading: true,
-    //   comboBoxOptions: [],
-    // });
-    // clearTimeout(this.searchTimeout);
-    // if (this.state.selectedComboBoxOptions.length === 1) {
-    //   options = operatorOptions;
-    // } else if (this.state.selectedComboBoxOptions.length > 1) {
-    //   options = valueOptions;
-    // }
-    // this.searchTimeout = setTimeout(() => {
-    //   // Simulate a remotely-executed search.
-    //this.setState({
-    // isComboBoxLoading: false,
-    //comboBoxOptions: options.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
-    //});
-    // }, 200);
-  };
 
   onFieldChange = selectedOptions => {
     // We should only get back either 0 or 1 options.
@@ -204,6 +114,24 @@ export default class GlobalFilterForm extends Component {
   onCustomLabelSwitchChange = e => {
     this.setState({
       useCustomLabel: e.target.checked,
+    });
+  };
+
+  onFieldSearchChange = searchValue => {
+    this.setState({
+      fieldOptions: fieldOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+    });
+  };
+
+  onOperandSearchChange = searchValue => {
+    this.setState({
+      operandOptions: operatorOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+    });
+  };
+
+  onValuesSearchChange = searchValue => {
+    this.setState({
+      valueOptions: valueOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
     });
   };
 
@@ -234,30 +162,32 @@ export default class GlobalFilterForm extends Component {
     return (
       <div {...rest}>
         <EuiFlexGroup>
-          <EuiFlexItem>
+          <EuiFlexItem style={{ maxWidth: '188px' }}>
             <EuiFormRow label="Field">
               <EuiComboBox
                 placeholder={this.state.selectedOperand.length < 1 ? 'Start here' : 'Select a field'}
-                options={fieldOptions}
+                options={this.state.fieldOptions}
                 selectedOptions={this.state.selectedField}
                 onChange={this.onFieldChange}
                 onSearchChange={this.onFieldSearchChange}
                 singleSelection={{ asPlainText: true }}
+                isClearable={false}
               />
             </EuiFormRow>
           </EuiFlexItem>
-          <EuiFlexItem>
+          <EuiFlexItem style={{ maxWidth: '188px' }}>
             <EuiFormRow label="Operand">
               <EuiComboBox
                 placeholder={
                   this.state.selectedField.length < 1 ? 'Select a field first' : 'Select an operand'
                 }
                 isDisabled={this.state.selectedField.length < 1}
-                options={operatorOptions}
+                options={this.state.operandOptions}
                 selectedOptions={this.state.selectedOperand}
                 onChange={this.onOperandChange}
                 onSearchChange={this.onOperandSearchChange}
                 singleSelection={{ asPlainText: true }}
+                isClearable={false}
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -274,7 +204,7 @@ export default class GlobalFilterForm extends Component {
                   : 'Select one or more values'
               }
               isDisabled={this.state.selectedField.length < 1 || this.state.selectedOperand.length < 1}
-              options={valueOptions}
+              options={this.state.valueOptions}
               selectedOptions={this.state.selectedValues}
               onChange={this.onValuesChange}
               onSearchChange={this.onValuesSearchChange}
