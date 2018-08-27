@@ -22,7 +22,6 @@ export default () => (
       colors.map((color) => (
         <EuiFlexItem key={color} grow={false}>
           <EuiButtonIcon
-            size="s"
             color={color}
             onClick={() => window.alert('Button clicked')}
             iconType="arrowRight"

@@ -10,7 +10,9 @@ exports[`EuiPaginationButton is rendered 1`] = `
   <span
     class="euiButtonEmpty__content"
   >
-    <span />
+    <span
+      class="euiButtonEmpty__text"
+    />
   </span>
 </button>
 `;

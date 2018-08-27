@@ -41,7 +41,9 @@ exports[`EuiTableSortMobile is rendered 1`] = `
               href="#arrow_down-a"
             />
           </svg>
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             Sorting
           </span>
         </span>

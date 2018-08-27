@@ -42,7 +42,9 @@ exports[`EuiTablePagination is rendered 1`] = `
                 href="#arrow_down-a"
               />
             </svg>
-            <span>
+            <span
+              class="euiButtonEmpty__text"
+            >
               Rows per page: 50
             </span>
           </span>
@@ -94,7 +96,9 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             1
           </span>
         </span>
@@ -108,7 +112,9 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             2
           </span>
         </span>
@@ -122,7 +128,9 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             3
           </span>
         </span>
@@ -136,7 +144,9 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             4
           </span>
         </span>
@@ -150,7 +160,9 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             5
           </span>
         </span>
@@ -239,7 +251,9 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             1
           </span>
         </span>
@@ -253,7 +267,9 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             2
           </span>
         </span>
@@ -267,7 +283,9 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             3
           </span>
         </span>
@@ -281,7 +299,9 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             4
           </span>
         </span>
@@ -295,7 +315,9 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           class="euiButtonEmpty__content"
         >
-          <span>
+          <span
+            class="euiButtonEmpty__text"
+          >
             5
           </span>
         </span>
