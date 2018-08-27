@@ -1,8 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.7.0`.
-
-- Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added color and monotone icons for AWS and GCP ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
 
 ## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
 
