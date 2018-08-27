@@ -33,9 +33,7 @@ export class EuiComboBox extends Component {
     async: PropTypes.bool,
     singleSelection: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.shape({
-        asPlainText: PropTypes.bool,
-      }),
+      PropTypes.object,
     ]),
     noSuggestions: PropTypes.bool,
     options: PropTypes.array,
