@@ -110,6 +110,12 @@
       color: darken($euiLinkColor, 10%);
       text-decoration: underline;
     }
+
+    &:focus {
+      text-decoration: underline;
+      outline: solid 3px transparentize($euiLinkColor, .9);
+      background-color: transparentize($euiLinkColor, .9);
+    }
   }
 
   img {
