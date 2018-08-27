@@ -262,6 +262,10 @@ export {
 } from './spacer';
 
 export {
+  EuiStat,
+} from './stat';
+
+export {
   EuiStep,
   EuiSteps,
   EuiSubSteps,
