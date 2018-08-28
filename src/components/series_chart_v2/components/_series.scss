@@ -24,6 +24,7 @@ $euiColorVisList:
 
 .euiSeriesChartSeries_area {
   opacity: 0.7;
+  fill: red;
 }
 
 @for $i from 1 through 10 {

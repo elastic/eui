@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { HorizontalGridLines } from 'react-vis';
+import React, { PureComponent } from "react";
+import { HorizontalGridLines } from "react-vis";
 
 /**
  * Horizontal grid lines aligned with y axis ticks
@@ -14,6 +14,6 @@ export class EuiHorizontalGrid extends PureComponent {
   }
 }
 
-EuiHorizontalGrid.displayName = 'EuiHorizontalGrid';
+EuiHorizontalGrid.displayName = "EuiHorizontalGrid";
 
 EuiHorizontalGrid.requiresSVG = true;

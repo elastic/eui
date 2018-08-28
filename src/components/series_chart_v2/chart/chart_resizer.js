@@ -21,7 +21,7 @@ class Sizer extends React.Component {
   onResize = (entries) => {
     entries.forEach((entry) => {
       const { width, height } = entry.contentRect;
-      this.props.chartStore.updateParentDimensions(width, height, 0, 0 );
+      this.props.chartStore.updateParentDimensions(width, height, 0, 0);
     });
   };
 

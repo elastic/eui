@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ScaleUtils, AbstractSeries } from 'react-vis';
-import { ORIENTATION, SCALE } from './utils/chart_utils';
+import React from "react";
+import PropTypes from "prop-types";
+import { ScaleUtils, AbstractSeries } from "react-vis";
+import { ORIENTATION, SCALE } from "./utils/chart_utils";
 const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
 
 const DEFAULT_AREAS = {
@@ -17,14 +17,14 @@ const DEFAULT_AREAS = {
     y: 0,
     width: 0,
     height: 0,
-  }
+  },
 };
 
 export class EuiSelectionBrush extends AbstractSeries {
   state = {
     drawing: false,
     ...DEFAULT_AREAS,
-  }
+  };
 
   onParentMouseDown(e) {
     this._startDrawing(e);
@@ -71,12 +71,12 @@ export class EuiSelectionBrush extends AbstractSeries {
         y: y0 < y1 ? y0 : y1,
         width: x0 < x1 ? (x1 - x0) : (x0 - x1),
         height: y0 < y1 ? (y1 - y0) : (y0 - y1),
-      }
+      },
     };
   }
 
   _getScaledValue(scale, scaleType, value0, value1) {
-    switch(scaleType) {
+    switch (scaleType) {
       case SCALE.ORDINAL:
         return [0, 0];
       default:
@@ -110,7 +110,7 @@ export class EuiSelectionBrush extends AbstractSeries {
     if (drawing) {
       const drawAndRectAreas = this._getDrawArea(offsetX, offsetY);
       this.setState(() => ({
-        ...drawAndRectAreas
+        ...drawAndRectAreas,
       }));
 
       if (onBrushing) {
@@ -137,7 +137,6 @@ export class EuiSelectionBrush extends AbstractSeries {
       ...DEFAULT_AREAS,
     }));
 
-
     // Don't invoke the callback if the selected area was < 25 square px.
     // This is a click not a select
     const { areaSize } = this.state;
@@ -147,8 +146,8 @@ export class EuiSelectionBrush extends AbstractSeries {
     const { drawArea } = this.state;
     const { x0, y0, x1, y1 } = drawArea;
     const { xType, yType, onBrushEnd } = this.props;
-    const xScale = ScaleUtils.getAttributeScale(this.props, 'x');
-    const yScale = ScaleUtils.getAttributeScale(this.props, 'y');
+    const xScale = ScaleUtils.getAttributeScale(this.props, "x");
+    const yScale = ScaleUtils.getAttributeScale(this.props, "y");
 
     const xValues = this._getScaledValue(xScale, xType, x0, x1);
     const yValues = this._getScaledValue(yScale, yType, y0, y1);
@@ -176,7 +175,7 @@ export class EuiSelectionBrush extends AbstractSeries {
       <g
         transform={`translate(${marginLeft}, ${marginTop})`}
         style={{
-          pointerEvents: 'none',
+          pointerEvents: "none",
         }}
       >
         <rect
@@ -192,7 +191,7 @@ export class EuiSelectionBrush extends AbstractSeries {
   }
 }
 
-EuiSelectionBrush.displayName = 'EuiSelectionBrush';
+EuiSelectionBrush.displayName = "EuiSelectionBrush";
 
 EuiSelectionBrush.propTypes = {
   /** Specify the brush orientation */
@@ -211,6 +210,6 @@ EuiSelectionBrush.propTypes = {
 
 EuiSelectionBrush.defaultProps = {
   orientation: HORIZONTAL,
-  color: 'black',
+  color: "black",
   opacity: 0.2,
 };
