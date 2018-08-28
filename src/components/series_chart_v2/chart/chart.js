@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { ChartSpecStore } from '../state/chart_spec_store';
+import { ChartStore } from '../state/chart_state.ts';
 import { Provider } from 'mobx-react';
 import { ChartResizer } from './chart_resizer';
-import { ReactiveChart } from './reactive_chart';
-import { Specs } from '../specs/specs';
+import { ReactiveChart } from './reactive_chart.tsx';
+import { Specs } from '../specs/specs.tsx';
 
 export class Chart extends Component {
   constructor(props) {
     super(props);
-    this.chartSpecStore = new ChartSpecStore();
+    this.chartSpecStore = new ChartStore();
   }
   render() {
     return (
@@ -17,9 +17,8 @@ export class Chart extends Component {
           <Specs>
             { this.props.children }
           </Specs>
-          <ChartResizer>
-            <ReactiveChart />
-          </ChartResizer>
+          <ChartResizer />
+          <ReactiveChart />
         </Fragment>
       </Provider>
     );

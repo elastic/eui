@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-
+    "allowJs": true,
+    "outDir": "./dist",
     // don't write output, only perform type checking
-    "noEmit": true,
+    "noEmit": false,
 
     // don't allow un-used variables
     "noUnusedLocals": true,

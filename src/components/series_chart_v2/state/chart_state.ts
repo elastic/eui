@@ -6,11 +6,14 @@ import {
 import {
   AxisSpec,
   DataSeriesSpec,
+  DataSeriesType,
   SeriesScales,
 } from '../commons/specs';
 
+import { observable } from 'mobx';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeSeriesDomains } from '../commons/domain';
+import { computeDataPoints } from '../utils/bar_series_utils';
 import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
@@ -35,9 +38,35 @@ export class ChartStore {
   public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
   public seriesScales: Map<SpecId, SeriesScales> = new Map(); // computed
   public chartScales: Map<GroupId, SeriesScales> = new Map(); // computed
+  public seriesGlyphs: Map<SpecId, any> = new Map(); // computed
 
   public chart: any; // computed
 
+  public specsInitialized = observable.box(false);
+  public initialized = observable.box(false);
+
+  public updateParentDimensions(width: number, height: number, top: number, left: number) {
+    let isChanged = false;
+    if (width !== this.parentDimensions.width) {
+      isChanged = true;
+      this.parentDimensions.width = width;
+    }
+    if (height !== this.parentDimensions.height) {
+      isChanged = true;
+      this.parentDimensions.height = height;
+    }
+    if (top !== this.parentDimensions.top) {
+      isChanged = true;
+      this.parentDimensions.top = top;
+    }
+    if (left !== this.parentDimensions.left) {
+      isChanged = true;
+      this.parentDimensions.left = left;
+    }
+    if (isChanged) {
+      this.computeChart();
+    }
+  }
   /**
    * Add a series spec to the chart
    * @param  seriesSpec the series spec to add
@@ -59,6 +88,8 @@ export class ChartStore {
     this.seriesScales.set(seriesSpec.id, seriesScales);
     // merge to global domains
     this.mergeChartScales(seriesSpec.groupId, seriesScales);
+    // TODO compute chart only after all series are updated
+    // this.computeChart();
   }
 
   /**
@@ -77,12 +108,12 @@ export class ChartStore {
     this.axisSpecs.set(axisSpec.id, axisSpec);
   }
 
-  public removeAxisSpec(axisId: AxisId) {
+  public removeAxis(axisId: AxisId) {
     this.axisSpecs.delete(axisId);
   }
 
   public computeChart() {
-
+    this.initialized.set(false);
     // TODO merge series domains
 
     // compute axis dimensions
@@ -108,10 +139,32 @@ export class ChartStore {
     this.axisVisibleTicks = axisTicksPositions.axisVisibleTicks;
 
     // compute series glyphs
-    this.seriesSpecs.forEach((seriesSpec, id) => {
+    this.seriesSpecs.forEach((seriesSpec) => {
+      const { id, type, data, scaleToExtent } = seriesSpec;
+      const seriesScale = this.seriesScales.get(id);
+      if (!seriesScale) {
+        return;
+      }
+      const xScaleConfig = {
+        accessor: seriesSpec.xAccessor,
+        type: seriesSpec.xScaleType,
+        domain: seriesScale.domains.xDomain,
+      };
+      const yDomain = scaleToExtent ? seriesScale.domains.yDomain : [0, seriesScale.domains.yDomain[1]];
+      const yScaleConfig = {
+        accessor: seriesSpec.yAccessor,
+        type: seriesSpec.yScaleType,
+        domain: yDomain as number[],
+      };
+      switch (type) {
+        case DataSeriesType.Bar:
+          const dataPoints = computeDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+          this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
+      }
       // compute single series glyphs
       // save glyphs to store
     });
+    this.initialized.set(true);
   }
 
   private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales) {

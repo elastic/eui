@@ -33,6 +33,7 @@ export function computeDataPoints(
   xScaleConfig: ScaleConfig,
   yScaleConfig: ScaleConfig,
   seriesDimensions: Dimensions,
+  stacked?: boolean,
 ): BarSeriesGlyph[] {
   let barWidth = DEFAULT_BAR_WIDTH;
   let xScale: ScaleFunction;
@@ -72,7 +73,12 @@ export function computeDataPoints(
   const dataPoints = data.map((point) => {
     const xValue = xScale(point);
     const yValue = yScale(point);
-    return { x: xValue, y: seriesDimensions.height - yValue, height: yValue, width: barWidth };
+    return {
+      x: xValue,
+      y: seriesDimensions.height - yValue,
+      height: yValue,
+      width: barWidth,
+    };
   });
   return dataPoints;
 }
