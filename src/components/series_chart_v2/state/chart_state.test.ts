@@ -1,6 +1,6 @@
 import { getAxisId, getGroupId, getSpecId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec } from '../commons/specs';
+import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec, DataSeriesType } from '../commons/specs';
 import { ChartStore } from './chart_state';
 
 describe('Chart Store', () => {
@@ -25,6 +25,8 @@ describe('Chart Store', () => {
   const spec: DataSeriesSpec = {
     id: getSpecId('spec_1'),
     groupId: getGroupId('group_1'),
+    type: DataSeriesType.Bar,
+    scaleToExtent: false,
     data: [
       { x: 1, y: 1 },
       { x: 2, y: 2 },

@@ -3,11 +3,18 @@ import { AxisId, GroupId, SpecId } from './ids';
 import { ScaleType } from './scales';
 
 type Datum = any;
-
+export enum DataSeriesType {
+  Bar = 'bar',
+  Line = 'line',
+  Area = 'area',
+  Point = 'point',
+}
 export interface DataSeriesSpec {
   id: SpecId;
   groupId: GroupId;
+  type: DataSeriesType;
   data: Datum[];
+  scaleToExtent: boolean;
   xAccessor: Accessor;
   yAccessor: Accessor;
   xScaleType: ScaleType;

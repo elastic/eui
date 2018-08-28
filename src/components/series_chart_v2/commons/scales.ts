@@ -33,7 +33,7 @@ export interface ScaleOrdinal {
 export function createScaleOrdinal(): ScaleOrdinal {
   const d3ScaleBand = scaleBand();
   const scale = (value: string) => {
-    return Number(d3ScaleBand(value)) + (d3ScaleBand.bandwidth() / 2);
+    return Number(d3ScaleBand(value));
   };
   const ordinalScale = scale as ScaleOrdinal;
   ordinalScale.domain = (domain?: string[]): string[] | ScaleOrdinal => {

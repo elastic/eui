@@ -37,6 +37,9 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     filename: `eui${isProduction ? '.min' : ''}.js`
   },
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+  },
 
   // Specify where these libraries should be found
   externals: {
@@ -46,17 +49,19 @@ module.exports = {
     'react-dom': 'window.ReactDOM'
   },
 
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.tsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    },
+  module: {  
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+    
     {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
