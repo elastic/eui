@@ -62,7 +62,7 @@ export class EuiComboBoxPill extends Component {
     }
 
     if (asPlainText) {
-      return <span className={classes}>{children}</span>;
+      return <span className={classes} {...rest}>{children}</span>;
     }
 
     return (

@@ -31,7 +31,9 @@ export class EuiComboBoxInput extends Component {
     onCloseListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.object,
+      PropTypes.shape({
+        asPlainText: PropTypes.bool,
+      }),
     ]),
     isDisabled: PropTypes.bool,
     toggleButtonRef: PropTypes.func,
