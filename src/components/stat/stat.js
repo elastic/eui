@@ -3,19 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
-import { EuiTitle } from '../title';
-
-const titleSizePropMap = {
-  s: 's',
-  m: 'm',
-  l: 'l',
-};
-
-export const TITLESIZES = Object.keys(titleSizePropMap);
+import { EuiTitle, TITLE_SIZES } from '../title/title';
 
 const colorToClassNameMap = {
   default: null,
-  darkest: 'euiStat--darkest',
+  dark: 'euiStat--dark',
+  full: 'euiStat--full',
   primary: 'euiStat--primary',
   secondary: 'euiStat--secondary',
   danger: 'euiStat--danger',
@@ -38,60 +31,105 @@ export const EuiStat = ({
   description,
   title,
   titleSize,
-  color,
+  titleColor,
   textAlign,
+  reverse,
   ...rest,
 }) => {
 
   const classes = classNames(
     'euiStat',
-    colorToClassNameMap[color],
+    colorToClassNameMap[titleColor],
     textAlignToClassNameMap[textAlign],
     className,
   );
+
+  const descriptionDisplay = (
+    <EuiText size="s" className="euiStat__description">
+      <p>{description}</p>
+    </EuiText>
+  );
+
+  const titleDisplay = (
+    <EuiTitle size={titleSize} className="euiStat__title">
+      <p>{title}</p>
+    </EuiTitle>
+  );
+
+  let statDisplay;
+
+  if (reverse) {
+    statDisplay = (
+      <div>
+        {titleDisplay}
+        {descriptionDisplay}
+      </div>
+    );
+  } else {
+    statDisplay = (
+      <div>
+        {descriptionDisplay}
+        {titleDisplay}
+      </div>
+    );
+  }
 
   return (
     <div
       className={classes}
       {...rest}
     >
-      <EuiText size="s" className="euiStat__description">
-        <p>{description}</p>
-      </EuiText>
-
-      <EuiTitle size={titleSize} className="euiStat__title">
-        <p>{title}</p>
-      </EuiTitle>
-
+      {statDisplay}
       {children}
     </div>
   );
 };
 
 EuiStat.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+  /**
+   * Set the title (value) text
+   */
   title: PropTypes.node.isRequired,
+
+  /**
+   * Set the description (label) text
+   */
   description: PropTypes.node.isRequired,
 
   /**
-   * Define the size of the value text
+   * Places the title (value) above the description (label)
    */
-  titleSize: PropTypes.oneOf(TITLESIZES),
+  reverse: PropTypes.bool.isRequired,
 
   /**
-   * Define the color of the value text
+   * Define the size of the title text. See EuiTitle for sizing options ('s', 'm', 'l'... etc)
    */
-  color: PropTypes.oneOf(COLORS),
+  titleSize: PropTypes.oneOf(TITLE_SIZES),
+
+  /**
+   * Define the color of the title text
+   */
+  titleColor: PropTypes.oneOf(COLORS),
 
   /**
    * Define how you want the content aligned
    */
   textAlign: PropTypes.oneOf(ALIGNMENTS),
+
+  /**
+   * Appends additional classes to parent
+   */
+  className: PropTypes.string,
+
+  /**
+   * Additional content that appears after the title and description
+   */
+  children: PropTypes.node,
 };
 
 EuiStat.defaultProps = {
-  color: 'default',
+  titleColor: 'default',
   textAlign: 'left',
   titleSize: 'l',
+  reverse: false,
 };

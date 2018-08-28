@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.7.0`.
+- Added a new `EuiStat` component for displaying prominent stats ([#1146](https://github.com/elastic/eui/pull/1146))
 
 ## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
 

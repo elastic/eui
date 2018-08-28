@@ -6,17 +6,19 @@ exports[`EuiStat is rendered 1`] = `
   class="euiStat euiStat--leftAligned testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiText euiText--small euiStat__description"
-  >
-    <p>
-      description
+  <div>
+    <div
+      class="euiText euiText--small euiStat__description"
+    >
+      <p>
+        description
+      </p>
+    </div>
+    <p
+      class="euiTitle euiTitle--large euiStat__title"
+    >
+      title
     </p>
   </div>
-  <p
-    class="euiTitle euiTitle--large euiStat__title"
-  >
-    title
-  </p>
 </div>
 `;
