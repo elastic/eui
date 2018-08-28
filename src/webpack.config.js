@@ -38,7 +38,7 @@ module.exports = {
     filename: `eui${isProduction ? '.min' : ''}.js`
   },
   resolve: {
-    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
 
   // Specify where these libraries should be found
@@ -49,7 +49,7 @@ module.exports = {
     'react-dom': 'window.ReactDOM'
   },
 
-  module: {  
+  module: {
     loaders: [
       {
         test: /\.tsx?$/,
@@ -61,15 +61,16 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/
       },
-    
-    {
-      test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
-      loader: 'file-loader',
-    }]
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
+        loader: 'file-loader',
+      }
+    ],
   },
 
   plugins

@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
+import React, { PureComponent } from "react";
+import ResizeObserver from "resize-observer-polyfill";
 
 export function makeFlexible(WrappedComponent) {
 
@@ -31,13 +31,13 @@ export function makeFlexible(WrappedComponent) {
           this.setState({ width, height });
         }
       });
-    };
+    }
 
     render() {
       return (
         <div
           ref={this.containerRef}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         >
           <WrappedComponent {...this.state} {...this.props} />
         </div>

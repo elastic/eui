@@ -3,9 +3,13 @@ import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { DataSeriesType } from '../commons/specs';
 // import { Axis } from '../series/axis';
-import { BarSeries } from '../series/bar_series';
+import { AreaSeries } from '../components/area_series';
+import { BarSeries } from '../components/bar_series';
+import { LineSeries } from '../components/line_series';
 import { ChartStore } from '../state/chart_state';
+import { AreaSeriesGlyph } from '../utils/area_series_utils';
 import { BarSeriesGlyph } from '../utils/bar_series_utils';
+import { LineSeriesGlyph } from '../utils/line_series_utils';
 
 interface ReactiveChartProps {
   chartStore: ChartStore;
@@ -13,6 +17,14 @@ interface ReactiveChartProps {
 interface BarSeriesDataGlyphs {
   type: DataSeriesType;
   bars: BarSeriesGlyph[];
+}
+interface LineSeriesDataGlyphs {
+  type: DataSeriesType;
+  line: LineSeriesGlyph;
+}
+interface AreaSeriesDataGlyphs {
+  type: DataSeriesType;
+  area: AreaSeriesGlyph;
 }
 
 class Chart extends React.Component<ReactiveChartProps> {
@@ -51,20 +63,24 @@ class Chart extends React.Component<ReactiveChartProps> {
     // return axisComponents;
   }
   public renderLineSeries = () => {
-    return null;
-    // const {
-    //   lineSeriesSpecs,
-    // } = this.props.chartStore;
-    // const lines = [];
-    // lineSeriesSpecs.forEach((spec) => {
-    //   lines.push((
-    //     <LineSeries
-    //       key={`line-series:${spec.id}`}
-    //       d={spec.d}
-    //     />
-    //   ));
-    // });
-    // return lines;
+    const {
+      seriesGlyphs,
+    } = this.props.chartStore;
+    const points: JSX.Element[] = [];
+    seriesGlyphs.forEach((spec, specId) => {
+      if (spec.type !== DataSeriesType.Line) {
+        return;
+      }
+      const lineGlyph = spec as LineSeriesDataGlyphs;
+      console.log('lineGlyphs', lineGlyph);
+      points.push((
+        <LineSeries
+          key={`line-series-${specId}`}
+          line={lineGlyph.line}
+        />
+      ));
+    });
+    return points;
   }
   public renderPointSeries = () => {
     return null;
@@ -103,20 +119,24 @@ class Chart extends React.Component<ReactiveChartProps> {
     return points;
   }
   public renderAreaSeries = () => {
-    return null;
-    // const {
-    //   areaSeriesSpecs,
-    // } = this.props.chartStore;
-    // const points = [];
-    // areaSeriesSpecs.forEach((spec) => {
-    //   points.push((
-    //     <AreaSeries
-    //       key={`point-series:${spec.id}`}
-    //       d={spec.d}
-    //     />
-    //   ));
-    // });
-    // return points;
+    const {
+      seriesGlyphs,
+    } = this.props.chartStore;
+    const points: JSX.Element[] = [];
+    seriesGlyphs.forEach((spec, specId) => {
+      if (spec.type !== DataSeriesType.Area) {
+        return;
+      }
+      const areaGlyph = spec as AreaSeriesDataGlyphs;
+      console.log('areaGlyph', areaGlyph);
+      points.push((
+        <AreaSeries
+          key={`area-series-${specId}`}
+          area={areaGlyph.area}
+        />
+      ));
+    });
+    return points;
   }
   public render() {
     const { initialized } = this.props.chartStore;

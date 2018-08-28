@@ -13,7 +13,9 @@ import {
 import { observable } from 'mobx';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeSeriesDomains } from '../commons/domain';
-import { computeDataPoints } from '../utils/bar_series_utils';
+import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
+import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
+import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
 import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
@@ -158,8 +160,17 @@ export class ChartStore {
       };
       switch (type) {
         case DataSeriesType.Bar:
-          const dataPoints = computeDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+          const dataPoints = computeBarsDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
+          break;
+        case DataSeriesType.Line:
+          const lineDataPoints = computeLineDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+          this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
+          break;
+        case DataSeriesType.Area:
+          const areaDataPoints = computeAreaDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+          this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
+          break;
       }
       // compute single series glyphs
       // save glyphs to store

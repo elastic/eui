@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import NodeGroup from 'react-move/NodeGroup';
 import { BarSeriesGlyph } from '../utils/bar_series_utils';
 

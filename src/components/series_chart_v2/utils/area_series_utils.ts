@@ -1,4 +1,5 @@
-import { curveBasis,
+import { area,
+  curveBasis,
   curveBundle,
   curveCardinal,
   curveCatmullRom,
@@ -9,7 +10,6 @@ import { curveBasis,
   curveStep,
   curveStepAfter,
   curveStepBefore,
-  line,
 } from 'd3-shape';
 import { Dimensions } from '../commons/dimensions';
 import { CurveType } from '../commons/line_series';
@@ -25,7 +25,7 @@ import {
 /**
  * A single bar glyph representation
  */
-export interface LineSeriesGlyph {
+export interface AreaSeriesGlyph {
   d: string | null;
 }
 
@@ -43,7 +43,7 @@ export function computeDataPoints(
   yScaleConfig: ScaleConfig,
   seriesDimensions: Dimensions,
   curveType?: CurveType,
-): LineSeriesGlyph {
+): AreaSeriesGlyph {
   let xScaleFn: ScaleFunction;
   if (xScaleConfig.type === ScaleType.Ordinal) {
     const { domain, accessor } = xScaleConfig;
@@ -77,17 +77,18 @@ export function computeDataPoints(
     );
   }
 
-  const lineGenerator = line()
+  const areaGenerator = area()
     .x(xScaleFn)
-    .y(yScaleFn)
-    .curve(getLineCurve(curveType));
-  const generatedLine = {
-    d: lineGenerator(data),
+    .y1(yScaleFn)
+    .y0(seriesDimensions.height);
+    // .curve(getAreaCurve(curveType));
+  const generatedArea = {
+    d: areaGenerator(data),
   };
-  return generatedLine;
+  return generatedArea;
 }
 
-export function getLineCurve(curveType: CurveType = CurveType.LINEAR) {
+export function getAreaCurve(curveType: CurveType = CurveType.LINEAR) {
   switch (curveType) {
     case CurveType.CURVE_CARDINAL:
       return curveCardinal;
