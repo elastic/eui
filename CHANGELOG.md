@@ -19,6 +19,7 @@ No public interface changes since `3.7.0`.
 ## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
 
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
+- Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
 
 **Bug fixes**
 
