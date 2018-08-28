@@ -19,22 +19,8 @@ export interface DataSeriesSpec {
   yAccessor: Accessor;
   xScaleType: ScaleType;
   yScaleType: ScaleType;
+  /** An array of accessor for y value grouping/clustering */
   groupAccessors: Accessor[];
-}
-
-export type Domain = number[] | string[] | [number, number] | [undefined, undefined];
-
-export interface SeriesDomains {
-  xDomain: Domain;
-  yDomain: Domain;
-}
-export interface SeriesScaleTypes {
-  xScaleType: ScaleType;
-  yScaleType: ScaleType;
-}
-export interface SeriesScales {
-  domains: SeriesDomains;
-  scaleTypes: SeriesScaleTypes;
 }
 
 export interface AxisSpec {

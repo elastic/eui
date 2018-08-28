@@ -38,7 +38,7 @@ module.exports = {
     filename: `eui${isProduction ? '.min' : ''}.js`
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+    extensions: ['.tsx', '.ts',  '.js'],
   },
 
   // Specify where these libraries should be found
@@ -52,9 +52,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        exclude: /node_modules/
+        test: /\.ts|\.tsx$/,
+        loader: ['babel-loader','ts-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,

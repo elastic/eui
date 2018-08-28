@@ -12,7 +12,7 @@ import { BarSeriesGlyph } from '../utils/bar_series_utils';
 import { LineSeriesGlyph } from '../utils/line_series_utils';
 
 interface ReactiveChartProps {
-  chartStore: ChartStore;
+  chartStore?: ChartStore; // FIX until we find a better way on ts mobx
 }
 interface BarSeriesDataGlyphs {
   type: DataSeriesType;
@@ -31,10 +31,12 @@ class Chart extends React.Component<ReactiveChartProps> {
   public static displayName = 'ReactiveChart';
 
   public componentDidMount() {
+    // tslint:disable-next-line:no-console
     console.log('Chart mounted');
   }
 
   public componentWillUnmount() {
+    // tslint:disable-next-line:no-console
     console.log('Chart unmounted');
   }
 
@@ -53,7 +55,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     //   vRightAxisSpec,
     //   hBottomAxisSpec,
     //   hTopAxisSpec,
-    // } = this.props.chartStore;
+    // } = this.props.chartStore!;
     // const axisComponents = [
     //   ...this.getAxesComponents(vLeftAxisSpec),
     //   ...this.getAxesComponents(vRightAxisSpec),
@@ -65,13 +67,14 @@ class Chart extends React.Component<ReactiveChartProps> {
   public renderLineSeries = () => {
     const {
       seriesGlyphs,
-    } = this.props.chartStore;
+    } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec, specId) => {
       if (spec.type !== DataSeriesType.Line) {
         return;
       }
       const lineGlyph = spec as LineSeriesDataGlyphs;
+      // tslint:disable-next-line:no-console
       console.log('lineGlyphs', lineGlyph);
       points.push((
         <LineSeries
@@ -86,7 +89,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     return null;
     // const {
     //   pointSeriesSpecs,
-    // } = this.props.chartStore;
+    // } = this.props.chartStore!;
     // const points = [];
     // pointSeriesSpecs.forEach((spec) => {
     //   points.push((
@@ -101,13 +104,14 @@ class Chart extends React.Component<ReactiveChartProps> {
   public renderBarSeries = () => {
     const {
       seriesGlyphs,
-    } = this.props.chartStore;
+    } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec) => {
       if (spec.type !== DataSeriesType.Bar) {
         return;
       }
       const barGlyphs = spec as BarSeriesDataGlyphs;
+      // tslint:disable-next-line:no-console
       console.log('barGlyphs', barGlyphs);
       points.push((
         <BarSeries
@@ -121,13 +125,14 @@ class Chart extends React.Component<ReactiveChartProps> {
   public renderAreaSeries = () => {
     const {
       seriesGlyphs,
-    } = this.props.chartStore;
+    } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec, specId) => {
       if (spec.type !== DataSeriesType.Area) {
         return;
       }
       const areaGlyph = spec as AreaSeriesDataGlyphs;
+      // tslint:disable-next-line:no-console
       console.log('areaGlyph', areaGlyph);
       points.push((
         <AreaSeries
@@ -139,12 +144,12 @@ class Chart extends React.Component<ReactiveChartProps> {
     return points;
   }
   public render() {
-    const { initialized } = this.props.chartStore;
+    const { initialized } = this.props.chartStore!;
     if (!initialized.get()) {
       return null;
     }
 
-    const { parentDimensions, chartDimensions } = this.props.chartStore;
+    const { parentDimensions, chartDimensions } = this.props.chartStore!;
     // console.log({ lineSeriesSpecs: toJS(lineSeriesSpecs)})
     // console.log({ groupDomains: toJS(groupDomains)})
     // console.log({ vLeftAxisSpec: toJS(vLeftAxisSpec)})

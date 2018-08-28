@@ -7,7 +7,7 @@ import { SpecProps } from './specs';
 
 type BarSpecProps = SpecProps & DataSeriesSpec;
 
-class BarSeriesSpec extends React.PureComponent<BarSpecProps> {
+export class BarSeriesSpec extends React.PureComponent<BarSpecProps> {
   public static defaultProps: Partial<BarSpecProps> = {
     groupId: getGroupId('__global__'),
     type: DataSeriesType.Bar,
@@ -33,15 +33,15 @@ class BarSeriesSpec extends React.PureComponent<BarSpecProps> {
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
   public componentDidUpdate() {
     const { chartStore, children, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore.removeSeriesSpecs(id);
+    chartStore!.removeSeriesSpecs(id);
   }
   public render() {
     return null;

@@ -64,16 +64,18 @@ describe('Axis computational utils', () => {
       return `${value}`;
     },
   };
+  const xAccessor = (datum: any) => datum.x;
+  const yAccessor = (datum: any) => datum.y;
   const axis1SeriesScale = {
-    domains: {
-      xDomain: [0, 1],
-      yDomain: [0, 1],
-    },
-    scaleTypes: {
-      xScaleType: ScaleType.Linear,
-      yScaleType: ScaleType.Linear,
-    },
+    groupLevel: 0,
+    xDomain: [0, 1],
+    yDomain: [0, 1],
+    xScaleType: ScaleType.Linear,
+    yScaleType: ScaleType.Linear,
+    xAccessor,
+    yAccessor,
   };
+
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
     const axisDimensions = computeAxisDimensions(axis1Spec, axis1SeriesScale, bboxCalculator);

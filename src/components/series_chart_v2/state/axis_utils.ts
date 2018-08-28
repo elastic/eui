@@ -1,12 +1,13 @@
 import { max } from 'd3-array';
 import { Dimensions } from '../commons/dimensions';
+import { Domain, SeriesScales } from '../commons/domain';
 import { AxisId } from '../commons/ids';
 import {
   createContinuousScale,
   createOrdinalScale,
   ScaleType,
 } from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec, Domain, SeriesScales } from '../commons/specs';
+import { AxisOrientation, AxisPosition, AxisSpec } from '../commons/specs';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export interface AxisTick {
@@ -30,10 +31,10 @@ export function computeAxisDimensions(
   axisSeriesScale: SeriesScales,
   bboxCalculator: SvgTextBBoxCalculator,
 ): AxisDimensions {
-  const { domains, scaleTypes } = axisSeriesScale;
+  const { xDomain, yDomain, xScaleType, yScaleType} = axisSeriesScale;
   const axisScaleType =
-    axisSpec.orientation === 'horizontal' ? scaleTypes.xScaleType : scaleTypes.yScaleType;
-  const axisScaleDomain = axisSpec.orientation === 'horizontal' ? domains.xDomain : domains.yDomain;
+    axisSpec.orientation === 'horizontal' ? xScaleType : yScaleType!;
+  const axisScaleDomain = axisSpec.orientation === 'horizontal' ? xDomain : yDomain!;
 
   let tickValues: string[] | number[];
   let tickLabels: string[];
@@ -43,7 +44,7 @@ export function computeAxisDimensions(
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
-    const scale = createContinuousScale(axisScaleType, axisScaleDomain as number[], 1, 0);
+    const scale = createContinuousScale(axisScaleType!, axisScaleDomain as number[], 1, 0); // TODO CHECK THIS!!!!!!
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   }
@@ -58,8 +59,9 @@ export function computeAxisDimensions(
   });
   const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
   const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
+  const axisScaleT = axisScaleType ? axisScaleType : ScaleType.Ordinal;
   return {
-    axisScaleType,
+    axisScaleType: axisScaleT,
     axisScaleDomain,
     ticksDimensions,
     tickValues,

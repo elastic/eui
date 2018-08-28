@@ -40,7 +40,7 @@
 
     // Disable the breaking keyof behaviour introduced in TS 2.9.2 until EUI is updated to support that too
     "keyofStringsOnly": true,
-
+    "skipLibCheck": true,
     // enables "core language features"
     "lib": [
       // ESNext auto includes previous versions all the way back to es5

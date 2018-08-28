@@ -3,27 +3,31 @@ import React from 'react';
 import { ChartStore } from '../state/chart_state';
 
 export interface SpecProps {
-  chartStore: ChartStore;
+  chartStore?: ChartStore; // FIX
 }
 
-class SpecsSpec extends React.PureComponent<SpecProps> {
+export class SpecsSpec extends React.PureComponent<SpecProps> {
   public static getDerivedStateFromProps(props: SpecProps) {
+    // tslint:disable-next-line:no-console
     console.log('Specs are changing...');
-    props.chartStore.specsInitialized.set(false);
+    props.chartStore!.specsInitialized.set(false);
     return null;
   }
   public state = {};
   public componentDidMount() {
-    this.props.chartStore.specsInitialized.set(true);
-    this.props.chartStore.computeChart();
+    this.props.chartStore!.specsInitialized.set(true);
+    this.props.chartStore!.computeChart();
+    // tslint:disable-next-line:no-console
     console.log('All Specs are parsed');
   }
   public componentDidUpdate() {
+    // tslint:disable-next-line:no-console
     console.log('Specs updated!');
-    this.props.chartStore.specsInitialized.set(true);
-    this.props.chartStore.computeChart();
+    this.props.chartStore!.specsInitialized.set(true);
+    this.props.chartStore!.computeChart();
   }
   public componentWillUnmount() {
+    // tslint:disable-next-line:no-console
     console.log('Specs is unmounted');
     // this.props.chartStore.initialized.set(false);
   }

@@ -1,7 +1,7 @@
-import { ScaleType } from '../commons/scales';
 import { AxisDimensions } from '../state/axis_utils';
 import { computeChartDimensions } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
+import { ScaleType } from './scales';
 import { AxisOrientation, AxisPosition, AxisSpec } from './specs';
 
 describe('Computed chart dimensions', () => {
