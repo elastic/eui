@@ -113,18 +113,18 @@ describe('defaultSyntax', () => {
 
   test('single field clause - escaped', () => {
 
-    const query = `n\\:ame:jo\\:hn`;
+    const query = `n\\:ame:jo\\:h\\:n`;
     const ast = defaultSyntax.parse(query);
 
     expect(ast).toBeDefined();
     expect(ast.clauses).toHaveLength(1);
 
-    const clause = ast.getSimpleFieldClause('n:ame', 'jo:hn');
+    const clause = ast.getSimpleFieldClause('n:ame', 'jo:h:n');
     expect(clause).toBeDefined();
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('n:ame');
-    expect(clause.value).toBe('jo:hn');
+    expect(clause.value).toBe('jo:h:n');
 
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
