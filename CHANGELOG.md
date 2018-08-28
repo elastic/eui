@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
 
 **Bug fixes**
 
@@ -21,7 +22,6 @@
 ## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
 
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
-- Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
 
 **Bug fixes**
 
