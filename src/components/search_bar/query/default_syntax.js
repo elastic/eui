@@ -127,7 +127,7 @@ word
 
 wordChar
   = alnum
-  / [-_*]
+  / [-_*:]
   / escapedChar
 
 escapedChar
@@ -165,11 +165,11 @@ space "whitespace"
 `;
 
 const unescapeValue = (value) => {
-  return value.replace(/\\([:\-\\])/, '$1');
+  return value.replace(/\\([:\-\\])/g, '$1');
 };
 
 const escapeValue = (value) => {
-  return value.replace(/([:\-\\])/, '\\$1');
+  return value.replace(/([:\-\\])/g, '\\$1');
 };
 
 const Exp = {
