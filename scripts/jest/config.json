@@ -33,11 +33,13 @@
   "moduleFileExtensions": [
     "js",
     "json",
-    "ts"
+    "ts",
+    "tsx"
   ],
   "testMatch": [
     "**/*.test.js",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/scripts/",

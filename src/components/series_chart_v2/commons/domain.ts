@@ -1,7 +1,19 @@
 import { extent } from 'd3-array';
 import { sortedUniq, uniq } from 'lodash';
-import { DataSeriesSpec, SeriesDomains, SeriesScales } from '../commons/specs';
 import { ScaleType } from './scales';
+import { DataSeriesSpec } from './specs';
+
+export type Domain = number[] | string[] | [number, number] | [undefined, undefined];
+
+export interface SeriesScales {
+  groupLevel: number;
+  xDomain: Domain;
+  yDomain?: Domain;
+  xScaleType: ScaleType;
+  yScaleType?: ScaleType;
+  xAccessor: Accessor;
+  yAccessor?: Accessor;
+}
 
 export type OrdinalAccessor = (d: any) => any;
 export type ContinuousAccessor = (d: any) => number | null | undefined;
@@ -36,14 +48,44 @@ function computeContinuousDataDomain(
   return extent(data, accessor);
 }
 
-export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesDomains {
-  const { xScaleType, yScaleType, xAccessor, yAccessor, data } = seriesSpec;
-  const xDomain = computeDataDomain(data, xAccessor, xScaleType);
-  const yDomain = computeDataDomain(data, yAccessor, yScaleType);
-  return {
+export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[] {
+  const { xScaleType, yScaleType, xAccessor, yAccessor, groupAccessors, data } = seriesSpec;
+  const mainXDomainScaleType = (groupAccessors && groupAccessors.length) > 0 ? ScaleType.Ordinal : xScaleType;
+  const xDomain = computeDataDomain(data, xAccessor, mainXDomainScaleType);
+  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType);
+  if (groupAccessors && groupAccessors.length > 0) {
+    const groupDomains = groupAccessors.map((accessor, groupLevel) => {
+      const groupXDomain = computeDataDomain(data, accessor, ScaleType.Ordinal);
+      return {
+        groupLevel,
+        xDomain: groupXDomain,
+        xScaleType: ScaleType.Ordinal,
+        xAccessor: accessor,
+      };
+    });
+    return [
+      ...groupDomains,
+      {
+        groupLevel: groupDomains.length,
+        xDomain,
+        yDomain: mainYDomain,
+        xScaleType: ScaleType.Ordinal,
+        yScaleType,
+        xAccessor,
+        yAccessor,
+      },
+    ];
+  }
+
+  return [{
+    groupLevel: 0,
     xDomain,
-    yDomain,
-  };
+    yDomain: mainYDomain,
+    xScaleType,
+    yScaleType,
+    xAccessor,
+    yAccessor,
+  }];
 }
 
 /**

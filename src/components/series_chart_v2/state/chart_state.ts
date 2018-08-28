@@ -7,15 +7,14 @@ import {
   AxisSpec,
   DataSeriesSpec,
   DataSeriesType,
-  SeriesScales,
 } from '../commons/specs';
 
 import { observable } from 'mobx';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
-import { computeSeriesDomains } from '../commons/domain';
-import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
+import { computeSeriesDomains, SeriesScales } from '../commons/domain';
+// import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
 import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
-import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
+// import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
 import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
@@ -38,8 +37,8 @@ export class ChartStore {
   public axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public axisTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
-  public seriesScales: Map<SpecId, SeriesScales> = new Map(); // computed
-  public chartScales: Map<GroupId, SeriesScales> = new Map(); // computed
+  public seriesScales: Map<SpecId, SeriesScales[]> = new Map(); // computed
+  public chartScales: Map<GroupId, SeriesScales[]> = new Map(); // computed
   public seriesGlyphs: Map<SpecId, any> = new Map(); // computed
 
   public chart: any; // computed
@@ -73,19 +72,12 @@ export class ChartStore {
    * Add a series spec to the chart
    * @param  seriesSpec the series spec to add
    */
-  public addSeriesSpecs(seriesSpec: DataSeriesSpec): void {
+  public addSeriesSpecs(seriesSpec: DataSeriesSpec) {
     // store seriesSpec
     this.seriesSpecs.set(seriesSpec.id, seriesSpec);
     // computeXDomain and computeYDomain
-    const domains = computeSeriesDomains(seriesSpec);
-    const { xScaleType, yScaleType } = seriesSpec;
-    const seriesScales = {
-      domains,
-      scaleTypes: {
-        xScaleType,
-        yScaleType,
-      },
-    };
+    const seriesScales = computeSeriesDomains(seriesSpec);
+    console.log(seriesScales);
     // save scales
     this.seriesScales.set(seriesSpec.id, seriesScales);
     // merge to global domains
@@ -125,7 +117,8 @@ export class ChartStore {
       const { id, groupId } = axisSpec;
       const groupSeriesScale = this.chartScales.get(groupId);
       if (groupSeriesScale) {
-        const dimensions = computeAxisDimensions(axisSpec, groupSeriesScale, bboxCalculator);
+        const mainGroupScale = groupSeriesScale[groupSeriesScale.length - 1];
+        const dimensions = computeAxisDimensions(axisSpec, mainGroupScale, bboxCalculator);
         this.axisDimensions.set(id, dimensions);
       }
     });
@@ -143,34 +136,34 @@ export class ChartStore {
     // compute series glyphs
     this.seriesSpecs.forEach((seriesSpec) => {
       const { id, type, data, scaleToExtent } = seriesSpec;
-      const seriesScale = this.seriesScales.get(id);
-      if (!seriesScale) {
+      const seriesScales = this.seriesScales.get(id);
+      if (!seriesScales) {
         return;
       }
-      const xScaleConfig = {
-        accessor: seriesSpec.xAccessor,
-        type: seriesSpec.xScaleType,
-        domain: seriesScale.domains.xDomain,
-      };
-      const yDomain = scaleToExtent ? seriesScale.domains.yDomain : [0, seriesScale.domains.yDomain[1]];
-      const yScaleConfig = {
-        accessor: seriesSpec.yAccessor,
-        type: seriesSpec.yScaleType,
-        domain: yDomain as number[],
-      };
+      // const xScaleConfig = {
+      //   accessor: seriesSpec.xAccessor,
+      //   type: seriesSpec.xScaleType,
+      //   domain: seriesScale.domains.xDomain,
+      // };
+      // const yDomain = scaleToExtent ? seriesScale.domains.yDomain : [0, seriesScale.domains.yDomain[1]];
+      // const yScaleConfig = {
+      //   accessor: seriesSpec.yAccessor,
+      //   type: seriesSpec.yScaleType,
+      //   domain: yDomain as number[],
+      // };
       switch (type) {
         case DataSeriesType.Bar:
-          const dataPoints = computeBarsDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+          const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, false, scaleToExtent);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
           break;
-        case DataSeriesType.Line:
-          const lineDataPoints = computeLineDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
-          this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
-          break;
-        case DataSeriesType.Area:
-          const areaDataPoints = computeAreaDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
-          this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
-          break;
+        // case DataSeriesType.Line:
+        //   const lineDataPoints = computeLineDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+        //   this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
+        //   break;
+        // case DataSeriesType.Area:
+        //   const areaDataPoints = computeAreaDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
+        //   this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
+        //   break;
       }
       // compute single series glyphs
       // save glyphs to store
@@ -178,7 +171,7 @@ export class ChartStore {
     this.initialized.set(true);
   }
 
-  private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales) {
+  private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {
     // TODO
     this.chartScales.set(groupId, seriesScales);
   }

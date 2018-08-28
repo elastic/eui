@@ -1,9 +1,9 @@
 import { Dimensions } from '../commons/dimensions';
+import { Accessor, Domain, SeriesScales } from '../commons/domain';
 import {
   createOrdinalScale,
   getContinuousScaleFn,
   getOrdinalScaleFn,
-  ScaleConfig,
   ScaleFunction,
   ScaleType,
 } from '../commons/scales';
@@ -20,6 +20,11 @@ export interface BarSeriesGlyph {
   height: number;
 }
 
+interface ScaleFnConfig {
+  scaleFn: ScaleFunction;
+  barWidth: number;
+}
+
 /**
  * This compute an array of BarSeriesGlyphs that can be used to
  * draw an svg rect for the dataset provided
@@ -30,55 +35,95 @@ export interface BarSeriesGlyph {
  */
 export function computeDataPoints(
   data: any[],
-  xScaleConfig: ScaleConfig,
-  yScaleConfig: ScaleConfig,
+  seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
-  stacked?: boolean,
+  clamp = false,
+  scaleToExtent = false,
 ): BarSeriesGlyph[] {
-  let barWidth = DEFAULT_BAR_WIDTH;
-  let xScale: ScaleFunction;
-  if (xScaleConfig.type === ScaleType.Ordinal) {
-    const { domain, accessor } = xScaleConfig;
-    const ordinalScale = createOrdinalScale(domain as string[], 0, seriesDimensions.width);
-    xScale = getOrdinalScaleFn(ordinalScale, accessor);
-    barWidth = ordinalScale.bandwidth();
-  } else {
-    const { domain, accessor, type, clamp } = xScaleConfig;
-    xScale = getContinuousScaleFn(
-      type,
-      domain as number[],
-      accessor,
-      0,
-      seriesDimensions.width,
-      clamp,
-    );
-  }
-  let yScale: ScaleFunction;
-  if (yScaleConfig.type === ScaleType.Ordinal) {
-    const { domain, accessor } = yScaleConfig;
-    const ordinalScale = createOrdinalScale(domain as string[], 0, seriesDimensions.height);
-    yScale = getOrdinalScaleFn(ordinalScale, accessor);
-  } else {
-    const { domain, accessor, type, clamp } = yScaleConfig;
-    yScale = getContinuousScaleFn(
-      type,
-      domain as number[],
-      accessor,
-      0,
-      seriesDimensions.height,
-      clamp,
-    );
-  }
+  return compute(data, seriesScales, seriesDimensions, clamp, scaleToExtent);
+}
 
+function compute(
+  data: any[],
+  seriesScales: SeriesScales[],
+  seriesDimensions: Dimensions,
+  clamp: boolean,
+  scaleToExtent: boolean,
+) {
+  const yScaleConfig = seriesScales[seriesScales.length - 1];
+  const { yScaleType, yDomain, yAccessor } = yScaleConfig;
+  if (!yScaleType || !yDomain || !yAccessor) {
+    throw new Error('Missing yScaleType or yDomain or yAccessor for series');
+  }
+  const yCorrectedDomain = scaleToExtent ? yDomain : [0, yDomain[yDomain.length - 1 ]] as Domain;
+  const yScale = getScale(yScaleType, yCorrectedDomain, yAccessor , 0, seriesDimensions.height, clamp);
+
+  const xScales = seriesScales.reduce((acc, scale) => {
+    const { xScaleType, xDomain, xAccessor } = scale;
+    if (acc.length === 0) {
+      const scaleConfig = getScale(xScaleType, xDomain, xAccessor, 0, seriesDimensions.width);
+      return [ scaleConfig ];
+    } else {
+      const prevScale = acc[acc.length - 1];
+      const scaleConfig = getScale(xScaleType, xDomain, xAccessor, 0, prevScale.barWidth);
+      return [ ...acc, scaleConfig ];
+    }
+  }, [] as ScaleFnConfig[]);
   const dataPoints = data.map((point) => {
-    const xValue = xScale(point);
-    const yValue = yScale(point);
+    const yValue = yScale.scaleFn(point);
+    const xData = computeXScaleValue(xScales, point);
     return {
-      x: xValue,
+      x: xData.value,
       y: seriesDimensions.height - yValue,
       height: yValue,
-      width: barWidth,
+      width: xData.barWidth,
     };
   });
   return dataPoints;
+}
+
+function computeXScaleValue(scales: ScaleFnConfig[], datum: any) {
+  const value = scales.reduce((acc: number, scale) => {
+    const position = scale.scaleFn(datum);
+    return acc + position;
+  }, 0);
+  const barWidth = scales[scales.length - 1].barWidth;
+  return {
+    value,
+    barWidth,
+  };
+}
+
+// groupLevel: 2,
+// xDomain: [ 1, 2, 3, 4 ],
+// yDomain: [ 10, 30 ],
+// xScaleType: 'ordinal',
+// yScaleType: 'linear',
+// xAccessor,
+// yAccessor,
+
+function getScale(type: ScaleType, domain: Domain, accessor: Accessor, min: number, max: number, clamp?: boolean) {
+  if (type === ScaleType.Ordinal) {
+    const ordinalScale = createOrdinalScale(domain as string[], min, max);
+    const scaleFn = getOrdinalScaleFn(ordinalScale, accessor);
+    const barWidth = ordinalScale.bandwidth();
+    return {
+      scaleFn,
+      barWidth,
+    };
+  } else {
+    const scaleFn = getContinuousScaleFn(
+      type,
+      domain as number[],
+      accessor,
+      min,
+      max,
+      clamp,
+    );
+    const barWidth = DEFAULT_BAR_WIDTH;
+    return {
+      scaleFn,
+      barWidth,
+    };
+  }
 }

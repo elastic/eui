@@ -20,15 +20,15 @@ class AxisSpec extends React.PureComponent<AxisSpecProps> {
   };
   public componentDidMount() {
     const { chartStore, children, ...spec } = this.props;
-    chartStore.addAxis({ ...spec });
+    chartStore!.addAxis({ ...spec });
   }
   public componentDidUpdate() {
     const { chartStore, children, ...spec } = this.props;
-    chartStore.addAxis({ ...spec });
+    chartStore!.addAxis({ ...spec });
   }
   public componentWillUnmount() {
     const { id }  = this.props;
-    this.props.chartStore.removeAxis(id);
+    this.props.chartStore!.removeAxis(id);
   }
   public render() {
     return null;

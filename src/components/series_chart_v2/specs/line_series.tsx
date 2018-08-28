@@ -24,17 +24,17 @@ class LineSeriesSpec extends React.PureComponent<LineSpecProps> {
 
   public componentDidMount() {
     const { chartStore, children, curveType, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
 
   public componentDidUpdate() {
     const { chartStore, children, curveType, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
 
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore.removeSeriesSpecs(id);
+    chartStore!.removeSeriesSpecs(id);
   }
 
   public render() {

@@ -11,6 +11,7 @@ interface AreaSeriesExtraProps {
 type AreaSpecProps = SpecProps & DataSeriesSpec & AreaSeriesExtraProps;
 
 class AreaSeriesSpec extends React.PureComponent<AreaSpecProps> {
+  public static displayName = 'AreaSeries';
   public static defaultProps: Partial<AreaSpecProps> = {
     groupId: getGroupId('__global__'),
     type: DataSeriesType.Area,
@@ -24,22 +25,23 @@ class AreaSeriesSpec extends React.PureComponent<AreaSpecProps> {
 
   public componentDidMount() {
     const { chartStore, children, curveType, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
 
   public componentDidUpdate() {
     const { chartStore, children, curveType, ...config } = this.props;
-    chartStore.addSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpecs({ ...config });
   }
 
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore.removeSeriesSpecs(id);
+    chartStore!.removeSeriesSpecs(id);
   }
 
   public render() {
     return null;
   }
 }
-
-export const AreaSeries = inject('chartStore')(AreaSeriesSpec);
+const AreaSeries = inject('chartStore')(AreaSeriesSpec);
+AreaSeries.displayName = 'areaseries';
+export { AreaSeries };
