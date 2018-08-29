@@ -9,6 +9,7 @@
 - Fixed `EuiSearchBar` when used as a controlled component in React 16.4 ([#1153](https://github.com/elastic/eui/pull/1153))
 - Fixed `onChange` typedef on `EuiSwitch` ([#1144](https://github.com/elastic/eui/pull/1144)
 - Fixed `EuiToolTip`'s inability to update its position when tooltip content changes ([#1116](https://github.com/elastic/eui/pull/1116))
+- Fixed `EuiSearchBar`'s syntax parsing to allow multiple escaped characters in a single field value
 
 ## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
 
