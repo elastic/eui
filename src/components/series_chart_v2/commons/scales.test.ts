@@ -15,13 +15,13 @@ describe('Scale Test', () => {
     const bandwidth = ordinalScale.bandwidth();
     expect(bandwidth).toEqual(rangeMax / domain.length);
     const scaledValue1 = ordinalScale('a');
-    expect(scaledValue1).toBe(bandwidth / 2);
+    expect(scaledValue1).toBe(0);
     const scaledValue2 = ordinalScale('b');
-    expect(scaledValue2).toBe(bandwidth / 2 + bandwidth);
+    expect(scaledValue2).toBe(bandwidth);
     const scaledValue3 = ordinalScale('c');
-    expect(scaledValue3).toBe(bandwidth / 2 + bandwidth * 2);
+    expect(scaledValue3).toBe(bandwidth * 2);
     const scaledValue4 = ordinalScale('d');
-    expect(scaledValue4).toBe(bandwidth / 2 + bandwidth * 3);
+    expect(scaledValue4).toBe(bandwidth * 3);
   });
   test('Create an linear scale', () => {
     const data = [0, 10];

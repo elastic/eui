@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import { VerticalGridLines } from "react-vis";
+import React, { PureComponent } from 'react';
+import { VerticalGridLines } from 'react-vis';
 
 /**
  * Vertical grid lines aligned with x axis ticks
@@ -14,6 +14,6 @@ export class EuiVerticalGrid extends PureComponent {
   }
 }
 
-EuiVerticalGrid.displayName = "EuiVerticalGrid";
+EuiVerticalGrid.displayName = 'EuiVerticalGrid';
 
 EuiVerticalGrid.requiresSVG = true;

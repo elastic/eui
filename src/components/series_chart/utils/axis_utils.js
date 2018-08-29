@@ -1,4 +1,4 @@
-import { AxisUtils } from "react-vis";
+import { AxisUtils } from 'react-vis';
 
 /**
  * Axis orientation. Can be top, bottom, left, right.
@@ -17,9 +17,9 @@ export const ORIENTATION = {
  * The title position along the axis.
  */
 export const TITLE_POSITION = {
-  MIDDLE: "middle",
-  START: "start",
-  END: "end",
+  MIDDLE: 'middle',
+  START: 'start',
+  END: 'end',
 };
 
 export const EuiSeriesChartAxisUtils = {
