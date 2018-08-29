@@ -4,6 +4,7 @@ import { requiredProps } from '../../test';
 import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
+import { ENTER } from '../../services/key_codes';
 
 describe('SearchBar', () => {
   test('render - no config, no query', () => {
@@ -86,17 +87,16 @@ describe('SearchBar', () => {
         <EuiSearchBar
           query="status:active"
           onChange={onChange}
-          data-test-subj="searchbar"
+          box={{ 'data-test-subj': 'searchbar' }}
         />
       );
 
-      // component.setProps({ query: 'is:active' });
-      console.log(component.debug())
+      component.find('input[data-test-subj="searchbar"]').simulate('keyup', { keyCode: ENTER, target: { value: 'status:inactive' } });
 
-      // expect(onChange).toHaveBeenCalledTimes(1);
-      // const [[{ query, queryText }]] = onChange.mock.calls;
-      // expect(query).toBeInstanceOf(Query);
-      // expect(queryText).toBe('is:active');
+      expect(onChange).toHaveBeenCalledTimes(1);
+      const [[{ query, queryText }]] = onChange.mock.calls;
+      expect(query).toBeInstanceOf(Query);
+      expect(queryText).toBe('status:inactive');
     });
   });
 });
