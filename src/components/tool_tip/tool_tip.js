@@ -11,6 +11,7 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
+import { EuiMutationObserver } from '../mutation_observer';
 
 const positionsToClassNameMap = {
   top: 'euiToolTip--top',
@@ -181,7 +182,12 @@ export class EuiToolTip extends Component {
             {...rest}
           >
             <div style={arrowStyles} className="euiToolTip__arrow"/>
-            {content}
+            <EuiMutationObserver
+              observerOptions={{ subtree: true, childList: true, characterData: true, attributes: true }}
+              onMutation={this.positionToolTip}
+            >
+              {content}
+            </EuiMutationObserver>
           </EuiToolTipPopover>
         </EuiPortal>
       );
