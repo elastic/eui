@@ -1,24 +1,25 @@
 .euiStat {
   // Modifier naming and colors.
   $titleColors: (
-    dark: $euiColorDarkShade,
-    full: $euiColorFullShade,
+    subdued: $euiColorDarkShade,
     primary: $euiColorPrimary,
     secondary: $euiColorSecondary,
     danger: $euiColorDanger,
     accent: $euiColorAccent,
   );
 
-  // Create color classes based upon the map.
-  @each $name, $color in $titleColors {
-    &--#{$name} .euiStat__title {
-      color: $color;
+  .euiStat__title {
+    color: $euiColorFullShade;
+
+    // Create color classes based upon the map.
+    @each $name, $color in $titleColors {
+      &--#{$name} {
+        color: $color;
+      }
     }
   }
-
-  color: map-get($titleColors, full);
   
-  .eui__description {
+  .euiStat__description {
     color: map-get($titleColors, dark);
   }
 

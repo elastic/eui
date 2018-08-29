@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,12 +7,11 @@ import { EuiTitle, TITLE_SIZES } from '../title/title';
 
 const colorToClassNameMap = {
   default: null,
-  dark: 'euiStat--dark',
-  full: 'euiStat--full',
-  primary: 'euiStat--primary',
-  secondary: 'euiStat--secondary',
-  danger: 'euiStat--danger',
-  accent: 'euiStat--accent',
+  subdued: 'euiStat__title--dark',
+  primary: 'euiStat__title--primary',
+  secondary: 'euiStat__title--secondary',
+  danger: 'euiStat__title--danger',
+  accent: 'euiStat__title--accent',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -39,9 +38,13 @@ export const EuiStat = ({
 
   const classes = classNames(
     'euiStat',
-    colorToClassNameMap[titleColor],
     textAlignToClassNameMap[textAlign],
     className,
+  );
+
+  const titleClasses = classNames(
+    'euiStat__title',
+    colorToClassNameMap[titleColor],
   );
 
   const descriptionDisplay = (
@@ -51,7 +54,7 @@ export const EuiStat = ({
   );
 
   const titleDisplay = (
-    <EuiTitle size={titleSize} className="euiStat__title">
+    <EuiTitle size={titleSize} className={titleClasses}>
       <p>{title}</p>
     </EuiTitle>
   );
@@ -60,17 +63,17 @@ export const EuiStat = ({
 
   if (reverse) {
     statDisplay = (
-      <div>
+      <Fragment>
         {titleDisplay}
         {descriptionDisplay}
-      </div>
+      </Fragment>
     );
   } else {
     statDisplay = (
-      <div>
+      <Fragment>
         {descriptionDisplay}
         {titleDisplay}
-      </div>
+      </Fragment>
     );
   }
 

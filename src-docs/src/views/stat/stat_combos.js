@@ -16,7 +16,6 @@ export default () => (
           <EuiStat
             title="8,888"
             description="Total widgets"
-            titleColor="full"
             textAlign="right"
           >
             <EuiIcon type="empty" />

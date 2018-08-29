@@ -12,15 +12,14 @@ export default () => (
       <EuiFlexItem>
         <EuiStat
           title="1"
-          description="Full color"
-          titleColor="full"
+          description="Default color"
         />
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiStat
           title="10"
-          description="Dark color"
-          titleColor="dark"
+          description="Subdued color"
+          titleColor="subdued"
         />
       </EuiFlexItem>
       <EuiFlexItem>
