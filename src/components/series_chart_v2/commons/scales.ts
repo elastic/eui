@@ -136,8 +136,9 @@ export function createOrdinalScale(
 export function getOrdinalScaleFn(
   scale: ScaleOrdinal,
   accessor: (point: any) => any,
+  centering = false,
 ): ScaleFunction {
   return (point: any) => {
-    return scale(accessor(point));
+    return scale(accessor(point)) + (centering ? scale.bandwidth() / 2 : 0);
   };
 }

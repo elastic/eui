@@ -1,7 +1,7 @@
 import { getAxisId, getGroupId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
 import { AxisOrientation, AxisPosition } from '../commons/specs';
-import { computeAxisDimensions, getAvailableTicks, getVisibleTicks } from '../state/axis_utils';
+import { computeAxisDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 describe('Axis computational utils', () => {
@@ -78,7 +78,7 @@ describe('Axis computational utils', () => {
 
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const axisDimensions = computeAxisDimensions(axis1Spec, axis1SeriesScale, bboxCalculator);
+    const axisDimensions = computeAxisDimensions(axis1Spec, [axis1SeriesScale], bboxCalculator);
     expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });

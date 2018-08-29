@@ -1,4 +1,4 @@
-import { AxisDimensions } from '../state/axis_utils';
+import { AxisTicksDimensions } from '../state/axis_utils';
 import { computeChartDimensions } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
 import { ScaleType } from './scales';
@@ -35,14 +35,14 @@ describe('Computed chart dimensions', () => {
     },
   };
   test('should be equal to parent dimension with no axis', () => {
-    const axisDims = new Map<AxisId, AxisDimensions>();
+    const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     const chartDimensions = computeChartDimensions(parentDim, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 0, left: 0, ...parentDim };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
   test('should be padded by a right axis', () => {
-    const axisDims = new Map<AxisId, AxisDimensions>();
+    const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), axis1Spec);
@@ -51,7 +51,7 @@ describe('Computed chart dimensions', () => {
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
   test('should be padded by a right axis', () => {
-    const axisDims = new Map<AxisId, AxisDimensions>();
+    const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: AxisPosition.Right });
@@ -60,7 +60,7 @@ describe('Computed chart dimensions', () => {
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
   test('should be padded by a top axis', () => {
-    const axisDims = new Map<AxisId, AxisDimensions>();
+    const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), {
@@ -73,7 +73,7 @@ describe('Computed chart dimensions', () => {
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
   test('should be padded by a bottom axis', () => {
-    const axisDims = new Map<AxisId, AxisDimensions>();
+    const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), {

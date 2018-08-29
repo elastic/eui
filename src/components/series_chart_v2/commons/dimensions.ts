@@ -1,4 +1,4 @@
-import { AxisDimensions } from '../state/axis_utils';
+import { AxisTicksDimensions } from '../state/axis_utils';
 import { AxisId } from './ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from './specs';
 
@@ -16,7 +16,7 @@ export interface Dimensions {
  */
 export function computeChartDimensions(
   parentDimensions: Dimensions,
-  axisDimensions: Map<AxisId, AxisDimensions>,
+  axisDimensions: Map<AxisId, AxisTicksDimensions>,
   axisSpecs: Map<AxisId, AxisSpec>,
 ): Dimensions {
   let vLeftAxisSpecWidth = 0;

@@ -12,12 +12,12 @@ import { area,
   curveStepBefore,
 } from 'd3-shape';
 import { Dimensions } from '../commons/dimensions';
+import { SeriesScales } from '../commons/domain';
 import { CurveType } from '../commons/line_series';
 import {
   createOrdinalScale,
   getContinuousScaleFn,
   getOrdinalScaleFn,
-  ScaleConfig,
   ScaleFunction,
   ScaleType,
 } from '../commons/scales';
@@ -39,38 +39,35 @@ export interface AreaSeriesGlyph {
  */
 export function computeDataPoints(
   data: any[],
-  xScaleConfig: ScaleConfig,
-  yScaleConfig: ScaleConfig,
+  seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
   curveType?: CurveType,
+  clamp = false,
 ): AreaSeriesGlyph {
+  const seriesScale = seriesScales[0];
   let xScaleFn: ScaleFunction;
-  if (xScaleConfig.type === ScaleType.Ordinal) {
-    const { domain, accessor } = xScaleConfig;
-    const ordinalScale = createOrdinalScale(domain as string[], 0, seriesDimensions.width);
-    xScaleFn = getOrdinalScaleFn(ordinalScale, accessor);
+  if (seriesScale.xScaleType === ScaleType.Ordinal) {
+    const ordinalScale = createOrdinalScale(seriesScale.xDomain as string[], 0, seriesDimensions.width);
+    xScaleFn = getOrdinalScaleFn(ordinalScale, seriesScale.xAccessor, true);
   } else {
-    const { domain, accessor, type, clamp } = xScaleConfig;
     xScaleFn = getContinuousScaleFn(
-      type,
-      domain as number[],
-      accessor,
+      seriesScale.xScaleType,
+      seriesScale.xDomain as number[],
+      seriesScale.xAccessor,
       0,
       seriesDimensions.width,
       clamp,
     );
   }
   let yScaleFn: ScaleFunction;
-  if (yScaleConfig.type === ScaleType.Ordinal) {
-    const { domain, accessor } = yScaleConfig;
-    const ordinalScale = createOrdinalScale(domain as string[], 0, seriesDimensions.height);
-    yScaleFn = getOrdinalScaleFn(ordinalScale, accessor);
+  if (seriesScale.yScaleType === ScaleType.Ordinal) {
+    const ordinalScale = createOrdinalScale(seriesScale.yDomain as string[], 0, seriesDimensions.height);
+    yScaleFn = getOrdinalScaleFn(ordinalScale, seriesScale.yAccessor!);
   } else {
-    const { domain, accessor, type, clamp } = yScaleConfig;
     yScaleFn = getContinuousScaleFn(
-      type,
-      domain as number[],
-      accessor,
+      seriesScale.yScaleType!,
+      seriesScale.yDomain as number[],
+      seriesScale.yAccessor!,
       seriesDimensions.height,
       0,
       clamp,

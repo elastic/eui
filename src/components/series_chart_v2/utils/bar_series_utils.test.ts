@@ -15,7 +15,7 @@ describe('Bar Series', () => {
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
     const xDomain = computeDataDomain(data, xAccessor, xScaleType);
-    const yDomain = computeDataDomain(data, yAccessor, yScaleType);
+    const yDomain = computeDataDomain(data, yAccessor, yScaleType, true);
     const seriesDimensions = {
       width: 100,
       height: 100,
@@ -33,7 +33,7 @@ describe('Bar Series', () => {
         yAccessor,
       },
     ];
-    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, false, true);
+    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions);
     const expectedBandwidth = 25;
     const expectedDataPoints = [
       { x: 0, y: 100, height: 0, width: 25 },
@@ -73,14 +73,14 @@ describe('Bar Series', () => {
       {
         groupLevel: 1,
         xDomain: [1, 2, 3],
-        yDomain: [1, 3],
+        yDomain: [0, 3],
         xScaleType,
         yScaleType,
         xAccessor,
         yAccessor,
       },
     ];
-    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, false, true);
+    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions);
     const expectedBandwidth = 25;
     const expectedDataPoints = [
       { x: 0, y: 100, height: 0, width: 25 },
@@ -103,7 +103,7 @@ describe('Bar Series', () => {
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
     const xDomain = computeDataDomain(data, xAccessor, xScaleType);
-    const yDomain = computeDataDomain(data, yAccessor, yScaleType);
+    const yDomain = computeDataDomain(data, yAccessor, yScaleType, true);
     const seriesScales = [
       {
         groupLevel: 0,
@@ -121,7 +121,7 @@ describe('Bar Series', () => {
       top: 0,
       left: 0,
     };
-    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, false, true);
+    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions);
     const expectedDataPoints = [
       { x: 0, y: 100, height: 0, width: DEFAULT_BAR_WIDTH },
       { x: 25, y: 50, height: 50, width: DEFAULT_BAR_WIDTH },
@@ -144,7 +144,7 @@ describe('Bar Series', () => {
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
     const xDomain = [1, 5];
-    const yDomain = [1, 2];
+    const yDomain = [0, 2];
     const seriesScales = [
       {
         groupLevel: 0,
@@ -162,7 +162,7 @@ describe('Bar Series', () => {
       top: 0,
       left: 0,
     };
-    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, true, true);
+    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, true);
     const expectedDataPoints = [
       { x: 0, y: 100, height: 0, width: DEFAULT_BAR_WIDTH },
       { x: 25, y: 0, height: 100, width: DEFAULT_BAR_WIDTH },
