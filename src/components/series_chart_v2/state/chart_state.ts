@@ -147,17 +147,7 @@ export class ChartStore {
       if (!seriesScales) {
         return;
       }
-      // const xScaleConfig = {
-      //   accessor: seriesSpec.xAccessor,
-      //   type: seriesSpec.xScaleType,
-      //   domain: seriesScale.domains.xDomain,
-      // };
-      // const yDomain = scaleToExtent ? seriesScale.domains.yDomain : [0, seriesScale.domains.yDomain[1]];
-      // const yScaleConfig = {
-      //   accessor: seriesSpec.yAccessor,
-      //   type: seriesSpec.yScaleType,
-      //   domain: yDomain as number[],
-      // };
+      // compute single series glyphs
       switch (type) {
         case DataSeriesType.Bar:
           const clamp = false;
@@ -174,8 +164,6 @@ export class ChartStore {
           this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
           break;
       }
-      // compute single series glyphs
-      // save glyphs to store
     });
     this.initialized.set(true);
     // tslint:disable-next-line:no-console
