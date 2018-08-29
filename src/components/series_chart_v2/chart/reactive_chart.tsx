@@ -2,8 +2,8 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { DataSeriesType } from '../commons/specs';
-// import { Axis } from '../series/axis';
 import { AreaSeries } from '../components/area_series';
+import { Axis } from '../components/axis';
 import { BarSeries } from '../components/bar_series';
 import { LineSeries } from '../components/line_series';
 import { ChartStore } from '../state/chart_state';
@@ -40,29 +40,28 @@ class Chart extends React.Component<ReactiveChartProps> {
     console.log('Chart unmounted');
   }
 
-  // public getAxesComponents(specs) {
-  //   const axesComponents = [];
-  //   specs.forEach((spec, id) => {
-  //     const axisSpec = toJS(spec);
-  //     axesComponents.push(<Axis key={id} {...axisSpec} />);
-  //   });
-  //   return axesComponents;
-  // }
   public renderAxes = () => {
-    return null;
-    // const {
-    //   vLeftAxisSpec,
-    //   vRightAxisSpec,
-    //   hBottomAxisSpec,
-    //   hTopAxisSpec,
-    // } = this.props.chartStore!;
-    // const axisComponents = [
-    //   ...this.getAxesComponents(vLeftAxisSpec),
-    //   ...this.getAxesComponents(vRightAxisSpec),
-    //   ...this.getAxesComponents(hBottomAxisSpec),
-    //   ...this.getAxesComponents(hTopAxisSpec),
-    // ];
-    // return axisComponents;
+    const { axisVisibleTicks, axisSpecs, axisDimensions, axisPositions } = this.props.chartStore!;
+    const axesComponents: JSX.Element[] = [];
+    axisVisibleTicks.forEach((axisTicks, axisId) => {
+      const axisSpec = axisSpecs.get(axisId);
+      const axisTicksDimensions = axisDimensions.get(axisId);
+      const axisPosition = axisPositions.get(axisId);
+      const ticks = axisVisibleTicks.get(axisId);
+      if (!ticks || !axisSpec || !axisTicksDimensions || !axisPosition) {
+        return;
+      }
+      axesComponents.push(
+        <Axis
+          key={`axis-${axisId}`}
+          axisSpec={axisSpec}
+          axisTicksDimensions={axisTicksDimensions}
+          axisPosition={axisPosition}
+          ticks={ticks}
+        />,
+      );
+    });
+    return axesComponents;
   }
   public renderLineSeries = () => {
     const {
@@ -74,8 +73,6 @@ class Chart extends React.Component<ReactiveChartProps> {
         return;
       }
       const lineGlyph = spec as LineSeriesDataGlyphs;
-      // tslint:disable-next-line:no-console
-      console.log('lineGlyphs', lineGlyph);
       points.push((
         <LineSeries
           key={`line-series-${specId}`}
@@ -111,8 +108,6 @@ class Chart extends React.Component<ReactiveChartProps> {
         return;
       }
       const barGlyphs = spec as BarSeriesDataGlyphs;
-      // tslint:disable-next-line:no-console
-      console.log('barGlyphs', barGlyphs);
       points.push((
         <BarSeries
           key="data points"

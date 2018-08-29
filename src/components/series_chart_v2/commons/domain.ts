@@ -24,12 +24,13 @@ export function computeDataDomain(
   data: any[],
   accessor: Accessor,
   scaleType: ScaleType,
-  sorted?: boolean,
+  scaleToExtent = false,
+  sorted = false,
 ) {
   if (scaleType === ScaleType.Ordinal) {
     return computeOrdinalDataDomain(data, accessor, sorted);
   }
-  return computeContinuousDataDomain(data, accessor);
+  return computeContinuousDataDomain(data, accessor, scaleToExtent);
 }
 
 function computeOrdinalDataDomain(
@@ -44,15 +45,17 @@ function computeOrdinalDataDomain(
 function computeContinuousDataDomain(
   data: any[],
   accessor: ContinuousAccessor,
+  scaleToExtent = false,
 ): [number, number] | [undefined, undefined] {
-  return extent(data, accessor);
+  const range = extent(data, accessor);
+  return scaleToExtent ? range : [0, range[1] || 0];
 }
 
 export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[] {
-  const { xScaleType, yScaleType, xAccessor, yAccessor, groupAccessors, data } = seriesSpec;
+  const { xScaleType, yScaleType, xAccessor, yAccessor, groupAccessors, data, scaleToExtent } = seriesSpec;
   const mainXDomainScaleType = (groupAccessors && groupAccessors.length) > 0 ? ScaleType.Ordinal : xScaleType;
   const xDomain = computeDataDomain(data, xAccessor, mainXDomainScaleType);
-  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType);
+  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType, scaleToExtent);
   if (groupAccessors && groupAccessors.length > 0) {
     const groupDomains = groupAccessors.map((accessor, groupLevel) => {
       const groupXDomain = computeDataDomain(data, accessor, ScaleType.Ordinal);

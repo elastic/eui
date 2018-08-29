@@ -19,12 +19,11 @@ $euiColorVisList:
   opacity: 0.7;
 }
 .euiSeriesChartSeries_bar {
-  opacity: 0.7;
+  opacity: 0.2;
 }
 
 .euiSeriesChartSeries_area {
-  opacity: 0.7;
-  fill: red;
+  opacity: 0.5;
 }
 
 @for $i from 1 through 10 {

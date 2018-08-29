@@ -38,9 +38,8 @@ export function computeDataPoints(
   seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
   clamp = false,
-  scaleToExtent = false,
 ): BarSeriesGlyph[] {
-  return compute(data, seriesScales, seriesDimensions, clamp, scaleToExtent);
+  return compute(data, seriesScales, seriesDimensions, clamp);
 }
 
 function compute(
@@ -48,16 +47,13 @@ function compute(
   seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
   clamp: boolean,
-  scaleToExtent: boolean,
 ) {
   const yScaleConfig = seriesScales[seriesScales.length - 1];
   const { yScaleType, yDomain, yAccessor } = yScaleConfig;
   if (!yScaleType || !yDomain || !yAccessor) {
     throw new Error('Missing yScaleType or yDomain or yAccessor for series');
   }
-  const yCorrectedDomain = scaleToExtent ? yDomain : [0, yDomain[yDomain.length - 1 ]] as Domain;
-  const yScale = getScale(yScaleType, yCorrectedDomain, yAccessor , 0, seriesDimensions.height, clamp);
-
+  const yScale = getScale(yScaleType, yDomain, yAccessor , 0, seriesDimensions.height, clamp);
   const xScales = seriesScales.reduce((acc, scale) => {
     const { xScaleType, xDomain, xAccessor } = scale;
     if (acc.length === 0) {
@@ -93,14 +89,6 @@ function computeXScaleValue(scales: ScaleFnConfig[], datum: any) {
     barWidth,
   };
 }
-
-// groupLevel: 2,
-// xDomain: [ 1, 2, 3, 4 ],
-// yDomain: [ 10, 30 ],
-// xScaleType: 'ordinal',
-// yScaleType: 'linear',
-// xAccessor,
-// yAccessor,
 
 function getScale(type: ScaleType, domain: Domain, accessor: Accessor, min: number, max: number, clamp?: boolean) {
   if (type === ScaleType.Ordinal) {

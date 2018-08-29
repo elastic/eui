@@ -12,10 +12,11 @@ import {
 import { observable } from 'mobx';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeSeriesDomains, SeriesScales } from '../commons/domain';
-// import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
+import { CurveType } from '../commons/line_series';
+import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
 import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
-// import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
-import { AxisDimensions, AxisTick, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
+import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
+import { AxisTick, AxisTicksDimensions, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export class ChartStore {
@@ -32,7 +33,7 @@ export class ChartStore {
     left: 0,
   };  // updated from jsx
   public axisSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
-  public axisDimensions: Map<AxisId, AxisDimensions> = new Map(); // computed
+  public axisDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
   public axisPositions: Map<AxisId, Dimensions> = new Map(); // computed
   public axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public axisTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
@@ -77,7 +78,6 @@ export class ChartStore {
     this.seriesSpecs.set(seriesSpec.id, seriesSpec);
     // computeXDomain and computeYDomain
     const seriesScales = computeSeriesDomains(seriesSpec);
-    console.log(seriesScales);
     // save scales
     this.seriesScales.set(seriesSpec.id, seriesScales);
     // merge to global domains
@@ -107,7 +107,15 @@ export class ChartStore {
   }
 
   public computeChart() {
+    // tslint:disable-next-line:no-console
+    console.time('__chart_computation__');
     this.initialized.set(false);
+    // compute only if parent dimensions are computed
+    if (this.parentDimensions.width === 0 || this.parentDimensions.height === 0) {
+      // tslint:disable-next-line:no-console
+      console.timeEnd('__chart_computation__');
+      return;
+    }
     // TODO merge series domains
 
     // compute axis dimensions
@@ -117,8 +125,7 @@ export class ChartStore {
       const { id, groupId } = axisSpec;
       const groupSeriesScale = this.chartScales.get(groupId);
       if (groupSeriesScale) {
-        const mainGroupScale = groupSeriesScale[groupSeriesScale.length - 1];
-        const dimensions = computeAxisDimensions(axisSpec, mainGroupScale, bboxCalculator);
+        const dimensions = computeAxisDimensions(axisSpec, groupSeriesScale, bboxCalculator);
         this.axisDimensions.set(id, dimensions);
       }
     });
@@ -135,7 +142,7 @@ export class ChartStore {
 
     // compute series glyphs
     this.seriesSpecs.forEach((seriesSpec) => {
-      const { id, type, data, scaleToExtent } = seriesSpec;
+      const { id, type, data } = seriesSpec;
       const seriesScales = this.seriesScales.get(id);
       if (!seriesScales) {
         return;
@@ -153,22 +160,26 @@ export class ChartStore {
       // };
       switch (type) {
         case DataSeriesType.Bar:
-          const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, false, scaleToExtent);
+          const clamp = false;
+          const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, clamp);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
           break;
-        // case DataSeriesType.Line:
-        //   const lineDataPoints = computeLineDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
-        //   this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
-        //   break;
-        // case DataSeriesType.Area:
-        //   const areaDataPoints = computeAreaDataPoints(data, xScaleConfig, yScaleConfig, this.chartDimensions);
-        //   this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
-        //   break;
+        case DataSeriesType.Line:
+          const lineDataPoints = computeLineDataPoints(data, seriesScales, this.chartDimensions,
+            CurveType.CURVE_CARDINAL);
+          this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
+          break;
+        case DataSeriesType.Area:
+          const areaDataPoints = computeAreaDataPoints(data, seriesScales, this.chartDimensions);
+          this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
+          break;
       }
       // compute single series glyphs
       // save glyphs to store
     });
     this.initialized.set(true);
+    // tslint:disable-next-line:no-console
+    console.timeEnd('__chart_computation__');
   }
 
   private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {
