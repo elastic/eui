@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a new `EuiStat` component for displaying prominent stats ([#1146](https://github.com/elastic/eui/pull/1146))
 - Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
 - Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
 
 **Bug fixes**
 
+- Fixed `EuiSearchBar` when used as a controlled component in React 16.4 ([#1153](https://github.com/elastic/eui/pull/1153))
 - Fixed `onChange` typedef on `EuiSwitch` ([#1144](https://github.com/elastic/eui/pull/1144)
 - Fixed `EuiToolTip`'s inability to update its position when tooltip content changes ([#1116](https://github.com/elastic/eui/pull/1116))
 - Fixed `EuiSearchBar`'s syntax parsing to allow multiple escaped characters in a single field value
