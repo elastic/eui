@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `3.8.0`.
+
+## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
+
 - Added a new `EuiStat` component for displaying prominent stats ([#1146](https://github.com/elastic/eui/pull/1146))
 - Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
 - Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
