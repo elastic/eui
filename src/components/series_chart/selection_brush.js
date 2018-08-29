@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { ScaleUtils, AbstractSeries } from "react-vis";
-import { ORIENTATION, SCALE } from "./utils/chart_utils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ScaleUtils, AbstractSeries } from 'react-vis';
+import { ORIENTATION, SCALE } from './utils/chart_utils';
 const { HORIZONTAL, VERTICAL, BOTH } = ORIENTATION;
 
 const DEFAULT_AREAS = {
@@ -146,8 +146,8 @@ export class EuiSelectionBrush extends AbstractSeries {
     const { drawArea } = this.state;
     const { x0, y0, x1, y1 } = drawArea;
     const { xType, yType, onBrushEnd } = this.props;
-    const xScale = ScaleUtils.getAttributeScale(this.props, "x");
-    const yScale = ScaleUtils.getAttributeScale(this.props, "y");
+    const xScale = ScaleUtils.getAttributeScale(this.props, 'x');
+    const yScale = ScaleUtils.getAttributeScale(this.props, 'y');
 
     const xValues = this._getScaledValue(xScale, xType, x0, x1);
     const yValues = this._getScaledValue(yScale, yType, y0, y1);
@@ -175,7 +175,7 @@ export class EuiSelectionBrush extends AbstractSeries {
       <g
         transform={`translate(${marginLeft}, ${marginTop})`}
         style={{
-          pointerEvents: "none",
+          pointerEvents: 'none',
         }}
       >
         <rect
@@ -191,7 +191,7 @@ export class EuiSelectionBrush extends AbstractSeries {
   }
 }
 
-EuiSelectionBrush.displayName = "EuiSelectionBrush";
+EuiSelectionBrush.displayName = 'EuiSelectionBrush';
 
 EuiSelectionBrush.propTypes = {
   /** Specify the brush orientation */
@@ -210,6 +210,6 @@ EuiSelectionBrush.propTypes = {
 
 EuiSelectionBrush.defaultProps = {
   orientation: HORIZONTAL,
-  color: "black",
+  color: 'black',
   opacity: 0.2,
 };

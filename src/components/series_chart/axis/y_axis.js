@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import { YAxis } from "react-vis";
-import { EuiSeriesChartAxisUtils } from "../utils/axis_utils";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { YAxis } from 'react-vis';
+import { EuiSeriesChartAxisUtils } from '../utils/axis_utils';
 
 const { TITLE_POSITION, ORIENTATION } = EuiSeriesChartAxisUtils;
 
@@ -16,7 +16,7 @@ export class EuiYAxis extends PureComponent {
       tickFormat,
       tickValues,
       onZero,
-      ...rest,
+      ...rest
     } = this.props;
     return (
       <YAxis
@@ -34,7 +34,7 @@ export class EuiYAxis extends PureComponent {
   }
 }
 
-EuiYAxis.displayName = "EuiYAxis";
+EuiYAxis.displayName = 'EuiYAxis';
 
 EuiYAxis.propTypes = {
   /** The axis title */
