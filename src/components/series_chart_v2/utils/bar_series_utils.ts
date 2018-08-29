@@ -90,7 +90,14 @@ function computeXScaleValue(scales: ScaleFnConfig[], datum: any) {
   };
 }
 
-function getScale(type: ScaleType, domain: Domain, accessor: Accessor, min: number, max: number, clamp?: boolean) {
+export function getScale(
+  type: ScaleType,
+  domain: Domain,
+  accessor: Accessor,
+  min: number,
+  max: number,
+  clamp?: boolean,
+) {
   if (type === ScaleType.Ordinal) {
     const ordinalScale = createOrdinalScale(domain as string[], min, max);
     const scaleFn = getOrdinalScaleFn(ordinalScale, accessor);

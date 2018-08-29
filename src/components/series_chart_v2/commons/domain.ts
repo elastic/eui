@@ -16,7 +16,7 @@ export interface SeriesScales {
 }
 
 export type OrdinalAccessor = (d: any) => any;
-export type ContinuousAccessor = (d: any) => number | null | undefined;
+export type ContinuousAccessor = (d: any) => number;
 export type Accessor = OrdinalAccessor | ContinuousAccessor;
 // type ContinuousScaleTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log
 
@@ -28,9 +28,9 @@ export function computeDataDomain(
   sorted = false,
 ) {
   if (scaleType === ScaleType.Ordinal) {
-    return computeOrdinalDataDomain(data, accessor, sorted);
+    return computeOrdinalDataDomain(data, accessor as OrdinalAccessor, sorted);
   }
-  return computeContinuousDataDomain(data, accessor, scaleToExtent);
+  return computeContinuousDataDomain(data, accessor as ContinuousAccessor, scaleToExtent);
 }
 
 function computeOrdinalDataDomain(
@@ -42,7 +42,7 @@ function computeOrdinalDataDomain(
   return sorted ? sortedUniq(domain) : uniq(domain);
 }
 
-function computeContinuousDataDomain(
+export function computeContinuousDataDomain(
   data: any[],
   accessor: ContinuousAccessor,
   scaleToExtent = false,
