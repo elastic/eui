@@ -11,7 +11,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-export class FlyoutSize extends Component {
+export class FlyoutSmall extends Component {
   constructor(props) {
     super(props);
 
@@ -47,13 +47,13 @@ export class FlyoutSize extends Component {
           ownFocus
           onClose={this.closeFlyout}
           size="s"
-          aria-labelledby="flyoutSizeTitle"
+          aria-labelledby="flyoutSmallTitle"
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="s">
-              <h1 id="flyoutSizeTitle">
+              <h2 id="flyoutSmallTitle">
                 A small flyout
-              </h1>
+              </h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
@@ -69,7 +69,7 @@ export class FlyoutSize extends Component {
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
-          Show Flyout
+          Show small flyout
         </EuiButton>
 
         {flyout}

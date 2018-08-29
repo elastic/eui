@@ -24,8 +24,7 @@
 }
 
 /**
-  * 1. Calculating the minimum width based on the screen takover breakpoint
-  * 2. Only small flyouts should NOT takover the entire screen
+ * 1. Calculating the minimum width based on the screen takover breakpoint
  */
 $flyoutSizes: (
   "small": (
@@ -67,16 +66,22 @@ $flyoutSizes: (
   }
 }
 
+/**
+ * 1. Only small flyouts should NOT takover the entire screen
+ * 2. If a custom maxWidth is set, we need to override it.
+ */
 @include euiBreakpoint('xs','s') {
-  .euiFlyout:not(.euiFlyout--small) {  /* 2 */
+  .euiFlyout:not(.euiFlyout--small) {  /* 1 */
     left: 0;
     min-width: 0;
     width: auto;
     border-left: none;
+    max-width: 100vw !important; /* 2 */
   }
 
   .euiFlyout--small {
     width: 80vw; // ensure that it's only partially showing the main content
-    min-width: 0; /* 2 */
+    min-width: 0; /* 1 */
+    max-width: 80vw !important; /* 2 */
   }
 }

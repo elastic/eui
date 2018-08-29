@@ -216,6 +216,9 @@ import { ToolTipExample }
 import { ToggleExample }
   from './views/toggle/toggle_example';
 
+import { WindowEventExample }
+  from './views/window_event/window_event_example';
+
 import { XYChartExample }
   from './views/series_chart/series_chart_example';
 
@@ -236,6 +239,9 @@ import { XYChartLineExample }
 
 import { Changelog }
   from './views/package/changelog';
+
+import { SuperSelectExample }
+  from './views/super_select/super_select_example';
 
 /**
  * Lowercases input and replaces spaces with hyphens:
@@ -356,6 +362,7 @@ const navigation = [{
     FormLayoutsExample,
     FormControlsExample,
     FormValidationExample,
+    SuperSelectExample,
     ComboBoxExample,
     ColorPickerExample,
     CodeEditorExample,
@@ -391,6 +398,7 @@ const navigation = [{
     ToggleExample,
     UtilityClassesExample,
     MutationObserverExample,
+    WindowEventExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Package',

@@ -42,7 +42,7 @@
     pointer-events: auto;
   }
 
-  .euiPopover__panel__arrow {
+  .euiPopover__panelArrow {
     position: absolute;
     width: 0;
     height: 0;
@@ -63,7 +63,7 @@
       width: 0;
     }
 
-    &.euiPopover__panel__arrow-top {
+    &.euiPopover__panelArrow--top {
       &:before {
         bottom: -$euiPopoverArrowSize + 1;
         border-left: $euiPopoverArrowSize solid transparent;
@@ -79,7 +79,7 @@
       }
     }
 
-    &.euiPopover__panel__arrow-right {
+    &.euiPopover__panelArrow--right {
       &:before {
         left: -$euiPopoverArrowSize;
         top: 50%;
@@ -97,7 +97,7 @@
       }
     }
 
-    &.euiPopover__panel__arrow-bottom {
+    &.euiPopover__panelArrow--bottom {
       &:before {
         top: -$euiPopoverArrowSize;
         border-left: $euiPopoverArrowSize solid transparent;
@@ -113,7 +113,7 @@
       }
     }
 
-    &.euiPopover__panel__arrow-left {
+    &.euiPopover__panelArrow--left {
       &:before {
         right: -$euiPopoverArrowSize + 1;
         top: 50%;
@@ -131,36 +131,41 @@
       }
     }
   }
+
+
+  &.euiPopover__panel-noArrow .euiPopover__panelArrow {
+    display: none;
+  }
 }
 
 .euiPopover__panel.euiPopover__panel-withTitle {
-  .euiPopover__panel__arrow {
-    &.euiPopover__panel__arrow-bottom:after {
+  .euiPopover__panelArrow {
+    &.euiPopover__panelArrow--bottom:after {
       border-bottom-color: $euiColorLightestShade;
     }
 
-    &.euiPopover__panel__arrow-right:after {
+    &.euiPopover__panelArrow--right:after {
       border-right-color: $euiColorLightestShade;
     }
 
-    &.euiPopover__panel__arrow-left:after {
+    &.euiPopover__panelArrow--left:after {
       border-left-color: $euiColorLightestShade;
     }
   }
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-top {
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--top {
   transform: translateY($euiPopoverTranslateDistance) translateZ(0);
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-bottom {
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--bottom {
   transform: translateY(-$euiPopoverTranslateDistance) translateZ(0);
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-left {
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--left {
   transform: translateX($euiPopoverTranslateDistance) translateZ(0);
 }
 
-.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel-right {
+.euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--right {
   transform: translateX(-$euiPopoverTranslateDistance) translateZ(0);
 }

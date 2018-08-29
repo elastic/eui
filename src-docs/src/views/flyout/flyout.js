@@ -45,7 +45,7 @@ export class Flyout extends Component {
     const htmlCode = `<EuiFlyout ...>
   <EuiFlyoutHeader hasBorder>
     <EuiTitle size="m">
-      <h1></h1>
+      <h2></h2>
     </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
@@ -62,9 +62,9 @@ export class Flyout extends Component {
         >
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h1 id="flyoutTitle">
+              <h2 id="flyoutTitle">
                 A typical flyout
-              </h1>
+              </h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
@@ -85,7 +85,7 @@ export class Flyout extends Component {
     return (
       <div>
         <EuiButton onClick={this.showFlyout}>
-          Show Flyout
+          Show flyout
         </EuiButton>
 
         {flyout}

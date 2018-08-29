@@ -6,12 +6,9 @@ declare module '@elastic/eui' {
   /**
    * @see './switch.js'
    */
-  export type EuiSwitchChangeCallback = (state: boolean) => void;
-
   export type EuiSwitchProps = CommonProps &
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+    InputHTMLAttributes<HTMLInputElement> & {
       label?: ReactNode;
-      onChange?: EuiSwitchChangeCallback;
     };
 
   export const EuiSwitch: SFC<EuiSwitchProps>;

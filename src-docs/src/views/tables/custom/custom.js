@@ -45,7 +45,7 @@ export default class extends Component {
       itemIdToSelectedMap: {},
       itemIdToOpenActionsPopoverMap: {},
       sortedColumn: 'title',
-      itemsPerPage: 20,
+      itemsPerPage: 10
     };
 
     this.items = [{

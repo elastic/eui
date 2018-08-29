@@ -16,6 +16,7 @@ exports[`CollapsedItemActions render 1`] = `
     />
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="id-actions"
   isOpen={false}
   ownFocus={false}
@@ -29,12 +30,14 @@ exports[`CollapsedItemActions render 1`] = `
         <EuiContextMenuItem
           disabled={false}
           icon={undefined}
+          layoutAlign="center"
           onClick={[Function]}
           toolTipPosition="right"
         >
           default1
         </EuiContextMenuItem>,
         <EuiContextMenuItem
+          layoutAlign="center"
           onClick={[Function]}
           toolTipPosition="right"
         />,

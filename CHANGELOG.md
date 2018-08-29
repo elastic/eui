@@ -1,10 +1,32 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
+
+**Bug fixes**
+
+- Fixed `onChange` typedef on `EuiSwitch` ([#1144](https://github.com/elastic/eui/pull/1144)
+- Fixed `EuiToolTip`'s inability to update its position when tooltip content changes ([#1116](https://github.com/elastic/eui/pull/1116))
+
+## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
+
+- Added `zIndexAdjustment` to `EuiPopover` which allows tweaking the popover content's `z-index` ([#1097](https://github.com/elastic/eui/pull/1097))
+- Added new `EuiSuperSelect` component and `hasArrow` prop to `EuiPopover` ([#921](https://github.com/elastic/eui/pull/921))
+- Added a new `EuiWindowEvent` component for declarative, safe management of `window` event listeners ([#1127](https://github.com/elastic/eui/pull/1127))
+- Changed `Flyout` component to close on ESC keypress even if the flyout does not have focus, using new Window Event component ([#1127](https://github.com/elastic/eui/pull/1127))
+- Added TypeScript definitions for `EuiAvatar` component and the `color` services ([#1120](https://github.com/elastic/eui/pull/1120))
+
+**Bug fixes**
+
+- `EuiFlyout` responsive mode now gracefully overrides a custom `maxWidth` ([#1124](https://github.com/elastic/eui/pull/1124)
+
+## [`3.6.1`](https://github.com/elastic/eui/tree/v3.6.1)
+
 - Added TypeScript definition for `findTestSubject` test util ([#1106](https://github.com/elastic/eui/pull/1106))
 
 **Bug fixes**
 
-- Fixed `EuiToolTip`'s inability to update its position when tooltip content changes ([#1116](https://github.com/elastic/eui/pull/1116))
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
 
 ## [`3.6.0`](https://github.com/elastic/eui/tree/v3.6.0)
 
@@ -15,6 +37,8 @@
 
 - `EuiWrappingPopover` only re-attach anchor element on unmount if anchor element is still attached to DOM
 ([#1114](https://github.com/elastic/eui/pull/1114))
+
+- Fixed `EuiSeriesChart` overrides `react-vis` classes.([#1123](https://github.com/elastic/eui/pull/1123))
 
 ## [`3.5.1`](https://github.com/elastic/eui/tree/v3.5.1)
 
@@ -102,6 +126,14 @@
 **Bug fixes**
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
+
+## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
+
+**Note: this release is a backport containing changes original made in `3.6.1`**
+
+**Bug fixes**
+
+- Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
 
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 

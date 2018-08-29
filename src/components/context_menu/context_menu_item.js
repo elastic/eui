@@ -10,6 +10,14 @@ import { EuiToolTip } from '../tool_tip';
 
 import { getSecureRelForTarget } from '../../services';
 
+const layoutAlignToClassNames = {
+  center: null,
+  top: 'euiContextMenu__itemLayout--top',
+  bottom: 'euiContextMenu__itemLayout--bottom',
+};
+
+export const LAYOUT_ALIGN = Object.keys(layoutAlignToClassNames);
+
 export class EuiContextMenuItem extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -40,6 +48,10 @@ export class EuiContextMenuItem extends Component {
     href: PropTypes.string,
     target: PropTypes.string,
     rel: PropTypes.string,
+    /**
+     * How to align icon with content of button
+     */
+    layoutAlign: PropTypes.oneOf(LAYOUT_ALIGN),
   };
 
   render() {
@@ -51,6 +63,7 @@ export class EuiContextMenuItem extends Component {
       icon,
       buttonRef,
       disabled,
+      layoutAlign,
       toolTipTitle,
       toolTipContent,
       toolTipPosition,
@@ -98,8 +111,10 @@ export class EuiContextMenuItem extends Component {
       'euiContextMenuItem-isDisabled': disabled,
     });
 
+    const layoutClasses = classNames('euiContextMenu__itemLayout', layoutAlignToClassNames[layoutAlign]);
+
     const buttonInner = (
-      <span className="euiContextMenu__itemLayout">
+      <span className={layoutClasses}>
         {iconInstance}
         <span className="euiContextMenuItem__text">
           {children}
@@ -162,4 +177,5 @@ export class EuiContextMenuItem extends Component {
 
 EuiContextMenuItem.defaultProps = {
   toolTipPosition: 'right',
+  layoutAlign: 'center',
 };

@@ -4,6 +4,7 @@
  *    the portal is appended to the body. This would throw off our logic for positioning the
  *    list beneath the input.
  * 3. The height can expand, hence auto
+ * 4. Using specificity to override panel shadow
  */
 .euiComboBoxOptionsList {
   @include euiFormControlSize(auto, $includeAlternates: true); /* 3 */
@@ -14,6 +15,14 @@
   .ReactVirtualized__List {
     @include euiScrollBar;
   }
+
+  &.euiComboBoxOptionsList--bottom { /* 4 */
+    @include euiBottomShadowMedium;
+    z-index: $euiZComboBox + 2;  // Ensures the dropdown's is above the combo box's shadow
+  }
+  &.euiComboBoxOptionsList--top { /* 4 */
+    @include euiBottomShadowFlat;
+  }
 }
 
 .euiComboBoxOptionsList--bottom {
@@ -23,7 +32,6 @@
 
 .euiComboBoxOptionsList--top {
   border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
-  box-shadow: none !important;
 }
 
   /**
