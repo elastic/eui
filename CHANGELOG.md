@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.8.0`.
+**Bug fixes**
+
+- Fixed `makeHighContrastColor` sass mixin to properly output an accessible color contrast. ([#1158](https://github.com/elastic/eui/pull/1158))
 
 ## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
 
