@@ -107,6 +107,8 @@ export default class extends Component {
       }, {
         name: 'Disabled option',
         icon: 'user',
+        toolTipContent: 'For reasons, this item is disabled',
+        toolTipPosition: 'right',
         disabled: true,
         onClick: () => { this.closePopover(); window.alert('Disabled option'); },
       }],
