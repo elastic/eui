@@ -91,7 +91,7 @@
 
   @while ($contrast < 4.5) {
     $highContrastTextColor: shadeOrTint($highContrastTextColor, 5%, 5%);
-    $contrast: contrastRatio($highContrastTextColor, $euiColorEmptyShade);
+    $contrast: contrastRatio($highContrastTextColor, $background);
   }
 
   @return $highContrastTextColor;
