@@ -1,18 +1,20 @@
 require('./index.scss');
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Axis, LineSeries, AreaSeries, BarSeries } from '../../specs/index.ts';
+import { Axis, BarSeries } from '../../specs/index.ts';
 import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
-
+import { dataset as GITHUB_DATASET } from './data_example1';
 /* eslint-disable */
 const TEST_DATASET_1 = [
   { group: 'a', stack: 'a', x: 1, y: 100 },
+  { group: 'a', stack: 'a', x: 1, y: 300 },
+  { group: 'a', stack: 'a', x: 2, y: 20 },
   { group: 'a', stack: 'a', x: 2, y: 20 },
   { group: 'a', stack: 'a', x: 3, y: 30 },
   { group: 'a', stack: 'a', x: 4, y: 40 },
-  { group: 'b', stack: 'a', x: 2, y: 100 },
+  { group: 'b', stack: 'a', x: 5, y: 100 },
   { group: 'b', stack: 'b', x: 1, y: 100 },
   { group: 'b', stack: 'b', x: 2, y: 2 },
   { group: 'b', stack: 'b', x: 3, y: 3 },
@@ -31,6 +33,13 @@ const testData4 = [
   { group: 'f', x: 5, y: 20 },
   { group: 'f', x: 6, y: 20 },
 ];
+const TIMELINE = [
+  { group: 'a', x: 'Codec A', y: 10 },
+  { group: 'a', x: 'Codec A', y: 40 },
+  { group: 'a', x: 'Codec B', y: 10 },
+  { group: 'a', x: 'Codec C', y: 30 },
+]
+
 /* eslint-enable */
 
 const dataGenerator = new DataGenerator();
@@ -43,6 +52,35 @@ class App extends Component {
       data: dataGenerator.generateSimpleSeries(),
     });
   }
+  renderGitHubIssue = (dontRender) => {
+    if (
+      dontRender) {
+      return null;
+    }
+    return (
+      <BarSeries
+        id={getSpecId('barseries1')}
+        // groupId={getGroupId('g2')}
+        yScaleType="linear"
+        xScaleType="ordinal"
+        xAccessor={(d) => {
+          return d.authorAssociation;
+        }}
+        yAccessor={(d) => {
+          return d.count;
+        }}
+        stackAccessor={(d) => {
+          return `${d.vizType} - ${d.authorAssociation}`;
+        }}
+        groupAccessors={[
+          (d) => {
+            return d.vizType;
+          }
+        ]}
+        data={GITHUB_DATASET}
+      />
+    );
+  }
   render() {
     console.log(this.state.data);
     return (
@@ -52,7 +90,7 @@ class App extends Component {
         </div>
         <div className="chartContainer">
           <Chart>
-            {
+            {/* {
               new Array(1).fill(0).map((d, i) => {
                 return (<AreaSeries
                   key={i}
@@ -65,15 +103,25 @@ class App extends Component {
                   data={this.state.data}
                 />);
               })
-            }
+            } */}
             <Axis
               id={getAxisId('axisbottom22')}
-              position="top"
+              position="bottom"
               orientation="horizontal"
+              // showOverlappingTicks={true}
+              showOverlappingLabels={true}
               tickFormat={(d) => {
                 return `${d}`;
               }}
             />
+            {/* <Axis
+              id={getAxisId('axisbottom2')}
+              position="bottom"
+              orientation="horizontal"
+              tickFormat={(d) => {
+                return `${d}`;
+              }}
+            /> */}
             <Axis
               id={getAxisId('axis1left1')}
               position="left"
@@ -82,19 +130,26 @@ class App extends Component {
                 return `${d}`;
               }}
             />
-            {/*
-             */}
-            <BarSeries
+            {
+              this.renderGitHubIssue()
+            }
+            {/* <BarSeries
               id={getSpecId('barseries1')}
-              // groupId={getGroupId('g2')}
               yScaleType="linear"
-              xScaleType="linear"
+              xScaleType="ordinal"
               xAccessor={(d) => {
                 return d.x;
               }}
-              data={this.state.data}
-            />
-            <LineSeries
+              yAccessor={(d) => {
+                return d.y;
+              }}
+              stackAccessor={(d) => {
+                return `${d.group}`;
+              }}
+              data={TIMELINE}
+            /> */}
+            {/* GITHUB ISSUES */}
+            {/* <LineSeries
               id={getSpecId('barseriexxs1')}
               // groupId={getGroupId('g2')}
               yScaleType="linear"
@@ -103,7 +158,7 @@ class App extends Component {
                 return d.x;
               }}
               data={this.state.data}
-            />
+            /> */}
             {/*
             <BarSeries
               id={getSpecId('barseriess')}

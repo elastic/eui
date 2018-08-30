@@ -18,6 +18,7 @@ export class SvgTextBBoxCalculator {
     this.svgElem = document.createElementNS(xmlns, 'svg');
     this.textElem = document.createElementNS(xmlns, 'text');
     this.textElem.setAttribute('class', 'euiSeriesChartAxis_tickLabel');
+
     this.svgElem.appendChild(this.textElem);
     this.textNode = document.createTextNode('');
     this.textElem.appendChild(this.textNode);
@@ -26,7 +27,9 @@ export class SvgTextBBoxCalculator {
   }
   public compute(text: string): SVGRect {
     this.textNode.textContent = text;
-    return this.textElem.getBBox();
+    // this.textElem.setAttribute('transform', 'rotate(-90)');
+    // TODO possible transformation
+    return this.textElem.getBoundingClientRect() as SVGRect;
   }
   public destroy(): void {
     this.attachedRoot.removeChild(this.svgElem);

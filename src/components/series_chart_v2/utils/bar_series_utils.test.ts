@@ -1,4 +1,4 @@
-import { computeDataDomain } from '../commons/domain';
+import { computeDataDomain, computeStackedContinuousDomain } from '../commons/domain';
 import { ScaleType } from '../commons/scales';
 import { computeDataPoints, DEFAULT_BAR_WIDTH, getScale } from './bar_series_utils';
 
@@ -190,5 +190,68 @@ describe('Bar Series', () => {
     expect(scale.scaleFn('a')).toBe(100);
     expect(scale.scaleFn('d')).toBe(175);
     expect(scale.scaleFn('b')).toBe(125);
+  });
+  test('should compute stacked domain', () => {
+    const data = [
+      { x: 1, y: 1 },
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+      { x: 2, y: 3 },
+      { x: 3, y: 3 },
+    ];
+    const keyAccessor = (datum: any) => datum.x;
+    const yAccessor = (datum: any) => datum.y;
+    const domain = computeStackedContinuousDomain(data, keyAccessor, yAccessor);
+    expect(domain).toEqual([0, 6]);
+  });
+  test('Compute a simple ordinal bar series with stacked bars', () => {
+    const data = [
+      { x: 1, y: 1 },
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+      { x: 2, y: 3 },
+      { x: 3, y: 3 },
+    ];
+    const xScaleType = ScaleType.Ordinal;
+    const yScaleType = ScaleType.Linear;
+    const xAccessor = (datum: any) => datum.x;
+    const yAccessor = (datum: any) => datum.y;
+    const keyAccessor = xAccessor;
+    const xDomain = computeDataDomain(data, xAccessor, xScaleType, true);
+    const yDomain = computeDataDomain(data, yAccessor, yScaleType, false, false, keyAccessor);
+    expect(yDomain).toEqual([0, 6]);
+
+    const seriesScales = [
+      {
+        groupLevel: 0,
+        xDomain,
+        yDomain,
+        xScaleType,
+        yScaleType,
+        xAccessor,
+        yAccessor,
+      },
+    ];
+    const seriesDimensions = {
+      width: 120,
+      height: 120,
+      top: 0,
+      left: 0,
+    };
+    const dataPoints = computeDataPoints(data, seriesScales, seriesDimensions, false, keyAccessor);
+    const expectedDataPoints = [
+      [
+        { x: 0, y: 100, height: 20, width: 40 },
+        { x: 0, y: 60, height: 40, width: 40 },
+      ],
+      [
+        { x: 40, y: 60, height: 60, width: 40 },
+        { x: 40, y: 0, height: 60, width: 40 },
+      ],
+      [
+        { x: 80, y: 60, height: 60, width: 40 },
+      ],
+    ];
+    expect(dataPoints).toEqual(expectedDataPoints);
   });
 });
