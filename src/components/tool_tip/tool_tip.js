@@ -197,6 +197,8 @@ export class EuiToolTip extends Component {
       <span
         ref={anchor => this.anchor = anchor}
         className={anchorClasses}
+        onMouseOver={this.showToolTip}
+        onMouseOut={this.onMouseOut}
       >
         {/**
           * We apply onFocus, onBlur, etc to the children element because that's the element
@@ -209,8 +211,6 @@ export class EuiToolTip extends Component {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
           'aria-describedby': this.state.id,
-          onMouseOver: this.showToolTip,
-          onMouseOut: this.onMouseOut
         })}
       </span>
     );
