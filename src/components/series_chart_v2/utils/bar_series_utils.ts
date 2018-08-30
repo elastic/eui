@@ -1,3 +1,4 @@
+import { sum } from 'd3-array';
 import { Dimensions } from '../commons/dimensions';
 import { Accessor, Domain, SeriesScales } from '../commons/domain';
 import {
@@ -9,6 +10,11 @@ import {
 } from '../commons/scales';
 
 export const DEFAULT_BAR_WIDTH = 10;
+
+/**
+ * A a stacked bar glyph representation
+ */
+export type StackedBarSeriesGlyph = BarSeriesGlyph[];
 
 /**
  * A single bar glyph representation
@@ -38,16 +44,8 @@ export function computeDataPoints(
   seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
   clamp = false,
-): BarSeriesGlyph[] {
-  return compute(data, seriesScales, seriesDimensions, clamp);
-}
-
-function compute(
-  data: any[],
-  seriesScales: SeriesScales[],
-  seriesDimensions: Dimensions,
-  clamp: boolean,
-) {
+  stackedKeyAccessor?: Accessor,
+): BarSeriesGlyph[] | StackedBarSeriesGlyph[] {
   const yScaleConfig = seriesScales[seriesScales.length - 1];
   const { yScaleType, yDomain, yAccessor } = yScaleConfig;
   if (!yScaleType || !yDomain || !yAccessor) {
@@ -65,6 +63,20 @@ function compute(
       return [ ...acc, scaleConfig ];
     }
   }, [] as ScaleFnConfig[]);
+
+  if (stackedKeyAccessor) {
+    return computeStackedBarGlyphs(data, yScale, xScales, seriesDimensions, stackedKeyAccessor);
+  }
+  return computeStandardBarGlyphs(data, yScale, xScales, seriesDimensions);
+
+}
+
+function computeStandardBarGlyphs(
+  data: any[],
+  yScale: ScaleFnConfig,
+  xScales: ScaleFnConfig[],
+  seriesDimensions: Dimensions,
+): BarSeriesGlyph[] {
   const dataPoints = data.map((point) => {
     const yValue = yScale.scaleFn(point);
     const xData = computeXScaleValue(xScales, point);
@@ -78,7 +90,42 @@ function compute(
   return dataPoints;
 }
 
+function computeStackedBarGlyphs(
+  data: any[],
+  yScale: ScaleFnConfig,
+  xScales: ScaleFnConfig[],
+  seriesDimensions: Dimensions,
+  stackedKeyAccessor: Accessor,
+): StackedBarSeriesGlyph[] {
+  const stackedBarSeries = new Map<string, BarSeriesGlyph[]>();
+
+  data.forEach((point) => {
+    const yValue = yScale.scaleFn(point);
+    const stackedKey = stackedKeyAccessor(point);
+    if (!stackedBarSeries.has(stackedKey)) {
+      stackedBarSeries.set(stackedKey, []);
+    }
+    const stackBarsList = stackedBarSeries.get(stackedKey) || [];
+    const previousYValue = getCumulativeYValues(stackBarsList);
+
+    const xData = computeXScaleValue(xScales, point);
+    const stackedBar = {
+      x: xData.value,
+      y: seriesDimensions.height - (previousYValue + yValue),
+      height: yValue,
+      width: xData.barWidth,
+    };
+    stackedBarSeries.set(stackedKey, [...stackBarsList, stackedBar]);
+  });
+  return Array.from(stackedBarSeries.values());
+}
+
+function getCumulativeYValues(stackedBars: BarSeriesGlyph[] = []): number {
+  return sum(stackedBars, (bar) => bar.height);
+}
+
 function computeXScaleValue(scales: ScaleFnConfig[], datum: any) {
+  // TODO ADD GROUP ID
   const value = scales.reduce((acc: number, scale) => {
     const position = scale.scaleFn(datum);
     return acc + position;

@@ -21,6 +21,7 @@ export interface DataSeriesSpec {
   yScaleType: ScaleType;
   /** An array of accessor for y value grouping/clustering */
   groupAccessors: Accessor[];
+  stackAccessor?: Accessor;
 }
 
 export interface AxisSpec {

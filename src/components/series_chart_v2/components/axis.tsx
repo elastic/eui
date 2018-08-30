@@ -37,9 +37,17 @@ export class Axis extends React.PureComponent<AxisProps> {
       textProps.textAnchor = 'middle';
       textProps.dominantBaseline = 'hanging';
     }
-
+    // const transform = `translate(${textProps.x}, ${textProps.y})`;
     return (
-      <text className="euiSeriesChartAxis_tickLabel"  key={`tick-${i}`}{...textProps} >{tick.label}</text>
+      <text
+        className="euiSeriesChartAxis_tickLabel"
+        key={`tick-${i}`}
+        {...textProps}
+        // textAnchor={textProps.textAnchor}
+        // dominantBaseline={textProps.dominantBaseline}
+        // transform={transform}
+      >{tick.label}
+      </text>
     );
   }
 
@@ -71,7 +79,7 @@ export class Axis extends React.PureComponent<AxisProps> {
     }
 
     return (
-      <line className="euiSeriesChartAxis_tickLine" key={`tick-${i}`} {...lineProps}  />
+      <line className="euiSeriesChartAxis_tickLine" key={`tick-${i}`} {...lineProps} />
     );
   }
   private renderAxis = () => {

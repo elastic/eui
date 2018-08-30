@@ -1,4 +1,5 @@
 {
+  "testURL": "http://localhost",
   "rootDir": "../../",
   "roots": [
     "<rootDir>/src-docs/src",

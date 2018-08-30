@@ -1,4 +1,5 @@
-import { extent } from 'd3-array';
+import { extent, sum } from 'd3-array';
+import { nest } from 'd3-collection';
 import { sortedUniq, uniq } from 'lodash';
 import { ScaleType } from './scales';
 import { DataSeriesSpec } from './specs';
@@ -26,11 +27,16 @@ export function computeDataDomain(
   scaleType: ScaleType,
   scaleToExtent = false,
   sorted = false,
+  stackAccessor?: Accessor,
 ) {
   if (scaleType === ScaleType.Ordinal) {
     return computeOrdinalDataDomain(data, accessor as OrdinalAccessor, sorted);
   }
-  return computeContinuousDataDomain(data, accessor as ContinuousAccessor, scaleToExtent);
+  if (stackAccessor) {
+    return computeStackedContinuousDomain(data, stackAccessor, accessor as ContinuousAccessor, scaleToExtent);
+  } else {
+    return computeContinuousDataDomain(data, accessor as ContinuousAccessor, scaleToExtent);
+  }
 }
 
 function computeOrdinalDataDomain(
@@ -51,11 +57,36 @@ export function computeContinuousDataDomain(
   return scaleToExtent ? range : [0, range[1] || 0];
 }
 
+export function computeStackedContinuousDomain(
+  data: any[],
+  stackAccessor: OrdinalAccessor,
+  accessor: ContinuousAccessor,
+  scaleToExtent = false,
+): any {
+  const groups = nest<any, number>()
+    .key(stackAccessor)
+    .rollup((values) => {
+      return sum(values, accessor);
+    })
+    .entries(data);
+  const cumulativeSumAccessor = (d: any) => d.value;
+  return computeContinuousDataDomain(groups, cumulativeSumAccessor, scaleToExtent);
+}
+
 export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[] {
-  const { xScaleType, yScaleType, xAccessor, yAccessor, groupAccessors, data, scaleToExtent } = seriesSpec;
+  const {
+    xScaleType,
+    yScaleType,
+    xAccessor,
+    yAccessor,
+    stackAccessor,
+    groupAccessors,
+    data,
+    scaleToExtent,
+  } = seriesSpec;
   const mainXDomainScaleType = (groupAccessors && groupAccessors.length) > 0 ? ScaleType.Ordinal : xScaleType;
   const xDomain = computeDataDomain(data, xAccessor, mainXDomainScaleType);
-  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType, scaleToExtent);
+  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType, scaleToExtent, true, stackAccessor);
   if (groupAccessors && groupAccessors.length > 0) {
     const groupDomains = groupAccessors.map((accessor, groupLevel) => {
       const groupXDomain = computeDataDomain(data, accessor, ScaleType.Ordinal);

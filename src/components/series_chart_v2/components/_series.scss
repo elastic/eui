@@ -19,7 +19,9 @@ $euiColorVisList:
   opacity: 0.7;
 }
 .euiSeriesChartSeries_bar {
-  opacity: 0.2;
+  opacity: 0.9;
+  stroke-width: 1px;
+  stroke: white;
 }
 
 .euiSeriesChartSeries_area {
@@ -50,6 +52,14 @@ $euiColorVisList:
 @for $i from 1 through 10 {
   .euiSeriesChartSeries_areaGroup:nth-child(10n + #{$i}) {
     .euiSeriesChartSeries_area {
+      fill: nth($euiColorVisList, $i);
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  .euiSeriesChartSeries_barStack {
+    .euiSeriesChartSeries_bar:nth-child(10n + #{$i}) {
       fill: nth($euiColorVisList, $i);
     }
   }

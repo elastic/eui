@@ -142,7 +142,7 @@ export class ChartStore {
 
     // compute series glyphs
     this.seriesSpecs.forEach((seriesSpec) => {
-      const { id, type, data } = seriesSpec;
+      const { id, type, data, stackAccessor } = seriesSpec;
       const seriesScales = this.seriesScales.get(id);
       if (!seriesScales) {
         return;
@@ -151,7 +151,8 @@ export class ChartStore {
       switch (type) {
         case DataSeriesType.Bar:
           const clamp = false;
-          const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, clamp);
+          // const stackedAccessor = (d: any) => d.x;
+          const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, clamp, stackAccessor);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
           break;
         case DataSeriesType.Line:

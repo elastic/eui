@@ -177,11 +177,6 @@ class Chart extends React.Component<ReactiveChartProps> {
           <clipPath id="chart-bbox">
             <rect x="0" y="0" width={chartDimensions.width} height={chartDimensions.height} />
           </clipPath>
-          <g className="euiSeriesChartAxis_group">
-            {
-              this.renderAxes()
-            }
-          </g>
           <g
             className="euiSeriesChartChart_group"
             transform={`translate(${chartDimensions.left} ${chartDimensions.top})`}
@@ -215,6 +210,11 @@ class Chart extends React.Component<ReactiveChartProps> {
                 this.renderAreaSeries()
               }
             </g>
+          </g>
+          <g className="euiSeriesChartAxis_group">
+            {
+              this.renderAxes()
+            }
           </g>
         </svg>
       </div>

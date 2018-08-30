@@ -16,12 +16,12 @@ describe('Axis computational utils', () => {
     height: 10,
     toJSON: () => '',
   };
-  const originalGetBBox = SVGElement.prototype.getBBox;
-  beforeEach(() => SVGElement.prototype.getBBox = function() {
+  const originalGetBBox = SVGElement.prototype.getBoundingClientRect;
+  beforeEach(() => SVGElement.prototype.getBoundingClientRect = function() {
     const text = this.textContent || 0;
-    return { ...mockedRect, width: Number(text) * 10 };
+    return { ...mockedRect, width: Number(text) * 10, heigh: Number(text) * 10 };
   });
-  afterEach(() => (SVGElement.prototype.getBBox = originalGetBBox));
+  afterEach(() => (SVGElement.prototype.getBoundingClientRect = originalGetBBox));
 
   const chartDim = {
     width: 100,
