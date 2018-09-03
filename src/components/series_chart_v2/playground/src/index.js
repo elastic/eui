@@ -48,11 +48,13 @@ const dataGenerator = new DataGenerator();
 class App extends Component {
   state = {
     data: dataGenerator.generateSimpleSeries(),
+    stackedBarChartData: GITHUB_DATASET,
     stackedAreaChartData: AREA_STACKED
   }
   onChangeData = () => {
     this.setState({
       data: dataGenerator.generateSimpleSeries(),
+      stackedBarChartData: randomizeData(GITHUB_DATASET, ['count'], uniformRandomizer(100)),
       stackedAreaChartData: randomizeData(AREA_STACKED, ['y'], uniformRandomizer(20))
     });
   }
@@ -80,7 +82,7 @@ class App extends Component {
             return d.vizType;
           }
         ]}
-        data={GITHUB_DATASET}
+        data={this.state.stackedBarChartData}
       />
     );
   }
@@ -158,10 +160,10 @@ class App extends Component {
               }}
             />
             {
-              this.renderGitHubIssue(true)
+              this.renderGitHubIssue(false)
             }
             {
-              this.renderStackedAreaChart(false)
+              this.renderStackedAreaChart(true)
             }
             {/* <BarSeries
               id={getSpecId('barseries1')}

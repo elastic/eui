@@ -24,6 +24,24 @@ const TEST_DATASET_2 = [
   { level0: 'y', level1: 'c', level2: 4, y: 20 },
 ];
 
+const TEST_DATASET_3 = [
+  { group: 'a', cluster: 'a', x: 0, y: 4 },
+  { group: 'b', cluster: 'a', x: 1, y: 10 },
+  { group: 'b', cluster: 'a', x: 2, y: 3 },
+
+  { group: 'a', cluster: 'b', x: 0, y: 4 },
+  { group: 'b', cluster: 'b', x: 1, y: 10 },
+  { group: 'b', cluster: 'b', x: 2, y: 5 },
+
+  { group: 'a', cluster: 'c', x: 0, y: 4 },
+  { group: 'b', cluster: 'c', x: 1, y: 10 },
+  { group: 'b', cluster: 'c', x: 2, y: 12 },
+
+  { group: 'a', cluster: 'd', x: 0, y: 4 },
+  { group: 'b', cluster: 'd', x: 1, y: 10 },
+  { group: 'b', cluster: 'd', x: 2, y: 2 },
+];
+
 describe.only('Domain Utils', () => {
   test('Compute linear domain', () => {
     const accessor = (d: any) => d.x;
@@ -43,7 +61,7 @@ describe.only('Domain Utils', () => {
     const expectedDomain = ['a', 'b', 'c'];
     expect(domain).toEqual(expectedDomain);
   });
-  test.skip('Compute linear domain with ordinal elements', () => {
+  test('Compute linear domain with ordinal elements', () => {
     // skipping because we need to find a way to avoid linear scales with wrong accessor
     const accessor = (d: any) => d.stack;
     const domain = computeContinuousDataDomain(TEST_DATASET_1, accessor);
@@ -126,6 +144,66 @@ describe.only('Domain Utils', () => {
     ];
     expect(domains).toEqual(expectedDomains);
   });
-  // test('should compute stacked domains', () => {
-  // });
+  test('should compute stacked domains', () => {
+    const xAccessor = (d: any) => (d.x);
+    const yAccessor = (d: any) => (d.y);
+    const stackAccessor = (d: any) => (d.group);
+    const spec = {
+      id: getSpecId('test'),
+      groupId: getGroupId('test'),
+      type: DataSeriesType.Bar,
+      data: TEST_DATASET_3,
+      scaleToExtent: false,
+      xScaleType: ScaleType.Linear,
+      yScaleType: ScaleType.Linear,
+      xAccessor,
+      yAccessor,
+      stackAccessor,
+      groupAccessors: [],
+    };
+    const domains = computeSeriesDomains(spec);
+    const expectedDomains = [
+      {
+        groupLevel: 0,
+        xDomain: [ 0, 2 ],
+        yDomain: [ 0, 40 ],
+        xScaleType: 'linear',
+        yScaleType: 'linear',
+        xAccessor,
+        yAccessor,
+      },
+    ];
+    expect(domains).toEqual(expectedDomains);
+  });
+  test('should compute grouped and stacked domains', () => {
+    const xAccessor = (d: any) => (d.x);
+    const yAccessor = (d: any) => (d.y);
+    const stackAccessor = (d: any) => (d.cluster);
+    const spec = {
+      id: getSpecId('test'),
+      groupId: getGroupId('test'),
+      type: DataSeriesType.Bar,
+      data: TEST_DATASET_3,
+      scaleToExtent: false,
+      xScaleType: ScaleType.Linear,
+      yScaleType: ScaleType.Linear,
+      xAccessor,
+      yAccessor,
+      stackAccessor,
+      groupAccessors: [],
+    };
+    const domains = computeSeriesDomains(spec);
+    const expectedDomains = [
+      {
+        groupLevel: 0,
+        xDomain: [ 0, 2 ],
+        yDomain: [ 0, 40 ],
+        xScaleType: 'linear',
+        yScaleType: 'linear',
+        xAccessor,
+        yAccessor,
+      },
+    ];
+    expect(domains).toEqual(expectedDomains);
+  });
 });

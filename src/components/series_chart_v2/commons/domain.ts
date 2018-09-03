@@ -85,9 +85,9 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
     data,
     scaleToExtent,
   } = seriesSpec;
-  const isOrdinal = (groupAccessors && groupAccessors.length) > 0;
+  const isGrouped = (groupAccessors && groupAccessors.length) > 0;
   let xDomain;
-  if (isOrdinal) {
+  if (isGrouped) {
     xDomain = computeOrdinalDataDomain(data, xAccessor);
   } else {
     xDomain = computeContinuousDataDomain(data, xAccessor);
@@ -95,7 +95,11 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
 
   let mainYDomain;
   if (stackAccessor) {
-    mainYDomain = computeStackedContinuousDomain(data, xAccessor, yAccessor, scaleToExtent);
+    if (isGrouped) {
+      mainYDomain = computeStackedContinuousDomain(data, stackAccessor, yAccessor, scaleToExtent);
+    } else {
+      mainYDomain = computeStackedContinuousDomain(data, xAccessor, yAccessor, scaleToExtent);
+    }
   } else {
     mainYDomain = computeContinuousDataDomain(data, yAccessor, scaleToExtent);
   }
