@@ -1,7 +1,7 @@
 import { inject } from 'mobx-react';
 import React from 'react';
+import { CurveType } from '../commons/curves';
 import { getGroupId } from '../commons/ids';
-import { CurveType } from '../commons/line_series';
 import { ScaleType } from '../commons/scales';
 import { DataSeriesSpec, DataSeriesType } from '../commons/specs';
 import { SpecProps } from './specs';

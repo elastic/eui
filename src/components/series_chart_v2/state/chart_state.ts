@@ -10,9 +10,9 @@ import {
 } from '../commons/specs';
 
 import { observable } from 'mobx';
+import { CurveType } from '../commons/curves';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeSeriesDomains, SeriesScales } from '../commons/domain';
-import { CurveType } from '../commons/line_series';
 import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
 import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
 import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
@@ -148,9 +148,10 @@ export class ChartStore {
         return;
       }
       // compute single series glyphs
+      const clamp = false;
       switch (type) {
         case DataSeriesType.Bar:
-          const clamp = false;
+
           // const stackedAccessor = (d: any) => d.x;
           const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, clamp, stackAccessor);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
@@ -161,7 +162,7 @@ export class ChartStore {
           this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
           break;
         case DataSeriesType.Area:
-          const areaDataPoints = computeAreaDataPoints(data, seriesScales, this.chartDimensions);
+          const areaDataPoints = computeAreaDataPoints(data, seriesScales, this.chartDimensions, clamp, stackAccessor);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Area, area: areaDataPoints });
           break;
       }

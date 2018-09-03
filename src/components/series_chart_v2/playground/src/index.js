@@ -1,11 +1,12 @@
 require('./index.scss');
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Axis, BarSeries } from '../../specs/index.ts';
+import { Axis, BarSeries, AreaSeries } from '../../specs/index.ts';
 import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
 import { dataset as GITHUB_DATASET } from './data_example1';
+import { datasetStacked as AREA_SINGLE } from './data_example2';
 /* eslint-disable */
 const TEST_DATASET_1 = [
   { group: 'a', stack: 'a', x: 1, y: 100 },
@@ -53,8 +54,7 @@ class App extends Component {
     });
   }
   renderGitHubIssue = (dontRender) => {
-    if (
-      dontRender) {
+    if (dontRender) {
       return null;
     }
     return (
@@ -78,6 +78,29 @@ class App extends Component {
           }
         ]}
         data={GITHUB_DATASET}
+      />
+    );
+  }
+  renderStackedAreaChart = (dontRender) => {
+    if(dontRender) {
+      return null;
+    }
+    return (
+      <AreaSeries
+        key={'Area series'}
+        id={getSpecId(`area series`)}
+        yScaleType="linear"
+        xScaleType="linear"
+        xAccessor={(d) => {
+          return d.x;
+        }}
+        yAccessor={(d) => {
+          return d.y;
+        }}
+        stackAccessor={(d) => {
+          return d.group;
+        }}
+        data={AREA_SINGLE}
       />
     );
   }
@@ -131,7 +154,10 @@ class App extends Component {
               }}
             />
             {
-              this.renderGitHubIssue()
+              this.renderGitHubIssue(true)
+            }
+            {
+              this.renderStackedAreaChart(false)
             }
             {/* <BarSeries
               id={getSpecId('barseries1')}

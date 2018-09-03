@@ -1,19 +1,7 @@
-import { curveBasis,
-  curveBundle,
-  curveCardinal,
-  curveCatmullRom,
-  curveLinear,
-  curveMonotoneX,
-  curveMonotoneY,
-  curveNatural,
-  curveStep,
-  curveStepAfter,
-  curveStepBefore,
-  line,
-} from 'd3-shape';
+import { line } from 'd3-shape';
+import { CurveType, getCurveFactory } from '../commons/curves';
 import { Dimensions } from '../commons/dimensions';
 import { SeriesScales } from '../commons/domain';
-import { CurveType } from '../commons/line_series';
 import {
   createOrdinalScale,
   getContinuousScaleFn,
@@ -85,37 +73,9 @@ export function computeDataPoints(
   const lineGenerator = line()
     .x(xScaleFn)
     .y(yScaleFn)
-    .curve(getLineCurve(curveType));
+    .curve(getCurveFactory(curveType));
   const generatedLine = {
     d: lineGenerator(data),
   };
   return generatedLine;
-}
-
-export function getLineCurve(curveType: CurveType = CurveType.LINEAR) {
-  switch (curveType) {
-    case CurveType.CURVE_CARDINAL:
-      return curveCardinal;
-    case CurveType.CURVE_NATURAL:
-      return curveNatural;
-    case CurveType.CURVE_MONOTONE_X:
-      return curveMonotoneX;
-    case CurveType.CURVE_MONOTONE_Y:
-      return curveMonotoneY;
-    case CurveType.CURVE_BASIS:
-      return curveBasis;
-    case CurveType.CURVE_BUNDLE:
-      return curveBundle;
-    case CurveType.CURVE_CATMULL_ROM:
-      return curveCatmullRom;
-    case CurveType.CURVE_STEP:
-      return curveStep;
-    case CurveType.CURVE_STEP_AFTER:
-      return curveStepAfter;
-    case CurveType.CURVE_STEP_BEFORE:
-      return curveStepBefore;
-    case CurveType.LINEAR:
-    default:
-      return curveLinear;
-  }
 }
