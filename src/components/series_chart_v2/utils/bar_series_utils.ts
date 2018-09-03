@@ -125,7 +125,7 @@ function getCumulativeYValues(stackedBars: BarSeriesGlyph[] = []): number {
 }
 
 function computeXScaleValue(scales: ScaleFnConfig[], datum: any) {
-  // TODO ADD GROUP ID
+  // TODO ADD GROUP ID??????
   const value = scales.reduce((acc: number, scale) => {
     const position = scale.scaleFn(datum);
     return acc + position;

@@ -1,24 +1,27 @@
 import React from 'react';
 import Animate from 'react-move/Animate';
-import { AreaSeriesGlyph } from '../utils/area_series_utils';
+import { AreaSeriesGlyph, StackedAreaSeriesGlyph } from '../utils/area_series_utils';
 interface AreaSeriesDataProps {
   animated?: boolean;
-  area: AreaSeriesGlyph;
+  area: AreaSeriesGlyph | StackedAreaSeriesGlyph;
 }
 
 export class AreaSeries extends React.PureComponent<AreaSeriesDataProps> {
   public static defaultProps: Partial<AreaSeriesDataProps> = {
-    animated: true,
+    animated: false,
   };
   public render() {
     const { animated, area } = this.props;
-    if (area.d === null) {
-      return null;
-    }
+    // if (area.d === null) {
+    //   return null;
+    // }
     if (!animated) {
-      return this.renderArea(area.d);
+      if (Array.isArray(area)) {
+        return this.renderStackedAreas(area);
+      }
+      return this.renderArea(area as AreaSeriesGlyph);
     }
-    return this.renderAnimatedArea(area.d);
+    return this.renderAnimatedArea((area as AreaSeriesGlyph).d as string);
   }
   private renderAnimatedArea = (d: string) => {
     return (
@@ -44,10 +47,21 @@ export class AreaSeries extends React.PureComponent<AreaSeriesDataProps> {
       </Animate>
     );
   }
-  private renderArea = (d: string) => {
+  private renderStackedAreas = (areas: StackedAreaSeriesGlyph) => {
     return (
       <g className="euiSeriesChartSeries_areaGroup">
-        <path className="euiSeriesChartSeries_area" d={d}/>
+      {
+        areas.map((area, index) => {
+          return <path key={`area-${index}`} className="euiSeriesChartSeries_area" d={area.d as string}/>;
+        })
+      }
+      </g>
+    );
+  }
+  private renderArea = (area: AreaSeriesGlyph) => {
+    return (
+      <g className="euiSeriesChartSeries_areaGroup">
+        <path className="euiSeriesChartSeries_area" d={area.d as string}/>
       </g>
     );
   }
