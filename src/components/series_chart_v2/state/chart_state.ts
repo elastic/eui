@@ -151,8 +151,6 @@ export class ChartStore {
       const clamp = false;
       switch (type) {
         case DataSeriesType.Bar:
-
-          // const stackedAccessor = (d: any) => d.x;
           const dataPoints = computeBarsDataPoints(data, seriesScales, this.chartDimensions, clamp, stackAccessor);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
           break;

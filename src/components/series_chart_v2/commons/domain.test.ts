@@ -1,4 +1,4 @@
-import { computeDataDomain, computeSeriesDomains } from './domain';
+import { computeContinuousDataDomain, computeOrdinalDataDomain, computeSeriesDomains } from './domain';
 import { getGroupId, getSpecId } from './ids';
 import { ScaleType } from './scales';
 import { DataSeriesType } from './specs';
@@ -27,26 +27,26 @@ const TEST_DATASET_2 = [
 describe.only('Domain Utils', () => {
   test('Compute linear domain', () => {
     const accessor = (d: any) => d.x;
-    const domain = computeDataDomain(TEST_DATASET_1, accessor, ScaleType.Linear);
+    const domain = computeContinuousDataDomain(TEST_DATASET_1, accessor);
     const expectedDomain = [0, 4];
     expect(domain).toEqual(expectedDomain);
   });
   test('Compute linear domain scaled to extent', () => {
     const accessor = (d: any) => d.x;
-    const domain = computeDataDomain(TEST_DATASET_1, accessor, ScaleType.Linear, true);
+    const domain = computeContinuousDataDomain(TEST_DATASET_1, accessor, true);
     const expectedDomain = [1, 4];
     expect(domain).toEqual(expectedDomain);
   });
   test('Compute ordinal domain', () => {
     const accessor = (d: any) => d.stack;
-    const domain = computeDataDomain(TEST_DATASET_1, accessor, ScaleType.Ordinal);
+    const domain = computeOrdinalDataDomain(TEST_DATASET_1, accessor);
     const expectedDomain = ['a', 'b', 'c'];
     expect(domain).toEqual(expectedDomain);
   });
   test.skip('Compute linear domain with ordinal elements', () => {
     // skipping because we need to find a way to avoid linear scales with wrong accessor
     const accessor = (d: any) => d.stack;
-    const domain = computeDataDomain(TEST_DATASET_1, accessor, ScaleType.Linear);
+    const domain = computeContinuousDataDomain(TEST_DATASET_1, accessor);
     const expectedDomain = [0, 'c'];
     expect(domain).toEqual(expectedDomain);
   });

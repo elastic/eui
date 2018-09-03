@@ -6,7 +6,8 @@ import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
 import { dataset as GITHUB_DATASET } from './data_example1';
-import { datasetStacked as AREA_SINGLE } from './data_example2';
+import { datasetStacked as AREA_STACKED } from './data_example2';
+import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
 /* eslint-disable */
 const TEST_DATASET_1 = [
   { group: 'a', stack: 'a', x: 1, y: 100 },
@@ -47,10 +48,12 @@ const dataGenerator = new DataGenerator();
 class App extends Component {
   state = {
     data: dataGenerator.generateSimpleSeries(),
+    stackedAreaChartData: AREA_STACKED
   }
   onChangeData = () => {
     this.setState({
       data: dataGenerator.generateSimpleSeries(),
+      stackedAreaChartData: randomizeData(AREA_STACKED, ['y'], uniformRandomizer(20))
     });
   }
   renderGitHubIssue = (dontRender) => {
@@ -85,6 +88,7 @@ class App extends Component {
     if(dontRender) {
       return null;
     }
+    console.log(this.state.stackedAreaChartData);
     return (
       <AreaSeries
         key={'Area series'}
@@ -100,12 +104,12 @@ class App extends Component {
         stackAccessor={(d) => {
           return d.group;
         }}
-        data={AREA_SINGLE}
+        data={this.state.stackedAreaChartData}
       />
     );
   }
   render() {
-    console.log(this.state.data);
+    
     return (
       <div className="app">
         <div className="header">

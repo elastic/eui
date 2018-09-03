@@ -38,9 +38,7 @@ export class AreaSeries extends React.PureComponent<AreaSeriesDataProps> {
       {
         (state) => {
           return (
-           <g className="euiSeriesChartSeries_areaGroup">
-              <path className="euiSeriesChartSeries_area" d={state.d as string}/>
-            </g>
+            <path className="euiSeriesChartSeries_area" d={state.d as string}/>
          );
         }
       }

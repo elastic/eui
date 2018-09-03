@@ -1,4 +1,8 @@
-import { computeDataDomain, computeStackedContinuousDomain } from '../commons/domain';
+import {
+  computeContinuousDataDomain,
+  computeOrdinalDataDomain,
+  computeStackedContinuousDomain,
+} from '../commons/domain';
 import { ScaleType } from '../commons/scales';
 import { computeDataPoints, DEFAULT_BAR_WIDTH, getScale } from './bar_series_utils';
 
@@ -14,8 +18,8 @@ describe('Bar Series', () => {
     const yScaleType = ScaleType.Linear;
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
-    const xDomain = computeDataDomain(data, xAccessor, xScaleType);
-    const yDomain = computeDataDomain(data, yAccessor, yScaleType, true);
+    const xDomain = computeOrdinalDataDomain(data, xAccessor);
+    const yDomain = computeContinuousDataDomain(data, yAccessor, true);
     const seriesDimensions = {
       width: 100,
       height: 100,
@@ -103,8 +107,8 @@ describe('Bar Series', () => {
     const yScaleType = ScaleType.Linear;
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
-    const xDomain = computeDataDomain(data, xAccessor, xScaleType, true);
-    const yDomain = computeDataDomain(data, yAccessor, yScaleType, true);
+    const xDomain = computeContinuousDataDomain(data, xAccessor, true);
+    const yDomain = computeContinuousDataDomain(data, yAccessor, true);
     const seriesScales = [
       {
         groupLevel: 0,
@@ -217,8 +221,8 @@ describe('Bar Series', () => {
     const xAccessor = (datum: any) => datum.x;
     const yAccessor = (datum: any) => datum.y;
     const keyAccessor = xAccessor;
-    const xDomain = computeDataDomain(data, xAccessor, xScaleType, true);
-    const yDomain = computeDataDomain(data, yAccessor, yScaleType, false, false, keyAccessor);
+    const xDomain = computeOrdinalDataDomain(data, xAccessor, true);
+    const yDomain = computeStackedContinuousDomain(data, xAccessor, yAccessor, false);
     expect(yDomain).toEqual([0, 6]);
 
     const seriesScales = [

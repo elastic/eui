@@ -38,6 +38,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
+    "@types/d3-random": "^1.1.1",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
     "d3-collection": "^1.0.7",
@@ -46,7 +47,7 @@
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
     "keymirror": "^0.1.1",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.10",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",
     "numeral": "^2.0.6",
@@ -97,6 +98,7 @@
     "circular-dependency-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
+    "d3-random": "^1.1.2",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "enzyme-to-json": "^3.3.0",

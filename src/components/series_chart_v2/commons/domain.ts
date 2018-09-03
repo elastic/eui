@@ -21,25 +21,26 @@ export type ContinuousAccessor = (d: any) => number;
 export type Accessor = OrdinalAccessor | ContinuousAccessor;
 // type ContinuousScaleTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log
 
-export function computeDataDomain(
-  data: any[],
-  accessor: Accessor,
-  scaleType: ScaleType,
-  scaleToExtent = false,
-  sorted = false,
-  stackAccessor?: Accessor,
-) {
-  if (scaleType === ScaleType.Ordinal) {
-    return computeOrdinalDataDomain(data, accessor as OrdinalAccessor, sorted);
-  }
-  if (stackAccessor) {
-    return computeStackedContinuousDomain(data, stackAccessor, accessor as ContinuousAccessor, scaleToExtent);
-  } else {
-    return computeContinuousDataDomain(data, accessor as ContinuousAccessor, scaleToExtent);
-  }
-}
+// export function computeDataDomain(
+//   data: any[],
+//   xAccessor: Accessor,
+//   yAccessor: Accessor,
+//   scaleType: ScaleType,
+//   scaleToExtent = false,
+//   sorted = false,
+//   stackAccessor?: Accessor,
+// ) {
+//   if (scaleType === ScaleType.Ordinal) {
+//     return computeOrdinalDataDomain(data, accessor as OrdinalAccessor, sorted);
+//   }
+//   if (stackAccessor) {
+//     return computeStackedContinuousDomain(data, xAccessor, yAccessor, scaleToExtent);
+//   } else {
+//     return computeContinuousDataDomain(data, accessor as ContinuousAccessor, scaleToExtent);
+//   }
+// }
 
-function computeOrdinalDataDomain(
+export function computeOrdinalDataDomain(
   data: any[],
   accessor: OrdinalAccessor,
   sorted?: boolean,
@@ -59,14 +60,14 @@ export function computeContinuousDataDomain(
 
 export function computeStackedContinuousDomain(
   data: any[],
-  stackAccessor: OrdinalAccessor,
-  accessor: ContinuousAccessor,
+  xAccessor: Accessor,
+  yAccessor: ContinuousAccessor,
   scaleToExtent = false,
 ): any {
   const groups = nest<any, number>()
-    .key(stackAccessor)
-    .rollup((values) => {
-      return sum(values, accessor);
+    .key((datum: any) => `${xAccessor(datum)}`)
+    .rollup((values: any) => {
+      return sum(values, yAccessor);
     })
     .entries(data);
   const cumulativeSumAccessor = (d: any) => d.value;
@@ -84,12 +85,23 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
     data,
     scaleToExtent,
   } = seriesSpec;
-  const mainXDomainScaleType = (groupAccessors && groupAccessors.length) > 0 ? ScaleType.Ordinal : xScaleType;
-  const xDomain = computeDataDomain(data, xAccessor, mainXDomainScaleType);
-  const mainYDomain = computeDataDomain(data, yAccessor, yScaleType, scaleToExtent, true, stackAccessor);
+  const isOrdinal = (groupAccessors && groupAccessors.length) > 0;
+  let xDomain;
+  if (isOrdinal) {
+    xDomain = computeOrdinalDataDomain(data, xAccessor);
+  } else {
+    xDomain = computeContinuousDataDomain(data, xAccessor);
+  }
+
+  let mainYDomain;
+  if (stackAccessor) {
+    mainYDomain = computeStackedContinuousDomain(data, xAccessor, yAccessor, scaleToExtent);
+  } else {
+    mainYDomain = computeContinuousDataDomain(data, yAccessor, scaleToExtent);
+  }
   if (groupAccessors && groupAccessors.length > 0) {
     const groupDomains = groupAccessors.map((accessor, groupLevel) => {
-      const groupXDomain = computeDataDomain(data, accessor, ScaleType.Ordinal);
+      const groupXDomain = computeOrdinalDataDomain(data, accessor);
       return {
         groupLevel,
         xDomain: groupXDomain,
