@@ -127,7 +127,7 @@ word
 
 wordChar
   = alnum
-  / [-_*]
+  / [-_*:]
   / escapedChar
 
 escapedChar
@@ -165,11 +165,15 @@ space "whitespace"
 `;
 
 const unescapeValue = (value) => {
-  return value.replace(/\\([:\-\\])/, '$1');
+  return value.replace(/\\([:\-\\])/g, '$1');
 };
 
 const escapeValue = (value) => {
-  return value.replace(/([:\-\\])/, '\\$1');
+  return value.replace(/([:\-\\])/g, '\\$1');
+};
+
+const escapeFieldValue = (value) => {
+  return value.replace(/(\\)/g, '\\$1');
 };
 
 const Exp = {
@@ -257,10 +261,12 @@ const printValue = (value, options) => {
   if (!isString(value)) {
     return value.toString();
   }
+
+  const escapeFn = options.escapeValue || escapeValue;
   if (value.match(/\s/)) {
-    return `"${escapeValue(value)}"`;
+    return `"${escapeFn(value)}"`;
   }
-  return escapeValue(value);
+  return escapeFn(value);
 };
 
 const resolveOperator = (operator) => {
@@ -304,10 +310,14 @@ export const defaultSyntax = Object.freeze({
       switch (clause.type) {
         case AST.Field.TYPE:
           const op = resolveOperator(clause.operator);
+          const printFieldValueOptions = {
+            ...options,
+            escapeValue: escapeFieldValue,
+          };
           if (isArray(clause.value)) {
-            return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, options)).join(' or ')})`;
+            return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, printFieldValueOptions)).join(' or ')})`; // eslint-disable-line max-len
           }
-          return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, options)}`;
+          return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, printFieldValueOptions)}`;
         case AST.Is.TYPE:
           return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
         case AST.Term.TYPE:

@@ -192,6 +192,9 @@ import { SideNavExample }
 import { SpacerExample }
   from './views/spacer/spacer_example';
 
+import { StatExample }
+  from './views/stat/stat_example';
+
 import { StepsExample }
   from './views/steps/steps_example';
 
@@ -350,6 +353,7 @@ const navigation = [{
     ImageExample,
     LoadingExample,
     ProgressExample,
+    StatExample,
     TableExample,
     TextExample,
     TitleExample,

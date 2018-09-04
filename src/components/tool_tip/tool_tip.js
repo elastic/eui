@@ -11,6 +11,7 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
+import { EuiMutationObserver } from '../mutation_observer';
 
 const positionsToClassNameMap = {
   top: 'euiToolTip--top',
@@ -181,7 +182,12 @@ export class EuiToolTip extends Component {
             {...rest}
           >
             <div style={arrowStyles} className="euiToolTip__arrow"/>
-            {content}
+            <EuiMutationObserver
+              observerOptions={{ subtree: true, childList: true, characterData: true, attributes: true }}
+              onMutation={this.positionToolTip}
+            >
+              {content}
+            </EuiMutationObserver>
           </EuiToolTipPopover>
         </EuiPortal>
       );
@@ -191,6 +197,8 @@ export class EuiToolTip extends Component {
       <span
         ref={anchor => this.anchor = anchor}
         className={anchorClasses}
+        onMouseOver={this.showToolTip}
+        onMouseOut={this.onMouseOut}
       >
         {/**
           * We apply onFocus, onBlur, etc to the children element because that's the element
@@ -203,8 +211,6 @@ export class EuiToolTip extends Component {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,
           'aria-describedby': this.state.id,
-          onMouseOver: this.showToolTip,
-          onMouseOut: this.onMouseOut
         })}
       </span>
     );

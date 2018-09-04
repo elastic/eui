@@ -1,0 +1,3 @@
+export {
+  EuiStat,
+} from './stat';

@@ -112,7 +112,7 @@ export const EuiButtonEmpty = ({
       >
         <span className="euiButtonEmpty__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButtonEmpty__text">{children}</span>
         </span>
       </a>
     );
@@ -127,7 +127,7 @@ export const EuiButtonEmpty = ({
       >
         <span className="euiButtonEmpty__content">
           {buttonIcon}
-          <span>{children}</span>
+          <span className="euiButtonEmpty__text">{children}</span>
         </span>
       </button>
     );

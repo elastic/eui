@@ -71,7 +71,9 @@ exports[`renders EuiConfirmModal 1`] = `
           <span
             class="euiButtonEmpty__content"
           >
-            <span>
+            <span
+              class="euiButtonEmpty__text"
+            >
               Cancel Button Text
             </span>
           </span>

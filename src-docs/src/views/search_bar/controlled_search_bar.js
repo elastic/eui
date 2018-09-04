@@ -70,7 +70,6 @@ export class ControlledSearchBar extends Component {
     super(props);
     this.state = {
       query: initialQuery,
-      result: items,
       error: null,
       incremental: false
     };
@@ -82,7 +81,6 @@ export class ControlledSearchBar extends Component {
     } else {
       this.setState({
         error: null,
-        result: EuiSearchBar.Query.execute(query, items, { defaultFields: ['owner', 'tag', 'type'] }),
         query
       });
     }

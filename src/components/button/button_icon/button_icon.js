@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { getSecureRelForTarget } from '../../../services';
 
 import {
+  ICON_SIZES,
   ICON_TYPES,
   EuiIcon,
 } from '../../icon';
@@ -40,6 +41,7 @@ export const COLORS = Object.keys(colorToClassNameMap);
 export const EuiButtonIcon = ({
   className,
   iconType,
+  iconSize,
   color,
   isDisabled,
   href,
@@ -64,7 +66,7 @@ export const EuiButtonIcon = ({
       <EuiIcon
         className="euiButtonIcon__icon"
         type={iconType}
-        size="m"
+        size={iconSize}
         aria-hidden="true"
       />
     );
@@ -106,6 +108,7 @@ EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   iconType: PropTypes.oneOf(ICON_TYPES),
+  iconSize: PropTypes.oneOf(ICON_SIZES),
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,
   'aria-label': accessibleButtonIcon,
@@ -120,4 +123,5 @@ EuiButtonIcon.propTypes = {
 EuiButtonIcon.defaultProps = {
   type: 'button',
   color: 'primary',
+  iconSize: 'm',
 };

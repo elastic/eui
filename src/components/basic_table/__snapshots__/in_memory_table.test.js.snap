@@ -357,7 +357,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       </svg>
                                     </arrowDown>
                                   </EuiIcon>
-                                  <span>
+                                  <span
+                                    className="euiButtonEmpty__text"
+                                  >
                                     Rows per page: 2
                                   </span>
                                 </span>
@@ -389,6 +391,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           aria-label="Previous page"
                           color="text"
                           disabled={false}
+                          iconSize="m"
                           iconType="arrowLeft"
                           onClick={[Function]}
                           type="button"
@@ -480,7 +483,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               <span
                                 className="euiButtonEmpty__content"
                               >
-                                <span>
+                                <span
+                                  className="euiButtonEmpty__text"
+                                >
                                   1
                                 </span>
                               </span>
@@ -515,7 +520,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               <span
                                 className="euiButtonEmpty__content"
                               >
-                                <span>
+                                <span
+                                  className="euiButtonEmpty__text"
+                                >
                                   2
                                 </span>
                               </span>
@@ -526,6 +533,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           aria-label="Next page"
                           color="text"
                           disabled={true}
+                          iconSize="m"
                           iconType="arrowRight"
                           onClick={[Function]}
                           type="button"

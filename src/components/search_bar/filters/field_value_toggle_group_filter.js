@@ -5,7 +5,7 @@ import { EuiPropTypes } from '../../../utils/prop_types';
 import { Query } from '../query';
 
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
   name: PropTypes.string.isRequired,
   negatedName: PropTypes.string
 });

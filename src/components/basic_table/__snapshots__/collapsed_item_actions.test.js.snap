@@ -8,6 +8,7 @@ exports[`CollapsedItemActions render 1`] = `
       aria-label="actions"
       className={undefined}
       color="text"
+      iconSize="m"
       iconType="gear"
       isDisabled={false}
       onClick={[Function]}

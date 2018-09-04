@@ -68,7 +68,8 @@ class App extends Component {
     }).isRequired,
   }
 
-  componentDidMount() {
+  constructor(...args) {
+    super(...args);
     this.registerRouter();
   }
 
@@ -170,10 +171,11 @@ class App extends Component {
     }).isRequired
   }
 
-  componentDidMount() {
+  constructor(...args) {
+    super(...args);
     this.registerRouter();
   }
-
+  
   registerRouter() {
     // Share the router with the app without requiring React or context.
     const { router } = this.context;

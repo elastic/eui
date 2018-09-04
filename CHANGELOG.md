@@ -1,7 +1,27 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added color and monotone icons for AWS and GCP ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
+
+**Bug fixes**
+
+- Fixed `makeHighContrastColor` sass mixin to properly output an accessible color contrast ([#1158](https://github.com/elastic/eui/pull/1158))
+- Fixed `EuiTooltip` to interact correctly when the anchor is a disabled form element ([#1158](https://github.com/elastic/eui/pull/1158))
+- Fixed `EuiButton` (with icon) and `EuiButtonEmpty` truncation ([#1145](https://github.com/elastic/eui/pull/1145))
+- Fixed alignment and coloring of form control clear button ([#1145](https://github.com/elastic/eui/pull/1145))
+
+## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
+
+- Added a new `EuiStat` component for displaying prominent stats ([#1146](https://github.com/elastic/eui/pull/1146))
+- Added color and monotone icons for AWS and GCP. ([#1135](https://github.com/elastic/eui/pull/1135))
+- Added TypeScript definition for `EuiComboBox` ([#1115](https://github.com/elastic/eui/pull/1115))
+
+**Bug fixes**
+
+- Fixed `EuiSearchBar` when used as a controlled component in React 16.4 ([#1153](https://github.com/elastic/eui/pull/1153))
+- Fixed `onChange` typedef on `EuiSwitch` ([#1144](https://github.com/elastic/eui/pull/1144)
+- Fixed `EuiToolTip`'s inability to update its position when tooltip content changes ([#1116](https://github.com/elastic/eui/pull/1116))
+- Fixed `EuiSearchBar`'s syntax parsing to allow multiple escaped characters in a single field value
 
 ## [`3.7.0`](https://github.com/elastic/eui/tree/v3.7.0)
 
