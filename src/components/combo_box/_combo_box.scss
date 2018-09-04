@@ -11,16 +11,23 @@
   .euiComboBox__inputWrap {
     @include euiFormControlStyle($includeStates: false, $includeSizes: true);
     @include euiFormControlWithIcon($isIconOptional: true);
-    @include euiFormControlSize(auto); /* 3 */
-
+    @include euiFormControlSize();
     padding: $euiSizeXS;
-    display: flex; /* 1 */
-    flex-wrap: wrap; /* 1 */
-    @include euiFormControlLayout__padding(2); /* 2 */
-    align-content: flex-start;
+    @include euiFormControlLayout__padding(1); /* 2 */
 
-    &:hover {
-      cursor: text;
+    &.euiComboBox__inputWrap-isClearable {
+      @include euiFormControlLayout__padding(2); /* 2 */
+    }
+
+    &:not(.euiComboBox__inputWrap--noWrap) {
+      height: auto;  /* 3 */
+      display: flex; /* 1 */
+      flex-wrap: wrap; /* 1 */
+      align-content: flex-start;
+
+      &:hover {
+        cursor: text;
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 .euiComboBox__input {
+  max-width: 100%;
 
   // Ensure that no input states are visible on the hidden input
   input[aria-hidden="true"] {

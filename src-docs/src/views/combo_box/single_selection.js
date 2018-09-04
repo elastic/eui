@@ -48,7 +48,7 @@ export default class extends Component {
     return (
       <EuiComboBox
         placeholder="Select a single option"
-        singleSelection={true}
+        singleSelection={{ asPlainText: true }}
         options={this.options}
         selectedOptions={selectedOptions}
         onChange={this.onChange}

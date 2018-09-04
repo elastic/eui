@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
+- Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
 
 **Bug fixes**
 

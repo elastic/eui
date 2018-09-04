@@ -1,12 +1,8 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiBadge,
-} from '../../badge';
+import { EuiBadge } from '../../badge';
 
 export class EuiComboBoxPill extends Component {
   static propTypes = {
@@ -15,6 +11,7 @@ export class EuiComboBoxPill extends Component {
     className: PropTypes.string,
     color: PropTypes.string,
     onClose: PropTypes.func,
+    asPlainText: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,9 +30,16 @@ export class EuiComboBoxPill extends Component {
       option, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       color,
+      asPlainText,
       ...rest
     } = this.props;
-    const classes = classNames('euiComboBoxPill', className);
+    const classes = classNames(
+      'euiComboBoxPill',
+      {
+        'euiComboBoxPill--plainText': asPlainText,
+      },
+      className
+    );
 
     if (onClose) {
       return (
@@ -48,7 +52,7 @@ export class EuiComboBoxPill extends Component {
           iconSide="right"
           color={color}
           closeButtonProps={{
-            tabIndex: '-1'
+            tabIndex: '-1',
           }}
           {...rest}
         >
@@ -57,13 +61,12 @@ export class EuiComboBoxPill extends Component {
       );
     }
 
+    if (asPlainText) {
+      return <span className={classes} {...rest}>{children}</span>;
+    }
+
     return (
-      <EuiBadge
-        className={classes}
-        title={children}
-        color={color}
-        {...rest}
-      >
+      <EuiBadge className={classes} title={children} color={color} {...rest}>
         {children}
       </EuiBadge>
     );

@@ -49,6 +49,8 @@ declare module '@elastic/eui' {
   }
   export const EuiComboBoxOptionsList: SFC<EuiComboBoxOptionsListProps>;
 
+  export type EuiComboBoxSingleSelectionShape = { asPlainText?: boolean; };
+
   export interface EuiComboBoxProps {
     id?: string,
     isDisabled?: boolean,
@@ -56,7 +58,7 @@ declare module '@elastic/eui' {
     placeholder?: string,
     isLoading?: boolean,
     async?: boolean,
-    singleSelection?: boolean,
+    singleSelection?: EuiComboBoxSingleSelectionShape | boolean,
     noSuggestions?: boolean,
     options?: EuiComboBoxOptionsListProps['options'],
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
