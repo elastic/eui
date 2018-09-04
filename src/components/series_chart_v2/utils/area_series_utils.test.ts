@@ -1,5 +1,5 @@
 import { createContinuousScale, getContinuousScaleFn, ScaleType } from '../commons/scales';
-import { computeAreaGlyphs, computeStackedAreaGlyphs } from './area_series_utils';
+import { computeSingleAreaGlyphs, computeStackedAreaGlyphs } from './area_series_utils';
 
 describe('Area Series Utils', () => {
   test('Should compute a simple area path',  () => {
@@ -15,7 +15,7 @@ describe('Area Series Utils', () => {
       top: 0,
       left: 0,
     };
-    const glyph = computeAreaGlyphs(data, xScaleFn, yScaleFn, dimensions);
+    const glyph = computeSingleAreaGlyphs(data, xScaleFn, yScaleFn, dimensions);
     const expectedGlyph = {
       d: 'M0,10L100,0L100,20L0,20Z',
     };
@@ -40,9 +40,29 @@ describe('Area Series Utils', () => {
     const expectedGlyph = [
       {
         d: 'M0,20L100,10L100,30L0,30Z',
+        points: [
+          {
+            x: 0,
+            y: 20,
+          },
+          {
+            x: 100,
+            y: 10,
+          },
+        ],
       },
       {
         d: 'M0,0L100,0L100,10L0,20Z',
+        points: [
+          {
+            x: 0,
+            y: 0,
+          },
+          {
+            x: 100,
+            y: 0,
+          },
+        ],
       },
     ];
     expect(glyph).toEqual(expectedGlyph);

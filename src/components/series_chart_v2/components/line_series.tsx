@@ -1,6 +1,6 @@
 import React from 'react';
 import Animate from 'react-move/Animate';
-import { LineSeriesGlyph } from '../utils/line_series_utils';
+import { LineSeriesGlyph, StackedLineSeriesGlyph } from '../utils/line_series_utils';
 interface LineSeriesDataProps {
   animated?: boolean;
   line: LineSeriesGlyph;
@@ -16,7 +16,10 @@ export class LineSeries extends React.PureComponent<LineSeriesDataProps> {
       return null;
     }
     if (!animated) {
-      return this.renderLine(line.d);
+      if (Array.isArray(line)) {
+        return this.renderStackedLines(line);
+      }
+      return this.renderLine(line as LineSeriesGlyph);
     }
     return this.renderAnimatedLine(line.d);
   }
@@ -44,10 +47,26 @@ export class LineSeries extends React.PureComponent<LineSeriesDataProps> {
       </Animate>
     );
   }
-  private renderLine = (d: string) => {
+  private renderLine = (line: LineSeriesGlyph) => {
+    if (!line.d) {
+      return null;
+    }
     return (
       <g className="euiSeriesChartSeries_lineGroup">
-        <path className="euiSeriesChartSeries_line" d={d}/>
+        <path className="euiSeriesChartSeries_line" d={line.d}/>
+      </g>
+    );
+  }
+  private renderStackedLines = (lines: StackedLineSeriesGlyph) => {
+    return (
+      <g className="euiSeriesChartSeries_lineGroup">
+      {
+        lines.map((line, index) => {
+          return (
+            <path key={`line-${index}`} className="euiSeriesChartSeries_line" d={line.d as string}/>
+          );
+        })
+      }
       </g>
     );
   }

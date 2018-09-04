@@ -1,81 +1,112 @@
-import { line } from 'd3-shape';
+import { ScaleContinuousNumeric } from 'd3-scale';
+import { line, Line } from 'd3-shape';
 import { CurveType, getCurveFactory } from '../commons/curves';
 import { Dimensions } from '../commons/dimensions';
-import { SeriesScales } from '../commons/domain';
+import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domain';
+import { ScaleFunction } from '../commons/scales';
 import {
-  createOrdinalScale,
-  getContinuousScaleFn,
-  getOrdinalScaleFn,
-  ScaleFunction,
-  ScaleType,
-} from '../commons/scales';
-
+  computeStackedLinearYData,
+  getLinearSerisScalesFns,
+  LinearStackedCumulatedValue,
+} from './linear_series_utils';
 /**
- * A single bar glyph representation
+ * A single line glyph representation
  */
 export interface LineSeriesGlyph {
   d: string | null;
+  points: Array<{ x: number; y: number }>;
 }
 
-/**
- * This compute an array of BarSeriesGlyphs that can be used to
- * draw an svg rect for the dataset provided
- * @param data The data array
- * @param xScaleConfig the x scale configuration
- * @param yScaleConfig the y scale configuration
- * @param seriesDimensions the dimension of the series (not necessary the chart)
- */
+export type StackedLineSeriesGlyph = LineSeriesGlyph[];
 
-// groupLevel: number;
-// xDomain: Domain;
-// yDomain?: Domain;
-// xScaleType: ScaleType;
-// yScaleType?: ScaleType;
-// xAccessor: Accessor;
-// yAccessor?: Accessor;
 export function computeDataPoints(
   data: any[],
   seriesScales: SeriesScales[],
   seriesDimensions: Dimensions,
-  curveType?: CurveType,
   clamp = false,
-): LineSeriesGlyph {
+  stackedKeyAccessor?: Accessor,
+  curveType: CurveType = CurveType.LINEAR,
+): LineSeriesGlyph | StackedLineSeriesGlyph {
   const seriesScale = seriesScales[0];
-  let xScaleFn: ScaleFunction;
-  if (seriesScale.xScaleType === ScaleType.Ordinal) {
-    const ordinalScale = createOrdinalScale(seriesScale.xDomain as string[], 0, seriesDimensions.width);
-    xScaleFn = getOrdinalScaleFn(ordinalScale, seriesScale.xAccessor, true);
-  } else {
-    xScaleFn = getContinuousScaleFn(
-      seriesScale.xScaleType,
-      seriesScale.xDomain as number[],
+  const { xScaleFn, yScale, yScaleFn } = getLinearSerisScalesFns(
+    seriesScale,
+    seriesDimensions,
+    clamp,
+  );
+  if (stackedKeyAccessor) {
+    return computeStackedLineGlyphs(
+      data,
+      xScaleFn,
       seriesScale.xAccessor,
-      0,
-      seriesDimensions.width,
-      clamp,
-    );
-  }
-  let yScaleFn: ScaleFunction;
-  if (seriesScale.yScaleType === ScaleType.Ordinal) {
-    const ordinalScale = createOrdinalScale(seriesScale.yDomain as string[], 0, seriesDimensions.height);
-    yScaleFn = getOrdinalScaleFn(ordinalScale, seriesScale.yAccessor!);
-  } else {
-    yScaleFn = getContinuousScaleFn(
-      seriesScale.yScaleType!,
-      seriesScale.yDomain as number[],
+      yScale,
       seriesScale.yAccessor!,
-      seriesDimensions.height,
-      0,
-      clamp,
+      stackedKeyAccessor,
+      curveType,
     );
   }
+  return computeSingleLineGlyphs(data, xScaleFn, yScaleFn, curveType);
+}
 
-  const lineGenerator = line()
+export function computeSingleLineGlyphs(
+  data: any[],
+  xScaleFn: ScaleFunction,
+  yScaleFn: ScaleFunction,
+  curveType: CurveType = CurveType.LINEAR,
+) {
+  const lineGenerator = line<any>()
     .x(xScaleFn)
     .y(yScaleFn)
     .curve(getCurveFactory(curveType));
+  return computeLineGlyphs(data, xScaleFn, yScaleFn, lineGenerator);
+}
+
+export function computeStackedLineGlyphs(
+  data: any[],
+  xScaleFn: ScaleFunction,
+  xAccessor: Accessor,
+  yScale: ScaleContinuousNumeric<number, number>,
+  yAccessor: ContinuousAccessor,
+  stackedKeyAccessor: OrdinalAccessor,
+  curveType: CurveType = CurveType.LINEAR,
+): StackedLineSeriesGlyph {
+  const stackedLineSeries = computeStackedLinearYData(
+    data,
+    xAccessor,
+    yAccessor,
+    stackedKeyAccessor,
+  );
+  const lines = Array.from(stackedLineSeries.values());
+  const areaGenerator = line<LinearStackedCumulatedValue>()
+    .x((datum: any) => xScaleFn(datum.data))
+    .y((datum: any) => yScale(datum.y1))
+    .curve(getCurveFactory(curveType));
+
+  return lines.map((areaData) => {
+    const yScaleFn = (datum: any) => {
+      return yScale(datum.y1);
+    };
+    const xScaleFnPoints = (datum: any) => {
+      return xScaleFn(datum.data);
+    };
+    return computeLineGlyphs(areaData, xScaleFnPoints, yScaleFn, areaGenerator);
+  });
+}
+
+function computeLineGlyphs(
+  data: any[],
+  xScaleFn: ScaleFunction,
+  yScaleFn: ScaleFunction,
+  lineGenerator: Line<any>,
+) {
+  const points = data.map((datum) => {
+    return {
+      x: xScaleFn(datum),
+      y: yScaleFn(datum),
+    };
+  });
   const generatedLine = {
     d: lineGenerator(data),
+    points,
   };
   return generatedLine;
 }

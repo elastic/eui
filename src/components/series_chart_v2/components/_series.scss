@@ -38,8 +38,8 @@ $euiColorVisList:
   }
 }
 @for $i from 1 through 10 {
-  .euiSeriesChartSeries_lineGroup:nth-child(10n + #{$i}) {
-    .euiSeriesChartSeries_line {
+  .euiSeriesChartSeries_lineGroup {
+    .euiSeriesChartSeries_line:nth-child(10n + #{$i}) {
       stroke: nth($euiColorVisList, $i);
     }
   }

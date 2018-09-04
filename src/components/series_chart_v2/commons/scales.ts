@@ -31,7 +31,9 @@ export interface ScaleOrdinal {
 }
 
 export function createScaleOrdinal(): ScaleOrdinal {
-  const d3ScaleBand = scaleBand();
+  const d3ScaleBand = scaleBand()
+    .padding(0.1)
+    .round(true);
   const scale = (value: string) => {
     return Number(d3ScaleBand(value));
   };
@@ -61,10 +63,12 @@ export function createScaleOrdinal(): ScaleOrdinal {
 
 type Scales = ScaleContinuousNumeric<number, number> | ScaleOrdinal;
 export type ScaleContinuousTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log;
-export type ScaleOrdinalTypes =  ScaleType.Ordinal;
+export type ScaleOrdinalTypes = ScaleType.Ordinal;
 export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
 
-export function getScaleFromType(type: ScaleContinuousTypes): ScaleContinuousNumeric<number, number>;
+export function getScaleFromType(
+  type: ScaleContinuousTypes,
+): ScaleContinuousNumeric<number, number>;
 export function getScaleFromType(type: ScaleOrdinalTypes): ScaleOrdinal;
 export function getScaleFromType(type: ScaleTypes): Scales {
   // TODO add clamping

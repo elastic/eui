@@ -50,7 +50,7 @@ export class AreaSeries extends React.PureComponent<AreaSeriesDataProps> {
       <g className="euiSeriesChartSeries_areaGroup">
       {
         areas.map((area, index) => {
-          return <path key={`area-${index}`} className="euiSeriesChartSeries_area" d={area.d as string}/>;
+          return this.renderSingleArea(area, `area-${index}`);
         })
       }
       </g>
@@ -59,8 +59,24 @@ export class AreaSeries extends React.PureComponent<AreaSeriesDataProps> {
   private renderArea = (area: AreaSeriesGlyph) => {
     return (
       <g className="euiSeriesChartSeries_areaGroup">
-        <path className="euiSeriesChartSeries_area" d={area.d as string}/>
+      {
+        this.renderSingleArea(area, 'area-1')
+      }
       </g>
+    );
+  }
+  private renderSingleArea = (area: AreaSeriesGlyph, key: string) => {
+    return (
+      <React.Fragment key={key}>
+        <path  className="euiSeriesChartSeries_area" d={area.d as string}/>
+        {/* <g>
+          {
+            area.points.map((point) => {
+              return <circle cx={point.x} cy={point.y} r="5" />;
+            })
+          }
+        </g> */}
+      </React.Fragment>
     );
   }
 }

@@ -1,13 +1,13 @@
 require('./index.scss');
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Axis, BarSeries, AreaSeries } from '../../specs/index.ts';
+import { Axis, BarSeries, AreaSeries, LineSeries } from '../../specs/index.ts';
 import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
-import { dataset as GITHUB_DATASET } from './data_example1';
+import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
 import { datasetStacked as AREA_STACKED } from './data_example2';
-import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
+import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers.ts';
 /* eslint-disable */
 const TEST_DATASET_1 = [
   { group: 'a', stack: 'a', x: 1, y: 100 },
@@ -40,7 +40,7 @@ const TIMELINE = [
   { group: 'a', x: 'Codec A', y: 40 },
   { group: 'a', x: 'Codec B', y: 10 },
   { group: 'a', x: 'Codec C', y: 30 },
-]
+];
 
 /* eslint-enable */
 
@@ -49,47 +49,147 @@ class App extends Component {
   state = {
     data: dataGenerator.generateSimpleSeries(),
     stackedBarChartData: GITHUB_DATASET,
-    stackedAreaChartData: AREA_STACKED
-  }
+    stackedAreaChartData: AREA_STACKED,
+    stackedLineChartData: AREA_STACKED,
+    simpleStackedBarChart: GROUPED_BAR_CHART,
+    simpleClusteredBarChart: GROUPED_BAR_CHART,
+    multipleClusteredBarChart: MULTI_GROUPED_BAR_CHART,
+    stackedClusteredBarChart: MULTI_GROUPED_BAR_CHART,
+  };
   onChangeData = () => {
     this.setState({
       data: dataGenerator.generateSimpleSeries(),
       stackedBarChartData: randomizeData(GITHUB_DATASET, ['count'], uniformRandomizer(100)),
-      stackedAreaChartData: randomizeData(AREA_STACKED, ['y'], uniformRandomizer(20))
+      stackedAreaChartData: randomizeData(AREA_STACKED, ['y'], uniformRandomizer(20)),
+      stackedLineChartData: randomizeData(AREA_STACKED, ['y'], uniformRandomizer(20)),
+      simpleStackedBarChart: randomizeData(GROUPED_BAR_CHART, ['count'], uniformRandomizer(1000)),
+      simpleClusteredBarChart: randomizeData(GROUPED_BAR_CHART, ['count'], uniformRandomizer(1000)),
+      multipleClusteredBarChart: randomizeData(
+        MULTI_GROUPED_BAR_CHART,
+        ['count'],
+        uniformRandomizer(1000)
+      ),
+      stackedClusteredBarChart: randomizeData(
+        MULTI_GROUPED_BAR_CHART,
+        ['count'],
+        uniformRandomizer(1000)
+      ),
     });
-  }
-  renderGitHubIssue = (dontRender) => {
-    if (dontRender) {
-      return null;
-    }
+  };
+  renderSimpleStackedBarChart = () => {
+    return (
+      <BarSeries
+        id={getSpecId('clustered-bar-chart')}
+        yScaleType="linear"
+        xScaleType="ordinal"
+        xAccessor={d => {
+          return d.timestamp;
+        }}
+        yAccessor={d => {
+          return d.count;
+        }}
+        stackAccessor={d => {
+          return `${d.timestamp}`;
+        }}
+        data={this.state.simpleStackedBarChart}
+      />
+    );
+  };
+  renderSimpleClusteredBarChart = () => {
+    return (
+      <BarSeries
+        id={getSpecId('clustered-bar-chart')}
+        yScaleType="linear"
+        xScaleType="ordinal"
+        xAccessor={d => {
+          return d.status;
+        }}
+        yAccessor={d => {
+          return d.count;
+        }}
+        groupAccessors={[
+          d => {
+            return `${d.timestamp}`;
+          },
+        ]}
+        data={this.state.simpleClusteredBarChart}
+      />
+    );
+  };
+  renderMultipleClusteredBarChart = () => {
+    return (
+      <BarSeries
+        id={getSpecId('clustered-bar-chart')}
+        yScaleType="linear"
+        xScaleType="ordinal"
+        xAccessor={d => {
+          return d.os;
+        }}
+        yAccessor={d => {
+          return d.count;
+        }}
+        groupAccessors={[
+          d => {
+            return `${d.timestamp}`;
+          },
+          d => {
+            return `${d.status}`;
+          },
+        ]}
+        data={this.state.multipleClusteredBarChart}
+      />
+    );
+  };
+  renderStackedClusteredBarChart = () => {
+    return (
+      <BarSeries
+        id={getSpecId('stacked-clustered-bar-chart')}
+        yScaleType="linear"
+        xScaleType="ordinal"
+        xAccessor={d => {
+          return d.os;
+        }}
+        yAccessor={d => {
+          return d.count;
+        }}
+        groupAccessors={[
+          d => {
+            return `${d.timestamp}`;
+          },
+        ]}
+        stackAccessor={d => {
+          return `${d.timestamp} - ${d.tag} - ${d.os}`;
+        }}
+        data={this.state.stackedClusteredBarChart}
+      />
+    );
+  };
+  renderGitHubIssue = () => {
     return (
       <BarSeries
         id={getSpecId('barseries1')}
         // groupId={getGroupId('g2')}
         yScaleType="linear"
         xScaleType="ordinal"
-        xAccessor={(d) => {
+        xAccessor={d => {
           return d.authorAssociation;
         }}
-        yAccessor={(d) => {
+        yAccessor={d => {
           return d.count;
         }}
-        stackAccessor={(d) => {
+        stackAccessor={d => {
           return `${d.vizType} - ${d.authorAssociation}`;
         }}
         groupAccessors={[
-          (d) => {
+          d => {
             return d.vizType;
-          }
+          },
         ]}
         data={this.state.stackedBarChartData}
       />
     );
-  }
-  renderStackedAreaChart = (dontRender) => {
-    if(dontRender) {
-      return null;
-    }
+  };
+  renderStackedAreaChart = () => {
     console.log(this.state.stackedAreaChartData);
     return (
       <AreaSeries
@@ -97,163 +197,170 @@ class App extends Component {
         id={getSpecId(`area series`)}
         yScaleType="linear"
         xScaleType="linear"
-        xAccessor={(d) => {
+        xAccessor={d => {
           return d.x;
         }}
-        yAccessor={(d) => {
+        yAccessor={d => {
           return d.y;
         }}
-        stackAccessor={(d) => {
+        stackAccessor={d => {
           return d.group;
         }}
         data={this.state.stackedAreaChartData}
       />
     );
-  }
+  };
+  renderStackedLineChart = () => {
+    console.log({ stackedLineChartData: this.state.stackedLineChartData });
+    return (
+      <LineSeries
+        key={'line series'}
+        id={getSpecId(`line series`)}
+        yScaleType="linear"
+        xScaleType="linear"
+        xAccessor={d => {
+          return d.x;
+        }}
+        yAccessor={d => {
+          return d.y;
+        }}
+        stackAccessor={d => {
+          return d.group;
+        }}
+        data={this.state.stackedLineChartData}
+      />
+    );
+  };
+  renderMultiLineChart = () => {
+    console.log({ stackedLineChartData: this.state.stackedLineChartData });
+    return (
+      <LineSeries
+        key={'line series'}
+        id={getSpecId(`line series`)}
+        yScaleType="linear"
+        xScaleType="linear"
+        xAccessor={d => {
+          return d.x;
+        }}
+        yAccessor={d => {
+          return d.y;
+        }}
+        groupAccessors={[
+          d => {
+            return d.group;
+          },
+        ]}
+        data={this.state.stackedLineChartData}
+      />
+    );
+  };
   render() {
-    
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
+        {/* <div className="chartContainer">
+          <Chart>
+            <Axis
+              id={getAxisId('axis-bottom')}
+              position="bottom"
+              orientation="horizontal"
+            />
+            <Axis
+              id={getAxisId('axis-left')}
+              position="left"
+              orientation="vertical"
+            />
+            {
+              this.renderGitHubIssue()
+            }
+          </Chart>
+        </div>
         <div className="chartContainer">
           <Chart>
-            {/* {
-              new Array(1).fill(0).map((d, i) => {
-                return (<AreaSeries
-                  key={i}
-                  id={getSpecId(`lineSeries-${i}`)}
-                  yScaleType="linear"
-                  xScaleType="linear"
-                  xAccessor={(d) => {
-                    return d.x;
-                  }}
-                  data={this.state.data}
-                />);
-              })
-            } */}
             <Axis
               id={getAxisId('axisbottom22')}
               position="bottom"
               orientation="horizontal"
-              // showOverlappingTicks={true}
-              showOverlappingLabels={true}
-              tickFormat={(d) => {
-                return `${d}`;
-              }}
             />
-            {/* <Axis
-              id={getAxisId('axisbottom2')}
-              position="bottom"
-              orientation="horizontal"
-              tickFormat={(d) => {
-                return `${d}`;
-              }}
-            /> */}
             <Axis
               id={getAxisId('axis1left1')}
               position="left"
               orientation="vertical"
-              tickFormat={(d) => {
-                return `${d}`;
-              }}
             />
             {
-              this.renderGitHubIssue(false)
+              this.renderStackedAreaChart()
             }
-            {
-              this.renderStackedAreaChart(true)
-            }
-            {/* <BarSeries
-              id={getSpecId('barseries1')}
-              yScaleType="linear"
-              xScaleType="ordinal"
-              xAccessor={(d) => {
-                return d.x;
-              }}
-              yAccessor={(d) => {
-                return d.y;
-              }}
-              stackAccessor={(d) => {
-                return `${d.group}`;
-              }}
-              data={TIMELINE}
-            /> */}
-            {/* GITHUB ISSUES */}
-            {/* <LineSeries
-              id={getSpecId('barseriexxs1')}
-              // groupId={getGroupId('g2')}
-              yScaleType="linear"
-              xScaleType="linear"
-              xAccessor={(d) => {
-                return d.x;
-              }}
-              data={this.state.data}
-            /> */}
-            {/*
-            <BarSeries
-              id={getSpecId('barseriess')}
-              groupId={getGroupId('g3')}
-              yScaleType="linear"
-              xScaleType="ordinal"
-              xAccessor={(d) => {
-                return d.x
-              }}
-              data={this.state.data1}
-            /> */}
-            {/* <Axis
-              id={getAxisId('axis2right')}
-              groupId={getGroupId('g2')}
-              position="right"
-              orientation="vertical"
-              showOverlappingTicks
-              tickFormat={(d) => {
-          return `right 1 ${d}`;
-              }}
-            />  */}
-            {/* <Axis
-              id={getAxisId('axis2right22')}
-              groupId={getGroupId('g2')}
-              position="right"
-              orientation="vertical"
-              showOverlappingTicks
-              tickFormat={(d) => {
-          return `${d}`;
-              }}
-            />
-             <Axis
-              id={getAxisId('axis2to2p')}
-              groupId={getGroupId('g2')}
+          </Chart>
+        </div>
+        <div className="chartContainer">
+          <Chart>
+            <Axis
+              id={getAxisId('axisbottom22')}
               position="bottom"
               orientation="horizontal"
-
-              tickFormat={(d) => {
-          return `${d}`;
-              }}
-            />   */}
-
-            {/* <BarSeries
-              id={getSpecId('areaSeries')}
-              yScaleType="linear"
-              xScaleType="ordinal"
-              xAccessor={(d) => {
-                return d.x
-              }}
-              // groupAccessors={[
-
-              //   (d) => {
-              //     return d.group
-              //   },
-              //   (d) => {
-              //     return d.stack
-              //   },
-              // ]}
-              data={testData4}
-            /> */}
-
-
-
+            />
+            <Axis
+              id={getAxisId('axis1left1')}
+              position="left"
+              orientation="vertical"
+            />
+            {
+              this.renderStackedLineChart()
+            }
+          </Chart>
+        </div> */}
+        {/* <div className="chartContainer">
+          <Chart>
+            <Axis
+              id={getAxisId('axisbottom22')}
+              position="bottom"
+              orientation="horizontal"
+            />
+            <Axis
+              id={getAxisId('axis1left1')}
+              position="left"
+              orientation="vertical"
+            />
+            {
+              this.renderMultiLineChart()
+            }
+          </Chart>
+        </div> */}
+        <div className="chartContainer">
+          <Chart>
+            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+            {this.renderSimpleClusteredBarChart()}
+          </Chart>
+        </div>
+        <div className="chartContainer">
+          <Chart>
+            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+            {this.renderMultipleClusteredBarChart()}
+          </Chart>
+        </div>
+        <div className="chartContainer">
+          <Chart>
+            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+            {this.renderStackedClusteredBarChart()}
+          </Chart>
+        </div>
+        <div className="chartContainer">
+          <Chart>
+            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+            {this.renderGitHubIssue()}
+          </Chart>
+        </div>
+        <div className="chartContainer">
+          <Chart>
+            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+            {this.renderSimpleStackedBarChart()}
           </Chart>
         </div>
       </div>
