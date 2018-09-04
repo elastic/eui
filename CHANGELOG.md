@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `infraApp` icon ([#1161](https://github.com/elastic/eui/pull/1161))
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
 
