@@ -86,6 +86,7 @@ import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
 import inputOutput from './assets/inputOutput.svg';
+import infraApp from './assets/app_infra.svg';
 import inspect from './assets/inspect.svg';
 import invert from './assets/invert.svg';
 import kqlField from './assets/kql_field.svg';
@@ -300,6 +301,7 @@ const typeToIconMap = {
   indexOpen,
   indexPatternApp,
   indexSettings,
+  infraApp,
   inputOutput,
   inspect,
   invert,
