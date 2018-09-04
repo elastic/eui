@@ -2254,6 +2254,87 @@ exports[`EuiIcon props type indexSettings is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type infraApp is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    transform="translate(1 3)"
+  >
+    <rect
+      fill="#00BFB3"
+      height="7"
+      rx="2"
+      width="21"
+      x="9"
+      y="11"
+    />
+    <rect
+      fill="#00BFB3"
+      height="7"
+      rx="2"
+      width="21"
+      x="9"
+      y="20"
+    />
+    <circle
+      cx="26.5"
+      cy="23.5"
+      fill="#0078A0"
+      r="1.5"
+    />
+    <circle
+      cx="26.5"
+      cy="14.5"
+      fill="#0078A0"
+      r="1.5"
+    />
+    <rect
+      fill="#0078A0"
+      height="4"
+      rx="1"
+      width="2"
+      x="11"
+      y="12.5"
+    />
+    <rect
+      fill="#0078A0"
+      height="4"
+      rx="1"
+      width="2"
+      x="11"
+      y="21.5"
+    />
+    <rect
+      fill="#0078A0"
+      height="4"
+      rx="1"
+      width="2"
+      x="14"
+      y="12.5"
+    />
+    <rect
+      fill="#0078A0"
+      height="4"
+      rx="1"
+      width="2"
+      x="14"
+      y="21.5"
+    />
+    <path
+      d="M7 19.975A5.506 5.506 0 0 1 2 14.5a5.505 5.505 0 0 1 5-5.474V9h2.031l.165-.741c.806-3.627 4.088-6.26 7.804-6.26 4.071 0 7.436 3.06 7.931 7h2.018C26.446 3.955 22.177 0 17 0c-4.359 0-8.24 2.898-9.535 7C3.345 7.02 0 10.377 0 14.5c0 3.968 3.097 7.217 7 7.476v-2z"
+      fill="#00A9E4"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type inputOutput is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"

@@ -21,6 +21,7 @@ const iconTypes = [
   'grokApp',
   'indexManagementApp',
   'indexPatternApp',
+  'infraApp',
   'loggingApp',
   'machineLearningApp',
   'managementApp',
