@@ -7,7 +7,8 @@ import { Query } from '../query';
 export const FieldValueToggleGroupFilterItemType = PropTypes.shape({
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
   name: PropTypes.string.isRequired,
-  negatedName: PropTypes.string
+  negatedName: PropTypes.string,
+  operator: PropTypes.oneOf(['eq', 'exact', 'gt', 'gte', 'lt', 'lte']),
 });
 
 export const FieldValueToggleGroupFilterConfigType = PropTypes.shape({
@@ -45,10 +46,10 @@ export class FieldValueToggleGroupFilter extends Component {
 
   valueChanged(item, active) {
     const { field } = this.props.config;
-    const { value } = item;
+    const { value, operator } = item;
     const query = active ?
       this.props.query.removeSimpleFieldClauses(field) :
-      this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value);
+      this.props.query.removeSimpleFieldClauses(field).addSimpleFieldValue(field, value, true, operator);
     this.props.onChange(query);
   }
 
