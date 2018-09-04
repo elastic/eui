@@ -85,13 +85,7 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
     data,
     scaleToExtent,
   } = seriesSpec;
-  const isGrouped = (groupAccessors && groupAccessors.length) > 0;
-  let xDomain;
-  if (isGrouped) {
-    xDomain = computeOrdinalDataDomain(data, xAccessor);
-  } else {
-    xDomain = computeContinuousDataDomain(data, xAccessor);
-  }
+  const isGrouped = groupAccessors && groupAccessors.length > 0;
 
   let mainYDomain;
   if (stackAccessor) {
@@ -103,7 +97,8 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
   } else {
     mainYDomain = computeContinuousDataDomain(data, yAccessor, scaleToExtent);
   }
-  if (groupAccessors && groupAccessors.length > 0) {
+  if (isGrouped) {
+    const mainXDomain = computeOrdinalDataDomain(data, xAccessor);
     const groupDomains = groupAccessors.map((accessor, groupLevel) => {
       const groupXDomain = computeOrdinalDataDomain(data, accessor);
       return {
@@ -117,7 +112,7 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
       ...groupDomains,
       {
         groupLevel: groupDomains.length,
-        xDomain,
+        xDomain: mainXDomain,
         yDomain: mainYDomain,
         xScaleType: ScaleType.Ordinal,
         yScaleType,
@@ -127,15 +122,23 @@ export function computeSeriesDomains(seriesSpec: DataSeriesSpec): SeriesScales[]
     ];
   }
 
-  return [{
-    groupLevel: 0,
-    xDomain,
-    yDomain: mainYDomain,
-    xScaleType,
-    yScaleType,
-    xAccessor,
-    yAccessor,
-  }];
+  let xDomain;
+  if (xScaleType === ScaleType.Ordinal) {
+    xDomain = computeOrdinalDataDomain(data, xAccessor);
+  } else {
+    xDomain = computeContinuousDataDomain(data, xAccessor);
+  }
+  return [
+    {
+      groupLevel: 0,
+      xDomain,
+      yDomain: mainYDomain,
+      xScaleType,
+      yScaleType,
+      xAccessor,
+      yAccessor,
+    },
+  ];
 }
 
 /**

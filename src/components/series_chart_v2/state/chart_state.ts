@@ -10,7 +10,6 @@ import {
 } from '../commons/specs';
 
 import { observable } from 'mobx';
-import { CurveType } from '../commons/curves';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeSeriesDomains, SeriesScales } from '../commons/domain';
 import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
@@ -155,8 +154,7 @@ export class ChartStore {
           this.seriesGlyphs.set(id, { type: DataSeriesType.Bar, bars: dataPoints });
           break;
         case DataSeriesType.Line:
-          const lineDataPoints = computeLineDataPoints(data, seriesScales, this.chartDimensions,
-            CurveType.CURVE_CARDINAL);
+          const lineDataPoints = computeLineDataPoints(data, seriesScales, this.chartDimensions, clamp, stackAccessor);
           this.seriesGlyphs.set(id, { type: DataSeriesType.Line, line: lineDataPoints });
           break;
         case DataSeriesType.Area:
