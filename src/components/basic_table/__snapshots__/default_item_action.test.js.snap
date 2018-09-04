@@ -19,6 +19,7 @@ exports[`DefaultItemAction render - icon 1`] = `
 <EuiButtonIcon
   aria-label="action1"
   color="primary"
+  iconSize="m"
   iconType="trash"
   isDisabled={false}
   onClick={[Function]}

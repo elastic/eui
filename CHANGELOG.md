@@ -1,9 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
+
 **Bug fixes**
 
-- Fixed `makeHighContrastColor` sass mixin to properly output an accessible color contrast. ([#1158](https://github.com/elastic/eui/pull/1158))
+- Fixed `makeHighContrastColor` sass mixin to properly output an accessible color contrast ([#1158](https://github.com/elastic/eui/pull/1158))
 - Fixed `EuiTooltip` to interact correctly when the anchor is a disabled form element ([#1158](https://github.com/elastic/eui/pull/1158))
+- Fixed `EuiButton` (with icon) and `EuiButtonEmpty` truncation ([#1145](https://github.com/elastic/eui/pull/1145))
+- Fixed alignment and coloring of form control clear button ([#1145](https://github.com/elastic/eui/pull/1145))
 
 ## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
 

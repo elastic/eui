@@ -1,18 +1,15 @@
 .euiButtonIcon {
   @include euiButton;
 
-  border-color: transparent;
+  border: none;
   background-color: transparent;
   box-shadow: none;
-  height: $euiSizeL;
-  width: $euiSizeL;
-  line-height: $euiSizeL;
+  height: auto;
+  min-height: $euiSizeL;
+  min-width: $euiSizeL;
+  line-height: 0; // ensures the icon creates the line-height and so it's always vertically centered
+  padding: $euiSizeXS;
   border-radius: $euiBorderRadius;
-
-  // Account for border.
-  .euiButtonIcon__icon {
-    transform: translateY(-2px);
-  }
 
   &:disabled {
     color: $euiButtonColorDisabled;

@@ -40,6 +40,11 @@
   width: 100%;
   vertical-align: middle;
 
+  .euiButton__icon,
+  .euiButton__spinner {
+    flex-shrink: 0; // Ensures the icons/spinner don't scale down below their intended size
+  }
+
   @if ($isReverse) {
     flex-direction: row-reverse;
 

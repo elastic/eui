@@ -16,8 +16,12 @@
 
   .euiButtonEmpty__content {
     @include euiButtonContent;
-
     padding: 0 $euiSizeS;
+  }
+
+  .euiButtonEmpty__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &.euiButtonEmpty--small {
