@@ -14,6 +14,7 @@ export const Match = Object.freeze({
 
 export const Operator = Object.freeze({
   EQ: 'eq',
+  EXACT: 'exact',
   GT: 'gt',
   GTE: 'gte',
   LT: 'lt',
@@ -23,6 +24,12 @@ export const Operator = Object.freeze({
   },
   isEQClause(clause) {
     return Operator.isEQ(clause.operator);
+  },
+  isEXACT(match) {
+    return match === Operator.EXACT;
+  },
+  isEXACTClause(clause) {
+    return Operator.isEXACT(clause.operator);
   },
   isRange(match) {
     return Operator.isGT(match) || Operator.isGTE(match) || Operator.isLT(match) || Operator.isLTE(match);
@@ -86,6 +93,7 @@ const Field = Object.freeze({
   },
   must: {
     eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.EQ }),
+    exact: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.EXACT }),
     gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GT }),
     gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GTE }),
     lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.LT }),
@@ -93,6 +101,7 @@ const Field = Object.freeze({
   },
   mustNot: {
     eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.EQ }),
+    exact: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.EXACT }),
     gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GT }),
     gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GTE }),
     lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.LT }),

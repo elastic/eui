@@ -50,11 +50,13 @@ IsFlag
 
 FieldClause "field"
   = space? "-" fv:FieldEQValue { return AST.Field.mustNot.eq(fv.field, fv.value); }
+  / space? "-" fv:FieldEXACTValue { return AST.Field.mustNot.exact(fv.field, fv.value); }
   / space? "-" fv:FieldGTValue { return AST.Field.mustNot.gt(fv.field, fv.value); }
   / space? "-" fv:FieldGTEValue { return AST.Field.mustNot.gte(fv.field, fv.value); }
   / space? "-" fv:FieldLTValue { return AST.Field.mustNot.lt(fv.field, fv.value); }
   / space? "-" fv:FieldLTEValue { return AST.Field.mustNot.lte(fv.field, fv.value); }
   / space? fv:FieldEQValue { return AST.Field.must.eq(fv.field, fv.value); }
+  / space? fv:FieldEXACTValue { return AST.Field.must.exact(fv.field, fv.value); }
   / space? fv:FieldGTValue { return AST.Field.must.gt(fv.field, fv.value); }
   / space? fv:FieldGTEValue { return AST.Field.must.gte(fv.field, fv.value); }
   / space? fv:FieldLTValue { return AST.Field.must.lt(fv.field, fv.value); }
@@ -62,6 +64,11 @@ FieldClause "field"
 
 FieldEQValue
   = field:fieldName ":" valueExpression:fieldContainsValue {
+  	return {field, value: resolveFieldValue(field, valueExpression, ctx) };
+  }
+
+FieldEXACTValue
+  = field:fieldName "=" valueExpression:fieldContainsValue {
   	return {field, value: resolveFieldValue(field, valueExpression, ctx) };
   }
 
@@ -317,6 +324,8 @@ const resolveOperator = (operator) => {
   switch (operator) {
     case AST.Operator.EQ:
       return ':';
+    case AST.Operator.EXACT:
+      return '=';
     case AST.Operator.GT:
       return '>';
     case AST.Operator.GTE:

@@ -8,10 +8,11 @@ import { Query } from '../query';
 export const FieldValueToggleFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('field_value_toggle').isRequired,
   field: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
   name: PropTypes.string.isRequired,
   negatedName: PropTypes.string,
   available: PropTypes.func, // () => boolean
+  operator: PropTypes.oneOf(['eq', 'exact', 'gt', 'gte', 'lt', 'lte']),
 });
 
 const FieldValueToggleFilterPropTypes = {
@@ -40,10 +41,10 @@ export class FieldValueToggleFilter extends Component {
   }
 
   valueChanged(checked) {
-    const { field, value } = this.props.config;
+    const { field, value, operator } = this.props.config;
     const query = checked ?
       this.props.query.removeSimpleFieldValue(field, value) :
-      this.props.query.addSimpleFieldValue(field, value);
+      this.props.query.addSimpleFieldValue(field, value, true, operator);
     this.props.onChange(query);
   }
 

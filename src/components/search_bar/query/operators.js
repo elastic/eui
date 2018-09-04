@@ -38,9 +38,15 @@ export const eq = (fieldValue, clauseValue, options = {}) => {
   }
 
   if (isString(fieldValue)) {
-    return options.ignoreCase ?
-      fieldValue.toLowerCase().includes(clauseValue.toString().toLowerCase()) :
-      fieldValue.includes(clauseValue.toString());
+    if (options.exactMatch === true) {
+      return options.ignoreCase ?
+        fieldValue.toLowerCase() === clauseValue.toString().toLowerCase() :
+        fieldValue === clauseValue.toString();
+    } else {
+      return options.ignoreCase ?
+        fieldValue.toLowerCase().includes(clauseValue.toString().toLowerCase()) :
+        fieldValue.includes(clauseValue.toString());
+    }
   }
 
   if (isNumber(fieldValue)) {
@@ -69,6 +75,10 @@ export const eq = (fieldValue, clauseValue, options = {}) => {
   }
 
   return false; // unknown value type
+};
+
+export const exact = (fieldValue, clauseValue, options = {}) => {
+  return eq(fieldValue, clauseValue, { ...options, exactMatch: true });
 };
 
 const greaterThen = (fieldValue, clauseValue, inclusive = false) => {
