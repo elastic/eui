@@ -35,6 +35,7 @@ export interface AxisSpec {
   tickSize: number;
   tickPadding: number;
   tickFormat: (value: any) => string;
+  groupingLayer?: number;
 }
 
 export enum AxisPosition {

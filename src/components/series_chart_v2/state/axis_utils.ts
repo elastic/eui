@@ -45,7 +45,8 @@ export function computeAxisDimensions(
     axisScaleType = verticalTicks.axisScaleType!;
     axisScaleDomain = verticalTicks.axisScaleDomain!;
   } else {
-    const seriesScales = axisSeriesScales[0];
+    const layer = axisSpec.groupingLayer ? axisSpec.groupingLayer : 0;
+    const seriesScales = axisSeriesScales[layer];
     const horizontalTicks = computeHorizontalTicks(seriesScales, axisSpec);
     tickValues = horizontalTicks.tickValues;
     tickLabels = horizontalTicks.tickLabels;
@@ -193,7 +194,11 @@ export function getVisibleTicks(
     } else {
       // still add the tick but without a label
       if (showOverlappingTicks || showOverlappingLabels) {
-        visibleTicks.push(allTicks[i]);
+        const overlappingTick = {
+          ...allTicks[i],
+          label: showOverlappingLabels ? allTicks[i].label : '',
+        };
+        visibleTicks.push(overlappingTick);
       }
     }
   }
