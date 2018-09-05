@@ -41,13 +41,13 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public renderAxes = () => {
-    const { axisVisibleTicks, axisSpecs, axisDimensions, axisPositions } = this.props.chartStore!;
+    const { axesVisibleTicks, axesSpecs, axesTicksDimensions, axesPositions } = this.props.chartStore!;
     const axesComponents: JSX.Element[] = [];
-    axisVisibleTicks.forEach((axisTicks, axisId) => {
-      const axisSpec = axisSpecs.get(axisId);
-      const axisTicksDimensions = axisDimensions.get(axisId);
-      const axisPosition = axisPositions.get(axisId);
-      const ticks = axisVisibleTicks.get(axisId);
+    axesVisibleTicks.forEach((axisTicks, axisId) => {
+      const axisSpec = axesSpecs.get(axisId);
+      const axisTicksDimensions = axesTicksDimensions.get(axisId);
+      const axisPosition = axesPositions.get(axisId);
+      const ticks = axesVisibleTicks.get(axisId);
       if (!ticks || !axisSpec || !axisTicksDimensions || !axisPosition) {
         return;
       }

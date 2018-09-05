@@ -15,7 +15,7 @@ import { computeSeriesDomains, SeriesScales } from '../commons/domain';
 import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
 import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
 import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';
-import { AxisTick, AxisTicksDimensions, computeAxisDimensions, getAxisTicksPositions } from './axis_utils';
+import { AxisTick, AxisTicksDimensions, computeAxisTicksDimensions, getAxisTicksPositions } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export class ChartStore {
@@ -31,11 +31,11 @@ export class ChartStore {
     top: 0,
     left: 0,
   };  // updated from jsx
-  public axisSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
-  public axisDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
-  public axisPositions: Map<AxisId, Dimensions> = new Map(); // computed
-  public axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
-  public axisTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
+  public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
+  public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
+  public axesPositions: Map<AxisId, Dimensions> = new Map(); // computed
+  public axesVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
+  public axesTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
   public seriesScales: Map<SpecId, SeriesScales[]> = new Map(); // computed
   public chartScales: Map<GroupId, SeriesScales[]> = new Map(); // computed
@@ -97,12 +97,12 @@ export class ChartStore {
    * Add an axis spec to the store
    * @param axisSpec an axis spec
    */
-  public addAxis(axisSpec: AxisSpec) {
-    this.axisSpecs.set(axisSpec.id, axisSpec);
+  public addAxisSpec(axisSpec: AxisSpec) {
+    this.axesSpecs.set(axisSpec.id, axisSpec);
   }
 
-  public removeAxis(axisId: AxisId) {
-    this.axisSpecs.delete(axisId);
+  public removeAxisSpec(axisId: AxisId) {
+    this.axesSpecs.delete(axisId);
   }
 
   public computeChart() {
@@ -119,25 +119,25 @@ export class ChartStore {
 
     // compute axis dimensions
     const bboxCalculator = new SvgTextBBoxCalculator();
-    this.axisDimensions.clear();
-    this.axisSpecs.forEach((axisSpec) => {
+    this.axesTicksDimensions.clear();
+    this.axesSpecs.forEach((axisSpec) => {
       const { id, groupId } = axisSpec;
       const groupSeriesScale = this.chartScales.get(groupId);
       if (groupSeriesScale) {
-        const dimensions = computeAxisDimensions(axisSpec, groupSeriesScale, bboxCalculator);
-        this.axisDimensions.set(id, dimensions);
+        const dimensions = computeAxisTicksDimensions(axisSpec, groupSeriesScale, bboxCalculator);
+        this.axesTicksDimensions.set(id, dimensions);
       }
     });
     bboxCalculator.destroy();
 
     // compute chart dimensions
-    this.chartDimensions = computeChartDimensions(this.parentDimensions, this.axisDimensions, this.axisSpecs);
+    this.chartDimensions = computeChartDimensions(this.parentDimensions, this.axesTicksDimensions, this.axesSpecs);
 
     // compute visible ticks and their positions
-    const axisTicksPositions = getAxisTicksPositions(this.chartDimensions, this.axisSpecs, this.axisDimensions);
-    this.axisPositions = axisTicksPositions.axisPositions;
-    this.axisTicks = axisTicksPositions.axisTicks;
-    this.axisVisibleTicks = axisTicksPositions.axisVisibleTicks;
+    const axisTicksPositions = getAxisTicksPositions(this.chartDimensions, this.axesSpecs, this.axesTicksDimensions);
+    this.axesPositions = axisTicksPositions.axisPositions;
+    this.axesTicks = axisTicksPositions.axisTicks;
+    this.axesVisibleTicks = axisTicksPositions.axisVisibleTicks;
 
     // compute series glyphs
     this.seriesSpecs.forEach((seriesSpec) => {

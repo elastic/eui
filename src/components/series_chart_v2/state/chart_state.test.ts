@@ -60,7 +60,7 @@ describe.skip('Chart Store', () => {
       tickPadding: 10,
       tickFormat: (value: any) => `value ${value}`,
     };
-    store.addAxis(axisSpec);
+    store.addAxisSpec(axisSpec);
     store.computeChart();
     // console.log(JSON.stringify([...store.axisVisibleTicks], null, 2));
     // console.log(JSON.stringify([...store.axisTicks], null, 2));
