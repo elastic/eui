@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import  {
+  EuiNotificationBadge
+} from '../../badge';
+
 import {
   EuiLoadingSpinner
 } from '../../loading';
-
 
 import {
   EuiIcon,
@@ -18,6 +21,7 @@ export const EuiButtonFacet = ({
   isDisabled,
   isLoading,
   isSelected,
+  quantity,
   buttonRef,
   ...rest
 }) => {
@@ -33,15 +37,23 @@ export const EuiButtonFacet = ({
     className,
   );
 
-  // Add quanity number if provided.
-  let quantity;
+  // Add quanity number if provided or loading indicator
+  let buttonQuantity;
 
   if (isLoading) {
-    quantity = (
+    buttonQuantity = (
       <EuiLoadingSpinner
         className="euiButtonFacet__spinner"
         size="m"
       />
+    );
+  } else if (quantity) {
+    buttonQuantity = (
+      <EuiNotificationBadge
+        className="euiButtonFacet__quantity"
+      >
+        {quantity}
+      </EuiNotificationBadge>
     );
   }
 
@@ -68,10 +80,10 @@ export const EuiButtonFacet = ({
       ref={buttonRef}
       {...rest}
     >
-      <span className="euiButtonEmpty__content">
+      <span className="euiButtonFacet__content">
         {buttonIcon}
-        <span className="euiButtonEmpty__text">{children}</span>
-        {quantity}
+        <span className="euiButtonFacet__text">{children}</span>
+        {buttonQuantity}
       </span>
     </button>
   );
@@ -93,6 +105,11 @@ EuiButtonFacet.propTypes = {
    * Changes visual of button to indicate it's currently selected
    */
   isSelected: PropTypes.bool,
+
+  /**
+   * Adds a notification indicator for displaying the buttonQuantity provided
+   */
+  quantity: PropTypes.number,
 
   buttonRef: PropTypes.func,
 };

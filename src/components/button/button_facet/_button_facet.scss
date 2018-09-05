@@ -2,17 +2,21 @@
  * 1. We don't want any of the animations that come inherited from the mixin.
  *    These should act like normal links instead.
  * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
+ * 3. Make sure the quantity doesn't get an underline on hover
  */
 .euiButtonFacet {
   @include euiButton;
   @include euiFontSizeS;
   text-align: left;
-  height: $euiButtonHeightSmall;
+  // height: $euiButtonHeightSmall;
+  line-height: 1; // For better alignment with icon/quantity
   border: none;
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
+  transition-timing-function: ease-in; /* 2 */
+  transition-duration: $euiAnimSpeedFast; /* 2 */
 
-  .euiButtonEmpty__content {
+  .euiButtonFacet__content {
     @include euiButtonContent;
 
     > * + * {
@@ -20,10 +24,34 @@
     }
   }
 
-  .euiButtonEmpty__text {
+  .euiButtonFacet__text {
     flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+
+  .euiButtonFacet__quantity {
+    flex-shrink: 0;
+
+    // Increase the default size a bit
+    $size: $euiSize + $euiSizeXS;
+    line-height:$size;
+    height: $size;
+    min-width: $euiSizeL;
+  }
+
+  &:not(.euiButtonFacet--isSelected) .euiButtonFacet__quantity,
+  &:disabled .euiButtonFacet__quantity {
+    background-color: tint($euiColorLightShade, 40%);
+    color: $euiColorFullShade;
+  }
+
+  &:hover, &:focus {
+    text-decoration: none !important; /* 3 */
+
+    .euiButtonFacet__text {
+      text-decoration: underline; /* 3 */
+    }
   }
 
   &:focus {
@@ -34,7 +62,7 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .euiButtonEmpty__content {
+    .euiButtonFacet__content {
       pointer-events: auto;
       cursor: not-allowed;
     }
@@ -49,6 +77,6 @@
   }
 }
 
-.euiButtonFacet--isSelected {
+.euiButtonFacet--isSelected .euiButtonFacet__text {
   font-weight: $euiFontWeightBold;
 }
