@@ -6,59 +6,18 @@ import {
   EuiLoadingSpinner
 } from '../../loading';
 
-import { getSecureRelForTarget } from '../../../services';
 
 import {
-  ICON_TYPES,
   EuiIcon,
 } from '../../icon';
-
-const colorToClassNameMap = {
-  primary: 'euiButtonEmpty--primary',
-  danger: 'euiButtonEmpty--danger',
-  disabled: 'euiButtonEmpty--disabled',
-  text: 'euiButtonEmpty--text',
-  ghost: 'euiButtonEmpty--ghost',
-};
-
-export const COLORS = Object.keys(colorToClassNameMap);
-
-const sizeToClassNameMap = {
-  xs: 'euiButtonEmpty--xSmall',
-  s: 'euiButtonEmpty--small',
-  l: 'euiButtonEmpty--large',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-const iconSideToClassNameMap = {
-  left: '',
-  right: 'euiButtonEmpty--iconRight',
-};
-
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
-
-const flushTypeToClassNameMap = {
-  'left': 'euiButtonEmpty--flushLeft',
-  'right': 'euiButtonEmpty--flushRight',
-};
-
-export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
 
 export const EuiButtonFacet = ({
   children,
   className,
-  iconType,
-  iconSide,
-  color,
-  size,
-  flush,
+  icon,
   isDisabled,
   isLoading,
-  href,
-  target,
-  rel,
-  type,
+  isSelected,
   buttonRef,
   ...rest
 }) => {
@@ -67,85 +26,62 @@ export const EuiButtonFacet = ({
   isDisabled = isLoading ? true : isDisabled;
 
   const classes = classNames(
-    'euiButtonEmpty',
-    colorToClassNameMap[color],
-    sizeToClassNameMap[size],
-    iconSideToClassNameMap[iconSide],
-    flushTypeToClassNameMap[flush],
+    'euiButtonFacet',
+    {
+      'euiButtonFacet--isSelected': isSelected,
+    },
     className,
   );
+
+  // Add quanity number if provided.
+  let quantity;
+
+  if (isLoading) {
+    quantity = (
+      <EuiLoadingSpinner
+        className="euiButtonFacet__spinner"
+        size="m"
+      />
+    );
+  }
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (isLoading) {
-    buttonIcon = (
-      <EuiLoadingSpinner
-        className="euiButton__spinner"
-        size="m"
-      />
-    );
-  } else if (iconType) {
+  if (icon) {
     buttonIcon = (
       <EuiIcon
-        className="euiButtonEmpty__icon"
-        type={iconType}
+        className="euiButton__icon"
+        type={icon}
         size="m"
         aria-hidden="true"
       />
     );
   }
 
-  // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
-  // this is a button and piggyback off its disabled styles.
-  if (href && !isDisabled) {
-    const secureRel = getSecureRelForTarget(target, rel);
 
-    return (
-      <a
-        className={classes}
-        href={href}
-        target={target}
-        rel={secureRel}
-        ref={buttonRef}
-        {...rest}
-      >
-        <span className="euiButtonEmpty__content">
-          {buttonIcon}
-          <span className="euiButtonEmpty__text">{children}</span>
-        </span>
-      </a>
-    );
-  } else {
-    return (
-      <button
-        disabled={isDisabled}
-        className={classes}
-        type={type}
-        ref={buttonRef}
-        {...rest}
-      >
-        <span className="euiButtonEmpty__content">
-          {buttonIcon}
-          <span className="euiButtonEmpty__text">{children}</span>
-        </span>
-      </button>
-    );
-  }
+  return (
+    <button
+      disabled={isDisabled}
+      className={classes}
+      type="button"
+      ref={buttonRef}
+      {...rest}
+    >
+      <span className="euiButtonEmpty__content">
+        {buttonIcon}
+        <span className="euiButtonEmpty__text">{children}</span>
+        {quantity}
+      </span>
+    </button>
+  );
 };
 
 EuiButtonFacet.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
-  iconSide: PropTypes.oneOf(ICON_SIDES),
-  color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-  flush: PropTypes.oneOf(FLUSH_TYPES),
+  icon: PropTypes.node,
   isDisabled: PropTypes.bool,
-  href: PropTypes.string,
-  target: PropTypes.string,
-  rel: PropTypes.string,
   onClick: PropTypes.func,
 
   /**
@@ -153,12 +89,17 @@ EuiButtonFacet.propTypes = {
    */
   isLoading: PropTypes.bool,
 
-  type: PropTypes.string,
+  /**
+   * Changes visual of button to indicate it's currently selected
+   */
+  isSelected: PropTypes.bool,
+
   buttonRef: PropTypes.func,
 };
 
 EuiButtonFacet.defaultProps = {
-  type: 'button',
-  iconSide: 'left',
-  color: 'primary',
+  icon: 'dot',
+  isDisabled: false,
+  isLoading: false,
+  isSelected: false,
 };
