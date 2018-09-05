@@ -26,7 +26,7 @@ export interface AxisTicksDimensions {
   maxTickHeight: number;
 }
 
-export function computeAxisDimensions(
+export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
   axisSeriesScales: SeriesScales[],
   bboxCalculator: SvgTextBBoxCalculator,
