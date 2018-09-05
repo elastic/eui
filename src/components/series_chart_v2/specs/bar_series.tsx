@@ -16,20 +16,6 @@ export class BarSeriesSpec extends React.PureComponent<BarSpecProps> {
     xAccessor: (d) => d.x,
     yAccessor: (d) => d.y,
     scaleToExtent: false,
-    // onMouseOver: () => {},
-    // onMouseOut: () => {},
-    // grouping: {
-    //   xAccessor: ({ group }) => group,
-    //   type: 'group',
-    //   subElements: {
-    //     xAccessor: ({ level1 }) => level1,
-    //     type: 'group',
-    //     subElements: {
-    //       yAccessor: ({ y }) => y,
-    //       type: 'stack',
-    //     },
-    //   },
-    // },
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
