@@ -13,6 +13,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiButtonToggle,
+  EuiButtonFacet,
   EuiLink,
 } from '../../../../src/components';
 
@@ -55,6 +56,10 @@ const buttonToggleHtml = renderToHtml(ButtonToggle);
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
+
+import Facet from './facet';
+const facetSource = require('!!raw-loader!./facet');
+const facetHtml = renderToHtml(Facet);
 
 export const ButtonExample = {
   title: 'Button',
@@ -241,5 +246,21 @@ export const ButtonExample = {
       </p>
     ),
     demo: <ButtonGhost />,
+  }, {
+    title: 'Facet',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: facetSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: facetHtml,
+    }],
+    text: (
+      <p>
+        Blach
+      </p>
+    ),
+    demo: <Facet />,
+    props: { EuiButtonFacet },
   }],
 };

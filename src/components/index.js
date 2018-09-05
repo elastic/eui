@@ -28,6 +28,7 @@ export {
 export {
   EuiButton,
   EuiButtonEmpty,
+  EuiButtonFacet,
   EuiButtonIcon,
   EuiButtonToggle,
   EuiButtonGroup,
