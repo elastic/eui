@@ -10,6 +10,7 @@
 - Fixed `EuiTooltip` to interact correctly when the anchor is a disabled form element ([#1158](https://github.com/elastic/eui/pull/1158))
 - Fixed `EuiButton` (with icon) and `EuiButtonEmpty` truncation ([#1145](https://github.com/elastic/eui/pull/1145))
 - Fixed alignment and coloring of form control clear button ([#1145](https://github.com/elastic/eui/pull/1145))
+- Fixed `EuiToolTip` from setting state after component unmounts ([#1163](https://github.com/elastic/eui/pull/1163))
 
 ## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
 
