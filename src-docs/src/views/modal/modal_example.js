@@ -62,7 +62,7 @@ export const ModalExample = {
     props: { EuiConfirmModal },
     demo: <ConfirmModal />,
   }, {
-    title: 'Overflow overflow test',
+    title: 'Overflow test',
     source: [{
       type: GuideSectionTypes.JS,
       code: overflowTestSource,
@@ -72,7 +72,7 @@ export const ModalExample = {
     }],
     text: (
       <p>
-          This demo is to test long overflowing body content.
+          This demo is to test long overflowing body content. It also demonstrates the <EuiCode>maxWidth</EuiCode> property.
       </p>
     ),
     props: { EuiConfirmModal },

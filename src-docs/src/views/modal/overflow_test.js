@@ -50,7 +50,7 @@ export class OverflowTest extends Component {
         <EuiOverlayMask>
           <EuiModal
             onClose={this.closeModal}
-            style={{ width: '800px' }}
+            maxWidth
           >
             <EuiModalHeader>
               <EuiModalHeaderTitle >

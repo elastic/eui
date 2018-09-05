@@ -23,6 +23,10 @@
   }
 }
 
+.euiModal--maxWidth-default {
+  max-width: map-get($euiBreakpoints, "m");
+}
+
 .euiModal--confirmation {
   width: 450px;
   min-width: auto;
