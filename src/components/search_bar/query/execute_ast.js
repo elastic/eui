@@ -88,6 +88,41 @@ const termClauseMatcher = (item, fields, clauses = [], explain) => {
   });
 };
 
+function matchClauses(item, termClauses, fields, isClauses, groupClauses, ast, defaultFields, isClauseMatcher, explainLines) {
+  const isTermMatch = termClauseMatcher(item, defaultFields, termClauses, explainLines);
+  if (!isTermMatch) {
+    return false;
+  }
+
+  const isFieldsMatch = fields.every(field => fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines));
+  if (!isFieldsMatch) {
+    return false;
+  }
+
+  const isIsMatch = isClauses.every(clause => isClauseMatcher(item, clause, explainLines));
+  if (!isIsMatch) {
+    return false;
+  }
+
+  const isGroupMatch = groupClauses.every(clause => {
+    const matchesGroup = clause.value.some(clause => {
+      if (AST.Term.isInstance(clause)) {
+        return termClauseMatcher(item, defaultFields, [clause], explainLines);
+      }
+      if (AST.Field.isInstance(clause)) {
+        return fieldClauseMatcher(item, clause.field, [clause], explainLines);
+      }
+      if (AST.Is.isInstance(clause)) {
+        return isClauseMatcher(item, clause, explainLines);
+      }
+      throw new Error(`Unknown query clause type in group, [${clause.type}]`);
+    });
+    return matchesGroup;
+  });
+
+  return isGroupMatch;
+}
+
 export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClauseMatcher, explain = false) => {
   // Return items which pass ALL conditions: matches the terms entered, the specified field values,
   // and the specified "is" clauses.
@@ -101,23 +136,9 @@ export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClau
     const termClauses = ast.getTermClauses();
     const fields = ast.getFieldNames();
     const isClauses = ast.getIsClauses();
+    const groupClauses = ast.getGroupClauses();
 
-    const isTermMatch = termClauseMatcher(item, defaultFields, termClauses, explainLines);
-    if (!isTermMatch) {
-      return false;
-    }
-
-    const isFieldsMatch = fields.every(field => fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines));
-    if (!isFieldsMatch) {
-      return false;
-    }
-
-    const isIsMatch = isClauses.every(clause => isClauseMatcher(item, clause, explainLines));
-    if (!isIsMatch) {
-      return false;
-    }
-
-    return true;
+    return matchClauses(item, termClauses, fields, isClauses, groupClauses, ast, defaultFields, isClauseMatcher, explainLines);
   };
 };
 

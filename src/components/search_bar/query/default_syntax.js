@@ -25,6 +25,14 @@ Clause
   = IsClause
   / FieldClause
   / TermClause
+  / GroupClause
+
+GroupClause
+  = "(" head:Clause tail:(
+    space? "OR" space? clause:Clause { return clause }
+  )* ")" {
+    return AST.Group.must([head, ...tail]);
+  }
 
 TermClause
   = space? "-" value:termValue { return AST.Term.mustNot(value); }

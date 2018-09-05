@@ -253,11 +253,11 @@ export class SearchBar extends Component {
   render() {
     const {
       incremental,
-      query,
+      // query,
     } = this.state;
 
-    const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
-    const esQueryString = EuiSearchBar.Query.toESQueryString(query);
+    const esQueryDsl = ''; // EuiSearchBar.Query.toESQuery(query);
+    const esQueryString = ''; // EuiSearchBar.Query.toESQueryString(query);
 
     const content = this.renderError() || (
       <EuiFlexGroup>
