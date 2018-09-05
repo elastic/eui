@@ -41,7 +41,12 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public renderAxes = () => {
-    const { axesVisibleTicks, axesSpecs, axesTicksDimensions, axesPositions } = this.props.chartStore!;
+    const {
+      axesVisibleTicks,
+      axesSpecs,
+      axesTicksDimensions,
+      axesPositions,
+    } = this.props.chartStore!;
     const axesComponents: JSX.Element[] = [];
     axesVisibleTicks.forEach((axisTicks, axisId) => {
       const axisSpec = axesSpecs.get(axisId);
@@ -64,21 +69,14 @@ class Chart extends React.Component<ReactiveChartProps> {
     return axesComponents;
   }
   public renderLineSeries = () => {
-    const {
-      seriesGlyphs,
-    } = this.props.chartStore!;
+    const { seriesGlyphs } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec, specId) => {
       if (spec.type !== DataSeriesType.Line) {
         return;
       }
       const lineGlyph = spec as LineSeriesDataGlyphs;
-      points.push((
-        <LineSeries
-          key={`line-series-${specId}`}
-          line={lineGlyph.line}
-        />
-      ));
+      points.push(<LineSeries key={`line-series-${specId}`} line={lineGlyph.line} />);
     });
     return points;
   }
@@ -99,28 +97,19 @@ class Chart extends React.Component<ReactiveChartProps> {
     // return points;
   }
   public renderBarSeries = () => {
-    const {
-      seriesGlyphs,
-    } = this.props.chartStore!;
+    const { seriesGlyphs } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec) => {
       if (spec.type !== DataSeriesType.Bar) {
         return;
       }
       const barGlyphs = spec as BarSeriesDataGlyphs;
-      points.push((
-        <BarSeries
-          key="data points"
-          bars={barGlyphs.bars}
-        />
-      ));
+      points.push(<BarSeries key="data points" bars={barGlyphs.bars} />);
     });
     return points;
   }
   public renderAreaSeries = () => {
-    const {
-      seriesGlyphs,
-    } = this.props.chartStore!;
+    const { seriesGlyphs } = this.props.chartStore!;
     const points: JSX.Element[] = [];
     seriesGlyphs.forEach((spec, specId) => {
       if (spec.type !== DataSeriesType.Area) {
@@ -129,12 +118,7 @@ class Chart extends React.Component<ReactiveChartProps> {
       const areaGlyph = spec as AreaSeriesDataGlyphs;
       // tslint:disable-next-line:no-console
       console.log('areaGlyph', areaGlyph);
-      points.push((
-        <AreaSeries
-          key={`area-series-${specId}`}
-          area={areaGlyph.area}
-        />
-      ));
+      points.push(<AreaSeries key={`area-series-${specId}`} area={areaGlyph.area} />);
     });
     return points;
   }
@@ -174,13 +158,20 @@ class Chart extends React.Component<ReactiveChartProps> {
             height: '100%',
           }}
         >
-          <clipPath id="chart-bbox">
-            <rect x="0" y="0" width={chartDimensions.width} height={chartDimensions.height} />
-          </clipPath>
+          {/* <defs>
+            <clipPath id="chart-bbox" clipPathUnits="objectBoundingBox">
+              <rect
+                x={chartDimensions.left}
+                y={chartDimensions.top}
+                width={chartDimensions.width + chartDimensions.left}
+                height={chartDimensions.height}
+              />
+            </clipPath>
+          </defs> */}
           <g
             className="euiSeriesChartChart_group"
             transform={`translate(${chartDimensions.left} ${chartDimensions.top})`}
-            clipPath={'url(#chart-bbox)'}
+
           >
             {/* <rect
               x={0}
@@ -190,32 +181,12 @@ class Chart extends React.Component<ReactiveChartProps> {
               fill="red"
               fillOpacity={0.3}
             /> */}
-            <g className="euiSeriesChartSeries_lineSeries">
-              {
-                this.renderLineSeries()
-              }
-            </g>
-            <g className="euiSeriesChartSeries_pointSeries">
-              {
-                this.renderPointSeries()
-              }
-            </g>
-            <g className="euiSeriesChartSeries_barSeries">
-              {
-                this.renderBarSeries()
-              }
-            </g>
-            <g className="euiSeriesChartSeries_areaSeries">
-              {
-                this.renderAreaSeries()
-              }
-            </g>
+            <g className="euiSeriesChartSeries_lineSeries">{this.renderLineSeries()}</g>
+            <g className="euiSeriesChartSeries_pointSeries">{this.renderPointSeries()}</g>
+            <g className="euiSeriesChartSeries_barSeries">{this.renderBarSeries()}</g>
+            <g className="euiSeriesChartSeries_areaSeries">{this.renderAreaSeries()}</g>
           </g>
-          <g className="euiSeriesChartAxis_group">
-            {
-              this.renderAxes()
-            }
-          </g>
+          <g className="euiSeriesChartAxis_group">{this.renderAxes()}</g>
         </svg>
       </div>
     );
