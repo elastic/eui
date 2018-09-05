@@ -79,7 +79,7 @@ class App extends Component {
   renderSimpleStackedBarChart = () => {
     return (
       <BarSeries
-        id={getSpecId('clustered-bar-chart')}
+        id={getSpecId('renderSimpleStackedBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
         xAccessor={d => {
@@ -98,7 +98,7 @@ class App extends Component {
   renderSimpleClusteredBarChart = () => {
     return (
       <BarSeries
-        id={getSpecId('clustered-bar-chart')}
+        id={getSpecId('renderSimpleClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
         xAccessor={d => {
@@ -119,7 +119,7 @@ class App extends Component {
   renderMultipleClusteredBarChart = () => {
     return (
       <BarSeries
-        id={getSpecId('clustered-bar-chart')}
+        id={getSpecId('renderMultipleClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
         xAccessor={d => {
@@ -143,7 +143,7 @@ class App extends Component {
   renderStackedClusteredBarChart = () => {
     return (
       <BarSeries
-        id={getSpecId('stacked-clustered-bar-chart')}
+        id={getSpecId('renderStackedClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
         xAccessor={d => {
@@ -167,7 +167,7 @@ class App extends Component {
   renderGitHubIssue = () => {
     return (
       <BarSeries
-        id={getSpecId('barseries1')}
+        id={getSpecId('renderGitHubIssue')}
         // groupId={getGroupId('g2')}
         yScaleType="linear"
         xScaleType="ordinal"
@@ -194,7 +194,7 @@ class App extends Component {
     return (
       <AreaSeries
         key={'Area series'}
-        id={getSpecId(`area series`)}
+        id={getSpecId(`renderStackedAreaChart`)}
         yScaleType="linear"
         xScaleType="linear"
         xAccessor={d => {
@@ -215,7 +215,7 @@ class App extends Component {
     return (
       <LineSeries
         key={'line series'}
-        id={getSpecId(`line series`)}
+        id={getSpecId(`renderStackedLineChart`)}
         yScaleType="linear"
         xScaleType="linear"
         xAccessor={d => {
@@ -260,108 +260,56 @@ class App extends Component {
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
-        {/* <div className="chartContainer">
-          <Chart>
-            <Axis
-              id={getAxisId('axis-bottom')}
-              position="bottom"
-              orientation="horizontal"
-            />
-            <Axis
-              id={getAxisId('axis-left')}
-              position="left"
-              orientation="vertical"
-            />
-            {
-              this.renderGitHubIssue()
-            }
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis
-              id={getAxisId('axisbottom22')}
-              position="bottom"
-              orientation="horizontal"
-            />
-            <Axis
-              id={getAxisId('axis1left1')}
-              position="left"
-              orientation="vertical"
-            />
-            {
-              this.renderStackedAreaChart()
-            }
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis
-              id={getAxisId('axisbottom22')}
-              position="bottom"
-              orientation="horizontal"
-            />
-            <Axis
-              id={getAxisId('axis1left1')}
-              position="left"
-              orientation="vertical"
-            />
-            {
-              this.renderStackedLineChart()
-            }
-          </Chart>
-        </div> */}
-        {/* <div className="chartContainer">
-          <Chart>
-            <Axis
-              id={getAxisId('axisbottom22')}
-              position="bottom"
-              orientation="horizontal"
-            />
-            <Axis
-              id={getAxisId('axis1left1')}
-              position="left"
-              orientation="vertical"
-            />
-            {
-              this.renderMultiLineChart()
-            }
-          </Chart>
-        </div> */}
-        <div className="chartContainer">
-          <Chart>
-            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-            {this.renderSimpleClusteredBarChart()}
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-            {this.renderMultipleClusteredBarChart()}
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-            {this.renderStackedClusteredBarChart()}
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-            {this.renderGitHubIssue()}
-          </Chart>
-        </div>
-        <div className="chartContainer">
-          <Chart>
-            <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-            <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-            {this.renderSimpleStackedBarChart()}
-          </Chart>
+        <div className="chartContainers">
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" groupingLayer={0} />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderSimpleClusteredBarChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderMultipleClusteredBarChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderStackedClusteredBarChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" showOverlappingTicks={true} showOverlappingLabels={false} />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderGitHubIssue()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderSimpleStackedBarChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderStackedLineChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.renderStackedAreaChart()}
+            </Chart>
+          </div>
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import { extent, sum } from 'd3-array';
 import { nest } from 'd3-collection';
-import { sortedUniq, uniq } from 'lodash';
+import { uniq } from 'lodash';
 import { ScaleType } from './scales';
 import { DataSeriesSpec } from './specs';
 
@@ -46,7 +46,8 @@ export function computeOrdinalDataDomain(
   sorted?: boolean,
 ): string[] | number[] {
   const domain = data.map(accessor);
-  return sorted ? sortedUniq(domain) : uniq(domain);
+  const uniqueValues = uniq(domain);
+  return sorted ? uniqueValues.sort() : uniqueValues;
 }
 
 export function computeContinuousDataDomain(

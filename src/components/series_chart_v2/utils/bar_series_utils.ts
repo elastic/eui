@@ -27,6 +27,7 @@ export interface BarSeriesGlyph {
 }
 
 interface ScaleFnConfig {
+  accessor: Accessor;
   scaleFn: ScaleFunction;
   barWidth: number;
 }
@@ -144,7 +145,7 @@ export function getScale(
   min: number,
   max: number,
   clamp?: boolean,
-) {
+): ScaleFnConfig {
   if (type === ScaleType.Ordinal) {
     const ordinalScale = createOrdinalScale(domain as string[], min, max);
     const scaleFn = getOrdinalScaleFn(ordinalScale, accessor);
@@ -152,6 +153,7 @@ export function getScale(
     return {
       scaleFn,
       barWidth,
+      accessor,
     };
   } else {
     const scaleFn = getContinuousScaleFn(
@@ -166,6 +168,7 @@ export function getScale(
     return {
       scaleFn,
       barWidth,
+      accessor,
     };
   }
 }
