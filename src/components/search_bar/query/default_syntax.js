@@ -312,27 +312,33 @@ export const defaultSyntax = Object.freeze({
     return AST.create(clauses);
   },
 
+  printClause: (clause, text, options) => {
+    const prefix = AST.Match.isMustClause(clause) ? '' : '-';
+    switch (clause.type) {
+      case AST.Field.TYPE:
+        const op = resolveOperator(clause.operator);
+        const printFieldValueOptions = {
+          ...options,
+          escapeValue: escapeFieldValue,
+        };
+        if (isArray(clause.value)) {
+          return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, printFieldValueOptions)).join(' or ')})`; // eslint-disable-line max-len
+        }
+        return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, printFieldValueOptions)}`;
+      case AST.Is.TYPE:
+        return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
+      case AST.Term.TYPE:
+        return `${text} ${prefix}${printValue(clause.value, options)}`;
+      case AST.Group.TYPE:
+        return `(${clause.value.map(clause => defaultSyntax.printClause(clause, text, options).trim()).join(' OR ')})`;
+      default:
+        return text;
+    }
+  },
+
   print: (ast, options = {}) => {
     return ast.clauses.reduce((text, clause) => {
-      const prefix = AST.Match.isMustClause(clause) ? '' : '-';
-      switch (clause.type) {
-        case AST.Field.TYPE:
-          const op = resolveOperator(clause.operator);
-          const printFieldValueOptions = {
-            ...options,
-            escapeValue: escapeFieldValue,
-          };
-          if (isArray(clause.value)) {
-            return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, printFieldValueOptions)).join(' or ')})`; // eslint-disable-line max-len
-          }
-          return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, printFieldValueOptions)}`;
-        case AST.Is.TYPE:
-          return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
-        case AST.Term.TYPE:
-          return `${text} ${prefix}${printValue(clause.value, options)}`;
-        default:
-          return text;
-      }
+      return defaultSyntax.printClause(clause, text, options);
     }, '').trim();
   }
 
