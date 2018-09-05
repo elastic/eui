@@ -8,8 +8,6 @@
   @include euiButton;
   @include euiFontSizeS;
   text-align: left;
-  // height: $euiButtonHeightSmall;
-  line-height: 1; // For better alignment with icon/quantity
   border: none;
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
@@ -24,10 +22,16 @@
     }
   }
 
+  // Avatars need a little more space to breathe than icons
+  .euiAvatar {
+    margin-right: $euiSizeS;
+  }
+
   .euiButtonFacet__text {
     flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
+    line-height: $euiSizeXXL; // For better alignment with icon/quantity
   }
 
   .euiButtonFacet__quantity {
@@ -42,14 +46,14 @@
 
   &:not(.euiButtonFacet--isSelected) .euiButtonFacet__quantity,
   &:disabled .euiButtonFacet__quantity {
-    background-color: tint($euiColorLightShade, 40%);
+    background-color: tint($euiColorLightShade, 30%);
     color: $euiColorFullShade;
   }
 
   &:hover, &:focus {
     text-decoration: none !important; /* 3 */
 
-    .euiButtonFacet__text {
+    &:not(:disabled) .euiButtonFacet__text {
       text-decoration: underline; /* 3 */
     }
   }
@@ -65,6 +69,11 @@
     .euiButtonFacet__content {
       pointer-events: auto;
       cursor: not-allowed;
+    }
+
+    .euiButton__icon,
+    .euiButtonFacet__quantity {
+      opacity: .5;
     }
 
     &:focus {

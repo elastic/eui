@@ -10,10 +10,6 @@ import {
   EuiLoadingSpinner
 } from '../../loading';
 
-import {
-  EuiIcon,
-} from '../../icon';
-
 export const EuiButtonFacet = ({
   children,
   className,
@@ -43,7 +39,7 @@ export const EuiButtonFacet = ({
   if (isLoading) {
     buttonQuantity = (
       <EuiLoadingSpinner
-        className="euiButtonFacet__spinner"
+        className="euiButton__spinner"
         size="m"
       />
     );
@@ -61,13 +57,9 @@ export const EuiButtonFacet = ({
   let buttonIcon;
 
   if (icon) {
-    buttonIcon = (
-      <EuiIcon
-        className="euiButton__icon"
-        type={icon}
-        size="m"
-        aria-hidden="true"
-      />
+    buttonIcon = React.cloneElement(
+      icon,
+      { className: 'euiButton__icon' },
     );
   }
 
@@ -115,7 +107,6 @@ EuiButtonFacet.propTypes = {
 };
 
 EuiButtonFacet.defaultProps = {
-  icon: 'dot',
   isDisabled: false,
   isLoading: false,
   isSelected: false,
