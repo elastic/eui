@@ -11,3 +11,4 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] A changelog entry exists and is marked appropriately
 - [ ] This was checked for breaking changes or labeled appropriately
 - [ ] Jest tests were added to match the most common scenarios
+- [ ] This was checked against keyboard-only and screenreader scenarios
