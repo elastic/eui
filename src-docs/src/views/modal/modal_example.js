@@ -72,7 +72,7 @@ export const ModalExample = {
     }],
     text: (
       <p>
-          This demo is to test long overflowing body content. It also demonstrates the <EuiCode>maxWidth</EuiCode> property.
+          This demo is to test long overflowing body content.
       </p>
     ),
     props: { EuiConfirmModal },

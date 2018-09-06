@@ -4,7 +4,7 @@ exports[`renders EuiConfirmModal 1`] = `
 <div>
   <div
     aria-label="aria-label"
-    class="euiModal euiModal--confirmation testClass1 testClass2"
+    class="euiModal euiModal--maxWidth-default euiModal--confirmation testClass1 testClass2"
     data-test-subj="test subject string"
     tabindex="0"
   >

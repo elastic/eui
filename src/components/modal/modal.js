@@ -79,8 +79,8 @@ EuiModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   /**
    * Sets the max-width of the modal.
-   * Set to `false` to not restrict the width,
-   * set to `true` to use the default (`euiBreakpoints 'm'`),
+   * Set to `true` to use the default (`euiBreakpoints 'm'`),
+   * set to `false` to not restrict the width,
    * set to a number for a custom width in px,
    * set to a string for a custom width in custom measurement.
    */
@@ -92,5 +92,5 @@ EuiModal.propTypes = {
 };
 
 EuiModal.defaultProps = {
-  maxWidth: false,
+  maxWidth: true,
 };

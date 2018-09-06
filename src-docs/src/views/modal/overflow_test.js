@@ -50,7 +50,6 @@ export class OverflowTest extends Component {
         <EuiOverlayMask>
           <EuiModal
             onClose={this.closeModal}
-            maxWidth
           >
             <EuiModalHeader>
               <EuiModalHeaderTitle >
