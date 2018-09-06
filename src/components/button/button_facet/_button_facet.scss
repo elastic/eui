@@ -16,27 +16,27 @@
 
   .euiButtonFacet__content {
     @include euiButtonContent;
-
-    > * + * {
-      margin-left: $euiSizeXS;
-    }
-  }
-
-  // Avatars need a little more space to breathe than icons
-  .euiAvatar {
-    margin-right: $euiSizeS;
   }
 
   .euiButtonFacet__text {
     flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: $euiSizeXXL; // For better alignment with icon/quantity
+    line-height: $euiButtonHeight; // For better alignment with icon/quantity
+  }
+
+  .euiButtonFacet__spinner,
+  .euiButtonFacet__quantity,
+  .euiButtonFacet__icon {
+    flex-shrink: 0; // Ensures they don't scale down below their intended size
+  }
+
+  .euiButtonFacet__quantity,
+  .euiButtonFacet__icon {
+    transition: all $euiAnimSpeedFast ease-in;
   }
 
   .euiButtonFacet__quantity {
-    flex-shrink: 0;
-
     // Increase the default size a bit
     $size: $euiSize + $euiSizeXS;
     line-height:$size;
@@ -44,8 +44,9 @@
     min-width: $euiSizeL;
   }
 
-  &:not(.euiButtonFacet--isSelected) .euiButtonFacet__quantity,
+  &.euiButtonFacet--unSelected .euiButtonFacet__quantity,
   &:disabled .euiButtonFacet__quantity {
+    // Change the default coloring when it's not selected
     background-color: tint($euiColorLightShade, 30%);
     color: $euiColorFullShade;
   }
@@ -71,7 +72,7 @@
       cursor: not-allowed;
     }
 
-    .euiButton__icon,
+    .euiButtonFacet__icon,
     .euiButtonFacet__quantity {
       opacity: .5;
     }

@@ -3,7 +3,7 @@
 exports[`EuiButtonFacet is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonFacet testClass1 testClass2"
+  class="euiButtonFacet euiButtonFacet--unSelected testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >

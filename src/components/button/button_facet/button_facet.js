@@ -29,6 +29,7 @@ export const EuiButtonFacet = ({
     'euiButtonFacet',
     {
       'euiButtonFacet--isSelected': isSelected,
+      'euiButtonFacet--unSelected': !isSelected,
     },
     className,
   );
@@ -39,7 +40,7 @@ export const EuiButtonFacet = ({
   if (isLoading) {
     buttonQuantity = (
       <EuiLoadingSpinner
-        className="euiButton__spinner"
+        className="euiButtonFacet__spinner"
         size="m"
       />
     );
@@ -59,7 +60,7 @@ export const EuiButtonFacet = ({
   if (icon) {
     buttonIcon = React.cloneElement(
       icon,
-      { className: 'euiButton__icon' },
+      { className: 'euiButtonFacet__icon' },
     );
   }
 
