@@ -62,7 +62,7 @@ export const ModalExample = {
     props: { EuiConfirmModal },
     demo: <ConfirmModal />,
   }, {
-    title: 'Overflow overflow test',
+    title: 'Overflow test',
     source: [{
       type: GuideSectionTypes.JS,
       code: overflowTestSource,

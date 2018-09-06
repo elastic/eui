@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.9.0`.
+- Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
 
 ## [`3.9.0`](https://github.com/elastic/eui/tree/v3.9.0)
 
