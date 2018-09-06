@@ -10,3 +10,4 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Proper documentation examples were added
 - [ ] A changelog entry exists and is marked appropriately
 - [ ] This was checked for breaking changes or labeled appropriately
+- [ ] Jest tests were added to match the most common scenarios
