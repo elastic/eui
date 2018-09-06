@@ -4,6 +4,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 
 ### Checklist
 
+- [ ] This works well on mobile
 - [ ] This was checked in IE11
 - [ ] This was checked in dark mode
 - [ ] Any props added have proper autodocs
