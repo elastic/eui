@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-
+import ResizeObserver from 'resize-observer-polyfill';
 import {
   EuiFilterButton,
   EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiMutationObserver,
 } from '../../../../src/components';
 
 import { GlobalFilterBar } from './global_filter_bar';
@@ -58,6 +57,8 @@ export default class extends Component {
       ],
       query: '',
     };
+
+    this.ro = new ResizeObserver(this.setFilterBarHeight);
   }
 
   setFilterBarHeight = () => {
@@ -69,10 +70,12 @@ export default class extends Component {
 
   componentDidMount() {
     this.setFilterBarHeight();
+    this.ro.observe(this.filterBar);
   }
 
   componentDidUpdate() {
     this.setFilterBarHeight();
+    this.ro.unobserve(this.filterBar);
   }
 
   toggleFilterVisibility = () => {
@@ -132,28 +135,22 @@ export default class extends Component {
           ref={node => { this.filterBarWrapper = node; }}
           className={classes}
         >
-          <EuiMutationObserver
-            observerOptions={{ childList: true, subtree: true }}
-            onMutation={this.setFilterBarHeight}
-          >
-            <div ref={this.setFilterBarRef}>
-              <EuiFlexGroup
-                className="globalFilterGroup"
-                gutterSize="none"
-                alignItems="flexStart"
-                responsive={false}
-              >
-                <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
-                  <GlobalFilterOptions />
-                </EuiFlexItem>
+          <div ref={this.setFilterBarRef}>
+            <EuiFlexGroup
+              className="globalFilterGroup"
+              gutterSize="none"
+              alignItems="flexStart"
+              responsive={false}
+            >
+              <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
+                <GlobalFilterOptions />
+              </EuiFlexItem>
 
-                <EuiFlexItem>
-                  <GlobalFilterBar className="globalFilterGroup__filterBar" filters={this.state.filters} />
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>
-
-          </EuiMutationObserver>
+              <EuiFlexItem>
+                <GlobalFilterBar className="globalFilterGroup__filterBar" filters={this.state.filters} />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
         </div>
 
       </React.Fragment>
