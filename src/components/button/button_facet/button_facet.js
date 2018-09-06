@@ -100,7 +100,7 @@ EuiButtonFacet.propTypes = {
   isSelected: PropTypes.bool,
 
   /**
-   * Adds a notification indicator for displaying the buttonQuantity provided
+   * Adds a notification indicator for displaying the quantity provided
    */
   quantity: PropTypes.number,
 
