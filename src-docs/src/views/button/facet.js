@@ -56,6 +56,7 @@ export default class extends Component {
     }, {
       id: 'facet5',
       label: 'Just here to show truncation of really long labels',
+      quantity: 0,
       iconColor: VISUALIZATION_COLORS[5],
     }];
   }

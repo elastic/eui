@@ -44,7 +44,7 @@ export const EuiButtonFacet = ({
         size="m"
       />
     );
-  } else if (quantity) {
+  } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
         className="euiButtonFacet__quantity"
