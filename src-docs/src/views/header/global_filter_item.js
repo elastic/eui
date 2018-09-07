@@ -143,8 +143,9 @@ export class GlobalFilterItem extends Component {
           icon: 'pencil',
           panel: {
             id: 1,
+            width: 400,
             content: (
-              <div style={{ padding: 16, maxWidth: 400 }}>
+              <div style={{ padding: 16 }}>
                 <GlobalFilterForm
                   selectedObject={selectedObject}
                   onAdd={this.closePopover}
