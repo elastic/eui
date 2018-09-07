@@ -11,11 +11,10 @@ exports[`EuiContextMenu is rendered 1`] = `
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
 <div
   class="euiContextMenu"
-  style="height: 0px; width: 0px;"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    style="width: 256px;"
     tabindex="0"
   >
     <button
@@ -66,11 +65,10 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 2`] = `
 <div
   class="euiContextMenu"
-  style="height: 0px; width: 0px;"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txOutRight"
-    style="width: 256px;"
     tabindex="0"
   >
     <button
@@ -117,7 +115,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
   </div>
   <div
     class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txInRight"
-    style="width: 256px;"
     tabindex="0"
   >
     <button
@@ -273,7 +270,6 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    style="width:256px"
     tabindex="0"
   >
     <button

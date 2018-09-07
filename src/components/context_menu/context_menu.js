@@ -274,17 +274,13 @@ export class EuiContextMenu extends Component {
       onClose = () => window.requestAnimationFrame(this.showPreviousPanel);
     }
 
-    const style = { width: panel.width || 256 };
-
     return (
       <EuiContextMenuPanel
         key={panelId}
         className="euiContextMenu__panel"
         onHeightChange={(transitionType === 'in') ? this.onIncomingPanelHeightChange : undefined}
-        onWidthChange={(transitionType === 'in') ? this.onIncomingPanelWidthChange : undefined}
         onTransitionComplete={(transitionType === 'out') ? this.onOutGoingPanelTransitionComplete : undefined}
         title={panel.title}
-        style={style}
         onClose={onClose}
         transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
         transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
