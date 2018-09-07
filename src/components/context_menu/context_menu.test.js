@@ -17,6 +17,7 @@ const panel2 = {
 const panel1 = {
   id: 1,
   title: '1',
+  width: 400,
   items: [{
     name: '2a',
     panel: 2,

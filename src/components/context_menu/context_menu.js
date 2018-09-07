@@ -184,16 +184,6 @@ export class EuiContextMenu extends Component {
     });
   };
 
-  onIncomingPanelWidthChange = width => {
-    this.setState(({ width: prevWidth }) => {
-      if (width === prevWidth) {
-        return null;
-      } else {
-        return { width };
-      }
-    });
-  };
-
   onOutGoingPanelTransitionComplete = () => {
     this.setState({
       isOutgoingPanelVisible: false,
@@ -311,12 +301,17 @@ export class EuiContextMenu extends Component {
       outgoingPanel = this.renderPanel(this.state.outgoingPanelId, 'out');
     }
 
+    const width =
+      this.state.idToPanelMap[this.state.incomingPanelId] &&
+      this.state.idToPanelMap[this.state.incomingPanelId].width ?
+        this.state.idToPanelMap[this.state.incomingPanelId].width : undefined;
+
     const classes = classNames('euiContextMenu', className);
 
     return (
       <div
         className={classes}
-        style={{ height: this.state.height, width: this.state.width }}
+        style={{ height: this.state.height, width: width }}
         {...rest}
       >
         {outgoingPanel}
