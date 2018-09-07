@@ -32,8 +32,9 @@ export const section = {
       </p>
       <ul>
         <li>
-          There can only be a single action tool visible per row. When more than one action is defined,
-          they will collapse under a single popover represented by the gear icon.
+          There can only be up to 2 actions visible per row. When more than two actions are defined,
+          the first 2 `isPrimary` actions will stay visible, an ellipses icon button will hold all actions
+          in a single popover.
         </li>
         <li>
           Actions are only visible when the user hovers over the row with the mouse.

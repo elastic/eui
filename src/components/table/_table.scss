@@ -170,29 +170,37 @@
 }
 
 .euiTableCellContent--showOnHover {
-  .euiTableCellContent__hoverItem {
+  > *:not(:first-child) {
     margin-left: $euiSizeS;
-    flex-shrink: 0;
-    opacity: 0.5;
-    filter: grayscale(100%);
-    transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+}
 
-    .euiTableRow:hover &,
-    &:disabled,
+.euiTableRow-hasActions {
+  .euiTableCellContent--showOnHover {
+    .euiTableCellContent__hoverItem {
+      flex-shrink: 0;
+      opacity: 0.7;
+      filter: grayscale(100%);
+      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+    }
+
+    .expandedItemActions__completelyHide,
+    .expandedItemActions__completelyHide:disabled,
+    .expandedItemActions__completelyHide:disabled:hover,
+    .expandedItemActions__completelyHide:disabled:focus,
+    .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
+      filter: grayscale(0%);
+      opacity: 0;
+    }
+  }
+
+  &:hover .euiTableCellContent--showOnHover .euiTableCellContent__hoverItem:not(:disabled) {
+    &,
     &:hover,
     &:focus {
       opacity: 1;
       filter: grayscale(0%);
     }
-  }
-
-  .expandedItemActions__completelyHide,
-  .expandedItemActions__completelyHide:disabled,
-  .expandedItemActions__completelyHide:disabled:hover,
-  .expandedItemActions__completelyHide:disabled:focus,
-  .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
-    filter: grayscale(0%);
-    opacity: 0;
   }
 }
 

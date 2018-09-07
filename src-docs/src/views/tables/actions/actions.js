@@ -92,13 +92,15 @@ export class Table extends Component {
     }
 
     return (
-      <EuiButton
-        color="danger"
-        iconType="trash"
-        onClick={this.onClickDelete}
-      >
-        Delete {selectedItems.length} Users
-      </EuiButton>
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          color="danger"
+          iconType="trash"
+          onClick={this.onClickDelete}
+        >
+          Delete {selectedItems.length} Users
+        </EuiButton>
+      </EuiFlexItem>
     );
   }
 
@@ -160,12 +162,12 @@ export class Table extends Component {
         }]
         : [{
           name: 'Clone',
-          description: 'Clone this person',
+          description: 'Clone this user',
           icon: 'copy',
           onClick: this.cloneUser
         }, {
           name: 'Delete',
-          description: 'Delete this person',
+          description: 'Delete this user',
           icon: 'trash',
           color: 'danger',
           type: 'icon',
@@ -174,14 +176,14 @@ export class Table extends Component {
         }, {
           name: 'Edit',
           isPrimary: true,
-          description: 'Edit this person',
+          description: 'Edit this user',
           icon: 'pencil',
           type: 'icon',
           onClick: () => {},
         }, {
           name: 'Share',
           isPrimary: true,
-          description: 'Share this person',
+          description: 'Share this user',
           icon: 'share',
           type: 'icon',
           onClick: () => {},
@@ -202,7 +204,7 @@ export class Table extends Component {
         }]
         : [{
           name: 'Delete',
-          description: 'Delete this person',
+          description: 'Delete this user',
           icon: 'trash',
           color: 'danger',
           type: 'icon',
@@ -285,7 +287,6 @@ export class Table extends Component {
     return (
       <Fragment>
         <EuiFlexGroup alignItems="center">
-          {deleteButton}
           <EuiFlexItem grow={false}>
             <EuiSwitch
               label="Multiple Actions"
@@ -300,6 +301,8 @@ export class Table extends Component {
               onChange={this.toggleCustomAction}
             />
           </EuiFlexItem>
+          <EuiFlexItem />
+          {deleteButton}
         </EuiFlexGroup>
 
         <EuiSpacer size="l" />
@@ -311,8 +314,7 @@ export class Table extends Component {
           pagination={pagination}
           sorting={sorting}
           selection={selection}
-          isSelectable={true}
-          hasActions={true}
+          hasActions={customAction ? false : true}
           onChange={this.onTableChange}
         />
       </Fragment>

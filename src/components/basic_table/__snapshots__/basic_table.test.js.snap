@@ -776,6 +776,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           key="row_1"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -807,6 +808,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           key="row_2"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -838,6 +840,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           key="row_3"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1026,6 +1029,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           key="row_1"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1057,6 +1061,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           key="row_2"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1088,6 +1093,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           key="row_3"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1197,6 +1203,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           key="row_1"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1256,6 +1264,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           key="row_2"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1315,6 +1325,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           key="row_3"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1445,6 +1457,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           key="row_1"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1476,6 +1489,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           key="row_2"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1507,6 +1521,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           key="row_3"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1609,6 +1624,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           key="row_1"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1640,6 +1656,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           key="row_2"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1671,6 +1688,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           key="row_3"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1780,6 +1798,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           key="row_1"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1845,6 +1865,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           key="row_2"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -1910,6 +1932,8 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           key="row_3"
         >
           <EuiTableRow
+            hasActions={true}
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -2046,6 +2070,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           key="row_1"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -2077,6 +2102,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           key="row_2"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox
@@ -2108,6 +2134,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           key="row_3"
         >
           <EuiTableRow
+            isSelectable={true}
             isSelected={false}
           >
             <EuiTableRowCellCheckbox

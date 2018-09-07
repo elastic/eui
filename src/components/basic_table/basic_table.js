@@ -552,13 +552,17 @@ export class EuiBasicTable extends Component {
       getItemId(selectedItem, itemIdCallback) === itemId
     ));
 
+    let calculatedHasSelection;
     if (selection) {
       cells.push(this.renderItemSelectionCell(itemId, item, selected));
+      calculatedHasSelection = true;
     }
 
+    let calculatedHasActions;
     columns.forEach((column, columnIndex) => {
       if (column.actions) {
         cells.push(this.renderItemActionsCell(itemId, item, column, columnIndex, rowIndex));
+        calculatedHasActions = true;
       } else if (column.field) {
         cells.push(this.renderItemFieldDataCell(itemId, item, column, columnIndex));
       } else {
@@ -593,9 +597,9 @@ export class EuiBasicTable extends Component {
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
           aria-owns={expandedRowId}
-          isSelectable={isSelectable}
+          isSelectable={typeof isSelectable === 'boolean' ? isSelectable : calculatedHasSelection}
           isSelected={selected}
-          hasActions={hasActions}
+          hasActions={typeof hasActions === 'boolean' ? hasActions : calculatedHasActions}
           isExpandable={isExpandable}
           {...rowProps}
         >
