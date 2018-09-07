@@ -28,6 +28,7 @@ export class EuiContextMenuPanel extends Component {
     title: PropTypes.node,
     onClose: PropTypes.func,
     onHeightChange: PropTypes.func,
+    onWidthChange: PropTypes.func,
     transitionType: PropTypes.oneOf(['in', 'out']),
     transitionDirection: PropTypes.oneOf(['next', 'previous']),
     onTransitionComplete: PropTypes.func,
@@ -55,7 +56,8 @@ export class EuiContextMenuPanel extends Component {
       menuItems: [],
       isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
-      currentHeight: undefined
+      currentHeight: undefined,
+      currentWidth: undefined,
     };
   }
 
@@ -323,15 +325,31 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
+  updateWidth() {
+    console.log(this.panel, this.panel ? this.panel.clientWidth : 0);
+    const currentWidth = this.panel ? this.panel.clientWidth : 0;
+
+    if (this.state.width !== currentWidth) {
+      if (this.props.onWidthChange) {
+        this.props.onWidthChange(currentWidth);
+
+        this.setState({ width: currentWidth });
+      }
+    }
+    console.log(this.state.width, currentWidth);
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.items.length > 0 || this.props.items.length > 0) {
       // content comes from items
       if (this.didItemsChange(prevProps.items, this.props.items)) {
         this.updateHeight();
+        this.updateWidth();
       }
     } else {
       // content comes from children
       this.updateHeight();
+      this.updateWidth();
     }
 
     this.updateFocus();
@@ -350,6 +368,7 @@ export class EuiContextMenuPanel extends Component {
     this.panel = node;
 
     this.updateHeight();
+    this.updateWidth();
   };
 
   contentRef = node => {
@@ -363,6 +382,7 @@ export class EuiContextMenuPanel extends Component {
       onClose,
       title,
       onHeightChange, // eslint-disable-line no-unused-vars
+      onWidthChange, // eslint-disable-line no-unused-vars
       transitionType,
       transitionDirection,
       onTransitionComplete, // eslint-disable-line no-unused-vars

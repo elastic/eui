@@ -63,6 +63,7 @@ export const EuiContextMenuPanelItemShape = PropTypes.shape({
 
 export const EuiContextMenuPanelShape = PropTypes.shape({
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.number,  // Pixel value to set the panel width to
   content: PropTypes.node,  // Either content or items array should be given.
   items: PropTypes.arrayOf(EuiContextMenuPanelItemShape),
   title: PropTypes.string,
@@ -105,6 +106,7 @@ export class EuiContextMenu extends Component {
       idToRenderedItemsMap: {},
 
       height: undefined,
+      width: undefined,
       outgoingPanelId: undefined,
       incomingPanelId: props.initialPanelId,
       transitionDirection: undefined,
@@ -178,6 +180,16 @@ export class EuiContextMenu extends Component {
         return null;
       } else {
         return { height };
+      }
+    });
+  };
+
+  onIncomingPanelWidthChange = width => {
+    this.setState(({ width: prevWidth }) => {
+      if (width === prevWidth) {
+        return null;
+      } else {
+        return { width };
       }
     });
   };
@@ -262,13 +274,17 @@ export class EuiContextMenu extends Component {
       onClose = () => window.requestAnimationFrame(this.showPreviousPanel);
     }
 
+    const style = { width: panel.width || 256 };
+
     return (
       <EuiContextMenuPanel
         key={panelId}
         className="euiContextMenu__panel"
         onHeightChange={(transitionType === 'in') ? this.onIncomingPanelHeightChange : undefined}
+        onWidthChange={(transitionType === 'in') ? this.onIncomingPanelWidthChange : undefined}
         onTransitionComplete={(transitionType === 'out') ? this.onOutGoingPanelTransitionComplete : undefined}
         title={panel.title}
+        style={style}
         onClose={onClose}
         transitionType={this.state.isOutgoingPanelVisible ? transitionType : undefined}
         transitionDirection={this.state.isOutgoingPanelVisible ? this.state.transitionDirection : undefined}
@@ -304,7 +320,7 @@ export class EuiContextMenu extends Component {
     return (
       <div
         className={classes}
-        style={{ height: this.state.height }}
+        style={{ height: this.state.height, width: this.state.width }}
         {...rest}
       >
         {outgoingPanel}

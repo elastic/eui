@@ -90,11 +90,17 @@ export const ContextMenuExample = {
       code: contextMenuWithContentHtml,
     }],
     text: (
-      <p>
-        Context menu panels can be passed React elements through the
-        <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>. The panel
-        will display your custom content without modification.
-      </p>
+      <div>
+        <p>
+          Context menu panels can be passed React elements through the
+          <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>. The panel
+          will display your custom content without modification.
+        </p>
+        <p>
+          If your panel contents have different widths or you need to ensure that a specific
+          context menu panel has a certain width, add <code>width: [number of pixels]</code> to the panel tree.
+        </p>
+      </div>
     ),
     demo: <ContextMenuWithContent />,
   }],
