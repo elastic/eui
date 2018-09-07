@@ -6,8 +6,7 @@ $euiContextMenuWidth: $euiSize * 16;
   position: relative;
   overflow: hidden;
   transition:
-    height $euiAnimSpeedFast $euiAnimSlightResistance,
-    width $euiAnimSpeedFast $euiAnimSlightResistance;
+    height $euiAnimSpeedFast $euiAnimSlightResistance;
   border-radius: $euiBorderRadius;
 
   .euiContextMenu__content {
