@@ -10,7 +10,7 @@
   @include euiBottomShadowLarge($adjustBorders: true);
   display: flex; /* 1 */
 
-  position: relatie;
+  position: relative;
   background-color: $euiColorEmptyShade;
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
