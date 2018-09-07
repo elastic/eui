@@ -106,6 +106,17 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <table
             className="euiTable euiTable--responsive"
           >
+            <EuiScreenReaderOnly>
+              <caption
+                aria-live="assertive"
+                className="euiScreenReaderOnly"
+                role="status"
+              >
+                Below is a table of 
+                2
+                 items.
+              </caption>
+            </EuiScreenReaderOnly>
             <EuiTableHeader>
               <thead>
                 <tr>
