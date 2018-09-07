@@ -106,7 +106,6 @@ export class EuiContextMenu extends Component {
       idToRenderedItemsMap: {},
 
       height: undefined,
-      width: undefined,
       outgoingPanelId: undefined,
       incomingPanelId: props.initialPanelId,
       transitionDirection: undefined,
