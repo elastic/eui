@@ -13,4 +13,17 @@ describe('EuiFacetGroup', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('layout', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiFacetGroup layout="horizontal" />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+  });
 });
