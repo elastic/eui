@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isString } from '../../services/predicate';
-import { EuiButton, EuiButtonIcon } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 
 const defaults = {
@@ -41,17 +41,17 @@ export class DefaultItemAction extends Component {
       );
     } else {
       button = (
-        <EuiButton
+        <EuiButtonEmpty
           className={className}
           size="s"
           isDisabled={!enabled}
           color={color}
           iconType={icon}
-          fill={false}
           onClick={onClick}
+          flush="right"
         >
           {action.name}
-        </EuiButton>
+        </EuiButtonEmpty>
       );
     }
 

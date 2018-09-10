@@ -6,9 +6,9 @@ exports[`DefaultItemAction render - button 1`] = `
   delay="long"
   position="top"
 >
-  <EuiButton
+  <EuiButtonEmpty
     color="primary"
-    fill={false}
+    flush="right"
     iconSide="left"
     isDisabled={false}
     onClick={[Function]}
@@ -16,7 +16,7 @@ exports[`DefaultItemAction render - button 1`] = `
     type="button"
   >
     action1
-  </EuiButton>
+  </EuiButtonEmpty>
 </EuiToolTip>
 `;
 
