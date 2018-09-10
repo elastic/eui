@@ -8,10 +8,6 @@ export {
 } from './button_empty';
 
 export {
-  EuiButtonFacet,
-} from './button_facet';
-
-export {
   EuiButtonIcon,
 } from './button_icon';
 

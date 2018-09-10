@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { requiredProps } from '../../test/required_props';
 
-import { EuiButtonFacet } from './button_facet';
-import { EuiIcon } from '../../icon';
+import { EuiFacetButton } from './facet_button';
+import { EuiIcon } from '../icon';
 
-describe('EuiButtonFacet', () => {
+describe('EuiFacetButton', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonFacet {...requiredProps}>
+      <EuiFacetButton {...requiredProps}>
         Content
-      </EuiButtonFacet>
+      </EuiFacetButton>
     );
 
     expect(component)
@@ -21,7 +21,7 @@ describe('EuiButtonFacet', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonFacet isDisabled />
+          <EuiFacetButton isDisabled />
         );
 
         expect(component)
@@ -32,7 +32,7 @@ describe('EuiButtonFacet', () => {
     describe('isLoading', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonFacet isLoading />
+          <EuiFacetButton isLoading />
         );
 
         expect(component)
@@ -43,7 +43,7 @@ describe('EuiButtonFacet', () => {
     describe('isSelected', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonFacet isSelected />
+          <EuiFacetButton isSelected />
         );
 
         expect(component)
@@ -54,7 +54,7 @@ describe('EuiButtonFacet', () => {
     describe('quantity', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonFacet quantity={60} />
+          <EuiFacetButton quantity={60} />
         );
 
         expect(component)
@@ -65,7 +65,7 @@ describe('EuiButtonFacet', () => {
     describe('icon', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiButtonFacet icon={<EuiIcon type="dot" />} />
+          <EuiFacetButton icon={<EuiIcon type="dot" />} />
         );
 
         expect(component)
@@ -77,7 +77,7 @@ describe('EuiButtonFacet', () => {
       it('supports onClick', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiButtonFacet onClick={handler} />
+          <EuiFacetButton onClick={handler} />
         );
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);

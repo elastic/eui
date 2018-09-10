@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 import  {
   EuiNotificationBadge
-} from '../../badge';
+} from '../badge';
 
 import {
   EuiLoadingSpinner
-} from '../../loading';
+} from '../loading';
 
-export const EuiButtonFacet = ({
+export const EuiFacetButton = ({
   children,
   className,
   icon,
@@ -26,10 +26,10 @@ export const EuiButtonFacet = ({
   isDisabled = isLoading ? true : isDisabled;
 
   const classes = classNames(
-    'euiButtonFacet',
+    'euiFacetButton',
     {
-      'euiButtonFacet--isSelected': isSelected,
-      'euiButtonFacet--unSelected': !isSelected,
+      'euiFacetButton--isSelected': isSelected,
+      'euiFacetButton--unSelected': !isSelected,
     },
     className,
   );
@@ -40,14 +40,14 @@ export const EuiButtonFacet = ({
   if (isLoading) {
     buttonQuantity = (
       <EuiLoadingSpinner
-        className="euiButtonFacet__spinner"
+        className="euiFacetButton__spinner"
         size="m"
       />
     );
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
-        className="euiButtonFacet__quantity"
+        className="euiFacetButton__quantity"
       >
         {quantity}
       </EuiNotificationBadge>
@@ -60,7 +60,7 @@ export const EuiButtonFacet = ({
   if (icon) {
     buttonIcon = React.cloneElement(
       icon,
-      { className: 'euiButtonFacet__icon' },
+      { className: 'euiFacetButton__icon' },
     );
   }
 
@@ -73,16 +73,16 @@ export const EuiButtonFacet = ({
       ref={buttonRef}
       {...rest}
     >
-      <span className="euiButtonFacet__content">
+      <span className="euiFacetButton__content">
         {buttonIcon}
-        <span className="euiButtonFacet__text">{children}</span>
+        <span className="euiFacetButton__text">{children}</span>
         {buttonQuantity}
       </span>
     </button>
   );
 };
 
-EuiButtonFacet.propTypes = {
+EuiFacetButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   icon: PropTypes.node,
@@ -107,7 +107,7 @@ EuiButtonFacet.propTypes = {
   buttonRef: PropTypes.func,
 };
 
-EuiButtonFacet.defaultProps = {
+EuiFacetButton.defaultProps = {
   isDisabled: false,
   isLoading: false,
   isSelected: false,

@@ -4,7 +4,7 @@
  * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
  * 3. Make sure the quantity doesn't get an underline on hover
  */
-.euiButtonFacet {
+.euiFacetButton {
   @include euiButton;
   @include euiFontSizeS;
   text-align: left;
@@ -14,29 +14,29 @@
   transition-timing-function: ease-in; /* 2 */
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
-  .euiButtonFacet__content {
+  .euiFacetButton__content {
     @include euiButtonContent;
   }
 
-  .euiButtonFacet__text {
+  .euiFacetButton__text {
     flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: $euiButtonHeight; // For better alignment with icon/quantity
   }
 
-  .euiButtonFacet__spinner,
-  .euiButtonFacet__quantity,
-  .euiButtonFacet__icon {
+  .euiFacetButton__spinner,
+  .euiFacetButton__quantity,
+  .euiFacetButton__icon {
     flex-shrink: 0; // Ensures they don't scale down below their intended size
   }
 
-  .euiButtonFacet__quantity,
-  .euiButtonFacet__icon {
+  .euiFacetButton__quantity,
+  .euiFacetButton__icon {
     transition: all $euiAnimSpeedFast ease-in;
   }
 
-  .euiButtonFacet__quantity {
+  .euiFacetButton__quantity {
     // Increase the default size a bit
     $size: $euiSize + $euiSizeXS;
     line-height:$size;
@@ -44,8 +44,8 @@
     min-width: $euiSizeL;
   }
 
-  &.euiButtonFacet--unSelected .euiButtonFacet__quantity,
-  &:disabled .euiButtonFacet__quantity {
+  &.euiFacetButton--unSelected .euiFacetButton__quantity,
+  &:disabled .euiFacetButton__quantity {
     // Change the default coloring when it's not selected
     background-color: tint($euiColorLightShade, 30%);
     color: $euiColorFullShade;
@@ -54,7 +54,7 @@
   &:hover, &:focus {
     text-decoration: none !important; /* 3 */
 
-    &:not(:disabled) .euiButtonFacet__text {
+    &:not(:disabled) .euiFacetButton__text {
       text-decoration: underline; /* 3 */
     }
   }
@@ -67,13 +67,13 @@
     color: $euiButtonColorDisabled;
     pointer-events: none;
 
-    .euiButtonFacet__content {
+    .euiFacetButton__content {
       pointer-events: auto;
       cursor: not-allowed;
     }
 
-    .euiButtonFacet__icon,
-    .euiButtonFacet__quantity {
+    .euiFacetButton__icon,
+    .euiFacetButton__quantity {
       opacity: .5;
     }
 
@@ -87,6 +87,6 @@
   }
 }
 
-.euiButtonFacet--isSelected .euiButtonFacet__text {
+.euiFacetButton--isSelected .euiFacetButton__text {
   font-weight: $euiFontWeightBold;
 }

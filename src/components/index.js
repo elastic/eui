@@ -28,7 +28,6 @@ export {
 export {
   EuiButton,
   EuiButtonEmpty,
-  EuiButtonFacet,
   EuiButtonIcon,
   EuiButtonToggle,
   EuiButtonGroup,
@@ -103,6 +102,11 @@ export {
   EuiFilterGroup,
   EuiFilterSelectItem
 } from './filter_group';
+
+export {
+  EuiFacetButton,
+  EuiFacetGroup,
+} from './facet';
 
 export {
   EuiFlexGroup,

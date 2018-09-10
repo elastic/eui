@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  EuiButtonFacet,
+  EuiFacetButton,
   EuiFlexGroup,
   EuiIcon,
   EuiAvatar,
@@ -138,7 +138,7 @@ export default class extends Component {
       }
 
       return (
-        <EuiButtonFacet
+        <EuiFacetButton
           key={facet.id}
           id={facet.id}
           quantity={facet.quantity}
@@ -149,7 +149,7 @@ export default class extends Component {
           onClick={facet.onClick ? () => facet.onClick(facet.id) : undefined}
         >
           {facet.label}
-        </EuiButtonFacet>
+        </EuiFacetButton>
       );
     });
 
