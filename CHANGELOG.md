@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `euiButtonFacet` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
 
 ## [`3.9.0`](https://github.com/elastic/eui/tree/v3.9.0)
 

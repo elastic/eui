@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 
 import {
   EuiFacetButton,
-  EuiFlexGroup,
+  EuiFacetGroup,
   EuiIcon,
   EuiAvatar,
-  EuiButton,
+  EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
 
-import {
-  VISUALIZATION_COLORS
-} from '../../../../src/services/color/visualization_colors';
+import { VISUALIZATION_COLORS } from '../../../../src/services/color/visualization_colors';
 
 export default class extends Component {
   constructor(props) {
@@ -26,46 +24,53 @@ export default class extends Component {
       layout: 'vertical',
     };
 
-    this.list = [{
-      id: 'facet0',
-      label: 'Simple, no icon',
-      quantity: 6,
-      iconColor: VISUALIZATION_COLORS[0],
-      onClick: this.facet0Clicked,
-    }, {
-      id: 'facet1',
-      label: 'Label or color indicator',
-      quantity: 60,
-      iconColor: VISUALIZATION_COLORS[1],
-      onClick: this.facet1Clicked,
-    }, {
-      id: 'facet2',
-      label: 'Disable all others',
-      quantity: 600,
-      iconColor: VISUALIZATION_COLORS[2],
-      onClick: this.facet2Clicked,
-    }, {
-      id: 'facet3',
-      label: 'Avatars instead of icons',
-      quantity: 60,
-      iconColor: VISUALIZATION_COLORS[3],
-      onClick: this.facet3Clicked,
-    }, {
-      id: 'facet4',
-      label: 'Show all as loading',
-      quantity: 6,
-      iconColor: VISUALIZATION_COLORS[4],
-      onClick: this.facet4Clicked,
-    }, {
-      id: 'facet5',
-      label: 'Just here to show truncation of really long labels',
-      quantity: 0,
-      iconColor: VISUALIZATION_COLORS[5],
-    }];
+    this.list = [
+      {
+        id: 'facet0',
+        label: 'Simple, no icon',
+        quantity: 6,
+        iconColor: VISUALIZATION_COLORS[0],
+        onClick: this.facet0Clicked,
+      },
+      {
+        id: 'facet1',
+        label: 'Label or color indicator',
+        quantity: 60,
+        iconColor: VISUALIZATION_COLORS[1],
+        onClick: this.facet1Clicked,
+      },
+      {
+        id: 'facet2',
+        label: 'Disable all others',
+        quantity: 600,
+        iconColor: VISUALIZATION_COLORS[2],
+        onClick: this.facet2Clicked,
+      },
+      {
+        id: 'facet3',
+        label: 'Avatars instead of icons',
+        quantity: 60,
+        iconColor: VISUALIZATION_COLORS[3],
+        onClick: this.facet3Clicked,
+      },
+      {
+        id: 'facet4',
+        label: 'Show all as loading',
+        quantity: 6,
+        iconColor: VISUALIZATION_COLORS[4],
+        onClick: this.facet4Clicked,
+      },
+      {
+        id: 'facet5',
+        label: 'Just here to show truncation of really long labels',
+        quantity: 0,
+        iconColor: VISUALIZATION_COLORS[5],
+      },
+    ];
   }
 
-  facet0Clicked = (id) => {
-    this.setState((prevState) => {
+  facet0Clicked = id => {
+    this.setState(prevState => {
       return {
         icon: false,
         disabled: false,
@@ -74,10 +79,10 @@ export default class extends Component {
         selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
       };
     });
-  }
+  };
 
-  facet1Clicked = (id) => {
-    this.setState((prevState) => {
+  facet1Clicked = id => {
+    this.setState(prevState => {
       return {
         icon: true,
         disabled: false,
@@ -86,19 +91,19 @@ export default class extends Component {
         selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
       };
     });
-  }
+  };
 
-  facet2Clicked = (id) => {
-    this.setState((prevState) => {
+  facet2Clicked = id => {
+    this.setState(prevState => {
       return {
         disabled: prevState.selectedOptionId === id ? false : true,
         selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
       };
     });
-  }
+  };
 
-  facet3Clicked = (id) => {
-    this.setState((prevState) => {
+  facet3Clicked = id => {
+    this.setState(prevState => {
       return {
         icon: false,
         disabled: false,
@@ -107,9 +112,9 @@ export default class extends Component {
         selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
       };
     });
-  }
+  };
 
-  facet4Clicked = (id) => {
+  facet4Clicked = id => {
     this.setState(prevState => ({
       loading: true,
       selectedOptionId: prevState.selectedOptionId === id ? undefined : id,
@@ -123,18 +128,17 @@ export default class extends Component {
         loading: false,
       });
     }, 1200);
-  }
-
+  };
 
   render() {
     const { selectedOptionId, icon, disabled, avatars, loading } = this.state;
 
-    const facets = this.list.map((facet) => {
+    const facets = this.list.map(facet => {
       let iconNode;
       if (icon) {
-        iconNode = (<EuiIcon type="dot" color={facet.iconColor} />);
+        iconNode = <EuiIcon type="dot" color={facet.iconColor} />;
       } else if (avatars) {
-        iconNode = (<EuiAvatar size="s" name={facet.label} />);
+        iconNode = <EuiAvatar size="s" name={facet.label} />;
       }
 
       return (
@@ -153,17 +157,19 @@ export default class extends Component {
       );
     });
 
-    return this.state.layout === 'vertical' ? (
-      <EuiFlexGroup direction="column" gutterSize="none" style={{ maxWidth: '200px' }}>
-        <EuiButton size="s">Toggle layout</EuiButton>
-        <EuiSpacer />
-        {facets}
-      </EuiFlexGroup>
-    ) : (
+    return (
       <div>
-        <EuiButton size="s">Toggle layout</EuiButton>
+        <EuiTitle size="s">
+          <h3>Vertical</h3>
+        </EuiTitle>
+        <EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
+
         <EuiSpacer />
-        {facets}
+
+        <EuiTitle size="s">
+          <h3>Horizontal</h3>
+        </EuiTitle>
+        <EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>
       </div>
     );
   }
