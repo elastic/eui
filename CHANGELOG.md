@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
+- Support field names with `_` characters in search queries ([#1180](https://github.com/elastic/eui/pull/1180))
 
 **Bug fixes**
 
