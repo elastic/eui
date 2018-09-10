@@ -88,7 +88,7 @@ identifier
 
 identifierChar
   = alnum
-  / [-]
+  / [-_]
   / escapedChar
   
 fieldRangeValue
