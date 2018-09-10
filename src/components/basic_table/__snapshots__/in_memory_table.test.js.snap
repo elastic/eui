@@ -108,7 +108,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           >
             <EuiScreenReaderOnly>
               <caption
-                aria-live="assertive"
+                aria-live="polite"
+                aria-relevant="text"
                 className="euiScreenReaderOnly"
                 role="status"
               >

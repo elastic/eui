@@ -392,7 +392,7 @@ export class EuiBasicTable extends Component {
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-live="assertive">Below is a table of {items.length} items.</caption>
+        <caption role="status" aria-relevant="text" aria-live="polite">Below is a table of {items.length} items.</caption>
       </EuiScreenReaderOnly>
     );
   }
