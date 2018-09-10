@@ -59,6 +59,11 @@ import Facet from './facet';
 const facetSource = require('!!raw-loader!./facet');
 const facetHtml = renderToHtml(Facet);
 
+// Import demo into example.
+import FacetLayout from './facet_layout';
+const facetLayoutSource = require('!!raw-loader!./facet_layout');
+const facetLayoutHtml = renderToHtml(FacetLayout);
+
 export const ButtonExample = {
   title: 'Button',
   sections: [
@@ -302,6 +307,25 @@ export const ButtonExample = {
             with <code>isSelected</code>. Other props include <code>isDisabled</code>{' '}
             and <code>isLoading</code> (which will swap the quantity indicator with a loading icon).
           </p>
+        </div>
+      ),
+      demo: <Facet />,
+      props: { EuiButtonFacet },
+    },
+    {
+      title: 'Facet layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: facetLayoutSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: facetLayoutHtml,
+        },
+      ],
+      text: (
+        <div>
           <p>
             On their own, these buttons are inline-block elements which work well in horizontal
             applications. However, to get the layout you see below, wrap the group of buttons
@@ -312,8 +336,7 @@ export const ButtonExample = {
           </p>
         </div>
       ),
-      demo: <Facet />,
-      props: { EuiButtonFacet },
+      demo: <FacetLayout />,
     },
   ],
 };
