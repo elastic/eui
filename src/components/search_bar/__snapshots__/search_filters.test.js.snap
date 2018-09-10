@@ -40,6 +40,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
     key="filter_1"
   >
     <FieldValueSelectionFilter
+      autoClose={true}
       config={
         Object {
           "field": "tag",
