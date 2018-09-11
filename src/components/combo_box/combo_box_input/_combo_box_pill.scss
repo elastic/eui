@@ -5,6 +5,7 @@
   line-height: $euiSizeL - 2px;
 
   &--plainText {
+    line-height: $euiSizeL;
     font-size: $euiFontSizeS;
     font-family: $euiFontFamily;
     padding: 0 $euiSizeXS;

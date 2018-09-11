@@ -12,6 +12,8 @@ export class EuiComboBoxPill extends Component {
     color: PropTypes.string,
     onClose: PropTypes.func,
     asPlainText: PropTypes.bool,
+    onClick: PropTypes.func,
+    onClickAriaLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -30,6 +32,8 @@ export class EuiComboBoxPill extends Component {
       option, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       color,
+      onClick,
+      onClickAriaLabel,
       asPlainText,
       ...rest
     } = this.props;
@@ -54,6 +58,8 @@ export class EuiComboBoxPill extends Component {
           closeButtonProps={{
             tabIndex: '-1',
           }}
+          onClick={onClick}
+          onClickAriaLabel={onClickAriaLabel}
           {...rest}
         >
           {children}
@@ -62,11 +68,22 @@ export class EuiComboBoxPill extends Component {
     }
 
     if (asPlainText) {
-      return <span className={classes} {...rest}>{children}</span>;
+      return (
+        <span className={classes} {...rest}>
+          {children}
+        </span>
+      );
     }
 
     return (
-      <EuiBadge className={classes} title={children} color={color} {...rest}>
+      <EuiBadge
+        className={classes}
+        title={children}
+        color={color}
+        {...rest}
+        onClick={onClick}
+        onClickAriaLabel={onClickAriaLabel}
+      >
         {children}
       </EuiBadge>
     );
