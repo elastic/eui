@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.10.0`.
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
