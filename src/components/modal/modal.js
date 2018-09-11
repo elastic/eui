@@ -23,10 +23,21 @@ export class EuiModal extends Component {
       className,
       children,
       onClose, // eslint-disable-line no-unused-vars
+      maxWidth,
+      style,
       ...rest
     } = this.props;
 
-    const classes = classnames('euiModal', className);
+    let newStyle;
+    let widthClassName;
+    if (maxWidth === true) {
+      widthClassName = 'euiModal--maxWidth-default';
+    } else if (maxWidth !== false) {
+      const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+      newStyle = { ...style, maxWidth: value };
+    }
+
+    const classes = classnames('euiModal', widthClassName, className);
 
     return (
       <FocusTrap
@@ -43,6 +54,7 @@ export class EuiModal extends Component {
           className={classes}
           onKeyDown={this.onKeyDown}
           tabIndex={0}
+          style={newStyle || style}
           {...rest}
         >
           <EuiButtonIcon
@@ -65,4 +77,20 @@ EuiModal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
+  /**
+   * Sets the max-width of the modal.
+   * Set to `true` to use the default (`euiBreakpoints 'm'`),
+   * set to `false` to not restrict the width,
+   * set to a number for a custom width in px,
+   * set to a string for a custom width in custom measurement.
+   */
+  maxWidth: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+};
+
+EuiModal.defaultProps = {
+  maxWidth: true,
 };

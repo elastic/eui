@@ -104,6 +104,11 @@ export {
 } from './filter_group';
 
 export {
+  EuiFacetButton,
+  EuiFacetGroup,
+} from './facet';
+
+export {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,

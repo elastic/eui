@@ -63,6 +63,7 @@ export const EuiContextMenuPanelItemShape = PropTypes.shape({
 
 export const EuiContextMenuPanelShape = PropTypes.shape({
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.number,  // Pixel value to set the panel width to
   content: PropTypes.node,  // Either content or items array should be given.
   items: PropTypes.arrayOf(EuiContextMenuPanelItemShape),
   title: PropTypes.string,
@@ -299,12 +300,17 @@ export class EuiContextMenu extends Component {
       outgoingPanel = this.renderPanel(this.state.outgoingPanelId, 'out');
     }
 
+    const width =
+      this.state.idToPanelMap[this.state.incomingPanelId] &&
+      this.state.idToPanelMap[this.state.incomingPanelId].width ?
+        this.state.idToPanelMap[this.state.incomingPanelId].width : undefined;
+
     const classes = classNames('euiContextMenu', className);
 
     return (
       <div
         className={classes}
-        style={{ height: this.state.height }}
+        style={{ height: this.state.height, width: width }}
         {...rest}
       >
         {outgoingPanel}

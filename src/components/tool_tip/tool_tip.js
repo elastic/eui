@@ -47,6 +47,14 @@ export class EuiToolTip extends Component {
     };
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
@@ -113,7 +121,9 @@ export class EuiToolTip extends Component {
   };
 
   hideToolTip = () => {
-    this.setState({ visible: false });
+    if (this._isMounted) {
+      this.setState({ visible: false });
+    }
   };
 
   onFocus = () => {

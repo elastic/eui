@@ -108,6 +108,9 @@ import { ErrorBoundaryExample }
 import { ExpressionExample }
   from './views/expression/expression_example';
 
+import { FacetExample }
+  from './views/facet/facet_example';
+
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
 
@@ -331,6 +334,7 @@ const navigation = [{
     BreadcrumbsExample,
     ButtonExample,
     ContextMenuExample,
+    FacetExample,
     KeyPadMenuExample,
     LinkExample,
     PaginationExample,

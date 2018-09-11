@@ -1,5 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
+
+## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
+
+- Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
+- Support field names with `_` characters in search queries ([#1180](https://github.com/elastic/eui/pull/1180))
+- Added ability to include multiple fields in a value selection filter for `EuiSearchBar` ([#1179](https://github.com/elastic/eui/pull/1179))
+
+**Bug fixes**
+
+- Fixed an IE11 `EuiModal` width issue by changing the `min-width` to a pixel value ([#1174](https://github.com/elastic/eui/pull/1174))
+
+## [`3.9.0`](https://github.com/elastic/eui/tree/v3.9.0)
+
+- Added `infraApp` icon ([#1161](https://github.com/elastic/eui/pull/1161))
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
 
@@ -9,6 +25,7 @@
 - Fixed `EuiTooltip` to interact correctly when the anchor is a disabled form element ([#1158](https://github.com/elastic/eui/pull/1158))
 - Fixed `EuiButton` (with icon) and `EuiButtonEmpty` truncation ([#1145](https://github.com/elastic/eui/pull/1145))
 - Fixed alignment and coloring of form control clear button ([#1145](https://github.com/elastic/eui/pull/1145))
+- Fixed `EuiToolTip` from setting state after component unmounts ([#1163](https://github.com/elastic/eui/pull/1163))
 
 ## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
 

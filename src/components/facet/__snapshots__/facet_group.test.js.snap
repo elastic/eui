@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFacetGroup is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiFacetGroup props layout is rendered 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup euiFacetGroup--horizontal"
+/>
+`;
