@@ -2,6 +2,7 @@
 
 - Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
 - Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
+- Added patterns for global query and filters ([#1137](https://github.com/elastic/eui/pull/1137))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
