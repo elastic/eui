@@ -402,6 +402,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <EuiButtonIcon
                           aria-label="Previous page"
                           color="text"
+                          data-test-subj="pagination-button-previous"
                           disabled={false}
                           iconSize="m"
                           iconType="arrowLeft"
@@ -411,6 +412,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           <button
                             aria-label="Previous page"
                             className="euiButtonIcon euiButtonIcon--text"
+                            data-test-subj="pagination-button-previous"
                             disabled={false}
                             onClick={[Function]}
                             type="button"
@@ -544,6 +546,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <EuiButtonIcon
                           aria-label="Next page"
                           color="text"
+                          data-test-subj="pagination-button-next"
                           disabled={true}
                           iconSize="m"
                           iconType="arrowRight"
@@ -553,6 +556,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           <button
                             aria-label="Next page"
                             className="euiButtonIcon euiButtonIcon--text"
+                            data-test-subj="pagination-button-next"
                             disabled={true}
                             onClick={[Function]}
                             type="button"
