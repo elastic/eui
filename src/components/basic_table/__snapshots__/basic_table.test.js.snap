@@ -9,6 +9,17 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -92,6 +103,17 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -177,6 +199,17 @@ exports[`EuiBasicTable empty is rendered 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          0
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -213,6 +246,17 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          0
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -257,6 +301,17 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          0
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -293,6 +348,17 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -382,6 +448,17 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -465,6 +542,17 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -548,6 +636,17 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          2
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -617,6 +716,17 @@ exports[`EuiBasicTable with pagination 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -702,6 +812,17 @@ exports[`EuiBasicTable with pagination and error 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -744,6 +865,17 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -891,6 +1023,17 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -991,6 +1134,17 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1155,6 +1309,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1410,6 +1575,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1574,6 +1750,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1738,6 +1925,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -1987,6 +2185,17 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
@@ -2137,6 +2346,17 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"
@@ -2225,6 +2445,17 @@ exports[`EuiBasicTable with sorting 1`] = `
     <EuiTable
       responsive={true}
     >
+      <EuiScreenReaderOnly>
+        <caption
+          aria-live="polite"
+          aria-relevant="text"
+          role="status"
+        >
+          Below is a table of 
+          3
+           items.
+        </caption>
+      </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCell
           align="left"

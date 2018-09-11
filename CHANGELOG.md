@@ -18,6 +18,7 @@
 - Added `infraApp` icon ([#1161](https://github.com/elastic/eui/pull/1161))
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
+- Added proper aria labeling to `EuiSearchBar` and `EuiBasicTable` so searching is properly announced ([#1181](https://github.com/elastic/eui/pull/1181))
 
 **Bug fixes**
 

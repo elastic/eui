@@ -29,6 +29,7 @@ import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 const dataTypesProfiles = {
   auto: {
@@ -341,6 +342,7 @@ export class EuiBasicTable extends Component {
     const { compressed, responsive } = this.props;
 
     const mobileHeader = responsive ? (<EuiTableHeaderMobile>{this.renderTableMobileSort()}</EuiTableHeaderMobile>) : undefined;
+    const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
     return (
@@ -348,7 +350,11 @@ export class EuiBasicTable extends Component {
         ref={element => { this.tableElement = element; }}
       >
         {mobileHeader}
-        <EuiTable responsive={responsive} compressed={compressed}>{head}{body}</EuiTable>
+        <EuiTable responsive={responsive} compressed={compressed}>
+          {caption}
+          {head}
+          {body}
+        </EuiTable>
       </div>
     );
   }
@@ -378,6 +384,17 @@ export class EuiBasicTable extends Component {
     });
 
     return items.length ? <EuiTableSortMobile items={items} /> : null;
+  }
+
+  renderTableCaption() {
+
+    const { items } = this.props;
+
+    return (
+      <EuiScreenReaderOnly>
+        <caption role="status" aria-relevant="text" aria-live="polite">Below is a table of {items.length} items.</caption>
+      </EuiScreenReaderOnly>
+    );
   }
 
   renderTableHead() {
