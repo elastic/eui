@@ -1226,7 +1226,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
               align="right"
               hasActions={true}
               key="record_actions_1_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
@@ -1285,7 +1284,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
               align="right"
               hasActions={true}
               key="record_actions_2_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
@@ -1344,7 +1342,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
               align="right"
               hasActions={true}
               key="record_actions_3_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
@@ -1809,7 +1806,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
               align="right"
               hasActions={true}
               key="record_actions_1_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
@@ -1866,7 +1862,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
               align="right"
               hasActions={true}
               key="record_actions_2_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
@@ -1923,7 +1918,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
               align="right"
               hasActions={true}
               key="record_actions_3_1"
-              showOnHover={true}
               textOnly={false}
             >
               <ExpandedItemActions
