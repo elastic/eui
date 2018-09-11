@@ -597,9 +597,9 @@ export class EuiBasicTable extends Component {
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
           aria-owns={expandedRowId}
-          isSelectable={typeof isSelectable === 'boolean' ? isSelectable : calculatedHasSelection}
+          isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
           isSelected={selected}
-          hasActions={typeof hasActions === 'boolean' ? hasActions : calculatedHasActions}
+          hasActions={hasActions == null ? calculatedHasActions : hasActions}
           isExpandable={isExpandable}
           {...rowProps}
         >
