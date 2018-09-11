@@ -97,6 +97,7 @@ declare module '@elastic/eui' {
     title: string;
     items?: EuiContextMenuPanelItemDescriptor[];
     content?: React.ReactNode;
+    width?: number;
   }
 
   export type EuiContextMenuProps = CommonProps &

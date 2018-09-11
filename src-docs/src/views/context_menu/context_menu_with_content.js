@@ -51,6 +51,7 @@ export default class extends Component {
         icon: 'plusInCircle',
         panel: {
           id: 1,
+          width: 400,
           title: 'See more',
           content: (
             <EuiPanel>
