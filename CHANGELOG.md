@@ -1,12 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
 - Added `delay` prop to `EuiToolTip` ([#1103](https://github.com/elastic/eui/pull/1103))
 
 **Breaking changes**
 
 - `EuiBasicTable` now shows up to 2 actions before condensing to all popover, but still displaying the top/primary 2 actions as well ([#1103](https://github.com/elastic/eui/pull/1103))
 - `EuiBasicTable` will automatically add `hasActions` and `isSelectable` to allow proper responsive style handling, but are still overridable ([#1103](https://github.com/elastic/eui/pull/1103))
+
+## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
+
+- Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
+- Support field names with `_` characters in search queries ([#1180](https://github.com/elastic/eui/pull/1180))
+- Added ability to include multiple fields in a value selection filter for `EuiSearchBar` ([#1179](https://github.com/elastic/eui/pull/1179))
 
 **Bug fixes**
 
