@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.10.0`.
+- Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([{PR_NUM}](https://github.com/elastic/eui/pull/{PR_NUM}))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
