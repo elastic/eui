@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([{PR_NUM}](https://github.com/elastic/eui/pull/{PR_NUM}))
+- Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([#1182](https://github.com/elastic/eui/pull/1182))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
