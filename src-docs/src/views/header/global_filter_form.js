@@ -145,12 +145,6 @@ export default class GlobalFilterForm extends Component {
     });
   }
 
-  componentDidMount() {
-    // Simulate initial load.
-    //this.onSearchChange('');
-    // this.onComboBoxChange(this.props.selectedObject);
-  }
-
   render() {
     const {
       onAdd,
