@@ -3,6 +3,10 @@
 - Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
 - Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
 
+**Bug fixes**
+
+- Fixed `onClickAriaLabel` console error stemming from `EuiComboBoxPill`  ([#1183](https://github.com/elastic/eui/pull/1183))
+
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
 - Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
