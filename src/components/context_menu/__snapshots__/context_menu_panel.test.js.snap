@@ -65,7 +65,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 2`] = `
 <div
   class="euiContextMenu"
-  style="height: 0px;"
+  style="height: 0px; width: 400px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txOutRight"

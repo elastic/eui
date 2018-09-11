@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([#1182](https://github.com/elastic/eui/pull/1182))
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
