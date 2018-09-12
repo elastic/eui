@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.0.0`.
+- Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
+
+**Bug fixes**
+
+- Added background to `readOnly` inputs ([#1188](https://github.com/elastic/eui/pull/1188))
+- Fixed some modal default and responsive sizing ([#1188](https://github.com/elastic/eui/pull/1188))
+
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 
