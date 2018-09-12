@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.0.0`.
+
+## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
+
 - Added `delay` prop to `EuiToolTip` ([#1103](https://github.com/elastic/eui/pull/1103))
 
 **Breaking changes**
