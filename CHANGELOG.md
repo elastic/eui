@@ -1,13 +1,23 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
-- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
 - Added `delay` prop to `EuiToolTip` ([#1103](https://github.com/elastic/eui/pull/1103))
 
 **Breaking changes**
 
 - `EuiBasicTable` now shows up to 2 actions before condensing to all popover, but still displaying the top/primary 2 actions as well ([#1103](https://github.com/elastic/eui/pull/1103))
 - `EuiBasicTable` will automatically add `hasActions` and `isSelectable` to allow proper responsive style handling, but are still overridable ([#1103](https://github.com/elastic/eui/pull/1103))
+
+
+## [`3.11.0`](https://github.com/elastic/eui/tree/v3.11.0)
+
+- Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([#1182](https://github.com/elastic/eui/pull/1182))
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
+- Added patterns for global query and filters ([#1137](https://github.com/elastic/eui/pull/1137))
+
+**Bug fixes**
+
+- Fixed `onClickAriaLabel` console error stemming from `EuiComboBoxPill`  ([#1183](https://github.com/elastic/eui/pull/1183))
 
 ## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
 
@@ -24,6 +34,7 @@
 - Added `infraApp` icon ([#1161](https://github.com/elastic/eui/pull/1161))
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
+- Added proper aria labeling to `EuiSearchBar` and `EuiBasicTable` so searching is properly announced ([#1181](https://github.com/elastic/eui/pull/1181))
 
 **Bug fixes**
 
