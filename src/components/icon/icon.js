@@ -186,6 +186,7 @@ import stopFilled from './assets/stop_filled.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
 import tableOfContents from './assets/tableOfContents.svg';
+import tag from './assets/tag.svg';
 import tear from './assets/tear.svg';
 import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
@@ -402,6 +403,7 @@ const typeToIconMap = {
   storage,
   string,
   tableOfContents,
+  tag,
   tear,
   temperature,
   timelionApp,

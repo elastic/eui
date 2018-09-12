@@ -126,6 +126,7 @@ const iconTypes = [
   'string',
   'temperature',
   'tableOfContents',
+  'tag',
   'tear',
   'trash',
   'user',
