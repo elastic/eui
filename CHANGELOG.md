@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.11.0`.
+- Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 
 ## [`3.11.0`](https://github.com/elastic/eui/tree/v3.11.0)
 
