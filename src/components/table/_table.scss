@@ -170,12 +170,36 @@
 }
 
 .euiTableCellContent--showOnHover {
-  .euiTableCellContent__hoverItem {
-    opacity: 0;
+  > *:not(:first-child) {
+    margin-left: $euiSizeS;
+  }
+}
 
-    .euiTableRow:hover &,
-    &:hover, &:focus {
+.euiTableRow-hasActions {
+  .euiTableCellContent--showOnHover {
+    .euiTableCellContent__hoverItem {
+      flex-shrink: 0;
+      opacity: 0.7;
+      filter: grayscale(100%);
+      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+    }
+
+    .expandedItemActions__completelyHide,
+    .expandedItemActions__completelyHide:disabled,
+    .expandedItemActions__completelyHide:disabled:hover,
+    .expandedItemActions__completelyHide:disabled:focus,
+    .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
+      filter: grayscale(0%);
+      opacity: 0;
+    }
+  }
+
+  &:hover .euiTableCellContent--showOnHover .euiTableCellContent__hoverItem:not(:disabled) {
+    &,
+    &:hover,
+    &:focus {
       opacity: 1;
+      filter: grayscale(0%);
     }
   }
 }

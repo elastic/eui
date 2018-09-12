@@ -16,6 +16,11 @@
   animation: euiToolTipTop $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
   z-index: $euiZLevel9;
 
+  // Animation delays
+  &.euiToolTip--delayLong {
+    animation-delay: $euiAnimSpeedNormal * 5;
+  }
+
   // Custom sizing
   $arrowSize: $euiSizeM;
   $arrowPlusSize: (($arrowSize/2) + 1px) * -1; /* 1 */

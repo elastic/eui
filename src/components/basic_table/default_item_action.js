@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { isString } from '../../services/predicate';
-import { EuiButton, EuiButtonIcon } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiToolTip } from '../tool_tip';
 
 const defaults = {
   color: 'primary'
@@ -21,38 +22,44 @@ export class DefaultItemAction extends Component {
     const onClick = () => action.onClick(item);
     const color = this.resolveActionColor();
     const icon = this.resolveActionIcon();
+
+    let button;
     if (action.type === 'icon') {
       if (!icon) {
         throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
         icon is provided. Make sure to set the 'icon' property of the action`);
       }
-      return (
+      button = (
         <EuiButtonIcon
           className={className}
           aria-label={action.name}
           isDisabled={!enabled}
           color={color}
           iconType={icon}
-          title={action.description}
           onClick={onClick}
         />
       );
+    } else {
+      button = (
+        <EuiButtonEmpty
+          className={className}
+          size="s"
+          isDisabled={!enabled}
+          color={color}
+          iconType={icon}
+          onClick={onClick}
+          flush="right"
+        >
+          {action.name}
+        </EuiButtonEmpty>
+      );
     }
 
-    return (
-      <EuiButton
-        className={className}
-        size="s"
-        isDisabled={!enabled}
-        color={color}
-        iconType={icon}
-        fill={false}
-        title={action.description}
-        onClick={onClick}
-      >
-        {action.name}
-      </EuiButton>
-    );
+    return (enabled && action.description) ? (
+      <EuiToolTip content={action.description} delay="long">
+        {button}
+      </EuiToolTip>
+    ) : button;
   }
 
   resolveActionIcon() {
