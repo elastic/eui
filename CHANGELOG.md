@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.0.1`.
+- Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
 
 ## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
 
