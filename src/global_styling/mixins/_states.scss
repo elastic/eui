@@ -14,20 +14,5 @@ $euiFocusRingSizeLarge: 4px;
   }
 }
 
-@keyframes focusRingAnimate {
-  0% {
-    box-shadow: 0 0 0 6px $euiFocusRingAnimStartColor;
-  }
-  100% {
-    box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
-  }
-}
-
-@keyframes focusRingAnimateLarge {
-  0% {
-    box-shadow: 0 0 0 10px $euiFocusRingAnimStartColor;
-  }
-  100% {
-    box-shadow: 0 0 0 $euiFocusRingSizeLarge $euiFocusRingColor;
-  }
-}
+// Keyframe animation declarations can be found in
+// utility/animations.scss
