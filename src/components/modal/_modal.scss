@@ -30,7 +30,7 @@
 }
 
 .euiModal--confirmation {
-  min-width: 450px;
+  min-width: $euiFormMaxWidth;
 }
 
 .euiModalHeader {
