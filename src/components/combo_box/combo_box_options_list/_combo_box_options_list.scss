@@ -18,10 +18,11 @@
 
   &.euiComboBoxOptionsList--bottom { /* 4 */
     @include euiBottomShadowMedium;
-    z-index: $euiZComboBox + 2;  // Ensures the dropdown's is above the combo box's shadow
   }
   &.euiComboBoxOptionsList--top { /* 4 */
-    @include euiBottomShadowFlat;
+    box-shadow:
+      0 -2px 4px -1px rgba($euiShadowColor, .2),
+      0 0px 2px 0 rgba($euiShadowColor, .2);
   }
 }
 
