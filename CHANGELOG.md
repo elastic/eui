@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
+**Bug fixes**
+
+- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 
