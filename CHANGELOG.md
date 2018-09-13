@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.0.1`.
+**Bug fixes**
+
+- Fixed z-index issue of `EuiComboBoxOptionsList` especiall inside modals ([#1192](https://github.com/elastic/eui/pull/1192))
 
 ## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
 
