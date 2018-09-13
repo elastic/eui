@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.0.1`.
+
+## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
+
 **Bug fixes**
 
 - Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
