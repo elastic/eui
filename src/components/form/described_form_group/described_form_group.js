@@ -56,11 +56,21 @@ export class EuiDescribedFormGroup extends Component {
 
     const ariaProps = {
       'aria-labelledby': `${ariaId}-title`,
-
-      // if user has defined an aria ID, assume they have passed the ID to
-      // the form row describedByIds and skip describedby here
-      'aria-describedby': userAriaId ? null : ariaId,
     };
+
+    let renderedDescription;
+
+    if (description) {
+      renderedDescription = (
+        <EuiText id={ariaId} size="s" color="subdued" className="euiDescribedFormGroup__description">
+          {description}
+        </EuiText>
+      );
+
+      // If user has defined an aria ID, assume they have passed the ID to
+      // the form row describedByIds and skip describedby here.
+      ariaProps['aria-describedby'] = userAriaId ? null : ariaId;
+    }
 
     return (
       <div
@@ -74,10 +84,10 @@ export class EuiDescribedFormGroup extends Component {
             <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescribedFormGroup__title">
               {title}
             </EuiTitle>
-            <EuiText id={ariaId} size="s" color="subdued" className="euiDescribedFormGroup__description">
-              {description}
-            </EuiText>
+
+            {renderedDescription}
           </EuiFlexItem>
+
           <EuiFlexItem className={fieldClasses}>
             {children}
           </EuiFlexItem>
@@ -100,7 +110,7 @@ EuiDescribedFormGroup.propTypes = {
   fullWidth: PropTypes.bool,
   titleSize: PropTypes.oneOf(TITLE_SIZES),
   title: PropTypes.node.isRequired,
-  description: PropTypes.node.isRequired,
+  description: PropTypes.node,
   idAria: PropTypes.string,
 };
 

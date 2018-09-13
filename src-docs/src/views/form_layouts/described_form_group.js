@@ -98,6 +98,18 @@ export default class extends Component {
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
+          idAria="no-description"
+          title={<h3>No description</h3>}
+        >
+          <EuiFormRow
+            label="Text field"
+            describedByIds={['no-description']}
+          >
+            <EuiFieldText name="first" />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+
+        <EuiDescribedFormGroup
           title={<strong>Multiple fields</strong>}
           titleSize="m"
           description="Here are three form rows. The first form row does not have a title."
