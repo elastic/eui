@@ -11,6 +11,14 @@ declare module '@elastic/eui' {
    */
   export interface EuiModalProps {
     onClose: () => void;
+    /**
+     * Sets the max-width of the modal,
+     * set to `true` to use the default size,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    maxWidth?: boolean | number | string;
   }
 
   export const EuiModal: SFC<

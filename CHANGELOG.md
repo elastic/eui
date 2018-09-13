@@ -1,6 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
+- Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
+- Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
+
+**Bug fixes**
+
+- Added background to `readOnly` inputs ([#1188](https://github.com/elastic/eui/pull/1188))
+- Fixed some modal default and responsive sizing ([#1188](https://github.com/elastic/eui/pull/1188))
 
 ## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
 

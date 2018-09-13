@@ -30,8 +30,7 @@
 }
 
 .euiModal--confirmation {
-  width: 450px;
-  min-width: auto;
+  min-width: $euiFormMaxWidth;
 }
 
 .euiModalHeader {
@@ -100,7 +99,8 @@
 @include euiBreakpoint('xs','s') {
   .euiModal {
     position: fixed;
-    width: calc(100vw + 2px);
+    width: calc(100vw + 2px) !important;
+    max-width: none !important;
     left: 0;
     right: 0;
     bottom: 0;

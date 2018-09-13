@@ -190,6 +190,7 @@ declare module '@elastic/eui' {
     | 'storage'
     | 'string'
     | 'tableOfContents'
+    | 'tag'
     | 'tear'
     | 'temperature'
     | 'timelionApp'
