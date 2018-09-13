@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { dropWhile, slice } from 'lodash';
 import {
   formatAuto, formatBoolean, formatDate, formatNumber, formatText, LEFT_ALIGNMENT, PropertySortType,
   RIGHT_ALIGNMENT, SortDirection
@@ -63,6 +64,7 @@ const DefaultItemActionType = PropTypes.shape({
   onClick: PropTypes.func.isRequired, // (item) => void,
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
+  isPrimary: PropTypes.bool,
   icon: PropTypes.oneOfType([ // required when type is 'icon'
     PropTypes.oneOf(ICON_TYPES),
     PropTypes.func // (item) => oneOf(ICON_TYPES)
@@ -76,7 +78,8 @@ const DefaultItemActionType = PropTypes.shape({
 const CustomItemActionType = PropTypes.shape({
   render: PropTypes.func.isRequired,  // (item, enabled) => PropTypes.node;
   available: PropTypes.func, // (item) => boolean;
-  enabled: PropTypes.func // (item) => boolean;
+  enabled: PropTypes.func, // (item) => boolean;
+  isPrimary: PropTypes.bool,
 });
 
 const SupportedItemActionType = PropTypes.oneOfType([
@@ -566,13 +569,17 @@ export class EuiBasicTable extends Component {
       getItemId(selectedItem, itemIdCallback) === itemId
     ));
 
+    let calculatedHasSelection;
     if (selection) {
       cells.push(this.renderItemSelectionCell(itemId, item, selected));
+      calculatedHasSelection = true;
     }
 
+    let calculatedHasActions;
     columns.forEach((column, columnIndex) => {
       if (column.actions) {
         cells.push(this.renderItemActionsCell(itemId, item, column, columnIndex, rowIndex));
+        calculatedHasActions = true;
       } else if (column.field) {
         cells.push(this.renderItemFieldDataCell(itemId, item, column, columnIndex));
       } else {
@@ -607,9 +614,9 @@ export class EuiBasicTable extends Component {
       <Fragment key={`row_${itemId}`}>
         <EuiTableRow
           aria-owns={expandedRowId}
-          isSelectable={isSelectable}
+          isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
           isSelected={selected}
-          hasActions={hasActions}
+          hasActions={hasActions == null ? calculatedHasActions : hasActions}
           isExpandable={isExpandable}
           {...rowProps}
         >
@@ -660,7 +667,10 @@ export class EuiBasicTable extends Component {
       this.state.selection.length === 0 && (!action.enabled || action.enabled(item));
 
     let actualActions = column.actions;
-    if (column.actions.length > 1) {
+    if (column.actions.length > 2) {
+
+      // if any of the actions `isPrimary`, add them inline as well, but only the first 2
+      actualActions = slice(dropWhile(column.actions, function (o) { return !o.isPrimary; }), 0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum
@@ -668,9 +678,9 @@ export class EuiBasicTable extends Component {
       //
       // here we create a single custom action that triggers the popover with all the configured actions
 
-      actualActions = [
+      actualActions.push(
         {
-          name: 'Actions',
+          name: 'All actions',
           render: (item) => {
             return (
               <CollapsedItemActions
@@ -682,7 +692,7 @@ export class EuiBasicTable extends Component {
             );
           }
         }
-      ];
+      );
     }
 
     const tools = (

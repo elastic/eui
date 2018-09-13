@@ -22,6 +22,13 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
+const delayToClassNameMap = {
+  regular: null,
+  long: 'euiToolTip--delayLong',
+};
+
+export const DELAY = Object.keys(delayToClassNameMap);
+
 const DEFAULT_TOOLTIP_STYLES = {
   // position the tooltip content near the top-left
   // corner of the window so it can't create scrollbars
@@ -161,6 +168,7 @@ export class EuiToolTip extends Component {
       anchorClassName,
       content,
       title,
+      delay,
       ...rest
     } = this.props;
 
@@ -169,6 +177,7 @@ export class EuiToolTip extends Component {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
+      delayToClassNameMap[delay],
       className
     );
 
@@ -255,6 +264,11 @@ EuiToolTip.propTypes = {
   position: PropTypes.oneOf(POSITIONS),
 
   /**
+   * Delay before showing tooltip. Good for repeatable items.
+   */
+  delay: PropTypes.oneOf(DELAY),
+
+  /**
    * Passes onto the tooltip itself, not the trigger.
    */
   className: PropTypes.string,
@@ -267,4 +281,5 @@ EuiToolTip.propTypes = {
 
 EuiToolTip.defaultProps = {
   position: 'top',
+  delay: 'regular',
 };

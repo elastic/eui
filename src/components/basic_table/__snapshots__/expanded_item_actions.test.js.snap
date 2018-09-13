@@ -10,6 +10,7 @@ Array [
         "onClick": [Function],
       }
     }
+    className=""
     enabled={true}
     index={0}
     item={
@@ -28,6 +29,7 @@ Array [
         "render": [Function],
       }
     }
+    className=""
     enabled={true}
     index={1}
     item={
