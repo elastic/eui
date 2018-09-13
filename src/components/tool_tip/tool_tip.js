@@ -72,7 +72,7 @@ export class EuiToolTip extends Component {
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
-    if (document.contains(this.anchor) === false) {
+    if (document.body.contains(this.anchor) === false) {
       // the anchor is no longer part of `document`
       this.hideToolTip();
     } else {
