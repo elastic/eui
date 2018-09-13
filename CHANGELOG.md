@@ -1,18 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `3.0.5`.
+No public interface changes since `3.0.6`.
+
+## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.5)
+
+**Note: this release is a backport containing changes original made in `4.0.1`**
+
+**Bug fixes**
+
+- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
-No public interface changes since `3.0.5`.
-
-## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
+**Note: this release is a backport containing changes original made in `3.6.1`**
 
 **Bug fixes**
 
 - Fixed bug where `EuiToolTip` content wasn't removed if its anchor is removed from the document ([#1119](https://github.com/elastic/eui/pull/1119))
 
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
+
+**Note: this release is a backport containing changes original made in `3.4.0`**
 
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 
