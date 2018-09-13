@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.0.0`.
+**Bug fixes**
+
+- Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 
