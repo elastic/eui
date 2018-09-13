@@ -8,6 +8,7 @@
 
 - Added background to `readOnly` inputs ([#1188](https://github.com/elastic/eui/pull/1188))
 - Fixed some modal default and responsive sizing ([#1188](https://github.com/elastic/eui/pull/1188))
+- Fixed z-index issue of `EuiComboBoxOptionsList` especiall inside modals ([#1192](https://github.com/elastic/eui/pull/1192))
 
 ## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
 
