@@ -105,5 +105,21 @@ describe('EuiDescribedFormGroup', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test(`description is not rendered when it's not provided`, () => {
+      const component = shallow(
+        <EuiDescribedFormGroup
+          {...requiredProps}
+          title={<h3>Title</h3>}
+        >
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });
