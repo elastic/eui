@@ -777,6 +777,36 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  test('number type', () => {
+    const query = 'count:15';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('count');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('count');
+    expect(clause.value).toBe(15);
+  });
+
+  test('string that starts with a number', () => {
+    const query = 'count:15n';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('count');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('count');
+    expect(clause.value).toBe('15n');
+  });
+
   test('strict schema - flags - listed', () => {
 
     const query = `is:active`;
@@ -933,4 +963,26 @@ describe('defaultSyntax', () => {
     }).toThrow('Unknown field `name`');
   });
 
+  test('strict schema - string fields have their values coerced', () => {
+    const query = `name:15`;
+    const schema = {
+      strict: true,
+      fields: {
+        name: {
+          type: 'string'
+        }
+      }
+    };
+    const ast = defaultSyntax.parse(query, { schema });
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('name');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('name');
+    expect(clause.value).toBe('15');
+  });
 });
