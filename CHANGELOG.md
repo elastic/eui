@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
+- Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent ([#1185](https://github.com/elastic/eui/pull/1185))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 
@@ -12,7 +13,6 @@
 
 - `EuiBasicTable` now shows up to 2 actions before condensing to all popover, but still displaying the top/primary 2 actions as well ([#1103](https://github.com/elastic/eui/pull/1103))
 - `EuiBasicTable` will automatically add `hasActions` and `isSelectable` to allow proper responsive style handling, but are still overridable ([#1103](https://github.com/elastic/eui/pull/1103))
-
 
 ## [`3.11.0`](https://github.com/elastic/eui/tree/v3.11.0)
 
