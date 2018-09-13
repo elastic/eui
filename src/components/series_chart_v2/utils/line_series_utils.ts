@@ -1,9 +1,9 @@
 import { ScaleContinuousNumeric } from 'd3-scale';
 import { line, Line } from 'd3-shape';
-import { CurveType, getCurveFactory } from '../commons/curves';
 import { Dimensions } from '../commons/dimensions';
-import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domain';
+import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domains/domain';
 import { ScaleFunction } from '../commons/scales';
+import { CurveType, getCurveFactory } from '../commons/series/utils/curves';
 import {
   computeStackedLinearYData,
   getLinearSerisScalesFns,

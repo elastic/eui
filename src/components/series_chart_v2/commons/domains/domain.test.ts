@@ -1,7 +1,7 @@
 import { computeContinuousDataDomain, computeOrdinalDataDomain, computeSeriesDomains } from './domain';
 import { getGroupId, getSpecId } from './ids';
 import { ScaleType } from './scales';
-import { DataSeriesType } from './specs';
+import { DataSeriesType } from './series/specs';
 
 const TEST_DATASET_1 = [
   { group: 'a', stack: 'a', x: 1, y: 10 },

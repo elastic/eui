@@ -1,9 +1,9 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { CurveType } from '../commons/curves';
 import { getGroupId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
-import { DataSeriesSpec, DataSeriesType } from '../commons/specs';
+import { DataSeriesSpec, DataSeriesType } from '../commons/series/specs';
+import { CurveType } from '../commons/series/utils/curves';
 import { SpecProps } from './specs';
 interface LineSeriesExtraProps {
   curveType: CurveType;

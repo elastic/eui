@@ -1,6 +1,8 @@
 import { scaleBand, ScaleContinuousNumeric, scaleLinear, scaleLog, scaleSqrt } from 'd3-scale';
+import { AccessorFn } from './domains/accessor';
+import { Datum } from './series/specs';
 
-export type ScaleFunction = (point: any) => number;
+export type ScaleFn = (datum: Datum) => number;
 
 export const enum ScaleType {
   Linear = 'linear',
@@ -9,7 +11,7 @@ export const enum ScaleType {
   Sqrt = 'sqrt',
 }
 
-export const SCALES = {
+const SCALES = {
   [ScaleType.Linear]: scaleLinear,
   [ScaleType.Log]: scaleLog,
   [ScaleType.Sqrt]: scaleSqrt,
@@ -30,9 +32,13 @@ export interface ScaleOrdinal {
   bandwidth(): number;
 }
 
-export function createScaleOrdinal(): ScaleOrdinal {
+export type ScaleContinuousTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log;
+export type ScaleOrdinalTypes = ScaleType.Ordinal;
+export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
+
+function buildOrdinalScale(padding = 0): ScaleOrdinal {
   const d3ScaleBand = scaleBand()
-    .padding(0.1)
+    .padding(padding)
     .round(true);
   const scale = (value: string) => {
     return Number(d3ScaleBand(value));
@@ -61,53 +67,22 @@ export function createScaleOrdinal(): ScaleOrdinal {
   return ordinalScale;
 }
 
-type Scales = ScaleContinuousNumeric<number, number> | ScaleOrdinal;
-export type ScaleContinuousTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log;
-export type ScaleOrdinalTypes = ScaleType.Ordinal;
-export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
-
-export function getScaleFromType(
-  type: ScaleContinuousTypes,
-): ScaleContinuousNumeric<number, number>;
-export function getScaleFromType(type: ScaleOrdinalTypes): ScaleOrdinal;
-export function getScaleFromType(type: ScaleTypes): Scales {
-  // TODO add clamping
-  if (type === ScaleType.Ordinal) {
-    return createScaleOrdinal();
-  }
-  return SCALES[type]();
-}
-
 /**
- *
- * @param type {ScaleContinuousTypes} The type of continuous scale
- * @param domain The domain of the scale
- * @param accessor The accessor of the datum
- * @param minRange The min range of the scale
- * @param maxRange The max range of the scale
+ * Return a continuous scale
+ * @param type The type of scale (linear, log, sqrt)
+ * @param domain The domain of the ordinal scale
+ * @param minRange The max range of the scale
+ * @param maxRange The min range of the scale
+ * @param clamp if true, create a clamped scale
  */
-export function getContinuousScaleFn(
-  type: ScaleContinuousTypes,
-  domain: number[],
-  accessor: (point: any) => any,
-  minRange: number,
-  maxRange: number,
-  clamp: boolean = false,
-): ScaleFunction {
-  const scale = createContinuousScale(type, domain, minRange, maxRange, clamp);
-  return (point: any) => {
-    return scale(accessor(point));
-  };
-}
-
 export function createContinuousScale(
   type: ScaleContinuousTypes,
   domain: number[],
   minRange: number,
   maxRange: number,
-  clamp: boolean = false,
+  clamp = false,
 ): ScaleContinuousNumeric<number, number> {
-  const scale = getScaleFromType(type);
+  const scale = SCALES[type]();
   scale.domain(domain);
   scale.range([minRange, maxRange]);
   scale.clamp(clamp);
@@ -125,7 +100,7 @@ export function createOrdinalScale(
   minRange: number,
   maxRange: number,
 ): ScaleOrdinal {
-  const scale = getScaleFromType(ScaleType.Ordinal);
+  const scale = buildOrdinalScale();
   scale.domain(domain);
   scale.range([minRange, maxRange]);
   return scale;
@@ -139,10 +114,33 @@ export function createOrdinalScale(
  */
 export function getOrdinalScaleFn(
   scale: ScaleOrdinal,
-  accessor: (point: any) => any,
+  accessor: AccessorFn,
   centering = false,
 ): ScaleFunction {
   return (point: any) => {
     return scale(accessor(point)) + (centering ? scale.bandwidth() / 2 : 0);
+  };
+}
+
+/**
+ * Instanciate an continuous scale function
+ * @param type {ScaleContinuousTypes} The type of continuous scale
+ * @param domain The domain of the scale
+ * @param accessor The accessor of the datum
+ * @param minRange The min range of the scale
+ * @param maxRange The max range of the scale
+ * @param clamp if true, create a clamped scale
+ */
+export function getContinuousScaleFn(
+  type: ScaleContinuousTypes,
+  domain: number[],
+  accessor: (point: any) => any,
+  minRange: number,
+  maxRange: number,
+  clamp: boolean = false,
+): ScaleFunction {
+  const scale = createContinuousScale(type, domain, minRange, maxRange, clamp);
+  return (point: any) => {
+    return scale(accessor(point));
   };
 }

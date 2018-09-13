@@ -1,10 +1,10 @@
 import { ScaleContinuousNumeric } from 'd3-scale';
 import { area, Area } from 'd3-shape';
 import { Dimensions } from '../commons/dimensions';
-import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domain';
+import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domains/domain';
 
-import { CurveType, getCurveFactory } from '../commons/curves';
 import { ScaleFunction } from '../commons/scales';
+import { CurveType, getCurveFactory } from '../commons/series/utils/curves';
 import { computeStackedLinearYData, getLinearSerisScalesFns, LinearStackedCumulatedValue } from './linear_series_utils';
 
 export type StackedAreaSeriesGlyph = AreaSeriesGlyph[];

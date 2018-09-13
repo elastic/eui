@@ -7,11 +7,11 @@ import {
   AxisSpec,
   DataSeriesSpec,
   DataSeriesType,
-} from '../commons/specs';
+} from '../commons/series/specs';
 
 import { observable } from 'mobx';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
-import { computeSeriesDomains, SeriesScales } from '../commons/domain';
+import { computeSeriesDomains, SeriesScales } from '../commons/domains/domain';
 import { computeDataPoints as computeAreaDataPoints } from '../utils/area_series_utils';
 import { computeDataPoints as computeBarsDataPoints } from '../utils/bar_series_utils';
 import { computeDataPoints as computeLineDataPoints } from '../utils/line_series_utils';

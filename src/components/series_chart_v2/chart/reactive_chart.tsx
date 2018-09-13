@@ -1,7 +1,7 @@
 // import { toJS } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { DataSeriesType } from '../commons/specs';
+import { DataSeriesType } from '../commons/series/specs';
 import { AreaSeries } from '../components/area_series';
 import { Axis } from '../components/axis';
 import { BarSeries } from '../components/bar_series';

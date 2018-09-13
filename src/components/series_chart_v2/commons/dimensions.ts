@@ -1,6 +1,6 @@
 import { AxisTicksDimensions } from '../state/axis_utils';
 import { AxisId } from './ids';
-import { AxisOrientation, AxisPosition, AxisSpec } from './specs';
+import { AxisOrientation, AxisPosition, AxisSpec } from './series/specs';
 
 export interface Dimensions {
   top: number;

@@ -1,6 +1,6 @@
 import { getAxisId, getGroupId, getSpecId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec, DataSeriesType } from '../commons/specs';
+import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec, DataSeriesType } from '../commons/series/specs';
 import { ChartStore } from './chart_state';
 
 describe.skip('Chart Store', () => {

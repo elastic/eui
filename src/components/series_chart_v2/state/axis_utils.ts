@@ -1,13 +1,13 @@
 import { max } from 'd3-array';
 import { Dimensions } from '../commons/dimensions';
-import { Domain, SeriesScales } from '../commons/domain';
+import { Domain, SeriesScales } from '../commons/domains/domain';
 import { AxisId } from '../commons/ids';
 import {
   createContinuousScale,
   createOrdinalScale,
   ScaleType,
 } from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../commons/specs';
+import { AxisOrientation, AxisPosition, AxisSpec } from '../commons/series/specs';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export interface AxisTick {
@@ -57,8 +57,8 @@ export function computeAxisTicksDimensions(
   const ticksDimensions = tickLabels.map((tickLabel: string) => {
     const bbox = bboxCalculator.compute(tickLabel);
     return {
-      width: bbox.width,
-      height: bbox.height,
+      width: Math.ceil(bbox.width),
+      height: Math.ceil(bbox.height),
     };
   });
   const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;

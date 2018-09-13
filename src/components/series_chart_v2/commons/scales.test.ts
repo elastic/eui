@@ -1,19 +1,19 @@
-import { getScaleFromType, ScaleType } from './scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from './scales';
 
 describe('Scale Test', () => {
   test('Create an ordinal scale', () => {
     const data = ['a', 'b', 'c', 'd', 'a', 'b', 'c'];
-    const rangeMin = 0;
-    const rangeMax = 100;
-    const ordinalScale = getScaleFromType(ScaleType.Ordinal);
+    const minRange = 0;
+    const maxRange = 100;
+    const ordinalScale = createOrdinalScale(data, minRange, maxRange);
     ordinalScale.domain(data);
     const domain = ordinalScale.domain();
     expect(domain).toEqual(['a', 'b', 'c', 'd']);
-    ordinalScale.range([rangeMin, rangeMax]);
+    ordinalScale.range([minRange, maxRange]);
     const rangeValue = ordinalScale.range();
-    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    expect(rangeValue).toEqual([minRange, maxRange]);
     const bandwidth = ordinalScale.bandwidth();
-    expect(bandwidth).toEqual(rangeMax / domain.length);
+    expect(bandwidth).toEqual(maxRange / domain.length);
     const scaledValue1 = ordinalScale('a');
     expect(scaledValue1).toBe(0);
     const scaledValue2 = ordinalScale('b');
@@ -25,15 +25,15 @@ describe('Scale Test', () => {
   });
   test('Create an linear scale', () => {
     const data = [0, 10];
-    const rangeMin = 0;
-    const rangeMax = 100;
-    const linearScale = getScaleFromType(ScaleType.Linear);
+    const minRange = 0;
+    const maxRange = 100;
+    const linearScale = createContinuousScale(ScaleType.Linear, data, minRange, maxRange);
     linearScale.domain(data);
     const domain = linearScale.domain();
     expect(domain).toEqual([0, 10]);
-    linearScale.range([rangeMin, rangeMax]);
+    linearScale.range([minRange, maxRange]);
     const rangeValue = linearScale.range();
-    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    expect(rangeValue).toEqual([minRange, maxRange]);
     const scaledValue1 = linearScale(0);
     expect(scaledValue1).toBe(0);
     const scaledValue2 = linearScale(1);
@@ -45,15 +45,15 @@ describe('Scale Test', () => {
   });
   test('Create an log scale', () => {
     const data = [1, 10];
-    const rangeMin = 0;
-    const rangeMax = 100;
-    const logScale = getScaleFromType(ScaleType.Log);
+    const minRange = 0;
+    const maxRange = 100;
+    const logScale = createContinuousScale(ScaleType.Log, data, minRange, maxRange);
     logScale.domain(data);
     const domain = logScale.domain();
     expect(domain).toEqual([1, 10]);
-    logScale.range([rangeMin, rangeMax]);
+    logScale.range([minRange, maxRange]);
     const rangeValue = logScale.range();
-    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    expect(rangeValue).toEqual([minRange, maxRange]);
     const scaledValue1 = logScale(1);
     expect(scaledValue1).toBe(0);
     const scaledValue3 = logScale(5);
@@ -61,15 +61,15 @@ describe('Scale Test', () => {
   });
   test('Create an sqrt scale', () => {
     const data = [0, 10];
-    const rangeMin = 0;
-    const rangeMax = 100;
-    const sqrtScale = getScaleFromType(ScaleType.Sqrt);
+    const minRange = 0;
+    const maxRange = 100;
+    const sqrtScale = createContinuousScale(ScaleType.Sqrt, data, minRange, maxRange);
     sqrtScale.domain(data);
     const domain = sqrtScale.domain();
     expect(domain).toEqual([0, 10]);
-    sqrtScale.range([rangeMin, rangeMax]);
+    sqrtScale.range([minRange, maxRange]);
     const rangeValue = sqrtScale.range();
-    expect(rangeValue).toEqual([rangeMin, rangeMax]);
+    expect(rangeValue).toEqual([minRange, maxRange]);
     const scaledValue1 = sqrtScale(0);
     expect(scaledValue1).toBe(0);
     const scaledValue3 = sqrtScale(5);
