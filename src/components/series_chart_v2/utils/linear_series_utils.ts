@@ -2,7 +2,7 @@ import { nest } from 'd3-collection';
 import { ScaleContinuousNumeric } from 'd3-scale';
 import { sortBy } from 'lodash';
 import { Dimensions } from '../commons/dimensions';
-import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domain';
+import { Accessor, ContinuousAccessor, OrdinalAccessor, SeriesScales } from '../commons/domains/domain';
 import {
   createContinuousScale,
   createOrdinalScale,

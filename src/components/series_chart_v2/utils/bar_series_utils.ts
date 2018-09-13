@@ -1,6 +1,6 @@
 import { sum } from 'd3-array';
 import { Dimensions } from '../commons/dimensions';
-import { Accessor, Domain, SeriesScales } from '../commons/domain';
+import { Accessor, Domain, SeriesScales } from '../commons/domains/domain';
 import {
   createOrdinalScale,
   getContinuousScaleFn,
@@ -8,8 +8,6 @@ import {
   ScaleFunction,
   ScaleType,
 } from '../commons/scales';
-
-export const DEFAULT_BAR_WIDTH = 10;
 
 /**
  * A a stacked bar glyph representation
@@ -24,12 +22,6 @@ export interface BarSeriesGlyph {
   y: number;
   width: number;
   height: number;
-}
-
-interface ScaleFnConfig {
-  accessor: Accessor;
-  scaleFn: ScaleFunction;
-  barWidth: number;
 }
 
 /**

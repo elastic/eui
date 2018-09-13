@@ -1,4 +1,4 @@
-import { Accessor, computeContinuousDataDomain, computeOrdinalDataDomain, Domain } from './domain';
+import { Accessor, computeContinuousDataDomain, computeOrdinalDataDomain, Domain } from './domains/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from './scales';
 
 export class ComposedDomain {

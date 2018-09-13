@@ -1,6 +1,6 @@
 import { getAxisId, getGroupId } from '../commons/ids';
 import { ScaleType } from '../commons/scales';
-import { AxisOrientation, AxisPosition } from '../commons/specs';
+import { AxisOrientation, AxisPosition } from '../commons/series/specs';
 import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 

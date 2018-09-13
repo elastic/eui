@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
 import { Dimensions } from '../commons/dimensions';
-import { AxisSpec } from '../commons/specs';
+import { AxisSpec } from '../commons/series/specs';
 import { AxisTick, AxisTicksDimensions } from '../state/axis_utils';
 
 interface AxisProps {
