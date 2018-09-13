@@ -7,6 +7,7 @@
 **Bug fixes**
 
 - Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
+- Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 

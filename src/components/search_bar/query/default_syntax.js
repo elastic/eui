@@ -107,11 +107,11 @@ containsOrValues
   )* space? ")" { return [ head, ...tail ]; }
   
 rangeValue
-  = number
+  = numberWord
   / date
 
 containsValue
-  = number
+  = numberWord
   / date
   / booleanWord
   / word
@@ -151,6 +151,11 @@ boolean
 
 number
  = [\\-]?[0-9]+("."[0-9]+)* { return Exp.number(text(), location()); }
+
+// only match numbers followed by whitespace or end of input 
+numberWord
+ = num:number &space { return num; }
+ / num:number !. { return num; }
 
 date
  = "'" expression:((!"'" .)+ { return text(); }) "'" {
@@ -210,14 +215,20 @@ const resolveFieldValue = (field, valueExpression, ctx) => {
   if (isArray(valueExpression)) {
     return valueExpression.map(exp => resolveFieldValue(field, exp, ctx));
   }
-  const { type, expression, location } = valueExpression;
+  const { location } = valueExpression;
+  let { type, expression } = valueExpression;
   if (schema && !schema.fields[field] && schema.strict) {
     error(`Unknown field \`${field}\``, location);
   }
   const schemaField = schema && schema.fields[field];
   if (schemaField && schemaField.type !== type && schema.strict) {
-    const valueDesc = schemaField.valueDescription || `a ${schemaField.type} value`;
-    error(`Expected ${valueDesc} for field \`${field}\`, but found \`${expression}\``, location);
+    if (schemaField.type === 'string') {
+      expression = valueExpression.expression = expression.toString();
+      type = valueExpression.type = 'string';
+    } else {
+      const valueDesc = schemaField.valueDescription || `a ${schemaField.type} value`;
+      error(`Expected ${valueDesc} for field \`${field}\`, but found \`${expression}\``, location);
+    }
   }
   switch(type) {
 
