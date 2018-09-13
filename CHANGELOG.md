@@ -2,6 +2,10 @@
 
 No public interface changes since `3.0.6`.
 
+## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.6)
+
+No public interface changes since `3.0.6`.
+
 ## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.5)
 
 **Note: this release is a backport containing changes original made in `4.0.1`**
