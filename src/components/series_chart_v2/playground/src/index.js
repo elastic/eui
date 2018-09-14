@@ -263,7 +263,12 @@ class App extends Component {
         <div className="chartContainers">
           <div className="chartContainer">
             <Chart>
-              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" groupingLayer={0} />
+              <Axis
+                id={getAxisId('axisbottom22')}
+                position="bottom"
+                orientation="horizontal"
+                groupingLayer={0}
+              />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.renderSimpleClusteredBarChart()}
             </Chart>
@@ -284,7 +289,13 @@ class App extends Component {
           </div>
           <div className="chartContainer">
             <Chart>
-              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" showOverlappingTicks={true} showOverlappingLabels={false} />
+              <Axis
+                id={getAxisId('axisbottom22')}
+                position="bottom"
+                orientation="horizontal"
+                showOverlappingTicks={true}
+                showOverlappingLabels={false}
+              />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.renderGitHubIssue()}
             </Chart>

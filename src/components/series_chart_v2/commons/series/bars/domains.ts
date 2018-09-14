@@ -1,31 +1,33 @@
 import { extent, sum } from 'd3-array';
 import { uniq } from 'lodash';
+import { Accessor } from '../../domains/accessor';
 import { Domain } from '../../domains/domain';
 import { ScaleType } from '../../scales';
 import { BarSeriesSpec } from '../specs';
 
-export interface YSpecDomain {
+export interface SpecDomain {
+  accessor: Accessor;
   level: number;
   domain: Domain;
   scaleType: ScaleType;
-  isStacked: boolean;
-}
-
-export interface XSpecDomain {
-  level: number;
-  domain: Domain;
-  scaleType: ScaleType;
+  isStacked?: boolean;
 }
 
 export interface SpecDomains {
-  x: XSpecDomain[];
-  y: YSpecDomain[];
+  xDomains: SpecDomain[];
+  yDomain: SpecDomain;
 }
 
 export function computeDomains(spec: BarSeriesSpec): SpecDomains {
   // compute x domains
   const { data,  xScaleType, yScaleType, xAccessor, yAccessors, splitSeriesAccessors = [], stackAccessors = [] } = spec;
-  const orderedXAccessors = [ xAccessor, ...splitSeriesAccessors ];
+
+  // if we want to stack
+  let nonStackedSplitAccessors = splitSeriesAccessors;
+  if (yAccessors.length === 1 && stackAccessors.length > 0) {
+    nonStackedSplitAccessors = splitSeriesAccessors.slice(0, -1);
+  }
+  const orderedXAccessors = [ xAccessor, ...nonStackedSplitAccessors ];
   const orderedXDomains: Domain[] = [];
   let yDomain: any[] = [];
   const groupedData: Map<string, any[]> = new Map();
@@ -69,16 +71,24 @@ export function computeDomains(spec: BarSeriesSpec): SpecDomains {
     }
   });
   const xDomains = orderedXDomains.map((xDomain, level) => {
-    const scaleType = (orderedXAccessors.length === 1 && yAccessors.length === 1) ? xScaleType : ScaleType.Ordinal;
-    const domain = scaleType === ScaleType.Linear ? xDomain : uniq(xDomain as string[]);
+    let domainConvertedScale;
+    if (orderedXAccessors.length === 1 && yAccessors.length === 1) {
+      domainConvertedScale = xScaleType;
+    } else {
+      domainConvertedScale = ScaleType.Ordinal;
+    }
+    const domain = domainConvertedScale === ScaleType.Linear ? xDomain : uniq(xDomain as string[]);
     return {
+      accessor: orderedXAccessors[level],
       level,
       domain,
-      scaleType,
+      scaleType: domainConvertedScale,
     };
   });
+
   if (stackAccessors.length === 0 && yAccessors.length > 1) {
     xDomains.push({
+      accessor: 'y',
       level: xDomains.length,
       scaleType: ScaleType.Ordinal,
       domain: [...yAccessors ],
@@ -92,18 +102,17 @@ export function computeDomains(spec: BarSeriesSpec): SpecDomains {
     });
     yDomain = extent(stackedDomain);
   }
-  if (!spec.yScaleToDataExtent && xScaleType === ScaleType.Linear) {
+  if (!spec.yScaleToDataExtent) {
     yDomain = [0, yDomain[1]];
   }
   return {
-    x: xDomains,
-    y: [
-      {
-        level: 0,
-        domain: yDomain,
-        scaleType: yScaleType,
-        isStacked: stackAccessors.length > 0,
-      },
-    ],
+    xDomains,
+    yDomain: {
+      accessor: 'y',
+      level: 0,
+      domain: yDomain,
+      scaleType: yScaleType,
+      isStacked: stackAccessors.length > 0,
+    },
   };
 }
