@@ -3,6 +3,7 @@
 - Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
+- Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
 
 **Bug fixes**
 
