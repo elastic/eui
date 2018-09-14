@@ -2560,7 +2560,7 @@ exports[`EuiIcon props type loggingApp is rendered 1`] = `
     fill="none"
   >
     <path
-      d="M7 6h18v19H7z"
+      d="M7 6h18v19H7V6zm2 3v2h3V9H9zm0 5v2h3v-2H9zm0 5v2h3v-2H9zm5-10v2h8V9h-8zm0 5v2h8v-2h-8zm0 5v2h8v-2h-8z"
       fill="#00BFB3"
     />
     <path
@@ -2590,10 +2590,6 @@ exports[`EuiIcon props type loggingApp is rendered 1`] = `
     <path
       d="M25 26.5a3.5 3.5 0 0 1-7 0V25h7v1.5z"
       fill="#00BFB3"
-    />
-    <path
-      d="M9 9h3v2H9zM9 14h3v2H9zM9 19h3v2H9zM14 9h8v2h-8zM14 14h8v2h-8zM14 19h8v2h-8z"
-      fill="#FFF"
     />
   </g>
 </svg>
