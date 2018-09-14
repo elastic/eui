@@ -102,7 +102,7 @@ describe('EuiBasicTable', () => {
           return {
             'data-test-subj': `row-${id}`,
             className: 'customRowClass',
-            onClick: () => {},
+            onClick: () => { },
           };
         },
       };
@@ -130,7 +130,7 @@ describe('EuiBasicTable', () => {
         rowProps: {
           'data-test-subj': `row`,
           className: 'customClass',
-          onClick: () => {},
+          onClick: () => { },
         },
       };
       const component = shallow(
@@ -162,7 +162,7 @@ describe('EuiBasicTable', () => {
           return {
             'data-test-subj': `cell-${id}-${field}`,
             className: 'customRowClass',
-            onClick: () => {},
+            onClick: () => { },
           };
         },
       };
@@ -190,7 +190,7 @@ describe('EuiBasicTable', () => {
         cellProps: {
           'data-test-subj': `cell`,
           className: 'customClass',
-          onClick: () => {},
+          onClick: () => { },
         },
       };
       const component = shallow(
@@ -219,7 +219,7 @@ describe('EuiBasicTable', () => {
       itemIdToExpandedRowMap: {
         '1': <div>Expanded row</div>,
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -247,7 +247,7 @@ describe('EuiBasicTable', () => {
         pageSize: 3,
         totalItemCount: 5
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -274,7 +274,7 @@ describe('EuiBasicTable', () => {
         pageSize: 3,
         totalItemCount: 5
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -302,8 +302,37 @@ describe('EuiBasicTable', () => {
         pageSize: 3,
         totalItemCount: 5
       },
-      onChange: () => {},
+      onChange: () => { },
       error: 'no can do'
+    };
+    const component = shallow(
+      <EuiBasicTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('with pagination, hiding the per page options', () => {
+    const props = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      pagination: {
+        pageIndex: 0,
+        pageSize: 3,
+        totalItemCount: 5,
+        hidePerPageOptions: true
+      },
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -330,7 +359,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -354,7 +383,7 @@ describe('EuiBasicTable', () => {
           sortable: true
         }
       ],
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -386,7 +415,7 @@ describe('EuiBasicTable', () => {
       selection: {
         onSelectionChanged: () => undefined
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -422,7 +451,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -459,7 +488,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -496,7 +525,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'count', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -535,7 +564,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'count', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -582,7 +611,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />
@@ -635,7 +664,7 @@ describe('EuiBasicTable', () => {
       sorting: {
         sort: { field: 'name', direction: 'asc' }
       },
-      onChange: () => {}
+      onChange: () => { }
     };
     const component = shallow(
       <EuiBasicTable {...props} />

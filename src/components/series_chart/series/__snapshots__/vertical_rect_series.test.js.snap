@@ -4,7 +4,9 @@ exports[`EuiVerticalRectSeries all props are rendered 1`] = `
 <div
   style="width:100%;height:100%"
 >
-  <div>
+  <div
+    class="euiSeriesChartContainer"
+  >
     <div
       class="rv-xy-plot "
       style="width:600px;height:200px"
@@ -521,7 +523,7 @@ exports[`EuiVerticalRectSeries is rendered 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="testClass1 testClass2"
+    class="testClass1 testClass2 euiSeriesChartContainer"
     data-test-subj="test subject string"
   >
     <div
@@ -1038,7 +1040,9 @@ exports[`EuiVerticalRectSeries renders stacked vertical histogram 1`] = `
 <div
   style="width:100%;height:100%"
 >
-  <div>
+  <div
+    class="euiSeriesChartContainer"
+  >
     <div
       class="rv-xy-plot "
       style="width:600px;height:200px"

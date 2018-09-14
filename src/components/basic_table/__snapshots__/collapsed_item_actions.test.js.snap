@@ -4,18 +4,26 @@ exports[`CollapsedItemActions render 1`] = `
 <EuiPopover
   anchorPosition="leftCenter"
   button={
-    <EuiButtonIcon
-      aria-label="actions"
-      className={undefined}
-      color="text"
-      iconType="gear"
-      isDisabled={false}
-      onClick={[Function]}
-      onFocus={[Function]}
-      type="button"
-    />
+    <EuiToolTip
+      content="All actions"
+      delay="long"
+      position="top"
+    >
+      <EuiButtonIcon
+        aria-label="All actions"
+        className={undefined}
+        color="text"
+        iconSize="m"
+        iconType="boxesHorizontal"
+        isDisabled={false}
+        onClick={[Function]}
+        onFocus={[Function]}
+        type="button"
+      />
+    </EuiToolTip>
   }
   closePopover={[Function]}
+  hasArrow={true}
   id="id-actions"
   isOpen={false}
   ownFocus={false}
@@ -29,12 +37,14 @@ exports[`CollapsedItemActions render 1`] = `
         <EuiContextMenuItem
           disabled={false}
           icon={undefined}
+          layoutAlign="center"
           onClick={[Function]}
           toolTipPosition="right"
         >
           default1
         </EuiContextMenuItem>,
         <EuiContextMenuItem
+          layoutAlign="center"
           onClick={[Function]}
           toolTipPosition="right"
         />,

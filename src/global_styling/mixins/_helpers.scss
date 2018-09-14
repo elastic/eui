@@ -29,9 +29,7 @@
   }
 }
 
-/**
- * Set scroll bar appearance on Chrome.
- */
+// Set scroll bar appearance on Chrome.
 @mixin euiScrollBar {
   &::-webkit-scrollbar {
     width: 16px;
@@ -51,9 +49,7 @@
 }
 
 
-/**
- * Specifically target IE11, but not Edge.
- */
+// Specifically target IE11, but not Edge.
 @mixin internetExplorerOnly {
   @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
     @content;

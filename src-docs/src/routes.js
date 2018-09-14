@@ -87,6 +87,9 @@ import { ComboBoxExample }
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
+import { CopyExample }
+  from './views/copy/copy_example';
+
 import { DatePickerExample }
   from './views/date_picker/date_picker_example';
 
@@ -104,6 +107,9 @@ import { ErrorBoundaryExample }
 
 import { ExpressionExample }
   from './views/expression/expression_example';
+
+import { FacetExample }
+  from './views/facet/facet_example';
 
 import { FilterGroupExample }
   from './views/filter_group/filter_group_example';
@@ -189,6 +195,9 @@ import { SideNavExample }
 import { SpacerExample }
   from './views/spacer/spacer_example';
 
+import { StatExample }
+  from './views/stat/stat_example';
+
 import { StepsExample }
   from './views/steps/steps_example';
 
@@ -213,6 +222,9 @@ import { ToolTipExample }
 import { ToggleExample }
   from './views/toggle/toggle_example';
 
+import { WindowEventExample }
+  from './views/window_event/window_event_example';
+
 import { XYChartExample }
   from './views/series_chart/series_chart_example';
 
@@ -233,6 +245,9 @@ import { XYChartLineExample }
 
 import { Changelog }
   from './views/package/changelog';
+
+import { SuperSelectExample }
+  from './views/super_select/super_select_example';
 
 /**
  * Lowercases input and replaces spaces with hyphens:
@@ -319,6 +334,7 @@ const navigation = [{
     BreadcrumbsExample,
     ButtonExample,
     ContextMenuExample,
+    FacetExample,
     KeyPadMenuExample,
     LinkExample,
     PaginationExample,
@@ -341,6 +357,7 @@ const navigation = [{
     ImageExample,
     LoadingExample,
     ProgressExample,
+    StatExample,
     TableExample,
     TextExample,
     TitleExample,
@@ -353,6 +370,7 @@ const navigation = [{
     FormLayoutsExample,
     FormControlsExample,
     FormValidationExample,
+    SuperSelectExample,
     ComboBoxExample,
     ColorPickerExample,
     CodeEditorExample,
@@ -377,6 +395,7 @@ const navigation = [{
   name: 'Utilities',
   items: [
     AccessibilityExample,
+    CopyExample,
     ResponsiveExample,
     DelayHideExample,
     ErrorBoundaryExample,
@@ -387,6 +406,7 @@ const navigation = [{
     ToggleExample,
     UtilityClassesExample,
     MutationObserverExample,
+    WindowEventExample,
   ].map(example => createExample(example)),
 }, {
   name: 'Package',

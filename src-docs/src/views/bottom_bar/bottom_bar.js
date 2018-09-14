@@ -40,20 +40,20 @@ export default class extends Component {
           <EuiFlexGroup justifyContent="spaceBetween">
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem>
+                <EuiFlexItem grow={false}>
                   <EuiButton color="ghost" size="s" iconType="help">Help</EuiButton>
                 </EuiFlexItem>
-                <EuiFlexItem>
+                <EuiFlexItem grow={false}>
                   <EuiButton color="ghost" size="s" iconType="user">Add user</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="s">
-                <EuiFlexItem>
+                <EuiFlexItem grow={false}>
                   <EuiButtonEmpty color="ghost" size="s" iconType="cross">Discard</EuiButtonEmpty>
                 </EuiFlexItem>
-                <EuiFlexItem>
+                <EuiFlexItem grow={false}>
                   <EuiButton color="primary" fill size="s" iconType="check">Save</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>

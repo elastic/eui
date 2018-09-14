@@ -106,7 +106,7 @@ export class EuiTabbedContent extends Component {
               ...tabProps,
               onClick: () => this.onTabClick(tab),
               isSelected: tab === selectedTab,
-              'aria-controls': `${this.rootId}-${id}`,
+              'aria-controls': `${this.rootId}`,
             };
 
             return <EuiTab {...props}>{name}</EuiTab>;
@@ -115,7 +115,7 @@ export class EuiTabbedContent extends Component {
 
         <div
           role="tabpanel"
-          id={`${this.rootId}-${selectedTabId}`}
+          id={`${this.rootId}`}
           aria-labelledby={selectedTabId}
         >
           {selectedTabContent}

@@ -58,6 +58,54 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
+<div
+  aria-label="aria-label"
+  aria-labelledby="generated-id-title"
+  className="euiDescribedFormGroup testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="group"
+>
+  <EuiFlexGroup
+    alignItems="stretch"
+    component="div"
+    direction="row"
+    gutterSize="l"
+    justifyContent="flexStart"
+    responsive={true}
+    wrap={false}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={true}
+    >
+      <EuiTitle
+        className="euiDescribedFormGroup__title"
+        id="generated-id-title"
+        size="xs"
+      >
+        <h3>
+          Title
+        </h3>
+      </EuiTitle>
+    </EuiFlexItem>
+    <EuiFlexItem
+      className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+      component="div"
+      grow={true}
+    >
+      <EuiFormRow
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+      >
+        <input />
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;
+
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
   aria-describedby="generated-id"

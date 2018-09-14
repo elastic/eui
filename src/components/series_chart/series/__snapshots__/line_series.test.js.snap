@@ -35,7 +35,9 @@ exports[`EuiLineSeries all props are rendered 1`] = `
       yPadding={0}
       yType="linear"
     >
-      <div>
+      <div
+        className="euiSeriesChartContainer"
+      >
         <XYPlot
           animation={true}
           className=""
@@ -4156,7 +4158,7 @@ exports[`EuiLineSeries is rendered 1`] = `
     >
       <div
         aria-label="aria-label"
-        className="testClass1 testClass2"
+        className="testClass1 testClass2 euiSeriesChartContainer"
         data-test-subj="test subject string"
       >
         <XYPlot

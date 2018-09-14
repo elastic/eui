@@ -46,6 +46,16 @@ export default () => (
       </p>
 
       <p>
+        This tooltip has a long delay because it might be in a repeatable component{' '}
+        <EuiToolTip
+          delay="long"
+          content="Here is some tooltip text"
+        >
+          <EuiLink href="#">wink</EuiLink>
+        </EuiToolTip>
+      </p>
+
+      <p>
         This tooltip appears on the bottom of this icon:{' '}
         <EuiToolTip
           position="bottom"

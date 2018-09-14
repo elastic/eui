@@ -229,6 +229,33 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with pagination, hiding the per page options', () => {
+
+    const props = {
+      ...requiredProps,
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' }
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      pagination: {
+        hidePerPageOptions: true
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with sorting', () => {
 
     const props = {
@@ -562,7 +589,7 @@ describe('EuiInMemoryTable', () => {
       const props = { items, columns, search, className: 'testTable' };
 
       const component = mount(
-        <EuiInMemoryTable {...props}/>
+        <EuiInMemoryTable {...props} />
       );
 
       // should render with all three results visible
@@ -696,7 +723,7 @@ describe('EuiInMemoryTable', () => {
       };
 
       const component = mount(
-        <EuiInMemoryTable {...props}/>
+        <EuiInMemoryTable {...props} />
       );
 
       expect(props.onTableChange).toHaveBeenCalledTimes(0);

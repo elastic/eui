@@ -265,7 +265,7 @@ export class EuiPopover extends Component {
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: 16,
+      offset: this.props.hasArrow ? 16 : 8,
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
@@ -275,7 +275,8 @@ export class EuiPopover extends Component {
     // the popover's z-index must inherit from the button
     // this keeps a button's popover under a flyout that would cover the button
     // but a popover triggered inside a flyout will appear over that flyout
-    const zIndex = getElementZIndex(this.button, this.panel);
+    const { zIndex: zIndexProp } = this.props;
+    const zIndex = zIndexProp == null ? getElementZIndex(this.button, this.panel) : zIndexProp;
 
     const popoverStyles = {
       top,
@@ -283,7 +284,7 @@ export class EuiPopover extends Component {
       zIndex,
     };
 
-    const arrowStyles = arrow;
+    const arrowStyles = this.props.hasArrow ? arrow : null;
     const arrowPosition = position;
 
     this.setState({ popoverStyles, arrowStyles, arrowPosition });
@@ -322,6 +323,9 @@ export class EuiPopover extends Component {
       panelClassName,
       panelPaddingSize,
       popoverRef,
+      hasArrow,
+      repositionOnScroll, // eslint-disable-line no-unused-vars
+      zIndex, // eslint-disable-line no-unused-vars
       initialFocus, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
@@ -338,9 +342,10 @@ export class EuiPopover extends Component {
 
     const panelClasses = classNames(
       'euiPopover__panel',
-      `euiPopover__panel-${this.state.arrowPosition}`,
+      `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
+      { 'euiPopover__panel-noArrow': !hasArrow },
       panelClassName
     );
 
@@ -370,8 +375,8 @@ export class EuiPopover extends Component {
       }
 
       const arrowClassNames = classNames(
-        'euiPopover__panel__arrow',
-        `euiPopover__panel__arrow-${this.state.arrowPosition}`
+        'euiPopover__panelArrow',
+        `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
       panel = (
@@ -446,12 +451,15 @@ EuiPopover.propTypes = {
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,
+  hasArrow: PropTypes.bool,
   container: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.instanceOf(HTMLElement)
   ]),
   /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
+  /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
+  zIndex: PropTypes.number,
   /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
   initialFocus: PropTypes.oneOfType([
     PropTypes.instanceOf(HTMLElement),
@@ -465,4 +473,5 @@ EuiPopover.defaultProps = {
   ownFocus: false,
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',
+  hasArrow: true,
 };

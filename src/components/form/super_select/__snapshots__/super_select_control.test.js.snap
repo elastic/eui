@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuperSelectControl is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-label="aria-label"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl testClass1 testClass2"
+        data-test-subj="test subject string"
+        role="option"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--compressed"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl euiSuperSelectControl--compressed"
+        role="option"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl"
+        role="option"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
+        role="option"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl euiSuperSelectControl-isLoading"
+        role="option"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <div
+          class="euiLoadingSpinner euiLoadingSpinner--medium"
+        />
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl props value option is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value="1"
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="euiScreenReaderOnly"
+        id="generated-id"
+      >
+        Select an option: Option #1, is selected
+      </span>
+      <button
+        aria-haspopup="true"
+        aria-labelledby="undefined generated-id"
+        class="euiSuperSelectControl"
+        role="option"
+        type="button"
+      >
+        Option #1
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                id="arrow_down-a"
+              />
+            </defs>
+            <use
+              fill-rule="nonzero"
+              href="#arrow_down-a"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;

@@ -13,7 +13,7 @@ exports[`EuiComboBox is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiComboBox__inputWrap"
+        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
         data-test-subj="comboBoxInput"
       >
         <div
@@ -214,7 +214,7 @@ exports[`props options list is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiComboBox__inputWrap"
+        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
         data-test-subj="comboBoxInput"
       >
         <div

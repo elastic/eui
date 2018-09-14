@@ -45,6 +45,7 @@ export const EuiPagination = ({
       disabled={activePage === 0}
       color="text"
       aria-label="Previous page"
+      data-test-subj="pagination-button-previous"
     />
   );
 
@@ -111,6 +112,7 @@ export const EuiPagination = ({
       aria-label="Next page"
       disabled={activePage === pageCount - 1}
       color="text"
+      data-test-subj="pagination-button-next"
     />
   );
 

@@ -224,8 +224,10 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        To only allow the user to select a single option, provide
-        the <EuiCode>singleSelection</EuiCode> prop.
+        To only allow the user to select a single option, provide the{' '}
+        <EuiCode>singleSelection</EuiCode> prop. You may want to render the selected option as
+        plain text instead of pill form. To do this, pass{' '}
+        <EuiCode>{'singleSelection={{ asPlainText: true }}'}</EuiCode>
       </p>
     ),
     props: { EuiComboBox },
@@ -257,7 +259,7 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        Alternatively, provide thhe <EuiCode>noSuggestions</EuiCode> prop to hide the suggestions list
+        Alternatively, provide the <EuiCode>noSuggestions</EuiCode> prop to hide the suggestions list
         and <em>only</em> allow the creation of custom options.
       </p>
     ),

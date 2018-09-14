@@ -85,8 +85,8 @@ export class EuiSearchBar extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.query) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.query && (!prevState.query || nextProps.query.text !== prevState.query.text)) {
       const query = parseQuery(nextProps.query, nextProps);
       return {
         query,
@@ -97,8 +97,9 @@ export class EuiSearchBar extends Component {
     return null;
   }
 
-  componentDidUpdate(oldProps, oldState) {
-    const { query, queryText, error } = this.state;
+  notifyControllingParent(newState) {
+    const oldState = this.state;
+    const { query, queryText, error } = newState;
 
     const isQueryDifferent = oldState.queryText !== queryText;
 
@@ -114,14 +115,17 @@ export class EuiSearchBar extends Component {
   onSearch = (queryText) => {
     try {
       const query = parseQuery(queryText, this.props);
+      this.notifyControllingParent({ query, queryText, error: null });
       this.setState({ query, queryText, error: null });
     } catch (e) {
       const error = { message: e.message };
+      this.notifyControllingParent({ query: null, queryText, error });
       this.setState({ queryText, error });
     }
   };
 
   onFiltersChange = (query) => {
+    this.notifyControllingParent({ query, queryText: query.text, error: null });
     this.setState({
       query,
       queryText: query.text,

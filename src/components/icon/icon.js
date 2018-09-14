@@ -86,6 +86,7 @@ import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
 import indexSettings from './assets/index_settings.svg';
 import inputOutput from './assets/inputOutput.svg';
+import infraApp from './assets/app_infra.svg';
 import inspect from './assets/inspect.svg';
 import invert from './assets/invert.svg';
 import kqlField from './assets/kql_field.svg';
@@ -100,6 +101,8 @@ import lock from './assets/lock.svg';
 import loggingApp from './assets/app_logging.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
+import logoAWS from './assets/logo_aws.svg';
+import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
@@ -111,6 +114,8 @@ import logoElastic from './assets/logo_elastic.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoEtcd from './assets/logo_etcd.svg';
+import logoGCP from './assets/logo_gcp.svg';
+import logoGCPMono from './assets/logo_gcp_mono.svg';
 import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoGolang from './assets/logo_golang.svg';
@@ -181,6 +186,7 @@ import stopFilled from './assets/stop_filled.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
 import tableOfContents from './assets/tableOfContents.svg';
+import tag from './assets/tag.svg';
 import tear from './assets/tear.svg';
 import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
@@ -296,6 +302,7 @@ const typeToIconMap = {
   indexOpen,
   indexPatternApp,
   indexSettings,
+  infraApp,
   inputOutput,
   inspect,
   invert,
@@ -311,6 +318,8 @@ const typeToIconMap = {
   loggingApp,
   logoAerospike,
   logoApache,
+  logoAWS,
+  logoAWSMono,
   logoBeats,
   logoCeph,
   logoCloud,
@@ -322,6 +331,8 @@ const typeToIconMap = {
   logoElasticsearch,
   logoElasticStack,
   logoEtcd,
+  logoGCP,
+  logoGCPMono,
   logoGithub,
   logoGmail,
   logoGolang,
@@ -392,6 +403,7 @@ const typeToIconMap = {
   storage,
   string,
   tableOfContents,
+  tag,
   tear,
   temperature,
   timelionApp,

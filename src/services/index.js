@@ -26,6 +26,10 @@ export {
 } from './color';
 
 export {
+  copyToClipboard
+} from './copy_to_clipboard';
+
+export {
   formatAuto,
   formatBoolean,
   formatDate,
@@ -63,3 +67,7 @@ export {
   calculatePopoverPosition,
   findPopoverPosition,
 } from './popover';
+
+export {
+  EuiWindowEvent
+} from './window_event';

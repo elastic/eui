@@ -66,6 +66,10 @@ export {
 } from './context_menu';
 
 export {
+  EuiCopy,
+} from './copy';
+
+export {
   EuiDatePicker,
   EuiDatePickerRange,
 } from './date_picker';
@@ -100,6 +104,11 @@ export {
 } from './filter_group';
 
 export {
+  EuiFacetButton,
+  EuiFacetGroup,
+} from './facet';
+
+export {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
@@ -131,6 +140,8 @@ export {
   EuiRadioGroup,
   EuiRange,
   EuiSelect,
+  EuiSuperSelect,
+  EuiSuperSelectControl,
   EuiSwitch,
   EuiTextArea,
   EuiValidatableControl,
@@ -254,6 +265,10 @@ export {
 export {
   EuiSpacer,
 } from './spacer';
+
+export {
+  EuiStat,
+} from './stat';
 
 export {
   EuiStep,
