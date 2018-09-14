@@ -150,6 +150,13 @@ export class EuiPopover extends Component {
 
       if (this.props.initialFocus != null) {
         focusTarget = getElementFromInitialFocus(this.props.initialFocus);
+        // there's a race condition between the popover content becoming visible and this function call
+        // if the element isn't visible yet (due to css styling) then it can't accept focus
+        // so wait for another render and try again
+        const visibility = window.getComputedStyle(focusTarget).visibility;
+        if (visibility === 'hidden') {
+          this.updateFocus();
+        }
       } else {
         const tabbableItems = tabbable(this.panel);
         if (tabbableItems.length) {
