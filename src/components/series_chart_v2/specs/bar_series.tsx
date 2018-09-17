@@ -1,37 +1,36 @@
 import { inject } from 'mobx-react';
 import React from 'react';
+import { ScaleType } from '../commons/data_ops/scales';
 import { getGroupId } from '../commons/ids';
-import { ScaleType } from '../commons/scales';
-import { DataSeriesSpec, DataSeriesType } from '../commons/series/specs';
-import { SpecProps } from './specs';
+import { BarSeriesSpec } from '../commons/series/specs';
+import { SpecProps } from './specs_parser';
 
-type BarSpecProps = SpecProps & DataSeriesSpec;
+type BarSpecProps = SpecProps & BarSeriesSpec;
 
-export class BarSeriesSpec extends React.PureComponent<BarSpecProps> {
+export class BarSeriesSpecComponent extends React.PureComponent<BarSpecProps> {
   public static defaultProps: Partial<BarSpecProps> = {
     groupId: getGroupId('__global__'),
-    type: DataSeriesType.Bar,
     xScaleType: ScaleType.Linear,
     yScaleType: ScaleType.Linear,
-    xAccessor: (d) => d.x,
-    yAccessor: (d) => d.y,
-    scaleToExtent: false,
+    xAccessor: 'x',
+    yAccessors: ['y'],
+    yScaleToDataExtent: false,
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addSeriesSpecs({ ...config });
+    chartStore!.addBarSeriesSpecs({ ...config });
   }
   public componentDidUpdate() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addSeriesSpecs({ ...config });
+    chartStore!.addBarSeriesSpecs({ ...config });
   }
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore!.removeSeriesSpecs(id);
+    chartStore!.removeBarSeriesSpecs(id);
   }
   public render() {
     return null;
   }
 }
 
-export const BarSeries = inject('chartStore')(BarSeriesSpec);
+export const BarSeries = inject('chartStore')(BarSeriesSpecComponent);

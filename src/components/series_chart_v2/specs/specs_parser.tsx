@@ -6,7 +6,7 @@ export interface SpecProps {
   chartStore?: ChartStore; // FIX
 }
 
-export class SpecsSpec extends React.PureComponent<SpecProps> {
+export class SpecsSpecRootComponent extends React.PureComponent<SpecProps> {
   public static getDerivedStateFromProps(props: SpecProps) {
     // tslint:disable-next-line:no-console
     console.log('Specs are changing...');
@@ -36,4 +36,4 @@ export class SpecsSpec extends React.PureComponent<SpecProps> {
   }
 }
 
-export const Specs = inject('chartStore')(SpecsSpec);
+export const SpecsParser = inject('chartStore')(SpecsSpecRootComponent);

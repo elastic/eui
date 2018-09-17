@@ -1,6 +1,6 @@
-import { Accessor } from '../domains/accessor';
+import { Accessor } from '../data_ops/accessor';
+import { ScaleType } from '../data_ops/scales';
 import { AxisId, GroupId, SpecId } from '../ids';
-import { ScaleType } from '../scales';
 
 export type Datum = any;
 
@@ -24,11 +24,26 @@ export interface DataSeriesSpec {
   stackAccessor?: Accessor | Accessor[];
 }
 
+/**
+ * A Bar series spec. This specs specify how the bar series is configured
+ * and provides data together with all configured accessors.
+ */
 export interface BasicSeriesSpec {
   id: SpecId;
   groupId: GroupId;
   data: Datum[];
   splitChartAccessor?: Accessor | Accessor[];
+}
+
+export interface BarSeriesSpec extends BasicSeriesSpec {
+  xAccessor: Accessor;
+  yAccessors: Accessor[];
+  xScaleType: ScaleType;
+  yScaleType: ScaleType;
+  /** if true, the min y value is set to the minimum domain value, 0 otherwise */
+  yScaleToDataExtent: boolean;
+  splitSeriesAccessors?: Accessor[];
+  stackAccessors?: Accessor[];
 }
 
 // export interface LineSeriesSpec extends BasicSeriesSpec {
@@ -52,17 +67,6 @@ export interface BasicSeriesSpec {
 //   splitSeriesAccessor?: Accessor;
 //   stackAccessor?: Accessor | Accessor[];
 // }
-
-export interface BarSeriesSpec extends BasicSeriesSpec {
-  xAccessor: Accessor;
-  yAccessors: Accessor[];
-  xScaleType: ScaleType;
-  yScaleType: ScaleType;
-  /** if true, the min y value is set to the minimum domain value, 0 otherwise */
-  yScaleToDataExtent: boolean;
-  splitSeriesAccessors?: Accessor[];
-  stackAccessors?: Accessor[];
-}
 
 export interface AxisSpec {
   id: AxisId;

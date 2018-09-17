@@ -1,10 +1,23 @@
 import { extent, sum } from 'd3-array';
 import { nest } from 'd3-collection';
 import { uniq } from 'lodash';
-import { ScaleType } from '../scales';
 import { Accessor, AccessorFn } from './accessor';
+import { ScaleType } from './scales';
 
 export type Domain = number[] | string[] | [number, number] | [undefined, undefined];
+
+export interface SpecDomain {
+  accessor: Accessor;
+  level: number;
+  domain: Domain;
+  scaleType: ScaleType;
+  isStacked?: boolean;
+}
+
+export interface SpecDomains {
+  xDomains: SpecDomain[];
+  yDomain: SpecDomain;
+}
 
 export interface SeriesScales {
   groupLevel: number;

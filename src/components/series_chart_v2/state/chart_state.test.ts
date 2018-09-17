@@ -1,9 +1,9 @@
+import { ScaleType } from '../commons/data_ops/scales';
 import { getAxisId, getGroupId, getSpecId } from '../commons/ids';
-import { ScaleType } from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec, DataSeriesSpec, DataSeriesType } from '../commons/series/specs';
+import { AxisOrientation, AxisPosition, AxisSpec, BarSeriesSpec } from '../commons/series/specs';
 import { ChartStore } from './chart_state';
 
-describe.skip('Chart Store', () => {
+describe('Chart Store', () => {
   const mockedRect = {
     x: 0,
     y: 0,
@@ -22,35 +22,39 @@ describe.skip('Chart Store', () => {
   afterEach(() => (SVGElement.prototype.getBBox = originalGetBBox));
 
   const store = new ChartStore();
-  const spec: DataSeriesSpec = {
-    id: getSpecId('spec_1'),
-    groupId: getGroupId('group_1'),
-    type: DataSeriesType.Bar,
-    scaleToExtent: false,
+  store.updateParentDimensions(600, 600, 0, 0);
+  const SPEC_ID = getSpecId('spec_1');
+  const AXIS_ID = getAxisId('axis_1');
+  const GROUP_ID = getGroupId('group_1');
+
+  const spec: BarSeriesSpec = {
+    id: SPEC_ID,
+    groupId: GROUP_ID,
+    yScaleToDataExtent: false,
     data: [
       { x: 1, y: 1 },
       { x: 2, y: 2 },
       { x: 3, y: 3 },
     ],
-    xAccessor: (value: any) => value.x,
-    yAccessor: (value: any) => value.y,
+    xAccessor: 'x',
+    yAccessors: ['y'],
     xScaleType: ScaleType.Linear,
     yScaleType: ScaleType.Linear,
-    groupAccessors: [],
   };
-  test.skip('can add a single spec', () => {
-    store.addSeriesSpecs(spec);
-    const { seriesScales, seriesSpecs } = store;
-    const computedSpecScale = seriesScales.get(getSpecId('spec_1'));
-    expect(computedSpecScale).not.toBeUndefined();
-    // expect(computedSpecScale.xDomain).toEqual([ 1, 3 ]);
-    const addesSeriesSpec = seriesSpecs.get(getSpecId('spec_1'));
-    expect(addesSeriesSpec).toEqual(spec);
+
+  test('can add a single spec', () => {
+    store.addBarSeriesSpecs(spec);
+    const { seriesSpecDomains, globalSpecDomains } = store;
+    const computedSpecDomain = seriesSpecDomains.get(SPEC_ID);
+    expect(computedSpecDomain).not.toBeUndefined();
+    const mergedSpecDomains = globalSpecDomains.get(GROUP_ID);
+    expect(mergedSpecDomains).not.toBeUndefined();
   });
+
   test('can add an axis', () => {
     const axisSpec: AxisSpec = {
-      id: getAxisId('axis_1'),
-      groupId: getGroupId('group_1'),
+      id: AXIS_ID,
+      groupId: GROUP_ID,
       hide: false,
       showOverlappingTicks: false,
       showOverlappingLabels: false,
@@ -62,8 +66,11 @@ describe.skip('Chart Store', () => {
     };
     store.addAxisSpec(axisSpec);
     store.computeChart();
-    // console.log(JSON.stringify([...store.axisVisibleTicks], null, 2));
-    // console.log(JSON.stringify([...store.axisTicks], null, 2));
-    // console.log(JSON.stringify([...store.axisPositions], null, 2));
+    const { axesSpecs, axesTicksDimensions, axesPositions, axesVisibleTicks, axesTicks } = store;
+    expect(axesSpecs.get(AXIS_ID)).not.toBeUndefined();
+    expect(axesTicksDimensions.get(AXIS_ID)).not.toBeUndefined();
+    expect(axesPositions.get(AXIS_ID)).not.toBeUndefined();
+    expect(axesVisibleTicks.get(AXIS_ID)).not.toBeUndefined();
+    expect(axesTicks.get(AXIS_ID)).not.toBeUndefined();
   });
 });

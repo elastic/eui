@@ -1,15 +1,11 @@
-import { MULTI_GROUPED_BAR_CHART } from '../utils/data_generators/data_examples';
+import { MULTI_GROUPED_BAR_CHART } from '../../utils/data_generators/data_examples';
 import { ComposedDomain } from './composed_domain';
 import { ScaleType } from './scales';
 
 describe.only('Composed Domain', () => {
   test('can get ticks', () => {
     const scaleTypes = [ScaleType.Ordinal, ScaleType.Ordinal, ScaleType.Ordinal];
-    const accessors = [
-      (datum: any) => datum.timestamp,
-      (datum: any) => datum.os,
-      (datum: any) => datum.status,
-    ];
+    const accessors = [ 'timestamp', 'os', 'status'];
     const data = MULTI_GROUPED_BAR_CHART;
     const composedDomain = new ComposedDomain(data, scaleTypes, accessors);
     expect(composedDomain.ticks(0)).toEqual(['2018-08-13', '2018-08-14', '2018-08-15']);

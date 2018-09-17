@@ -1,15 +1,14 @@
 import { nest } from 'd3-collection';
-import { Dimensions } from '../../dimensions';
-import { Accessor, getAccessorFn } from '../../domains/accessor';
-import { Domain } from '../../domains/domain';
+import { Accessor, getAccessorFn } from '../../data_ops/accessor';
+import { Domain, SpecDomain, SpecDomains } from '../../data_ops/domain';
 import {
   createContinuousScale,
   createOrdinalScale,
   ScaleType,
-} from '../../scales';
+} from '../../data_ops/scales';
+import { Dimensions } from '../../dimensions';
 import { BarSeriesSpec } from '../specs';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from './commons';
-import { SpecDomain, SpecDomains } from './domains';
 
 export interface BarGlyph {
   x: number;
@@ -56,10 +55,6 @@ export function renderBarSeriesSpec(
   const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims);
   const yScaleConfig = getScale(yAccessors[0], domains.yDomain.scaleType, domains.yDomain.domain, 0, chartDims.height);
 
-  // console.log(nestedXScales);
-  // console.log(yScaleConfig.scale.range());
-  // compute composed scales
-
   // group data by xAccessors and splitAccessors
   const groupedDataFn = nest<any, NestRollupType[]>();
 
@@ -70,7 +65,6 @@ export function renderBarSeriesSpec(
 
   const xAccessorFn = getAccessorFn(domains.xDomains[domains.xDomains.length - 1].accessor);
   const isMultipleY = yAccessors.length > 1 && !isYStacked;
-  // console.log({isMultipleY});
   groupedDataFn.rollup((values: any) => {
     const elements: NestRollupType[] = [];
     values.forEach((value: any) => {
@@ -86,7 +80,6 @@ export function renderBarSeriesSpec(
   });
 
   const groupedData = groupedDataFn.entries(data);
-  // console.log(`Grouped data: ${JSON.stringify(groupedData, null, 2)}`);
 
   const leafLevel = groupingXDomains.length;
   const formattedData = reformatData(
@@ -96,9 +89,8 @@ export function renderBarSeriesSpec(
     leafLevel,
     isYStacked,
   )(groupedData, 0);
-  // console.log(`formattedData: ${JSON.stringify(formattedData, null, 2)}`);
-  return formattedData;
 
+  return formattedData;
 }
 
 function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensions) {
@@ -125,11 +117,9 @@ function reformatData(
 ) {
 
   return function reformat(data: any[], level: number) {
-    // console.log({level}, {leafLevel} , xScalesFnConfigs.length);
     const currentLevelXScaleConfig = xScalesFnConfigs[level];
     if (level === leafLevel) {
       // we are at the leaf
-      // console.log(`i'm on leaf ${data}`);
       const leafXScaleConfigs = isStacked ? xScalesFnConfigs[level - 1] : currentLevelXScaleConfig;
       return formatElements(
         data,
@@ -141,7 +131,6 @@ function reformatData(
     }
     return data.reduce((acc, nestedData) => {
       const nextLevelData = level === leafLevel - 1 ? nestedData.value : nestedData.values;
-      // console.log(`next level data ${JSON.stringify(nextLevelData)}`);
       const levelData: any = {
         level,
         accessor: currentLevelXScaleConfig.accessor,
@@ -166,10 +155,6 @@ function formatElements(
   isStacked = false,
   ) {
   const barWidth = xScalesFnConfig.barWidth;
-  // console.log({domain: xScalesFnConfig.scale.domain(), elements });
-  // if (isStacked) {
-  //   barWidth = xScalesFnConfig.barWidth * xScalesFnConfig.scale.domain().length;
-  // }
   return elements.reduce((acc, element, index) => {
     const height = yScalesFnConfig.scale(element.y);
     let x = 0;
@@ -180,7 +165,6 @@ function formatElements(
     if (acc.length > 0 && isStacked) {
       y = acc[acc.length - 1].y - height;
     }
-    // console.log({x});
     const currentElement = {
       x,
       y,

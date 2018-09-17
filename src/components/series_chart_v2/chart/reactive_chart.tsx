@@ -1,31 +1,31 @@
 // import { toJS } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { DataSeriesType } from '../commons/series/specs';
-import { AreaSeries } from '../components/area_series';
+// import { DataSeriesType } from '../commons/series/specs';
+// import { AreaSeries } from '../components/area_series';
 import { Axis } from '../components/axis';
 import { BarSeries } from '../components/bar_series';
-import { LineSeries } from '../components/line_series';
+// import { LineSeries } from '../components/line_series';
 import { ChartStore } from '../state/chart_state';
-import { AreaSeriesGlyph } from '../utils/area_series_utils';
-import { BarSeriesGlyph } from '../utils/bar_series_utils';
-import { LineSeriesGlyph } from '../utils/line_series_utils';
+// import { AreaSeriesGlyph } from '../utils/area_series_utils';
+// import { BarSeriesGlyph } from '../utils/bar_series_utils';
+// import { LineSeriesGlyph } from '../utils/line_series_utils';
 
 interface ReactiveChartProps {
   chartStore?: ChartStore; // FIX until we find a better way on ts mobx
 }
-interface BarSeriesDataGlyphs {
-  type: DataSeriesType;
-  bars: BarSeriesGlyph[];
-}
-interface LineSeriesDataGlyphs {
-  type: DataSeriesType;
-  line: LineSeriesGlyph;
-}
-interface AreaSeriesDataGlyphs {
-  type: DataSeriesType;
-  area: AreaSeriesGlyph;
-}
+// interface BarSeriesDataGlyphs {
+//   type: DataSeriesType;
+//   bars: BarSeriesGlyph[];
+// }
+// interface LineSeriesDataGlyphs {
+//   type: DataSeriesType;
+//   line: LineSeriesGlyph;
+// }
+// interface AreaSeriesDataGlyphs {
+//   type: DataSeriesType;
+//   area: AreaSeriesGlyph;
+// }
 
 class Chart extends React.Component<ReactiveChartProps> {
   public static displayName = 'ReactiveChart';
@@ -68,60 +68,43 @@ class Chart extends React.Component<ReactiveChartProps> {
     });
     return axesComponents;
   }
-  public renderLineSeries = () => {
-    const { seriesGlyphs } = this.props.chartStore!;
-    const points: JSX.Element[] = [];
-    seriesGlyphs.forEach((spec, specId) => {
-      if (spec.type !== DataSeriesType.Line) {
-        return;
-      }
-      const lineGlyph = spec as LineSeriesDataGlyphs;
-      points.push(<LineSeries key={`line-series-${specId}`} line={lineGlyph.line} />);
-    });
-    return points;
-  }
-  public renderPointSeries = () => {
-    return null;
-    // const {
-    //   pointSeriesSpecs,
-    // } = this.props.chartStore!;
-    // const points = [];
-    // pointSeriesSpecs.forEach((spec) => {
-    //   points.push((
-    //     <PointSeries
-    //       key={`point-series:${spec.id}`}
-    //       points={spec.points}
-    //     />
-    //   ));
-    // });
-    // return points;
-  }
+  // public renderLineSeries = () => {
+  //   const { seriesGlyphs } = this.props.chartStore!;
+  //   const points: JSX.Element[] = [];
+  //   seriesGlyphs.forEach((spec, specId) => {
+  //     if (spec.type !== DataSeriesType.Line) {
+  //       return;
+  //     }
+  //     const lineGlyph = spec as LineSeriesDataGlyphs;
+  //     points.push(<LineSeries key={`line-series-${specId}`} line={lineGlyph.line} />);
+  //   });
+  //   return points;
+  // }
+  // public renderPointSeries = () => {
+  //   return null;
+  // }
   public renderBarSeries = () => {
-    const { seriesGlyphs } = this.props.chartStore!;
-    const points: JSX.Element[] = [];
-    seriesGlyphs.forEach((spec) => {
-      if (spec.type !== DataSeriesType.Bar) {
-        return;
-      }
-      const barGlyphs = spec as BarSeriesDataGlyphs;
-      points.push(<BarSeries key="data points" bars={barGlyphs.bars} />);
+    const { barSeriesGlyphs } = this.props.chartStore!;
+    const bars: JSX.Element[] = [];
+    barSeriesGlyphs.forEach((barGlyphs) => {
+      bars.push(<BarSeries key="data bars" glyphs={barGlyphs} />);
     });
-    return points;
+    return bars;
   }
-  public renderAreaSeries = () => {
-    const { seriesGlyphs } = this.props.chartStore!;
-    const points: JSX.Element[] = [];
-    seriesGlyphs.forEach((spec, specId) => {
-      if (spec.type !== DataSeriesType.Area) {
-        return;
-      }
-      const areaGlyph = spec as AreaSeriesDataGlyphs;
-      // tslint:disable-next-line:no-console
-      console.log('areaGlyph', areaGlyph);
-      points.push(<AreaSeries key={`area-series-${specId}`} area={areaGlyph.area} />);
-    });
-    return points;
-  }
+  // public renderAreaSeries = () => {
+  //   const { seriesGlyphs } = this.props.chartStore!;
+  //   const points: JSX.Element[] = [];
+  //   seriesGlyphs.forEach((spec, specId) => {
+  //     if (spec.type !== DataSeriesType.Area) {
+  //       return;
+  //     }
+  //     const areaGlyph = spec as AreaSeriesDataGlyphs;
+  //     // tslint:disable-next-line:no-console
+  //     console.log('areaGlyph', areaGlyph);
+  //     points.push(<AreaSeries key={`area-series-${specId}`} area={areaGlyph.area} />);
+  //   });
+  //   return points;
+  // }
   public render() {
     const { initialized } = this.props.chartStore!;
     if (!initialized.get()) {
@@ -181,10 +164,10 @@ class Chart extends React.Component<ReactiveChartProps> {
               fill="red"
               fillOpacity={0.3}
             /> */}
-            <g className="euiSeriesChartSeries_lineSeries">{this.renderLineSeries()}</g>
-            <g className="euiSeriesChartSeries_pointSeries">{this.renderPointSeries()}</g>
+            {/* <g className="euiSeriesChartSeries_lineSeries">{this.renderLineSeries()}</g>
+            <g className="euiSeriesChartSeries_pointSeries">{this.renderPointSeries()}</g> */}
             <g className="euiSeriesChartSeries_barSeries">{this.renderBarSeries()}</g>
-            <g className="euiSeriesChartSeries_areaSeries">{this.renderAreaSeries()}</g>
+            {/* <g className="euiSeriesChartSeries_areaSeries">{this.renderAreaSeries()}</g> */}
           </g>
           <g className="euiSeriesChartAxis_group">{this.renderAxes()}</g>
         </svg>

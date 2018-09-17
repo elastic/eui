@@ -1,37 +1,55 @@
 import React from 'react';
+import { BarGlyph, BarGlyphGroup } from '../commons/series/bars/rendering';
 // import NodeGroup from 'react-move/NodeGroup';
-import { BarSeriesGlyph, StackedBarSeriesGlyph } from '../utils/bar_series_utils';
 
-type RenderedBarSeriesGlyph = BarSeriesGlyph & { key: string, opacity?: number };
 interface BarSeriesDataProps {
   animated?: boolean;
-  bars: BarSeriesGlyph[] | StackedBarSeriesGlyph[];
+  glyphs: BarGlyphGroup[];
 }
 export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
   public static defaultProps: Partial<BarSeriesDataProps> = {
     animated: false,
   };
-  // public componentDidMount() {
-  //   console.log('component did mount');
-  // }
-  // public componentWillUnmount() {
-  //   console.log('componentWillUnmount');
-  // }
-
   public render() {
-    const { animated, bars } = this.props;
+    const { animated, glyphs } = this.props;
     if (animated) {
-      // return this.renderAnimatedBars(bars);
-      return null;
+      return this.renderAnimatedBars(glyphs);
     } else {
-      if (bars.length === 0) {
-        return null;
-      }
-      if (Array.isArray(bars[0])) {
-        return this.renderStaticStackedBars(bars as StackedBarSeriesGlyph[]);
-      }
-      return this.renderStaticBars(bars as BarSeriesGlyph[]);
+      return this.renderGlyphs(glyphs);
     }
+  }
+  private renderGlyphs = (glyphs: BarGlyphGroup[] | BarGlyph[]): JSX.Element[] => {
+    if (Array.isArray(glyphs) && glyphs.length > 0 && !(glyphs[0] as BarGlyphGroup).accessor) {
+      // leaf
+      return this.renderBars(glyphs as BarGlyph[]);
+    }
+    return (glyphs as BarGlyphGroup[]).map((glyph) => {
+      return (
+        <g
+          key={`group-${glyph.level}-${glyph.levelValue}`}
+          transform={`translate(${glyph.translateX} ${glyph.translateY})`}
+        >
+        {
+          this.renderGlyphs(glyph.elements)
+        }
+        </g>
+      );
+    });
+  }
+  private renderBars = (glyphs: BarGlyph[]) => {
+    return glyphs.map(({x, y, width, height}, index) => {
+      return (
+        <rect
+          key={`rect-${index}`}
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+        />);
+    });
+  }
+  private renderAnimatedBars = (glyphs: BarGlyphGroup[]) => {
+    return null;
   }
   // private renderAnimatedBars = (bars: BarSeriesGlyph[]) => {
   //   return (
@@ -97,54 +115,54 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
   //     </g>
   //   );
   // }
-  private renderBar(bar: RenderedBarSeriesGlyph) {
-    const { key, x, y, width, height, opacity } = bar;
-    return (
-      <rect
-        key={key}
-        className="euiSeriesChartSeries_bar"
-        x={x}
-        y={y}
-        opacity={opacity}
-        width={width}
-        height={height}
-      />
-    );
-  }
-  private renderStaticBars(bars: BarSeriesGlyph[]) {
-    return (
-      <g className="euiSeriesChartSeries_barGroup">
-      {
-        bars.map((bar, index) => {
-          return this.renderBar({
-            key: `bar-${index}`,
-            ...bar as BarSeriesGlyph,
-          });
-        })
-      }
-      </g>
-    );
-  }
-  private renderStaticStackedBars(bars: StackedBarSeriesGlyph[]) {
-    return (
-      <g className="euiSeriesChartSeries_barGroup">
-      {
-        bars.map((stack: StackedBarSeriesGlyph, index) => {
-          return(
-            <g className="euiSeriesChartSeries_barStack">
-              {
-                stack.map((bar, barIndex) => {
-                  return this.renderBar({
-                    key: `bar-${index}-${barIndex}`,
-                    ...bar,
-                  });
-                })
-              }
-            </g>
-          );
-        })
-      }
-      </g>
-    );
-  }
+  // private renderBar(bar: RenderedBarSeriesGlyph) {
+  //   const { key, x, y, width, height, opacity } = bar;
+  //   return (
+  //     <rect
+  //       key={key}
+  //       className="euiSeriesChartSeries_bar"
+  //       x={x}
+  //       y={y}
+  //       opacity={opacity}
+  //       width={width}
+  //       height={height}
+  //     />
+  //   );
+  // }
+  // private renderStaticBars(bars: BarSeriesGlyph[]) {
+  //   return (
+  //     <g className="euiSeriesChartSeries_barGroup">
+  //     {
+  //       bars.map((bar, index) => {
+  //         return this.renderBar({
+  //           key: `bar-${index}`,
+  //           ...bar as BarSeriesGlyph,
+  //         });
+  //       })
+  //     }
+  //     </g>
+  //   );
+  // }
+  // private renderStaticStackedBars(bars: StackedBarSeriesGlyph[]) {
+  //   return (
+  //     <g className="euiSeriesChartSeries_barGroup">
+  //     {
+  //       bars.map((stack: StackedBarSeriesGlyph, index) => {
+  //         return(
+  //           <g className="euiSeriesChartSeries_barStack">
+  //             {
+  //               stack.map((bar, barIndex) => {
+  //                 return this.renderBar({
+  //                   key: `bar-${index}-${barIndex}`,
+  //                   ...bar,
+  //                 });
+  //               })
+  //             }
+  //           </g>
+  //         );
+  //       })
+  //     }
+  //     </g>
+  //   );
+  // }
 }

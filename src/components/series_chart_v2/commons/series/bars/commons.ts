@@ -1,4 +1,4 @@
-import { Accessor } from '../../domains/accessor';
+import { Accessor } from '../../data_ops/accessor';
 
 export interface BarScaleFnConfig {
   accessor: Accessor;
