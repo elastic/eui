@@ -79,7 +79,8 @@ export interface AxisSpec {
   tickSize: number;
   tickPadding: number;
   tickFormat: (value: any) => string;
-  groupingLayer?: number;
+  /** Select the level of ticks to show. Currently not implemented. */
+  groupingLevel?: number;
 }
 
 export enum AxisPosition {

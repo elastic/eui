@@ -80,6 +80,7 @@ export function renderBarSeriesSpec(
   });
 
   const groupedData = groupedDataFn.entries(data);
+  console.log(groupedData);
 
   const leafLevel = groupingXDomains.length;
   const formattedData = reformatData(

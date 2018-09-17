@@ -20,6 +20,11 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
   if (yAccessors.length === 1 && stackAccessors.length > 0) {
     nonStackedSplitAccessors = splitSeriesAccessors.slice(0, -1);
   }
+  let globalStackAccessors: string[] = [];
+  if (stackAccessors.length > 0) {
+    globalStackAccessors = [xAccessor, ...stackAccessors.slice(0, -1)];
+  }
+
   const orderedXAccessors = [ xAccessor, ...nonStackedSplitAccessors ];
   const orderedXDomains: Domain[] = [];
   let yDomain: any[] = [];
@@ -47,7 +52,7 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
       yDomain = [...yDomain, ...yValues];
     } else {
       if (stackAccessors.length > 0) {
-        const stackKey = stackAccessors.map((accessor) => String(datum[accessor])).join('--');
+        const stackKey = globalStackAccessors.map((accessor) => String(datum[accessor])).join('--');
         if (!groupedData.has(stackKey)) {
           groupedData.set(stackKey, []);
         }

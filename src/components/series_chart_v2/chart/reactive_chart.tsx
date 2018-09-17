@@ -116,7 +116,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     // console.log({ groupDomains: toJS(groupDomains)})
     // console.log({ vLeftAxisSpec: toJS(vLeftAxisSpec)})
     // console.log({ hBottomAxisSpec: toJS(hBottomAxisSpec)})
-    // console.log({ chartDimensions: toJS(chartDimensions)})
+    console.log({ chartDimensions});
 
     return (
       <div
