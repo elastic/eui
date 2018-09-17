@@ -243,21 +243,26 @@ class App extends Component {
           </div>
           <div className="chartContainer">
             <Chart>
-              <Axis
-                id={getAxisId('axisbottom22')}
+            <Axis
+                id={getAxisId('top')}
                 position="top"
                 orientation="horizontal"
+                title="The top axis title"
               />
               <Axis
-                id={getAxisId('axisbottoms22')}
-                position="top"
+                id={getAxisId('bottom')}
+                position="bottom"
                 orientation="horizontal"
+                title="The bottom axis title"
               />
-              <Axis id={getAxisId('left1')} position="left" orientation="vertical" />
-              <Axis id={getAxisId('left2')} position="left" orientation="vertical" />
-              <Axis id={getAxisId('left3')} position="left" orientation="vertical" />
-              <Axis id={getAxisId('right1')} position="right" orientation="vertical" />
-              <Axis id={getAxisId('right2')} position="right" orientation="vertical" />
+              <Axis
+                id={getAxisId('left')}
+                position="left"
+                orientation="vertical"
+                title="The left axis title"
+              />
+              <Axis id={getAxisId('right')} position="right" orientation="vertical"
+              title="The right axis title" />
               {this.renderSimpleClusteredBarChart()}
             </Chart>
           </div>

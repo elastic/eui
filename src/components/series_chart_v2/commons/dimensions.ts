@@ -1,6 +1,7 @@
 import { AxisTicksDimensions } from './axes/axis_utils';
 import { AxisId } from './ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from './series/specs';
+import { Theme } from './themes/theme';
 
 export interface Dimensions {
   top: number;
@@ -23,7 +24,7 @@ export interface Margins {
  */
 export function computeChartDimensions(
   parentDimensions: Dimensions,
-  chartMargins: Margins,
+  chartTheme: Theme,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
   axisSpecs: Map<AxisId, AxisSpec>,
 ): Dimensions {
@@ -31,6 +32,7 @@ export function computeChartDimensions(
   let vRightAxisSpecWidth = 0;
   let hTopAxisSpecHeight = 0;
   let hBottomAxisSpecHeight = 0;
+  const { chartMargins, axisTitle } = chartTheme;
 
   axisDimensions.forEach(({ maxTickWidth = 0, maxTickHeight = 0 }, id) => {
     const axisSpec = axisSpecs.get(id);
@@ -41,6 +43,7 @@ export function computeChartDimensions(
     if (orientation === AxisOrientation.Horizontal) {
       if (position === AxisPosition.Top) {
         hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + chartMargins.top;
+        hTopAxisSpecHeight += axisSpec.title ?  axisTitle.fontSize : 0;
       } else if (position === AxisPosition.Bottom) {
         hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + chartMargins.bottom;
       }
