@@ -1,24 +1,17 @@
 import { extent, sum } from 'd3-array';
 import { uniq } from 'lodash';
-import { Accessor } from '../../domains/accessor';
-import { Domain } from '../../domains/domain';
-import { ScaleType } from '../../scales';
+import { Domain, SpecDomains } from '../../data_ops/domain';
+import { ScaleType } from '../../data_ops/scales';
 import { BarSeriesSpec } from '../specs';
 
-export interface SpecDomain {
-  accessor: Accessor;
-  level: number;
-  domain: Domain;
-  scaleType: ScaleType;
-  isStacked?: boolean;
-}
-
-export interface SpecDomains {
-  xDomains: SpecDomain[];
-  yDomain: SpecDomain;
-}
-
-export function computeDomains(spec: BarSeriesSpec): SpecDomains {
+/**
+ * Compute the domains configuration based for a bar series spec.
+ * Depending on groupings and stacking, the resulting domains will reflect
+ * the number of group levels required to correctly render data.
+ * @param spec the BarSeriesSpec
+ * @return SpecDomains
+ */
+export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
   // compute x domains
   const { data,  xScaleType, yScaleType, xAccessor, yAccessors, splitSeriesAccessors = [], stackAccessors = [] } = spec;
 

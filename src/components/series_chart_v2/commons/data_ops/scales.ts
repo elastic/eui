@@ -1,6 +1,6 @@
 import { scaleBand, ScaleContinuousNumeric, scaleLinear, scaleLog, scaleSqrt } from 'd3-scale';
-import { AccessorFn } from './domains/accessor';
-import { Datum } from './series/specs';
+import { Datum } from '../series/specs';
+import { AccessorFn } from './accessor';
 
 export type ScaleFn = (datum: Datum) => number;
 
@@ -35,6 +35,8 @@ export interface ScaleOrdinal {
 export type ScaleContinuousTypes = ScaleType.Linear | ScaleType.Sqrt | ScaleType.Log;
 export type ScaleOrdinalTypes = ScaleType.Ordinal;
 export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
+
+export type ScaleFunction = (value: Datum) => any;
 
 function buildOrdinalScale(padding = 0): ScaleOrdinal {
   const d3ScaleBand = scaleBand()

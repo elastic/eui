@@ -1,13 +1,13 @@
 import { max } from 'd3-array';
-import { Dimensions } from '../commons/dimensions';
-import { Domain, SeriesScales } from '../commons/domains/domain';
-import { AxisId } from '../commons/ids';
+import { Domain, SpecDomain, SpecDomains } from '../data_ops/domain';
 import {
   createContinuousScale,
   createOrdinalScale,
   ScaleType,
-} from '../commons/scales';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../commons/series/specs';
+} from '../data_ops/scales';
+import { Dimensions } from '../dimensions';
+import { AxisId } from '../ids';
+import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export interface AxisTick {
@@ -28,7 +28,7 @@ export interface AxisTicksDimensions {
 
 export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
-  axisSeriesScales: SeriesScales[],
+  specDomains: SpecDomains,
   bboxCalculator: SvgTextBBoxCalculator,
 ): AxisTicksDimensions {
 
@@ -38,16 +38,14 @@ export function computeAxisTicksDimensions(
   let axisScaleDomain: Domain;
 
   if (axisSpec.orientation === AxisOrientation.Vertical) {
-    const seriesScales = axisSeriesScales[axisSeriesScales.length - 1];
-    const verticalTicks = computeVerticalTicks(seriesScales, axisSpec);
+    const verticalTicks = computeVerticalTicks(specDomains.yDomain, axisSpec);
     tickValues = verticalTicks.tickValues;
     tickLabels = verticalTicks.tickLabels;
     axisScaleType = verticalTicks.axisScaleType!;
     axisScaleDomain = verticalTicks.axisScaleDomain!;
   } else {
     const layer = axisSpec.groupingLayer ? axisSpec.groupingLayer : 0;
-    const seriesScales = axisSeriesScales[layer];
-    const horizontalTicks = computeHorizontalTicks(seriesScales, axisSpec);
+    const horizontalTicks = computeHorizontalTicks(specDomains.xDomains[layer], axisSpec);
     tickValues = horizontalTicks.tickValues;
     tickLabels = horizontalTicks.tickLabels;
     axisScaleType = horizontalTicks.axisScaleType;
@@ -74,49 +72,47 @@ export function computeAxisTicksDimensions(
   };
 }
 
-function computeHorizontalTicks(axisSeriesScale: SeriesScales, axisSpec: AxisSpec) {
-  const { xDomain, xScaleType} = axisSeriesScale;
+function computeHorizontalTicks(axisSeriesScale: SpecDomain, axisSpec: AxisSpec) {
+  const { domain, scaleType} = axisSeriesScale;
 
   let tickValues: string[] | number[];
   let tickLabels: string[];
 
-  if (xScaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(xDomain as string[], 1, 0);
+  if (scaleType === ScaleType.Ordinal) {
+    const scale = createOrdinalScale(domain as string[], 1, 0);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
-    // if we are computing vertical ticks we are sure that yScaleType is configured
-    const scale = createContinuousScale(xScaleType!, xDomain as number[], 1, 0);
+    const scale = createContinuousScale(scaleType, domain as number[], 1, 0);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   }
   return {
-    axisScaleType: xScaleType,
-    axisScaleDomain: xDomain,
+    axisScaleType: scaleType,
+    axisScaleDomain: domain,
     tickValues,
     tickLabels,
   };
 }
 
-function computeVerticalTicks(axisSeriesScale: SeriesScales, axisSpec: AxisSpec) {
-  const { yDomain, yScaleType} = axisSeriesScale;
+function computeVerticalTicks(specDomain: SpecDomain, axisSpec: AxisSpec) {
+  const { domain, scaleType} = specDomain;
 
   let tickValues: string[] | number[];
   let tickLabels: string[];
 
-  if (yScaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(yDomain as string[], 1, 0);
+  if (scaleType === ScaleType.Ordinal) {
+    const scale = createOrdinalScale(domain as string[], 1, 0);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
-    // if we are computing vertical ticks we are sure that yScaleType is configured
-    const scale = createContinuousScale(yScaleType!, yDomain as number[], 1, 0);
+    const scale = createContinuousScale(scaleType, domain as number[], 1, 0);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   }
   return {
-    axisScaleType: yScaleType,
-    axisScaleDomain: yDomain,
+    axisScaleType: scaleType,
+    axisScaleDomain: domain,
     tickValues,
     tickLabels,
   };

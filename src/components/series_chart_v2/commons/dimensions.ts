@@ -1,4 +1,4 @@
-import { AxisTicksDimensions } from '../state/axis_utils';
+import { AxisTicksDimensions } from './axes/axis_utils';
 import { AxisId } from './ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from './series/specs';
 

@@ -1,4 +1,5 @@
-import { Accessor, computeContinuousDataDomain, computeOrdinalDataDomain, Domain } from './domains/domain';
+import { Accessor, getAccessorFn } from './accessor';
+import { computeContinuousDataDomain, computeOrdinalDataDomain, Domain } from './domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from './scales';
 
 export class ComposedDomain {
@@ -21,11 +22,11 @@ export class ComposedDomain {
       let domain;
       let ticks;
       if (scaleType === ScaleType.Ordinal) {
-        domain = computeOrdinalDataDomain(data, accessor, true);
+        domain = computeOrdinalDataDomain(data, getAccessorFn(accessor), true);
         const scale = createOrdinalScale(domain as string[], 1, 0);
         ticks = scale.ticks();
       } else {
-        domain = computeContinuousDataDomain(data, accessor, scaleToExtent);
+        domain = computeContinuousDataDomain(data, getAccessorFn(accessor), scaleToExtent);
         const scale = createContinuousScale(scaleType, domain as number[], 1, 0);
         ticks = scale.ticks();
       }

@@ -1,8 +1,9 @@
+import { SpecDomains } from '../../../data_ops/domain';
+import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
-import { ScaleType } from '../../../scales';
 import { BarSeriesSpec } from '../../specs';
-import { computeDomains, SpecDomains } from '../domains';
+import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
 
 const CHART_DIMS: Dimensions = {
@@ -32,7 +33,7 @@ describe.only('Bar rendering 2Y0G', () => {
   let computedDomains: SpecDomains;
 
   test('should compute the domain', () => {
-    computedDomains = computeDomains(SPEC);
+    computedDomains = computeDataDomain(SPEC);
     // we will expect a 0 level x domain with ordinal type because
     // we have 2 y variables and they needs to be grouped along X
     const expectedDomains: SpecDomains = {

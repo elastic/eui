@@ -1,6 +1,6 @@
 import { Provider } from 'mobx-react';
 import React, { Fragment } from 'react';
-import { Specs } from '../specs/specs';
+import { SpecsParser } from '../specs/specs_parser';
 import { ChartStore } from '../state/chart_state';
 import { ChartResizer } from './chart_resizer';
 import { ReactiveChart } from './reactive_chart';
@@ -15,9 +15,9 @@ export class Chart extends React.Component {
     return (
       <Provider chartStore={this.chartSpecStore}>
         <Fragment>
-          <Specs>
+          <SpecsParser>
             { this.props.children }
-          </Specs>
+          </SpecsParser>
           <ChartResizer />
           <ReactiveChart />
         </Fragment>

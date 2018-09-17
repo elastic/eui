@@ -1,7 +1,7 @@
 import React, { SVGProps } from 'react';
+import { AxisTick, AxisTicksDimensions } from '../commons/axes/axis_utils';
 import { Dimensions } from '../commons/dimensions';
 import { AxisSpec } from '../commons/series/specs';
-import { AxisTick, AxisTicksDimensions } from '../state/axis_utils';
 
 interface AxisProps {
   axisSpec: AxisSpec;

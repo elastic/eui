@@ -1,6 +1,7 @@
-import { getAxisId, getGroupId } from '../commons/ids';
-import { ScaleType } from '../commons/scales';
-import { AxisOrientation, AxisPosition } from '../commons/series/specs';
+import { SpecDomains } from '../data_ops/domain';
+import { ScaleType } from '../data_ops/scales';
+import { getAxisId, getGroupId } from '../ids';
+import { AxisOrientation, AxisPosition } from '../series/specs';
 import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
@@ -64,21 +65,26 @@ describe('Axis computational utils', () => {
       return `${value}`;
     },
   };
-  const xAccessor = (datum: any) => datum.x;
-  const yAccessor = (datum: any) => datum.y;
-  const axis1SeriesScale = {
-    groupLevel: 0,
-    xDomain: [0, 1],
-    yDomain: [0, 1],
-    xScaleType: ScaleType.Linear,
-    yScaleType: ScaleType.Linear,
-    xAccessor,
-    yAccessor,
+  const specDomain: SpecDomains = {
+    xDomains: [
+      {
+        level: 0,
+        accessor: 'x',
+        domain: [0, 1],
+        scaleType: ScaleType.Linear,
+      },
+    ],
+    yDomain: {
+      level: 0,
+      accessor: 'y',
+      domain: [0, 1],
+      scaleType: ScaleType.Linear,
+    },
   };
 
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const axisDimensions = computeAxisTicksDimensions(axis1Spec, [axis1SeriesScale], bboxCalculator);
+    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator);
     expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });

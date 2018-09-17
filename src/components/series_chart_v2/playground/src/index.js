@@ -1,7 +1,7 @@
 require('./index.scss');
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Axis, BarSeries, AreaSeries, LineSeries } from '../../specs/index.ts';
+import { Axis, BarSeries } from '../../specs/index.ts';
 import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
@@ -101,17 +101,9 @@ class App extends Component {
         id={getSpecId('renderSimpleClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
-        xAccessor={d => {
-          return d.status;
-        }}
-        yAccessor={d => {
-          return d.count;
-        }}
-        groupAccessors={[
-          d => {
-            return `${d.timestamp}`;
-          },
-        ]}
+        xAccessor='status'
+        yAccessors={['count']}
+        stackAccessors={['timestamp']}
         data={this.state.simpleClusteredBarChart}
       />
     );
@@ -273,7 +265,7 @@ class App extends Component {
               {this.renderSimpleClusteredBarChart()}
             </Chart>
           </div>
-          <div className="chartContainer">
+          {/* <div className="chartContainer">
             <Chart>
               <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
@@ -320,7 +312,7 @@ class App extends Component {
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.renderStackedAreaChart()}
             </Chart>
-          </div>
+          </div> */}
         </div>
       </div>
     );

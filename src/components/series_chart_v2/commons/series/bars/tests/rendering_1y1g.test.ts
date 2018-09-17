@@ -1,8 +1,9 @@
+import { SpecDomains } from '../../../data_ops/domain';
+import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
-import { ScaleType } from '../../../scales';
 import { BarSeriesSpec } from '../../specs';
-import { computeDomains, SpecDomains } from '../domains';
+import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
 
 const CHART_DIMS: Dimensions = {
@@ -37,7 +38,7 @@ describe.only('Bar rendering 1Y1G', () => {
   let computedDimensions: SpecDomains;
 
   test('should compute the domain', () => {
-    computedDimensions = computeDomains(SPEC);
+    computedDimensions = computeDataDomain(SPEC);
     const expectedDomains: SpecDomains = {
       xDomains: [
         {
