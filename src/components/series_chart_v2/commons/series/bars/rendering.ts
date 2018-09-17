@@ -131,11 +131,12 @@ function reformatData(
     }
     return data.reduce((acc, nestedData) => {
       const nextLevelData = level === leafLevel - 1 ? nestedData.value : nestedData.values;
+      const translateX = xScalesFnConfigs[level].scale(nestedData.key);
       const levelData: any = {
         level,
         accessor: currentLevelXScaleConfig.accessor,
         levelValue: nestedData.key,
-        translateX: acc.length * currentLevelXScaleConfig.barWidth,
+        translateX,
         translateY: 0,
         elements: reformat(
           nextLevelData,
@@ -157,11 +158,8 @@ function formatElements(
   const barWidth = xScalesFnConfig.barWidth;
   return elements.reduce((acc, element, index) => {
     const height = yScalesFnConfig.scale(element.y);
-    let x = 0;
+    const x = isStacked ? 0 : xScalesFnConfig.scale(element.x);
     let y = seriesDimensions.height - height;
-    if (acc.length > 0 && !isStacked) {
-      x = xScalesFnConfig.scale(element.x);
-    }
     if (acc.length > 0 && isStacked) {
       y = acc[acc.length - 1].y - height;
     }

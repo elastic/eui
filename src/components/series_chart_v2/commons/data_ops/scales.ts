@@ -38,7 +38,7 @@ export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
 
 export type ScaleFunction = (value: Datum) => any;
 
-function buildOrdinalScale(padding = 0): ScaleOrdinal {
+function buildOrdinalScale(padding = 0.15): ScaleOrdinal {
   const d3ScaleBand = scaleBand()
     .padding(padding)
     .round(true);

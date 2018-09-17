@@ -77,6 +77,7 @@ export class ChartStore {
     this.barSeriesSpecs.set(seriesSpec.id, seriesSpec);
     // compute all x and y domains
     const dataDomain = computeDataDomain(seriesSpec);
+    console.log(dataDomain);
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
@@ -161,6 +162,7 @@ export class ChartStore {
         throw new Error('Missing spec domain for existing spec');
       }
       const renderedGlyphs = renderBarSeriesSpec(barSeriesSpec, specDomain, this.chartDimensions);
+      console.log(renderedGlyphs);
       this.barSeriesGlyphs.set(id, renderedGlyphs);
     });
 
