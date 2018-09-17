@@ -280,6 +280,8 @@ export {
 export {
   EuiTable,
   EuiTableBody,
+  EuiTableFooter,
+  EuiTableFooterCell,
   EuiTableHeader,
   EuiTableHeaderButton,
   EuiTableHeaderCell,

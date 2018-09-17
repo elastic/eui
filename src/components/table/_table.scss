@@ -113,6 +113,23 @@
   @include euiTableCellCheckbox;
 }
 
+// Must come after .euiTableRowCell selector for border to be removed
+.euiTableFooterCell,
+.euiTableFooterRow .euiTableHeaderCellCheckbox {
+  @include euiTableCell;
+
+  background-color: $euiColorLightestShade;
+  color: $euiColorDarkShade;
+  font-weight: $euiFontWeightMedium;
+  border: none;
+
+  .euiTableCellContent__text {
+    @include euiFontSizeXS;
+    color: $euiColorDarkShade;
+    font-weight: $euiFontWeightBold;
+  }
+}
+
 /**
  * 1. Vertically align all children.
  * 2. The padding on this div allows the ellipsis to show if the content is truncated. If

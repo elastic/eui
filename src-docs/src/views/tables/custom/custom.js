@@ -19,6 +19,8 @@ import {
   EuiSpacer,
   EuiTable,
   EuiTableBody,
+  EuiTableFooter,
+  EuiTableFooterCell,
   EuiTableHeader,
   EuiTableHeaderCell,
   EuiTableHeaderCellCheckbox,
@@ -36,6 +38,8 @@ import {
   Pager,
   SortableProperties,
 } from '../../../../../src/services';
+
+import { isFunction } from '../../../../../src/services/predicate';
 
 export default class extends Component {
   constructor(props) {
@@ -221,6 +225,7 @@ export default class extends Component {
     }, {
       id: 'title',
       label: 'Title',
+      footer: <em>Title</em>,
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
       hideForMobile: true,
@@ -234,15 +239,20 @@ export default class extends Component {
     }, {
       id: 'health',
       label: 'Health',
+      footer: '',
       alignment: LEFT_ALIGNMENT,
     }, {
       id: 'dateCreated',
       label: 'Date created',
+      footer: 'Date created',
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
     }, {
       id: 'magnitude',
       label: 'Orders of magnitude',
+      footer: currentPageItems => (
+        <strong>Total: {currentPageItems.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
+      ),
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,
     }, {
@@ -546,6 +556,69 @@ export default class extends Component {
     return rows;
   }
 
+  renderFooterCells() {
+    const footers = [];
+
+    this.columns.forEach(column => {
+      const footer = this.getColumnFooter(column, this.items);
+
+      if (footer === null) return;
+
+      if (footer) {
+        footers.push(
+          <EuiTableFooterCell
+            key={column.id}
+            header={column.label}
+            align={column.alignment}
+            hideForMobile={column.hideForMobile}
+            isMobileHeader={column.isMobileHeader}
+          >
+            {footer}
+          </EuiTableFooterCell>
+        );
+      } else if (column.isCheckbox) {
+        footers.push(
+          <EuiTableHeaderCellCheckbox
+            key={column.id}
+            width={column.width}
+          >
+            {this.renderSelectAll()}
+          </EuiTableHeaderCellCheckbox>
+        );
+      } else {
+        // Footer is undefined and isn't explicitly null, so create an empty cell to preserve layout
+        footers.push(
+          <EuiTableFooterCell
+            key={column.id}
+            header={column.label}
+            align={column.alignment}
+            hideForMobile={column.hideForMobile}
+            isMobileHeader={column.isMobileHeader}
+          >
+            {undefined}
+          </EuiTableFooterCell>
+        );
+      }
+    });
+
+    return footers.length ? footers : null;
+  }
+
+  getColumnFooter = (column, items) => {
+    if (column.footer === null) {
+      return null;
+    }
+
+    if (column.footer) {
+      if (isFunction(column.footer)) {
+        return column.footer(items);
+      }
+      return column.footer;
+    }
+
+    return undefined;
+  }
+
   render() {
     let optionalActionButtons;
 
@@ -586,6 +659,10 @@ export default class extends Component {
           <EuiTableBody>
             {this.renderRows()}
           </EuiTableBody>
+
+          <EuiTableFooter>
+            {this.renderFooterCells()}
+          </EuiTableFooter>
         </EuiTable>
 
         <EuiSpacer size="m" />
