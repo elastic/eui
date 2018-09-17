@@ -131,7 +131,7 @@ class App extends Component {
         xAccessor='timestamp'
         yAccessors={['count']}
         splitSeriesAccessors={[ 'status', 'os']}
-        stackAccessors={['status']}
+        stackAccessors={['status', 'os']}
         data={this.state.stackedClusteredBarChart}
       />
     );
@@ -289,7 +289,26 @@ class App extends Component {
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.render2YBarChart()}
             </Chart>
-          </div> 
+          </div>
+          {/* {
+            new Array(5).fill(0).map((d, i) => {
+              return (
+                <div key={i} className="chartContainer">
+                  <Chart>
+                    <Axis
+                      id={getAxisId('axisbottom22')}
+                      position="bottom"
+                      orientation="horizontal"
+                      showOverlappingTicks={true}
+                      showOverlappingLabels={false}
+                    />
+                    <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+                    {this.renderGitHubIssue()}
+                  </Chart>
+                </div>
+              )
+            })
+          }  */}
           {/*<div className="chartContainer">
             <Chart>
               <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
