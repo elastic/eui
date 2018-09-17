@@ -33,6 +33,11 @@ declare module '@elastic/eui' {
     | 'flexStart'
     | 'flexEnd'
     | 'center';
+  export type FlexGroupDirection =
+    | 'column'
+    | 'columnReverse'
+    | 'row'
+    | 'rowReverse';
   export type FlexGroupJustifyContent =
     | 'flexStart'
     | 'flexEnd'
@@ -43,11 +48,12 @@ declare module '@elastic/eui' {
   export type FlexGroupCmponentType = 'div' | 'span';
 
   export interface EuiFlexGroupProps {
-    responsive?: boolean;
-    gutterSize?: FlexGroupGutterSize;
     alignItems?: FlexGroupAlignItems;
-    justifyContent?: FlexGroupJustifyContent;
+    direction?: FlexGroupDirection;
     component?: FlexGroupCmponentType;
+    gutterSize?: FlexGroupGutterSize;
+    justifyContent?: FlexGroupJustifyContent;
+    responsive?: boolean;
     wrap?: boolean;
   }
 
