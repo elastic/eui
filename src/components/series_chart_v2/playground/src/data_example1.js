@@ -810,3 +810,11 @@ export const MULTI_GROUPED_BAR_CHART = [
     count: 55,
   },
 ];
+
+
+export const BAR_CHART_2Y = [
+  { x: 0, y1: 1, y2: 3 },
+  { x: 1, y1: 2, y2: 7 },
+  { x: 2, y1: 1, y2: 2 },
+  { x: 3, y1: 6, y2: 10 },
+]

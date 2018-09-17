@@ -5,7 +5,7 @@ import { Axis, BarSeries } from '../../specs/index.ts';
 import { Chart } from '../../chart/chart.tsx';
 import { getAxisId, getSpecId } from '../../commons/ids.ts';
 import { DataGenerator } from '../../utils/data_generators/data_generator.ts';
-import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
+import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART, BAR_CHART_2Y } from './data_example1';
 import { datasetStacked as AREA_STACKED } from './data_example2';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers.ts';
 /* eslint-disable */
@@ -55,6 +55,7 @@ class App extends Component {
     simpleClusteredBarChart: GROUPED_BAR_CHART,
     multipleClusteredBarChart: MULTI_GROUPED_BAR_CHART,
     stackedClusteredBarChart: MULTI_GROUPED_BAR_CHART,
+    barChart2y: BAR_CHART_2Y,
   };
   onChangeData = () => {
     this.setState({
@@ -100,10 +101,10 @@ class App extends Component {
       <BarSeries
         id={getSpecId('renderSimpleClusteredBarChart')}
         yScaleType="linear"
-        xScaleType="ordinal"
-        xAccessor='status'
+        xScaleType="linear"
+        xAccessor='timestamp'
         yAccessors={['count']}
-        stackAccessors={['timestamp']}
+        splitSeriesAccessors={['status']}
         data={this.state.simpleClusteredBarChart}
       />
     );
@@ -114,20 +115,9 @@ class App extends Component {
         id={getSpecId('renderMultipleClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
-        xAccessor={d => {
-          return d.os;
-        }}
-        yAccessor={d => {
-          return d.count;
-        }}
-        groupAccessors={[
-          d => {
-            return `${d.timestamp}`;
-          },
-          d => {
-            return `${d.status}`;
-          },
-        ]}
+        xAccessor='timestamp'
+        yAccessors={['count']}
+        splitSeriesAccessors={['status']}
         data={this.state.multipleClusteredBarChart}
       />
     );
@@ -138,20 +128,10 @@ class App extends Component {
         id={getSpecId('renderStackedClusteredBarChart')}
         yScaleType="linear"
         xScaleType="ordinal"
-        xAccessor={d => {
-          return d.os;
-        }}
-        yAccessor={d => {
-          return d.count;
-        }}
-        groupAccessors={[
-          d => {
-            return `${d.timestamp}`;
-          },
-        ]}
-        stackAccessor={d => {
-          return `${d.timestamp} - ${d.tag} - ${d.os}`;
-        }}
+        xAccessor='timestamp'
+        yAccessors={['count']}
+        splitSeriesAccessors={[ 'status', 'os']}
+        stackAccessors={['status']}
         data={this.state.stackedClusteredBarChart}
       />
     );
@@ -160,27 +140,30 @@ class App extends Component {
     return (
       <BarSeries
         id={getSpecId('renderGitHubIssue')}
-        // groupId={getGroupId('g2')}
         yScaleType="linear"
         xScaleType="ordinal"
-        xAccessor={d => {
-          return d.authorAssociation;
-        }}
-        yAccessor={d => {
-          return d.count;
-        }}
-        stackAccessor={d => {
-          return `${d.vizType} - ${d.authorAssociation}`;
-        }}
-        groupAccessors={[
-          d => {
-            return d.vizType;
-          },
-        ]}
+        xAccessor='vizType'
+        yAccessors={['count']}
+        splitSeriesAccessors={['authorAssociation', 'issueType']}
+        stackAccessors={['authorAssociation','vizType']}
+        
         data={this.state.stackedBarChartData}
       />
     );
   };
+  render2YBarChart = () => {
+    return (
+      <BarSeries
+        id={getSpecId('render2YBarChart')}
+        yScaleType="linear"
+        xScaleType="linear"
+        xAccessor='x'
+        yAccessors={['y1', 'y2']}
+        stackAccessors={['y1', 'y2']}
+        data={this.state.barChart2y}
+      />
+    );
+  }
   renderStackedAreaChart = () => {
     console.log(this.state.stackedAreaChartData);
     return (
@@ -265,7 +248,7 @@ class App extends Component {
               {this.renderSimpleClusteredBarChart()}
             </Chart>
           </div>
-          {/* <div className="chartContainer">
+          <div className="chartContainer">
             <Chart>
               <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
@@ -279,6 +262,7 @@ class App extends Component {
               {this.renderStackedClusteredBarChart()}
             </Chart>
           </div>
+          
           <div className="chartContainer">
             <Chart>
               <Axis
@@ -292,7 +276,21 @@ class App extends Component {
               {this.renderGitHubIssue()}
             </Chart>
           </div>
+          
           <div className="chartContainer">
+            <Chart>
+              <Axis
+                id={getAxisId('axisbottom22')}
+                position="bottom"
+                orientation="horizontal"
+                showOverlappingTicks={true}
+                showOverlappingLabels={false}
+              />
+              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              {this.render2YBarChart()}
+            </Chart>
+          </div> 
+          {/*<div className="chartContainer">
             <Chart>
               <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
