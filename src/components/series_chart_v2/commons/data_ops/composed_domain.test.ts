@@ -2,7 +2,7 @@ import { MULTI_GROUPED_BAR_CHART } from '../../utils/data_generators/data_exampl
 import { ComposedDomain } from './composed_domain';
 import { ScaleType } from './scales';
 
-describe.only('Composed Domain', () => {
+describe('Composed Domain', () => {
   test('can get ticks', () => {
     const scaleTypes = [ScaleType.Ordinal, ScaleType.Ordinal, ScaleType.Ordinal];
     const accessors = [ 'timestamp', 'os', 'status'];

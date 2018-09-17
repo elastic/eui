@@ -236,28 +236,41 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          <div className="chartContainer">
+        <div className="chartContainer">
             <Chart>
-              <Axis
-                id={getAxisId('axisbottom22')}
-                position="bottom"
-                orientation="horizontal"
-                groupingLayer={0}
-              />
-              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.renderSimpleClusteredBarChart()}
             </Chart>
           </div>
           <div className="chartContainer">
             <Chart>
-              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
-              <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
+              <Axis
+                id={getAxisId('axisbottom22')}
+                position="top"
+                orientation="horizontal"
+              />
+              <Axis
+                id={getAxisId('axisbottoms22')}
+                position="top"
+                orientation="horizontal"
+              />
+              <Axis id={getAxisId('left1')} position="left" orientation="vertical" />
+              <Axis id={getAxisId('left2')} position="left" orientation="vertical" />
+              <Axis id={getAxisId('left3')} position="left" orientation="vertical" />
+              <Axis id={getAxisId('right1')} position="right" orientation="vertical" />
+              <Axis id={getAxisId('right2')} position="right" orientation="vertical" />
+              {this.renderSimpleClusteredBarChart()}
+            </Chart>
+          </div>
+          <div className="chartContainer">
+            <Chart>
+              <Axis id={getAxisId('axisbottom22')} position="top" orientation="horizontal" />
+              <Axis id={getAxisId('axis1left1')} position="right" orientation="vertical" />
               {this.renderMultipleClusteredBarChart()}
             </Chart>
           </div>
           <div className="chartContainer">
             <Chart>
-              <Axis id={getAxisId('axisbottom22')} position="bottom" orientation="horizontal" />
+              <Axis id={getAxisId('axisbottom22')} position="top" orientation="horizontal" />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.renderStackedClusteredBarChart()}
             </Chart>
@@ -267,7 +280,7 @@ class App extends Component {
             <Chart>
               <Axis
                 id={getAxisId('axisbottom22')}
-                position="bottom"
+                position="top"
                 orientation="horizontal"
                 showOverlappingTicks={true}
                 showOverlappingLabels={false}
@@ -277,11 +290,11 @@ class App extends Component {
             </Chart>
           </div>
           
-          <div className="chartContainer">
+          {/* <div className="chartContainer">
             <Chart>
               <Axis
                 id={getAxisId('axisbottom22')}
-                position="bottom"
+                position="top"
                 orientation="horizontal"
                 showOverlappingTicks={true}
                 showOverlappingLabels={false}
@@ -289,7 +302,8 @@ class App extends Component {
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
               {this.render2YBarChart()}
             </Chart>
-          </div>
+          </div> */}
+
           {/* {
             new Array(5).fill(0).map((d, i) => {
               return (

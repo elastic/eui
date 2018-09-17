@@ -10,7 +10,7 @@ import {
 } from '../commons/axes/axis_utils';
 import { SvgTextBBoxCalculator } from '../commons/axes/svg_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
-import { computeChartDimensions, Dimensions } from '../commons/dimensions';
+import { computeChartDimensions, Dimensions, Margins } from '../commons/dimensions';
 import { computeDataDomain } from '../commons/series/bars/domains';
 import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
 
@@ -28,6 +28,12 @@ export class ChartStore {
     height: 0,
     top: 0,
     left: 0,
+  }; // updated from jsx
+  public chartMargins: Margins = {
+    top: 20,
+    bottom: 20,
+    left: 20,
+    right: 20,
   }; // updated from jsx
   public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
@@ -77,7 +83,7 @@ export class ChartStore {
     this.barSeriesSpecs.set(seriesSpec.id, seriesSpec);
     // compute all x and y domains
     const dataDomain = computeDataDomain(seriesSpec);
-    console.log(dataDomain);
+    console.log({seriesSpec, dataDomain});
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
@@ -140,6 +146,7 @@ export class ChartStore {
     // compute chart dimensions
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
+      this.chartMargins,
       this.axesTicksDimensions,
       this.axesSpecs,
     );
@@ -147,6 +154,7 @@ export class ChartStore {
     // compute visible ticks and their positions
     const axisTicksPositions = getAxisTicksPositions(
       this.chartDimensions,
+      this.chartMargins,
       this.axesSpecs,
       this.axesTicksDimensions,
     );
