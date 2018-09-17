@@ -49,8 +49,8 @@ declare module '@elastic/eui' {
 
   export interface EuiFlexGroupProps {
     alignItems?: FlexGroupAlignItems;
-    direction?: FlexGroupDirection;
     component?: FlexGroupCmponentType;
+    direction?: FlexGroupDirection;
     gutterSize?: FlexGroupGutterSize;
     justifyContent?: FlexGroupJustifyContent;
     responsive?: boolean;
