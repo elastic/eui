@@ -1,9 +1,11 @@
 import React, { SVGProps } from 'react';
 import { AxisTick, AxisTicksDimensions } from '../commons/axes/axis_utils';
 import { Dimensions } from '../commons/dimensions';
-import { AxisSpec } from '../commons/series/specs';
+import { AxisOrientation, AxisPosition, AxisSpec } from '../commons/series/specs';
+import { Theme } from '../commons/themes/theme';
 
 interface AxisProps {
+  chartTheme: Theme;
   axisSpec: AxisSpec;
   axisTicksDimensions: AxisTicksDimensions;
   axisPosition: Dimensions;
@@ -26,7 +28,7 @@ export class Axis extends React.PureComponent<AxisProps> {
 
     const textProps: SVGProps<SVGTextElement> = {};
 
-    if (orientation === 'vertical') {
+    if (orientation === AxisOrientation.Vertical) {
       textProps.y = tick.position;
       textProps.textAnchor = position === 'left' ? 'end' : 'start';
       textProps.x = position === 'left' ? 0 : tickSize + tickPadding;
@@ -106,6 +108,9 @@ export class Axis extends React.PureComponent<AxisProps> {
               .map(this.renderTickLabel)
           }
         </g>
+        {
+          this.renderAxisTitle()
+        }
       </g>
     );
   }
@@ -134,6 +139,94 @@ export class Axis extends React.PureComponent<AxisProps> {
     }
     return (
       <line className="euiSeriesChartAxis_line" {...lineProps} />
+    );
+  }
+  private renderAxisTitle() {
+    const {
+      axisPosition,
+      axisSpec: {
+        title,
+        orientation,
+        position,
+        tickSize,
+        tickPadding,
+      },
+      axisTicksDimensions,
+    } = this.props;
+    if (!title) {
+      return null;
+    }
+    if (orientation === AxisOrientation.Horizontal) {
+      return this.renderOriziontalAxisTitle();
+    }
+    return this.renderVerticalAxisTitle();
+  }
+  private renderVerticalAxisTitle() {
+    const {
+      axisPosition: {
+        height,
+      },
+      axisSpec: {
+        title,
+        position,
+        tickSize,
+        tickPadding,
+      },
+      axisTicksDimensions: {
+        maxTickWidth,
+      },
+      chartTheme: {
+        chartMargins,
+      },
+    } = this.props;
+
+    const top = height / 2;
+    const left = position === AxisPosition.Left
+      ? - (maxTickWidth  + chartMargins.left / 2)
+      : tickSize + tickPadding + maxTickWidth + + chartMargins.right / 2;
+    const translate = `translate(${left} ${top}) rotate(-90)`;
+    return (
+      <g className="euiSeriesChartAxis_axisTitle">
+        <text
+          textAnchor="middle"
+          dominantBaseline="middle"
+          transform={translate}
+        >{title}</text>
+      </g>
+    );
+  }
+  private renderOriziontalAxisTitle() {
+    const {
+      axisPosition: {
+        width,
+      },
+      axisSpec: {
+        title,
+        position,
+        tickSize,
+        tickPadding,
+      },
+      axisTicksDimensions: {
+        maxTickHeight,
+      },
+      chartTheme: {
+        chartMargins,
+      },
+    } = this.props;
+
+    const top = position === AxisPosition.Top
+    ? - chartMargins.top / 2
+    : maxTickHeight + tickPadding + tickSize + chartMargins.bottom / 2;
+    const left = width / 2;
+    const translate = `translate(${left} ${top} )`;
+    return (
+      <g className="euiSeriesChartAxis_axisTitle">
+        <text
+          textAnchor="middle"
+          dominantBaseline="middle"
+          transform={translate}
+        >{title}</text>
+      </g>
     );
   }
 }

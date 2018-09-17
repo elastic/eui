@@ -10,9 +10,10 @@ import {
 } from '../commons/axes/axis_utils';
 import { SvgTextBBoxCalculator } from '../commons/axes/svg_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
-import { computeChartDimensions, Dimensions, Margins } from '../commons/dimensions';
+import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeDataDomain } from '../commons/series/bars/domains';
 import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
+import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
 
 export class ChartStore {
   public specsInitialized = observable.box(false);
@@ -29,12 +30,7 @@ export class ChartStore {
     top: 0,
     left: 0,
   }; // updated from jsx
-  public chartMargins: Margins = {
-    top: 20,
-    bottom: 20,
-    left: 20,
-    right: 20,
-  }; // updated from jsx
+  public chartTheme: Theme = DEFAULT_THEME; // updated from jsx
   public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
   public axesPositions: Map<AxisId, Dimensions> = new Map(); // computed
@@ -146,7 +142,7 @@ export class ChartStore {
     // compute chart dimensions
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
-      this.chartMargins,
+      this.chartTheme,
       this.axesTicksDimensions,
       this.axesSpecs,
     );
@@ -154,7 +150,7 @@ export class ChartStore {
     // compute visible ticks and their positions
     const axisTicksPositions = getAxisTicksPositions(
       this.chartDimensions,
-      this.chartMargins,
+      this.chartTheme,
       this.axesSpecs,
       this.axesTicksDimensions,
     );

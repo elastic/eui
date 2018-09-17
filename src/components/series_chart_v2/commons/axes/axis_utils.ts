@@ -8,6 +8,7 @@ import {
 import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
+import { Theme } from '../themes/theme';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
 export interface AxisTick {
@@ -259,10 +260,11 @@ export function getAxisPosition(
 
 export function getAxisTicksPositions(
   chartDimensions: Dimensions,
-  chartMargins: Margins,
+  chartTheme: Theme,
   axisSpecs: Map<AxisId, AxisSpec>,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
 ) {
+  const { chartMargins } = chartTheme;
   const axisPositions: Map<AxisId, Dimensions> = new Map();
   const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
   const axisTicks: Map<AxisId, AxisTick[]> = new Map();
