@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTableFooterCell align defaults to left 1`] = `
+<td
+  class="euiTableRowCell euiTableFooterCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`EuiTableFooterCell align renders center when specified 1`] = `
+<td
+  class="euiTableRowCell euiTableFooterCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignCenter"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`EuiTableFooterCell align renders right when specified 1`] = `
+<td
+  class="euiTableRowCell euiTableFooterCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignRight"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`EuiTableFooterCell is rendered 1`] = `
+<td
+  aria-label="aria-label"
+  class="euiTableRowCell euiTableFooterCell testClass1 testClass2"
+  data-test-subj="test subject string"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent testClass1 testClass2"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      children
+    </span>
+  </div>
+</td>
+`;
