@@ -4,7 +4,7 @@ No public interface changes since `4.1.0`.
 
 ## [`4.1.0`](https://github.com/elastic/eui/tree/v4.1.0)
 
-- Add `direction` to `EuiFlexGroup` prop types interface ([#1196](https://github.com/elastic/eui/pull/1196))
+- Added `direction` to `EuiFlexGroup` prop types interface ([#1196](https://github.com/elastic/eui/pull/1196))
 - Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
@@ -15,7 +15,7 @@ No public interface changes since `4.1.0`.
 - Fixed cross-axis alignment bug when positioning EuiPopover ([#1197](https://github.com/elastic/eui/pull/1197))
 - Added background to `readOnly` inputs ([#1188](https://github.com/elastic/eui/pull/1188))
 - Fixed some modal default and responsive sizing ([#1188](https://github.com/elastic/eui/pull/1188))
-- Fixed z-index issue of `EuiComboBoxOptionsList` especiall inside modals ([#1192](https://github.com/elastic/eui/pull/1192))
+- Fixed z-index issue of `EuiComboBoxOptionsList` especially inside modals ([#1192](https://github.com/elastic/eui/pull/1192))
 
 ## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
 
