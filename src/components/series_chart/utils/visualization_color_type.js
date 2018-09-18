@@ -11,6 +11,7 @@ export function VisualizationColorType(props, propName) {
     return new Error('Color must be a valid hex color string in the form #RRGGBB');
   }
   if (!VISUALIZATION_COLORS.includes(color.toUpperCase())) {
-    console.warn('Prefer safe EUI Visualization Colors.');
+    // Suppress warning for now as it can overwhelm the console for custom charts
+    // console.warn('Prefer safe EUI Visualization Colors.');
   }
 }
