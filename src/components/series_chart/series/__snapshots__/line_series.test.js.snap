@@ -118,6 +118,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                 _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
+                borderOpacity={1}
                 clusters={
                   Set {
                     undefined,
@@ -4241,6 +4242,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                 _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
+                borderOpacity={1}
                 clusters={
                   Set {
                     undefined,
