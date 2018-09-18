@@ -32,7 +32,6 @@ declare module '@elastic/eui' {
     | 'flexStart'
     | 'flexEnd'
     | 'center';
-  export type FlexGroupClassName = 'div' | 'span';
   export type FlexGroupComponentType = 'div' | 'span';
   export type FlexGroupDirection =
     | 'column'
@@ -51,7 +50,7 @@ declare module '@elastic/eui' {
   export interface EuiFlexGroupProps {
     alignItems?: FlexGroupAlignItems;
     children?: React.ReactNode;
-    className?: FlexGroupClassName;
+    className?: string;
     component?: FlexGroupComponentType;
     direction?: FlexGroupDirection;
     gutterSize?: FlexGroupGutterSize;
