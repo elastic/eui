@@ -115,6 +115,7 @@ export class EuiPopover extends Component {
       popoverStyles: DEFAULT_POPOVER_STYLES,
       arrowStyles: {},
       arrowPosition: null,
+      openPosition: null,
     };
   }
 
@@ -154,7 +155,7 @@ export class EuiPopover extends Component {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopover);
+      window.addEventListener('scroll', this.positionPopoverFixed);
     }
 
     this.updateFocus();
@@ -176,9 +177,9 @@ export class EuiPopover extends Component {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopover);
+        window.addEventListener('scroll', this.positionPopoverFixed);
       } else {
-        window.removeEventListener('scroll', this.positionPopover);
+        window.removeEventListener('scroll', this.positionPopoverFixed);
       }
     }
 
@@ -197,7 +198,7 @@ export class EuiPopover extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopover);
+    window.removeEventListener('scroll', this.positionPopoverFixed);
     clearTimeout(this.closingTransitionTimeout);
   }
 
@@ -223,14 +224,14 @@ export class EuiPopover extends Component {
       },
       0
     );
-    this.positionPopover();
+    this.positionPopoverFixed();
 
     if (waitDuration > 0) {
       const startTime = Date.now();
       const endTime = startTime + waitDuration;
 
       const onFrame = () => {
-        this.positionPopover();
+        this.positionPopoverFixed();
 
         if (endTime > Date.now()) {
           requestAnimationFrame(onFrame);
@@ -241,12 +242,20 @@ export class EuiPopover extends Component {
     }
   }
 
-  positionPopover = () => {
+  positionPopover = allowEnforcePosition => {
     if (this.button == null || this.panel == null) return;
 
-    const { top, left, position, arrow } = findPopoverPosition({
+    let position = getPopoverPositionFromAnchorPosition(this.props.anchorPosition);
+    let forcePosition = null;
+    if (allowEnforcePosition && this.state.openPosition != null) {
+      position = this.state.openPosition;
+      forcePosition = true;
+    }
+
+    const { top, left, position: foundPosition, arrow } = findPopoverPosition({
       container: this.props.container,
-      position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
+      position,
+      forcePosition,
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
       popover: this.panel,
@@ -270,9 +279,17 @@ export class EuiPopover extends Component {
     };
 
     const arrowStyles = this.props.hasArrow ? arrow : null;
-    const arrowPosition = position;
+    const arrowPosition = foundPosition;
 
-    this.setState({ popoverStyles, arrowStyles, arrowPosition });
+    this.setState({ popoverStyles, arrowStyles, arrowPosition, openPosition: foundPosition });
+  }
+
+  positionPopoverFixed = () => {
+    this.positionPopover(true);
+  }
+
+  positionPopoverFluid = () => {
+    this.positionPopover(false);
   }
 
   panelRef = node => {
@@ -284,12 +301,13 @@ export class EuiPopover extends Component {
         popoverStyles: DEFAULT_POPOVER_STYLES,
         arrowStyles: {},
         arrowPosition: null,
+        openPosition: null,
       });
-      window.removeEventListener('resize', this.positionPopover);
+      window.removeEventListener('resize', this.positionPopoverFluid);
     } else {
       // panel is coming into existence
-      this.positionPopover();
-      window.addEventListener('resize', this.positionPopover);
+      this.positionPopoverFluid();
+      window.addEventListener('resize', this.positionPopoverFluid);
     }
   };
 
