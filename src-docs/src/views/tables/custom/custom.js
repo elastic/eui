@@ -561,14 +561,12 @@ export default class extends Component {
 
     this.columns.forEach(column => {
       const footer = this.getColumnFooter(column, this.items);
-
       if (footer === null) return;
-
       if (footer) {
         footers.push(
           <EuiTableFooterCell
-            key={column.id}
-            header={column.label}
+            key={`footer_${column.id}`}
+            header={column.title}
             align={column.alignment}
             hideForMobile={column.hideForMobile}
             isMobileHeader={column.isMobileHeader}
@@ -576,21 +574,11 @@ export default class extends Component {
             {footer}
           </EuiTableFooterCell>
         );
-      } else if (column.isCheckbox) {
-        footers.push(
-          <EuiTableHeaderCellCheckbox
-            key={column.id}
-            width={column.width}
-          >
-            {this.renderSelectAll()}
-          </EuiTableHeaderCellCheckbox>
-        );
       } else {
-        // Footer is undefined and isn't explicitly null, so create an empty cell to preserve layout
         footers.push(
           <EuiTableFooterCell
-            key={column.id}
-            header={column.label}
+            key={`footer_empty_${footers.length - 1}`}
+            header={column.title}
             align={column.alignment}
             hideForMobile={column.hideForMobile}
             isMobileHeader={column.isMobileHeader}
@@ -601,7 +589,7 @@ export default class extends Component {
       }
     });
 
-    return footers.length ? footers : null;
+    return footers;
   }
 
   getColumnFooter = (column, items) => {

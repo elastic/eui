@@ -17,6 +17,8 @@ import { EuiCheckbox } from '../form/checkbox/checkbox';
 import { EuiTableHeaderCell } from '../table/table_header_cell';
 import { EuiTableHeader } from '../table/table_header';
 import { EuiTableBody } from '../table/table_body';
+import { EuiTableFooterCell } from '../table/table_footer_cell';
+import { EuiTableFooter } from '../table/table_footer';
 import { EuiTableRowCellCheckbox } from '../table/table_row_cell_checkbox';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
 import { ICON_TYPES } from '../icon';
@@ -185,6 +187,21 @@ function getCellProps(item, column, cellProps) {
   return {};
 }
 
+function getColumnFooter(column, items) {
+  if (column.footer === null) {
+    return null;
+  }
+
+  if (column.footer) {
+    if (isFunction(column.footer)) {
+      return column.footer(items);
+    }
+    return column.footer;
+  }
+
+  return undefined;
+}
+
 export class EuiBasicTable extends Component {
   static propTypes = BasicTablePropTypes;
   static defaultProps = {
@@ -348,6 +365,7 @@ export class EuiBasicTable extends Component {
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
+    const footer = this.renderTableFooter();
     return (
       <div
         ref={element => { this.tableElement = element; }}
@@ -357,6 +375,7 @@ export class EuiBasicTable extends Component {
           {caption}
           {head}
           {body}
+          {footer}
         </EuiTable>
       </div>
     );
@@ -507,6 +526,58 @@ export class EuiBasicTable extends Component {
     });
 
     return <EuiTableHeader>{headers}</EuiTableHeader>;
+  }
+
+  renderTableFooter() {
+    const { items, columns, selection } = this.props;
+
+    const footers = [];
+    let hasDefinedFooter = false;
+
+    if (selection) {
+      // Create an empty cell to compensate for additional selection column
+      footers.push(
+        <EuiTableFooterCell key="_selection_column_f">
+          {undefined}
+        </EuiTableFooterCell>
+      );
+    }
+
+    columns.forEach(column => {
+      const footer = getColumnFooter(column, items);
+      if (footer === null) return;
+
+      if (footer) {
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_${column.field}`}
+            header={column.name}
+            align={column.align}
+            hideForMobile={column.hideForMobile}
+            isMobileHeader={column.isMobileHeader}
+          >
+            {footer}
+          </EuiTableFooterCell>
+        );
+        hasDefinedFooter = true;
+      } else {
+        // Footer is undefined and isn't explicitly null, so create an empty cell to preserve layout
+        // in case the user defines a footer in a later column.
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_empty_${footers.length - 1}`}
+            header={column.name}
+            align={column.align}
+            hideForMobile={column.hideForMobile}
+            isMobileHeader={column.isMobileHeader}
+          >
+            {undefined}
+          </EuiTableFooterCell>
+        );
+      }
+    });
+
+    return footers.length && hasDefinedFooter ? <EuiTableFooter>{footers}</EuiTableFooter> : null;
   }
 
   renderTableBody() {
