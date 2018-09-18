@@ -27,12 +27,18 @@ declare module '@elastic/eui' {
    * @see './flex_group.js'
    */
 
-  export type FlexGroupGutterSize = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
   export type FlexGroupAlignItems =
     | 'stretch'
     | 'flexStart'
     | 'flexEnd'
     | 'center';
+  export type FlexGroupComponentType = 'div' | 'span';
+  export type FlexGroupDirection =
+    | 'column'
+    | 'columnReverse'
+    | 'row'
+    | 'rowReverse';
+  export type FlexGroupGutterSize = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
   export type FlexGroupJustifyContent =
     | 'flexStart'
     | 'flexEnd'
@@ -40,14 +46,16 @@ declare module '@elastic/eui' {
     | 'spaceBetween'
     | 'spaceAround'
     | 'spaceEvenly';
-  export type FlexGroupCmponentType = 'div' | 'span';
-
+  
   export interface EuiFlexGroupProps {
-    responsive?: boolean;
-    gutterSize?: FlexGroupGutterSize;
     alignItems?: FlexGroupAlignItems;
+    children?: React.ReactNode;
+    className?: string;
+    component?: FlexGroupComponentType;
+    direction?: FlexGroupDirection;
+    gutterSize?: FlexGroupGutterSize;
     justifyContent?: FlexGroupJustifyContent;
-    component?: FlexGroupCmponentType;
+    responsive?: boolean;
     wrap?: boolean;
   }
 

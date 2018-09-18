@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Add `direction` to `EuiFlexGroup` prop types interface ([#1196](https://github.com/elastic/eui/pull/1196))
 - Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
