@@ -32,7 +32,7 @@ export function computeChartDimensions(
   let vRightAxisSpecWidth = 0;
   let hTopAxisSpecHeight = 0;
   let hBottomAxisSpecHeight = 0;
-  const { chartMargins, axisTitle } = chartTheme;
+  const { chartMargins } = chartTheme;
 
   axisDimensions.forEach(({ maxTickWidth = 0, maxTickHeight = 0 }, id) => {
     const axisSpec = axisSpecs.get(id);
@@ -43,7 +43,6 @@ export function computeChartDimensions(
     if (orientation === AxisOrientation.Horizontal) {
       if (position === AxisPosition.Top) {
         hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + chartMargins.top;
-        hTopAxisSpecHeight += axisSpec.title ?  axisTitle.fontSize : 0;
       } else if (position === AxisPosition.Bottom) {
         hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + chartMargins.bottom;
       }
