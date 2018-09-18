@@ -832,7 +832,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   onSeriesClick={[MockFunction]}
                   onSeriesMouseOut={[Function]}
                   onSeriesMouseOver={[Function]}
-                  opacity={1}
                   opacityDomain={Array []}
                   opacityType="literal"
                   radiusDomain={Array []}
@@ -857,6 +856,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                   style={
                     Object {
                       "cursor": "default",
+                      "opacity": 1,
                     }
                   }
                   xDomain={
@@ -1012,7 +1012,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     onSeriesClick={[MockFunction]}
                     onSeriesMouseOut={[Function]}
                     onSeriesMouseOver={[Function]}
-                    opacity={1}
                     opacityDomain={Array []}
                     opacityType="literal"
                     radiusDomain={Array []}
@@ -1037,6 +1036,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                     style={
                       Object {
                         "cursor": "default",
+                        "opacity": 1,
                       }
                     }
                     xDomain={
@@ -1174,7 +1174,6 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         onSeriesClick={[MockFunction]}
                         onSeriesMouseOut={[Function]}
                         onSeriesMouseOver={[Function]}
-                        opacity={1}
                         opacityDomain={Array []}
                         opacityType="literal"
                         radiusDomain={Array []}
@@ -1199,6 +1198,7 @@ exports[`EuiAreaSeries all props are rendered 1`] = `
                         style={
                           Object {
                             "cursor": "default",
+                            "opacity": 1,
                           }
                         }
                         xDomain={

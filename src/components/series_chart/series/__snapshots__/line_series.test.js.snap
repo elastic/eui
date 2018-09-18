@@ -345,6 +345,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                   strokeStyle="solid"
                   style={
                     Object {
+                      "opacity": 1,
                       "pointerEvents": "visiblestroke",
                       "strokeWidth": 3,
                     }
@@ -525,6 +526,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     strokeStyle="solid"
                     style={
                       Object {
+                        "opacity": 1,
                         "pointerEvents": "visiblestroke",
                         "strokeWidth": 3,
                       }
@@ -687,6 +689,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         strokeStyle="solid"
                         style={
                           Object {
+                            "opacity": 1,
                             "pointerEvents": "visiblestroke",
                             "strokeWidth": 3,
                           }
@@ -4463,6 +4466,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                   strokeStyle="solid"
                   style={
                     Object {
+                      "opacity": 1,
                       "pointerEvents": "visiblestroke",
                       "strokeWidth": 3,
                     }
@@ -4641,6 +4645,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                     strokeStyle="solid"
                     style={
                       Object {
+                        "opacity": 1,
                         "pointerEvents": "visiblestroke",
                         "strokeWidth": 3,
                       }
@@ -4801,6 +4806,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                         strokeStyle="solid"
                         style={
                           Object {
+                            "opacity": 1,
                             "pointerEvents": "visiblestroke",
                             "strokeWidth": 3,
                           }

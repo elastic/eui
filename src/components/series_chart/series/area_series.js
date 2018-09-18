@@ -65,13 +65,13 @@ export class EuiAreaSeries extends AbstractSeries {
           className="euiAreaSeries"
           curve={curve}
           color={color}
-          opacity={fillOpacity}
           data={data}
           onSeriesClick={onSeriesClick}
           onSeriesMouseOver={this._onSeriesMouseOver}
           onSeriesMouseOut={this._onSeriesMouseOut}
           style={{
             cursor: isMouseOverSeries && onSeriesClick ? 'pointer' : 'default',
+            opacity: fillOpacity,
           }}
           {...rest}
         />

@@ -28,11 +28,11 @@ export class EuiLineSeries extends AbstractSeries {
           key={`${name}-border`}
           curve={curve}
           data={data}
-          opacity={borderOpacity}
           onSeriesClick={onSeriesClick}
           style={{
             pointerEvents: 'visiblestroke',
             strokeWidth: lineSize + 2, // border margin
+            opacity: borderOpacity,
           }}
           _colorValue={'white'}
         />
