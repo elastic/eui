@@ -16,7 +16,7 @@ function StatusText({ width, height, text }) {
         }}
       >
         <div className="euiToastHeader--withBody">
-          <EuiIcon className="euiToastHeader__icon" type="stats" size="m" aria-hidden="true" />
+          <EuiIcon className="euiToastHeader__icon" type="visualizeApp" color="subdued" size="m" aria-hidden="true" />
           <span className="euiToastHeader__title">Graph not avaliable</span>
         </div>
         {text && <EuiText size="s">{text}</EuiText>}
