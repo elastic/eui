@@ -250,8 +250,8 @@ export default class extends Component {
     }, {
       id: 'magnitude',
       label: 'Orders of magnitude',
-      footer: currentPageItems => (
-        <strong>Total: {currentPageItems.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
+      footer: items => (
+        <strong>Total: {items.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
       ),
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,

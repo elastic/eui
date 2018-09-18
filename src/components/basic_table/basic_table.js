@@ -105,7 +105,12 @@ export const FieldDataColumnTypeShape = {
   sortable: PropTypes.bool,
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
-  render: PropTypes.func // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  footer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.func, // (items) => PropTypes.node
+  ])
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
