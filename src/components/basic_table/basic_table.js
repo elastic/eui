@@ -193,10 +193,6 @@ function getCellProps(item, column, cellProps) {
 }
 
 function getColumnFooter(column, items) {
-  if (column.footer === null) {
-    return null;
-  }
-
   if (column.footer) {
     if (isFunction(column.footer)) {
       return column.footer(items);
@@ -550,8 +546,6 @@ export class EuiBasicTable extends Component {
 
     columns.forEach(column => {
       const footer = getColumnFooter(column, items);
-      if (footer === null) return;
-
       if (footer) {
         footers.push(
           <EuiTableFooterCell
@@ -566,8 +560,7 @@ export class EuiBasicTable extends Component {
         );
         hasDefinedFooter = true;
       } else {
-        // Footer is undefined and isn't explicitly null, so create an empty cell to preserve layout
-        // in case the user defines a footer in a later column.
+        // Footer is undefined, so create an empty cell to preserve layout
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}

@@ -561,7 +561,6 @@ export default class extends Component {
 
     this.columns.forEach(column => {
       const footer = this.getColumnFooter(column, this.items);
-      if (footer === null) return;
       if (footer) {
         footers.push(
           <EuiTableFooterCell

@@ -496,43 +496,6 @@ describe('EuiBasicTable', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('omit a cell when footer is explicitly `null`', () => {
-      const props = {
-        items: [
-          { id: '1', name: 'name1', age: 20 },
-          { id: '2', name: 'name2', age: 21 },
-          { id: '3', name: 'name3', age: 22 }
-        ],
-        itemId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'your name',
-            footer: 'Name'
-          },
-          {
-            field: 'id',
-            name: 'ID',
-            description: 'your id',
-            footer: 'ID'
-          },
-          {
-            field: 'age',
-            name: 'Age',
-            description: 'your age',
-            footer: null
-          }
-        ],
-        onChange: () => { }
-      };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
     test('render with pagination, selection, sorting, and footer', () => {
       const props = {
         items: [
