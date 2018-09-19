@@ -2,6 +2,7 @@ import { SpecDomains } from '../../../data_ops/domain';
 import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
+import { Theme } from '../../../themes/theme';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
@@ -11,6 +12,33 @@ const CHART_DIMS: Dimensions = {
   left: 0,
   width: 160, // to easy compute spaces
   height: 100,
+};
+
+const THEME: Theme = {
+  chartMargins: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  scales: {
+    ordinal: {
+      padding: 0,
+    },
+  },
+  axisTitle: {
+    fontSize:  20,
+  },
+  vizColors: [
+    'green',
+    'blue',
+  ],
+  defaultVizColor: 'red',
+};
+
+const colorScales = {
+  y1: 'green',
+  y2: 'blue',
 };
 
 const SPEC: BarSeriesSpec = {
@@ -58,12 +86,18 @@ describe.only('Bar rendering 2Y0G', () => {
         scaleType: ScaleType.Linear,
         isStacked: false,
       },
+      colorDomain: {
+        accessors: [],
+        yAccessors: ['y1', 'y2'],
+        domain: ['y1', 'y2'],
+        scaleType: ScaleType.Ordinal,
+      },
     };
     expect(computedDomains).toEqual(expectedDomains);
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, colorScales, THEME);
     const expectedRendering = [
       {
         level: 0,
@@ -71,7 +105,10 @@ describe.only('Bar rendering 2Y0G', () => {
         levelValue: '0',
         translateX: 0,
         translateY: 0,
-        elements: [{ x: 0, y: 90, width: 20, height: 10 }, { x: 20, y: 70, width: 20, height: 30 }],
+        elements: [
+          { x: 0, y: 90, width: 20, height: 10, fill: 'green' },
+          { x: 20, y: 70, width: 20, height: 30, fill: 'blue' },
+        ],
       },
       {
         level: 0,
@@ -79,7 +116,10 @@ describe.only('Bar rendering 2Y0G', () => {
         levelValue: '1',
         translateX: 40,
         translateY: 0,
-        elements: [{ x: 0, y: 80, width: 20, height: 20 }, { x: 20, y: 30, width: 20, height: 70 }],
+        elements: [
+          { x: 0, y: 80, width: 20, height: 20, fill: 'green' },
+          { x: 20, y: 30, width: 20, height: 70, fill: 'blue' },
+        ],
       },
       {
         level: 0,
@@ -87,7 +127,10 @@ describe.only('Bar rendering 2Y0G', () => {
         levelValue: '2',
         translateX: 80,
         translateY: 0,
-        elements: [{ x: 0, y: 90, width: 20, height: 10 }, { x: 20, y: 80, width: 20, height: 20 }],
+        elements: [
+          { x: 0, y: 90, width: 20, height: 10, fill: 'green' },
+          { x: 20, y: 80, width: 20, height: 20, fill: 'blue' },
+        ],
       },
       {
         level: 0,
@@ -95,7 +138,10 @@ describe.only('Bar rendering 2Y0G', () => {
         levelValue: '3',
         translateX: 120,
         translateY: 0,
-        elements: [{ x: 0, y: 40, width: 20, height: 60 }, { x: 20, y: 0, width: 20, height: 100 }],
+        elements: [
+          { x: 0, y: 40, width: 20, height: 60, fill: 'green' },
+          { x: 20, y: 0, width: 20, height: 100, fill: 'blue' },
+        ],
       },
     ];
     expect(renderedData).toEqual(expectedRendering);

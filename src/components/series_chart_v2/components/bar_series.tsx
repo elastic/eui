@@ -37,7 +37,7 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
     });
   }
   private renderBars = (glyphs: BarGlyph[]) => {
-    return glyphs.map(({x, y, width, height}, index) => {
+    return glyphs.map(({x, y, width, height, fill, opacity}, index) => {
       return (
         <rect
           key={`rect-${index}`}
@@ -45,6 +45,7 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
           y={y}
           width={width}
           height={height}
+          fill={fill}
         />);
     });
   }

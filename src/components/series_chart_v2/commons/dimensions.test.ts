@@ -18,9 +18,19 @@ describe('Computed chart dimensions', () => {
       top: 10,
       bottom: 10,
     },
-    axisTitle: {
-      fontSize: 20,
+    scales: {
+      ordinal: {
+        padding: 0,
+      },
     },
+    axisTitle: {
+      fontSize:  20,
+    },
+    vizColors: [
+      'color1',
+      'color2',
+    ],
+    defaultVizColor: 'red',
   };
 
   const axis1Dims = {

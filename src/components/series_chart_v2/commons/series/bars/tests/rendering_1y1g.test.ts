@@ -2,6 +2,7 @@ import { SpecDomains } from '../../../data_ops/domain';
 import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
+import { Theme } from '../../../themes/theme';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
@@ -11,6 +12,33 @@ const CHART_DIMS: Dimensions = {
   left: 0,
   width: 160,
   height: 100,
+};
+
+const THEME: Theme = {
+  chartMargins: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  scales: {
+    ordinal: {
+      padding: 0,
+    },
+  },
+  axisTitle: {
+    fontSize:  20,
+  },
+  vizColors: [
+    'color1',
+    'color2',
+  ],
+  defaultVizColor: 'red',
+};
+
+const colorScales = {
+  a: 'color1',
+  b: 'color2',
 };
 
 const SPEC: BarSeriesSpec = {
@@ -61,12 +89,17 @@ describe.only('Bar rendering 1Y1G', () => {
         scaleType: ScaleType.Linear,
         isStacked: false,
       },
+      colorDomain: {
+        accessors: ['g'],
+        domain: ['a', 'b'],
+        scaleType: ScaleType.Ordinal,
+      },
     };
     expect(computedDimensions).toEqual(expectedDomains);
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDimensions, CHART_DIMS);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDimensions, CHART_DIMS, colorScales, THEME);
 
     const expectedRendering = [
       {
@@ -76,8 +109,8 @@ describe.only('Bar rendering 1Y1G', () => {
         translateX: 0,
         translateY: 0,
         elements: [
-          { x: 0,  y: 90, width: 20, height: 10 },
-          { x: 20, y: 90, width: 20, height: 10 },
+          { x: 0,  y: 90, width: 20, height: 10, fill: 'color1' },
+          { x: 20, y: 90, width: 20, height: 10, fill: 'color2' },
         ],
       },
       {
@@ -87,8 +120,8 @@ describe.only('Bar rendering 1Y1G', () => {
         translateX: 40,
         translateY: 0,
         elements: [
-          { x: 0,  y: 80, width: 20, height: 20 },
-          { x: 20, y: 80, width: 20, height: 20 },
+          { x: 0,  y: 80, width: 20, height: 20, fill: 'color1' },
+          { x: 20, y: 80, width: 20, height: 20, fill: 'color2' },
         ],
       },
       {
@@ -98,8 +131,8 @@ describe.only('Bar rendering 1Y1G', () => {
         translateX: 80,
         translateY: 0,
         elements: [
-          { x: 0,  y: 0, width: 20, height: 100 },
-          { x: 20, y: 0, width: 20, height: 100 },
+          { x: 0,  y: 0, width: 20, height: 100, fill: 'color1' },
+          { x: 20, y: 0, width: 20, height: 100, fill: 'color2' },
         ],
       },
       {
@@ -109,8 +142,8 @@ describe.only('Bar rendering 1Y1G', () => {
         translateX: 120,
         translateY: 0,
         elements: [
-          { x: 0,  y: 40, width: 20, height: 60 },
-          { x: 20, y: 40, width: 20, height: 60 },
+          { x: 0,  y: 40, width: 20, height: 60, fill: 'color1' },
+          { x: 20, y: 40, width: 20, height: 60, fill: 'color2' },
         ],
       },
     ];

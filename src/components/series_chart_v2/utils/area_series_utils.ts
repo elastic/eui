@@ -5,7 +5,11 @@
 
 // import { ScaleFunction } from '../commons/data_ops/scales';
 // import { CurveType, getCurveFactory } from '../commons/series/utils/curves';
-// import { computeStackedLinearYData, getLinearSerisScalesFns, LinearStackedCumulatedValue } from './linear_series_utils';
+// import {
+//   computeStackedLinearYData,
+//   getLinearSerisScalesFns,
+//   LinearStackedCumulatedValue,
+// } from './linear_series_utils';
 
 // export type StackedAreaSeriesGlyph = AreaSeriesGlyph[];
 
