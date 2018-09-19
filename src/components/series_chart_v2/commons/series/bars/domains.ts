@@ -1,5 +1,6 @@
 import { extent, sum } from 'd3-array';
 import { uniq } from 'lodash';
+import { Accessor, getAccessorFn } from '../../data_ops/accessor';
 import { Domain, SpecDomains } from '../../data_ops/domain';
 import { ScaleType } from '../../data_ops/scales';
 import { BarSeriesSpec } from '../specs';
@@ -13,26 +14,43 @@ import { BarSeriesSpec } from '../specs';
  */
 export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
   // compute x domains
-  const { data,  xScaleType, yScaleType, xAccessor, yAccessors, splitSeriesAccessors = [], stackAccessors = [] } = spec;
+  const {
+    data,
+    xScaleType,
+    yScaleType,
+    xAccessor,
+    yAccessors,
+    splitSeriesAccessors = [],
+    stackAccessors = [],
+    colorAccessors = [],
+  } = spec;
+  const stackedData: Map<string, any[]> = new Map();
+  const colorKeys: Set<string> = new Set();
+  let yDomain: any[] = [];
 
-  // if we want to stack
   let nonStackedSplitAccessors = splitSeriesAccessors;
   if (yAccessors.length === 1 && stackAccessors.length > 0) {
+    // if we are going to stack elements, we need to remove the last splitted series.
+    // because this is the one used to stack elements together
     nonStackedSplitAccessors = splitSeriesAccessors.slice(0, -1);
   }
-  let globalStackAccessors: string[] = [];
-  if (stackAccessors.length > 0) {
-    globalStackAccessors = [xAccessor, ...stackAccessors.slice(0, -1)];
+  const orderedXAccessors = [xAccessor, ...nonStackedSplitAccessors];
+  const orderedXDomains: Domain[] = [];
+  let configuredColorAccessors: Accessor[];
+  if (colorAccessors.length > 0) {
+    configuredColorAccessors = colorAccessors;
+  } else {
+    configuredColorAccessors = splitSeriesAccessors;
   }
 
-  const orderedXAccessors = [ xAccessor, ...nonStackedSplitAccessors ];
-  const orderedXDomains: Domain[] = [];
-  let yDomain: any[] = [];
-  const groupedData: Map<string, any[]> = new Map();
   data.map((datum) => {
-    // compute x domains
+    // computing the xDomain of each splitted series
     orderedXAccessors.forEach((accessor, index) => {
-      if (orderedXAccessors.length === 1 && yAccessors.length === 1 && xScaleType === ScaleType.Linear) {
+      if (
+        orderedXAccessors.length === 1 &&
+        yAccessors.length === 1 &&
+        xScaleType === ScaleType.Linear
+      ) {
         const value = datum[accessor];
         const [min, max] = (orderedXDomains[0] as [number, number]) || [value, value];
         orderedXDomains[index] = [Math.min(min, value), Math.max(max, value)];
@@ -44,20 +62,25 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
         (orderedXDomains[index] as any[]).push(value);
       }
     });
+    // getting all the y values
     const yValues = yAccessors.map((accessor) => {
       return datum[accessor];
     });
     // compute y domain
+    // TODO check this, the y value can be ordinal only when using point series.
     if (yScaleType === ScaleType.Ordinal) {
       yDomain = [...yDomain, ...yValues];
     } else {
+      // computing the stack value
       if (stackAccessors.length > 0) {
-        const stackKey = globalStackAccessors.map((accessor) => String(datum[accessor])).join('--');
-        if (!groupedData.has(stackKey)) {
-          groupedData.set(stackKey, []);
+        // TODO this can be changed to something else so we can in the
+        // future use also function accessors
+        const stackKey = stackAccessors.map((accessor) => String(datum[accessor])).join('--');
+        if (!stackedData.has(stackKey)) {
+          stackedData.set(stackKey, []);
         }
-        const prevValues = groupedData.get(stackKey)!;
-        groupedData.set(stackKey, [...prevValues, ...yValues]);
+        const prevValues = stackedData.get(stackKey)!;
+        stackedData.set(stackKey, [...prevValues, ...yValues]);
       } else {
         const yExtent = extent(yValues);
         if (yDomain.length === 0) {
@@ -67,6 +90,15 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
         yDomain = [Math.min(min, yExtent[0]), Math.max(max, yExtent[1])];
       }
     }
+    const colorKey = configuredColorAccessors.map((accessor) => getAccessorFn(accessor)(datum));
+    if (yAccessors.length > 1) {
+      yAccessors.forEach((yAccessor) => {
+        colorKeys.add([...colorKey, yAccessor].join('--'));
+      });
+    } else {
+      colorKeys.add(colorKey.join('--'));
+    }
+
   });
   const xDomains = orderedXDomains.map((xDomain, level) => {
     let domainConvertedScale;
@@ -89,13 +121,13 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
       accessor: 'y',
       level: xDomains.length,
       scaleType: ScaleType.Ordinal,
-      domain: [...yAccessors ],
+      domain: [...yAccessors],
     });
   }
   if (stackAccessors.length > 0) {
-    const groupedDataArray = Array.from(groupedData.values());
+    const stackedDataArray = Array.from(stackedData.values());
 
-    const stackedDomain = groupedDataArray.map((value) => {
+    const stackedDomain = stackedDataArray.map((value) => {
       return sum(value);
     });
     yDomain = extent(stackedDomain);
@@ -111,6 +143,12 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
       domain: yDomain,
       scaleType: yScaleType,
       isStacked: stackAccessors.length > 0,
+    },
+    colorDomain: {
+      accessors: configuredColorAccessors,
+      yAccessors: yAccessors.length > 1 ? yAccessors : undefined,
+      domain: [...colorKeys],
+      scaleType: ScaleType.Ordinal,
     },
   };
 }

@@ -143,15 +143,10 @@ export class Axis extends React.PureComponent<AxisProps> {
   }
   private renderAxisTitle() {
     const {
-      axisPosition,
       axisSpec: {
         title,
         orientation,
-        position,
-        tickSize,
-        tickPadding,
       },
-      axisTicksDimensions,
     } = this.props;
     if (!title) {
       return null;

@@ -2,9 +2,30 @@ import { SpecDomains } from '../data_ops/domain';
 import { ScaleType } from '../data_ops/scales';
 import { getAxisId, getGroupId } from '../ids';
 import { AxisOrientation, AxisPosition } from '../series/specs';
+import { Theme } from '../themes/theme';
 import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
-
+const THEME: Theme = {
+  chartMargins: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  scales: {
+    ordinal: {
+      padding: 0,
+    },
+  },
+  axisTitle: {
+    fontSize:  20,
+  },
+  vizColors: [
+    'color1',
+    'color2',
+  ],
+  defaultVizColor: 'red',
+};
 describe('Axis computational utils', () => {
   const mockedRect = {
     x: 0,
@@ -80,17 +101,22 @@ describe('Axis computational utils', () => {
       domain: [0, 1],
       scaleType: ScaleType.Linear,
     },
+    colorDomain: {
+      accessors: [],
+      domain: [],
+      scaleType: ScaleType.Ordinal,
+    },
   };
 
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator);
+    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator, THEME);
     expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });
 
   test('should compute available ticks', () => {
-    const axisPositions = getAvailableTicks(chartDim, axis1Spec, axis1Dims);
+    const axisPositions = getAvailableTicks(chartDim, axis1Spec, axis1Dims, THEME);
     const expectedAxisPositions = [
       { label: '0', position: 100, value: 0 },
       { label: '0.1', position: 90, value: 0.1 },

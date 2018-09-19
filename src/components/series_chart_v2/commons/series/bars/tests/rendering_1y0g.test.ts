@@ -2,6 +2,7 @@ import { SpecDomains } from '../../../data_ops/domain';
 import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
+import { Theme } from '../../../themes/theme';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
@@ -24,6 +25,31 @@ const SPEC: BarSeriesSpec = {
   yScaleToDataExtent: false,
 };
 
+const THEME: Theme = {
+  chartMargins: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  scales: {
+    ordinal: {
+      padding: 0,
+    },
+  },
+  axisTitle: {
+    fontSize:  20,
+  },
+  vizColors: [
+    'green',
+  ],
+  defaultVizColor: 'red',
+};
+
+const colorScales = {
+  '': 'green',
+};
+
 describe.only('Bar rendering 1Y0G', () => {
   let computedDomains: SpecDomains;
   test('should compute the domain', () => {
@@ -44,17 +70,22 @@ describe.only('Bar rendering 1Y0G', () => {
         scaleType: ScaleType.Linear,
         isStacked: false,
       },
+      colorDomain: {
+        accessors: [],
+        domain: [''],
+        scaleType: ScaleType.Ordinal,
+      },
     };
     expect(computedDomains).toEqual(expectedDomains);
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, colorScales, THEME);
     const expectedRendering = [
-      { x: 0, y: 90, width: 25, height: 10 },
-      { x: 25, y: 80, width: 25, height: 20 },
-      { x: 50, y: 0, width: 25, height: 100 },
-      { x: 75, y: 40, width: 25, height: 60 },
+      { x: 0, y: 90, width: 25, height: 10, fill: 'green' },
+      { x: 25, y: 80, width: 25, height: 20, fill: 'green' },
+      { x: 50, y: 0, width: 25, height: 100, fill: 'green' },
+      { x: 75, y: 40, width: 25, height: 60, fill: 'green' },
     ];
     expect(renderedData).toEqual(expectedRendering);
   });

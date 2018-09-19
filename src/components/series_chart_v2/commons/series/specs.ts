@@ -44,6 +44,7 @@ export interface BarSeriesSpec extends BasicSeriesSpec {
   yScaleToDataExtent: boolean;
   splitSeriesAccessors?: Accessor[];
   stackAccessors?: Accessor[];
+  colorAccessors?: Accessor[];
 }
 
 // export interface LineSeriesSpec extends BasicSeriesSpec {

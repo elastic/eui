@@ -1,10 +1,6 @@
 import { max } from 'd3-array';
 import { Domain, SpecDomain, SpecDomains } from '../data_ops/domain';
-import {
-  createContinuousScale,
-  createOrdinalScale,
-  ScaleType,
-} from '../data_ops/scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../data_ops/scales';
 import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
@@ -38,22 +34,26 @@ export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
   specDomains: SpecDomains,
   bboxCalculator: SvgTextBBoxCalculator,
+  chartTheme: Theme,
 ): AxisTicksDimensions {
-
   let tickValues: string[] | number[];
   let tickLabels: string[];
   let axisScaleType: ScaleType;
   let axisScaleDomain: Domain;
 
   if (axisSpec.orientation === AxisOrientation.Vertical) {
-    const verticalTicks = computeVerticalTicks(specDomains.yDomain, axisSpec);
+    const verticalTicks = computeVerticalTicks(specDomains.yDomain, axisSpec, chartTheme);
     tickValues = verticalTicks.tickValues;
     tickLabels = verticalTicks.tickLabels;
     axisScaleType = verticalTicks.axisScaleType!;
     axisScaleDomain = verticalTicks.axisScaleDomain!;
   } else {
     const level = axisSpec.groupingLevel ? axisSpec.groupingLevel : 0;
-    const horizontalTicks = computeHorizontalTicks(specDomains.xDomains[level], axisSpec);
+    const horizontalTicks = computeHorizontalTicks(
+      specDomains.xDomains[level],
+      axisSpec,
+      chartTheme,
+    );
     tickValues = horizontalTicks.tickValues;
     tickLabels = horizontalTicks.tickLabels;
     axisScaleType = horizontalTicks.axisScaleType;
@@ -80,14 +80,18 @@ export function computeAxisTicksDimensions(
   };
 }
 
-function computeHorizontalTicks(axisSeriesScale: SpecDomain, axisSpec: AxisSpec) {
-  const { domain, scaleType} = axisSeriesScale;
+function computeHorizontalTicks(
+  axisSeriesScale: SpecDomain,
+  axisSpec: AxisSpec,
+  chartTheme: Theme,
+) {
+  const { domain, scaleType } = axisSeriesScale;
 
   let tickValues: string[] | number[];
   let tickLabels: string[];
 
   if (scaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], 1, 0);
+    const scale = createOrdinalScale(domain as string[], 1, 0, chartTheme.scales.ordinal.padding);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
@@ -103,14 +107,14 @@ function computeHorizontalTicks(axisSeriesScale: SpecDomain, axisSpec: AxisSpec)
   };
 }
 
-function computeVerticalTicks(specDomain: SpecDomain, axisSpec: AxisSpec) {
-  const { domain, scaleType} = specDomain;
+function computeVerticalTicks(specDomain: SpecDomain, axisSpec: AxisSpec, chartTheme: Theme) {
+  const { domain, scaleType } = specDomain;
 
   let tickValues: string[] | number[];
   let tickLabels: string[];
 
   if (scaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], 1, 0);
+    const scale = createOrdinalScale(domain as string[], 1, 0, chartTheme.scales.ordinal.padding);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
@@ -130,6 +134,7 @@ export function getAvailableTicks(
   chartDimensions: Dimensions,
   axisSpec: AxisSpec,
   axisDimension: AxisTicksDimensions,
+  chartTheme: Theme,
 ) {
   const { width, height } = chartDimensions;
   const { axisScaleType, axisScaleDomain } = axisDimension;
@@ -137,7 +142,12 @@ export function getAvailableTicks(
   const minRange = axisSpec.orientation === AxisOrientation.Vertical ? height : 0;
   const maxRange = axisSpec.orientation === AxisOrientation.Vertical ? 0 : width;
   if (axisScaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(axisScaleDomain as string[], minRange, maxRange);
+    const scale = createOrdinalScale(
+      axisScaleDomain as string[],
+      minRange,
+      maxRange,
+      chartTheme.scales.ordinal.padding,
+    );
     const ticks = scale.ticks();
     const bandwidth = scale.bandwidth();
     allTicks = ticks.map((tick) => {
@@ -170,7 +180,7 @@ export function getVisibleTicks(
   axisSpec: AxisSpec,
   axisDim: AxisTicksDimensions,
   chartDimensions: Dimensions,
-): AxisTick[]  {
+): AxisTick[] {
   const { orientation, showOverlappingTicks, showOverlappingLabels } = axisSpec;
   const { maxTickHeight, maxTickWidth } = axisDim;
   const { height } = chartDimensions;
@@ -233,24 +243,29 @@ export function getAxisPosition(
 
   if (axisSpec.orientation === AxisOrientation.Vertical) {
     const specLeft =
-    axisSpec.position === AxisPosition.Left
+      axisSpec.position === AxisPosition.Left
         ? axisDim.maxTickWidth + cumLeftSum + chartMargins.left
         : left + width + cumRightSum;
     if (axisSpec.position === AxisPosition.Left) {
-      leftIncrement = axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.left;
+      leftIncrement =
+        axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.left;
     } else {
-      rightIncrement = axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.right;
+      rightIncrement =
+        axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.right;
     }
     dimensions.left = specLeft;
     dimensions.width = axisDim.maxTickWidth;
   } else {
-    const specTop = axisSpec.position === AxisPosition.Top
-      ? cumTopSum + chartMargins.top
-      : top + height + cumBottomSum;
+    const specTop =
+      axisSpec.position === AxisPosition.Top
+        ? cumTopSum + chartMargins.top
+        : top + height + cumBottomSum;
     if (axisSpec.position === AxisPosition.Top) {
-      topIncrement = axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.top;
+      topIncrement =
+        axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.top;
     } else {
-      bottomIncrement = axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.bottom;
+      bottomIncrement =
+        axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.bottom;
     }
     dimensions.top = specTop;
     dimensions.height = axisDim.maxTickHeight;
@@ -277,7 +292,7 @@ export function getAxisTicksPositions(
     if (!axisSpec) {
       return;
     }
-    const allTicks = getAvailableTicks(chartDimensions, axisSpec, axisDim);
+    const allTicks = getAvailableTicks(chartDimensions, axisSpec, axisDim, chartTheme);
     const visibleTicks = getVisibleTicks(allTicks, axisSpec, axisDim, chartDimensions);
     const axisPosition = getAxisPosition(
       chartDimensions,

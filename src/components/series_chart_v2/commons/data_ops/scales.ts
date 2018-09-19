@@ -38,7 +38,7 @@ export type ScaleTypes = ScaleContinuousTypes | ScaleOrdinalTypes;
 
 export type ScaleFunction = (value: Datum) => any;
 
-function buildOrdinalScale(padding = 0.15): ScaleOrdinal {
+function buildOrdinalScale(padding = 0): ScaleOrdinal {
   const d3ScaleBand = scaleBand()
     .padding(padding)
     .round(true);
@@ -101,8 +101,9 @@ export function createOrdinalScale(
   domain: string[],
   minRange: number,
   maxRange: number,
+  padding?: number,
 ): ScaleOrdinal {
-  const scale = buildOrdinalScale();
+  const scale = buildOrdinalScale(padding);
   scale.domain(domain);
   scale.range([minRange, maxRange]);
   return scale;

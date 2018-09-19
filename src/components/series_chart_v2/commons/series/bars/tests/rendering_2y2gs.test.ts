@@ -2,6 +2,7 @@ import { SpecDomains } from '../../../data_ops/domain';
 import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
+import { Theme } from '../../../themes/theme';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
@@ -11,6 +12,39 @@ const CHART_DIMS: Dimensions = {
   left: 0,
   width: 160,
   height: 150,
+};
+
+const THEME: Theme = {
+  chartMargins: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  scales: {
+    ordinal: {
+      padding: 0,
+    },
+  },
+  axisTitle: {
+    fontSize:  20,
+  },
+  vizColors: [
+    'green',
+    'blue',
+  ],
+  defaultVizColor: 'red',
+};
+
+const colorScales = {
+  'a--s--y1': 'color1',
+  'a--s--y2': 'color2',
+  'a--p--y1': 'color3',
+  'a--p--y2': 'color4',
+  'b--s--y1': 'color5',
+  'b--s--y2': 'color6',
+  'b--p--y1': 'color7',
+  'b--p--y2': 'color8',
 };
 
 const SPEC: BarSeriesSpec = {
@@ -76,12 +110,21 @@ describe.only('Bar rendering 2Y2GS', () => {
         scaleType: ScaleType.Linear,
         isStacked: true,
       },
+      colorDomain: {
+        accessors: ['g1', 'g2'],
+        yAccessors: ['y1', 'y2'],
+        domain: [
+          'a--s--y1', 'a--s--y2', 'a--p--y1', 'a--p--y2',
+          'b--s--y1', 'b--s--y2', 'b--p--y1', 'b--p--y2',
+        ],
+        scaleType: ScaleType.Ordinal,
+      },
     };
     expect(computedDomains).toEqual(expectedDomains);
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, colorScales, THEME);
     const expectedRendering = [
       {
         level: 0,
@@ -104,8 +147,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 140, width: 10, height: 10 },
-                  { x: 0, y: 100, width: 10, height: 40 },
+                  { x: 0, y: 140, width: 10, height: 10, fill: 'color1' },
+                  { x: 0, y: 100, width: 10, height: 40, fill: 'color2' },
                 ],
               },
               {
@@ -115,8 +158,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 140, width: 10, height: 10 },
-                  { x: 0, y: 100, width: 10, height: 40 },
+                  { x: 0, y: 140, width: 10, height: 10, fill: 'color3' },
+                  { x: 0, y: 100, width: 10, height: 40, fill: 'color4' },
                 ],
               },
             ],
@@ -135,8 +178,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 120, width: 10, height: 30 },
-                  { x: 0, y: 60, width: 10, height: 60 },
+                  { x: 0, y: 120, width: 10, height: 30, fill: 'color5' },
+                  { x: 0, y: 60, width: 10, height: 60, fill: 'color6' },
                 ],
               },
               {
@@ -146,8 +189,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 120, width: 10, height: 30 },
-                  { x: 0, y: 60, width: 10, height: 60 },
+                  { x: 0, y: 120, width: 10, height: 30, fill: 'color7' },
+                  { x: 0, y: 60, width: 10, height: 60, fill: 'color8' },
                 ],
               },
             ],
@@ -175,8 +218,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 130, width: 10, height: 20 },
-                  { x: 0, y: 120, width: 10, height: 10 },
+                  { x: 0, y: 130, width: 10, height: 20, fill: 'color1' },
+                  { x: 0, y: 120, width: 10, height: 10, fill: 'color2' },
                 ],
               },
               {
@@ -186,8 +229,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 130, width: 10, height: 20 },
-                  { x: 0, y: 120, width: 10, height: 10 },
+                  { x: 0, y: 130, width: 10, height: 20, fill: 'color3' },
+                  { x: 0, y: 120, width: 10, height: 10, fill: 'color4' },
                 ],
               },
             ],
@@ -206,8 +249,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 130, width: 10, height: 20 },
-                  { x: 0, y: 80, width: 10, height: 50 },
+                  { x: 0, y: 130, width: 10, height: 20, fill: 'color5' },
+                  { x: 0, y: 80, width: 10, height: 50, fill: 'color6' },
                 ],
               },
               {
@@ -217,8 +260,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 130, width: 10, height: 20 },
-                  { x: 0, y: 80, width: 10, height: 50 },
+                  { x: 0, y: 130, width: 10, height: 20, fill: 'color7' },
+                  { x: 0, y: 80, width: 10, height: 50, fill: 'color8' },
                 ],
               },
             ],
@@ -246,8 +289,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 50, width: 10, height: 100 },
-                  { x: 0, y: 0, width: 10, height: 50 },
+                  { x: 0, y: 50, width: 10, height: 100, fill: 'color1' },
+                  { x: 0, y: 0, width: 10, height: 50, fill: 'color2' },
                 ],
               },
               {
@@ -257,8 +300,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 50, width: 10, height: 100 },
-                  { x: 0, y: 0, width: 10, height: 50 },
+                  { x: 0, y: 50, width: 10, height: 100, fill: 'color3' },
+                  { x: 0, y: 0, width: 10, height: 50, fill: 'color4' },
                 ],
               },
             ],
@@ -277,8 +320,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 120, width: 10, height: 30 },
-                  { x: 0, y: 110, width: 10, height: 10 },
+                  { x: 0, y: 120, width: 10, height: 30, fill: 'color5' },
+                  { x: 0, y: 110, width: 10, height: 10, fill: 'color6' },
                 ],
               },
               {
@@ -288,8 +331,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 120, width: 10, height: 30 },
-                  { x: 0, y: 110, width: 10, height: 10 },
+                  { x: 0, y: 120, width: 10, height: 30, fill: 'color7' },
+                  { x: 0, y: 110, width: 10, height: 10, fill: 'color8' },
                 ],
               },
             ],
@@ -317,8 +360,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 80, width: 10, height: 70 },
-                  { x: 0, y: 50, width: 10, height: 30 },
+                  { x: 0, y: 80, width: 10, height: 70, fill: 'color1' },
+                  { x: 0, y: 50, width: 10, height: 30, fill: 'color2' },
                 ],
               },
               {
@@ -328,8 +371,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 80, width: 10, height: 70 },
-                  { x: 0, y: 50, width: 10, height: 30 },
+                  { x: 0, y: 80, width: 10, height: 70, fill: 'color3' },
+                  { x: 0, y: 50, width: 10, height: 30, fill: 'color4' },
                 ],
               },
             ],
@@ -348,8 +391,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 0,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 90, width: 10, height: 60 },
-                  { x: 0, y: 50, width: 10, height: 40 },
+                  { x: 0, y: 90, width: 10, height: 60, fill: 'color5' },
+                  { x: 0, y: 50, width: 10, height: 40, fill: 'color6' },
                 ],
               },
               {
@@ -359,8 +402,8 @@ describe.only('Bar rendering 2Y2GS', () => {
                 translateX: 10,
                 translateY: 0,
                 elements: [
-                  { x: 0, y: 90, width: 10, height: 60 },
-                  { x: 0, y: 50, width: 10, height: 40 },
+                  { x: 0, y: 90, width: 10, height: 60, fill: 'color7' },
+                  { x: 0, y: 50, width: 10, height: 40, fill: 'color8' },
                 ],
               },
             ],
