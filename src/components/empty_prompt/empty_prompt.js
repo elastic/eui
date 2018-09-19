@@ -56,7 +56,6 @@ export const EuiEmptyPrompt = ({
           <EuiText>
             {body}
           </EuiText>
-          <EuiSpacer size="l" />
         </Fragment>
       );
     }
@@ -108,6 +107,9 @@ export const EuiEmptyPrompt = ({
     >
       {icon}
       {content}
+      {body && actions &&
+        <EuiSpacer size="l" />
+      }
       {actionsEl}
     </div>
   );

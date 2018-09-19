@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import { XYPlot, AbstractSeries  } from 'react-vis';
 import { makeFlexible } from './utils/flexible';
@@ -116,12 +116,11 @@ class XYChart extends PureComponent {
     if (this._isEmptyPlot(children)) {
       return (
         <EuiEmptyPrompt
-          iconType="stats"
-          title={<h2>Chart not available</h2>}
+          className="euiSeriesChartContainer__emptyPrompt"
+          iconType="visualizeApp"
+          title={<span>Chart not available</span>}
           body={
-            <Fragment>
-              <p>{ statusText }</p>
-            </Fragment>
+            <p>{ statusText }</p>
           }
         />
       );

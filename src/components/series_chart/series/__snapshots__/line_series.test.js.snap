@@ -118,6 +118,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                 _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
+                borderOpacity={1}
                 clusters={
                   Set {
                     undefined,
@@ -344,6 +345,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                   strokeStyle="solid"
                   style={
                     Object {
+                      "opacity": 1,
                       "pointerEvents": "visiblestroke",
                       "strokeWidth": 3,
                     }
@@ -524,6 +526,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                     strokeStyle="solid"
                     style={
                       Object {
+                        "opacity": 1,
                         "pointerEvents": "visiblestroke",
                         "strokeWidth": 3,
                       }
@@ -686,6 +689,7 @@ exports[`EuiLineSeries all props are rendered 1`] = `
                         strokeStyle="solid"
                         style={
                           Object {
+                            "opacity": 1,
                             "pointerEvents": "visiblestroke",
                             "strokeWidth": 3,
                           }
@@ -4241,6 +4245,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                 _orientation="vertical"
                 angleDomain={Array []}
                 animation={true}
+                borderOpacity={1}
                 clusters={
                   Set {
                     undefined,
@@ -4461,6 +4466,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                   strokeStyle="solid"
                   style={
                     Object {
+                      "opacity": 1,
                       "pointerEvents": "visiblestroke",
                       "strokeWidth": 3,
                     }
@@ -4639,6 +4645,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                     strokeStyle="solid"
                     style={
                       Object {
+                        "opacity": 1,
                         "pointerEvents": "visiblestroke",
                         "strokeWidth": 3,
                       }
@@ -4799,6 +4806,7 @@ exports[`EuiLineSeries is rendered 1`] = `
                         strokeStyle="solid"
                         style={
                           Object {
+                            "opacity": 1,
                             "pointerEvents": "visiblestroke",
                             "strokeWidth": 3,
                           }

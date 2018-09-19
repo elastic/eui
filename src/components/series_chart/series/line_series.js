@@ -17,6 +17,7 @@ export class EuiLineSeries extends AbstractSeries {
       lineMarkColor,
       lineMarkSize,
       color,
+      borderOpacity,
       ...rest
     } = this.props;
 
@@ -27,11 +28,11 @@ export class EuiLineSeries extends AbstractSeries {
           key={`${name}-border`}
           curve={curve}
           data={data}
-          opacity={1}
           onSeriesClick={onSeriesClick}
           style={{
             pointerEvents: 'visiblestroke',
             strokeWidth: lineSize + 2, // border margin
+            opacity: borderOpacity,
           }}
           _colorValue={'white'}
         />
@@ -90,12 +91,14 @@ EuiLineSeries.propTypes = {
   lineMarkColor: PropTypes.string,
   lineMarkSize: PropTypes.number,
   onSeriesClick: PropTypes.func,
-  onValueClick: PropTypes.func
+  onValueClick: PropTypes.func,
+  borderOpacity: PropTypes.number,
 };
 
 EuiLineSeries.defaultProps = {
   curve: CURVE.LINEAR,
   showLineMarks: false,
   lineSize: 1,
-  lineMarkSize: 0
+  lineMarkSize: 0,
+  borderOpacity: 1,
 };
