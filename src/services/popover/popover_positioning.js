@@ -99,16 +99,18 @@ export function findPopoverPosition({
     position,                       // Try the user-desired position first.
     positionComplements[position],  // Try the complementary position.
   ];
+  const iterationAlignments = [align, align]; // keep user-defined alignment in the original and complementary positions
   if (allowCrossAxis) {
     iterationPositions.push(
       positionSubstitutes[position],                      // Switch to the cross axis.
       positionComplements[positionSubstitutes[position]]  // Try the complementary position on the cross axis.
     );
+    iterationAlignments.push(null, null); // discard desired alignment on cross-axis
   }
 
   const {
     bestPosition,
-  } = iterationPositions.reduce(({ bestFit, bestPosition }, iterationPosition) => {
+  } = iterationPositions.reduce(({ bestFit, bestPosition }, iterationPosition, idx) => {
     // If we've already found the ideal fit, use that position.
     if (bestFit === 1) {
       return { bestFit, bestPosition };
@@ -117,7 +119,7 @@ export function findPopoverPosition({
     // Otherwise, see if we can find a position with a better fit than we've found so far.
     const screenCoordinates = getPopoverScreenCoordinates({
       position: iterationPosition,
-      align,
+      align: iterationAlignments[idx],
       anchorBoundingBox,
       popoverBoundingBox,
       windowBoundingBox,

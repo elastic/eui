@@ -79,14 +79,14 @@ export const EuiFlexGroup = ({
 };
 
 EuiFlexGroup.propTypes = {
+  alignItems: PropTypes.oneOf(ALIGN_ITEMS),
   children: PropTypes.node,
   className: PropTypes.string,
-  responsive: PropTypes.bool,
-  gutterSize: PropTypes.oneOf(GUTTER_SIZES),
-  alignItems: PropTypes.oneOf(ALIGN_ITEMS),
-  justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
-  direction: PropTypes.oneOf(DIRECTIONS),
   component: PropTypes.oneOf(['div', 'span']),
+  direction: PropTypes.oneOf(DIRECTIONS),
+  gutterSize: PropTypes.oneOf(GUTTER_SIZES),
+  justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
+  responsive: PropTypes.bool,
   wrap: PropTypes.bool,
 };
 
