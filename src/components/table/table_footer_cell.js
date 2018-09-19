@@ -19,16 +19,9 @@ export const EuiTableFooterCell = ({
   align,
   colSpan,
   className,
-  scope,
-  isMobileHeader,
-  hideForMobile,
   ...rest
 }) => {
-  const classes = classNames('euiTableRowCell euiTableFooterCell', className, {
-    'euiTableRowCell--isMobileHeader': isMobileHeader,
-    'euiTableRowCell--hideForMobile': hideForMobile,
-  });
-
+  const classes = classNames('euiTableFooterCell', className);
   const contentClasses = classNames('euiTableCellContent', className, {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
@@ -38,7 +31,6 @@ export const EuiTableFooterCell = ({
     <td
       className={classes}
       colSpan={colSpan}
-      scope={scope}
       {...rest}
     >
       <div className={contentClasses}>
@@ -53,20 +45,8 @@ EuiTableFooterCell.propTypes = {
   className: PropTypes.string,
   align: PropTypes.oneOf(ALIGNMENT),
   colSpan: PropTypes.number,
-  scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
-  /**
-   * Indicates if the column was created to be the row's heading in mobile view
-   * (this column will be hidden at larger screens)
-   */
-  isMobileHeader: PropTypes.bool,
-  /**
-   * Indicates if the column should not show for mobile users
-   * (typically hidden because a custom mobile header utilizes the column's contents)
-   */
-  hideForMobile: PropTypes.bool,
 };
 
 EuiTableFooterCell.defaultProps = {
   align: LEFT_ALIGNMENT,
-  scope: 'col',
 };

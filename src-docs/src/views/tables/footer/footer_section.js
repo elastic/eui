@@ -27,10 +27,9 @@ export const section = {
       adding <EuiCode>footer</EuiCode> to your column definitions. If one
       or more of your columns contains a <EuiCode>footer</EuiCode> definition,
       the footer area will be visible. By default, columns with no footer specified
-      (undefined) will render an empty cell to preserve the table layout. You
-      can force <EuiCode>footer: null</EuiCode> if you want to override this
-      behavior on a per-column basis. Check out the &quot;Custom Table&quot;
-      section below for more examples of how you can work with table footers in EUI.
+      (undefined) will render an empty cell to preserve the table layout. Check out
+      the &quot;Custom Table&quot; section below for more examples of how you can
+      work with table footers in EUI.
     </p>
   ),
   components: { EuiBasicTable },

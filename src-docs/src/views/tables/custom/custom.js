@@ -561,14 +561,16 @@ export default class extends Component {
 
     this.columns.forEach(column => {
       const footer = this.getColumnFooter(column, this.items);
+      if (column.isMobileHeader) {
+        return; // exclude columns that only exist for mobile headers
+      }
+
       if (footer) {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
             header={column.title}
             align={column.alignment}
-            hideForMobile={column.hideForMobile}
-            isMobileHeader={column.isMobileHeader}
           >
             {footer}
           </EuiTableFooterCell>
@@ -579,8 +581,6 @@ export default class extends Component {
             key={`footer_empty_${footers.length - 1}`}
             header={column.title}
             align={column.alignment}
-            hideForMobile={column.hideForMobile}
-            isMobileHeader={column.isMobileHeader}
           >
             {undefined}
           </EuiTableFooterCell>

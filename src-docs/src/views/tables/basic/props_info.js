@@ -194,7 +194,7 @@ export const propsInfo = {
         footer: {
           description: `Content to display in the footer beneath this column`,
           required: false,
-          type: { name: 'string | PropTypes.node | (items) => PropTypes.node' }
+          type: { name: 'string | PropTypes.element | (items) => PropTypes.element' }
         }
       }
     }

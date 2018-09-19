@@ -108,8 +108,8 @@ export const FieldDataColumnTypeShape = {
   render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
   footer: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.node,
-    PropTypes.func, // (items) => PropTypes.node
+    PropTypes.element,
+    PropTypes.func, // (items) => PropTypes.element
   ])
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
@@ -546,14 +546,16 @@ export class EuiBasicTable extends Component {
 
     columns.forEach(column => {
       const footer = getColumnFooter(column, items);
+      if (column.isMobileHeader) {
+        return; // exclude columns that only exist for mobile headers
+      }
+
       if (footer) {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.field}`}
             header={column.name}
             align={column.align}
-            hideForMobile={column.hideForMobile}
-            isMobileHeader={column.isMobileHeader}
           >
             {footer}
           </EuiTableFooterCell>
@@ -566,8 +568,6 @@ export class EuiBasicTable extends Component {
             key={`footer_empty_${footers.length - 1}`}
             header={column.name}
             align={column.align}
-            hideForMobile={column.hideForMobile}
-            isMobileHeader={column.isMobileHeader}
           >
             {undefined}
           </EuiTableFooterCell>
