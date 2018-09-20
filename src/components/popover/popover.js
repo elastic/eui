@@ -76,6 +76,13 @@ const DEFAULT_POPOVER_STYLES = {
 
 const GROUP_NUMERIC = /^([\d.]+)/;
 
+function getElementFromInitialFocus(initialFocus) {
+  const initialFocusType = typeof initialFocus;
+  if (initialFocusType === 'string') return document.querySelector(initialFocus);
+  if (initialFocusType === 'function') return initialFocus();
+  return initialFocus;
+}
+
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevProps.isOpen && !nextProps.isOpen) {
@@ -139,10 +146,25 @@ export class EuiPopover extends Component {
       }
 
       // Otherwise let's focus the first tabbable item and expedite input from the user.
-      const tabbableItems = tabbable(this.panel);
-      if (tabbableItems.length) {
-        tabbableItems[0].focus();
+      let focusTarget;
+
+      if (this.props.initialFocus != null) {
+        focusTarget = getElementFromInitialFocus(this.props.initialFocus);
+        // there's a race condition between the popover content becoming visible and this function call
+        // if the element isn't visible yet (due to css styling) then it can't accept focus
+        // so wait for another render and try again
+        const visibility = window.getComputedStyle(focusTarget).visibility;
+        if (visibility === 'hidden') {
+          this.updateFocus();
+        }
+      } else {
+        const tabbableItems = tabbable(this.panel);
+        if (tabbableItems.length) {
+          focusTarget = tabbableItems[0];
+        }
       }
+
+      if (focusTarget != null) focusTarget.focus();
     });
   }
 
@@ -311,6 +333,7 @@ export class EuiPopover extends Component {
       hasArrow,
       repositionOnScroll, // eslint-disable-line no-unused-vars
       zIndex, // eslint-disable-line no-unused-vars
+      initialFocus, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -444,6 +467,12 @@ EuiPopover.propTypes = {
   repositionOnScroll: PropTypes.bool,
   /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
   zIndex: PropTypes.number,
+  /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
+  initialFocus: PropTypes.oneOfType([
+    PropTypes.instanceOf(HTMLElement),
+    PropTypes.func,
+    PropTypes.string,
+  ]),
 };
 
 EuiPopover.defaultProps = {
