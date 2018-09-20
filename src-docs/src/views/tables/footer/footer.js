@@ -1,4 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -6,11 +9,12 @@ import {
   EuiBasicTable,
   EuiLink,
   EuiHealth,
+  EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
-  EuiSpacer,
 } from '../../../../../src/components';
+
+import { uniq } from 'lodash';
 
 /*
 Example user object:
@@ -46,9 +50,9 @@ export class Table extends Component {
       sortField: 'firstName',
       sortDirection: 'asc',
       selectedItems: [],
-      customHeader: true,
-      isResponsive: true,
     };
+
+    this.renderStatus = this.renderStatus.bind(this);
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
@@ -74,23 +78,38 @@ export class Table extends Component {
     this.setState({ selectedItems });
   };
 
-  toggleHeader = () => {
-    this.setState(prevState => ({ customHeader: !prevState.customHeader }));
+  onClickDelete = () => {
+    const { selectedItems } = this.state;
+    store.deleteUsers(...selectedItems.map(user => user.id));
+
+    this.setState({
+      selectedItems: []
+    });
   };
 
-  toggleResponsive = () => {
-    this.setState(prevState => ({ isResponsive: !prevState.isResponsive }));
-  };
+  renderDeleteButton() {
+    const { selectedItems } = this.state;
 
-  deleteUser = user => {
-    store.deleteUsers(user.id);
-    this.setState({ selectedItems: [] });
-  };
+    if (selectedItems.length === 0) {
+      return;
+    }
 
-  cloneUser = user => {
-    store.cloneUser(user.id);
-    this.setState({ selectedItems: [] });
-  };
+    return (
+      <EuiButton
+        color="danger"
+        iconType="trash"
+        onClick={this.onClickDelete}
+      >
+        Delete {selectedItems.length} Users
+      </EuiButton>
+    );
+  }
+
+  renderStatus(online) {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
+  }
 
   render() {
     const {
@@ -98,8 +117,6 @@ export class Table extends Component {
       pageSize,
       sortField,
       sortDirection,
-      customHeader,
-      isResponsive,
     } = this.state;
 
     const {
@@ -107,46 +124,40 @@ export class Table extends Component {
       totalItemCount,
     } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
 
-    const actions = [{
-      name: 'Clone',
-      description: 'Clone this person',
-      icon: 'copy',
-      type: 'icon',
-      onClick: this.cloneUser
-    }, {
-      name: 'Delete',
-      description: 'Delete this person',
-      icon: 'trash',
-      type: 'icon',
-      color: 'danger',
-      onClick: this.deleteUser
-    }];
+    const deleteButton = this.renderDeleteButton();
 
     const columns = [{
       field: 'firstName',
       name: 'First Name',
-      truncateText: true,
+      footer: <em>Page totals:</em>,
       sortable: true,
-      hideForMobile: customHeader,
+      truncateText: true,
+      hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: customHeader,
+      hideForMobile: true,
     }, {
       field: 'firstName',
       name: 'Full Name',
       isMobileHeader: true,
-      sortable: true,
-      hideForMobile: !customHeader,
       render: (name, item) => (
-        <span>{item.firstName} {item.lastName}</span>
+        <EuiFlexGroup responsive={false} alignItems="center">
+          <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{this.renderStatus(item.online)}</EuiFlexItem>
+        </EuiFlexGroup>
       ),
     }, {
       field: 'github',
       name: 'Github',
+      footer: ({ items }) => (
+        <span>{uniq(items, 'github').length} users</span>
+      ),
       render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">{username}</EuiLink>
+        <EuiLink href={`https://github.com/${username}`} target="_blank">
+          {username}
+        </EuiLink>
       )
     }, {
       field: 'dateOfBirth',
@@ -157,6 +168,9 @@ export class Table extends Component {
     }, {
       field: 'nationality',
       name: 'Nationality',
+      footer: ({ items }) => (
+        <span>{uniq(items, 'nationality').length} countries</span>
+      ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
@@ -164,16 +178,15 @@ export class Table extends Component {
     }, {
       field: 'online',
       name: 'Online',
+      footer: ({ items }) => (
+        <span>{items.filter(i => !!i.online).length} online</span>
+      ),
       dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-      sortable: true
-    }, {
-      name: 'Actions',
-      actions
+      render: (online) => (
+        this.renderStatus(online)
+      ),
+      sortable: true,
+      hideForMobile: true,
     }];
 
     const pagination = {
@@ -198,36 +211,15 @@ export class Table extends Component {
 
     return (
       <Fragment>
-        <EuiFlexGroup alignItems="center" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Responsive"
-              checked={isResponsive}
-              onChange={this.toggleResponsive}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Custom header"
-              disabled={!isResponsive}
-              checked={isResponsive && customHeader}
-              onChange={this.toggleHeader}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-
-        <EuiSpacer size="l" />
-
+        {deleteButton}
         <EuiBasicTable
           items={pageOfItems}
           itemId="id"
           columns={columns}
           pagination={pagination}
           sorting={sorting}
-          selection={selection}
           isSelectable={true}
-          hasActions={true}
-          responsive={isResponsive}
+          selection={selection}
           onChange={this.onTableChange}
         />
       </Fragment>

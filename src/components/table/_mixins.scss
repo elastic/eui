@@ -6,7 +6,6 @@
 
 @mixin euiTableCellCheckbox {
   @include euiTableCell;
-  border-top: none;
   width: $euiTableCellCheckboxWidth;
   vertical-align: middle;
 }

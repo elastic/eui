@@ -19,6 +19,8 @@ import {
   EuiSpacer,
   EuiTable,
   EuiTableBody,
+  EuiTableFooter,
+  EuiTableFooterCell,
   EuiTableHeader,
   EuiTableHeaderCell,
   EuiTableHeaderCellCheckbox,
@@ -36,6 +38,8 @@ import {
   Pager,
   SortableProperties,
 } from '../../../../../src/services';
+
+import { isFunction } from '../../../../../src/services/predicate';
 
 export default class extends Component {
   constructor(props) {
@@ -221,6 +225,7 @@ export default class extends Component {
     }, {
       id: 'title',
       label: 'Title',
+      footer: <em>Title</em>,
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
       hideForMobile: true,
@@ -234,15 +239,25 @@ export default class extends Component {
     }, {
       id: 'health',
       label: 'Health',
+      footer: '',
       alignment: LEFT_ALIGNMENT,
     }, {
       id: 'dateCreated',
       label: 'Date created',
+      footer: 'Date created',
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
     }, {
       id: 'magnitude',
       label: 'Orders of magnitude',
+      footer: ({ items, pagination }) => {
+        const { pageIndex, pageSize } = pagination;
+        const startIndex = pageIndex * pageSize;
+        const pageOfItems = items.slice(startIndex, Math.min(startIndex + pageSize, items.length));
+        return (
+          <strong>Total: {pageOfItems.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
+        );
+      },
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,
     }, {
@@ -546,6 +561,63 @@ export default class extends Component {
     return rows;
   }
 
+  renderFooterCells() {
+    const footers = [];
+
+    const items = this.items;
+    const pagination = {
+      pageIndex: this.pager.getCurrentPageIndex(),
+      pageSize: this.state.itemsPerPage,
+      totalItemCount: this.pager.getTotalPages()
+    };
+
+    this.columns.forEach(column => {
+      const footer = this.getColumnFooter(column, { items, pagination });
+      if (column.isMobileHeader) {
+        return; // exclude columns that only exist for mobile headers
+      }
+
+      if (footer) {
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_${column.id}`}
+            header={column.title}
+            align={column.alignment}
+          >
+            {footer}
+          </EuiTableFooterCell>
+        );
+      } else {
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_empty_${footers.length - 1}`}
+            header={column.title}
+            align={column.alignment}
+          >
+            {undefined}
+          </EuiTableFooterCell>
+        );
+      }
+    });
+
+    return footers;
+  }
+
+  getColumnFooter = (column, { items, pagination }) => {
+    if (column.footer === null) {
+      return null;
+    }
+
+    if (column.footer) {
+      if (isFunction(column.footer)) {
+        return column.footer({ items, pagination });
+      }
+      return column.footer;
+    }
+
+    return undefined;
+  }
+
   render() {
     let optionalActionButtons;
 
@@ -586,6 +658,10 @@ export default class extends Component {
           <EuiTableBody>
             {this.renderRows()}
           </EuiTableBody>
+
+          <EuiTableFooter>
+            {this.renderFooterCells()}
+          </EuiTableFooter>
         </EuiTable>
 
         <EuiSpacer size="m" />
