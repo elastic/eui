@@ -819,6 +819,7 @@ export class EuiBasicTable extends Component {
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
+      footer, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
     const columnAlign = align || this.getAlignForDataType(dataType);

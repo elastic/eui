@@ -593,11 +593,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
-              footer={
-                <strong>
-                  Name
-                </strong>
-              }
               header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
@@ -606,7 +601,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer="ID"
               header="ID"
               key="_data_column_id_1_1"
               textOnly={true}
@@ -615,7 +609,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer={[Function]}
               header="Age"
               key="_data_column_age_1_2"
               textOnly={true}
@@ -648,11 +641,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
-              footer={
-                <strong>
-                  Name
-                </strong>
-              }
               header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
@@ -661,7 +649,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer="ID"
               header="ID"
               key="_data_column_id_2_1"
               textOnly={true}
@@ -670,7 +657,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer={[Function]}
               header="Age"
               key="_data_column_age_2_2"
               textOnly={true}
@@ -703,11 +689,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
-              footer={
-                <strong>
-                  Name
-                </strong>
-              }
               header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
@@ -716,7 +697,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer="ID"
               header="ID"
               key="_data_column_id_3_1"
               textOnly={true}
@@ -725,7 +705,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
-              footer={[Function]}
               header="Age"
               key="_data_column_age_3_2"
               textOnly={true}
