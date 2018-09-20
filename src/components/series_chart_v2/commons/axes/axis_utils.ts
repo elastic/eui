@@ -3,7 +3,7 @@ import { Domain, SpecDomain, SpecDomains } from '../data_ops/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../data_ops/scales';
 import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
+import { AxisOrientation, AxisPosition, AxisSpec, Rotation } from '../series/specs';
 import { Theme } from '../themes/theme';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
@@ -35,30 +35,21 @@ export function computeAxisTicksDimensions(
   specDomains: SpecDomains,
   bboxCalculator: SvgTextBBoxCalculator,
   chartTheme: Theme,
+  chartRotation: Rotation,
 ): AxisTicksDimensions {
   let tickValues: string[] | number[];
   let tickLabels: string[];
   let axisScaleType: ScaleType;
   let axisScaleDomain: Domain;
-
-  if (axisSpec.orientation === AxisOrientation.Vertical) {
-    const verticalTicks = computeVerticalTicks(specDomains.yDomain, axisSpec, chartTheme);
-    tickValues = verticalTicks.tickValues;
-    tickLabels = verticalTicks.tickLabels;
-    axisScaleType = verticalTicks.axisScaleType!;
-    axisScaleDomain = verticalTicks.axisScaleDomain!;
-  } else {
-    const level = axisSpec.groupingLevel ? axisSpec.groupingLevel : 0;
-    const horizontalTicks = computeHorizontalTicks(
-      specDomains.xDomains[level],
-      axisSpec,
-      chartTheme,
-    );
-    tickValues = horizontalTicks.tickValues;
-    tickLabels = horizontalTicks.tickLabels;
-    axisScaleType = horizontalTicks.axisScaleType;
-    axisScaleDomain = horizontalTicks.axisScaleDomain;
-  }
+  const level = axisSpec.groupingLevel ? axisSpec.groupingLevel : 0;
+  const verticalDomain = chartRotation === 0 ? specDomains.yDomain : specDomains.xDomains[level];
+  const horizontalDomain = chartRotation === 0 ? specDomains.xDomains[level] : specDomains.yDomain;
+  const axisDomain = axisSpec.orientation === AxisOrientation.Vertical ? verticalDomain : horizontalDomain;
+  const verticalTicks = computeTicks(axisDomain, axisSpec, chartTheme);
+  tickValues = verticalTicks.tickValues;
+  tickLabels = verticalTicks.tickLabels;
+  axisScaleType = verticalTicks.axisScaleType!;
+  axisScaleDomain = verticalTicks.axisScaleDomain!;
   // compute the boundingbox for each formatted label
   const ticksDimensions = tickLabels.map((tickLabel: string) => {
     const bbox = bboxCalculator.compute(tickLabel);
@@ -80,34 +71,11 @@ export function computeAxisTicksDimensions(
   };
 }
 
-function computeHorizontalTicks(
-  axisSeriesScale: SpecDomain,
+function computeTicks(
+  specDomain: SpecDomain,
   axisSpec: AxisSpec,
   chartTheme: Theme,
 ) {
-  const { domain, scaleType } = axisSeriesScale;
-
-  let tickValues: string[] | number[];
-  let tickLabels: string[];
-
-  if (scaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], 1, 0, chartTheme.scales.ordinal.padding);
-    tickValues = scale.ticks();
-    tickLabels = tickValues.map(axisSpec.tickFormat);
-  } else {
-    const scale = createContinuousScale(scaleType, domain as number[], 1, 0);
-    tickValues = scale.ticks();
-    tickLabels = tickValues.map(axisSpec.tickFormat);
-  }
-  return {
-    axisScaleType: scaleType,
-    axisScaleDomain: domain,
-    tickValues,
-    tickLabels,
-  };
-}
-
-function computeVerticalTicks(specDomain: SpecDomain, axisSpec: AxisSpec, chartTheme: Theme) {
   const { domain, scaleType } = specDomain;
 
   let tickValues: string[] | number[];

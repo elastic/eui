@@ -3,7 +3,7 @@ import { ScaleType } from '../data_ops/scales';
 import { AxisId, GroupId, SpecId } from '../ids';
 
 export type Datum = any;
-
+export type Rotation = 0 | 90 | -90 | 180;
 export enum DataSeriesType {
   Bar = 'bar',
   Line = 'line',

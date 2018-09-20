@@ -110,7 +110,7 @@ describe('Axis computational utils', () => {
 
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator, THEME);
+    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator, THEME, 0);
     expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });

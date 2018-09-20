@@ -1,5 +1,5 @@
 import { AxisId, GroupId, SpecId } from '../commons/ids';
-import { AxisSpec, BarSeriesSpec } from '../commons/series/specs';
+import { AxisSpec, BarSeriesSpec, Rotation } from '../commons/series/specs';
 
 import { observable } from 'mobx';
 import {
@@ -31,6 +31,7 @@ export class ChartStore {
     top: 0,
     left: 0,
   }; // updated from jsx
+  public chartRotation: Rotation = 90; // updated from jsx
   public chartTheme: Theme = DEFAULT_THEME; // updated from jsx
   public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
@@ -137,7 +138,13 @@ export class ChartStore {
       const { id, groupId } = axisSpec;
       const groupSeriesScale = this.globalSpecDomains.get(groupId);
       if (groupSeriesScale) {
-        const dimensions = computeAxisTicksDimensions(axisSpec, groupSeriesScale, bboxCalculator,  this.chartTheme);
+        const dimensions = computeAxisTicksDimensions(
+          axisSpec,
+          groupSeriesScale,
+          bboxCalculator,
+          this.chartTheme,
+          this.chartRotation,
+        );
         this.axesTicksDimensions.set(id, dimensions);
       } else {
         throw new Error('Missing group series scale for this axis spec');
@@ -176,6 +183,7 @@ export class ChartStore {
         barSeriesSpec,
         specDomain,
         this.chartDimensions,
+        this.chartRotation,
         colorScales!,
         this.chartTheme,
       );

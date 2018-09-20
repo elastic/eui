@@ -390,6 +390,12 @@ class App extends Component {
                 orientation="horizontal"
                 title="1y1g"
                 />
+                <Axis
+                id={getAxisId('bottom')}
+                position="left"
+                orientation="vertical"
+                title="1y1g"
+                />
               {this.renderBarChart1y1g()}
             </Chart>
           </div>
@@ -538,7 +544,17 @@ class App extends Component {
                 title="GitHub Team vs Community / Issue vs Other"
               />
               <Axis id={getAxisId('axis1left1')} position="left" orientation="vertical" />
-              {this.renderGitHubIssue()}
+              <BarSeries
+                id={getSpecId('renderGitHubIssue')}
+                yScaleType="linear"
+                xScaleType="ordinal"
+                xAccessor='vizType'
+                yAccessors={['count']}
+                splitSeriesAccessors={['authorAssociation', 'issueType']}
+                stackAccessors={['authorAssociation','vizType']}
+                colorAccessors={['authorAssociation', 'issueType']}
+                data={this.state.stackedBarChartData}
+              />
             </Chart>
           </div>
           
