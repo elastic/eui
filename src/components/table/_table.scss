@@ -22,6 +22,7 @@
   }
 }
 
+.euiTableFooterCell,
 .euiTableHeaderCell {
   @include euiTableCell;
   @include euiTitle("xxs");
@@ -68,6 +69,7 @@
 
 .euiTableHeaderCellCheckbox {
   @include euiTableCellCheckbox;
+  border-top: none;
 }
 
 .euiTableRow {
@@ -114,20 +116,9 @@
 }
 
 // Must come after .euiTableRowCell selector for border to be removed
-.euiTableFooterCell,
-.euiTableFooterRow .euiTableHeaderCellCheckbox {
-  @include euiTableCell;
-
+.euiTableFooterCell {
   background-color: $euiColorLightestShade;
-  color: $euiColorDarkShade;
-  font-weight: $euiFontWeightMedium;
-  border: none;
-
-  .euiTableCellContent__text {
-    @include euiFontSizeXS;
-    color: $euiColorDarkShade;
-    font-weight: $euiFontWeightBold;
-  }
+  border-bottom: none;
 }
 
 /**
@@ -142,16 +133,16 @@
   padding: $euiTableCellContentPadding; /* 2 */
 }
 
-  /**
-   * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
-   *    the cell.
-   */
-  .euiTableCellContent__text {
-    min-width: 0;
-    text-overflow: ellipsis;
-    word-break: break-all; /* 1 */ // Fallback for FF and IE
-    word-break: break-word; /* 1 */
-  }
+/**
+  * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
+  *    the cell.
+  */
+.euiTableCellContent__text {
+  min-width: 0;
+  text-overflow: ellipsis;
+  word-break: break-all; /* 1 */ // Fallback for FF and IE
+  word-break: break-word; /* 1 */
+}
 
 .euiTableCellContent--alignRight {
   justify-content: flex-end;
@@ -164,6 +155,7 @@
 }
 
 .euiTableHeaderCell,
+.euiTableFooterCell,
 .euiTableCellContent--truncateText {
   white-space: nowrap; /* 3 */
 

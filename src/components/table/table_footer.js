@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const EuiTableFooter = ({ children, className, ...rest }) => {
   return (
     <tfoot className={className} {...rest}>
-      <tr className="euiTableFooterRow">{children}</tr>
+      <tr>{children}</tr>
     </tfoot>
   );
 };
