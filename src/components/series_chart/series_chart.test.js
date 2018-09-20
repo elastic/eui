@@ -119,19 +119,4 @@ describe('EuiSeriesChart', () => {
     expect(lineComponents.at(2).props().color).toBe(VISUALIZATION_COLORS[1]);
     expect(lineComponents.at(AVAILABLE_COLORS + 1).props().color).toBe(VISUALIZATION_COLORS[0]);
   });
-
-  test(`Check wrong EUI color warning`, () => {
-    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
-    const original = console.warn;
-    const mock = jest.fn();
-    console.warn = mock;
-    mount(
-      <EuiSeriesChart {...XYCHART_PROPS} {...requiredProps}>
-        <EuiLineSeries name="test" color="#000000" data={data} />
-      </EuiSeriesChart>);
-    expect(console.warn.mock.calls[0][0]).toBe('Prefer safe EUI Visualization Colors.');
-    console.warn.mockClear();
-    console.warn = original;
-
-  });
 });
