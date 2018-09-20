@@ -250,9 +250,14 @@ export default class extends Component {
     }, {
       id: 'magnitude',
       label: 'Orders of magnitude',
-      footer: items => (
-        <strong>Total: {items.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
-      ),
+      footer: ({ items, pagination }) => {
+        const { pageIndex, pageSize } = pagination;
+        const startIndex = pageIndex * pageSize;
+        const pageOfItems = items.slice(startIndex, Math.min(startIndex + pageSize, items.length));
+        return (
+          <strong>Total: {pageOfItems.reduce((acc, cur) => acc + cur.magnitude, 0)}</strong>
+        );
+      },
       alignment: RIGHT_ALIGNMENT,
       isSortable: true,
     }, {
@@ -559,8 +564,15 @@ export default class extends Component {
   renderFooterCells() {
     const footers = [];
 
+    const items = this.items;
+    const pagination = {
+      pageIndex: this.pager.getCurrentPageIndex(),
+      pageSize: this.state.itemsPerPage,
+      totalItemCount: this.pager.getTotalPages()
+    };
+
     this.columns.forEach(column => {
-      const footer = this.getColumnFooter(column, this.items);
+      const footer = this.getColumnFooter(column, { items, pagination });
       if (column.isMobileHeader) {
         return; // exclude columns that only exist for mobile headers
       }
@@ -591,14 +603,14 @@ export default class extends Component {
     return footers;
   }
 
-  getColumnFooter = (column, items) => {
+  getColumnFooter = (column, { items, pagination }) => {
     if (column.footer === null) {
       return null;
     }
 
     if (column.footer) {
       if (isFunction(column.footer)) {
-        return column.footer(items);
+        return column.footer({ items, pagination });
       }
       return column.footer;
     }

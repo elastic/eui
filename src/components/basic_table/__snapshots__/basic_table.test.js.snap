@@ -762,7 +762,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           key="footer_age"
         >
           <strong>
+            sum:
             63
+            <br />
+            total items:
+            5
           </strong>
         </EuiTableFooterCell>
       </EuiTableFooter>

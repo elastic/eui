@@ -522,7 +522,14 @@ describe('EuiBasicTable', () => {
             field: 'age',
             name: 'Age',
             description: 'your age',
-            footer: items => <strong>{items.reduce((acc, cur) => acc + cur.age, 0)}</strong>
+            footer: ({ items, pagination }) => (
+              <strong>
+                sum:
+                {items.reduce((acc, cur) => acc + cur.age, 0)}<br />
+                total items:
+                {pagination.totalItemCount}
+              </strong>
+            )
           }
         ],
         pagination: {

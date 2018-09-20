@@ -109,7 +109,7 @@ export const FieldDataColumnTypeShape = {
   footer: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
-    PropTypes.func, // (items) => PropTypes.element
+    PropTypes.func, // ({ items, pagination }) => PropTypes.node
   ])
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
@@ -192,10 +192,10 @@ function getCellProps(item, column, cellProps) {
   return {};
 }
 
-function getColumnFooter(column, items) {
+function getColumnFooter(column, { items, pagination }) {
   if (column.footer) {
     if (isFunction(column.footer)) {
-      return column.footer(items);
+      return column.footer({ items, pagination });
     }
     return column.footer;
   }
@@ -530,7 +530,7 @@ export class EuiBasicTable extends Component {
   }
 
   renderTableFooter() {
-    const { items, columns, selection } = this.props;
+    const { items, columns, pagination, selection } = this.props;
 
     const footers = [];
     let hasDefinedFooter = false;
@@ -545,7 +545,7 @@ export class EuiBasicTable extends Component {
     }
 
     columns.forEach(column => {
-      const footer = getColumnFooter(column, items);
+      const footer = getColumnFooter(column, { items, pagination });
       if (column.isMobileHeader) {
         return; // exclude columns that only exist for mobile headers
       }
