@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.1.0`.
+- Added `initialFocus` prop for focus trapping to `EuiPopover` and `EuiModal` ([#1099](https://github.com/elastic/eui/pull/1099))
 
 ## [`4.1.0`](https://github.com/elastic/eui/tree/v4.1.0)
 
@@ -9,7 +9,6 @@ No public interface changes since `4.1.0`.
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
 - Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
-- Added `initialFocus` prop for focus trapping to `EuiPopover` and `EuiModal` ([#1099](https://github.com/elastic/eui/pull/1099))
 
 **Bug fixes**
 
