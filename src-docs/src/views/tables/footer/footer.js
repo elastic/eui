@@ -14,6 +14,8 @@ import {
   EuiFlexItem,
 } from '../../../../../src/components';
 
+import { uniq } from 'lodash';
+
 /*
 Example user object:
 
@@ -127,14 +129,13 @@ export class Table extends Component {
     const columns = [{
       field: 'firstName',
       name: 'First Name',
-      footer: 'First Name',
+      footer: <em>Page totals:</em>,
       sortable: true,
       truncateText: true,
       hideForMobile: true,
     }, {
       field: 'lastName',
       name: 'Last Name',
-      footer: 'Last Name',
       truncateText: true,
       hideForMobile: true,
     }, {
@@ -150,7 +151,9 @@ export class Table extends Component {
     }, {
       field: 'github',
       name: 'Github',
-      footer: 'Github',
+      footer: ({ items }) => (
+        <span>{uniq(items, 'github').length} users</span>
+      ),
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -159,14 +162,15 @@ export class Table extends Component {
     }, {
       field: 'dateOfBirth',
       name: 'Date of Birth',
-      footer: 'Date of Birth',
       dataType: 'date',
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
       field: 'nationality',
       name: 'Nationality',
-      footer: 'Nationality',
+      footer: ({ items }) => (
+        <span>{uniq(items, 'nationality').length} countries</span>
+      ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
@@ -174,7 +178,9 @@ export class Table extends Component {
     }, {
       field: 'online',
       name: 'Online',
-      footer: 'Online',
+      footer: ({ items }) => (
+        <span>{items.filter(i => !!i.online).length} online</span>
+      ),
       dataType: 'boolean',
       render: (online) => (
         this.renderStatus(online)
