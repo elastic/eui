@@ -1,0 +1,92 @@
+/**
+ * 1. We don't want any of the animations that come inherited from the mixin.
+ *    These should act like normal links instead.
+ * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
+ * 3. Make sure the quantity doesn't get an underline on hover
+ */
+.euiFacetButton {
+  @include euiButton;
+  @include euiFontSizeS;
+  text-align: left;
+  border: none;
+  transform: none !important; /* 1 */
+  animation: none !important; /* 1 */
+  transition-timing-function: ease-in; /* 2 */
+  transition-duration: $euiAnimSpeedFast; /* 2 */
+
+  .euiFacetButton__content {
+    @include euiButtonContent;
+  }
+
+  .euiFacetButton__text {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: $euiButtonHeight; // For better alignment with icon/quantity
+  }
+
+  .euiFacetButton__spinner,
+  .euiFacetButton__quantity,
+  .euiFacetButton__icon {
+    flex-shrink: 0; // Ensures they don't scale down below their intended size
+  }
+
+  .euiFacetButton__quantity,
+  .euiFacetButton__icon {
+    transition: all $euiAnimSpeedFast ease-in;
+  }
+
+  .euiFacetButton__quantity {
+    // Increase the default size a bit
+    $size: $euiSize + $euiSizeXS;
+    line-height:$size;
+    height: $size;
+    min-width: $euiSizeL;
+  }
+
+  &.euiFacetButton--unSelected .euiFacetButton__quantity,
+  &:disabled .euiFacetButton__quantity {
+    // Change the default coloring when it's not selected
+    background-color: tint($euiColorLightShade, 30%);
+    color: $euiColorFullShade;
+  }
+
+  &:hover, &:focus {
+    text-decoration: none !important; /* 3 */
+
+    &:not(:disabled) .euiFacetButton__text {
+      text-decoration: underline; /* 3 */
+    }
+  }
+
+  &:focus {
+    background-color: $euiColorLightestShade;
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiFacetButton__content {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    .euiFacetButton__icon,
+    .euiFacetButton__quantity {
+      opacity: .5;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.euiFacetButton--isSelected .euiFacetButton__text {
+  font-weight: $euiFontWeightBold;
+}

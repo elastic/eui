@@ -9,7 +9,6 @@
 }
 
 /**
- * 1. Ensure the icon padding remains when in readOnly mode
  * 2. Account for inner box-shadow style border when in group
  * 3. Must supply both values to background-size or some browsers apply the single value to both directions
  */
@@ -45,16 +44,12 @@
 @mixin euiFormControlWithIcon($isIconOptional: false, $side: "left") {
   @if ($isIconOptional) {
     @at-root {
-      #{&}--withIcon,
-      #{&}--withIcon[readOnly] /* 1 */ {
+      #{&}--withIcon {
         @include euiFormControlLayout__padding(1, $side);
       }
     }
   } @else {
-    &,
-    &[readOnly] /* 1 */ {
-      @include euiFormControlLayout__padding(1, $side);
-    }
+    @include euiFormControlLayout__padding(1, $side);
   }
 }
 
@@ -124,10 +119,10 @@
 
 @mixin euiFormControlReadOnlyStyle {
   cursor: default;
-  background: transparent;
+  // Use transparency since there is no border and in case form is on a non-white background
+  background: transparentize(lightOrDarkTheme($euiColorLightShade, #000), .88);
   border-color: transparent;
   box-shadow: none;
-  padding-left: 0; // line up text with label
 }
 
 /**

@@ -1,5 +1,3 @@
-import { VISUALIZATION_COLORS } from '../../../services';
-
 export function VisualizationColorType(props, propName) {
   const color = props[propName];
   if (color === undefined) {
@@ -9,8 +7,5 @@ export function VisualizationColorType(props, propName) {
   // using libs like colorjs
   if (!(typeof color === 'string' || color instanceof String) || !color.startsWith('#')) {
     return new Error('Color must be a valid hex color string in the form #RRGGBB');
-  }
-  if (!VISUALIZATION_COLORS.includes(color.toUpperCase())) {
-    console.warn('Prefer safe EUI Visualization Colors.');
   }
 }

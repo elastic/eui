@@ -48,23 +48,24 @@ export default class extends Component {
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
+        initialFocus="[id=asdf2]"
       >
         <EuiFormRow
           label="Generate a public snapshot?"
+          id="asdf"
         >
           <EuiSwitch
             name="switch"
-            id="asdf"
             label="Snapshot data"
           />
         </EuiFormRow>
 
         <EuiFormRow
           label="Include the following in the embed"
+          id="asdf2"
         >
           <EuiSwitch
             name="switch"
-            id="asdf2"
             label="Current time range"
           />
         </EuiFormRow>

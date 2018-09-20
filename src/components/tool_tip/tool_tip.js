@@ -22,6 +22,13 @@ const positionsToClassNameMap = {
 
 export const POSITIONS = Object.keys(positionsToClassNameMap);
 
+const delayToClassNameMap = {
+  regular: null,
+  long: 'euiToolTip--delayLong',
+};
+
+export const DELAY = Object.keys(delayToClassNameMap);
+
 const DEFAULT_TOOLTIP_STYLES = {
   // position the tooltip content near the top-left
   // corner of the window so it can't create scrollbars
@@ -47,6 +54,14 @@ export class EuiToolTip extends Component {
     };
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
@@ -57,7 +72,7 @@ export class EuiToolTip extends Component {
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
-    if (document.contains(this.anchor) === false) {
+    if (document.body.contains(this.anchor) === false) {
       // the anchor is no longer part of `document`
       this.hideToolTip();
     } else {
@@ -113,7 +128,9 @@ export class EuiToolTip extends Component {
   };
 
   hideToolTip = () => {
-    this.setState({ visible: false });
+    if (this._isMounted) {
+      this.setState({ visible: false });
+    }
   };
 
   onFocus = () => {
@@ -151,6 +168,7 @@ export class EuiToolTip extends Component {
       anchorClassName,
       content,
       title,
+      delay,
       ...rest
     } = this.props;
 
@@ -159,6 +177,7 @@ export class EuiToolTip extends Component {
     const classes = classNames(
       'euiToolTip',
       positionsToClassNameMap[this.state.calculatedPosition],
+      delayToClassNameMap[delay],
       className
     );
 
@@ -245,6 +264,11 @@ EuiToolTip.propTypes = {
   position: PropTypes.oneOf(POSITIONS),
 
   /**
+   * Delay before showing tooltip. Good for repeatable items.
+   */
+  delay: PropTypes.oneOf(DELAY),
+
+  /**
    * Passes onto the tooltip itself, not the trigger.
    */
   className: PropTypes.string,
@@ -257,4 +281,5 @@ EuiToolTip.propTypes = {
 
 EuiToolTip.defaultProps = {
   position: 'top',
+  delay: 'regular',
 };

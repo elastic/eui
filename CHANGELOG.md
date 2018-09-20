@@ -1,8 +1,66 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added some opacity options to `EuiLineSeries` and `EuiAreaSeries` ([#1198](https://github.com/elastic/eui/pull/1198))
+- Added `initialFocus` prop for focus trapping to `EuiPopover` and `EuiModal` ([#1099](https://github.com/elastic/eui/pull/1099))
+
+## [`4.1.0`](https://github.com/elastic/eui/tree/v4.1.0)
+
+- Added `direction` to `EuiFlexGroup` prop types interface ([#1196](https://github.com/elastic/eui/pull/1196))
+- Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
+- Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
+- Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
+- Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
+
+**Bug fixes**
+
+- Fixed cross-axis alignment bug when positioning EuiPopover ([#1197](https://github.com/elastic/eui/pull/1197))
+- Added background to `readOnly` inputs ([#1188](https://github.com/elastic/eui/pull/1188))
+- Fixed some modal default and responsive sizing ([#1188](https://github.com/elastic/eui/pull/1188))
+- Fixed z-index issue of `EuiComboBoxOptionsList` especially inside modals ([#1192](https://github.com/elastic/eui/pull/1192))
+
+## [`4.0.1`](https://github.com/elastic/eui/tree/v4.0.1)
+
+**Bug fixes**
+
+- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
+- Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
+
+## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
+
+- Added `delay` prop to `EuiToolTip` ([#1103](https://github.com/elastic/eui/pull/1103))
+
+**Breaking changes**
+
+- `EuiBasicTable` now shows up to 2 actions before condensing to all popover, but still displaying the top/primary 2 actions as well ([#1103](https://github.com/elastic/eui/pull/1103))
+- `EuiBasicTable` will automatically add `hasActions` and `isSelectable` to allow proper responsive style handling, but are still overridable ([#1103](https://github.com/elastic/eui/pull/1103))
+
+## [`3.11.0`](https://github.com/elastic/eui/tree/v3.11.0)
+
+- Decorated `pagination` _next_ and _previous_ buttons with `data-test-subj`. ([#1182](https://github.com/elastic/eui/pull/1182))
+- Added `euiFacetButton` and `euiFacetGroup` ([#1167](https://github.com/elastic/eui/pull/1167))
+- Added `width` prop to `EuiContextMenu` panels ([#1173](https://github.com/elastic/eui/pull/1173))
+- Added patterns for global query and filters ([#1137](https://github.com/elastic/eui/pull/1137))
+
+**Bug fixes**
+
+- Fixed `onClickAriaLabel` console error stemming from `EuiComboBoxPill`  ([#1183](https://github.com/elastic/eui/pull/1183))
+
+## [`3.10.0`](https://github.com/elastic/eui/tree/v3.10.0)
+
+- Added `maxWidth` prop to `EuiModal` ([#1165](https://github.com/elastic/eui/pull/1165))
+- Support field names with `_` characters in search queries ([#1180](https://github.com/elastic/eui/pull/1180))
+- Added ability to include multiple fields in a value selection filter for `EuiSearchBar` ([#1179](https://github.com/elastic/eui/pull/1179))
+
+**Bug fixes**
+
+- Fixed an IE11 `EuiModal` width issue by changing the `min-width` to a pixel value ([#1174](https://github.com/elastic/eui/pull/1174))
+
+## [`3.9.0`](https://github.com/elastic/eui/tree/v3.9.0)
+
 - Added `infraApp` icon ([#1161](https://github.com/elastic/eui/pull/1161))
 - Added sizes to `EuiButtonIcon` ([#1145](https://github.com/elastic/eui/pull/1145))
 - Added `singleSelection.asPlainText` prop to `EuiComboBox` ([#1139](https://github.com/elastic/eui/pull/1139))
+- Added proper aria labeling to `EuiSearchBar` and `EuiBasicTable` so searching is properly announced ([#1181](https://github.com/elastic/eui/pull/1181))
 
 **Bug fixes**
 
@@ -10,6 +68,7 @@
 - Fixed `EuiTooltip` to interact correctly when the anchor is a disabled form element ([#1158](https://github.com/elastic/eui/pull/1158))
 - Fixed `EuiButton` (with icon) and `EuiButtonEmpty` truncation ([#1145](https://github.com/elastic/eui/pull/1145))
 - Fixed alignment and coloring of form control clear button ([#1145](https://github.com/elastic/eui/pull/1145))
+- Fixed `EuiToolTip` from setting state after component unmounts ([#1163](https://github.com/elastic/eui/pull/1163))
 
 ## [`3.8.0`](https://github.com/elastic/eui/tree/v3.8.0)
 

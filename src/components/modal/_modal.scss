@@ -1,6 +1,8 @@
 /**
  * 1. Fix IE overflow issue (min-height) by adding a separate wrapper for the
  *    flex display. https://github.com/philipwalton/flexbugs#flexbug-3
+ * 2. IE has trouble with min-widths on flex elements. Use the pixel value
+ *    from our forms since that's usually the smallest we want them.
  */
 
 .euiModal {
@@ -12,7 +14,7 @@
   background-color: $euiColorEmptyShade;
   border-radius: $euiBorderRadius;
   z-index: $euiZModal;
-  min-width: 50%;
+  min-width: $euiFormMaxWidth;
   animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 
   .euiModal__flex { /* 1 */
@@ -23,9 +25,12 @@
   }
 }
 
+.euiModal--maxWidth-default {
+  max-width: map-get($euiBreakpoints, "m");
+}
+
 .euiModal--confirmation {
-  width: 450px;
-  min-width: auto;
+  min-width: $euiFormMaxWidth;
 }
 
 .euiModalHeader {
@@ -94,7 +99,8 @@
 @include euiBreakpoint('xs','s') {
   .euiModal {
     position: fixed;
-    width: calc(100vw + 2px);
+    width: calc(100vw + 2px) !important;
+    max-width: none !important;
     left: 0;
     right: 0;
     bottom: 0;

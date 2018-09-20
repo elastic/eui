@@ -48,6 +48,13 @@ export class EuiSearchBox extends Component {
       ...rest
     } = this.props;
 
+    let ariaLabel;
+    if (incremental) {
+      ariaLabel = 'This is a search bar. As you type, the results lower in the page will automatically filter.';
+    } else {
+      ariaLabel = 'This is a search bar. After typing your query, hit enter to filter the results lower in the page.';
+    }
+
     return (
       <EuiFieldSearch
         inputRef={input => this.inputElement = input}
@@ -57,6 +64,7 @@ export class EuiSearchBox extends Component {
         incremental={incremental}
         onSearch={(query) => onSearch(query)}
         isInvalid={isInvalid}
+        aria-label={ariaLabel}
         title={title}
         {...rest}
       />

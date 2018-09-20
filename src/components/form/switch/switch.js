@@ -13,7 +13,7 @@ export class EuiSwitch extends Component {
     super(props);
 
     this.state = {
-      id: props.id || makeId(),
+      switchId: props.id || makeId(),
     };
   }
 

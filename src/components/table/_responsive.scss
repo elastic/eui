@@ -42,6 +42,7 @@
         }
 
         .euiTableCellContent {
+          flex-direction: column;
           padding: 0;
 
           .euiLink {
@@ -159,16 +160,17 @@
       border: none;
     }
 
-    // always show hover items on mobile
-    .euiTableCellContent--showOnHover {
+    // never show hidden items and always show hover items on mobile,
+    .euiTableRow-hasActions .euiTableCellContent--showOnHover {
+      .expandedItemActions__completelyHide {
+        display: none;
+      }
+
       .euiTableCellContent__hoverItem {
         opacity: 1;
-
-        // except when disabled
-        &:disabled,
-        button:disabled {
-          opacity: 0;
-        }
+        filter: none;
+        margin-left: 0;
+        margin-bottom: $euiSizeS;
       }
     }
 

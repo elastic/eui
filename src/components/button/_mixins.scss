@@ -3,8 +3,8 @@
   display: inline-block;
   appearance: none;
   cursor: pointer;
-  height: $euiSizeXXL;
-  line-height: $euiSizeXXL; // prevents descenders from getting cut off
+  height: $euiButtonHeight;
+  line-height: $euiButtonHeight; // prevents descenders from getting cut off
   text-decoration: none;
   border: solid 1px transparent;
   text-align: center;
