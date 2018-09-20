@@ -113,13 +113,18 @@ class Chart extends React.Component<ReactiveChartProps> {
       return null;
     }
 
-    const { parentDimensions, chartDimensions } = this.props.chartStore!;
+    const { parentDimensions, chartDimensions, chartRotation } = this.props.chartStore!;
     // console.log({ lineSeriesSpecs: toJS(lineSeriesSpecs)})
     // console.log({ groupDomains: toJS(groupDomains)})
     // console.log({ vLeftAxisSpec: toJS(vLeftAxisSpec)})
     // console.log({ hBottomAxisSpec: toJS(hBottomAxisSpec)})
     // console.log({ chartDimensions});
-
+    let chartTransform = '';
+    if (chartRotation === 90) {
+      chartTransform = `translate(${chartDimensions.width} 0) rotate(90)`;
+    } else if (chartRotation === -90) {
+      chartTransform = `translate(0 ${chartDimensions.height}) rotate(-90)`;
+    }
     return (
       <div
         style={{
@@ -168,7 +173,10 @@ class Chart extends React.Component<ReactiveChartProps> {
             /> */}
             {/* <g className="euiSeriesChartSeries_lineSeries">{this.renderLineSeries()}</g>
             <g className="euiSeriesChartSeries_pointSeries">{this.renderPointSeries()}</g> */}
-            <g className="euiSeriesChartSeries_barSeries">{this.renderBarSeries()}</g>
+            <g
+              className="euiSeriesChartSeries_barSeries"
+              transform={chartTransform}
+            >{this.renderBarSeries()}</g>
             {/* <g className="euiSeriesChartSeries_areaSeries">{this.renderAreaSeries()}</g> */}
           </g>
           <g className="euiSeriesChartAxis_group">{this.renderAxes()}</g>

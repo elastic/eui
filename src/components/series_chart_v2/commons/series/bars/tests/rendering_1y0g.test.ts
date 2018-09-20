@@ -38,11 +38,9 @@ const THEME: Theme = {
     },
   },
   axisTitle: {
-    fontSize:  20,
+    fontSize: 20,
   },
-  vizColors: [
-    'green',
-  ],
+  vizColors: ['green'],
   defaultVizColor: 'red',
 };
 
@@ -80,12 +78,37 @@ describe.only('Bar rendering 1Y0G', () => {
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, colorScales, THEME);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, 0, colorScales, THEME);
     const expectedRendering = [
       { x: 0, y: 90, width: 25, height: 10, fill: 'green' },
       { x: 25, y: 80, width: 25, height: 20, fill: 'green' },
       { x: 50, y: 0, width: 25, height: 100, fill: 'green' },
       { x: 75, y: 40, width: 25, height: 60, fill: 'green' },
+    ];
+    expect(renderedData).toEqual(expectedRendering);
+  });
+  test('should correctly rotate a simple 1Y0G bar chart', () => {
+    const rotatedSpec = {
+      ...SPEC,
+    };
+    const rotatedChartDimensions = {
+      ...CHART_DIMS,
+      width: 200,
+      height: 100,
+    };
+    const renderedData = renderBarSeriesSpec(
+      rotatedSpec,
+      computedDomains,
+      rotatedChartDimensions,
+      90,
+      colorScales,
+      THEME,
+    );
+    const expectedRendering = [
+      { x: 0, y: 180, width: 25, height: 20, fill: 'green' },
+      { x: 25, y: 160, width: 25, height: 40, fill: 'green' },
+      { x: 50, y: 0, width: 25, height: 200, fill: 'green' },
+      { x: 75, y: 80, width: 25, height: 120, fill: 'green' },
     ];
     expect(renderedData).toEqual(expectedRendering);
   });

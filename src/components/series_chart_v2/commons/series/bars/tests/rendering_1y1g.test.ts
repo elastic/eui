@@ -99,7 +99,7 @@ describe.only('Bar rendering 1Y1G', () => {
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDimensions, CHART_DIMS, colorScales, THEME);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDimensions, CHART_DIMS, 0, colorScales, THEME);
 
     const expectedRendering = [
       {

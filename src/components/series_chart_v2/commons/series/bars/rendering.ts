@@ -5,7 +5,7 @@ import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data
 import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor, GetColorFn } from '../../themes/colors';
 import { Theme } from '../../themes/theme';
-import { BarSeriesSpec, Datum } from '../specs';
+import { BarSeriesSpec, Datum, Rotation } from '../specs';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from './commons';
 
 export interface BarGlyph {
@@ -38,6 +38,7 @@ export function renderBarSeriesSpec(
   barSeriesSpec: BarSeriesSpec,
   domains: SpecDomains,
   chartDims: Dimensions,
+  rotation: Rotation,
   colorScales: ColorScales,
   theme: Theme,
 ): BarGlyphGroup[] {
@@ -55,13 +56,15 @@ export function renderBarSeriesSpec(
     groupingXDomains = domains.xDomains.slice(0, -1);
   }
 
-  const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, theme);
+  const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, theme, rotation);
+  const maxY = rotation === 0 ? chartDims.height : chartDims.width;
+  console.log(maxY);
   const yScaleConfig = getScale(
     yAccessors[0],
     domains.yDomain.scaleType,
     domains.yDomain.domain,
     0,
-    chartDims.height,
+    maxY,
   );
 
   // group data by xAccessors and splitAccessors
@@ -99,7 +102,7 @@ export function renderBarSeriesSpec(
   const formattedData = reformatData(
     nestedXScaleConfigs,
     yScaleConfig,
-    chartDims,
+    maxY,
     leafLevel,
     getColorFn,
     isYStacked,
@@ -108,7 +111,8 @@ export function renderBarSeriesSpec(
   return formattedData;
 }
 
-function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensions, theme: Theme) {
+function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensions, theme: Theme, rotation: Rotation) {
+  const maxXWidth = rotation === 0 ? seriesDimensions.width : seriesDimensions.height;
   return domains.reduce(
     (acc, scale) => {
       const { accessor, scaleType, domain } = scale;
@@ -118,7 +122,7 @@ function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensi
           scaleType,
           domain,
           0,
-          seriesDimensions.width,
+          maxXWidth,
           false,
           theme.scales.ordinal.padding,
         );
@@ -144,7 +148,7 @@ function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensi
 function reformatData(
   xScalesFnConfigs: BarScaleFnConfig[],
   yScalesFnConfig: BarScaleFnConfig,
-  seriesDimensions: Dimensions,
+  maxY: number,
   leafLevel: number,
   getColorFn: GetColorFn,
   isStacked = false,
@@ -158,7 +162,7 @@ function reformatData(
         data,
         leafXScaleConfigs,
         yScalesFnConfig,
-        seriesDimensions,
+        maxY,
         getColorFn,
         isStacked,
       );
@@ -183,7 +187,7 @@ function formatElements(
   elements: NestRollupType[],
   xScalesFnConfig: BarScaleFnConfig,
   yScalesFnConfig: BarScaleFnConfig,
-  seriesDimensions: Dimensions,
+  maxY: number,
   getColorFn: GetColorFn,
   isStacked = false,
 ) {
@@ -192,7 +196,7 @@ function formatElements(
     (acc, element) => {
       const height = yScalesFnConfig.scale(element.y);
       const x = isStacked ? 0 : xScalesFnConfig.scale(element.x);
-      let y = seriesDimensions.height - height;
+      let y = maxY - height;
       if (acc.length > 0 && isStacked) {
         y = acc[acc.length - 1].y - height;
       }

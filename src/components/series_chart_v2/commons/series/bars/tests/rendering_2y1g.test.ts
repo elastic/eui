@@ -107,7 +107,7 @@ describe.only('Bar rendering 2Y1G', () => {
     expect(computedDomains).toEqual(expectedDomains);
   });
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, colorScales, THEME);
+    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, 0, colorScales, THEME);
     const expectedRendering = [
       {
         level: 0,
