@@ -354,4 +354,23 @@ describe('execute ast', () => {
     expect(names).toContain('foo');
   });
 
+  test('OR clause', () => {
+    const items = [
+      { name: 'john doe', age: 9 },
+      { name: 'foo', age: 6 },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 8 },
+    ];
+    const result = executeAst(AST.create([
+      AST.Group.must([
+        AST.Field.must.eq('name', 'john doe'),
+        AST.Field.must.eq('name', 'foo'),
+      ]),
+      AST.Field.must.gte('age', 7),
+    ]), items);
+    expect(result).toHaveLength(2);
+    const names = result.map(item => item.name);
+    expect(names).toContain('john doe');
+    expect(names).toContain('foo bar');
+  });
 });
