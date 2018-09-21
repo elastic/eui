@@ -7,14 +7,16 @@ import { SpecProps } from './specs_parser';
 
 type BarSpecProps = SpecProps & BarSeriesSpec;
 
+type DefaultProps = 'groupId' | 'xScaleType' | 'yScaleType' | 'xAccessor' | 'yAccessors' | 'yScaleToDataExtent';
+
 export class BarSeriesSpecComponent extends React.PureComponent<BarSpecProps> {
-  public static defaultProps: Partial<BarSpecProps> = {
+  public static defaultProps: Pick<BarSpecProps, DefaultProps> = {
     groupId: getGroupId('__global__'),
-    xScaleType: ScaleType.Linear,
+    xScaleType: ScaleType.Ordinal,
     yScaleType: ScaleType.Linear,
     xAccessor: 'x',
     yAccessors: ['y'],
-    yScaleToDataExtent: false,
+    yScaleToDataExtent: true,
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
