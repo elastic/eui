@@ -41,7 +41,7 @@ export type ScaleFunction = (value: Datum) => any;
 function buildOrdinalScale(padding = 0): ScaleOrdinal {
   const d3ScaleBand = scaleBand()
     .padding(padding)
-    .round(true);
+    .round(false);
   const scale = (value: string) => {
     return Number(d3ScaleBand(value));
   };
