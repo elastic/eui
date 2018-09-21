@@ -134,7 +134,7 @@ export class SearchBar extends Component {
     ];
 
     const schema = {
-      strict: true,
+      // strict: true,
       fields: {
         active: {
           type: 'boolean'
@@ -253,10 +253,10 @@ export class SearchBar extends Component {
   render() {
     const {
       incremental,
-      // query,
+      query,
     } = this.state;
 
-    const esQueryDsl = ''; // EuiSearchBar.Query.toESQuery(query);
+    const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
     const esQueryString = ''; // EuiSearchBar.Query.toESQueryString(query);
 
     const content = this.renderError() || (

@@ -125,7 +125,6 @@ const emitIsClause = (clause) => {
 };
 
 export const astToEsQueryString = (ast) => {
-
   if (ast.clauses.length === 0) {
     return '';
   }
