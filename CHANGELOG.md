@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.2.0`.
+
+## [`4.2.0`](https://github.com/elastic/eui/tree/v4.2.0)
+
 - Added some opacity options to `EuiLineSeries` and `EuiAreaSeries` ([#1198](https://github.com/elastic/eui/pull/1198))
 - Added `initialFocus` prop for focus trapping to `EuiPopover` and `EuiModal` ([#1099](https://github.com/elastic/eui/pull/1099))
 - Added table footer support with `EuiTableFooter` and `EuiTableFooterCell` ([#1202](https://github.com/elastic/eui/pull/1202))
