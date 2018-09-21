@@ -28,14 +28,14 @@ export interface DataSeriesSpec {
  * A Bar series spec. This specs specify how the bar series is configured
  * and provides data together with all configured accessors.
  */
-export interface BasicSeriesSpec {
+export interface BasicSeriesSpec<T> {
   id: SpecId;
   groupId: GroupId;
-  data: Datum[];
+  data: T[];
   splitChartAccessor?: Accessor | Accessor[];
 }
 
-export interface BarSeriesSpec extends BasicSeriesSpec {
+export interface BarSeriesSpec extends BasicSeriesSpec<T> {
   xAccessor: Accessor;
   yAccessors: Accessor[];
   xScaleType: ScaleType;

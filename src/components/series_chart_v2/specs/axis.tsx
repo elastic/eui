@@ -4,7 +4,9 @@ import { getGroupId } from '../commons/ids';
 import { AxisOrientation, AxisPosition, AxisSpec as AxisSpecType } from '../commons/series/specs';
 import { SpecProps } from './specs_parser';
 
-type AxisSpecProps = SpecProps & AxisSpecType;
+type AxisSpecProps = SpecProps & AxisSpecType & {
+  children: never;
+};
 
 class AxisSpec extends React.PureComponent<AxisSpecProps> {
   public static defaultProps: Partial<AxisSpecProps> = {
@@ -16,7 +18,7 @@ class AxisSpec extends React.PureComponent<AxisSpecProps> {
     orientation: AxisOrientation.Vertical,
     tickSize: 10,
     tickPadding: 10,
-    tickFormat: (tick) => tick,
+    tickFormat: (tick: any) => tick,
   };
   public componentDidMount() {
     const { chartStore, children, ...spec } = this.props;

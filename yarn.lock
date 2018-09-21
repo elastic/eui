@@ -266,6 +266,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-dom@^16.0.7":
+  version "16.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.7.tgz#54d0f867a76b90597e8432030d297982f25c20ba"
+  dependencies:
+    "@types/node" "*"
+    "@types/react" "*"
+
 "@types/react-virtualized@^9.18.6":
   version "9.18.7"
   resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.18.7.tgz#8703d8904236819facff90b8b320f29233160c90"
@@ -10987,9 +10994,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+typescript@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.3.tgz#4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"
