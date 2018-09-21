@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
 
   entry: {
-    chart: './index.ts',
+    chart: './index.tsx',
   },
 
   context: path.resolve(__dirname, 'src'),
