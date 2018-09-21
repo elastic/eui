@@ -134,7 +134,7 @@ export class SearchBar extends Component {
     ];
 
     const schema = {
-      // strict: true,
+      strict: true,
       fields: {
         active: {
           type: 'boolean'
