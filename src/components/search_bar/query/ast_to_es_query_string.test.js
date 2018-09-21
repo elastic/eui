@@ -109,4 +109,24 @@ describe('astToEsQueryString', () => {
     expect(query).toMatchSnapshot();
   });
 
+  test('ast - (name:john OR name:fred)', () => {
+    const query = astToEsQueryString(AST.create([
+      AST.Group.must([
+        AST.Field.must.eq('name', 'john'),
+        AST.Field.must.eq('name', 'fred'),
+      ])
+    ]));
+    expect(query).toBe('+(name:john name:fred)');
+  });
+
+  test('ast - name:john (is:enrolled OR Teacher)', () => {
+    const query = astToEsQueryString(AST.create([
+      AST.Field.must.eq('name', 'john'),
+      AST.Group.must([
+        AST.Is.must('enrolled'),
+        AST.Term.must('Teacher'),
+      ])
+    ]));
+    expect(query).toBe('+name:john +(enrolled:true Teacher)');
+  });
 });
