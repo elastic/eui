@@ -1,5 +1,7 @@
 export { EuiTable } from './table';
 export { EuiTableBody } from './table_body';
+export { EuiTableFooter } from './table_footer';
+export { EuiTableFooterCell } from './table_footer_cell';
 export { EuiTableHeader } from './table_header';
 export { EuiTableHeaderButton } from './table_header_button';
 export { EuiTableHeaderCell } from './table_header_cell';
