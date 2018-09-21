@@ -219,3 +219,10 @@
     max-height: 1000px;
   }
 }
+
+.euiTableRow-isClickable {
+  &:focus {
+    outline: solid 3px transparentize($euiColorPrimary, .9);
+    background-color: transparentize($euiColorPrimary, .9);
+  }
+}
