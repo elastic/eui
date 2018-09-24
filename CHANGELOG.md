@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.2.0`.
+- Added `1` as a valid value for the `columns` prop in `EuiFlexGrid` ([#1210](https://github.com/elastic/eui/pull/1210))
 
 ## [`4.2.0`](https://github.com/elastic/eui/tree/v4.2.0)
 
