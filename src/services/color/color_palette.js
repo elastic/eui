@@ -42,25 +42,15 @@ function isHex(value) {
 }
 
 /**
- * Check if value can be interpreted as a number for subsequent math operations
- */
-function isValid(c) {
-  let valid = 'n';
-  if ((!isNaN(c[0])) && (!isNaN(c[1])) && (!isNaN(c[2]))) {valid = 'y';}
-  return valid;
-}
-
-/**
  * Calculate and construct the hexideciaml color code from RGB values
  */
 function createHex(c) {
   let result = '';
-  let k = 0;
   let val = 0;
   let piece;
   const d = 1;
   const base = 16;
-  for (k = 0; k < 3; k++) {
+  for (let k = 0; k < 3; k++) {
     val = Math.round(c[k] / d);
     piece = val.toString(base); // Converts to radix 16 based value (0-9, A-F)
     if (piece.length < 2) {piece = `0${piece}`;}
@@ -78,8 +68,7 @@ class Color {
     this.r = r; // Red value
     this.g = g; // Green value
     this.b = b; // Blue value
-    this.collection = new Array(r, g, b);
-    this.valid = isValid(this.collection);
+    this.collection = [r, g, b];
     this.text = createHex(this.collection);
   }
 }
@@ -93,7 +82,7 @@ function colorParse(color) {
   let a;
   let b;
   let c = color.toUpperCase();
-  let col = c.replace(/[\#\(]*/i, '');
+  let col = c.replace('#', '');
 
   if (col.length === 3) {
     a = col.substr(0, 1);
@@ -101,8 +90,8 @@ function colorParse(color) {
     c = col.substr(2, 1);
     col = a + a + b + b + c + c;
   }
-  const num = new Array(col.substr(0, 2), col.substr(2, 2), col.substr(4, 2));
-  const ret = new Array(parseInt(num[0], base) * m, parseInt(num[1], base) * m, parseInt(num[2], base) * m);
+  const num = [col.substr(0, 2), col.substr(2, 2), col.substr(4, 2)];
+  const ret = [parseInt(num[0], base) * m, parseInt(num[1], base) * m, parseInt(num[2], base) * m];
   return(ret);
 }
 
@@ -138,18 +127,17 @@ function stepCalc(st, cStart, cEnd) {
  * Generate a custom plette array from two hexidecimal color code values
  */
 function generatePalette(start, end, len) {
-  const colorArray = new Array();
-  const hexPalette = new Array();
+  const colorArray = [];
+  const hexPalette = [];
   const count = len - 1;
   const startHex = colorParse(start);
   const endHex = colorParse(end);
-  let i = 1;
   let step = new Array(3);
   colorArray[0] = new Color(startHex[0], startHex[1], startHex[2]); // first color
   colorArray[count] = new Color(endHex[0], endHex[1], endHex[2]); // last color
   step = stepCalc(count, colorArray[0], colorArray[count]); // get array of step increments
   hexPalette[0] = colorArray[0].text; // set the first index value of the array
-  for (i = 1; i < count; i++) {
+  for (let i = 1; i < count; i++) {
     // set the intermediate index values of the array
     const r = (colorArray[0].r + (step[0] * i));
     const g = (colorArray[0].g + (step[1] * i));
