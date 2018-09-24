@@ -16,7 +16,7 @@ export class BarSeriesSpecComponent extends React.PureComponent<BarSpecProps> {
     yScaleType: ScaleType.Linear,
     xAccessor: 'x',
     yAccessors: ['y'],
-    yScaleToDataExtent: true,
+    yScaleToDataExtent: false,
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;

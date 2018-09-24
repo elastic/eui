@@ -101,8 +101,9 @@ class Chart extends React.Component<ReactiveChartProps> {
         }}
         >
       <Layer
-        x={chartDimensions.left}
-        y={chartDimensions.top}
+        x={chartDimensions.left + chartTransform.x}
+        y={chartDimensions.top + chartTransform.y}
+        rotation={chartTransform.rotate}
       >
         {this.renderBarSeries()}
       </Layer>

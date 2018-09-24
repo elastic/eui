@@ -398,32 +398,40 @@ class App extends Component {
       </div>
     );
   }
-  public renderHighVolumeChart = (renderer: 'svg'|'canvas' = 'svg') => {
+  public renderHighVolumeChart = (renderer: 'svg'|'canvas' = 'svg', data: any[]) => {
     return (
       <div className="chartContainer">
         <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={AxisPosition.Top}
             orientation={AxisOrientation.Horizontal}
+            title="HighVolumeChart"
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Right}
+            orientation={AxisOrientation.Vertical}
             title="HighVolumeChart"
           />
           <BarSeries
             id={getSpecId('1000elements')}
-            data={dataGenerator.generateSimpleSeries(1000)}
+            data={data}
+            yScaleToDataExtent={true}
           />
         </Chart>
       </div>
     );
   }
   public render() {
+    const randomData = dataGenerator.generateSimpleSeries(100);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          {this.renderBarChart1y2gs()}
+          {this.renderHighVolumeChart('svg', randomData)}
           {/* {this.renderBarChart2y1gs()}
           {this.renderBarChart2y2gs()}
           {this.renderSimpleStackedBarChart()}
@@ -431,7 +439,7 @@ class App extends Component {
           {this.renderGitHubIssue()} */}
         </div>
         <div className="chartContainers">
-          {this.renderBarChart1y2gs('canvas')}
+          {this.renderHighVolumeChart('canvas', randomData)}
           {/* {this.renderBarChart2y1gs('canvas')}
           {this.renderBarChart2y2gs('canvas')}
           {this.renderSimpleStackedBarChart('canvas')}
