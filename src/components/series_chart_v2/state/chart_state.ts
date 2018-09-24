@@ -121,12 +121,12 @@ export class ChartStore {
 
   public computeChart() {
     // tslint:disable-next-line:no-console
-    console.time('__chart_computation__');
+    // console.time('__chart_computation__');
     this.initialized.set(false);
     // compute only if parent dimensions are computed
     if (this.parentDimensions.width === 0 || this.parentDimensions.height === 0) {
       // tslint:disable-next-line:no-console
-      console.timeEnd('__chart_computation__');
+      // console.timeEnd('__chart_computation__');
       return;
     }
     // TODO merge series domains
@@ -193,7 +193,7 @@ export class ChartStore {
 
     this.initialized.set(true);
     // tslint:disable-next-line:no-console
-    console.timeEnd('__chart_computation__');
+    // console.timeEnd('__chart_computation__');
   }
 
   // private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {
