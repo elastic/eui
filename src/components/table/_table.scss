@@ -221,8 +221,11 @@
 }
 
 .euiTableRow-isClickable {
+  &:hover {
+    background-color: $euiTableHoverClickableColor;
+  }
+
   &:focus {
-    outline: solid 3px transparentize($euiColorPrimary, .9);
-    background-color: transparentize($euiColorPrimary, .9);
+    background-color: $euiTableFocusClickableColor;
   }
 }
