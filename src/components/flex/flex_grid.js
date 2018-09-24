@@ -14,6 +14,7 @@ export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
 
 const columnsToClassNameMap = {
   0: 'euiFlexGrid--wrap',
+  1: 'euiFlexGrid--single',
   2: 'euiFlexGrid--halves',
   3: 'euiFlexGrid--thirds',
   4: 'euiFlexGrid--fourths',

@@ -24,6 +24,7 @@ $fractions: (
   fourths: 25%,
   thirds: 33.3%,
   halves: 50%,
+  single: 100%,
 );
 
 @each $gutterName, $gutterSize in $gutterTypes {
