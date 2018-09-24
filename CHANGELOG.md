@@ -15,6 +15,7 @@ No public interface changes since `4.2.0`.
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
 - Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
+- Made `EuiBasicTable` rows keyboard-accessibile when they are clickable ([#1206](https://github.com/elastic/eui/pull/1206))
 
 **Bug fixes**
 

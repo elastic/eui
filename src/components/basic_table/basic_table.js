@@ -32,7 +32,7 @@ import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
-import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 
 const dataTypesProfiles = {
   auto: {
@@ -678,19 +678,25 @@ export class EuiBasicTable extends Component {
 
     const { rowProps: rowPropsCallback } = this.props;
     const rowProps = getRowProps(item, rowPropsCallback);
+    const row = (
+      <EuiTableRow
+        aria-owns={expandedRowId}
+        isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
+        isSelected={selected}
+        hasActions={hasActions == null ? calculatedHasActions : hasActions}
+        isExpandable={isExpandable}
+        {...rowProps}
+      >
+        {cells}
+      </EuiTableRow>
+    );
 
     return (
       <Fragment key={`row_${itemId}`}>
-        <EuiTableRow
-          aria-owns={expandedRowId}
-          isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
-          isSelected={selected}
-          hasActions={hasActions == null ? calculatedHasActions : hasActions}
-          isExpandable={isExpandable}
-          {...rowProps}
-        >
-          {cells}
-        </EuiTableRow>
+        {rowProps.onClick
+          ? <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
+          : row
+        }
         {expandedRow}
       </Fragment>
     );
