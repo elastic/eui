@@ -8,22 +8,22 @@ import {
 } from '../../../../src/components';
 
 import {
-  colorPalette,
   palettes,
 } from '../../../../src/services';
 
-const availablePalettes = Object.keys(palettes);
+const paletteData = palettes;
+const paletteNames = Object.keys(paletteData);
 
 export default () => (
   <Fragment>
     {
-      availablePalettes.map((paletteName, i) => (
+      paletteNames.map((paletteName, i) => (
         <div key={paletteName}>
           <EuiTitle key={i} size="xxs"><h3>{paletteName}</h3></EuiTitle>
           <EuiSpacer size="s" />
           <EuiFlexGroup gutterSize="none" alignItems="flexStart" key={`${paletteName}-${i}`}>
             {
-              colorPalette(paletteName).map((hexCode, j) => (
+              paletteData[paletteName].colors.map((hexCode, j) => (
                 <EuiFlexItem key={`${hexCode}-${j}`} grow={false} className={'guideColorPalette__swatch'}>
                   <span title={hexCode} style={{ backgroundColor: hexCode }} />
                 </EuiFlexItem>

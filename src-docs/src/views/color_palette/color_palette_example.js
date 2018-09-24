@@ -25,7 +25,7 @@ const colorPaletteHistogramHtml = renderToHtml(ColorPaletteHistogram);
 export const ColorPaletteExample = {
   title: 'Color Palettes',
   sections: [{
-    title: 'Preset color palettes',
+    title: 'Preset qualitative palettes',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPaletteSource,
@@ -34,16 +34,22 @@ export const ColorPaletteExample = {
       code: colorPaletteHtml,
     }],
     text: (
-      <p>
-        Use the <EuiCode>colorPalette</EuiCode> service to obtain an array of
-        hexidecimal color codes for a given palette such as
-        <EuiCode>colorPalette&#40;&#39;color_blind&#39;&#41;</EuiCode>, then apply them to UI
-        elements such as charts.
-      </p>
+      <div>
+        <p>
+          The <EuiCode>eui_palettes.js</EuiCode> file provides a base set of color palettes in
+          an array format. The hexidecimal color codes in these sets consist of both color safe
+          and EUI themed colors. Import the file, then use javascript to read and apply the color
+          array values to other EUI components, such as charts.
+        </p>
+        <p>
+          Quantitative palettes are best suited for communicating and comparing discrete
+          data series.
+        </p>
+      </div>
     ),
     demo: <ColorPalette />,
   }, {
-    title: 'Custom color palettes',
+    title: 'Recommended quantitative palettes',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPaletteCustomSource,
@@ -52,15 +58,22 @@ export const ColorPaletteExample = {
       code: colorPaletteCustomHtml,
     }],
     text: (
-      <p>
-        Generate a custom palette of any length from two hexidecimal color
-        codes such as
-        <EuiCode>colorPalette&#40;&#39;custom&#39;, &#39;#FF0000&#39;, &#39;#00FFFF&#39;, 25&#41;</EuiCode>.
-      </p>
+      <div>
+        <p>
+          Use the <EuiCode>colorPalette</EuiCode> service to generate a custom, gradiated palette
+          array of any length from two hexidecimal color codes. For example, obtain an array of
+          yellow-to-green health status colors using
+          <EuiCode>colorPalette&#40;&#39;#FFFF6D&#39;, &#39;#1EA593&#39;, 20&#41;</EuiCode>.
+        </p>
+        <p>
+          Custom palettes are best suited for displaying data on a continuum, as in the case of
+          health statuses and large geographic or demographic-based data sets.
+        </p>
+      </div>
     ),
     demo: <ColorPaletteCustom />,
   }, {
-    title: 'Chart example',
+    title: 'Usage examples',
     source: [{
       type: GuideSectionTypes.JS,
       code: colorPaletteHistogramSource,
@@ -70,8 +83,8 @@ export const ColorPaletteExample = {
     }],
     text: (
       <p>
-        Apply the results of <EuiCode>colorPalette</EuiCode> to the
-        <EuiCode>color</EuiCode> prop of EUI chart components.
+        Apply the colors from <EuiCode>eui_palettes.js</EuiCode> or the <EuiCode>colorPalette</EuiCode>
+        service to the <EuiCode>color</EuiCode> prop of EUI chart components.
       </p>
     ),
     demo: <ColorPaletteHistogram />,

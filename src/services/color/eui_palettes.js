@@ -1,16 +1,16 @@
 export const palettes = {
   color_blind: {
     colors: [
-      '#1ea593',
-      '#2b70f7',
-      '#ce0060',
-      '#38007e',
-      '#fca5d3',
-      '#f37020',
-      '#e49e29',
-      '#b0916f',
-      '#7b000b',
-      '#34130c',
+      '#1EA593',
+      '#2B70F7',
+      '#CE0060',
+      '#38007E',
+      '#FCA5D3',
+      '#F37020',
+      '#E49E29',
+      '#B0916F',
+      '#7B000B',
+      '#34130C',
     ],
   },
   color_blind_15: {
@@ -18,21 +18,21 @@ export const palettes = {
       '#000000',
       '#004949',
       '#009292',
-      '#ff6db6',
-      '#ffb6db',
+      '#FF6DB6',
+      '#FFB6DB',
       '#490092',
-      '#006ddb',
-      '#b66dff',
-      '#6db6ff',
-      '#b6dbff',
+      '#006DDB',
+      '#B66DFF',
+      '#6DB6FF',
+      '#B6DBFF',
       '#920000',
       '#924900',
-      '#db6d00',
-      '#24ff24',
-      '#ffff6d',
+      '#DB6D00',
+      '#24FF24',
+      '#FFFF6D',
     ]
   },
-  eui_colors: {
+  eui_light: {
     colors: [
       '#0079A5',
       '#017F75',
@@ -41,31 +41,13 @@ export const palettes = {
       '#DD0A73',
     ]
   },
-  eui_colors_light: {
+  eui_dark: {
     colors: [
-      '#009ED8',
+      '#4DA1C0',
       '#01B2A4',
-      '#F39B33',
-      '#D60000',
+      '#C06C4C',
+      '#BF4D4D',
       '#F5258C',
     ]
   },
-  spectrum: {
-    colors: [
-      '#882E72',
-      '#B178A6',
-      '#D6C1DE',
-      '#1965B0',
-      '#5289C7',
-      '#7BAFDE',
-      '#4EB265',
-      '#90C987',
-      '#CAE0AB',
-      '#F7EE55',
-      '#F6C141',
-      '#F1932D',
-      '#E8601C',
-      '#DC050C',
-    ]
-  }
 };

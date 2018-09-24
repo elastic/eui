@@ -13,23 +13,11 @@ import {
 
 export default () => (
   <Fragment>
-    <EuiTitle size="xxs"><h3>Custom red to blue</h3></EuiTitle>
+    <EuiTitle size="xxs"><h3>Status: yellow to green</h3></EuiTitle>
     <EuiSpacer size="s" />
     <EuiFlexGroup gutterSize="none" alignItems="flexStart">
       {
-        colorPalette('custom', '#FF0000', '#00FFFF', 25).map((hexCode, j) => (
-          <EuiFlexItem key={`${hexCode}-${j}`} grow={false} className={'guideColorPalette__swatch'}>
-            <span title={hexCode} style={{ backgroundColor: hexCode }} />
-          </EuiFlexItem>
-        ))
-      }
-    </EuiFlexGroup>
-    <EuiSpacer size="l" />
-    <EuiTitle size="xxs"><h3>Custom yellow to green</h3></EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="none" alignItems="flexStart">
-      {
-        colorPalette('custom', 'F7EE55', '4EB265', 20).map((hexCode, k) => (
+        colorPalette('FFFF6D', '1EA593', 20).map((hexCode, k) => (
           <EuiFlexItem key={`${hexCode}-${k}`} grow={false} className={'guideColorPalette__swatch'}>
             <span title={hexCode} style={{ backgroundColor: hexCode }} />
           </EuiFlexItem>
@@ -37,11 +25,23 @@ export default () => (
       }
     </EuiFlexGroup>
     <EuiSpacer size="l" />
-    <EuiTitle size="xxs"><h3>Custom green to red</h3></EuiTitle>
+    <EuiTitle size="xxs"><h3>Status: yellow to red</h3></EuiTitle>
     <EuiSpacer size="s" />
     <EuiFlexGroup gutterSize="none" alignItems="flexStart">
       {
-        colorPalette('custom', '#4EB265', '#920000').map((hexCode, l) => (
+        colorPalette('#FFFF6D', '#A30000', 15).map((hexCode, l) => (
+          <EuiFlexItem key={`${hexCode}-${l}`} grow={false} className={'guideColorPalette__swatch'}>
+            <span title={hexCode} style={{ backgroundColor: hexCode }} />
+          </EuiFlexItem>
+        ))
+      }
+    </EuiFlexGroup>
+    <EuiSpacer size="l" />
+    <EuiTitle size="xxs"><h3>Status: green to pink</h3></EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup gutterSize="none" alignItems="flexStart">
+      {
+        colorPalette('#1EA593', '#DD0A73').map((hexCode, l) => (
           <EuiFlexItem key={`${hexCode}-${l}`} grow={false} className={'guideColorPalette__swatch'}>
             <span title={hexCode} style={{ backgroundColor: hexCode }} />
           </EuiFlexItem>

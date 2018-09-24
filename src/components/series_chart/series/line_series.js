@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 import { CURVE } from '../utils/chart_utils';
-import { VisualizationColorType } from '../utils/visualization_color_type';
 
 export class EuiLineSeries extends AbstractSeries {
   render() {
@@ -83,8 +82,8 @@ EuiLineSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   showLineMarks: PropTypes.bool,
   lineSize: PropTypes.number,

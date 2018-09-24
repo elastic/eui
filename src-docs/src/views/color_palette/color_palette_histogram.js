@@ -1,13 +1,17 @@
 import React, { Component, Fragment } from 'react';
 
 import {
+  EuiSpacer,
+} from '../../../../src/components';
+import {
   EuiSeriesChart,
   EuiHistogramSeries,
   EuiSeriesChartUtils,
 } from '../../../../src/experimental';
 import {
   colorPalette,
-} from '../../../../src/services/color/color_palette';
+  palettes,
+} from '../../../../src/services/color';
 
 const { SCALE } = EuiSeriesChartUtils;
 const timestamp = Date.now();
@@ -18,7 +22,8 @@ const margins = {
   right: 0,
   bottom: 20,
 };
-const colors = colorPalette('custom', 'FF0000', '#00FFFF', 6);
+const qualColors = palettes.color_blind.colors;
+const quantColors = colorPalette('#FFFF6D', '#1EA593', 6);
 
 function randomizeData(size = 24, max = 8) {
   return new Array(size)
@@ -48,7 +53,11 @@ export default class Example extends Component {
     return (
       <Fragment>
         <EuiSeriesChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
-          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} color={colors[i]} />)}
+          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} color={qualColors[i]} />)}
+        </EuiSeriesChart>
+        <EuiSpacer size="xl" />
+        <EuiSeriesChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
+          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} color={quantColors[i]} />)}
         </EuiSeriesChart>
       </Fragment>
     );
