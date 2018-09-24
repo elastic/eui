@@ -161,7 +161,7 @@ export const propsInfo = {
           description: 'Describes the data types of the displayed value (serves as a rendering hint for the table)',
           required: false,
           defaultValue: { value: '"auto"' },
-          type: { name: '"auto" | string" | "number" | "date" | "boolean"' }
+          type: { name: '"auto" | "string" | "number" | "date" | "boolean"' }
         },
         width: {
           description: 'A CSS width property. Hints for the required width of the column',
@@ -190,6 +190,11 @@ export const propsInfo = {
           description: `Describe a custom renderer function for the content`,
           required: false,
           type: { name: '(value, item) => PropTypes.node' }
+        },
+        footer: {
+          description: `Content to display in the footer beneath this column`,
+          required: false,
+          type: { name: 'string | PropTypes.element | ({ items, pagination }) => PropTypes.node' }
         }
       }
     }

@@ -17,6 +17,8 @@ import { EuiCheckbox } from '../form/checkbox/checkbox';
 import { EuiTableHeaderCell } from '../table/table_header_cell';
 import { EuiTableHeader } from '../table/table_header';
 import { EuiTableBody } from '../table/table_body';
+import { EuiTableFooterCell } from '../table/table_footer_cell';
+import { EuiTableFooter } from '../table/table_footer';
 import { EuiTableRowCellCheckbox } from '../table/table_row_cell_checkbox';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
 import { ICON_TYPES } from '../icon';
@@ -103,7 +105,12 @@ export const FieldDataColumnTypeShape = {
   sortable: PropTypes.bool,
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
-  render: PropTypes.func // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  footer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.func, // ({ items, pagination }) => PropTypes.node
+  ])
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
@@ -183,6 +190,17 @@ function getCellProps(item, column, cellProps) {
   }
 
   return {};
+}
+
+function getColumnFooter(column, { items, pagination }) {
+  if (column.footer) {
+    if (isFunction(column.footer)) {
+      return column.footer({ items, pagination });
+    }
+    return column.footer;
+  }
+
+  return undefined;
 }
 
 export class EuiBasicTable extends Component {
@@ -348,6 +366,7 @@ export class EuiBasicTable extends Component {
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
+    const footer = this.renderTableFooter();
     return (
       <div
         ref={element => { this.tableElement = element; }}
@@ -357,6 +376,7 @@ export class EuiBasicTable extends Component {
           {caption}
           {head}
           {body}
+          {footer}
         </EuiTable>
       </div>
     );
@@ -507,6 +527,55 @@ export class EuiBasicTable extends Component {
     });
 
     return <EuiTableHeader>{headers}</EuiTableHeader>;
+  }
+
+  renderTableFooter() {
+    const { items, columns, pagination, selection } = this.props;
+
+    const footers = [];
+    let hasDefinedFooter = false;
+
+    if (selection) {
+      // Create an empty cell to compensate for additional selection column
+      footers.push(
+        <EuiTableFooterCell key="_selection_column_f">
+          {undefined}
+        </EuiTableFooterCell>
+      );
+    }
+
+    columns.forEach(column => {
+      const footer = getColumnFooter(column, { items, pagination });
+      if (column.isMobileHeader) {
+        return; // exclude columns that only exist for mobile headers
+      }
+
+      if (footer) {
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_${column.field}`}
+            header={column.name}
+            align={column.align}
+          >
+            {footer}
+          </EuiTableFooterCell>
+        );
+        hasDefinedFooter = true;
+      } else {
+        // Footer is undefined, so create an empty cell to preserve layout
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_empty_${footers.length - 1}`}
+            header={column.name}
+            align={column.align}
+          >
+            {undefined}
+          </EuiTableFooterCell>
+        );
+      }
+    });
+
+    return footers.length && hasDefinedFooter ? <EuiTableFooter>{footers}</EuiTableFooter> : null;
   }
 
   renderTableBody() {
@@ -750,6 +819,7 @@ export class EuiBasicTable extends Component {
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
+      footer, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
     const columnAlign = align || this.getAlignForDataType(dataType);

@@ -9,6 +9,10 @@
       display: none; // Use mobile versions of selecting and filtering instead
     }
 
+    tfoot {
+      display: none; // Not supporting responsive footer content
+    }
+
     // Make each row a Panel
     @include euiPanel($selector: 'euiTableRow');
 

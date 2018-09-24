@@ -111,11 +111,13 @@ export class Table extends Component {
       name: 'Clone',
       description: 'Clone this person',
       icon: 'copy',
+      type: 'icon',
       onClick: this.cloneUser
     }, {
       name: 'Delete',
       description: 'Delete this person',
       icon: 'trash',
+      type: 'icon',
       color: 'danger',
       onClick: this.deleteUser
     }];

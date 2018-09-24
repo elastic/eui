@@ -22,6 +22,7 @@ export class EuiModal extends Component {
     const {
       className,
       children,
+      initialFocus,
       onClose, // eslint-disable-line no-unused-vars
       maxWidth,
       style,
@@ -43,6 +44,7 @@ export class EuiModal extends Component {
       <FocusTrap
         focusTrapOptions={{
           fallbackFocus: () => this.modal,
+          initialFocus,
         }}
       >
         {
@@ -87,6 +89,12 @@ EuiModal.propTypes = {
   maxWidth: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
+    PropTypes.string,
+  ]),
+  /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
+  initialFocus: PropTypes.oneOfType([
+    PropTypes.instanceOf(HTMLElement),
+    PropTypes.func,
     PropTypes.string,
   ]),
 };
