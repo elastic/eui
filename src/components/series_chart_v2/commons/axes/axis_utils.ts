@@ -75,7 +75,12 @@ function computeTicks(
   specDomain: SpecDomain,
   axisSpec: AxisSpec,
   chartTheme: Theme,
-) {
+): {
+  axisScaleType: ScaleType,
+  axisScaleDomain: Domain,
+  tickValues: any[],
+  tickLabels: string[],
+} {
   const { domain, scaleType } = specDomain;
 
   let tickValues: string[] | number[];

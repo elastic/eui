@@ -63,10 +63,10 @@ class App extends Component {
       barchart_2y2g: randomizeData(BARCHART_2Y2G, ['y1', 'y2'], uniformRandomizer(1000)),
     });
   }
-  public renderBarChart1y0g = () => {
+  public renderBarChart1y0g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
@@ -85,15 +85,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderBarChart1y1g = () => {
+  public renderBarChart1y1g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="1y1g"
           />
           <BarSeries
             id={getSpecId('renderBarChart1y1g')}
@@ -108,15 +108,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderBarChart1y2g = () => {
+  public renderBarChart1y2g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="1y2g"
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2g')}
@@ -133,15 +133,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderBarChart1y2gs = () => {
+  public renderBarChart1y2gs = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="1y2gs"
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2gs')}
@@ -159,15 +159,15 @@ class App extends Component {
     );
   }
 
-  public renderBarChart2y0g = () => {
+  public renderBarChart2y0g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="2y0g"
           />
           <BarSeries
             id={getSpecId('renderBarChart2y0g')}
@@ -182,15 +182,15 @@ class App extends Component {
     );
   }
 
-  public renderBarChart2y1g = () => {
+  public renderBarChart2y1g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="2y1g"
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1g')}
@@ -205,15 +205,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderBarChart2y1gs = () => {
+  public renderBarChart2y1gs = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="2y1gs"
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1gs')}
@@ -229,15 +229,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderBarChart2y2g = () => {
+  public renderBarChart2y2g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="2y2g"
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -253,15 +253,15 @@ class App extends Component {
     );
   }
 
-  public renderBarChart2y2gs = () => {
+  public renderBarChart2y2gs = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="2y2gs"
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -278,15 +278,15 @@ class App extends Component {
     );
   }
 
-  public renderSimpleStackedBarChart = () => {
+  public renderSimpleStackedBarChart = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="SimpleStackedBarChart"
           />
           <BarSeries
             id={getSpecId('renderSimpleStackedBarChart')}
@@ -302,15 +302,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderSimpleClusteredBarChart = () => {
+  public renderSimpleClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="SimpleClusteredBarChart"
           />
           <BarSeries
             id={getSpecId('renderSimpleClusteredBarChart')}
@@ -325,15 +325,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderMultipleClusteredBarChart = () => {
+  public renderMultipleClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="MultipleClusteredBarChart"
           />
           <BarSeries
             id={getSpecId('renderMultipleClusteredBarChart')}
@@ -349,15 +349,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderStackedClusteredBarChart = () => {
+  public renderStackedClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="StackedClusteredBarChart"
           />
           <BarSeries
             id={getSpecId('renderStackedClusteredBarChart')}
@@ -373,15 +373,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderGitHubIssue = () => {
+  public renderGitHubIssue = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="GitHubIssue"
           />
           <BarSeries
             id={getSpecId('renderGitHubIssue')}
@@ -398,15 +398,15 @@ class App extends Component {
       </div>
     );
   }
-  public renderHighVolumeChart = () => {
+  public renderHighVolumeChart = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
-        <Chart>
+        <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
-            title="1y0g"
+            title="HighVolumeChart"
           />
           <BarSeries
             id={getSpecId('1000elements')}
@@ -423,22 +423,20 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          {this.renderHighVolumeChart()}
-          {this.renderBarChart1y0g()}
-          {this.renderBarChart1y1g()}
-          {this.renderBarChart1y2g()}
           {this.renderBarChart1y2gs()}
-          {this.renderBarChart2y0g()}
-          {this.renderBarChart2y1g()}
-          {this.renderBarChart2y1gs()}
-          {this.renderBarChart2y2g()}
+          {/* {this.renderBarChart2y1gs()}
           {this.renderBarChart2y2gs()}
           {this.renderSimpleStackedBarChart()}
-          {this.renderSimpleClusteredBarChart()}
-          {this.renderSimpleClusteredBarChart()}
-          {this.renderMultipleClusteredBarChart()}
           {this.renderStackedClusteredBarChart()}
-          {this.renderGitHubIssue()}
+          {this.renderGitHubIssue()} */}
+        </div>
+        <div className="chartContainers">
+          {this.renderBarChart1y2gs('canvas')}
+          {/* {this.renderBarChart2y1gs('canvas')}
+          {this.renderBarChart2y2gs('canvas')}
+          {this.renderSimpleStackedBarChart('canvas')}
+          {this.renderStackedClusteredBarChart('canvas')}
+          {this.renderGitHubIssue('canvas')} */}
         </div>
       </div>
     );
@@ -446,3 +444,16 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('chart'));
+
+// {this.renderHighVolumeChart()}
+// {this.renderBarChart1y0g()}
+// {this.renderBarChart1y1g()}
+// {this.renderBarChart2y1gs()}
+// {this.renderBarChart2y2g()}
+// {this.renderBarChart2y2gs()}
+// {this.renderSimpleStackedBarChart()}
+// {this.renderSimpleClusteredBarChart()}
+// {this.renderSimpleClusteredBarChart()}
+// {this.renderMultipleClusteredBarChart()}
+// {this.renderStackedClusteredBarChart()}
+// {this.renderGitHubIssue()}
