@@ -47,6 +47,9 @@ EuiFlexGrid.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
+  /**
+   * Number of columns to show in the grid. Up to 4.
+   */
   columns: PropTypes.oneOf(COLUMNS).isRequired,
   /**
    * Allow grid items display at block level on small screens
