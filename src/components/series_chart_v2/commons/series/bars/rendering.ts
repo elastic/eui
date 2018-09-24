@@ -58,7 +58,6 @@ export function renderBarSeriesSpec(
 
   const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, theme, rotation);
   const maxY = rotation === 0 ? chartDims.height : chartDims.width;
-  console.log(maxY);
   const yScaleConfig = getScale(
     yAccessors[0],
     domains.yDomain.scaleType,

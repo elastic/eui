@@ -15,6 +15,7 @@ export const BARCHART_1Y1G = [
   { x: 3, g: 'a', y: 6 },
   { x: 3, g: 'b', y: 6 },
 ];
+
 export const BARCHART_1Y2G = [
   { x: 0, g1: 'a', g2: 's', y: 1 },
   { x: 0, g1: 'a', g2: 'p', y: 1 },
@@ -50,7 +51,7 @@ export const BARCHART_2Y1G = [
   { x: 2, g: 'b', y1: 3, y2: 1 },
   { x: 3, g: 'a', y1: 7, y2: 3 },
   { x: 3, g: 'b', y1: 6, y2: 4 },
-]
+];
 
 export const BARCHART_2Y2G = [
   { x: 0, g1: 'a', g2: 's', y1: 1, y2: 4 },
@@ -69,4 +70,4 @@ export const BARCHART_2Y2G = [
   { x: 3, g1: 'a', g2: 'p', y1: 7, y2: 3 },
   { x: 3, g1: 'b', g2: 's', y1: 6, y2: 4 },
   { x: 3, g1: 'b', g2: 'p', y1: 6, y2: 4 },
-]
+];

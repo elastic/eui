@@ -54,5 +54,8 @@
     "./src/**/*.tsx",
     "./src-docs/**/*.ts",
     "./src-docs/**/*.tsx"
+  ],
+  "exclude": [
+    "./src/**/*.js",
   ]
 }

@@ -817,4 +817,4 @@ export const BAR_CHART_2Y = [
   { x: 1, y1: 2, y2: 7 },
   { x: 2, y1: 1, y2: 2 },
   { x: 3, y1: 6, y2: 10 },
-]
+];
