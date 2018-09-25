@@ -83,6 +83,20 @@ function getElementFromInitialFocus(initialFocus) {
   return initialFocus;
 }
 
+function getTransitionTimings(element) {
+  const computedStyle = window.getComputedStyle(element);
+
+  const computedDuration = computedStyle.getPropertyValue('transition-duration');
+  let durationMatch = computedDuration.match(GROUP_NUMERIC);
+  durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
+
+  const computedDelay = computedStyle.getPropertyValue('transition-delay');
+  let delayMatch = computedDelay.match(GROUP_NUMERIC);
+  delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
+
+  return { durationMatch, delayMatch };
+}
+
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevProps.isOpen && !nextProps.isOpen) {
@@ -122,7 +136,8 @@ export class EuiPopover extends Component {
       popoverStyles: DEFAULT_POPOVER_STYLES,
       arrowStyles: {},
       arrowPosition: null,
-      openPosition: null,
+      openPosition: null, // once a stable position has been found, keep the contents on that side
+      isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
     };
   }
 
@@ -194,6 +209,29 @@ export class EuiPopover extends Component {
           isOpening: true,
         });
       });
+
+      // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
+      const { durationMatch, delayMatch } = Array.prototype.slice.call(this.panel.children).reduce(
+        ({ durationMatch, delayMatch }, element) => {
+          const transitionTimings = getTransitionTimings(element);
+
+          return {
+            durationMatch: Math.max(durationMatch, transitionTimings.durationMatch),
+            delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
+          };
+        },
+        { durationMatch: 0, delayMatch: 0 }
+      );
+
+      setTimeout(
+        () => {
+          this.setState(
+            { isOpenStable: true },
+            this.positionPopoverFixed
+          );
+        },
+        (durationMatch + delayMatch)
+      );
     }
 
     // update scroll listener
@@ -229,16 +267,7 @@ export class EuiPopover extends Component {
       (waitDuration, record) => {
         // only check for CSS transition values for ELEMENT nodes
         if (record.target.nodeType === document.ELEMENT_NODE) {
-          const computedStyle = window.getComputedStyle(record.target);
-
-          const computedDuration = computedStyle.getPropertyValue('transition-duration');
-          let durationMatch = computedDuration.match(GROUP_NUMERIC);
-          durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
-
-          const computedDelay = computedStyle.getPropertyValue('transition-delay');
-          let delayMatch = computedDelay.match(GROUP_NUMERIC);
-          delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
-
+          const { durationMatch, delayMatch } = getTransitionTimings(record.target);
           waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
         }
 
@@ -269,7 +298,7 @@ export class EuiPopover extends Component {
 
     let position = getPopoverPositionFromAnchorPosition(this.props.anchorPosition);
     let forcePosition = null;
-    if (allowEnforcePosition && this.state.openPosition != null) {
+    if (allowEnforcePosition && this.state.isOpenStable && this.state.openPosition != null) {
       position = this.state.openPosition;
       forcePosition = true;
     }
@@ -324,6 +353,7 @@ export class EuiPopover extends Component {
         arrowStyles: {},
         arrowPosition: null,
         openPosition: null,
+        isOpenStable: false,
       });
       window.removeEventListener('resize', this.positionPopoverFluid);
     } else {

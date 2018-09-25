@@ -111,6 +111,13 @@ export function findPopoverPosition({
       );
       iterationAlignments.push(null, null); // discard desired alignment on cross-axis
     }
+  } else {
+    // position is forced, if it conficts with the alignment then reset align to `null`
+    // e.g. original placement request for `downLeft` is moved to the `left` side, future calls
+    // will position and align `left`, and `leftLeft` is not a valid placement
+    if (position === align || position === positionComplements[align]) {
+      iterationAlignments[0] = null;
+    }
   }
 
   const {
