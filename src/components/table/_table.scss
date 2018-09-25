@@ -228,3 +228,13 @@
     max-height: 1000px;
   }
 }
+
+.euiTableRow-isClickable {
+  &:hover {
+    background-color: $euiTableHoverClickableColor;
+  }
+
+  &:focus {
+    background-color: $euiTableFocusClickableColor;
+  }
+}
