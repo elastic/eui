@@ -12,7 +12,7 @@ interface ChartProps {
 
 export class Chart extends React.Component<ChartProps> {
   public static defaultProps: Pick<ChartProps, 'renderer'> = {
-  renderer: 'svg',
+    renderer: 'svg',
   };
   private chartSpecStore: ChartStore;
   constructor(props: any) {

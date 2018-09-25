@@ -8,7 +8,7 @@ import {
   computeAxisTicksDimensions,
   getAxisTicksPositions,
 } from '../commons/axes/axis_utils';
-import { SvgTextBBoxCalculator } from '../commons/axes/svg_text_bbox_calculator';
+import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeDataDomain } from '../commons/series/bars/domains';
@@ -132,7 +132,7 @@ export class ChartStore {
     // TODO merge series domains
 
     // compute axis dimensions
-    const bboxCalculator = new SvgTextBBoxCalculator();
+    const bboxCalculator = new CanvasTextBBoxCalculator();
     this.axesTicksDimensions.clear();
     this.axesSpecs.forEach((axisSpec) => {
       const { id, groupId } = axisSpec;

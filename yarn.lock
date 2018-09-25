@@ -4329,6 +4329,10 @@ fp-ts@^1.0.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-1.8.0.tgz#305909ebb3f44b21f77e9e3313ee0ed5ee809daa"
 
+fp-ts@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-1.8.1.tgz#46800e05a814968f79664a76a80d6c6d948c032e"
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"

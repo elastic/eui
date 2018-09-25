@@ -413,6 +413,7 @@ class App extends Component {
             position={AxisPosition.Right}
             orientation={AxisOrientation.Vertical}
             title="HighVolumeChart"
+            tickFormat={(tick) => `value: ${tick}`}
           />
           <BarSeries
             id={getSpecId('1000elements')}
@@ -424,14 +425,14 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateSimpleSeries(100);
+    const randomData = dataGenerator.generateSimpleSeries(1000);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          {this.renderHighVolumeChart('svg', randomData)}
+          {/* {this.renderHighVolumeChart('svg', randomData)} */}
           {/* {this.renderBarChart2y1gs()}
           {this.renderBarChart2y2gs()}
           {this.renderSimpleStackedBarChart()}

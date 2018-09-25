@@ -5,7 +5,7 @@ import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
 import { AxisOrientation, AxisPosition, AxisSpec, Rotation } from '../series/specs';
 import { Theme } from '../themes/theme';
-import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
+import { BBoxCalculator } from './bbox_calculator';
 
 export interface AxisTick {
   value: number | string;
@@ -33,7 +33,7 @@ export interface AxisTicksDimensions {
 export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
   specDomains: SpecDomains,
-  bboxCalculator: SvgTextBBoxCalculator,
+  bboxCalculator: BBoxCalculator,
   chartTheme: Theme,
   chartRotation: Rotation,
 ): AxisTicksDimensions {
@@ -50,14 +50,20 @@ export function computeAxisTicksDimensions(
   tickLabels = verticalTicks.tickLabels;
   axisScaleType = verticalTicks.axisScaleType!;
   axisScaleDomain = verticalTicks.axisScaleDomain!;
+  console.log({tickLabels, tickLabelsLength: tickLabels.length});
   // compute the boundingbox for each formatted label
-  const ticksDimensions = tickLabels.map((tickLabel: string) => {
-    const bbox = bboxCalculator.compute(tickLabel);
-    return {
-      width: Math.ceil(bbox.width),
-      height: Math.ceil(bbox.height),
-    };
-  });
+  const ticksDimensions = tickLabels
+    .map((tickLabel: string) => {
+      const bbox = bboxCalculator.compute(tickLabel).getOrElse({
+        width: 0,
+        height: 0,
+      });
+      return {
+        width: Math.ceil(bbox.width),
+        height: Math.ceil(bbox.height),
+      };
+    })
+    .filter((d) => d);
   const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
   const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
   return {

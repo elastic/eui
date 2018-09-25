@@ -117,6 +117,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.4.0",
     "file-loader": "^1.1.11",
+    "fp-ts": "^1.8.1",
     "geckodriver": "^1.11.0",
     "glob": "^7.1.2",
     "html-loader": "^0.5.1",
