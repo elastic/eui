@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarGlyph, BarGlyphGroup } from '../commons/series/bars/rendering';
+import { BarGlyph, BarGlyphGroup } from '../../commons/series/bars/rendering';
 // import NodeGroup from 'react-move/NodeGroup';
 
 interface BarSeriesDataProps {

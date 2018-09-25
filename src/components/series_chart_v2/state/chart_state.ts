@@ -8,7 +8,7 @@ import {
   computeAxisTicksDimensions,
   getAxisTicksPositions,
 } from '../commons/axes/axis_utils';
-import { SvgTextBBoxCalculator } from '../commons/axes/svg_text_bbox_calculator';
+import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { computeDataDomain } from '../commons/series/bars/domains';
@@ -31,7 +31,7 @@ export class ChartStore {
     top: 0,
     left: 0,
   }; // updated from jsx
-  public chartRotation: Rotation = 0; // updated from jsx
+  public chartRotation: Rotation = 90; // updated from jsx
   public chartTheme: Theme = DEFAULT_THEME; // updated from jsx
   public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed
@@ -121,18 +121,18 @@ export class ChartStore {
 
   public computeChart() {
     // tslint:disable-next-line:no-console
-    // console.time('__chart_computation__');
+    console.time('__chart_computation__');
     this.initialized.set(false);
     // compute only if parent dimensions are computed
     if (this.parentDimensions.width === 0 || this.parentDimensions.height === 0) {
       // tslint:disable-next-line:no-console
-      // console.timeEnd('__chart_computation__');
+      console.timeEnd('__chart_computation__');
       return;
     }
     // TODO merge series domains
 
     // compute axis dimensions
-    const bboxCalculator = new SvgTextBBoxCalculator();
+    const bboxCalculator = new CanvasTextBBoxCalculator();
     this.axesTicksDimensions.clear();
     this.axesSpecs.forEach((axisSpec) => {
       const { id, groupId } = axisSpec;
@@ -193,7 +193,7 @@ export class ChartStore {
 
     this.initialized.set(true);
     // tslint:disable-next-line:no-console
-    // console.timeEnd('__chart_computation__');
+    console.timeEnd('__chart_computation__');
   }
 
   // private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {

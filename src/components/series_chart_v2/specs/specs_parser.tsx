@@ -9,7 +9,7 @@ export interface SpecProps {
 export class SpecsSpecRootComponent extends React.PureComponent<SpecProps> {
   public static getDerivedStateFromProps(props: SpecProps) {
     // tslint:disable-next-line:no-console
-    // console.log('Specs are changing...');
+    console.log('Specs are changing...');
     props.chartStore!.specsInitialized.set(false);
     return null;
   }
@@ -18,17 +18,17 @@ export class SpecsSpecRootComponent extends React.PureComponent<SpecProps> {
     this.props.chartStore!.specsInitialized.set(true);
     this.props.chartStore!.computeChart();
     // tslint:disable-next-line:no-console
-    // console.log('All Specs are parsed');
+    console.log('All Specs are parsed');
   }
   public componentDidUpdate() {
     // tslint:disable-next-line:no-console
-    // console.log('Specs updated!');
+    console.log('Specs updated!');
     this.props.chartStore!.specsInitialized.set(true);
     this.props.chartStore!.computeChart();
   }
   public componentWillUnmount() {
     // tslint:disable-next-line:no-console
-    // console.log('Specs is unmounted');
+    console.log('Specs is unmounted');
     // this.props.chartStore.initialized.set(false);
   }
   public render() {

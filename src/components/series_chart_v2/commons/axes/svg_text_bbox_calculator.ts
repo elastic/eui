@@ -1,3 +1,6 @@
+import { Option, some } from 'fp-ts/lib/Option';
+import { BBox, BBoxCalculator } from './bbox_calculator';
+
 // not sure where to specify this, required for tests
 declare global {
   interface SVGElement {
@@ -5,7 +8,7 @@ declare global {
   }
 }
 
-export class SvgTextBBoxCalculator {
+export class SvgTextBBoxCalculator implements BBoxCalculator {
   public svgElem: SVGSVGElement;
   public textElem: SVGTextElement;
   public attachedRoot: HTMLElement;
@@ -17,19 +20,19 @@ export class SvgTextBBoxCalculator {
     const xmlns = 'http://www.w3.org/2000/svg';
     this.svgElem = document.createElementNS(xmlns, 'svg');
     this.textElem = document.createElementNS(xmlns, 'text');
-    this.textElem.setAttribute('class', 'euiSeriesChartAxis_tickLabel');
-
     this.svgElem.appendChild(this.textElem);
     this.textNode = document.createTextNode('');
     this.textElem.appendChild(this.textNode);
     this.attachedRoot = rootElement || document.documentElement;
     this.attachedRoot.appendChild(this.svgElem);
   }
-  public compute(text: string): SVGRect {
+  public compute(text: string): Option<BBox> {
     this.textNode.textContent = text;
-    // this.textElem.setAttribute('transform', 'rotate(-90)');
-    // TODO possible transformation
-    return this.textElem.getBoundingClientRect() as SVGRect;
+    const rect = this.textElem.getBoundingClientRect();
+    return some({
+      width: rect.width,
+      height: rect.height,
+    });
   }
   public destroy(): void {
     this.attachedRoot.removeChild(this.svgElem);
