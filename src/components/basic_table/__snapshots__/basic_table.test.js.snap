@@ -899,59 +899,65 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
         <React.Fragment
           key="row_0"
         >
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-1"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_0_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customRowClass"
+              data-test-subj="row-1"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_0_0"
+                textOnly={true}
+              >
+                name1
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
         <React.Fragment
           key="row_1"
         >
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-2"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_1_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customRowClass"
+              data-test-subj="row-2"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_1_0"
+                textOnly={true}
+              >
+                name2
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
         <React.Fragment
           key="row_2"
         >
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-3"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_2_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customRowClass"
+              data-test-subj="row-3"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_2_0"
+                textOnly={true}
+              >
+                name3
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
       </EuiTableBody>
     </EuiTable>
@@ -993,59 +999,65 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
         <React.Fragment
           key="row_0"
         >
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_0_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customClass"
+              data-test-subj="row"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_0_0"
+                textOnly={true}
+              >
+                name1
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
         <React.Fragment
           key="row_1"
         >
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_1_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customClass"
+              data-test-subj="row"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_1_0"
+                textOnly={true}
+              >
+                name2
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
         <React.Fragment
           key="row_2"
         >
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              header="Name"
-              key="_data_column_name_2_0"
-              textOnly={true}
+          <EuiKeyboardAccessible>
+            <EuiTableRow
+              className="customClass"
+              data-test-subj="row"
+              isSelected={false}
+              onClick={[Function]}
             >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
+              <EuiTableRowCell
+                align="left"
+                header="Name"
+                key="_data_column_name_2_0"
+                textOnly={true}
+              >
+                name3
+              </EuiTableRowCell>
+            </EuiTableRow>
+          </EuiKeyboardAccessible>
         </React.Fragment>
       </EuiTableBody>
     </EuiTable>
