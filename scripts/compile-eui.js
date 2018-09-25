@@ -1,6 +1,8 @@
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
+const path = require('path');
+const fs = require('fs');
 const glob = require('glob');
 
 function compileLib() {
@@ -8,7 +10,11 @@ function compileLib() {
 
   console.log('Compiling src/ to lib/');
 
-  execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
+  // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
+  execSync('babel --quiet --out-dir=lib --extensions .js,.ts --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
+
+  // Use `tsc` to emit typescript declaration files for .ts files
+  execSync('tsc --noEmit false --outDir ./lib --emitDeclarationOnly');
 
   console.log(chalk.green('✔ Finished compiling src/ to lib/'));
 
@@ -20,11 +26,25 @@ function compileLib() {
     files.forEach(file => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
-      console.log(basePath)
       shell.cp('-f', `${file}`, `lib/${basePath}`);
     });
 
     console.log(chalk.green('✔ Finished copying SVGs'));
+  });
+
+  // Copy hand-crafted *.d.ts declaration files
+  glob('./src/**/*.d.ts', undefined, (error, files) => {
+    files.forEach(file => {
+      const splitPath = file.split('/');
+      const basePath = splitPath.slice(2, splitPath.length).join('/');
+      const dirPath = path.dirname(`lib/${basePath}`);
+      if (!fs.existsSync(dirPath)) {
+        shell.mkdir('-p', dirPath);
+      }
+      shell.cp('-f', `${file}`, `lib/${basePath}`);
+    });
+
+    console.log(chalk.green('✔ Finished copying TS declarations'));
   });
 }
 
