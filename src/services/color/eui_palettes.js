@@ -1,5 +1,5 @@
 export const palettes = {
-  color_blind: {
+  euiPaletteColorBlind: {
     colors: [
       '#1EA593',
       '#2B70F7',
@@ -13,26 +13,7 @@ export const palettes = {
       '#34130C',
     ],
   },
-  color_blind_15: {
-    colors: [
-      '#000000',
-      '#004949',
-      '#009292',
-      '#FF6DB6',
-      '#FFB6DB',
-      '#490092',
-      '#006DDB',
-      '#B66DFF',
-      '#6DB6FF',
-      '#B6DBFF',
-      '#920000',
-      '#924900',
-      '#DB6D00',
-      '#24FF24',
-      '#FFFF6D',
-    ]
-  },
-  eui_light: {
+  euiPaletteForLightBackground: {
     colors: [
       '#0079A5',
       '#017F75',
@@ -41,13 +22,27 @@ export const palettes = {
       '#DD0A73',
     ]
   },
-  eui_dark: {
+  euiPaletteForDarkBackground: {
     colors: [
       '#4DA1C0',
       '#01B2A4',
       '#C06C4C',
       '#BF4D4D',
       '#F5258C',
+    ]
+  },
+  euiPaletteForStatus: {
+    colors: [
+      '#58BA6D',
+      '#6ECE67',
+      '#A5E26A',
+      '#D2E26A',
+      '#EBDF61',
+      '#EBD361',
+      '#EBC461',
+      '#D99D4C',
+      '#D97E4C',
+      '#D75949',
     ]
   },
 };

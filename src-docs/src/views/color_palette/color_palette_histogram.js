@@ -22,7 +22,7 @@ const margins = {
   right: 0,
   bottom: 20,
 };
-const qualColors = palettes.color_blind.colors;
+const qualColors = palettes.euiPaletteColorBlind.colors;
 const quantColors = colorPalette('#FFFF6D', '#1EA593', 6);
 
 function randomizeData(size = 24, max = 8) {
