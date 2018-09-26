@@ -26,7 +26,7 @@ export const DEFAULT_THEME: Theme = {
     },
   },
   axisTitle: {
-    fontSize: 20,
+    fontSize: 12,
   },
   vizColors: [
     '#00B3A4',

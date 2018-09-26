@@ -73,6 +73,13 @@ class App extends Component {
             orientation={AxisOrientation.Horizontal}
             title="1y0g"
           />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+            title="1y0g"
+            tickFormat={(d) => `the value of this line is ${d}`}
+          />
           <BarSeries
             id={getSpecId('renderBarChart1y0g')}
             yScaleType={ScaleType.Linear}
@@ -404,13 +411,13 @@ class App extends Component {
         <Chart renderer={renderer}>
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Top}
+            position={AxisPosition.Bottom}
             orientation={AxisOrientation.Horizontal}
             title="HighVolumeChart"
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Right}
+            position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
             title="HighVolumeChart"
             tickFormat={(tick) => `value: ${tick}`}
@@ -425,27 +432,40 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateSimpleSeries(1000);
+    const randomData = dataGenerator.generateSimpleSeries(400);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          {/* {this.renderHighVolumeChart('svg', randomData)} */}
-          {/* {this.renderBarChart2y1gs()}
-          {this.renderBarChart2y2gs()}
-          {this.renderSimpleStackedBarChart()}
-          {this.renderStackedClusteredBarChart()}
-          {this.renderGitHubIssue()} */}
+        {this.renderHighVolumeChart('canvas', randomData)}
+        {this.renderBarChart1y0g('canvas')}
+        {/* {this.renderBarChart1y1g('canvas')}
+        {this.renderBarChart2y1gs('canvas')}
+        {this.renderBarChart2y2g('canvas')}
+        {this.renderBarChart2y2gs('canvas')}
+        {this.renderSimpleStackedBarChart('canvas')}
+        {this.renderSimpleClusteredBarChart('canvas')}
+        {this.renderSimpleClusteredBarChart('canvas')}
+        {this.renderMultipleClusteredBarChart('canvas')}
+        {this.renderStackedClusteredBarChart('canvas')}
+        {this.renderGitHubIssue('canvas')} */}
         </div>
         <div className="chartContainers">
-          {this.renderHighVolumeChart('canvas', randomData)}
-          {/* {this.renderBarChart2y1gs('canvas')}
-          {this.renderBarChart2y2gs('canvas')}
-          {this.renderSimpleStackedBarChart('canvas')}
-          {this.renderStackedClusteredBarChart('canvas')}
-          {this.renderGitHubIssue('canvas')} */}
+        {this.renderHighVolumeChart('svg', randomData)}
+        {this.renderBarChart1y0g()}
+        {/*
+        {this.renderBarChart1y1g()}
+        {this.renderBarChart2y1gs()}
+        {this.renderBarChart2y2g()}
+        {this.renderBarChart2y2gs()}
+        {this.renderSimpleStackedBarChart()}
+        {this.renderSimpleClusteredBarChart()}
+        {this.renderSimpleClusteredBarChart()}
+        {this.renderMultipleClusteredBarChart()}
+        {this.renderStackedClusteredBarChart()}
+        {this.renderGitHubIssue()} */}
         </div>
       </div>
     );

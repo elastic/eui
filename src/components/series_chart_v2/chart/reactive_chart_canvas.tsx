@@ -104,10 +104,15 @@ class Chart extends React.Component<ReactiveChartProps> {
         x={chartDimensions.left + chartTransform.x}
         y={chartDimensions.top + chartTransform.y}
         rotation={chartTransform.rotate}
+
       >
         {this.renderBarSeries()}
       </Layer>
-      <Layer>{this.renderAxes()}</Layer>
+      <Layer
+        hitGraphEnabled={false}
+      >
+        {this.renderAxes()}
+      </Layer>
       </Stage>
       </div >
     );

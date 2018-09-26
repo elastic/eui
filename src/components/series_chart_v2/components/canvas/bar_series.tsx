@@ -21,7 +21,7 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
   private renderGlyphs = (glyphs: BarGlyphGroup[] | BarGlyph[]): JSX.Element[] => {
     if (Array.isArray(glyphs) && glyphs.length > 0 && !(glyphs[0] as BarGlyphGroup).accessor) {
       // leaf
-      return this.renderBars(glyphs as BarGlyph[]);
+      return [<Group key={'group-0'}>{this.renderBars(glyphs as BarGlyph[])}</Group>];
     }
     return (glyphs as BarGlyphGroup[]).map((glyph) => {
       return (
@@ -30,15 +30,14 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
           x={glyph.translateX}
           y={glyph.translateY}
         >
-        {
-          this.renderGlyphs(glyph.elements)
-        }
+          {this.renderGlyphs(glyph.elements)}
         </Group>
       );
     });
   }
   private renderBars = (glyphs: BarGlyph[]) => {
-    return glyphs.map(({x, y, width, height, fill, opacity}, index) => {
+    return glyphs.map((element, index) => {
+      const { x, y, width, height, fill } = element;
       return (
         <Rect
           key={`rect-${index}`}
@@ -47,7 +46,10 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
           width={width}
           height={height}
           fill={fill}
-        />);
+          strokeWidth={0}
+          perfectDrawEnabled={false}
+        />
+      );
     });
   }
   private renderAnimatedBars = (glyphs: BarGlyphGroup[]) => {

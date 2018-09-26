@@ -31,7 +31,7 @@ export class ChartStore {
     top: 0,
     left: 0,
   }; // updated from jsx
-  public chartRotation: Rotation = 90; // updated from jsx
+  public chartRotation: Rotation = 0; // updated from jsx
   public chartTheme: Theme = DEFAULT_THEME; // updated from jsx
   public axesSpecs: Map<AxisId, AxisSpec> = new Map(); // readed from jsx
   public axesTicksDimensions: Map<AxisId, AxisTicksDimensions> = new Map(); // computed

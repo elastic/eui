@@ -41,7 +41,7 @@ export class Axis extends React.PureComponent<AxisProps> {
     if (orientation === AxisOrientation.Vertical) {
       textProps.y = tick.position - maxTickHeight / 2;
       textProps.align = position === 'left' ? 'right' : 'left';
-      textProps.x = position === 'left' ?  - (tickSize + tickPadding) : tickSize + tickPadding;
+      textProps.x = position === 'left' ?  - (maxTickWidth) : tickSize + tickPadding;
       textProps.height = maxTickHeight;
       textProps.width = maxTickWidth;
       // textProps.dominantBaseline = 'middle';
@@ -182,9 +182,13 @@ export class Axis extends React.PureComponent<AxisProps> {
       },
       axisTicksDimensions: {
         maxTickWidth,
+        maxTickHeight,
       },
       chartTheme: {
         chartMargins,
+        axisTitle: {
+          fontSize,
+        },
       },
     } = this.props;
     if (!title) {
@@ -200,11 +204,13 @@ export class Axis extends React.PureComponent<AxisProps> {
           align="center"
           x={left}
           y={top}
+          offsetY={maxTickHeight / 2}
           text={title}
           fill="gray"
-          fontStyle="bold"
           width={height}
           rotation={-90}
+          fontStyle="bold"
+          fontSize={fontSize}
         />
       </Group>
     );
@@ -225,6 +231,9 @@ export class Axis extends React.PureComponent<AxisProps> {
       },
       chartTheme: {
         chartMargins,
+        axisTitle: {
+          fontSize,
+        },
       },
     } = this.props;
 
@@ -242,9 +251,13 @@ export class Axis extends React.PureComponent<AxisProps> {
           align="center"
           x={left}
           y={top}
+          width={width}
+          offsetX={width / 2}
+          offsetY={maxTickHeight / 2}
           text={title}
           fill="gray"
           fontStyle="bold"
+          fontSize={fontSize}
 
         ></Text>
       </Group>
