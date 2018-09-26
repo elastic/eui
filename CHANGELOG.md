@@ -3,6 +3,7 @@
 - Added a new `colorPalette` service for retrieving and generating color arrays for use in charts ([#1209](https://github.com/elastic/eui/pull/1209))
 - Added `1` as a valid value for the `columns` prop in `EuiFlexGrid` ([#1210](https://github.com/elastic/eui/pull/1210))
 - Use `cursor: pointer` to indicate clickable `EuiTable` rows ([#1213](https://github.com/elastic/eui/pull/1213))
+- Add `lockOpen` icon ([#1215](https://github.com/elastic/eui/pull/1215))
 
 ## [`4.2.0`](https://github.com/elastic/eui/tree/v4.2.0)
 

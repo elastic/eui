@@ -98,6 +98,7 @@ import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
+import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
@@ -315,6 +316,7 @@ const typeToIconMap = {
   list,
   listAdd,
   lock,
+  lockOpen,
   loggingApp,
   logoAerospike,
   logoApache,

@@ -2547,6 +2547,29 @@ exports[`EuiIcon props type lock is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type lockOpen is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M3 5h9c0-2.206-1.794-4-4-4a3.997 3.997 0 0 0-3.246 1.665l-.732-.694A5 5 0 0 1 13 5l1-.001a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1zm0 1H2v9h12V6H3zm6.33 5.493L10 13H6l.67-1.507a2 2 0 1 1 2.66 0z"
+      id="lockopen-a"
+    />
+  </defs>
+  <use
+    fill-rule="evenodd"
+    href="#lockopen-a"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type loggingApp is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
