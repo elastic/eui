@@ -52,21 +52,9 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.(js|tsx?)$/,
       loader: 'babel-loader',
       exclude: /node_modules/
-    }, {
-      test: /\.tsx?$/,
-      exclude: /\/nodes_modules\//,
-      loaders: [
-        'babel-loader',
-        {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
-        }
-      ],
     }, {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],

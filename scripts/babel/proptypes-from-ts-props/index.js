@@ -76,6 +76,10 @@ const typeDefinitionExtractors = {
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
 };
 function extractTypeDefinition(node) {
+  if (node == null) {
+    // TODO when does this happen
+    return null;
+  }
   return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node) : null;
 }
 
@@ -99,7 +103,11 @@ function mapDefsToPropTypes(types, defs) {
       const propDef = defs[propName];
       return types.objectProperty(
         types.identifier(propName),
-        propDef
+        // propDef
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('string')
+        )
         // mapDefToPropType(types, propDef)
       );
     })
@@ -137,6 +145,7 @@ module.exports = function PropTypesFromTsProps({ types }) {
 
             if (qualification.name === 'React') {
               if (id.name === 'SFC') {
+                debugger;
                 // @TODO what about multiple params in idTypeAnnotation.typeAnnotation.typeParameters`
                 const propTypes = getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], state);
                 const ancestry = path.getAncestry();
@@ -159,6 +168,26 @@ module.exports = function PropTypesFromTsProps({ types }) {
                     PROP_TYPES: mapDefsToPropTypes(types, propTypes),
                   })
                 ]);
+
+                // import PropTypes library if it isn't already
+                // TODO this.file.addImport ?
+                if (path.scope.bindings.PropTypes == null) {
+                  if (path.scope.bindings.React == null) {
+                    throw new Error('Cannot import PropTypes module, no React namespace import found');
+                  }
+                  const reactImportDeclaration = path.scope.bindings.React.path.getAncestry()[1];
+                  reactImportDeclaration.insertAfter(
+                    types.importDeclaration(
+                      [types.importNamespaceSpecifier(types.identifier('PropTypes'))],
+                      types.stringLiteral('prop-types')
+                    )
+                  );
+                }
+
+                // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+                // instead of using the modified AST; to expose our changes to react-docgen
+                // they need to be rendered to a string
+                this.file.code = this.file.generate().code;
               } else {
                 debugger;
                 throw new Error(`Cannot process annotation id React.${id.name}`);
