@@ -2,9 +2,10 @@
 import React, {
   Component, Fragment,
 } from 'react';
+import PropTypes from 'prop-types';
 
 import moment from 'moment';
-import { CalendarContainer } from 'react-datepicker';
+import classNames from 'classnames';
 
 import {
   EuiDatePicker,
@@ -26,6 +27,8 @@ import {
   EuiForm,
   EuiSwitch,
   EuiTextColor,
+  EuiToolTip,
+  EuiFieldText,
 } from '../../../../src/components';
 
 const commonDates = [
@@ -57,9 +60,16 @@ class GlobalDatePopover extends Component {
       id: 'absolute',
       name: 'Absolute',
       content: (
-        <CalendarContainer className={props.className} style={{ width: 390 }}>
-          {props.children}
-        </CalendarContainer>
+        <div style={{ width: 390, padding: 0 }}>
+          <EuiDatePicker
+            inline
+            showTimeSelect
+            shadow={false}
+          />
+          <EuiFormRow style={{ padding: '0 8px 8px' }}>
+            <EuiFieldText />
+          </EuiFormRow>
+        </div>
       ),
     }, {
       id: 'relative',
@@ -79,7 +89,7 @@ class GlobalDatePopover extends Component {
             </EuiFlexItem>
           </EuiFlexGroup>
           <EuiFormRow>
-            <EuiDatePicker selected={moment().subtract(3, 'day')} disabled />
+            <EuiDatePicker selected={moment().subtract(3, 'day')} readOnly />
           </EuiFormRow>
           <EuiFormRow>
             <EuiSwitch label="Round to the day" />
@@ -117,6 +127,7 @@ class GlobalDatePopover extends Component {
         tabs={this.tabs}
         selectedTab={this.state.selectedTab}
         onTabClick={this.onTabClick}
+        size="s"
         expand
       />
     );
@@ -124,36 +135,24 @@ class GlobalDatePopover extends Component {
 }
 
 // eslint-disable-next-line react/no-multi-comp
-export default class extends Component {
+class GlobalDateButton extends Component {
+  static propTypes = {
+    position: PropTypes.oneOf(['start', 'end']),
+    isInvalid: PropTypes.bool,
+    needsUpdating: PropTypes.bool,
+    buttonOnly: PropTypes.bool,
+    date: PropTypes.string,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      startDate: moment(),
-      endDate: moment().add(11, 'd'),
       isPopoverOpen: false,
-      recentlyUsed: [
-        ['11/25/2017 00:00 AM', '11/25/2017 11:59 PM'],
-        ['3 hours ago', '4 minutes ago'],
-        'Last 6 months',
-        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
-      ],
     };
   }
 
-  handleChangeStart = (date) => {
-    this.setState({
-      startDate: date
-    });
-  }
-
-  handleChangeEnd = (date) => {
-    this.setState({
-      endDate: date
-    });
-  }
-
-  onButtonClick = () => {
+  togglePopover = () => {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
@@ -166,11 +165,138 @@ export default class extends Component {
   }
 
   render() {
+    const {
+      position,
+      isInvalid,
+      needsUpdating,
+      date,
+      buttonProps,
+      buttonOnly,
+      ...rest
+    } = this.props;
+
+    const {
+      isPopoverOpen,
+    } = this.state;
+
+    const classes = classNames([
+      'euiGlobalDatePicker__dateButton',
+      `euiGlobalDatePicker__dateButton--${position}`,
+      {
+        'euiGlobalDatePicker__dateButton-isSelected': isPopoverOpen,
+        'euiGlobalDatePicker__dateButton-isInvalid': isInvalid,
+        'euiGlobalDatePicker__dateButton-needsUpdating': needsUpdating
+      }
+    ]);
+
+    let title = date;
+    if (isInvalid) {
+      title = `Invalid date: ${title}`;
+    } else if (needsUpdating) {
+      title = `Update needed: ${title}`;
+    }
+
+    const button = (
+      <button
+        onClick={buttonOnly ? undefined : this.togglePopover}
+        className={classes}
+        title={title}
+        {...buttonProps}
+      >
+        {date}
+      </button>
+    );
+
+    return buttonOnly ? button : (
+      <EuiPopover
+        button={button}
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        anchorPosition="downRight"
+        panelPaddingSize="none"
+        ownFocus
+        {...rest}
+      >
+        <GlobalDatePopover />
+      </EuiPopover>
+    );
+  }
+}
+
+// eslint-disable-next-line react/no-multi-comp
+export default class extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      startDate: moment().format('MMM DD YYYY h:mm:ss.SSS'),
+      endDate: moment().add(11, 'd').format('MMM DD YYYY hh:mm:ss.SSS'),
+      isPopoverOpen: false,
+      showPrettyFormat: false,
+      showNeedsUpdate: false,
+      recentlyUsed: [
+        ['11/25/2017 00:00 AM', '11/25/2017 11:59 PM'],
+        ['3 hours ago', '4 minutes ago'],
+        'Last 6 months',
+        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
+      ],
+    };
+  }
+
+  setTootipRef = node => (this.tooltip = node);
+
+  showTooltip = () => this.tooltip.showToolTip();
+  hideTooltip = () => this.tooltip.hideToolTip();
+
+  togglePopover = (e) => {
+    // HACK TODO:
+    // this works because react listens to all events at the
+    // document level, and you need to interact with the native
+    // event's propagation to short-circuit outside click handler
+    // see also: https://stackoverflow.com/a/24421834
+    e.nativeEvent.stopImmediatePropagation();
+
+    this.setState(prevState => ({
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
+  }
+
+  togglePrettyFormat = () => {
+    this.setState(prevState => ({
+      showPrettyFormat: !prevState.showPrettyFormat,
+    }));
+  }
+
+  toggleNeedsUpdate = () => {
+    this.setState(prevState => {
+
+      if (!prevState.showNeedsUpdate) {
+        clearTimeout(this.tooltipTimeout);
+        this.showTooltip();
+        this.tooltipTimeout = setTimeout(() => {
+          this.hideTooltip();
+        }, 10000);
+      }
+
+      return ({
+        showNeedsUpdate: !prevState.showNeedsUpdate,
+      });
+    });
+  }
+
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+
+
+  render() {
     const quickSelectButton = (
       <EuiButtonEmpty
-        className="euiFormControlLayout__prepend"
+        className="euiFormControlLayout__prepend euiGlobalDatePicker__quickSelectButton"
         style={{ borderRight: 'none' }}
-        onClick={this.onButtonClick}
+        onClick={this.togglePopover}
         aria-label="Date quick select"
         size="xs"
         iconType="arrowDown"
@@ -203,38 +329,68 @@ export default class extends Component {
     );
 
     return (
-      <EuiFormControlLayout
-        prepend={quickSelectPopover}
-      >
-        <EuiDatePickerRange
-          className="euiDatePickerRange--inGroup"
-          iconType={false}
-          startDateControl={
-            <EuiDatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChangeStart}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              isInvalid={this.state.startDate > this.state.endDate}
-              aria-label="Start date"
-              calendarContainer={GlobalDatePopover}
-              showTimeSelect
-            />
-          }
-          endDateControl={
-            <EuiDatePicker
-              selected={this.state.endDate}
-              onChange={this.handleChangeEnd}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              isInvalid={this.state.startDate > this.state.endDate}
-              aria-label="End date"
-              calendarContainer={GlobalDatePopover}
-              showTimeSelect
-            />
-          }
-        />
-      </EuiFormControlLayout>
+      <Fragment>
+        <EuiSwitch label="Pretty format" onChange={this.togglePrettyFormat} checked={this.state.showPrettyFormat} /> &nbsp;
+        <EuiSwitch label="Needs update" onChange={this.toggleNeedsUpdate} checked={this.state.showNeedsUpdate} />
+        <EuiSpacer />
+
+        <EuiFlexGroup gutterSize="s" responsive={false}>
+          <EuiFlexItem style={{ maxWidth: 480 }}>
+            <EuiFormControlLayout
+              className="euiGlobalDatePicker"
+              prepend={quickSelectPopover}
+            >
+              <EuiDatePickerRange
+                className="euiDatePickerRange--inGroup"
+                iconType={false}
+                isCustom
+                startDateControl={
+                  <GlobalDateButton
+                    date={this.state.startDate.toString()}
+                    position="start"
+                    needsUpdating={this.state.showNeedsUpdate}
+                  />
+                }
+                endDateControl={
+                  <GlobalDateButton
+                    date={this.state.endDate.toString()}
+                    position="end"
+                    needsUpdating={this.state.showNeedsUpdate}
+                  />
+                }
+              >
+                {this.state.showPrettyFormat &&
+                  <Fragment>
+                    <GlobalDateButton
+                      buttonOnly
+                      date="Some pretty format"
+                      position="end"
+                      needsUpdating={this.state.showNeedsUpdate}
+                      buttonProps={{ onClick: this.togglePopover }}
+                    />
+                    <EuiButtonEmpty size="xs" style={{ flexGrow: 0 }} onClick={this.togglePrettyFormat}>Show dates</EuiButtonEmpty>
+                  </Fragment>
+                }
+              </EuiDatePickerRange>
+            </EuiFormControlLayout>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            {this.renderUpdateButton()}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </Fragment>
+    );
+  }
+
+  renderUpdateButton = () => {
+    const color = this.state.showNeedsUpdate ? 'secondary' : 'primary';
+    const icon = this.state.showNeedsUpdate ? 'kqlFunction' : 'refresh';
+    const text = this.state.showNeedsUpdate ? 'Update' : 'Refresh';
+
+    return (
+      <EuiToolTip ref={this.setTootipRef} content={this.state.showNeedsUpdate ? 'Click to apply' : undefined} position="bottom">
+        <EuiButton className="euiGlobalDatePicker__updateButton" color={color} fill iconType={icon}>{text}</EuiButton>
+      </EuiToolTip>
     );
   }
 

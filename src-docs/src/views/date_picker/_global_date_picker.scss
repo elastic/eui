@@ -1,0 +1,78 @@
+//// GLOBAL Date picker
+
+.euiGlobalDatePicker__quickSelectButton {
+  .euiButtonEmpty__text {
+    margin-right: $euiSizeXS !important;
+  }
+}
+
+.euiGlobalDatePicker.euiFormControlLayout {
+  max-width: 480px;
+
+  > .euiFormControlLayout__childrenWrapper {
+    flex: 1 1 100%;
+    overflow: hidden;
+
+    > .euiDatePickerRange {
+      max-width: none;
+      width: auto;
+
+      .euiPopover__anchor {
+        display: block;
+      }
+    }
+  }
+}
+
+.euiGlobalDatePicker__dateButton {
+  display: block;
+  width: 100%;
+  @include euiFormControlText;
+  padding: 0 $euiSizeS;
+  line-height: $euiFormControlHeight - 2px;
+  height: $euiFormControlHeight - 2px;
+  word-break: break-all;
+
+  $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
+  $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
+
+  &-isSelected,
+  &-needsUpdating,
+  &:hover,
+  &:focus {
+    background-color: $backgroundColor;
+  }
+
+  &-needsUpdating {
+    color: $textColor;
+  }
+
+  &-isInvalid {
+    $backgroundColor: tintOrShade($euiColorDanger, 90%, 70%);
+    $textColor: makeHighContrastColor($euiColorDanger, $backgroundColor);
+    background-color: $backgroundColor;
+    color: $textColor;
+  }
+
+  .euiFormControlLayout__prepend {
+    border: none;
+  }
+}
+
+.euiGlobalDatePicker__dateButton--start {
+  text-align: right;
+}
+
+.euiGlobalDatePicker__dateButton--end {
+  text-align: left;
+}
+
+.euiGlobalDatePicker__updateButton {
+  @include euiBreakpoint('xs', 's') {
+    min-width: 0;
+
+    .euiButton__text {
+      display: none;
+    }
+  }
+}
