@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.3.0`.
+
+## [`4.3.0`](https://github.com/elastic/eui/tree/v4.3.0)
+
 - Added a new `colorPalette` service for retrieving and generating color arrays for use in charts ([#1209](https://github.com/elastic/eui/pull/1209))
 - Added `1` as a valid value for the `columns` prop in `EuiFlexGrid` ([#1210](https://github.com/elastic/eui/pull/1210))
 - Use `cursor: pointer` to indicate clickable `EuiTable` rows ([#1213](https://github.com/elastic/eui/pull/1213))
