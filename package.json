@@ -9,6 +9,7 @@
   "postcss": {},
   "docker_image": "node:8",
   "scripts": {
+    "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
     "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test'",
     "sync-docs": "node ./scripts/docs-sync.js",
@@ -43,7 +44,7 @@
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
     "keymirror": "^0.1.1",
-    "lodash": "^3.10.1",
+    "lodash": "npm:@elastic/lodash@3.10.1-kibana1",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-ace": "^5.5.0",
