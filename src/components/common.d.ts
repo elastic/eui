@@ -1,5 +1,5 @@
 declare module '@elastic/eui' {
-  export type AnyProps = { [key: string]: string };
+  export interface AnyProps { [key: string]: string; }
 
   export interface CommonProps {
     className?: string;

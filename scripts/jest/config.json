@@ -1,8 +1,8 @@
 {
   "rootDir": "../../",
   "roots": [
-    "<rootDir>/src-docs/src",
-    "<rootDir>/src/"
+    "<rootDir>/src/",
+    "<rootDir>/scripts/babel"
   ],
   "collectCoverageFrom": [
     "src/components/**/*.js",
@@ -35,9 +35,7 @@
     "**/*.test.js"
   ],
   "testPathIgnorePatterns": [
-    "<rootDir>/scripts/",
-    "<rootDir>/docs/",
-    "<rootDir>/node_modules/"
+    "/node_modules/"
   ],
   "transformIgnorePatterns": [
     "[/\\\\]node_modules[/\\\\].+\\.js$"

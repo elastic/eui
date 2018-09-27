@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@elastic/eslint-config-kibana": "^0.15.0",
+    "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.13",
     "@types/lodash": "^4.14.116",
     "@types/react": "^16.0.31",
@@ -77,6 +78,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-template": "^6.26.0",
     "chai": "^4.1.2",
     "chai-webdriverio": "^0.4.3",
     "chalk": "^2.4.1",

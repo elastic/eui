@@ -10,7 +10,6 @@
 /// <reference path="./popover/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./table/index.d.ts" />
-/// <reference path="./spacer/index.d.ts" />
 /// <reference path="./pagination/index.d.ts" />
 /// <reference path="./link/index.d.ts" />
 /// <reference path="./loading/index.d.ts" />
