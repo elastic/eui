@@ -31,6 +31,10 @@ describe('htmlIdGenerator', () => {
     expect(idGenerator1('foo')).not.toBe(idGenerator2('foo'));
   });
 
+  it('should generate ids beginning with "i" when not passing a prefix', () => {
+    expect(htmlIdGenerator()()).toMatch(/^i/);
+  });
+
   it('should generate different ids if no suffix is passed', () => {
     const generator = htmlIdGenerator();
     expect(generator()).not.toBe(generator());
