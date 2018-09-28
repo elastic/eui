@@ -146,7 +146,8 @@ export default () => (
 
     <GuideRule
       heading="Write in active voice"
-      description="Active voice puts the focus on who or what is performing the action and makes the sentence easier to understand."
+      description="Active voice puts the focus on who or what is performing the
+      action and makes the sentence easier to understand."
     >
 
       <GuideRuleExample
@@ -166,8 +167,8 @@ export default () => (
     <GuideRule
       heading="Keep it short and snappy"
       description="Identify the most important information and say it concisely.
-        Don&apos;t repeat what&apos;s already been said or state the obvious.&nbsp;
-        Omit common introductory phrases."
+      Don&apos;t repeat what&apos;s already been said or state the obvious.
+      Omit common introductory phrases."
     >
 
       <GuideRuleExample
@@ -179,7 +180,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Dont. Repeat what's already been said or state the obvious."
+        text="Don&apos;t. Repeat what's already been said or state the obvious."
       >
         <EuiText>
           <h4>Edit saved objects</h4>
@@ -234,7 +235,7 @@ export default () => (
 
       <GuideRuleExample
         type="do"
-        text="Do. Converse with the user using &quot;you&quot; and &quot;your.&quot;"
+        text="Do. Converse directly with the user using &quot;you&quot; and &quot;your.&quot;"
       >
         <GuideRuleWriting>You must configure TLS to apply a Platinum license.</GuideRuleWriting>
       </GuideRuleExample>
@@ -248,51 +249,10 @@ export default () => (
     </GuideRule>
 
     <GuideRule
-      heading="In some cases, &quot;I&quot; or  &quot;my&quot; are appropriate"
-      description="Use first person when you want to give the user ownership of an action."
-    >
-
-      <GuideRuleExample
-        type="do"
-        text="Do. Use &quot;my&quot; as a way to give users ownership."
-      >
-        <GuideRuleWriting>Explore on my own</GuideRuleWriting>
-      </GuideRuleExample>
-
-      <GuideRuleExample
-        type="do"
-        text="Do. Use &quot;I&quot; in agreement statements."
-      >
-        <GuideRuleWriting>I agree to follow the terms of service</GuideRuleWriting>
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRule
-      heading=""
-      description=""
-    >
-
-      <GuideRuleExample
-        type="dont"
-        text="Don't. Use &quot;I&quot; to indicate what your app is doing."
-      >
-        <GuideRuleWriting>I see that you are looking at an index with a date field.
-        </GuideRuleWriting>
-      </GuideRuleExample>
-
-      <GuideRuleExample
-        type="do"
-        text="Do. Focus on your users."
-      >
-        <GuideRuleWriting>Your index has a date field.</GuideRuleWriting>
-      </GuideRuleExample>
-    </GuideRule>
-
-    <GuideRule
-      heading="Less common are &quot;we&quot; and &quot;our&quot;"
+      heading="In some cases, &quot;we&quot; and &quot;our&quot; are appropriate"
       description="The use of &quot;we&quot; is appropriate for situations
-      where you're taking an action for
-      the user or making a suggestion. It's best reserved for onboarding and empty states."
+      where you're taking an action for the user or making a suggestion.
+      It's best reserved for onboarding and empty states."
     >
 
       <GuideRuleExample
@@ -305,8 +265,8 @@ export default () => (
       </GuideRuleExample>
 
       <GuideRuleExample
-        type="do"
-        text="Don&apos;t. Overuse &quot;we.&quot; It can become annoying."
+        type="dont"
+        text="Don&apos;t. Overuse &quot;us.&quot; It can become annoying."
       >
         <GuideRuleWriting>Let&apos;s create a database</GuideRuleWriting>
         <GuideRuleWriting>Let&apos;s create a visualization</GuideRuleWriting>
@@ -314,15 +274,34 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
+    <GuideRule
+      heading="Less common are &quot;I&quot; and &quot;my&quot;"
+      description="Use first person when you want to give the user ownership of an action."
+    >
 
+      <GuideRuleExample
+        type="do"
+        text="Do. Use &quot;my&quot; in buttons and links to give users ownership."
+      >
+        <GuideRuleWriting>Explore on my own</GuideRuleWriting>
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="do"
+        text="Do. Use &quot;I&quot; in agreement statements."
+      >
+        <GuideRuleWriting>I agree to follow the terms of service</GuideRuleWriting>
+      </GuideRuleExample>
+    </GuideRule>
 
 
     <GuideRuleTitle>Punctuation</GuideRuleTitle>
 
     <GuideRule
       heading="Don't use unneccessary punctuation"
-      description="Although punctuation can help clarify meaning, it can also clutter the UI.
-        Don&apos;t add a colon after a label, an ellipsis (...) at the end of an action, or an (s) at the end of a noun."
+      description="Although punctuation can help clarify meaning, it can also
+      clutter the UI. Don&apos;t add a colon after a label, an ellipsis (...)
+      at the end of an action, or an (s) at the end of a noun."
     >
 
       <GuideRuleExample
@@ -339,7 +318,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don&apos;t use (s)."
+        text="Don&apos;t. Use (s)."
       >
         <EuiFormRow
           label="Airport(s):"
@@ -354,7 +333,7 @@ export default () => (
       heading=""
       description=""
     >
-      <GuideRuleExample type="do" text="Do. Remove ellipsis from Search fields.">
+      <GuideRuleExample type="do" text="Do. Remove the ellipsis from Search fields.">
         <EuiFieldSearch defaultValue="Search"/>
       </GuideRuleExample>
 
@@ -368,10 +347,11 @@ export default () => (
 
     <GuideRule
       heading="Know when to use the ending period"
-      description="Use periods at the end of complete sentences in body text. These are typically supplemental
-      explanations and instructions.  Avoid periods in titles, headings, and sentence fragments."
+      description="Use periods at the end of complete sentences in body text.
+      These are typically supplemental explanations and instructions.  Avoid
+      periods in titles, headings, and sentence fragments."
     >
-      <GuideRuleExample type="do" text="Use periods after sentences in help text.">
+      <GuideRuleExample type="do" text="Do. Use periods after sentences in help text.">
         <EuiFormRow
           label="Number"
           helpText={<span>Number must be between 1 and 5. <EuiLink>Learn more.</EuiLink></span>}
@@ -396,8 +376,9 @@ export default () => (
 
     <GuideRule
       heading="Use contractions"
-      description="Use contractions if they make your text flow more naturally, such as
-        &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and  &quot;can&apos;t&quot; instead of &quot;cannot.&quot;"
+      description="Use contractions if they make your text flow more naturally,
+      such as &quot;didn&apos;t&quot; instead of  &quot;did not&quot; and
+      &quot;can&apos;t&quot; instead of &quot;cannot.&quot;"
     >
       <GuideRuleExample
         type="do"
@@ -415,8 +396,8 @@ export default () => (
 
     <GuideRule
       heading="Limit the use of exclamation points"
-      description="Showing excitement is best reserved for greetings and encouraging messages.
-        Don&apos;t use more than one exclamation point per page."
+      description="Showing excitement is best reserved for greetings and
+      encouraging messages. Don&apos;t use more than one exclamation point per page."
     >
       <GuideRuleExample
         type="do"
@@ -437,9 +418,8 @@ export default () => (
 
     <GuideRule
       heading="Summarize the message in the title"
-      description="
-        Don&apos;t start with the words error, warning, and confirm, or jargon such as oops and uh-oh.
-        A title-only message is ok."
+      description="Don&apos;t start with the words error, warning, and confirm, or
+      jargon such as oops and uh-oh. A title-only message is ok."
     >
       <GuideRuleExample type="do" text="Do. Provide a title that is meaningful to the user.">
         <EuiTitle size="xs"><span>This dashboard is empty</span></EuiTitle>
@@ -511,7 +491,7 @@ export default () => (
     >
       <GuideRuleExample
         type="do"
-        text="Do. Omit &quot;please&quot; in commands."
+        text="Do. Omit &quot;please&quot; in longer instructions."
       >
         <GuideRuleWriting>Save your work before generating a report.</GuideRuleWriting>
       </GuideRuleExample>
@@ -551,7 +531,7 @@ export default () => (
       <GuideRuleExample type="do" text="Do. Write for scanning.">
         <EuiFormRow
           label="Password"
-          helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%&"
+          helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%."
         >
           <EuiFieldPassword />
         </EuiFormRow>
@@ -560,9 +540,10 @@ export default () => (
       <GuideRuleExample type="dont" text="Don't. Write long blocks of text.">
         <EuiFormRow
           label="Password"
-          helpText="Passwords must be at least 8 characters long.
-            Good passwords contain either a combination of upper and lowercase letters or a combination of letters with one digit.
-            Strong passwords contain either a combination of letters and more than one digit or special characters."
+          helpText="Passwords must be at least 8 characters long. Good passwords
+          contain either a combination of upper and lowercase letters or a
+          combination of letters with one digit. Strong passwords contain either
+          a combination of letters and more than one digit or special characters."
         >
           <EuiFieldPassword />
         </EuiFormRow>
@@ -596,8 +577,8 @@ export default () => (
 
     <GuideRule
       heading="Convey the purpose of the component"
-      description="Avoid long labels, but don&apos;t sacrifice clarity.
-        If needed, put additional information in help text and tooltips."
+      description="Avoid long labels, but don&apos;t sacrifice clarity. If needed,
+      put additional information in help text and tooltips."
     >
       <GuideRuleExample type="do" text="Do. Use labels that say what the component does.">
         <EuiFormRow>
