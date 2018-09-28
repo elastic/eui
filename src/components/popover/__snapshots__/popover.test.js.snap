@@ -8,7 +8,9 @@ exports[`EuiPopover children is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -23,7 +25,9 @@ exports[`EuiPopover is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -36,7 +40,9 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -49,7 +55,9 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -62,7 +70,9 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -75,7 +85,9 @@ exports[`EuiPopover props isOpen defaults to false 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
@@ -89,18 +101,22 @@ exports[`EuiPopover props isOpen renders true 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <button />
+      <div>
+        <button />
+      </div>
     </div>
     <div>
-      <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
-      >
+      <div>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -116,18 +132,22 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <button />
+      <div>
+        <button />
+      </div>
     </div>
     <div>
-      <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
-      >
+      <div>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -143,25 +163,29 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <button />
+      <div>
+        <button />
+      </div>
     </div>
     <div>
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
-      >
-        You are in a popup. To exit this popup, hit escape.
-      </p>
-      <div
-        aria-live="off"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
-        tabindex="0"
-      >
+      <div>
+        <p
+          class="euiScreenReaderOnly"
+          role="alert"
+        >
+          You are in a popup. To exit this popup, hit escape.
+        </p>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
+          aria-live="off"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+          tabindex="0"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -177,18 +201,22 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <button />
+      <div>
+        <button />
+      </div>
     </div>
     <div>
-      <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
-        style="top: 16px; left: -22px; z-index: 0;"
-      >
+      <div>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -204,18 +232,22 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <button />
+      <div>
+        <button />
+      </div>
     </div>
     <div>
-      <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
-      >
+      <div>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -230,7 +262,9 @@ exports[`EuiPopover props withTitle is rendered 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <button />
+    <div>
+      <button />
+    </div>
   </div>
 </div>
 `;
