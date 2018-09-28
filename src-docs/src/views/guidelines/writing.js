@@ -705,45 +705,5 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGrid>
 
-    <GuideRuleTitle>See also</GuideRuleTitle>
-    <EuiText>
-      <p>These components have specific writing guidelines:</p>
-      <ul>
-        <li>
-          <EuiLink
-            href="#/guidelines/buttons"
-            target="_blank"
-          >
-          Buttons
-          </EuiLink>
-        </li>
-        <li>
-          <EuiLink
-            href="#/guidelines/modals"
-            target="_blank"
-          >
-          Modals
-          </EuiLink>
-        </li>
-        <li>
-          <EuiLink
-            href="#/guidelines/toasts"
-            target="_blank"
-          >
-          Toasts
-          </EuiLink>
-        </li>
-      </ul>
-    </EuiText>
-
-
-
-
-
-
-
-
-
-
   </GuidePage>
 );
