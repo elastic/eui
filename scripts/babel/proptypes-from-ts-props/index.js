@@ -1,39 +1,102 @@
 /* eslint-disable new-cap */
 const babelTemplate = require('babel-template');
 
-function resolveIdentifierToPropTypes(identifier, state) {
+function resolveArrayToPropTypes(node, optional, state) {
+  const { dynamicData: { types } } = state;
+
+  const { typeParameters } = node;
+
+  if (typeParameters == null) {
+    // Array without any type information
+    return buildPropTypePrimitiveExpression(types, 'array', optional);
+  } else {
+    // Array with typed elements
+    const arrayPropType = types.callExpression(
+      types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('arrayOf')
+      ),
+      [
+        types.callExpression(
+          types.memberExpression(
+            types.identifier('PropTypes'),
+            types.identifier('oneOfType')
+          ),
+          [
+            types.arrayExpression(
+              typeParameters.params.map(node => getPropTypesForNode(node, false, state))
+            )
+          ]
+        )
+      ]
+    );
+
+    if (optional) {
+      return arrayPropType;
+    } else {
+      return types.memberExpression(
+        arrayPropType,
+        types.identifier('isRequired'),
+      );
+    }
+  }
+}
+
+function resolveIdentifierToPropTypes(node, optional, state) {
   const { dynamicData: { typeDefinitions } } = state;
+  const identifier = node.id;
+
+  if (identifier.name === 'Array') return resolveArrayToPropTypes(node, optional, state);
 
   const identifierDefinition = typeDefinitions[identifier.name];
 
   if (identifierDefinition) {
-    return getPropTypesForNode(identifierDefinition, state);
+    return getPropTypesForNode(identifierDefinition, false, state);
   } else {
     return {};
   }
 }
 
 function resolvePropertyToPropType(property, state) {
-  const { key, value } = property;
+  const { key, value, optional } = property;
 
   if (key.type !== 'Identifier') {
     debugger;
     throw new Error(`Could not resolve property with type ${key.type} to prop type`);
   }
 
-  return { [key.name]: getPropTypesForNode(value, state) };
+  return { [key.name]: getPropTypesForNode(value, optional, state) };
 }
 
-function getPropTypesForNode(node, state) {
-  const { dynamicData: { types }} = state;
+const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
+
+function buildPropTypePrimitiveExpression(types, typeName, optional) {
+  if (optional) {
+    return types.memberExpression(
+      types.identifier('PropTypes'),
+      types.identifier(typeName)
+    );
+  } else {
+    return types.memberExpression(
+      types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier(typeName)
+      ),
+      types.identifier('isRequired'),
+    );
+  }
+}
+
+function getPropTypesForNode(node, optional, state) {
+  const { dynamicData: { types } } = state;
 
   switch(node.type) {
     case 'GenericTypeAnnotation':
-      return resolveIdentifierToPropTypes(node.id, state);
+      return resolveIdentifierToPropTypes(node, optional, state);
 
     case 'IntersectionTypeAnnotation':
       return node.types.reduce(
-        (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, state)),
+        (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, false, state)),
         {}
       );
 
@@ -44,16 +107,47 @@ function getPropTypesForNode(node, state) {
       );
 
     case 'UnionTypeAnnotation':
-      return node.types.map(node => getPropTypesForNode(node, state));
+      const callExpression = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('oneOf'),
+        ),
+        [
+          types.arrayExpression(
+            node.types.map(node => getPropTypesForNode(node, false, state))
+          )
+        ]
+      );
+
+      if (optional) {
+        return callExpression;
+      } else {
+        return types.memberExpression(
+          callExpression,
+          types.identifier('isRequired')
+        );
+      }
 
     case 'StringTypeAnnotation':
-      return types.memberExpression(
-        types.identifier('PropTypes'),
-        types.identifier('string')
-      );
+      return buildPropTypePrimitiveExpression(types, 'string', optional);
+
+    case 'NumberTypeAnnotation':
+      return buildPropTypePrimitiveExpression(types, 'number', optional);
+
+    case 'BooleanTypeAnnotation':
+      return buildPropTypePrimitiveExpression(types, 'bool', optional);
+
+    case 'FunctionTypeAnnotation':
+      return buildPropTypePrimitiveExpression(types, 'func', optional);
 
     case 'StringLiteralTypeAnnotation':
       return types.stringLiteral(node.value);
+
+    case 'NumericLiteralTypeAnnotation':
+      return types.numericLiteral(node.value);
+
+    case 'BooleanLiteralTypeAnnotation':
+      return types.booleanLiteral(node.value);
 
     default:
       debugger;
@@ -62,6 +156,18 @@ function getPropTypesForNode(node, state) {
 }
 
 const typeDefinitionExtractors = {
+  InterfaceDeclaration: node => {
+    const { id, body } = node;
+
+    if (id.type !== 'Identifier') {
+      debugger;
+      throw new Error(`InterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+    }
+
+    return { name: id.name, definition: body };
+
+  },
+
   TypeAlias: node => {
     const { id, right } = node;
 
@@ -83,35 +189,28 @@ function extractTypeDefinition(node) {
   return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node) : null;
 }
 
-const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
-
-// function mapDefToPropType(types, def) {
-//   console.log(types);
-//   debugger;
-//   if (typeof def === 'string') {
-//     // the decision has already been made
-//     return buildAnything({ CODE: def });
-//   }
-//
-//   debugger;
-//   throw new Error('Unable to generate propType for definition', def);
-// }
-
 function mapDefsToPropTypes(types, defs) {
   return types.objectExpression(
     Object.keys(defs).map(propName => {
       const propDef = defs[propName];
       return types.objectProperty(
         types.identifier(propName),
-        // propDef
-        types.memberExpression(
-          types.identifier('PropTypes'),
-          types.identifier('string')
-        )
-        // mapDefToPropType(types, propDef)
+        propDef
+        // types.memberExpression(
+        //   types.identifier('PropTypes'),
+        //   types.identifier('string')
+        // )
       );
     })
   );
+}
+
+function getVariableBinding(path, variableName) {
+  while (path) {
+    if (path.scope.bindings[variableName]) return path.scope.bindings[variableName];
+    path = path.parentPath;
+  }
+  return null;
 }
 
 module.exports = function PropTypesFromTsProps({ types }) {
@@ -145,9 +244,8 @@ module.exports = function PropTypesFromTsProps({ types }) {
 
             if (qualification.name === 'React') {
               if (id.name === 'SFC') {
-                debugger;
                 // @TODO what about multiple params in idTypeAnnotation.typeAnnotation.typeParameters`
-                const propTypes = getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], state);
+                const propTypes = getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], false, state);
                 const ancestry = path.getAncestry();
 
                 // find the ancestor who lives in the nearest block
@@ -170,15 +268,16 @@ module.exports = function PropTypesFromTsProps({ types }) {
                 ]);
 
                 // import PropTypes library if it isn't already
-                // TODO this.file.addImport ?
-                if (path.scope.bindings.PropTypes == null) {
-                  if (path.scope.bindings.React == null) {
+                const proptypesBinding = getVariableBinding(path, 'PropTypes');
+                if (proptypesBinding == null) {
+                  const reactBinding = getVariableBinding(path, 'React');
+                  if (reactBinding == null) {
                     throw new Error('Cannot import PropTypes module, no React namespace import found');
                   }
-                  const reactImportDeclaration = path.scope.bindings.React.path.getAncestry()[1];
+                  const reactImportDeclaration = reactBinding.path.getAncestry()[1];
                   reactImportDeclaration.insertAfter(
                     types.importDeclaration(
-                      [types.importNamespaceSpecifier(types.identifier('PropTypes'))],
+                      [types.importDefaultSpecifier(types.identifier('PropTypes'))],
                       types.stringLiteral('prop-types')
                     )
                   );

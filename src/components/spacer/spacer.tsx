@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+
+// console.log(PropTypes, React);
 
 const sizeToClassNameMap = {
   xs: 'euiSpacer--xs',
