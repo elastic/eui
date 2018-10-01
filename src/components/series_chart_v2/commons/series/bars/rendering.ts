@@ -15,6 +15,7 @@ export interface BarGlyph {
   height: number;
   fill?: string;
   opacity?: number;
+  data: Datum;
 }
 
 export interface BarGlyphGroup {
@@ -23,6 +24,8 @@ export interface BarGlyphGroup {
   levelValue: number | string;
   translateX: number;
   translateY: number;
+  groupWidth: number;
+  groupHeight: number;
   elements: BarGlyph[] | BarGlyphGroup[];
 }
 /**
@@ -85,7 +88,9 @@ export function renderBarSeriesSpec(
           x: isMultipleY ? accessor : xAccessorFn(value),
           y: getAccessorFn(accessor)(value),
           _isMultipleY: isMultipleY,
-          _data: value,
+          _data: {
+            ...value,
+          },
         });
       });
     });
@@ -104,6 +109,7 @@ export function renderBarSeriesSpec(
     maxY,
     leafLevel,
     getColorFn,
+    chartDims.height,
     isYStacked,
   )(groupedData, 0);
 
@@ -150,6 +156,7 @@ function reformatData(
   maxY: number,
   leafLevel: number,
   getColorFn: GetColorFn,
+  chartHeight: number,
   isStacked = false,
 ) {
   return function reformat(data: Datum[] | NestRollupType[], level: number) {
@@ -168,13 +175,16 @@ function reformatData(
     }
     return (data as Datum[]).reduce((acc, nestedData) => {
       const nextLevelData = level === leafLevel - 1 ? nestedData.value : nestedData.values;
-      const translateX = xScalesFnConfigs[level].scale(nestedData.key);
-      const levelData: any = {
+      const currentLevelScale = xScalesFnConfigs[level];
+      const translateX = currentLevelScale.scale(nestedData.key);
+      const levelData: BarGlyphGroup = {
         level,
         accessor: currentLevelXScaleConfig.accessor,
         levelValue: nestedData.key,
         translateX,
         translateY: 0,
+        groupWidth: currentLevelScale.barWidth,
+        groupHeight: chartHeight,
         elements: reformat(nextLevelData, level + 1),
       };
       return [...acc, levelData];
@@ -205,7 +215,9 @@ function formatElements(
         width: barWidth,
         height,
         fill: getColorFn(element._data, element._isMultipleY ? `${element.x}` : undefined),
-        // __data: element,
+        data: {
+          ...element._data,
+        },
       };
       return [...acc, currentElement];
     },

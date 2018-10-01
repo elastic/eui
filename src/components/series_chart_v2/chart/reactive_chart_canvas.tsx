@@ -53,10 +53,14 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public renderBarSeries = () => {
-    const { barSeriesGlyphs } = this.props.chartStore!;
+    const { barSeriesSpecs, barSeriesGlyphs } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
-    barSeriesGlyphs.forEach((barGlyphs) => {
-      bars.push(<BarSeries key="data bars" glyphs={barGlyphs} />);
+    barSeriesGlyphs.forEach((barGlyphs, specId) => {
+      const spec = barSeriesSpecs.get(specId);
+      if (spec) {
+        const { tooltipLevel } = spec;
+        bars.push(<BarSeries key="data bars" glyphs={barGlyphs} tooltipLevel={tooltipLevel}/>);
+      }
     });
     return bars;
   }

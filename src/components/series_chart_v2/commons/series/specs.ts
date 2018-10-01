@@ -45,6 +45,7 @@ export interface BarSeriesSpec extends BasicSeriesSpec {
   splitSeriesAccessors?: Accessor[];
   stackAccessors?: Accessor[];
   colorAccessors?: Accessor[];
+  tooltipLevel?: number;
 }
 
 // export interface LineSeriesSpec extends BasicSeriesSpec {

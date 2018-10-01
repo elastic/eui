@@ -87,6 +87,7 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y']}
             data={this.state.barchart_1y0g}
+            tooltipLevel={-1}
           />
         </Chart>
       </div>
@@ -135,6 +136,7 @@ class App extends Component {
             colorAccessors={['g1', 'g2']}
             data={this.state.barchart_1y2g}
             yScaleToDataExtent={false}
+            tooltipLevel={0}
           />
         </Chart>
       </div>
@@ -254,6 +256,7 @@ class App extends Component {
             yAccessors={['y1', 'y2']}
             splitSeriesAccessors={['g1', 'g2']}
             data={this.state.barchart_2y2g}
+            tooltipLevel={-1}
           />
         </Chart>
       </div>
@@ -279,6 +282,7 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
+            tooltipLevel={1}
           />
         </Chart>
       </div>
@@ -426,21 +430,24 @@ class App extends Component {
             id={getSpecId('1000elements')}
             data={data}
             yScaleToDataExtent={true}
+            tooltipLevel={-1}
           />
         </Chart>
       </div>
     );
   }
   public render() {
-    const randomData = dataGenerator.generateSimpleSeries(400);
+    // const randomData = dataGenerator.generateSimpleSeries(100);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        {this.renderHighVolumeChart('canvas', randomData)}
-        {this.renderBarChart1y0g('canvas')}
+        {/* {this.renderHighVolumeChart('canvas', randomData)}
+        {this.renderBarChart1y0g('canvas')} */}
+        {this.renderBarChart2y2g('canvas')}
+        {/* {this.renderBarChart2y2gs('canvas')} */}
         {/* {this.renderBarChart1y1g('canvas')}
         {this.renderBarChart2y1gs('canvas')}
         {this.renderBarChart2y2g('canvas')}
@@ -453,8 +460,8 @@ class App extends Component {
         {this.renderGitHubIssue('canvas')} */}
         </div>
         <div className="chartContainers">
-        {this.renderHighVolumeChart('svg', randomData)}
-        {this.renderBarChart1y0g()}
+        {/* {this.renderHighVolumeChart('svg', randomData)}
+        {this.renderBarChart1y0g()} */}
         {/*
         {this.renderBarChart1y1g()}
         {this.renderBarChart2y1gs()}
