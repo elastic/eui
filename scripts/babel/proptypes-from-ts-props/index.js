@@ -1,17 +1,17 @@
 /* eslint-disable new-cap */
 const babelTemplate = require('babel-template');
 
-function resolveArrayToPropTypes(node, optional, state) {
+function resolveArrayToPropTypes(node, state) {
   const { dynamicData: { types } } = state;
 
   const { typeParameters } = node;
 
   if (typeParameters == null) {
     // Array without any type information
-    return buildPropTypePrimitiveExpression(types, 'array', optional);
+    return buildPropTypePrimitiveExpression(types, 'array');
   } else {
     // Array with typed elements
-    const arrayPropType = types.callExpression(
+    return types.callExpression(
       types.memberExpression(
         types.identifier('PropTypes'),
         types.identifier('arrayOf')
@@ -30,23 +30,14 @@ function resolveArrayToPropTypes(node, optional, state) {
         )
       ]
     );
-
-    if (optional) {
-      return arrayPropType;
-    } else {
-      return types.memberExpression(
-        arrayPropType,
-        types.identifier('isRequired'),
-      );
-    }
   }
 }
 
-function resolveIdentifierToPropTypes(node, optional, state) {
+function resolveIdentifierToPropTypes(node, state) {
   const { dynamicData: { typeDefinitions } } = state;
   const identifier = node.id;
 
-  if (identifier.name === 'Array') return resolveArrayToPropTypes(node, optional, state);
+  if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
 
   const identifierDefinition = typeDefinitions[identifier.name];
 
@@ -70,41 +61,45 @@ function resolvePropertyToPropType(property, state) {
 
 const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
 
-function buildPropTypePrimitiveExpression(types, typeName, optional) {
-  if (optional) {
-    return types.memberExpression(
-      types.identifier('PropTypes'),
-      types.identifier(typeName)
-    );
-  } else {
-    return types.memberExpression(
-      types.memberExpression(
-        types.identifier('PropTypes'),
-        types.identifier(typeName)
-      ),
-      types.identifier('isRequired'),
-    );
-  }
+function buildPropTypePrimitiveExpression(types, typeName) {
+  return types.memberExpression(
+    types.identifier('PropTypes'),
+    types.identifier(typeName)
+  );
 }
 
 function getPropTypesForNode(node, optional, state) {
   const { dynamicData: { types } } = state;
 
+  let propType;
   switch(node.type) {
     case 'GenericTypeAnnotation':
-      return resolveIdentifierToPropTypes(node, optional, state);
+      propType = resolveIdentifierToPropTypes(node, state);
+      break;
 
     case 'IntersectionTypeAnnotation':
-      return node.types.reduce(
+      propType =  node.types.reduce(
         (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, false, state)),
         {}
       );
+      break;
 
     case 'ObjectTypeAnnotation':
-      return node.properties.reduce(
-        (propTypes, property) => Object.assign(propTypes, resolvePropertyToPropType(property, state)),
-        {}
+      propType = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('shape')
+        ),
+        [
+          types.objectExpression(
+            node.properties.map(property => types.objectProperty(
+              types.identifier(property.key.name),
+              getPropTypesForNode(property.value, property.optional, state)
+            ))
+          )
+        ]
       );
+      break;
 
     case 'UnionTypeAnnotation':
       const callExpression = types.callExpression(
@@ -119,39 +114,52 @@ function getPropTypesForNode(node, optional, state) {
         ]
       );
 
-      if (optional) {
-        return callExpression;
-      } else {
-        return types.memberExpression(
-          callExpression,
-          types.identifier('isRequired')
-        );
-      }
+      propType = callExpression;
+      break;
 
     case 'StringTypeAnnotation':
-      return buildPropTypePrimitiveExpression(types, 'string', optional);
+      propType =  buildPropTypePrimitiveExpression(types, 'string');
+      break;
 
     case 'NumberTypeAnnotation':
-      return buildPropTypePrimitiveExpression(types, 'number', optional);
+      propType =  buildPropTypePrimitiveExpression(types, 'number');
+      break;
 
     case 'BooleanTypeAnnotation':
-      return buildPropTypePrimitiveExpression(types, 'bool', optional);
+      propType =  buildPropTypePrimitiveExpression(types, 'bool');
+      break;
 
     case 'FunctionTypeAnnotation':
-      return buildPropTypePrimitiveExpression(types, 'func', optional);
+      propType =  buildPropTypePrimitiveExpression(types, 'func');
+      break;
 
     case 'StringLiteralTypeAnnotation':
-      return types.stringLiteral(node.value);
+      propType =  types.stringLiteral(node.value);
+      optional = true; // cannot call `.isRequired` on a string literal
+      break;
 
     case 'NumericLiteralTypeAnnotation':
-      return types.numericLiteral(node.value);
+      propType =  types.numericLiteral(node.value);
+      optional = true; // cannot call `.isRequired` on a number literal
+      break;
 
     case 'BooleanLiteralTypeAnnotation':
-      return types.booleanLiteral(node.value);
+      propType =  types.booleanLiteral(node.value);
+      optional = true; // cannot call `.isRequired` on a boolean literal
+      break;
 
     default:
       debugger;
       throw new Error(`Could not generate prop types for node type ${node.type}`);
+  }
+
+  if (optional) {
+    return propType;
+  } else {
+    return types.memberExpression(
+      propType,
+      types.identifier('isRequired')
+    );
   }
 }
 
@@ -189,22 +197,6 @@ function extractTypeDefinition(node) {
   return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node) : null;
 }
 
-function mapDefsToPropTypes(types, defs) {
-  return types.objectExpression(
-    Object.keys(defs).map(propName => {
-      const propDef = defs[propName];
-      return types.objectProperty(
-        types.identifier(propName),
-        propDef
-        // types.memberExpression(
-        //   types.identifier('PropTypes'),
-        //   types.identifier('string')
-        // )
-      );
-    })
-  );
-}
-
 function getVariableBinding(path, variableName) {
   while (path) {
     if (path.scope.bindings[variableName]) return path.scope.bindings[variableName];
@@ -213,7 +205,30 @@ function getVariableBinding(path, variableName) {
   return null;
 }
 
-module.exports = function PropTypesFromTsProps({ types }) {
+function getPropTypesNodeFromAST(node, types) {
+  switch (node.type) {
+    case 'MemberExpression':
+      return getPropTypesNodeFromAST(node.object, types);
+
+    case 'CallExpression':
+      return getPropTypesNodeFromAST(node.arguments[0], types);
+
+    case 'ObjectExpression':
+      return types.objectExpression(
+        node.properties
+        // node.properties.reduce(
+        //   (propsObj, property) => {
+        //     propsObj[property.key.name] = property.value;
+        //     return propsObj;
+        //   },
+        //   {}
+        // )
+      );
+  }
+  return node;
+}
+
+module.exports = function propTypesFromTypeScript({ types }) {
   return {
     visitor: {
       Program: function visitProgram(path, state) {
@@ -245,7 +260,12 @@ module.exports = function PropTypesFromTsProps({ types }) {
             if (qualification.name === 'React') {
               if (id.name === 'SFC') {
                 // @TODO what about multiple params in idTypeAnnotation.typeAnnotation.typeParameters`
-                const propTypes = getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], false, state);
+                const propTypes = getPropTypesNodeFromAST(
+                  // `getPropTypesForNode` returns a PropTypes.shape representing the top-level object, we need to
+                  // reach into the shape call expression and use the object literal directly
+                  getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], false, state),
+                  types
+                );
                 const ancestry = path.getAncestry();
 
                 // find the ancestor who lives in the nearest block
@@ -263,7 +283,8 @@ module.exports = function PropTypesFromTsProps({ types }) {
                 blockChildAncestor.insertAfter([
                   buildPropTypes({
                     COMPONENT_NAME: types.identifier(variableDeclarator.id.name),
-                    PROP_TYPES: mapDefsToPropTypes(types, propTypes),
+                    // PROP_TYPES: mapDefsToPropTypes(types, propTypes),
+                    PROP_TYPES: propTypes,
                   })
                 ]);
 
