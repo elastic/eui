@@ -11,23 +11,17 @@ function resolveArrayToPropTypes(node, state) {
     return buildPropTypePrimitiveExpression(types, 'array');
   } else {
     // Array with typed elements
+    // PropTypes.array
+    // PropTypes.arrayOf()
+    // Array type only has one type argument
+    const { params: [arrayType] } = typeParameters;
     return types.callExpression(
       types.memberExpression(
         types.identifier('PropTypes'),
         types.identifier('arrayOf')
       ),
       [
-        types.callExpression(
-          types.memberExpression(
-            types.identifier('PropTypes'),
-            types.identifier('oneOfType')
-          ),
-          [
-            types.arrayExpression(
-              typeParameters.params.map(node => getPropTypesForNode(node, false, state))
-            )
-          ]
-        )
+        getPropTypesForNode(arrayType, false, state)
       ]
     );
   }
@@ -91,14 +85,53 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     case 'UnionTypeAnnotation':
+      const tsUnionTypes = node.types.map(node => getPropTypesForNode(node, false, state))
+
+      // `tsUnionTypes` could be:
+      // 1. all non-literal values (string | number)
+      // 2. all literal values ("foo" | "bar")
+      // 3. a mix of value types ("foo" | number)
+      // this reduce finds any literal values and groups them into a oneOf node
+
+      const { unionTypes } = tsUnionTypes.reduce(
+        (foundTypes, tsUnionType) => {
+          if (types.isLiteral(tsUnionType)) {
+            if (foundTypes.oneOfPropType == null) {
+              foundTypes.oneOfPropType = types.arrayExpression([]);
+              foundTypes.unionTypes.push(
+                types.callExpression(
+                  types.memberExpression(
+                    types.identifier('PropTypes'),
+                    types.identifier('oneOf')
+                  ),
+                  [foundTypes.oneOfPropType]
+                )
+              );
+            }
+
+            // this is a literal value, move to the oneOfPropType argument
+            foundTypes.oneOfPropType.elements.push(tsUnionType);
+          } else {
+            // this is a non-literal type
+            foundTypes.unionTypes.push(tsUnionType);
+          }
+
+          return foundTypes;
+        },
+        {
+          unionTypes: [],
+          oneOfPropType: null,
+        }
+      );
+
       const callExpression = types.callExpression(
         types.memberExpression(
           types.identifier('PropTypes'),
-          types.identifier('oneOf'),
+          types.identifier('oneOfType'),
         ),
         [
           types.arrayExpression(
-            node.types.map(node => getPropTypesForNode(node, false, state))
+            unionTypes
           )
         ]
       );
@@ -205,13 +238,6 @@ function getPropTypesNodeFromAST(node, types) {
     case 'ObjectExpression':
       return types.objectExpression(
         node.properties
-        // node.properties.reduce(
-        //   (propsObj, property) => {
-        //     propsObj[property.key.name] = property.value;
-        //     return propsObj;
-        //   },
-        //   {}
-        // )
       );
   }
   return node;

@@ -464,6 +464,72 @@ FooComponent.propTypes = {
 
     });
 
+    describe('union types', () => {
+
+      it('unions primitive types and values', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {bar: string | 5 | 6}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  bar: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired
+};`);
+      });
+
+      it('unions custom types', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface iFoo {foo: string, bar?: number}
+type Bar = {name: string, isActive: true | false} 
+interface IFooProps {buzz: iFoo | Bar}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  buzz: PropTypes.oneOfType([PropTypes.shape({
+    foo: PropTypes.string.isRequired,
+    bar: PropTypes.number
+  }).isRequired, PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    isActive: PropTypes.oneOfType([PropTypes.oneOf([true, false])]).isRequired
+  }).isRequired]).isRequired
+};`);
+      });
+
+    });
+
     describe('array / arrayOf propTypes', () => {
 
       it('understands an Array of strings', () => {
@@ -489,7 +555,7 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired])).isRequired
+  bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };`);
       });
 
@@ -516,7 +582,7 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number.isRequired])).isRequired
+  bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 };`);
       });
 
@@ -543,7 +609,7 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool.isRequired])).isRequired
+  bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
 };`);
       });
 
@@ -570,15 +636,42 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func.isRequired])).isRequired
+  bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
 };`);
       });
 
-      it('understands an optional Array of strings and numbers', () => {
+      it('understands an Array of literal values', () => {
         const result = transform(
           `
 import React from 'react';
-interface IFooProps {bar?: Array<string, number>}
+interface IFooProps {bar: Array<'foo' | 'bar'>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World"
+  );
+};
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.oneOf(["foo", "bar"])]).isRequired).isRequired
+};`);
+      });
+
+      it('understands an Array of mixed literal and non-literal types', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {bar: Array<string | 5 | 6>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
@@ -597,7 +690,34 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]))
+  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
+};`);
+      });
+
+      it('understands an optional Array of strings and numbers', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {bar?: Array<string | number>}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
 };`);
       });
 
