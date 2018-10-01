@@ -10,6 +10,7 @@ interface ReactiveChartProps {
 }
 class Chart extends React.Component<ReactiveChartProps> {
   public static displayName = 'ReactiveChart';
+  public firstRender = true;
 
   public componentDidMount() {
     // tslint:disable-next-line:no-console
@@ -53,19 +54,29 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public renderBarSeries = () => {
-    const { barSeriesSpecs, barSeriesGlyphs } = this.props.chartStore!;
+    const { barSeriesSpecs, barSeriesGlyphs, chartTheme, onTooltipOver, onTooltipOut } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
     barSeriesGlyphs.forEach((barGlyphs, specId) => {
       const spec = barSeriesSpecs.get(specId);
       if (spec) {
         const { tooltipLevel } = spec;
-        bars.push(<BarSeries key="data bars" glyphs={barGlyphs} tooltipLevel={tooltipLevel}/>);
+        bars.push(
+          <BarSeries
+            key="data bars"
+            glyphs={barGlyphs}
+            tooltipLevel={tooltipLevel}
+            chartTheme={chartTheme}
+            onElementOver={onTooltipOver}
+            onElementOut={onTooltipOut}
+          />,
+        );
       }
     });
     return bars;
   }
 
   public render() {
+    console.log('rendering');
     const { initialized } = this.props.chartStore!;
     if (!initialized.get()) {
       return null;
@@ -96,29 +107,24 @@ class Chart extends React.Component<ReactiveChartProps> {
           boxSizing: 'border-box',
         }}
       >
-       <Stage
-        width={parentDimensions.width}
-        height={parentDimensions.height}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
+        <Stage
+          width={parentDimensions.width}
+          height={parentDimensions.height}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
         >
-      <Layer
-        x={chartDimensions.left + chartTransform.x}
-        y={chartDimensions.top + chartTransform.y}
-        rotation={chartTransform.rotate}
-
-      >
-        {this.renderBarSeries()}
-      </Layer>
-      <Layer
-        hitGraphEnabled={false}
-      >
-        {this.renderAxes()}
-      </Layer>
-      </Stage>
-      </div >
+          <Layer
+            x={chartDimensions.left + chartTransform.x}
+            y={chartDimensions.top + chartTransform.y}
+            rotation={chartTransform.rotate}
+          >
+            {this.renderBarSeries()}
+          </Layer>
+          <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
+        </Stage>
+      </div>
     );
   }
 }

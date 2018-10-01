@@ -9,6 +9,7 @@ import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
 import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
 import { datasetStacked as AREA_STACKED } from './data_example2';
+
 import {
   BARCHART_1Y0G,
   BARCHART_1Y1G,
@@ -87,7 +88,7 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y']}
             data={this.state.barchart_1y0g}
-            tooltipLevel={-1}
+            tooltipLevel={0}
           />
         </Chart>
       </div>
@@ -256,7 +257,7 @@ class App extends Component {
             yAccessors={['y1', 'y2']}
             splitSeriesAccessors={['g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={-1}
+            tooltipLevel={3}
           />
         </Chart>
       </div>
@@ -429,25 +430,27 @@ class App extends Component {
           <BarSeries
             id={getSpecId('1000elements')}
             data={data}
-            yScaleToDataExtent={true}
-            tooltipLevel={-1}
+            xScaleType={ScaleType.Ordinal}
+            tooltipLevel={1}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x', 'g']}
           />
         </Chart>
       </div>
     );
   }
   public render() {
-    // const randomData = dataGenerator.generateSimpleSeries(100);
+    const randomData = dataGenerator.generateGroupedSeries(10, 3);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        {/* {this.renderHighVolumeChart('canvas', randomData)}
-        {this.renderBarChart1y0g('canvas')} */}
+        {this.renderHighVolumeChart('canvas', randomData)}
+        {this.renderBarChart1y0g('canvas')}
         {this.renderBarChart2y2g('canvas')}
-        {/* {this.renderBarChart2y2gs('canvas')} */}
+        {this.renderBarChart2y2gs('canvas')}
         {/* {this.renderBarChart1y1g('canvas')}
         {this.renderBarChart2y1gs('canvas')}
         {this.renderBarChart2y2g('canvas')}

@@ -1,6 +1,6 @@
 import { Accessor } from '../../data_ops/accessor';
 import { Datum } from '../specs';
-import { BarGlyph, BarGlyphGroup } from './rendering';
+import { BarGlyphGroup } from './rendering';
 
 export interface BarScaleFnConfig {
   accessor: Accessor;
@@ -10,22 +10,25 @@ export interface BarScaleFnConfig {
 
 export const DEFAULT_BAR_WIDTH = 10;
 
-export function getDataFromBarGlyphs(glyphs: BarGlyphGroup[] | BarGlyph[]) {
+export function getDataFromBarGlyphs(glyphs: BarGlyphGroup[]): Datum[] {
   return getRecursiveDataFromBarGluphs(glyphs);
 }
 
-function getRecursiveDataFromBarGluphs(glyphs: BarGlyphGroup[] | BarGlyph[]): Datum[] {
+function getRecursiveDataFromBarGluphs(glyphs: BarGlyphGroup[]): Datum[] {
   if (isBarGlyphGroupLeaf(glyphs)) {
-    return (glyphs as BarGlyph[]).map(({ data }) => data);
+    return (glyphs).map(({ data }) => data);
   }
-  return (glyphs as BarGlyphGroup[]).reduce((acc: Datum[], glyph) => {
-    return [
-      ...acc,
-      ...getRecursiveDataFromBarGluphs(glyph.elements),
-    ];
+  return (glyphs).reduce((acc: Datum[], glyph) => {
+    if (glyph.elements) {
+      return [
+        ...acc,
+        ...getRecursiveDataFromBarGluphs(glyph.elements),
+      ];
+    }
+    return acc;
   }, []);
 }
 
-function isBarGlyphGroupLeaf(glyph: BarGlyphGroup[] | BarGlyph[]) {
-  return Array.isArray(glyph) && glyph.length > 0 && !(glyph[0] as BarGlyphGroup).accessor;
+export function isBarGlyphGroupLeaf(glyph: BarGlyphGroup[]) {
+  return Array.isArray(glyph) && glyph.length > 0 && glyph[0].data;
 }

@@ -1,11 +1,11 @@
 import { Rect as KonvaRect } from 'konva';
 import React from 'react';
 import { Rect } from 'react-konva';
-import { BarGlyph } from '../../commons/series/bars/rendering';
+import { BarGlyphGroup } from '../../commons/series/bars/rendering';
 import { Datum } from '../../commons/series/specs';
 
 interface BarSeriesDataProps {
-  glyph: BarGlyph;
+  glyph: BarGlyphGroup;
   opaque: false;
   onMouseOver?: (data: Datum[]) => {};
   onMouseOut?: () => {};

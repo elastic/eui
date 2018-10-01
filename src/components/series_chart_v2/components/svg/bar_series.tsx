@@ -1,5 +1,6 @@
 import React from 'react';
-import { BarGlyph, BarGlyphGroup } from '../../commons/series/bars/rendering';
+import { isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
+import { BarGlyphGroup } from '../../commons/series/bars/rendering';
 // import NodeGroup from 'react-move/NodeGroup';
 
 interface BarSeriesDataProps {
@@ -18,25 +19,25 @@ export class BarSeries extends React.PureComponent<BarSeriesDataProps> {
       return this.renderGlyphs(glyphs);
     }
   }
-  private renderGlyphs = (glyphs: BarGlyphGroup[] | BarGlyph[]): JSX.Element[] => {
-    if (Array.isArray(glyphs) && glyphs.length > 0 && !(glyphs[0] as BarGlyphGroup).accessor) {
+  private renderGlyphs = (glyphs: BarGlyphGroup[]): JSX.Element[] => {
+    if (isBarGlyphGroupLeaf(glyphs)) {
       // leaf
-      return this.renderBars(glyphs as BarGlyph[]);
+      return this.renderBars(glyphs);
     }
-    return (glyphs as BarGlyphGroup[]).map((glyph) => {
+    return (glyphs).map((glyph) => {
       return (
         <g
           key={`group-${glyph.level}-${glyph.levelValue}`}
-          transform={`translate(${glyph.translateX} ${glyph.translateY})`}
+          transform={`translate(${glyph.x} ${glyph.y})`}
         >
         {
-          this.renderGlyphs(glyph.elements)
+          glyph.elements && this.renderGlyphs(glyph.elements)
         }
         </g>
       );
     });
   }
-  private renderBars = (glyphs: BarGlyph[]) => {
+  private renderBars = (glyphs: BarGlyphGroup[]) => {
     return glyphs.map(({x, y, width, height, fill, opacity}, index) => {
       return (
         <rect

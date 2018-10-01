@@ -12,6 +12,9 @@ export interface Theme {
   };
   vizColors: string[];
   defaultVizColor: string;
+  interactions: {
+    hideOpacity: number,
+  };
 }
 export const DEFAULT_THEME: Theme = {
   chartMargins: {
@@ -41,4 +44,7 @@ export const DEFAULT_THEME: Theme = {
     '#920000',
   ],
   defaultVizColor: 'red',
+  interactions: {
+    hideOpacity: 0.1,
+  },
 };

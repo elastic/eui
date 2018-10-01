@@ -1,7 +1,7 @@
 import { AxisId, GroupId, SpecId } from '../commons/ids';
-import { AxisSpec, BarSeriesSpec, Rotation } from '../commons/series/specs';
+import { AxisSpec, BarSeriesSpec, Datum, Rotation } from '../commons/series/specs';
 
-import { observable } from 'mobx';
+import { action, IObservableArray, observable } from 'mobx';
 import {
   AxisTick,
   AxisTicksDimensions,
@@ -44,10 +44,21 @@ export class ChartStore {
   public seriesSpecDomains: Map<SpecId, SpecDomains> = new Map(); // computed
   public globalSpecDomains: Map<GroupId, SpecDomains> = new Map(); // computed
   public globalColorScales: Map<GroupId, ColorScales> = new Map();
-  // public seriesSpecs: Map<SpecId, DataSeriesSpec> = new Map(); // readed from jsx
-  // public seriesScales: Map<SpecId, SeriesScales[]> = new Map(); // computed
-  // public chartScales: Map<GroupId, SeriesScales[]> = new Map(); // computed
-  // public seriesGlyphs: Map<SpecId, any> = new Map(); // computed
+
+  public tooltipData = observable<Datum[]>([]);
+
+  public onTooltipOver = action((datum: Datum | Datum[]) => {
+    console.log('ontooltip over ', datum);
+    if (Array.isArray(datum)) {
+      this.tooltipData.replace(datum);
+    } else {
+      this.tooltipData.push(datum);
+    }
+  });
+  public onTooltipOut = action(() => {
+    console.log('ontooltip out');
+    this.tooltipData.clear();
+  });
 
   // public chart: any; // computed
 

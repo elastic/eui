@@ -5,6 +5,7 @@ import { ChartStore } from '../state/chart_state';
 import { ChartResizer } from './chart_resizer';
 import { ReactiveChart as SVGChart } from './reactive_chart';
 import { ReactiveChart as CanvasChart } from './reactive_chart_canvas';
+import { Tooltips } from './tooltips';
 
 interface ChartProps {
   renderer: 'svg' | 'canvas';
@@ -34,6 +35,7 @@ export class Chart extends React.Component<ChartProps> {
           {
             renderer === 'canvas' && <CanvasChart />
           }
+          <Tooltips />
         </Fragment>
       </Provider>
     );

@@ -118,7 +118,7 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
 
   if (stackAccessors.length === 0 && yAccessors.length > 1) {
     xDomains.push({
-      accessor: 'y',
+      accessor: 'groupedY',
       level: xDomains.length,
       scaleType: ScaleType.Ordinal,
       domain: [...yAccessors],

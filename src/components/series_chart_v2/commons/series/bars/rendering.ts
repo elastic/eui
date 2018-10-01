@@ -8,25 +8,28 @@ import { Theme } from '../../themes/theme';
 import { BarSeriesSpec, Datum, Rotation } from '../specs';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from './commons';
 
-export interface BarGlyph {
+// export interface BarGlyph {
+//   x: number;
+//   y: number;
+//   width: number;
+//   height: number;
+//   fill?: string;
+//   opacity?: number;
+//   data: Datum;
+// }
+
+export interface BarGlyphGroup {
+  level: number;
+  accessor: string;
+  levelValue: number | string;
   x: number;
   y: number;
   width: number;
   height: number;
   fill?: string;
   opacity?: number;
-  data: Datum;
-}
-
-export interface BarGlyphGroup {
-  level: number;
-  accessor: string;
-  levelValue: number | string;
-  translateX: number;
-  translateY: number;
-  groupWidth: number;
-  groupHeight: number;
-  elements: BarGlyph[] | BarGlyphGroup[];
+  data?: Datum;
+  elements?: BarGlyphGroup[];
 }
 /**
  * The interface used for nesting data rollups
@@ -60,6 +63,7 @@ export function renderBarSeriesSpec(
   }
 
   const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, theme, rotation);
+  console.log(nestedXScaleConfigs);
   const maxY = rotation === 0 ? chartDims.height : chartDims.width;
   const yScaleConfig = getScale(
     yAccessors[0],
@@ -165,6 +169,7 @@ function reformatData(
       // we are at the leaf
       const leafXScaleConfigs = isStacked ? xScalesFnConfigs[level - 1] : currentLevelXScaleConfig;
       return formatElements(
+        level,
         data,
         leafXScaleConfigs,
         yScalesFnConfig,
@@ -176,15 +181,15 @@ function reformatData(
     return (data as Datum[]).reduce((acc, nestedData) => {
       const nextLevelData = level === leafLevel - 1 ? nestedData.value : nestedData.values;
       const currentLevelScale = xScalesFnConfigs[level];
-      const translateX = currentLevelScale.scale(nestedData.key);
+      const x = currentLevelScale.scale(nestedData.key);
       const levelData: BarGlyphGroup = {
         level,
         accessor: currentLevelXScaleConfig.accessor,
         levelValue: nestedData.key,
-        translateX,
-        translateY: 0,
-        groupWidth: currentLevelScale.barWidth,
-        groupHeight: chartHeight,
+        x,
+        y: 0,
+        width: currentLevelScale.barWidth,
+        height: chartHeight,
         elements: reformat(nextLevelData, level + 1),
       };
       return [...acc, levelData];
@@ -193,6 +198,7 @@ function reformatData(
 }
 
 function formatElements(
+  level: number,
   elements: NestRollupType[],
   xScalesFnConfig: BarScaleFnConfig,
   yScalesFnConfig: BarScaleFnConfig,
@@ -210,6 +216,9 @@ function formatElements(
         y = acc[acc.length - 1].y - height;
       }
       const currentElement = {
+        level,
+        accessor: xScalesFnConfig.accessor,
+        levelValue: element.y,
         x,
         y,
         width: barWidth,
@@ -221,7 +230,7 @@ function formatElements(
       };
       return [...acc, currentElement];
     },
-    [] as BarGlyph[],
+    [] as BarGlyphGroup[],
   );
 }
 
