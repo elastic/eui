@@ -42,21 +42,10 @@ function resolveIdentifierToPropTypes(node, state) {
   const identifierDefinition = typeDefinitions[identifier.name];
 
   if (identifierDefinition) {
-    return getPropTypesForNode(identifierDefinition, false, state);
+    return getPropTypesForNode(identifierDefinition, true, state);
   } else {
-    return {};
+    return null;
   }
-}
-
-function resolvePropertyToPropType(property, state) {
-  const { key, value, optional } = property;
-
-  if (key.type !== 'Identifier') {
-    debugger;
-    throw new Error(`Could not resolve property with type ${key.type} to prop type`);
-  }
-
-  return { [key.name]: getPropTypesForNode(value, optional, state) };
 }
 
 const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
