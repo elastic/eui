@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDatePicker is rendered 1`] = `
+<span>
+  <span
+    className="euiDatePicker euiDatePicker--shadow"
+  >
+    <EuiFormControlLayout
+      compressed={false}
+      fullWidth={false}
+      icon="calendar"
+      isLoading={false}
+    >
+      <EuiValidatableControl>
+        <DatePicker
+          allowSameDay={false}
+          aria-label="aria-label"
+          className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
+          data-test-subj="test subject string"
+          dateFormat="MM/DD/YYYY hh:mm A"
+          dateFormatCalendar="MMMM YYYY"
+          disabled={false}
+          disabledKeyboardNavigation={false}
+          dropdownMode="scroll"
+          monthsShown={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClickOutside={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMonthChange={[Function]}
+          onSelect={[Function]}
+          onYearChange={[Function]}
+          preventOpenOnFocus={false}
+          shouldCloseOnSelect={true}
+          showMonthDropdown={true}
+          showTimeSelect={false}
+          showYearDropdown={true}
+          timeCaption="Time"
+          timeFormat="hh:mm A"
+          timeIntervals={30}
+          withPortal={false}
+          yearDropdownItemNumber={7}
+        />
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
+  </span>
+</span>
+`;

@@ -1,0 +1,46 @@
+{
+  "rootDir": "../../",
+  "roots": [
+    "<rootDir>/src-docs/src",
+    "<rootDir>/src/"
+  ],
+  "collectCoverageFrom": [
+    "src/components/**/*.js",
+    "!src/components/index.js",
+    "!src/components/**/*/index.js",
+    "src/services/**/*.js",
+    "!src/services/index.js",
+    "!src/services/**/*/index.js"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/scripts/jest/mocks/file_mock.js",
+    "\\.(css|less|scss)$": "<rootDir>/scripts/jest/mocks/style_mock.js"
+  },
+  "setupFiles": [
+    "<rootDir>/scripts/jest/setup/polyfills.js",
+    "<rootDir>/scripts/jest/setup/enzyme.js",
+    "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
+  ],
+  "coverageDirectory": "<rootDir>/reports/jest-coverage",
+  "coverageReporters": [
+    "html"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json"
+  ],
+  "testMatch": [
+    "**/*.test.js"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/scripts/",
+    "<rootDir>/docs/",
+    "<rootDir>/node_modules/"
+  ],
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.js$"
+  ],
+  "snapshotSerializers": [
+    "<rootDir>/node_modules/enzyme-to-json/serializer"
+  ]
+}

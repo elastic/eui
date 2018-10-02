@@ -1,0 +1,3 @@
+export {
+  EuiSpacer,
+} from './spacer';

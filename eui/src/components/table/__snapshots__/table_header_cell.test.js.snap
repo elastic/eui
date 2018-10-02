@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`align defaults to left 1`] = `
+<th
+  class="euiTableHeaderCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</th>
+`;
+
+exports[`align renders center when specified 1`] = `
+<th
+  class="euiTableHeaderCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignCenter"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</th>
+`;
+
+exports[`align renders right when specified 1`] = `
+<th
+  class="euiTableHeaderCell"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignRight"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</th>
+`;
+
+exports[`renders EuiTableHeaderCell 1`] = `
+<th
+  aria-label="aria-label"
+  class="euiTableHeaderCell testClass1 testClass2"
+  data-test-subj="test subject string"
+  scope="col"
+>
+  <div
+    class="euiTableCellContent testClass1 testClass2"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      children
+    </span>
+  </div>
+</th>
+`;

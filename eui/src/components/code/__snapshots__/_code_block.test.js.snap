@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code js"
+    />
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code"
+      data-test-subj="test subject string"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      class="euiCodeBlock__code"
+    />
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline"
+>
+  <code
+    class="euiCodeBlock__code js"
+  />
+</span>
+`;
+
+exports[`EuiCodeBlockImpl inline renders an inline code tag 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+>
+  <code
+    aria-label="aria-label"
+    class="euiCodeBlock__code"
+    data-test-subj="test subject string"
+  >
+    var some = 'code';
+console.log(some);
+  </code>
+</span>
+`;
+
+exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline"
+>
+  <code
+    class="euiCodeBlock__code"
+  />
+</span>
+`;

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EuiTable 1`] = `
+<table
+  aria-label="aria-label"
+  class="euiTable testClass1 testClass2 euiTable--responsive"
+  data-test-subj="test subject string"
+>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell"
+        scope="col"
+      >
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          >
+            Hi Title
+          </span>
+        </div>
+      </th>
+      <th
+        class="euiTableHeaderCell"
+        scope="col"
+      >
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          >
+            Bye Title
+          </span>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      class="euiTableRow"
+    >
+      <td
+        class="euiTableRowCell"
+      >
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          >
+            Hi
+          </span>
+        </div>
+      </td>
+    </tr>
+    <tr
+      class="euiTableRow"
+    >
+      <td
+        class="euiTableRowCell"
+      >
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          >
+            Bye
+          </span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

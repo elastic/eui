@@ -1,0 +1,143 @@
+@import "../panel/variables";
+@import "../panel/mixins";
+@import '../badge/beta_badge/mixins';
+
+$euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
+$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
+
+// Start with a base of EuiPanel styles
+@include euiPanel($selector: 'euiCard');
+
+/**
+ * 1. Footer is always at the bottom.
+ * 2. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+      (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
+ * 3. Horizontal layouts should always top left align no matter the textAlign prop
+ */
+
+// EuiCard specific
+.euiCard {
+  display: flex;
+  flex-direction: column;
+  padding: $euiCardSpacing;
+  min-height: 1px; /* 2 */
+
+  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing);
+
+  .euiCard__top,
+  .euiCard__content,
+  .euiCard__footer {
+    display: block;
+    width: 100%;
+  }
+
+  &.euiCard--leftAligned,
+  &.euiCard--isClickable.euiCard--leftAligned {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &.euiCard--centerAligned,
+  &.euiCard--isClickable.euiCard--centerAligned {
+    text-align: center;
+    align-items: center;
+  }
+
+  &.euiCard--rightAligned,
+  &.euiCard--isClickable.euiCard--rightAligned {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  &.euiCard--isClickable {
+    display: flex;
+
+    &:focus,
+    &:hover {
+      .euiCard__title {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.euiCard__top {
+  flex-grow: 0; /* 1 */
+  position: relative;
+  min-height: 1px; /* 2 */
+
+  .euiCard__icon {
+    margin-top: $euiCardSpacing/2;
+  }
+
+  .euiCard__image {
+    position: relative;
+    width: calc(100% + #{$euiCardSpacing}*2);
+    left: $euiCardSpacing * -1;
+    top: $euiCardSpacing * -1;
+    margin-bottom: $euiCardSpacing * -1; // ensure the parent is only as tall as the image
+
+    // match border radius, minus 1px because it's inside a border
+    border-top-left-radius: $euiBorderRadius - 1px;
+    border-top-right-radius: $euiBorderRadius - 1px;
+
+    // IF both exist, position the icon centered on top of image
+    + .euiCard__icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
+      transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
+    }
+  }
+}
+
+// If an icon or image exists, add some space
+.euiCard__top + .euiCard__content {
+  margin-top: $euiCardSpacing;
+}
+
+.euiCard__content {
+  flex-grow: 1; /* 1 */
+
+  .euiCard__title {
+    display: block;
+    @include euiTitle($euiCardTitleSize);
+    font-weight: $euiFontWeightMedium;
+  }
+
+  .euiCard__description {
+    color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
+    margin-top: $euiCardSpacing/2;
+  }
+}
+
+.euiCard__footer:not(:empty) {
+  flex-grow: 0; /* 1 */
+  margin-top: $euiCardSpacing;
+}
+
+.euiCard.euiCard--horizontal {
+  .euiCard__content {
+    padding-top: $euiSizeS; // Aligns title and text a bit better and adds spacing in case of beta badge
+    text-align: left; /* 3 */
+  }
+}
+
+// Only change the flex direction if the card has an icon
+// otherwise the button tag won't properly align contents to top
+.euiCard.euiCard--horizontal.euiCard--hasIcon {
+  flex-direction: row;
+  align-items: flex-start !important; /* 3 */
+
+  .euiCard__top,
+  .euiCard__content {
+    width: auto; // Makes sure the top shrinks and the content grows
+    margin-top: 0;
+  }
+
+  .euiCard__top .euiCard__icon {
+    margin-top: 0;
+    margin-right: $euiSize;
+  }
+}

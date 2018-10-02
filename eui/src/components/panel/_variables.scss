@@ -1,0 +1,13 @@
+/**
+ * Padding map referenced in:
+ *  - Popover
+ *  - PageContentHeader
+ *  - PageContentHeaderSection
+*/
+$euiPanelPaddingModifiers: (
+  "paddingSmall": $euiSizeS,
+  "paddingMedium": $euiSize,
+  "paddingLarge": $euiSizeL
+) !default;
+
+$euiPanelBorderColor: tintOrShade($euiShadowColor, 40%, 0%) !default; // match shadow

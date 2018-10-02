@@ -1,0 +1,40 @@
+.euiStat {
+  // Modifier naming and colors.
+  $titleColors: (
+    subdued: $euiColorDarkShade,
+    primary: $euiColorPrimary,
+    secondary: $euiColorSecondary,
+    danger: $euiColorDanger,
+    accent: $euiColorAccent,
+  );
+
+  .euiStat__title {
+    color: $euiColorFullShade;
+
+    // Create color classes based upon the map.
+    @each $name, $color in $titleColors {
+      &--#{$name} {
+        color: $color;
+      }
+    }
+  }
+  
+  .euiStat__description {
+    color: map-get($titleColors, dark);
+  }
+
+  &.euiStat--leftAligned {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &.euiStat--centerAligned {
+    text-align: center;
+    align-items: center;
+  }
+
+  &.euiStat--rightAligned {
+    text-align: right;
+    align-items: flex-end;
+  }
+}

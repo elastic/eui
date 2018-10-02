@@ -1,0 +1,28 @@
+@import '../form/mixins';
+
+.euiFilterGroup {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow;
+  @include euiFormControlSize;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  padding: 1px; /* 1 */
+
+  > * {
+    // defaults to growing children
+    // though filter buttons don't grow by default
+    flex-grow: 1;
+  }
+
+  // Force popover anchors to expand for now
+  .euiPopover__anchor {
+    display: block;
+  }
+}
+
+// A fixed width is required in IE11 because of the shift in widths that can be caused
+// by the loading animation that precedes the results.
+.euiFilterGroup__popoverPanel {
+  width: $euiSize * 18;
+}

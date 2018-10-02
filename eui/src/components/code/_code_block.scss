@@ -1,0 +1,212 @@
+.euiCodeBlock {
+  display: block;
+  position: relative;
+  background: $euiCodeBlockBackgroundColor;
+  color: $euiCodeBlockColor;
+  position: relative;
+
+  .euiCodeBlock__pre {
+    height: 100%;
+    overflow: auto;
+    display: block;
+    white-space: pre-wrap;
+  }
+
+  .euiCodeBlock__code {
+    display: block;
+    line-height: $euiLineHeight;
+    font-family: $euiCodeFontFamily;
+    font-weight: $euiFontWeightRegular;
+  }
+
+  .euiCodeBlock__fullScreenButton {
+    position: absolute;
+    top: $euiSizeM;
+    right: $euiSizeL;
+  }
+
+  &.euiCodeBlock-isFullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .euiCodeBlock__pre {
+      padding: $euiSizeXL !important;
+    }
+  }
+
+  &.euiCodeBlock--fontSmall {
+    font-size: $euiFontSizeXS;
+  }
+
+  &.euiCodeBlock--fontMedium {
+    font-size: $euiFontSizeS;
+  }
+
+  &.euiCodeBlock--fontLarge {
+    font-size: $euiFontSize;
+  }
+
+  &.euiCodeBlock--paddingSmall {
+    .euiCodeBlock__pre {
+      padding: $euiSizeS;
+    }
+  }
+
+  &.euiCodeBlock--paddingMedium {
+    .euiCodeBlock__pre {
+      padding: $euiSize;
+    }
+  }
+
+  &.euiCodeBlock--paddingLarge {
+    .euiCodeBlock__pre {
+      padding: $euiSizeL;
+    }
+  }
+
+  /**
+  ** 1. Size the code against the text its embedded within.
+  **/
+  &.euiCodeBlock--inline {
+    display: inline-block;
+    white-space: pre;
+    color: $euiTextColor;
+    font-size: 90%; // 1
+    padding: 0 $euiSizeS;
+    background: $euiColorLightestShade;
+
+    .euiCodeBlock__pre {
+      padding:  0 $euiSizeXS;
+    }
+
+    .euiCodeBlock__code {
+      display: inline;
+      white-space: normal;
+    }
+  }
+
+  &.euiCodeBlock--transparentBackground {
+    background: transparent;
+  }
+
+  .hljs > *::selection {
+    // Only change the color if the variable IS a color
+    // or else no highlight color shows up at all
+    @if type-of($euiCodeBlockSelectedBackgroundColor) == color {
+      background-color: $euiCodeBlockSelectedBackgroundColor;
+    }
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: $euiCodeBlockCommentColor;
+    font-style: italic;
+  }
+
+  .hljs-selector-tag {
+    color: $euiCodeBlockSelectorTagColor;
+    font-weight: bold;
+  }
+
+  .hljs-string,
+  .hljs-subst,
+  .hljs-doctag {
+    color: $euiCodeBlockStringColor;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-regexp,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: $euiCodeBlockNumberColor;
+  }
+
+  .hljs-keyword {
+    color: $euiCodeBlockKeywordColor;
+    font-weight: bold;
+  }
+
+  .hljs-function > .hljs-title {
+    color: $euiCodeBlockFunctionTitleColor;
+  }
+
+  .hljs-tag {
+    color: $euiCodeBlockTagColor;
+  }
+
+  .hljs-name {
+    color: euiCodeBlockNameColor;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: $euiCodeBlockTypeColor;
+  }
+
+  .hljs-attribute {
+    color: $euiCodeBlockAttributeColor;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-link {
+    color: $euiCodeBlockSymbolColor;
+  }
+
+  .hljs-params {
+    color: $euiCodeBlockParamsColor;
+  }
+
+  .hljs-meta {
+    color: $euiCodeBlockMetaColor;
+  }
+
+  .hljs-title {
+    color: $euiCodeBlockTitleColor;
+  }
+
+  .hljs-section {
+    color: $euiCodeBlockSectionColor;
+  }
+
+  .hljs-addition {
+    background-color: $euiCodeBlockAdditionBackgroundColor;
+    color: $euiCodeBlockAdditionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-deletion {
+    background-color: $euiCodeBlockDeletionBackgroundColor;
+    color: $euiCodeBlockDeletionColor;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .hljs-selector-class {
+    color: $euiCodeBlockSelectorClassColor;
+  }
+
+  .hljs-selector-id {
+    color: $euiCodeBlockSelectorIdColor;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-link {
+    text-decoration: underline;
+  }
+}

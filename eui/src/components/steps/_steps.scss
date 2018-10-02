@@ -1,0 +1,47 @@
+/**
+ * 1. Ensure that the step number vertically aligns with the title text
+ */
+
+.euiStep {
+  // Do not show the content border if it is the last step
+  &:last-of-type .euiStep__content {
+    border-left-color: transparent;
+  }
+
+  .euiTitle {
+    line-height: $euiStepNumberSize; /* 1 */
+  }
+
+  .euiStep__circle {
+    margin-right: $euiStepNumberMargin;
+    vertical-align: top; /* 1 */
+
+    &[class*="complete"],
+    &[class*="warning"],
+    &[class*="danger"] {
+      animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
+    }
+
+    &[class*="incomplete"] {
+      border-color: $euiColorPrimary;
+      animation: none;
+    }
+  }
+
+  .euiStep__title {
+    font-weight: $euiFontWeightMedium;
+    display: inline-block;
+  }
+
+  .euiStep__content {
+    border-left: $euiBorderThick;
+    padding: $euiSize $euiSize $euiSizeXL;
+    margin: $euiSizeS 0;
+
+    // Align the content's contents with the title
+    padding-left: ($euiStepNumberSize/2) - 1px + $euiStepNumberMargin;
+
+    // Align content border to horizontal center of step number
+    margin-left: ($euiStepNumberSize/2) - 1px;
+  }
+}

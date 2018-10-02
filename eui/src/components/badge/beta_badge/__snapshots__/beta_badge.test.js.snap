@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiBetaBadge is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiBetaBadge testClass1 testClass2"
+  data-test-subj="test subject string"
+  title="Beta"
+>
+  Beta
+</span>
+`;

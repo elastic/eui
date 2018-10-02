@@ -1,0 +1,9 @@
+.euiFacetGroup--horizontal {
+  .euiFacetButton {
+    height: $euiButtonHeightSmall;
+
+    &:not(:last-of-type) {
+      margin-right: $euiSizeL;
+    }
+  }
+}

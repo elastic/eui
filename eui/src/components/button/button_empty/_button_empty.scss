@@ -1,0 +1,117 @@
+/**
+ * 1. We don't want any of the animations that come inherited from the mixin.
+ *    These should act like normal links instead.
+ * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
+ */
+.euiButtonEmpty {
+  @include euiButton;
+
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  transform: none !important; /* 1 */
+  animation: none !important; /* 1 */
+  transition-timing-function: ease-in; /* 2 */
+  transition-duration: $euiAnimSpeedFast; /* 2 */
+
+  .euiButtonEmpty__content {
+    @include euiButtonContent;
+    padding: 0 $euiSizeS;
+  }
+
+  .euiButtonEmpty__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &.euiButtonEmpty--small {
+    height: $euiButtonHeightSmall;
+  }
+
+  &.euiButtonEmpty--xSmall {
+    height: $euiSizeL;
+    font-size: $euiFontSizeS;
+  }
+
+  &.euiButtonEmpty--iconRight {
+    .euiButtonEmpty__content {
+      @include euiButtonContent($isReverse: true);
+    }
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiButtonEmpty__content {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    .euiButtonEmpty__icon {
+      fill: $euiButtonColorDisabled;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+// Modifier naming and colors.
+$buttonTypes: (
+  primary: $euiColorPrimary,
+  danger: $euiColorDanger,
+  disabled: tintOrShade($euiTextColor, 70%, 80%),
+  ghost: $euiColorGhost,
+  text: $euiTextColor,
+);
+
+// Create button modifiders based upon the map.
+@each $name, $color in $buttonTypes {
+  .euiButtonEmpty--#{$name} {
+    color: $color;
+
+    .euiButtonEmpty__icon {
+      fill: $color;
+    }
+
+    &:focus {
+      @if ($name == 'text') {
+        background-color: $euiColorLightestShade;
+      } @else {
+        background-color: transparentize($color, .9);
+      }
+    }
+
+    &:hover {
+      @if ($name == 'disabled') {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.euiButtonEmpty--flushLeft {
+  margin-right: $euiSizeS;
+
+  .euiButtonEmpty__content {
+    border-left: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.euiButtonEmpty--flushRight {
+  margin-left: $euiSizeS;
+
+  .euiButtonEmpty__content {
+    border-right: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

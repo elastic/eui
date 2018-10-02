@@ -1,0 +1,24 @@
+.euiPaginationButton {
+  font-size: $euiFontSizeS;
+  padding: 0;
+  text-align: center;
+  border-radius: $euiBorderRadius;
+}
+
+.euiPaginationButton-isActive {
+  pointer-events: none;
+  color: $euiColorPrimary;
+  text-decoration: underline;
+  font-weight: $euiFontWeightBold;
+}
+
+.euiPaginationButton-isPlaceholder:disabled .euiButtonEmpty__content {
+  // needs specifity to override regular disabled button
+  cursor: default;
+}
+
+@include euiBreakpoint('xs','s') {
+  .euiPaginationButton--hideOnMobile {
+    display: none;
+  }
+}

@@ -1,0 +1,41 @@
+.euiLoadingSpinner {
+  display: inline-block;
+  width: $euiSizeXL;
+  height: $euiSizeXL;
+  border-radius: 50%;
+  border: solid $euiSizeXS / 2 $euiColorLightShade;
+  border-color: euiLoadingSpinnerBorderColors();
+  animation: euiLoadingSpinner .6s infinite linear;
+}
+
+.euiLoadingSpinner--small {
+  width: $euiSizeS;
+  height: $euiSizeS;
+  border-width: 1px;
+}
+
+.euiLoadingSpinner--medium {
+  width: $euiSize;
+  height: $euiSize;
+  border-width: 1px;
+}
+
+.euiLoadingSpinner--large {
+  width: $euiSizeL;
+  height: $euiSizeL;
+}
+
+.euiLoadingSpinner--xLarge {
+  width: $euiSizeXL;
+  height: $euiSizeXL;
+}
+
+@keyframes euiLoadingSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}

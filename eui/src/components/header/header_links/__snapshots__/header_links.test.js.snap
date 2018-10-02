@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHeaderLinks is rendered 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiHeaderLinks testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiHeaderLinks__list"
+    role="navigation"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownRight euiHeaderLinks__mobile"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div
+        class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      >
+        <button
+          aria-label="Open navigation menu"
+          class="euiHeaderSectionItem__button"
+          type="button"
+        >
+          <svg
+            class="euiIcon euiIcon--medium"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <path
+                d="M2 4V2h2v2H2zm5 0V2h2v2H7zm5 0V2h2v2h-2zM2 9V7h2v2H2zm5 0V7h2v2H7zm5 0V7h2v2h-2zM2 14v-2h2v2H2zm5 0v-2h2v2H7zm5 0v-2h2v2h-2z"
+                id="apps-a"
+              />
+            </defs>
+            <use
+              href="#apps-a"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+`;

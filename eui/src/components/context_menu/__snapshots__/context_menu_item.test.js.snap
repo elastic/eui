@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiContextMenuItem is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    >
+      Hello
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props disabled is rendered 1`] = `
+<button
+  class="euiContextMenuItem euiContextMenuItem-isDisabled"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
+<button
+  class="euiContextMenuItem"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+    <svg
+      class="euiIcon euiIcon--medium euiContextMenu__arrow"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <path
+          d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+          id="arrow_right-a"
+        />
+      </defs>
+      <use
+        fill-rule="nonzero"
+        href="#arrow_right-a"
+        transform="matrix(0 1 1 0 0 0)"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props href renders a link 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiContextMenuItem props icon is rendered 1`] = `
+<button
+  class="euiContextMenuItem"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenu__icon"
+    />
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props onClick renders a button 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiContextMenuItem props rel is rendered 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+  rel="help"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
+`;
+
+exports[`EuiContextMenuItem props target is rendered 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiContextMenuItem testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="url"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    class="euiContextMenu__itemLayout"
+  >
+    <span
+      class="euiContextMenuItem__text"
+    />
+  </span>
+</a>
+`;

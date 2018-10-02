@@ -1,0 +1,30 @@
+.euiBetaBadge {
+  display: inline-block;
+  padding: 0 $euiSizeL;
+  border-radius: $euiSizeL;
+  background-color: $euiColorAccent;
+  vertical-align: super; // if displayed inline with text
+  @include euiSlightShadowHover($euiColorAccent);
+
+  font-size: $euiFontSizeXS;
+  font-weight: $euiFontWeightBold;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: chooseLightOrDarkText($euiColorAccent, $euiColorEmptyShade, $euiColorFullShade);
+  line-height: $euiSizeL;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: default;
+
+  // When it's just an icon, make it a circle
+  &.euiBetaBadge--iconOnly {
+    padding: 0;
+    width: $euiSizeL;
+
+    .euiBetaBadge__icon {
+      position: relative;
+      margin-top: -1px;
+    }
+  }
+}

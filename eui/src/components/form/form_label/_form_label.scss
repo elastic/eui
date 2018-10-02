@@ -1,0 +1,21 @@
+/**
+ * 1. Focused state overrides invalid state.
+ */
+.euiFormLabel {
+  font-size: $euiFontSizeXS;
+  margin-bottom: $euiSizeS;
+  transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  font-weight: $euiFontWeightMedium;
+
+  &.euiFormLabel-isInvalid {
+    color: $euiColorDanger; /* 1 */
+  }
+
+  &.euiFormLabel-isFocused {
+    color: $euiColorPrimary; /* 1 */
+  }
+}
+
+.euiFormLabel[for] {
+  cursor: pointer;
+}

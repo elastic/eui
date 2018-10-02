@@ -1,0 +1,1 @@
+export { default as EuiWindowEvent } from './window_event';

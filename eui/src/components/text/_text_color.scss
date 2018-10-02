@@ -1,0 +1,23 @@
+
+$textColors: (
+  default: $euiTextColor,
+  subdued: $euiColorDarkShade,
+  secondary: $euiColorSecondary,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost,
+);
+
+// Create color modifiers based on the map
+@each $name, $color in $textColors {
+  .euiTextColor--#{$name} {
+
+    // The below function makes sure the color is accessible on our default background.
+    color: makeHighContrastColor($color, $euiColorEmptyShade);
+
+    @if $name == "ghost" {
+      color: $color !important;
+    }
+  }
+}

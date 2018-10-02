@@ -1,0 +1,69 @@
+.euiCallOut {
+  padding: $euiSize;
+  border-left: $euiSizeXS / 2 solid transparent;
+
+  &.euiCallOut--small {
+    padding: $euiSizeS;
+  }
+}
+
+// Modifier naming and colors.
+$callOutTypes: (
+  primary: $euiColorPrimary,
+  success: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+);
+
+// Create button modifiders based upon the map.
+@each $name, $color in $callOutTypes {
+  .euiCallOut--#{$name} {
+    $backgroundColor: tintOrShade($color, 90%, 70%);
+    $textColor: makeHighContrastColor($color, $backgroundColor);
+
+    border-color: $color;
+    background-color: $backgroundColor;
+
+    .euiCallOutHeader__icon {
+      fill: $textColor;
+    }
+
+    .euiCallOutHeader__title {
+      color: $textColor;
+    }
+  }
+}
+
+/**
+ * 1. Align icon with first line of title text if it wraps.
+ * 2. If content exists under the header, space it appropriately.
+ * 3. Apply margin to all but last item in the flex.
+ */
+.euiCallOutHeader {
+  @include euiTitle("xs");
+  font-weight: $euiFontWeightRegular;
+  display: flex;
+  align-items: baseline; /* 1 */
+
+  + * {
+    margin-top: $euiSizeS; /* 1 */
+  }
+
+  > * + * {
+    margin-left: $euiSizeS; /* 3 */
+  }
+
+  // smaller font size for headers in small callout
+  .euiCallOut--small & {
+    @include euiTitle("xxs");
+    font-weight: $euiFontWeightRegular;
+  }
+}
+
+  /**
+   * 1. Vertically center icon with first line of title.
+   */
+  .euiCallOutHeader__icon {
+    flex: 0 0 auto;
+    transform: translateY(2px); /* 1 */
+  }

@@ -1,0 +1,66 @@
+.euiIcon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+
+  &:focus {
+    opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
+    background: $euiFocusBackgroundColor;
+  }
+}
+
+.euiIcon--text {
+  fill: $euiTextColor;
+}
+
+.euiIcon--subdued {
+  fill: $euiColorMediumShade;
+}
+
+.euiIcon--primary {
+  fill: $euiColorPrimary;
+}
+
+.euiIcon--secondary {
+  fill: $euiColorSecondary;
+}
+
+.euiIcon--success {
+  fill: $euiColorSuccess;
+}
+
+.euiIcon--accent {
+  fill: $euiColorAccent;
+}
+
+.euiIcon--warning {
+  fill: $euiColorWarning;
+}
+
+.euiIcon--danger {
+  fill: $euiColorDanger;
+}
+
+.euiIcon--ghost {
+  fill: $euiColorGhost;
+}
+
+.euiIcon--small {
+  @include size($euiSizeM);
+}
+
+.euiIcon--medium {
+  @include size($euiSize);
+}
+
+.euiIcon--large {
+  @include size($euiSizeL);
+}
+
+.euiIcon--xLarge {
+  @include size($euiSizeXL);
+}
+
+.euiIcon--xxLarge {
+  @include size($euiSizeXXL);
+}

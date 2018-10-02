@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDescriptionList is rendered 1`] = `
+<dl
+  aria-label="aria-label"
+  class="euiDescriptionList euiDescriptionList--row testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  Content
+</dl>
+`;
+
+exports[`EuiDescriptionList props align center is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--center"
+/>
+`;
+
+exports[`EuiDescriptionList props align left is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row"
+/>
+`;
+
+exports[`EuiDescriptionList props compressed is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--compressed"
+/>
+`;
+
+exports[`EuiDescriptionList props listItems is rendered as strings and elements 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row"
+>
+  <dt
+    class="euiDescriptionList__title"
+  >
+    Title 1
+  </dt>
+  <dd
+    class="euiDescriptionList__description"
+  >
+    Description 1
+  </dd>
+  <dt
+    class="euiDescriptionList__title"
+  >
+    <em>
+      Title 2
+    </em>
+  </dt>
+  <dd
+    class="euiDescriptionList__description"
+  >
+    <code>
+      Description 2
+    </code>
+  </dd>
+  <dt
+    class="euiDescriptionList__title"
+  >
+    Title 3
+  </dt>
+  <dd
+    class="euiDescriptionList__description"
+  >
+    Description 3
+  </dd>
+</dl>
+`;
+
+exports[`EuiDescriptionList props type column is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--column"
+/>
+`;
+
+exports[`EuiDescriptionList props type inline is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--inline"
+/>
+`;
+
+exports[`EuiDescriptionList props type row is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row"
+/>
+`;

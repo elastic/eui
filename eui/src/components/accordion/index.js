@@ -1,0 +1,3 @@
+export {
+  EuiAccordion,
+} from './accordion';

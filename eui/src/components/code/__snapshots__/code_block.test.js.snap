@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCodeBlock renders a code block 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+>
+  <pre
+    class="euiCodeBlock__pre"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code"
+      data-test-subj="test subject string"
+    >
+      var some = 'code';
+console.log(some);
+    </code>
+  </pre>
+</div>
+`;

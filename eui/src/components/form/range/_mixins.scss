@@ -1,0 +1,40 @@
+@mixin euiRange__trackSize {
+  height: $euiRangeTrackHeight;
+  transition: all $euiAnimSpeedNormal ease-in;
+  width: $euiRangeTrackWidth;
+}
+
+@mixin euiRange__track__perBrowser {
+  &::-webkit-slider-runnable-track { @content; }
+  &::-moz-range-track { @content; }
+  &::-ms-fill-lower { @content; }
+  &::-ms-fill-upper { @content; }
+}
+
+@mixin euiRange__thumb__perBrowser {
+  &::-webkit-slider-thumb { @content; }
+  &::-moz-range-thumb { @content; }
+  &::-ms-thumb { @content; }
+}
+
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+
+@mixin track {
+  @warn "track() has been deprecated. Please use euiRange__trackSize() instead.";
+  cursor: pointer;
+  height: $euiRangeTrackHeight;
+  transition: all $euiAnimSpeedNormal ease-in;
+  width: $euiRangeTrackWidth;
+}
+
+@mixin thumb {
+  @warn "thumb() has been deprecated and styles moved to directly within the range selector.";
+  cursor: pointer;
+  @include euiCustomControl($type: 'round');
+  padding: 0;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbWidth;
+}

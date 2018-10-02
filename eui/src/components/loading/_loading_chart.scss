@@ -1,0 +1,93 @@
+.euiLoadingChart {
+  height: 32px;
+  z-index: 500;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.euiLoadingChart__bar {
+  height: 100%;
+  width: 8px;
+  display: inline-block;
+  float: left;
+  margin-bottom: -16px;
+  margin-left: 2px;
+  animation: euiLoadingChart 1s infinite;
+
+  &:nth-child(1) {
+    background-color: $euiColorPrimary;
+  }
+
+  &:nth-child(2) {
+    background-color: $euiColorSecondary;
+    animation-delay: .1s;
+  }
+
+  &:nth-child(3) {
+    background-color: $euiColorAccent;
+    animation-delay: .2s;
+  }
+
+  &:nth-child(4) {
+    background-color: $euiColorDarkestShade;
+    animation-delay: .3s;
+  }
+}
+
+.euiLoadingChart--mono {
+  .euiLoadingChart__bar {
+    &:nth-child(1) {
+      background-color: $euiColorLightShade;
+    }
+    &:nth-child(2) {
+      background-color: darken($euiColorLightShade, 4%);
+    }
+    &:nth-child(3) {
+      background-color: darken($euiColorLightShade, 8%);
+    }
+    &:nth-child(4) {
+      background-color: darken($euiColorLightShade, 12%);
+    }
+  }
+}
+
+.euiLoadingChart--medium {
+  height: $euiSize;
+  > div {
+    width: $euiSizeXS / 2;
+    margin-left: $euiSizeXS / 2;
+    margin-bottom: $euiSizeS;
+  }
+}
+
+.euiLoadingChart--large {
+  height: $euiSizeL;
+  > div {
+    width: $euiSizeXS;
+    margin-left: $euiSizeXS / 2;
+    margin-bottom: $euiSizeL / 2;
+  }
+}
+
+.euiLoadingChart--xLarge {
+  height: $euiSizeXL;
+  > div {
+    width: $euiSizeS;
+    margin-left: $euiSizeXS;
+    margin-bottom: $euiSizeXL / 2;
+  }
+}
+
+@keyframes euiLoadingChart {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(66%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

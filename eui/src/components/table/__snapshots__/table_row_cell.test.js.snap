@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`align defaults to left 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`align renders center when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignCenter"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`align renders right when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--alignRight"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`children's className merges new classnames into existing ones 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+  >
+    <div
+      class="testClass euiTableCellContent__hoverItem"
+    />
+  </div>
+</td>
+`;
+
+exports[`renders EuiTableRowCell 1`] = `
+<td
+  aria-label="aria-label"
+  class="euiTableRowCell"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiTableCellContent testClass1 testClass2"
+  >
+    <span
+      class="euiTableCellContent__text"
+    >
+      children
+    </span>
+  </div>
+</td>
+`;
+
+exports[`textOnly defaults to true 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`textOnly is rendered when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--overflowingContent"
+  />
+</td>
+`;
+
+exports[`truncateText defaults to false 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;
+
+exports[`truncateText is rendered when specified 1`] = `
+<td
+  class="euiTableRowCell"
+>
+  <div
+    class="euiTableCellContent euiTableCellContent--truncateText"
+  >
+    <span
+      class="euiTableCellContent__text"
+    />
+  </div>
+</td>
+`;

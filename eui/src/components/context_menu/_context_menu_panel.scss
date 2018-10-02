@@ -1,0 +1,83 @@
+@import '../popover/mixins';
+
+.euiContextMenuPanel {
+  width: 100%;
+  visibility: visible;
+
+  &.euiContextMenuPanel-txInLeft {
+    pointer-events: none;
+    animation: euiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+
+  &.euiContextMenuPanel-txOutLeft {
+    pointer-events: none;
+    animation: euiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+
+  &.euiContextMenuPanel-txInRight {
+    pointer-events: none;
+    animation: euiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+
+  &.euiContextMenuPanel-txOutRight {
+    pointer-events: none;
+    animation: euiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
+  }
+}
+
+.euiContextMenuPanel--next {
+  transform: translateX($euiContextMenuWidth);
+  visibility: hidden;
+}
+
+.euiContextMenuPanel--previous {
+  transform: translateX(-$euiContextMenuWidth);
+  visibility: hidden;
+}
+
+.euiContextMenuPanelTitle {
+  @include euiPopoverTitle;
+
+  width: 100%;
+  text-align: left;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
+
+@keyframes euiContextMenuPanelTxInLeft {
+  0% {
+    transform: translateX($euiContextMenuWidth);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes euiContextMenuPanelTxOutLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-$euiContextMenuWidth);
+  }
+}
+
+@keyframes euiContextMenuPanelTxInRight {
+  0% {
+    transform: translateX(-$euiContextMenuWidth);;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes euiContextMenuPanelTxOutRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX($euiContextMenuWidth);
+  }
+}

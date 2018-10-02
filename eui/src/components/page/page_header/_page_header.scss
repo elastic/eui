@@ -1,0 +1,18 @@
+.euiPageHeader {
+  margin-bottom: $euiSize;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@include euiBreakpoint('xs','s') {
+  .euiPageHeader {
+    padding: $euiSize 0;
+    margin-bottom: 0;
+  }
+
+  .euiPageHeader--responsive {
+    flex-direction: column;
+  }
+}

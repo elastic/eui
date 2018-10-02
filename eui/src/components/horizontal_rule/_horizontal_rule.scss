@@ -1,0 +1,38 @@
+.euiHorizontalRule {
+  border: none;
+  // Sometimes Chrome "calculates" an element height of e.g. 0.990px, which it
+  // rounds down, thereby hiding the element.
+  height: 1.1px;
+  background-color: $euiBorderColor;
+
+  &.euiHorizontalRule--full {
+    width: 100%;
+  }
+
+  &.euiHorizontalRule--half {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.euiHorizontalRule--quarter {
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+$ruleMargins: (
+  marginXSmall: $euiSizeS,
+  marginSmall: $euiSizeM,
+  marginMedium: $euiSize,
+  marginLarge: $euiSizeL,
+  marginXLarge: $euiSizeXL,
+  marginXXLarge: $euiSizeXXL,
+);
+
+@each $name, $size in $ruleMargins {
+  .euiHorizontalRule--#{$name} {
+    margin: $size 0;
+  }
+}
