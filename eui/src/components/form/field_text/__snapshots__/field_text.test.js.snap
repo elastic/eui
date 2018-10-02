@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFieldText is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  icon="foo"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      aria-label="aria-label"
+      class="euiFieldText testClass1 testClass2 euiFieldText--withIcon"
+      data-test-subj="test subject string"
+      id="1"
+      name="elastic"
+      placeholder="Placeholder"
+      type="text"
+      value="1"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldText props fullWidth is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="true"
+  isloading="false"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldText euiFieldText--fullWidth"
+      type="text"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldText props isInvalid is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  isloading="false"
+>
+  <eui-validatable-control
+    isinvalid="true"
+  >
+    <input
+      class="euiFieldText"
+      type="text"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
+exports[`EuiFieldText props isLoading is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  isloading="true"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldText euiFieldText-isLoading"
+      type="text"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;

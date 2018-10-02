@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultItemAction render - button 1`] = `
+<EuiToolTip
+  content="action 1"
+  delay="long"
+  position="top"
+>
+  <EuiButtonEmpty
+    color="primary"
+    flush="right"
+    iconSide="left"
+    isDisabled={false}
+    onClick={[Function]}
+    size="s"
+    type="button"
+  >
+    action1
+  </EuiButtonEmpty>
+</EuiToolTip>
+`;
+
+exports[`DefaultItemAction render - icon 1`] = `
+<EuiToolTip
+  content="action 1"
+  delay="long"
+  position="top"
+>
+  <EuiButtonIcon
+    aria-label="action1"
+    color="primary"
+    iconSize="m"
+    iconType="trash"
+    isDisabled={false}
+    onClick={[Function]}
+    type="button"
+  />
+</EuiToolTip>
+`;

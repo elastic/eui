@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTitle is rendered 1`] = `
+<h1
+  aria-label="aria-label"
+  class="euiTitle euiTitle--medium testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  Title
+</h1>
+`;

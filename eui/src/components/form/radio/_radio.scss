@@ -1,0 +1,82 @@
+.euiRadio {
+  position: relative;
+
+  .euiRadio__input {
+    @include euiScreenReaderOnly;
+
+    ~ .euiRadio__label {
+      display: block;
+      padding-left: ($euiRadioSize * 1.5);
+      line-height: $euiSizeL;
+      font-size: $euiFontSizeS;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    + .euiRadio__circle {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: ($euiSizeL - $euiRadioSize)/2 - 1px;
+      @include euiCustomControl($type: 'round', $size: $euiRadioSize);
+    }
+
+    &:checked {
+      + .euiRadio__circle {
+        @include euiCustomControl--selected($type: 'dot');
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed !important;
+
+      ~ .euiRadio__label {
+        color: $euiFormControlDisabledColor;
+        cursor: not-allowed !important;
+      }
+
+      + .euiRadio__circle {
+        @include euiCustomControl--disabled;
+      }
+    }
+
+    &:checked[disabled] {
+      + .euiRadio__circle {
+        @include euiCustomControl--disabled($type: 'dot');
+      }
+    }
+
+    &:focus,
+    &:active:not(:disabled) {
+      + .euiRadio__circle {
+        @include euiCustomControl--focused;
+      }
+    }
+  }
+
+  /**
+   * 1. Float above the visual radio and match its dimension, so that when users try to click it
+   *    they actually click this input.
+   */
+
+  &.euiRadio--inList,
+  &.euiRadio--noLabel {
+    min-height: $euiRadioSize;
+    min-width: $euiRadioSize;
+
+    .euiRadio__circle {
+      top: 0;
+    }
+
+    .euiRadio__input {
+      position: absolute; /* 1 */
+      opacity: 0; /* 1 */
+      @include size($euiRadioSize); /* 1 */
+      z-index: 1; /* 1 */
+      margin: 0; /* 1 */
+      left: 0; /* 1 */
+      cursor: pointer;
+    }
+  }
+}

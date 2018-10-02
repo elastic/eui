@@ -1,0 +1,12 @@
+.euiFieldText {
+  @include euiFormControlStyle;
+  @include euiFormControlWithIcon($isIconOptional: true);
+  @include euiFormControlIsLoading;
+
+  /* Invalid state normally comes from :invalid, but several components
+  /* like EuiDatePicker need it toggled through an extra class.
+  */
+  &.euiFieldText-isInvalid {
+    @include euiFormControlInvalidStyle;
+  }
+}

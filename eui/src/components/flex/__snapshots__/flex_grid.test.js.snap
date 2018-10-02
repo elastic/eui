@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFlexGrid is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <h2>
+    My Child
+  </h2>
+</div>
+`;
+
+exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 1 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--single euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 2 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 3 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--fourths euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterMedium euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize s is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterSmall euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props responsive is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+/>
+`;

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EuiColorPicker 1`] = `
+<div
+  class="euiColorPicker testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiColorPicker__preview"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiColorPicker__swatch"
+      data-test-subj="colorSwatch"
+      style="background:#ffeedd"
+    />
+    <div
+      aria-label="Color selection is #ffeedd"
+      class="euiColorPicker__label"
+    >
+      #ffeedd
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
+<div
+  class="euiColorPicker testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiColorPicker__preview"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiColorPicker__swatch euiColorPicker__emptySwatch"
+      data-test-subj="colorSwatch"
+      style="background:"
+    >
+      <svg>
+        <line
+          x1="0"
+          x2="100%"
+          y1="100%"
+          y2="0"
+        />
+      </svg>
+    </div>
+    <div
+      aria-label="Color selection is (transparent)"
+      class="euiColorPicker__label"
+    >
+      (transparent)
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders EuiColorPicker without a color label when showColorLabel is false 1`] = `
+<div
+  class="euiColorPicker testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiColorPicker__preview"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiColorPicker__swatch"
+      data-test-subj="colorSwatch"
+      style="background:#ffffff"
+    />
+  </div>
+</div>
+`;

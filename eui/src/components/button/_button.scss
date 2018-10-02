@@ -1,0 +1,146 @@
+@import '../loading/mixins';
+
+// Our base button
+.euiButton {
+  @include euiButton;
+  @include euiSlightShadow;
+
+  border-radius: $euiBorderRadius;
+  min-width: $euiButtonMinWidth;
+
+  .euiButton__content {
+    @include euiButtonContent;
+    padding: 0 ($euiSize - $euiSizeXS);
+  }
+
+  .euiButton__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &.euiButton--small {
+    height: $euiButtonHeightSmall;
+    line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
+  }
+
+  &.euiButton--iconRight {
+    .euiButton__content {
+      @include euiButtonContent($isReverse: true);
+    }
+  }
+
+  &:hover,
+  &:active {
+    @include euiSlightShadowHover;
+  }
+
+  &:enabled {
+    &:hover, &:focus {
+      background-color: transparentize($euiColorPrimary, .9);
+    }
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    border-color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiButton__content {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    &.euiButton--fill {
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
+
+      &:hover, &:focus {
+        background-color: $euiButtonColorDisabled;
+        border-color: $euiButtonColorDisabled;
+      }
+    }
+
+    &:hover, &:focus {
+      @include euiSlightShadow;
+      text-decoration: none;
+    }
+  }
+}
+
+// Modifier naming and colors.
+$buttonTypes: (
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
+  text: $euiColorDarkShade, // Reserved for special use cases
+);
+
+// Create button modifiers based upon the map.
+@each $name, $color in $buttonTypes {
+  .euiButton--#{$name} {
+
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
+    } @else {
+      // Other colors need to check their contrast against the page background color.
+      color: makeHighContrastColor($color, $euiColorEmptyShade);
+    }
+
+    border-color: $color;
+
+    &.euiButton--fill {
+      background-color: $color;
+      border-color: $color;
+
+      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000);
+
+      color: $fillTextColor;
+
+      &:enabled {
+        &:hover, &:focus {
+          background-color: darken($color, 5%);
+          border-color: darken($color, 5%);
+        }
+      }
+
+      &:disabled .euiButton__spinner {
+        border-color: euiLoadingSpinnerBorderColors(transparentize($fillTextColor, .3));
+      }
+    }
+
+    &:enabled {
+      $shadowColor: $euiShadowColor;
+      @if ($name == 'ghost') {
+        $shadowColor: #000;
+      } @else if (lightness($euiTextColor) < 50) {
+        // Only if this is the light theme do we use the button variant color to colorize the shadow
+        $shadowColor: desaturate($color, 60%);
+      }
+
+      @include euiSlightShadow($shadowColor);
+
+      &:hover, &:focus {
+        @include euiSlightShadowHover($shadowColor);
+        background-color: transparentize($color, .9);
+
+        @if ($name == 'disabled') {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:focus {
+      @if ($name == 'ghost') {
+        @include euiSlightShadow(#000);
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHeaderLink is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderLink testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;

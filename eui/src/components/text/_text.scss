@@ -1,0 +1,237 @@
+// This should only be used for .euiText, therefore it's not included in a separate mixin file
+@mixin euiScaleText($baseFontSize) {
+  $baseLineHeightMultiplier: $baseFontSize/2;
+  line-height: convertToRem($baseLineHeightMultiplier*3);
+
+  p,
+  ul,
+  ol,
+  dl,
+  blockquote,
+  img,
+  pre {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
+  }
+
+  ul, ol {
+    margin-left: convertToRem($baseLineHeightMultiplier * 3);
+  }
+
+  blockquote {
+    padding:  convertToRem($baseFontSize * 1.5);
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 4));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: convertToRem($baseLineHeightMultiplier * 1);
+  }
+
+  dd + dt {
+    margin-top: convertToRem($baseLineHeightMultiplier * 2);
+  }
+
+  * + h2,
+  * + h3,
+  * + h4,
+  * + h5,
+  * + h6 {
+    margin-top: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  h1 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 1));
+    line-height: convertToRem($baseLineHeightMultiplier * 6);
+  }
+
+  h2 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 2));
+    line-height: convertToRem($baseLineHeightMultiplier * 5);
+  }
+
+  h3 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 3));
+    line-height: convertToRem($baseLineHeightMultiplier * 4);
+  }
+
+  h4,
+  dt,
+  dl.eui-definitionListReverse dd {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
+    line-height: convertToRem($baseLineHeightMultiplier * 3);
+  }
+
+  dl.eui-definitionListReverse dt {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
+    color: $euiTextColor;
+  }
+
+  h5 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
+  }
+
+  h6 {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
+    line-height: convertToRem($baseLineHeightMultiplier * 2);
+  }
+
+  small {
+    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+  }
+
+  pre {
+    padding: $baseLineHeightMultiplier*2;
+  }
+
+  code {
+    // Setting the font size in rem's ensure it doesn't compound
+    // the 90% set by euiCodeBlock
+    font-size: convertToRem($baseFontSize * .9);
+  }
+}
+
+.euiText {
+  @include euiText;
+  @include euiFontSize;
+  // The euiText mixin forces a color. Since euiText is usually a child
+  // of other styling concerns, we should inherit their coloring. The default
+  // coloring will likely coming from the reset.scss anyway.
+  color: inherit;
+
+  a {
+    color: $euiLinkColor;
+
+    &:hover {
+      color: darken($euiLinkColor, 10%);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      text-decoration: underline;
+      outline: solid 3px transparentize($euiLinkColor, .9);
+      background-color: transparentize($euiLinkColor, .9);
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  blockquote {
+    position: relative;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Georgia,Times,Times New Roman,serif;
+    font-style: italic;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      content: "";
+      height: 2px;
+      width: 50%;
+      right: 0;
+      transform: translateX(-50%);
+      background: $euiColorDarkShade;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
+  }
+
+  h1 {
+    @include euiTitle("l");
+  }
+
+  h2 {
+    @include euiTitle("m");
+  }
+
+  h3 {
+    @include euiTitle("s");
+  }
+
+  h4,
+  dt {
+    @include euiTitle("xs");
+  }
+
+  h5 {
+    @include euiTitle("xxs");
+  }
+
+  h6 {
+    @include euiTitle("xxxs");
+    text-transform: uppercase;
+  }
+
+  pre {
+    white-space: pre-wrap;
+  }
+
+  pre,
+  pre code {
+    display: block;
+  }
+
+  pre,
+  code {
+    background: $euiCodeBlockBackgroundColor;
+    color: $euiCodeBlockColor;
+  }
+
+  // unset font-size from euiCodeBlock so it doesn't doubly add 90%
+
+  code {
+    display: inline-block; // ensures background stretches the full line-height
+    font-family: $euiCodeFontFamily;
+    font-weight: $euiFontWeightRegular;
+  }
+
+  @include euiScaleText($euiFontSize);
+
+  &.euiText--constrainedWidth {
+    max-width: $euiTextConstrainedMaxWidth;
+    // If the max-width is way too short of the width of the container,
+    // at least make it 2/3 of it's parent
+    min-width: 75%;
+  }
+
+  &.euiText--small {
+    @include fontSize($euiFontSizeS);
+    @include euiScaleText($euiFontSizeS);
+  }
+
+  &.euiText--extraSmall {
+    @include fontSize($euiFontSizeXS);
+    @include euiScaleText($euiFontSizeXS);
+  }
+
+  > :last-child,
+  .euiTextColor > :last-child {
+    margin-bottom: 0 !important;
+  }
+}

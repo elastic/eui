@@ -1,0 +1,89 @@
+/**
+ * 1. Accounts for the border
+ */
+.euiBadge {
+  font-size: $euiFontSizeXS;
+  font-weight: $euiFontWeightMedium;
+  line-height: $euiSize + 2px; /* 1 */
+  display: inline-block;
+  text-decoration: none;
+  box-sizing: content-box;
+  border-radius: $euiBorderRadius / 2;
+  border: solid 1px transparent;
+  padding: 0 $euiSizeS;
+  background-color: transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+
+  + .euiBadge {
+    margin-left: $euiSizeXS;
+  }
+
+  .euiBadge__content {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .euiBadge__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+  }
+
+  &:focus {
+    @include euiFocusRing("small");
+  }
+
+  .euiBadge__icon {
+    flex: 0 0 auto;
+    margin-right: $euiSizeXS;
+
+    &:focus {
+      background-color: rgba(255,255,255,.8);
+      color: #000;
+      border-radius: 2px;
+    }
+  }
+
+  &.euiBadge--iconRight .euiBadge__content {
+    flex-direction: row-reverse;
+
+    .euiBadge__icon {
+      margin-left: $euiSizeXS;
+      margin-right: 0;
+    }
+  }
+}
+
+
+// Modifier naming and colors.
+$badgeTypes: (
+  default: $euiColorLightShade,
+  primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
+  secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
+  warning: lighten(desaturate($euiColorWarning, 30%), 20%),
+  danger: lighten(desaturate($euiColorDanger, 40%), 40%),
+  accent: lighten(desaturate($euiColorAccent, 40%), 40%),
+);
+
+@each $name, $color in $badgeTypes {
+  .euiBadge--#{$name} {
+    background-color: $color;
+    @if (lightness($color) > 50) {
+      color: #000;
+    } @else {
+      color: #FFF;
+    }
+  }
+}
+
+// Hollow has a border and is mostly used for autocompleters.
+.euiBadge--hollow {
+  background-color: $euiColorEmptyShade;
+  border-color: $euiBorderColor;
+  color: $euiTextColor;
+}

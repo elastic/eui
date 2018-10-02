@@ -1,0 +1,33 @@
+.euiBottomBar {
+  background: tintOrShade($euiColorFullShade, 25%, 90%);
+  color: $euiColorEmptyShade;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
+  z-index: $euiZNavigation;
+
+  &.euiBottomBar--paddingSmall {
+    padding: $euiSizeS;
+  }
+
+  &.euiBottomBar--paddingMedium {
+    padding: $euiSize;
+  }
+
+  &.euiBottomBar--paddingLarge {
+    padding: $euiSizeL;
+  }
+}
+
+@keyframes euiBottomBarAppear {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(00%);
+    opacity: 1;
+  }
+}

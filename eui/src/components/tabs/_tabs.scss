@@ -1,0 +1,95 @@
+.euiTabs {
+  display: flex;
+  border-bottom: $euiBorderThin;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden; // don't scroll vertically when scrolling horizontally
+  @include euiScrollBar;
+
+  // Changing height of scrollbar so it sits flush with border
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  &.euiTabs--small {
+    .euiTab {
+      @include euiFontSizeS;
+      padding: $euiSizeS $euiSizeS;
+    }
+  }
+
+  &.euiTabs--expand {
+    .euiTab {
+      flex-grow: 1;
+      flex-basis: 0%;
+    }
+  }
+}
+
+.euiTab {
+  @include euiFontSize;
+
+  position: relative;
+  cursor: pointer;
+  padding: $euiSizeM $euiSize;
+  background-color: transparent;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  &:hover:not(.euiTab-isSelected) {
+    color: $euiTextColor;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    background-color: $euiFocusBackgroundColor;
+    text-decoration: underline;
+  }
+
+  &.euiTab-isDisabled {
+    color: $euiColorMediumShade;
+
+    &:hover {
+      cursor: not-allowed;
+      text-decoration: none;
+      color: $euiColorMediumShade;
+    }
+  }
+
+  &.euiTab-isSelected {
+    cursor: default;
+    color: $euiColorPrimary;
+
+    &:after {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      content: ' ';
+      width: 100%;
+      height: $euiBorderWidthThick;
+      background-color: $euiColorPrimary;
+      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
+    }
+  }
+
+}
+
+
+
+  .euiTab__content {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
+    transform: translateY(0);
+  }
+
+
+@keyframes euiTab {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

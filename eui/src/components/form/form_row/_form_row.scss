@@ -1,0 +1,37 @@
+/**
+ * 1. Coerce inline form elements to behave as block-level elements.
+ * 2. For inline forms, we need to add margin if the label doesn't exist.
+ */
+.euiFormRow {
+  display: flex; /* 1 */
+  flex-direction: column; /* 1 */
+  max-width: $euiFormMaxWidth;
+  padding-bottom: $euiSizeS;
+
+  + * {
+    margin-top: $euiSize;
+  }
+
+  &.euiFormRow--fullWidth {
+    max-width: 100%;
+  }
+
+  &.euiFormRow--hasEmptyLabelSpace {
+    margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
+    // the following ensure that contents that aren't inheritly the same height
+    // as inputs will align to the vertical center
+    min-height: $euiSizeXXL;
+    padding-bottom: 0;
+    justify-content: center;
+  }
+
+  &.euiFormRow--compressed {
+    + * {
+      margin-top: $euiSizeS;
+    }
+
+    .euiFormRow__text {
+      padding-top: $euiSizeM/2;
+    }
+  }
+}

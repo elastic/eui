@@ -1,0 +1,29 @@
+.euiLink {
+  @include euiLink;
+}
+
+$textColors: (
+  subdued: $euiColorDarkShade,
+  primary: $euiColorPrimary,
+  secondary: $euiColorSecondary,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: #FFF, // Ghost is special and a constant.
+);
+
+// Create color modifiers based on the map
+@each $name, $color in $textColors {
+  .euiLink.euiLink--#{$name} {
+    color: $color;
+
+    &:hover {
+      color: darken($color, 10%);
+    }
+
+    &:focus {
+      outline: solid 3px transparentize($color, .9);
+      background-color: transparentize($color, .9);
+    }
+  }
+}

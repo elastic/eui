@@ -1,0 +1,16 @@
+// --------------------------------------------------------------------------------------
+// EUI global variables
+// --------------------------------------------------------------------------------------
+// This module contains all global variables available within EUI. Every variable in this
+// document should be prefixed with $eui. This lets us know where the variable is
+// coming from when looking inside the individual component files. Any component local
+// variables should be declared at the top of those documents prefixed with $componentName.
+
+// Import order is important. Size and color..etc are used in other variables.
+@import 'size';
+@import 'colors';
+@import 'animations';
+@import 'typography';
+@import 'borders';
+@import 'shadows';
+@import 'z_index';

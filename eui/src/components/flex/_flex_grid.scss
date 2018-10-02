@@ -1,0 +1,53 @@
+.euiFlexGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+
+  > .euiFlexItem {
+    flex-grow: 0;
+
+    &.euiFlexItem--flexGrowZero {
+      flex-grow: 0 !important;
+      flex-basis: auto !important;
+    }
+  }
+}
+
+$gutterTypes: (
+  gutterSmall: $euiSizeS,
+  gutterMedium: $euiSize,
+  gutterLarge: $euiSizeL,
+  gutterXLarge: $euiSizeXL,
+);
+
+$fractions: (
+  fourths: 25%,
+  thirds: 33.3%,
+  halves: 50%,
+  single: 100%,
+);
+
+@each $gutterName, $gutterSize in $gutterTypes {
+  $halfGutterSize: $gutterSize * 0.5;
+
+  /**
+   * Uncouple the gutter margin from the column widths to support cases where we use a FlexGrid
+   * without columns.
+   */
+  .euiFlexGrid--#{$gutterName} {
+    margin: -$halfGutterSize;
+    align-items: stretch;
+
+    > .euiFlexItem {
+      margin: $halfGutterSize;
+    }
+  }
+
+  @each $fraction, $percentage in $fractions {
+    .euiFlexGrid--#{$gutterName}.euiFlexGrid--#{$fraction} {
+      > .euiFlexItem {
+        flex-basis: calc(#{$percentage} - #{$gutterSize});
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCode renders a code snippet 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+>
+  <code
+    aria-label="aria-label"
+    class="euiCodeBlock__code"
+    data-test-subj="test subject string"
+  >
+    var some = 'code';
+console.log(some);
+  </code>
+</span>
+`;

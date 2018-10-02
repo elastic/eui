@@ -1,0 +1,18 @@
+.guideSection {
+  & + .guideSection {
+    margin-top: $euiSizeXL*2;
+  }
+}
+
+.guideSection__space {
+  height: $euiSizeL;
+}
+
+.guideSectionPropsTable {
+  width: auto;
+  min-width: 50%;
+
+  th, td {
+    max-width: none;
+  }
+}

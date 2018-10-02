@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCheckboxGroup (mocked checkbox) disabled is rendered 1`] = `
+<div>
+  <eui_checkbox
+    checked=""
+    class="euiCheckboxGroup__item"
+    disabled=""
+    id="1"
+    label="kibana"
+  />
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    disabled=""
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
+
+exports[`EuiCheckboxGroup (mocked checkbox) idToSelectedMap is rendered 1`] = `
+<div>
+  <eui_checkbox
+    checked=""
+    class="euiCheckboxGroup__item"
+    id="1"
+    label="kibana"
+  />
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;
+
+exports[`EuiCheckboxGroup (mocked checkbox) is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiCheckboxGroup (mocked checkbox) options are rendered 1`] = `
+<div>
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    id="1"
+    label="kibana"
+  />
+  <eui_checkbox
+    class="euiCheckboxGroup__item"
+    id="2"
+    label="elastic"
+  />
+</div>
+`;

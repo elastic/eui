@@ -1,0 +1,8 @@
+extends:
+  - tslint:recommended
+
+rules:
+  object-literal-sort-keys: false
+  interface-name: false
+  no-default-export: true
+  quotemark: [true, "single", "jsx-double", "avoid-template", "avoid-escape"]

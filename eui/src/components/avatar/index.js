@@ -1,0 +1,3 @@
+export {
+  EuiAvatar,
+} from './avatar';

@@ -1,0 +1,57 @@
+// Helper mixins
+
+// Converting a normal hex color to RBG
+@function hexToRGB($color) {
+  @return 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
+}
+
+// Useful border shade when dealing with images of unknown color.
+@mixin innerBorder($type: 'dark', $borderRadius: 0, $alpha: .1) {
+
+  $color: rgba($euiColorDarkestShade, $alpha);
+
+  @if $type == 'light' {
+    $color: rgba($euiColorEmptyShade, $alpha);
+  }
+
+  position: relative;
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: $borderRadius;
+    content: "";
+    pointer-events: none;
+    border: 1px solid $color;
+  }
+}
+
+// Set scroll bar appearance on Chrome.
+@mixin euiScrollBar {
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($euiColorDarkShade, 0.5);
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-corner,
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+
+// Specifically target IE11, but not Edge.
+@mixin internetExplorerOnly {
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @content;
+  }
+}

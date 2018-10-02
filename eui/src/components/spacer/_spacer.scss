@@ -1,0 +1,14 @@
+$spacerSizes: (
+  xs: $euiSizeXS,
+  s: $euiSizeS,
+  m: $euiSize,
+  l: $euiSizeL,
+  xl: $euiSizeXL,
+  xxl: $euiSizeXXL,
+);
+
+@each $name, $size in $spacerSizes {
+  .euiSpacer--#{$name} {
+    height: $size;
+  }
+}

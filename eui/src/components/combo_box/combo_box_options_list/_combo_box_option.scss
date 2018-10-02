@@ -1,0 +1,34 @@
+.euiComboBoxOption {
+  font-size: $euiFontSizeS;
+  padding: $euiSizeXS $euiSizeS $euiSizeXS #{$euiSizeM + $euiSizeXS};
+  width: 100%;
+  text-align: left;
+  border: $euiBorderThin;
+  border-color: transparent;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    cursor: pointer;
+    color: $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+  }
+
+  &.euiComboBoxOption-isDisabled {
+    color: $euiColorMediumShade;
+    cursor: not-allowed;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+  .euiComboBoxOption__content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }

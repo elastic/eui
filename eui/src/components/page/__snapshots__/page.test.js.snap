@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPage is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPage testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPage restrict width can be set to a custom number 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPage euiPage--restrictWidth-custom testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="max-width:1024px"
+/>
+`;
+
+exports[`EuiPage restrict width can be set to a custom value and measurement 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPage euiPage--restrictWidth-custom testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="max-width:24rem"
+/>
+`;
+
+exports[`EuiPage restrict width can be set to a default 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPage euiPage--restrictWidth-default testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiButtonToggle is rendered 1`] = `
+<div
+  class="euiToggle euiButtonToggle__wrapper"
+>
+  <input
+    aria-label="Label me"
+    class="euiToggle__input euiButtonToggle__input"
+    title="Label me"
+    type="checkbox"
+  />
+  <button
+    aria-label="aria-label"
+    class="euiButton euiButton--primary euiButtonToggle testClass1 testClass2"
+    data-test-subj="test subject string"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="euiButton__content"
+    >
+      <span
+        class="euiButton__text"
+      >
+        Label me
+      </span>
+    </span>
+  </button>
+</div>
+`;

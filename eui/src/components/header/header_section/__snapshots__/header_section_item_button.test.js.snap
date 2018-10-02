@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHeaderSectionItemButton is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiHeaderSectionItem__button testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+/>
+`;
+
+exports[`EuiHeaderSectionItemButton renders children 1`] = `
+<button
+  class="euiHeaderSectionItem__button"
+  type="button"
+>
+  <span>
+    Ahoy!
+  </span>
+</button>
+`;

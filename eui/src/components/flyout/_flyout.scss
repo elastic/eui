@@ -1,0 +1,87 @@
+.euiFlyout {
+  border-left: $euiBorderThin;
+  @include euiBottomShadowLarge($adjustBorders: true);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $euiZModal;
+  background: $euiColorEmptyShade;
+  animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+// The actual size of the X button in pixels is a bit fuzzy because of all the
+// button padding so there is some pixel pushing here.
+.euiFlyout__closeButton {
+  background-color: transparentize($euiColorEmptyShade, .1);
+  position: absolute;
+  right: $euiSizeL - 7px;
+  top: $euiSizeL - 7px;
+  z-index: 3;
+}
+
+/**
+ * 1. Calculating the minimum width based on the screen takover breakpoint
+ */
+$flyoutSizes: (
+  "small": (
+    min: map-get($euiBreakpoints, "m") * .5, /* 1 */
+    width: 25vw,
+    max: map-get($euiBreakpoints, "s"),
+  ),
+  "medium": (
+    min:  map-get($euiBreakpoints, "m") * .7, /* 1 */
+    width: 50vw,
+    max: map-get($euiBreakpoints, "m"),
+  ),
+  "large": (
+    min:  map-get($euiBreakpoints, "m") * .9, /* 1 */
+    width: 75vw,
+    max: map-get($euiBreakpoints, "l"),
+  )
+);
+
+@each $name, $sizing in $flyoutSizes {
+  .euiFlyout--#{$name} {
+    min-width: map-get($sizing, min);
+    width: map-get($sizing, width);
+
+    &.euiFlyout--maxWidth-default {
+      max-width: map-get($sizing, max);
+    }
+  }
+}
+
+@keyframes euiFlyout {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+/**
+ * 1. Only small flyouts should NOT takover the entire screen
+ * 2. If a custom maxWidth is set, we need to override it.
+ */
+@include euiBreakpoint('xs','s') {
+  .euiFlyout:not(.euiFlyout--small) {  /* 1 */
+    left: 0;
+    min-width: 0;
+    width: auto;
+    border-left: none;
+    max-width: 100vw !important; /* 2 */
+  }
+
+  .euiFlyout--small {
+    width: 80vw; // ensure that it's only partially showing the main content
+    min-width: 0; /* 1 */
+    max-width: 80vw !important; /* 2 */
+  }
+}

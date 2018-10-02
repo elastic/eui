@@ -1,0 +1,30 @@
+.euiPageContent {
+  width: 100%;
+
+  &.euiPageContent--verticalCenter {
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-grow: 0;
+  }
+
+  &.euiPageContent--horizontalCenter {
+    width: auto;
+    max-width: 100%; // Fixes IE
+    margin-left: auto;
+    margin-right: auto;
+    flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
+  }
+
+  /** TEMPORARILY REMOVING
+  // At small screens, the content extends edge to edge, so remove the side borders and shadow
+  @include euiBreakpoint('xs', 's') {
+    .euiPanel:not(.euiPageContent--horizontalCenter) { // Override panel styles without the need for !important
+      // border-radius: 0;
+      // border-left: none;
+      // border-right: none;
+      // box-shadow: none;
+    }
+  }
+  **/
+}

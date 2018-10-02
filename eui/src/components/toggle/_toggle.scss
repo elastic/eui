@@ -1,0 +1,13 @@
+@import '../form/switch/mixins';
+
+.euiToggle {
+  position: relative;
+
+  .euiToggle__input {
+    @include euiHiddenSelectableInput;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

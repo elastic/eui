@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
+<EuiFieldSearch
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  compressed={false}
+  data-test-subj="test subject string"
+  defaultValue=""
+  fullWidth={true}
+  incremental={true}
+  inputRef={[Function]}
+  isLoading={false}
+  onSearch={[Function]}
+  placeholder="..."
+/>
+`;
+
+exports[`EuiSearchBox render - no config 1`] = `
+<EuiFieldSearch
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  compressed={false}
+  data-test-subj="test subject string"
+  defaultValue=""
+  fullWidth={true}
+  incremental={false}
+  inputRef={[Function]}
+  isLoading={false}
+  onSearch={[Function]}
+  placeholder="Search..."
+/>
+`;

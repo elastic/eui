@@ -1,0 +1,18 @@
+// Colors
+$euiFocusRingColor: rgba($euiColorPrimary, .3);
+$euiFocusRingAnimStartColor: rgba($euiColorPrimary, 0);
+
+// Sizing
+$euiFocusRingSize: 2px;
+$euiFocusRingSizeLarge: 4px;
+
+@mixin euiFocusRing($size: "small") {
+  @if $size == "large" {
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge;
+  } @else {
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+  }
+}
+
+// Keyframe animation declarations can be found in
+// utility/animations.scss

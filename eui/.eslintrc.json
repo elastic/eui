@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "import/resolver": {
+       "node": {
+        "extensions": [".js"]
+      },
+      "webpack": {
+        "config": "./src-docs/webpack.config.js"
+      }
+    }
+  },
+  "extends": [
+    "prettier",
+    "@elastic/eslint-config-kibana"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prefer-template": "error"
+  },
+  "env": {
+    "jest": true
+  }
+}

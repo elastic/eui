@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`astToEsQueryString ast - '' 1`] = `""`;
+
+exports[`astToEsQueryString ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `"-group:es +group:kibana -group:beats +group:logstash"`;
+
+exports[`astToEsQueryString ast - 'is:online group:kibana john' 1`] = `"+online:true +group:kibana +john"`;
+
+exports[`astToEsQueryString ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `"+john -doe +online:true +group:eng +group:es -group:kibana +active:false"`;
+
+exports[`astToEsQueryString ast - 'john -sales' 1`] = `"+john -sales"`;
+
+exports[`astToEsQueryString ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `"+john +(group:eng OR group:\\"marketing org\\") -group:\\"kibana team\\""`;
+
+exports[`astToEsQueryString ast - 'john group:(eng or es) -group:kibana' 1`] = `"+john +(group:eng OR group:es) -group:kibana"`;
+
+exports[`astToEsQueryString ast - -count<=4 size<5 age>=3 -number>9 1`] = `"-count:<=4 +size:<5 +age:>=3 -number:>9"`;
+
+exports[`astToEsQueryString ast - count>3 1`] = `"+count:>3"`;
+
+exports[`astToEsQueryString ast - date:'2004-03' -date<'2004-03-10' 1`] = `"+date:(>=2004-03 AND <2004-04) -date:<2004-03-10"`;
+
+exports[`astToEsQueryString ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `"+date:>=2004-03 -date:>=2004-03-10"`;
+
+exports[`astToEsQueryString ast - date>='2004-03-22' 1`] = `"+date:>=2004-03-22"`;
