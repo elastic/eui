@@ -522,6 +522,19 @@ export default () => (
       </GuideRuleExample>
     </GuideRule>
 
+    <GuideRule
+      heading="Include critical information first"
+      description="Tell the user the most important information first, and less critical information second."
+    >
+      <GuideRuleExample type="do" text="Do. Prioritize important information first.">
+        <GuideRuleWriting>Your current subscription limit won't let you create the deployment. To increase your limit, contact support.</GuideRuleWriting>
+      </GuideRuleExample>
+      <GuideRuleExample type="dont" text="Don't. Hide important information at the end.">
+        <GuideRuleWriting>To increase your limit contact support because your current subscription limit won't let you create the deployment.</GuideRuleWriting>
+      </GuideRuleExample>
+
+    </GuideRule>
+
     <GuideRuleTitle>Informational text</GuideRuleTitle>
 
     <GuideRule
