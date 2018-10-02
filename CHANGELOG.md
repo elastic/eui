@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.3.0`.
+**Bug fixes**
+
+- Fix EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
 
 ## [`4.3.0`](https://github.com/elastic/eui/tree/v4.3.0)
 
