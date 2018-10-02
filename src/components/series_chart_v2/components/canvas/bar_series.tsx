@@ -1,4 +1,4 @@
-import { Group as KonvaGroup, KonvaEvent, Node, Shape } from 'konva';
+import { Group as KonvaGroup, Node, Shape } from 'konva';
 import React from 'react';
 import { Group, Rect } from 'react-konva';
 
@@ -45,7 +45,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     if (animated) {
       return this.renderAnimatedBars();
     } else {
-      return <Group ref={this.barSeriesRef}>{this.renderGlyphs(glyphs, '')}</Group>;
+      return <Group ref={this.barSeriesRef} key={'aaa'}>{this.renderGlyphs(glyphs, '')}</Group>;
     }
   }
 
@@ -130,7 +130,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     return glyphs.map((glyph, i) => {
       const { x, y, width, height, fill, level, data } = glyph;
       const hasTooltip = tooltipLevel === level;
-      const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
+      const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue, i].join('-');
       return (
         <Rect
           key={groupKey}

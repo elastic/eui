@@ -73,10 +73,7 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
     } else {
       // computing the stack value
       if (stackAccessors.length > 0) {
-        // TODO this can be changed to something else so we can in the
-        // future use also function accessors
-        const usedStackAccessors = stackAccessors.slice(0, -1);
-        const stackKey = usedStackAccessors.map((accessor) => String(datum[accessor])).join('--');
+        const stackKey = stackAccessors.map((accessor) => String(datum[accessor])).join('--');
         if (!stackedData.has(stackKey)) {
           stackedData.set(stackKey, []);
         }

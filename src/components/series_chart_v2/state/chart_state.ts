@@ -1,7 +1,3 @@
-import { AxisId, GroupId, SpecId } from '../commons/ids';
-import { AxisSpec, BarSeriesSpec, Datum, Rotation } from '../commons/series/specs';
-
-import { Either, left, right } from 'fp-ts/lib/Either';
 import { none, Option, some } from 'fp-ts/lib/Option';
 import { action, observable } from 'mobx';
 import {
@@ -13,9 +9,10 @@ import {
 import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
-import { getSpecId } from '../commons/ids';
+import { AxisId, GroupId, SpecId } from '../commons/ids';
 import { computeDataDomain } from '../commons/series/bars/domains';
 import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
+import { AxisSpec, BarSeriesSpec, Datum, Rotation } from '../commons/series/specs';
 import { ColorScales, computeColorScales } from '../commons/themes/colors';
 import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
 export interface LeftTooltip {
@@ -72,7 +69,6 @@ export class ChartStore {
   // }));
 
   public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
-    console.log('ontooltip over ', data, specId);
     const tooltip: TooltipData = {
       data,
       specId,
@@ -117,7 +113,6 @@ export class ChartStore {
     this.barSeriesSpecs.set(seriesSpec.id, seriesSpec);
     // compute all x and y domains
     const dataDomain = computeDataDomain(seriesSpec);
-    // console.log({ seriesSpec, dataDomain });
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
@@ -126,7 +121,6 @@ export class ChartStore {
 
     // TODO merge color scales....
     const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme);
-    // console.log({colorScales});
     this.globalColorScales.set(seriesSpec.groupId, colorScales);
     // this.mergeChartScales(seriesSpec.groupId, seriesScales);
     // TODO compute chart only after all series are updated
@@ -155,13 +149,9 @@ export class ChartStore {
   }
 
   public computeChart() {
-    // tslint:disable-next-line:no-console
-    console.time('__chart_computation__');
     this.initialized.set(false);
     // compute only if parent dimensions are computed
     if (this.parentDimensions.width === 0 || this.parentDimensions.height === 0) {
-      // tslint:disable-next-line:no-console
-      console.timeEnd('__chart_computation__');
       return;
     }
     // TODO merge series domains
@@ -222,13 +212,10 @@ export class ChartStore {
         colorScales!,
         this.chartTheme,
       );
-      // console.log({renderedGlyphs});
       this.barSeriesGlyphs.set(id, renderedGlyphs);
     });
 
     this.initialized.set(true);
-    // tslint:disable-next-line:no-console
-    console.timeEnd('__chart_computation__');
   }
 
   // private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {

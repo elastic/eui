@@ -4,5 +4,7 @@
   border-radius: $euiBorderRadius;
   padding: $euiSizeM;
   color: $euiColorGhost;
+  opacity: 0.9;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+  max-width: 200px;
 }
