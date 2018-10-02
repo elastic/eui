@@ -37,6 +37,18 @@ const iconTypes = [
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
+  'auditBeatApp',
+  'canvasApp',
+  'crossClusterReplicationApp',
+  'filebeatApp',
+  'gisApp',
+  'heartBeatApp',
+  'indexRollupApp',
+  'metricbeatApp',
+  'notebookApp',
+  'packetbeatApp',
+  'securityAnalyticsApp',
+  'sqlApp',
 ];
 
 export default () => (

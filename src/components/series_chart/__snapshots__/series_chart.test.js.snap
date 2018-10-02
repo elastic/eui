@@ -15,35 +15,13 @@ exports[`EuiSeriesChart renders an empty chart 1`] = `
       width="32"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <rect
-          fill="#00A9E5"
-          height="18"
-          rx="2"
-          width="8"
-          x="1"
-          y="13"
-        />
-        <rect
-          fill="#00A9E5"
-          height="22"
-          rx="2"
-          width="8"
-          x="23"
-          y="9"
-        />
-        <rect
-          fill="#00BFB3"
-          height="30"
-          rx="2"
-          width="8"
-          x="12"
-          y="1"
-        />
-      </g>
+      <path
+        d="M32 32H4a4 4 0 0 1-4-4V0h2v28a2 2 0 0 0 2 2h28v2z"
+      />
+      <path
+        d="M12 27H5V12h7v15zm-5-2h3V14H7v11zm14 2h-7V4h7v23zm-5-2h3V6h-3v19zm14 2h-7V15h7v12zm-5-2h3v-8h-3v8z"
+        fill="#00BFB2"
+      />
     </svg>
     <div
       class="euiSpacer euiSpacer--s"

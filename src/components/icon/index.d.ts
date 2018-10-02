@@ -221,6 +221,18 @@ declare module '@elastic/eui' {
     | 'visVisualBuilder'
     | 'watchesApp'
     | 'wrench'
+    | 'auditBeatApp'
+    | 'canvasApp'
+    | 'crossClusterReplicationApp'
+    | 'filebeatApp'
+    | 'gisApp'
+    | 'heartBeatApp'
+    | 'indexRollupApp'
+    | 'metricbeatApp'
+    | 'notebookApp'
+    | 'packetbeatApp'
+    | 'securityAnalyticsApp'
+    | 'sqlApp'
 
   export type IconSize = 'original' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 

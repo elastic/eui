@@ -3,6 +3,10 @@
   vertical-align: middle;
   fill: currentColor;
 
+  svg {
+    transform: translate(0,0); // Hack to fix Firefox "softness"
+  }
+
   &:focus {
     opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
     background: $euiFocusBackgroundColor;
