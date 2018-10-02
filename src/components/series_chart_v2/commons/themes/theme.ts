@@ -1,5 +1,21 @@
 import { Margins } from '../dimensions';
 
+interface InteractionConfig {
+  hideOpacity: number;
+}
+interface AxisConfig {
+  titleFontSize: number;
+  tickFontSize: number;
+}
+interface ChartConfig {
+  margins: Margins;
+  vizColors: number;
+}
+interface ColorConfig {
+  vizColors: string[];
+  defaultVizColor: string;
+}
+
 export interface Theme {
   chartMargins: Margins;
   axisTitle: {

@@ -42,6 +42,9 @@ const THEME: Theme = {
   },
   vizColors: ['green'],
   defaultVizColor: 'red',
+  interactions: {
+    hideOpacity: 0.1,
+  },
 };
 
 const colorScales = {
@@ -78,12 +81,59 @@ describe.only('Bar rendering 1Y0G', () => {
   });
 
   test('should render the bar series', () => {
-    const renderedData = renderBarSeriesSpec(SPEC, computedDomains, CHART_DIMS, 0, colorScales, THEME);
+    const renderedData = renderBarSeriesSpec(
+      SPEC,
+      computedDomains,
+      CHART_DIMS,
+      0,
+      colorScales,
+      THEME,
+    );
     const expectedRendering = [
-      { x: 0, y: 90, width: 25, height: 10, fill: 'green' },
-      { x: 25, y: 80, width: 25, height: 20, fill: 'green' },
-      { x: 50, y: 0, width: 25, height: 100, fill: 'green' },
-      { x: 75, y: 40, width: 25, height: 60, fill: 'green' },
+      {
+        accessor: 'x',
+        levelValue: 1,
+        level: 0,
+        data: { x: 0, y: 1 },
+        x: 0,
+        y: 90,
+        width: 25,
+        height: 10,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 2,
+        level: 0,
+        data: { x: 1, y: 2 },
+        x: 25,
+        y: 80,
+        width: 25,
+        height: 20,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 10,
+        level: 0,
+        data: { x: 2, y: 10 },
+        x: 50,
+        y: 0,
+        width: 25,
+        height: 100,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 6,
+        level: 0,
+        data: { x: 3, y: 6 },
+        x: 75,
+        y: 40,
+        width: 25,
+        height: 60,
+        fill: 'green',
+      },
     ];
     expect(renderedData).toEqual(expectedRendering);
   });
@@ -105,10 +155,50 @@ describe.only('Bar rendering 1Y0G', () => {
       THEME,
     );
     const expectedRendering = [
-      { x: 0, y: 180, width: 25, height: 20, fill: 'green' },
-      { x: 25, y: 160, width: 25, height: 40, fill: 'green' },
-      { x: 50, y: 0, width: 25, height: 200, fill: 'green' },
-      { x: 75, y: 80, width: 25, height: 120, fill: 'green' },
+      {
+        accessor: 'x',
+        levelValue: 1,
+        level: 0,
+        data: { x: 0, y: 1 },
+        x: 0,
+        y: 180,
+        width: 25,
+        height: 20,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 2,
+        level: 0,
+        data: { x: 1, y: 2 },
+        x: 25,
+        y: 160,
+        width: 25,
+        height: 40,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 10,
+        level: 0,
+        data: { x: 2, y: 10 },
+        x: 50,
+        y: 0,
+        width: 25,
+        height: 200,
+        fill: 'green',
+      },
+      {
+        accessor: 'x',
+        levelValue: 6,
+        level: 0,
+        data: { x: 3, y: 6 },
+        x: 75,
+        y: 80,
+        width: 25,
+        height: 120,
+        fill: 'green',
+      },
     ];
     expect(renderedData).toEqual(expectedRendering);
   });

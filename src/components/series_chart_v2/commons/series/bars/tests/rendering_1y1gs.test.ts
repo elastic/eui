@@ -60,34 +60,29 @@ const SPEC: BarSeriesSpec = {
   yScaleType: ScaleType.Linear,
   yScaleToDataExtent: false,
   splitSeriesAccessors: ['g'],
+  stackAccessors: ['x', 'g'],
 };
 
 describe.only('Bar rendering 1Y1G', () => {
   let computedDimensions: SpecDomains;
 
-  test('should compute the domain', () => {
+  test.only('should compute the domain', () => {
     computedDimensions = computeDataDomain(SPEC);
     const expectedDomains: SpecDomains = {
       xDomains: [
         {
           accessor: 'x',
           level: 0,
-          domain: [0, 1, 2, 3],
-          scaleType: ScaleType.Ordinal, // transformation from linear to ordinal
-        },
-        {
-          accessor: 'g',
-          level: 1,
-          domain: ['a', 'b'],
-          scaleType: ScaleType.Ordinal,
+          domain: [0, 3],
+          scaleType: ScaleType.Linear, // transformation from linear to ordinal
         },
       ],
       yDomain: {
         accessor: 'y',
         level: 0,
-        domain: [0, 10],
+        domain: [0, 20],
         scaleType: ScaleType.Linear,
-        isStacked: false,
+        isStacked: true,
       },
       colorDomain: {
         accessors: ['g'],

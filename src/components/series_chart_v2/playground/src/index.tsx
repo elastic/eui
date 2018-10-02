@@ -405,6 +405,7 @@ class App extends Component {
             stackAccessors={['authorAssociation', 'vizType']}
             colorAccessors={['issueType']}
             data={this.state.stackedBarChartData}
+
           />
         </Chart>
       </div>
@@ -431,7 +432,7 @@ class App extends Component {
             id={getSpecId('1000elements')}
             data={data}
             xScaleType={ScaleType.Ordinal}
-            tooltipLevel={1}
+            tooltipLevel={0}
             splitSeriesAccessors={['g']}
             stackAccessors={['x', 'g']}
           />
@@ -440,7 +441,7 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(10, 3);
+    const randomData = dataGenerator.generateGroupedSeries(600, 3);
     return (
       <div className="app">
         <div className="header">

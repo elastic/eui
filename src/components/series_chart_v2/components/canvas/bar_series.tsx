@@ -1,18 +1,26 @@
-import { Group as KonvaGroup } from 'konva';
+import { Group as KonvaGroup, KonvaEvent, Node, Shape } from 'konva';
 import React from 'react';
 import { Group, Rect } from 'react-konva';
 
+import { SpecId } from '../../commons/ids';
 import { getDataFromBarGlyphs, isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
 import { BarGlyphGroup } from '../../commons/series/bars/rendering';
 import { Datum } from '../../commons/series/specs';
 import { Theme } from '../../commons/themes/theme';
-
+import { LeftTooltip, RightTooltip } from '../../state/chart_state';
+interface KonvaEventObject<E> {
+  target: Shape;
+  evt: E;
+  currentTarget: Node;
+  cancelBubble: boolean;
+}
 interface BarSeriesDataProps {
+  specId: SpecId;
   animated?: boolean;
   tooltipLevel: number;
   glyphs: BarGlyphGroup[];
   chartTheme: Theme;
-  onElementOver?: (datum: Datum | Datum[]) => void;
+  onElementOver?: (specId: SpecId, datum: Datum[], position: LeftTooltip | RightTooltip) => void;
   onElementOut?: () => void;
 }
 interface BarSeriesDataState {
@@ -37,21 +45,38 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     if (animated) {
       return this.renderAnimatedBars();
     } else {
-      return (
-        <Group
-          ref={this.barSeriesRef}
-        >
-          {
-            this.renderGlyphs(glyphs, '')
-          }
-        </Group>
-      );
+      return <Group ref={this.barSeriesRef}>{this.renderGlyphs(glyphs, '')}</Group>;
     }
   }
-  private onMouseOver = (uuid: string, data: Datum | Datum[]) => () => {
+
+  private onMouseOver = (uuid: string, data: Datum[]) => (event: KonvaEventObject<MouseEvent>) => {
     document.body.style.cursor = 'pointer';
-    if (this.props.onElementOver) {
-      this.props.onElementOver(data);
+    const stageWidth = event.target.getStage().getWidth();
+    const targetPosition = event.target.getClientRect();
+    if (
+      targetPosition === undefined ||
+      targetPosition.x === undefined ||
+      targetPosition.width === undefined ||
+      targetPosition.y === undefined
+    ) {
+      return;
+    }
+    if (targetPosition.x && targetPosition.x < stageWidth / 2) {
+      const position: LeftTooltip = {
+        top: targetPosition.y,
+        left: targetPosition.x + targetPosition.width,
+      };
+      if (this.props.onElementOver) {
+        this.props.onElementOver(this.props.specId, data, position);
+      }
+    } else {
+      const position: RightTooltip = {
+        top: targetPosition.y,
+        right: stageWidth - targetPosition.x,
+      };
+      if (this.props.onElementOver) {
+        this.props.onElementOver(this.props.specId, data, position);
+      }
     }
     // console.log(`mouse over ${JSON.stringify(getDataFromBarGlyphs(data), null, 2)}`);
     this.setState(() => ({
@@ -67,18 +92,13 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     this.setState(() => ({
       uuid: undefined,
     }));
-
   }
   private renderGlyphs = (glyphs: BarGlyphGroup[], uuidPath: string): JSX.Element[] => {
     const { tooltipLevel } = this.props;
     if (isBarGlyphGroupLeaf(glyphs)) {
-      return [
-        <Group key={'group-0'}>
-          {this.renderBars(glyphs, uuidPath)}
-        </Group>,
-      ];
+      return [<Group key={'group-0'}>{this.renderBars(glyphs, uuidPath)}</Group>];
     }
-    return (glyphs).map((glyph, i) => {
+    return glyphs.map((glyph, i) => {
       let onMouseOverFn;
       const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
       if (tooltipLevel === glyph.level && glyph.elements) {
@@ -86,24 +106,19 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
         onMouseOverFn = this.onMouseOver(groupKey, data);
       }
       return (
-        <Group
-          key={groupKey}
-          x={glyph.x}
-          y={glyph.y}
-        >
-        {
-          tooltipLevel === glyph.level &&
-          <Rect
-            x={0}
-            y={0}
-            width={glyph.width}
-            height={glyph.height}
-            fill={'lightgray'}
-            opacity={this.state.uuid === groupKey ? 0.4 : 0}
-            onMouseOver={onMouseOverFn}
-            onMouseOut={tooltipLevel === glyph.level ? this.onMouseOut : undefined}
-          />
-        }
+        <Group key={groupKey} x={glyph.x} y={glyph.y}>
+          {tooltipLevel === glyph.level && (
+            <Rect
+              x={0}
+              y={0}
+              width={glyph.width}
+              height={glyph.height}
+              fill={'lightgray'}
+              opacity={this.state.uuid === groupKey ? 0.4 : 0}
+              onMouseOver={onMouseOverFn}
+              onMouseOut={tooltipLevel === glyph.level ? this.onMouseOut : undefined}
+            />
+          )}
 
           {glyph.elements && this.renderGlyphs(glyph.elements, groupKey)}
         </Group>
@@ -126,9 +141,9 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
           fill={fill}
           strokeWidth={0}
           listening={hasTooltip}
-          opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : hideOpacity}
+          // opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : hideOpacity}
           perfectDrawEnabled={false}
-          onMouseOver={hasTooltip ? this.onMouseOver(groupKey, data) : undefined}
+          onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data]) : undefined}
           onMouseOut={hasTooltip ? this.onMouseOut : undefined}
         />
       );

@@ -63,6 +63,7 @@ class Chart extends React.Component<ReactiveChartProps> {
         bars.push(
           <BarSeries
             key="data bars"
+            specId={specId}
             glyphs={barGlyphs}
             tooltipLevel={tooltipLevel}
             chartTheme={chartTheme}

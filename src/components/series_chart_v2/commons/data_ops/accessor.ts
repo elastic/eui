@@ -3,6 +3,7 @@ import { Datum } from '../series/specs';
 export type AccessorFn = (datum: Datum) => any;
 export type AccessorString = string;
 export type Accessor = AccessorString;
+
 /**
  * Return an accessor function using the accessor passed as argument
  * @param accessor the spec accessor

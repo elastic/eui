@@ -1,7 +1,9 @@
 import { AxisId, GroupId, SpecId } from '../commons/ids';
 import { AxisSpec, BarSeriesSpec, Datum, Rotation } from '../commons/series/specs';
 
-import { action, IObservableArray, observable } from 'mobx';
+import { Either, left, right } from 'fp-ts/lib/Either';
+import { none, Option, some } from 'fp-ts/lib/Option';
+import { action, observable } from 'mobx';
 import {
   AxisTick,
   AxisTicksDimensions,
@@ -11,10 +13,24 @@ import {
 import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
 import { SpecDomains } from '../commons/data_ops/domain';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
+import { getSpecId } from '../commons/ids';
 import { computeDataDomain } from '../commons/series/bars/domains';
 import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
 import { ColorScales, computeColorScales } from '../commons/themes/colors';
 import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
+export interface LeftTooltip {
+  top: number;
+  left: number;
+}
+export interface RightTooltip {
+  top: number;
+  right: number;
+}
+export interface TooltipData {
+  data: Datum[];
+  specId: SpecId;
+  position: LeftTooltip | RightTooltip;
+}
 
 export class ChartStore {
   public specsInitialized = observable.box(false);
@@ -45,19 +61,27 @@ export class ChartStore {
   public globalSpecDomains: Map<GroupId, SpecDomains> = new Map(); // computed
   public globalColorScales: Map<GroupId, ColorScales> = new Map();
 
-  public tooltipData = observable<Datum[]>([]);
+  // public tooltipData = observable.box<Option<TooltipData>>(none);
+  public tooltipData = observable.box<Option<TooltipData>>(some({
+    specId: getSpecId('renderBarChart1y0g'),
+    data: [{x: 1, y: 2}],
+    position: {
+      top: 0,
+      left: 100,
+    },
+  }));
 
-  public onTooltipOver = action((datum: Datum | Datum[]) => {
-    console.log('ontooltip over ', datum);
-    if (Array.isArray(datum)) {
-      this.tooltipData.replace(datum);
-    } else {
-      this.tooltipData.push(datum);
-    }
+  public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
+    console.log('ontooltip over ', data, specId);
+    const tooltip: TooltipData = {
+      data,
+      specId,
+      position,
+    };
+    this.tooltipData.set(some(tooltip));
   });
   public onTooltipOut = action(() => {
-    console.log('ontooltip out');
-    this.tooltipData.clear();
+    this.tooltipData.set(none);
   });
 
   // public chart: any; // computed
@@ -211,4 +235,7 @@ export class ChartStore {
   //   // TODO
   //   this.chartScales.set(groupId, seriesScales);
   // }
+  public getSpecById(specId: SpecId): BarSeriesSpec  | undefined {
+    return this.barSeriesSpecs.get(specId);
+  }
 }

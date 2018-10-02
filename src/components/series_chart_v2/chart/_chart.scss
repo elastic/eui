@@ -1,0 +1,8 @@
+.euiChartTooltip {
+  @include euiFontSizeS();
+  background: black;
+  border-radius: $euiBorderRadius;
+  padding: $euiSizeM;
+  color: $euiColorGhost;
+  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+}
