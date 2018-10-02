@@ -441,7 +441,7 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(600, 3);
+    const randomData = dataGenerator.generateGroupedSeries(100, 3);
     return (
       <div className="app">
         <div className="header">
@@ -452,7 +452,7 @@ class App extends Component {
         {this.renderBarChart1y0g('canvas')}
         {this.renderBarChart2y2g('canvas')}
         {this.renderBarChart2y2gs('canvas')}
-        {/* {this.renderBarChart1y1g('canvas')}
+        {this.renderBarChart1y1g('canvas')}
         {this.renderBarChart2y1gs('canvas')}
         {this.renderBarChart2y2g('canvas')}
         {this.renderBarChart2y2gs('canvas')}
@@ -461,7 +461,7 @@ class App extends Component {
         {this.renderSimpleClusteredBarChart('canvas')}
         {this.renderMultipleClusteredBarChart('canvas')}
         {this.renderStackedClusteredBarChart('canvas')}
-        {this.renderGitHubIssue('canvas')} */}
+        {this.renderGitHubIssue('canvas')}
         </div>
         <div className="chartContainers">
         {/* {this.renderHighVolumeChart('svg', randomData)}

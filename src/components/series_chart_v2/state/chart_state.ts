@@ -61,15 +61,15 @@ export class ChartStore {
   public globalSpecDomains: Map<GroupId, SpecDomains> = new Map(); // computed
   public globalColorScales: Map<GroupId, ColorScales> = new Map();
 
-  // public tooltipData = observable.box<Option<TooltipData>>(none);
-  public tooltipData = observable.box<Option<TooltipData>>(some({
-    specId: getSpecId('renderBarChart1y0g'),
-    data: [{x: 1, y: 2}],
-    position: {
-      top: 0,
-      left: 100,
-    },
-  }));
+  public tooltipData = observable.box<Option<TooltipData>>(none);
+  // public tooltipData = observable.box<Option<TooltipData>>(some({
+  //   specId: getSpecId('renderBarChart1y0g'),
+  //   data: [{x: 1, y: 2}],
+  //   position: {
+  //     top: 0,
+  //     left: 100,
+  //   },
+  // }));
 
   public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
     console.log('ontooltip over ', data, specId);
