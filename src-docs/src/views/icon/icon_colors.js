@@ -43,5 +43,20 @@ export default () => (
         </EuiFlexItem>
       ))
     }
+    <EuiFlexItem
+      className="guideDemo__icon"
+      style={{ width: '340px' }}
+    >
+      <EuiPanel>
+        <EuiIcon
+          type="gisApp"
+          color="text"
+          size="xl"
+        />
+        <EuiText size="s">
+          <p><strong>Special:</strong> the text color can also be applied to the App icons</p>
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
   </EuiFlexGrid>
 );

@@ -226,7 +226,7 @@ exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
 
 exports[`EuiIcon props title defaults to a humanized version of the type 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -275,7 +275,7 @@ exports[`EuiIcon props title is rendered 1`] = `
 
 exports[`EuiIcon props type addDataApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -294,7 +294,7 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
 
 exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -349,7 +349,7 @@ exports[`EuiIcon props type alert is rendered 1`] = `
 
 exports[`EuiIcon props type apmApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -504,7 +504,7 @@ exports[`EuiIcon props type asterisk is rendered 1`] = `
 
 exports[`EuiIcon props type auditBeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -664,7 +664,7 @@ exports[`EuiIcon props type calendar is rendered 1`] = `
 
 exports[`EuiIcon props type canvasApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -780,7 +780,7 @@ exports[`EuiIcon props type console is rendered 1`] = `
 
 exports[`EuiIcon props type consoleApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -915,42 +915,13 @@ exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
   width="32"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <g
-    fill="none"
-  >
-    <circle
-      cx="26.002"
-      cy="5.998"
-      fill="#3EBEB0"
-      r="5.998"
-    />
-    <circle
-      cx="5.998"
-      cy="5.998"
-      fill="#3EBEB0"
-      r="5.998"
-    />
-    <circle
-      cx="26.002"
-      cy="26.002"
-      fill="#3EBEB0"
-      r="5.998"
-    />
-    <circle
-      cx="5.998"
-      cy="26.002"
-      fill="#3EBEB0"
-      r="5.998"
-    />
-    <path
-      d="M16 1.829c-7.812.01-14.138 6.347-14.135 14.159C1.87 23.8 8.2 30.13 16.012 30.135c7.812.003 14.15-6.323 14.16-14.135A14.162 14.162 0 0 0 16 1.829zm5.074 15.652h-2.788c-.42 0-.76.34-.76.759v2.816a1.5 1.5 0 0 1-1.755 1.481 1.563 1.563 0 0 1-1.27-1.508v-2.743c0-.42-.34-.76-.76-.76h-2.77a1.5 1.5 0 0 1-1.48-1.755 1.563 1.563 0 0 1 1.48-1.27h2.743c.42 0 .76-.34.76-.76v-2.77a1.5 1.5 0 0 1 1.755-1.48 1.563 1.563 0 0 1 1.27 1.48v2.743c0 .42.34.76.76.76H21a1.563 1.563 0 0 1 1.564 1.243 1.5 1.5 0 0 1-1.49 1.782v-.018z"
-      fill="#07A5DE"
-    />
-    <path
-      d="M29.257 20.965a5.934 5.934 0 0 0-3.236-.96 5.998 5.998 0 0 0-5.998 5.997 5.934 5.934 0 0 0 .942 3.255 14.208 14.208 0 0 0 8.292-8.292zm-18.222 8.292c.611-.968.928-2.092.915-3.236a5.998 5.998 0 0 0-5.998-5.998 5.934 5.934 0 0 0-3.21.942 14.208 14.208 0 0 0 8.293 8.292zm9.93-26.514a5.934 5.934 0 0 0-.96 3.236 5.998 5.998 0 0 0 5.997 5.998 5.934 5.934 0 0 0 3.237-.914 14.208 14.208 0 0 0-8.274-8.32zM2.743 11.035c.968.611 2.092.928 3.236.915a5.998 5.998 0 0 0 5.998-5.998 5.934 5.934 0 0 0-.914-3.237 14.208 14.208 0 0 0-8.32 8.32z"
-      fill="#227991"
-    />
-  </g>
+  <path
+    d="M30.976 10.41a6.23 6.23 0 0 1-1.75.715 12.979 12.979 0 0 1 0 9.75 6.23 6.23 0 0 1 1.75.716 14.984 14.984 0 0 0 0-11.182zM12.125 3.764a12.979 12.979 0 0 1 9.75 0 6.23 6.23 0 0 1 .716-1.75 14.984 14.984 0 0 0-11.182 0 6.23 6.23 0 0 1 .716 1.75zM3.824 16c-.005-1.67.315-3.326.94-4.875a6.061 6.061 0 0 1-1.74-.716 14.861 14.861 0 0 0 0 11.182 6.061 6.061 0 0 1 1.74-.716A12.932 12.932 0 0 1 3.825 16zm18.051 12.235a12.979 12.979 0 0 1-9.75 0 6.061 6.061 0 0 1-.716 1.741 14.861 14.861 0 0 0 11.182 0 6.061 6.061 0 0 1-.716-1.74z"
+  />
+  <path
+    d="M23.588 15.059h-5.647V9.412h-1.882v5.647h-5.647v1.882h5.647v5.647h1.882v-5.647h5.647zM6.176 31.059a4.235 4.235 0 1 1 4.236-4.235 4.245 4.245 0 0 1-4.236 4.235zm0-6.588a2.353 2.353 0 1 0 0 4.705 2.353 2.353 0 0 0 0-4.705zm21.648 6.588a4.235 4.235 0 1 1 4.235-4.235 4.245 4.245 0 0 1-4.235 4.235zm0-6.588a2.353 2.353 0 1 0 0 4.705 2.353 2.353 0 0 0 0-4.705zM6.176 9.41a4.235 4.235 0 1 1 4.236-4.235 4.245 4.245 0 0 1-4.236 4.236zm0-6.587a2.353 2.353 0 1 0 0 4.705 2.353 2.353 0 0 0 0-4.705zm21.648 6.588a4.235 4.235 0 1 1 4.235-4.236 4.245 4.245 0 0 1-4.235 4.236zm0-6.588a2.353 2.353 0 1 0 0 4.705 2.353 2.353 0 0 0 0-4.705z"
+    fill="#00BFB2"
+  />
 </svg>
 `;
 
@@ -1017,7 +988,7 @@ exports[`EuiIcon props type cross is rendered 1`] = `
 
 exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1036,7 +1007,7 @@ exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
 
 exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1096,7 +1067,7 @@ exports[`EuiIcon props type database is rendered 1`] = `
 
 exports[`EuiIcon props type devToolsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1115,7 +1086,7 @@ exports[`EuiIcon props type devToolsApp is rendered 1`] = `
 
 exports[`EuiIcon props type discoverApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1499,7 +1470,7 @@ exports[`EuiIcon props type empty is rendered 1`] = `
 
 exports[`EuiIcon props type emsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1641,7 +1612,7 @@ exports[`EuiIcon props type faceSad is rendered 1`] = `
 
 exports[`EuiIcon props type filebeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1721,7 +1692,7 @@ exports[`EuiIcon props type gear is rendered 1`] = `
 
 exports[`EuiIcon props type gisApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1771,7 +1742,7 @@ exports[`EuiIcon props type grab is rendered 1`] = `
 
 exports[`EuiIcon props type graphApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1812,7 +1783,7 @@ exports[`EuiIcon props type grid is rendered 1`] = `
 
 exports[`EuiIcon props type grokApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1823,16 +1794,11 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
     fill="none"
   >
     <path
-      d="M27.2 14.122c-.98-.974-1.26-2.226-1.26-3.757V3.757c0-1.253-.49-2.227-1.12-2.783C24.19.348 22.79.07 21.04 0h-3.5l-5.6 32h9.1c1.68-.07 3.15-.348 3.78-.974.63-.626 1.12-1.53 1.12-2.783V21.635c0-1.53.28-2.783 1.26-3.757a5.143 5.143 0 0 1 1.89-1.182.73.73 0 0 0 0-1.322c-.77-.348-1.4-.765-1.89-1.252z"
-      fill="#14A7DF"
+      d="M9.727 2.91V.97c-1.357 0-4.18 0-5.818 1.94-.97 1.182-1.328 2.908-.97 4.983.563 3.307.97 6.332.301 7.157-.3.31-.97.465-2.24.465v1.94c1.27 0 1.94.155 2.25.494.698.824.262 3.879-.3 7.156-.35 2.124-.01 3.802.96 4.956C5.527 32 8.35 32 9.726 32v-1.94c-1.144 0-3.287 0-4.315-1.221a4.112 4.112 0 0 1-.533-3.414c.843-5.042.97-7.37-.136-8.727-.068-.077-.145-.136-.213-.203-.068-.068.145-.127.213-.204 1.144-1.367.97-3.695.136-8.727a4.112 4.112 0 0 1 .543-3.414C6.44 2.91 8.583 2.91 9.727 2.91zM32.03 17.454v-1.94c-1.27 0-1.94-.155-2.25-.494-.698-.825-.261-3.88.301-7.157.35-2.123 0-3.801-.97-4.984C27.493.94 24.672.94 23.294.94v1.97c1.145 0 3.288 0 4.315 1.22a4.112 4.112 0 0 1 .544 3.414c-.844 5.043-.97 7.37.135 8.728.068.077.146.135.214.203.067.068-.146.126-.214.204-1.144 1.367-.97 3.694-.135 8.727.329 1.162.13 2.41-.544 3.413-1.018 1.242-3.16 1.242-4.305 1.242V32c1.358 0 4.18 0 5.818-1.94.97-1.182 1.329-2.908.97-4.984-.563-3.306-.97-6.332-.3-7.156.3-.31.969-.465 2.24-.465z"
     />
     <path
-      d="M4.94 17.878c1.05.974 1.4 2.226 1.4 3.757V28.243c0 1.253.49 2.227 1.12 2.783.63.626 2.1.974 3.92.974h3.36l5.6-32h-8.96C9.56 0 8.16.348 7.46.974c-.63.626-1.12 1.53-1.12 2.783V10.365c0 1.53-.35 2.783-1.4 3.757-.56.487-1.19.904-2.03 1.182-.63.209-.63 1.044 0 1.322.77.348 1.47.765 2.03 1.252z"
-      fill="#00BFB3"
-    />
-    <path
-      d="M17.54 0l-5.6 32h2.8l5.6-32z"
-      fill="#0078A0"
+      d="M26.212 15.515h-2.007a7.758 7.758 0 0 0-6.72-6.72V6.788h-1.94v2.007a7.758 7.758 0 0 0-6.72 6.72H6.818v1.94h2.007a7.758 7.758 0 0 0 6.72 6.72v2.007h1.94v-2.007a7.758 7.758 0 0 0 6.72-6.72h2.007v-1.94zm-8.727 6.7v-1.851h-1.94v1.852a5.818 5.818 0 0 1-4.76-4.761h1.851v-1.94h-1.852a5.818 5.818 0 0 1 4.761-4.761v1.852h1.94v-1.852a5.818 5.818 0 0 1 4.761 4.761h-1.852v1.94h1.852a5.818 5.818 0 0 1-4.761 4.76z"
+      fill="#00BFB2"
     />
   </g>
 </svg>
@@ -1840,7 +1806,7 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
 
 exports[`EuiIcon props type heartBeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1974,7 +1940,7 @@ exports[`EuiIcon props type indexFlush is rendered 1`] = `
 
 exports[`EuiIcon props type indexManagementApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2026,7 +1992,7 @@ exports[`EuiIcon props type indexOpen is rendered 1`] = `
 
 exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2045,7 +2011,7 @@ exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
 
 exports[`EuiIcon props type indexRollupApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2091,7 +2057,7 @@ exports[`EuiIcon props type indexSettings is rendered 1`] = `
 
 exports[`EuiIcon props type infraApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2332,7 +2298,7 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
 
 exports[`EuiIcon props type loggingApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3977,7 +3943,7 @@ exports[`EuiIcon props type logstashQueue is rendered 1`] = `
 
 exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3996,7 +3962,7 @@ exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
 
 exports[`EuiIcon props type managementApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4071,7 +4037,7 @@ exports[`EuiIcon props type merge is rendered 1`] = `
 
 exports[`EuiIcon props type metricbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4108,7 +4074,7 @@ exports[`EuiIcon props type minusInCircle is rendered 1`] = `
 
 exports[`EuiIcon props type monitoringApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4142,7 +4108,7 @@ exports[`EuiIcon props type node is rendered 1`] = `
 
 exports[`EuiIcon props type notebookApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4210,7 +4176,7 @@ exports[`EuiIcon props type online is rendered 1`] = `
 
 exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4283,7 +4249,7 @@ exports[`EuiIcon props type pin is rendered 1`] = `
 
 exports[`EuiIcon props type pipelineApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4389,7 +4355,7 @@ exports[`EuiIcon props type refresh is rendered 1`] = `
 
 exports[`EuiIcon props type reportingApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4426,7 +4392,7 @@ exports[`EuiIcon props type save is rendered 1`] = `
 
 exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4483,7 +4449,7 @@ exports[`EuiIcon props type search is rendered 1`] = `
 
 exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4512,7 +4478,7 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
 
 exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4531,7 +4497,7 @@ exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
 
 exports[`EuiIcon props type securityApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4657,7 +4623,7 @@ exports[`EuiIcon props type sortUp is rendered 1`] = `
 
 exports[`EuiIcon props type spacesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4680,7 +4646,7 @@ exports[`EuiIcon props type spacesApp is rendered 1`] = `
 
 exports[`EuiIcon props type sqlApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4909,7 +4875,7 @@ exports[`EuiIcon props type temperature is rendered 1`] = `
 
 exports[`EuiIcon props type timelionApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4950,7 +4916,7 @@ exports[`EuiIcon props type trash is rendered 1`] = `
 
 exports[`EuiIcon props type upgradeAssistantApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4991,7 +4957,7 @@ exports[`EuiIcon props type user is rendered 1`] = `
 
 exports[`EuiIcon props type usersRolesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5303,7 +5269,7 @@ exports[`EuiIcon props type visVisualBuilder is rendered 1`] = `
 
 exports[`EuiIcon props type visualizeApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5322,7 +5288,7 @@ exports[`EuiIcon props type visualizeApp is rendered 1`] = `
 
 exports[`EuiIcon props type watchesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"

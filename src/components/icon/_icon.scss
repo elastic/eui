@@ -15,6 +15,19 @@
 
 .euiIcon--text {
   fill: $euiTextColor;
+
+  // Provides a way to make app icons mono 
+  .euiIcon__fillSecondary {
+    fill: $euiTextColor;
+  }
+}
+
+.euiIcon--app {
+  fill: $euiTextColor;
+}
+
+.euiIcon__fillSecondary {
+  fill: $euiColorSecondary;
 }
 
 .euiIcon--subdued {

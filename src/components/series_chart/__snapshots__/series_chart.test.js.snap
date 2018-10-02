@@ -8,7 +8,7 @@ exports[`EuiSeriesChart renders an empty chart 1`] = `
     class="euiEmptyPrompt euiSeriesChartContainer__emptyPrompt"
   >
     <svg
-      class="euiIcon euiIcon--xxLarge euiIcon--subdued"
+      class="euiIcon euiIcon--xxLarge euiIcon--subdued euiIcon--app"
       focusable="false"
       height="32"
       viewBox="0 0 32 32"

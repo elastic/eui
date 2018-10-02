@@ -505,10 +505,15 @@ export const EuiIcon = ({
     optionalCustomStyles = { fill: color };
   }
 
+  const hasAppSuffix = /.+App$/.test(type);
+
   const classes = classNames(
     'euiIcon',
     sizeToClassNameMap[size],
     optionalColorClass,
+    {
+      'euiIcon--app': hasAppSuffix,
+    },
     className,
   );
 
